@@ -12,6 +12,7 @@ Table of Contents
 
    install
    quickstart
+   Acquisition
    license
 
 
