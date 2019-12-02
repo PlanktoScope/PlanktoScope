@@ -10,7 +10,7 @@ keep up to date, and easy to remove should you wish to do so. It will also make
 picamera available for all users on the system. To install picamera using apt
 simply::
 
-A) Import the librairies needed to execute the script
+Import the librairies needed to execute the script
 =======================================================
 
 If you are using the `Raspbian`_ distro, it is best to install picamera using
@@ -27,7 +27,7 @@ simply::
   import os
 
 
-B) Define the used pinout
+Define the used pinout
 =========================
 
 If you are using the `Raspbian`_ distro, it is best to install picamera using
@@ -43,7 +43,7 @@ simply::
   RELAY = LED(14)
 
 
-C) Configuration file
+Configuration file
 =====================
 
 If you are using the `Raspbian`_ distro, it is best to install picamera using
@@ -67,7 +67,7 @@ simply::
   duration_flushing=20 #(sec)
   duration_aeration=30 #(sec)
 
-D) Define simple sequence for I2C modules (Valves and pump)
+Define simple sequence for I2C modules (Valves and pump)
 ===========================================================
 
 If you are using the `Raspbian`_ distro, it is best to install picamera using
