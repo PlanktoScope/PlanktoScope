@@ -196,9 +196,8 @@ If you wish to run the picamera test suite, follow the instructions in
 Contents
 ========
 
-:ref:`Keyword Index <genindex>`, :ref:`Search Page <search>`
-
 .. toctree::
    :maxdepth: 2
 
    test.rst
+
