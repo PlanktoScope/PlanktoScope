@@ -1,48 +1,51 @@
-.. _license:
+.. _quickstart:
 
-=======
-License
-=======
+===============
+Getting Started
+===============
 
-Copyright 2018-2019 `Thibaut Pollina`_
+.. warning::
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+    Make sure your Pi is off while installing the camera module. Although it is
+    possible to install the camera while the Pi is on, this isn't good practice
+    (if the camera is active when removed, it's possible to damage it).
 
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
+Connect your camera module to the CSI port on your Raspberry Pi; this is the
+long thin port adjacent to the HDMI socket. Gently lift the collar on top of
+the CSI port (if it comes off, don't worry, you can push it back in but try to
+be more gentle in future!). Slide the ribbon cable of the camera module into
+the port with the blue side facing the Ethernet port (or where the Ethernet
+port would be if you've got a model A/A+).
 
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
+Once the cable is seated in the port, press the collar back down to lock the
+cable in place. If done properly you should be able to easily lift the Pi by
+the camera's cable without it falling out. The following illustrations show
+a well-seated camera cable with the correct orientation:
 
-* Neither the name of the copyright holder nor the names of its contributors
-  may be used to endorse or promote products derived from this software without
-  specific prior written permission.
+.. image:: good_connection.jpg
+    :width: 640px
+    :align: center
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Make sure the camera module isn't sat on anything conductive (e.g. the Pi's
+USB ports or its GPIO pins). Now, apply power to your Pi. Once booted, start
+the Raspberry Pi Configuration utility and enable the camera module:
 
-----------
+.. image:: enable_camera.png
+    :align: center
 
-The :ref:`bayer pattern diagram <bayer_data>` in the documentation is derived
-from `Bayer_pattern_on_sensor.svg`_ which is copyright (c) Colin Burnett
-(User:Cburnett) on Wikipedia, modified under the terms of the GPL:
+You will need to reboot after doing this (but this is one-time setup so you
+won't need to do it again unless you re-install your operating system or switch
+SD cards). Once rebooted, start a terminal and try the following command::
 
-This work is free software; you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation; either version 2 of the License, or any later version.  This work
-is distributed in the hope that it will be useful, but without any warranty;
-without even the implied warranty of merchantability or fitness for a
-particular purpose. See version 2 and version 3 of the GNU General Public
-License for more details.
+    raspistill -o image.jpg
 
-----------
+If everything is working correctly, the camera should start, a preview from the
+camera should appear on the display and, after a 5 second delay it should
+capture an image (storing it as ``image.jpg``) before shutting down the camera.
+Proceed to the :ref:`recipes1`.
+
+If something else happens, read any error message displayed and try any
+recommendations suggested by such messages. If your Pi reboots as soon as you
+run this command, your power supply is insufficient for running your Pi plus
+the camera module (and whatever other peripherals you have attached).
+
