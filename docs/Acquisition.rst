@@ -30,12 +30,10 @@ simply::
 B) Define the used pinout
 =========================
 
-  #Affiliate pin to var for the LEDs
   GREEN = LED(16)
   RED = LED(12)
   BLUE = LED(26)
 
-  #Affiliate pin to var for the RELAY
   RELAY = LED(14)
 
 
