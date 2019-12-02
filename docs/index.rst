@@ -199,5 +199,5 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   test.rst
+   test
 
