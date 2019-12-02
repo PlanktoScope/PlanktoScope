@@ -30,6 +30,12 @@ simply::
 B) Define the used pinout
 =========================
 
+If you are using the `Raspbian`_ distro, it is best to install picamera using
+the system's package manager: apt. This will ensure that picamera is easy to
+keep up to date, and easy to remove should you wish to do so. It will also make
+picamera available for all users on the system. To install picamera using apt
+simply::
+
   GREEN = LED(16)
   RED = LED(12)
   BLUE = LED(26)
@@ -39,6 +45,12 @@ B) Define the used pinout
 
 C) Configuration file
 =====================
+
+If you are using the `Raspbian`_ distro, it is best to install picamera using
+the system's package manager: apt. This will ensure that picamera is easy to
+keep up to date, and easy to remove should you wish to do so. It will also make
+picamera available for all users on the system. To install picamera using apt
+simply::
 
   camera = PiCamera()
 
@@ -57,6 +69,12 @@ C) Configuration file
 
 D) Define simple sequence for I2C modules (Valves and pump)
 ===========================================================
+
+If you are using the `Raspbian`_ distro, it is best to install picamera using
+the system's package manager: apt. This will ensure that picamera is easy to
+keep up to date, and easy to remove should you wish to do so. It will also make
+picamera available for all users on the system. To install picamera using apt
+simply::
 
   def pump(state, verbose=True):
 
