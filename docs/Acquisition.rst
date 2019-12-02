@@ -1,16 +1,8 @@
 .. _install:
 
 ============
-Installation
+Acquisition
 ============
-
-.. currentmodule:: picamera
-
-
-.. _raspbian_install:
-
-Raspbian installation
-=====================
 
 If you are using the `Raspbian`_ distro, it is best to install picamera using
 the system's package manager: apt. This will ensure that picamera is easy to
