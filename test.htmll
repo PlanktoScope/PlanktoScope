@@ -1,0 +1,56 @@
+cat "/media/tpollina/ACQUISITION/PlanktonScope_V2/exp_new_03/"$folder"/OBJECTS/ecotaxa_size_mesurement.tsv" | head -n 1 > /home/tpollina/Desktop/day_night_pyro/table.tsv
+for folder in 0 1 10 11 14 15 17 18 2 20 21 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 6 7 9
+do
+   cat "/media/tpollina/ACQUISITION/PlanktonScope_V2/exp_new_03/"$folder"/OBJECTS/ecotaxa_size_mesurement.tsv" | tail -n +3 >> /home/tpollina/Desktop/day_night_pyro/table.tsv
+   cp /media/tpollina/ACQUISITION/PlanktonScope_V2/exp_new_03/$folder/OBJECTS/*.jpg /home/tpollina/Desktop/day_night_pyro/
+done
+
+cat /home/tpollina/Desktop/day_night_pyro/table.tsv | head -n 1 > /home/tpollina/Desktop/day_night_pyro/simplified.tsv
+
+#!/bin/bash
+for i in $( ls *.jpg); do
+    grep $i table.tsv >> /home/tpollina/Desktop/day_night_pyro/simplified.tsv
+done
+        
+        
+cat "/media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/Chile_EXPORT/CHILE_DAY2_ST4_D9_2/ecotaxa_size_mesurement.tsv" | head -n 1 > /media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/figure_5_analysis_chile.tsv
+
+for replicat in 1 2
+do
+    for depth in 0 1 2 3 4 5 6 7 8 9 10
+    do
+        cat "/media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/Chile_EXPORT/CHILE_DAY2_ST4_D"$depth"_"$replicat"/ecotaxa_size_mesurement.tsv" | tail -n +3 >> /media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/figure_5_analysis_chile.tsv
+    done
+done    
+
+
+for replicat in 1 2
+do
+    for depth in 0 1 2 3 4 5 6 7 8 9 10
+    do
+        echo $depth
+        cat "/media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/Chile_EXPORT/CHILE_DAY2_ST4_D"$depth"_"$replicat"/ecotaxa_size_mesurement.tsv" | tail -n +3 | awk '{ total += $41; count++ } END { print total/count }' >> /media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/mean_eccentricity.tsv
+    done
+done    
+ 
+for replicat in 1 2; do
+    for depth in 0 1 2 3 4 5 6 7 8 9 10; do
+        echo $depth
+        cp "/media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/Chile_EXPORT/CHILE_DAY2_ST4_D"$depth"_"$replicat"/"
+    done
+done    
+
+
+for depth in 0 1 2 3 4 5 6 7 8 9 10; do
+    for obj in $(cat table.csv | grep $depth | awk -F ',' '{print $2}'); do
+        cp "/media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/Chile_EXPORT/CHILE_DAY2_ST4_D"$depth"_"0"/"$obj .
+        cp "/media/tpollina/TPOLLINA_WORK1/PLANKTOSCOPE/ACQUISITION/ENVIRONNEMENTAL_SAMPLES/CHILE/Chile_EXPORT/CHILE_DAY2_ST4_D"$depth"_"1"/"$obj .
+    done
+done
+for replicat in 1 2; do
+    for depth in 0 1 2 3 4 5 6 7 8 9 10; do
+        echo "cp CHILE_DAY2_ST4_D"$depth"_"$replicat"/*.jpg" ALL_OBJECTS/
+    done
+done    
+
+
