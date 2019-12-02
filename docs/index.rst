@@ -193,3 +193,12 @@ If you wish to run the picamera test suite, follow the instructions in
     using alternate TTYs to access a command line in the event you need to
     reboot.
 
+Contents
+========
+
+:ref:`Keyword Index <genindex>`, :ref:`Search Page <search>`
+
+.. toctree::
+   :maxdepth: 2
+
+   test.rst
