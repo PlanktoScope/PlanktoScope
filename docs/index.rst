@@ -10,6 +10,7 @@ Table of Contents
    :maxdepth: 1
    :numbered:
 
+   librairies_installation
    remote_access
    install
    quickstart
