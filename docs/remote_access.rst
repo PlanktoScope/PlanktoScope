@@ -2,44 +2,6 @@
 Remote access
 =============
 
-.. warning::
-
-    Make sure your Raspberry Pi is connected to Internet either via WiFi or Ethernet.
- 
-Update your Pi
-==============
-    
-Use the command lines to first update and upgrade your Raspbian ::
-
-    $ sudo apt-get update -y
-    $ sudo apt-get dist-upgrade -y
-    
-It's a good practice to reboot after that using ::
-
-    $ sudo reboot now
-    
-Packages installation
-=====================
-
-Install the packages for the standalone WiFi ::
-
-    $ sudo apt-get install dnsmasq hostapd -y
-
-Install the packages for the standalone WiFi ::
-
-    $ sudo apt-get install dnsmasq hostapd -y
-    $ sudo apt-get install git -y
-    $ git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
-    $ cd RPi_Cam_Web_Interface
-    $ ./install.sh
-    
-#
-#
-#
-#
-#
-
-
 Setting up a Raspberry Pi as an access point in a standalone network (NAT)
 ==========================================================================
 
@@ -124,7 +86,7 @@ To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_m
 
 .. warning::
 
-    Make sure you define the wished name (ssid) of the futur generated Wifi and its password (wpa_passphrase).
+    Make sure you **define the wished name (ssid)** of the futur generated Wifi and its **password (wpa_passphrase)**.
 
 Set up your hoastapd.conf as follow ::
  
