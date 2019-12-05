@@ -158,6 +158,6 @@ If SSH is enabled on the Raspberry Pi access point, it should be possible to con
         ssh pi@192.168.4.1
 .. note::
 
-        most likely your password will be **raspberry**
+        Most likely your password will be **raspberry**
 
 By this point, the Raspberry Pi is acting as an access point, and other devices can associate with it. Associated devices can access the Raspberry Pi access point via its IP address for operations such as rsync, scp, or ssh.
