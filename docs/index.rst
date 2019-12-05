@@ -10,6 +10,7 @@ Table of Contents
    :maxdepth: 1
    :numbered:
 
+   remote_access
    install
    quickstart
    Acquisition
