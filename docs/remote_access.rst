@@ -124,7 +124,7 @@ To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_m
 
         sudo echo "interface=wlan0" >> /etc/hostapd/hostapd.conf
         sudo echo "driver=nl80211" >> /etc/hostapd/hostapd.conf
-        sudo echo "ssid="$1"" >> /etc/hostapd/hostapd.conf
+        sudo echo "ssid=**NameOfNetwork**" >> /etc/hostapd/hostapd.conf
         sudo echo "hw_mode=g" >> /etc/hostapd/hostapd.conf
         sudo echo "channel=7" >> /etc/hostapd/hostapd.conf
         sudo echo "wmm_enabled=0" >> /etc/hostapd/hostapd.conf
@@ -132,7 +132,7 @@ To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_m
         sudo echo "auth_algs=1" >> /etc/hostapd/hostapd.conf
         sudo echo "ignore_broadcast_ssid=0" >> /etc/hostapd/hostapd.conf
         sudo echo "wpa=2" >> /etc/hostapd/hostapd.conf
-        sudo echo "wpa_passphrase="$2"" >> /etc/hostapd/hostapd.conf
+        sudo echo "wpa_passphrase=**YourPassword**" >> /etc/hostapd/hostapd.conf
         sudo echo "wpa_key_mgmt=WPA-PSK" >> /etc/hostapd/hostapd.conf
         sudo echo "wpa_pairwise=TKIP" >> /etc/hostapd/hostapd.conf
         sudo echo "rsn_pairwise=CCMP" >> /etc/hostapd/hostapd.conf
