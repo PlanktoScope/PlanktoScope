@@ -83,7 +83,7 @@ Now restart the dhcpcd daemon and set up the new wlan0 configuration::
 Configuring the DHCP server (dnsmasq)
 =====================================
 
-The DHCP service is provided by dnsmasq. By default, the configuration file contains a lot of information that is not needed, and it is easier to start from scratch. Rename this configuration file, and edit a new one:
+The DHCP service is provided by dnsmasq. By default, the configuration file contains a lot of information that is not needed, and it is easier to start from scratch. Rename this configuration file, and edit a new one::
 
         sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
         sudo touch /etc/dnsmasq.conf
@@ -105,5 +105,34 @@ Reload dnsmasq to use the updated configuration::
 
         sudo systemctl reload dnsmasq
 
+Configuring the access point host software (hostapd)
+====================================================
 
+You need to edit the hostapd configuration file, located at /etc/hostapd/hostapd.conf, to add the various parameters for your wireless network. After initial install, this will be a new/empty file. ::
         
+        sudo touch /etc/hostapd/hostapd.conf
+        sudo chmod 777 /etc/hostapd/hostapd.conf
+        
+Add the information below to the configuration file. This configuration assumes we are using channel 7, with a network name of NameOfNetwork, and a password AardvarkBadgerHedgehog. Note that the name and password should not have quotes around them. The passphrase should be between 8 and 64 characters in length.
+
+To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_mode=a. Possible values for hw_mode are:
+
+* a = IEEE 802.11a (5 GHz)
+* b = IEEE 802.11b (2.4 GHz)
+* g = IEEE 802.11g (2.4 GHz)
+* ad = IEEE 802.11ad (60 GHz) (Not available on the Raspberry Pi) ::
+
+        sudo echo "interface=wlan0" >> /etc/hostapd/hostapd.conf
+        sudo echo "driver=nl80211" >> /etc/hostapd/hostapd.conf
+        sudo echo "ssid="$1"" >> /etc/hostapd/hostapd.conf
+        sudo echo "hw_mode=g" >> /etc/hostapd/hostapd.conf
+        sudo echo "channel=7" >> /etc/hostapd/hostapd.conf
+        sudo echo "wmm_enabled=0" >> /etc/hostapd/hostapd.conf
+        sudo echo "macaddr_acl=0" >> /etc/hostapd/hostapd.conf
+        sudo echo "auth_algs=1" >> /etc/hostapd/hostapd.conf
+        sudo echo "ignore_broadcast_ssid=0" >> /etc/hostapd/hostapd.conf
+        sudo echo "wpa=2" >> /etc/hostapd/hostapd.conf
+        sudo echo "wpa_passphrase="$2"" >> /etc/hostapd/hostapd.conf
+        sudo echo "wpa_key_mgmt=WPA-PSK" >> /etc/hostapd/hostapd.conf
+        sudo echo "wpa_pairwise=TKIP" >> /etc/hostapd/hostapd.conf
+        sudo echo "rsn_pairwise=CCMP" >> /etc/hostapd/hostapd.conf
