@@ -1,6 +1,6 @@
-=============
-Remote access
-=============
+======================================
+Remote access via a standalone network
+======================================
 
 Setting up a Raspberry Pi as an access point in a standalone network (NAT)
 ==========================================================================
