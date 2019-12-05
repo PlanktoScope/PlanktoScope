@@ -96,8 +96,10 @@ Type or copy the following information into the dnsmasq configuration file and s
         
 So for wlan0, we are going to provide IP addresses between 192.168.4.2 and 192.168.4.20, with a lease time of 24 hours. If you are providing DHCP services for other network devices (e.g. eth0), you could add more sections with the appropriate interface header, with the range of addresses you intend to provide to that interface.
 
-There are many more options for dnsmasq; see the dnsmasq documentation_ for more details.
+There are many more options for dnsmasq; see the dnsmasq `documentation`_  for more details.
+
 .. _documentation: http://www.thekelleys.org.uk/dnsmasq/doc.html
+
 
 Reload dnsmasq to use the updated configuration::
 
