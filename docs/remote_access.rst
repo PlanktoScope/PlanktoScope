@@ -2,12 +2,12 @@
 Remote access
 =============
 
-This tutorial is allowing your Raspberry Pi 
-
 .. warning::
 
     Make sure your Raspberry Pi is connected to Internet either via WiFi or Ethernet.
-    
+ 
+Update your Pi
+==============
     
 Use the command lines to first update and upgrade your Raspbian ::
 
@@ -17,10 +17,21 @@ Use the command lines to first update and upgrade your Raspbian ::
 It's a good practice to reboot after that using ::
 
     $ sudo reboot now
+    
+Packages installation
+=====================
 
-Install all the required packages this command ::
+Install the packages for the standalone WiFi ::
 
     $ sudo apt-get install dnsmasq hostapd -y
+
+Install the packages for the standalone WiFi ::
+
+    $ sudo apt-get install dnsmasq hostapd -y
+    $ sudo apt-get install git -y
+    $ git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
+    $ cd RPi_Cam_Web_Interface
+    $ ./install.sh
     
    
 .. _test_suite:
