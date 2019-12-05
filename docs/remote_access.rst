@@ -120,11 +120,17 @@ To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_m
 * a = IEEE 802.11a (5 GHz)
 * b = IEEE 802.11b (2.4 GHz)
 * g = IEEE 802.11g (2.4 GHz)
-* ad = IEEE 802.11ad (60 GHz) (Not available on the Raspberry Pi) ::
+* ad = IEEE 802.11ad (60 GHz) (Not available on the Raspberry Pi)
 
+.. warning::
+
+    Make sure you define the wished name (ssid) of the futur generated Wifi and its password (wpa_passphrase).
+
+Set up your hoastapd.conf as follow ::
+ 
         sudo echo "interface=wlan0" >> /etc/hostapd/hostapd.conf
         sudo echo "driver=nl80211" >> /etc/hostapd/hostapd.conf
-        sudo echo "ssid=**NameOfNetwork**\" >> /etc/hostapd/hostapd.conf
+        sudo echo "ssid=NameOfNetwork" >> /etc/hostapd/hostapd.conf
         sudo echo "hw_mode=g" >> /etc/hostapd/hostapd.conf
         sudo echo "channel=7" >> /etc/hostapd/hostapd.conf
         sudo echo "wmm_enabled=0" >> /etc/hostapd/hostapd.conf
@@ -132,9 +138,63 @@ To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_m
         sudo echo "auth_algs=1" >> /etc/hostapd/hostapd.conf
         sudo echo "ignore_broadcast_ssid=0" >> /etc/hostapd/hostapd.conf
         sudo echo "wpa=2" >> /etc/hostapd/hostapd.conf
-        sudo echo "wpa_passphrase=**YourPassword**\" >> /etc/hostapd/hostapd.conf
+        sudo echo "wpa_passphrase=YourPassword" >> /etc/hostapd/hostapd.conf
         sudo echo "wpa_key_mgmt=WPA-PSK" >> /etc/hostapd/hostapd.conf
         sudo echo "wpa_pairwise=TKIP" >> /etc/hostapd/hostapd.conf
         sudo echo "rsn_pairwise=CCMP" >> /etc/hostapd/hostapd.conf
 
-r"""\*escape* \`with` "\\""""	
+We now need to tell the system where to find this configuration file. ::
+
+        sudo chmod 777 /etc/default/hostapd
+        
+Find the line with #DAEMON_CONF, and replace it with this ::
+        
+        sudo echo 'DAEMON_CONF="/etc/hostapd/hostapd.conf"' >> /etc/default/hostapd
+
+Start it up
+===========
+
+Now enable and start hostapd ::
+
+        sudo systemctl unmask hostapd
+        sudo systemctl enable hostapd
+        sudo systemctl start hostapd
+
+Do a quick check of their status to ensure they are active and running ::
+
+        sudo systemctl status hostapd
+        sudo systemctl status dnsmasq
+
+Add routing and masquerade
+==========================
+
+Edit /etc/sysctl.conf and uncomment a line ::
+
+        VAR=$(sudo grep -n -m 1 net.ipv4.ip_forward=1 /etc/sysctl.conf | sudo sed  's/\([0-9]*\).*/\1/')
+        sudo sed -i "${VAR}s/# *//" /etc/sysctl.conf
+ 
+Add a masquerade for outbound traffic on eth0 ::
+
+        sudo iptables -t nat -A  POSTROUTING -o eth0 -j MASQUERADE
+
+Save the iptables rule ::
+
+        sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+        
+Edit /etc/rc.local and add this just above "exit 0" to install these rules on boot ::
+
+        sudo chmod 777 /etc/rc.local
+        sudo sed -i  '/exit 0/d' /etc/rc.local
+        sudo echo "iptables-restore < /etc/iptables.ipv4.nat" >> /etc/rc.local
+        sudo echo "exit 0" >> /etc/rc.local
+
+
+Reboot and ensure it still functions.
+
+Using a wireless device, search for networks. The network SSID you specified in the hostapd configuration should now be present, and it should be accessible with the specified password.
+
+If SSH is enabled on the Raspberry Pi access point, it should be possible to connect to it from another Linux box (or a system with SSH connectivity present) as follows, assuming the pi account is present ::
+
+        ssh pi@192.168.4.1
+
+By this point, the Raspberry Pi is acting as an access point, and other devices can associate with it. Associated devices can access the Raspberry Pi access point via its IP address for operations such as rsync, scp, or ssh.
