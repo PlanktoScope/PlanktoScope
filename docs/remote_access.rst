@@ -5,11 +5,9 @@ Remote access via a standalone network
 Setting up a Raspberry Pi as an access point in a standalone network (NAT)
 ==========================================================================
 
-The Raspberry Pi can be used as a wireless access point, running a standalone network. This can be done using the inbuilt wireless features of the Raspberry Pi 3 or Raspberry Pi Zero W, or by using a suitable USB wireless dongle that supports access points.
+This tutorial is adapted from an official Raspberry Pi tutorial that you can find `here`_.
 
-Note that this documentation was tested on a Raspberry Pi 3, and it is possible that some USB dongles may need slight changes to their settings. If you are having trouble with a USB wireless dongle, please check the forums.
-
-To add a Raspberry Pi-based access point to an existing network, see this section.
+..  _here: https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md#internet-sharing
 
 In order to work as an access point, the Raspberry Pi will need to have access point software installed, along with DHCP server software to provide connecting devices with a network address.
 
