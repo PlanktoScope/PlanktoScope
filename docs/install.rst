@@ -10,9 +10,19 @@ Python Installation of MotorKit Library
 =======================================
 https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software
 
-Adafruit Ultimate GPS HAT for Raspberry Pi
-==========================================
+Adafruit Ultimate GPS HAT Installation
+======================================
 https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi?view=all
+
+MorphoCut Installation
+======================
+https://morphocut.readthedocs.io/en/stable/installation.html
+
+RPi Cam Web Interface Installation
+==================================
+https://elinux.org/RPi-Cam-Web-Interface
+
+
 
 Raspbian installation
 =====================
