@@ -4,10 +4,15 @@
 Installation
 ============
 
-.. currentmodule:: picamera
-
-
 .. _raspbian_install:
+
+Python Installation of MotorKit Library
+=======================================
+https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/installing-software
+
+Adafruit Ultimate GPS HAT for Raspberry Pi
+==========================================
+https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi?view=all
 
 Raspbian installation
 =====================
