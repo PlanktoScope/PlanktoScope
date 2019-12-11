@@ -3,11 +3,11 @@
 ==========================
 PlanktonScope Installation
 ==========================
-
-
+Reminder on how to use retext to format rst from the pi::
     pi@raspberrypi:~/retext $ python3 retext.py
 
 Install Raspbian on your Raspberry Pi
+=====================================
 Download the image
 Download the .zip file of Raspbian Buster with desktop from the Raspberry Pi website Downloads page.
 
