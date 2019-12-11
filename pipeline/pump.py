@@ -5,7 +5,7 @@ from time import sleep
 import sys
 
 vol = int(sys.argv[1])
-flowrate = int(sys.argv[2])
+flowrate = float(sys.argv[2])
 dir = str(sys.argv[3])
 
 kit = MotorKit()
