@@ -3,7 +3,8 @@
 ==========================
 PlanktonScope Installation
 ==========================
-Reminder on how to use retext to format rst from the pi::
+Example of a subtitle following a header
+Text example of a para prior a command line::
     pi@raspberrypi:~/retext $ python3 retext.py
 
 Install Raspbian on your Raspberry Pi
