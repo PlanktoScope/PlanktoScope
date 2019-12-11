@@ -36,6 +36,7 @@ Reboot your Pi safely::
 Install CircuitPython
 https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi 
 
+Text
 Type this command::
     sudo apt-get install python3-pip
 
