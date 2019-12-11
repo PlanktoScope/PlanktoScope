@@ -26,5 +26,5 @@ def focus(steps,orientation):
             
     stage.release()
     
-focus_actuation(1000,'up')
-focus_actuation(1000,'down')
+focus(1000,'up')
+focus(1000,'down')
