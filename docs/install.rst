@@ -35,6 +35,26 @@ Reboot your Pi safely
 ::
     sudo reboot now
 
+Raspberry Pi configurations
+==================
+Enable Camera/SSH/I2C in raspi-config
+
+Open up the configuration page and select Interfacing Options by typing this command:
+::
+    sudo raspi-config
+
+Select Serial
+
+Select NO
+
+Keep the Serial Port Hardware enabled
+
+
+Reboot your Pi safely
+::
+    sudo reboot now
+
+
 Install CircuitPython
 ==================
 https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi  
