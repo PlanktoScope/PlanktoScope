@@ -59,58 +59,14 @@ Install CircuitPython
 ==================
 https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi  
 
-
-Enable I2C and SPI
-------------------
-A vast number of our CircuitPython drivers use I2C and SPI for interfacing so you'll want to get those enabled.
-You only have to do this once per Raspberry Pi but by default both interfaces are disabled!
-Enable I2C
-Enable SPI
-Once you're done with both
-::
-    sudo reboot now
-
-Verify you have the I2C and SPI devices with the command
-::
-    ls /dev/i2c* /dev/spi*
-
 Run the following command to install adafruit_blinka
 ::
     pip3 install adafruit-blinka
-
-Install MotorKit
-------------------
-https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi?view=all 
-Check I2C it is working
-::
-    i2cdetect -y 1
-
-Install Circuit Python
-------------------
-cmon dude
-::
     sudo pip3 install adafruit-circuitpython-motorkit
 
 Install RPi Cam Web Interface
 ==================
 https://elinux.org/RPi-Cam-Web-Interface 
-Attach the PiCamera to your Raspberry Pi
-Enable Camera/SSH/I2C in raspi-config
-::
-    sudo raspi-config
-
-Reboot
-::
-    sudo reboot now
-
-Update your RPi
-::
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
-
-Reboot your Pi safely
-::
-    sudo reboot now
 
 Clone the code from github and enable and run the install script with the following commands
 ::
@@ -128,24 +84,13 @@ Reach the url on a local browser : http://127.0.0.1/html/
 
 Install Ultimate GPS HAT
 ==================
-Set up the Pi to release the console pins
 https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup 
-Run sudo raspi-config to open up the configuration page and select Interfacing Options :
-Select Serial
-Select NO
-Keep the Serial Port Hardware enabled
-Thats it!
-Shutdown your Pi safely
-::
-    sudo shutdown -h now
-
 http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/ 
 
 Install RGB Cooling HAT
 ==================
 https://www.yahboom.net/study/RGB_Cooling_HAT 
 https://github.com/YahboomTechnology/Raspberry-Pi-RGB-Cooling-HAT
-Type this command
 ::
     git clone https://github.com/WiringPi/WiringPi.git
     cd WiringPi
@@ -177,11 +122,6 @@ https://nodered.org/docs/getting-started/raspberrypi
 Type this command
 ::
     bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
- 
-
-
-
-
 
 Install MorphoCut
 ==================
