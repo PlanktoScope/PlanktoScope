@@ -3,11 +3,11 @@
 ==========================
 PlanktonScope Installation
 ==========================
-Example of a subtitle following a header
+comment the line before the cmd line
+::
     pi@raspberrypi:~/retext $ python3 retext.py
-
 Install Raspbian on your Raspberry Pi
-=====================================
+===================
 Download the image
 Download the .zip file of Raspbian Buster with desktop from the Raspberry Pi website Downloads page.
 
@@ -26,71 +26,88 @@ Finish the setup
 
 Install the needed libraries for the PlanktonScope
 Make sure you have access to internet and update/upgrade your fresh raspbian
-Update your Pi first::
+Update your Pi first
+::
     sudo apt-get update -y
     sudo apt-get upgrade -y
 
-Reboot your Pi safely::
+Reboot your Pi safely
+::
     sudo reboot now
 
 Install CircuitPython
-https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi 
+==================
+https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi  
 
-Text
-Type this command::
-    sudo apt-get install python3-pip
 
 Enable I2C and SPI
+------------------
 A vast number of our CircuitPython drivers use I2C and SPI for interfacing so you'll want to get those enabled.
 You only have to do this once per Raspberry Pi but by default both interfaces are disabled!
 Enable I2C
 Enable SPI
-Once you're done with both::
+Once you're done with both
+::
     sudo reboot now
 
-Verify you have the I2C and SPI devices with the command::
+Verify you have the I2C and SPI devices with the command
+::
     ls /dev/i2c* /dev/spi*
 
-Run the following command to install adafruit_blinka::
+Run the following command to install adafruit_blinka
+::
     pip3 install adafruit-blinka
 
 Install MotorKit
+------------------
 https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi?view=all 
-Check I2C it is working::
+Check I2C it is working
+::
     i2cdetect -y 1
 
-Install Circuit Python::
+Install Circuit Python
+------------------
+cmon dude
+::
     sudo pip3 install adafruit-circuitpython-motorkit
 
 Install RPi Cam Web Interface
+==================
 https://elinux.org/RPi-Cam-Web-Interface 
 Attach the PiCamera to your Raspberry Pi
-Enable Camera/SSH/I2C in raspi-config::
+Enable Camera/SSH/I2C in raspi-config
+::
     sudo raspi-config
 
-Reboot::
+Reboot
+::
     sudo reboot now
 
-Update your RPi::
+Update your RPi
+::
     sudo apt-get update -y
     sudo apt-get upgrade -y
 
-Reboot your Pi safely::
+Reboot your Pi safely
+::
     sudo reboot now
 
-Clone the code from github and enable and run the install script with the following commands::
+Clone the code from github and enable and run the install script with the following commands
+::
     git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
     cd RPi_Cam_Web_Interface
     ./install.sh
 
 Press Enter to allow default setting of the installation
 Press Enter to start RPi Cam Web Interface now
-Found what is the IP of your Raspberry Pi::
+Found what is the IP of your Raspberry Pi
+::
     sudo ip addr show | grep 'inet 1'
 
 Reach the url on a local browser : http://127.0.0.1/html/
 
 Install Ultimate GPS HAT
+==================
 Set up the Pi to release the console pins
 https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup 
 Run sudo raspi-config to open up the configuration page and select Interfacing Options :
@@ -98,39 +115,47 @@ Select Serial
 Select NO
 Keep the Serial Port Hardware enabled
 Thats it!
-Shutdown your Pi safely::
+Shutdown your Pi safely
+::
     sudo shutdown -h now
 
-
 http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/ 
+
 Install RGB Cooling HAT
+==================
 https://www.yahboom.net/study/RGB_Cooling_HAT 
 https://github.com/YahboomTechnology/Raspberry-Pi-RGB-Cooling-HAT
-Type this command::
+Type this command
+::
     git clone https://github.com/WiringPi/WiringPi.git
     cd WiringPi
     sudo ./build
     sudo apt-get install gcc
     
-Download temp_control.zip::
+Download temp_control.zip
+::  
     Unzip it in /home/pi/
     cd temp_control/
-    Uncomment all lines related to I2C led
 
-//wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x03);
-//wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x04);
-//wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x02);
-//wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x01);
-//wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x03);
+Uncomment all lines related to I2C led
+::
+    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x03);
+    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x04);
+    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x02);
+    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x01);
+    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x03);
 
-
+Type this command
+::
     gcc -o temp_control temp_control.c ssd1306_i2c.c -lwiringPi
 
 
 Install Node-RED
+==================
 https://nodered.org/docs/getting-started/raspberrypi
 
-Type this command::
+Type this command
+::
     bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
  
 
@@ -139,30 +164,36 @@ Type this command::
 
 
 Install MorphoCut
+==================
 https://morphocut.readthedocs.io/en/stable/installation.html 
-MorphoCut is packaged on PyPI and can be installed with pip::
+MorphoCut is packaged on PyPI and can be installed with pip
+::
     pip install morphocut
 
 Install MorphoCut server
+------------------
 https://github.com/morphocut/morphocut-server 
 Morphocut server requires Docker Compose, Nodejs and Conda
 Docker Compose
+------------------
 Installing Docker
+------------------
 https://withblue.ink/2019/07/13/yes-you-can-run-docker-on-raspbian.html 
 Installing Docker CE on Raspbian (Stretch or Buster) for Raspberry Pi is straightforward, and it’s fully supported by Docker. Docker CE is not supported on Raspbian Jessie anymore, so I’d recommend upgrading to a more recent release.
 We’re going to install Docker from the official Docker repositories. While there are Docker packages on the Raspbian repos too, those are not kept up to date, which is something of an issue with a fast-evolving software like Docker.
 To install Docker CE on Raspbian Stretch and Buster:
 Install some required packages first
-sudo apt update -y
-sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+::
+    sudo apt update -y
+    sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
 Get the Docker signing key for packages
-curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+::
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
 
 Add the Docker official repos
-echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-     $(lsb_release -cs) stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list
+::
+    echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
 
 The aufs package, part of the "recommended" packages, won't install on Buster just yet, because of missing pre-compiled kernel modules. We can work around that issue by using "--no-install-recommends"
 sudo apt update
@@ -182,6 +213,7 @@ If everything is working fine, the command above will output something similar t
 
 
 About ARM images
+------------------
 This should hardly come as a surprise, but there’s a caveat with running Docker on a Raspberry Pi. Since those small devices do not run on x86_64, but rather have ARM-based CPUs, you won’t be able to use all the packages on the Docker Hub.
 Instead, you need to look for images distributed by the arm32v7 organization (called armhf before), or tagged with those labels. Good news is that the arm32v7 organization is officially supported by Docker, so you get high-quality images.
 While the CPUs inside Raspberry Pi 3’s and 4’s are using the ARMv8 (or ARM64) architecture, Raspbian is compiled as a 32-bit OS, so using Raspbian you’re not able to run 64-bit applications or containers.
@@ -191,6 +223,7 @@ In this last step we’re installing Docker Compose.
 The official installation method for Linux, as in the Docker documentation, points users to the GitHub downloads page, which however does not offer pre-built binaries for the ARM architecture.
 Luckily, we can still easily install Docker Compose from pip:
 Install required packages
+------------------
 sudo apt update
 sudo apt install -y python python-pip libffi-dev python-backports.ssl-match-hostname
 
@@ -199,8 +232,10 @@ sudo pip install docker-compose
 
 With this, you now have a complete Raspberry Pi mini-server running Docker and ready to accept your containers.
 Nodejs
+------------------
 https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/ 
 Conda
+------------------
 https://stackoverflow.com/questions/39371772/how-to-install-anaconda-on-raspberry-pi-3-model-b 
 Go and get the latest version of miniconda for Raspberry Pi - made for armv7l processor and bundled with Python 3 (eg.: uname -m)
 wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh
@@ -217,6 +252,7 @@ which should give you :
 Python 3.4.3 :: Continuum Analytics, Inc.
 
 Install Jupyter Notebook
+==================
 https://www.instructables.com/id/Jupyter-Notebook-on-Raspberry-Pi/ 
 sudo su -
 apt-get update
