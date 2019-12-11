@@ -4,8 +4,6 @@
 PlanktonScope Installation
 ==========================
 Example of a subtitle following a header
-
-Text example of a para prior a command line::
     pi@raspberrypi:~/retext $ python3 retext.py
 
 Install Raspbian on your Raspberry Pi
