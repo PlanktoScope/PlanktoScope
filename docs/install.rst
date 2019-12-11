@@ -96,24 +96,6 @@ https://github.com/YahboomTechnology/Raspberry-Pi-RGB-Cooling-HAT
     cd WiringPi
     sudo ./build
     sudo apt-get install gcc
-    
-Download temp_control.zip
-::  
-    Unzip it in /home/pi/
-    cd temp_control/
-
-Uncomment all lines related to I2C led
-::
-    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x03);
-    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x04);
-    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x02);
-    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x01);
-    //wiringPiI2CWriteReg8(fd_i2c, 0x04, 0x03);
-
-Type this command
-::
-    gcc -o temp_control temp_control.c ssd1306_i2c.c -lwiringPi
-
 
 Install Node-RED
 ==================
