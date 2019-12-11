@@ -3,25 +3,34 @@
 ==========================
 PlanktonScope Installation
 ==========================
-comment the line before the cmd line
-::
-    pi@raspberrypi:~/retext $ python3 retext.py
+    
 Install Raspbian on your Raspberry Pi
 ===================
 Download the image
+------------------
+
 Download the .zip file of Raspbian Buster with desktop from the Raspberry Pi website Downloads page.
 
 Writing an image to the SD card
+
 Download the latest version of balenaEtcher and install it.
+
 Connect an SD card reader with the micro SD card inside.
+
 Open balenaEtcher and select from your hard drive the Raspberry Pi .zip file you wish to write to the SD card.
+
 Select the SD card you wish to write your image to.
+
 Review your selections and click 'Flash!' to begin writing data to the SD card.
 
 Prepare your Raspberry Pi
+------------------
 https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/
+
 Plug the SD Card in your Raspberry Pi
+
 Connect your Pi to a screen, mouse, keyboard and power 
+
 Finish the setup
 
 Install the needed libraries for the PlanktonScope
@@ -48,7 +57,6 @@ Select Serial
 Select NO
 
 Keep the Serial Port Hardware enabled
-
 
 Reboot your Pi safely
 ::
@@ -100,10 +108,30 @@ https://github.com/YahboomTechnology/Raspberry-Pi-RGB-Cooling-HAT
 Install Node-RED
 ==================
 https://nodered.org/docs/getting-started/raspberrypi
-
-Type this command
+Prerequisites
+------------------
+Ensure npm is able to build any binary modules it needs to install. 
+::
+    sudo apt-get install build-essential
+Download and installation
+------------------
+To install Node.js, npm and Node-RED onto a Raspberry Pi, run the following command will that download and install them: 
 ::
     bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+    
+Due to the limited memory of the Raspberry Pi, you will need to start Node-RED with an additional argument to tell the underlying Node.js process to free up unused memory sooner than it would otherwise.
+::
+    node-red-pi --max-old-space-size=256
+Autostart on boot
+------------------
+Run Node-RED when the Pi is turned on, or re-booted, enable the service to autostart by running the command:
+::
+    sudo systemctl enable nodered.service
+Check the installation
+------------------
+Make sure NodeRed is correctly installed by reaching the following page from the broswer of your pi :
+::
+http://localhost:1880.
 
 Install MorphoCut
 ==================
