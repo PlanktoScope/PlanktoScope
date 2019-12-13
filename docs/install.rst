@@ -143,6 +143,7 @@ http://localhost:1880.
 
 Install few nodes
 ------------------
+These nodes will be used in Node-RED:
 ::
     npm install node-red-dashboard
     npm install node-red-contrib-multipart-stream-decoder
