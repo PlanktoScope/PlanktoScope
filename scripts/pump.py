@@ -15,7 +15,7 @@ action = str(sys.argv[3])
 
 kit = MotorKit()
 
-pump_stepper = kit.stepper2
+pump_stepper = kit.stepper1
 
 pump_stepper.release()
 
