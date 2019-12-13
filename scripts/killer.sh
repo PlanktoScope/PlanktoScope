@@ -3,6 +3,6 @@
 
 scrip_name=$1
 
-kill -9 `ps ax | grep "python3.7 $scrip_name" | head -1 | awk '{print $1}'
+kill -9 `ps ax | grep "$scrip_name" | head -1 | awk '{print $1}'
 
 python3.7 $HOME/PlanktonScope/scripts/recover.py
