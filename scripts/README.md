@@ -19,7 +19,7 @@ _________________
 
 Example:
 
-    python3.7 $HOME/PlanktonScope/scripts/pump.py 24 3.2 suck
+    python3.7 $HOME/PlanktonScope/scripts/pump.py 1 10 suck
     
 _________________
 ### Killing Focus or Pump event
