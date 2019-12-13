@@ -6,29 +6,30 @@ from datetime import datetime, timedelta
 import os
 import sys
 
-
 #[t] : ex:tara_pacific
-sample_project = int(sys.argv[X])
+sample_project = str(sys.argv[1])
 
 #[f] : ISO8601 YYYYMMJJ UTC
-sample_date = float(sys.argv[X])
+sample_date = str(sys.argv[2])
 
 #[f] : ISO8601 HHMMSS UTC
-sample_time = float(sys.argv[X])
+sample_time = str(sys.argv[3])
 
 #[i] : ex:24ml
-volume = int(sys.argv[X])
+volume = int(sys.argv[4])
 
-#[f] : ex:3ml/min
-flowrate = float(sys.argv[X])
+#[f] : ex:3.2ml/min
+flowrate = float(sys.argv[5])
 
-duration = (volume/flowrate)*60
+warm_up_duration=3
 
-max_fps = 0.62
+duration = (volume/flowrate)*60 - warm_up_duration
 
-nb_frame = float(duration/max_fps)
+max_fps = 0.7
 
-path= "/home/pi/Desktop/"+str(sample_project)+"/"+str(sample_date)+"/"+str(sample_time)+"/"
+nb_frame = int(duration/max_fps)
+
+path= "/home/pi/Desktop/"+sample_project+"/"+sample_date+"/"+sample_time+"/"
     
 if not os.path.exists(path):
     os.makedirs(path)
@@ -56,3 +57,4 @@ def image(nb_frame, path):
  
 
 image(nb_frame, path)
+
