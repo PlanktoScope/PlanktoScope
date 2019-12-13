@@ -16,7 +16,7 @@ orientation = str(sys.argv[2])
 
 kit = MotorKit()
 
-stage = kit.stepper1
+stage = kit.stepper2
 
 stage.release()
 
