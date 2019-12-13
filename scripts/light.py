@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+#Turn on using this command line : 
+#python3.7 path/to/file/light.py on
+
+#Turn off using this command line : 
+#python3.7 path/to/file/light.py off
+
 import RPi.GPIO as GPIO
 import sys
 
