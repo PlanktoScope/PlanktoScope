@@ -5,6 +5,7 @@ import sys
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
+GPIO.setup(21,GPIO.OUT)
 
 state = int(sys.argv[1])
 
