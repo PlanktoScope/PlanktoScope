@@ -149,6 +149,7 @@ Install few nodes
     npm install node-red-node-base64
     npm install node-red-contrib-interval
     npm install node-red-contrib-python3-function
+    npm install node-red-contrib-camerapi
 
 Install MorphoCut
 ==================
