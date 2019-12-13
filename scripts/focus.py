@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+
+#Focusing up for 345 micro steps : 
+#python3.7 path/to/file/focus.py 345 up
+
 from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit
 from time import sleep
