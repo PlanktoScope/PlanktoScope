@@ -11,20 +11,22 @@ from datetime import datetime, timedelta
 import os
 import sys
 
+in_path = str(sys.argv[1])
+
 #[t] : ex:tara_pacific
-sample_project = str(sys.argv[1])
+sample_project = str(sys.argv[2])
 
 #[t] : unique identifier
-sample_id = str(sys.argv[2])
+sample_id = str(sys.argv[3])
 
 #[t] : unique identifier
-acq_id = str(sys.argv[3])
+acq_id = str(sys.argv[4])
 
 #[i] : ex:24ml
-volume = int(sys.argv[4])
+volume = int(sys.argv[5])
 
 #[f] : ex:3.2ml/min
-flowrate = float(sys.argv[5])
+flowrate = float(sys.argv[6])
 
 warm_up_duration=3
 
@@ -34,7 +36,7 @@ max_fps = 0.7
 
 nb_frame = int(duration/max_fps)
 
-path= "/home/pi/"+sample_project+"/"+sample_id+"/"+acq_id+"/"
+path= in_path+sample_project+"/"+sample_id+"/"+acq_id+"/"
     
 if not os.path.exists(path):
     os.makedirs(path)

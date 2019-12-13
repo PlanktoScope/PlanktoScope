@@ -22,6 +22,34 @@ Example:
     python3.7 $HOME/PlanktonScope/scripts/pump.py 1 10 suck
     
 _________________
+### Image
+##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`
+
+- `in_path` : **string** - directory to store acquisitions **the path has to end with /**
+- `sample_project` : **string**
+- `sample_id` : **string**
+- `acq_id` : **string**
+- `volume` : **integer**
+- `flowrate` : **float**
+
+Example:
+
+    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2
+    
+
+_________________
+
+### Light
+##### light.py `state`
+
+- `state` : **string**
+
+Example:
+
+    python3.7 $HOME/PlanktonScope/scripts/light.py on
+
+
+_________________
 ### Killing Focus or Pump event
 ##### killer.sh `event_to_kill.py`
 
@@ -31,20 +59,6 @@ _________________
 Example:
 
     bash $HOME/PlanktonScope/scripts/killer.sh pump.py
-    
-_________________
-### Image
-##### image.py `sample_project` `sample_id` `acq_id` `volume` `flowrate`
-
--`sample_project` : **string**
-- `sample_id` : **string**
-- `acq_id` : **string**
-- `volume` : **integer**
-- `flowrate` : **float**
-
-Example:
-
-    python3.7 $HOME/PlanktonScope/scripts/pump.py tara_pacific station_125 exp_1 24 3.2
     
 _________________
 ### Kill Image
@@ -58,13 +72,3 @@ Example:
 
     bash $HOME/PlanktonScope/scripts/killer.sh image.py tara_pacific station_125 exp_1
     
-_________________
-
-### Light
-##### light.py `state`
-
-- `state` : **string**
-
-Example:
-
-    python3.7 $HOME/PlanktonScope/scripts/light.py on
