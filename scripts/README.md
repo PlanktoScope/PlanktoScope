@@ -30,7 +30,7 @@ _________________
 
 Example:
 
-    bash killer.sh pump.py
+    bash $HOME/PlanktonScope/scripts/killer.sh pump.py
     
 _________________
 ### Image
@@ -44,7 +44,7 @@ _________________
 
 Example:
 
-    python3.7 pump.py tara_pacific station_125 exp_1 24 3.2
+    python3.7 $HOME/PlanktonScope/scripts/pump.py tara_pacific station_125 exp_1 24 3.2
     
 _________________
 ### Kill Image
@@ -56,7 +56,7 @@ _________________
 
 Example:
 
-    bash killer.sh image.py tara_pacific station_125 exp_1
+    bash $HOME/PlanktonScope/scripts/killer.sh image.py tara_pacific station_125 exp_1
     
 _________________
 
@@ -67,4 +67,4 @@ _________________
 
 Example:
 
-    python3.7 light.py on
+    python3.7 $HOME/PlanktonScope/scripts/light.py on
