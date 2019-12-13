@@ -141,6 +141,15 @@ Make sure NodeRed is correctly installed by reaching the following page from the
 ::
 http://localhost:1880.
 
+Install few nodes
+------------------
+::
+    npm install node-red-dashboard
+    npm install node-red-contrib-multipart-stream-decoder
+    npm install node-red-node-base64
+    npm install node-red-contrib-interval
+    npm install node-red-contrib-python3-function
+
 Install MorphoCut
 ==================
 https://morphocut.readthedocs.io/en/stable/installation.html 
