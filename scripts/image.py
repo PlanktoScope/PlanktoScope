@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+#Imaging a volume of 24ml with a flowrate of 3.2ml/min 
+#in folder named "/home/pi/Desktop/tara_pacific/20200226/142632/"
+#python3.7 path/to/file/image.py tara_pacific 20200226 142632 24 3.2
+
 import time
 from time import sleep
 from picamera import PiCamera
