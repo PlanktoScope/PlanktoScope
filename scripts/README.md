@@ -42,13 +42,23 @@ _________________
 ### Light
 ##### light.py `state`
 
-- `state` : **string**
+- `state` : **string** - `on` OR `off`
 
 Example:
 
     python3.7 $HOME/PlanktonScope/scripts/light.py on
 
 
+_________________
+### Fan
+##### fan.py `state`
+
+- `state` : **string** - `on` OR `off`
+
+Example:
+
+    python3.7 $HOME/PlanktonScope/scripts/fan.py on
+    
 _________________
 ### Killing Focus or Pump event
 ##### killer.sh `event_to_kill.py`
