@@ -13,7 +13,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(21,GPIO.OUT)
 
-state = int(sys.argv[1])
+state = str(sys.argv[1])
 
 
 def light(state):
