@@ -9,9 +9,9 @@ from time import sleep
 
 import sys
 
-vol = int(sys.argv[1])
+volume = int(sys.argv[1])
 flowrate = float(sys.argv[2])
-dir = str(sys.argv[3])
+action = str(sys.argv[3])
 
 kit = MotorKit()
 
@@ -19,27 +19,28 @@ pump_stepper = kit.stepper2
 
 pump_stepper.release()
 
-def pump(vol, flowrate, dir):
+def pump(volume, flowrate, action):
     
-    if dir == "foward":
-        dir=stepper.FORWARD
-    if dir == "backward":
-        dir=stepper.BACKWARD
+    if action == "foward":
+        action=stepper.FORWARD
+    if action == "backward":
+        action=stepper.BACKWARD
         
-    nb_step=vol*507 #if sleep(0.05) in between 2 steps
+    nb_step=volume*507 #if sleep(0.05) in between 2 steps
     #35000steps for 69g
     
     #nb_step=vol*460 if sleep(0) in between 2 steps
-    duration=(vol*60)/flowrate
+    duration=(volume*60)/flowrate
     
     delay=(duration/nb_step)-0.005
     
     for i in range(nb_step):
-        pump_stepper.onestep(direction=dir, style=stepper.DOUBLE)
+        pump_stepper.onestep(direction=action, style=stepper.DOUBLE)
         sleep(delay)
         
     sleep(1)
     pump_stepper.release()
     
 #volume, flowrate (from 0 to 20), direction (foward or backward)
-pump(vol, flowrate, dir)
+pump(volume, flowrate, action)
+
