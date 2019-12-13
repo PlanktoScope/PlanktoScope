@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+
+#Strating pumping foward a vol of 24ml with a flowrate of 3.2ml/min, use this command line : 
+#python3.7 path/to/file/pump.py 24 3.2 foward
+
 from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit
 from time import sleep
