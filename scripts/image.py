@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-#Imaging a volume of 24ml with a flowrate of 3.2ml/min 
-#in folder named "/home/pi/Desktop/tara_pacific/20200226/142632/"
-#python3.7 path/to/file/image.py tara_pacific 20200226 142632 24 3.2
+#Imaging a volume with a flowrate
+#in folder named "/home/pi/PlanktonScope/acquisitions/sample_project/sample_id/acq_id"
+#python3.7 $HOME/PlanktonScope/scripts/image.py tara_pacific sample_project sample_id acq_id volume flowrate
 
 import time
 from time import sleep
@@ -14,11 +14,11 @@ import sys
 #[t] : ex:tara_pacific
 sample_project = str(sys.argv[1])
 
-#[f] : ISO8601 YYYYMMJJ UTC
-sample_date = str(sys.argv[2])
+#[t] : unique identifier
+sample_id = str(sys.argv[2])
 
-#[f] : ISO8601 HHMMSS UTC
-sample_time = str(sys.argv[3])
+#[t] : unique identifier
+acq_id = str(sys.argv[3])
 
 #[i] : ex:24ml
 volume = int(sys.argv[4])
@@ -34,7 +34,7 @@ max_fps = 0.7
 
 nb_frame = int(duration/max_fps)
 
-path= "/home/pi/Desktop/"+sample_project+"/"+sample_date+"/"+sample_time+"/"
+path= "/home/pi/"+sample_project+"/"+sample_id+"/"+acq_id+"/"
     
 if not os.path.exists(path):
     os.makedirs(path)
@@ -62,4 +62,3 @@ def image(nb_frame, path):
  
 
 image(nb_frame, path)
-
