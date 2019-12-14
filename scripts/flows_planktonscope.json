@@ -7,180 +7,6 @@
         "info": ""
     },
     {
-        "id": "b2d230de.b7751",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-dark",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "reset": false
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#000000",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#0eb8c0",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#555555",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#eeeeee",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD\/MM\/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "6b01f851.598028",
-        "type": "ui_tab",
-        "z": "",
-        "name": "PlanktonScope GUI v2.1",
-        "icon": "date_range",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "c627ea8d.f886e8",
-        "type": "ui_group",
-        "z": "",
-        "name": "General",
-        "tab": "6b01f851.598028",
-        "order": 1,
-        "disp": true,
-        "width": 6,
-        "collapse": false
-    },
-    {
-        "id": "c62ffbd3.787ef8",
-        "type": "ui_group",
-        "z": "",
-        "name": "Preview",
-        "tab": "6b01f851.598028",
-        "order": 2,
-        "disp": true,
-        "width": 12,
-        "collapse": false
-    },
-    {
-        "id": "832434ce.ebe498",
-        "type": "ui_group",
-        "z": "",
-        "name": "Optic Settings",
-        "tab": "6b01f851.598028",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "a72a9ec6.bb144",
-        "type": "ui_group",
-        "z": "",
-        "name": "Fluidic settings",
-        "tab": "6b01f851.598028",
-        "order": 4,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "106f0e1b.6478a2",
-        "type": "ui_group",
-        "z": "",
-        "name": "Spatio Temporal",
-        "tab": "6b01f851.598028",
-        "order": 5,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "77a6994b.e3efb8",
-        "type": "ui_group",
-        "z": "",
-        "name": "General",
-        "tab": "6b01f851.598028",
-        "order": 6,
-        "disp": true,
-        "width": 6,
-        "collapse": false
-    },
-    {
         "id": "955fdac.f54f328",
         "type": "ui_text_input",
         "z": "7f885510.6173fc",
@@ -194,11 +20,13 @@
         "passthru": true,
         "mode": "text",
         "delay": 300,
-        "topic": "",
+        "topic": "sample_ship",
         "x": 150,
         "y": 140,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -232,11 +60,13 @@
             }
         ],
         "payload": "",
-        "topic": "",
+        "topic": "sample_sampling_gear",
         "x": 190,
         "y": 260,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -253,11 +83,13 @@
         "passthru": true,
         "mode": "text",
         "delay": 300,
-        "topic": "",
+        "topic": "sample_operator",
         "x": 170,
         "y": 220,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -265,7 +97,7 @@
         "type": "ui_text_input",
         "z": "7f885510.6173fc",
         "name": "sample_project",
-        "label": "Name of the project (ex : Tara Pacific)",
+        "label": "Name of the project (ex : Tara_Pacific)",
         "tooltip": "",
         "group": "c627ea8d.f886e8",
         "order": 1,
@@ -274,11 +106,15 @@
         "passthru": true,
         "mode": "text",
         "delay": 300,
-        "topic": "",
+        "topic": "sample_project",
         "x": 160,
         "y": 100,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4",
+                "2d01ecd6.b00d34",
+                "501e654e.6ca29c"
+            ]
         ]
     },
     {
@@ -293,10 +129,12 @@
         "height": 0,
         "passthru": true,
         "topic": "",
-        "x": 470,
-        "y": 520,
+        "x": 1210,
+        "y": 400,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -314,10 +152,12 @@
         "mode": "time",
         "delay": 300,
         "topic": "",
-        "x": 470,
-        "y": 560,
+        "x": 1210,
+        "y": 440,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -335,10 +175,12 @@
         "mode": "number",
         "delay": 300,
         "topic": "",
-        "x": 460,
-        "y": 600,
+        "x": 1200,
+        "y": 480,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -356,10 +198,12 @@
         "mode": "text",
         "delay": 300,
         "topic": "",
-        "x": 470,
-        "y": 640,
+        "x": 1210,
+        "y": 520,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -376,11 +220,15 @@
         "passthru": true,
         "mode": "text",
         "delay": 300,
-        "topic": "",
+        "topic": "sample_id",
         "x": 150,
         "y": 180,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4",
+                "2d01ecd6.b00d34",
+                "501e654e.6ca29c"
+            ]
         ]
     },
     {
@@ -398,38 +246,40 @@
         "passthru": true,
         "options": [
             {
-                "label": "f 25mm 1\/2\" 5MP IR",
+                "label": "f 25mm 1/2\" 5MP IR",
                 "value": 25,
                 "type": "num"
             },
             {
-                "label": "f 16mm 1\/2.5\" 5MP IR",
+                "label": "f 16mm 1/2.5\" 5MP IR",
                 "value": 16,
                 "type": "num"
             },
             {
-                "label": "f 12mm 1\/2.5\" 5MP IR",
+                "label": "f 12mm 1/2.5\" 5MP IR",
                 "value": 12,
                 "type": "num"
             },
             {
-                "label": "f 8mm 1\/2.5\" 5MP IR",
+                "label": "f 8mm 1/2.5\" 5MP IR",
                 "value": 8,
                 "type": "num"
             },
             {
-                "label": "f 6mm 1\/2.5\" 5MP IR",
+                "label": "f 6mm 1/2.5\" 5MP IR",
                 "value": 6,
                 "type": "num"
             }
         ],
         "payload": "",
         "topic": "",
-        "x": 270,
-        "y": 700,
+        "x": 1250,
+        "y": 100,
         "wires": [
             [
-                "de455648.b432f8"
+                "de455648.b432f8",
+                "2d01ecd6.b00d34",
+                "ecc11aa4.57cb98"
             ]
         ]
     },
@@ -442,14 +292,16 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    <\/span>\n<\/div>",
+        "format": "<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    </span>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 590,
-        "y": 820,
+        "x": 1790,
+        "y": 100,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -461,12 +313,12 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Instrument :\n    <span id=\"acq_instrument\">\n    PlanktonScope V2.1\n    <\/span>\n<\/div>",
+        "format": "<div>\n    Instrument :\n    <span id=\"acq_instrument\">\n    PlanktonScope V2.1\n    </span>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 470,
-        "y": 1660,
+        "x": 150,
+        "y": 540,
         "wires": [
             []
         ]
@@ -480,12 +332,12 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Software :\n    <span id=\"acq_software\">\n    Node-RED Dashboard\n    <\/span>\n<\/div>",
+        "format": "<div>\n    Software :\n    <span id=\"acq_software\">\n    Node-RED Dashboard\n    </span>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 460,
-        "y": 1700,
+        "x": 140,
+        "y": 580,
         "wires": [
             []
         ]
@@ -499,12 +351,12 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Camera :\n    <span id=\"acq_camera_name\">\n    Pi Camera v2.1\n    <\/span>\n<\/div>",
+        "format": "<div>\n    Camera :\n    <span id=\"acq_camera_name\">\n    Pi Camera v2.1\n    </span>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 460,
-        "y": 1740,
+        "x": 140,
+        "y": 620,
         "wires": [
             []
         ]
@@ -513,12 +365,12 @@
         "id": "de455648.b432f8",
         "type": "function",
         "z": "7f885510.6173fc",
-        "name": "optic",
+        "name": "calculate",
         "func": "var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    magnification = String(' 0.6');\n    process_pixel = String(' 1.86');\n    sug_min = String(' 60');\n    sug_max = String(' 670');\n    flowrate = String(' 3');\n    duration = String(' 3');\n    break;\n  case \"16\":\n    magnification = String(' 0.94');\n    process_pixel = String(' 1.19');\n    sug_min = String(' 40');\n    sug_max = String(' 430');\n    flowrate = String(' 2.4');\n    duration = String(' 3');\n    break;\n  case \"12\":\n    magnification = String(' 1.20');\n    process_pixel = String(' 0.94');\n    sug_min = String(' 30');\n    sug_max = String(' 340');\n    flowrate = String(' 1.25');\n    duration = String(' 3');\n    break;\n  case \"8\":\n    magnification = String(' 1.78');\n    process_pixel = String(' 0.63');\n    sug_min = String(' 20');\n    sug_max = String(' 230');\n    flowrate = String(' 0.42');\n    duration = String(' 3');\n    break;\n  case \"6\":\n    magnification = String(' 2.36');\n    process_pixel = String(' 0.48');\n    sug_min = String(' 15');\n    sug_max = String(' 170');\n    flowrate = String(' 0.32');\n    duration = String(' 3');\n    break;\n}\n\nmsg.payload = magnification.concat(process_pixel, sug_min, sug_max,flowrate,duration);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 450,
-        "y": 700,
+        "x": 1440,
+        "y": 100,
         "wires": [
             [
                 "bf51ed75.15f7f",
@@ -544,54 +396,30 @@
         "passthru": true,
         "options": [
             {
-                "label": "200 \u03bcm \u00b5-Slide I Luer",
+                "label": "200 μm µ-Slide I Luer",
                 "value": 200,
                 "type": "num"
             },
             {
-                "label": "400 \u03bcm \u00b5-Slide I Luer",
+                "label": "400 μm µ-Slide I Luer",
                 "value": 400,
                 "type": "num"
             },
             {
-                "label": "600 \u03bcm \u00b5-Slide I Luer",
+                "label": "600 μm µ-Slide I Luer",
                 "value": 600,
                 "type": "num"
             },
             {
-                "label": "800 \u03bcm \u00b5-Slide I Luer",
+                "label": "800 μm µ-Slide I Luer",
                 "value": 800,
                 "type": "num"
             }
         ],
         "payload": "",
-        "topic": "",
-        "x": 470,
-        "y": 1300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5977e5ff.693a1c",
-        "type": "ui_numeric",
-        "z": "7f885510.6173fc",
-        "name": "acq_fluid_volume_imaged",
-        "label": "Volume to image (ml)",
-        "tooltip": "",
-        "group": "a72a9ec6.bb144",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": true,
-        "topic": "acq_fluid_volume_imaged",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "24",
-        "step": 1,
-        "x": 510,
-        "y": 1340,
+        "topic": "acq_celltype",
+        "x": 150,
+        "y": 340,
         "wires": [
             [
                 "5e6e3b80.1068d4"
@@ -603,7 +431,7 @@
         "type": "ui_numeric",
         "z": "7f885510.6173fc",
         "name": "acq_minimum_mesh",
-        "label": "Min fraction size (\u03bcm)",
+        "label": "Min fraction size (μm)",
         "tooltip": "",
         "group": "a72a9ec6.bb144",
         "order": 3,
@@ -611,15 +439,17 @@
         "height": 0,
         "wrap": false,
         "passthru": true,
-        "topic": "",
+        "topic": "acq_minimum_mesh",
         "format": "{{value}}",
         "min": 0,
         "max": "300",
         "step": "10",
-        "x": 500,
-        "y": 1380,
+        "x": 180,
+        "y": 420,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -627,7 +457,7 @@
         "type": "ui_numeric",
         "z": "7f885510.6173fc",
         "name": "acq_maximum_mesh",
-        "label": "Max fraction size (\u03bcm)",
+        "label": "Max fraction size (μm)",
         "tooltip": "",
         "group": "a72a9ec6.bb144",
         "order": 4,
@@ -635,15 +465,17 @@
         "height": 0,
         "wrap": false,
         "passthru": true,
-        "topic": "",
+        "topic": "acq_maximum_mesh",
         "format": "{{value}}",
         "min": "200",
         "max": "2000",
         "step": "100",
-        "x": 500,
-        "y": 1420,
+        "x": 180,
+        "y": 460,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -669,43 +501,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 770,
-        "y": 540,
-        "wires": [
-            [
-                "6eaa971e.6fdf08"
-            ]
-        ]
-    },
-    {
-        "id": "b5a366b4.cb6918",
-        "type": "exec",
-        "z": "7f885510.6173fc",
-        "command": "python3.7 $HOME\/PlanktonScope\/scripts\/light.py",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Light.py",
-        "x": 1050,
-        "y": 540,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "6eaa971e.6fdf08",
-        "type": "function",
-        "z": "7f885510.6173fc",
-        "name": "light",
-        "func": "var light_state = String(msg.payload.light_state);\nif(light_state==\"true\"){\n    msg.payload = \"on\"\n}\nelse if (light_state==\"false\"){\n    msg.payload = \"off\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 920,
-        "y": 540,
+        "x": 630,
+        "y": 480,
         "wires": [
             [
                 "b5a366b4.cb6918"
@@ -713,73 +510,22 @@
         ]
     },
     {
-        "id": "95b242db.5e239",
-        "type": "multipart-decoder",
+        "id": "b5a366b4.cb6918",
+        "type": "exec",
         "z": "7f885510.6173fc",
-        "name": "",
-        "ret": "bin",
-        "url": "http:\/\/127.0.0.1\/html\/cam_pic.php",
-        "tls": "",
-        "delay": 0,
-        "maximum": "10000000",
-        "blockSize": "1",
-        "x": 910,
-        "y": 400,
+        "command": "python3.7 $HOME/PlanktonScope/scripts/light.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "light.py",
+        "x": 960,
+        "y": 480,
         "wires": [
-            [
-                "c099bb1c.6971b8"
-            ]
-        ]
-    },
-    {
-        "id": "c099bb1c.6971b8",
-        "type": "base64",
-        "z": "7f885510.6173fc",
-        "name": "Encode",
-        "x": 1080,
-        "y": 400,
-        "wires": [
-            [
-                "2c92fe6f.3e9432"
-            ]
-        ]
-    },
-    {
-        "id": "2c92fe6f.3e9432",
-        "type": "ui_template",
-        "z": "7f885510.6173fc",
-        "group": "c62ffbd3.787ef8",
-        "name": "Pi Camera Stream",
-        "order": 1,
-        "width": 12,
-        "height": 9,
-        "format": "<img alt=\"stream test\" src=\"data:image\/jpg;base64,{{msg.payload}}\" \/>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1250,
-        "y": 400,
-        "wires": [
+            [],
+            [],
             []
-        ]
-    },
-    {
-        "id": "17b7514a.36344f",
-        "type": "interval",
-        "z": "7f885510.6173fc",
-        "name": "interval",
-        "interval": "100",
-        "onstart": false,
-        "msg": "ping",
-        "showstatus": true,
-        "unit": "days",
-        "statusformat": "YYYY-MM-D HH:mm:ss",
-        "x": 750,
-        "y": 400,
-        "wires": [
-            [
-                "95b242db.5e239"
-            ]
         ]
     },
     {
@@ -788,7 +534,7 @@
         "z": "7f885510.6173fc",
         "name": "up",
         "group": "c62ffbd3.787ef8",
-        "order": 3,
+        "order": 4,
         "width": 1,
         "height": 1,
         "passthru": false,
@@ -800,8 +546,8 @@
         "payload": "up",
         "payloadType": "str",
         "topic": "up",
-        "x": 770,
-        "y": 640,
+        "x": 650,
+        "y": 580,
         "wires": [
             [
                 "523fdeaa.50c6c"
@@ -814,7 +560,7 @@
         "z": "7f885510.6173fc",
         "name": "down",
         "group": "c62ffbd3.787ef8",
-        "order": 5,
+        "order": 6,
         "width": 1,
         "height": 1,
         "passthru": true,
@@ -826,8 +572,8 @@
         "payload": "down",
         "payloadType": "str",
         "topic": "down",
-        "x": 770,
-        "y": 720,
+        "x": 650,
+        "y": 660,
         "wires": [
             [
                 "523fdeaa.50c6c"
@@ -842,15 +588,15 @@
         "label": "Number of step",
         "tooltip": "",
         "group": "c62ffbd3.787ef8",
-        "order": 4,
-        "width": 5,
+        "order": 5,
+        "width": 3,
         "height": 1,
         "passthru": false,
         "mode": "number",
         "delay": 300,
         "topic": "nb_step",
-        "x": 760,
-        "y": 680,
+        "x": 640,
+        "y": 620,
         "wires": [
             [
                 "523fdeaa.50c6c"
@@ -863,11 +609,11 @@
         "z": "7f885510.6173fc",
         "name": "kill_focus",
         "group": "c62ffbd3.787ef8",
-        "order": 6,
+        "order": 7,
         "width": 3,
         "height": 1,
         "passthru": false,
-        "label": "Stop focus",
+        "label": "Cancel focus",
         "tooltip": "",
         "color": "#AD1625",
         "bgcolor": "#333333",
@@ -875,8 +621,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 760,
-        "y": 780,
+        "x": 640,
+        "y": 720,
         "wires": [
             [
                 "d9dea2bc.47097"
@@ -891,27 +637,28 @@
         "func": "var lastinput = context.get(\"lastinput\") || \"\";\n\nif(msg.topic === \"nb_step\"){\n    lastinput = msg.payload;\n    context.set(\"lastinput\",lastinput);\n}\nif(msg.topic === \"up\"){\n\n    nb_step = String(lastinput);\n\n    orientation = \"up\";\n\n    msg.payload = nb_step.concat(' ', orientation);\n    return msg;\n}\nif(msg.topic === \"down\"){\n    \n    nb_step = String(lastinput);\n\n    orientation = \"down\";\n    msg.payload = nb_step.concat(' ', orientation);\n\n    return msg;\n}\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 930,
-        "y": 680,
+        "x": 810,
+        "y": 620,
         "wires": [
             [
                 "ada728bd.8e7818"
             ]
-        ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
     },
     {
         "id": "ada728bd.8e7818",
         "type": "exec",
         "z": "7f885510.6173fc",
-        "command": "python3.7 $HOME\/PlanktonScope\/scripts\/focus.py",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/focus.py",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Focus.py",
-        "x": 1060,
-        "y": 680,
+        "x": 960,
+        "y": 620,
         "wires": [
             [],
             [],
@@ -922,7 +669,7 @@
         "id": "d9dea2bc.47097",
         "type": "exec",
         "z": "7f885510.6173fc",
-        "command": "bash $HOME\/PlanktonScope\/scripts\/killer.sh focus.py && bash $HOME\/PlanktonScope\/scripts\/killer.sh focus.py",
+        "command": "bash $HOME/PlanktonScope/scripts/killer.sh focus.py && bash $HOME/PlanktonScope/scripts/killer.sh focus.py",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -930,7 +677,7 @@
         "oldrc": false,
         "name": "Kill Focus",
         "x": 960,
-        "y": 780,
+        "y": 720,
         "wires": [
             [],
             [],
@@ -943,7 +690,7 @@
         "z": "7f885510.6173fc",
         "name": "start",
         "group": "c62ffbd3.787ef8",
-        "order": 7,
+        "order": 9,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -955,11 +702,11 @@
         "payload": "",
         "payloadType": "str",
         "topic": "start",
-        "x": 750,
-        "y": 900,
+        "x": 650,
+        "y": 960,
         "wires": [
             [
-                "5e6e3b80.1068d4"
+                "2d01ecd6.b00d34"
             ]
         ]
     },
@@ -969,11 +716,11 @@
         "z": "7f885510.6173fc",
         "name": "stop",
         "group": "c62ffbd3.787ef8",
-        "order": 8,
+        "order": 10,
         "width": 6,
         "height": 1,
         "passthru": false,
-        "label": "Stop Acquisition",
+        "label": "Cancel Acquisition",
         "tooltip": "",
         "color": "#AD1625",
         "bgcolor": "#333333",
@@ -981,11 +728,11 @@
         "payload": "",
         "payloadType": "str",
         "topic": "stop",
-        "x": 750,
-        "y": 1040,
+        "x": 650,
+        "y": 1000,
         "wires": [
             [
-                "5e6e3b80.1068d4"
+                "501e654e.6ca29c"
             ]
         ]
     },
@@ -993,12 +740,13 @@
         "id": "5e6e3b80.1068d4",
         "type": "function",
         "z": "7f885510.6173fc",
-        "name": "Image",
-        "func": "var lastinput = context.get(\"lastinput\") || \"\";\n\nif(msg.topic === \"acq_fluid_volume_imaged\"){\n    lastinput = msg.payload;\n    context.set(\"acq_fluid_volume_imaged\",acq_fluid_volume_imaged);\n}\n\nif(msg.topic === \"sample_project\"){\n    lastinput = msg.payload;\n    context.set(\"sample_project\",sample_project);\n}\n\nif(msg.topic === \"sample_id\"){\n    lastinput = msg.payload;\n    context.set(\"sample_id\",sample_id);\n}\n\nif(msg.topic === \"start\"){\n\n    acq_fluid_volume_imaged = String(acq_fluid_volume_imaged);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n\n    msg.payload = nb_step.concat(' ', orientation);\n    return msg;\n}\n\n\/\/ tara_pacific station_125 exp_1 24 3.2\n",
+        "d": true,
+        "name": "Store",
+        "func": "var lastinput = context.get(\"lastinput\") || \"\";\n\nif(msg.topic === \"acq_fluid_volume_imaged\"){\n    lastinput = msg.payload;\n    context.set(\"acq_fluid_volume_imaged\",acq_fluid_volume_imaged);\n}\n\nif(msg.topic === \"sample_project\"){\n    lastinput = msg.payload;\n    context.set(\"sample_project\",sample_project);\n}\n\nif(msg.topic === \"sample_id\"){\n    lastinput = msg.payload;\n    context.set(\"sample_id\",sample_id);\n}\n\n\nmsg.payload = nb_step.concat(' ', orientation);\nreturn msg;\n\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 950,
-        "y": 920,
+        "x": 2230,
+        "y": 400,
         "wires": [
             []
         ]
@@ -1007,17 +755,17 @@
         "id": "2d0f6720.0f92f8",
         "type": "ui_template",
         "z": "7f885510.6173fc",
-        "group": "c627ea8d.f886e8",
-        "name": "",
-        "order": 5,
+        "group": "832434ce.ebe498",
+        "name": "Pi Camera settings",
+        "order": 7,
         "width": 0,
         "height": 0,
-        "format": "<div ng-bind-html=\"msg.payload\"><\/div>",
+        "format": "<button class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://127.0.0.1/html/';\">Pi Camera settings</button>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1260,
-        "y": 1180,
+        "x": 1230,
+        "y": 320,
         "wires": [
             []
         ]
@@ -1030,8 +778,8 @@
         "func": "var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[1];\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 550,
-        "y": 780,
+        "x": 1610,
+        "y": 100,
         "wires": [
             [
                 "72d57e31.59234"
@@ -1044,17 +792,19 @@
         "z": "7f885510.6173fc",
         "group": "832434ce.ebe498",
         "name": "process_pixel",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"><\/span>\n    \u03bcm\n<\/div>",
+        "format": "<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 580,
-        "y": 900,
+        "x": 1800,
+        "y": 140,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -1065,8 +815,8 @@
         "func": "var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[2];\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 550,
-        "y": 860,
+        "x": 1610,
+        "y": 140,
         "wires": [
             [
                 "9599b953.529c28"
@@ -1079,15 +829,15 @@
         "z": "7f885510.6173fc",
         "group": "832434ce.ebe498",
         "name": "min_size",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"><\/span>\n    \u03bcm\n<\/div>",
+        "format": "<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 560,
-        "y": 980,
+        "x": 1780,
+        "y": 180,
         "wires": [
             []
         ]
@@ -1100,8 +850,8 @@
         "func": "var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[3];\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 530,
-        "y": 940,
+        "x": 1590,
+        "y": 180,
         "wires": [
             [
                 "612e2b9b.ed1684"
@@ -1114,17 +864,19 @@
         "z": "7f885510.6173fc",
         "group": "832434ce.ebe498",
         "name": "max_size",
-        "order": 2,
+        "order": 5,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"><\/span>\n    \u03bcm\n<\/div>",
+        "format": "<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 560,
-        "y": 1060,
+        "x": 1780,
+        "y": 220,
         "wires": [
-            []
+            [
+                "5e6e3b80.1068d4"
+            ]
         ]
     },
     {
@@ -1135,8 +887,8 @@
         "func": "var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[4];\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 530,
-        "y": 1020,
+        "x": 1590,
+        "y": 220,
         "wires": [
             [
                 "f84ab57a.556df8"
@@ -1149,15 +901,15 @@
         "z": "7f885510.6173fc",
         "group": "832434ce.ebe498",
         "name": "flowrate",
-        "order": 2,
+        "order": 6,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Flowrate :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"><\/span>\n    ml\/min\n<\/div>",
+        "format": "<div>\n    Flowrate :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    ml/min\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 560,
-        "y": 1140,
+        "x": 1780,
+        "y": 260,
         "wires": [
             []
         ]
@@ -1167,15 +919,419 @@
         "type": "function",
         "z": "7f885510.6173fc",
         "name": "get flowrate",
-        "func": "var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[5];\n\nreturn msg;",
+        "func": "var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[5];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 530,
-        "y": 1100,
+        "x": 1590,
+        "y": 260,
         "wires": [
             [
                 "45f53656.d631e8"
             ]
         ]
+    },
+    {
+        "id": "53ec5f97.7567c",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "c62ffbd3.787ef8",
+        "name": "Stream Pi Camera",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<center><iframe id=\"inlineFrameExample\"\n    title=\"Inline Frame Example\"\n    height=\"384\"\n    width=\"512\"\n    frameborder=\"0\"\n    src=\"http://127.0.0.1/html/min.php\">\n</iframe></center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 790,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2d01ecd6.b00d34",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "Image",
+        "func": "var in_path = context.get(\"in_path\") || 0; //get from context or default to 0\nvar sample_project = context.get(\"sample_project\") || 0; //get from context or default to 0\nvar sample_id = context.get(\"sample_id\") || 0; //get from context or default to 0\nvar acq_id = context.get(\"acq_id\") || 0; //get from context or default to 0\nvar acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    flowrate = String(' 3');\n    break;\n  case \"16\":\n    flowrate = String(' 2.4');\n    break;\n  case \"12\":\n    flowrate = String(' 1.25');\n    break;\n  case \"8\":\n    flowrate = String(' 0.42');\n    break;\n  case \"6\":\n    flowrate = String(' 0.32');\n    break;\n}\n\nswitch (msg.topic){\n    case \"in_path\":\n        in_path = msg.payload; //payload NOT paydoad  :)\n        context.set(\"in_path\", in_path); //store in context for next time \n        break;\n    case \"sample_project\":\n        sample_project = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_project\", sample_project); //store in context for next time \n        break;\n    case \"sample_id\":\n        sample_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_id\", sample_id); //store in context for next time \n        break;\n    case \"acq_id\":\n        acq_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"acq_id\", acq_id); //store in context for next time \n        break;\n}\nif(msg.topic === \"start\"){\n    \n    in_path = String(in_path);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n    acq_id = String(acq_id);\n\n    msg.payload = [in_path, sample_project, sample_id, acq_id, flowrate].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 880,
+        "wires": [
+            [
+                "ac43bec2.d6696",
+                "fd5146e4.600cc8"
+            ]
+        ],
+        "info": "### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "
+    },
+    {
+        "id": "c84f1718.4af6b8",
+        "type": "ui_switch",
+        "z": "7f885510.6173fc",
+        "name": "fan_state",
+        "label": "Fan",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 640,
+        "y": 540,
+        "wires": [
+            [
+                "dec2b84a.6faa18"
+            ]
+        ]
+    },
+    {
+        "id": "dec2b84a.6faa18",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/fan.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "fan.py",
+        "x": 950,
+        "y": 540,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7923e634.673cd8",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "in_path",
+        "label": "Directory (ex : /home/pi/Desktop/)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 8,
+        "width": "12",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "in_path",
+        "x": 640,
+        "y": 880,
+        "wires": [
+            [
+                "2d01ecd6.b00d34",
+                "501e654e.6ca29c"
+            ]
+        ]
+    },
+    {
+        "id": "477dc1bd.c3de8",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "acq_id",
+        "label": "Acquisition ID (ex : experience_1)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 8,
+        "width": "12",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "acq_id",
+        "x": 650,
+        "y": 920,
+        "wires": [
+            [
+                "2d01ecd6.b00d34",
+                "501e654e.6ca29c"
+            ]
+        ]
+    },
+    {
+        "id": "1cdfba79.2455b6",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/image.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "image.py",
+        "x": 1120,
+        "y": 800,
+        "wires": [
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ]
+        ]
+    },
+    {
+        "id": "9ccdfc61.c73a5",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash $HOME/RPi_Cam_Web_Interface/stop.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Kill RPi Web Interface",
+        "x": 1160,
+        "y": 880,
+        "wires": [
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ]
+        ]
+    },
+    {
+        "id": "ac43bec2.d6696",
+        "type": "delay",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 960,
+        "y": 820,
+        "wires": [
+            [
+                "1cdfba79.2455b6"
+            ]
+        ]
+    },
+    {
+        "id": "12df6d06.bfe9a3",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash $HOME/RPi_Cam_Web_Interface/start.sh",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Restart RPi Web Interface",
+        "x": 1170,
+        "y": 960,
+        "wires": [
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ]
+        ]
+    },
+    {
+        "id": "fd5146e4.600cc8",
+        "type": "delay",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 960,
+        "y": 880,
+        "wires": [
+            [
+                "9ccdfc61.c73a5"
+            ]
+        ]
+    },
+    {
+        "id": "ecc11aa4.57cb98",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "wait",
+        "func": "var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    duration = String('500');\n    break;\n  case \"16\":\n    duration = String('620');\n    break;\n  case \"12\":\n    duration = String('1170');\n    break;\n  case \"8\":\n    duration = String('3450');\n    break;\n  case \"6\":\n    duration = String('4520');\n    break;\n}\n\nmsg.payload = duration;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 940,
+        "wires": [
+            [
+                "12df6d06.bfe9a3"
+            ]
+        ]
+    },
+    {
+        "id": "54727b23.4a9c34",
+        "type": "debug",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1430,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "615a8890.e9eee8",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash $HOME/PlanktonScope/scripts/kill_image.sh",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Kill Image",
+        "x": 1120,
+        "y": 1020,
+        "wires": [
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ],
+            [
+                "54727b23.4a9c34"
+            ]
+        ]
+    },
+    {
+        "id": "501e654e.6ca29c",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "Image",
+        "func": "var in_path = context.get(\"in_path\") || 0; //get from context or default to 0\nvar sample_project = context.get(\"sample_project\") || 0; //get from context or default to 0\nvar sample_id = context.get(\"sample_id\") || 0; //get from context or default to 0\nvar acq_id = context.get(\"acq_id\") || 0; //get from context or default to 0\n\nswitch (msg.topic){\n    case \"in_path\":\n        in_path = msg.payload; //payload NOT paydoad  :)\n        context.set(\"in_path\", in_path); //store in context for next time \n        break;\n    case \"sample_project\":\n        sample_project = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_project\", sample_project); //store in context for next time \n        break;\n    case \"sample_id\":\n        sample_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_id\", sample_id); //store in context for next time \n        break;\n    case \"acq_id\":\n        acq_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"acq_id\", acq_id); //store in context for next time \n        break;\n}\nif(msg.topic === \"stop\"){\n    \n    in_path = String(in_path);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n    acq_id = String(acq_id);\n\n    msg.payload = [in_path, sample_project, sample_id, acq_id].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 1020,
+        "wires": [
+            [
+                "615a8890.e9eee8"
+            ]
+        ],
+        "info": "### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "
+    },
+    {
+        "id": "c627ea8d.f886e8",
+        "type": "ui_group",
+        "z": "",
+        "name": "General",
+        "tab": "6b01f851.598028",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "106f0e1b.6478a2",
+        "type": "ui_group",
+        "z": "",
+        "name": "Spatio Temporal",
+        "tab": "6b01f851.598028",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "832434ce.ebe498",
+        "type": "ui_group",
+        "z": "",
+        "name": "Optic Settings",
+        "tab": "6b01f851.598028",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "77a6994b.e3efb8",
+        "type": "ui_group",
+        "z": "",
+        "name": "General",
+        "tab": "6b01f851.598028",
+        "order": 6,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "a72a9ec6.bb144",
+        "type": "ui_group",
+        "z": "",
+        "name": "Fluidic settings",
+        "tab": "6b01f851.598028",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c62ffbd3.787ef8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Preview",
+        "tab": "6b01f851.598028",
+        "order": 2,
+        "disp": true,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "6b01f851.598028",
+        "type": "ui_tab",
+        "z": "",
+        "name": "PlanktonScope GUI v2.1",
+        "icon": "date_range",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
     }
 ]
