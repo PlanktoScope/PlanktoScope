@@ -18,9 +18,9 @@ state = str(sys.argv[1])
 
 def light(state):
     
-    if state == "on":
+    if state == "true":
         GPIO.output(21,GPIO.HIGH)
-    if state == "off":
+    if state == "false":
         GPIO.output(21,GPIO.LOW)
         
 light(state)

@@ -3,8 +3,6 @@
 
 from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit
-from time import sleep
-import RPi.GPIO as GPIO
 
 kit = MotorKit()
 
@@ -15,8 +13,3 @@ pump_stepper = kit.stepper2
 stage.release()
 pump_stepper.release()
 
-#turn off LED after killing
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(21,GPIO.OUT)
-GPIO.output(21,GPIO.LOW)
