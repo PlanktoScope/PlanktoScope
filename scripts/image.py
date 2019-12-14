@@ -23,10 +23,10 @@ sample_id = str(sys.argv[3])
 acq_id = str(sys.argv[4])
 
 #[i] : ex:24ml
-volume = int(sys.argv[5])
+volume = 24
 
 #[f] : ex:3.2ml/min
-flowrate = float(sys.argv[6])
+flowrate = float(sys.argv[5])
 
 warm_up_duration=3
 
