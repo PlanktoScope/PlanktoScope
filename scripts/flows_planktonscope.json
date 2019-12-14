@@ -1,1 +1,1462 @@
-[{"id":"7f885510.6173fc","type":"tab","label":"Flow 1","disabled":false,"info":""},{"id":"955fdac.f54f328","type":"ui_text_input","z":"7f885510.6173fc","name":"sample_ship","label":"Name of the ship (ex : Tara)","tooltip":"","group":"c627ea8d.f886e8","order":2,"width":0,"height":0,"passthru":true,"mode":"text","delay":300,"topic":"sample_ship","x":150,"y":140,"wires":[["5e6e3b80.1068d4"]]},{"id":"dfb29406.d68148","type":"ui_dropdown","z":"7f885510.6173fc","name":"sample_sampling_gear","label":"Sampling gear","tooltip":"","place":"Select","group":"c627ea8d.f886e8","order":5,"width":0,"height":0,"passthru":true,"options":[{"label":"Plankton net","value":"net","type":"str"},{"label":"Niskin bottle 12L","value":"niskin_12L","type":"str"},{"label":"Niskin bottle 24L","value":"niskin_24L","type":"str"}],"payload":"","topic":"sample_sampling_gear","x":190,"y":260,"wires":[["5e6e3b80.1068d4"]]},{"id":"bfce92c6.5f66a","type":"ui_text_input","z":"7f885510.6173fc","name":"sample_operator","label":"Name of the operator","tooltip":"","group":"c627ea8d.f886e8","order":4,"width":0,"height":0,"passthru":true,"mode":"text","delay":300,"topic":"sample_operator","x":170,"y":220,"wires":[["5e6e3b80.1068d4"]]},{"id":"bae9c122.3612f","type":"ui_text_input","z":"7f885510.6173fc","name":"sample_project","label":"Name of the project (ex : Tara_Pacific)","tooltip":"","group":"c627ea8d.f886e8","order":1,"width":0,"height":0,"passthru":true,"mode":"text","delay":300,"topic":"sample_project","x":160,"y":100,"wires":[["5e6e3b80.1068d4","2d01ecd6.b00d34","501e654e.6ca29c"]]},{"id":"ff33630c.78f63","type":"ui_date_picker","z":"7f885510.6173fc","name":"object_date","label":"Sample date","group":"106f0e1b.6478a2","order":1,"width":0,"height":0,"passthru":true,"topic":"","x":1210,"y":400,"wires":[["5e6e3b80.1068d4"]]},{"id":"8b800fdc.e83a8","type":"ui_text_input","z":"7f885510.6173fc","name":"object_time","label":"Sampling time","tooltip":"","group":"106f0e1b.6478a2","order":2,"width":0,"height":0,"passthru":true,"mode":"time","delay":300,"topic":"","x":1210,"y":440,"wires":[["5e6e3b80.1068d4"]]},{"id":"eb39c21c.a3fec","type":"ui_text_input","z":"7f885510.6173fc","name":"object_lat","label":"Lattitude (decimal degrees)","tooltip":"","group":"106f0e1b.6478a2","order":3,"width":0,"height":0,"passthru":true,"mode":"number","delay":300,"topic":"","x":1200,"y":480,"wires":[["5e6e3b80.1068d4"]]},{"id":"404b41a5.ae3d5","type":"ui_text_input","z":"7f885510.6173fc","name":"object_lon","label":"Longitude (decimal degrees)","tooltip":"","group":"106f0e1b.6478a2","order":4,"width":0,"height":0,"passthru":true,"mode":"text","delay":300,"topic":"","x":1210,"y":520,"wires":[["5e6e3b80.1068d4"]]},{"id":"d90c72f2.cf1ca","type":"ui_text_input","z":"7f885510.6173fc","name":"sample_id","label":"Name of the station (ex: OA125)","tooltip":"","group":"c627ea8d.f886e8","order":3,"width":0,"height":0,"passthru":true,"mode":"text","delay":300,"topic":"sample_id","x":150,"y":180,"wires":[["5e6e3b80.1068d4","2d01ecd6.b00d34","501e654e.6ca29c"]]},{"id":"3300f426.cc515c","type":"ui_dropdown","z":"7f885510.6173fc","name":"acq_fnumber_objective","label":"f-number M12","tooltip":"","place":"Select option","group":"832434ce.ebe498","order":1,"width":0,"height":0,"passthru":true,"options":[{"label":"f 25mm 1/2\" 5MP IR","value":25,"type":"num"},{"label":"f 16mm 1/2.5\" 5MP IR","value":16,"type":"num"},{"label":"f 12mm 1/2.5\" 5MP IR","value":12,"type":"num"},{"label":"f 8mm 1/2.5\" 5MP IR","value":8,"type":"num"},{"label":"f 6mm 1/2.5\" 5MP IR","value":6,"type":"num"}],"payload":"","topic":"","x":1250,"y":100,"wires":[["de455648.b432f8","2d01ecd6.b00d34","ecc11aa4.57cb98","de6fdfb0.ec1ca"]]},{"id":"72d57e31.59234","type":"ui_template","z":"7f885510.6173fc","group":"832434ce.ebe498","name":"Magnification","order":2,"width":0,"height":0,"format":"<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    </span>\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":1790,"y":100,"wires":[["5e6e3b80.1068d4"]]},{"id":"98a4bc0a.f3304","type":"ui_template","z":"7f885510.6173fc","group":"77a6994b.e3efb8","name":"Instrument","order":1,"width":0,"height":0,"format":"<div>\n    Instrument :\n    <span id=\"acq_instrument\">\n    PlanktonScope V2.1\n    </span>\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":150,"y":540,"wires":[[]]},{"id":"53b3cb43.2acf04","type":"ui_template","z":"7f885510.6173fc","group":"77a6994b.e3efb8","name":"Software","order":2,"width":0,"height":0,"format":"<div>\n    Software :\n    <span id=\"acq_software\">\n    Node-RED Dashboard\n    </span>\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":140,"y":580,"wires":[[]]},{"id":"1a0a45f1.2cd7da","type":"ui_template","z":"7f885510.6173fc","group":"77a6994b.e3efb8","name":"Camera","order":3,"width":0,"height":0,"format":"<div>\n    Camera :\n    <span id=\"acq_camera_name\">\n    Pi Camera v2.1\n    </span>\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":140,"y":620,"wires":[[]]},{"id":"de455648.b432f8","type":"function","z":"7f885510.6173fc","name":"calculate","func":"var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    magnification = String(' 0.6');\n    process_pixel = String(' 1.86');\n    sug_min = String(' 60');\n    sug_max = String(' 670');\n    flowrate = String(' 3');\n    duration = String(' 3');\n    break;\n  case \"16\":\n    magnification = String(' 0.94');\n    process_pixel = String(' 1.19');\n    sug_min = String(' 40');\n    sug_max = String(' 430');\n    flowrate = String(' 2.4');\n    duration = String(' 3');\n    break;\n  case \"12\":\n    magnification = String(' 1.20');\n    process_pixel = String(' 0.94');\n    sug_min = String(' 30');\n    sug_max = String(' 340');\n    flowrate = String(' 1.25');\n    duration = String(' 3');\n    break;\n  case \"8\":\n    magnification = String(' 1.78');\n    process_pixel = String(' 0.63');\n    sug_min = String(' 20');\n    sug_max = String(' 230');\n    flowrate = String(' 0.42');\n    duration = String(' 3');\n    break;\n  case \"6\":\n    magnification = String(' 2.36');\n    process_pixel = String(' 0.48');\n    sug_min = String(' 15');\n    sug_max = String(' 170');\n    flowrate = String(' 0.32');\n    duration = String(' 3');\n    break;\n}\n\nmsg.payload = magnification.concat(process_pixel, sug_min, sug_max,flowrate,duration);\nreturn msg;","outputs":1,"noerr":0,"x":1440,"y":100,"wires":[["bf51ed75.15f7f","1c966729.d952b9","e7ef7709.ba3f88","1ae4f566.e9182b","578b63e7.8a675c"]]},{"id":"f3aa18d.65f0de8","type":"ui_dropdown","z":"7f885510.6173fc","name":"acq_celltype","label":"Thickness flowcell","tooltip":"","place":"Select option","group":"a72a9ec6.bb144","order":1,"width":0,"height":0,"passthru":true,"options":[{"label":"200 μm µ-Slide I Luer","value":200,"type":"num"},{"label":"400 μm µ-Slide I Luer","value":400,"type":"num"},{"label":"600 μm µ-Slide I Luer","value":600,"type":"num"},{"label":"800 μm µ-Slide I Luer","value":800,"type":"num"}],"payload":"","topic":"acq_celltype","x":150,"y":340,"wires":[["5e6e3b80.1068d4"]]},{"id":"45568fe8.67759","type":"ui_numeric","z":"7f885510.6173fc","name":"acq_minimum_mesh","label":"Min fraction size (μm)","tooltip":"","group":"a72a9ec6.bb144","order":3,"width":0,"height":0,"wrap":false,"passthru":true,"topic":"acq_minimum_mesh","format":"{{value}}","min":0,"max":"300","step":"10","x":180,"y":420,"wires":[["5e6e3b80.1068d4"]]},{"id":"918b69e2.7e6e88","type":"ui_numeric","z":"7f885510.6173fc","name":"acq_maximum_mesh","label":"Max fraction size (μm)","tooltip":"","group":"a72a9ec6.bb144","order":4,"width":0,"height":0,"wrap":false,"passthru":true,"topic":"acq_maximum_mesh","format":"{{value}}","min":"200","max":"2000","step":"100","x":180,"y":460,"wires":[["5e6e3b80.1068d4"]]},{"id":"86d762dc.47911","type":"ui_switch","z":"7f885510.6173fc","name":"light_state","label":"Light","tooltip":"","group":"c62ffbd3.787ef8","order":2,"width":2,"height":1,"passthru":true,"decouple":"false","topic":"","style":"","onvalue":"true","onvalueType":"bool","onicon":"","oncolor":"","offvalue":"false","offvalueType":"bool","officon":"","offcolor":"","x":630,"y":480,"wires":[["b5a366b4.cb6918"]]},{"id":"b5a366b4.cb6918","type":"exec","z":"7f885510.6173fc","command":"python3.7 $HOME/PlanktonScope/scripts/light.py","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"light.py","x":960,"y":480,"wires":[[],[],[]]},{"id":"5ea28a70.42ae14","type":"ui_button","z":"7f885510.6173fc","name":"up","group":"c62ffbd3.787ef8","order":4,"width":1,"height":1,"passthru":false,"label":"","tooltip":"","color":"","bgcolor":"","icon":"arrow_upwards","payload":"up","payloadType":"str","topic":"up","x":650,"y":580,"wires":[["523fdeaa.50c6c"]]},{"id":"27f16831.dde938","type":"ui_button","z":"7f885510.6173fc","name":"down","group":"c62ffbd3.787ef8","order":6,"width":1,"height":1,"passthru":true,"label":"","tooltip":"","color":"","bgcolor":"","icon":"arrow_downward","payload":"down","payloadType":"str","topic":"down","x":650,"y":660,"wires":[["523fdeaa.50c6c"]]},{"id":"855e9d96.ab869","type":"ui_text_input","z":"7f885510.6173fc","name":"nb_step","label":"Number of step","tooltip":"","group":"c62ffbd3.787ef8","order":5,"width":3,"height":1,"passthru":false,"mode":"number","delay":300,"topic":"nb_step","x":640,"y":620,"wires":[["523fdeaa.50c6c"]]},{"id":"b110542b.5de4f8","type":"ui_button","z":"7f885510.6173fc","name":"kill_focus","group":"c62ffbd3.787ef8","order":7,"width":3,"height":1,"passthru":false,"label":"Cancel focus","tooltip":"","color":"#AD1625","bgcolor":"#333333","icon":"pause","payload":"","payloadType":"str","topic":"","x":640,"y":720,"wires":[["d9dea2bc.47097"]]},{"id":"523fdeaa.50c6c","type":"function","z":"7f885510.6173fc","name":"focus","func":"var lastinput = context.get(\"lastinput\") || \"\";\n\nif(msg.topic === \"nb_step\"){\n    lastinput = msg.payload;\n    context.set(\"lastinput\",lastinput);\n}\nif(msg.topic === \"up\"){\n\n    nb_step = String(lastinput);\n\n    orientation = \"up\";\n\n    msg.payload = nb_step.concat(' ', orientation);\n    return msg;\n}\nif(msg.topic === \"down\"){\n    \n    nb_step = String(lastinput);\n\n    orientation = \"down\";\n    msg.payload = nb_step.concat(' ', orientation);\n\n    return msg;\n}\n\n","outputs":1,"noerr":0,"x":810,"y":620,"wires":[["ada728bd.8e7818"]],"info":"### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"},{"id":"ada728bd.8e7818","type":"exec","z":"7f885510.6173fc","command":"python3.7 $HOME/PlanktonScope/scripts/focus.py","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"Focus.py","x":960,"y":620,"wires":[[],[],[]]},{"id":"d9dea2bc.47097","type":"exec","z":"7f885510.6173fc","command":"bash $HOME/PlanktonScope/scripts/killer.sh focus.py && bash $HOME/PlanktonScope/scripts/killer.sh focus.py","addpay":false,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"Kill Focus","x":960,"y":720,"wires":[[],[],[]],"icon":"font-awesome/fa-stop"},{"id":"6bf10b4c.c83c84","type":"ui_button","z":"7f885510.6173fc","name":"start","group":"c62ffbd3.787ef8","order":9,"width":6,"height":1,"passthru":false,"label":"Start Acquisition","tooltip":"","color":"","bgcolor":"","icon":"play_circle_fill","payload":"","payloadType":"str","topic":"start","x":650,"y":960,"wires":[["2d01ecd6.b00d34","de6fdfb0.ec1ca"]]},{"id":"2c9498e7.bf0c38","type":"ui_button","z":"7f885510.6173fc","name":"stop","group":"c62ffbd3.787ef8","order":10,"width":6,"height":1,"passthru":false,"label":"Cancel Acquisition","tooltip":"","color":"#AD1625","bgcolor":"#333333","icon":"pause_circle_filled","payload":"","payloadType":"str","topic":"stop","x":650,"y":1000,"wires":[["501e654e.6ca29c","35dca58e.6f1dda"]]},{"id":"5e6e3b80.1068d4","type":"function","z":"7f885510.6173fc","d":true,"name":"Store","func":"var lastinput = context.get(\"lastinput\") || \"\";\n\nif(msg.topic === \"acq_fluid_volume_imaged\"){\n    lastinput = msg.payload;\n    context.set(\"acq_fluid_volume_imaged\",acq_fluid_volume_imaged);\n}\n\nif(msg.topic === \"sample_project\"){\n    lastinput = msg.payload;\n    context.set(\"sample_project\",sample_project);\n}\n\nif(msg.topic === \"sample_id\"){\n    lastinput = msg.payload;\n    context.set(\"sample_id\",sample_id);\n}\n\n\nmsg.payload = nb_step.concat(' ', orientation);\nreturn msg;\n\n\n","outputs":1,"noerr":0,"x":2230,"y":400,"wires":[[]]},{"id":"2d0f6720.0f92f8","type":"ui_template","z":"7f885510.6173fc","group":"832434ce.ebe498","name":"Pi Camera settings","order":7,"width":0,"height":0,"format":"<button class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://127.0.0.1/html/';\">Pi Camera settings</button>\n","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":1230,"y":320,"wires":[[]]},{"id":"bf51ed75.15f7f","type":"function","z":"7f885510.6173fc","name":"get magnification","func":"var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[1];\n\nreturn msg;","outputs":1,"noerr":0,"x":1610,"y":100,"wires":[["72d57e31.59234"]]},{"id":"9599b953.529c28","type":"ui_template","z":"7f885510.6173fc","group":"832434ce.ebe498","name":"process_pixel","order":3,"width":0,"height":0,"format":"<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":1800,"y":140,"wires":[["5e6e3b80.1068d4"]]},{"id":"1c966729.d952b9","type":"function","z":"7f885510.6173fc","name":"get process_pixel","func":"var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[2];\n\nreturn msg;","outputs":1,"noerr":0,"x":1610,"y":140,"wires":[["9599b953.529c28"]]},{"id":"612e2b9b.ed1684","type":"ui_template","z":"7f885510.6173fc","group":"832434ce.ebe498","name":"min_size","order":4,"width":0,"height":0,"format":"<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":1780,"y":180,"wires":[[]]},{"id":"e7ef7709.ba3f88","type":"function","z":"7f885510.6173fc","name":"get min size","func":"var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[3];\n\nreturn msg;","outputs":1,"noerr":0,"x":1590,"y":180,"wires":[["612e2b9b.ed1684"]]},{"id":"f84ab57a.556df8","type":"ui_template","z":"7f885510.6173fc","group":"832434ce.ebe498","name":"max_size","order":5,"width":0,"height":0,"format":"<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":1780,"y":220,"wires":[["5e6e3b80.1068d4"]]},{"id":"1ae4f566.e9182b","type":"function","z":"7f885510.6173fc","name":"get max size","func":"var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[4];\n\nreturn msg;","outputs":1,"noerr":0,"x":1590,"y":220,"wires":[["f84ab57a.556df8"]]},{"id":"45f53656.d631e8","type":"ui_template","z":"7f885510.6173fc","group":"832434ce.ebe498","name":"flowrate","order":6,"width":0,"height":0,"format":"<div>\n    Flowrate :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    ml/min\n</div>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":1780,"y":260,"wires":[[]]},{"id":"578b63e7.8a675c","type":"function","z":"7f885510.6173fc","name":"get flowrate","func":"var array = String(msg.payload);\n\nvar items = array.split(' ');\n\nmsg.payload = items[5];\nreturn msg;","outputs":1,"noerr":0,"x":1590,"y":260,"wires":[["45f53656.d631e8"]]},{"id":"53ec5f97.7567c","type":"ui_template","z":"7f885510.6173fc","group":"c62ffbd3.787ef8","name":"Stream Pi Camera","order":1,"width":0,"height":0,"format":"<center><iframe id=\"inlineFrameExample\"\n    title=\"Inline Frame Example\"\n    height=\"384\"\n    width=\"512\"\n    frameborder=\"0\"\n    src=\"http://127.0.0.1/html/min.php\">\n</iframe></center>","storeOutMessages":true,"fwdInMessages":true,"templateScope":"local","x":790,"y":100,"wires":[[]]},{"id":"2d01ecd6.b00d34","type":"function","z":"7f885510.6173fc","name":"Image","func":"var in_path = context.get(\"in_path\") || 0; //get from context or default to 0\nvar sample_project = context.get(\"sample_project\") || 0; //get from context or default to 0\nvar sample_id = context.get(\"sample_id\") || 0; //get from context or default to 0\nvar acq_id = context.get(\"acq_id\") || 0; //get from context or default to 0\nvar acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    flowrate = String(' 3');\n    break;\n  case \"16\":\n    flowrate = String(' 2.4');\n    break;\n  case \"12\":\n    flowrate = String(' 1.25');\n    break;\n  case \"8\":\n    flowrate = String(' 0.42');\n    break;\n  case \"6\":\n    flowrate = String(' 0.32');\n    break;\n}\n\nswitch (msg.topic){\n    case \"in_path\":\n        in_path = msg.payload; //payload NOT paydoad  :)\n        context.set(\"in_path\", in_path); //store in context for next time \n        break;\n    case \"sample_project\":\n        sample_project = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_project\", sample_project); //store in context for next time \n        break;\n    case \"sample_id\":\n        sample_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_id\", sample_id); //store in context for next time \n        break;\n    case \"acq_id\":\n        acq_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"acq_id\", acq_id); //store in context for next time \n        break;\n}\nif(msg.topic === \"start\"){\n    \n    in_path = String(in_path);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n    acq_id = String(acq_id);\n\n    msg.payload = [in_path, sample_project, sample_id, acq_id, flowrate].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}","outputs":1,"noerr":0,"x":810,"y":880,"wires":[["ac43bec2.d6696","fd5146e4.600cc8"]],"info":"### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "},{"id":"c84f1718.4af6b8","type":"ui_switch","z":"7f885510.6173fc","name":"fan_state","label":"Fan","tooltip":"","group":"c62ffbd3.787ef8","order":3,"width":2,"height":1,"passthru":true,"decouple":"false","topic":"","style":"","onvalue":"true","onvalueType":"bool","onicon":"","oncolor":"","offvalue":"false","offvalueType":"bool","officon":"","offcolor":"","x":640,"y":540,"wires":[["dec2b84a.6faa18"]]},{"id":"dec2b84a.6faa18","type":"exec","z":"7f885510.6173fc","command":"python3.7 $HOME/PlanktonScope/scripts/fan.py","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"fan.py","x":950,"y":540,"wires":[[],[],[]]},{"id":"7923e634.673cd8","type":"ui_text_input","z":"7f885510.6173fc","name":"in_path","label":"Directory (ex : /home/pi/Desktop/)","tooltip":"","group":"c62ffbd3.787ef8","order":8,"width":"12","height":"1","passthru":true,"mode":"text","delay":300,"topic":"in_path","x":640,"y":880,"wires":[["2d01ecd6.b00d34","501e654e.6ca29c"]]},{"id":"477dc1bd.c3de8","type":"ui_text_input","z":"7f885510.6173fc","name":"acq_id","label":"Acquisition ID (ex : experience_1)","tooltip":"","group":"c62ffbd3.787ef8","order":8,"width":"12","height":"1","passthru":true,"mode":"text","delay":300,"topic":"acq_id","x":650,"y":920,"wires":[["2d01ecd6.b00d34","501e654e.6ca29c"]]},{"id":"1cdfba79.2455b6","type":"exec","z":"7f885510.6173fc","command":"python3.7 $HOME/PlanktonScope/scripts/image.py","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"image.py","x":1120,"y":800,"wires":[["54727b23.4a9c34"],["54727b23.4a9c34"],["54727b23.4a9c34"]],"icon":"node-red/arrow-in.svg"},{"id":"9ccdfc61.c73a5","type":"exec","z":"7f885510.6173fc","command":"bash $HOME/RPi_Cam_Web_Interface/stop.sh","addpay":false,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"Kill RPi Web Interface","x":1160,"y":880,"wires":[["54727b23.4a9c34"],["54727b23.4a9c34"],["54727b23.4a9c34"]]},{"id":"ac43bec2.d6696","type":"delay","z":"7f885510.6173fc","name":"","pauseType":"delay","timeout":"5","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":960,"y":820,"wires":[["1cdfba79.2455b6"]]},{"id":"12df6d06.bfe9a3","type":"exec","z":"7f885510.6173fc","command":"bash $HOME/RPi_Cam_Web_Interface/start.sh","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"Restart RPi Web Interface","x":1170,"y":960,"wires":[["54727b23.4a9c34"],["54727b23.4a9c34"],["54727b23.4a9c34"]]},{"id":"fd5146e4.600cc8","type":"delay","z":"7f885510.6173fc","name":"","pauseType":"delay","timeout":"2","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":960,"y":880,"wires":[["9ccdfc61.c73a5"]]},{"id":"ecc11aa4.57cb98","type":"function","z":"7f885510.6173fc","name":"wait","func":"var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    duration = String('500');\n    break;\n  case \"16\":\n    duration = String('620');\n    break;\n  case \"12\":\n    duration = String('1170');\n    break;\n  case \"8\":\n    duration = String('3450');\n    break;\n  case \"6\":\n    duration = String('4520');\n    break;\n}\n\nmsg.payload = duration;\nreturn msg;","outputs":1,"noerr":0,"x":970,"y":940,"wires":[["12df6d06.bfe9a3"]]},{"id":"54727b23.4a9c34","type":"debug","z":"7f885510.6173fc","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","x":1430,"y":900,"wires":[]},{"id":"615a8890.e9eee8","type":"exec","z":"7f885510.6173fc","command":"bash $HOME/PlanktonScope/scripts/kill_image.sh","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"Kill Image","x":1120,"y":1020,"wires":[["54727b23.4a9c34"],["54727b23.4a9c34"],["54727b23.4a9c34"]]},{"id":"501e654e.6ca29c","type":"function","z":"7f885510.6173fc","name":"Image","func":"var in_path = context.get(\"in_path\") || 0; //get from context or default to 0\nvar sample_project = context.get(\"sample_project\") || 0; //get from context or default to 0\nvar sample_id = context.get(\"sample_id\") || 0; //get from context or default to 0\nvar acq_id = context.get(\"acq_id\") || 0; //get from context or default to 0\n\nswitch (msg.topic){\n    case \"in_path\":\n        in_path = msg.payload; //payload NOT paydoad  :)\n        context.set(\"in_path\", in_path); //store in context for next time \n        break;\n    case \"sample_project\":\n        sample_project = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_project\", sample_project); //store in context for next time \n        break;\n    case \"sample_id\":\n        sample_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_id\", sample_id); //store in context for next time \n        break;\n    case \"acq_id\":\n        acq_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"acq_id\", acq_id); //store in context for next time \n        break;\n}\nif(msg.topic === \"stop\"){\n    \n    in_path = String(in_path);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n    acq_id = String(acq_id);\n\n    msg.payload = [in_path, sample_project, sample_id, acq_id].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}","outputs":1,"noerr":0,"x":970,"y":1020,"wires":[["615a8890.e9eee8"]],"info":"### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "},{"id":"519b5726.b7c038","type":"exec","z":"7f885510.6173fc","command":"python3.7 $HOME/PlanktonScope/scripts/pump.py","addpay":true,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"pump.py","x":1120,"y":740,"wires":[["54727b23.4a9c34"],["54727b23.4a9c34"],["54727b23.4a9c34"]]},{"id":"de6fdfb0.ec1ca","type":"function","z":"7f885510.6173fc","name":"Image","func":"var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    flowrate = String(' 3');\n    break;\n  case \"16\":\n    flowrate = String(' 2.4');\n    break;\n  case \"12\":\n    flowrate = String(' 1.25');\n    break;\n  case \"8\":\n    flowrate = String(' 0.42');\n    break;\n  case \"6\":\n    flowrate = String(' 0.32');\n    break;\n}\n\nif(msg.topic === \"start\"){\n    \n    msg.payload = [\"24\", flowrate, \"foward\"].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}","outputs":1,"noerr":0,"x":830,"y":780,"wires":[["519b5726.b7c038"]],"info":"### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "},{"id":"35dca58e.6f1dda","type":"exec","z":"7f885510.6173fc","command":"bash $HOME/PlanktonScope/scripts/killer.sh pump.py && bash $HOME/PlanktonScope/scripts/killer.sh pump.py","addpay":false,"append":"","useSpawn":"false","timer":"","oldrc":false,"name":"Kill Pump","x":1120,"y":1080,"wires":[[],[],[]]},{"id":"c627ea8d.f886e8","type":"ui_group","z":"","name":"General","tab":"6b01f851.598028","order":1,"disp":true,"width":6,"collapse":false},{"id":"106f0e1b.6478a2","type":"ui_group","z":"","name":"Spatio Temporal","tab":"6b01f851.598028","order":5,"disp":true,"width":"6","collapse":false},{"id":"832434ce.ebe498","type":"ui_group","z":"","name":"Optic Settings","tab":"6b01f851.598028","order":3,"disp":true,"width":"6","collapse":false},{"id":"77a6994b.e3efb8","type":"ui_group","z":"","name":"General","tab":"6b01f851.598028","order":6,"disp":true,"width":6,"collapse":false},{"id":"a72a9ec6.bb144","type":"ui_group","z":"","name":"Fluidic settings","tab":"6b01f851.598028","order":4,"disp":true,"width":"6","collapse":false},{"id":"c62ffbd3.787ef8","type":"ui_group","z":"","name":"Preview","tab":"6b01f851.598028","order":2,"disp":true,"width":12,"collapse":false},{"id":"6b01f851.598028","type":"ui_tab","z":"","name":"PlanktonScope GUI v2.1","icon":"date_range","order":1,"disabled":false,"hidden":false}]
+[
+    {
+        "id": "7f885510.6173fc",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "955fdac.f54f328",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "sample_ship",
+        "label": "Name of the ship (ex : Tara)",
+        "tooltip": "",
+        "group": "c627ea8d.f886e8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_ship",
+        "x": 230,
+        "y": 140,
+        "wires": [
+            [
+                "3dd9a121.e386de"
+            ]
+        ]
+    },
+    {
+        "id": "dfb29406.d68148",
+        "type": "ui_dropdown",
+        "z": "7f885510.6173fc",
+        "name": "sample_sampling_gear",
+        "label": "Sampling gear",
+        "tooltip": "",
+        "place": "Select",
+        "group": "c627ea8d.f886e8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "Plankton net",
+                "value": "net",
+                "type": "str"
+            },
+            {
+                "label": "Niskin bottle 12L",
+                "value": "niskin_12L",
+                "type": "str"
+            },
+            {
+                "label": "Niskin bottle 24L",
+                "value": "niskin_24L",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "sample_sampling_gear",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "8861710f.55b92"
+            ]
+        ]
+    },
+    {
+        "id": "bfce92c6.5f66a",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "sample_operator",
+        "label": "Name of the operator",
+        "tooltip": "",
+        "group": "c627ea8d.f886e8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_operator",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "3dd9a121.e386de"
+            ]
+        ]
+    },
+    {
+        "id": "bae9c122.3612f",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "sample_project",
+        "label": "Name of the project (ex : Tara_Pacific)",
+        "tooltip": "",
+        "group": "c627ea8d.f886e8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_project",
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "3dd9a121.e386de"
+            ]
+        ]
+    },
+    {
+        "id": "eb39c21c.a3fec",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "object_lat",
+        "label": "Lattitude (decimal degrees)",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "object_lat",
+        "x": 1400,
+        "y": 320,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "404b41a5.ae3d5",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "object_lon",
+        "label": "Longitude (decimal degrees)",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "object_lon",
+        "x": 1390,
+        "y": 360,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "d90c72f2.cf1ca",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "sample_id",
+        "label": "Name of the station (ex: OA125)",
+        "tooltip": "",
+        "group": "c627ea8d.f886e8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_id",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "3dd9a121.e386de"
+            ]
+        ]
+    },
+    {
+        "id": "3300f426.cc515c",
+        "type": "ui_dropdown",
+        "z": "7f885510.6173fc",
+        "name": "acq_fnumber_objective",
+        "label": "M12 Lens :",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "832434ce.ebe498",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "x": 1430,
+        "y": 60,
+        "wires": [
+            [
+                "de455648.b432f8"
+            ]
+        ]
+    },
+    {
+        "id": "72d57e31.59234",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "832434ce.ebe498",
+        "name": "Magnification",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    </span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 2050,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98a4bc0a.f3304",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "77a6994b.e3efb8",
+        "name": "Instrument",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Instrument :\n    <span id=\"acq_instrument\">\n    PlanktonScope V2.1\n    </span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 230,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53b3cb43.2acf04",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "77a6994b.e3efb8",
+        "name": "Software",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Software :\n    <span id=\"acq_software\">\n    Node-RED Dashboard\n    </span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 240,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a0a45f1.2cd7da",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "77a6994b.e3efb8",
+        "name": "Camera",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Camera :\n    <span id=\"acq_camera_name\">\n    Pi Camera v2.1\n    </span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 240,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de455648.b432f8",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "calculate",
+        "func": "global.set(msg.topic,msg.payload);\nvar acq_fnumber_objective = String(global.get(msg.topic));\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    global.set(\"magnification\",0.6);\n    global.set(\"process_pixel\",1.86);\n    global.set(\"sug_min\",60);\n    global.set(\"sug_max\",670);\n    global.set(\"flowrate\",3);\n    break;\n  case \"16\":\n    global.set(\"magnification\",0.94);\n    global.set(\"process_pixel\",1.19);\n    global.set(\"sug_min\",40);\n    global.set(\"sug_max\",430);\n    global.set(\"flowrate\",2.4);\n    break;\n  case \"12\":\n    global.set(\"magnification\",1.20);\n    global.set(\"process_pixel\",0.94);\n    global.set(\"sug_min\",30);\n    global.set(\"sug_max\",340);\n    global.set(\"flowrate\",1.25);\n    break;\n  case \"8\":\n    global.set(\"magnification\",1.78);\n    global.set(\"process_pixel\",0.63);\n    global.set(\"sug_min\",20);\n    global.set(\"sug_max\",230);\n    global.set(\"flowrate\",0.42);\n    break;\n  case \"6\":\n    global.set(\"magnification\",2.36);\n    global.set(\"process_pixel\",0.48);\n    global.set(\"sug_min\",15);\n    global.set(\"sug_max\",170);\n    global.set(\"flowrate\",0.32);\n    break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1620,
+        "y": 60,
+        "wires": [
+            [
+                "c83fc403.8ba2d8",
+                "48d9cc9c.852214",
+                "44969aec.4e87e4",
+                "a1201a.dc3f8fe8",
+                "89b9399b.9389a8"
+            ]
+        ]
+    },
+    {
+        "id": "f3aa18d.65f0de8",
+        "type": "ui_dropdown",
+        "z": "7f885510.6173fc",
+        "name": "acq_celltype",
+        "label": "Thickness flowcell",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "a72a9ec6.bb144",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "200 μm µ-Slide I Luer",
+                "value": 200,
+                "type": "num"
+            },
+            {
+                "label": "400 μm µ-Slide I Luer",
+                "value": 400,
+                "type": "num"
+            },
+            {
+                "label": "600 μm µ-Slide I Luer",
+                "value": 600,
+                "type": "num"
+            },
+            {
+                "label": "800 μm µ-Slide I Luer",
+                "value": 800,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_celltype",
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "8861710f.55b92"
+            ]
+        ]
+    },
+    {
+        "id": "45568fe8.67759",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "acq_minimum_mesh",
+        "label": "Min fraction size (μm)",
+        "tooltip": "",
+        "group": "a72a9ec6.bb144",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "acq_minimum_mesh",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "300",
+        "step": "10",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "8861710f.55b92"
+            ]
+        ]
+    },
+    {
+        "id": "918b69e2.7e6e88",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "acq_maximum_mesh",
+        "label": "Max fraction size (μm)",
+        "tooltip": "",
+        "group": "a72a9ec6.bb144",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "acq_maximum_mesh",
+        "format": "{{value}}",
+        "min": "200",
+        "max": "2000",
+        "step": "100",
+        "x": 200,
+        "y": 400,
+        "wires": [
+            [
+                "8861710f.55b92"
+            ]
+        ]
+    },
+    {
+        "id": "86d762dc.47911",
+        "type": "ui_switch",
+        "z": "7f885510.6173fc",
+        "name": "light_state",
+        "label": "Light",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "b5a366b4.cb6918"
+            ]
+        ]
+    },
+    {
+        "id": "b5a366b4.cb6918",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/light.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "light.py",
+        "x": 1000,
+        "y": 160,
+        "wires": [
+            [],
+            [],
+            []
+        ],
+        "icon": "node-red/light.svg"
+    },
+    {
+        "id": "5ea28a70.42ae14",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "up",
+        "group": "c62ffbd3.787ef8",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_upwards",
+        "payload": "up",
+        "payloadType": "str",
+        "topic": "up",
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "523fdeaa.50c6c"
+            ]
+        ]
+    },
+    {
+        "id": "27f16831.dde938",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "down",
+        "group": "c62ffbd3.787ef8",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_downward",
+        "payload": "down",
+        "payloadType": "str",
+        "topic": "down",
+        "x": 650,
+        "y": 360,
+        "wires": [
+            [
+                "523fdeaa.50c6c"
+            ]
+        ]
+    },
+    {
+        "id": "855e9d96.ab869",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "nb_step",
+        "label": "nb step (30μm/step)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "mode": "number",
+        "delay": 300,
+        "topic": "nb_step",
+        "x": 640,
+        "y": 320,
+        "wires": [
+            [
+                "523fdeaa.50c6c"
+            ]
+        ]
+    },
+    {
+        "id": "b110542b.5de4f8",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "kill_focus",
+        "group": "c62ffbd3.787ef8",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Cancel focus",
+        "tooltip": "",
+        "color": "#AD1625",
+        "bgcolor": "#333333",
+        "icon": "pause",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "d9dea2bc.47097"
+            ]
+        ]
+    },
+    {
+        "id": "523fdeaa.50c6c",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "focus",
+        "func": "if(msg.topic === \"nb_step\"){\n    nb_step = msg.payload;\n    global.set(\"nb_step\",nb_step);\n}\nif(msg.topic === \"up\"){\n\n    nb_step = global.get(\"nb_step\");\n\n    orientation = \"up\";\n\n    msg.payload = String(nb_step).concat(' ', orientation);\n    return msg;\n}\nif(msg.topic === \"down\"){\n    \n    nb_step = global.get(\"nb_step\");\n\n    orientation = \"down\";\n    msg.payload = String(nb_step).concat(' ', orientation);\n\n    return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 320,
+        "wires": [
+            [
+                "ada728bd.8e7818"
+            ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+    },
+    {
+        "id": "ada728bd.8e7818",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/focus.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "focus.py",
+        "x": 1000,
+        "y": 320,
+        "wires": [
+            [],
+            [],
+            []
+        ],
+        "icon": "node-red/sort.svg"
+    },
+    {
+        "id": "d9dea2bc.47097",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash $HOME/PlanktonScope/scripts/killer.sh focus.py && bash $HOME/PlanktonScope/scripts/killer.sh focus.py",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Kill Focus",
+        "x": 1000,
+        "y": 420,
+        "wires": [
+            [],
+            [],
+            []
+        ],
+        "icon": "font-awesome/fa-stop"
+    },
+    {
+        "id": "6bf10b4c.c83c84",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "start",
+        "group": "c62ffbd3.787ef8",
+        "order": 15,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Start Acquisition",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "play_circle_fill",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "start",
+        "x": 590,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c9498e7.bf0c38",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "stop",
+        "group": "c62ffbd3.787ef8",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Cancel Acquisition",
+        "tooltip": "",
+        "color": "#AD1625",
+        "bgcolor": "#333333",
+        "icon": "pause_circle_filled",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "stop",
+        "x": 590,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2d0f6720.0f92f8",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "832434ce.ebe498",
+        "name": "Pi Camera settings",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "format": "<button class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://127.0.0.1/html/';\">Pi Camera settings</button>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1410,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9599b953.529c28",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "832434ce.ebe498",
+        "name": "process_pixel",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 2060,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "612e2b9b.ed1684",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "832434ce.ebe498",
+        "name": "min_size",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 2040,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f84ab57a.556df8",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "832434ce.ebe498",
+        "name": "max_size",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 2040,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "45f53656.d631e8",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "832434ce.ebe498",
+        "name": "flowrate",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Flowrate :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    ml/min\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 2040,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53ec5f97.7567c",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "c62ffbd3.787ef8",
+        "name": "Stream Pi Camera",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<center><iframe id=\"inlineFrameExample\"\n    title=\"Inline Frame Example\"\n    height=\"384\"\n    width=\"512\"\n    frameborder=\"0\"\n    src=\"http://127.0.0.1/html/min.php\">\n</iframe></center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 830,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c84f1718.4af6b8",
+        "type": "ui_switch",
+        "z": "7f885510.6173fc",
+        "name": "fan_state",
+        "label": "Fan",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 640,
+        "y": 220,
+        "wires": [
+            [
+                "dec2b84a.6faa18"
+            ]
+        ]
+    },
+    {
+        "id": "dec2b84a.6faa18",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/fan.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "fan.py",
+        "x": 990,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            []
+        ],
+        "icon": "font-awesome/fa-spinner"
+    },
+    {
+        "id": "7923e634.673cd8",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "in_path",
+        "label": "Directory (ex : /home/pi/Desktop/)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "in_path",
+        "x": 700,
+        "y": 940,
+        "wires": [
+            [
+                "263878b3.e0a478"
+            ]
+        ]
+    },
+    {
+        "id": "477dc1bd.c3de8",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "acq_id",
+        "label": "Acquisition ID (ex : experience_1)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 13,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "acq_id",
+        "x": 710,
+        "y": 980,
+        "wires": [
+            [
+                "263878b3.e0a478"
+            ]
+        ]
+    },
+    {
+        "id": "3dd9a121.e386de",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "set global",
+        "func": "var value = msg.payload.split(' ').join('_');\nvar key = msg.topic;\n\nglobal.set(key,value);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c83fc403.8ba2d8",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "get magnification",
+        "func": "var magnification = global.get(\"magnification\");\nmsg.payload = magnification;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1870,
+        "y": 60,
+        "wires": [
+            [
+                "72d57e31.59234"
+            ]
+        ]
+    },
+    {
+        "id": "48d9cc9c.852214",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "get process_pixel",
+        "func": "var process_pixel = global.get(\"process_pixel\");\nmsg.payload = process_pixel;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1870,
+        "y": 100,
+        "wires": [
+            [
+                "9599b953.529c28"
+            ]
+        ]
+    },
+    {
+        "id": "44969aec.4e87e4",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "get sug_min",
+        "func": "var sug_min = global.get(\"sug_min\");\nmsg.payload = sug_min;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1850,
+        "y": 140,
+        "wires": [
+            [
+                "612e2b9b.ed1684"
+            ]
+        ]
+    },
+    {
+        "id": "a1201a.dc3f8fe8",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "get sug_max",
+        "func": "var sug_max = global.get(\"sug_max\");\nmsg.payload = sug_max;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1850,
+        "y": 180,
+        "wires": [
+            [
+                "f84ab57a.556df8"
+            ]
+        ]
+    },
+    {
+        "id": "89b9399b.9389a8",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "get flowrate",
+        "func": "var flowrate = global.get(\"flowrate\");\nmsg.payload = flowrate\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1850,
+        "y": 220,
+        "wires": [
+            [
+                "45f53656.d631e8"
+            ]
+        ]
+    },
+    {
+        "id": "c650b922.6adef8",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "set global",
+        "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1600,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4c54d5a.19ff3",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "sample_year",
+        "label": "/",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "sample_year",
+        "format": "{{value}}",
+        "min": "2019",
+        "max": "2050",
+        "step": 1,
+        "x": 1390,
+        "y": 480,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "b45db708.cedec8",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "sample_month",
+        "label": "/",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "sample_month",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "12",
+        "step": 1,
+        "x": 1380,
+        "y": 440,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "6351d257.6d7f1c",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "sample_day",
+        "label": "Date :",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "sample_day",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "31",
+        "step": 1,
+        "x": 1390,
+        "y": 400,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "9ee03294.39987",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "sample_hour",
+        "label": "Time :",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "sample_hour",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "24",
+        "step": 1,
+        "x": 1390,
+        "y": 520,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "5bd11314.ae6e4c",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "sample_minute",
+        "label": ":",
+        "tooltip": "",
+        "group": "106f0e1b.6478a2",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "sample_minute",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "59",
+        "step": 1,
+        "x": 1380,
+        "y": 560,
+        "wires": [
+            [
+                "c650b922.6adef8"
+            ]
+        ]
+    },
+    {
+        "id": "8861710f.55b92",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "set global",
+        "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8cb0c6e.7220d",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "store generic",
+        "func": "global.set(\"acq_instrument\",\"PlanktonScope V2.1\");\nglobal.set(\"acq_software\",\"Node-RED Dashboard\");\nglobal.set(\"acq_camera\",\"Pi Camera V2.1\");\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be7bb9ca.516138",
+        "type": "inject",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 240,
+        "y": 660,
+        "wires": [
+            [
+                "a8cb0c6e.7220d"
+            ]
+        ]
+    },
+    {
+        "id": "755e6f65.6f54c",
+        "type": "camerapi-takephoto",
+        "z": "7f885510.6173fc",
+        "filemode": "1",
+        "filename": "",
+        "filedefpath": "0",
+        "filepath": "",
+        "fileformat": "jpeg",
+        "resolution": "10",
+        "rotation": "0",
+        "fliph": "0",
+        "flipv": "0",
+        "brightness": "50",
+        "contrast": "0",
+        "sharpness": "0",
+        "quality": "80",
+        "imageeffect": "none",
+        "exposuremode": "auto",
+        "iso": "0",
+        "agcwait": "1.0",
+        "led": "0",
+        "awb": "auto",
+        "name": "",
+        "x": 800,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "263878b3.e0a478",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "set global",
+        "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b3ea5bd.03248c",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "backward",
+        "group": "c62ffbd3.787ef8",
+        "order": 8,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Backward",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_back",
+        "payload": "backward",
+        "payloadType": "str",
+        "topic": "backward",
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "84fd85fd.426878"
+            ]
+        ]
+    },
+    {
+        "id": "cfe9783a.286438",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "foward",
+        "group": "c62ffbd3.787ef8",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "label": "Forward",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_forward",
+        "payload": "foward",
+        "payloadType": "str",
+        "topic": "foward",
+        "x": 650,
+        "y": 560,
+        "wires": [
+            [
+                "84fd85fd.426878"
+            ]
+        ]
+    },
+    {
+        "id": "f94950fb.4454f",
+        "type": "ui_text_input",
+        "z": "7f885510.6173fc",
+        "name": "volume",
+        "label": "Volume to pass (ml)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 9,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "mode": "number",
+        "delay": 300,
+        "topic": "volume",
+        "x": 640,
+        "y": 520,
+        "wires": [
+            [
+                "84fd85fd.426878"
+            ]
+        ]
+    },
+    {
+        "id": "83d75b6b.6afa28",
+        "type": "ui_button",
+        "z": "7f885510.6173fc",
+        "name": "kill_pump",
+        "group": "c62ffbd3.787ef8",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Cancel pump",
+        "tooltip": "",
+        "color": "#AD1625",
+        "bgcolor": "#333333",
+        "icon": "pause",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 640,
+        "y": 620,
+        "wires": [
+            [
+                "8fc930df.c7ae6"
+            ]
+        ]
+    },
+    {
+        "id": "84fd85fd.426878",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "pump",
+        "func": "if(msg.topic === \"volume\"){\n    volume = msg.payload;\n    global.set(\"volume\",volume);\n}\nif(msg.topic === \"foward\"){\n\n    volume = global.get(\"volume\");\n    flowrate = global.get(\"flowrate\");\n\n    action = \" foward\";\n\n    msg.payload = String(volume).concat(' ',flowrate, action);\n    return msg;\n}\nif(msg.topic === \"backward\"){\n    \n    volume = global.get(\"volume\");\n    flowrate = global.get(\"flowrate\");\n\n    action = \" backward\";\n    msg.payload = String(volume).concat(' ',flowrate, action);\n\n    return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 520,
+        "wires": [
+            [
+                "649f7ec8.06a84"
+            ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+    },
+    {
+        "id": "649f7ec8.06a84",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/pump.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "pump.py",
+        "x": 1000,
+        "y": 520,
+        "wires": [
+            [],
+            [],
+            []
+        ],
+        "icon": "font-awesome/fa-rotate-left"
+    },
+    {
+        "id": "8fc930df.c7ae6",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash $HOME/PlanktonScope/scripts/killer.sh pump.py && bash $HOME/PlanktonScope/scripts/killer.sh pump.py",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Kill Pump",
+        "x": 1000,
+        "y": 620,
+        "wires": [
+            [],
+            [],
+            []
+        ],
+        "icon": "font-awesome/fa-stop"
+    },
+    {
+        "id": "c627ea8d.f886e8",
+        "type": "ui_group",
+        "z": "",
+        "name": "General",
+        "tab": "6b01f851.598028",
+        "order": 1,
+        "disp": true,
+        "width": 5,
+        "collapse": false
+    },
+    {
+        "id": "106f0e1b.6478a2",
+        "type": "ui_group",
+        "z": "",
+        "name": "Spatio Temporal",
+        "tab": "6b01f851.598028",
+        "order": 5,
+        "disp": true,
+        "width": 8,
+        "collapse": false
+    },
+    {
+        "id": "832434ce.ebe498",
+        "type": "ui_group",
+        "z": "",
+        "name": "Optic Settings",
+        "tab": "6b01f851.598028",
+        "order": 3,
+        "disp": true,
+        "width": 8,
+        "collapse": false
+    },
+    {
+        "id": "77a6994b.e3efb8",
+        "type": "ui_group",
+        "z": "",
+        "name": "General",
+        "tab": "6b01f851.598028",
+        "order": 6,
+        "disp": true,
+        "width": 5,
+        "collapse": false
+    },
+    {
+        "id": "a72a9ec6.bb144",
+        "type": "ui_group",
+        "z": "",
+        "name": "Fluidic settings",
+        "tab": "6b01f851.598028",
+        "order": 4,
+        "disp": true,
+        "width": 5,
+        "collapse": false
+    },
+    {
+        "id": "c62ffbd3.787ef8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Preview",
+        "tab": "6b01f851.598028",
+        "order": 2,
+        "disp": true,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "6b01f851.598028",
+        "type": "ui_tab",
+        "z": "",
+        "name": "PlanktonScope GUI v2.1",
+        "icon": "date_range",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
