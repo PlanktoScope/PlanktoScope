@@ -152,6 +152,8 @@ These nodes will be used in Node-RED:
     npm install node-red-contrib-interval
     npm install node-red-contrib-python3-function
     npm install node-red-contrib-camerapi
+    npm install node-red-node-mysql
+
 
 Stream the picamera
 ------------------
