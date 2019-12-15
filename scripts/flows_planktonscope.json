@@ -7,13 +7,6 @@
         "info": ""
     },
     {
-        "id": "4e7b0c26.1eecb4",
-        "type": "tab",
-        "label": "Flow 2",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "b2d230de.b7751",
         "type": "ui_base",
         "theme": {
@@ -86,11 +79,10 @@
                 }
             },
             "angularTheme": {
-                "primary": "purple",
-                "accents": "pink",
-                "warn": "indigo",
-                "background": "deep-purple",
-                "palette": "dark"
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
             }
         },
         "site": {
@@ -126,22 +118,22 @@
         "id": "c627ea8d.f886e8",
         "type": "ui_group",
         "z": "",
-        "name": "General",
+        "name": "Sample",
         "tab": "6b01f851.598028",
         "order": 1,
         "disp": true,
-        "width": 5,
+        "width": 6,
         "collapse": false
     },
     {
         "id": "c62ffbd3.787ef8",
         "type": "ui_group",
         "z": "",
-        "name": "Preview",
+        "name": "Controller",
         "tab": "6b01f851.598028",
-        "order": 2,
+        "order": 5,
         "disp": true,
-        "width": 12,
+        "width": "12",
         "collapse": false
     },
     {
@@ -152,7 +144,7 @@
         "tab": "6b01f851.598028",
         "order": 3,
         "disp": true,
-        "width": 8,
+        "width": "7",
         "collapse": false
     },
     {
@@ -163,7 +155,7 @@
         "tab": "6b01f851.598028",
         "order": 4,
         "disp": true,
-        "width": 5,
+        "width": 6,
         "collapse": false
     },
     {
@@ -172,21 +164,72 @@
         "z": "",
         "name": "Spatio Temporal",
         "tab": "6b01f851.598028",
-        "order": 5,
+        "order": 6,
         "disp": true,
-        "width": 8,
+        "width": 7,
         "collapse": false
     },
     {
         "id": "77a6994b.e3efb8",
         "type": "ui_group",
         "z": "",
-        "name": "General",
+        "name": "Generic info",
         "tab": "6b01f851.598028",
-        "order": 6,
+        "order": 7,
         "disp": true,
-        "width": 5,
+        "width": 6,
         "collapse": false
+    },
+    {
+        "id": "79767bcc.30bb94",
+        "type": "ui_group",
+        "z": "",
+        "name": "Reminder",
+        "tab": "6b01f851.598028",
+        "order": 9,
+        "disp": true,
+        "width": 25,
+        "collapse": false
+    },
+    {
+        "id": "a61f7be8.af6418",
+        "type": "ui_group",
+        "z": "",
+        "name": "Acquisition",
+        "tab": "6b01f851.598028",
+        "order": 8,
+        "disp": true,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "3d740a07.4674e6",
+        "type": "ui_group",
+        "z": "",
+        "name": "Preview",
+        "tab": "6b01f851.598028",
+        "order": 2,
+        "disp": true,
+        "width": 12,
+        "collapse": false
+    },
+    {
+        "id": "7a3248ea.67b168",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "106f0e1b.6478a2",
+        "order": 8,
+        "width": 1,
+        "height": "1"
+    },
+    {
+        "id": "4b4609c1.e7ed68",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "832434ce.ebe498",
+        "order": 8,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "955fdac.f54f328",
@@ -618,7 +661,7 @@
         "label": "Light",
         "tooltip": "",
         "group": "c62ffbd3.787ef8",
-        "order": 2,
+        "order": 1,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -634,7 +677,7 @@
         "officon": "",
         "offcolor": "",
         "x": 510,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "b5a366b4.cb6918"
@@ -653,7 +696,7 @@
         "oldrc": false,
         "name": "light.py",
         "x": 820,
-        "y": 100,
+        "y": 160,
         "wires": [
             [],
             [],
@@ -667,7 +710,7 @@
         "z": "7f885510.6173fc",
         "name": "up",
         "group": "c62ffbd3.787ef8",
-        "order": 4,
+        "order": 3,
         "width": 1,
         "height": 1,
         "passthru": false,
@@ -680,7 +723,7 @@
         "payloadType": "str",
         "topic": "up",
         "x": 530,
-        "y": 220,
+        "y": 280,
         "wires": [
             [
                 "523fdeaa.50c6c"
@@ -693,7 +736,7 @@
         "z": "7f885510.6173fc",
         "name": "down",
         "group": "c62ffbd3.787ef8",
-        "order": 6,
+        "order": 5,
         "width": 1,
         "height": 1,
         "passthru": true,
@@ -706,7 +749,7 @@
         "payloadType": "str",
         "topic": "down",
         "x": 530,
-        "y": 300,
+        "y": 360,
         "wires": [
             [
                 "523fdeaa.50c6c"
@@ -721,7 +764,7 @@
         "label": "nb step (30μm/step)",
         "tooltip": "",
         "group": "c62ffbd3.787ef8",
-        "order": 5,
+        "order": 4,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -729,7 +772,7 @@
         "delay": 300,
         "topic": "nb_step",
         "x": 520,
-        "y": 260,
+        "y": 320,
         "wires": [
             [
                 "523fdeaa.50c6c"
@@ -742,7 +785,7 @@
         "z": "7f885510.6173fc",
         "name": "kill_focus",
         "group": "c62ffbd3.787ef8",
-        "order": 7,
+        "order": 6,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -755,7 +798,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 520,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "d9dea2bc.47097"
@@ -771,7 +814,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 670,
-        "y": 260,
+        "y": 320,
         "wires": [
             [
                 "ada728bd.8e7818"
@@ -791,7 +834,7 @@
         "oldrc": false,
         "name": "focus.py",
         "x": 820,
-        "y": 260,
+        "y": 320,
         "wires": [
             [],
             [],
@@ -811,7 +854,7 @@
         "oldrc": false,
         "name": "Kill Focus",
         "x": 820,
-        "y": 340,
+        "y": 400,
         "wires": [
             [],
             [],
@@ -828,7 +871,7 @@
         "order": 7,
         "width": 0,
         "height": 0,
-        "format": "<button class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://127.0.0.1/html/';\">Pi Camera settings</button>\n",
+        "format": "<button style=\"height: 50px;\" class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://127.0.0.1/html/';\">Pi Camera settings</button>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -918,7 +961,7 @@
         "id": "53ec5f97.7567c",
         "type": "ui_template",
         "z": "7f885510.6173fc",
-        "group": "c62ffbd3.787ef8",
+        "group": "3d740a07.4674e6",
         "name": "Stream Pi Camera",
         "order": 1,
         "width": 0,
@@ -941,7 +984,7 @@
         "label": "Fan",
         "tooltip": "",
         "group": "c62ffbd3.787ef8",
-        "order": 3,
+        "order": 2,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -957,7 +1000,7 @@
         "officon": "",
         "offcolor": "",
         "x": 520,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "dec2b84a.6faa18"
@@ -976,7 +1019,7 @@
         "oldrc": false,
         "name": "fan.py",
         "x": 810,
-        "y": 160,
+        "y": 220,
         "wires": [
             [],
             [],
@@ -985,45 +1028,22 @@
         "icon": "font-awesome/fa-spinner"
     },
     {
-        "id": "7923e634.673cd8",
-        "type": "ui_text_input",
-        "z": "7f885510.6173fc",
-        "name": "in_path",
-        "label": "Directory*",
-        "tooltip": "",
-        "group": "c62ffbd3.787ef8",
-        "order": 12,
-        "width": 6,
-        "height": 1,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "in_path",
-        "x": 520,
-        "y": 580,
-        "wires": [
-            [
-                "263878b3.e0a478"
-            ]
-        ]
-    },
-    {
         "id": "477dc1bd.c3de8",
         "type": "ui_text_input",
         "z": "7f885510.6173fc",
         "name": "acq_id",
         "label": "Acquisition ID*",
         "tooltip": "",
-        "group": "c62ffbd3.787ef8",
-        "order": 13,
-        "width": 6,
+        "group": "a61f7be8.af6418",
+        "order": 2,
+        "width": "12",
         "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": 300,
         "topic": "acq_id",
         "x": 530,
-        "y": 620,
+        "y": 680,
         "wires": [
             [
                 "263878b3.e0a478"
@@ -1147,14 +1167,14 @@
         "tooltip": "",
         "group": "106f0e1b.6478a2",
         "order": 3,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "sample_year",
         "format": "{{value}}",
-        "min": "2019",
-        "max": "2050",
+        "min": "19",
+        "max": "50",
         "step": 1,
         "x": 1010,
         "y": 480,
@@ -1225,7 +1245,7 @@
         "tooltip": "",
         "group": "106f0e1b.6478a2",
         "order": 4,
-        "width": 5,
+        "width": 4,
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -1305,237 +1325,8 @@
         "outputs": 1,
         "noerr": 0,
         "x": 680,
-        "y": 600,
+        "y": 660,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f84c662c.df8248",
-        "type": "function",
-        "z": "4e7b0c26.1eecb4",
-        "name": "Image",
-        "func": "var in_path = context.get(\"in_path\") || 0; //get from context or default to 0\nvar sample_project = context.get(\"sample_project\") || 0; //get from context or default to 0\nvar sample_id = context.get(\"sample_id\") || 0; //get from context or default to 0\nvar acq_id = context.get(\"acq_id\") || 0; //get from context or default to 0\nvar acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    flowrate = String(' 3');\n    break;\n  case \"16\":\n    flowrate = String(' 2.4');\n    break;\n  case \"12\":\n    flowrate = String(' 1.25');\n    break;\n  case \"8\":\n    flowrate = String(' 0.42');\n    break;\n  case \"6\":\n    flowrate = String(' 0.32');\n    break;\n}\n\nswitch (msg.topic){\n    case \"in_path\":\n        in_path = msg.payload; //payload NOT paydoad  :)\n        context.set(\"in_path\", in_path); //store in context for next time \n        break;\n    case \"sample_project\":\n        sample_project = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_project\", sample_project); //store in context for next time \n        break;\n    case \"sample_id\":\n        sample_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_id\", sample_id); //store in context for next time \n        break;\n    case \"acq_id\":\n        acq_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"acq_id\", acq_id); //store in context for next time \n        break;\n}\nif(msg.topic === \"start\"){\n    \n    in_path = String(in_path);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n    acq_id = String(acq_id);\n\n    msg.payload = [in_path, sample_project, sample_id, acq_id, flowrate].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 370,
-        "y": 480,
-        "wires": [
-            [
-                "802532e3.f89bc",
-                "dd01a090.6bec9"
-            ]
-        ],
-        "info": "### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "
-    },
-    {
-        "id": "9ac0625a.53e68",
-        "type": "exec",
-        "z": "4e7b0c26.1eecb4",
-        "command": "python3.7 $HOME/PlanktonScope/scripts/image.py",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "image.py",
-        "x": 760,
-        "y": 420,
-        "wires": [
-            [],
-            [],
-            []
-        ],
-        "icon": "node-red/arrow-in.svg"
-    },
-    {
-        "id": "6b594814.3fa0b8",
-        "type": "exec",
-        "z": "4e7b0c26.1eecb4",
-        "command": "bash $HOME/RPi_Cam_Web_Interface/stop.sh",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Kill RPi Web Interface",
-        "x": 800,
-        "y": 500,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "802532e3.f89bc",
-        "type": "delay",
-        "z": "4e7b0c26.1eecb4",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 600,
-        "y": 440,
-        "wires": [
-            [
-                "9ac0625a.53e68"
-            ]
-        ]
-    },
-    {
-        "id": "1500affd.e4407",
-        "type": "exec",
-        "z": "4e7b0c26.1eecb4",
-        "command": "bash $HOME/RPi_Cam_Web_Interface/start.sh",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Restart RPi Web Interface",
-        "x": 810,
-        "y": 580,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "dd01a090.6bec9",
-        "type": "delay",
-        "z": "4e7b0c26.1eecb4",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 600,
-        "y": 500,
-        "wires": [
-            [
-                "6b594814.3fa0b8"
-            ]
-        ]
-    },
-    {
-        "id": "c1091e12.4fe17",
-        "type": "function",
-        "z": "4e7b0c26.1eecb4",
-        "name": "wait",
-        "func": "var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    duration = String('500');\n    break;\n  case \"16\":\n    duration = String('620');\n    break;\n  case \"12\":\n    duration = String('1170');\n    break;\n  case \"8\":\n    duration = String('3450');\n    break;\n  case \"6\":\n    duration = String('4520');\n    break;\n}\n\nmsg.payload = duration;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 610,
-        "y": 560,
-        "wires": [
-            [
-                "1500affd.e4407"
-            ]
-        ]
-    },
-    {
-        "id": "46d0bcb6.694744",
-        "type": "exec",
-        "z": "4e7b0c26.1eecb4",
-        "command": "bash $HOME/PlanktonScope/scripts/kill_image.sh",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Kill Image",
-        "x": 760,
-        "y": 640,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "182d9940.d0c327",
-        "type": "function",
-        "z": "4e7b0c26.1eecb4",
-        "name": "Image",
-        "func": "var in_path = context.get(\"in_path\") || 0; //get from context or default to 0\nvar sample_project = context.get(\"sample_project\") || 0; //get from context or default to 0\nvar sample_id = context.get(\"sample_id\") || 0; //get from context or default to 0\nvar acq_id = context.get(\"acq_id\") || 0; //get from context or default to 0\n\nswitch (msg.topic){\n    case \"in_path\":\n        in_path = msg.payload; //payload NOT paydoad  :)\n        context.set(\"in_path\", in_path); //store in context for next time \n        break;\n    case \"sample_project\":\n        sample_project = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_project\", sample_project); //store in context for next time \n        break;\n    case \"sample_id\":\n        sample_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"sample_id\", sample_id); //store in context for next time \n        break;\n    case \"acq_id\":\n        acq_id = msg.payload; //payload NOT paydoad  :)\n        context.set(\"acq_id\", acq_id); //store in context for next time \n        break;\n}\nif(msg.topic === \"stop\"){\n    \n    in_path = String(in_path);\n    sample_project = String(sample_project);\n    sample_id = String(sample_id);\n    acq_id = String(acq_id);\n\n    msg.payload = [in_path, sample_project, sample_id, acq_id].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 610,
-        "y": 640,
-        "wires": [
-            [
-                "46d0bcb6.694744"
-            ]
-        ],
-        "info": "### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "
-    },
-    {
-        "id": "ddc97106.8b2e7",
-        "type": "exec",
-        "z": "4e7b0c26.1eecb4",
-        "command": "python3.7 $HOME/PlanktonScope/scripts/pump.py",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "pump.py",
-        "x": 760,
-        "y": 360,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "f5e45860.0bc0d8",
-        "type": "function",
-        "z": "4e7b0c26.1eecb4",
-        "name": "Image",
-        "func": "var acq_fnumber_objective = String(msg.payload);\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    flowrate = String(' 3');\n    break;\n  case \"16\":\n    flowrate = String(' 2.4');\n    break;\n  case \"12\":\n    flowrate = String(' 1.25');\n    break;\n  case \"8\":\n    flowrate = String(' 0.42');\n    break;\n  case \"6\":\n    flowrate = String(' 0.32');\n    break;\n}\n\nif(msg.topic === \"start\"){\n    \n    msg.payload = [\"24\", flowrate, \"foward\"].filter(x => typeof x === 'string' && x.length > 0).join(\" \");\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 470,
-        "y": 400,
-        "wires": [
-            [
-                "ddc97106.8b2e7"
-            ]
-        ],
-        "info": "### Image\n##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`\n\n- `in_path` : **string** - directory to store acquisitions **the path has to end with /**\n- `sample_project` : **string**\n- `sample_id` : **string**\n- `acq_id` : **string**\n- `volume` : **integer**\n- `flowrate` : **float**\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2\n    "
-    },
-    {
-        "id": "d324c4b.31afb38",
-        "type": "exec",
-        "z": "4e7b0c26.1eecb4",
-        "command": "bash $HOME/PlanktonScope/scripts/killer.sh pump.py && bash $HOME/PlanktonScope/scripts/killer.sh pump.py",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Kill Pump",
-        "x": 760,
-        "y": 700,
-        "wires": [
-            [],
-            [],
             []
         ]
     },
@@ -1545,7 +1336,7 @@
         "z": "7f885510.6173fc",
         "name": "backward",
         "group": "c62ffbd3.787ef8",
-        "order": 8,
+        "order": 7,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -1558,7 +1349,7 @@
         "payloadType": "str",
         "topic": "backward",
         "x": 520,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
                 "84fd85fd.426878"
@@ -1571,7 +1362,7 @@
         "z": "7f885510.6173fc",
         "name": "foward",
         "group": "c62ffbd3.787ef8",
-        "order": 10,
+        "order": 9,
         "width": 3,
         "height": 1,
         "passthru": true,
@@ -1584,7 +1375,7 @@
         "payloadType": "str",
         "topic": "foward",
         "x": 530,
-        "y": 480,
+        "y": 540,
         "wires": [
             [
                 "84fd85fd.426878"
@@ -1599,7 +1390,7 @@
         "label": "Volume (ml)*",
         "tooltip": "",
         "group": "c62ffbd3.787ef8",
-        "order": 9,
+        "order": 8,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -1607,7 +1398,7 @@
         "delay": 300,
         "topic": "volume",
         "x": 520,
-        "y": 440,
+        "y": 500,
         "wires": [
             [
                 "84fd85fd.426878"
@@ -1620,7 +1411,7 @@
         "z": "7f885510.6173fc",
         "name": "kill_pump",
         "group": "c62ffbd3.787ef8",
-        "order": 11,
+        "order": 10,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -1633,7 +1424,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 520,
-        "y": 520,
+        "y": 580,
         "wires": [
             [
                 "8fc930df.c7ae6"
@@ -1649,7 +1440,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 670,
-        "y": 440,
+        "y": 500,
         "wires": [
             [
                 "649f7ec8.06a84"
@@ -1669,7 +1460,7 @@
         "oldrc": false,
         "name": "pump.py",
         "x": 820,
-        "y": 440,
+        "y": 500,
         "wires": [
             [],
             [],
@@ -1689,7 +1480,7 @@
         "oldrc": false,
         "name": "Kill Pump",
         "x": 820,
-        "y": 520,
+        "y": 580,
         "wires": [
             [],
             [],
@@ -1703,7 +1494,7 @@
         "z": "7f885510.6173fc",
         "group": "77a6994b.e3efb8",
         "name": "Device ID",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "format": "<div>\n    Device ID :\n    <span id=\"acq_camera_name\">\n    Odezenne\n    </span>\n</div>",
@@ -1721,8 +1512,8 @@
         "type": "ui_button",
         "z": "7f885510.6173fc",
         "name": "start",
-        "group": "c62ffbd3.787ef8",
-        "order": 14,
+        "group": "a61f7be8.af6418",
+        "order": 3,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -1735,10 +1526,13 @@
         "payloadType": "str",
         "topic": "start",
         "x": 530,
-        "y": 680,
+        "y": 760,
         "wires": [
             [
-                "3fe055c2.6ab7da"
+                "3fe055c2.6ab7da",
+                "82c90711.145108",
+                "e1dbc623.8df898",
+                "5a95f150.76ab3"
             ]
         ]
     },
@@ -1747,8 +1541,8 @@
         "type": "ui_button",
         "z": "7f885510.6173fc",
         "name": "cancel",
-        "group": "c62ffbd3.787ef8",
-        "order": 15,
+        "group": "a61f7be8.af6418",
+        "order": 4,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -1761,10 +1555,13 @@
         "payloadType": "str",
         "topic": "cancel",
         "x": 530,
-        "y": 740,
+        "y": 980,
         "wires": [
             [
-                "f2acb5e0.c2c898"
+                "f2acb5e0.c2c898",
+                "2bfa509a.9fc06",
+                "a2a07a68.274a78",
+                "4cd6d848.672778"
             ]
         ]
     },
@@ -1773,13 +1570,13 @@
         "type": "file",
         "z": "7f885510.6173fc",
         "name": "logs.json",
-        "filename": "/home/pi/PlanktonScope/logs.json",
+        "filename": "/var/www/logs.json",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
         "x": 820,
-        "y": 680,
+        "y": 760,
         "wires": [
             []
         ]
@@ -1793,7 +1590,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 680,
-        "y": 680,
+        "y": 760,
         "wires": [
             [
                 "b0fda998.f0ad48"
@@ -1811,8 +1608,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Remove last log",
-        "x": 840,
-        "y": 740,
+        "x": 700,
+        "y": 1000,
         "wires": [
             [],
             [],
@@ -1821,23 +1618,233 @@
         "icon": "font-awesome/fa-close"
     },
     {
-        "id": "546bd06b.de8ae",
+        "id": "2bfa509a.9fc06",
+        "type": "link out",
+        "z": "7f885510.6173fc",
+        "name": "cancel_pump",
+        "links": [
+            "eadbf812.3ea798"
+        ],
+        "x": 635,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "eadbf812.3ea798",
+        "type": "link in",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "links": [
+            "2bfa509a.9fc06"
+        ],
+        "x": 715,
+        "y": 600,
+        "wires": [
+            [
+                "8fc930df.c7ae6"
+            ]
+        ]
+    },
+    {
+        "id": "217d8bc.8fb7374",
+        "type": "ui_template",
+        "z": "7f885510.6173fc",
+        "group": "79767bcc.30bb94",
+        "name": "Instructions",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<p>In case you forget dude but it's important to read this whenever you are not sure before clicking on any buttons.</p>\n<hr />\n<h3>Focusing :</h3>\n<p>To focus, you need to specify a value for the <strong>number of steps</strong>. Then, you can click <strong>once</strong> but <strong>wait</strong> while the stage is moving.</p>\n<p>To cancel a focusing, click&nbsp;<strong>once</strong> on <strong>CANCEL FOCUS.</strong></p>\n<hr />\n<h3>Pumping manually :</h3>\n<p>To focus, you need to specify a value for the <strong>volume</strong>. Then, you can click <strong>once</strong> in order to pump manually a defined volume in a certain direction.</p>\n<p>To cancel a pumping event, click&nbsp;<strong>once</strong> on <strong>CANCEL PUMP.</strong></p>\n<p><strong>Do not run an acquisition if you are using the pump manually.</strong></p>\n<hr />\n<h3>Start Acquisition :</h3>\n<p>Taking images will requires few inputs :</p>\n<ol>\n<li>Name of the project</li>\n<li>Name of the station</li>\n<li>Directory</li>\n<li>Acquisition ID</li>\n<li>Volume</li>\n<li>M12 Lens</li>\n</ol>\n<p>If any of the previous settings are missing, it's going to be a real mess and delete previous acquisition. <strong>So check twice here !!</strong></p>\n<p><strong>The other inputs are always welcome ;)</strong></p>\n<hr />\n<h3>Cancel Acquisition :</h3>\n<p>I made this button <strong>CANCEL ACQUISITION</strong> to cancel an acquisition which maybe be fucked.</p>\n<p>Image you click it, it's going to delete the folder in which you save this acquisition, meaning execute :</p>\n<p>rm -r&nbsp; Directory/Name_of_the_project/Name_of_the_station/Acquisition_ID</p>\n<p>So if you made a great acquisition, then run a new one with the same input for Acquisition ID and finally click on this button, you are going to delete them both.</p>\n<p>Don't use it if you don't need it and please <strong>never click twice</strong> because the pi might burn.</p>\n<p>&nbsp;</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 570,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82c90711.145108",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "image",
+        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_id= global.get(\"sample_id\");\nvar acq_id= global.get(\"acq_id\");\nvar volume= global.get(\"volume\");\nvar flowrate= global.get(\"flowrate\");\nmsg.payload = \"/var/www/\"+sample_project+\"/\"+sample_id+\"/\"+acq_id+\" \"+volume+\" \"+flowrate\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 800,
+        "wires": [
+            [
+                "38c8440d.d0139c"
+            ]
+        ]
+    },
+    {
+        "id": "1e9ae141.a0729f",
         "type": "exec",
         "z": "7f885510.6173fc",
-        "command": "python3.7 $HOME/PlanktonScope/scripts/pump.py",
+        "command": "python3.7 $HOME/PlanktonScope/scripts/image.py",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
-        "name": "pump.py",
-        "x": 820,
+        "name": "image.py",
+        "x": 960,
         "y": 800,
         "wires": [
             [],
             [],
             []
         ],
-        "icon": "font-awesome/fa-rotate-left"
+        "icon": "font-awesome/fa-file-image-o"
+    },
+    {
+        "id": "7d2d5235.35f5ec",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash /home/pi/PlanktonScope/scripts/kill_image.sh",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Kill Image",
+        "x": 840,
+        "y": 1060,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a2a07a68.274a78",
+        "type": "function",
+        "z": "7f885510.6173fc",
+        "name": "get global",
+        "func": "var in_path= global.get(\"in_path\");\nvar sample_project= global.get(\"sample_project\");\nvar sample_id= global.get(\"sample_id\");\nvar acq_id= global.get(\"acq_id\");\nmsg.payload = \"/var/www/\"+sample_project+\"/\"+sample_id+\"/\"+acq_id\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 1060,
+        "wires": [
+            [
+                "7d2d5235.35f5ec"
+            ]
+        ]
+    },
+    {
+        "id": "e1dbc623.8df898",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash /home/pi/RPi_Cam_Web_Interface/stop.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Stop RPi Web Interface",
+        "x": 730,
+        "y": 860,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "597635eb.72154c",
+        "type": "exec",
+        "z": "7f885510.6173fc",
+        "command": "bash /home/pi/RPi_Cam_Web_Interface/start.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Start RPi Web Interface",
+        "x": 890,
+        "y": 1120,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4cd6d848.672778",
+        "type": "delay",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 680,
+        "y": 1120,
+        "wires": [
+            [
+                "597635eb.72154c"
+            ]
+        ]
+    },
+    {
+        "id": "38c8440d.d0139c",
+        "type": "delay",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 820,
+        "y": 800,
+        "wires": [
+            [
+                "1e9ae141.a0729f"
+            ]
+        ]
+    },
+    {
+        "id": "5a95f150.76ab3",
+        "type": "link out",
+        "z": "7f885510.6173fc",
+        "name": "start_pump",
+        "links": [
+            "5da0773a.700338"
+        ],
+        "x": 635,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5da0773a.700338",
+        "type": "link in",
+        "z": "7f885510.6173fc",
+        "name": "",
+        "links": [
+            "5a95f150.76ab3"
+        ],
+        "x": 715,
+        "y": 540,
+        "wires": [
+            [
+                "649f7ec8.06a84"
+            ]
+        ]
     }
 ]
