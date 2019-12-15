@@ -11,22 +11,13 @@ from datetime import datetime, timedelta
 import os
 import sys
 
-in_path = str(sys.argv[1])
-
-#[t] : ex:tara_pacific
-sample_project = str(sys.argv[2])
-
-#[t] : unique identifier
-sample_id = str(sys.argv[3])
-
-#[t] : unique identifier
-acq_id = str(sys.argv[4])
+path=str(sys.argv[1])
 
 #[i] : ex:24ml
-volume = 24
+volume=int(sys.argv[2])
 
 #[f] : ex:3.2ml/min
-flowrate = float(sys.argv[5])
+flowrate = float(sys.argv[3])
 
 warm_up_duration=3
 
@@ -35,8 +26,6 @@ duration = (volume/flowrate)*60 - warm_up_duration
 max_fps = 0.7
 
 nb_frame = int(duration/max_fps)
-
-path= in_path+sample_project+"/"+sample_id+"/"+acq_id+"/"
     
 if not os.path.exists(path):
     os.makedirs(path)

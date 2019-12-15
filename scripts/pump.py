@@ -22,9 +22,9 @@ pump_stepper.release()
 def pump(volume, flowrate, action):
     
     if action == "foward":
-        action=stepper.FORWARD
-    if action == "backward":
         action=stepper.BACKWARD
+    if action == "backward":
+        action=stepper.FORWARD
         
     nb_step=volume*507 #if sleep(0.05) in between 2 steps
     #35000steps for 69g
