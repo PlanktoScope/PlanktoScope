@@ -124,7 +124,7 @@
         "label": "Lattitude (decimal degrees)",
         "tooltip": "",
         "group": "106f0e1b.6478a2",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -147,7 +147,7 @@
         "label": "Longitude (decimal degrees)",
         "tooltip": "",
         "group": "106f0e1b.6478a2",
-        "order": 7,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -532,36 +532,13 @@
         ]
     },
     {
-        "id": "855e9d96.ab869",
-        "type": "ui_text_input",
-        "z": "7f885510.6173fc",
-        "name": "nb_step",
-        "label": "nb step (30μm/step)",
-        "tooltip": "",
-        "group": "c62ffbd3.787ef8",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "mode": "number",
-        "delay": 300,
-        "topic": "nb_step",
-        "x": 520,
-        "y": 320,
-        "wires": [
-            [
-                "523fdeaa.50c6c"
-            ]
-        ]
-    },
-    {
         "id": "b110542b.5de4f8",
         "type": "ui_button",
         "z": "7f885510.6173fc",
         "name": "kill_focus",
         "group": "c62ffbd3.787ef8",
         "order": 6,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": false,
         "label": "Cancel focus",
@@ -646,7 +623,7 @@
         "order": 7,
         "width": 0,
         "height": 0,
-        "format": "<button style=\"height: 50px;\" class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://127.0.0.1/html/';\">Pi Camera settings</button>\n",
+        "format": "<button style=\"height: 50px;\" class=\"md-raised md-button md-ink-ripple\" type=\"button\" onclick=\"window.location.href = 'http://192.168.4.1/html/';\">Pi Camera settings</button>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -741,7 +718,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<center><iframe id=\"inlineFrameExample\"\n    title=\"Inline Frame Example\"\n    height=\"384\"\n    width=\"512\"\n    frameborder=\"0\"\n    src=\"http://127.0.0.1/html/min.php\">\n</iframe></center>",
+        "format": "<center><iframe id=\"inlineFrameExample\"\n    title=\"Inline Frame Example\"\n    height=\"384\"\n    width=\"512\"\n    frameborder=\"0\"\n    src=\"http://192.168.4.1/html/min.php\">\n</iframe></center>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -807,11 +784,11 @@
         "type": "ui_text_input",
         "z": "7f885510.6173fc",
         "name": "acq_id",
-        "label": "Acquisition ID*",
+        "label": "Acquisition unique ID*",
         "tooltip": "",
         "group": "a61f7be8.af6418",
         "order": 1,
-        "width": 12,
+        "width": 4,
         "height": 1,
         "passthru": true,
         "mode": "text",
@@ -1020,7 +997,7 @@
         "tooltip": "",
         "group": "106f0e1b.6478a2",
         "order": 4,
-        "width": 4,
+        "width": 5,
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -1046,7 +1023,7 @@
         "tooltip": "",
         "group": "106f0e1b.6478a2",
         "order": 5,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "wrap": false,
         "passthru": true,
@@ -1158,36 +1135,13 @@
         ]
     },
     {
-        "id": "f94950fb.4454f",
-        "type": "ui_text_input",
-        "z": "7f885510.6173fc",
-        "name": "volume",
-        "label": "Volume (ml)*",
-        "tooltip": "",
-        "group": "c62ffbd3.787ef8",
-        "order": 8,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "mode": "number",
-        "delay": 300,
-        "topic": "volume",
-        "x": 520,
-        "y": 500,
-        "wires": [
-            [
-                "84fd85fd.426878"
-            ]
-        ]
-    },
-    {
         "id": "83d75b6b.6afa28",
         "type": "ui_button",
         "z": "7f885510.6173fc",
         "name": "kill_pump",
         "group": "c62ffbd3.787ef8",
         "order": 10,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": false,
         "label": "Cancel pump",
@@ -1270,7 +1224,7 @@
         "name": "start",
         "group": "a61f7be8.af6418",
         "order": 2,
-        "width": 6,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "Start Acquisition",
@@ -1299,7 +1253,7 @@
         "name": "cancel",
         "group": "a61f7be8.af6418",
         "order": 3,
-        "width": 6,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "Cancel Acquisition",
@@ -1410,7 +1364,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<p>In case you forget dude but it's important to read this whenever you are not sure before clicking on any buttons.</p>\n<hr />\n<h3>Focusing :</h3>\n<p>To focus, you need to specify a value for the <strong>number of steps</strong>. Then, you can click <strong>once</strong> but <strong>wait</strong> while the stage is moving.</p>\n<p>To cancel a focusing, click&nbsp;<strong>once</strong> on <strong>CANCEL FOCUS.</strong></p>\n<hr />\n<h3>Pumping manually :</h3>\n<p>To focus, you need to specify a value for the <strong>volume</strong>. Then, you can click <strong>once</strong> in order to pump manually a defined volume in a certain direction.</p>\n<p>To cancel a pumping event, click&nbsp;<strong>once</strong> on <strong>CANCEL PUMP.</strong></p>\n<p><strong>Do not run an acquisition if you are using the pump manually.</strong></p>\n<hr />\n<h3>Start Acquisition :</h3>\n<p>Taking images will requires few inputs :</p>\n<ol>\n<li>Name of the project</li>\n<li>Name of the station</li>\n<li>Directory</li>\n<li>Acquisition ID</li>\n<li>Volume</li>\n<li>M12 Lens</li>\n</ol>\n<p>If any of the previous settings are missing, it's going to be a real mess and delete previous acquisition. <strong>So check twice here !!</strong></p>\n<p><strong>The other inputs are always welcome ;)</strong></p>\n<hr />\n<h3>Cancel Acquisition :</h3>\n<p>I made this button <strong>CANCEL ACQUISITION</strong> to cancel an acquisition which maybe be fucked.</p>\n<p>Image you click it, it's going to delete the folder in which you save this acquisition, meaning execute :</p>\n<p>rm -r&nbsp; Directory/Name_of_the_project/Name_of_the_station/Acquisition_ID</p>\n<p>So if you made a great acquisition, then run a new one with the same input for Acquisition ID and finally click on this button, you are going to delete them both.</p>\n<p>Don't use it if you don't need it and please <strong>never click twice</strong> because the pi might burn.</p>",
+        "format": "<p>In case you forget dude but it's important to read this whenever you are not sure before clicking on any buttons.</p>\n<hr />\n<h3>Focusing :</h3>\n<p>To focus, you need to specify a value for the <strong>number of steps</strong>. Then, you can click <strong>once</strong> but <strong>wait</strong> while the stage is moving.</p>\n<p>To cancel a focusing, click&nbsp;<strong>once</strong> on <strong>CANCEL FOCUS.</strong></p>\n<hr />\n<h3>Pumping manually :</h3>\n<p>To focus, you need to specify a value for the <strong>volume</strong>. Then, you can click <strong>once</strong> in order to pump manually a defined volume in a certain direction.</p>\n<p>To cancel a pumping event, click&nbsp;<strong>once</strong> on <strong>CANCEL PUMP.</strong></p>\n<p><strong>Do not run an acquisition if you are using the pump manually.</strong></p>\n<hr />\n<h3>Start Acquisition :</h3>\n<p>Taking images will requires few inputs :</p>\n<ol>\n<li>Name of the project</li>\n<li>Name of the station</li>\n<li>Acquisition ID</li>\n<li>Volume</li>\n<li>M12 Lens</li>\n</ol>\n<p>If any of the previous settings are missing, it's going to be a real mess and delete previous acquisition. <strong>So check twice here !!</strong></p>\n<p><strong>The other inputs are always welcome ;)</strong></p>\n<hr />\n<h3>Cancel Acquisition :</h3>\n<p>I made this button <strong>CANCEL ACQUISITION</strong> to cancel an acquisition which maybe be fucked.</p>\n<p>Image you click it, it's going to delete the folder in which you save this acquisition, meaning execute :</p>\n<p>&nbsp;</p>\n<code>rm -r&nbsp; /var/www/Name_of_the_project/Name_of_the_station/Acquisition_ID</code>\n<p>&nbsp;</p>\n<p>So if you made a great acquisition, then run a new one with the same input for Acquisition ID and finally click on this button, you are going to delete them both.</p>\n<p>Don't use it if you don't need it and please <strong>never click twice</strong> because the pi might burn.</p>\n<hr />\n<h3>ssh :</h3>\n<p>To access the inside of the pi, you can use ssh from from terminal once your are connected to the WiFi by typing this command : <code>ssh -Y planktonscope@192.168.4.1</code></p>\n<p>&nbsp;</p>\n<p>The Password is : <b>raspberry</b></p>\n<hr />\n<h3>Data :</h3>\n<p>In order to access your acquisitions, you can either click on this <a style=\"color:#097479\" href=\"http://192.168.4.1/\" target=\"_blank\">link</a> or get to the directory via ssh : <code>/var/www/</code></p>\n<hr />\n<p>In order to access the script via ssh, you can get to the directory : <code>/home/pi/PlanktonScope/</code></p>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -1608,10 +1562,10 @@
         "type": "ui_numeric",
         "z": "7f885510.6173fc",
         "name": "flowrate",
-        "label": "Flowrate (ml/min)",
+        "label": "Flowrate (ml/min)*",
         "tooltip": "",
         "group": "a72a9ec6.bb144",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "wrap": false,
@@ -1626,6 +1580,58 @@
         "wires": [
             [
                 "8861710f.55b92"
+            ]
+        ]
+    },
+    {
+        "id": "42d9d2cb.9d3f84",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "nb_step",
+        "label": "nb step (30μm/step)",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "nb_step",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "5000",
+        "step": 1,
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "523fdeaa.50c6c"
+            ]
+        ]
+    },
+    {
+        "id": "4287fe47.26a63",
+        "type": "ui_numeric",
+        "z": "7f885510.6173fc",
+        "name": "volume",
+        "label": "Volume (ml)*",
+        "tooltip": "",
+        "group": "c62ffbd3.787ef8",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "volume",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "5000",
+        "step": 1,
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "84fd85fd.426878"
             ]
         ]
     },
@@ -1725,7 +1731,7 @@
         "tab": "6b01f851.598028",
         "order": 9,
         "disp": true,
-        "width": 25,
+        "width": 27,
         "collapse": false
     },
     {
