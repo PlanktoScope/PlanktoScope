@@ -153,6 +153,12 @@ These nodes will be used in Node-RED:
     npm install node-red-node-mysql
     npm install node-red-contrib-calc
 
+Import the last GUI
+------------------
+Import the last version of the .json file storing the lastest improvement of the GUI:
+::
+https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
+
 Install MorphoCut
 ==================
 https://morphocut.readthedocs.io/en/stable/installation.html 
