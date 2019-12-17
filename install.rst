@@ -155,11 +155,6 @@ These nodes will be used in Node-RED:
     npm install node-red-node-mysql
     npm install node-red-contrib-calc
 
-
-
-Stream the picamera
-------------------
-Pipeline to stream the picamera:
 Install MorphoCut
 ==================
 https://morphocut.readthedocs.io/en/stable/installation.html 
