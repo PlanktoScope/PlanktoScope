@@ -7,7 +7,7 @@ Install Raspbian on your Raspberry Pi
 *************************************
 
 Download the image
-===================
+==================
 
 Download the .zip file of Raspbian Buster with desktop from the Raspberry Pi website Downloads page.
 
@@ -46,7 +46,7 @@ Reboot your Pi safely
 
 ***************************
 Raspberry Pi configurations
-******************
+***************************
 
 Enable Camera/SSH/I2C in raspi-config
 
@@ -65,9 +65,9 @@ Reboot your Pi safely
     sudo reboot now
 
 
-***************
+**************************************************
 Install the needed libraries for the PlanktonScope
-***********************
+**************************************************
 
 Install CircuitPython
 =====================
@@ -98,14 +98,14 @@ Found what is the IP of your Raspberry Pi
 Reach the url on a local browser : http://127.0.0.1/html/
 
 Install Ultimate GPS HAT
-==================
+========================
 `Installing Adafruit GPS HAT <https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup >`_
 
 `Use Python Thread with GPS HAT <http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/ >`_
 
 
 Install RGB Cooling HAT
-==================
+=======================
 `Installing RGB Cooling HAT  <https://www.yahboom.net/study/RGB_Cooling_HAT >`_
 
 ::
