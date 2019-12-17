@@ -155,13 +155,15 @@ These nodes will be used in Node-RED:
 
 Import the last GUI
 ------------------
-Import the last version of the .json file storing the lastest improvement of the GUI:
-::
 https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
+Import the last version of the .json file storing the lastest improvement of the GUI
 
 Install MorphoCut
 ==================
 https://morphocut.readthedocs.io/en/stable/installation.html 
-MorphoCut is packaged on PyPI and can be installed with pip
+MorphoCut is packaged on PyPI and can be installed with pip:
 ::
     pip install morphocut
+For the development version:
+::
+     pip install -U git+https://github.com/morphocut/morphocut.git
