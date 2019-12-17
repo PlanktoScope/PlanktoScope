@@ -12,8 +12,6 @@ Table of Contents
 
    install
    remote_access
-   quickstart
-   Acquisition
    license
 
 
