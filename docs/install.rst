@@ -2,9 +2,9 @@
 PlanktonScope Installation
 ==========================
 
-***************
+*************************************
 Install Raspbian on your Raspberry Pi
-***************
+*************************************
 
 Download the image
 ===================
@@ -24,8 +24,8 @@ Select the SD card you wish to write your image to.
 Review your selections and click 'Flash!' to begin writing data to the SD card.
 
 Prepare your Raspberry Pi
-------------------
-https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/
+-------------------------
+`Getting Started with your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/>`_
 
 Plug the SD Card in your Raspberry Pi
 
@@ -35,7 +35,7 @@ Finish the setup
 
 Make sure you have access to internet and update/upgrade your fresh raspbian
 
-Update your Pi first
+Update your Pi first 
 ::
     sudo apt-get update -y
     sudo apt-get upgrade -y
@@ -44,9 +44,9 @@ Reboot your Pi safely
 ::
     sudo reboot now
 
-***************
+***************************
 Raspberry Pi configurations
-***************
+******************
 
 Enable Camera/SSH/I2C in raspi-config
 
@@ -67,11 +67,11 @@ Reboot your Pi safely
 
 ***************
 Install the needed libraries for the PlanktonScope
-***************
+***********************
 
 Install CircuitPython
-==================
-https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi  
+=====================
+`Installing CircuitPython on Raspberry Pi <https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi>`_
 
 Run the following command to install adafruit_blinka
 ::
@@ -79,8 +79,9 @@ Run the following command to install adafruit_blinka
     sudo pip3 install adafruit-circuitpython-motorkit
 
 Install RPi Cam Web Interface
-==================
-https://elinux.org/RPi-Cam-Web-Interface 
+=============================
+
+`RPi Cam Web Interface <https://elinux.org/RPi-Cam-Web-Interface>`_
 
 Clone the code from github and enable and run the install script with the following commands
 ::
@@ -98,13 +99,15 @@ Reach the url on a local browser : http://127.0.0.1/html/
 
 Install Ultimate GPS HAT
 ==================
-https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup 
-http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/ 
+`Installing Adafruit GPS HAT <https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup >`_
+
+`Use Python Thread with GPS HAT <http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/ >`_
+
 
 Install RGB Cooling HAT
 ==================
-https://www.yahboom.net/study/RGB_Cooling_HAT 
-https://github.com/YahboomTechnology/Raspberry-Pi-RGB-Cooling-HAT
+`Installing RGB Cooling HAT  <https://www.yahboom.net/study/RGB_Cooling_HAT >`_
+
 ::
     git clone https://github.com/WiringPi/WiringPi.git
     cd WiringPi
@@ -113,14 +116,16 @@ https://github.com/YahboomTechnology/Raspberry-Pi-RGB-Cooling-HAT
 
 Install Node-RED
 ==================
-https://nodered.org/docs/getting-started/raspberrypi
+`Installing Node-RED on Raspberry Pi <https://nodered.org/docs/getting-started/raspberrypi>`_
+
 Prerequisites
-------------------
+-------------
 Ensure npm is able to build any binary modules it needs to install. 
 ::
     sudo apt-get install build-essential
+
 Download and installation
-------------------
+-------------------------
 To install Node.js, npm and Node-RED onto a Raspberry Pi, run the following command will that download and install them: 
 ::
     bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
@@ -128,19 +133,21 @@ To install Node.js, npm and Node-RED onto a Raspberry Pi, run the following comm
 Due to the limited memory of the Raspberry Pi, you will need to start Node-RED with an additional argument to tell the underlying Node.js process to free up unused memory sooner than it would otherwise.
 ::
     node-red-pi --max-old-space-size=256
+
 Autostart on boot
-------------------
+-----------------
 Run Node-RED when the Pi is turned on, or re-booted, enable the service to autostart by running the command:
 ::
     sudo systemctl enable nodered.service
+
 Check the installation
-------------------
+----------------------
 Make sure NodeRed is correctly installed by reaching the following page from the broswer of your pi :
 ::
-http://localhost:1880.
+    http://localhost:1880.
 
 Install few nodes
-------------------
+-----------------
 These nodes will be used in Node-RED:
 ::  
     cd .node-red/
@@ -154,7 +161,7 @@ These nodes will be used in Node-RED:
     npm install node-red-contrib-calc
 
 Import the last GUI
-------------------
+-------------------
 https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
 Import the last version of the .json file storing the lastest improvement of the GUI
 
