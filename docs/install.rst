@@ -106,8 +106,8 @@ Install Ultimate GPS HAT
 
 Install RGB Cooling HAT
 =======================
-`Installing RGB Cooling HAT  <https://www.yahboom.net/study/RGB_Cooling_HAT >`_
-
+`Installing RGB Cooling HAT <https://www.yahboom.net/study/RGB_Cooling_HAT>`_
+Tupe these command to install:
 ::
     git clone https://github.com/WiringPi/WiringPi.git
     cd WiringPi
@@ -162,12 +162,14 @@ These nodes will be used in Node-RED:
 
 Import the last GUI
 -------------------
-https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
-Import the last version of the .json file storing the lastest improvement of the GUI
+
+Import the `lastest version of the GUI <https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json>`_
 
 Install MorphoCut
 ==================
-https://morphocut.readthedocs.io/en/stable/installation.html 
+
+`Installing MorphoCut <https://morphocut.readthedocs.io/en/stable/installation.html>`_
+
 MorphoCut is packaged on PyPI and can be installed with pip:
 ::
     pip install morphocut
