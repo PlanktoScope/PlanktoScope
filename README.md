@@ -56,11 +56,11 @@ Open up the configuration page and select Interfacing Options by typing this com
 ::
     sudo raspi-config
 
-Select Serial
+Select **Serial**
 
-Select NO
+Select **NO**
 
-Keep the Serial Port Hardware enabled
+Keep the **Serial Port Hardware enabled**
 
 Reboot your Pi safely
 ::
