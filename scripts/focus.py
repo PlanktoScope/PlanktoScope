@@ -20,19 +20,19 @@ stage = kit.stepper2
 
 stage.release()
 
-def focus(steps,orientation):
+def focus(nb_step,orientation):
     #0.25mm/step
     #31um/microsteps
 
     stage.release()
     
     if orientation == 'up':
-        for i in range(steps):
+        for i in range(nb_step):
             stage.onestep(direction=stepper.FORWARD, style=stepper.MICROSTEP)
             sleep(0.001)
             
     if orientation == 'down':
-        for i in range(steps):
+        for i in range(nb_step):
             stage.onestep(direction=stepper.BACKWARD, style=stepper.MICROSTEP)
             sleep(0.001)
             
