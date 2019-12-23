@@ -166,7 +166,7 @@ Import the last GUI
 Import the `lastest version of the GUI <https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json>`_
 
 Install MorphoCut
-==================
+=================
 
 `Installing MorphoCut <https://morphocut.readthedocs.io/en/stable/installation.html>`_
 
@@ -176,3 +176,17 @@ MorphoCut is packaged on PyPI and can be installed with pip:
 For the development version:
 ::
      pip install -U git+https://github.com/morphocut/morphocut.git
+
+
+
+Finishing the install
+=====================
+
+Make sure to update your Pi 
+::
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+
+Reboot your Pi safely
+::
+    sudo reboot now
