@@ -185,8 +185,17 @@ Finishing the install
 Make sure to update your Pi 
 ::
     sudo apt-get update -y
-    sudo apt-get upgrade -y
+    sudo apt-get full-upgrade -y
 
 Reboot your Pi safely
 ::
     sudo reboot now
+
+Download the GitHub repo
+========================
+At this link : https://github.com/tpollina/PlanktonScope/archive/master.zip
+Unzip to a specific location:
+::
+    unzip /home/pi/Downloads/PlanktonScope-master.zip -d /home/pi/
+    mv /home/pi/PlanktonScope-master /home/pi/PlanktonScope
+
