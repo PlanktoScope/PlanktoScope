@@ -99,9 +99,9 @@ Reach the url on a local browser : http://127.0.0.1/html/
 
 Install Ultimate GPS HAT
 ========================
-`Installing Adafruit GPS HAT <https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup >`_
+`Installing Adafruit GPS HAT <https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup>`_
 
-`Use Python Thread with GPS HAT <http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/ >`_
+`Use Python Thread with GPS HAT <http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/>`_
 
 
 Install RGB Cooling HAT
@@ -201,5 +201,6 @@ Unzip to a specific location:
 
 Update node-RED interface
 =========================
+To update the interface, you can just download the lastest .json file:
 ::
     wget -P $HOME/.node-red https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
