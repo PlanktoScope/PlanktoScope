@@ -199,3 +199,7 @@ Unzip to a specific location:
     unzip /home/pi/Downloads/PlanktonScope-master.zip -d /home/pi/
     mv /home/pi/PlanktonScope-master /home/pi/PlanktonScope
 
+Update node-RED interface
+=========================
+::
+    wget -P $HOME/.node-red https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
