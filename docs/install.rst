@@ -159,6 +159,7 @@ These nodes will be used in Node-RED:
     npm install node-red-contrib-camerapi
     npm install node-red-node-mysql
     npm install node-red-contrib-calc
+    npm install node-red-contrib-ffmpeg
 
 Import the last GUI
 -------------------
