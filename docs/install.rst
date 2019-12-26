@@ -152,14 +152,16 @@ These nodes will be used in Node-RED:
 ::  
     cd .node-red/
     npm install node-red-dashboard
-    npm install node-red-contrib-multipart-stream-decoder
-    npm install node-red-node-base64
-    npm install node-red-contrib-interval
+    #npm install node-red-contrib-multipart-stream-decoder
+    #npm install node-red-node-base64
+    #npm install node-red-contrib-interval
     npm install node-red-contrib-python3-function
     npm install node-red-contrib-camerapi
     npm install node-red-node-mysql
     npm install node-red-contrib-calc
-    npm install node-red-contrib-ffmpeg
+    #npm install node-red-contrib-ffmpeg
+    npm install node-red-contrib-loop-processing
+
 
 Import the last GUI
 -------------------
