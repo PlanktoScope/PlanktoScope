@@ -103,11 +103,13 @@ Install Ultimate GPS HAT
 
 `Use Python Thread with GPS HAT <http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/>`_
 
-
+::
+    sudo apt-get install python gpsd gpsd-clients
+    
 Install RGB Cooling HAT
 =======================
 `Installing RGB Cooling HAT <https://www.yahboom.net/study/RGB_Cooling_HAT>`_
-Tupe these command to install:
+Type these command to install:
 ::
     git clone https://github.com/WiringPi/WiringPi.git
     cd WiringPi
@@ -161,7 +163,7 @@ These nodes will be used in Node-RED:
     npm install node-red-contrib-calc
     #npm install node-red-contrib-ffmpeg
     npm install node-red-contrib-loop-processing
-
+    npm install node-red-contrib-gpsd
 
 Import the last GUI
 -------------------
