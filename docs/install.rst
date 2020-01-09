@@ -164,6 +164,7 @@ These nodes will be used in Node-RED:
     #npm install node-red-contrib-ffmpeg
     npm install node-red-contrib-loop-processing
     npm install node-red-contrib-gpsd
+    npm install node-red-contrib-web-worldmap
 
 Import the last GUI
 -------------------
