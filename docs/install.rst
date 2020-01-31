@@ -201,9 +201,10 @@ Reboot your Pi safely
 ::
     sudo reboot now
 
-===================
+
+*******************
 Usefull later maybe
-===================
+*******************
 
 Download the GitHub repo
 ========================
