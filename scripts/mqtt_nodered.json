@@ -1,0 +1,421 @@
+[
+    {
+        "id": "389a2c4b.cdee1c",
+        "type": "inject",
+        "z": "3b5c4e18.844442",
+        "name": "pump forward 1 3",
+        "topic": "actuator/pump",
+        "payload": "forward 10 1",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "61943522.ba3944"
+            ]
+        ]
+    },
+    {
+        "id": "61943522.ba3944",
+        "type": "mqtt out",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "acc679a.89c4888",
+        "x": 390,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "40a5838d.ad561c",
+        "type": "inject",
+        "z": "3b5c4e18.844442",
+        "name": "All off",
+        "topic": "actuator/wait",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 540,
+        "wires": [
+            [
+                "61943522.ba3944"
+            ]
+        ]
+    },
+    {
+        "id": "3383d89a.499038",
+        "type": "inject",
+        "z": "3b5c4e18.844442",
+        "name": "focus on",
+        "topic": "actuator/focus",
+        "payload": "up 1000",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "61943522.ba3944"
+            ]
+        ]
+    },
+    {
+        "id": "53aecd27.a78c64",
+        "type": "mqtt in",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "topic": "receiver/#",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "acc679a.89c4888",
+        "x": 160,
+        "y": 760,
+        "wires": [
+            [
+                "de0c5ae0.cb23b8"
+            ]
+        ]
+    },
+    {
+        "id": "de0c5ae0.cb23b8",
+        "type": "switch",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "receiver/pump",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "receiver/focus",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 760,
+        "wires": [
+            [
+                "e34ae39c.6095f8"
+            ],
+            [
+                "7cdd4869.c2a4c8"
+            ]
+        ]
+    },
+    {
+        "id": "e34ae39c.6095f8",
+        "type": "switch",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Interrompted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "1dc47b9a.e29d5c"
+            ],
+            [
+                "f3c1e4cb.18352"
+            ],
+            [
+                "34ae84d2.cd9864"
+            ]
+        ]
+    },
+    {
+        "id": "1dc47b9a.e29d5c",
+        "type": "change",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The pump has started",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "6fe70459.267634"
+            ]
+        ]
+    },
+    {
+        "id": "f3c1e4cb.18352",
+        "type": "change",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The pump has finished.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 680,
+        "wires": [
+            [
+                "6fe70459.267634"
+            ]
+        ]
+    },
+    {
+        "id": "34ae84d2.cd9864",
+        "type": "change",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The pump has been stopped.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 720,
+        "wires": [
+            [
+                "6fe70459.267634"
+            ]
+        ]
+    },
+    {
+        "id": "6fe70459.267634",
+        "type": "debug",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 850,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7cdd4869.c2a4c8",
+        "type": "switch",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Interrompted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 820,
+        "wires": [
+            [
+                "6a11637a.1abcb4"
+            ],
+            [
+                "2a9d2128.1c4d56"
+            ],
+            [
+                "53ed8d7.37b9bf4"
+            ]
+        ]
+    },
+    {
+        "id": "6a11637a.1abcb4",
+        "type": "change",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The focus has started",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 780,
+        "wires": [
+            [
+                "3e0dea7a.524f96"
+            ]
+        ]
+    },
+    {
+        "id": "2a9d2128.1c4d56",
+        "type": "change",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The focus has finished.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 820,
+        "wires": [
+            [
+                "3e0dea7a.524f96"
+            ]
+        ]
+    },
+    {
+        "id": "53ed8d7.37b9bf4",
+        "type": "change",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The focus has been stopped.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 860,
+        "wires": [
+            [
+                "3e0dea7a.524f96"
+            ]
+        ]
+    },
+    {
+        "id": "3e0dea7a.524f96",
+        "type": "debug",
+        "z": "3b5c4e18.844442",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 850,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "acc679a.89c4888",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "test",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
