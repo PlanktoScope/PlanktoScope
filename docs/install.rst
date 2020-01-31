@@ -187,7 +187,7 @@ Install MorphoCut
 MorphoCut is packaged on PyPI and can be installed with pip:
 ::
     sudo apt-get install python3-scipy
-    pip3 install morphocut
+    pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
 
 Finishing the install
 =====================
@@ -200,6 +200,10 @@ Make sure to update your Pi
 Reboot your Pi safely
 ::
     sudo reboot now
+
+===================
+Usefull later maybe
+===================
 
 Download the GitHub repo
 ========================
