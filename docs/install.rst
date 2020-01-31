@@ -176,12 +176,12 @@ For the development version:
 ::
      pip install -U git+https://github.com/morphocut/morphocut.git
 
-Install daemons
+Install mqtt-paho
 ===============
 
 In order to be able to kill a python script:
 ::
-    pip3 install daemons
+    pip3 install paho-mqtt
 
 Finishing the install
 =====================
