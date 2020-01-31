@@ -164,6 +164,21 @@ Import the last GUI
 
 Import the `lastest version of the GUI <https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json>`_
 
+Install Mosquitto MQTT
+======================
+
+In order to send and receive from Node-RED:
+::
+    sudo apt-get install mosquitto mosquitto-clients
+    
+
+Install mqtt-paho
+=================
+
+In order to send and receive from python:
+::
+    pip3 install paho-mqtt
+    
 Install MorphoCut
 =================
 
@@ -171,17 +186,8 @@ Install MorphoCut
 
 MorphoCut is packaged on PyPI and can be installed with pip:
 ::
-    pip install morphocut
-For the development version:
-::
-     pip install -U git+https://github.com/morphocut/morphocut.git
-
-Install mqtt-paho
-===============
-
-In order to be able to kill a python script:
-::
-    pip3 install paho-mqtt
+    sudo apt-get install python3-scipy
+    pip3 install morphocut
 
 Finishing the install
 =====================
