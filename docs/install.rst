@@ -179,6 +179,13 @@ In order to send and receive from python:
 ::
     pip3 install paho-mqtt
     
+Install OpenCV
+=================
+
+Use the quick version without virtual env
+https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/
+
+
 Install MorphoCut
 =================
 
