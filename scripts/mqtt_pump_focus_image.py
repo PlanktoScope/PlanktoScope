@@ -5,6 +5,7 @@ from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit
 from time import sleep
 
+import shutil
 import json
 
 import os
@@ -47,12 +48,11 @@ camera = PiCamera()
 camera.resolution = (3280, 2464)
 camera.iso = 60
 sleep(3)
-camera.shutter_speed = 100
+camera.shutter_speed = 500
 camera.exposure_mode = 'off'
 g = camera.awb_gains
 camera.awb_mode = 'off'
 camera.awb_gains = g
-nb_frame=200
 
 ################################################################################
 message = ''
@@ -178,11 +178,10 @@ while True:
         client.publish("receiver/image", "Start");
         
         #flushing before to begin
-        
+         
         for i in range(nb_step):
             pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
-            sleep(0.01)
-            
+            sleep(0.01)   
         directory = os.path.join(path, "PlanktonScope")
         os.makedirs(directory, exist_ok=True)
         
@@ -196,8 +195,8 @@ while True:
         path_time = os.path.join(path_date,time)
         
         os.makedirs(path_time, exist_ok=True)
-        
         while True:
+            
             count+=1
             print(count,nb_frame)
             
@@ -309,15 +308,26 @@ while True:
                     
                     Call(client.publish, "receiver/image", object_id)
 
-                p.run() 
+                p.run()
+                 #remove directory
+                shutil.rmtree(import_path)
                 sleep(sleep_during)
-                
-                count=0
                 
                 for i in range(nb_step):
                     pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
                     sleep(0.01)
+                count=0
                 
+                date=datetime.now().strftime("%m_%d_%Y")
+                time=datetime.now().strftime("%H_%M")
+                
+                path_date = os.path.join(directory, date)
+                os.makedirs(path_date, exist_ok=True)
+                
+                
+                path_time = os.path.join(path_date,time)
+                
+                os.makedirs(path_time, exist_ok=True)
             if topic!="image":
                 pump_focus.release()
                 print("The imaging has been interrompted.")
