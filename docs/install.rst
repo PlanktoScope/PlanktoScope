@@ -219,3 +219,10 @@ Update node-RED interface
 To update the interface, you can just download the lastest .json file:
 ::
     wget -P $HOME/.node-red https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
+    
+
+Share WiFi via Ethernet
+=======================
+
+At this link : https://www.instructables.com/id/Share-WiFi-With-Ethernet-Port-on-a-Raspberry-Pi/
+ 
