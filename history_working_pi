@@ -1,0 +1,679 @@
+sudo shutdown now
+    2  sudo apt-get update -y && sudo apt-get full-upgrade -y
+    3  sudo reboot now
+    4  sudo raspi-config
+    5  pip3 install adafruit-blinka
+    6  sudo pip3 install adafruit-circuitpython-motorkit
+    7  git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
+    8  cd RPi_Cam_Web_Interface
+    9  ./install.sh
+   10  cd
+   11  git clone https://github.com/WiringPi/WiringPi.git
+   12  cd WiringPi
+   13  sudo ./build
+   14  sudo apt-get install gcc
+   15  sudo apt-get install build-essential
+   16  cd
+   17  bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+   18  cd .node-red/
+   19  npm install node-red-dashboard
+   20  npm install node-red-contrib-multipart-stream-decoder
+   21  npm install node-red-node-base64
+   22  npm install node-red-contrib-interval                                                                                         
+   23  npm install node-red-contrib-python3-function                                                                                 
+   24  npm install node-red-contrib-camerapi                                                                                         
+   25  npm install node-red-node-mysql                                                                                               
+   26  npm install node-red-contrib-calc                                                                                             
+   27  sudo systemctl enable nodered.service                                                                                         
+   28  sudo reboot                                                                                                                   
+   29  cat PlanktonScope/scripts/pump.py                                                                                             
+   30  python3.7 $HOME/PlanktonScope/scripts/pump.py 1 10 foward                                                                     
+   31  sudo nano /var/www/html/css/style_minified.css                                                                                
+   32  cd /var/www/html/css                                                                                                          
+   33  sudo chmod style_minified.css                                                                                                 
+   34  sudo chmod style_minified.css  777                                                                                            
+   35  sudo chmod 777 style_minified.css                                                                                             
+   36  sudo shutdown now                                                                                                             
+   37  sudo chmod 777 /var/www/                                                                                                      
+   38  sudo chmod 777 /var/www/html/                                                                                                 
+   39  sudo chmod 777 /var/www/html/*                                                                                                
+   40  sudo chmod 777 /var/www/html/*/*                                                                                              
+   41  sudo chmod 777 /var/www/html/*/*/*                                                                                            
+   42  cd PlanktonScope/scripts/
+   43  ls
+   44  python focus.py *
+   45  python focus.py
+   46  python3.7 focus.py
+   47  cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
+   48  cd
+   49  .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
+   50  cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
+   51  cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js | grep python3
+   52  cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js | grep spawn
+   53  sudo geany .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
+   54  sudo reboot
+   55  i2cdetect -y 1
+   56  cd PlanktonScope/scripts/
+   57  python fan.py 
+   58  i2cdetect -y 1
+   59  python fan.py 
+   60  i2cdetect -y 1
+   61  python fan.py 
+   62  i2cdetect -y 1
+   63  gpsd
+   64  raspi-config
+   65  sudo raspi-config
+   66  i2cdetect -y 1
+   67  python fan.py 
+   68  i2cdetect -y 1
+   69  top -d 0.5 -b -n2
+   70  vcgencmd measure_temp
+   71  free | grep Mem
+   72  free
+   73  df -h
+   74  df -h | grep /dev/root
+   75  df -h | grep /dev/root | awk -F '{print $2}'
+   76  df -h | grep /dev/root | awk -F ' ' '{print $2}'
+   77  df -h | grep /dev/root | awk -F ' ' '{print $4}'
+   78  df -h | grep /dev/root | awk -F ' ' '{print $3}'
+   79  df -h | grep /dev/root | awk -F ' ' '{print $3}'.
+   80  df -h | grep /dev/root | awk -F ' ' '{print $3}'
+   81  df -h | grep /dev/root | awk -F ' ' '{print $3}' | cut 'G'
+   82  df -h | grep /dev/root | awk -F ' ' '{print $3}' | sed 's|[^0-9]||g'
+   83  df -h | grep /dev/root | awk -F ' ' '{print $3}' | cut -d ""
+   84  df -h | grep /dev/root | awk -F ' ' '{print $3}' | cut -d "G"
+   85  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G
+   86  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n$" "\ "
+   87  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n$" "\ " |  sed 's/,/./'
+   88  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n$" |  sed 's/,/./'
+   89  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n" |  sed 's/,/./'
+   90  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr " " |  sed 's/,/./'
+   91  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G |  sed 's/,/./'
+   92  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr -d " " | tr "\n$" "\ " |  sed 's/,/./'
+   93  df -h | grep /dev/root
+   94  df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr -d " " | tr "\n$" "\ " |  sed 's/,/./'
+   95  cat .node-red/.flows_raspberrypi.json.backup 
+   96  vcgencmd measure_temp
+   97  vcgencmd measure_temp | tr -d "
+   98  vcgencmd measure_temp | tr -d "temp="
+   99  vcgencmd measure_temp | tr -d "temp=" | tr -d "'C"
+  100  vcgencmd measure_temp | tr -d "temp=" | tr -d "'C" | tr -d "\n"
+  101  free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'| tr -d "\n"
+  102  free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'| tr -d "\n" | awk -F "." '{print $1}'
+  103  free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'| awk -F "." '{print $1}'|tr -d "\n"
+  104  free | grep Mem
+  105  free 
+  106  free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'
+  107  free 
+  108  free | grep Mem | awk '{print 100*($4)/$2}'
+  109  cd .node-red/
+  110  ls
+  111  cat flows_copepode.json
+  112  cat flows_copepode.json | head
+  113  ls
+  114  cat flows_raspberrypi.json
+  115  ls
+  116  cat flows_raspberrypi.json
+  117  cat flows_copepode.json
+  118  ls
+  119  cat package.json 
+  120  cd /var/www/
+  121  ls
+  122  echo "abcdef" |replace "abc" "XYZ"
+  123  cd html/
+  124  ls
+  125  cat config.php 
+  126  cat config.php | grep MEDIA_PATH
+  127  cat config.php | grep MEDIA_PATH | head
+  128  cat config.php | grep MEDIA_PATH | head -1
+  129  sed -i '30s/.*/define('MEDIA_PATH', 'test');/' config.php
+  130  sed -i "30s/.*/define('MEDIA_PATH', 'test');/" config.php
+  131  sed -i "30s/.*/\tdefine('MEDIA_PATH', 'test');/" config.php
+  132  pwd
+  133  cat raspimjpeg 
+  134  /usr/bin/ffmpeg -f image2 -i i_%05d.jpg
+  135  /usr/bin/ffmpeg -f image2 -i /home/pi/Desktop/05d.jpg
+  136  /usr/bin/ffmpeg -f image2 /home/pi/Desktop/05.jpg
+  137  /usr/bin/ffmpeg -f /home/pi/Desktop/05.jpg
+  138  man ffmpeg
+  139  cd .node
+  140  cd
+  141  cd .node-red/
+  142  npm install node-red-contrib-ffmpeg
+  143  ffmpeg
+  144  gedit /etc/ffserver.conf
+  145  geany /etc/ffserver.conf.
+  146  geany /etc/ffserver.conf
+  147  ls /etc
+  148  cat /etc/raspimjpeg 
+  149  cd RPi_Cam_Web_Interface/
+  150  ./stop.sh 
+  151  ls
+  152  ./start.sh
+  153  ls
+  154  cd
+  155  cd /var/www/html/media/
+  156  ls
+  157  ls -l
+  158  ls -l | grep "th"
+  159  ls -l | grep "th" | tail -1
+  160  ls -l | grep "th" | tail -1 | awk -F " " '{print $8}'
+  161  ls -l | grep "th" | tail -1 | awk -F " " '{print $9}'
+  162  pwd
+  163  cd 
+  164  ls -l /var/www/html/media | grep "th" | tail -1 | awk -F " " '{print $9}'
+  165  ls -l /var/www/html/media/
+  166  pwd
+  167  cd .node-red/
+  168  npm install node-red-contrib-loop-processing
+  169  gpsd
+  170  sudo raspi-config
+  171  stty -F /dev/serial0 raw 9600 cs8 clocal -cstopb
+  172  cat /dev/serial0
+  173  cat /dev/serial0 | grep $GPRMC
+  174  sudo apt-get install python gpsd gpsd-clients
+  175  gpsd
+  176  cgps
+  177  cd .node-red/
+  178  npm install node-red-contrib-gpsd
+  179  sudo reboot now
+  180  cpsd
+  181  cgps
+  182  cat /dev/serial0 | grep $GPRMC
+  183  cat /dev/serial0
+  184  cd Desktop/
+  185  python gpsdData.py
+  186  cgps
+  187  cd .node-red/
+  188  npm install node-red-contrib-web-worldmap
+  189  sudo reboot now
+  190  cgps
+  191  cat /dev/serial0
+  192  stty -F /dev/serial0 raw 9600 cs8 clocal -cstopb
+  193  cat /dev/serial0
+  194  cgps
+  195  cat /dev/serial0
+  196  sudo apt-get update
+  197  sudo apt-get install gpsd gpsd-clients python-gps
+  198  sudo gpsd /dev/ttyAMA0 -F /var/run/gpsd.sock
+  199  gpsmon
+  200  cgps
+  201  sudo shutdown now
+  202  cd /var/www/html/
+  203  ls
+  204  sudo chmod 777 media/
+  205  raspistill -t 0
+  206  cpsd
+  207  gpsd
+  208  cgps
+  209  gpsmon
+  210  cat /dev/serial0
+  211  cd /var/www/html/media
+  212  rm -rf *
+  213  ls
+  214  cd Desktop/
+  215  cd .. 
+  216  cd Downloads/
+  217  python3.7 picamera.py 
+  218  mv picamera.py ../Desktop/
+  219  cd .. 
+  220  cd Desktop/
+  221  ks
+  222  ls
+  223  python3.7 picamera.py 
+  224  sudo chmod 777 picamera.py 
+  225  sudo reboot now
+  226  pip3 install -U git+https://github.com/morphocut/morphocut.git
+  227  cd Downloads/
+  228  ls
+  229  python3.7 StackFlow_v3_bis.py 
+  230  pip install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+  231  pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+  232  ls
+  233  python3.7 StackFlow_v3_bis.py 
+  234  cd Downloads/
+  235  ls
+  236  mv StackFlow_v3_bis.py Moprhocut.py
+  237  mv Moprhocut.py Morphocut.py
+  238  python3.7 Morphocut.py 
+  239  cd Downloads/
+  240  ls
+  241  python StackFlow_v3.py 
+  242  python3.7 StackFlow_v3.py 
+  243  cd Downloads/
+  244  ls
+  245  cd Plc
+  246  cd
+  247  cd PlanktonScope/
+  248  cd scripts/
+  249  python3.7 pump.py 
+  250  cd Downloads/
+  251  ls
+  252  python3.7 Morphocut_segmentation.py 
+  253  cd /home/pi/Desktop/PlanktonScope_acquisition/01_16_2020/16
+  254  rm -rf *
+  255  ls
+  256  sudo pip3 install jupyter
+  257  pip install matplotlib
+  258  pip3 install matplotlib
+  259  cd
+  260  cd Downloads/
+  261  ks
+  262  ls
+  263  bash tmp.sh 
+  264  jupyter-notebook 
+  265  sudo apt-get install exfat-fuse
+  266  sudo apt-get install exfat-utils
+  267  00_10_226094
+  268  ls /home/pi/Desktop/PlanktonScope_acquisition/01_16_2020/14/CLEAN | grep 00_10_226094
+  269  cd PlanktonScope/daemon/
+  270  cd
+  271  cd Downloads/
+  272  cd daemon/
+  273  ks
+  274  ls
+  275  python3.7 app.py stop
+  276  python3.7 app.py stop_pump
+  277  python3.7 app.py stop_focus
+  278  python3.7 app.py stop_pump
+  279  python3.7 app.py stop_focus
+  280  python3.7 app.py stop_focus_down
+  281  pip --version
+  282  pip3 install daemons
+  283  cd PlanktonScope/daemon/
+  284  python3.7 daemons.py start
+  285  ls
+  286  sudo chmod 777 *
+  287  ls
+  288  python3.7 daemons.py start
+  289  cd
+  290  cd Downloads/
+  291  python3.7 daemons.py start
+  292  cd daemon/
+  293  ls
+  294  python3.7 app.py start
+  295  d
+  296  python3.7 app.py start
+  297  python3.7 app.py start_pump
+  298  python3.7 app.py start_focus
+  299  python3.7 app.py start_pump
+  300  python3.7 app.py start_focus
+  301  python3.7 app.py start_focus_down
+  302  sudo restart now
+  303  sudo reboot now
+  304  cd PlanktonScope/daemon/
+  305  python3.7 daemons.py start_pump
+  306  cd
+  307  cd Downloads/daemon/
+  308  python3.7 daemons.py start_pump
+  309  python3.7 app.py start_pump
+  310  python3.7 app.py stop_pump
+  311  python3.7 app.py start_pump
+  312  python3.7 app.py stop_pump
+  313  sudo reboot now
+  314  cd Downloads/
+  315  cd daemon/
+  316  python3.7 app.py start_pump
+  317  python3.7 app.py stop_pump
+  318  python3.7 app.py start_pump
+  319  python3.7 app.py stop_pump
+  320  python3.7 app.py start_pump
+  321  python3.7 app.py stop_pump
+  322  python3.7 app.py start_pump
+  323  python3.7 app.py stop_pump
+  324  python3.7 app.py start_pump
+  325  python3.7 app.py stop_pump
+  326  python3.7 app.py start_pump
+  327  python3.7 app.py stop_pump
+  328  python3.7 app.py start_pump
+  329  python3.7 app.py stop_pump
+  330  python3.7 app.py start_pump 9
+  331  ls
+  332  cat app.py 
+  333  cd Downloads/
+  334  cd daemon/
+  335  ls
+  336  python3.7 app.py start 0.01
+  337  python3.7 app.py start
+  338  python3.7 app.py start_pump 0.01
+  339  python3.7 app.py stop_pump
+  340  python3.7 app.py start_pump 0.1
+  341  python3.7 app.py stop_pump
+  342  python3.7 app.py start_pump 0.1
+  343  python3.7 app.py stop_pump
+  344  python3.7 app.py start_pump 0.1 10
+  345  python3.7 app.py start_pump 0.1 100
+  346  python3.7 app.py stop_pump
+  347  cd 
+  348  ls
+  349  sudo chmod 777 sleepy.*
+  350  ls
+  351  cd Downloads/
+  352  cd daemon/
+  353  python3.7 app.py start_pump 0.1 100
+  354  python3.7 app.py stop_pump
+  355  python3.7 app.py start_pump 0.1 100 BACKWARD
+  356  python3.7 app.py stop_pump
+  357  python3.7 app.py start_pump 0.1 100 FORWARD
+  358  python3.7 app.py stop_pump
+  359  cd
+  360  /home/pi/Downloads/daemon/python3.7 app.py start_pump 0.1 100 FORWARD
+  361  python3.7 /home/pi/Downloads/daemon/app.py start_pump 0.1 100 FORWARD
+  362  python3.7 /home/pi/Downloads/daemon/app.py stop_pump
+  363  pip install paho-mqtt
+  364  pip3 install paho-mqtt
+  365  netstat -nlp|grep 1883
+  366  sudo netstat -nlp|grep 1883
+  367  sudo netstat -nlp
+  368  sudo apt-get remove mosquitto
+  369  node-red
+  370  pip3 uninstall daemons
+  371  sudo netstat -nlp
+  372  sudo apt-get install mosquitto mosquitto-clients
+  373  sudo pip3 install morphocut --upgrade
+  374  pip3 install morphocut --upgrade
+  375  sudo qpt-get wbar wbar-config
+  376  sudo apt-get wbar wbar-config
+  377  sudo apt-get install wbar wbar-config
+  378  wbar
+  379  sudo apt-get uninstall wbar wbar-config
+  380  sudo apt-get remove wbar wbar-config
+  381  cd PlanktonScope/
+  382  ls
+  383  cd
+  384  cd Downloads/
+  385  ls
+  386  python3.7 mqtt_pump_focus_image.py 
+  387  pip3 uninstall morphocut
+  388  pip uninstall morphocut
+  389  pip uninstall -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+  390  pip freeze | xargs pip uninstall -y
+  391  pip3 freeze | xargs pip3 uninstall -y
+  392  sudo pip3 freeze | xargs pip3 uninstall -y
+  393  pip list
+  394  pip3 list
+  395  pip3 uninstall morphocut
+  396  sudo pip3 uninstall morphocut
+  397  sudo pip3 install morphocut
+  398  sudo pip3 uninstall morphocut
+  399  pip install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+  400  pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+  401  ls
+  402  python3.7 mqtt_pump_focus_image.py 
+  403  curl ifconfig.me
+  404  ifconfig
+  405  ifconfig | grep inet
+  406  htop
+  407  cd Downloads/
+  408  ls
+  409  python3.7 mqtt_pump_focus_image.py 
+  410  cd
+  411  cd .node-red
+  412  ls
+  413  cat flows_copepode_cred.json 
+  414  cd Downloads/
+  415  ls
+  416  python3.7 mqtt_pump_focus_image.py 
+  417  cd Downloads/
+  418  python3.7 mqtt_pump_focus_image.py 
+  419  cd RPi_Cam_Web_Interface/
+  420  bash remove.sh 
+  421  cd
+  422  ls
+  423  ls RPi_Cam_Web_Interface/
+  424  cd
+  425  rm -rf RPi_Cam_Web_Interface/
+  426  ls
+  427  rm -rf sleepy.*
+  428  rm -rf Segmentation.ipynb 
+  429  rm -rf focus.*
+  430  rm -rf pump.*
+  431  ls
+  432  rm -rf 18_00.zip 
+  433  rm -rf 2020-01-31-093220_1920x1080_scrot.png 
+  434  rm -rf app.py 
+  435  ls
+  436  rm -rf *.txt
+  437  ls
+  438  ifconfig 
+  439  cd Downloads/
+  440  ls
+  441  python3.7 mqtt_pump_focus_image.py 
+  442  cd
+  443  cd PlanktonScope/script/
+  444  python3.7 mqtt_pump_focus_image.py 
+  445  htop
+  446  sudo apt-get purge wolfram-engine
+  447  sudo apt-get update -y && sudo apt-get upgrade -y
+  448  sudo apt-get remove vlc*
+  449  sudo apt-get update -y && sudo apt-get upgrade -y
+  450  sudo apt-get install build-essential cmake pkg-config
+  451  sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+  452  sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+  453  sudo apt-get install libxvidcore-dev libx264-dev
+  454  sudo apt-get install libgtk2.0-dev
+  455  sudo apt-get install libatlas-base-dev gfortran
+  456  sudo apt-get install python2.7-dev python3-dev
+  457  cd
+  458  wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip
+  459  unzip opencv.zip
+  460  wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip
+  461  unzip opencv_contrib.zip
+  462  ls
+  463  rm -rf opencv*
+  464  sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
+  465  sudo apt-get install libfontconfig1-dev libcairo2-dev
+  466  sudo apt-get install libgdk-pixbuf2.0-dev libpango1.0-dev
+  467  sudo apt-get install libgtk2.0-dev libgtk-3-dev
+  468  sudo apt-get install libhdf5-dev libhdf5-serial-dev libhdf5-103
+  469  sudo apt-get install libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+  470  pip install "picamera[array]"
+  471  pip3 install opencv-contrib-python==4.1.0.25
+  472  htop
+  473  cd PlanktonScope/script/
+  474  ls
+  475  python3.7 mqtt_pump_focus_image.py 
+  476  sudo apt install dnsmasq hostapd
+  477  sudo systemctl stop dnsmasq
+  478  sudo systemctl stop hostapd
+  479  sudo touch /etc/dhcpcd.conf
+  480  chmod 777 /etc/dhcpcd.conf
+  481  sudo chmod 777 /etc/dhcpcd.conf
+  482  echo "interface wlan0" >> /etc/dhcpcd.conf
+  483  echo "mstatic ip_address=192.168.4.1/24" >> /etc/dhcpcd.con
+  484  cat /etc/dhcpcd.conf
+  485  echo "    static ip_address=192.168.4.1/24" >> /etc/dhcpcd.con
+  486  sudo echo "    static ip_address=192.168.4.1/24" >> /etc/dhcpcd.con
+  487  sudo nano /etc/dhcpcd.conf
+  488  sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+  489  sudo touch /etc/dnsmasq.conf
+  490  sudo chmod 777 /etc/dnsmasq.conf
+  491  sudo echo "interface=wlan0" >> /etc/dnsmasq.conf
+  492  sudo nano /etc/dnsmasq.conf
+  493  sudo systemctl start dnsmasq
+  494  sudo nano /etc/hostapd/hostapd.conf
+  495  sudo nano /etc/default/hostapd
+  496  sudo systemctl unmask hostapd
+  497  sudo systemctl enable hostapd
+  498  sudo systemctl start hostapd
+  499  sudo systemctl status hostapd
+  500  sudo nano /etc/sysctl.conf
+  501  sudo iptables -t nat -A  POSTROUTING -o eth0 -j MASQUERADE
+  502  sudo reboot
+  503  sudo iptables -t nat -A  POSTROUTING -o eth0 -j MASQUERADE
+  504  sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+  505  sudo nano /etc/rc.local
+  506  sudo reboot
+  507  ifconfig
+  508  cd PlanktonScope/
+  509  ls
+  510  cd script/
+  511  ls
+  512  pwd
+  513  pyhon3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
+  514  python3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
+  515  mv /home/pi/PlanktonScope/02_02_2020/00_52/*.jpg /home/pi/PlanktonScope/02_02_2020/00_52/RAW
+  516  free -m
+  517  free -m | awk -F ' ' '{print $3}'
+  518  free -m | awk -F ' ' '{print $2}'
+  519  free -m | grep "" awk -F ' ' '{print $2}'
+  520  free -m | grep "Mem" | awk -F ' ' '{print $2}'
+  521  htop
+  522  python3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
+  523  cd PlanktonScope/script/
+  524  python3.7 mqtt.py 
+  525  cd PlanktonScope/script/
+  526  python3.7 mqtt.py 
+  527  python3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
+  528  cd ..
+  529  rm -rf 02_02_2020/
+  530  rm -rf export/
+  531  cd PlanktonScope/script/
+  532  python3.7 main.py 
+  533  htop
+  534  ls
+  535  cd PlanktonScope/
+  536  ls
+  537  cd script/
+  538  ls
+  539  geany mqtt
+  540  geany mqtt.py 
+  541  python3.7 mqtt.py 
+  542  geany mqtt.py 
+  543  ifconfig
+  544  sudo reboot now
+  545  sudo nano /etc/rc.local
+  546  sudo nano /etc/iptables.ipv4.nat
+  547  sudo systemctl status hostapd
+  548  sudo systemctl status dnsmasq
+  549  sudo systemctl start hostapd
+  550  sudo systemctl start dnsmasq
+  551  cd PlanktonScope/script/
+  552  python3.7 main.py 
+  553  cd /media/pi/Planktonic/Acquisitions/
+  554  ls
+  555  ls Palo_Alto/
+  556  cd Palo_Alto/
+  557  ls
+  558  rm -rf size_mesurement.txt 
+  559  rm -rf OBJECT/
+  560  jupyter-notebook 
+  561  ifconfig
+  562  cd PlanktonScope/script/
+  563  python3.7 old_school/mqtt_pump_focus_image.py 
+  564  sudo apt-get install ffmpeg git python3-picamera python3-ws4py
+  565  ls
+  566  cd
+  567  sudo apt-get install ffmpeg git python3-picamera python3-ws4py
+  568  git clone https://github.com/waveform80/pistreaming.git
+  569  ls
+  570  rm -rf 2020-02-02-073529_1920x1080_scrot.png 
+  571  ls
+  572  cd pistreaming/
+  573  ls
+  574  python3.7 server.py 
+  575  cd
+  576  git clone git@github.com:Lawouach/WebSocket-for-Python.git
+  577  pip install ws4py
+  578  cd pistreaming/
+  579  python3.7 server.py 
+  580  pip3 install ws4py
+  581  python3.7 server.py 
+  582  pip3 install pyzmq
+  583  cd /home/pi/PlanktonScope/export
+  584  unzip ecotaxa_export.zip 
+  585  cd PlanktonScope/script/middl_school/
+  586  python3.7 main.py 
+  587  cd ..
+  588  cd old_school/
+  589  python3.7 mqtt_pump_focus_image.py 
+  590  [A
+  591  python3.7 mqtt_pump_focus_image.py 
+  592  cd ..
+  593  cd export/
+  594  ls
+  595  rm -rf ecotaxa_export.zip 
+  596  cd ..
+  597  cd script/old_school/
+  598  python3.7 mqtt_pump_focus_image.py 
+  599  rm -rf /home/pi/PlanktonScope/tmp/*.jpg
+  600  python3.7 mqtt_pump_focus_image.py 
+  601  cd PlanktonScope/tmp/
+  602  ls
+  603  cd ..
+  604  cd OBJECTS/
+  605  ls
+  606  rm -rf *
+  607  cd ..
+  608  cd export/
+  609  ls
+  610  rm -rf *
+  611  cd PlanktonScope/
+  612  ls
+  613  sudo kate script/old_school/mqtt_pump_focus_image.py 
+  614  cd script/old_school/
+  615  thonny mqtt_pump_focus_image.py 
+  616  sudo geany mqtt_pump_focus_image.py 
+  617  sudo nano mqtt_pump_focus_image.py 
+  618  cd PlanktonScope/script/old_school/
+  619  python3.7 mqtt_pump_focus_image.py 
+  620  cd PlanktonScope/script/old_school/
+  621  python3.7 mqtt_pump_focus_image.py 
+  622  cd ..
+  623  rm -rf tmp/*
+  624  ls
+  625  rm -rf export/*
+  626  rm -rf OBJECTS/*
+  627  rm -rf export/*
+  628  python3.7 script/old_school/mqtt_pump_focus_image.py 
+  629  cd script/
+  630  ls
+  631  cat stream.py 
+  632  python3.7 stream.py 
+  633  whereis ffmpeg
+  634  mjpg_streamer
+  635  cd
+  636  cd .node-red/
+  637  npm install node-red-contrib-mjpgcamera
+  638  it clone https://github.com/electronicplayground/node-red-contrib-mjpgcamera.git
+  639  cd node-red-contrib-mjpgcamera
+  640  npm link
+  641  cd %Node-RED%
+  642  git clone https://github.com/electronicplayground/node-red-contrib-mjpgcamera.git
+  643  cd node-red-contrib-mjpgcamera
+  644  npm link
+  645  sudo npm link
+  646  sudo npm linkcd
+  647  cd
+  648  sduo npm install node-red-contrib-mjpgcamera
+  649  sudo npm install node-red-contrib-mjpgcamera
+  650  ls
+  651  cd PlanktonScope/script/
+  652  python3.7 stream.py 
+  653  python3.7 stream.py ls
+  654  ls
+  655  python3.7 mqtt_pump_focus_image_segment_strem.py 
+  656  cd ..
+  657  rm -rf tmp/*
+  658  cd script/
+  659  python3.7 mqtt_pump_focus_image_segment_strem.py 
+  660  cd PlanktonScope/script/old_school/
+  661  python3.7 mqtt_pump_focus_image.py 
+  662  cd PlanktonScope/script/
+  663  python3.7 mqtt_pump_focus_image_segment_strem.py 
+  664  cd ..
+  665  ls
+  666  cd OBJECTS/
+  667  ls
+  668  rm -rf *
+  669  cd ..
+  670  ls
+  671  cd export/
+  672  rm -rf ecotaxa_export.zip 
+  673  cd ..
+  674  ls
+  675  ls tmp/
+  676  cd PlanktonScope/
+  677  cd script/
+  678  ls
+  679  history
