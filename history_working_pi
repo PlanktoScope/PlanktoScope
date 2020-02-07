@@ -1,28 +1,37 @@
+ #Update and upgrade you Pi
  sudo apt-get update -y && sudo apt-get full-upgrade -y
  sudo reboot now
+ 
+ #Configure your Pi
  sudo raspi-config
+ #Interfacing Options > Camera > Yes > OK
+ #Interfacing Options > SSH > Yes > OK
+ #Interfacing Options > I2C > Yes > OK
+ #Interfacing Options > SSH > No > Yes > OK
+ #Reboot > Yes
+ 
+ #Install librairies for the steppers (pump and focus)
  pip3 install adafruit-blinka
  sudo pip3 install adafruit-circuitpython-motorkit
- git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
- cd RPi_Cam_Web_Interface
- ./install.sh
- cd
+ 
+ #Install the librairy for the fan
  git clone https://github.com/WiringPi/WiringPi.git
  cd WiringPi
  sudo ./build
  sudo apt-get install gcc
- sudo apt-get install build-essential
+ 
+ #Install Node-Red
  cd
+ sudo apt-get install build-essential
  bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
  cd .node-red/
  npm install node-red-dashboard
- npm install node-red-contrib-multipart-stream-decoder
- npm install node-red-node-base64
- npm install node-red-contrib-interval
  npm install node-red-contrib-python3-function
  npm install node-red-contrib-camerapi
- npm install node-red-node-mysql
- npm install node-red-contrib-calc
+ npm install node-red-contrib-gpsd
+ npm install node-red-contrib-web-worldmap
+ 
+ 
  sudo systemctl enable nodered.service
  sudo reboot
  cat PlanktonScope/scripts/pump.py
@@ -174,7 +183,6 @@
  gpsd
  cgps
  cd .node-red/
- npm install node-red-contrib-gpsd
  sudo reboot now
  cpsd
  cgps
@@ -184,7 +192,6 @@
  python gpsdData.py
  cgps
  cd .node-red/
- npm install node-red-contrib-web-worldmap
  sudo reboot now
  cgps
  cat /dev/serial0
