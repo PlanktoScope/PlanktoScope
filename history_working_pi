@@ -24,433 +24,49 @@
  cd
  sudo apt-get install build-essential
  bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+ #Press y and y again to confirm the installation of Node-RED and wait.
+ 
  cd .node-red/
  npm install node-red-dashboard
  npm install node-red-contrib-python3-function
  npm install node-red-contrib-camerapi
  npm install node-red-contrib-gpsd
  npm install node-red-contrib-web-worldmap
- 
- 
  sudo systemctl enable nodered.service
- sudo reboot
- cat PlanktonScope/scripts/pump.py
- python3.7 $HOME/PlanktonScope/scripts/pump.py 1 10 foward
- sudo nano /var/www/html/css/style_minified.css
- cd /var/www/html/css
- sudo chmod style_minified.css
- sudo chmod style_minified.css  777
- sudo chmod 777 style_minified.css
- sudo shutdown now
- sudo chmod 777 /var/www/
- sudo chmod 777 /var/www/html/
- sudo chmod 777 /var/www/html/*
- sudo chmod 777 /var/www/html/*/*
- sudo chmod 777 /var/www/html/*/*/*
- cd PlanktonScope/scripts/
- ls
- python focus.py *
- python focus.py
- python3.7 focus.py
- cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
- cd
- .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
- cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
- cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js | grep python3
- cat .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js | grep spawn
- sudo geany .node-red/node_modules/node-red-contrib-python3-function/lib/python3-function.js
- sudo reboot
- i2cdetect -y 1
- cd PlanktonScope/scripts/
- python fan.py
- i2cdetect -y 1
- python fan.py
- i2cdetect -y 1
- python fan.py
- i2cdetect -y 1
- gpsd
- raspi-config
- sudo raspi-config
- i2cdetect -y 1
- python fan.py
- i2cdetect -y 1
- top -d 0.5 -b -n2
- vcgencmd measure_temp
- free | grep Mem
- free
- df -h
- df -h | grep /dev/root
- df -h | grep /dev/root | awk -F '{print $2}'
- df -h | grep /dev/root | awk -F ' ' '{print $2}'
- df -h | grep /dev/root | awk -F ' ' '{print $4}'
- df -h | grep /dev/root | awk -F ' ' '{print $3}'
- df -h | grep /dev/root | awk -F ' ' '{print $3}'.
- df -h | grep /dev/root | awk -F ' ' '{print $3}'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | cut 'G'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | sed 's|[^0-9]||g'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | cut -d ""
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | cut -d "G"
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n$" "\ "
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n$" "\ " |  sed 's/,/./'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n$" |  sed 's/,/./'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr "\n" |  sed 's/,/./'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr " " |  sed 's/,/./'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G |  sed 's/,/./'
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr -d " " | tr "\n$" "\ " |  sed 's/,/./'
- df -h | grep /dev/root
- df -h | grep /dev/root | awk -F ' ' '{print $3}' | tr -d G | tr -d " " | tr "\n$" "\ " |  sed 's/,/./'
- cat .node-red/.flows_raspberrypi.json.backup
- vcgencmd measure_temp
- vcgencmd measure_temp | tr -d "
- vcgencmd measure_temp | tr -d "temp="
- vcgencmd measure_temp | tr -d "temp=" | tr -d "'C"
- vcgencmd measure_temp | tr -d "temp=" | tr -d "'C" | tr -d "\n"
- free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'| tr -d "\n"
- free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'| tr -d "\n" | awk -F "." '{print $1}'
- free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'| awk -F "." '{print $1}'|tr -d "\n"
- free | grep Mem
- free
- free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'
- free
- free | grep Mem | awk '{print 100*($4)/$2}'
- cd .node-red/
- ls
- cat flows_copepode.json
- cat flows_copepode.json | head
- ls
- cat flows_raspberrypi.json
- ls
- cat flows_raspberrypi.json
- cat flows_copepode.json
- ls
- cat package.json
- cd /var/www/
- ls
- echo "abcdef" |replace "abc" "XYZ"
- cd html/
- ls
- cat config.php
- cat config.php | grep MEDIA_PATH
- cat config.php | grep MEDIA_PATH | head
- cat config.php | grep MEDIA_PATH | head -1
- sed -i '30s/.*/define('MEDIA_PATH', 'test');/' config.php
- sed -i "30s/.*/define('MEDIA_PATH', 'test');/" config.php
- sed -i "30s/.*/\tdefine('MEDIA_PATH', 'test');/" config.php
- pwd
- cat raspimjpeg
- /usr/bin/ffmpeg -f image2 -i i_%05d.jpg
- /usr/bin/ffmpeg -f image2 -i /home/pi/Desktop/05d.jpg
- /usr/bin/ffmpeg -f image2 /home/pi/Desktop/05.jpg
- /usr/bin/ffmpeg -f /home/pi/Desktop/05.jpg
- man ffmpeg
- cd .node
- cd
- cd .node-red/
- npm install node-red-contrib-ffmpeg
- ffmpeg
- gedit /etc/ffserver.conf
- geany /etc/ffserver.conf.
- geany /etc/ffserver.conf
- ls /etc
- cat /etc/raspimjpeg
- cd RPi_Cam_Web_Interface/
- ./stop.sh
- ls
- ./start.sh
- ls
- cd
- cd /var/www/html/media/
- ls
- ls -l
- ls -l | grep "th"
- ls -l | grep "th" | tail -1
- ls -l | grep "th" | tail -1 | awk -F " " '{print $8}'
- ls -l | grep "th" | tail -1 | awk -F " " '{print $9}'
- pwd
- cd
- ls -l /var/www/html/media | grep "th" | tail -1 | awk -F " " '{print $9}'
- ls -l /var/www/html/media/
- pwd
- cd .node-red/
- npm install node-red-contrib-loop-processing
- gpsd
- sudo raspi-config
- stty -F /dev/serial0 raw 9600 cs8 clocal -cstopb
- cat /dev/serial0
- cat /dev/serial0 | grep $GPRMC
- sudo apt-get install python gpsd gpsd-clients
- gpsd
- cgps
- cd .node-red/
- sudo reboot now
- cpsd
- cgps
- cat /dev/serial0 | grep $GPRMC
- cat /dev/serial0
- cd Desktop/
- python gpsdData.py
- cgps
- cd .node-red/
- sudo reboot now
- cgps
- cat /dev/serial0
- stty -F /dev/serial0 raw 9600 cs8 clocal -cstopb
- cat /dev/serial0
- cgps
- cat /dev/serial0
- sudo apt-get update
- sudo apt-get install gpsd gpsd-clients python-gps
- sudo gpsd /dev/ttyAMA0 -F /var/run/gpsd.sock
- gpsmon
- cgps
- sudo shutdown now
- cd /var/www/html/
- ls
- sudo chmod 777 media/
- raspistill -t 0
- cpsd
- gpsd
- cgps
- gpsmon
- cat /dev/serial0
- cd /var/www/html/media
- rm -rf *
- ls
- cd Desktop/
- cd ..
- cd Downloads/
- python3.7 picamera.py
- mv picamera.py ../Desktop/
- cd ..
- cd Desktop/
- ks
- ls
- python3.7 picamera.py
- sudo chmod 777 picamera.py
- sudo reboot now
- pip3 install -U git+https://github.com/morphocut/morphocut.git
- cd Downloads/
- ls
- python3.7 StackFlow_v3_bis.py
- pip install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
- pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
- ls
- python3.7 StackFlow_v3_bis.py
- cd Downloads/
- ls
- mv StackFlow_v3_bis.py Moprhocut.py
- mv Moprhocut.py Morphocut.py
- python3.7 Morphocut.py
- cd Downloads/
- ls
- python StackFlow_v3.py
- python3.7 StackFlow_v3.py
- cd Downloads/
- ls
- cd Plc
- cd
- cd PlanktonScope/
- cd scripts/
- python3.7 pump.py
- cd Downloads/
- ls
- python3.7 Morphocut_segmentation.py
- cd /home/pi/Desktop/PlanktonScope_acquisition/01_16_2020/16
- rm -rf *
- ls
+ 
+ 
+ 
  sudo pip3 install jupyter
  pip install matplotlib
  pip3 install matplotlib
- cd
- cd Downloads/
- ks
- ls
- bash tmp.sh
- jupyter-notebook
  sudo apt-get install exfat-fuse
  sudo apt-get install exfat-utils
- 00_10_226094
- ls /home/pi/Desktop/PlanktonScope_acquisition/01_16_2020/14/CLEAN | grep 00_10_226094
- cd PlanktonScope/daemon/
- cd
- cd Downloads/
- cd daemon/
- ks
- ls
- python3.7 app.py stop
- python3.7 app.py stop_pump
- python3.7 app.py stop_focus
- python3.7 app.py stop_pump
- python3.7 app.py stop_focus
- python3.7 app.py stop_focus_down
- pip --version
- pip3 install daemons
- cd PlanktonScope/daemon/
- python3.7 daemons.py start
- ls
- sudo chmod 777 *
- ls
- python3.7 daemons.py start
- cd
- cd Downloads/
- python3.7 daemons.py start
- cd daemon/
- ls
- python3.7 app.py start
- d
- python3.7 app.py start
- python3.7 app.py start_pump
- python3.7 app.py start_focus
- python3.7 app.py start_pump
- python3.7 app.py start_focus
- python3.7 app.py start_focus_down
- sudo restart now
- sudo reboot now
- cd PlanktonScope/daemon/
- python3.7 daemons.py start_pump
- cd
- cd Downloads/daemon/
- python3.7 daemons.py start_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- sudo reboot now
- cd Downloads/
- cd daemon/
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump
- python3.7 app.py stop_pump
- python3.7 app.py start_pump 9
- ls
- cat app.py
- cd Downloads/
- cd daemon/
- ls
- python3.7 app.py start 0.01
- python3.7 app.py start
- python3.7 app.py start_pump 0.01
- python3.7 app.py stop_pump
- python3.7 app.py start_pump 0.1
- python3.7 app.py stop_pump
- python3.7 app.py start_pump 0.1
- python3.7 app.py stop_pump
- python3.7 app.py start_pump 0.1 10
- python3.7 app.py start_pump 0.1 100
- python3.7 app.py stop_pump
- cd
- ls
- sudo chmod 777 sleepy.*
- ls
- cd Downloads/
- cd daemon/
- python3.7 app.py start_pump 0.1 100
- python3.7 app.py stop_pump
- python3.7 app.py start_pump 0.1 100 BACKWARD
- python3.7 app.py stop_pump
- python3.7 app.py start_pump 0.1 100 FORWARD
- python3.7 app.py stop_pump
- cd
- /home/pi/Downloads/daemon/python3.7 app.py start_pump 0.1 100 FORWARD
- python3.7 /home/pi/Downloads/daemon/app.py start_pump 0.1 100 FORWARD
- python3.7 /home/pi/Downloads/daemon/app.py stop_pump
  pip install paho-mqtt
  pip3 install paho-mqtt
- netstat -nlp|grep 1883
- sudo netstat -nlp|grep 1883
- sudo netstat -nlp
- sudo apt-get remove mosquitto
- node-red
- pip3 uninstall daemons
- sudo netstat -nlp
  sudo apt-get install mosquitto mosquitto-clients
+ 
+ 
+ 
+ 
+ pip install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+ pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
  sudo pip3 install morphocut --upgrade
  pip3 install morphocut --upgrade
- sudo qpt-get wbar wbar-config
- sudo apt-get wbar wbar-config
- sudo apt-get install wbar wbar-config
- wbar
- sudo apt-get uninstall wbar wbar-config
- sudo apt-get remove wbar wbar-config
- cd PlanktonScope/
- ls
- cd
- cd Downloads/
- ls
- python3.7 mqtt_pump_focus_image.py
  pip3 uninstall morphocut
  pip uninstall morphocut
  pip uninstall -U git+https://github.com/morphocut/morphocut.git@pyrocystis
  pip freeze | xargs pip uninstall -y
  pip3 freeze | xargs pip3 uninstall -y
  sudo pip3 freeze | xargs pip3 uninstall -y
- pip list
- pip3 list
  pip3 uninstall morphocut
  sudo pip3 uninstall morphocut
  sudo pip3 install morphocut
  sudo pip3 uninstall morphocut
  pip install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
  pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
- ls
- python3.7 mqtt_pump_focus_image.py
- curl ifconfig.me
- ifconfig
- ifconfig | grep inet
- htop
- cd Downloads/
- ls
- python3.7 mqtt_pump_focus_image.py
- cd
- cd .node-red
- ls
- cat flows_copepode_cred.json
- cd Downloads/
- ls
- python3.7 mqtt_pump_focus_image.py
- cd Downloads/
- python3.7 mqtt_pump_focus_image.py
- cd RPi_Cam_Web_Interface/
- bash remove.sh
- cd
- ls
- ls RPi_Cam_Web_Interface/
- cd
- rm -rf RPi_Cam_Web_Interface/
- ls
- rm -rf sleepy.*
- rm -rf Segmentation.ipynb
- rm -rf focus.*
- rm -rf pump.*
- ls
- rm -rf 18_00.zip
- rm -rf 2020-01-31-093220_1920x1080_scrot.png
- rm -rf app.py
- ls
- rm -rf *.txt
- ls
- ifconfig
- cd Downloads/
- ls
- python3.7 mqtt_pump_focus_image.py
- cd
- cd PlanktonScope/script/
- python3.7 mqtt_pump_focus_image.py
- htop
+ 
+ 
  sudo apt-get purge wolfram-engine
- sudo apt-get update -y && sudo apt-get upgrade -y
  sudo apt-get remove vlc*
  sudo apt-get update -y && sudo apt-get upgrade -y
  sudo apt-get install build-essential cmake pkg-config
@@ -460,13 +76,6 @@
  sudo apt-get install libgtk2.0-dev
  sudo apt-get install libatlas-base-dev gfortran
  sudo apt-get install python2.7-dev python3-dev
- cd
- wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip
- unzip opencv.zip
- wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip
- unzip opencv_contrib.zip
- ls
- rm -rf opencv*
  sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
  sudo apt-get install libfontconfig1-dev libcairo2-dev
  sudo apt-get install libgdk-pixbuf2.0-dev libpango1.0-dev
@@ -475,211 +84,10 @@
  sudo apt-get install libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
  pip install "picamera[array]"
  pip3 install opencv-contrib-python==4.1.0.25
- htop
- cd PlanktonScope/script/
- ls
- python3.7 mqtt_pump_focus_image.py
- sudo apt install dnsmasq hostapd
- sudo systemctl stop dnsmasq
- sudo systemctl stop hostapd
- sudo touch /etc/dhcpcd.conf
- chmod 777 /etc/dhcpcd.conf
- sudo chmod 777 /etc/dhcpcd.conf
- echo "interface wlan0" >> /etc/dhcpcd.conf
- echo "mstatic ip_address=192.168.4.1/24" >> /etc/dhcpcd.con
- cat /etc/dhcpcd.conf
- echo "    static ip_address=192.168.4.1/24" >> /etc/dhcpcd.con
- sudo echo "    static ip_address=192.168.4.1/24" >> /etc/dhcpcd.con
- sudo nano /etc/dhcpcd.conf
- sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
- sudo touch /etc/dnsmasq.conf
- sudo chmod 777 /etc/dnsmasq.conf
- sudo echo "interface=wlan0" >> /etc/dnsmasq.conf
- sudo nano /etc/dnsmasq.conf
- sudo systemctl start dnsmasq
- sudo nano /etc/hostapd/hostapd.conf
- sudo nano /etc/default/hostapd
- sudo systemctl unmask hostapd
- sudo systemctl enable hostapd
- sudo systemctl start hostapd
- sudo systemctl status hostapd
- sudo nano /etc/sysctl.conf
- sudo iptables -t nat -A  POSTROUTING -o eth0 -j MASQUERADE
- sudo reboot
- sudo iptables -t nat -A  POSTROUTING -o eth0 -j MASQUERADE
- sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
- sudo nano /etc/rc.local
- sudo reboot
- ifconfig
- cd PlanktonScope/
- ls
- cd script/
- ls
- pwd
- pyhon3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
- python3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
- mv /home/pi/PlanktonScope/02_02_2020/00_52/*.jpg /home/pi/PlanktonScope/02_02_2020/00_52/RAW
- free -m
- free -m | awk -F ' ' '{print $3}'
- free -m | awk -F ' ' '{print $2}'
- free -m | grep "" awk -F ' ' '{print $2}'
- free -m | grep "Mem" | awk -F ' ' '{print $2}'
- htop
- python3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
- cd PlanktonScope/script/
- python3.7 mqtt.py
- cd PlanktonScope/script/
- python3.7 mqtt.py
- python3.7 /home/pi/PlanktonScope/script/mqtt_pump_focus_image.py
- cd ..
- rm -rf 02_02_2020/
- rm -rf export/
- cd PlanktonScope/script/
- python3.7 main.py
- htop
- ls
- cd PlanktonScope/
- ls
- cd script/
- ls
- geany mqtt
- geany mqtt.py
- python3.7 mqtt.py
- geany mqtt.py
- ifconfig
- sudo reboot now
- sudo nano /etc/rc.local
- sudo nano /etc/iptables.ipv4.nat
- sudo systemctl status hostapd
- sudo systemctl status dnsmasq
- sudo systemctl start hostapd
- sudo systemctl start dnsmasq
- cd PlanktonScope/script/
- python3.7 main.py
- cd /media/pi/Planktonic/Acquisitions/
- ls
- ls Palo_Alto/
- cd Palo_Alto/
- ls
- rm -rf size_mesurement.txt
- rm -rf OBJECT/
- jupyter-notebook
- ifconfig
- cd PlanktonScope/script/
- python3.7 old_school/mqtt_pump_focus_image.py
- sudo apt-get install ffmpeg git python3-picamera python3-ws4py
- ls
- cd
+ 
  sudo apt-get install ffmpeg git python3-picamera python3-ws4py
  git clone https://github.com/waveform80/pistreaming.git
- ls
- rm -rf 2020-02-02-073529_1920x1080_scrot.png
- ls
- cd pistreaming/
- ls
- python3.7 server.py
- cd
  git clone git@github.com:Lawouach/WebSocket-for-Python.git
  pip install ws4py
- cd pistreaming/
- python3.7 server.py
  pip3 install ws4py
- python3.7 server.py
  pip3 install pyzmq
- cd /home/pi/PlanktonScope/export
- unzip ecotaxa_export.zip
- cd PlanktonScope/script/middl_school/
- python3.7 main.py
- cd ..
- cd old_school/
- python3.7 mqtt_pump_focus_image.py
- [A
- python3.7 mqtt_pump_focus_image.py
- cd ..
- cd export/
- ls
- rm -rf ecotaxa_export.zip
- cd ..
- cd script/old_school/
- python3.7 mqtt_pump_focus_image.py
- rm -rf /home/pi/PlanktonScope/tmp/*.jpg
- python3.7 mqtt_pump_focus_image.py
- cd PlanktonScope/tmp/
- ls
- cd ..
- cd OBJECTS/
- ls
- rm -rf *
- cd ..
- cd export/
- ls
- rm -rf *
- cd PlanktonScope/
- ls
- sudo kate script/old_school/mqtt_pump_focus_image.py
- cd script/old_school/
- thonny mqtt_pump_focus_image.py
- sudo geany mqtt_pump_focus_image.py
- sudo nano mqtt_pump_focus_image.py
- cd PlanktonScope/script/old_school/
- python3.7 mqtt_pump_focus_image.py
- cd PlanktonScope/script/old_school/
- python3.7 mqtt_pump_focus_image.py
- cd ..
- rm -rf tmp/*
- ls
- rm -rf export/*
- rm -rf OBJECTS/*
- rm -rf export/*
- python3.7 script/old_school/mqtt_pump_focus_image.py
- cd script/
- ls
- cat stream.py
- python3.7 stream.py
- whereis ffmpeg
- mjpg_streamer
- cd
- cd .node-red/
- npm install node-red-contrib-mjpgcamera
- it clone https://github.com/electronicplayground/node-red-contrib-mjpgcamera.git
- cd node-red-contrib-mjpgcamera
- npm link
- cd %Node-RED%
- git clone https://github.com/electronicplayground/node-red-contrib-mjpgcamera.git
- cd node-red-contrib-mjpgcamera
- npm link
- sudo npm link
- sudo npm linkcd
- cd
- sduo npm install node-red-contrib-mjpgcamera
- sudo npm install node-red-contrib-mjpgcamera
- ls
- cd PlanktonScope/script/
- python3.7 stream.py
- python3.7 stream.py ls
- ls
- python3.7 mqtt_pump_focus_image_segment_strem.py
- cd ..
- rm -rf tmp/*
- cd script/
- python3.7 mqtt_pump_focus_image_segment_strem.py
- cd PlanktonScope/script/old_school/
- python3.7 mqtt_pump_focus_image.py
- cd PlanktonScope/script/
- python3.7 mqtt_pump_focus_image_segment_strem.py
- cd ..
- ls
- cd OBJECTS/
- ls
- rm -rf *
- cd ..
- ls
- cd export/
- rm -rf ecotaxa_export.zip
- cd ..
- ls
- ls tmp/
- cd PlanktonScope/
- cd script/
- ls
- history
