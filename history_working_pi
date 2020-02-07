@@ -1,3 +1,6 @@
+#MANUAL CONFIGURATION
+#COPY PASTE LINE BY LINE
+
  #Update and upgrade you Pi
  sudo apt-get update -y && sudo apt-get full-upgrade -y
  sudo reboot now
@@ -34,16 +37,17 @@
  npm install node-red-contrib-web-worldmap
  sudo systemctl enable nodered.service
  
- 
+#BUILD CONFIGURATION
+#COPY PASTE BLOCK BY BLOCK
  
  sudo pip3 install jupyter
  pip install matplotlib
  pip3 install matplotlib
- sudo apt-get install exfat-fuse
- sudo apt-get install exfat-utils
+ sudo apt-get install exfat-fuse -y
+ sudo apt-get install exfat-utils -y
  pip install paho-mqtt
  pip3 install paho-mqtt
- sudo apt-get install mosquitto mosquitto-clients
+ sudo apt-get install mosquitto mosquitto-clients -y
  
  
  
