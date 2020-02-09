@@ -13,14 +13,14 @@ _________________
 ### Pumping
 ##### pump.py `volume` `flowrate` `action`
 
-- `volume` : **integer** 
-- `flowrate` : **float** 
+- `volume` : **integer**
+- `flowrate` : **float**
 - `action` : **string**
 
 Example:
 
     python3.7 $HOME/PlanktonScope/scripts/pump.py 1 10 suck
-    
+
 _________________
 ### Image
 ##### image.py `in_path` `sample_project` `sample_id` `acq_id` `volume` `flowrate`
@@ -35,7 +35,7 @@ _________________
 Example:
 
     python3.7 $HOME/PlanktonScope/scripts/image.py $HOME/PlanktonScope/Acquisitions/ tara_pacific station_125 exp_1 24 3.2
-    
+
 
 _________________
 
@@ -58,27 +58,3 @@ _________________
 Example:
 
     python3.7 $HOME/PlanktonScope/scripts/fan.py on
-    
-_________________
-### Killing Focus or Pump event
-##### killer.sh `event_to_kill.py`
-
-- `event_to_kill.py` : **string**
-
-
-Example:
-
-    bash $HOME/PlanktonScope/scripts/killer.sh pump.py
-    
-_________________
-### Kill Image
-##### kill_image.sh image.py `sample_project` `sample_id` `acq_id`
-
-- `sample_project` : **string**
-- `sample_id` : **string**
-- `acq_id` : **string**
-
-Example:
-
-    bash $HOME/PlanktonScope/scripts/killer.sh image.py tara_pacific station_125 exp_1
-    
