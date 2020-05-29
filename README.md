@@ -1,60 +1,77 @@
-# PlanktoScop Installation
+# PlanktoScop Main Repository
+The PlanktoScop is an open and affordable modular imaging platform for citizen oceanography.
+
+It's a high-throughtput microscope platform, designed with an open-hardware and open-software mentality.
+
+You can learn more about the PlantoScop [on its website](https://www.planktonscope.org/discover).
+
+
+# PlanktoScop Raspberry Pi Setup
+After getting your kit and finding the necessary components, but before assembling your kit, you should take the time to do a mockup build and setup your Raspberry!
 
 ## Install and setup Raspbian on your Raspberry Pi
 
 ### Download the image
 
-Download the .zip file of Raspbian Buster with desktop from the Raspberry Pi website Downloads page.
+The latest Raspbian version can always be downloaded from [the Raspberry Pi Downloads page](https://www.raspberrypi.org/downloads/raspbian/).
+For a first build, it's recommende to download an image of Raspbian Buster with desktop.
 
-Writing an image to the SD card
+#### Writing an image to the SD card
 
-Download the latest version of balenaEtcher and install it.
+Download the latest version of [balenaEtcher](https://www.balena.io/etcher/) and install it.
 
 Connect an SD card reader with the micro SD card inside.
 
-Open balenaEtcher and select from your hard drive the Raspberry Pi .zip file you wish to write to the SD card.
+Open balenaEtcher and select from your hard drive the image zip file you just downloaded.
 
-Select the SD card you wish to write your image to.
+Select the SD card you want to write your image to.
 
-Review your selections and click 'Flash!' to begin writing data to the SD card.
+Review your selections and click `Flash!` to begin writing data to the SD card.
 
-### Prepare your Raspberry Pi
+#### Prepare your Raspberry Pi
 [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/)
 
-Plug the SD Card in your Raspberry Pi
+Plug the SD Card in your Raspberry Pi and connect your Pi to a screen, mouse and a keyboard. Check the connection twice before plugging the power.
 
-Connect your Pi to a screen, mouse, keyboard and power
+The first boot to the desktop may take up to 120 seconds. This is normal and is caused by the image expanding the filesystem to the whole SD card. DO NOT REBOOT before you reach the desktop.
 
-Finish the setup
+#### Finish the setup
 
-Make sure you have access to internet and update/upgrade your fresh raspbian
+Make sure you have access to internet and update/upgrade your fresh Raspbian install.
 
-Update your Pi first
+Update your Pi first. Open up a terminal, and do the following:
 ```
 sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
-Reboot your Pi safely
+
+You can now reboot your Pi safely.
 ```
 sudo reboot now
 ```
 
-### Raspberry Pi configurations
+## Raspberry Pi configurations
 
-Enable Camera/SSH/I2C in raspi-config
+### Enable Camera/SSH/I2C in raspi-config
 
-Open up the configuration page and select Interfacing Options by typing this command:
+Open up a terminal once again, and access the configuration tool:
 ```
 sudo raspi-config
 ```
 
-Select `Serial`
+While you're here, a wise thing to do would be to change the default password for the `pi` user. This is very warmly recommended if your PlanktoScop is connected to a shared network you do not control. Just select the first option `1 Change User Password`.
 
-Select `NO`
+Now, you can go to `5 Interfacing Options`, then `P2 SSH`. Choose `Yes` to activate the SSH access.
 
-Keep the `Serial Port Hardware enabled`
+Again, select `5 Interfacing Options`, then `P4 SPI`. Choose `Yes` to enable the SPI interface.
 
-Reboot your Pi safely
+One more, select `5 Interfacing Options`, then `P5 I2C`. Choose `Yes` to enable the ARM I2C interface of the Raspberry.
+
+Finally, select `5 Interfacing Options`, then `P6 Serial`.
+
+This time, choose `No` to deactivate the login shell on the serial connection, but then choose `Yes` to keep the Serial port hardware enabled.
+
+Reboot your Pi safely.
 ```
 sudo reboot now
 ```
@@ -62,33 +79,35 @@ sudo reboot now
 ## Install the needed libraries for the PlanktoScop
 
 ### Install CircuitPython
-[Installing CircuitPython on Raspberry Pi](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi)
+Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi). You can start at the chapter `Install Python Libraries`.
 
-Run the following command to install adafruit_blinka
+For the record, the command are as following, however, Adafruit's page might have been updated, so please make sure this is still needed:
 ```
+pip3 install RPI.GPIO
 pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-motorkit
 ```
 
 ### Install RPi Cam Web Interface
 
-[RPi Cam Web Interface](https://elinux.org/RPi-Cam-Web-Interface)
+You can find more information about the RPi Cam Web Interface on [eLinux' website]](https://elinux.org/RPi-Cam-Web-Interface).
 
-Clone the code from github and enable and run the install script with the following commands
+To set it up, clone the code from Github and enable and run the install script with the following commands
 ```
 git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 cd RPi_Cam_Web_Interface
 ./install.sh
 ```
 
-Press Enter to allow default setting of the installation
-Press Enter to start RPi Cam Web Interface now
-Found what is the IP of your Raspberry Pi
+Press Enter to allow default setting of the installation.
+Press Enter to start RPi Cam Web Interface now.
+Found what is the IP of your Raspberry Pi.
 ```
 sudo ip addr show | grep 'inet 1'
 ```
+You can test the interface locally by accessing this url in from the browser in the Raspberry: `http://localhost/html`
 
-Reach the url on a local browser : http://127.0.0.1/html/
+You can also try to access this page from another computer connected to the same network with the IP address previously found : `http://[IP_ADDRESS]/html/`.
 
 ### Install Ultimate GPS HAT
 [Installing Adafruit GPS HAT](https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup)
