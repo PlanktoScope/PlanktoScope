@@ -1,4 +1,4 @@
-# PlanktonScope Installation
+# PlanktoScop Installation
 
 ## Install and setup Raspbian on your Raspberry Pi
 
@@ -59,7 +59,7 @@ Reboot your Pi safely
 sudo reboot now
 ```
 
-## Install the needed libraries for the PlanktonScope
+## Install the needed libraries for the PlanktoScop
 
 ### Install CircuitPython
 [Installing CircuitPython on Raspberry Pi](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi)
