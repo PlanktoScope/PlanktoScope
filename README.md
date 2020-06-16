@@ -188,12 +188,14 @@ https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-
 Install MorphoCut
 =================
 
-`Installing MorphoCut <https://morphocut.readthedocs.io/en/stable/installation.html>`_
+[Installing MorphoCut](https://morphocut.readthedocs.io/en/stable/installation.html)
 
 MorphoCut is packaged on PyPI and can be installed with pip:
-::
-    sudo apt-get install python3-scipy
-    pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+
+```sh
+sudo apt-get install python3-scipy
+pip3 install -U git+https://github.com/morphocut/morphocut.git
+```
 
 Finishing the install
 =====================
