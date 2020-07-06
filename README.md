@@ -1,5 +1,16 @@
-PlanktonScope Installation
-==========================
+PlanktonScope
+=============
+
+This GitHub is part of a community that you can find on this website : https://www.planktonscope.org/
+
+PlanktonScope Basic Installation
+================================
+
+Before going further, notice that you can download the image disk already setup without having to deal with all these command lines.
+Jump here : http://planktonscope.su.domains/Images_raspberry/Raspbian_Buster_Morphocut_WiFi.img
+
+PlanktonScope Expert Installation
+=================================
 
 *************************************
 Install Raspbian on your Raspberry Pi
