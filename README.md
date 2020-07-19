@@ -277,6 +277,12 @@ sudo systemctl restart nodered.service
 
 From Node-RED gui in your browser, choose the Hamburger menu top right, and then Import. You can paste the code directly from the lastest version of the GUI available [here](https://raw.githubusercontent.com/tpollina/PlanktonScope/blob/master/flows/main.json).
 
+You can also download it directly:
+```sh
+wget -N -P ~/.node-red/lib/flows https://raw.githubusercontent.com/tpollina/PlanktonScope/master/flows/main.json
+sudo systemctl restart nodered.service
+```
+
 #### More information
 [Installing Node-RED on Raspberry Pi](https://nodered.org/docs/getting-started/raspberrypi)
 
