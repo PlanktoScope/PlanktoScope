@@ -111,6 +111,47 @@ pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-motorkit
 ```
 
+It is recommended to test this setup by creating this small script under the name `blinkatest.py` and running it:
+```python
+#!/usr/bin/python3
+import board
+import digitalio
+import busio
+
+
+print("Hello blinka!")
+
+# Try to great a Digital input
+pin = digitalio.DigitalInOut(board.D4)
+print("Digital IO ok!")
+
+# Try to create an I2C device
+i2c = busio.I2C(board.SCL, board.SDA)
+print("I2C ok!")
+
+# Try to create an SPI device
+spi = busio.SPI(board.SCLK, board.MOSI, board.MISO)
+print("SPI ok!")
+
+print("done!")
+```
+
+To run the script, just run the following:
+```sh
+chmod +x blinkatest.py
+./blinkatest.py
+```
+
+The output should be similar to this:
+```
+pi@planktoscope:~ $ ./test/blinkatest.py
+Hello blinka!
+Digital IO ok!
+I2C ok!
+SPI ok!
+done!
+```
+
 ### Install RPi Cam Web Interface
 
 You can find more information about the RPi Cam Web Interface on [eLinux' website](https://elinux.org/RPi-Cam-Web-Interface).
