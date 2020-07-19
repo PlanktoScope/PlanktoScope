@@ -13,6 +13,9 @@ After getting your kit and finding the necessary components, but before assembli
 
 ## Install and setup Raspbian on your Raspberry Pi
 
+### Computer setup
+In order to make it easy to connect to the PlanktoScop, you may want to install [avahi](https://en.wikipedia.org/wiki/Avahi_%28software%29) or the [Bonjour](https://en.wikipedia.org/wiki/Bonjour_%28software%29) service on any computer you will use to access the PlanktoScop interface. This will allow you to connect to the PlantoScop using an address similar such as http://planktoscope.local instead of an IP address.
+
 ### Download the image
 
 The latest Raspbian version can always be downloaded from [the Raspberry Pi Downloads page](https://www.raspberrypi.org/downloads/raspbian/).
