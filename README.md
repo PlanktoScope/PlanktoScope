@@ -55,7 +55,7 @@ You can now reboot your Pi safely.
 sudo reboot now
 ```
 
-## Raspberry Pi configurations
+## Raspberry Pi configuration
 
 ### Enable Camera/SSH/I2C in raspi-config
 
