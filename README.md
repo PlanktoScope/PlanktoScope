@@ -91,6 +91,16 @@ sudo reboot now
 
 ## Install the needed libraries for the PlanktoScop
 
+Most of the following happens in a command line environment. If you are using the desktop, please start a terminal emulator.
+
+You can also connect to your PlanktoScop by using ssh using `ssh pi@planktoscope.local`.
+
+You can then run the following to make sure your Raspberry has the necessary components to install and build everything it needs:
+
+```sh
+sudo apt-get install build-essential python3 python3-pip git
+```
+
 ### Install CircuitPython
 Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi). You can start at the chapter `Install Python Libraries`.
 
