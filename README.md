@@ -45,13 +45,13 @@ The first boot to the desktop may take up to 120 seconds. This is normal and is 
 Make sure you have access to internet and update/upgrade your fresh Raspbian install.
 
 Update your Pi first. Open up a terminal, and do the following:
-```
+```sh
 sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
 
 You can now reboot your Pi safely.
-```
+```sh
 sudo reboot now
 ```
 
@@ -60,7 +60,7 @@ sudo reboot now
 ### Enable Camera/SSH/I2C in raspi-config
 
 Open up a terminal once again, and access the configuration tool:
-```
+```sh
 sudo raspi-config
 ```
 
@@ -79,7 +79,7 @@ This time, choose `No` to deactivate the login shell on the serial connection, b
 These steps can also be done from the Raspberry Pi Configuration GUI tool that you can find in `Main Menu > Preferences`. Go to the `Interfaces` tab. Pay attention, here the Serial Port must be enabled, but the Serial Port Console must be disabled.
 
 Reboot your Pi safely.
-```
+```sh
 sudo reboot now
 ```
 
@@ -89,7 +89,7 @@ sudo reboot now
 Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi). You can start at the chapter `Install Python Libraries`.
 
 For the record, the command are as following, however, Adafruit's page might have been updated, so please make sure this is still needed:
-```
+```sh
 pip3 install RPI.GPIO
 pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-motorkit
@@ -100,7 +100,7 @@ sudo pip3 install adafruit-circuitpython-motorkit
 You can find more information about the RPi Cam Web Interface on [eLinux' website](https://elinux.org/RPi-Cam-Web-Interface).
 
 To set it up, clone the code from Github and enable and run the install script with the following commands
-```
+```sh
 git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 cd RPi_Cam_Web_Interface
 ./install.sh
@@ -158,7 +158,7 @@ node-red-pi --max-old-space-size=256
 
 #### Autostart on boot
 Run Node-RED when the Pi is turned on, or re-booted, enable the service to autostart by running the command:
-```
+```sh
 sudo systemctl enable nodered.service
 ```
 
