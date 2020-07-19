@@ -283,7 +283,7 @@ From Node-RED gui in your browser, choose the Hamburger menu top right, and then
 
 ### Install Mosquitto MQTT
 
-In order to send and receive from Node-RED:
+In order to send and receive data from Node-RED, you need to install this. Run the following:
 ```
 sudo apt-get install mosquitto mosquitto-clients
 
@@ -291,7 +291,7 @@ sudo apt-get install mosquitto mosquitto-clients
 
 ### Install mqtt-paho
 
-In order to send and receive from python:
+In order to send and receive data from python, you need this library. Run the following:
 ```
 pip3 install paho-mqtt
 ```
