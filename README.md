@@ -224,48 +224,62 @@ sudo ./build
 gpio -v
 ```
 
-### Install Node-RED
-[Installing Node-RED on Raspberry Pi](https://nodered.org/docs/getting-started/raspberrypi)
+The last command should output something similar to the following:
+```
+gpio version: 2.60
+Copyright (c) 2012-2018 Gordon Henderson
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type: gpio -warranty
 
-#### Prerequisites
-Ensure npm is able to build any binary modules it needs to install.
+Raspberry Pi Details:
+  Type: Pi 4B, Revision: 01, Memory: 4096MB, Maker: Sony
+  * Device tree is enabled.
+  *--> Raspberry Pi 4 Model B Rev 1.1
+  * This Raspberry Pi supports user-level GPIO access.
+
 ```
-sudo apt-get install build-essential
-```
+
+More information can be found on Yahboom website, on the page [Installing RGB Cooling HAT](https://www.yahboom.net/study/RGB_Cooling_HAT).
+
+
+### Install Node-RED
 
 #### Download and installation
-To install Node.js, npm and Node-RED onto a Raspberry Pi, run the following command will that download and install them:
-```
+To install Node.js, npm and Node-RED onto a Raspberry Pi, you just need to run the following command. You can review the content of this script [here](https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered).
+```sh
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
-Due to the limited memory of the Raspberry Pi, you will need to start Node-RED with an additional argument to tell the underlying Node.js process to free up unused memory sooner than it would otherwise.
-```
-node-red-pi --max-old-space-size=256
-```
+Type `y` at both prompts to accept the installation and its settings.
 
-#### Autostart on boot
-Run Node-RED when the Pi is turned on, or re-booted, enable the service to autostart by running the command:
+#### Enable start on boot and launch Node-RED
+To run Node-RED when the Pi is turned on or restarted, you need to enable the systemd service by running this command:
 ```sh
 sudo systemctl enable nodered.service
 ```
 
-#### Check the installation
-Make sure NodeRed is correctly installed by reaching the following page from the broswer of your pi : http://localhost:1880.
-
-#### Install few nodes
-These nodes will be used in Node-RED:
+You can now start Node-RED by running the following:
+```sh
+sudo systemctl start nodered.service
 ```
-cd .node-red/
-npm install node-red-dashboard
-npm install node-red-contrib-python3-function
-npm install node-red-contrib-camerapi
-npm install node-red-contrib-gpsd
-npm install node-red-contrib-web-worldmap
+
+#### Check the installation
+Make sure Node-RED is correctly installed by reaching the following page from the browser of your pi http://localhost:1880 or http://planktoscope.local:1880 from another computer on the same network.
+
+#### Install the necessary nodes
+These nodes will be used by the PlanktoScop software and needs to be installed:
+```sh
+cd ~/.node-red/
+npm install node-red-dashboard node-red-contrib-python3-function node-red-contrib-camerapi node-red-contrib-gpsd node-red-contrib-web-worldmap node-red-contrib-interval
+sudo systemctl restart nodered.service
 ```
 
 #### Import the last GUI
 
-Import the lastest version of the GUI from https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json>
+From Node-RED gui in your browser, choose the Hamburger menu top right, and then Import. You can paste the code directly from the lastest version of the GUI available [here](https://raw.githubusercontent.com/tpollina/PlanktonScope/blob/master/flows/main.json).
+
+#### More information
+[Installing Node-RED on Raspberry Pi](https://nodered.org/docs/getting-started/raspberrypi)
+
 
 ### Install Mosquitto MQTT
 
