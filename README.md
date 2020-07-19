@@ -209,15 +209,19 @@ $GPRMC,000910.799,V,,,,,0.00,0.00,060180,,,N*4D
 $GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
 ```
 
-### Install RGB Cooling HAT
-[Installing RGB Cooling HAT](https://www.yahboom.net/study/RGB_Cooling_HAT)
+Until you get a GPS fix, most of the sentences are empty (see the lines starting with GPGSA and with lot of commas).
 
-Type these command to install:
-```
+
+You can find more information in this hardware module in Adafruit documentation at [Installing Adafruit GPS HAT](https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/overview) or on this page to [use Python Thread with GPS HAT](http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/)
+
+
+### Install RGB Cooling HAT
+To setup the RGB Cooling HAT, you just need to clone and build the WiringPi library:
+```sh
 git clone https://github.com/WiringPi/WiringPi.git
 cd WiringPi
 sudo ./build
-sudo apt-get install gcc
+gpio -v
 ```
 
 ### Install Node-RED
