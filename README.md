@@ -71,6 +71,8 @@ Finally, select `5 Interfacing Options`, then `P6 Serial`.
 
 This time, choose `No` to deactivate the login shell on the serial connection, but then choose `Yes` to keep the Serial port hardware enabled.
 
+These steps can also be done from the Raspberry Pi Configuration GUI tool that you can find in `Main Menu > Preferences`. Go to the `Interfaces` tab. Pay attention, here the Serial Port must be enabled, but the Serial Port Console must be disabled.
+
 Reboot your Pi safely.
 ```
 sudo reboot now
@@ -90,7 +92,7 @@ sudo pip3 install adafruit-circuitpython-motorkit
 
 ### Install RPi Cam Web Interface
 
-You can find more information about the RPi Cam Web Interface on [eLinux' website]](https://elinux.org/RPi-Cam-Web-Interface).
+You can find more information about the RPi Cam Web Interface on [eLinux' website](https://elinux.org/RPi-Cam-Web-Interface).
 
 To set it up, clone the code from Github and enable and run the install script with the following commands
 ```
@@ -107,7 +109,8 @@ sudo ip addr show | grep 'inet 1'
 ```
 You can test the interface locally by accessing this url in from the browser in the Raspberry: `http://localhost/html`
 
-You can also try to access this page from another computer connected to the same network with the IP address previously found : `http://[IP_ADDRESS]/html/`.
+You can also try to access this page from another computer connected to the same network with the IP address previously found : `http://[IP_ADDRESS]/html/`. If your computer has `avahi` or the `Bonjour` service installed and running, you can also use this url: http://raspberrypi.local/html/ .
+
 
 ### Install Ultimate GPS HAT
 [Installing Adafruit GPS HAT](https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup)
