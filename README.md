@@ -163,15 +163,22 @@ cd RPi_Cam_Web_Interface
 ./install.sh
 ```
 
-Press Enter to allow default setting of the installation.
-Press Enter to start RPi Cam Web Interface now.
-Found what is the IP of your Raspberry Pi.
-```
+Press Enter to allow default setting of the installation. Once everything is installed, press Enter to start the RPi Cam Web Interface now.
+
+To test the interface locally, try accessing this url from the browser in the Raspberry: http://localhost/html
+
+You can also try to access this page from another computer connected to the same network.
+
+If your computer has `avahi` or the `Bonjour` service installed and running, you can directly use this url: http://raspberrypi.local/html/ .
+
+If this is not the case, you first need to find the IP address of your Raspberry Pi by running the following:
+```sh
 sudo ip addr show | grep 'inet 1'
 ```
-You can test the interface locally by accessing this url in from the browser in the Raspberry: `http://localhost/html`
 
-You can also try to access this page from another computer connected to the same network with the IP address previously found : `http://[IP_ADDRESS]/html/`. If your computer has `avahi` or the `Bonjour` service installed and running, you can also use this url: http://raspberrypi.local/html/ .
+The web page can then be accessed at `http://[IP_ADDRESS]/html/`.
+
+If the interface is loading and a picture is displayed, you can stop this interface for now by simply running `./stop.sh`.
 
 
 ### Install Ultimate GPS HAT
