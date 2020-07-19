@@ -182,12 +182,31 @@ If the interface is loading and a picture is displayed, you can stop this interf
 
 
 ### Install Ultimate GPS HAT
-[Installing Adafruit GPS HAT](https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/pi-setup)
 
-[Use Python Thread with GPS HAT](http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/)
+You can start by testing that the GPS module is working. Either install your PlanktoScop with a view of the sky, or connect the external antenna.
 
+Now you need to run the following:
+```sh
+sudo apt-get install gpsd gpsd-clients
+stty -F /dev/serial0 raw 9600 cs8 clocal -cstopb
+cat /dev/serial0
 ```
-sudo apt-get install python gpsd gpsd-clients
+
+If the GPS works, you should now see NMEA sentences scrolling:
+```
+$GPGGA,000908.799,,,,,0,00,,,M,,M,,*7E
+$GPGSA,A,1,,,,,,,,,,,,,,,*1E
+$GPGSV,1,1,00*79
+$GPRMC,000908.799,V,,,,,0.00,0.00,060180,,,N*44
+$GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
+$GPGGA,000909.799,,,,,0,00,,,M,,M,,*7F
+$GPGSA,A,1,,,,,,,,,,,,,,,*1E
+$GPRMC,000909.799,V,,,,,0.00,0.00,060180,,,N*45
+$GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
+$GPGGA,000910.799,,,,,0,00,,,M,,M,,*77
+$GPGSA,A,1,,,,,,,,,,,,,,,*1E
+$GPRMC,000910.799,V,,,,,0.00,0.00,060180,,,N*4D
+$GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
 ```
 
 ### Install RGB Cooling HAT
