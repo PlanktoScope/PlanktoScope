@@ -66,6 +66,12 @@ sudo raspi-config
 
 While you're here, a wise thing to do would be to change the default password for the `pi` user. This is very warmly recommended if your PlanktoScop is connected to a shared network you do not control. Just select the first option `1 Change User Password`.
 
+You may also want to change the default hostname of your Raspberry. To do so, choose option `2 Network Options` then `N1 Hostname`. Choose a new hostname. We recommend using `planktoscope`.
+
+We need to activate a few things for the PlanktoScop to work properly.
+
+First, we need to activate the camera interface. Choose `5 Interfacing Options`, then `P1 Camera` and `Yes`.
+
 Now, you can go to `5 Interfacing Options`, then `P2 SSH`. Choose `Yes` to activate the SSH access.
 
 Again, select `5 Interfacing Options`, then `P4 SPI`. Choose `Yes` to enable the SPI interface.
