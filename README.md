@@ -1,13 +1,15 @@
 # PlanktoScop Main Repository
 The PlanktoScop is an open and affordable modular imaging platform for citizen oceanography.
 
-It's a high-throughtput microscope platform, designed with an open-hardware and open-software mentality.
+This GitHub is part of a community that you can find on [its website](https://www.planktonscope.org/).
 
-You can learn more about the PlantoScop [on its website](https://www.planktonscope.org/discover).
+# Fast Setup
 
+Before going further, notice that you can download the image disk already setup without having to deal with all these command lines.
+Jump here : http://planktonscope.su.domains/Images_raspberry/Raspbian_Buster_Morphocut_WiFi.img
 
-# PlanktoScop Raspberry Pi Setup
-After getting your kit and finding the necessary components, but before assembling your kit, you should take the time to do a mockup build and setup your Raspberry!
+# Expert Setup
+After getting your kit and finding the necessary components, but before assembling your kit, you should take the time to do a mockup build and setup your Raspberry.
 
 ## Install and setup Raspbian on your Raspberry Pi
 
@@ -197,13 +199,13 @@ https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-
 
 
 ### Install MorphoCut
-
-_Installing MorphoCut <https://morphocut.readthedocs.io/en/stable/installation.html>`_
+[Installing MorphoCut](https://morphocut.readthedocs.io/en/stable/installation.html)
 
 MorphoCut is packaged on PyPI and can be installed with pip:
-```
+
+```sh
 sudo apt-get install python3-scipy
-pip3 install -U git+https://github.com/morphocut/morphocut.git@pyrocystis
+pip3 install -U git+https://github.com/morphocut/morphocut.git
 ```
 
 ## Finishing the install
