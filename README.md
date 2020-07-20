@@ -48,6 +48,7 @@ Update your Pi first. Open up a terminal, and do the following:
 ```sh
 sudo apt-get update -y
 sudo apt-get upgrade -y
+sudo apt-get install git
 ```
 
 You can now reboot your Pi safely.
@@ -57,9 +58,18 @@ sudo reboot now
 
 ## Raspberry Pi configuration
 
+### Clone this repository!
+
+First of all, and to ensure you have the latest documentation available locally, you should clone this repository using git.
+
+Simply run the following in a terminal:
+```sh
+git clone https://github.com/PlanktonPlanet/PlanktonScope/
+```
+
 ### Enable Camera/SSH/I2C in raspi-config
 
-Open up a terminal once again, and access the configuration tool:
+You can now launch the configuration tool:
 ```sh
 sudo raspi-config
 ```
@@ -98,7 +108,7 @@ You can also connect to your PlanktoScop by using ssh using `ssh pi@planktoscope
 You can then run the following to make sure your Raspberry has the necessary components to install and build everything it needs:
 
 ```sh
-sudo apt-get install build-essential python3 python3-pip git
+sudo apt-get install build-essential python3 python3-pip
 ```
 
 ### Install CircuitPython
