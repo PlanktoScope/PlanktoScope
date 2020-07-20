@@ -323,6 +323,7 @@ We need to install the latest OpenCV version. Unfortunately, it is not available
 First, we need to install the needed dependencies, then we will directly install opencv:
 ```sh
 sudo apt install libgtk-3-0 libavformat58 libtiff5 libcairo2 libqt4-test libpango-1.0-0 libopenexr23 libavcodec58 libilmbase23 libatk1.0-0 libpangocairo-1.0-0 libwebp6 libqtgui4 libavutil56 libjasper1 libqtcore4 libcairo-gobject2 libswscale5 libgdk-pixbuf2.0-0 libhdf5-dev libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev libavformat-dev libswscale-dev libwebp-dev libatlas-base-dev
+sudo pip3 install "picamera[array]"
 sudo pip3 install opencv-contrib-python==4.1.0.25
 ```
 
