@@ -252,6 +252,12 @@ Raspberry Pi Details:
 
 ```
 
+You will also need to install some python modules:
+```sh
+sudo apt install python3-smbus i2c-tools
+sudo pip3 install Adafruit-SSD1306
+```
+
 More information can be found on Yahboom website, on the page [Installing RGB Cooling HAT](https://www.yahboom.net/study/RGB_Cooling_HAT).
 
 
