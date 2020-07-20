@@ -380,18 +380,20 @@ sudo reboot now
 
 ## Useful later maybe
 
-### Download the GitHub repo
-At this link : https://github.com/tpollina/PlanktonScope/archive/master.zip
-Unzip to a specific location:
-```
-unzip /home/pi/Downloads/PlanktonScope-master.zip -d /home/pi/
-mv /home/pi/PlanktonScope-master /home/pi/PlanktonScope
+### Update the cloned repository
+
+Updates are published on Github regurlarly. Make sure to update once in a while by running this command:
+```sh
+cd PlanktonScope
+git pull
 ```
 
+This will pull and merge all the changes made since your last update.
+
 ### Update node-RED interface
-To update the interface, you can just download the lastest .json file:
-```
-wget -P $HOME/.node-red https://raw.githubusercontent.com/tpollina/PlanktonScope/master/scripts/flows_planktonscope.json
+To update the interface and make sure you run the latest version, you need to copy the json config file from the cloned repository to the Node-RED library:
+```sh
+cp ~/PlanktonScope/flows/main.json ~/.node-red/lib/flows
 ```
 
 ### Share WiFi via Ethernet
