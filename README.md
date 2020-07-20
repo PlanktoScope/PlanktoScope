@@ -105,10 +105,11 @@ Most of the following happens in a command line environment. If you are using th
 
 You can also connect to your PlanktoScop by using ssh using `ssh pi@planktoscope.local`.
 
-You can then run the following to make sure your Raspberry has the necessary components to install and build everything it needs:
+You can then run the following to make sure your Raspberry has the necessary components to install and build everything it needs and to create the necessary folders:
 
 ```sh
 sudo apt-get install build-essential python3 python3-pip
+mkdir test libraries
 ```
 
 ### Install CircuitPython
@@ -121,7 +122,7 @@ pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-motorkit
 ```
 
-It is recommended to test this setup by creating this small script under the name `blinkatest.py` and running it:
+It is recommended to test this setup by creating this small script under the name `test/blinkatest.py` and running it (you can use the editor nano if you are using the terminal).
 ```python
 #!/usr/bin/python3
 import board
@@ -148,8 +149,8 @@ print("done!")
 
 To run the script, just run the following:
 ```sh
-chmod +x blinkatest.py
-./blinkatest.py
+chmod +x test/blinkatest.py
+./test/blinkatest.py
 ```
 
 The output should be similar to this:
@@ -168,6 +169,7 @@ You can find more information about the RPi Cam Web Interface on [eLinux' websit
 
 To set it up, clone the code from Github and enable and run the install script with the following commands
 ```sh
+cd ~/libraries
 git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 cd RPi_Cam_Web_Interface
 ./install.sh
@@ -228,6 +230,7 @@ You can find more information in this hardware module in Adafruit documentation 
 ### Install RGB Cooling HAT
 To setup the RGB Cooling HAT, you just need to clone and build the WiringPi library:
 ```sh
+cd ~/libraries
 git clone https://github.com/WiringPi/WiringPi.git
 cd WiringPi
 sudo ./build
@@ -289,7 +292,7 @@ From Node-RED gui in your browser, choose the Hamburger menu top right, and then
 
 You can also download it directly:
 ```sh
-wget -N -P ~/.node-red/lib/flows https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/master/flows/main.json
+wget -N -O ~/.node-red/flows_planktoscope.json https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/master/flows/main.json
 sudo systemctl restart nodered.service
 ```
 
@@ -393,7 +396,7 @@ This will pull and merge all the changes made since your last update.
 ### Update node-RED interface
 To update the interface and make sure you run the latest version, you need to copy the json config file from the cloned repository to the Node-RED library:
 ```sh
-cp ~/PlanktonScope/flows/main.json ~/.node-red/lib/flows
+cp ~/PlanktonScope/flows/main.json ~/.node-red/flows_planktoscope.json
 ```
 
 ### Share WiFi via Ethernet
