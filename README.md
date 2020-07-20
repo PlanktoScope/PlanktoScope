@@ -46,9 +46,9 @@ Make sure you have access to internet and update/upgrade your fresh Raspbian ins
 
 Update your Pi first. Open up a terminal, and do the following:
 ```sh
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get install git
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install git
 ```
 
 You can now reboot your Pi safely.
@@ -108,7 +108,7 @@ You can also connect to your PlanktoScop by using ssh using `ssh pi@planktoscope
 You can then run the following to make sure your Raspberry has the necessary components to install and build everything it needs and to create the necessary folders:
 
 ```sh
-sudo apt-get install build-essential python3 python3-pip
+sudo apt install build-essential python3 python3-pip
 mkdir test libraries
 ```
 
@@ -199,7 +199,7 @@ You can start by testing that the GPS module is working. Either install your Pla
 
 Now you need to run the following:
 ```sh
-sudo apt-get install gpsd gpsd-clients
+sudo apt install gpsd gpsd-clients
 stty -F /dev/serial0 raw 9600 cs8 clocal -cstopb
 cat /dev/serial0
 ```
@@ -304,7 +304,7 @@ sudo systemctl restart nodered.service
 
 In order to send and receive data from Node-RED, you need to install this. Run the following:
 ```
-sudo apt-get install mosquitto mosquitto-clients
+sudo apt install mosquitto mosquitto-clients
 
 ```
 
@@ -348,7 +348,7 @@ More detailed information can be found on this [website](https://www.pyimagesear
 MorphoCut is packaged on PyPI and can be installed with pip:
 
 ```sh
-sudo apt-get install python3-scipy
+sudo apt install python3-scipy
 pip3 install -U git+https://github.com/morphocut/morphocut.git
 ```
 
@@ -371,8 +371,8 @@ The MorphoCut documentation can be found [on this page](https://morphocut.readth
 
 Make sure to update your Pi
 ```
-sudo apt-get update -y
-sudo apt-get full-upgrade -y
+sudo apt update -y
+sudo apt full-upgrade -y
 ```
 
 Reboot your Pi safely
