@@ -285,11 +285,11 @@ sudo systemctl restart nodered.service
 
 #### Import the last GUI
 
-From Node-RED gui in your browser, choose the Hamburger menu top right, and then Import. You can paste the code directly from the lastest version of the GUI available [here](https://raw.githubusercontent.com/tpollina/PlanktonScope/blob/master/flows/main.json).
+From Node-RED gui in your browser, choose the Hamburger menu top right, and then Import. You can paste the code directly from the lastest version of the GUI available [here](https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/blob/master/flows/main.json).
 
 You can also download it directly:
 ```sh
-wget -N -P ~/.node-red/lib/flows https://raw.githubusercontent.com/tpollina/PlanktonScope/master/flows/main.json
+wget -N -P ~/.node-red/lib/flows https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/master/flows/main.json
 sudo systemctl restart nodered.service
 ```
 
