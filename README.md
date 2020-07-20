@@ -302,10 +302,32 @@ In order to send and receive data from python, you need this library. Run the fo
 pip3 install paho-mqtt
 ```
 
+
 ### Install OpenCV
 
-Use the quick version without virtual env
-https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/
+We need to install the latest OpenCV version. Unfortunately, it is not available in the repositories. We are going to install it directly by using pip.
+
+First, we need to install the needed dependencies, then we will directly install opencv:
+```sh
+sudo apt install libgtk-3-0 libavformat58 libtiff5 libcairo2 libqt4-test libpango-1.0-0 libopenexr23 libavcodec58 libilmbase23 libatk1.0-0 libpangocairo-1.0-0 libwebp6 libqtgui4 libavutil56 libjasper1 libqtcore4 libcairo-gobject2 libswscale5 libgdk-pixbuf2.0-0 libhdf5-dev libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev libavformat-dev libswscale-dev libwebp-dev libatlas-base-dev
+sudo pip3 install opencv-contrib-python==4.1.0.25
+```
+
+You can now check that opencv is properly installed by running a python interpreter and importing the cv2 module.
+```sh
+pi@planktoscope:~ $ python3
+Python 3.7.3 (default, Dec 20 2019, 18:57:59)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import cv2
+>>> cv2.__version__
+'4.1.0'
+>>> quit()
+```
+
+If all goes well, the displayed version number should be `4.1.0`.
+
+More detailed information can be found on this [website](https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/).
 
 
 ### Install MorphoCut
