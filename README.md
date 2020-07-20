@@ -341,7 +341,6 @@ More detailed information can be found on this [website](https://www.pyimagesear
 
 
 ### Install MorphoCut
-[Installing MorphoCut](https://morphocut.readthedocs.io/en/stable/installation.html)
 
 MorphoCut is packaged on PyPI and can be installed with pip:
 
@@ -349,6 +348,21 @@ MorphoCut is packaged on PyPI and can be installed with pip:
 sudo apt-get install python3-scipy
 pip3 install -U git+https://github.com/morphocut/morphocut.git
 ```
+
+To test the installation, open up once again a python interpreter and import the morphocut module:
+```sh
+pi@planktoscope:~ $ python3
+Python 3.7.3 (default, Dec 20 2019, 18:57:59)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import morphocut
+>>> morphocut.__version__
+'0.1.1+42.g01a051e'
+>>> quit()
+```
+
+The MorphoCut documentation can be found [on this page](https://morphocut.readthedocs.io/en/stable/index.html).
+
 
 ## Finishing the install
 
