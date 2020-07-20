@@ -117,8 +117,8 @@ Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-o
 
 For the record, the command are as following, however, Adafruit's page might have been updated, so please make sure this is still needed:
 ```sh
-pip3 install RPI.GPIO
-pip3 install adafruit-blinka
+sudo pip3 install RPI.GPIO
+sudo pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-motorkit
 ```
 
@@ -312,7 +312,7 @@ sudo apt install mosquitto mosquitto-clients
 
 In order to send and receive data from python, you need this library. Run the following:
 ```
-pip3 install paho-mqtt
+sudo pip3 install paho-mqtt
 ```
 
 
@@ -349,7 +349,7 @@ MorphoCut is packaged on PyPI and can be installed with pip:
 
 ```sh
 sudo apt install python3-scipy
-pip3 install -U git+https://github.com/morphocut/morphocut.git
+sudo pip3 install -U git+https://github.com/morphocut/morphocut.git
 ```
 
 To test the installation, open up once again a python interpreter and import the morphocut module:
