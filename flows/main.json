@@ -1,0 +1,4296 @@
+[
+    {
+        "id": "97600dff.93378",
+        "type": "subflow",
+        "name": "Acquisition actuation",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "color": "#A6BBCF"
+    },
+    {
+        "id": "604c996b.1a8428",
+        "type": "ui_button",
+        "z": "97600dff.93378",
+        "name": "",
+        "group": "cdb72118.692578",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start Acquisition",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "actuator/image",
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "b854ad48.5869e8"
+            ]
+        ]
+    },
+    {
+        "id": "b854ad48.5869e8",
+        "type": "function",
+        "z": "97600dff.93378",
+        "name": "image.js",
+        "func": "state = global.get(\"state\");\nglobal.set('img_counter',0)\nglobal.set('obj_counter',0)\nif (state == null){state=\"free\"}\n\nvar sleep_before= global.get(\"custom_sleep_before\");\nvar nb_step= global.get(\"custom_nb_step\");\nvar nb_frame= global.get(\"custom_nb_frame\");\nvar segmentation= global.get(\"custom_segmentation\");\n\nif (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Duration before the acquisition\";\n    \n}else if (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of step in between two frames\";\n    \n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of image to save\";\n    \n}else if (segmentation === undefined || segmentation === \"\" || segmentation === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Realize or not the segmentation\";\n    \n}else {\n    nb_frame=nb_frame-1\n    \n    msg.payload=sleep_before+' '+nb_step+' '+nb_frame+' '+segmentation;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "84505b75.883a48"
+            ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+    },
+    {
+        "id": "84505b75.883a48",
+        "type": "switch",
+        "z": "97600dff.93378",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "actuator/image",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Missing entry :",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "715a8f15.dc211"
+            ],
+            [
+                "3173806b.bb0c7"
+            ]
+        ]
+    },
+    {
+        "id": "3173806b.bb0c7",
+        "type": "ui_toast",
+        "z": "97600dff.93378",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 690,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "715a8f15.dc211",
+        "type": "mqtt out",
+        "z": "97600dff.93378",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 670,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ed689faa.3a3e08",
+        "type": "ui_button",
+        "z": "97600dff.93378",
+        "name": "Stop Acquisition",
+        "group": "cdb72118.692578",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "STOP ACQUISITION",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "actuator/wait",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "f6bd3440.60d5a"
+            ]
+        ]
+    },
+    {
+        "id": "f6bd3440.60d5a",
+        "type": "mqtt out",
+        "z": "97600dff.93378",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 350,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "3b827bf5.c7bc64",
+        "type": "mqtt out",
+        "z": "97600dff.93378",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 350,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cdb72118.692578",
+        "type": "ui_group",
+        "z": "",
+        "name": "Acquisition actuation",
+        "tab": "2b97fe34.a699fa",
+        "order": 10,
+        "disp": true,
+        "width": 24,
+        "collapse": false
+    },
+    {
+        "id": "e8320d42.9a3ad8",
+        "type": "subflow",
+        "name": "MQQT Cmds",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "cf9e02a2.3feff"
+                    },
+                    {
+                        "id": "18da28e6.7b000f"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "a7301ba5.d56d48",
+        "type": "exec",
+        "z": "e8320d42.9a3ad8",
+        "command": "python3.7 /home/pi/PlanktonScope/script/main.py",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 910,
+        "y": 140,
+        "wires": [
+            [
+                "87558394.4e589",
+                "a11158b1.b7649"
+            ],
+            [
+                "87558394.4e589",
+                "a11158b1.b7649"
+            ],
+            [
+                "87558394.4e589",
+                "a11158b1.b7649"
+            ]
+        ]
+    },
+    {
+        "id": "62b9a3b1.74dbc4",
+        "type": "exec",
+        "z": "e8320d42.9a3ad8",
+        "command": "ps -ax | grep \"python3.7 /home/pi/PlanktonScope/script/main.py\"| head -1 | awk -F \" \" '{print$1}' ",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "66fb9ed2.8ecd3"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "66fb9ed2.8ecd3",
+        "type": "exec",
+        "z": "e8320d42.9a3ad8",
+        "command": "kill",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1050,
+        "y": 200,
+        "wires": [
+            [
+                "87558394.4e589",
+                "a11158b1.b7649"
+            ],
+            [
+                "87558394.4e589",
+                "a11158b1.b7649"
+            ],
+            [
+                "87558394.4e589",
+                "a11158b1.b7649"
+            ]
+        ]
+    },
+    {
+        "id": "5df162d7.08eb34",
+        "type": "ui_button",
+        "z": "e8320d42.9a3ad8",
+        "name": "",
+        "group": "9c86b3b7.54841",
+        "order": 9,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "Kill MQTT",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 80,
+        "y": 200,
+        "wires": [
+            [
+                "62b9a3b1.74dbc4"
+            ]
+        ]
+    },
+    {
+        "id": "d16389e5.3bc67",
+        "type": "ui_button",
+        "z": "e8320d42.9a3ad8",
+        "name": "",
+        "group": "9c86b3b7.54841",
+        "order": 10,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "Restart MQTT",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "a7301ba5.d56d48"
+            ]
+        ]
+    },
+    {
+        "id": "87558394.4e589",
+        "type": "ui_toast",
+        "z": "e8320d42.9a3ad8",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1260,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "500abffa.c7a788",
+        "type": "file",
+        "z": "e8320d42.9a3ad8",
+        "name": "",
+        "filename": "/home/pi/PlanktonScope/script/main.py",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 530,
+        "y": 100,
+        "wires": [
+            [
+                "a7301ba5.d56d48"
+            ]
+        ]
+    },
+    {
+        "id": "985c65de.0801b",
+        "type": "template",
+        "z": "e8320d42.9a3ad8",
+        "name": "main.py",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "################################################################################\n#Actuator Libraries\n################################################################################\n\n#Library for exchaning messages with Node-RED\nimport paho.mqtt.client as mqtt\n\n#Library to control the PiCamera\nfrom picamera import PiCamera\n\n#Libraries to control the steppers for focusing and pumping\nfrom adafruit_motor import stepper\nfrom adafruit_motorkit import MotorKit\n\n#Library to send command over I2C for the light module on the fan\nimport smbus\n\n################################################################################\n#Practical Libraries\n################################################################################\n\n#Library to get date and time for folder name and filename\nfrom datetime import datetime, timedelta\n\n#Library to be able to sleep for a duration\nfrom time import sleep\n\n#Libraries manipulate json format, execute bash commands\nimport json, shutil, os, subprocess\n\n################################################################################\n#Morphocut Libraries\n################################################################################\n\nfrom skimage.util import img_as_ubyte\nfrom morphocut import Call\nfrom morphocut.contrib.ecotaxa import EcotaxaWriter\nfrom morphocut.contrib.zooprocess import CalculateZooProcessFeatures\nfrom morphocut.core import Pipeline\nfrom morphocut.file import Find\nfrom morphocut.image import (ExtractROI,\n    FindRegions,\n    ImageReader,\n    ImageWriter,\n    RescaleIntensity,\n    RGB2Gray\n)\nfrom morphocut.stat import RunningMedian\nfrom morphocut.str import Format\nfrom morphocut.stream import TQDM, Enumerate, FilterVariables\n\n################################################################################\n#Other image processing Libraries\n################################################################################\n\nfrom skimage.feature import canny\nfrom skimage.color import rgb2gray, label2rgb\nfrom skimage.morphology import disk\nfrom skimage.morphology import erosion, dilation, closing\nfrom skimage.measure import label, regionprops\nimport cv2\n\n################################################################################\n#Streaming PiCamera over server\n################################################################################\nimport io\nimport picamera\nimport logging\nimport socketserver\nfrom threading import Condition\nfrom http import server\nimport threading\n\n################################################################################\n#Creation of the webpage containing the PiCamera Streaming\n################################################################################\n\nPAGE=\"\"\"\\\n<html>\n<head>\n<title>PlanktonScope v2 | PiCamera Streaming</title>\n</head>\n<body>\n<img src=\"stream.mjpg\" width=\"640\" height=\"480\" />\n</body>\n</html>\n\"\"\"\n\n################################################################################\n#Classes for the PiCamera Streaming\n################################################################################\n\nclass StreamingOutput(object):\n    def __init__(self):\n        self.frame = None\n        self.buffer = io.BytesIO()\n        self.condition = Condition()\n\n    def write(self, buf):\n        if buf.startswith(b'\\xff\\xd8'):\n            # New frame, copy the existing buffer's content and notify all\n            # clients it's available\n            self.buffer.truncate()\n            with self.condition:\n                self.frame = self.buffer.getvalue()\n                self.condition.notify_all()\n            self.buffer.seek(0)\n        return self.buffer.write(buf)\n\nclass StreamingHandler(server.BaseHTTPRequestHandler):\n    def do_GET(self):\n        if self.path == '/':\n            self.send_response(301)\n            self.send_header('Location', '/index.html')\n            self.end_headers()\n        elif self.path == '/index.html':\n            content = PAGE.encode('utf-8')\n            self.send_response(200)\n            self.send_header('Content-Type', 'text/html')\n            self.send_header('Content-Length', len(content))\n            self.end_headers()\n            self.wfile.write(content)\n        elif self.path == '/stream.mjpg':\n            self.send_response(200)\n            self.send_header('Age', 0)\n            self.send_header('Cache-Control', 'no-cache, private')\n            self.send_header('Pragma', 'no-cache')\n            self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=FRAME')\n            self.end_headers()\n            try:\n                while True:\n                    with output.condition:\n                        output.condition.wait()\n                        frame = output.frame\n                    self.wfile.write(b'--FRAME\\r\\n')\n                    self.send_header('Content-Type', 'image/jpeg')\n                    self.send_header('Content-Length', len(frame))\n                    self.end_headers()\n                    self.wfile.write(frame)\n                    self.wfile.write(b'\\r\\n')\n            except Exception as e:\n                logging.warning(\n                    'Removed streaming client %s: %s',\n                    self.client_address, str(e))\n        else:\n            self.send_error(404)\n            self.end_headers()\n\nclass StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):\n    allow_reuse_address = True\n    daemon_threads = True\n\n################################################################################\n#MQTT core functions\n################################################################################\n\n#Run this function in order to connect to the client (Node-RED)\ndef on_connect(client, userdata, flags, rc):\n    #Print when connected\n    print(\"Connected! - \" + str(rc))\n    #When connected, run subscribe()\n    client.subscribe(\"actuator/#\")\n    #Turn green the light module\n    rgb(0,255,0)\n\n#Run this function in order to subscribe to all the topics begining by actuator\ndef on_subscribe(client, obj, mid, granted_qos):\n    #Print when subscribed\n    print(\"Subscribed! - \"+str(mid)+\" \"+str(granted_qos))\n\n#Run this command when Node-RED is sending a message on the subscribed topic\ndef on_message(client, userdata, msg):\n    #Print the topic and the message\n    print(msg.topic+\" \"+str(msg.qos)+\" \"+str(msg.payload))\n    #Update the global variables command, args and counter\n    global command\n    global args\n    global counter\n    #Parse the topic to find the command. ex : actuator/pump -> pump\n    command=msg.topic.split(\"/\")[1]\n    #Decode the message to find the arguments\n    args=str(msg.payload.decode())\n    #Reset the counter to 0\n    counter=0\n\n################################################################################\n#LEDs Actuation\n################################################################################\ndef rgb(R,G,B):\n    #Update LED n1\n    bus.write_byte_data(0x0d, 0x00, 0)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update LED n2\n    bus.write_byte_data(0x0d, 0x00, 1)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update LED n3\n    bus.write_byte_data(0x0d, 0x00, 2)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update the I2C Bus in order to really update the LEDs new values\n    cmd=\"i2cdetect -y 1\"\n    subprocess.Popen(cmd.split(),stdout=subprocess.PIPE)\n\n################################################################################\n#Init function - executed only once\n################################################################################\n\n#define the bus used to actuate the light module on the fan\nbus = smbus.SMBus(1)\n\n#define the names for the 2 exsting steppers\nkit = MotorKit()\npump_stepper = kit.stepper1\nfocus_stepper = kit.stepper2\n#Make sure the steppers are release and do not use any power\npump_stepper.release()\nfocus_stepper.release()\n\n#Precise the settings of the PiCamera\ncamera = PiCamera()\ncamera.resolution = (3280, 2464)\ncamera.iso = 60\ncamera.shutter_speed = 500\ncamera.exposure_mode = 'fixedfps'\n\n#Declare the global variables command, args and counter\ncommand = ''\nargs = ''\ncounter=''\n\n#MQTT Client functions definition\nclient = mqtt.Client()\nclient.connect(\"192.168.4.1\",1883,60)\nclient.on_connect = on_connect\nclient.on_subscribe = on_subscribe\nclient.on_message = on_message\nclient.loop_start()\n\n################################################################################\n#Definition of the few important metadata\n################################################################################\n\nlocal_metadata = {\n    \"process_datetime\": datetime.now(),\n    \"acq_camera_resolution\" : camera.resolution,\n    \"acq_camera_iso\" : camera.iso,\n    \"acq_camera_shutter_speed\" : camera.shutter_speed\n}\n\n#Read the content of config.json containing the metadata defined on Node-RED\nconfig_json = open('/home/pi/PlanktonScope/config.json','r')\nnode_red_metadata = json.loads(config_json.read())\n\n#Concat the local metadata and the metadata from Node-RED\nglobal_metadata = {**local_metadata, **node_red_metadata}\n\n#Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa\narchive_fn = os.path.join(\"/home/pi/PlanktonScope/\",\"export\", \"ecotaxa_export.zip\")\n\n################################################################################\n#MorphoCut Script\n################################################################################\n\n#Define processing pipeline\nwith Pipeline() as p:\n\n    #Recursively find .jpg files in import_path.\n    #Sort to get consective frames.\n    abs_path = Find(\"/home/pi/PlanktonScope/tmp\", [\".jpg\"], sort=True, verbose=True)\n\n    #Extract name from abs_path\n    name = Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)\n\n    #Set the LEDs as Green\n    Call(rgb, 0,255,0)\n\n    #Read image\n    img = ImageReader(abs_path)\n\n    #Show progress bar for frames\n    TQDM(Format(\"Frame {name}\", name=name))\n\n    #Apply running median to approximate the background image\n    flat_field = RunningMedian(img, 5)\n\n    #Correct image\n    img = img / flat_field\n\n    #Rescale intensities and convert to uint8 to speed up calculations\n    img = RescaleIntensity(img, in_range=(0, 1.1), dtype=\"uint8\")\n\n    #Filter variable to reduce memory load\n    FilterVariables(name,img)\n\n    #Save cleaned images\n    #frame_fn = Format(os.path.join(\"/home/pi/PlanktonScope/tmp\",\"CLEAN\", \"{name}.jpg\"), name=name)\n    #ImageWriter(frame_fn, img)\n\n    #Convert image to uint8 gray\n    img_gray = RGB2Gray(img)\n\n    #?\n    img_gray = Call(img_as_ubyte, img_gray)\n\n    #Canny edge detection using OpenCV\n    img_canny = Call(cv2.Canny, img_gray, 50,100)\n\n    #Dilate using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))\n    img_dilate = Call(cv2.dilate, img_canny, kernel, iterations=2)\n\n    #Close using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5))\n    img_close = Call(cv2.morphologyEx, img_dilate, cv2.MORPH_CLOSE, kernel, iterations=1)\n\n    #Erode using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))\n    mask = Call(cv2.erode, img_close, kernel, iterations=2)\n\n    #Find objects\n    regionprops = FindRegions(\n        mask, img_gray, min_area=1000, padding=10, warn_empty=name\n    )\n\n    #Set the LEDs as Purple\n    Call(rgb, 255,0,255)\n\n    # For an object, extract a vignette/ROI from the image\n    roi_orig = ExtractROI(img, regionprops, bg_color=255)\n\n    # Generate an object identifier\n    i = Enumerate()\n\n    #Call(print,i)\n\n    #Define the ID of each object\n    object_id = Format(\"{name}_{i:d}\", name=name, i=i)\n\n    #Call(print,object_id)\n\n    #Define the name of each object\n    object_fn = Format(os.path.join(\"/home/pi/PlanktonScope/\",\"OBJECTS\", \"{name}.jpg\"), name=object_id)\n\n    #Save the image of the object with its name\n    ImageWriter(object_fn, roi_orig)\n\n    #Calculate features. The calculated features are added to the global_metadata.\n    #Returns a Variable representing a dict for every object in the stream.\n    meta = CalculateZooProcessFeatures(\n        regionprops, prefix=\"object_\", meta=global_metadata\n    )\n\n    #Get all the metadata\n    json_meta = Call(json.dumps,meta, sort_keys=True, default=str)\n\n    #Publish the json containing all the metadata to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/metric\", json_meta)\n\n    #Add object_id to the metadata dictionary\n    meta[\"object_id\"] = object_id\n\n    #Generate object filenames\n    orig_fn = Format(\"{object_id}.jpg\", object_id=object_id)\n\n    #Write objects to an EcoTaxa archive:\n    #roi image in original color, roi image in grayscale, metadata associated with each object\n    EcotaxaWriter(archive_fn, (orig_fn, roi_orig), meta)\n\n    #Progress bar for objects\n    TQDM(Format(\"Object {object_id}\", object_id=object_id))\n\n    #Publish the object_id to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/object_id\", object_id)\n\n    #Set the LEDs as Green\n    Call(rgb, 0,255,0)\n\n################################################################################\n#While loop for capting commands from Node-RED\n################################################################################\n\noutput = StreamingOutput()\naddress = ('192.168.4.1', 8000)\nserver = StreamingServer(address, StreamingHandler)\nthreading.Thread(target=server.serve_forever).start()\ncamera.start_recording(output, format='mjpeg', resize=(640, 480))\n\nwhile True:\n\n    ############################################################################\n    #Pump Event\n    ############################################################################\n\n    #If the command is \"pump\"\n    if (command==\"pump\"):\n\n        #Set the LEDs as Blue\n        rgb(0,0,255)\n\n        #Get direction from the different received arguments\n        direction=args.split(\" \")[0]\n\n        #Get delay (in between steps) from the different received arguments\n        delay=float(args.split(\" \")[1])\n\n        #Get number of steps from the different received arguments\n        nb_step=int(args.split(\" \")[2])\n\n        #Print status\n        print(\"The pump has been started.\")\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/pump\", \"Start\");\n\n        ########################################################################\n        while True:\n\n            #Depending on direction, select the right direction for the pump\n            if direction == \"BACKWARD\":\n                direction=stepper.BACKWARD\n\n            if direction == \"FORWARD\":\n                direction=stepper.FORWARD\n\n            #Actuate the pump for one step in the right direction\n            pump_stepper.onestep(direction=direction, style=stepper.DOUBLE)\n\n            #Increment the counter\n            counter+=1\n\n            #Wait during the delay to pump at the right flowrate\n            sleep(delay)\n\n            ####################################################################\n            #If counter reach the number of step, break\n            if counter>nb_step:\n\n                #Release the pump stepper to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The pumping is done.\")\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/pump\", \"Done\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"pump\", break this while loop\n            if command!=\"pump\":\n\n                #Release the pump stepper to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The pump has been interrompted.\")\n\n                #Publish the status \"Interrompted\" to via MQTT to Node-RED\n                client.publish(\"receiver/pump\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    ############################################################################\n    #Focus Event\n    ############################################################################\n\n    #If the command is \"focus\"\n    elif (command==\"focus\"):\n\n        #Set the LEDs as Yellow\n        rgb(255,255,0)\n\n        #Get direction from the different received arguments\n        direction=args.split(\" \")[0]\n\n        #Get number of steps from the different received arguments\n        nb_step=int(args.split(\" \")[1])\n\n        #Print status\n        print(\"The focus has been started.\")\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/focus\", \"Start\");\n\n        ########################################################################\n        while True:\n\n            #Depending on direction, select the right direction for the focus\n            if direction == \"FORWARD\":\n                direction=stepper.FORWARD\n\n            if direction == \"BACKWARD\":\n                direction=stepper.BACKWARD\n\n            #Actuate the focus for one microstep in the right direction\n            focus_stepper.onestep(direction=direction, style=stepper.MICROSTEP)\n\n            #Increment the counter\n            counter+=1\n\n            ####################################################################\n            #If counter reach the number of step, break\n            if counter>nb_step:\n\n                #Release the focus steppers to stop power draw\n                focus_stepper.release()\n\n                #Print status\n                print(\"The focusing is done.\")\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/focus\", \"Done\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"pump\", break this while loop\n            if command!=\"focus\":\n\n                #Release the focus steppers to stop power draw\n                focus_stepper.release()\n\n                #Print status\n                print(\"The stage has been interrompted.\")\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/focus\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    ############################################################################\n    #Image Event\n    ############################################################################\n\n    elif (command==\"image\"):\n        \n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/image\", \"Will do my best dude\");\n\n        #Get duration to wait before an image from the different received arguments\n        sleep_before=int(args.split(\" \")[0])\n\n        #Get number of step in between two images from the different received arguments\n        nb_step=int(args.split(\" \")[1])\n\n        #Get the number of frames to image from the different received arguments\n        nb_frame=int(args.split(\" \")[2])\n\n        #Get the segmentation status (true/false) from the different received arguments\n        segmentation=str(args.split(\" \")[3])\n\n        #Sleep a duration before to start acquisition\n        sleep(sleep_before)\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/image\", \"Start\");\n\n        #Set the LEDs as Blue\n        rgb(0,0,255)\n\n        #Pump duing a given number of steps (in between each image)\n        for i in range(nb_step):\n\n            #If the command is still image - pump a defined nb of steps\n            if (command==\"image\"):\n\n                #Actuate the pump for one step in the FORWARD direction\n                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)\n\n                #The flowrate is fixed for now.\n                sleep(0.01)\n\n            #If the command isn't image anymore - break\n            else:\n\n                break\n\n        #Set the LEDs as Green\n        rgb(0,255,0)\n\n        while True:\n\n            #Set the LEDs as Cyan\n            rgb(0,255,255)\n\n            #Increment the counter\n            counter+=1\n\n            #Get datetime\n            datetime_tmp=datetime.now().strftime(\"%H_%M_%S_%f\")\n\n            #Print datetime\n            print(datetime_tmp)\n\n            #Define the filename of the image\n            filename = os.path.join(\"/home/pi/PlanktonScope/tmp\",datetime_tmp+\".jpg\")\n\n            #Capture an image with the proper filename\n            camera.capture(filename)\n\n            #Set the LEDs as Green\n            rgb(0,255,0)\n\n            #Publish the name of the image to via MQTT to Node-RED\n\n            client.publish(\"receiver/image\", datetime_tmp+\".jpg has been imaged.\");\n            \n            #Set the LEDs as Blue\n            rgb(0,0,255)\n\n            #Pump during a given nb of steps\n            for i in range(nb_step):\n\n                #Actuate the pump for one step in the FORWARD direction\n                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)\n\n                #The flowrate is fixed for now.\n                sleep(0.01)\n\n            #Wait a fixed delay which set the framerate as < than 2 imag/sec\n            sleep(0.5)\n\n            #Set the LEDs as Green\n            rgb(0,255,0)\n\n            ####################################################################\n            #If counter reach the number of frame, break\n            if(counter>nb_frame):\n\n                #Publish the status \"Completed\" to via MQTT to Node-RED\n                client.publish(\"receiver/image\", \"Completed\");\n\n                #Release the pump steppers to stop power draw\n                pump_stepper.release()\n\n                if(segmentation == \"True\"):\n\n                    #Publish the status \"Start\" to via MQTT to Node-RED\n                    client.publish(\"receiver/segmentation\", \"Start\");\n\n                    #Start the MorphoCut Pipeline\n                    p.run()\n\n                    #remove directory\n                    #shutil.rmtree(import_path)\n\n                    #Publish the status \"Completed\" to via MQTT to Node-RED\n                    client.publish(\"receiver/segmentation\", \"Completed\");\n\n                    #Set the LEDs as White\n                    rgb(255,255,255)\n\n                    #cmd = os.popen(\"rm -rf /home/pi/PlanktonScope/tmp/*.jpg\")\n\n                    #Let it happen\n                    sleep(1)\n\n                    #Set the LEDs as Green\n                    rgb(0,255,0)\n\n                    #End if(segmentation == \"True\"):\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n                    \n                #Set the LEDs as Green\n                rgb(0,255,255)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"image\", break this while loop\n            if command!=\"image\":\n\n                #Release the pump steppers to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The imaging has been interrompted.\")\n\n                #Publish the status \"Interrompted\" to via MQTT to Node-RED\n                client.publish(\"receiver/image\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    else:\n        #Set the LEDs as Black\n        rgb(0,0,0)\n        #Its just waiting to receive command from Node-RED\n        sleep(1)\n        #Set the LEDs as White\n        rgb(255,255,255)\n        #Its just waiting to receive command from Node-RED\n        sleep(1)\n",
+        "output": "str",
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "500abffa.c7a788"
+            ]
+        ]
+    },
+    {
+        "id": "a11158b1.b7649",
+        "type": "debug",
+        "z": "e8320d42.9a3ad8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1230,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "cf9e02a2.3feff",
+        "type": "exec",
+        "z": "e8320d42.9a3ad8",
+        "command": "ps -ax | grep \"python3.7 /home/pi/PlanktonScope/script/main.py\"| head -1 | awk -F \" \" '{print$1}' ",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 430,
+        "y": 40,
+        "wires": [
+            [
+                "945415c5.01217"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "945415c5.01217",
+        "type": "exec",
+        "z": "e8320d42.9a3ad8",
+        "command": "kill",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 910,
+        "y": 40,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "18da28e6.7b000f",
+        "type": "delay",
+        "z": "e8320d42.9a3ad8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "985c65de.0801b"
+            ]
+        ]
+    },
+    {
+        "id": "6384a5e.e34465c",
+        "type": "subflow",
+        "name": "Datetime update",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 140,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "42ffcda3.49c30c"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "color": "#DDAA99",
+        "icon": "font-awesome/fa-clock-o"
+    },
+    {
+        "id": "e3824a97.8f2c3",
+        "type": "exec",
+        "z": "6384a5e.e34465c",
+        "command": "sudo date -s",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1010,
+        "y": 240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a5a13db6.4c6958",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = new Date();\n//get weekday\nvar weekday = new Array(7);\nweekday[0] = \"Sun\";\nweekday[1] = \"Mon\";\nweekday[2] = \"Tue\";\nweekday[3] = \"Wed\";\nweekday[4] = \"Thu\";\nweekday[5] = \"Fri\";\nweekday[6] = \"Sat\";\nvar w = weekday[d.getUTCDay()];\n//get Month\nvar month = new Array(12);\nmonth[0] = \"Jan\";\nmonth[1] = \"Feb\";\nmonth[2] = \"Mar\";\nmonth[3] = \"Apr\";\nmonth[4] = \"May\";\nmonth[5] = \"Jun\";\nmonth[6] = \"Jul\";\nmonth[7] = \"Aug\";\nmonth[8] = \"Sep\";\nmonth[9] = \"Oct\";\nmonth[10] = \"Nov\";\nmonth[11] = \"Dec\";\nvar n = month[d.getUTCMonth()];\n  \n//get day\nvar day = d.getUTCDay()\n\n//get Hours\nvar Hours = d.getUTCHours();\n//get Minutes\nvar Minutes = d.getUTCMinutes();\n//get Seconds\nvar Seconds = d.getUTCSeconds();\n//get FullYear\nvar FullYear = d.getUTCFullYear();\n\n//Thu Aug 09 2012 23:34:04 GMT+0200 (GMT+02:00)\n\n//Thu Aug  9 21:31:26 UTC 2012\n\n//msg.payload = \"Thu Aug  9 21:31:26 UTC 2012\"\n\nmsg.payload = '\"'+w+\" \"+n+\" \"+day+\" \"+Hours+\":\"+Minutes+\":\"+Seconds+\" UTC \"+FullYear+'\"';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 40,
+        "wires": [
+            [
+                "bafb69f.a42ea18"
+            ]
+        ]
+    },
+    {
+        "id": "bafb69f.a42ea18",
+        "type": "ui_template",
+        "z": "6384a5e.e34465c",
+        "group": "9c86b3b7.54841",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 640,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "81f9cd4c.8540b",
+        "type": "ui_numeric",
+        "z": "6384a5e.e34465c",
+        "name": "tmp_year",
+        "label": "Year",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "tmp_year",
+        "format": "{{value}}",
+        "min": "2020",
+        "max": "2030",
+        "step": 1,
+        "x": 640,
+        "y": 80,
+        "wires": [
+            [
+                "8f5a74df.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "274f25fc.9e61ba",
+        "type": "ui_numeric",
+        "z": "6384a5e.e34465c",
+        "name": "tmp_month",
+        "label": "Month",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "tmp_month",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "12",
+        "step": 1,
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "8f5a74df.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "4ddcb673.905a",
+        "type": "ui_numeric",
+        "z": "6384a5e.e34465c",
+        "name": "tmp_day",
+        "label": "Day",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "tmp_day",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "31",
+        "step": 1,
+        "x": 640,
+        "y": 160,
+        "wires": [
+            [
+                "8f5a74df.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "248eee4c.238282",
+        "type": "ui_numeric",
+        "z": "6384a5e.e34465c",
+        "name": "tmp_hour",
+        "label": "Hour",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "tmp_hour",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "23",
+        "step": 1,
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "8f5a74df.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "a368c4b7.2dc4b8",
+        "type": "ui_numeric",
+        "z": "6384a5e.e34465c",
+        "name": "tmp_minute",
+        "label": "Minute",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "tmp_minute",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "59",
+        "step": 1,
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "8f5a74df.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "96cc9953.9496c8",
+        "type": "ui_numeric",
+        "z": "6384a5e.e34465c",
+        "name": "tmp_second",
+        "label": "Second",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "wrap": false,
+        "passthru": true,
+        "topic": "tmp_second",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "59",
+        "step": 1,
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "8f5a74df.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "d6240495.8429c",
+        "type": "interval",
+        "z": "6384a5e.e34465c",
+        "name": "interval",
+        "interval": "1",
+        "onstart": false,
+        "msg": "ping",
+        "showstatus": true,
+        "unit": "seconds",
+        "statusformat": "YYYY-MM-D HH:mm:ss",
+        "x": 310,
+        "y": 40,
+        "wires": [
+            [
+                "a5a13db6.4c6958"
+            ]
+        ]
+    },
+    {
+        "id": "e8d38dc0.c7e84",
+        "type": "ui_button",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "group": "9c86b3b7.54841",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Update",
+        "tooltip": "",
+        "color": "black",
+        "bgcolor": "white",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 640,
+        "y": 320,
+        "wires": [
+            [
+                "581f71d3.bde458"
+            ]
+        ]
+    },
+    {
+        "id": "581f71d3.bde458",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "update datetime",
+        "func": "var FullYear= global.get(\"year\");\nvar Month= global.get(\"month\");\nvar day= global.get(\"day\");\nvar Hours= global.get(\"hour\");\nvar Minutes= global.get(\"minute\");\nvar Seconds= global.get(\"second\");\n\nmsg.payload = new Date();\n//get Month\nvar month = new Array(12);\nmonth[1] = \"Jan\";\nmonth[2] = \"Feb\";\nmonth[3] = \"Mar\";\nmonth[4] = \"Apr\";\nmonth[5] = \"May\";\nmonth[6] = \"Jun\";\nmonth[7] = \"Jul\";\nmonth[8] = \"Aug\";\nmonth[9] = \"Sep\";\nmonth[10] = \"Oct\";\nmonth[11] = \"Nov\";\nmonth[12] = \"Dec\";\nvar n = month[Month];\n  \nmsg.payload = '\"'+day+\" \"+n+\" \"+FullYear+\" \"+Hours+\":\"+Minutes+\":\"+Seconds+'\"';\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 320,
+        "wires": [
+            [
+                "6b023a67.faa104",
+                "e3824a97.8f2c3"
+            ]
+        ]
+    },
+    {
+        "id": "8f5a74df.0663f",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "set global",
+        "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 840,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b023a67.faa104",
+        "type": "debug",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1010,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4ab089b9.1098",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = msg.payload;\n\nvar val = d.getUTCFullYear();\n\nmsg.payload = val;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 80,
+        "wires": [
+            [
+                "81f9cd4c.8540b"
+            ]
+        ]
+    },
+    {
+        "id": "42ffcda3.49c30c",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = new Date();\nmsg.payload = d\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "4ab089b9.1098",
+                "13529b2c.cb9d9d",
+                "c09bb768.0e7518",
+                "967b4488.670f08",
+                "3e3732d.273a04e",
+                "327729f0.afe466"
+            ]
+        ]
+    },
+    {
+        "id": "13529b2c.cb9d9d",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = msg.payload;\n\nvar val = d.getUTCMonth();\n\nmsg.payload = val+1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "274f25fc.9e61ba"
+            ]
+        ]
+    },
+    {
+        "id": "c09bb768.0e7518",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = msg.payload;\n\nvar val = d.getUTCDay();\n\nmsg.payload = val;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "4ddcb673.905a"
+            ]
+        ]
+    },
+    {
+        "id": "967b4488.670f08",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = msg.payload;\n\nvar val = d.getUTCHours();\n\nmsg.payload = val;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "248eee4c.238282"
+            ]
+        ]
+    },
+    {
+        "id": "3e3732d.273a04e",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = msg.payload;\n\nvar val = d.getUTCMinutes();\n\nmsg.payload = val;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "a368c4b7.2dc4b8"
+            ]
+        ]
+    },
+    {
+        "id": "327729f0.afe466",
+        "type": "function",
+        "z": "6384a5e.e34465c",
+        "name": "",
+        "func": "d = msg.payload;\n\nvar val = d.getUTCSeconds();\n\nmsg.payload = val;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "96cc9953.9496c8"
+            ]
+        ]
+    },
+    {
+        "id": "9c86b3b7.54841",
+        "type": "ui_group",
+        "z": "",
+        "name": "Datetime",
+        "tab": "2b97fe34.a699fa",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "a156df1e.d37178",
+        "type": "subflow",
+        "name": "Acquisition inputs",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "2dd27be1.476eac"
+                    },
+                    {
+                        "id": "3883d084.feb708"
+                    },
+                    {
+                        "id": "4bf1038f.d36f9c"
+                    },
+                    {
+                        "id": "ae15c276.ec8c68"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 740,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "b996437b.1a45b8",
+                        "port": 0
+                    },
+                    {
+                        "id": "d56a51c1.60023",
+                        "port": 0
+                    },
+                    {
+                        "id": "229ade87.b1656a",
+                        "port": 0
+                    },
+                    {
+                        "id": "5e093b67.a32f9c",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#A6BBCF",
+        "icon": "node-red-contrib-camerapi/photo.png"
+    },
+    {
+        "id": "b996437b.1a45b8",
+        "type": "ui_text_input",
+        "z": "a156df1e.d37178",
+        "name": "custom_nb_step",
+        "label": "Number of steps in between two images",
+        "tooltip": "",
+        "group": "48649115.fcd01",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "custom_nb_step",
+        "x": 540,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "229ade87.b1656a",
+        "type": "ui_text_input",
+        "z": "a156df1e.d37178",
+        "name": "custom_nb_frame",
+        "label": "Number of images per acquisition",
+        "tooltip": "",
+        "group": "48649115.fcd01",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "custom_nb_frame",
+        "x": 530,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2dd27be1.476eac",
+        "type": "function",
+        "z": "a156df1e.d37178",
+        "name": "get custom_nb_step",
+        "func": "msg.payload = msg.payload.custom_nb_step;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "b996437b.1a45b8"
+            ]
+        ]
+    },
+    {
+        "id": "4bf1038f.d36f9c",
+        "type": "function",
+        "z": "a156df1e.d37178",
+        "name": "get custom_nb_frame",
+        "func": "msg.payload = msg.payload.custom_nb_frame;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "229ade87.b1656a"
+            ]
+        ]
+    },
+    {
+        "id": "ae15c276.ec8c68",
+        "type": "function",
+        "z": "a156df1e.d37178",
+        "name": "get custom_segmentation",
+        "func": "msg.payload = msg.payload.custom_segmentation;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "5e093b67.a32f9c"
+            ]
+        ]
+    },
+    {
+        "id": "3883d084.feb708",
+        "type": "function",
+        "z": "a156df1e.d37178",
+        "name": "get custom_sleep_before",
+        "func": "msg.payload = msg.payload.custom_sleep_before;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 40,
+        "wires": [
+            [
+                "d56a51c1.60023"
+            ]
+        ]
+    },
+    {
+        "id": "d56a51c1.60023",
+        "type": "ui_text_input",
+        "z": "a156df1e.d37178",
+        "name": "custom_sleep_before",
+        "label": "Duration before the acquisition (s)",
+        "tooltip": "",
+        "group": "48649115.fcd01",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "custom_sleep_before",
+        "x": 520,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e093b67.a32f9c",
+        "type": "ui_switch",
+        "z": "a156df1e.d37178",
+        "name": "custom_segmentation",
+        "label": "Realize the segmentation",
+        "tooltip": "",
+        "group": "48649115.fcd01",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "custom_segmentation",
+        "style": "",
+        "onvalue": "True",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "False",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48649115.fcd01",
+        "type": "ui_group",
+        "z": "",
+        "name": "Acquisition inputs",
+        "tab": "2b97fe34.a699fa",
+        "order": 9,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "99798a85.e62408",
+        "type": "subflow",
+        "name": "Process metadata",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "20414296.54837e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 700,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "d5ab9061.b06a9",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "d5ab9061.b06a9",
+        "type": "ui_text_input",
+        "z": "99798a85.e62408",
+        "name": "process_id",
+        "label": "Id of the process",
+        "tooltip": "",
+        "group": "beeb994e.b67688",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "process_id",
+        "x": 550,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20414296.54837e",
+        "type": "function",
+        "z": "99798a85.e62408",
+        "name": "get process_id",
+        "func": "msg.payload = msg.payload.process_id+1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "d5ab9061.b06a9"
+            ]
+        ]
+    },
+    {
+        "id": "beeb994e.b67688",
+        "type": "ui_group",
+        "z": "",
+        "name": "Process metadata",
+        "tab": "2b97fe34.a699fa",
+        "order": 8,
+        "disp": true,
+        "width": 24,
+        "collapse": false
+    },
+    {
+        "id": "246abd43.838a5a",
+        "type": "subflow",
+        "name": "MQTT Receive & Plot",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "color": "#F3B567",
+        "icon": "node-red/bridge.svg"
+    },
+    {
+        "id": "1aeca49c.10b893",
+        "type": "mqtt in",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "topic": "receiver/#",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "84801dc0.193d88",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "be5de01e.45d56",
+                "613bee5b.042fe"
+            ]
+        ]
+    },
+    {
+        "id": "be5de01e.45d56",
+        "type": "switch",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "receiver/pump",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "receiver/focus",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "receiver/image",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "receiver/segmentation",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 230,
+        "y": 40,
+        "wires": [
+            [
+                "d39289fb.9f759"
+            ],
+            [
+                "e2ab3af3.e61a8"
+            ],
+            [
+                "e43e94c.c297968"
+            ],
+            [
+                "b06c80f3.f1642"
+            ]
+        ]
+    },
+    {
+        "id": "d39289fb.9f759",
+        "type": "switch",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Interrompted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 40,
+        "wires": [
+            [
+                "267bd959.17b856"
+            ],
+            [
+                "265e58c6.06de38"
+            ],
+            [
+                "a433c901.2abd48"
+            ]
+        ]
+    },
+    {
+        "id": "267bd959.17b856",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The pump has started",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The pump has started",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 40,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "265e58c6.06de38",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The pump has finished.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The pump has finished.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 80,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "a433c901.2abd48",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The pump has been stopped.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The pump has been stopped.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 120,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "e2ab3af3.e61a8",
+        "type": "switch",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Interrompted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "bd89c468.5a4f4"
+            ],
+            [
+                "762ab12c.cc7e88"
+            ],
+            [
+                "ecb1efe6.7cb968"
+            ]
+        ]
+    },
+    {
+        "id": "bd89c468.5a4f4",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The focus has started",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The focus has started",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "762ab12c.cc7e88",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The focus has finished.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The focus has finished.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "ecb1efe6.7cb968",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The focus has been stopped.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The focus has been stopped.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 280,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "e43e94c.c297968",
+        "type": "switch",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Interrompted",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "jpg",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "87a2aa4d.3590c8"
+            ],
+            [
+                "da9f9e9b.7c9f5"
+            ],
+            [
+                "1143b916.5047b7"
+            ],
+            [
+                "fa7f2eaf.0e6f1",
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "30c9c4c9.d46e3c",
+        "type": "switch",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 560,
+        "wires": [
+            [
+                "23e5c77c.4f63f"
+            ],
+            [
+                "5491334a.93cbfc"
+            ]
+        ]
+    },
+    {
+        "id": "da9f9e9b.7c9f5",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The acquisition has finished.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The acquisition has finished.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 400,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "1143b916.5047b7",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The acquisition has been stopped.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The acquisition has been stopped.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 440,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "87a2aa4d.3590c8",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The acquisition has started",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The acquisition has started",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 360,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "fa7f2eaf.0e6f1",
+        "type": "function",
+        "z": "246abd43.838a5a",
+        "name": "img_counter.js",
+        "func": "img_counter=global.get('img_counter')\nimg_counter=img_counter+1\nglobal.set('img_counter',img_counter)\nmsg.payload = img_counter\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 480,
+        "wires": [
+            [
+                "582d7204.ec89fc"
+            ]
+        ]
+    },
+    {
+        "id": "498b3d58.58b1a4",
+        "type": "function",
+        "z": "246abd43.838a5a",
+        "name": "obj_counter.js",
+        "func": "obj_counter=global.get('obj_counter')\nobj_counter=obj_counter+1\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 640,
+        "wires": [
+            [
+                "67618ae5.b74864"
+            ]
+        ]
+    },
+    {
+        "id": "582d7204.ec89fc",
+        "type": "ui_chart",
+        "z": "246abd43.838a5a",
+        "name": "img_counter",
+        "group": "eb610eb9.84fae8",
+        "order": 2,
+        "width": 23,
+        "height": 2,
+        "label": "img_counter",
+        "chartType": "horizontalBar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b06c80f3.f1642",
+        "type": "switch",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "receiver/segmentation",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "receiver/segmentation/object_id",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "receiver/segmentation/metric",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 560,
+        "wires": [
+            [
+                "30c9c4c9.d46e3c"
+            ],
+            [
+                "498b3d58.58b1a4"
+            ],
+            [
+                "33094026.f6e8c"
+            ]
+        ]
+    },
+    {
+        "id": "5491334a.93cbfc",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The segmentation has finished.",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The segmentation has finished.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 600,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "23e5c77c.4f63f",
+        "type": "change",
+        "z": "246abd43.838a5a",
+        "name": "The segmentation has started",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The segmentation has started",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 560,
+        "wires": [
+            [
+                "3b6b4fd4.8c3368"
+            ]
+        ]
+    },
+    {
+        "id": "67618ae5.b74864",
+        "type": "ui_chart",
+        "z": "246abd43.838a5a",
+        "name": "obj_counter",
+        "group": "eb610eb9.84fae8",
+        "order": 5,
+        "width": 23,
+        "height": 2,
+        "label": "obj_counter",
+        "chartType": "horizontalBar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": true,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c29eb4.e570414",
+        "type": "function",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "func": "msg.payload=msg.payload.object_area\nmsg.topic=\"area\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 700,
+        "wires": [
+            [
+                "84dfe51a.0e9fd"
+            ]
+        ]
+    },
+    {
+        "id": "33094026.f6e8c",
+        "type": "json",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 650,
+        "y": 700,
+        "wires": [
+            [
+                "3c29eb4.e570414"
+            ]
+        ]
+    },
+    {
+        "id": "9b672325.568a18",
+        "type": "exec",
+        "z": "246abd43.838a5a",
+        "command": "free -m | grep \"Mem\" | awk -F ' ' '{print $3}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "Get memory used",
+        "x": 750,
+        "y": 780,
+        "wires": [
+            [
+                "76a7ddb6.fbde64"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7c9eaef6.142a4",
+        "type": "inject",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "9b672325.568a18"
+            ]
+        ]
+    },
+    {
+        "id": "76a7ddb6.fbde64",
+        "type": "ui_chart",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "group": "eb610eb9.84fae8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Memory load",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "200",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84dfe51a.0e9fd",
+        "type": "ui_chart",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "group": "eb610eb9.84fae8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b6b4fd4.8c3368",
+        "type": "ui_toast",
+        "z": "246abd43.838a5a",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1220,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "613bee5b.042fe",
+        "type": "debug",
+        "z": "246abd43.838a5a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 240,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "84801dc0.193d88",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "test",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "eb610eb9.84fae8",
+        "type": "ui_group",
+        "z": "",
+        "name": "MQTT Plots",
+        "tab": "2b97fe34.a699fa",
+        "order": 11,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "1273b673.4a35ea",
+        "type": "subflow",
+        "name": "System Commands",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "color": "#FFCC66",
+        "icon": "node-red-dashboard/ui_button.png"
+    },
+    {
+        "id": "44a78834.e8f8b8",
+        "type": "ui_button",
+        "z": "1273b673.4a35ea",
+        "name": "",
+        "group": "82b3caaa.0518",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reboot",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "reboot",
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "aba9aac1.c2d198"
+            ]
+        ]
+    },
+    {
+        "id": "a32bfa65.bc6b9",
+        "type": "exec",
+        "z": "1273b673.4a35ea",
+        "command": "sudo",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "2",
+        "oldrc": false,
+        "name": "cmd",
+        "x": 530,
+        "y": 80,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "825c8791.c0bfb",
+        "type": "ui_button",
+        "z": "1273b673.4a35ea",
+        "name": "",
+        "group": "82b3caaa.0518",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Shutdown",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "shutdown",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "aba9aac1.c2d198"
+            ]
+        ]
+    },
+    {
+        "id": "aba9aac1.c2d198",
+        "type": "python3-function",
+        "z": "1273b673.4a35ea",
+        "name": "action",
+        "func": "#!/usr/bin/python\nimport smbus\nimport time\nbus = smbus.SMBus(1)\ntime.sleep(1)\n#turn off fan RGB\nbus.write_byte_data(0x0d, 0x07, 0x00)\nbus.write_byte_data(0x0d, 0x07, 0x00)\n\nmsg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
+        "outputs": 1,
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "72b7368a.abad3",
+                "a32bfa65.bc6b9"
+            ]
+        ]
+    },
+    {
+        "id": "72b7368a.abad3",
+        "type": "exec",
+        "z": "1273b673.4a35ea",
+        "command": "i2cdetect -y 1",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "1",
+        "oldrc": false,
+        "name": "i2c update",
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "82b3caaa.0518",
+        "type": "ui_group",
+        "z": "",
+        "name": "Commands",
+        "tab": "2b97fe34.a699fa",
+        "order": 12,
+        "disp": true,
+        "width": 24,
+        "collapse": false
+    },
+    {
+        "id": "506e9090.6e905",
+        "type": "subflow",
+        "name": "Object metadata",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "4ab4976c.eee488"
+                    },
+                    {
+                        "id": "581c8a23.83fa8c"
+                    },
+                    {
+                        "id": "52052007.b3d0e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1060,
+                "y": 159,
+                "wires": [
+                    {
+                        "id": "26b33a5c.0ef82e",
+                        "port": 0
+                    },
+                    {
+                        "id": "9ee0935a.415808",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1060,
+                "y": 59,
+                "wires": [
+                    {
+                        "id": "d3875217.e3b668",
+                        "port": 0
+                    },
+                    {
+                        "id": "82fef572.49b5f",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "26b33a5c.0ef82e",
+        "type": "ui_numeric",
+        "z": "506e9090.6e905",
+        "name": "object_depth_min",
+        "label": "Minimum depth (m)",
+        "tooltip": "",
+        "group": "f377d75b.32d27",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "object_depth_min",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "2000",
+        "step": "1",
+        "x": 610,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ee0935a.415808",
+        "type": "ui_numeric",
+        "z": "506e9090.6e905",
+        "name": "object_depth_max",
+        "label": "Maximum depth (m)",
+        "tooltip": "",
+        "group": "f377d75b.32d27",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "object_depth_max",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "2000",
+        "step": "1",
+        "x": 610,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ab4976c.eee488",
+        "type": "function",
+        "z": "506e9090.6e905",
+        "name": "get object_depth_min",
+        "func": "msg.payload = msg.payload.object_depth_min;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 304,
+        "y": 120,
+        "wires": [
+            [
+                "26b33a5c.0ef82e"
+            ]
+        ]
+    },
+    {
+        "id": "581c8a23.83fa8c",
+        "type": "function",
+        "z": "506e9090.6e905",
+        "name": "get object_depth_max",
+        "func": "msg.payload = msg.payload.object_depth_max;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 304,
+        "y": 160,
+        "wires": [
+            [
+                "9ee0935a.415808"
+            ]
+        ]
+    },
+    {
+        "id": "472998cd.45f588",
+        "type": "gpsd",
+        "z": "506e9090.6e905",
+        "name": "",
+        "hostname": "localhost",
+        "port": "2947",
+        "tpv": true,
+        "sky": false,
+        "info": false,
+        "device": false,
+        "gst": false,
+        "att": false,
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "52052007.b3d0e",
+                "ab40705d.43a5d"
+            ]
+        ]
+    },
+    {
+        "id": "7d5701.1e1981",
+        "type": "ui_worldmap",
+        "z": "506e9090.6e905",
+        "d": true,
+        "group": "f377d75b.32d27",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "lat": "1.5",
+        "lon": "1.5",
+        "zoom": "4",
+        "layer": "OSM grey",
+        "cluster": "1",
+        "maxage": "",
+        "usermenu": "hide",
+        "layers": "hide",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "deg",
+        "showgrid": "false",
+        "path": "/worldmap",
+        "x": 640,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "52052007.b3d0e",
+        "type": "function",
+        "z": "506e9090.6e905",
+        "name": "get object_lat & object_lon",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "7d5701.1e1981"
+            ]
+        ]
+    },
+    {
+        "id": "d3875217.e3b668",
+        "type": "function",
+        "z": "506e9090.6e905",
+        "name": "set object_time",
+        "func": "var time = new Date(msg.payload);\n\nvar hour = time.getUTCHours();\nif (hour<10){hour = \"0\"+hour;}\nvar minute = time.getUTCMinutes();\nif (minute<10){minute = \"0\"+minute;}\n\nvar time_UTC = \"\"+hour+minute;\nglobal.set('object_time',time_UTC);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 804,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82fef572.49b5f",
+        "type": "function",
+        "z": "506e9090.6e905",
+        "name": "set object_date",
+        "func": "var date = new Date(msg.payload);\n\nvar year = date.getUTCFullYear();\nvar month = date.getUTCMonth()+1;\nif (month<10){month = \"0\"+month;}\nvar day = date.getUTCDate();\nif (day<10){day = \"0\"+day;}\n\nvar date_UTC = \"\"+year+month+day;\nglobal.set('object_date',date_UTC);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 804,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab40705d.43a5d",
+        "type": "debug",
+        "z": "506e9090.6e905",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 280,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f377d75b.32d27",
+        "type": "ui_group",
+        "z": "",
+        "name": "Object metadata",
+        "tab": "2b97fe34.a699fa",
+        "order": 6,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "97d77aeb.75afd8",
+        "type": "subflow",
+        "name": "Acquisition metadata",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "282cae65.749e9a"
+                    },
+                    {
+                        "id": "cc899daf.a8d5d8"
+                    },
+                    {
+                        "id": "9873f1c8.6cb608"
+                    },
+                    {
+                        "id": "e53df171.eed68"
+                    },
+                    {
+                        "id": "5f728563.cf6214"
+                    },
+                    {
+                        "id": "c1a5eaf5.8691c"
+                    },
+                    {
+                        "id": "86c63d98.eb21"
+                    },
+                    {
+                        "id": "3707a612.b8619a"
+                    },
+                    {
+                        "id": "b2d20d5d.fd9e38"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 740,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "3b267291.1eee26",
+                        "port": 0
+                    },
+                    {
+                        "id": "435a2dcf.a1a60c",
+                        "port": 0
+                    },
+                    {
+                        "id": "cc6cb58d.b2dbe8",
+                        "port": 0
+                    },
+                    {
+                        "id": "8b306bbc.914",
+                        "port": 0
+                    },
+                    {
+                        "id": "2a5a2b7a.f218d4",
+                        "port": 0
+                    },
+                    {
+                        "id": "28df07d8.d71ba8",
+                        "port": 0
+                    },
+                    {
+                        "id": "6cf2c1ac.a0fea8",
+                        "port": 0
+                    },
+                    {
+                        "id": "e7c4132f.f4417",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 900,
+                "y": 360,
+                "wires": [
+                    {
+                        "id": "1e688c91.1b805b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "1e688c91.1b805b",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "set optical config",
+        "func": "global.set(msg.topic,msg.payload);\nvar acq_fnumber_objective = String(global.get(msg.topic));\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    global.set(\"acq_magnification\",0.6);\n    global.set(\"process_pixel\",1.86);\n    global.set(\"sug_min\",60);\n    global.set(\"sug_max\",670);\n    global.set(\"sug_flowrate\",3);\n    break;\n  case \"16\":\n    global.set(\"acq_magnification\",0.94);\n    global.set(\"process_pixel\",1.19);\n    global.set(\"sug_min\",40);\n    global.set(\"sug_max\",430);\n    global.set(\"sug_flowrate\",2.4);\n    break;\n  case \"12\":\n    global.set(\"acq_magnification\",1.20);\n    global.set(\"process_pixel\",0.94);\n    global.set(\"sug_min\",30);\n    global.set(\"sug_max\",340);\n    global.set(\"sug_flowrate\",1.25);\n    break;\n  case \"8\":\n    global.set(\"acq_magnification\",1.78);\n    global.set(\"process_pixel\",0.63);\n    global.set(\"sug_min\",20);\n    global.set(\"sug_max\",230);\n    global.set(\"sug_flowrate\",0.42);\n    break;\n  case \"6\":\n    global.set(\"acq_magnification\",2.36);\n    global.set(\"process_pixel\",0.48);\n    global.set(\"sug_min\",15);\n    global.set(\"sug_max\",170);\n    global.set(\"sug_flowrate\",0.32);\n    break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2877f2f.211cc8e",
+        "type": "ui_dropdown",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_fnumber_objective",
+        "label": "M12 Lens*",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "60b93a5.a032344",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "x": 526,
+        "y": 360,
+        "wires": [
+            [
+                "1e688c91.1b805b"
+            ]
+        ]
+    },
+    {
+        "id": "8b306bbc.914",
+        "type": "ui_numeric",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_minimum_mesh",
+        "label": "Min fraction size (μm)",
+        "tooltip": "",
+        "group": "60b93a5.a032344",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "acq_minimum_mesh",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "300",
+        "step": "10",
+        "x": 536,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a5a2b7a.f218d4",
+        "type": "ui_numeric",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_maximum_mesh",
+        "label": "Max fraction size (μm)",
+        "tooltip": "",
+        "group": "60b93a5.a032344",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "acq_maximum_mesh",
+        "format": "{{value}}",
+        "min": "200",
+        "max": "2000",
+        "step": "100",
+        "x": 536,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b267291.1eee26",
+        "type": "ui_text_input",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_id",
+        "label": "Acquisition unique ID*",
+        "tooltip": "",
+        "group": "60b93a5.a032344",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "acq_id",
+        "x": 586,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc6cb58d.b2dbe8",
+        "type": "ui_dropdown",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_celltype",
+        "label": "Thickness flowcell*",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "60b93a5.a032344",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "200 μm µ-Slide I Luer",
+                "value": 200,
+                "type": "num"
+            },
+            {
+                "label": "400 μm µ-Slide I Luer",
+                "value": 400,
+                "type": "num"
+            },
+            {
+                "label": "600 μm µ-Slide I Luer",
+                "value": 600,
+                "type": "num"
+            },
+            {
+                "label": "800 μm µ-Slide I Luer",
+                "value": 800,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_celltype",
+        "x": 566,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28df07d8.d71ba8",
+        "type": "ui_text_input",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_volume",
+        "label": "Volume to pass (ml)",
+        "tooltip": "",
+        "group": "60b93a5.a032344",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "acq_volume",
+        "x": 566,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "435a2dcf.a1a60c",
+        "type": "ui_text_input",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_instrument",
+        "label": "Acquisition instrument",
+        "tooltip": "PlanktonScope V2.1",
+        "group": "60b93a5.a032344",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "acq_instrument",
+        "x": 556,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "282cae65.749e9a",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_id",
+        "func": "msg.payload = msg.payload.acq_id+1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 210,
+        "y": 40,
+        "wires": [
+            [
+                "3b267291.1eee26"
+            ]
+        ]
+    },
+    {
+        "id": "cc899daf.a8d5d8",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_instrument",
+        "func": "msg.payload = msg.payload.acq_instrument;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "435a2dcf.a1a60c"
+            ]
+        ]
+    },
+    {
+        "id": "9873f1c8.6cb608",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_celltype",
+        "func": "msg.payload = msg.payload.acq_celltype;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "cc6cb58d.b2dbe8"
+            ]
+        ]
+    },
+    {
+        "id": "e53df171.eed68",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_minimum_mesh",
+        "func": "msg.payload = msg.payload.acq_minimum_mesh;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "8b306bbc.914"
+            ]
+        ]
+    },
+    {
+        "id": "5f728563.cf6214",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_maximum_mesh",
+        "func": "msg.payload = msg.payload.acq_maximum_mesh;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "2a5a2b7a.f218d4"
+            ]
+        ]
+    },
+    {
+        "id": "c1a5eaf5.8691c",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_volume",
+        "func": "msg.payload = msg.payload.acq_volume;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "28df07d8.d71ba8"
+            ]
+        ]
+    },
+    {
+        "id": "b2d20d5d.fd9e38",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_fnumber_objective",
+        "func": "msg.payload = msg.payload.acq_fnumber_objective;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 360,
+        "wires": [
+            [
+                "2877f2f.211cc8e"
+            ]
+        ]
+    },
+    {
+        "id": "6cf2c1ac.a0fea8",
+        "type": "ui_numeric",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_min_esd",
+        "label": "Minimum size to segment (μm)",
+        "tooltip": "",
+        "group": "60b93a5.a032344",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "acq_min_esd",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "300",
+        "step": "5",
+        "x": 566,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7c4132f.f4417",
+        "type": "ui_numeric",
+        "z": "97d77aeb.75afd8",
+        "name": "acq_max_esd",
+        "label": "Maximum size to segment (μm)",
+        "tooltip": "",
+        "group": "60b93a5.a032344",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "acq_max_esd",
+        "format": "{{value}}",
+        "min": "100",
+        "max": "2000",
+        "step": "5",
+        "x": 556,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86c63d98.eb21",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_min_esd",
+        "func": "msg.payload = msg.payload.acq_min_esd;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "6cf2c1ac.a0fea8"
+            ]
+        ]
+    },
+    {
+        "id": "3707a612.b8619a",
+        "type": "function",
+        "z": "97d77aeb.75afd8",
+        "name": "get acq_max_esd",
+        "func": "msg.payload = msg.payload.acq_max_esd;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "e7c4132f.f4417"
+            ]
+        ]
+    },
+    {
+        "id": "60b93a5.a032344",
+        "type": "ui_group",
+        "z": "",
+        "name": "Acquisition metadata",
+        "tab": "2b97fe34.a699fa",
+        "order": 7,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "9a45991b.365bc8",
+        "type": "subflow",
+        "name": "Pump actuation",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "eb7c01ae.d00358"
+                    },
+                    {
+                        "id": "642ae1f3.cf7d28"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 700,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "4485759b.52ee74",
+                        "port": 0
+                    },
+                    {
+                        "id": "3283f063.31c548",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#A6BBCF",
+        "icon": "font-awesome/fa-recycle"
+    },
+    {
+        "id": "6246d9ef.156bd",
+        "type": "function",
+        "z": "9a45991b.365bc8",
+        "name": "pump.js",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    nb_step=volume*507\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    duration=(volume*60)/flowrate\n    delay=(duration/nb_step)-0.005\n    msg.topic = \"actuator/pump\";\n    \n    if(msg.payload === \"FORWARD\" & state===\"free\"){\n        msg.payload='FORWARD '+delay+' '+nb_step;\n    }\n    if(msg.payload === \"BACKWARD\" & state===\"free\"){\n        msg.payload='BACKWARD '+delay+' '+nb_step;\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 640,
+        "y": 140,
+        "wires": [
+            [
+                "53bef09a.8102e"
+            ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+    },
+    {
+        "id": "2374d55d.a3e3a2",
+        "type": "ui_button",
+        "z": "9a45991b.365bc8",
+        "name": "BACKWARD",
+        "group": "4153382f.45437",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_back",
+        "payload": "BACKWARD",
+        "payloadType": "str",
+        "topic": "actuator/pump",
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "6246d9ef.156bd"
+            ]
+        ]
+    },
+    {
+        "id": "c8aa9753.f51c08",
+        "type": "ui_button",
+        "z": "9a45991b.365bc8",
+        "name": "FORWARD",
+        "group": "4153382f.45437",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_forward",
+        "payload": "FORWARD",
+        "payloadType": "str",
+        "topic": "actuator/pump",
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "6246d9ef.156bd"
+            ]
+        ]
+    },
+    {
+        "id": "53bef09a.8102e",
+        "type": "switch",
+        "z": "9a45991b.365bc8",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "actuator/pump",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Missing entry :",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "4d3bf3c2.6a380c"
+            ],
+            [
+                "d943e58a.e85fc"
+            ]
+        ]
+    },
+    {
+        "id": "d943e58a.e85fc",
+        "type": "ui_toast",
+        "z": "9a45991b.365bc8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 930,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eaa22490.6843d",
+        "type": "ui_button",
+        "z": "9a45991b.365bc8",
+        "name": "stop pump",
+        "group": "4153382f.45437",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "label": "STOP PUMP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "actuator/wait",
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "9e71b7a5.28dff8"
+            ]
+        ]
+    },
+    {
+        "id": "4d3bf3c2.6a380c",
+        "type": "mqtt out",
+        "z": "9a45991b.365bc8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 910,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9e71b7a5.28dff8",
+        "type": "mqtt out",
+        "z": "9a45991b.365bc8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 610,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3283f063.31c548",
+        "type": "ui_text_input",
+        "z": "9a45991b.365bc8",
+        "name": "pump_manual_volume",
+        "label": "Volume to pass (ml)",
+        "tooltip": "",
+        "group": "4153382f.45437",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "pump_manual_volume",
+        "x": 480,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "642ae1f3.cf7d28",
+        "type": "function",
+        "z": "9a45991b.365bc8",
+        "name": "get pump_manual_volume",
+        "func": "msg.payload = msg.payload.pump_manual_volume;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "3283f063.31c548"
+            ]
+        ]
+    },
+    {
+        "id": "4485759b.52ee74",
+        "type": "ui_slider",
+        "z": "9a45991b.365bc8",
+        "name": "pump_flowrate",
+        "label": "Flowrate (ml/min)*",
+        "tooltip": "",
+        "group": "4153382f.45437",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "pump_flowrate",
+        "min": 0,
+        "max": "20",
+        "step": "0.1",
+        "x": 500,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb7c01ae.d00358",
+        "type": "function",
+        "z": "9a45991b.365bc8",
+        "name": "get pump_flowrate",
+        "func": "msg.payload = msg.payload.pump_flowrate;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 190,
+        "y": 40,
+        "wires": [
+            [
+                "4485759b.52ee74"
+            ]
+        ]
+    },
+    {
+        "id": "4153382f.45437",
+        "type": "ui_group",
+        "z": "",
+        "name": "Pump actuation",
+        "tab": "2b97fe34.a699fa",
+        "order": 5,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "ac806d39.1682a8",
+        "type": "subflow",
+        "name": "Focus actuation",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "c631467a.569ba"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 800,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "97bf666e.4d3ad",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#A6BBCF",
+        "icon": "node-red/sort.svg"
+    },
+    {
+        "id": "97bf666e.4d3ad",
+        "type": "ui_text_input",
+        "z": "ac806d39.1682a8",
+        "name": "focus_nb_step",
+        "label": "Number of step(s)",
+        "tooltip": "",
+        "group": "69433259.f306fc",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "focus_nb_step",
+        "x": 540,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c631467a.569ba",
+        "type": "function",
+        "z": "ac806d39.1682a8",
+        "name": "get focus_nb_step",
+        "func": "msg.payload = msg.payload.focus_nb_step;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 40,
+        "wires": [
+            [
+                "97bf666e.4d3ad"
+            ]
+        ]
+    },
+    {
+        "id": "8346f4af.5c0978",
+        "type": "ui_button",
+        "z": "ac806d39.1682a8",
+        "name": "DOWN",
+        "group": "69433259.f306fc",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_downward",
+        "payload": "DOWN",
+        "payloadType": "str",
+        "topic": "actuator/focus",
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "350c388d.12cd28"
+            ]
+        ]
+    },
+    {
+        "id": "7ee30e1c.691bd",
+        "type": "ui_button",
+        "z": "ac806d39.1682a8",
+        "name": "UP",
+        "group": "69433259.f306fc",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_upwards",
+        "payload": "UP",
+        "payloadType": "str",
+        "topic": "actuator/focus",
+        "x": 530,
+        "y": 81,
+        "wires": [
+            [
+                "350c388d.12cd28"
+            ]
+        ]
+    },
+    {
+        "id": "a2f04fac.5a338",
+        "type": "switch",
+        "z": "ac806d39.1682a8",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "actuator/focus",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Missing entry :",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 100,
+        "wires": [
+            [
+                "9fd904e.d1cbcf8"
+            ],
+            [
+                "ccd4fa1e.152"
+            ]
+        ]
+    },
+    {
+        "id": "ccd4fa1e.152",
+        "type": "ui_toast",
+        "z": "ac806d39.1682a8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 970,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "350c388d.12cd28",
+        "type": "function",
+        "z": "ac806d39.1682a8",
+        "name": "focus.js",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar nb_step= global.get(\"focus_nb_step\");\n\nif (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of steps\";\n    \n}else {\n    nb_step= global.get(\"focus_nb_step\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"FORWARD \"+nb_step;\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"BACKWARD \"+nb_step;\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 100,
+        "wires": [
+            [
+                "a2f04fac.5a338"
+            ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+    },
+    {
+        "id": "da904b2b.4a1d68",
+        "type": "ui_button",
+        "z": "ac806d39.1682a8",
+        "name": "stop focus",
+        "group": "69433259.f306fc",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "label": "STOP FOCUS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "actuator/wait",
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "8bb9c09d.bc8178"
+            ]
+        ]
+    },
+    {
+        "id": "9fd904e.d1cbcf8",
+        "type": "mqtt out",
+        "z": "ac806d39.1682a8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 950,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8bb9c09d.bc8178",
+        "type": "mqtt out",
+        "z": "ac806d39.1682a8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "e8ab36cc.74d77",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "69433259.f306fc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Focus actuation",
+        "tab": "2b97fe34.a699fa",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "e8ab36cc.74d77",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "0.0.0.0",
+        "port": "1883",
+        "clientid": "Client_node",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "5c6dd7ee.546fa8",
+        "type": "subflow",
+        "name": "Sample metadata",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "730e3aa0.75f6dc"
+                    },
+                    {
+                        "id": "b49441ee.07b358"
+                    },
+                    {
+                        "id": "77454044.f47e88"
+                    },
+                    {
+                        "id": "203e3416.6c480c"
+                    },
+                    {
+                        "id": "3555467a.6ba1ea"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 840,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "419967b7.b9b5f",
+                        "port": 0
+                    },
+                    {
+                        "id": "9b3f7b46.107718",
+                        "port": 0
+                    },
+                    {
+                        "id": "6f24740b.fbae5c",
+                        "port": 0
+                    },
+                    {
+                        "id": "bf7a47c8.a960b8",
+                        "port": 0
+                    },
+                    {
+                        "id": "327afe96.262122",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "6f24740b.fbae5c",
+        "type": "ui_text_input",
+        "z": "5c6dd7ee.546fa8",
+        "name": "sample_ship",
+        "label": "Name of the ship",
+        "tooltip": "",
+        "group": "417f91c9.193ab",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_ship",
+        "x": 590,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "327afe96.262122",
+        "type": "ui_dropdown",
+        "z": "5c6dd7ee.546fa8",
+        "name": "sample_sampling_gear",
+        "label": "Sampling gear",
+        "tooltip": "",
+        "place": "Select",
+        "group": "417f91c9.193ab",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "Plankton net",
+                "value": "net",
+                "type": "str"
+            },
+            {
+                "label": "Niskin bottle 12L",
+                "value": "niskin_12L",
+                "type": "str"
+            },
+            {
+                "label": "Niskin bottle 24L",
+                "value": "niskin_24L",
+                "type": "str"
+            },
+            {
+                "label": "Pass Hull",
+                "value": "pass_hull",
+                "type": "str"
+            },
+            {
+                "label": "Flask",
+                "value": "flask",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "sample_sampling_gear",
+        "x": 550,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf7a47c8.a960b8",
+        "type": "ui_text_input",
+        "z": "5c6dd7ee.546fa8",
+        "name": "sample_operator",
+        "label": "Name of the operator",
+        "tooltip": "",
+        "group": "417f91c9.193ab",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_operator",
+        "x": 570,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "419967b7.b9b5f",
+        "type": "ui_text_input",
+        "z": "5c6dd7ee.546fa8",
+        "name": "sample_project",
+        "label": "Name of the project*",
+        "tooltip": "",
+        "group": "417f91c9.193ab",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "sample_project",
+        "x": 580,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9b3f7b46.107718",
+        "type": "ui_text_input",
+        "z": "5c6dd7ee.546fa8",
+        "name": "sample_id",
+        "label": "ID of the station*",
+        "tooltip": "",
+        "group": "417f91c9.193ab",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "sample_id",
+        "x": 590,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "730e3aa0.75f6dc",
+        "type": "function",
+        "z": "5c6dd7ee.546fa8",
+        "name": "get sample_projet",
+        "func": "msg.payload = msg.payload.sample_project;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 40,
+        "wires": [
+            [
+                "419967b7.b9b5f"
+            ]
+        ]
+    },
+    {
+        "id": "77454044.f47e88",
+        "type": "function",
+        "z": "5c6dd7ee.546fa8",
+        "name": "get sample_ship",
+        "func": "msg.payload = msg.payload.sample_ship;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 120,
+        "wires": [
+            [
+                "6f24740b.fbae5c"
+            ]
+        ]
+    },
+    {
+        "id": "b49441ee.07b358",
+        "type": "function",
+        "z": "5c6dd7ee.546fa8",
+        "name": "get sample_id",
+        "func": "msg.payload = msg.payload.sample_id+1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "9b3f7b46.107718"
+            ]
+        ]
+    },
+    {
+        "id": "203e3416.6c480c",
+        "type": "function",
+        "z": "5c6dd7ee.546fa8",
+        "name": "get sample_operator",
+        "func": "msg.payload = msg.payload.sample_operator;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "bf7a47c8.a960b8"
+            ]
+        ]
+    },
+    {
+        "id": "3555467a.6ba1ea",
+        "type": "function",
+        "z": "5c6dd7ee.546fa8",
+        "name": "get sample_sampling_gear",
+        "func": "msg.payload = msg.payload.sample_sampling_gear;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "327afe96.262122"
+            ]
+        ]
+    },
+    {
+        "id": "417f91c9.193ab",
+        "type": "ui_group",
+        "z": "",
+        "name": "Sample metadata",
+        "tab": "2b97fe34.a699fa",
+        "order": 2,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "2b97fe34.a699fa",
+        "type": "ui_tab",
+        "z": "",
+        "name": "GUI",
+        "icon": "fa-eyedropper",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bb8dbe68.7e20a",
+        "type": "tab",
+        "label": "Main",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "20340bb6.5f923c",
+        "type": "function",
+        "z": "bb8dbe68.7e20a",
+        "name": "get global",
+        "func": "msg.payload={\n    \n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_nb_step\":global.get(\"focus_nb_step\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n        \n        \n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1260,
+        "y": 160,
+        "wires": [
+            [
+                "d69f0eb1.d514d"
+            ]
+        ]
+    },
+    {
+        "id": "aed82ae1.3a7558",
+        "type": "file",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "filename": "/home/pi/PlanktonScope/config.json",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1640,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d69f0eb1.d514d",
+        "type": "json",
+        "z": "bb8dbe68.7e20a",
+        "name": "config.json",
+        "property": "payload",
+        "action": "str",
+        "pretty": true,
+        "x": 1410,
+        "y": 160,
+        "wires": [
+            [
+                "aed82ae1.3a7558"
+            ]
+        ]
+    },
+    {
+        "id": "b57ab8b0.7bfc4",
+        "type": "file in",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "filename": "/home/pi/PlanktonScope/config.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 360,
+        "y": 80,
+        "wires": [
+            [
+                "5b6059c3.8d4fa8"
+            ]
+        ],
+        "info": "# PlanktonScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
+    },
+    {
+        "id": "7880a269.4817ac",
+        "type": "inject",
+        "z": "bb8dbe68.7e20a",
+        "name": "on_load",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "b57ab8b0.7bfc4",
+                "10d8393.60498c7",
+                "dba45961.85d67",
+                "8231cfcc.0c5dd8"
+            ]
+        ],
+        "info": "# PlanktonScope Help\nWhen the **Pi** is booting, **Node-RED** will be initiated and this node will be activated once and execute the following nodes."
+    },
+    {
+        "id": "5b6059c3.8d4fa8",
+        "type": "json",
+        "z": "bb8dbe68.7e20a",
+        "name": "config.json",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "9b872b59.667ee",
+                "67bab5e1.2c7dcc",
+                "8e5a1fb0.dc878",
+                "bfc59fc4.be21a8",
+                "80434aac.22226",
+                "a3453d30.ca9a28",
+                "e25e094c.60fb1"
+            ]
+        ]
+    },
+    {
+        "id": "1b45a311.c993ed",
+        "type": "function",
+        "z": "bb8dbe68.7e20a",
+        "name": "set global",
+        "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1080,
+        "y": 80,
+        "wires": [
+            [
+                "20340bb6.5f923c"
+            ]
+        ]
+    },
+    {
+        "id": "1d54c0bf.fbcf07",
+        "type": "rpi-gpio out",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "pin": "40",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 440,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7da863d0.f7d41c",
+        "type": "ui_template",
+        "z": "bb8dbe68.7e20a",
+        "group": "dc721eb.9ef51e",
+        "name": "Stream Pi Camera",
+        "order": 1,
+        "width": 24,
+        "height": 11,
+        "format": "<center><iframe id=\"inlineFrameExample\"\n    title=\"Inline Frame Example\"\n    height=\"600\"\n    width=\"800\"\n    frameborder=\"0\"\n    src=\"http://192.168.4.1:8000/index.html\">\n</iframe></center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 830,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "10d8393.60498c7",
+        "type": "function",
+        "z": "bb8dbe68.7e20a",
+        "name": "init LED",
+        "func": "msg.payload=1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "1d54c0bf.fbcf07"
+            ]
+        ]
+    },
+    {
+        "id": "9b872b59.667ee",
+        "type": "subflow:5c6dd7ee.546fa8",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 830,
+        "y": 80,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ]
+        ]
+    },
+    {
+        "id": "a3453d30.ca9a28",
+        "type": "subflow:ac806d39.1682a8",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 820,
+        "y": 240,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ]
+        ]
+    },
+    {
+        "id": "e25e094c.60fb1",
+        "type": "subflow:9a45991b.365bc8",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 820,
+        "y": 280,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ]
+        ]
+    },
+    {
+        "id": "67bab5e1.2c7dcc",
+        "type": "subflow:97d77aeb.75afd8",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 840,
+        "y": 120,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ],
+            [
+                "20340bb6.5f923c"
+            ]
+        ]
+    },
+    {
+        "id": "8e5a1fb0.dc878",
+        "type": "subflow:506e9090.6e905",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 820,
+        "y": 160,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ],
+            [
+                "20340bb6.5f923c"
+            ]
+        ]
+    },
+    {
+        "id": "14b78383.7457bc",
+        "type": "subflow:1273b673.4a35ea",
+        "z": "bb8dbe68.7e20a",
+        "name": "System commands",
+        "env": [],
+        "x": 830,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e6403eaf.54f7e",
+        "type": "subflow:246abd43.838a5a",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 840,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bfc59fc4.be21a8",
+        "type": "subflow:99798a85.e62408",
+        "z": "bb8dbe68.7e20a",
+        "name": "process metadata",
+        "env": [],
+        "x": 830,
+        "y": 200,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ]
+        ]
+    },
+    {
+        "id": "80434aac.22226",
+        "type": "subflow:a156df1e.d37178",
+        "z": "bb8dbe68.7e20a",
+        "name": "Acquisition inputs",
+        "env": [],
+        "x": 830,
+        "y": 360,
+        "wires": [
+            [
+                "1b45a311.c993ed"
+            ]
+        ],
+        "icon": "node-red-dashboard/ui_switch.png"
+    },
+    {
+        "id": "dba45961.85d67",
+        "type": "subflow:6384a5e.e34465c",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 300,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8231cfcc.0c5dd8",
+        "type": "subflow:e8320d42.9a3ad8",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 290,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "557afe0d.33d97",
+        "type": "subflow:97600dff.93378",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "env": [],
+        "x": 830,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "af4f780b.068368",
+        "type": "ui_switch",
+        "z": "bb8dbe68.7e20a",
+        "name": "",
+        "label": "LED",
+        "tooltip": "",
+        "group": "9c86b3b7.54841",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "1d54c0bf.fbcf07"
+            ]
+        ]
+    },
+    {
+        "id": "dc721eb.9ef51e",
+        "type": "ui_group",
+        "z": "",
+        "name": "Streaming camera",
+        "tab": "2b97fe34.a699fa",
+        "order": 3,
+        "disp": true,
+        "width": 24,
+        "collapse": false
+    }
+]
