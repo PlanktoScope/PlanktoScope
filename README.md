@@ -163,6 +163,24 @@ SPI ok!
 done!
 ```
 
+Also, to make sure the wiring is good, we are going to use `sudo i2cdetect -y 1` to see if our devices are detected:
+```
+pi@planktoscope:~ $ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- 0d -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: 70 -- -- -- -- -- -- --
+```
+
+The device appearing at addresses 60 and 70 is our motor controller. Address `0d` is the fan controller and `3c` is the oled screen (we'll set up both a bit further down). Your version of the RGB Cooling Hat may not have the screen, it's fine as the screen is not necessary for proper operation of the Planktoscope.
+
+In case the motor controller does not appear, shutdown your Planktoscope and check the wiring. If your board is using a connector instead of a soldered pin connection (as happens with the Adafruit Bonnet Motor Controller), sometimes the pins on the male side need to be bent a little to make good contact. In any case, do not hesitate to ask for help in Slack.
+
 ### Install RPi Cam Web Interface
 
 You can find more information about the RPi Cam Web Interface on [eLinux' website](https://elinux.org/RPi-Cam-Web-Interface).
