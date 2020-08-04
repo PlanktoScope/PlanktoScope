@@ -163,6 +163,24 @@ SPI ok!
 done!
 ```
 
+Also, to make sure the wiring is good, we are going to use `sudo i2cdetect -y 1` to see if our devices are detected:
+```
+pi@planktoscope:~ $ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- 0d -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: 60 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: 70 -- -- -- -- -- -- --
+```
+
+The device appearing at addresses 60 and 70 is our motor controller. Address `0d` is the fan controller and `3c` is the oled screen (we'll set up both a bit further down). Your version of the RGB Cooling Hat may not have the screen, it's fine as the screen is not necessary for proper operation of the Planktoscope.
+
+In case the motor controller does not appear, shutdown your Planktoscope and check the wiring. If your board is using a connector instead of a soldered pin connection (as happens with the Adafruit Bonnet Motor Controller), sometimes the pins on the male side need to be bent a little to make good contact. In any case, do not hesitate to ask for help in Slack.
+
 ### Install RPi Cam Web Interface
 
 You can find more information about the RPi Cam Web Interface on [eLinux' website](https://elinux.org/RPi-Cam-Web-Interface).
@@ -223,6 +241,172 @@ $GPVTG,0.00,T,,M,0.00,N,0.00,K,N*32
 
 Until you get a GPS fix, most of the sentences are empty (see the lines starting with GPGSA and with lot of commas).
 
+We are going to use gpsd to parse the GPS data. We need to set it up by editing `/etc/default/gpsd`. This file is source just before starting gpsd and allows to configure its working.
+```sh
+sudo nano /etc/default/gpsd
+```
+
+Change the `USB_AUTO` line to read `false`
+```sh
+USBAUTO="false"
+```
+
+Also change the `DEVICES` line to add the device we are going to use `/dev/serial0`:
+```sh
+DEVICES="/dev/serial0"
+```
+
+Finally, we want to add the parameter `-n` to `GPSD_OPTIONS`:
+```sh
+GPSD_OPTIONS="-n"
+```
+
+Save your work, and restart gpsd by running the following:
+```sh
+sudo systemctl restart gpsd.service
+```
+
+If you wait a bit, you can run `gpsmon` to check that your configuration is correct. You should get an output similar to this:
+```
+pi@planktoscope:~ $ gpsmon
+/dev/serial0                  NMEA0183>
+┌──────────────────────────────────────────────────────────────────────────────┐
+│Time: 2020-07-21T11:09:26.000Z Lat:  45 33' 28.08539" Non:   1 03' 44.02019" W│
+└───────────────────────────────── Cooked TPV ─────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ GPGGA GPGSA GPRMC GPZDA GPGSV                                                │
+└───────────────────────────────── Sentences ──────────────────────────────────┘
+┌──────────────────┐┌────────────────────────────┐┌────────────────────────────┐
+│Ch PRN  Az El S/N ││Time:      110926.000       ││Time:      110927.000       │
+│ 0  27 351 78  49 ││Latitude:     4533.4809 N   ││Latitude:  4533.4809        │
+│ 1  21  51 69  47 ││Longitude:   00103.7367 W   ││Longitude: 00103.7367       │
+│ 2  16 184 61  43 ││Speed:     0.00             ││Altitude:  -0.1             │
+│ 3  10 116 51  50 ││Course:    201.75           ││Quality:   2   Sats: 11     │
+│ 4   8 299 47  49 ││Status:    A       FAA: D   ││HDOP:      0.87             │
+│ 5  20  66 42  46 ││MagVar:                     ││Geoid:     49.3             │
+│ 6 123 138 28  43 │└─────────── RMC ────────────┘└─────────── GGA ────────────┘
+│ 7  26 165 25  30 │┌────────────────────────────┐┌────────────────────────────┐
+│ 8  11 264 23  48 ││Mode: A3 ...s: 27 21 16 10  ││UTC:           RMS:         │
+│ 9   7 303 15  38 ││DOP: H=0.87  V=1.13  P=1.42 ││MAJ:           MIN:         │
+│10  18  56 14  44 ││TOFF:  0.530187817          ││ORI:           LAT:         │
+│11  30 330  5  35 ││PPS:                        ││LON:           ALT:         │
+└────── GSV ───────┘└──────── GSA + PPS ─────────┘└─────────── GST ────────────┘
+(42) $GPGSV,4,4,14,15,03,035,36,01,02,238,*72
+(72) $GPRMC,110922.000,A,4533.4809,N,00103.7366,W,0.01,322.19,210720,,,D*7E
+(35) $GPZDA,110922.000,21,07,2020,,*5B
+(81) $GPGGA,110923.000,4533.4809,N,00103.7367,W,2,11,0.87,-0.1,M,49.3,M,0000,0000*5B
+(64) $GPGSA,A,3,16,27,30,10,18,21,20,08,11,07,26,,1.43,0.87,1.13*0B
+(72) $GPRMC,110923.000,A,4533.4809,N,00103.7367,W,0.01,188.90,210720,,,D*7D
+(35) $GPZDA,110923.000,21,07,2020,,*5A
+(81) $GPGGA,110924.000,4533.4809,N,00103.7367,W,2,11,0.87,-0.1,M,49.3,M,0000,0000*5C
+(64) $GPGSA,A,3,16,27,30,10,18,21,20,08,11,07,26,,1.43,0.87,1.13*0B
+(72) $GPRMC,110924.000,A,4533.4809,N,00103.7367,W,0.01,156.23,210720,,,D*71
+```
+
+#### Bonus Configuration: Automatic time update from GPSD
+
+The Adafruit GPS HAT allows your PlanktoScop to automatically sets its time to the GPS received one. Moreover, since the PPS (Pulse Per Second) output is activated, you can even set your PlanktoScope to act as a stratum 1 timeserver.
+
+We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`:
+```
+sudo nano /boot/config.txt
+# Add the following line at the end of the line
+dtoverlay=pps-gpio,gpiopin=4
+```
+
+We also need to activate the pps module of the kernel, by editing `/etc/modules`:
+
+```
+sudo nano /etc/modules
+# Add the following line at the end of the line
+pps-gpio
+```
+
+Now install `pps-tools` so we can check that this is properly running.
+```sh
+sudo apt install pps-tools
+```
+
+Finally, in the `/etc/default/gpsd` file, we need to add our pps device to the line `DEVICES`. Append `/dev/pps0`:
+```sh
+DEVICES="/dev/serial0 /dev/pps0"
+```
+
+Reboot your PlanktoScope now and check that the PPS signal is properly parsed by the PlanktoScope. You can do this by running `sudo ppstest /dev/pps0`:
+```
+pi@planktoscope:~ $ sudo ppstest /dev/pps0
+trying PPS source "/dev/pps0"
+found PPS source "/dev/pps0"
+ok, found 1 source(s), now start fetching data...
+source 0 - assert 1595329939.946478786, sequence: 4125 - clear  0.000000000, sequence: 0
+source 0 - assert 1595329940.946459463, sequence: 4126 - clear  0.000000000, sequence: 0
+```
+
+`gpsmon` should also show a PPS signal in the `GSA + PPS` box.
+
+We now need to install the software that will act as timeserver, both locally and globally. Its name is Chrony. It's a more modern replacement for `ntp`, using the same underlying protocol. Let's go ahead and install it:
+```sh
+sudo apt install chrony
+```
+
+We need to edit the configuration of chrony, to activate both the GPS time synchronization and to allow clients to request time updates directly from our microscope.
+
+Edit the file `/etc/chrony/chrony.conf` and replace its content with the following:
+```
+server 0.pool.ntp.org maxpoll 5
+server 1.pool.ntp.org maxpoll 5
+server 2.pool.ntp.org maxpoll 5
+server 3.pool.ntp.org maxpoll 5
+
+driftfile /var/lib/chrony/drift
+
+allow
+
+makestep 1 5
+
+refclock SHM 2 pps refid NMEA
+#refclock PPS /dev/pps0 precision 1e-7 noselect refid GPPS
+```
+
+Before restarting `chrony`, we need to make sure the timesync service from systemd is deactivated:
+```sh
+sudo systemctl stop systemd-timesyncd.service
+sudo systemctl disable systemd-timesyncd.service
+```
+
+Final step, let's start `chrony` with its new configuration and restart `gpsd`:
+```sh
+sudo systemctl restart chrony
+sudo systemctl restart gpsd
+```
+
+To check that everything is working as intended, wait a few minutes, and then type `chronyc sources -v`. This command will show the time sources `chrony` is using, and right at the top there should be our NMEA source. Make sure its line starts with `#*`, which means this source is selected:
+```
+pi@planktoscope:~ $ chronyc sources -v
+210 Number of sources = 5
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+#* NMEA                          0   4   377    13   -434ns[ -582ns] +/-  444ns
+^- mail.raveland.org             3   7   377   215    -18ms[  -18ms] +/-   53ms
+^- nio.nucli.net                 2   6   377    19  -7340us[-7340us] +/-   63ms
+^- ntp4.kashra-server.com        2   8   377   146    -11ms[  -11ms] +/-   50ms
+^- pob01.aplu.fr                 2   8   377    83    -15ms[  -15ms] +/-   66ms
+```
+
+The other servers are here just as fallback measures, in case the GPS is not working for an unknown reason.
+
+This part is now complete! Everytime you start your Planktoscope, it will set its own time after a few minutes (once a GPS signal is acquired).
+
+The ultimate step will have to be done on the other equipment on the network where you want to use this time source. You will need to add the line `server planktoscope.local` to your ntp configuration file either at `/etc/ntp.conf` or at `/etc/chrony/chrony.conf` and then restart your ntp service.
 
 You can find more information in this hardware module in Adafruit documentation at [Installing Adafruit GPS HAT](https://learn.adafruit.com/adafruit-ultimate-gps-hat-for-raspberry-pi/overview) or on this page to [use Python Thread with GPS HAT](http://www.danmandle.com/blog/getting-gpsd-to-work-with-python/)
 
