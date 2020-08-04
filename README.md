@@ -473,18 +473,25 @@ These nodes will be used by the PlanktoScop software and needs to be installed:
 ```sh
 cd ~/.node-red/
 npm install node-red-dashboard node-red-contrib-python3-function node-red-contrib-camerapi node-red-contrib-gpsd node-red-contrib-web-worldmap node-red-contrib-interval
+```
+We are also going to activate the Projects feature of Node-Red as this will help us manage and track change to the flows. Open the file `settings.js` with an editor (for example with `nano settings.js`) so we can change the following lines:
+```
+Line 68: uncomment the line (remove the //) that ends with flowFilePretty: true,
+Line 296: set enabled to true
+```
+
+Save your changes and now restart the nodered service:
+```
 sudo systemctl restart nodered.service
 ```
 
 #### Import the last GUI
 
-From Node-RED gui in your browser, choose the Hamburger menu top right, and then Import. You can paste the code directly from the lastest version of the GUI available [here](https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/blob/master/flows/main.json).
+If you now open the Node-Red GUI in your browser, it will ask you to setup the project, an email and a username (so if you make changes to the flow and want to share them we can know who made them).
 
-You can also download it directly:
-```sh
-wget -N -O ~/.node-red/flows_planktoscope.json https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/master/flows/main.json
-sudo systemctl restart nodered.service
-```
+You can now choose to clone an existing repository. Choose a name that makes sense for you, and in the `Git repository URL` field put the main Planktonscope repository: `https://www.github.com/PlanktonPlanet/PlanktonScope.git`.
+
+The latest flow version will be imported immediately.
 
 #### More information
 [Installing Node-RED on Raspberry Pi](https://nodered.org/docs/getting-started/raspberrypi)
