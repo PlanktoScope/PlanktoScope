@@ -237,7 +237,7 @@ counter=''
 
 #MQTT Client functions definition
 client = mqtt.Client()
-client.connect("127.0.0.2",1883,60)
+client.connect("127.0.0.1",1883,60)
 client.on_connect = on_connect
 client.on_subscribe = on_subscribe
 client.on_message = on_message
@@ -387,7 +387,7 @@ with Pipeline() as p:
 ################################################################################
 
 output = StreamingOutput()
-address = ('127.0.0.1', 8000)
+address = ('', 8000)
 server = StreamingServer(address, StreamingHandler)
 threading.Thread(target=server.serve_forever).start()
 camera.start_recording(output, format='mjpeg', resize=(640, 480))
