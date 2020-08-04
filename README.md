@@ -193,7 +193,7 @@ cd RPi_Cam_Web_Interface
 ./install.sh
 ```
 
-Press Enter to allow default setting of the installation. Once everything is installed, press Enter to start the RPi Cam Web Interface now.
+Change the autostart setting to No, and then press Enter to allow default setting of the installation. Once everything is installed, press Enter to start the RPi Cam Web Interface now.
 
 To test the interface locally, try accessing this url from the browser in the Raspberry: http://localhost/html
 
@@ -208,7 +208,7 @@ sudo ip addr show | grep 'inet 1'
 
 The web page can then be accessed at `http://[IP_ADDRESS]/html/`.
 
-If the interface is loading and a picture is displayed, you can stop this interface for now by simply running `./stop.sh`.
+If the interface is loading and a picture is displayed, you can now stop this interface for now by simply running `./stop.sh`.
 
 
 ### Install Ultimate GPS HAT
