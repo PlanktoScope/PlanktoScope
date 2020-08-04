@@ -8,6 +8,7 @@
 # Library to send command over I2C for the light module on the fan
 import smbus
 import RPi.GPIO
+import subprocess
 
 # define the bus used to actuate the light module on the fan
 bus = smbus.SMBus(1)
