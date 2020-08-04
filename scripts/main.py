@@ -718,9 +718,9 @@ while True:
                 break
 
     else:
-        #Set the LEDs as Black
-        planktonscope.light.setRGB(0,0,0)
-        #Its just waiting to receive command from Node-RED
+        # Set the LEDs as Black
+        planktonscope.light.setRGBOff()
+        # Its just waiting to receive command from Node-RED
         sleep(1)
         #Set the LEDs as White
         planktonscope.light.setRGB(255,255,255)

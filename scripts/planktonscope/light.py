@@ -34,6 +34,15 @@ def setRGB(R, G, B):
     subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
 
 
+def setRGBOff():
+    """Turn off the RGB LED"""
+    bus.write_byte_data(DEVICE_ADDRESS, 0x07, 0x00)
+
+    # Update the I2C Bus in order to really update the LEDs new values
+    cmd = "i2cdetect -y 1"
+    subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+
+
 def setRGBEffect(effect):
     """Choose an effect, 0-4
 
