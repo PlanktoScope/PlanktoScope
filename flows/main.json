@@ -4072,9 +4072,9 @@
         "wires": [
             [
                 "b57ab8b0.7bfc4",
-                "10d8393.60498c7",
                 "dba45961.85d67",
-                "8231cfcc.0c5dd8"
+                "8231cfcc.0c5dd8",
+                "1d54c0bf.fbcf07"
             ]
         ],
         "info": "# PlanktonScope Help\nWhen the **Pi** is booting, **Node-RED** will be initiated and this node will be activated once and execute the following nodes."
@@ -4123,12 +4123,12 @@
         "z": "bb8dbe68.7e20a",
         "name": "",
         "pin": "40",
-        "set": "",
+        "set": true,
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 440,
-        "y": 120,
+        "x": 460,
+        "y": 160,
         "wires": []
     },
     {
@@ -4148,22 +4148,6 @@
         "y": 320,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "10d8393.60498c7",
-        "type": "function",
-        "z": "bb8dbe68.7e20a",
-        "name": "init LED",
-        "func": "msg.payload=1;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 280,
-        "y": 120,
-        "wires": [
-            [
-                "1d54c0bf.fbcf07"
-            ]
         ]
     },
     {
