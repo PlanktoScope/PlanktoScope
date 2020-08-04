@@ -188,10 +188,7 @@ def on_message(client, userdata, msg):
 ################################################################################
 
 #load config.json
-import json
-
-print("Started Reading JSON file")
-with open("../config.json", "r") as config_file:
+with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
     configuration = json.load(config_file)
 
 
