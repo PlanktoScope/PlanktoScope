@@ -12,8 +12,8 @@ import picamera
 from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit
 
-#Library to send command over I2C for the light module on the fan
-import smbus
+#Import the planktonscope LED module
+import planktonscope.light
 
 ################################################################################
 #Practical Libraries
@@ -160,7 +160,7 @@ def on_connect(client, userdata, flags, rc):
     #When connected, run subscribe()
     client.subscribe("actuator/#")
     #Turn green the light module
-    rgb(0,255,0)
+    planktonscope.light.setRGB(0,255,0)
 
 #Run this function in order to subscribe to all the topics begining by actuator
 def on_subscribe(client, obj, mid, granted_qos):
@@ -182,31 +182,6 @@ def on_message(client, userdata, msg):
     #Reset the counter to 0
     counter=0
 
-################################################################################
-#LEDs Actuation
-################################################################################
-def rgb(R,G,B):
-    #Update LED n1
-    bus.write_byte_data(0x0d, 0x00, 0)
-    bus.write_byte_data(0x0d, 0x01, R)
-    bus.write_byte_data(0x0d, 0x02, G)
-    bus.write_byte_data(0x0d, 0x03, B)
-
-    #Update LED n2
-    bus.write_byte_data(0x0d, 0x00, 1)
-    bus.write_byte_data(0x0d, 0x01, R)
-    bus.write_byte_data(0x0d, 0x02, G)
-    bus.write_byte_data(0x0d, 0x03, B)
-
-    #Update LED n3
-    bus.write_byte_data(0x0d, 0x00, 2)
-    bus.write_byte_data(0x0d, 0x01, R)
-    bus.write_byte_data(0x0d, 0x02, G)
-    bus.write_byte_data(0x0d, 0x03, B)
-
-    #Update the I2C Bus in order to really update the LEDs new values
-    cmd="i2cdetect -y 1"
-    subprocess.Popen(cmd.split(),stdout=subprocess.PIPE)
 
 ################################################################################
 #Init function - executed only once
@@ -219,8 +194,6 @@ print("Started Reading JSON file")
 with open("../config.json", "r") as config_file:
     configuration = json.load(config_file)
 
-#define the bus used to actuate the light module on the fan
-bus = smbus.SMBus(1)
 
 #define the names for the 2 exsting steppers
 kit = MotorKit()
@@ -296,7 +269,7 @@ with Pipeline() as p:
     name = Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)
 
     #Set the LEDs as Green
-    Call(rgb, 0,255,0)
+    Call(planktonscope.light.setRGB, 0,255,0)
 
     #Read image
     img = ImageReader(abs_path)
@@ -347,7 +320,7 @@ with Pipeline() as p:
     )
 
     #Set the LEDs as Purple
-    Call(rgb, 255,0,255)
+    Call(planktonscope.light.setRGB, 255,0,255)
 
     # For an object, extract a vignette/ROI from the image
     roi_orig = ExtractROI(img, regionprops, bg_color=255)
@@ -397,7 +370,7 @@ with Pipeline() as p:
     Call(client.publish, "receiver/segmentation/object_id", object_id)
 
     #Set the LEDs as Green
-    Call(rgb, 0,255,0)
+    Call(planktonscope.light.setRGB, 0,255,0)
 
 ################################################################################
 #While loop for capting commands from Node-RED
@@ -419,7 +392,7 @@ while True:
     if (command=="pump"):
 
         #Set the LEDs as Blue
-        rgb(0,0,255)
+        planktonscope.light.setRGB(0,0,255)
 
         #Get direction from the different received arguments
         direction=args.split(" ")[0]
@@ -472,7 +445,7 @@ while True:
                 client.publish("receiver/pump", "Done");
 
                 #Set the LEDs as Green
-                rgb(0,255,0)
+                planktonscope.light.setRGB(0,255,0)
 
                 #Reset the counter to 0
                 counter=0
@@ -493,7 +466,7 @@ while True:
                 client.publish("receiver/pump", "Interrompted");
 
                 #Set the LEDs as Green
-                rgb(0,255,0)
+                planktonscope.light.setRGB(0,255,0)
 
                 #Reset the counter to 0
                 counter=0
@@ -508,7 +481,7 @@ while True:
     elif (command=="focus"):
 
         #Set the LEDs as Yellow
-        rgb(255,255,0)
+        planktonscope.light.setRGB(255,255,0)
 
         #Get direction from the different received arguments
         direction=args.split(" ")[0]
@@ -555,7 +528,7 @@ while True:
                 client.publish("receiver/focus", "Done");
 
                 #Set the LEDs as Green
-                rgb(0,255,0)
+                planktonscope.light.setRGB(0,255,0)
 
                 #Reset the counter to 0
                 counter=0
@@ -576,7 +549,7 @@ while True:
                 client.publish("receiver/focus", "Interrompted");
 
                 #Set the LEDs as Green
-                rgb(0,255,0)
+                planktonscope.light.setRGB(0,255,0)
 
                 #Reset the counter to 0
                 counter=0
@@ -611,7 +584,7 @@ while True:
         client.publish("receiver/image", "Start");
 
         #Set the LEDs as Blue
-        rgb(0,0,255)
+        planktonscope.light.setRGB(0,0,255)
 
         #Pump duing a given number of steps (in between each image)
         for i in range(nb_step):
@@ -631,12 +604,12 @@ while True:
                 break
 
         #Set the LEDs as Green
-        rgb(0,255,0)
+        planktonscope.light.setRGB(0,255,0)
 
         while True:
 
             #Set the LEDs as Cyan
-            rgb(0,255,255)
+            planktonscope.light.setRGB(0,255,255)
 
             #Increment the counter
             counter+=1
@@ -654,14 +627,14 @@ while True:
             camera.capture(filename)
 
             #Set the LEDs as Green
-            rgb(0,255,0)
+            planktonscope.light.setRGB(0,255,0)
 
             #Publish the name of the image to via MQTT to Node-RED
 
             client.publish("receiver/image", datetime_tmp+".jpg has been imaged.");
 
             #Set the LEDs as Blue
-            rgb(0,0,255)
+            planktonscope.light.setRGB(0,0,255)
 
             #Pump during a given nb of steps
             for i in range(nb_step):
@@ -676,7 +649,7 @@ while True:
             sleep(0.5)
 
             #Set the LEDs as Green
-            rgb(0,255,0)
+            planktonscope.light.setRGB(0,255,0)
 
             ####################################################################
             #If counter reach the number of frame, break
@@ -703,7 +676,7 @@ while True:
                     client.publish("receiver/segmentation", "Completed");
 
                     #Set the LEDs as White
-                    rgb(255,255,255)
+                    planktonscope.light.setRGB(255,255,255)
 
                     #cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
 
@@ -711,7 +684,7 @@ while True:
                     sleep(1)
 
                     #Set the LEDs as Green
-                    rgb(0,255,0)
+                    planktonscope.light.setRGB(0,255,0)
 
                     #End if(segmentation == "True"):
 
@@ -719,7 +692,7 @@ while True:
                 command="wait"
 
                 #Set the LEDs as Green
-                rgb(0,255,255)
+                planktonscope.light.setRGB(0,255,255)
 
                 #Reset the counter to 0
                 counter=0
@@ -740,7 +713,7 @@ while True:
                 client.publish("receiver/image", "Interrompted");
 
                 #Set the LEDs as Green
-                rgb(0,255,0)
+                planktonscope.light.setRGB(0,255,0)
 
                 #Reset the counter to 0
                 counter=0
@@ -749,10 +722,10 @@ while True:
 
     else:
         #Set the LEDs as Black
-        rgb(0,0,0)
+        planktonscope.light.setRGB(0,0,0)
         #Its just waiting to receive command from Node-RED
         sleep(1)
         #Set the LEDs as White
-        rgb(255,255,255)
+        planktonscope.light.setRGB(255,255,255)
         #Its just waiting to receive command from Node-RED
         sleep(1)
