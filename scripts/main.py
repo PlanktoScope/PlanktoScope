@@ -6,7 +6,7 @@
 import paho.mqtt.client as mqtt
 
 #Library to control the PiCamera
-from picamera import PiCamera
+import picamera
 
 #Libraries to control the steppers for focusing and pumping
 from adafruit_motor import stepper
@@ -64,7 +64,6 @@ import cv2
 #Streaming PiCamera over server
 ################################################################################
 import io
-import picamera
 import logging
 import socketserver
 from threading import Condition
@@ -225,7 +224,7 @@ pump_stepper.release()
 focus_stepper.release()
 
 #Precise the settings of the PiCamera
-camera = PiCamera()
+camera = picamera.PiCamera()
 camera.resolution = (3280, 2464)
 camera.iso = 60
 camera.shutter_speed = 500
