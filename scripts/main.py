@@ -212,13 +212,30 @@ def rgb(R,G,B):
 #Init function - executed only once
 ################################################################################
 
+#load config.json
+import json
+
+print("Started Reading JSON file")
+with open("../config.json", "r") as config_file:
+    configuration = json.load(config_file)
+
 #define the bus used to actuate the light module on the fan
 bus = smbus.SMBus(1)
 
 #define the names for the 2 exsting steppers
 kit = MotorKit()
-pump_stepper = kit.stepper1
-focus_stepper = kit.stepper2
+reverse = False
+# check that the config file have the hardware_config and the stepper_reverse key
+if 'hardware_config' in configuration:
+    if 'stepper_reverse' in configuration['hardware_config']:
+        reverse = configuration['hardware_config']['stepper_reverse']
+if reverse:
+    pump_stepper = kit.stepper2
+    focus_stepper = kit.stepper1
+else:
+    pump_stepper = kit.stepper1
+    focus_stepper = kit.stepper2
+
 #Make sure the steppers are release and do not use any power
 pump_stepper.release()
 focus_stepper.release()
