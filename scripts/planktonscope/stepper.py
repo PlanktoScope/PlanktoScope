@@ -10,7 +10,9 @@ with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
 
 reverse = False
 focus_steps_per_mm = 40
-pump_steps_per_ml = 100
+# 507 steps per ml for Planktonscope standard
+# 614 for custom NEMA14 pump with 0.8mm ID Tube
+pump_steps_per_ml = 507
 # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the Planktonscope can send
 focus_max_speed = 0.5
 # pump max speed is in ml/sec
@@ -100,8 +102,9 @@ def focus(direction, distance, speed=focus_max_speed):
 
 
 # The pump max speed will be at about 400 full steps per second
-# 0.65mL per seconds
-# my pump is 0.3257 mL per round
+# This amounts to 0.65mL per seconds maximum
+# NEMA14 pump with 3 rollers is 0.3257 mL per round, actual calculation at
+# https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
 def pump(direction, volume, speed=pump_max_speed):
     """moves the pump stepper
 
@@ -121,7 +124,7 @@ def pump(direction, volume, speed=pump_max_speed):
 
     counter = 0
 
-    nb_steps = pump_steps_per_ml * distance
+    nb_steps = pump_steps_per_ml * volume
     steps_per_second = speed * pump_steps_per_ml
 
     # On linux, the minimal acceptable delay managed by the system is 0.1ms
@@ -155,7 +158,7 @@ def pump(direction, volume, speed=pump_max_speed):
 if __name__ == "__main__":
     import sys
 
-    distance = int(sys.argv[1])
-    direction = str(sys.argv[2])
-    speed = float(sys.argv[1])
-    focus(direction, distance, speed)
+    volume = int(sys.argv[2])
+    direction = str(sys.argv[1])
+    speed = float(sys.argv[3])
+    focus(direction, volume, speed)
