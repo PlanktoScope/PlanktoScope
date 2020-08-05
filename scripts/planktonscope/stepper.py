@@ -5,7 +5,7 @@ import time
 import json
 
 # load config.json
-with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
+with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
     configuration = json.load(config_file)
 
 reverse = False
@@ -16,22 +16,18 @@ focus_max_speed = 0.5
 # pump max speed is in ml/sec
 pump_max_speed = 0.5
 
-# check that the config file has the hardware_config key
-if "hardware_config" in configuration:
-    # parse the config data. If the key is absent, we are using the default value
-    reverse = configuration["hardware_config"].get("stepper_reverse", reverse)
-    focus_steps_per_mm = configuration["hardware_config"].get(
-        "focus_steps_per_mm", focus_steps_per_mm
-    )
-    pump_steps_per_ml = configuration["hardware_config"].get(
-        "pump_steps_per_ml", pump_steps_per_ml
-    )
-    focus_max_speed = configuration["hardware_config"].get(
-        "focus_max_speed", focus_max_speed
-    )
-    pump_max_speed = configuration["hardware_config"].get(
-        "pump_max_speed", pump_max_speed
-    )
+# parse the config data. If the key is absent, we are using the default value
+reverse = configuration["hardware_config"].get("stepper_reverse", reverse)
+focus_steps_per_mm = configuration["hardware_config"].get(
+    "focus_steps_per_mm", focus_steps_per_mm
+)
+pump_steps_per_ml = configuration["hardware_config"].get(
+    "pump_steps_per_ml", pump_steps_per_ml
+)
+focus_max_speed = configuration["hardware_config"].get(
+    "focus_max_speed", focus_max_speed
+)
+pump_max_speed = configuration["hardware_config"].get("pump_max_speed", pump_max_speed)
 
 
 # define the names for the 2 exsting steppers
@@ -131,7 +127,7 @@ def pump(direction, volume, speed=pump_max_speed):
     # On linux, the minimal acceptable delay managed by the system is 0.1ms
     # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
     # However we have a fixed delay of at least 2.5ms per step due to the library
-    # Our maximum speed is thus about 400 pulses per second or 0.5mm/sec of stage speed
+    # Our maximum speed is thus about 400 pulses per second or 2 turn per second of the pump
     delay = max((1 / steps_per_second) - 0.0025, 0)
 
     # Depending on direction, select the right direction for the focus
