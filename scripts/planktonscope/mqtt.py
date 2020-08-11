@@ -34,7 +34,7 @@ class MQTT_Client:
     ################################################################################
 
     # Run this function in order to connect to the client (Node-RED)
-    def on_connect(client, userdata, flags, rc):
+    def on_connect(self, client, userdata, flags, rc):
         # Print when connected
         print("Connected! - " + str(rc))
         # When connected, run subscribe()
@@ -43,12 +43,12 @@ class MQTT_Client:
         planktonscope.light.setRGB(0, 255, 0)
 
     # Run this function in order to subscribe to all the topics begining by actuator
-    def on_subscribe(client, obj, mid, granted_qos):
+    def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
         print("Subscribed! - " + str(mid) + " " + str(granted_qos))
 
     # Run this command when Node-RED is sending a message on the subscribed topic
-    def on_message(client, userdata, msg):
+    def on_message(self, client, userdata, msg):
         # Print the topic and the message
         print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
         # Parse the topic to find the command. ex : actuator/pump -> pump
