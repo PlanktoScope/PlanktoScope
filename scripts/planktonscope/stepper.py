@@ -15,8 +15,8 @@ focus_steps_per_mm = 40
 pump_steps_per_ml = 507
 # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the Planktonscope can send
 focus_max_speed = 0.5
-# pump max speed is in ml/sec
-pump_max_speed = 0.5
+# pump max speed is in ml/min
+pump_max_speed = 30
 
 # parse the config data. If the key is absent, we are using the default value
 reverse = configuration["hardware_config"].get("stepper_reverse", reverse)
@@ -125,7 +125,7 @@ def pump(direction, volume, speed=pump_max_speed):
     counter = 0
 
     nb_steps = pump_steps_per_ml * volume
-    steps_per_second = speed * pump_steps_per_ml
+    steps_per_second = speed * pump_steps_per_ml / 60
 
     # On linux, the minimal acceptable delay managed by the system is 0.1ms
     # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
