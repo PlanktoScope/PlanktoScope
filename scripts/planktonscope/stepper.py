@@ -3,6 +3,8 @@ import adafruit_motor
 import adafruit_motorkit
 import time
 import json
+import planktonscope.mqtt
+import multiprocessing
 
 # load config.json
 with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
@@ -44,6 +46,10 @@ else:
 # Make sure the steppers are released and do not use any power
 pump_stepper.release()
 focus_stepper.release()
+
+# Creates the MQTT Client
+mqtt_client = planktonscope.mqtt.MQTT_Client("actuator/#")
+mqtt_client.connect()
 
 
 def focus(direction, distance, speed=focus_max_speed):
@@ -152,6 +158,146 @@ def pump(direction, volume, speed=pump_max_speed):
             # Release the focus steppers to stop power draw
             pump_stepper.release()
             break
+
+
+def run():
+    """ This is the function that needs to be called in another thread
+
+    This function runs for perpetuity. For now, it has no exit methods
+    (hence no cleanup is performed on exit/kill). However, atexit can
+    probably be used for this. See https://docs.python.org/3.8/library/atexit.html
+    Eventually, the __del__ method could be used, if this module is
+    made into a class.
+    """
+    while True:
+        ############################################################################
+        # Pump Event
+        ############################################################################
+        # If the command is "pump"
+        if mqtt_client.command is "pump":
+
+            # Set the LEDs as Blue
+            planktonscope.light.setRGB(0, 0, 255)
+
+            # Get direction from the different received arguments
+            direction = args.split(" ")[0]
+
+            # Get delay (in between steps) from the different received arguments
+            volume = float(args.split(" ")[1])
+
+            # Get number of steps from the different received arguments
+            speed = int(args.split(" ")[2])
+
+            # Print status
+            print("The pump has been started.")
+
+            # Publish the status "Start" to via MQTT to Node-RED
+            mqtt_client.client.publish("receiver/pump", "Start")
+            pump_thread = multiprocessing.Process(
+                target=pump, args=[direction, volume, speed]
+            )
+            pump_thread.start()
+
+            ########################################################################
+            while True:
+                if not pump_thread.is_alive():
+                    # Thread has finished
+                    # Print status
+                    print("The pumping is done.")
+
+                    # Change the command to not re-enter in this while loop
+                    mqtt_client.command = "wait"
+
+                    # Publish the status "Done" to via MQTT to Node-RED
+                    client.publish("receiver/pump", "Done")
+
+                    # Set the LEDs as Green
+                    planktonscope.light.setRGB(0, 255, 0)
+
+                    break
+
+                ####################################################################
+                # If a new received command isn't "pump", break this while loop
+                if mqtt_client.command is not "pump":
+                    pump_thread.terminate()
+                    pump_stepper.release()
+
+                    # Print status
+                    print("The pump has been interrompted.")
+
+                    # Publish the status "Interrompted" to via MQTT to Node-RED
+                    mqtt_client.client.publish("receiver/pump", "Interrompted")
+
+                    # Set the LEDs as Green
+                    planktonscope.light.setRGB(0, 255, 0)
+
+                    break
+
+        ############################################################################
+        # Focus Event
+        ############################################################################
+
+        # If the command is "focus"
+        elif mqtt_client.command is "focus":
+
+            # Set the LEDs as Yellow
+            planktonscope.light.setRGB(255, 255, 0)
+
+            # Get direction from the different received arguments
+            direction = args.split(" ")[0]
+
+            # Get number of steps from the different received arguments
+            distance = int(args.split(" ")[1])
+
+            # Print status
+            print("The focus has been started.")
+
+            # Publish the status "Start" to via MQTT to Node-RED
+            mqtt_client.client.publish("receiver/focus", "Start")
+
+            # Starts the focus process
+            focus_thread = multiprocessing.Process(
+                target=focus, args=[direction, distance]
+            )
+            focus_thread.start()
+
+            ########################################################################
+            while True:
+                if not pump_thread.is_alive():
+                    # Thread has finished
+                    # Print status
+                    print("The focusing is done.")
+
+                    # Change the command to not re-enter in this while loop
+                    mqtt_client.command = "wait"
+
+                    # Publish the status "Done" to via MQTT to Node-RED
+                    mqtt_client.client.publish("receiver/focus", "Done")
+
+                    # Set the LEDs as Green
+                    planktonscope.light.setRGB(0, 255, 0)
+
+                    break
+
+                ####################################################################
+                # If a new received command isn't "focus", break this while loop
+                if mqtt_client.command is not "focus":
+                    # Kill the stepper thread
+                    focus_thread.terminate()
+
+                    # Release the focus steppers to stop power draw
+                    focus_stepper.release()
+
+                    # Print status
+                    print("The stage has been interrompted.")
+
+                    # Publish the status "Done" to via MQTT to Node-RED
+                    mqtt_client.client.publish("receiver/focus", "Interrompted")
+
+                    # Set the LEDs as Green
+                    planktonscope.light.setRGB(0, 255, 0)
+
+                    break
 
 
 # This is called if this script is launched directly
