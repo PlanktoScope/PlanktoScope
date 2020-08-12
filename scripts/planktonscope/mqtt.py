@@ -38,7 +38,7 @@ class MQTT_Client:
         # Print when connected
         print("Connected! - " + str(rc))
         # When connected, run subscribe()
-        self.client.subscribe(self.topic + "/#")
+        self.client.subscribe(self.topic)
         # Turn green the light module
         planktonscope.light.setRGB(0, 255, 0)
 
