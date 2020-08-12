@@ -48,8 +48,8 @@ pump_stepper.release()
 focus_stepper.release()
 
 # Creates the MQTT Client
-mqtt_client = planktonscope.mqtt.MQTT_Client("actuator/#")
-mqtt_client.connect()
+pump_client = planktonscope.mqtt.MQTT_Client("actuator/#")
+pump_client.connect()
 
 
 def focus(direction, distance, speed=focus_max_speed):
@@ -174,7 +174,7 @@ def run():
         # Pump Event
         ############################################################################
         # If the command is "pump"
-        if mqtt_client.command is "pump":
+        if pump_client.command is "pump":
 
             # Set the LEDs as Blue
             planktonscope.light.setRGB(0, 0, 255)
@@ -206,7 +206,7 @@ def run():
                     print("The pumping is done.")
 
                     # Change the command to not re-enter in this while loop
-                    mqtt_client.command = "wait"
+                    pump_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
                     client.publish("actuator/pump/state", "Done")
@@ -218,7 +218,7 @@ def run():
 
                 ####################################################################
                 # If a new received command isn't "pump", break this while loop
-                if mqtt_client.command is not "pump":
+                if pump_client.command is not "pump":
                     pump_thread.terminate()
                     pump_stepper.release()
 
@@ -238,7 +238,7 @@ def run():
         ############################################################################
 
         # If the command is "focus"
-        elif mqtt_client.command is "focus":
+        elif pump_client.command is "focus":
 
             # Set the LEDs as Yellow
             planktonscope.light.setRGB(255, 255, 0)
@@ -269,7 +269,7 @@ def run():
                     print("The focusing is done.")
 
                     # Change the command to not re-enter in this while loop
-                    mqtt_client.command = "wait"
+                    pump_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
                     pump_client.client.publish("actuator/focus/state", "Done")
@@ -281,7 +281,7 @@ def run():
 
                 ####################################################################
                 # If a new received command isn't "focus", break this while loop
-                if mqtt_client.command is not "focus":
+                if pump_client.command is not "focus":
                     # Kill the stepper thread
                     focus_thread.terminate()
 
