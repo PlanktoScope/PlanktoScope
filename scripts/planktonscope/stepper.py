@@ -192,7 +192,7 @@ def run():
             print("The pump has been started.")
 
             # Publish the status "Start" to via MQTT to Node-RED
-            mqtt_client.client.publish("receiver/pump", "Start")
+            pump_client.client.publish("actuator/pump/state", "Start")
             pump_thread = multiprocessing.Process(
                 target=pump, args=[direction, volume, speed]
             )
@@ -209,7 +209,7 @@ def run():
                     mqtt_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
-                    client.publish("receiver/pump", "Done")
+                    client.publish("actuator/pump/state", "Done")
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
@@ -226,7 +226,7 @@ def run():
                     print("The pump has been interrompted.")
 
                     # Publish the status "Interrompted" to via MQTT to Node-RED
-                    mqtt_client.client.publish("receiver/pump", "Interrompted")
+                    pump_client.client.publish("actuator/pump/state", "Interrupted")
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
@@ -253,7 +253,7 @@ def run():
             print("The focus has been started.")
 
             # Publish the status "Start" to via MQTT to Node-RED
-            mqtt_client.client.publish("receiver/focus", "Start")
+            pump_client.client.publish("actuator/focus/state", "Start")
 
             # Starts the focus process
             focus_thread = multiprocessing.Process(
@@ -272,7 +272,7 @@ def run():
                     mqtt_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
-                    mqtt_client.client.publish("receiver/focus", "Done")
+                    pump_client.client.publish("actuator/focus/state", "Done")
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
@@ -292,7 +292,7 @@ def run():
                     print("The stage has been interrompted.")
 
                     # Publish the status "Done" to via MQTT to Node-RED
-                    mqtt_client.client.publish("receiver/focus", "Interrompted")
+                    pump_client.client.publish("actuator/focus/state", "Interrupted")
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
