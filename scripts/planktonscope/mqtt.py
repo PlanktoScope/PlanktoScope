@@ -5,19 +5,26 @@
 
 # MQTT Topics follows this architecture:
 # - actuator :  This topics adresses the actuator thread
+#               No publication or receive here
 #   - actuator/pump :   Control of the pump
 #                       The message should something like "FORWARD 10 1"
 #                       to move 10mL forward at 1mL/min
+#                       Receive only
 #       -actuator/pump/state:   State of the pump
 #                               Is one of Start, Done, Interrupted
+#                               Publish only
 #   - actuator/focus :  Control of the focus stage
 #                       The message should something like "UP 10"
 #                       to move up 10mm
+#                       Receive only
 #       -actuator/focus/state   State of the focus stage
 #                               Is one of Start, Done, Interrupted
+#                               Publish only
 #   - imager :  Control of the imaging status
+#               Receive only
 #       - imager/state :    State of the imager
 #                           Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
+#                           Publish only
 # - receiver :  This topics adresses the NODE-RED service
 #   - receiver/image :  This does something
 #       - receiver/segmentation :   This does something else
