@@ -48,8 +48,8 @@ pump_stepper.release()
 focus_stepper.release()
 
 # Creates the MQTT Client
-pump_client = planktonscope.mqtt.MQTT_Client("actuator/#")
-pump_client.connect()
+actuator_client = planktonscope.mqtt.MQTT_Client("actuator/#")
+actuator_client.connect()
 
 
 def focus(direction, distance, speed=focus_max_speed):
@@ -174,7 +174,7 @@ def run():
         # Pump Event
         ############################################################################
         # If the command is "pump"
-        if pump_client.command is "pump":
+        if actuator_client.command is "pump":
 
             # Set the LEDs as Blue
             planktonscope.light.setRGB(0, 0, 255)
@@ -192,7 +192,7 @@ def run():
             print("The pump has been started.")
 
             # Publish the status "Start" to via MQTT to Node-RED
-            pump_client.client.publish("actuator/pump/state", "Start")
+            actuator_client.client.publish("actuator/pump/state", "Start")
             pump_thread = multiprocessing.Process(
                 target=pump, args=[direction, volume, speed]
             )
@@ -206,7 +206,7 @@ def run():
                     print("The pumping is done.")
 
                     # Change the command to not re-enter in this while loop
-                    pump_client.command = "wait"
+                    actuator_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
                     client.publish("actuator/pump/state", "Done")
@@ -218,7 +218,7 @@ def run():
 
                 ####################################################################
                 # If a new received command isn't "pump", break this while loop
-                if pump_client.command is not "pump":
+                if actuator_client.command is not "pump":
                     pump_thread.terminate()
                     pump_stepper.release()
 
@@ -226,7 +226,7 @@ def run():
                     print("The pump has been interrompted.")
 
                     # Publish the status "Interrompted" to via MQTT to Node-RED
-                    pump_client.client.publish("actuator/pump/state", "Interrupted")
+                    actuator_client.client.publish("actuator/pump/state", "Interrupted")
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
@@ -238,7 +238,7 @@ def run():
         ############################################################################
 
         # If the command is "focus"
-        elif pump_client.command is "focus":
+        elif actuator_client.command is "focus":
 
             # Set the LEDs as Yellow
             planktonscope.light.setRGB(255, 255, 0)
@@ -253,7 +253,7 @@ def run():
             print("The focus has been started.")
 
             # Publish the status "Start" to via MQTT to Node-RED
-            pump_client.client.publish("actuator/focus/state", "Start")
+            actuator_client.client.publish("actuator/focus/state", "Start")
 
             # Starts the focus process
             focus_thread = multiprocessing.Process(
@@ -269,10 +269,10 @@ def run():
                     print("The focusing is done.")
 
                     # Change the command to not re-enter in this while loop
-                    pump_client.command = "wait"
+                    actuator_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
-                    pump_client.client.publish("actuator/focus/state", "Done")
+                    actuator_client.client.publish("actuator/focus/state", "Done")
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
@@ -281,7 +281,7 @@ def run():
 
                 ####################################################################
                 # If a new received command isn't "focus", break this while loop
-                if pump_client.command is not "focus":
+                if actuator_client.command is not "focus":
                     # Kill the stepper thread
                     focus_thread.terminate()
 
@@ -292,7 +292,9 @@ def run():
                     print("The stage has been interrompted.")
 
                     # Publish the status "Done" to via MQTT to Node-RED
-                    pump_client.client.publish("actuator/focus/state", "Interrupted")
+                    actuator_client.client.publish(
+                        "actuator/focus/state", "Interrupted"
+                    )
 
                     # Set the LEDs as Green
                     planktonscope.light.setRGB(0, 255, 0)
