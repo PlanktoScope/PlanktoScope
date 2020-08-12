@@ -12,9 +12,8 @@ class MQTT_Client:
     # Declare the global variables command, args and counter
     command = ""
     args = ""
-    counter = ""
 
-    def __init__(self, topic, server = "127.0.0.1", port = 1883):
+    def __init__(self, topic, server="127.0.0.1", port=1883):
         # MQTT Client functions definition
         self.client = mqtt.Client()
         self.topic = topic
@@ -55,5 +54,4 @@ class MQTT_Client:
         self.command = msg.topic.split("/")[1]
         # Decode the message to find the arguments
         self.args = str(msg.payload.decode())
-        # Reset the counter to 0
-        self.counter = 0
+
