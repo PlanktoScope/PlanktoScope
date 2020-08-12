@@ -1,4 +1,27 @@
 # Library for exchaning messages with Node-RED
+# We are using MQTT V3.1.1
+# The documentation for Paho can be found here:
+# https://www.eclipse.org/paho/clients/python/docs/
+
+# MQTT Topics follows this architecture:
+# - actuator :  This topics adresses the actuator thread
+#   - actuator/pump :   Control of the pump
+#                       The message should something like "FORWARD 10 1"
+#                       to move 10mL forward at 1mL/min
+#       -actuator/pump/state:   State of the pump
+#                               Is one of Start, Done, Interrupted
+#   - actuator/focus :  Control of the focus stage
+#                       The message should something like "UP 10"
+#                       to move up 10mm
+#       -actuator/focus/state   State of the focus stage
+#                               Is one of Start, Done, Interrupted
+#   - imager :  Control of the imaging status
+#       - imager/state :    State of the imager
+#                           Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
+# - receiver :  This topics adresses the NODE-RED service
+#   - receiver/image :  This does something
+#       - receiver/segmentation :   This does something else
+
 import paho.mqtt.client as mqtt
 
 
@@ -51,7 +74,11 @@ class MQTT_Client:
         # Print the topic and the message
         print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
         # Parse the topic to find the command. ex : actuator/pump -> pump
+        # This only removes the top-level topic!
         self.command = msg.topic.split("/")[1]
         # Decode the message to find the arguments
         self.args = str(msg.payload.decode())
 
+
+# TODO implement the on_disconnect callback to manage the loss of the server
+# with def on_disconnect(client, userdata, rc)
