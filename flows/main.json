@@ -382,11 +382,11 @@
         ],
         "out": [
             {
-                "x": 800,
-                "y": 200,
+                "x": 1060,
+                "y": 220,
                 "wires": [
                     {
-                        "id": "97bf666e.4d3ad",
+                        "id": "6bfe2872.04602",
                         "port": 0
                     }
                 ]
@@ -499,28 +499,6 @@
         "disp": true,
         "width": 24,
         "collapse": false
-    },
-    {
-        "id": "84801dc0.193d88",
-        "type": "mqtt-broker",
-        "z": "",
-        "name": "",
-        "broker": "127.0.0.1",
-        "port": "1883",
-        "clientid": "test",
-        "usetls": false,
-        "compatmode": false,
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": ""
     },
     {
         "id": "eb610eb9.84fae8",
@@ -646,7 +624,7 @@
         "id": "3bbfa352.fca29c",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -658,7 +636,8 @@
                 "default": "#097479",
                 "baseColor": "#097479",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
@@ -668,44 +647,44 @@
             },
             "themeState": {
                 "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
+                    "default": "#097479",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
                     "value": "#111111",
                     "edited": false
                 },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#097479",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "base-font": {
@@ -755,7 +734,7 @@
         "icon": "",
         "payload": "",
         "payloadType": "str",
-        "topic": "actuator/image",
+        "topic": "imaging/image",
         "x": 200,
         "y": 100,
         "wires": [
@@ -772,14 +751,15 @@
         "func": "state = global.get(\"state\");\nglobal.set('img_counter',0)\nglobal.set('obj_counter',0)\nif (state == null){state=\"free\"}\n\nvar sleep_before= global.get(\"custom_sleep_before\");\nvar nb_step= global.get(\"custom_nb_step\");\nvar nb_frame= global.get(\"custom_nb_frame\");\nvar segmentation= global.get(\"custom_segmentation\");\n\nif (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Duration before the acquisition\";\n    \n}else if (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of step in between two frames\";\n    \n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of image to save\";\n    \n}else if (segmentation === undefined || segmentation === \"\" || segmentation === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Realize or not the segmentation\";\n    \n}else {\n    nb_frame=nb_frame-1\n    \n    msg.payload=sleep_before+' '+nb_step+' '+nb_frame+' '+segmentation;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 360,
         "y": 100,
         "wires": [
             [
                 "84505b75.883a48"
             ]
-        ],
-        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+        ]
     },
     {
         "id": "84505b75.883a48",
@@ -791,7 +771,7 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "actuator/image",
+                "v": "imaging/image",
                 "vt": "str"
             },
             {
@@ -1742,7 +1722,7 @@
         "topic": "receiver/#",
         "qos": "0",
         "datatype": "auto",
-        "broker": "84801dc0.193d88",
+        "broker": "e8ab36cc.74d77",
         "x": 80,
         "y": 40,
         "wires": [
@@ -3323,14 +3303,15 @@
         "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    nb_step=volume*507\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    duration=(volume*60)/flowrate\n    delay=(duration/nb_step)-0.005\n    msg.topic = \"actuator/pump\";\n    \n    if(msg.payload === \"FORWARD\" & state===\"free\"){\n        msg.payload='FORWARD '+delay+' '+nb_step;\n    }\n    if(msg.payload === \"BACKWARD\" & state===\"free\"){\n        msg.payload='BACKWARD '+delay+' '+nb_step;\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 640,
         "y": 140,
         "wires": [
             [
                 "53bef09a.8102e"
             ]
-        ],
-        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+        ]
     },
     {
         "id": "2374d55d.a3e3a2",
@@ -3452,9 +3433,9 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "off",
+        "payload": "stop",
         "payloadType": "str",
-        "topic": "actuator/wait",
+        "topic": "actuator/pump",
         "x": 470,
         "y": 200,
         "wires": [
@@ -3557,6 +3538,8 @@
         "func": "msg.payload = msg.payload.pump_flowrate;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 190,
         "y": 40,
         "wires": [
@@ -3569,31 +3552,35 @@
         "id": "97bf666e.4d3ad",
         "type": "ui_text_input",
         "z": "ac806d39.1682a8",
-        "name": "focus_nb_step",
-        "label": "Number of step(s)",
-        "tooltip": "",
+        "name": "focus_distance",
+        "label": "Distance in µm",
+        "tooltip": "The actual distance moved will be in 25µm increment",
         "group": "69433259.f306fc",
         "order": 2,
         "width": 8,
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": 300,
-        "topic": "focus_nb_step",
-        "x": 540,
+        "delay": "750",
+        "topic": "focus_distance",
+        "x": 520,
         "y": 40,
         "wires": [
-            []
+            [
+                "6bfe2872.04602"
+            ]
         ]
     },
     {
         "id": "c631467a.569ba",
         "type": "function",
         "z": "ac806d39.1682a8",
-        "name": "get focus_nb_step",
-        "func": "msg.payload = msg.payload.focus_nb_step;\nreturn msg;",
+        "name": "get focus_distance",
+        "func": "msg.payload = msg.payload.focus_distance;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 230,
         "y": 40,
         "wires": [
@@ -3712,17 +3699,18 @@
         "type": "function",
         "z": "ac806d39.1682a8",
         "name": "focus.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar nb_step= global.get(\"focus_nb_step\");\n\nif (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of steps\";\n    \n}else {\n    nb_step= global.get(\"focus_nb_step\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"FORWARD \"+nb_step;\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"BACKWARD \"+nb_step;\n    }\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (nb_step === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n    \n}else {\n    distance = global.get(\"focus_distance\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"UP \"+distance/1000;\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"UP \"+distance/1000;\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 660,
         "y": 100,
         "wires": [
             [
                 "a2f04fac.5a338"
             ]
-        ],
-        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+        ]
     },
     {
         "id": "da904b2b.4a1d68",
@@ -3739,9 +3727,9 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "off",
+        "payload": "stop",
         "payloadType": "str",
-        "topic": "actuator/wait",
+        "topic": "actuator/focus",
         "x": 510,
         "y": 160,
         "wires": [
@@ -4333,6 +4321,24 @@
         "wires": [
             [
                 "1d54c0bf.fbcf07"
+            ]
+        ]
+    },
+    {
+        "id": "6bfe2872.04602",
+        "type": "function",
+        "z": "ac806d39.1682a8",
+        "name": "round focus_distance",
+        "func": "// Here we change the focus_distance to 25 µm increment\nif (msg.payload%25 <= 12.5){\n    msg.payload = msg.payload - msg.payload%25\n}\nelse {\n    msg.payload = msg.payload + msg.payload%25\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 880,
+        "y": 220,
+        "wires": [
+            [
+                "97bf666e.4d3ad"
             ]
         ]
     }
