@@ -29,7 +29,7 @@ from datetime import datetime, timedelta
 from time import sleep
 
 # Libraries manipulate json format, execute bash commands
-import json, shutil, os
+import json, shutil, os, multiprocessing
 
 ################################################################################
 # Morphocut Libraries
@@ -176,6 +176,11 @@ camera.exposure_mode = "fixedfps"
 
 imaging_client = planktoscope.mqtt.MQTT_Client("imaging/#")
 imaging_client.connect()
+
+# Starts the stepper thread for actuators
+# This needs to be in a threading or multiprocessing wrapper
+stepper_thread = planktoscope.stepper.StepperProcess()
+stepper_thread.start()
 
 ################################################################################
 # Definition of the few important metadata
@@ -330,9 +335,6 @@ server = StreamingServer(address, StreamingHandler)
 threading.Thread(target=server.serve_forever).start()
 camera.start_recording(output, format="mjpeg", resize=(640, 480))
 
-# Starts the stepper thread for actuators
-# This needs to be in a threading or multiprocessing wrapper
-planktoscope.stepper.run()
 
 while True:
     ############################################################################
