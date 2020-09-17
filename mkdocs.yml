@@ -1,0 +1,20 @@
+site_name: PlanktoScope
+nav:
+    - Setup:
+        - Basic Install: install.md
+        - Expert Setup: expert_setup.md
+    - Remote Access: remote_access.md
+    - Usage:
+        - Collection devices: collection_devices.md
+    - About:
+        - License: license.md
+        - Edit this doc: edit_this_doc.md
+theme:
+  name: readthedocs
+  collapse_navigation: false
+
+markdown_extensions:
+    - smarty
+    - sane_lists
+    - toc:
+        permalink: true

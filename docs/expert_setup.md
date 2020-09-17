@@ -1,16 +1,5 @@
-# PlanktoScop Main Repository
-The PlanktoScop is an open and affordable modular imaging platform for citizen oceanography.
-
-This GitHub is part of a community that you can find on [its website](https://www.planktonscope.org/).
-
-# Fast Setup
-
-Before going further, notice that you can download the image disk already setup without having to deal with all these command lines.
-Jump here : http://planktonscope.su.domains/Images_raspberry/Raspbian_Buster_Morphocut_WiFi.img
-
 # Expert Setup
-After getting your kit and finding the necessary components, but before assembling your kit, you should take the time to do a mockup build and setup your Raspberry.
-<<<<<<< HEAD
+
 
 ## Install and setup Raspbian on your Raspberry Pi
 
@@ -45,7 +34,7 @@ The first boot to the desktop may take up to 120 seconds. This is normal and is 
 
 Make sure you have access to internet and update/upgrade your fresh Raspbian install.
 
-Update your Pi first. Open up a terminal or connect via ssh to the Raspberry, and type in the following:
+Update your Pi first. Open up a terminal, and do the following:
 ```sh
 sudo apt update -y
 sudo apt upgrade -y
@@ -59,9 +48,18 @@ sudo reboot now
 
 ## Raspberry Pi configuration
 
+### Clone this repository!
+
+First of all, and to ensure you have the latest documentation available locally, you should clone this repository using git.
+
+Simply run the following in a terminal:
+```sh
+git clone https://github.com/PlanktonPlanet/PlanktonScope/
+```
+
 ### Enable Camera/SSH/I2C in raspi-config
 
-You can launch the configuration tool:
+You can now launch the configuration tool:
 ```sh
 sudo raspi-config
 ```
@@ -437,6 +435,51 @@ sudo pip3 install Adafruit-SSD1306
 More information can be found on Yahboom website, on the page [Installing RGB Cooling HAT](https://www.yahboom.net/study/RGB_Cooling_HAT).
 
 
+### Install Node-RED
+
+#### Download and installation
+To install Node.js, npm and Node-RED onto a Raspberry Pi, you just need to run the following command. You can review the content of this script [here](https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered).
+```sh
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+```
+Type `y` at both prompts to accept the installation and its settings.
+
+#### Enable start on boot and launch Node-RED
+To run Node-RED when the Pi is turned on or restarted, you need to enable the systemd service by running this command:
+```sh
+sudo systemctl enable nodered.service
+```
+
+You can now start Node-RED by running the following:
+```sh
+sudo systemctl start nodered.service
+```
+
+#### Check the installation
+Make sure Node-RED is correctly installed by reaching the following page from the browser of your pi http://localhost:1880 or http://planktoscope.local:1880 from another computer on the same network.
+
+#### Install the necessary nodes
+These nodes will be used by the PlanktoScop software and needs to be installed:
+```sh
+cd ~/.node-red/
+npm install node-red-dashboard node-red-contrib-python3-function node-red-contrib-camerapi node-red-contrib-gpsd node-red-contrib-web-worldmap node-red-contrib-interval
+sudo systemctl restart nodered.service
+```
+
+#### Import the last GUI
+
+From Node-RED gui in your browser, choose the Hamburger menu top right, and then Import. You can paste the code directly from the lastest version of the GUI available [here](https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/blob/master/flows/main.json).
+
+You can also download it directly:
+```sh
+wget -N -O ~/.node-red/flows_planktoscope.json https://raw.githubusercontent.com/PlanktonPlanet/PlanktonScope/master/flows/main.json
+sudo systemctl restart nodered.service
+```
+
+#### More information
+[Installing Node-RED on Raspberry Pi](https://nodered.org/docs/getting-started/raspberrypi)
+
+
 ### Install Mosquitto MQTT
 
 In order to send and receive data from Node-RED, you need to install this. Run the following:
@@ -505,67 +548,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 The MorphoCut documentation can be found [on this page](https://morphocut.readthedocs.io/en/stable/index.html).
 
 
-
-### Install Node-RED
-
-#### Download and installation
-To install Node.js, npm and Node-RED onto a Raspberry Pi, you just need to run the following command. You can review the content of this script [here](https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered).
-```sh
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
-```
-Type `y` at both prompts to accept the installation and its settings.
-
-#### Enable start on boot and launch Node-RED
-To run Node-RED when the Pi is turned on or restarted, you need to enable the systemd service by running this command:
-```sh
-sudo systemctl enable nodered.service
-```
-
-You can now start Node-RED by running the following:
-```sh
-sudo systemctl start nodered.service
-```
-
-#### Check the installation
-Make sure Node-RED is correctly installed by reaching the following page from the browser of your pi http://localhost:1880 or http://planktoscope.local:1880 from another computer on the same network.
-
-#### Install the necessary nodes
-These nodes will be used by the PlanktoScop software and needs to be installed:
-```sh
-cd ~/.node-red/
-npm install node-red-dashboard node-red-contrib-python3-function node-red-contrib-camerapi node-red-contrib-gpsd node-red-contrib-web-worldmap node-red-contrib-interval
-```
-We are also going to activate the Projects feature of Node-Red as this will help us manage and track changes to the flows. Open the file `settings.js` with an editor (for example with `nano settings.js`) so we can change the following lines:
-```
-Line 68: uncomment the line (remove the //) that ends with flowFilePretty: true,
-Line 296: set enabled to true
-```
-
-Save you changes.
-
-The final step before restarting node-red is to link the projects directory from within node-red folder to our main home directory. To do so, just open a terminal and type the following:
-```bash
-ln -s /home/pi/.node-red/projects/PlanktonScope /home/pi/PlanktonScope
-```
-
-You can now restart the nodered service:
-```
-sudo systemctl restart nodered.service
-```
-
-#### Import the last GUI
-
-If you now open the Node-Red GUI in your browser, it will ask you to setup the project, an email and a username (so if you make changes to the flow and want to share them we can know who made them).
-
-You can now choose to clone an existing repository. Choose a name that makes sense for you, and in the `Git repository URL` field put the main Planktonscope repository: `https://www.github.com/PlanktonPlanet/PlanktonScope.git`.
-
-The latest flow version will be imported immediately.
-
-
-#### More information
-[Installing Node-RED on Raspberry Pi](https://nodered.org/docs/getting-started/raspberrypi)
-
-
 ## Finishing the install
 
 Make sure to update your Pi
@@ -601,5 +583,3 @@ cp ~/PlanktonScope/flows/main.json ~/.node-red/flows_planktoscope.json
 ### Share WiFi via Ethernet
 
 At this link : https://www.instructables.com/id/Share-WiFi-With-Ethernet-Port-on-a-Raspberry-Pi/
-=======
->>>>>>> 6602696... Update to documentation to use RTD with mkdocs locally
