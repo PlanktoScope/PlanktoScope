@@ -3,7 +3,7 @@
 ################################################################################
 
 # Library for exchaning messages with Node-RED
-import paho.mqtt.client as mqtt
+import planktoscope.mqtt
 
 # Library to control the PiCamera
 import picamera
@@ -12,8 +12,11 @@ import picamera
 from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit
 
+# Import the planktonscope stepper module
+import planktoscope.stepper
+
 # Import the planktonscope LED module
-import planktonscope.light
+import planktoscope.light
 
 ################################################################################
 # Practical Libraries
@@ -275,7 +278,7 @@ with Pipeline() as p:
     name = Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)
 
     # Set the LEDs as Green
-    Call(planktonscope.light.setRGB, 0, 255, 0)
+    Call(planktoscope.light.setRGB, 0, 255, 0)
 
     # Read image
     img = ImageReader(abs_path)
@@ -328,7 +331,7 @@ with Pipeline() as p:
     )
 
     # Set the LEDs as Purple
-    Call(planktonscope.light.setRGB, 255, 0, 255)
+    Call(planktoscope.light.setRGB, 255, 0, 255)
 
     # For an object, extract a vignette/ROI from the image
     roi_orig = ExtractROI(img, regionprops, bg_color=255)
@@ -380,7 +383,7 @@ with Pipeline() as p:
     Call(client.publish, "receiver/segmentation/object_id", object_id)
 
     # Set the LEDs as Green
-    Call(planktonscope.light.setRGB, 0, 255, 0)
+    Call(planktoscope.light.setRGB, 0, 255, 0)
 
 ################################################################################
 # While loop for capting commands from Node-RED
@@ -594,7 +597,7 @@ while True:
         client.publish("receiver/image", "Start")
 
         # Set the LEDs as Blue
-        planktonscope.light.setRGB(0, 0, 255)
+        planktoscope.light.setRGB(0, 0, 255)
 
         # Pump duing a given number of steps (in between each image)
         for i in range(nb_step):
@@ -614,12 +617,12 @@ while True:
                 break
 
         # Set the LEDs as Green
-        planktonscope.light.setRGB(0, 255, 0)
+        planktoscope.light.setRGB(0, 255, 0)
 
         while True:
 
             # Set the LEDs as Cyan
-            planktonscope.light.setRGB(0, 255, 255)
+            planktoscope.light.setRGB(0, 255, 255)
 
             # Increment the counter
             counter += 1
@@ -637,14 +640,14 @@ while True:
             camera.capture(filename)
 
             # Set the LEDs as Green
-            planktonscope.light.setRGB(0, 255, 0)
+            planktoscope.light.setRGB(0, 255, 0)
 
             # Publish the name of the image to via MQTT to Node-RED
 
             client.publish("receiver/image", datetime_tmp + ".jpg has been imaged.")
 
             # Set the LEDs as Blue
-            planktonscope.light.setRGB(0, 0, 255)
+            planktoscope.light.setRGB(0, 0, 255)
 
             # Pump during a given nb of steps
             for i in range(nb_step):
@@ -659,7 +662,7 @@ while True:
             sleep(0.5)
 
             # Set the LEDs as Green
-            planktonscope.light.setRGB(0, 255, 0)
+            planktoscope.light.setRGB(0, 255, 0)
 
             ####################################################################
             # If counter reach the number of frame, break
@@ -686,7 +689,7 @@ while True:
                     client.publish("receiver/segmentation", "Completed")
 
                     # Set the LEDs as White
-                    planktonscope.light.setRGB(255, 255, 255)
+                    planktoscope.light.setRGB(255, 255, 255)
 
                     # cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
 
@@ -694,7 +697,7 @@ while True:
                     sleep(1)
 
                     # Set the LEDs as Green
-                    planktonscope.light.setRGB(0, 255, 0)
+                    planktoscope.light.setRGB(0, 255, 0)
 
                     # End if(segmentation == "True"):
 
@@ -702,7 +705,7 @@ while True:
                 command = "wait"
 
                 # Set the LEDs as Green
-                planktonscope.light.setRGB(0, 255, 255)
+                planktoscope.light.setRGB(0, 255, 255)
 
                 # Reset the counter to 0
                 counter = 0
@@ -723,7 +726,7 @@ while True:
                 client.publish("receiver/image", "Interrompted")
 
                 # Set the LEDs as Green
-                planktonscope.light.setRGB(0, 255, 0)
+                planktoscope.light.setRGB(0, 255, 0)
 
                 # Reset the counter to 0
                 counter = 0
@@ -732,10 +735,10 @@ while True:
 
     else:
         # Set the LEDs as Black
-        planktonscope.light.setRGBOff()
+        planktoscope.light.setRGBOff()
         # Its just waiting to receive command from Node-RED
         sleep(1)
         # Set the LEDs as White
-        planktonscope.light.setRGB(255, 255, 255)
+        planktoscope.light.setRGB(255, 255, 255)
         # Its just waiting to receive command from Node-RED
         sleep(1)
