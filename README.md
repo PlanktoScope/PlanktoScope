@@ -10,4 +10,3 @@ Jump here : http://planktonscope.su.domains/Images_raspberry/Raspbian_Buster_Mor
 
 # Expert Setup
 After getting your kit and finding the necessary components, but before assembling your kit, you should take the time to do a mockup build and setup your Raspberry.
-
