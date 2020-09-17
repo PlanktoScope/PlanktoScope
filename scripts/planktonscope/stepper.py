@@ -22,17 +22,11 @@ focus_max_speed = 0.5
 pump_max_speed = 30
 
 # parse the config data. If the key is absent, we are using the default value
-reverse = configuration["hardware_config"].get("stepper_reverse", reverse)
-focus_steps_per_mm = configuration["hardware_config"].get(
-    "focus_steps_per_mm", focus_steps_per_mm
-)
-pump_steps_per_ml = configuration["hardware_config"].get(
-    "pump_steps_per_ml", pump_steps_per_ml
-)
-focus_max_speed = configuration["hardware_config"].get(
-    "focus_max_speed", focus_max_speed
-)
-pump_max_speed = configuration["hardware_config"].get("pump_max_speed", pump_max_speed)
+reverse = configuration.get("stepper_reverse", reverse)
+focus_steps_per_mm = configuration.get("focus_steps_per_mm", focus_steps_per_mm)
+pump_steps_per_ml = configuration.get("pump_steps_per_ml", pump_steps_per_ml)
+focus_max_speed = configuration.get("focus_max_speed", focus_max_speed)
+pump_max_speed = configuration.get("pump_max_speed", pump_max_speed)
 
 
 # define the names for the 2 exsting steppers
