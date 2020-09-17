@@ -3,7 +3,8 @@ import adafruit_motor
 import adafruit_motorkit
 import time
 import json
-import planktonscope.mqtt
+import planktoscope.mqtt
+import planktoscope.light
 import multiprocessing
 
 # load config.json
@@ -48,7 +49,7 @@ pump_stepper.release()
 focus_stepper.release()
 
 # Creates the MQTT Client
-actuator_client = planktonscope.mqtt.MQTT_Client("actuator/#")
+actuator_client = planktoscope.mqtt.MQTT_Client("actuator/#")
 actuator_client.connect()
 
 
@@ -177,7 +178,7 @@ def run():
         if actuator_client.command is "pump":
 
             # Set the LEDs as Blue
-            planktonscope.light.setRGB(0, 0, 255)
+            planktoscope.light.setRGB(0, 0, 255)
 
             # Get direction from the different received arguments
             direction = args.split(" ")[0]
@@ -212,7 +213,7 @@ def run():
                     client.publish("actuator/pump/state", "Done")
 
                     # Set the LEDs as Green
-                    planktonscope.light.setRGB(0, 255, 0)
+                    planktoscope.light.setRGB(0, 255, 0)
 
                     break
 
@@ -229,7 +230,7 @@ def run():
                     actuator_client.client.publish("actuator/pump/state", "Interrupted")
 
                     # Set the LEDs as Green
-                    planktonscope.light.setRGB(0, 255, 0)
+                    planktoscope.light.setRGB(0, 255, 0)
 
                     break
 
@@ -241,7 +242,7 @@ def run():
         elif actuator_client.command is "focus":
 
             # Set the LEDs as Yellow
-            planktonscope.light.setRGB(255, 255, 0)
+            planktoscope.light.setRGB(255, 255, 0)
 
             # Get direction from the different received arguments
             direction = args.split(" ")[0]
@@ -275,7 +276,7 @@ def run():
                     actuator_client.client.publish("actuator/focus/state", "Done")
 
                     # Set the LEDs as Green
-                    planktonscope.light.setRGB(0, 255, 0)
+                    planktoscope.light.setRGB(0, 255, 0)
 
                     break
 
@@ -297,7 +298,7 @@ def run():
                     )
 
                     # Set the LEDs as Green
-                    planktonscope.light.setRGB(0, 255, 0)
+                    planktoscope.light.setRGB(0, 255, 0)
 
                     break
 
