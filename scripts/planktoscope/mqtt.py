@@ -20,11 +20,12 @@
 #       -actuator/focus/state   State of the focus stage
 #                               Is one of Start, Done, Interrupted
 #                               Publish only
-#   - imager :  Control of the imaging status
+# - imager
+#   - image :  Control of the imaging status
 #               Receive only
-#       - imager/state :    State of the imager
-#                           Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
-#                           Publish only
+#   - state :    State of the imager
+#                   Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
+#                   Publish only
 # - receiver :  This topics adresses the NODE-RED service
 #   - receiver/image :  This does something
 #       - receiver/segmentation :   This does something else
@@ -39,16 +40,18 @@ class MQTT_Client:
     when creating this object
     """
 
-    # Declare the global variables command, args and counter
-    command = ""
-    args = ""
+    def __init__(self, topic, server="127.0.0.1", port=1883, name="client"):
 
-    def __init__(self, topic, server="127.0.0.1", port=1883):
+        # Declare the global variables command and args
+        self.command = ""
+        self.args = ""
+
         # MQTT Client functions definition
         self.client = mqtt.Client()
         self.topic = topic
         self.server = server
         self.port = port
+        self.name = name
         pass
 
     def connect(self):
@@ -65,7 +68,7 @@ class MQTT_Client:
     # Run this function in order to connect to the client (Node-RED)
     def on_connect(self, client, userdata, flags, rc):
         # Print when connected
-        print(f"Connected! - {str(rc)}")
+        print(f"{self.name} connected to {self.server}:{self.port}! - {str(rc)}")
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
         # Turn green the light module
@@ -74,12 +77,14 @@ class MQTT_Client:
     # Run this function in order to subscribe to all the topics begining by actuator
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
-        print(f"Subscribed! - {str(mid)} {str(granted_qos)}")
+        print(
+            f"{self.name} subscribed to {self.topic}! - {str(mid)} {str(granted_qos)}"
+        )
 
     # Run this command when Node-RED is sending a message on the subscribed topic
     def on_message(self, client, userdata, msg):
         # Print the topic and the message
-        print(f"{msg.topic} {str(msg.qos)} {str(msg.payload)}")
+        print(f"{self.name}: {msg.topic} {str(msg.qos)} {str(msg.payload)}")
         # Parse the topic to find the command. ex : actuator/pump -> pump
         # This only removes the top-level topic!
         self.command = msg.topic.split("/", 1)[1]
