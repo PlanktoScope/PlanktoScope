@@ -29,7 +29,7 @@ from datetime import datetime, timedelta
 from time import sleep
 
 # Libraries manipulate json format, execute bash commands
-import json, shutil, os, subprocess
+import json, shutil, os
 
 ################################################################################
 # Morphocut Libraries
@@ -160,67 +160,12 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 
 
 ################################################################################
-# MQTT core functions
-################################################################################
-
-# Run this function in order to connect to the client (Node-RED)
-def on_connect(client, userdata, flags, rc):
-    # Print when connected
-    print("Connected! - " + str(rc))
-    # When connected, run subscribe()
-    client.subscribe("actuator/#")
-    # Turn green the light module
-    planktonscope.light.setRGB(0, 255, 0)
-
-
-# Run this function in order to subscribe to all the topics begining by actuator
-def on_subscribe(client, obj, mid, granted_qos):
-    # Print when subscribed
-    print("Subscribed! - " + str(mid) + " " + str(granted_qos))
-
-
-# Run this command when Node-RED is sending a message on the subscribed topic
-def on_message(client, userdata, msg):
-    # Print the topic and the message
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
-    # Update the global variables command, args and counter
-    global command
-    global args
-    global counter
-    # Parse the topic to find the command. ex : actuator/pump -> pump
-    command = msg.topic.split("/")[1]
-    # Decode the message to find the arguments
-    args = str(msg.payload.decode())
-    # Reset the counter to 0
-    counter = 0
-
-
-################################################################################
 # Init function - executed only once
 ################################################################################
 
 # load config.json
 with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
     configuration = json.load(config_file)
-
-
-# define the names for the 2 exsting steppers
-kit = MotorKit()
-reverse = False
-# check that the config file have the hardware_config and the stepper_reverse key
-if "hardware_config" in configuration:
-    if "stepper_reverse" in configuration["hardware_config"]:
-        reverse = configuration["hardware_config"]["stepper_reverse"]
-if reverse:
-    pump_stepper = kit.stepper2
-    focus_stepper = kit.stepper1
-else:
-    pump_stepper = kit.stepper1
-    focus_stepper = kit.stepper2
-
-# Make sure the steppers are release and do not use any power
-pump_stepper.release()
-focus_stepper.release()
 
 # Precise the settings of the PiCamera
 camera = picamera.PiCamera()
@@ -395,185 +340,15 @@ server = StreamingServer(address, StreamingHandler)
 threading.Thread(target=server.serve_forever).start()
 camera.start_recording(output, format="mjpeg", resize=(640, 480))
 
+# Starts the stepper thread for actuators
+# This needs to be in a threading or multiprocessing wrapper
+planktoscope.stepper.run()
+
 while True:
-
-    ############################################################################
-    # Pump Event
-    ############################################################################
-
-    # If the command is "pump"
-    if command == "pump":
-
-        # Set the LEDs as Blue
-        planktonscope.light.setRGB(0, 0, 255)
-
-        # Get direction from the different received arguments
-        direction = args.split(" ")[0]
-
-        # Get delay (in between steps) from the different received arguments
-        delay = float(args.split(" ")[1])
-
-        # Get number of steps from the different received arguments
-        nb_step = int(args.split(" ")[2])
-
-        # Print status
-        print("The pump has been started.")
-
-        # Publish the status "Start" to via MQTT to Node-RED
-        client.publish("receiver/pump", "Start")
-
-        ########################################################################
-        while True:
-
-            # Depending on direction, select the right direction for the pump
-            if direction == "BACKWARD":
-                direction = stepper.BACKWARD
-
-            if direction == "FORWARD":
-                direction = stepper.FORWARD
-
-            # Actuate the pump for one step in the right direction
-            pump_stepper.onestep(direction=direction, style=stepper.DOUBLE)
-
-            # Increment the counter
-            counter += 1
-
-            # Wait during the delay to pump at the right flowrate
-            sleep(delay)
-
-            ####################################################################
-            # If counter reach the number of step, break
-            if counter > nb_step:
-
-                # Release the pump stepper to stop power draw
-                pump_stepper.release()
-
-                # Print status
-                print("The pumping is done.")
-
-                # Change the command to not re-enter in this while loop
-                command = "wait"
-
-                # Publish the status "Done" to via MQTT to Node-RED
-                client.publish("receiver/pump", "Done")
-
-                # Set the LEDs as Green
-                planktonscope.light.setRGB(0, 255, 0)
-
-                # Reset the counter to 0
-                counter = 0
-
-                break
-
-            ####################################################################
-            # If a new received command isn't "pump", break this while loop
-            if command != "pump":
-
-                # Release the pump stepper to stop power draw
-                pump_stepper.release()
-
-                # Print status
-                print("The pump has been interrompted.")
-
-                # Publish the status "Interrompted" to via MQTT to Node-RED
-                client.publish("receiver/pump", "Interrompted")
-
-                # Set the LEDs as Green
-                planktonscope.light.setRGB(0, 255, 0)
-
-                # Reset the counter to 0
-                counter = 0
-
-                break
-
-    ############################################################################
-    # Focus Event
-    ############################################################################
-
-    # If the command is "focus"
-    elif command == "focus":
-
-        # Set the LEDs as Yellow
-        planktonscope.light.setRGB(255, 255, 0)
-
-        # Get direction from the different received arguments
-        direction = args.split(" ")[0]
-
-        # Get number of steps from the different received arguments
-        nb_step = int(args.split(" ")[1])
-
-        # Print status
-        print("The focus has been started.")
-
-        # Publish the status "Start" to via MQTT to Node-RED
-        client.publish("receiver/focus", "Start")
-
-        ########################################################################
-        while True:
-
-            # Depending on direction, select the right direction for the focus
-            if direction == "FORWARD":
-                direction = stepper.FORWARD
-
-            if direction == "BACKWARD":
-                direction = stepper.BACKWARD
-
-            # Actuate the focus for one microstep in the right direction
-            focus_stepper.onestep(direction=direction, style=stepper.MICROSTEP)
-
-            # Increment the counter
-            counter += 1
-
-            ####################################################################
-            # If counter reach the number of step, break
-            if counter > nb_step:
-
-                # Release the focus steppers to stop power draw
-                focus_stepper.release()
-
-                # Print status
-                print("The focusing is done.")
-
-                # Change the command to not re-enter in this while loop
-                command = "wait"
-
-                # Publish the status "Done" to via MQTT to Node-RED
-                client.publish("receiver/focus", "Done")
-
-                # Set the LEDs as Green
-                planktonscope.light.setRGB(0, 255, 0)
-
-                # Reset the counter to 0
-                counter = 0
-
-                break
-
-            ####################################################################
-            # If a new received command isn't "pump", break this while loop
-            if command != "focus":
-
-                # Release the focus steppers to stop power draw
-                focus_stepper.release()
-
-                # Print status
-                print("The stage has been interrompted.")
-
-                # Publish the status "Done" to via MQTT to Node-RED
-                client.publish("receiver/focus", "Interrompted")
-
-                # Set the LEDs as Green
-                planktonscope.light.setRGB(0, 255, 0)
-
-                # Reset the counter to 0
-                counter = 0
-
-                break
-
     ############################################################################
     # Image Event
     ############################################################################
-
-    elif command == "image":
+    if command == "image":
 
         # Publish the status "Start" to via MQTT to Node-RED
         client.publish("receiver/image", "Will do my best dude")
@@ -600,20 +375,17 @@ while True:
         planktoscope.light.setRGB(0, 0, 255)
 
         # Pump duing a given number of steps (in between each image)
+        client.publish("actuator/pump", "FORWARD " + nb_step)
         for i in range(nb_step):
 
             # If the command is still image - pump a defined nb of steps
             if command == "image":
-
-                # Actuate the pump for one step in the FORWARD direction
-                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
-
                 # The flowrate is fixed for now.
                 sleep(0.01)
 
             # If the command isn't image anymore - break
             else:
-
+                client.publish("actuator/pump", "stop")
                 break
 
         # Set the LEDs as Green
@@ -723,7 +495,7 @@ while True:
                 print("The imaging has been interrompted.")
 
                 # Publish the status "Interrompted" to via MQTT to Node-RED
-                client.publish("receiver/image", "Interrompted")
+                client.publish("receiver/image", "Interrupted")
 
                 # Set the LEDs as Green
                 planktoscope.light.setRGB(0, 255, 0)
