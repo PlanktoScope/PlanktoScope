@@ -33,7 +33,7 @@ import paho.mqtt.client as mqtt
 
 
 class MQTT_Client:
-    """ A client for MQTT
+    """A client for MQTT
 
     Do not forget to include the wildcards in the topic
     when creating this object
@@ -65,7 +65,7 @@ class MQTT_Client:
     # Run this function in order to connect to the client (Node-RED)
     def on_connect(self, client, userdata, flags, rc):
         # Print when connected
-        print("Connected! - " + str(rc))
+        print(f"Connected! - {str(rc)}")
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
         # Turn green the light module
@@ -74,12 +74,12 @@ class MQTT_Client:
     # Run this function in order to subscribe to all the topics begining by actuator
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
-        print("Subscribed! - " + str(mid) + " " + str(granted_qos))
+        print(f"Subscribed! - {str(mid)} {str(granted_qos)}")
 
     # Run this command when Node-RED is sending a message on the subscribed topic
     def on_message(self, client, userdata, msg):
         # Print the topic and the message
-        print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+        print(f"{msg.topic} {str(msg.qos)} {str(msg.payload)}")
         # Parse the topic to find the command. ex : actuator/pump -> pump
         # This only removes the top-level topic!
         self.command = msg.topic.split("/", 1)[1]
