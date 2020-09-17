@@ -169,25 +169,25 @@ def run():
         # Pump Event
         ############################################################################
         # If the command is "pump"
-        if actuator_client.command is "pump":
+        if actuator_client.command == "pump":
 
             # Set the LEDs as Blue
             planktoscope.light.setRGB(0, 0, 255)
 
             # Get direction from the different received arguments
-            direction = args.split(" ")[0]
+            direction = actuator_client.args.split(" ")[0]
 
             # Get delay (in between steps) from the different received arguments
-            volume = float(args.split(" ")[1])
+            volume = float(actuator_client.args.split(" ")[1])
 
             # Get number of steps from the different received arguments
-            speed = int(args.split(" ")[2])
+            speed = int(actuator_client.args.split(" ")[2])
 
             # Print status
             print("The pump has been started.")
 
             # Publish the status "Start" to via MQTT to Node-RED
-            actuator_client.client.publish("actuator/pump/state", "Start")
+            actuator_client.client.publish("actuator/pump/state", "Started")
             pump_thread = multiprocessing.Process(
                 target=pump, args=[direction, volume, speed]
             )
@@ -204,7 +204,7 @@ def run():
                     actuator_client.command = "wait"
 
                     # Publish the status "Done" to via MQTT to Node-RED
-                    client.publish("actuator/pump/state", "Done")
+                    actuator_client.client.publish("actuator/pump/state", "Done")
 
                     # Set the LEDs as Green
                     planktoscope.light.setRGB(0, 255, 0)
@@ -213,7 +213,7 @@ def run():
 
                 ####################################################################
                 # If a new received command isn't "pump", break this while loop
-                if actuator_client.command is not "pump":
+                if not actuator_client.command.startswith("pump"):
                     pump_thread.terminate()
                     pump_stepper.release()
 
@@ -233,16 +233,16 @@ def run():
         ############################################################################
 
         # If the command is "focus"
-        elif actuator_client.command is "focus":
+        elif actuator_client.command == "focus":
 
             # Set the LEDs as Yellow
             planktoscope.light.setRGB(255, 255, 0)
 
             # Get direction from the different received arguments
-            direction = args.split(" ")[0]
+            direction = actuator_client.args.split(" ")[0]
 
             # Get number of steps from the different received arguments
-            distance = int(args.split(" ")[1])
+            distance = int(actuator_client.args.split(" ")[1])
 
             # Print status
             print("The focus has been started.")
@@ -258,7 +258,7 @@ def run():
 
             ########################################################################
             while True:
-                if not pump_thread.is_alive():
+                if not focus_thread.is_alive():
                     # Thread has finished
                     # Print status
                     print("The focusing is done.")
@@ -276,7 +276,7 @@ def run():
 
                 ####################################################################
                 # If a new received command isn't "focus", break this while loop
-                if actuator_client.command is not "focus":
+                if actuator_client.command != "focus":
                     # Kill the stepper thread
                     focus_thread.terminate()
 
