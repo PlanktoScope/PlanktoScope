@@ -59,9 +59,10 @@ def focus(direction, distance, speed=focus_max_speed):
         print("ERROR! The direction command is not recognised")
         return
 
-    if distance > 90:
+    if distance > 45:
         print("ERROR! You are trying to move more than the stage physical size")
         return
+
     if speed > focus_max_speed:
         speed = focus_max_speed
         print("WARNING! You requested speed is faster than the maximum safe speed")
