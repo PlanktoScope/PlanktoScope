@@ -228,6 +228,23 @@ def run():
 
                     break
 
+                ####################################################################
+                # If a new received command is "pump" but args contains "stop" we stop!
+                if actuator_client.command == "pump" and actuator_client.args == "stop":
+                    pump_thread.terminate()
+                    pump_stepper.release()
+
+                    # Print status
+                    print("The pump has been interrupted")
+
+                    # Publish the status "Interrompted" to via MQTT to Node-RED
+                    actuator_client.client.publish("actuator/pump/state", "Interrupted")
+
+                    # Set the LEDs as Green
+                    planktoscope.light.setRGB(0, 255, 0)
+
+                    break
+
         ############################################################################
         # Focus Event
         ############################################################################
@@ -284,9 +301,31 @@ def run():
                     focus_stepper.release()
 
                     # Print status
-                    print("The stage has been interrompted.")
+                    print("The stage has been interrupted.")
 
                     # Publish the status "Done" to via MQTT to Node-RED
+                    actuator_client.client.publish(
+                        "actuator/focus/state", "Interrupted"
+                    )
+
+                    # Set the LEDs as Green
+                    planktoscope.light.setRGB(0, 255, 0)
+
+                    break
+
+                ####################################################################
+                # If a new received command is "focus" but args contains "stop" we stop!
+                if (
+                    actuator_client.command == "focus"
+                    and actuator_client.args == "stop"
+                ):
+                    focus_thread.terminate()
+                    focus_stepper.release()
+
+                    # Print status
+                    print("The focus has been interrupted")
+
+                    # Publish the status "Interrompted" to via MQTT to Node-RED
                     actuator_client.client.publish(
                         "actuator/focus/state", "Interrupted"
                     )
