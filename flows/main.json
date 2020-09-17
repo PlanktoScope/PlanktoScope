@@ -3300,7 +3300,7 @@
         "type": "function",
         "z": "9a45991b.365bc8",
         "name": "pump.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    nb_step=volume*507\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    duration=(volume*60)/flowrate\n    delay=(duration/nb_step)-0.005\n    msg.topic = \"actuator/pump\";\n    \n    if(msg.payload === \"FORWARD\" & state===\"free\"){\n        msg.payload='FORWARD '+delay+' '+nb_step;\n    }\n    if(msg.payload === \"BACKWARD\" & state===\"free\"){\n        msg.payload='BACKWARD '+delay+' '+nb_step;\n    }\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    msg.topic = \"actuator/pump\";\n    \n    if(msg.payload === \"FORWARD\" & state===\"free\"){\n        msg.payload='FORWARD '+volume+' '+flowrate;\n    }\n    if(msg.payload === \"BACKWARD\" & state===\"free\"){\n        msg.payload='BACKWARD '+volume+' '+flowrate;\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3699,7 +3699,7 @@
         "type": "function",
         "z": "ac806d39.1682a8",
         "name": "focus.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (nb_step === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n    \n}else {\n    distance = global.get(\"focus_distance\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"UP \"+distance/1000;\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"UP \"+distance/1000;\n    }\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n}else {\n    distance = global.get(\"focus_distance\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"UP \"+ (distance/1000);\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"UP \"+ (distance/1000);\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3981,9 +3981,11 @@
         "type": "function",
         "z": "bb8dbe68.7e20a",
         "name": "get global",
-        "func": "msg.payload={\n    \n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_nb_step\":global.get(\"focus_nb_step\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n        \n        \n};\nreturn msg;",
+        "func": "msg.payload={\n    \n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_distance\":global.get(\"focus_distance\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n        \n        \n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 1260,
         "y": 160,
         "wires": [
@@ -4048,6 +4050,18 @@
         "type": "inject",
         "z": "bb8dbe68.7e20a",
         "name": "on_load",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": true,
@@ -4061,8 +4075,7 @@
             [
                 "b57ab8b0.7bfc4",
                 "dba45961.85d67",
-                "8231cfcc.0c5dd8",
-                "1d54c0bf.fbcf07"
+                "8231cfcc.0c5dd8"
             ]
         ],
         "info": "# PlanktonScope Help\nWhen the **Pi** is booting, **Node-RED** will be initiated and this node will be activated once and execute the following nodes."
@@ -4097,6 +4110,8 @@
         "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 1080,
         "y": 80,
         "wires": [
@@ -4334,7 +4349,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 880,
+        "x": 800,
         "y": 220,
         "wires": [
             [

@@ -233,7 +233,7 @@ class StepperProcess(multiprocessing.Process):
 
                     ####################################################################
                     # If a new received command isn't "pump", break this while loop
-                    if not actuator_client.command.startswith("pump"):
+                    if not self.actuator_client.command.startswith("pump"):
                         pump_thread.terminate()
                         self.pump_stepper.release()
 
