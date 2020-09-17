@@ -174,7 +174,9 @@ camera.iso = 60
 camera.shutter_speed = 500
 camera.exposure_mode = "fixedfps"
 
-imaging_client = planktoscope.mqtt.MQTT_Client("imaging/#")
+imaging_client = planktoscope.mqtt.MQTT_Client(
+    topic="imaging/#", name="actuator_client"
+)
 imaging_client.connect()
 
 # Starts the stepper thread for actuators
