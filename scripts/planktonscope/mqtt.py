@@ -82,7 +82,7 @@ class MQTT_Client:
         print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
         # Parse the topic to find the command. ex : actuator/pump -> pump
         # This only removes the top-level topic!
-        self.command = msg.topic.split("/")[1]
+        self.command = msg.topic.split("/", 1)[1]
         # Decode the message to find the arguments
         self.args = str(msg.payload.decode())
 
