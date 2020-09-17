@@ -51,7 +51,7 @@ def focus(direction, distance, speed=focus_max_speed):
     """moves the focus stepper
 
     direction is either UP or DOWN
-    distance is in mm
+    distance is received in mm
     speed is in mm/sec"""
 
     # Validation of inputs
@@ -157,7 +157,7 @@ def pump(direction, volume, speed=pump_max_speed):
 
 
 def run():
-    """ This is the function that needs to be called in another thread
+    """This is the function that needs to be started to create a thread
 
     This function runs for perpetuity. For now, it has no exit methods
     (hence no cleanup is performed on exit/kill). However, atexit can
