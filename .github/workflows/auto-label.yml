@@ -25,8 +25,8 @@ jobs:
     - name: Assign issues and pull requests with `software` label to project `Sofware`
       uses: srggrs/assign-one-project-github-action@1.2.0
       if: |
-        contains(github.event.issue.labels.*.name, 'bug') ||
-        contains(github.event.pull_request.labels.*.name, 'bug')
+        contains(github.event.issue.labels.*.name, 'software') ||
+        contains(github.event.pull_request.labels.*.name, 'software')
       with:
         project: 'https://github.com/PlanktonPlanet/PlanktonScope/projects/1'
         column_name: 'To Do'
