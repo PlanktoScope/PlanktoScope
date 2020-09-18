@@ -174,9 +174,7 @@ camera.iso = 60
 camera.shutter_speed = 500
 camera.exposure_mode = "fixedfps"
 
-imaging_client = planktoscope.mqtt.MQTT_Client(
-    topic="imaging/#", name="actuator_client"
-)
+imaging_client = planktoscope.mqtt.MQTT_Client(topic="imager/#", name="actuator_client")
 imaging_client.connect()
 
 # Starts the stepper thread for actuators
@@ -306,7 +304,7 @@ with Pipeline() as p:
     json_meta = Call(json.dumps, meta, sort_keys=True, default=str)
 
     # Publish the json containing all the metadata to via MQTT to Node-RED
-    Call(imaging_client.client.publish, "receiver/segmentation/metric", json_meta)
+    Call(imaging_client.client.publish, "status/segmentation/metric", json_meta)
 
     # Add object_id to the metadata dictionary
     meta["object_id"] = object_id
@@ -322,13 +320,13 @@ with Pipeline() as p:
     TQDM(Format("Object {object_id}", object_id=object_id))
 
     # Publish the object_id to via MQTT to Node-RED
-    Call(imaging_client.client.publish, "receiver/segmentation/object_id", object_id)
+    Call(imaging_client.client.publish, "status/segmentation/object_id", object_id)
 
     # Set the LEDs as Green
     Call(planktoscope.light.setRGB, 0, 255, 0)
 
 ################################################################################
-# While loop for capting commands from Node-RED
+# While loop for capturing commands from Node-RED
 ################################################################################
 
 output = StreamingOutput()
@@ -345,7 +343,7 @@ while True:
     if imaging_client.command == "image":
 
         # Publish the status "Start" to via MQTT to Node-RED
-        imaging_client.client.publish("receiver/image", "Will do my best dude")
+        imaging_client.client.publish("status/imager", "Will do my best dude")
 
         # Get duration to wait before an image from the different received arguments
         sleep_before = int(args.split(" ")[0])
@@ -363,11 +361,16 @@ while True:
         sleep(sleep_before)
 
         # Publish the status "Start" to via MQTT to Node-RED
-        imaging_client.client.publish("receiver/image", "Start")
+        imaging_client.client.publish("status/imager", "Start")
 
         # Set the LEDs as Blue
         planktoscope.light.setRGB(0, 0, 255)
 
+        # TODO This logic here should be changed or at least evaluated to see if it still makes sense
+        # Spoiler alert: it doesn't
+        # We need a way to evaluate how long the pumping will take and go from there
+        # Also, we need to get rid of the check on the last command received
+        # Maybe a local variable to control the state machine would be more appropriate
         # Pump duing a given number of steps (in between each image)
         imaging_client.client.publish("actuator/pump", "FORWARD " + nb_step)
         for i in range(nb_step):
@@ -411,7 +414,7 @@ while True:
             # Publish the name of the image to via MQTT to Node-RED
 
             imaging_client.client.publish(
-                "receiver/image", datetime_tmp + ".jpg has been imaged."
+                "status/imager", datetime_tmp + ".jpg has been imaged."
             )
 
             # Set the LEDs as Blue
@@ -419,7 +422,7 @@ while True:
 
             # Pump during a given nb of steps
             for i in range(nb_step):
-
+                # TODO This should call the stepper control thread instead of stepping by itself
                 # Actuate the pump for one step in the FORWARD direction
                 pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
 
@@ -437,7 +440,7 @@ while True:
             if counter > nb_frame:
 
                 # Publish the status "Completed" to via MQTT to Node-RED
-                imaging_client.client.publish("receiver/image", "Completed")
+                imaging_client.client.publish("status/imager", "Completed")
 
                 # Release the pump steppers to stop power draw
                 pump_stepper.release()
@@ -445,7 +448,7 @@ while True:
                 if segmentation == "True":
 
                     # Publish the status "Start" to via MQTT to Node-RED
-                    imaging_client.client.publish("receiver/segmentation", "Start")
+                    imaging_client.client.publish("status/segmentation", "Start")
 
                     # Start the MorphoCut Pipeline
                     p.run()
@@ -454,7 +457,7 @@ while True:
                     # shutil.rmtree(import_path)
 
                     # Publish the status "Completed" to via MQTT to Node-RED
-                    imaging_client.client.publish("receiver/segmentation", "Completed")
+                    imaging_client.client.publish("status/segmentation", "Completed")
 
                     # Set the LEDs as White
                     planktoscope.light.setRGB(255, 255, 255)
@@ -483,15 +486,15 @@ while True:
             ####################################################################
             # If a new received command isn't "image", break this while loop
             if imaging_client.command != "image":
-
+                # TODO This should be a call to the stepper thread.
                 # Release the pump steppers to stop power draw
                 pump_stepper.release()
 
                 # Print status
-                print("The imaging has been interrompted.")
+                print("The imaging has been interrupted.")
 
-                # Publish the status "Interrompted" to via MQTT to Node-RED
-                imaging_client.client.publish("receiver/image", "Interrupted")
+                # Publish the status "Interrupted" to via MQTT to Node-RED
+                imaging_client.client.publish("status/imager", "Interrupted")
 
                 # Set the LEDs as Green
                 planktoscope.light.setRGB(0, 255, 0)

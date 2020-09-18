@@ -4,31 +4,33 @@
 # https://www.eclipse.org/paho/clients/python/docs/
 
 # MQTT Topics follows this architecture:
-# - actuator :  This topics adresses the actuator thread
-#               No publication or receive here
+# - actuator :  This topic adresses the stepper control thread
+#               No publication under this topic should happen from Python
 #   - actuator/pump :   Control of the pump
-#                       The message should something like "FORWARD 10 1"
+#                       The message is something like "FORWARD 10 1"
 #                       to move 10mL forward at 1mL/min
 #                       Receive only
-#       -actuator/pump/state:   State of the pump
-#                               Is one of Start, Done, Interrupted
-#                               Publish only
 #   - actuator/focus :  Control of the focus stage
-#                       The message should something like "UP 10"
+#                       The message is something like "UP 10"
 #                       to move up 10mm
 #                       Receive only
-#       -actuator/focus/state   State of the focus stage
-#                               Is one of Start, Done, Interrupted
-#                               Publish only
-# - imager
-#   - image :  Control of the imaging status
-#               Receive only
-#   - state :    State of the imager
-#                   Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
-#                   Publish only
-# - receiver :  This topics adresses the NODE-RED service
-#   - receiver/image :  This does something
-#       - receiver/segmentation :   This does something else
+# - imager/image :      This topic adresses the imaging thread
+#                       Receive only
+# - status :    This topics sends feedback to Node-Red
+#               No publication or receive at this level
+#   - status/pump :   State of the pump
+#                     Is one of Start, Done, Interrupted
+#                     Publish only
+#   - status/focus :  State of the focus stage
+#                     Is one of Start, Done, Interrupted
+#                     Publish only
+#   - status/imager : State of the imager
+#                     Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
+#                     Publish only
+#   - status/segmentation :   Status of the segmentation
+#       - status/segmentation/name
+#       - status/segmentation/object_id
+#       - status/segmentation/metric
 
 import paho.mqtt.client as mqtt
 

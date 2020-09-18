@@ -205,7 +205,7 @@ class StepperProcess(multiprocessing.Process):
                 print("The pump has been started.")
 
                 # Publish the status "Start" to via MQTT to Node-RED
-                self.actuator_client.client.publish("actuator/pump/state", "Started")
+                self.actuator_client.client.publish("status/pump", "Start")
                 pump_thread = multiprocessing.Process(
                     target=self.pump, args=[direction, volume, speed]
                 )
@@ -222,9 +222,7 @@ class StepperProcess(multiprocessing.Process):
                         self.actuator_client.command = "wait"
 
                         # Publish the status "Done" to via MQTT to Node-RED
-                        self.actuator_client.client.publish(
-                            "actuator/pump/state", "Done"
-                        )
+                        self.actuator_client.client.publish("status/pump", "Done")
 
                         # Set the LEDs as Green
                         planktoscope.light.setRGB(0, 255, 0)
@@ -242,7 +240,7 @@ class StepperProcess(multiprocessing.Process):
 
                         # Publish the status "Interrompted" to via MQTT to Node-RED
                         self.actuator_client.client.publish(
-                            "actuator/pump/state", "Interrupted"
+                            "status/pump", "Interrupted"
                         )
 
                         # Set the LEDs as Green
@@ -263,9 +261,7 @@ class StepperProcess(multiprocessing.Process):
                         print("The pump has been stopped")
 
                         # Publish the status "Interrompted" to via MQTT to Node-RED
-                        self.actuator_client.client.publish(
-                            "actuator/pump/state", "Stopped"
-                        )
+                        self.actuator_client.client.publish("status/pump", "Stopped")
 
                         # Set the LEDs as Green
                         planktoscope.light.setRGB(0, 255, 0)
@@ -292,7 +288,7 @@ class StepperProcess(multiprocessing.Process):
                 print("The focus has been started.")
 
                 # Publish the status "Start" to via MQTT to Node-RED
-                # self.actuator_client.client.publish("actuator/focus/state", "Start")
+                self.actuator_client.client.publish("status/focus", "Start")
 
                 # Starts the focus process
                 focus_thread = multiprocessing.Process(
@@ -310,9 +306,7 @@ class StepperProcess(multiprocessing.Process):
                         self.actuator_client.command = "wait"
 
                         # Publish the status "Done" to via MQTT to Node-RED
-                        self.actuator_client.client.publish(
-                            "actuator/focus/state", "Done"
-                        )
+                        self.actuator_client.client.publish("status/focus", "Done")
 
                         # Set the LEDs as Green
                         planktoscope.light.setRGB(0, 255, 0)
@@ -333,7 +327,7 @@ class StepperProcess(multiprocessing.Process):
 
                         # Publish the status "Done" to via MQTT to Node-RED
                         self.actuator_client.client.publish(
-                            "actuator/focus/state", "Interrupted"
+                            "status/focus", "Interrupted"
                         )
 
                         # Set the LEDs as Green
@@ -354,9 +348,7 @@ class StepperProcess(multiprocessing.Process):
                         print("The focus has been stopped")
 
                         # Publish the status "Interrompted" to via MQTT to Node-RED
-                        self.actuator_client.client.publish(
-                            "actuator/focus/state", "Stopped"
-                        )
+                        self.actuator_client.client.publish("status/focus", "Stopped")
 
                         # Set the LEDs as Green
                         planktoscope.light.setRGB(0, 255, 0)
