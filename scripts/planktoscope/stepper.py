@@ -199,7 +199,7 @@ class StepperProcess(multiprocessing.Process):
                 volume = float(self.actuator_client.args.split(" ")[1])
 
                 # Get number of steps from the different received arguments
-                speed = int(self.actuator_client.args.split(" ")[2])
+                speed = float(self.actuator_client.args.split(" ")[2])
 
                 # Print status
                 print("The pump has been started.")
@@ -286,7 +286,7 @@ class StepperProcess(multiprocessing.Process):
                 direction = self.actuator_client.args.split(" ")[0]
 
                 # Get number of steps from the different received arguments
-                distance = int(self.actuator_client.args.split(" ")[1])
+                distance = float(self.actuator_client.args.split(" ")[1])
 
                 # Print status
                 print("The focus has been started.")
