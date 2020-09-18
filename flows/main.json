@@ -137,7 +137,7 @@
         "id": "bee3b478.ef4b88",
         "type": "subflow",
         "name": "MQTT Receive & Plot",
-        "info": "",
+        "info": "# MQTT Topics follows this architecture:\n\n - actuator :  This topic adresses the stepper control thread\n               No publication under this topic should happen from Python\n   - actuator/pump :   Control of the pump\n                       The message is something like \"FORWARD 10 1\"\n                       to move 10mL forward at 1mL/min\n                       Receive only\n   - actuator/focus :  Control of the focus stage\n                       The message is something like \"UP 10\"\n                       to move up 10mm\n                       Receive only\n - imager/image :      This topic adresses the imaging thread\n                       Receive only\n - status :    This topics sends feedback to Node-Red\n               No publication or receive at this level\n   - status/pump :   State of the pump\n                     Is one of Start, Done, Interrupted\n                     Publish only\n   - status/focus :  State of the focus stage\n                     Is one of Start, Done, Interrupted\n                     Publish only\n   - status/imager : State of the imager\n                     Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.\n                     Publish only\n   - status/segmentation :   Status of the segmentation\n       - status/segmentation/name\n       - status/segmentation/object_id\n       - status/segmentation/metric\n",
         "category": "",
         "in": [],
         "out": [],
@@ -1719,12 +1719,12 @@
         "type": "mqtt in",
         "z": "bee3b478.ef4b88",
         "name": "",
-        "topic": "receiver/#",
+        "topic": "status/#",
         "qos": "0",
         "datatype": "auto",
-        "broker": "9a69f0bc.60dcd",
-        "x": 60,
-        "y": 40,
+        "broker": "8dc3722c.06efa8",
+        "x": 70,
+        "y": 300,
         "wires": [
             [
                 "ecedbda4.fed15"
@@ -1735,36 +1735,36 @@
         "id": "ecedbda4.fed15",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "high level filter",
         "property": "topic",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "receiver/pump",
+                "v": "status/pump",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "receiver/focus",
+                "v": "status/focus",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "receiver/image",
+                "v": "status/image",
                 "vt": "str"
             },
             {
                 "t": "cont",
-                "v": "receiver/segmentation",
+                "v": "status/segmentation",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 250,
-        "y": 40,
+        "x": 260,
+        "y": 300,
         "wires": [
             [
                 "6f3d141d.fe90ac"
@@ -1784,7 +1784,7 @@
         "id": "6f3d141d.fe90ac",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "Pump state",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -1800,15 +1800,15 @@
             },
             {
                 "t": "eq",
-                "v": "Interrompted",
+                "v": "Interrupted",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 410,
-        "y": 40,
+        "x": 510,
+        "y": 80,
         "wires": [
             [
                 "87971058.b7f23"
@@ -1906,7 +1906,7 @@
         "id": "f10c7aad.e9624",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "Focus state",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -1922,15 +1922,15 @@
             },
             {
                 "t": "eq",
-                "v": "Interrompted",
+                "v": "Interrupted",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 410,
-        "y": 100,
+        "x": 510,
+        "y": 220,
         "wires": [
             [
                 "51267d1f.44a55c"
@@ -2028,7 +2028,7 @@
         "id": "af9a1d81.c21fa8",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "Imaging state",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -2044,7 +2044,7 @@
             },
             {
                 "t": "eq",
-                "v": "Interrompted",
+                "v": "Interrupted",
                 "vt": "str"
             },
             {
@@ -2056,8 +2056,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 410,
-        "y": 160,
+        "x": 520,
+        "y": 380,
         "wires": [
             [
                 "c91355eb.1bc02"
@@ -2077,7 +2077,7 @@
         "id": "d4aa883c.7ebba",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "State",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -2095,7 +2095,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 670,
+        "x": 690,
         "y": 520,
         "wires": [
             [
@@ -2211,8 +2211,8 @@
         "func": "obj_counter=global.get('obj_counter')\nobj_counter=obj_counter+1\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 580,
+        "x": 800,
+        "y": 620,
         "wires": [
             [
                 "d0d14f00.e2ff88"
@@ -2265,36 +2265,36 @@
         "id": "30a9de16.d55cda",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "Segmentation",
         "property": "topic",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "receiver/segmentation",
+                "v": "status/segmentation",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "receiver/segmentation/name",
+                "v": "status/segmentation/name",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "receiver/segmentation/object_id",
+                "v": "status/segmentation/object_id",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "receiver/segmentation/metric",
+                "v": "status/segmentation/metric",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 450,
-        "y": 540,
+        "x": 520,
+        "y": 580,
         "wires": [
             [
                 "d4aa883c.7ebba"
@@ -2329,7 +2329,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 890,
+        "x": 910,
         "y": 540,
         "wires": [
             [
@@ -2356,7 +2356,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 890,
+        "x": 910,
         "y": 500,
         "wires": [
             [
@@ -2400,8 +2400,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 950,
-        "y": 580,
+        "x": 970,
+        "y": 620,
         "wires": [
             []
         ]
@@ -2414,8 +2414,8 @@
         "func": "msg.payload=msg.payload.object_area\nmsg.topic=\"area\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 820,
-        "y": 640,
+        "x": 860,
+        "y": 660,
         "wires": [
             [
                 "6f64625f.243fd4"
@@ -2430,8 +2430,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 650,
-        "y": 640,
+        "x": 730,
+        "y": 660,
         "wires": [
             [
                 "d7944cf2.1ddb18"
@@ -2453,7 +2453,7 @@
         "topic": "",
         "name": "",
         "x": 1260,
-        "y": 260,
+        "y": 300,
         "wires": []
     },
     {
@@ -2492,8 +2492,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 960,
-        "y": 640,
+        "x": 1000,
+        "y": 660,
         "wires": [
             []
         ]
@@ -2509,8 +2509,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 690,
-        "y": 720,
+        "x": 830,
+        "y": 580,
         "wires": []
     },
     {
@@ -3464,8 +3464,8 @@
         "type": "ui_text_input",
         "z": "a0f9bde.423644",
         "name": "focus_distance",
-        "label": "Distance",
-        "tooltip": "",
+        "label": "Distance in µm",
+        "tooltip": "This will be rounded to the nearest 25µm",
         "group": "de7c8e82.7faa98",
         "order": 2,
         "width": 8,
@@ -3492,7 +3492,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 230,
+        "x": 220,
         "y": 40,
         "wires": [
             [
@@ -3610,7 +3610,7 @@
         "type": "function",
         "z": "a0f9bde.423644",
         "name": "focus.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n}else {\n    distance = global.get(\"focus_distance\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"UP \"+ (distance/1000);\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"UP \"+ (distance/1000);\n    }\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n}else {\n    distance = global.get(\"focus_distance\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"UP \"+ (distance/1000);\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"DOWN \"+ (distance/1000);\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3621,8 +3621,7 @@
             [
                 "c46d3379.54e17"
             ]
-        ],
-        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
+        ]
     },
     {
         "id": "b8a2ecb3.f4f5f",
@@ -3710,6 +3709,7 @@
         "width": 0,
         "height": 0,
         "passthru": true,
+        "multiple": true,
         "options": [
             {
                 "label": "Plankton net",
@@ -3900,9 +3900,10 @@
         "format": "<div ng-bind-html=\"msg.payload\">Fill the different inputs concerning the sample you would to image.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
+        "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 290,
-        "y": 40,
+        "x": 420,
+        "y": 320,
         "wires": [
             []
         ]
@@ -3916,7 +3917,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 1240,
-        "y": 120,
+        "y": 220,
         "wires": [
             [
                 "7cd7b4d0.cfc56c"
@@ -3933,8 +3934,8 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1660,
-        "y": 120,
+        "x": 1740,
+        "y": 220,
         "wires": [
             []
         ]
@@ -3947,8 +3948,8 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 1410,
-        "y": 120,
+        "x": 1450,
+        "y": 220,
         "wires": [
             [
                 "bb1b1e3.906e7e"
@@ -4036,7 +4037,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 1240,
-        "y": 80,
+        "y": 140,
         "wires": [
             [
                 "6f6ad84e.d9222"
@@ -4516,13 +4517,13 @@
         "id": "1df370a8.6c70ff",
         "type": "ui_button",
         "z": "d95291dc.83b0b8",
-        "name": "Kill MQTT",
+        "name": "Restart Python",
         "group": "319ae656.f85a12",
         "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Restart MQTT",
+        "label": "Restart Python",
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
@@ -4530,7 +4531,7 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 80,
+        "x": 100,
         "y": 140,
         "wires": [
             [
