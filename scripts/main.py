@@ -1,4 +1,24 @@
 ################################################################################
+# Logger library compatible with multiprocessing
+################################################################################
+from loguru import logger
+import sys
+
+# enqueue=True is necessary so we can log accross modules
+logger.add(
+    # sys.stdout,
+    "PlanktoScope_{time}.log",
+    rotation="01:00",
+    retention="1 month",
+    compression=".tar.gz",
+    enqueue=True,
+    level="INFO",
+)
+
+logger.info("Starting the PlanktoScope python script!")
+
+
+################################################################################
 # Actuator Libraries
 ################################################################################
 
@@ -68,7 +88,6 @@ import cv2
 # Streaming PiCamera over server
 ################################################################################
 import io
-import logging
 import socketserver
 from threading import Condition
 from http import server
@@ -146,7 +165,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
                     self.wfile.write(frame)
                     self.wfile.write(b"\r\n")
             except Exception as e:
-                logging.warning(
+                logger.warning(
                     "Removed streaming client %s: %s", self.client_address, str(e)
                 )
         else:
@@ -400,7 +419,7 @@ while True:
             datetime_tmp = datetime.now().strftime("%H_%M_%S_%f")
 
             # Print datetime
-            print(datetime_tmp)
+            logger.info(datetime_tmp)
 
             # Define the filename of the image
             filename = os.path.join("/home/pi/PlanktonScope/tmp", datetime_tmp + ".jpg")
@@ -491,7 +510,7 @@ while True:
                 pump_stepper.release()
 
                 # Print status
-                print("The imaging has been interrupted.")
+                logger.info("The imaging has been interrupted.")
 
                 # Publish the status "Interrupted" to via MQTT to Node-RED
                 imaging_client.client.publish("status/imager", "Interrupted")

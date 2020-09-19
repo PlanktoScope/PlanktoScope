@@ -7,6 +7,11 @@ import planktoscope.mqtt
 import planktoscope.light
 import multiprocessing
 
+# Logger library compatible with multiprocessing
+from loguru import logger
+
+logger.info("planktoscope.stepper is loaded")
+
 
 class StepperProcess(multiprocessing.Process):
 
@@ -61,21 +66,25 @@ class StepperProcess(multiprocessing.Process):
         distance is received in mm
         speed is in mm/sec"""
 
-        print(f"the focus stage will move {direction} for {distance}mm")
+        logger.info(f"the focus stage will move {direction} for {distance}mm")
 
         # Validation of inputs
         if direction != "UP" and direction != "DOWN":
-            print("ERROR! The direction command is not recognised")
+            logger.error("ERROR! The direction command is not recognised")
             return
 
         if distance > 45:
-            print("ERROR! You are trying to move more than the stage physical size")
+            logger.error(
+                "ERROR! You are trying to move more than the stage physical size"
+            )
             return
 
         if speed > self.focus_max_speed:
             speed = self.focus_max_speed
-            print("WARNING! You requested speed is faster than the maximum safe speed")
-            print("The speed of the motor is going to be limited")
+            logger.warning(
+                "WARNING! You requested speed is faster than the maximum safe speed"
+            )
+            logger.warning("The speed of the motor is going to be limited")
 
         counter = 0
 
@@ -124,13 +133,15 @@ class StepperProcess(multiprocessing.Process):
 
         # Validation of inputs
         if direction != "FORWARD" and direction != "BACKWARD":
-            print("ERROR! The direction command is not recognised")
+            logger.error("ERROR! The direction command is not recognised")
             return
 
         if speed > self.pump_max_speed:
             speed = self.pump_max_speed
-            print("WARNING! You requested speed is faster than the maximum safe speed")
-            print("The speed of the motor is going to be limited")
+            logger.warning(
+                "WARNING! You requested speed is faster than the maximum safe speed"
+            )
+            logger.warning("The speed of the motor is going to be limited")
 
         counter = 0
 
@@ -181,7 +192,7 @@ class StepperProcess(multiprocessing.Process):
         )
         self.actuator_client.connect()
 
-        print("The stepper control thread has been started")
+        logger.info("The stepper control thread has been started")
         while True:
             ############################################################################
             # Pump Event
@@ -202,7 +213,7 @@ class StepperProcess(multiprocessing.Process):
                 speed = float(self.actuator_client.args.split(" ")[2])
 
                 # Print status
-                print("The pump has been started.")
+                logger.info("The pump has been started.")
 
                 # Publish the status "Start" to via MQTT to Node-RED
                 self.actuator_client.client.publish("status/pump", "Start")
@@ -216,7 +227,7 @@ class StepperProcess(multiprocessing.Process):
                     if not pump_thread.is_alive():
                         # Thread has finished
                         # Print status
-                        print("The pumping is done.")
+                        logger.info("The pumping is done.")
 
                         # Change the command to not re-enter in this while loop
                         self.actuator_client.command = "wait"
@@ -236,7 +247,7 @@ class StepperProcess(multiprocessing.Process):
                         self.pump_stepper.release()
 
                         # Print status
-                        print("The pump has been interrupted.")
+                        logger.info("The pump has been interrupted.")
 
                         # Publish the status "Interrompted" to via MQTT to Node-RED
                         self.actuator_client.client.publish(
@@ -258,7 +269,7 @@ class StepperProcess(multiprocessing.Process):
                         self.pump_stepper.release()
 
                         # Print status
-                        print("The pump has been stopped")
+                        logger.info("The pump has been stopped")
 
                         # Publish the status "Interrompted" to via MQTT to Node-RED
                         self.actuator_client.client.publish("status/pump", "Stopped")
@@ -285,7 +296,7 @@ class StepperProcess(multiprocessing.Process):
                 distance = float(self.actuator_client.args.split(" ")[1])
 
                 # Print status
-                print("The focus has been started.")
+                logger.info("The focus has been started.")
 
                 # Publish the status "Start" to via MQTT to Node-RED
                 self.actuator_client.client.publish("status/focus", "Start")
@@ -300,7 +311,7 @@ class StepperProcess(multiprocessing.Process):
                     if not focus_thread.is_alive():
                         # Thread has finished
                         # Print status
-                        print("The focusing is done.")
+                        logger.info("The focusing is done.")
 
                         # Change the command to not re-enter in this while loop
                         self.actuator_client.command = "wait"
@@ -323,7 +334,7 @@ class StepperProcess(multiprocessing.Process):
                         self.focus_stepper.release()
 
                         # Print status
-                        print("The stage has been interrupted.")
+                        logger.info("The stage has been interrupted.")
 
                         # Publish the status "Done" to via MQTT to Node-RED
                         self.actuator_client.client.publish(
@@ -345,7 +356,7 @@ class StepperProcess(multiprocessing.Process):
                         self.focus_stepper.release()
 
                         # Print status
-                        print("The focus has been stopped")
+                        logger.info("The focus has been stopped")
 
                         # Publish the status "Interrompted" to via MQTT to Node-RED
                         self.actuator_client.client.publish("status/focus", "Stopped")
