@@ -62,14 +62,6 @@ class Imager:
         self.camera.shutter_speed = shutter_speed
         self.camera.exposure_mode = "fixedfps"
 
-        # Streaming server creation
-        output = planktoscope.streamer.StreamingOutput()
-        address = ("", 8000)
-        server = planktoscope.streamer.StreamingServer(address, planktoscope.streamer.StreamingHandler)
-        self.streaming_thread = multiprocessing.Process(target=server.serve_forever)
-        self.streaming_thread.start()
-        self.camera.start_recording(output, format="mjpeg", resize=(640, 480))
-
         # MQTT Service connection
         self.imaging_client = planktoscope.mqtt.MQTT_Client(
             topic="imager/#", name="imager_client"
@@ -232,6 +224,15 @@ class Imager:
             # Set the LEDs as Green
             morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
 
+
+    def start_camera(self, output):
+        """Start the camera streaming process
+
+        Args:
+            output (planktoscope.streamer.StreamingOutput(), required): Streaming output
+                            of the created server
+        """
+        self.camera.start_recording(output, format="mjpeg", resize=(640, 480))
 
     ################################################################################
     # While loop for capturing commands from Node-RED
