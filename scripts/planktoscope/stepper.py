@@ -30,6 +30,7 @@ class StepperProcess(multiprocessing.Process):
         # load config.json
         with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
             configuration = json.load(config_file)
+            logger.debug(f"Hardware configuration loaded is {configuration}")
 
         reverse = False
 
@@ -58,6 +59,7 @@ class StepperProcess(multiprocessing.Process):
         # Make sure the steppers are released and do not use any power
         self.pump_stepper.release()
         self.focus_stepper.release()
+        logger.debug(f"Stepper initialisation is over")
 
     def focus(self, direction, distance, speed=focus_max_speed):
         """moves the focus stepper
@@ -66,37 +68,39 @@ class StepperProcess(multiprocessing.Process):
         distance is received in mm
         speed is in mm/sec"""
 
-        logger.info(f"the focus stage will move {direction} for {distance}mm")
+        logger.info(
+            f"The focus stage will move {direction} for {distance}mm at {speed}mm/sec"
+        )
 
         # Validation of inputs
         if direction != "UP" and direction != "DOWN":
-            logger.error("ERROR! The direction command is not recognised")
+            logger.error("The direction command is not recognised")
+            logger.error("It should be either UP or DOWN")
             return
 
         if distance > 45:
-            logger.error(
-                "ERROR! You are trying to move more than the stage physical size"
-            )
+            logger.error("You are trying to move more than the stage physical size")
             return
 
         if speed > self.focus_max_speed:
             speed = self.focus_max_speed
-            logger.warning(
-                "WARNING! You requested speed is faster than the maximum safe speed"
-            )
-            logger.warning("The speed of the motor is going to be limited")
+            logger.warning("The requested speed is faster than the maximum safe speed")
+            logger.warning(f"The speed of the motor is going to be limited to {speed}")
 
         counter = 0
 
         # We are going to use microsteps, so we need to multiply by 16 the steps number
         nb_steps = self.focus_steps_per_mm * distance * 16
+        logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.focus_steps_per_mm * 16
+        logger.debug(f"There will be a speed of {steps_per_second} steps per second")
 
         # On linux, the minimal acceptable delay managed by the system is 0.1ms
         # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
         # However we have a fixed delay of at least 2.5ms per step due to the library
         # Our maximum speed is thus about 400 pulses per second or 0.5mm/sec of stage speed
         delay = max((1 / steps_per_second) - 0.0025, 0)
+        logger.debug(f"The delay between two steps is {delay}")
 
         # Depending on direction, select the right direction for the focus
         if direction == "UP":
@@ -105,6 +109,7 @@ class StepperProcess(multiprocessing.Process):
         if direction == "DOWN":
             direction = adafruit_motor.stepper.BACKWARD
 
+        logger.debug("Entering the loop for steps control")
         while True:
             # Actuate the focus for one microstep in the right direction
             self.focus_stepper.onestep(
@@ -116,6 +121,7 @@ class StepperProcess(multiprocessing.Process):
             ####################################################################
             # If counter reach the number of step, break
             if counter > nb_steps:
+                logger.debug("Movement is over")
                 # Release the focus steppers to stop power draw
                 self.focus_stepper.release()
                 break
@@ -129,30 +135,34 @@ class StepperProcess(multiprocessing.Process):
 
         direction is either FORWARD or BACKWARD
         volume is in mL
-        speed is in mL/sec"""
+        speed is in mL/min"""
+
+        logger.info(f"The pump will move {direction} for {volume}mL at {speed}mL/min")
 
         # Validation of inputs
         if direction != "FORWARD" and direction != "BACKWARD":
-            logger.error("ERROR! The direction command is not recognised")
+            logger.error("The direction command is not recognised")
+            logger.error("It should be either FORWARD or BACKWARD")
             return
 
         if speed > self.pump_max_speed:
             speed = self.pump_max_speed
-            logger.warning(
-                "WARNING! You requested speed is faster than the maximum safe speed"
-            )
-            logger.warning("The speed of the motor is going to be limited")
+            logger.warning("The requested speed is faster than the maximum safe speed")
+            logger.warning(f"The speed of the motor is going to be limited to {speed}")
 
         counter = 0
 
         nb_steps = self.pump_steps_per_ml * volume
+        logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.pump_steps_per_ml / 60
+        logger.debug(f"There will be a speed of {steps_per_second} steps per second")
 
         # On linux, the minimal acceptable delay managed by the system is 0.1ms
         # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
         # However we have a fixed delay of at least 2.5ms per step due to the library
         # Our maximum speed is thus about 400 pulses per second or 2 turn per second of the pump
         delay = max((1 / steps_per_second) - 0.0025, 0)
+        logger.debug(f"The delay between two steps is {delay}")
 
         # Depending on direction, select the right direction for the focus
         if direction == "FORWARD":
@@ -161,6 +171,7 @@ class StepperProcess(multiprocessing.Process):
         if direction == "BACKWARD":
             direction = adafruit_motor.stepper.BACKWARD
 
+        logger.debug("Entering the loop for steps control")
         while True:
             # Actuate the focus for one double step in the right direction
             self.pump_stepper.onestep(
@@ -172,6 +183,7 @@ class StepperProcess(multiprocessing.Process):
             ####################################################################
             # If counter reach the number of step, break
             if counter > nb_steps:
+                logger.debug("Pumping is over")
                 # Release the focus steppers to stop power draw
                 self.pump_stepper.release()
                 break
@@ -199,7 +211,7 @@ class StepperProcess(multiprocessing.Process):
             ############################################################################
             # If the command is "pump"
             if self.actuator_client.command == "pump":
-
+                logger.debug("We have received a pumping command")
                 # Set the LEDs as Blue
                 planktoscope.light.setRGB(0, 0, 255)
 
@@ -212,11 +224,12 @@ class StepperProcess(multiprocessing.Process):
                 # Get number of steps from the different received arguments
                 speed = float(self.actuator_client.args.split(" ")[2])
 
-                # Print status
-                logger.info("The pump has been started.")
-
                 # Publish the status "Start" to via MQTT to Node-RED
                 self.actuator_client.client.publish("status/pump", "Start")
+
+                # Print status
+                logger.info("The pump is started.")
+
                 pump_thread = multiprocessing.Process(
                     target=self.pump, args=[direction, volume, speed]
                 )
@@ -285,6 +298,7 @@ class StepperProcess(multiprocessing.Process):
 
             # If the command is "focus"
             elif self.actuator_client.command == "focus":
+                logger.debug("We have received a focusing request")
 
                 # Set the LEDs as Yellow
                 planktoscope.light.setRGB(255, 255, 0)
@@ -295,11 +309,11 @@ class StepperProcess(multiprocessing.Process):
                 # Get number of steps from the different received arguments
                 distance = float(self.actuator_client.args.split(" ")[1])
 
-                # Print status
-                logger.info("The focus has been started.")
-
                 # Publish the status "Start" to via MQTT to Node-RED
                 self.actuator_client.client.publish("status/focus", "Start")
+
+                # Print status
+                logger.info("The focus movement is started.")
 
                 # Starts the focus process
                 focus_thread = multiprocessing.Process(
