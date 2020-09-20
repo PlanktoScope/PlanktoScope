@@ -41,7 +41,7 @@ import cv2
 ################################################################################
 # Main Imager class
 ################################################################################
-class Imager:
+class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
     def __init__(self, resolution=(3280, 2464), iso=60, shutter_speed=500):
@@ -52,6 +52,7 @@ class Imager:
             iso (int, optional): ISO sensitivity. Defaults to 60.
             shutter_speed (int, optional): Shutter speed of the camera. Defaults to 500.
         """
+        super(ImagerProcess, self).__init__()
 
         logger.info("planktoscope.imager is initialized")
 
