@@ -14,7 +14,7 @@ logger.info("planktoscope.imager is loaded")
 ################################################################################
 
 # Library to get date and time for folder name and filename
-from datetime import datetime, timedelta
+import datetime
 
 # Library to be able to sleep for a duration
 import time
@@ -41,8 +41,7 @@ import cv2
 ################################################################################
 import io
 import socketserver
-from threading import Condition
-from http import server
+import http
 import threading
 
 ################################################################################
@@ -69,7 +68,7 @@ class StreamingOutput(object):
     def __init__(self):
         self.frame = None
         self.buffer = io.BytesIO()
-        self.condition = Condition()
+        self.condition = threading.Condition()
 
     def write(self, buf):
         if buf.startswith(b"\xff\xd8"):
@@ -83,7 +82,7 @@ class StreamingOutput(object):
         return self.buffer.write(buf)
 
 
-class StreamingHandler(server.BaseHTTPRequestHandler):
+class StreamingHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.send_response(301)
@@ -125,7 +124,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.end_headers()
 
 
-class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
+class StreamingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
@@ -160,7 +159,7 @@ imaging_client.connect()
 ################################################################################
 
 local_metadata = {
-    "process_datetime": datetime.now(),
+    "process_datetime": datetime.datetime.now(),
     "acq_camera_resolution": camera.resolution,
     "acq_camera_iso": camera.iso,
     "acq_camera_shutter_speed": camera.shutter_speed,
