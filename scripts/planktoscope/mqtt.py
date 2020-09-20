@@ -62,10 +62,12 @@ class MQTT_Client:
         pass
 
     def connect(self):
+        # TODO should we use connect_async here maybe? To defer connection to the server until the call to loop_start()
         self.client.connect(self.server, self.port, 60)
         self.client.on_connect = self.on_connect
         self.client.on_subscribe = self.on_subscribe
         self.client.on_message = self.on_message
+        self.client.on_disconnect = self.on_disconnect
         self.client.loop_start()
 
     ################################################################################
@@ -108,6 +110,12 @@ class MQTT_Client:
         # Decode the message to find the arguments
         self.args = str(msg.payload.decode())
 
-
-# TODO implement the on_disconnect callback to manage the loss of the server
-# with def on_disconnect(client, userdata, rc)
+    def on_disconnect(self, client, userdata, rc):
+        if rc != 0:
+            logger.error(
+                f"Connection to the MQTT server is unexpectedly lost by {self.name}"
+            )
+        else:
+            logger.warning(f"Connection to the MQTT server is closed by {self.name}")
+        # TODO for now, we just log the disconnection, we need to evaluate what to do
+        # in case of communication loss with the server
