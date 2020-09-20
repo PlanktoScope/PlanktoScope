@@ -5,6 +5,7 @@ from loguru import logger
 import sys
 
 # enqueue=True is necessary so we can log accross modules
+# rotation happens everyday at 01:00 if not restarted
 logger.add(
     # sys.stdout,
     "PlanktoScope_{time}.log",
@@ -14,6 +15,16 @@ logger.add(
     enqueue=True,
     level="INFO",
 )
+
+# The available level for the logger are as follows:
+# Level name 	Severity 	Logger method
+# TRACE 	    5 	        logger.trace()
+# DEBUG 	    10 	        logger.debug()
+# INFO 	        20 	        logger.info()
+# SUCCESS 	    25 	        logger.success()
+# WARNING 	    30      	logger.warning()
+# ERROR 	    40       	logger.error()
+# CRITICAL 	    50      	logger.critical()
 
 logger.info("Starting the PlanktoScope python script!")
 
