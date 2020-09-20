@@ -33,12 +33,7 @@ import morphocut
 ################################################################################
 # Other image processing Libraries
 ################################################################################
-# TODO cleanup import
-from skimage.feature import canny
-from skimage.color import rgb2gray, label2rgb
-from skimage.morphology import disk
-from skimage.morphology import erosion, dilation, closing
-from skimage.measure import label, regionprops
+import skimage
 import cv2
 
 ################################################################################
