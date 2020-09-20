@@ -17,7 +17,7 @@ logger.info("planktoscope.imager is loaded")
 from datetime import datetime, timedelta
 
 # Library to be able to sleep for a duration
-from time import sleep
+import time
 
 # Libraries manipulate json format, execute bash commands
 import json, shutil, os, multiprocessing
@@ -348,7 +348,7 @@ while True:
         segmentation = str(args.split(" ")[3])
 
         # Sleep a duration before to start acquisition
-        sleep(sleep_before)
+        time.sleep(sleep_before)
 
         # Publish the status "Start" to via MQTT to Node-RED
         imaging_client.client.publish("status/imager", "Start")
@@ -368,7 +368,7 @@ while True:
             # If the command is still image - pump a defined nb of steps
             if imaging_client.command == "image":
                 # The flowrate is fixed for now.
-                sleep(0.01)
+                time.sleep(0.01)
 
             # If the command isn't image anymore - break
             else:
@@ -417,10 +417,10 @@ while True:
                 pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
 
                 # The flowrate is fixed for now.
-                sleep(0.01)
+                time.sleep(0.01)
 
             # Wait a fixed delay which set the framerate as < than 2 imag/sec
-            sleep(0.5)
+            time.sleep(0.5)
 
             # Set the LEDs as Green
             planktoscope.light.setRGB(0, 255, 0)
@@ -455,7 +455,7 @@ while True:
                     # cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
 
                     # Let it happen
-                    sleep(1)
+                    time.sleep(1)
 
                     # Set the LEDs as Green
                     planktoscope.light.setRGB(0, 255, 0)
@@ -498,8 +498,8 @@ while True:
         # Set the LEDs as Black
         planktoscope.light.setRGBOff()
         # Its just waiting to receive command from Node-RED
-        sleep(1)
+        time.sleep(1)
         # Set the LEDs as White
         planktoscope.light.setRGB(255, 255, 255)
         # Its just waiting to receive command from Node-RED
-        sleep(1)
+        time.sleep(1)
