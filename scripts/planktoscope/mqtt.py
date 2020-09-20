@@ -74,9 +74,17 @@ class MQTT_Client:
 
     # Run this function in order to connect to the client (Node-RED)
     def on_connect(self, client, userdata, flags, rc):
+        reason = [
+            "0: Connection successful",
+            "1: Connection refused - incorrect protocol version",
+            "2: Connection refused - invalid client identifier",
+            "3: Connection refused - server unavailable",
+            "4: Connection refused - bad username or password",
+            "5: Connection refused - not authorised",
+        ]
         # Print when connected
         logger.success(
-            f"{self.name} connected to {self.server}:{self.port}! - {str(rc)}"
+            f"{self.name} connected to {self.server}:{self.port}! - {reason[rc]}"
         )
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
@@ -87,7 +95,7 @@ class MQTT_Client:
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
         logger.success(
-            f"{self.name} subscribed to {self.topic}! - {str(mid)} {str(granted_qos)}"
+            f"{self.name} subscribed to {self.topic}! - mid:{str(mid)} qos:{str(granted_qos)}"
         )
 
     # Run this command when Node-RED is sending a message on the subscribed topic
