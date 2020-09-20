@@ -26,26 +26,9 @@ import json, shutil, os, multiprocessing
 import picamera
 
 ################################################################################
-# Morphocut Libraries
+# Morphocut Library
 ################################################################################
-# TODO cleanup import maybe?
-from skimage.util import img_as_ubyte
-from morphocut import Call
-from morphocut.contrib.ecotaxa import EcotaxaWriter
-from morphocut.contrib.zooprocess import CalculateZooProcessFeatures
-from morphocut.core import Pipeline
-from morphocut.file import Find
-from morphocut.image import (
-    ExtractROI,
-    FindRegions,
-    ImageReader,
-    ImageWriter,
-    RescaleIntensity,
-    RGB2Gray,
-)
-from morphocut.stat import RunningMedian
-from morphocut.str import Format
-from morphocut.stream import TQDM, Enumerate, FilterVariables
+import morphocut
 
 ################################################################################
 # Other image processing Libraries
@@ -207,87 +190,89 @@ with Pipeline() as p:
 
     # Recursively find .jpg files in import_path.
     # Sort to get consective frames.
-    abs_path = Find("/home/pi/PlanktonScope/tmp", [".jpg"], sort=True, verbose=True)
+    abs_path = morphocut.file.Find(
+        "/home/pi/PlanktonScope/tmp", [".jpg"], sort=True, verbose=True
+    )
 
     # Extract name from abs_path
-    name = Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)
+    name = morphocut.Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)
 
     # Set the LEDs as Green
-    Call(planktoscope.light.setRGB, 0, 255, 0)
+    morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
 
     # Read image
-    img = ImageReader(abs_path)
+    img = morphocut.image.ImageReader(abs_path)
 
     # Show progress bar for frames
-    TQDM(Format("Frame {name}", name=name))
+    morphocut.stream.TQDM(morphocut.str.Format("Frame {name}", name=name))
 
     # Apply running median to approximate the background image
-    flat_field = RunningMedian(img, 5)
+    flat_field = morphocut.stat.RunningMedian(img, 5)
 
     # Correct image
     img = img / flat_field
 
     # Rescale intensities and convert to uint8 to speed up calculations
-    img = RescaleIntensity(img, in_range=(0, 1.1), dtype="uint8")
+    img = morphocut.image.RescaleIntensity(img, in_range=(0, 1.1), dtype="uint8")
 
     # Filter variable to reduce memory load
-    FilterVariables(name, img)
+    morphocut.stream.FilterVariables(name, img)
 
     # Save cleaned images
-    # frame_fn = Format(os.path.join("/home/pi/PlanktonScope/tmp","CLEAN", "{name}.jpg"), name=name)
-    # ImageWriter(frame_fn, img)
+    # frame_fn = morphocut.str.Format(os.path.join("/home/pi/PlanktonScope/tmp","CLEAN", "{name}.jpg"), name=name)
+    # morphocut.image.ImageWriter(frame_fn, img)
 
     # Convert image to uint8 gray
-    img_gray = RGB2Gray(img)
+    img_gray = morphocut.image.RGB2Gray(img)
 
     # ?
-    img_gray = Call(img_as_ubyte, img_gray)
+    img_gray = morphocut.Call(img_as_ubyte, img_gray)
 
     # Canny edge detection using OpenCV
-    img_canny = Call(cv2.Canny, img_gray, 50, 100)
+    img_canny = morphocut.Call(cv2.Canny, img_gray, 50, 100)
 
     # Dilate using OpenCV
-    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))
-    img_dilate = Call(cv2.dilate, img_canny, kernel, iterations=2)
+    kernel = morphocut.Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))
+    img_dilate = morphocut.Call(cv2.dilate, img_canny, kernel, iterations=2)
 
     # Close using OpenCV
-    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5))
-    img_close = Call(
+    kernel = morphocut.Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5))
+    img_close = morphocut.Call(
         cv2.morphologyEx, img_dilate, cv2.MORPH_CLOSE, kernel, iterations=1
     )
 
     # Erode using OpenCV
-    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))
-    mask = Call(cv2.erode, img_close, kernel, iterations=2)
+    kernel = morphocut.Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))
+    mask = morphocut.Call(cv2.erode, img_close, kernel, iterations=2)
 
     # Find objects
-    regionprops = FindRegions(
+    regionprops = morphocut.image.FindRegions(
         mask, img_gray, min_area=1000, padding=10, warn_empty=name
     )
 
     # Set the LEDs as Purple
-    Call(planktoscope.light.setRGB, 255, 0, 255)
+    morphocut.Call(planktoscope.light.setRGB, 255, 0, 255)
 
     # For an object, extract a vignette/ROI from the image
-    roi_orig = ExtractROI(img, regionprops, bg_color=255)
+    roi_orig = morphocut.image.ExtractROI(img, regionprops, bg_color=255)
 
     # Generate an object identifier
-    i = Enumerate()
+    i = morphocut.stream.Enumerate()
 
-    # Call(print,i)
+    # morphocut.Call(print,i)
 
     # Define the ID of each object
-    object_id = Format("{name}_{i:d}", name=name, i=i)
+    object_id = morphocut.str.Format("{name}_{i:d}", name=name, i=i)
 
-    # Call(print,object_id)
+    # morphocut.Call(print,object_id)
 
     # Define the name of each object
-    object_fn = Format(
+    object_fn = morphocut.str.Format(
         os.path.join("/home/pi/PlanktonScope/", "OBJECTS", "{name}.jpg"), name=object_id
     )
 
     # Save the image of the object with its name
-    ImageWriter(object_fn, roi_orig)
+    morphocut.image.ImageWriter(object_fn, roi_orig)
 
     # Calculate features. The calculated features are added to the global_metadata.
     # Returns a Variable representing a dict for every object in the stream.
@@ -296,29 +281,35 @@ with Pipeline() as p:
     )
 
     # Get all the metadata
-    json_meta = Call(json.dumps, meta, sort_keys=True, default=str)
+    json_meta = morphocut.Call(json.dumps, meta, sort_keys=True, default=str)
 
     # Publish the json containing all the metadata to via MQTT to Node-RED
-    Call(imaging_client.client.publish, "status/segmentation/metric", json_meta)
+    morphocut.Call(
+        imaging_client.client.publish, "status/segmentation/metric", json_meta
+    )
 
     # Add object_id to the metadata dictionary
     meta["object_id"] = object_id
 
     # Generate object filenames
-    orig_fn = Format("{object_id}.jpg", object_id=object_id)
+    orig_fn = morphocut.str.Format("{object_id}.jpg", object_id=object_id)
 
     # Write objects to an EcoTaxa archive:
     # roi image in original color, roi image in grayscale, metadata associated with each object
-    EcotaxaWriter(archive_fn, (orig_fn, roi_orig), meta)
+    morphocut.contrib.ecotaxa.EcotaxaWriter(archive_fn, (orig_fn, roi_orig), meta)
 
     # Progress bar for objects
-    TQDM(Format("Object {object_id}", object_id=object_id))
+    morphocut.stream.TQDM(
+        morphocut.str.Format("Object {object_id}", object_id=object_id)
+    )
 
     # Publish the object_id to via MQTT to Node-RED
-    Call(imaging_client.client.publish, "status/segmentation/object_id", object_id)
+    morphocut.Call(
+        imaging_client.client.publish, "status/segmentation/object_id", object_id
+    )
 
     # Set the LEDs as Green
-    Call(planktoscope.light.setRGB, 0, 255, 0)
+    morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
 
 
 ################################################################################
