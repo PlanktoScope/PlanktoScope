@@ -94,14 +94,14 @@ class ImagerProcess(multiprocessing.Process):
             f"ecotaxa_export_{global_metadata["sample_project"]}_{global_metadata["process_datetime"]}_{global_metadata["sample_id"]}.zip"
         )
 
+        # Instantiate the morphocut pipeline
+        self._create_morphocut_pipeline(self)
 
-        ################################################################################
-        # MorphoCut Script
-        ################################################################################
 
-        # Define processing pipeline
-        with Pipeline() as p:
-
+    def _create_morphocut_pipeline(self):
+        """Creates the Morphocut Pipeline
+        """
+        with morphocut.morphocut.Pipeline() as self.p:
             # Recursively find .jpg files in import_path.
             # Sort to get consective frames.
             abs_path = morphocut.file.Find(
