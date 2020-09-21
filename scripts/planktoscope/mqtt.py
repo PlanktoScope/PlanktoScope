@@ -7,26 +7,36 @@
 # - actuator :  This topic adresses the stepper control thread
 #               No publication under this topic should happen from Python
 #   - actuator/pump :   Control of the pump
-#                       The message is something like "FORWARD 10 1"
+#                       The message is a json object
+#                       {"action":"move", "direction":"FORWARD", "volume":10, "flowrate":1}
 #                       to move 10mL forward at 1mL/min
+#                       action can be "move" or "stop"
 #                       Receive only
 #   - actuator/focus :  Control of the focus stage
-#                       The message is something like "UP 10"
+#                       The message is a json object, speed is optional
+#                       {"action":"move", "direction":"UP", "distance":0.26, "speed":1}
 #                       to move up 10mm
+#                       action can be "move" or "stop"
 #                       Receive only
 # - imager/image :      This topic adresses the imaging thread
 #                       Receive only
 # - status :    This topics sends feedback to Node-Red
 #               No publication or receive at this level
-#   - status/pump :   State of the pump
-#                     Is one of Start, Done, Interrupted
-#                     Publish only
-#   - status/focus :  State of the focus stage
-#                     Is one of Start, Done, Interrupted
-#                     Publish only
-#   - status/imager : State of the imager
-#                     Is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
-#                     Publish only
+#   - status/pump :     State of the pump
+#                       Is a json object with
+#                       {"status":"Start", "time_left":25}
+#                       Status is one of Start, Done, Interrupted
+#                       Publish only
+#   - status/focus :    State of the focus stage
+#                       Is a json object with
+#                       {"status":"Start", "time_left":25}
+#                       Status is one of Start, Done, Interrupted
+#                       Publish only
+#   - status/imager :   State of the imager
+#                       Is a json object with
+#                       {"status":"Start", "time_left":25}
+#                       Status is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
+#                       Publish only
 #   - status/segmentation :   Status of the segmentation
 #       - status/segmentation/name
 #       - status/segmentation/object_id
@@ -59,6 +69,7 @@ class MQTT_Client:
         self.server = server
         self.port = port
         self.name = name
+        self._new_message = False
         pass
 
     def connect(self):
@@ -109,6 +120,7 @@ class MQTT_Client:
         self.command = msg.topic.split("/", 1)[1]
         # Decode the message to find the arguments
         self.args = str(msg.payload.decode())
+        self._new_message = True
 
     def on_disconnect(self, client, userdata, rc):
         if rc != 0:
@@ -119,3 +131,9 @@ class MQTT_Client:
             logger.warning(f"Connection to the MQTT server is closed by {self.name}")
         # TODO for now, we just log the disconnection, we need to evaluate what to do
         # in case of communication loss with the server
+
+    def is_new_message():
+        return self._new_message
+
+    def read_message():
+        self._new_message = False
