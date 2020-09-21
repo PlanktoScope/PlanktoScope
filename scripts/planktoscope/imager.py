@@ -76,9 +76,8 @@ class ImagerProcess(multiprocessing.Process):
 
         # TODO implement a way to receive directly the metadata from Node-Red via MQTT
 
-        
         # Definition of the few important metadata
-        self.local_metadata = {
+        local_metadata = {
             "process_datetime": datetime.datetime.now(),
             "acq_camera_resolution": self.camera.resolution,
             "acq_camera_iso": self.camera.iso,
@@ -93,17 +92,19 @@ class ImagerProcess(multiprocessing.Process):
             "/home/pi/PlanktonScope/",
             "export",
             # filename includes project name, timestamp and sample id
-            f"ecotaxa_export_{global_metadata["sample_project"]}_{global_metadata["process_datetime"]}_{global_metadata["sample_id"]}.zip"
+            f"ecotaxa_export_{self.global_metadata['sample_project']}_{self.global_metadata['process_datetime']}_{self.global_metadata['sample_id']}.zip",
         )
 
         # Instantiate the morphocut pipeline
         self._create_morphocut_pipeline(self)
 
-
     def _create_morphocut_pipeline(self):
-        """Creates the Morphocut Pipeline
-        """
-        with morphocut.morphocut.Pipeline() as self.p:
+        """Creates the Morphocut Pipeline"""
+        logger.debug("Let's start creating the Morphocut Pipeline")
+
+        with morphocut.morphocut.Pipeline() as self.pipe:
+            # TODO wrap morphocut.Call(logger.debug()) in something that allows it not to be added to the pipeline
+            # if the logger.level is not debug. Might not be as easy as it sounds.
             # Recursively find .jpg files in import_path.
             # Sort to get consective frames.
             abs_path = morphocut.file.Find(
@@ -111,7 +112,9 @@ class ImagerProcess(multiprocessing.Process):
             )
 
             # Extract name from abs_path
-            name = morphocut.Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)
+            name = morphocut.Call(
+                lambda p: os.path.splitext(os.path.basename(p))[0], abs_path
+            )
 
             # Set the LEDs as Green
             morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
@@ -129,7 +132,9 @@ class ImagerProcess(multiprocessing.Process):
             img = img / flat_field
 
             # Rescale intensities and convert to uint8 to speed up calculations
-            img = morphocut.image.RescaleIntensity(img, in_range=(0, 1.1), dtype="uint8")
+            img = morphocut.image.RescaleIntensity(
+                img, in_range=(0, 1.1), dtype="uint8"
+            )
 
             # Filter variable to reduce memory load
             morphocut.stream.FilterVariables(name, img)
@@ -148,17 +153,23 @@ class ImagerProcess(multiprocessing.Process):
             img_canny = morphocut.Call(cv2.Canny, img_gray, 50, 100)
 
             # Dilate using OpenCV
-            kernel = morphocut.Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))
+            kernel = morphocut.Call(
+                cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15)
+            )
             img_dilate = morphocut.Call(cv2.dilate, img_canny, kernel, iterations=2)
 
             # Close using OpenCV
-            kernel = morphocut.Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5))
+            kernel = morphocut.Call(
+                cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5)
+            )
             img_close = morphocut.Call(
                 cv2.morphologyEx, img_dilate, cv2.MORPH_CLOSE, kernel, iterations=1
             )
 
             # Erode using OpenCV
-            kernel = morphocut.Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))
+            kernel = morphocut.Call(
+                cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15)
+            )
             mask = morphocut.Call(cv2.erode, img_close, kernel, iterations=2)
 
             # Find objects
@@ -184,7 +195,8 @@ class ImagerProcess(multiprocessing.Process):
 
             # Define the name of each object
             object_fn = morphocut.str.Format(
-                os.path.join("/home/pi/PlanktonScope/", "OBJECTS", "{name}.jpg"), name=object_id
+                os.path.join("/home/pi/PlanktonScope/", "OBJECTS", "{name}.jpg"),
+                name=object_id,
             )
 
             # Save the image of the object with its name
@@ -193,7 +205,7 @@ class ImagerProcess(multiprocessing.Process):
             # Calculate features. The calculated features are added to the global_metadata.
             # Returns a Variable representing a dict for every object in the stream.
             meta = CalculateZooProcessFeatures(
-                regionprops, prefix="object_", meta=global_metadata
+                regionprops, prefix="object_", meta=self.global_metadata
             )
 
             # Get all the metadata
@@ -201,7 +213,9 @@ class ImagerProcess(multiprocessing.Process):
 
             # Publish the json containing all the metadata to via MQTT to Node-RED
             morphocut.Call(
-                self.imaging_client.client.publish, "status/segmentation/metric", json_meta
+                self.imaging_client.client.publish,
+                "status/segmentation/metric",
+                json_meta,
             )
 
             # Add object_id to the metadata dictionary
@@ -212,7 +226,9 @@ class ImagerProcess(multiprocessing.Process):
 
             # Write objects to an EcoTaxa archive:
             # roi image in original color, roi image in grayscale, metadata associated with each object
-            morphocut.contrib.ecotaxa.EcotaxaWriter(archive_fn, (orig_fn, roi_orig), meta)
+            morphocut.contrib.ecotaxa.EcotaxaWriter(
+                self.archive_fn, (orig_fn, roi_orig), meta
+            )
 
             # Progress bar for objects
             morphocut.stream.TQDM(
@@ -221,12 +237,14 @@ class ImagerProcess(multiprocessing.Process):
 
             # Publish the object_id to via MQTT to Node-RED
             morphocut.Call(
-                self.imaging_client.client.publish, "status/segmentation/object_id", object_id
+                self.imaging_client.client.publish,
+                "status/segmentation/object_id",
+                object_id,
             )
 
             # Set the LEDs as Green
             morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
-
+        logger.info("Morphocut's Pipeline has been created")
 
     def start_camera(self, output):
         """Start the camera streaming process
@@ -257,7 +275,9 @@ class ImagerProcess(multiprocessing.Process):
             if self.imaging_client.command == "image":
 
                 # Publish the status "Start" to via MQTT to Node-RED
-                self.imaging_client.client.publish("status/imager", "Will do my best dude")
+                self.imaging_client.client.publish(
+                    "status/imager", "Will do my best dude"
+                )
 
                 # Get duration to wait before an image from the different received arguments
                 sleep_before = int(args.split(" ")[0])
@@ -286,7 +306,9 @@ class ImagerProcess(multiprocessing.Process):
                 # Also, we need to get rid of the check on the last command received
                 # Maybe a local variable to control the state machine would be more appropriate
                 # Pump duing a given number of steps (in between each image)
-                self.imaging_client.client.publish("actuator/pump", "FORWARD " + nb_step)
+                self.imaging_client.client.publish(
+                    "actuator/pump", "FORWARD " + nb_step
+                )
                 for i in range(nb_step):
 
                     # If the command is still image - pump a defined nb of steps
@@ -317,7 +339,9 @@ class ImagerProcess(multiprocessing.Process):
                     logger.info(datetime_tmp)
 
                     # Define the filename of the image
-                    filename = os.path.join("/home/pi/PlanktonScope/tmp", datetime_tmp + ".jpg")
+                    filename = os.path.join(
+                        "/home/pi/PlanktonScope/tmp", datetime_tmp + ".jpg"
+                    )
 
                     # Capture an image with the proper filename
                     self.camera.capture(filename)
@@ -338,7 +362,9 @@ class ImagerProcess(multiprocessing.Process):
                     for i in range(nb_step):
                         # TODO This should call the stepper control thread instead of stepping by itself
                         # Actuate the pump for one step in the FORWARD direction
-                        pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)
+                        pump_stepper.onestep(
+                            direction=stepper.FORWARD, style=stepper.DOUBLE
+                        )
 
                         # The flowrate is fixed for now.
                         time.sleep(0.01)
@@ -362,16 +388,20 @@ class ImagerProcess(multiprocessing.Process):
                         if segmentation == "True":
 
                             # Publish the status "Start" to via MQTT to Node-RED
-                            self.imaging_client.client.publish("status/segmentation", "Start")
+                            self.imaging_client.client.publish(
+                                "status/segmentation", "Start"
+                            )
 
                             # Start the MorphoCut Pipeline
-                            p.run()
+                            pipe.run()
 
                             # remove directory
                             # shutil.rmtree(import_path)
 
                             # Publish the status "Completed" to via MQTT to Node-RED
-                            self.imaging_client.client.publish("status/segmentation", "Completed")
+                            self.imaging_client.client.publish(
+                                "status/segmentation", "Completed"
+                            )
 
                             # Set the LEDs as White
                             planktoscope.light.setRGB(255, 255, 255)
@@ -408,7 +438,9 @@ class ImagerProcess(multiprocessing.Process):
                         logger.info("The imaging has been interrupted.")
 
                         # Publish the status "Interrupted" to via MQTT to Node-RED
-                        self.imaging_client.client.publish("status/imager", "Interrupted")
+                        self.imaging_client.client.publish(
+                            "status/imager", "Interrupted"
+                        )
 
                         # Set the LEDs as Green
                         planktoscope.light.setRGB(0, 255, 0)
