@@ -19,23 +19,26 @@
 #                       action can be "move" or "stop"
 #                       Receive only
 # - imager/image :      This topic adresses the imaging thread
+#                       Is a json object with
+#                       {"action":"image","sleep":5,"volume":1,"nb_frame":200}
+#                       sleep in seconds, volume in mL
 #                       Receive only
 # - status :    This topics sends feedback to Node-Red
 #               No publication or receive at this level
 #   - status/pump :     State of the pump
 #                       Is a json object with
 #                       {"status":"Start", "time_left":25}
-#                       Status is one of Start, Done, Interrupted
+#                       Status is one of Started, Ready, Done, Interrupted
 #                       Publish only
 #   - status/focus :    State of the focus stage
 #                       Is a json object with
 #                       {"status":"Start", "time_left":25}
-#                       Status is one of Start, Done, Interrupted
+#                       Status is one of Started, Ready, Done, Interrupted
 #                       Publish only
 #   - status/imager :   State of the imager
 #                       Is a json object with
 #                       {"status":"Start", "time_left":25}
-#                       Status is one of Start, Completed or 12_11_15_0.1.jpg has been imaged.
+#                       Status is one of Started, Ready, Completed or 12_11_15_0.1.jpg has been imaged.
 #                       Publish only
 #   - status/segmentation :   Status of the segmentation
 #       - status/segmentation/name
