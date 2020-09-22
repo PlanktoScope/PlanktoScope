@@ -45,9 +45,9 @@ class stepper:
         """Is the motor at its goal
 
         Returns:
-            Bool: difference between position and goal
+            Bool: True if position and goal are identical
         """
-        return self.__position != self.__goal
+        return self.__position == self.__goal
 
     def next_step_date(self):
         """set the next step date"""
@@ -59,14 +59,14 @@ class stepper:
 
     def move(self):
         """move the stepper"""
-        if self.step_waiting():
+        if self.step_waiting() and not self.at_goal():
             self.__stepper.onestep(
                 direction=self.__direction,
                 style=self.__style,
             )
-            if self.__direction == "FORWARD":
+            if self.__direction == adafruit_motor.stepper.FORWARD:
                 self.__position += 1
-            elif self.__direction == "BACKWARD":
+            elif self.__direction == adafruit_motor.stepper.BACKWARD:
                 self.__position -= 1
             if self.at_goal():
                 logger.info("The stepper has reached its goal")
@@ -77,14 +77,14 @@ class stepper:
     def go(self, direction, distance, delay):
         """move in the given direction for the given distance
 
-        direction: gives the movement direction
+        direction (adafruit_motor.stepper): gives the movement direction
         """
         self.__delay = delay
         self.__direction = direction
-        if self.__direction == "FORWARD":
-            self.__goal = position + distance
-        elif self.__direction == "BACKWARD":
-            self.__goal = position - distance
+        if self.__direction == adafruit_motor.stepper.FORWARD:
+            self.__goal = self.__position + distance
+        elif self.__direction == adafruit_motor.stepper.BACKWARD:
+            self.__goal = self.__position - distance
         else:
             logger.error(f"The given direction is wrong {direction}")
         self.initial_step_date()
@@ -94,12 +94,15 @@ class stepper:
         self.__goal = self.__position
         self.__stepper.release()
 
+    def release(self):
+        self.__stepper.release()
+
 
 class StepperProcess(multiprocessing.Process):
 
     focus_steps_per_mm = 40
     # 507 steps per ml for Planktonscope standard
-    # 614 for custom NEMA14 pump with 0.8mm ID Tube
+    # 5200 for custom NEMA14 pump with 0.8mm ID Tube
     pump_steps_per_ml = 507
     # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the Planktonscope can send
     focus_max_speed = 0.5
@@ -150,100 +153,100 @@ class StepperProcess(multiprocessing.Process):
         command = ""
         if self.actuator_client.new_message_received():
             logger.info("We received a new message")
-            last_message = json.load(self.actuator_client.msg.payload)
+            last_message = json.loads(self.actuator_client.msg["payload"])
             logger.debug(last_message)
-            command = self.actuator_client.msg.topic.split("/", 1)[1]
+            command = self.actuator_client.msg["topic"].split("/", 1)[1]
             logger.debug(command)
             self.actuator_client.read_message()
 
-        # If the command is "pump"
-        if command == "pump":
-            logger.debug("We have received a pumping command")
-            if last_message.action == "stop":
-                logger.debug("We have received a stop pump command")
-                self.pump_stepper.stepper.release()
-                self.pump_stepper.goal = self.pump_stepper.position
+            # If the command is "pump"
+            if command == "pump":
+                logger.debug("We have received a pumping command")
+                if last_message["action"] == "stop":
+                    logger.debug("We have received a stop pump command")
+                    self.pump_stepper.shutdown()
 
-                # Print status
-                logger.info("The pump has been interrupted")
+                    # Print status
+                    logger.info("The pump has been interrupted")
 
-                # Publish the status "Interrupted" to via MQTT to Node-RED
-                self.actuator_client.client.publish(
-                    "status/pump", "{'status':'Interrupted'}"
-                )
+                    # Publish the status "Interrupted" to via MQTT to Node-RED
+                    self.actuator_client.client.publish(
+                        "status/pump", "{'status':'Interrupted'}"
+                    )
 
-                # Set the LEDs as Green
-                planktoscope.light.setRGB(0, 255, 0)
+                    # Set the LEDs as Green
+                    planktoscope.light.setRGB(0, 255, 0)
 
-            elif last_message.action == "move":
-                logger.debug("We have received a move pump command")
-                # Set the LEDs as Blue
-                planktoscope.light.setRGB(0, 0, 255)
+                elif last_message["action"] == "move":
+                    logger.debug("We have received a move pump command")
+                    # Set the LEDs as Blue
+                    planktoscope.light.setRGB(0, 0, 255)
 
-                # Get direction from the different received arguments
-                direction = last_message.direction
-                # Get delay (in between steps) from the different received arguments
-                volume = float(last_message.volume)
-                # Get number of steps from the different received arguments
-                flow_rate = float(last_message.flow_rate)
+                    # Get direction from the different received arguments
+                    direction = last_message["direction"]
+                    # Get delay (in between steps) from the different received arguments
+                    volume = float(last_message["volume"])
+                    # Get number of steps from the different received arguments
+                    flow_rate = float(last_message["flow_rate"])
 
-                # Publish the status "Start" to via MQTT to Node-RED
-                self.actuator_client.client.publish("status/pump", "{'status':'Start'}")
+                    # Publish the status "Start" to via MQTT to Node-RED
+                    self.actuator_client.client.publish(
+                        "status/pump", "{'status':'Start'}"
+                    )
 
-                # Print status
-                logger.info("The pump is started.")
-                pump(direction, volume, flow_rate)
-            else:
+                    # Print status
+                    logger.info("The pump is started.")
+                    self.pump(direction, volume, flow_rate)
+                else:
+                    logger.warning(
+                        f"The received message was not understood {last_message}"
+                    )
+
+            # If the command is "focus"
+            elif command == "focus":
+                logger.debug("We have received a focusing request")
+                # If a new received command is "focus" but args contains "stop" we stop!
+                if last_message["action"] == "stop":
+                    logger.debug("We have received a stop focus command")
+                    self.focus_stepper.shutdown()
+
+                    # Print status
+                    logger.info("The focus has been interrupted")
+
+                    # Publish the status "Interrupted" to via MQTT to Node-RED
+                    self.actuator_client.client.publish(
+                        "status/focus", "{'status':'Interrupted'}"
+                    )
+
+                    # Set the LEDs as Green
+                    planktoscope.light.setRGB(0, 255, 0)
+
+                elif last_message["action"] == "move":
+                    logger.debug("We have received a move focus command")
+                    # Set the LEDs as Yellow
+                    planktoscope.light.setRGB(255, 255, 0)
+
+                    # Get direction from the different received arguments
+                    direction = last_message["direction"]
+                    # Get number of steps from the different received arguments
+                    distance = float(last_message["distance"])
+
+                    # Publish the status "Start" to via MQTT to Node-RED
+                    self.actuator_client.client.publish(
+                        "status/focus", "{'status':'Start'}"
+                    )
+
+                    # Print status
+                    logger.info("The focus movement is started.")
+                    self.focus(direction, distance)
+                else:
+                    logger.warning(
+                        f"The received message was not understood {last_message}"
+                    )
+            elif command != "":
                 logger.warning(
-                    f"The received message was not understood {last_message}"
+                    f"We did not understand the received request {command} - {last_message}"
                 )
-
-        # If the command is "focus"
-        elif command == "focus":
-            logger.debug("We have received a focusing request")
-            # If a new received command is "focus" but args contains "stop" we stop!
-            if last_message.action == "stop":
-                logger.debug("We have received a stop focus command")
-                self.focus_stepper.stepper.release()
-                self.focus_stepper.goal = self.focus_stepper.position
-
-                # Print status
-                logger.info("The focus has been interrupted")
-
-                # Publish the status "Interrupted" to via MQTT to Node-RED
-                self.actuator_client.client.publish(
-                    "status/focus", "{'status':'Interrupted'}"
-                )
-
-                # Set the LEDs as Green
-                planktoscope.light.setRGB(0, 255, 0)
-
-            elif last_message.action == "move":
-                logger.debug("We have received a move focus command")
-                # Set the LEDs as Yellow
-                planktoscope.light.setRGB(255, 255, 0)
-
-                # Get direction from the different received arguments
-                direction = last_message.direction
-                # Get number of steps from the different received arguments
-                distance = float(last_message.distance)
-
-                # Publish the status "Start" to via MQTT to Node-RED
-                self.actuator_client.client.publish(
-                    "status/focus", "{'status':'Start'}"
-                )
-
-                # Print status
-                logger.info("The focus movement is started.")
-                focus(direction, distance)
-            else:
-                logger.warning(
-                    f"The received message was not understood {last_message}"
-                )
-        elif command != "":
-            logger.warning(
-                f"We did not understand the received request {command} - {last_message}"
-            )
 
     def focus(self, direction, distance, speed=focus_max_speed):
         """moves the focus stepper
@@ -292,10 +295,13 @@ class StepperProcess(multiprocessing.Process):
             self.focus_stepper.go(adafruit_motor.stepper.BACKWARD, nb_steps, delay)
 
     # The pump max speed will be at about 400 full steps per second
-    # This amounts to 0.65mL per seconds maximum
-    # NEMA14 pump with 3 rollers is 0.3257 mL per round, actual calculation at
+    # This amounts to 0.9mL per seconds maximum, or 54mL/min
+    # NEMA14 pump with 3 rollers is 0.509 mL per round, actual calculation at
+    # Stepper is 200 steps/round, or 393steps/ml
     # https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
     def pump(self, direction, volume, speed=pump_max_speed):
+        # TODO We need to add a way to stop the stepper from outside this process
+        # without killing everything!
         """moves the pump stepper
 
         direction is either FORWARD or BACKWARD
@@ -373,8 +379,8 @@ class StepperProcess(multiprocessing.Process):
             self.pump_stepper.move()
             self.focus_stepper.move()
         logger.info("Shutting down the stepper process")
-                self.pump_stepper.shutdown()
-                self.focus_stepper.shutdown()
+        self.pump_stepper.shutdown()
+        self.focus_stepper.shutdown()
         self.actuator_client.shutdown()
 
 
