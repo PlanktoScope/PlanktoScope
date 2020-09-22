@@ -28,7 +28,7 @@ class stepper:
         self.__position = 0
         self.__goal = 0
         self.__direction = ""
-        self.__next_step_date = time.monotonic_ns()
+        self.__next_step_date = time.monotonic()
         self.__delay = 0
         # Make sure the stepper is released and do not use any power
         self.__stepper.release()
@@ -39,7 +39,7 @@ class stepper:
         Returns:
             Bool: if time has come to push the step
         """
-        return time.monotonic_ns() > self.__next_step_date
+        return time.monotonic() > self.__next_step_date
 
     def at_goal(self):
         """Is the motor at its goal
@@ -51,11 +51,11 @@ class stepper:
 
     def next_step_date(self):
         """set the next step date"""
-        self.__next_step_date = self.__next_step_date + self.__delay * 1000
+        self.__next_step_date = self.__next_step_date + self.__delay
 
     def initial_step_date(self):
         """set the initial step date"""
-        self.__next_step_date = time.monotonic_ns() + self.__delay * 1000
+        self.__next_step_date = time.monotonic() + self.__delay
 
     def move(self):
         """move the stepper
@@ -291,25 +291,25 @@ class StepperProcess(multiprocessing.Process):
             logger.error("You are trying to move more than the stage physical size")
             return
 
-        if speed > self.focus_max_speed:
-            speed = self.focus_max_speed
-            logger.warning("The requested speed is faster than the maximum safe speed")
-            logger.warning(
-                f"The speed of the motor is going to be limited to {speed}mL/min"
-            )
-
         # We are going to use microsteps, so we need to multiply by 16 the steps number
         nb_steps = self.focus_steps_per_mm * distance * 16
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.focus_steps_per_mm * 16
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
 
+        if steps_per_second > 400:
+            steps_per_second = 400
+            logger.warning("The requested speed is faster than the maximum safe speed")
+            logger.warning(
+                f"The speed of the motor is going to be limited to {steps_per_second/16/self.focus_steps_per_mm}mm/sec"
+            )
+
         # On linux, the minimal acceptable delay managed by the system is 0.1ms
         # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
         # However we have a fixed delay of at least 2.5ms per step due to the library
         # Our maximum speed is thus about 400 pulses per second or 0.5mm/sec of stage speed
         delay = max((1 / steps_per_second) - 0.0025, 0)
-        logger.debug(f"The delay between two steps is {delay}")
+        logger.debug(f"The delay between two steps is {delay}s")
 
         # Publish the status "Start" to via MQTT to Node-RED
         self.actuator_client.client.publish(
@@ -346,16 +346,17 @@ class StepperProcess(multiprocessing.Process):
             logger.error("It should be either FORWARD or BACKWARD")
             return
 
-        if speed > self.pump_max_speed:
-            speed = self.pump_max_speed
-            logger.warning("The requested speed is faster than the maximum safe speed")
-            logger.warning(f"The speed of the motor is going to be limited to {speed}")
-
         nb_steps = self.pump_steps_per_ml * volume
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.pump_steps_per_ml / 60
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
 
+        if steps_per_second > 400:
+            steps_per_second = 400
+            logger.warning("The requested speed is faster than the maximum safe speed")
+            logger.warning(
+                f"The speed of the motor is going to be limited to {steps_per_second*60/self.pump_steps_per_ml}mL/min"
+            )
         # On linux, the minimal acceptable delay managed by the system is 0.1ms
         # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
         # However we have a fixed delay of at least 2.5ms per step due to the library
@@ -368,7 +369,7 @@ class StepperProcess(multiprocessing.Process):
         # nb_steps = 5200 * 15 = 78000
         # sps = 3mL/min * 5200s/mL = 15600s/min / 60 => 260sps
         delay = max((1 / steps_per_second) - 0.0025, 0)
-        logger.debug(f"The delay between two steps is {delay}")
+        logger.debug(f"The delay between two steps is {delay}s")
 
         # Publish the status "Start" to via MQTT to Node-RED
         self.actuator_client.client.publish(
