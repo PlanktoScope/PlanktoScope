@@ -111,6 +111,12 @@ class StepperProcess(multiprocessing.Process):
 
         self.stop_event = event
 
+        # Creates the MQTT Client
+        self.actuator_client = planktoscope.mqtt.MQTT_Client(
+            topic="actuator/#", name="actuator_client"
+        )
+        self.actuator_client.connect()
+
         # load config.json
         with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
             configuration = json.load(config_file)
@@ -357,13 +363,6 @@ class StepperProcess(multiprocessing.Process):
         Eventually, the __del__ method could be used, if this module is
         made into a class.
         """
-
-        # Creates the MQTT Client
-        self.actuator_client = planktoscope.mqtt.MQTT_Client(
-            topic="actuator/#", name="actuator_client"
-        )
-        self.actuator_client.connect()
-
         logger.info("The stepper control thread has been started")
         while not self.stop_event.is_set():
             # check if a new message has been received
