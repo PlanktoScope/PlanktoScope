@@ -7,8 +7,6 @@ import multiprocessing
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-logger.info("planktoscope.imager is loaded")
-
 
 ################################################################################
 # Practical Libraries
@@ -45,6 +43,9 @@ import skimage.util
 import cv2
 
 
+logger.info("planktoscope.imager is loaded")
+
+
 ################################################################################
 # Main Imager class
 ################################################################################
@@ -72,12 +73,6 @@ class ImagerProcess(multiprocessing.Process):
         self.camera.iso = iso
         self.camera.shutter_speed = shutter_speed
         self.camera.exposure_mode = "fixedfps"
-
-        # MQTT Service connection
-        self.imaging_client = planktoscope.mqtt.MQTT_Client(
-            topic="imager/#", name="imager_client"
-        )
-        self.imaging_client.connect()
 
         # load config.json
         with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
@@ -249,7 +244,7 @@ class ImagerProcess(multiprocessing.Process):
             morphocut.Call(
                 self.imaging_client.client.publish,
                 "status/segmentation/object_id",
-                object_id,
+                f'{{"object_id":"{object_id}"}}',
             )
 
             # Set the LEDs as Green
@@ -278,17 +273,17 @@ class ImagerProcess(multiprocessing.Process):
         Eventually, the __del__ method could be used, if this module is
         made into a class.
         """
+        # MQTT Service connection
+        self.imaging_client = planktoscope.mqtt.MQTT_Client(
+            topic="imager/#", name="imager_client"
+        )
+
         while not self.stop_event.is_set():
             # TODO This should probably be a state machine, with the various transition between states made clear
             ############################################################################
             # Image Event
             ############################################################################
             if self.imaging_client.command == "image":
-
-                # Publish the status "Start" to via MQTT to Node-RED
-                self.imaging_client.client.publish(
-                    "status/imager", "Will do my best dude"
-                )
 
                 # Get duration to wait before an image from the different received arguments
                 sleep_before = int(args.split(" ")[0])
@@ -305,8 +300,9 @@ class ImagerProcess(multiprocessing.Process):
                 # Sleep a duration before to start acquisition
                 time.sleep(sleep_before)
 
-                # Publish the status "Start" to via MQTT to Node-RED
-                self.imaging_client.client.publish("status/imager", "Start")
+                self.imaging_client.client.publish(
+                    "status/imager", '{"status":"Started"}'
+                )
 
                 # Set the LEDs as Blue
                 planktoscope.light.setRGB(0, 0, 255)
@@ -318,7 +314,15 @@ class ImagerProcess(multiprocessing.Process):
                 # Maybe a local variable to control the state machine would be more appropriate
                 # Pump duing a given number of steps (in between each image)
                 self.imaging_client.client.publish(
-                    "actuator/pump", "FORWARD " + nb_step
+                    "actuator/pump",
+                    json.dumps(
+                        {
+                            "action": "move",
+                            "direction": "BACKWARD",
+                            "volume": nb_step,
+                            "flowrate": 2,
+                        }
+                    ),
                 )
                 for i in range(nb_step):
 
@@ -329,7 +333,10 @@ class ImagerProcess(multiprocessing.Process):
 
                     # If the command isn't image anymore - break
                     else:
-                        self.imaging_client.client.publish("actuator/pump", "stop")
+                        self.imaging_client.client.publish(
+                            "actuator/pump",
+                            json.dumps({"action": "stop"}),
+                        )
                         break
 
                 # Set the LEDs as Green
@@ -363,7 +370,8 @@ class ImagerProcess(multiprocessing.Process):
                     # Publish the name of the image to via MQTT to Node-RED
 
                     self.imaging_client.client.publish(
-                        "status/imager", datetime_tmp + ".jpg has been imaged."
+                        "status/imager",
+                        f'{{"status":"{datetime_tmp} .jpg has been imaged."}}',
                     )
 
                     # Set the LEDs as Blue
@@ -391,7 +399,9 @@ class ImagerProcess(multiprocessing.Process):
                     if counter > nb_frame:
 
                         # Publish the status "Completed" to via MQTT to Node-RED
-                        self.imaging_client.client.publish("status/imager", "Completed")
+                        self.imaging_client.client.publish(
+                            "status/imager", '{"status":"Completed"}'
+                        )
 
                         # Release the pump steppers to stop power draw
                         pump_stepper.release()
@@ -400,7 +410,7 @@ class ImagerProcess(multiprocessing.Process):
 
                             # Publish the status "Start" to via MQTT to Node-RED
                             self.imaging_client.client.publish(
-                                "status/segmentation", "Start"
+                                "status/segmentation", '{"status":"Started"}'
                             )
 
                             # Start the MorphoCut Pipeline
@@ -411,7 +421,7 @@ class ImagerProcess(multiprocessing.Process):
 
                             # Publish the status "Completed" to via MQTT to Node-RED
                             self.imaging_client.client.publish(
-                                "status/segmentation", "Completed"
+                                "status/segmentation", '{"status":"Completed"}'
                             )
 
                             # Set the LEDs as White
@@ -450,7 +460,7 @@ class ImagerProcess(multiprocessing.Process):
 
                         # Publish the status "Interrupted" to via MQTT to Node-RED
                         self.imaging_client.client.publish(
-                            "status/imager", "Interrupted"
+                            "status/imager", '{"status":"Interrupted"}'
                         )
 
                         # Set the LEDs as Green
