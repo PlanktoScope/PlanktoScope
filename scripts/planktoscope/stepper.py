@@ -101,8 +101,10 @@ class StepperProcess(multiprocessing.Process):
     # pump max speed is in ml/min
     pump_max_speed = 30
 
-    def __init__(self):
+    def __init__(self, event):
         super(StepperProcess, self).__init__()
+
+        self.stop_event = event
 
         # load config.json
         with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
