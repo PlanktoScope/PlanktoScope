@@ -44,17 +44,20 @@ import cv2
 class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
-    def __init__(self, resolution=(3280, 2464), iso=60, shutter_speed=500):
+    def __init__(self, resolution=(3280, 2464), iso=60, shutter_speed=500, event):
         """Initialize the Imager class
 
         Args:
             resolution (tuple, optional): Camera native resolution. Defaults to (3280, 2464).
             iso (int, optional): ISO sensitivity. Defaults to 60.
             shutter_speed (int, optional): Shutter speed of the camera. Defaults to 500.
+            event (multiprocessing.Event): shutdown event
         """
         super(ImagerProcess, self).__init__()
 
         logger.info("planktoscope.imager is initialized")
+        
+        self.stop_event = event
 
         # PiCamera settings
         self.camera = picamera.PiCamera()
@@ -268,7 +271,8 @@ class ImagerProcess(multiprocessing.Process):
         Eventually, the __del__ method could be used, if this module is
         made into a class.
         """
-        while True:
+        while not stop_event.is_set():
+            # TODO This should probably be a state machine, with the various transition between states made clear
             ############################################################################
             # Image Event
             ############################################################################
@@ -459,3 +463,6 @@ class ImagerProcess(multiprocessing.Process):
                 planktoscope.light.setRGB(255, 255, 255)
                 # Its just waiting to receive command from Node-RED
                 time.sleep(1)
+
+            
+        logger.info("Shutting down the imager process")

@@ -104,5 +104,5 @@ if __name__ == "__main__":
     shutdown_event.set()
     stepper_thread.join()
     streaming_thread.terminate()
-    imager_thread.terminate()
+    imager_thread.join()
     logger.info("Bye")
