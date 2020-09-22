@@ -33,7 +33,7 @@ class stepper:
         # Make sure the stepper is released and do not use any power
         self.__stepper.release()
 
-    def step_waiting():
+    def step_waiting(self):
         """Is there a step waiting to be actuated
 
         Returns:
@@ -41,7 +41,7 @@ class stepper:
         """
         return time.monotonic_ns() > self.__next_step_date
 
-    def at_goal():
+    def at_goal(self):
         """Is the motor at its goal
 
         Returns:
@@ -49,15 +49,15 @@ class stepper:
         """
         return self.__position != self.__goal
 
-    def next_step_date():
+    def next_step_date(self):
         """set the next step date"""
         self.__next_step_date = self.__next_step_date + self.__delay * 1000
 
-    def initial_step_date():
+    def initial_step_date(self):
         """set the initial step date"""
         self.__next_step_date = time.monotonic_ns() + self.__delay * 1000
 
-    def move():
+    def move(self):
         """move the stepper"""
         if self.step_waiting():
             self.__stepper.onestep(
@@ -74,10 +74,10 @@ class stepper:
             else:
                 self.next_step_date()
 
-    def go(direction, distance, delay):
+    def go(self, direction, distance, delay):
         """move in the given direction for the given distance
 
-        direction (adafruit_motor.stepper): gives the movement direction
+        direction: gives the movement direction
         """
         self.__delay = delay
         self.__direction = direction
@@ -89,7 +89,7 @@ class stepper:
             logger.error(f"The given direction is wrong {direction}")
         self.initial_step_date()
 
-    def shutdown():
+    def shutdown(self):
         """Shutdown everything ASAP"""
         self.__goal = self.__position
         self.__stepper.release()
@@ -337,6 +337,7 @@ class StepperProcess(multiprocessing.Process):
         if direction == "BACKWARD":
             self.pump_stepper.go(adafruit_motor.stepper.BACKWARD, nb_steps, delay)
 
+    @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread
 

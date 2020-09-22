@@ -271,7 +271,7 @@ class ImagerProcess(multiprocessing.Process):
         Eventually, the __del__ method could be used, if this module is
         made into a class.
         """
-        while not stop_event.is_set():
+        while not self.stop_event.is_set():
             # TODO This should probably be a state machine, with the various transition between states made clear
             ############################################################################
             # Image Event

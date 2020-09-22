@@ -60,7 +60,6 @@ class MQTT_Client:
     """
 
     def __init__(self, topic, server="127.0.0.1", port=1883, name="client"):
-
         # Declare the global variables command and args
         self.command = ""
         self.args = ""
@@ -73,7 +72,6 @@ class MQTT_Client:
         self.server = server
         self.port = port
         self.name = name
-        pass
 
     def connect(self):
         # TODO should we use connect_async here maybe? To defer connection to the server until the call to loop_start()
@@ -136,8 +134,8 @@ class MQTT_Client:
         # TODO for now, we just log the disconnection, we need to evaluate what to do
         # in case of communication loss with the server
 
-    def is_new_message():
+    def new_message_received(self):
         return self.__new_message
 
-    def read_message():
+    def read_message(self):
         self.__new_message = False
