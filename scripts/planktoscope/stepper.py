@@ -180,7 +180,7 @@ class StepperProcess(multiprocessing.Process):
 
                     # Publish the status "Interrupted" to via MQTT to Node-RED
                     self.actuator_client.client.publish(
-                        "status/pump", "{'status':'Interrupted'}"
+                        "status/pump", '{"status":"Interrupted"}'
                     )
 
                     # Set the LEDs as Green
@@ -200,7 +200,7 @@ class StepperProcess(multiprocessing.Process):
                             f"The received message has the wrong argument {last_message}"
                         )
                         self.actuator_client.client.publish(
-                            "status/pump", "{'status':'Error'}"
+                            "status/pump", '{"status":"Error"}'
                         )
                         return
                     # Get direction from the different received arguments
@@ -231,7 +231,7 @@ class StepperProcess(multiprocessing.Process):
 
                     # Publish the status "Interrupted" to via MQTT to Node-RED
                     self.actuator_client.client.publish(
-                        "status/focus", "{'status':'Interrupted'}"
+                        "status/focus", '{"status":"Interrupted"}'
                     )
 
                     # Set the LEDs as Green
@@ -250,7 +250,7 @@ class StepperProcess(multiprocessing.Process):
                             f"The received message has the wrong argument {last_message}"
                         )
                         self.actuator_client.client.publish(
-                            "status/focus", "{'status':'Error'}"
+                            "status/focus", '{"status":"Error"}'
                         )
                     # Get direction from the different received arguments
                     direction = last_message["direction"]
@@ -311,10 +311,10 @@ class StepperProcess(multiprocessing.Process):
         delay = max((1 / steps_per_second) - 0.0025, 0)
         logger.debug(f"The delay between two steps is {delay}s")
 
-        # Publish the status "Start" to via MQTT to Node-RED
+        # Publish the status "Started" to via MQTT to Node-RED
         self.actuator_client.client.publish(
             "status/focus",
-            f"{{'status':'Start', 'duration':{nb_steps / steps_per_second}}}",
+            f'{{"status":"Started", "duration":{nb_steps / steps_per_second}}}',
         )
 
         # Depending on direction, select the right direction for the focus
@@ -371,10 +371,10 @@ class StepperProcess(multiprocessing.Process):
         delay = max((1 / steps_per_second) - 0.0025, 0)
         logger.debug(f"The delay between two steps is {delay}s")
 
-        # Publish the status "Start" to via MQTT to Node-RED
+        # Publish the status "Started" to via MQTT to Node-RED
         self.actuator_client.client.publish(
             "status/pump",
-            f"{{'status':'Start', 'duration':{nb_steps / steps_per_second}}}",
+            f'{{"status":"Started", "duration":{nb_steps / steps_per_second}}}',
         )
 
         # Depending on direction, select the right direction for the focus
@@ -406,21 +406,21 @@ class StepperProcess(multiprocessing.Process):
         )
         # Publish the status "Ready" to via MQTT to Node-RED
         self.actuator_client.client.publish(
-            "status/pump", "{'status':'Ready'}"
+            "status/pump", '{"status":"Ready"}'
         )  # Publish the status "Ready" to via MQTT to Node-RED
-        self.actuator_client.client.publish("status/focus", "{'status':'Ready'}")
+        self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
         while not self.stop_event.is_set():
             # check if a new message has been received
             self.treat_command()
             if self.pump_stepper.move():
                 self.actuator_client.client.publish(
                     "status/pump",
-                    f"{{'status':'Done'}}",
+                    '{"status":"Done"}',
                 )
             if self.focus_stepper.move():
                 self.actuator_client.client.publish(
                     "status/focus",
-                    f"{{'status':'Done'}}",
+                    '{"status":"Done"}',
                 )
         logger.info("Shutting down the stepper process")
         self.pump_stepper.shutdown()
