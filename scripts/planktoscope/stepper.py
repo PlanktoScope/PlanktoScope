@@ -127,15 +127,12 @@ class StepperProcess(multiprocessing.Process):
         # define the names for the 2 exsting steppers
         kit = adafruit_motorkit.MotorKit()
         if reverse:
-            self.pump_stepper = kit.stepper2
-            self.focus_stepper = kit.stepper1
+            self.pump_stepper = stepper(kit.stepper2)
+            self.focus_stepper = stepper(kit.stepper1, 45)
         else:
-            self.pump_stepper = kit.stepper1
-            self.focus_stepper = kit.stepper2
+            self.pump_stepper = stepper(kit.stepper1)
+            self.focus_stepper = stepper(kit.stepper2, 45)
 
-        # Make sure the steppers are released and do not use any power
-        self.pump_stepper.release()
-        self.focus_stepper.release()
         logger.debug(f"Stepper initialisation is over")
 
     def focus(self, direction, distance, speed=focus_max_speed):
@@ -164,8 +161,6 @@ class StepperProcess(multiprocessing.Process):
             logger.warning("The requested speed is faster than the maximum safe speed")
             logger.warning(f"The speed of the motor is going to be limited to {speed}")
 
-        counter = 0
-
         # We are going to use microsteps, so we need to multiply by 16 the steps number
         nb_steps = self.focus_steps_per_mm * distance * 16
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
@@ -181,27 +176,10 @@ class StepperProcess(multiprocessing.Process):
 
         # Depending on direction, select the right direction for the focus
         if direction == "UP":
-            direction = adafruit_motor.stepper.FORWARD
+            self.focus_stepper.go(adafruit_motor.stepper.FORWARD, nb_steps, delay)
 
         if direction == "DOWN":
-            direction = adafruit_motor.stepper.BACKWARD
-
-        logger.debug("Entering the loop for steps control")
-        while True:
-            # Actuate the focus for one microstep in the right direction
-            self.focus_stepper.onestep(
-                direction=direction, style=adafruit_motor.stepper.MICROSTEP
-            )
-            # Increment the counter
-            counter += 1
-            time.sleep(delay)
-            ####################################################################
-            # If counter reach the number of step, break
-            if counter > nb_steps:
-                logger.debug("Movement is over")
-                # Release the focus steppers to stop power draw
-                self.focus_stepper.release()
-                break
+            self.focus_stepper.go(adafruit_motor.stepper.BACKWARD, nb_steps, delay)
 
     # The pump max speed will be at about 400 full steps per second
     # This amounts to 0.65mL per seconds maximum
@@ -227,8 +205,6 @@ class StepperProcess(multiprocessing.Process):
             logger.warning("The requested speed is faster than the maximum safe speed")
             logger.warning(f"The speed of the motor is going to be limited to {speed}")
 
-        counter = 0
-
         nb_steps = self.pump_steps_per_ml * volume
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.pump_steps_per_ml / 60
@@ -238,32 +214,22 @@ class StepperProcess(multiprocessing.Process):
         # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
         # However we have a fixed delay of at least 2.5ms per step due to the library
         # Our maximum speed is thus about 400 pulses per second or 2 turn per second of the pump
+        # 10mL => 6140 pas
+        # 1.18gr => 1.18mL
+        # Actual pas/mL => 5200
+        # Max speed is 400 steps/sec, or 4.6mL/min
+        # 15mL at 3mL/min
+        # nb_steps = 5200 * 15 = 78000
+        # sps = 3mL/min * 5200s/mL = 15600s/min / 60 => 260sps
         delay = max((1 / steps_per_second) - 0.0025, 0)
         logger.debug(f"The delay between two steps is {delay}")
 
         # Depending on direction, select the right direction for the focus
         if direction == "FORWARD":
-            direction = adafruit_motor.stepper.FORWARD
+            self.pump_stepper.go(adafruit_motor.stepper.FORWARD, nb_steps, delay)
 
         if direction == "BACKWARD":
-            direction = adafruit_motor.stepper.BACKWARD
-
-        logger.debug("Entering the loop for steps control")
-        while True:
-            # Actuate the focus for one double step in the right direction
-            self.pump_stepper.onestep(
-                direction=direction, style=adafruit_motor.stepper.DOUBLE
-            )
-            # Increment the counter
-            counter += 1
-            time.sleep(delay)
-            ####################################################################
-            # If counter reach the number of step, break
-            if counter > nb_steps:
-                logger.debug("Pumping is over")
-                # Release the focus steppers to stop power draw
-                self.pump_stepper.release()
-                break
+            self.pump_stepper.go(adafruit_motor.stepper.BACKWARD, nb_steps, delay)
 
     def run(self):
         """This is the function that needs to be started to create a thread
