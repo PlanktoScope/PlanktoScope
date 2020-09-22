@@ -89,6 +89,11 @@ class stepper:
             logger.error(f"The given direction is wrong {direction}")
         self.initial_step_date()
 
+    def shutdown():
+        """Shutdown everything ASAP"""
+        self.__goal = self.__position
+        self.__stepper.release()
+
 
 class StepperProcess(multiprocessing.Process):
 
@@ -356,7 +361,8 @@ class StepperProcess(multiprocessing.Process):
             self.focus_stepper.move()
             if self.stop_event.is_set():
                 logger.info("shutting down the process")
-                # TODO add the functions for releasing the motors here
+                self.pump_stepper.shutdown()
+                self.focus_stepper.shutdown()
                         break
 
 
