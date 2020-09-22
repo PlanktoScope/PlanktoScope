@@ -13,6 +13,83 @@ from loguru import logger
 logger.info("planktoscope.stepper is loaded")
 
 
+class stepper:
+    def __init__(self, stepper, style, size=0):
+        """Initialize the stepper class
+
+        Args:
+            stepper (adafruit_motorkit.Motorkit().stepper): reference to the object that controls the stepper
+            style (adafruit.): style of the movement SINGLE, DOUBLE, MICROSTEP
+            size (int): maximum number of steps of this stepper (aka stage size). Can be 0 if not applicable
+        """
+        self.__stepper = stepper
+        self.__style = style
+        self.__size = size
+        self.__position = 0
+        self.__goal = 0
+        self.__direction = ""
+        self.__next_step_date = time.monotonic_ns()
+        self.__delay = 0
+        # Make sure the stepper is released and do not use any power
+        self.__stepper.release()
+
+    def step_waiting():
+        """Is there a step waiting to be actuated
+
+        Returns:
+            Bool: if time has come to push the step
+        """
+        return time.monotonic_ns() > self.__next_step_date
+
+    def at_goal():
+        """Is the motor at its goal
+
+        Returns:
+            Bool: difference between position and goal
+        """
+        return self.__position != self.__goal
+
+    def next_step_date():
+        """set the next step date"""
+        self.__next_step_date = self.__next_step_date + self.__delay * 1000
+
+    def initial_step_date():
+        """set the initial step date"""
+        self.__next_step_date = time.monotonic_ns() + self.__delay * 1000
+
+    def move():
+        """move the stepper"""
+        if self.step_waiting():
+            self.__stepper.onestep(
+                direction=self.__direction,
+                style=self.__style,
+            )
+            if self.__direction == "FORWARD":
+                self.__position += 1
+            elif self.__direction == "BACKWARD":
+                self.__position -= 1
+            if self.at_goal():
+                logger.info("The stepper has reached its goal")
+                self.__stepper.release()
+            else:
+                self.next_step_date()
+
+    def go(direction, distance, delay):
+        """move in the given direction for the given distance
+
+        direction (adafruit_motor.stepper): gives the movement direction
+        """
+        self.__delay = delay
+        self.__direction = direction
+        if self.__direction == "FORWARD":
+            self.__goal = position + distance
+        elif self.__direction == "BACKWARD":
+            self.__goal = position - distance
+        else:
+            logger.error(f"The given direction is wrong {direction}")
+        self.initial_step_date()
+
+
 class StepperProcess(multiprocessing.Process):
 
     focus_steps_per_mm = 40
