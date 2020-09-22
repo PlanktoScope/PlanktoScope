@@ -32,14 +32,23 @@ import planktoscope.mqtt
 # Import the planktonscope stepper module
 import planktoscope.stepper
 
+# Import the planktonscope streamer module
+import planktoscope.streamer
+
+# Import the planktonscope imager module
+import planktoscope.imager
+
 # Import the planktonscope LED module
 import planktoscope.light
 
 # Time module so we can sleep
 import time
 
-# signal module is used to managed SINGINT/SIGTERM
+# signal module is used to manage SINGINT/SIGTERM
 import signal
+
+# multiprocessing module
+import multiprocessing
 
 # global variable that keeps the wheels spinning
 run = True
@@ -74,7 +83,6 @@ if __name__ == "__main__":
     server = planktoscope.streamer.StreamingServer(
         address, planktoscope.streamer.StreamingHandler
     )
-
     # Starts the streaming server process
     logger.info("Starting the streaming server process (step 3/4)")
     streaming_thread = multiprocessing.Process(target=server.serve_forever)
@@ -82,7 +90,7 @@ if __name__ == "__main__":
 
     # Starts the imager control process
     logger.info("Starting the imager control process (step 4/4)")
-    imager_thread = planktoscope.imager.ImagerProcess()
+    imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
     imager_thread.start_camera(output)
     imager_thread.start()
 

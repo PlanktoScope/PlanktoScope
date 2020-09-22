@@ -19,7 +19,7 @@ class stepper:
 
         Args:
             stepper (adafruit_motorkit.Motorkit().stepper): reference to the object that controls the stepper
-            style (adafruit.): style of the movement SINGLE, DOUBLE, MICROSTEP
+            style (adafruit_motor.stepper): style of the movement SINGLE, DOUBLE, MICROSTEP
             size (int): maximum number of steps of this stepper (aka stage size). Can be 0 if not applicable
         """
         self.__stepper = stepper
@@ -134,17 +134,27 @@ class StepperProcess(multiprocessing.Process):
         # define the names for the 2 exsting steppers
         kit = adafruit_motorkit.MotorKit()
         if reverse:
-            self.pump_stepper = stepper(kit.stepper2)
-            self.focus_stepper = stepper(kit.stepper1, 45)
+            self.pump_stepper = stepper(kit.stepper2, adafruit_motor.stepper.DOUBLE)
+            self.focus_stepper = stepper(
+                kit.stepper1, adafruit_motor.stepper.MICROSTEP, 45
+            )
         else:
-            self.pump_stepper = stepper(kit.stepper1)
-            self.focus_stepper = stepper(kit.stepper2, 45)
+            self.pump_stepper = stepper(kit.stepper1, adafruit_motor.stepper.DOUBLE)
+            self.focus_stepper = stepper(
+                kit.stepper2, adafruit_motor.stepper.MICROSTEP, 45
+            )
+
+        # Publish the status "Ready" to via MQTT to Node-RED
+        self.actuator_client.client.publish(
+            "status/pump", "{'status':'Ready'}"
+        )  # Publish the status "Ready" to via MQTT to Node-RED
+        self.actuator_client.client.publish("status/focus", "{'status':'Ready'}")
 
         logger.debug(f"Stepper initialisation is over")
 
     def treat_command(self):
         command = ""
-        if self.actuator_client.is_new_message():
+        if self.actuator_client.new_message_received():
             logger.info("We received a new message")
             last_message = json.load(self.actuator_client.msg.payload)
             logger.debug(last_message)
@@ -163,7 +173,7 @@ class StepperProcess(multiprocessing.Process):
                 # Print status
                 logger.info("The pump has been interrupted")
 
-                # Publish the status "Interrompted" to via MQTT to Node-RED
+                # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.actuator_client.client.publish(
                     "status/pump", "{'status':'Interrupted'}"
                 )
@@ -206,7 +216,7 @@ class StepperProcess(multiprocessing.Process):
                 # Print status
                 logger.info("The focus has been interrupted")
 
-                # Publish the status "Interrompted" to via MQTT to Node-RED
+                # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.actuator_client.client.publish(
                     "status/focus", "{'status':'Interrupted'}"
                 )

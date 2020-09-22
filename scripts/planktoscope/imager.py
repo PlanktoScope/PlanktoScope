@@ -27,14 +27,21 @@ import json, shutil, os
 import picamera
 
 ################################################################################
-# Morphocut Library
+# Morphocut Libraries
 ################################################################################
 import morphocut
+import morphocut.file
+import morphocut.image
+import morphocut.stat
+import morphocut.stream
+import morphocut.str
+import morphocut.contrib.ecotaxa
+import morphocut.contrib.zooprocess
 
 ################################################################################
 # Other image processing Libraries
 ################################################################################
-import skimage
+import skimage.util
 import cv2
 
 
@@ -44,19 +51,19 @@ import cv2
 class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
-    def __init__(self, resolution=(3280, 2464), iso=60, shutter_speed=500, event):
+    def __init__(self, event, resolution=(3280, 2464), iso=60, shutter_speed=500):
         """Initialize the Imager class
 
         Args:
+            event (multiprocessing.Event): shutdown event
             resolution (tuple, optional): Camera native resolution. Defaults to (3280, 2464).
             iso (int, optional): ISO sensitivity. Defaults to 60.
             shutter_speed (int, optional): Shutter speed of the camera. Defaults to 500.
-            event (multiprocessing.Event): shutdown event
         """
         super(ImagerProcess, self).__init__()
 
         logger.info("planktoscope.imager is initialized")
-        
+
         self.stop_event = event
 
         # PiCamera settings
@@ -99,13 +106,13 @@ class ImagerProcess(multiprocessing.Process):
         )
 
         # Instantiate the morphocut pipeline
-        self._create_morphocut_pipeline(self)
+        self._create_morphocut_pipeline()
 
     def _create_morphocut_pipeline(self):
         """Creates the Morphocut Pipeline"""
         logger.debug("Let's start creating the Morphocut Pipeline")
 
-        with morphocut.morphocut.Pipeline() as self.pipe:
+        with morphocut.Pipeline() as self.pipe:
             # TODO wrap morphocut.Call(logger.debug()) in something that allows it not to be added to the pipeline
             # if the logger.level is not debug. Might not be as easy as it sounds.
             # Recursively find .jpg files in import_path.
@@ -150,7 +157,7 @@ class ImagerProcess(multiprocessing.Process):
             img_gray = morphocut.image.RGB2Gray(img)
 
             # ?
-            img_gray = morphocut.Call(img_as_ubyte, img_gray)
+            img_gray = morphocut.Call(skimage.util.img_as_ubyte, img_gray)
 
             # Canny edge detection using OpenCV
             img_canny = morphocut.Call(cv2.Canny, img_gray, 50, 100)
@@ -207,7 +214,7 @@ class ImagerProcess(multiprocessing.Process):
 
             # Calculate features. The calculated features are added to the global_metadata.
             # Returns a Variable representing a dict for every object in the stream.
-            meta = CalculateZooProcessFeatures(
+            meta = morphocut.contrib.zooprocess.CalculateZooProcessFeatures(
                 regionprops, prefix="object_", meta=self.global_metadata
             )
 
@@ -261,7 +268,7 @@ class ImagerProcess(multiprocessing.Process):
     ################################################################################
     # While loop for capturing commands from Node-RED
     ################################################################################
-
+    @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread
 
@@ -464,5 +471,4 @@ class ImagerProcess(multiprocessing.Process):
                 # Its just waiting to receive command from Node-RED
                 time.sleep(1)
 
-            
         logger.info("Shutting down the imager process")
