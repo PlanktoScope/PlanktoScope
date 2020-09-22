@@ -111,12 +111,6 @@ class StepperProcess(multiprocessing.Process):
 
         self.stop_event = event
 
-        # Creates the MQTT Client
-        self.actuator_client = planktoscope.mqtt.MQTT_Client(
-            topic="actuator/#", name="actuator_client"
-        )
-        self.actuator_client.connect()
-
         # load config.json
         with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
             configuration = json.load(config_file)
@@ -149,12 +143,6 @@ class StepperProcess(multiprocessing.Process):
             self.focus_stepper = stepper(
                 kit.stepper2, adafruit_motor.stepper.MICROSTEP, 45
             )
-
-        # Publish the status "Ready" to via MQTT to Node-RED
-        self.actuator_client.client.publish(
-            "status/pump", "{'status':'Ready'}"
-        )  # Publish the status "Ready" to via MQTT to Node-RED
-        self.actuator_client.client.publish("status/focus", "{'status':'Ready'}")
 
         logger.debug(f"Stepper initialisation is over")
 
@@ -364,6 +352,21 @@ class StepperProcess(multiprocessing.Process):
         made into a class.
         """
         logger.info("The stepper control thread has been started")
+
+        # Creates the MQTT Client
+        # We have to create it here, otherwise when the process running run is started
+        # it doesn't see changes and calls made by self.actuator_client because this one
+        # only exist in the master process
+        # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
+        self.actuator_client = planktoscope.mqtt.MQTT_Client(
+            topic="actuator/#", name="actuator_client"
+        )
+        self.actuator_client.connect()
+        # Publish the status "Ready" to via MQTT to Node-RED
+        self.actuator_client.client.publish(
+            "status/pump", "{'status':'Ready'}"
+        )  # Publish the status "Ready" to via MQTT to Node-RED
+        self.actuator_client.client.publish("status/focus", "{'status':'Ready'}")
         while not self.stop_event.is_set():
             # check if a new message has been received
             self.treat_command()
@@ -372,6 +375,7 @@ class StepperProcess(multiprocessing.Process):
         logger.info("Shutting down the stepper process")
                 self.pump_stepper.shutdown()
                 self.focus_stepper.shutdown()
+        self.actuator_client.shutdown()
 
 
 # This is called if this script is launched directly
