@@ -354,16 +354,14 @@ class StepperProcess(multiprocessing.Process):
         self.actuator_client.connect()
 
         logger.info("The stepper control thread has been started")
-        while True:
+        while not self.stop_event.is_set():
             # check if a new message has been received
             self.treat_command()
             self.pump_stepper.move()
             self.focus_stepper.move()
-            if self.stop_event.is_set():
-                logger.info("shutting down the process")
+        logger.info("Shutting down the stepper process")
                 self.pump_stepper.shutdown()
                 self.focus_stepper.shutdown()
-                        break
 
 
 # This is called if this script is launched directly
