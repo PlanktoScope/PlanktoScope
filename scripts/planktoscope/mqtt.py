@@ -46,6 +46,7 @@
 # We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque
 import paho.mqtt.client as mqtt
 import json
+import planktoscope.light
 
 # Logger library compatible with multiprocessing
 from loguru import logger
@@ -69,16 +70,18 @@ class MQTT_Client:
 
         # MQTT Client functions definition
         self.client = mqtt.Client()
+        # self.client.enable_logger(logger)
         self.topic = topic
         self.server = server
         self.port = port
         self.name = name
+        self.connect()
 
-    # Run this command when Node-RED is sending a message on the subscribed topic
     @logger.catch
     def connect(self):
         # TODO should we use connect_async here maybe? To defer connection to the server until the call to loop_start()
-        self.client.connect_async(self.server, self.port, 60)
+        logger.info(f"trying to connect to {self.server}:{self.port}")
+        self.client.connect(self.server, self.port, 60)
         self.client.on_connect = self.on_connect
         self.client.on_subscribe = self.on_subscribe
         self.client.on_message = self.on_message
@@ -89,6 +92,7 @@ class MQTT_Client:
     # MQTT core functions
     ################################################################################
 
+    @logger.catch
     # Run this function in order to connect to the client (Node-RED)
     def on_connect(self, client, userdata, flags, rc):
         reason = [
@@ -106,8 +110,9 @@ class MQTT_Client:
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
         # Turn green the light module
-        planktonscope.light.setRGB(0, 255, 0)
+        planktoscope.light.setRGB(0, 255, 0)
 
+    @logger.catch
     # Run this function in order to subscribe to all the topics begining by actuator
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
@@ -127,10 +132,11 @@ class MQTT_Client:
         # Decode the message to find the arguments
         self.args = json.loads(msg.payload.decode())
         logger.debug(f"args are {self.args}")
-        self.msg = {"topic": msg.topic, "payload": msg.payload.decode()}
+        self.msg = {"topic": msg.topic, "payload": self.args}
         logger.debug(f"msg is {self.msg} or {msg}")
         self.__new_message = True
 
+    @logger.catch
     def on_disconnect(self, client, userdata, rc):
         if rc != 0:
             logger.error(
@@ -148,6 +154,8 @@ class MQTT_Client:
         logger.debug(f"clearing the __new_message flag")
         self.__new_message = False
 
-    def shutdown(self):
+    @logger.catch
+    def shutdown(self, topic="", message=""):
         logger.info("Shutting down the mqtt client")
+        # TODO insert here a last published message
         self.client.loop_stop()
