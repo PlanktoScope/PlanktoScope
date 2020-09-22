@@ -42,6 +42,8 @@
 #       - status/segmentation/object_id
 #       - status/segmentation/metric
 
+# TODO Evaluate the opportunity of saving the last x received messages in a queue for treatment
+# We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque
 import paho.mqtt.client as mqtt
 
 # Logger library compatible with multiprocessing
@@ -62,6 +64,8 @@ class MQTT_Client:
         # Declare the global variables command and args
         self.command = ""
         self.args = ""
+        self.__new_message = False
+        self.msg = None
 
         # MQTT Client functions definition
         self.client = mqtt.Client()
@@ -69,7 +73,6 @@ class MQTT_Client:
         self.server = server
         self.port = port
         self.name = name
-        self._new_message = False
         pass
 
     def connect(self):
@@ -120,7 +123,8 @@ class MQTT_Client:
         self.command = msg.topic.split("/", 1)[1]
         # Decode the message to find the arguments
         self.args = str(msg.payload.decode())
-        self._new_message = True
+        self.msg = msg
+        self.__new_message = True
 
     def on_disconnect(self, client, userdata, rc):
         if rc != 0:
@@ -133,7 +137,7 @@ class MQTT_Client:
         # in case of communication loss with the server
 
     def is_new_message():
-        return self._new_message
+        return self.__new_message
 
     def read_message():
-        self._new_message = False
+        self.__new_message = False
