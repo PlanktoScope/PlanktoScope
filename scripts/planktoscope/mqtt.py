@@ -45,6 +45,7 @@
 # TODO Evaluate the opportunity of saving the last x received messages in a queue for treatment
 # We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque
 import paho.mqtt.client as mqtt
+import json
 
 # Logger library compatible with multiprocessing
 from loguru import logger
@@ -73,9 +74,11 @@ class MQTT_Client:
         self.port = port
         self.name = name
 
+    # Run this command when Node-RED is sending a message on the subscribed topic
+    @logger.catch
     def connect(self):
         # TODO should we use connect_async here maybe? To defer connection to the server until the call to loop_start()
-        self.client.connect(self.server, self.port, 60)
+        self.client.connect_async(self.server, self.port, 60)
         self.client.on_connect = self.on_connect
         self.client.on_subscribe = self.on_subscribe
         self.client.on_message = self.on_message
@@ -113,15 +116,19 @@ class MQTT_Client:
         )
 
     # Run this command when Node-RED is sending a message on the subscribed topic
+    @logger.catch
     def on_message(self, client, userdata, msg):
         # Print the topic and the message
         logger.info(f"{self.name}: {msg.topic} {str(msg.qos)} {str(msg.payload)}")
         # Parse the topic to find the command. ex : actuator/pump -> pump
         # This only removes the top-level topic!
         self.command = msg.topic.split("/", 1)[1]
+        logger.debug(f"command is {self.command}")
         # Decode the message to find the arguments
-        self.args = str(msg.payload.decode())
-        self.msg = msg
+        self.args = json.loads(msg.payload.decode())
+        logger.debug(f"args are {self.args}")
+        self.msg = {"topic": msg.topic, "payload": msg.payload.decode()}
+        logger.debug(f"msg is {self.msg} or {msg}")
         self.__new_message = True
 
     def on_disconnect(self, client, userdata, rc):
@@ -138,4 +145,9 @@ class MQTT_Client:
         return self.__new_message
 
     def read_message(self):
+        logger.debug(f"clearing the __new_message flag")
         self.__new_message = False
+
+    def shutdown(self):
+        logger.info("Shutting down the mqtt client")
+        self.client.loop_stop()
