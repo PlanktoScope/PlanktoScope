@@ -59,9 +59,13 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
+    # Prepare the event for a gracefull shutdown
+    shutdown_event = multiprocessing.Event()
+    shutdown_event.clear()
+
     # Starts the stepper process for actuators
     logger.info("Starting the stepper control process (step 2/4)")
-    stepper_thread = planktoscope.stepper.StepperProcess()
+    stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
     # Streaming server creation
@@ -97,7 +101,8 @@ if __name__ == "__main__":
         time.sleep(1)
 
     logger.info("Shutting down the shop")
-    stepper_thread.terminate()
+    shutdown_event.set()
+    stepper_thread.join()
     streaming_thread.terminate()
     imager_thread.terminate()
     logger.info("Bye")
