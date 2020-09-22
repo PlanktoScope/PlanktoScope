@@ -518,17 +518,6 @@
         "collapse": false
     },
     {
-        "id": "319ae656.f85a12",
-        "type": "ui_group",
-        "z": "",
-        "name": "RPi commands",
-        "tab": "d10d9d99.00f4b8",
-        "order": 12,
-        "disp": true,
-        "width": "24",
-        "collapse": false
-    },
-    {
         "id": "ab1d06d6.bf9898",
         "type": "ui_group",
         "z": "",
@@ -611,7 +600,7 @@
         "z": "",
         "name": "Acquisition",
         "icon": "fa-eyedropper",
-        "order": 3,
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -730,6 +719,45 @@
         "group": "ab1d06d6.bf9898",
         "order": 7,
         "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a3de84cd.c01b6",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Management",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "adcd0ef7.81a7f8",
+        "type": "ui_group",
+        "z": "",
+        "name": "RPi commands",
+        "tab": "a3de84cd.c01b6",
+        "order": 1,
+        "disp": true,
+        "width": 11,
+        "collapse": false
+    },
+    {
+        "id": "79482db5.1401ec",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "adcd0ef7.81a7f8",
+        "order": 2,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "3b4814af.e30e54",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "adcd0ef7.81a7f8",
+        "order": 4,
+        "width": 5,
         "height": 1
     },
     {
@@ -1371,7 +1399,7 @@
         "type": "function",
         "z": "130e0533.4f1813",
         "name": "image.js",
-        "func": "state = global.get(\"state\");\nglobal.set('img_counter',0)\nglobal.set('obj_counter',0)\nif (state == null){state=\"free\"}\n\nvar sleep_before= global.get(\"custom_sleep_before\");\nvar nb_step= global.get(\"custom_nb_step\");\nvar nb_frame= global.get(\"custom_nb_frame\");\n\nif (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Duration before the acquisition\";\n    \n}else if (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of step in between two frames\";\n    \n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of image to save\";\n    \n}else {\n    nb_frame=nb_frame-1\n    \n    msg.payload=sleep_before+' '+nb_step+' '+nb_frame;\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\nglobal.set('img_counter',0)\nglobal.set('obj_counter',0)\nif (state === null){state=\"free\"}\n\nvar sleep_before= global.get(\"custom_sleep_before\");\nvar nb_step= global.get(\"custom_nb_step\");\nvar nb_frame= global.get(\"custom_nb_frame\");\n\nif (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Duration before the acquisition\";\n    \n}else if (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of step in between two frames\";\n    \n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Number of image to save\";\n    \n}else {\n    nb_frame=nb_frame-1\n    \n    msg.payload={\"action\":\"image\", \n                    \"sleep\":sleep_before,\n                    \"volume\":nb_step,\n                    \"nb_frame\":nb_frame\n                }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1395,7 +1423,7 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "actuator/image",
+                "v": "imager/image",
                 "vt": "str"
             },
             {
@@ -1466,8 +1494,8 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "stop",
-        "payloadType": "str",
+        "payload": "{\"action\":\"stop\"}",
+        "payloadType": "json",
         "topic": "imager/image",
         "x": 200,
         "y": 140,
@@ -1721,13 +1749,13 @@
         "name": "",
         "topic": "status/#",
         "qos": "0",
-        "datatype": "auto",
+        "datatype": "json",
         "broker": "8dc3722c.06efa8",
         "x": 70,
         "y": 300,
         "wires": [
             [
-                "ecedbda4.fed15"
+                "2aa5b118.d75f2e"
             ]
         ]
     },
@@ -1735,7 +1763,7 @@
         "id": "ecedbda4.fed15",
         "type": "switch",
         "z": "bee3b478.ef4b88",
-        "name": "high level filter",
+        "name": "topic filter",
         "property": "topic",
         "propertyType": "msg",
         "rules": [
@@ -1751,7 +1779,7 @@
             },
             {
                 "t": "eq",
-                "v": "status/image",
+                "v": "status/imager",
                 "vt": "str"
             },
             {
@@ -1763,264 +1791,20 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 260,
+        "x": 360,
         "y": 300,
         "wires": [
             [
-                "6f3d141d.fe90ac"
+                "117aad13.53e11b"
             ],
             [
-                "f10c7aad.e9624"
+                "117aad13.53e11b"
             ],
             [
                 "af9a1d81.c21fa8"
             ],
             [
                 "30a9de16.d55cda"
-            ]
-        ]
-    },
-    {
-        "id": "6f3d141d.fe90ac",
-        "type": "switch",
-        "z": "bee3b478.ef4b88",
-        "name": "Pump state",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Start",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Done",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Interrupted",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 510,
-        "y": 80,
-        "wires": [
-            [
-                "87971058.b7f23"
-            ],
-            [
-                "288b24a6.a999bc"
-            ],
-            [
-                "c8356974.39913"
-            ]
-        ]
-    },
-    {
-        "id": "87971058.b7f23",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The pump has started",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The pump has started",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 40,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "288b24a6.a999bc",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The pump has finished.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The pump has finished.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 910,
-        "y": 80,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "c8356974.39913",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The pump has been stopped.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The pump has been stopped.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
-        "y": 120,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "f10c7aad.e9624",
-        "type": "switch",
-        "z": "bee3b478.ef4b88",
-        "name": "Focus state",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Start",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Done",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Interrupted",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 510,
-        "y": 220,
-        "wires": [
-            [
-                "51267d1f.44a55c"
-            ],
-            [
-                "2b63255e.ad2ec2"
-            ],
-            [
-                "292c9625.9d887a"
-            ]
-        ]
-    },
-    {
-        "id": "51267d1f.44a55c",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The focus has started",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The focus has started",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 180,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "2b63255e.ad2ec2",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The focus has finished.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The focus has finished.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 910,
-        "y": 220,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "292c9625.9d887a",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The focus has been stopped.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The focus has been stopped.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
-        "y": 260,
-        "wires": [
-            [
-                "1403e1a4.528926"
             ]
         ]
     },
@@ -2033,19 +1817,7 @@
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "Start",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Done",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Interrupted",
-                "vt": "str"
+                "t": "else"
             },
             {
                 "t": "cont",
@@ -2055,135 +1827,15 @@
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 4,
-        "x": 520,
-        "y": 380,
-        "wires": [
-            [
-                "c91355eb.1bc02"
-            ],
-            [
-                "e34040e1.d03808"
-            ],
-            [
-                "3ba873e4.a29aac"
-            ],
-            [
-                "a636cac5.e28448"
-            ]
-        ]
-    },
-    {
-        "id": "d4aa883c.7ebba",
-        "type": "switch",
-        "z": "bee3b478.ef4b88",
-        "name": "State",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Start",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Done",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
         "outputs": 2,
-        "x": 690,
-        "y": 520,
-        "wires": [
-            [
-                "890d0499.d30c88"
-            ],
-            [
-                "cf4e8bd0.d497d8"
-            ]
-        ]
-    },
-    {
-        "id": "e34040e1.d03808",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The acquisition has finished.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The acquisition has finished.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
-        "y": 360,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "3ba873e4.a29aac",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The acquisition has been stopped.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The acquisition has been stopped.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 880,
-        "y": 400,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "c91355eb.1bc02",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The acquisition has started",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The acquisition has started",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
+        "x": 580,
         "y": 320,
         "wires": [
             [
-                "1403e1a4.528926"
+                "117aad13.53e11b"
+            ],
+            [
+                "a636cac5.e28448"
             ]
         ]
     },
@@ -2195,8 +1847,8 @@
         "func": "img_counter=global.get('img_counter')\nimg_counter=img_counter+1\nglobal.set('img_counter',img_counter)\nmsg.payload = img_counter\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 780,
-        "y": 440,
+        "x": 860,
+        "y": 360,
         "wires": [
             [
                 "abd84e73.aefc9"
@@ -2211,8 +1863,8 @@
         "func": "obj_counter=global.get('obj_counter')\nobj_counter=obj_counter+1\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 800,
-        "y": 620,
+        "x": 900,
+        "y": 500,
         "wires": [
             [
                 "d0d14f00.e2ff88"
@@ -2255,8 +1907,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 950,
-        "y": 440,
+        "x": 1070,
+        "y": 360,
         "wires": [
             []
         ]
@@ -2293,11 +1945,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 520,
-        "y": 580,
+        "x": 580,
+        "y": 480,
         "wires": [
             [
-                "d4aa883c.7ebba"
+                "117aad13.53e11b"
             ],
             [
                 "c2d35803.b5024"
@@ -2307,60 +1959,6 @@
             ],
             [
                 "87d402c5.c02008"
-            ]
-        ]
-    },
-    {
-        "id": "cf4e8bd0.d497d8",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The segmentation has finished.",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The segmentation has finished.",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 910,
-        "y": 540,
-        "wires": [
-            [
-                "1403e1a4.528926"
-            ]
-        ]
-    },
-    {
-        "id": "890d0499.d30c88",
-        "type": "change",
-        "z": "bee3b478.ef4b88",
-        "name": "The segmentation has started",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The segmentation has started",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 910,
-        "y": 500,
-        "wires": [
-            [
-                "1403e1a4.528926"
             ]
         ]
     },
@@ -2400,8 +1998,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 970,
-        "y": 620,
+        "x": 1070,
+        "y": 500,
         "wires": [
             []
         ]
@@ -2414,8 +2012,8 @@
         "func": "msg.payload=msg.payload.object_area\nmsg.topic=\"area\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 860,
-        "y": 660,
+        "x": 960,
+        "y": 540,
         "wires": [
             [
                 "6f64625f.243fd4"
@@ -2430,8 +2028,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 730,
-        "y": 660,
+        "x": 830,
+        "y": 540,
         "wires": [
             [
                 "d7944cf2.1ddb18"
@@ -2452,8 +2050,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1260,
-        "y": 300,
+        "x": 1380,
+        "y": 280,
         "wires": []
     },
     {
@@ -2492,8 +2090,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1000,
-        "y": 660,
+        "x": 1100,
+        "y": 540,
         "wires": [
             []
         ]
@@ -2502,15 +2100,17 @@
         "id": "c2d35803.b5024",
         "type": "debug",
         "z": "bee3b478.ef4b88",
-        "name": "",
+        "name": "segmentation name",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 830,
-        "y": 580,
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 460,
         "wires": []
     },
     {
@@ -2518,9 +2118,9 @@
         "type": "ui_button",
         "z": "9c3e6ad4.7471a8",
         "name": "",
-        "group": "319ae656.f85a12",
-        "order": 1,
-        "width": 12,
+        "group": "adcd0ef7.81a7f8",
+        "order": 3,
+        "width": 3,
         "height": 1,
         "passthru": false,
         "label": "Reboot",
@@ -2563,9 +2163,9 @@
         "type": "ui_button",
         "z": "9c3e6ad4.7471a8",
         "name": "",
-        "group": "319ae656.f85a12",
-        "order": 2,
-        "width": 12,
+        "group": "adcd0ef7.81a7f8",
+        "order": 5,
+        "width": 3,
         "height": 1,
         "passthru": false,
         "label": "Shutdown",
@@ -3212,7 +2812,7 @@
         "type": "function",
         "z": "977131e7.c2e76",
         "name": "pump.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    msg.topic = \"actuator/pump\";\n    \n    if(msg.payload === \"FORWARD\" & state===\"free\"){\n        msg.payload='FORWARD '+volume+' '+flowrate;\n    }\n    if(msg.payload === \"BACKWARD\" & state===\"free\"){\n        msg.payload='BACKWARD '+volume+' '+flowrate;\n    }\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    msg.topic = \"actuator/pump\";\n    \n    if(state===\"free\"){\n        // msg.payload is FORWARD or BACKWARD here\n        msg.payload={\"action\":\"move\", \n                    \"direction\":msg.payload,\n                    \"volume\":volume,\n                    \"flowrate\":flowrate};\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3346,8 +2946,8 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "stop",
-        "payloadType": "str",
+        "payload": "{\"action\":\"stop\"}",
+        "payloadType": "json",
         "topic": "actuator/pump",
         "x": 470,
         "y": 200,
@@ -3610,7 +3210,7 @@
         "type": "function",
         "z": "a0f9bde.423644",
         "name": "focus.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n}else {\n    distance = global.get(\"focus_distance\");\n    if(msg.payload === \"UP\" & state===\"free\"){\n        msg.payload=\"UP \"+ (distance/1000);\n    }\n    if(msg.payload === \"DOWN\" & state===\"free\"){\n        msg.payload=\"DOWN \"+ (distance/1000);\n    }\n}\nreturn msg;",
+        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n}else {\n    distance = global.get(\"focus_distance\");\n    if(state===\"free\"){\n        // msg.payload is UP or DOWN here\n        msg.payload={\"action\":\"move\", \n                    \"direction\":msg.payload,\n                    \"distance\":(distance/1000)};\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3638,8 +3238,8 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "stop",
-        "payloadType": "str",
+        "payload": "{\"action\":\"stop\"}",
+        "payloadType": "json",
         "topic": "actuator/focus",
         "x": 270,
         "y": 400,
@@ -4518,8 +4118,8 @@
         "type": "ui_button",
         "z": "d95291dc.83b0b8",
         "name": "Restart Python",
-        "group": "319ae656.f85a12",
-        "order": 2,
+        "group": "adcd0ef7.81a7f8",
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -4537,6 +4137,70 @@
             [
                 "9939b59.42195c8",
                 "afa9f4b.2e77988"
+            ]
+        ]
+    },
+    {
+        "id": "2aa5b118.d75f2e",
+        "type": "json",
+        "z": "bee3b478.ef4b88",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": true,
+        "x": 210,
+        "y": 300,
+        "wires": [
+            [
+                "ecedbda4.fed15"
+            ]
+        ]
+    },
+    {
+        "id": "1dd0c3dd.60236c",
+        "type": "template",
+        "z": "bee3b478.ef4b88",
+        "name": "Create sentence",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "The {{topic}} is {{payload.status}}",
+        "output": "str",
+        "x": 1120,
+        "y": 280,
+        "wires": [
+            [
+                "1403e1a4.528926"
+            ]
+        ]
+    },
+    {
+        "id": "117aad13.53e11b",
+        "type": "change",
+        "z": "bee3b478.ef4b88",
+        "name": "Remove high-level topic",
+        "rules": [
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "status/",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 280,
+        "wires": [
+            [
+                "1dd0c3dd.60236c"
             ]
         ]
     }
