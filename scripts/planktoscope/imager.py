@@ -2,15 +2,15 @@
 import planktoscope.mqtt
 import planktoscope.light
 import planktoscope.streamer
-import multiprocessing
-
-# Logger library compatible with multiprocessing
-from loguru import logger
+import planktoscope.imager_state_machine
 
 
 ################################################################################
 # Practical Libraries
 ################################################################################
+
+# Logger library compatible with multiprocessing
+from loguru import logger
 
 # Library to get date and time for folder name and filename
 import datetime
@@ -23,6 +23,9 @@ import json, shutil, os
 
 # Library to control the PiCamera
 import picamera
+
+# Library for starting processes
+import multiprocessing
 
 ################################################################################
 # Morphocut Libraries
@@ -45,7 +48,6 @@ import cv2
 
 logger.info("planktoscope.imager is loaded")
 
-
 ################################################################################
 # Main Imager class
 ################################################################################
@@ -63,9 +65,17 @@ class ImagerProcess(multiprocessing.Process):
         """
         super(ImagerProcess, self).__init__()
 
-        logger.info("planktoscope.imager is initialized")
+        logger.info("planktoscope.imager is initialising")
 
         self.stop_event = event
+        self.__pipe = None
+        self.__imager = planktoscope.imager_state_machine.Imager()
+        self.__img_goal = 0
+        self.__img_done = 0
+        self.__sleep_before = None
+        self.__pump_volume = None
+        self.__img_goal = None
+        self.__segmentation = None
 
         # PiCamera settings
         self.camera = picamera.PiCamera()
@@ -101,13 +111,15 @@ class ImagerProcess(multiprocessing.Process):
         )
 
         # Instantiate the morphocut pipeline
-        self._create_morphocut_pipeline()
+        self.__create_morphocut_pipeline()
 
-    def _create_morphocut_pipeline(self):
+        logger.info("planktoscope.imager is initialised and ready to go!")
+
+    def __create_morphocut_pipeline(self):
         """Creates the Morphocut Pipeline"""
         logger.debug("Let's start creating the Morphocut Pipeline")
 
-        with morphocut.Pipeline() as self.pipe:
+        with morphocut.Pipeline() as self.__pipe:
             # TODO wrap morphocut.Call(logger.debug()) in something that allows it not to be added to the pipeline
             # if the logger.level is not debug. Might not be as easy as it sounds.
             # Recursively find .jpg files in import_path.
@@ -218,7 +230,7 @@ class ImagerProcess(multiprocessing.Process):
 
             # Publish the json containing all the metadata to via MQTT to Node-RED
             morphocut.Call(
-                self.imaging_client.client.publish,
+                self.imager_client.client.publish,
                 "status/segmentation/metric",
                 json_meta,
             )
@@ -242,7 +254,7 @@ class ImagerProcess(multiprocessing.Process):
 
             # Publish the object_id to via MQTT to Node-RED
             morphocut.Call(
-                self.imaging_client.client.publish,
+                self.imager_client.client.publish,
                 "status/segmentation/object_id",
                 f'{{"object_id":"{object_id}"}}',
             )
@@ -260,6 +272,252 @@ class ImagerProcess(multiprocessing.Process):
         """
         self.camera.start_recording(output, format="mjpeg", resize=(640, 480))
 
+    def pump_callback(self, client, userdata, msg):
+        # Print the topic and the message
+        logger.info(f"{self.name}: {msg.topic} {str(msg.qos)} {str(msg.payload)}")
+        if msg.topic != "status/pump":
+            logger.error(
+                f"The received message has the wrong topic {msg.topic}, payload was {str(msg.payload)}"
+            )
+            return
+        payload = json.loads(msg.payload.decode())
+        logger.debug(f"parsed payload is {self.payload}")
+        if self.__imager.state.name is "waiting":
+            if payload["status"] is "Done":
+                self.__imager.change(planktoscope.imager_state_machine.Capture)
+                self.imager_client.client.message_callback_remove("status/pump")
+                self.imager_client.client.unsubscribe("status/pump")
+            else:
+                logger.info(f"the pump is not done yet {payload}")
+        else:
+            logger.error(
+                "There is an error, status is not waiting for the pump and yet we received a pump message"
+            )
+
+    def treat_message(self):
+        action = ""
+        if self.imager_client.new_message_received():
+            logger.info("We received a new message")
+            last_message = self.imager_client.msg["payload"]
+            logger.debug(last_message)
+            action = self.imager_client.msg["payload"]["action"]
+            logger.debug(command)
+            self.imager_client.read_message()
+
+        # If the command is "image"
+        if action == "image":
+            # {"action":"image","sleep":5,"volume":1,"nb_frame":200, "segmentation":False}
+            if (
+                "sleep" not in last_message
+                or "volume" not in last_message
+                or "nb_frame" not in last_message
+                or "segmentation" not in last_message
+            ):
+                logger.error(
+                    f"The received message has the wrong argument {last_message}"
+                )
+                self.imager_client.client.publish("status/imager", '{"status":"Error"}')
+                return
+
+            # Change the state of the machine
+            self.__imager.change(planktoscope.imager_state_machine.Imaging)
+
+            # Get duration to wait before an image from the different received arguments
+            self.__sleep_before = float(last_message["sleep"])
+            # Get volume in between two images from the different received arguments
+            self.__pump_volume = float(last_message["volume"])
+            # Get the number of frames to image from the different received arguments
+            self.__img_goal = int(last_message["nb_frame"])
+            # Get the segmentation status (true/false) from the different received arguments
+            self.__segmentation = bool(last_message["segmentation"])
+
+            self.imager_client.client.publish("status/imager", '{"status":"Started"}')
+
+        elif action == "stop":
+            # Remove callback for "status/pump" and unsubscribe
+            self.imager_client.client.message_callback_remove("status/pump")
+            self.imager_client.client.unsubscribe("status/pump")
+
+            # Stops the pump
+            self.imager_client.client.publish("actuator/pump", '{"action": "stop"}')
+
+            logger.info("The imaging has been interrupted.")
+
+            # Publish the status "Interrupted" to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/imager", '{"status":"Interrupted"}'
+            )
+
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 0)
+
+            # Change state to Stop
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+
+        elif action == "update_config":
+            if self.__imager.state.name is "stop":
+                logger.info("Updating the configuration now with the received data")
+                # Updating the configuration with the passed parameter in payload["config"]
+
+                # Publish the status "Interrupted" to via MQTT to Node-RED
+                self.imager_client.client.publish(
+                    "status/imager", '{"status":"Config updated"}'
+                )
+            else:
+                logger.error("We can't update the configuration while we are imaging.")
+                # Publish the status "Interrupted" to via MQTT to Node-RED
+                self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
+            pass
+
+        elif action != "":
+            logger.warning(
+                f"We did not understand the received request {action} - {last_message}"
+            )
+
+    def state_machine(self):
+        if self.__imager.state.name is "imaging":
+            # subscribe to status/pump
+            self.imager_client.client.subscribe("status/pump")
+            self.imager_client.client.message_callback_add(
+                "status/pump", self.pump_callback
+            )
+
+            # Sleep a duration before to start acquisition
+            time.sleep(self.__sleep_before)
+
+            # Set the LEDs as Blue
+            planktoscope.light.setRGB(0, 0, 255)
+            self.imager_client.client.publish(
+                "actuator/pump",
+                json.dumps(
+                    {
+                        "action": "move",
+                        "direction": "BACKWARD",
+                        "volume": self.__pump_volume,
+                        "flowrate": 2,
+                    }
+                ),
+            )
+            # FIXME We should probably update the global metadata here with the current datetime/position/etc...
+
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 0)
+
+            # Change state towards Waiting for pump
+            self.__imager.change(planktoscope.imager_state_machine.Waiting)
+            return
+
+        elif self.__imager.state.name is "capture":
+            # Set the LEDs as Cyan
+            planktoscope.light.setRGB(0, 255, 255)
+
+            # Print datetime
+            logger.info("Capturing an image")
+
+            # Define the filename of the image
+            filename = os.path.join(
+                "/home/pi/PlanktonScope/tmp",
+                datetime.now().strftime("%H_%M_%S_%f") + ".jpg",
+            )
+
+            # Capture an image with the proper filename
+            self.camera.capture(filename)
+
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 0)
+
+            # Publish the name of the image to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/imager",
+                f'{{"status":"{datetime_tmp} .jpg has been imaged."}}',
+            )
+
+            # Increment the counter
+            self.__img_done += 1
+
+            # If counter reach the number of frame, break
+            if self.__img_done >= self.__img_goal:
+                # Reset the counter to 0
+                self.__img_done = 0
+
+                # Publish the status "Done" to via MQTT to Node-RED
+                self.imager_client.client.publish("status/imager", '{"status":"Done"}')
+
+                if self.__segmentation:
+                    # Change state towards Segmentation
+                    self.__imager.change(planktoscope.imager_state_machine.Segmentation)
+                else:
+                    # Change state towards done
+                    self.__imager.change(planktoscope.imager_state_machine.Stop)
+                    # Set the LEDs as Green
+                    planktoscope.light.setRGB(0, 255, 255)
+
+                return
+            else:
+                # We have not reached the final stage, let's keep imaging
+                # Set the LEDs as Blue
+                planktoscope.light.setRGB(0, 0, 255)
+
+                # subscribe to status/pump
+                self.imager_client.client.subscribe("status/pump")
+                self.imager_client.client.message_callback_add(
+                    "status/pump", self.pump_callback
+                )
+
+                # Pump during a given volume
+                self.imager_client.client.publish(
+                    "actuator/pump",
+                    json.dumps(
+                        {
+                            "action": "move",
+                            "direction": "BACKWARD",
+                            "volume": self.__pump_volume,
+                            "flowrate": 2,
+                        }
+                    ),
+                )
+
+                # Set the LEDs as Green
+                planktoscope.light.setRGB(0, 255, 0)
+
+                # Change state towards Waiting for pump
+                self.__imager.change(planktoscope.imager_state_machine.Waiting)
+                return
+
+        elif self.__imager.state.name is "segmentation":
+            # Publish the status "Started" to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/segmentation", '{"status":"Started"}'
+            )
+
+            # Start the MorphoCut Pipeline
+            self.__pipe.run()
+
+            # remove directory
+            # shutil.rmtree(import_path)
+
+            # Publish the status "Done" to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/segmentation", '{"status":"Done"}'
+            )
+
+            # Set the LEDs as White
+            planktoscope.light.setRGB(255, 255, 255)
+
+            # cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
+
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 0)
+            # Change state towards Waiting for pump
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            return
+
+        elif self.__imager.state.name is "waiting":
+            return
+
+        elif self.__imager.state.name is "stop":
+            return
+
     ################################################################################
     # While loop for capturing commands from Node-RED
     ################################################################################
@@ -274,211 +532,14 @@ class ImagerProcess(multiprocessing.Process):
         made into a class.
         """
         # MQTT Service connection
-        self.imaging_client = planktoscope.mqtt.MQTT_Client(
+        self.imager_client = planktoscope.mqtt.MQTT_Client(
             topic="imager/#", name="imager_client"
         )
 
         while not self.stop_event.is_set():
-            # TODO This should probably be a state machine, with the various transition between states made clear
-            ############################################################################
-            # Image Event
-            ############################################################################
-            if self.imaging_client.command == "image":
-
-                # Get duration to wait before an image from the different received arguments
-                sleep_before = int(args.split(" ")[0])
-
-                # Get number of step in between two images from the different received arguments
-                nb_step = int(args.split(" ")[1])
-
-                # Get the number of frames to image from the different received arguments
-                nb_frame = int(args.split(" ")[2])
-
-                # Get the segmentation status (true/false) from the different received arguments
-                segmentation = str(args.split(" ")[3])
-
-                # Sleep a duration before to start acquisition
-                time.sleep(sleep_before)
-
-                self.imaging_client.client.publish(
-                    "status/imager", '{"status":"Started"}'
-                )
-
-                # Set the LEDs as Blue
-                planktoscope.light.setRGB(0, 0, 255)
-
-                # TODO This logic here should be changed or at least evaluated to see if it still makes sense
-                # Spoiler alert: it doesn't
-                # We need a way to evaluate how long the pumping will take and go from there
-                # Also, we need to get rid of the check on the last command received
-                # Maybe a local variable to control the state machine would be more appropriate
-                # Pump duing a given number of steps (in between each image)
-                self.imaging_client.client.publish(
-                    "actuator/pump",
-                    json.dumps(
-                        {
-                            "action": "move",
-                            "direction": "BACKWARD",
-                            "volume": nb_step,
-                            "flowrate": 2,
-                        }
-                    ),
-                )
-                for i in range(nb_step):
-
-                    # If the command is still image - pump a defined nb of steps
-                    if self.imaging_client.command == "image":
-                        # The flowrate is fixed for now.
-                        time.sleep(0.01)
-
-                    # If the command isn't image anymore - break
-                    else:
-                        self.imaging_client.client.publish(
-                            "actuator/pump",
-                            json.dumps({"action": "stop"}),
-                        )
-                        break
-
-                # Set the LEDs as Green
-                planktoscope.light.setRGB(0, 255, 0)
-
-                while True:
-
-                    # Set the LEDs as Cyan
-                    planktoscope.light.setRGB(0, 255, 255)
-
-                    # Increment the counter
-                    counter += 1
-
-                    # Get datetime
-                    datetime_tmp = datetime.now().strftime("%H_%M_%S_%f")
-
-                    # Print datetime
-                    logger.info(datetime_tmp)
-
-                    # Define the filename of the image
-                    filename = os.path.join(
-                        "/home/pi/PlanktonScope/tmp", datetime_tmp + ".jpg"
-                    )
-
-                    # Capture an image with the proper filename
-                    self.camera.capture(filename)
-
-                    # Set the LEDs as Green
-                    planktoscope.light.setRGB(0, 255, 0)
-
-                    # Publish the name of the image to via MQTT to Node-RED
-
-                    self.imaging_client.client.publish(
-                        "status/imager",
-                        f'{{"status":"{datetime_tmp} .jpg has been imaged."}}',
-                    )
-
-                    # Set the LEDs as Blue
-                    planktoscope.light.setRGB(0, 0, 255)
-
-                    # Pump during a given nb of steps
-                    for i in range(nb_step):
-                        # TODO This should call the stepper control thread instead of stepping by itself
-                        # Actuate the pump for one step in the FORWARD direction
-                        pump_stepper.onestep(
-                            direction=stepper.FORWARD, style=stepper.DOUBLE
-                        )
-
-                        # The flowrate is fixed for now.
-                        time.sleep(0.01)
-
-                    # Wait a fixed delay which set the framerate as < than 2 imag/sec
-                    time.sleep(0.5)
-
-                    # Set the LEDs as Green
-                    planktoscope.light.setRGB(0, 255, 0)
-
-                    ####################################################################
-                    # If counter reach the number of frame, break
-                    if counter > nb_frame:
-
-                        # Publish the status "Completed" to via MQTT to Node-RED
-                        self.imaging_client.client.publish(
-                            "status/imager", '{"status":"Completed"}'
-                        )
-
-                        # Release the pump steppers to stop power draw
-                        pump_stepper.release()
-
-                        if segmentation == "True":
-
-                            # Publish the status "Start" to via MQTT to Node-RED
-                            self.imaging_client.client.publish(
-                                "status/segmentation", '{"status":"Started"}'
-                            )
-
-                            # Start the MorphoCut Pipeline
-                            pipe.run()
-
-                            # remove directory
-                            # shutil.rmtree(import_path)
-
-                            # Publish the status "Completed" to via MQTT to Node-RED
-                            self.imaging_client.client.publish(
-                                "status/segmentation", '{"status":"Completed"}'
-                            )
-
-                            # Set the LEDs as White
-                            planktoscope.light.setRGB(255, 255, 255)
-
-                            # cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
-
-                            # Let it happen
-                            time.sleep(1)
-
-                            # Set the LEDs as Green
-                            planktoscope.light.setRGB(0, 255, 0)
-
-                            # End if(segmentation == "True"):
-
-                        # Change the command to not re-enter in this while loop
-                        self.imaging_client.command = "wait"
-
-                        # Set the LEDs as Green
-                        planktoscope.light.setRGB(0, 255, 255)
-
-                        # Reset the counter to 0
-                        counter = 0
-
-                        break
-
-                    ####################################################################
-                    # If a new received command isn't "image", break this while loop
-                    if self.imaging_client.command != "image":
-                        # TODO This should be a call to the stepper thread.
-                        # Release the pump steppers to stop power draw
-                        pump_stepper.release()
-
-                        # Print status
-                        logger.info("The imaging has been interrupted.")
-
-                        # Publish the status "Interrupted" to via MQTT to Node-RED
-                        self.imaging_client.client.publish(
-                            "status/imager", '{"status":"Interrupted"}'
-                        )
-
-                        # Set the LEDs as Green
-                        planktoscope.light.setRGB(0, 255, 0)
-
-                        # Reset the counter to 0
-                        counter = 0
-
-                        break
-
-            else:
-                # Set the LEDs as Black
-                planktoscope.light.setRGBOff()
-                # Its just waiting to receive command from Node-RED
-                time.sleep(1)
-                # Set the LEDs as White
-                planktoscope.light.setRGB(255, 255, 255)
-                # Its just waiting to receive command from Node-RED
-                time.sleep(1)
+            self.treat_message()
+            self.state_machine()
 
         logger.info("Shutting down the imager process")
+        self.imager_client.client.publish("status/imager", '{"status":"Dead"}')
+        self.imager_client.shutdown()
