@@ -61,7 +61,6 @@ def handler_stop_signals(signum, frame):
 
 
 if __name__ == "__main__":
-    logger.info("Starting up the PlanktoScope management script")
     logger.info("Welcome!")
 
     logger.info("Initialising signals handling (step 1/4)")
@@ -85,7 +84,7 @@ if __name__ == "__main__":
     )
     # Starts the streaming server process
     logger.info("Starting the streaming server process (step 3/4)")
-    streaming_thread = multiprocessing.Process(target=server.serve_forever)
+    streaming_thread = multiprocessing.Process(target=server.serve_forever, daemon=True)
     streaming_thread.start()
 
     # Starts the imager control process
