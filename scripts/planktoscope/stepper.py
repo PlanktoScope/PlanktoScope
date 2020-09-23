@@ -423,6 +423,8 @@ class StepperProcess(multiprocessing.Process):
                     '{"status":"Done"}',
                 )
         logger.info("Shutting down the stepper process")
+        self.imager_client.client.publish("status/pump", '{"status":"Dead"}')
+        self.imager_client.client.publish("status/focus", '{"status":"Dead"}')
         self.pump_stepper.shutdown()
         self.focus_stepper.shutdown()
         self.actuator_client.shutdown()
