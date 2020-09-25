@@ -256,18 +256,19 @@ class ImagerProcess(multiprocessing.Process):
                 nodered_metadata = last_message["config"]
                 # Definition of the few important metadata
                 local_metadata = {
-                    "process_datetime": datetime.datetime.now(),
+                    "process_datetime": datetime.datetime.now().isoformat(),
                     "acq_camera_resolution": self.__resolution,
                     "acq_camera_iso": self.__iso,
                     "acq_camera_shutter_speed": self.__shutter_speed,
                 }
                 # Concat the local metadata and the metadata from Node-RED
-                self.__global_metadata = {**local_metadata, **node_red_metadata}
+                self.__global_metadata = {**local_metadata, **nodered_metadata}
 
                 # Publish the status "Config updated" to via MQTT to Node-RED
                 self.imager_client.client.publish(
                     "status/imager", '{"status":"Config updated"}'
                 )
+                logger.info("Configuration has been updated")
             else:
                 logger.error("We can't update the configuration while we are imaging.")
                 # Publish the status "Interrupted" to via MQTT to Node-RED
@@ -291,12 +292,13 @@ class ImagerProcess(multiprocessing.Process):
             logger.info("Setting up the directory structure for storing the pictures")
             self.__export_path = os.path.join(
                 self.__base_path,
-                self.__global_metadata["process_datetime"],
-                self.__global_metadata["sample_id"],
+                # We only keep the date '2020-09-25T15:25:21.079769'
+                self.__global_metadata["process_datetime"].split("T")[0],
+                str(self.__global_metadata["sample_id"]),
             )
-            if not os.path.exists(export_path):
+            if not os.path.exists(self.__export_path):
                 # create the path!
-                os.makedirs(export_path)
+                os.makedirs(self.__export_path)
 
             # Export the metadata to a json file
             logger.info("Exporting the metadata to a metadata.json")
