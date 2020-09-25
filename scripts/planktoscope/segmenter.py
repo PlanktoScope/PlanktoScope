@@ -261,8 +261,10 @@ class SegmenterProcess(multiprocessing.Process):
                 # Start the MorphoCut Pipeline on the found path
                 self.__working_path = path
 
-                @logger.catch
-                self.__pipe.run()
+                try:
+                    self.__pipe.run()
+                except Exception as e:
+                    logger.exception(f"There was an error in the pipeline {e}")
                 logger.info(f"Pipeline has been run for {path}")
 
             # remove directory
