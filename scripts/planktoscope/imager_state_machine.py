@@ -1,6 +1,20 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
+# TODO rewrite this in PlantUML
+# "wait for pump" as pump
+# "start imager" as imager
+# "capture image" as capture
+# START->imager["init"]
+# imager->pump["start pumping"]
+# pump->stop["stop"]
+# stop->imager["start"]
+# pump->capture["pumping is done"]
+# capture->pump["start pump"]
+# capture->stop["stop or done"]
+# capture->segmentation["if segmentation"]
+# segmentation->stop["done"]
+
 # State machine class
 class ImagerState(object):
     name = "state"
