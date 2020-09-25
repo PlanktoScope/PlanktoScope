@@ -124,10 +124,16 @@ class StepperProcess(multiprocessing.Process):
 
         self.stop_event = event
 
-        # load config.json
-        with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
-            configuration = json.load(config_file)
-            logger.debug(f"Hardware configuration loaded is {configuration}")
+        if os.path.exists("/home/pi/PlanktonScope/hardware.json"):
+            # load hardware.json
+            with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
+                configuration = json.load(config_file)
+                logger.debug(f"Hardware configuration loaded is {configuration}")
+        else:
+            logger.info(
+                "The hardware configuration file doesn't exists, using defaults"
+            )
+            configuration = dict()
 
         reverse = False
 
