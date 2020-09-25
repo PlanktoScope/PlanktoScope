@@ -337,8 +337,6 @@ class StepperProcess(multiprocessing.Process):
     # Stepper is 200 steps/round, or 393steps/ml
     # https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
     def pump(self, direction, volume, speed=pump_max_speed):
-        # TODO We need to add a way to stop the stepper from outside this process
-        # without killing everything!
         """moves the pump stepper
 
         direction is either FORWARD or BACKWARD

@@ -67,6 +67,8 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
+    # TODO add a test of /boot/config.txt to make sure gpu_mem is at least 256 Meg.
+
     # Prepare the event for a gracefull shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
@@ -89,8 +91,7 @@ if __name__ == "__main__":
     logger.info("Looks like everything is set up and running, have fun!")
 
     while run:
-        # TODO implement checks on the different processes started before
-        # If they are not alive, we need to restart them
+        # TODO look into ways of restarting the dead threads
         logger.trace("Running around in circles while waiting for someone to die!")
         if not stepper_thread.is_alive():
             logger.error("The stepper process died unexpectedly! Oh no!")

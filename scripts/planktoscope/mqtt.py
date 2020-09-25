@@ -86,7 +86,6 @@ class MQTT_Client:
 
     @logger.catch
     def connect(self):
-        # TODO should we use connect_async here maybe? To defer connection to the server until the call to loop_start()
         logger.info(f"trying to connect to {self.server}:{self.port}")
         self.client.connect(self.server, self.port, 60)
         self.client.on_connect = self.on_connect

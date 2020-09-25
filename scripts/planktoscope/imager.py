@@ -167,6 +167,7 @@ class ImagerProcess(multiprocessing.Process):
             logger.debug(f"Configuration loaded is {node_red_metadata}")
 
         # TODO implement a way to receive directly the metadata from Node-Red via MQTT
+        # FIXME We should save the metadata to a file in the folder too
         # TODO create a directory structure per day/per imaging session
 
         # Definition of the few important metadata
