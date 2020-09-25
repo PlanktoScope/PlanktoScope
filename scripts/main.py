@@ -44,6 +44,9 @@ import planktoscope.stepper
 # Import the planktonscope imager module
 import planktoscope.imager
 
+# Import the planktonscope segmenter module
+import planktoscope.segmenter
+
 # Import the planktonscope LED module
 import planktoscope.light
 
@@ -60,7 +63,7 @@ def handler_stop_signals(signum, frame):
 
 if __name__ == "__main__":
     logger.info("Welcome!")
-    logger.info("Initialising signals handling (step 1/3)")
+    logger.info("Initialising signals handling (step 1/4)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
@@ -69,14 +72,19 @@ if __name__ == "__main__":
     shutdown_event.clear()
 
     # Starts the stepper process for actuators
-    logger.info("Starting the stepper control process (step 2/3)")
+    logger.info("Starting the stepper control process (step 2/4)")
     stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 3/3)")
+    logger.info("Starting the imager control process (step 3/4)")
     imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
     imager_thread.start()
+
+    # Starts the segmenter process
+    logger.info("Starting the segmenter control process (step 4/4)")
+    segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
+    segmenter_thread.start()
 
     logger.info("Looks like everything is set up and running, have fun!")
 
@@ -90,12 +98,17 @@ if __name__ == "__main__":
         if not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
+        if not segmenter_thread.is_alive():
+            logger.error("The segmenter process died unexpectedly! Oh no!")
+            break
         time.sleep(1)
 
     logger.info("Shutting down the shop")
     shutdown_event.set()
     stepper_thread.join()
     imager_thread.join()
+    segmenter_thread.join()
     stepper_thread.close()
     imager_thread.close()
+    segmenter_thread.close()
     logger.info("Bye")

@@ -2,9 +2,11 @@
 from loguru import logger
 
 # TODO rewrite this in PlantUML
+# This works with https://www.diagram.codes/d/state-machine
 # "wait for pump" as pump
 # "start imager" as imager
 # "capture image" as capture
+#
 # START->imager["init"]
 # imager->pump["start pumping"]
 # pump->stop["stop"]
@@ -12,8 +14,7 @@ from loguru import logger
 # pump->capture["pumping is done"]
 # capture->pump["start pump"]
 # capture->stop["stop or done"]
-# capture->segmentation["if segmentation"]
-# segmentation->stop["done"]
+
 
 # State machine class
 class ImagerState(object):
@@ -55,14 +56,7 @@ class Capture(ImagerState):
     """ State of capturing image """
 
     name = "capture"
-    allowed = ["stop", "waiting", "segmentation"]
-
-
-class Segmentation(ImagerState):
-    """ State of segmenting capteured images """
-
-    name = "segmentation"
-    allowed = ["stop"]
+    allowed = ["stop", "waiting"]
 
 
 class Imager(object):

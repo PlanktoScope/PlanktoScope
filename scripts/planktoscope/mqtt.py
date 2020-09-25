@@ -23,6 +23,10 @@
 #                       {"action":"image","sleep":5,"volume":1,"nb_frame":200}
 #                       sleep in seconds, volume in mL
 #                       Receive only
+# - segmenter/segment : This topic adresses the segmenter process
+#                       Is a json object with
+#                       {"action":"segment"}
+#                       Receive only
 # - status :    This topics sends feedback to Node-Red
 #               No publication or receive at this level
 #   - status/pump :     State of the pump
@@ -40,10 +44,10 @@
 #                       {"status":"Start", "time_left":25}
 #                       Status is one of Started, Ready, Completed or 12_11_15_0.1.jpg has been imaged.
 #                       Publish only
-#   - status/segmentation :   Status of the segmentation
-#       - status/segmentation/name
-#       - status/segmentation/object_id
-#       - status/segmentation/metric
+#   - status/segmenter :   Status of the segmentation
+#       - status/segmenter/name
+#       - status/segmenter/object_id
+#       - status/segmenter/metric
 
 # TODO Evaluate the opportunity of saving the last x received messages in a queue for treatment
 # We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque

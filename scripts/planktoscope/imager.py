@@ -29,25 +29,6 @@ import planktoscope.imager_state_machine
 
 
 ################################################################################
-# Morphocut Libraries
-################################################################################
-import morphocut
-import morphocut.file
-import morphocut.image
-import morphocut.stat
-import morphocut.stream
-import morphocut.str
-import morphocut.contrib.ecotaxa
-import morphocut.contrib.zooprocess
-
-################################################################################
-# Other image processing Libraries
-################################################################################
-import skimage.util
-import cv2
-
-
-################################################################################
 # Streaming PiCamera over server
 ################################################################################
 import io
@@ -135,8 +116,8 @@ class StreamingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
     daemon_threads = True
 
 
-ouhtput = StreamingOutput()
-h
+output = StreamingOutput()
+
 logger.info("planktoscope.imager is loaded")
 
 
@@ -161,14 +142,12 @@ class ImagerProcess(multiprocessing.Process):
         logger.info("planktoscope.imager is initialising")
 
         self.stop_event = event
-        self.__pipe = None
         self.__imager = planktoscope.imager_state_machine.Imager()
         self.__img_goal = 0
         self.__img_done = 0
         self.__sleep_before = None
         self.__pump_volume = None
         self.__img_goal = None
-        self.__segmentation = None
         self.imager_client = None
         self.__camera = None
         self.__resolution = resolution
@@ -209,157 +188,7 @@ class ImagerProcess(multiprocessing.Process):
             f"ecotaxa_export_{self.global_metadata['sample_project']}_{self.global_metadata['process_datetime']}_{self.global_metadata['sample_id']}.zip",
         )
 
-        # Morphocut's pipeline will be created at runtime otherwise shit ensues
-
         logger.info("planktoscope.imager is initialised and ready to go!")
-
-    def __create_morphocut_pipeline(self):
-        """Creates the Morphocut Pipeline"""
-        logger.debug("Let's start creating the Morphocut Pipeline")
-
-        with morphocut.Pipeline() as self.__pipe:
-            # TODO wrap morphocut.Call(logger.debug()) in something that allows it not to be added to the pipeline
-            # if the logger.level is not debug. Might not be as easy as it sounds.
-            # Recursively find .jpg files in import_path.
-            # Sort to get consective frames.
-            abs_path = morphocut.file.Find(
-                "/home/pi/PlanktonScope/tmp", [".jpg"], sort=True, verbose=True
-            )
-
-            # Extract name from abs_path
-            name = morphocut.Call(
-                lambda p: os.path.splitext(os.path.basename(p))[0], abs_path
-            )
-
-            # Set the LEDs as Green
-            morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
-
-            # Read image
-            img = morphocut.image.ImageReader(abs_path)
-
-            # Show progress bar for frames
-            morphocut.stream.TQDM(morphocut.str.Format("Frame {name}", name=name))
-
-            # Apply running median to approximate the background image
-            flat_field = morphocut.stat.RunningMedian(img, 5)
-
-            # Correct image
-            img = img / flat_field
-
-            # Rescale intensities and convert to uint8 to speed up calculations
-            img = morphocut.image.RescaleIntensity(
-                img, in_range=(0, 1.1), dtype="uint8"
-            )
-
-            # Filter variable to reduce memory load
-            morphocut.stream.FilterVariables(name, img)
-
-            # Save cleaned images
-            # frame_fn = morphocut.str.Format(os.path.join("/home/pi/PlanktonScope/tmp","CLEAN", "{name}.jpg"), name=name)
-            # morphocut.image.ImageWriter(frame_fn, img)
-
-            # Convert image to uint8 gray
-            img_gray = morphocut.image.RGB2Gray(img)
-
-            # ?
-            img_gray = morphocut.Call(skimage.util.img_as_ubyte, img_gray)
-
-            # Canny edge detection using OpenCV
-            img_canny = morphocut.Call(cv2.Canny, img_gray, 50, 100)
-
-            # Dilate using OpenCV
-            kernel = morphocut.Call(
-                cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15)
-            )
-            img_dilate = morphocut.Call(cv2.dilate, img_canny, kernel, iterations=2)
-
-            # Close using OpenCV
-            kernel = morphocut.Call(
-                cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5)
-            )
-            img_close = morphocut.Call(
-                cv2.morphologyEx, img_dilate, cv2.MORPH_CLOSE, kernel, iterations=1
-            )
-
-            # Erode using OpenCV
-            kernel = morphocut.Call(
-                cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15)
-            )
-            mask = morphocut.Call(cv2.erode, img_close, kernel, iterations=2)
-
-            # Find objects
-            regionprops = morphocut.image.FindRegions(
-                mask, img_gray, min_area=1000, padding=10, warn_empty=name
-            )
-
-            # Set the LEDs as Purple
-            morphocut.Call(planktoscope.light.setRGB, 255, 0, 255)
-
-            # For an object, extract a vignette/ROI from the image
-            roi_orig = morphocut.image.ExtractROI(img, regionprops, bg_color=255)
-
-            # Generate an object identifier
-            i = morphocut.stream.Enumerate()
-
-            # morphocut.Call(print,i)
-
-            # Define the ID of each object
-            object_id = morphocut.str.Format("{name}_{i:d}", name=name, i=i)
-
-            # morphocut.Call(print,object_id)
-
-            # Define the name of each object
-            object_fn = morphocut.str.Format(
-                os.path.join("/home/pi/PlanktonScope/", "OBJECTS", "{name}.jpg"),
-                name=object_id,
-            )
-
-            # Save the image of the object with its name
-            morphocut.image.ImageWriter(object_fn, roi_orig)
-
-            # Calculate features. The calculated features are added to the global_metadata.
-            # Returns a Variable representing a dict for every object in the stream.
-            meta = morphocut.contrib.zooprocess.CalculateZooProcessFeatures(
-                regionprops, prefix="object_", meta=self.global_metadata
-            )
-
-            # Get all the metadata
-            json_meta = morphocut.Call(json.dumps, meta, sort_keys=True, default=str)
-
-            # Publish the json containing all the metadata to via MQTT to Node-RED
-            morphocut.Call(
-                self.imager_client.client.publish,
-                "status/segmentation/metric",
-                json_meta,
-            )
-
-            # Add object_id to the metadata dictionary
-            meta["object_id"] = object_id
-
-            # Generate object filenames
-            orig_fn = morphocut.str.Format("{object_id}.jpg", object_id=object_id)
-
-            # Write objects to an EcoTaxa archive:
-            # roi image in original color, roi image in grayscale, metadata associated with each object
-            morphocut.contrib.ecotaxa.EcotaxaWriter(
-                self.archive_fn, (orig_fn, roi_orig), meta
-            )
-
-            # Progress bar for objects
-            morphocut.stream.TQDM(
-                morphocut.str.Format("Object {object_id}", object_id=object_id)
-            )
-
-            # Publish the object_id to via MQTT to Node-RED
-            morphocut.Call(
-                self.imager_client.client.publish,
-                "status/segmentation/object_id",
-                f'{{"object_id":"{object_id}"}}',
-            )
-
-            # Set the LEDs as Green
-            morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
-        logger.info("Morphocut's Pipeline has been created")
 
     @logger.catch
     def start_camera(self):
@@ -401,12 +230,11 @@ class ImagerProcess(multiprocessing.Process):
 
         # If the command is "image"
         if action == "image":
-            # {"action":"image","sleep":5,"volume":1,"nb_frame":200, "segmentation":False}
+            # {"action":"image","sleep":5,"volume":1,"nb_frame":200}
             if (
                 "sleep" not in last_message
                 or "volume" not in last_message
                 or "nb_frame" not in last_message
-                or "segmentation" not in last_message
             ):
                 logger.error(
                     f"The received message has the wrong argument {last_message}"
@@ -423,8 +251,6 @@ class ImagerProcess(multiprocessing.Process):
             self.__pump_volume = float(last_message["volume"])
             # Get the number of frames to image from the different received arguments
             self.__img_goal = int(last_message["nb_frame"])
-            # Get the segmentation status (true/false) from the different received arguments
-            self.__segmentation = bool(last_message["segmentation"])
 
             self.imager_client.client.publish("status/imager", '{"status":"Started"}')
 
@@ -541,15 +367,10 @@ class ImagerProcess(multiprocessing.Process):
                 # Publish the status "Done" to via MQTT to Node-RED
                 self.imager_client.client.publish("status/imager", '{"status":"Done"}')
 
-                if self.__segmentation:
-                    # Change state towards Segmentation
-                    self.__imager.change(planktoscope.imager_state_machine.Segmentation)
-                else:
-                    # Change state towards done
-                    self.__imager.change(planktoscope.imager_state_machine.Stop)
-                    # Set the LEDs as Green
-                    planktoscope.light.setRGB(0, 255, 255)
-
+                # Change state towards done
+                self.__imager.change(planktoscope.imager_state_machine.Stop)
+                # Set the LEDs as Green
+                planktoscope.light.setRGB(0, 255, 255)
                 return
             else:
                 # We have not reached the final stage, let's keep imaging
@@ -581,34 +402,6 @@ class ImagerProcess(multiprocessing.Process):
                 # Change state towards Waiting for pump
                 self.__imager.change(planktoscope.imager_state_machine.Waiting)
                 return
-
-        elif self.__imager.state.name is "segmentation":
-            # Publish the status "Started" to via MQTT to Node-RED
-            self.imager_client.client.publish(
-                "status/segmentation", '{"status":"Started"}'
-            )
-
-            # Start the MorphoCut Pipeline
-            self.__pipe.run()
-
-            # remove directory
-            # shutil.rmtree(import_path)
-
-            # Publish the status "Done" to via MQTT to Node-RED
-            self.imager_client.client.publish(
-                "status/segmentation", '{"status":"Done"}'
-            )
-
-            # Set the LEDs as White
-            planktoscope.light.setRGB(255, 255, 255)
-
-            # cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
-
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
-            # Change state towards Waiting for pump
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
-            return
 
         elif self.__imager.state.name is "waiting":
             return
@@ -646,9 +439,6 @@ class ImagerProcess(multiprocessing.Process):
         )
         self.streaming_thread.start()
 
-        # Instantiate the morphocut pipeline
-        self.__create_morphocut_pipeline()
-
         # Publish the status "Ready" to via MQTT to Node-RED
         self.imager_client.client.publish("status/imager", '{"status":"Ready"}')
 
@@ -658,12 +448,13 @@ class ImagerProcess(multiprocessing.Process):
         while not self.stop_event.is_set():
             self.treat_message()
             self.state_machine()
-            time.sleep(0)
+            time.sleep(0.001)
 
         logger.info("Shutting down the imager process")
         self.imager_client.client.publish("status/imager", '{"status":"Dead"}')
         logger.debug("Stopping the camera")
         self.__camera.stop_recording()
+        self.__camera.close()
         logger.debug("Stopping the streaming thread")
         server.shutdown()
         self.imager_client.shutdown()
