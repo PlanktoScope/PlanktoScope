@@ -159,6 +159,6 @@ class MQTT_Client:
 
     @logger.catch
     def shutdown(self, topic="", message=""):
-        logger.info("Shutting down the mqtt client")
-        # TODO insert here a last published message
+        logger.info(f"Shutting down mqtt client {self.name}")
         self.client.loop_stop()
+        logger.debug(f"Mqtt client {self.name} shut down")
