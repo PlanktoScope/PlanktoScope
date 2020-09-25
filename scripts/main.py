@@ -11,6 +11,9 @@ import time
 # signal module is used to manage SINGINT/SIGTERM
 import signal
 
+# os module is used create paths
+import os
+
 # enqueue=True is necessary so we can log accross modules
 # rotation happens everyday at 01:00 if not restarted
 logger.add(
@@ -63,11 +66,40 @@ def handler_stop_signals(signum, frame):
 
 if __name__ == "__main__":
     logger.info("Welcome!")
-    logger.info("Initialising signals handling (step 1/4)")
+    logger.info(
+        "Initialising signals handling and sanitizing the directories (step 1/4)"
+    )
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
-    # TODO add a test of /boot/config.txt to make sure gpu_mem is at least 256 Meg.
+    # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
+    with open("/boot/config.txt", "r") as config_file:
+        for i, line in enumerate(config_file):
+            if line.startswith("gpu_mem"):
+                if int(line.split("=")[1].strip()) < 256:
+                    logger.error(
+                        "The GPU memory size is less than 256, this will prevent the camera from running properly"
+                    )
+                    logger.error(
+                        "Please edit the file /boot/config.txt to change the gpu_mem value to at least 256"
+                    )
+                    logger.error(
+                        "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
+                    )
+                    sys.exit(1)
+
+    # Let's make sure the used base path exists
+    img_path = "/home/pi/PlanktonScope/img"
+    # check if this path exists
+    if not os.path.exists(img_path):
+        # create the path!
+        os.makedirs(img_path)
+
+    export_path = "/home/pi/PlanktonScope/export"
+    # check if this path exists
+    if not os.path.exists(export_path):
+        # create the path!
+        os.makedirs(export_path)
 
     # Prepare the event for a gracefull shutdown
     shutdown_event = multiprocessing.Event()
