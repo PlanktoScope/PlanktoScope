@@ -154,40 +154,13 @@ class ImagerProcess(multiprocessing.Process):
         self.__iso = iso
         self.__shutter_speed = shutter_speed
         self.__exposure_mode = "fixedfps"
-        self.__base_path = "/home/pi/PlanktonScope/tmp"
-
-        # check if this path exists
-        if not os.path.exists(self.__base_path):
-            # create the path!
-            os.makedirs(self.__base_path)
-
-        # load config.json
-        with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
-            node_red_metadata = json.load(config_file)
-            logger.debug(f"Configuration loaded is {node_red_metadata}")
+        self.__base_path = "/home/pi/PlanktonScope/img"
+        self.__export_path = ""
+        self.__global_metadata = None
 
         # TODO implement a way to receive directly the metadata from Node-Red via MQTT
         # FIXME We should save the metadata to a file in the folder too
         # TODO create a directory structure per day/per imaging session
-
-        # Definition of the few important metadata
-        local_metadata = {
-            "process_datetime": datetime.datetime.now(),
-            "acq_camera_resolution": self.__resolution,
-            "acq_camera_iso": self.__iso,
-            "acq_camera_shutter_speed": self.__shutter_speed,
-        }
-
-        # Concat the local metadata and the metadata from Node-RED
-        self.global_metadata = {**local_metadata, **node_red_metadata}
-
-        # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
-        self.archive_fn = os.path.join(
-            "/home/pi/PlanktonScope/",
-            "export",
-            # filename includes project name, timestamp and sample id
-            f"ecotaxa_export_{self.global_metadata['sample_project']}_{self.global_metadata['process_datetime']}_{self.global_metadata['sample_id']}.zip",
-        )
 
         logger.info("planktoscope.imager is initialised and ready to go!")
 
@@ -280,8 +253,18 @@ class ImagerProcess(multiprocessing.Process):
             if self.__imager.state.name is "stop":
                 logger.info("Updating the configuration now with the received data")
                 # Updating the configuration with the passed parameter in payload["config"]
+                nodered_metadata = last_message["config"]
+                # Definition of the few important metadata
+                local_metadata = {
+                    "process_datetime": datetime.datetime.now(),
+                    "acq_camera_resolution": self.__resolution,
+                    "acq_camera_iso": self.__iso,
+                    "acq_camera_shutter_speed": self.__shutter_speed,
+                }
+                # Concat the local metadata and the metadata from Node-RED
+                self.__global_metadata = {**local_metadata, **node_red_metadata}
 
-                # Publish the status "Interrupted" to via MQTT to Node-RED
+                # Publish the status "Config updated" to via MQTT to Node-RED
                 self.imager_client.client.publish(
                     "status/imager", '{"status":"Config updated"}'
                 )
@@ -304,6 +287,25 @@ class ImagerProcess(multiprocessing.Process):
             self.imager_client.client.message_callback_add(
                 "status/pump", self.pump_callback
             )
+
+            logger.info("Setting up the directory structure for storing the pictures")
+            self.__export_path = os.path.join(
+                self.__base_path,
+                self.__global_metadata["process_datetime"],
+                self.__global_metadata["sample_id"],
+            )
+            if not os.path.exists(export_path):
+                # create the path!
+                os.makedirs(export_path)
+
+            # Export the metadata to a json file
+            logger.info("Exporting the metadata to a metadata.json")
+            config_path = os.path.join(self.__export_path, "metadata.json")
+            with open(config_path, "w") as metadata_file:
+                json.dump(self.__global_metadata, metadata_file)
+                logger.debug(
+                    f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
+                )
 
             # Sleep a duration before to start acquisition
             time.sleep(self.__sleep_before)
@@ -334,16 +336,12 @@ class ImagerProcess(multiprocessing.Process):
             # Set the LEDs as Cyan
             planktoscope.light.setRGB(0, 255, 255)
 
-            # Print datetime
-            logger.info("Capturing an image")
-
             filename = f"{datetime.datetime.now().strftime('%H_%M_%S_%f')}.jpg"
 
             # Define the filename of the image
-            filename_path = os.path.join(
-                self.__base_path,
-                filename,
-            )
+            filename_path = os.path.join(self.__export_path, filename)
+
+            logger.info(f"Capturing an image to {filename_path}")
 
             # Capture an image with the proper filename
             self.__camera.capture(filename_path)
@@ -354,7 +352,7 @@ class ImagerProcess(multiprocessing.Process):
             # Publish the name of the image to via MQTT to Node-RED
             self.imager_client.client.publish(
                 "status/imager",
-                f'{{"status":"{filename} .jpg has been imaged."}}',
+                f'{{"status":"{filename} has been imaged."}}',
             )
 
             # Increment the counter
