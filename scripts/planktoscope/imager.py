@@ -1,10 +1,3 @@
-# Basic planktoscope libraries
-import planktoscope.mqtt
-import planktoscope.light
-import planktoscope.streamer
-import planktoscope.imager_state_machine
-
-
 ################################################################################
 # Practical Libraries
 ################################################################################
@@ -27,6 +20,14 @@ import picamera
 # Library for starting processes
 import multiprocessing
 
+# Basic planktoscope libraries
+import planktoscope.mqtt
+import planktoscope.light
+
+# import planktoscope.streamer
+import planktoscope.imager_state_machine
+
+
 ################################################################################
 # Morphocut Libraries
 ################################################################################
@@ -46,7 +47,98 @@ import skimage.util
 import cv2
 
 
+################################################################################
+# Streaming PiCamera over server
+################################################################################
+import io
+import socketserver
+import http.server
+import threading
+
+################################################################################
+# Classes for the PiCamera Streaming
+################################################################################
+class StreamingOutput(object):
+    def __init__(self):
+        self.frame = None
+        self.buffer = io.BytesIO()
+        self.condition = threading.Condition()
+
+    def write(self, buf):
+        if buf.startswith(b"\xff\xd8"):
+            # New frame, copy the existing buffer's content and notify all
+            # clients it's available
+            self.buffer.truncate()
+            with self.condition:
+                self.frame = self.buffer.getvalue()
+                self.condition.notify_all()
+            self.buffer.seek(0)
+        return self.buffer.write(buf)
+
+
+class StreamingHandler(http.server.BaseHTTPRequestHandler):
+    # Webpage content containing the PiCamera Streaming
+    PAGE = """\
+    <html>
+    <head>
+    <title>PlanktonScope v2 | PiCamera Streaming</title>
+    </head>
+    <body>
+    <img src="stream.mjpg" width="100%" height="100%" />
+    </body>
+    </html>
+    """
+
+    @logger.catch
+    def do_GET(self):
+        if self.path == "/":
+            self.send_response(301)
+            self.send_header("Location", "/index.html")
+            self.end_headers()
+        elif self.path == "/index.html":
+            content = self.PAGE.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html")
+            self.send_header("Content-Length", len(content))
+            self.end_headers()
+            self.wfile.write(content)
+        elif self.path == "/stream.mjpg":
+            self.send_response(200)
+            self.send_header("Age", 0)
+            self.send_header("Cache-Control", "no-cache, private")
+            self.send_header("Pragma", "no-cache")
+            self.send_header(
+                "Content-Type", "multipart/x-mixed-replace; boundary=FRAME"
+            )
+
+            self.end_headers()
+            try:
+                while True:
+                    with output.condition:
+                        output.condition.wait()
+                        frame = output.frame
+                    self.wfile.write(b"--FRAME\r\n")
+                    self.send_header("Content-Type", "image/jpeg")
+                    self.send_header("Content-Length", len(frame))
+                    self.end_headers()
+                    self.wfile.write(frame)
+                    self.wfile.write(b"\r\n")
+            except Exception as e:
+                logger.exception(f"Removed streaming client {self.client_address}")
+        else:
+            self.send_error(404)
+            self.end_headers()
+
+
+class StreamingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
+
+ouhtput = StreamingOutput()
+h
 logger.info("planktoscope.imager is loaded")
+
 
 ################################################################################
 # Main Imager class
@@ -54,6 +146,7 @@ logger.info("planktoscope.imager is loaded")
 class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
+    @logger.catch
     def __init__(self, event, resolution=(3280, 2464), iso=60, shutter_speed=500):
         """Initialize the Imager class
 
@@ -63,7 +156,7 @@ class ImagerProcess(multiprocessing.Process):
             iso (int, optional): ISO sensitivity. Defaults to 60.
             shutter_speed (int, optional): Shutter speed of the camera. Defaults to 500.
         """
-        super(ImagerProcess, self).__init__()
+        super(ImagerProcess, self).__init__(name="imager")
 
         logger.info("planktoscope.imager is initialising")
 
@@ -76,13 +169,18 @@ class ImagerProcess(multiprocessing.Process):
         self.__pump_volume = None
         self.__img_goal = None
         self.__segmentation = None
+        self.imager_client = None
+        self.__camera = None
+        self.__resolution = resolution
+        self.__iso = iso
+        self.__shutter_speed = shutter_speed
+        self.__exposure_mode = "fixedfps"
+        self.__base_path = "/home/pi/PlanktonScope/tmp"
 
-        # PiCamera settings
-        self.camera = picamera.PiCamera()
-        self.camera.resolution = resolution
-        self.camera.iso = iso
-        self.camera.shutter_speed = shutter_speed
-        self.camera.exposure_mode = "fixedfps"
+        # check if this path exists
+        if not os.path.exists(self.__base_path):
+            # create the path!
+            os.makedirs(self.__base_path)
 
         # load config.json
         with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
@@ -90,13 +188,14 @@ class ImagerProcess(multiprocessing.Process):
             logger.debug(f"Configuration loaded is {node_red_metadata}")
 
         # TODO implement a way to receive directly the metadata from Node-Red via MQTT
+        # TODO create a directory structure per day/per imaging session
 
         # Definition of the few important metadata
         local_metadata = {
             "process_datetime": datetime.datetime.now(),
-            "acq_camera_resolution": self.camera.resolution,
-            "acq_camera_iso": self.camera.iso,
-            "acq_camera_shutter_speed": self.camera.shutter_speed,
+            "acq_camera_resolution": self.__resolution,
+            "acq_camera_iso": self.__iso,
+            "acq_camera_shutter_speed": self.__shutter_speed,
         }
 
         # Concat the local metadata and the metadata from Node-RED
@@ -110,8 +209,7 @@ class ImagerProcess(multiprocessing.Process):
             f"ecotaxa_export_{self.global_metadata['sample_project']}_{self.global_metadata['process_datetime']}_{self.global_metadata['sample_id']}.zip",
         )
 
-        # Instantiate the morphocut pipeline
-        self.__create_morphocut_pipeline()
+        # Morphocut's pipeline will be created at runtime otherwise shit ensues
 
         logger.info("planktoscope.imager is initialised and ready to go!")
 
@@ -263,14 +361,10 @@ class ImagerProcess(multiprocessing.Process):
             morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
         logger.info("Morphocut's Pipeline has been created")
 
-    def start_camera(self, output):
-        """Start the camera streaming process
-
-        Args:
-            output (planktoscope.streamer.StreamingOutput(), required): Streaming output
-                            of the created server
-        """
-        self.camera.start_recording(output, format="mjpeg", resize=(640, 480))
+    @logger.catch
+    def start_camera(self):
+        """Start the camera streaming process"""
+        self.__camera.start_recording(output, format="mjpeg", resize=(640, 480))
 
     def pump_callback(self, client, userdata, msg):
         # Print the topic and the message
@@ -281,9 +375,9 @@ class ImagerProcess(multiprocessing.Process):
             )
             return
         payload = json.loads(msg.payload.decode())
-        logger.debug(f"parsed payload is {self.payload}")
+        logger.debug(f"parsed payload is {payload}")
         if self.__imager.state.name is "waiting":
-            if payload["status"] is "Done":
+            if payload["status"] == "Done":
                 self.__imager.change(planktoscope.imager_state_machine.Capture)
                 self.imager_client.client.message_callback_remove("status/pump")
                 self.imager_client.client.unsubscribe("status/pump")
@@ -294,6 +388,7 @@ class ImagerProcess(multiprocessing.Process):
                 "There is an error, status is not waiting for the pump and yet we received a pump message"
             )
 
+    @logger.catch
     def treat_message(self):
         action = ""
         if self.imager_client.new_message_received():
@@ -301,7 +396,7 @@ class ImagerProcess(multiprocessing.Process):
             last_message = self.imager_client.msg["payload"]
             logger.debug(last_message)
             action = self.imager_client.msg["payload"]["action"]
-            logger.debug(command)
+            logger.debug(action)
             self.imager_client.read_message()
 
         # If the command is "image"
@@ -374,6 +469,7 @@ class ImagerProcess(multiprocessing.Process):
                 f"We did not understand the received request {action} - {last_message}"
             )
 
+    @logger.catch
     def state_machine(self):
         if self.__imager.state.name is "imaging":
             # subscribe to status/pump
@@ -414,14 +510,16 @@ class ImagerProcess(multiprocessing.Process):
             # Print datetime
             logger.info("Capturing an image")
 
+            filename = f"{datetime.datetime.now().strftime('%H_%M_%S_%f')}.jpg"
+
             # Define the filename of the image
-            filename = os.path.join(
-                "/home/pi/PlanktonScope/tmp",
-                datetime.now().strftime("%H_%M_%S_%f") + ".jpg",
+            filename_path = os.path.join(
+                self.__base_path,
+                filename,
             )
 
             # Capture an image with the proper filename
-            self.camera.capture(filename)
+            self.__camera.capture(filename_path)
 
             # Set the LEDs as Green
             planktoscope.light.setRGB(0, 255, 0)
@@ -429,7 +527,7 @@ class ImagerProcess(multiprocessing.Process):
             # Publish the name of the image to via MQTT to Node-RED
             self.imager_client.client.publish(
                 "status/imager",
-                f'{{"status":"{datetime_tmp} .jpg has been imaged."}}',
+                f'{{"status":"{filename} .jpg has been imaged."}}',
             )
 
             # Increment the counter
@@ -523,23 +621,51 @@ class ImagerProcess(multiprocessing.Process):
     ################################################################################
     @logger.catch
     def run(self):
-        """This is the function that needs to be started to create a thread
-
-        This function runs for perpetuity. For now, it has no exit methods
-        (hence no cleanup is performed on exit/kill). However, atexit can
-        probably be used for this. See https://docs.python.org/3.8/library/atexit.html
-        Eventually, the __del__ method could be used, if this module is
-        made into a class.
-        """
+        """This is the function that needs to be started to create a thread"""
+        logger.info(
+            f"The imager control thread has been started in process {os.getpid()}"
+        )
         # MQTT Service connection
         self.imager_client = planktoscope.mqtt.MQTT_Client(
             topic="imager/#", name="imager_client"
         )
 
+        # PiCamera settings
+        self.__camera = picamera.PiCamera(resolution=self.__resolution)
+        self.__camera.iso = self.__iso
+        self.__camera.shutter_speed = self.__shutter_speed
+        self.__camera.exposure_mode = self.__exposure_mode
+
+        address = ("", 8000)
+        server = StreamingServer(address, StreamingHandler)
+        # Starts the streaming server process
+        logger.info("Starting the streaming server thread")
+        self.start_camera()
+        self.streaming_thread = threading.Thread(
+            target=server.serve_forever, daemon=True
+        )
+        self.streaming_thread.start()
+
+        # Instantiate the morphocut pipeline
+        self.__create_morphocut_pipeline()
+
+        # Publish the status "Ready" to via MQTT to Node-RED
+        self.imager_client.client.publish("status/imager", '{"status":"Ready"}')
+
+        logger.info("Let's rock and roll!")
+
+        # This is the loop
         while not self.stop_event.is_set():
             self.treat_message()
             self.state_machine()
+            time.sleep(0)
 
         logger.info("Shutting down the imager process")
         self.imager_client.client.publish("status/imager", '{"status":"Dead"}')
+        logger.debug("Stopping the camera")
+        self.__camera.stop_recording()
+        logger.debug("Stopping the streaming thread")
+        server.shutdown()
         self.imager_client.shutdown()
+        # self.streaming_thread.kill()
+        logger.info("Imager process shut down! See you!")
