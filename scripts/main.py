@@ -101,6 +101,9 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(export_path)
 
+    with open("/sys/firmware/devicetree/base/serial-number", "r") as config_file:
+        logger.info(f"This PlanktoScope unique ID is {config_file.readline()}")
+
     # Prepare the event for a gracefull shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
