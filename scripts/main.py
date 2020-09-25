@@ -2,6 +2,15 @@
 from loguru import logger
 import sys
 
+# multiprocessing module
+import multiprocessing
+
+# Time module so we can sleep
+import time
+
+# signal module is used to manage SINGINT/SIGTERM
+import signal
+
 # enqueue=True is necessary so we can log accross modules
 # rotation happens everyday at 01:00 if not restarted
 logger.add(
@@ -32,23 +41,12 @@ import planktoscope.mqtt
 # Import the planktonscope stepper module
 import planktoscope.stepper
 
-# Import the planktonscope streamer module
-import planktoscope.streamer
-
 # Import the planktonscope imager module
 import planktoscope.imager
 
 # Import the planktonscope LED module
 import planktoscope.light
 
-# Time module so we can sleep
-import time
-
-# signal module is used to manage SINGINT/SIGTERM
-import signal
-
-# multiprocessing module
-import multiprocessing
 
 # global variable that keeps the wheels spinning
 run = True
