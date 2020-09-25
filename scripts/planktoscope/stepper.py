@@ -3,6 +3,7 @@ import adafruit_motor
 import adafruit_motorkit
 import time
 import json
+import os
 import planktoscope.mqtt
 import planktoscope.light
 import multiprocessing
@@ -386,15 +387,10 @@ class StepperProcess(multiprocessing.Process):
 
     @logger.catch
     def run(self):
-        """This is the function that needs to be started to create a thread
-
-        This function runs for perpetuity. For now, it has no exit methods
-        (hence no cleanup is performed on exit/kill). However, atexit can
-        probably be used for this. See https://docs.python.org/3.8/library/atexit.html
-        Eventually, the __del__ method could be used, if this module is
-        made into a class.
-        """
-        logger.info("The stepper control thread has been started")
+        """This is the function that needs to be started to create a thread"""
+        logger.info(
+            f"The stepper control process has been started in process {os.getpid()}"
+        )
 
         # Creates the MQTT Client
         # We have to create it here, otherwise when the process running run is started
@@ -405,9 +401,8 @@ class StepperProcess(multiprocessing.Process):
             topic="actuator/#", name="actuator_client"
         )
         # Publish the status "Ready" to via MQTT to Node-RED
-        self.actuator_client.client.publish(
-            "status/pump", '{"status":"Ready"}'
-        )  # Publish the status "Ready" to via MQTT to Node-RED
+        self.actuator_client.client.publish("status/pump", '{"status":"Ready"}')
+        # Publish the status "Ready" to via MQTT to Node-RED
         self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
         while not self.stop_event.is_set():
             # check if a new message has been received
@@ -422,12 +417,14 @@ class StepperProcess(multiprocessing.Process):
                     "status/focus",
                     '{"status":"Done"}',
                 )
+            time.sleep(0)
         logger.info("Shutting down the stepper process")
-        self.imager_client.client.publish("status/pump", '{"status":"Dead"}')
-        self.imager_client.client.publish("status/focus", '{"status":"Dead"}')
+        self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
+        self.actuator_client.client.publish("status/focus", '{"status":"Dead"}')
         self.pump_stepper.shutdown()
         self.focus_stepper.shutdown()
         self.actuator_client.shutdown()
+        logger.info("Stepper process shut down! See you!")
 
 
 # This is called if this script is launched directly
