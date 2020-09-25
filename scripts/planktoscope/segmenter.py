@@ -63,41 +63,15 @@ class SegmenterProcess(multiprocessing.Process):
         self.stop_event = event
         self.__pipe = None
         self.segmenter_client = None
-        self.__base_path = "/home/pi/PlanktonScope/tmp"
+        self.__img_path = "/home/pi/PlanktonScope/img"
         self.__export_path = "/home/pi/PlanktonScope/export"
+        self.__ecotaxa_path = os.path.join(self.__export_path, "ecotaxa")
+        self.__global_metadata = None
+        self.__working_path = ""
 
-        # check if this path exists
-        if not os.path.exists(self.__base_path):
+        if not os.path.exists(self.__ecotaxa_path):
             # create the path!
-            os.makedirs(self.__base_path)
-
-        # check if this path exists
-        if not os.path.exists(self.__export_path):
-            # create the path!
-            os.makedirs(self.__export_path)
-
-        # load config.json
-        with open("/home/pi/PlanktonScope/config.json", "r") as config_file:
-            node_red_metadata = json.load(config_file)
-            logger.debug(f"Configuration loaded is {node_red_metadata}")
-
-        # TODO implement a way to receive directly the metadata from Node-Red via MQTT
-        # TODO create a directory structure per day/per imaging session
-
-        # Definition of the few important metadata
-        local_metadata = {"process_datetime": datetime.datetime.now()}
-
-        # Concat the local metadata and the metadata from Node-RED
-        self.__global_metadata = {**local_metadata, **node_red_metadata}
-
-        # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
-        self.archive_fn = os.path.join(
-            "/home/pi/PlanktonScope/",
-            "export",
-            # filename includes project name, timestamp and sample id
-            f"ecotaxa_export_{self.__global_metadata['sample_project']}_{self.__global_metadata['process_datetime']}_{self.__global_metadata['sample_id']}.zip",
-        )
-
+            os.makedirs(self.__ecotaxa_path)
         # Morphocut's pipeline will be created at runtime otherwise shit ensues
 
         logger.info("planktoscope.segmenter is initialised and ready to go!")
@@ -112,7 +86,7 @@ class SegmenterProcess(multiprocessing.Process):
             # Recursively find .jpg files in import_path.
             # Sort to get consective frames.
             abs_path = morphocut.file.Find(
-                self.__base_path, [".jpg"], sort=True, verbose=True
+                self.__working_path, [".jpg"], sort=True, verbose=True
             )
 
             # Extract name from abs_path
@@ -263,14 +237,33 @@ class SegmenterProcess(multiprocessing.Process):
         # If the command is "segment"
         if action == "segment":
             # {"action":"segment"}
-
             # Publish the status "Started" to via MQTT to Node-RED
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Started"}'
             )
 
-            # Start the MorphoCut Pipeline
-            self.__pipe.run()
+            img_paths = [x[0] for x in os.walk(self.__img_path)]
+            logger.info(f"The pipeline will be run in {len(img_paths)} directories")
+            for path in img_paths:
+                logger.info(f"Loading the metadata file for {path}")
+                with open(os.path.join(path, "metadata.json"), "r") as config_file:
+                    self.__global_metadata = json.load(config_file)
+                    logger.debug(f"Configuration loaded is {self.__global_metadata}")
+
+                # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
+                self.archive_fn = os.path.join(
+                    self.__ecotaxa_path,
+                    # filename includes project name, timestamp and sample id
+                    f"export_{self.__global_metadata['sample_project']}_{self.__global_metadata['process_datetime']}_{self.__global_metadata['sample_id']}.zip",
+                )
+
+                logger.info(f"Starting the pipeline in {path}")
+                # Start the MorphoCut Pipeline on the found path
+                self.__working_path = path
+
+                @logger.catch
+                self.__pipe.run()
+                logger.info(f"Pipeline has been run for {path}")
 
             # remove directory
             # shutil.rmtree(import_path)
