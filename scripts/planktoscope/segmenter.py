@@ -68,6 +68,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__ecotaxa_path = os.path.join(self.__export_path, "ecotaxa")
         self.__global_metadata = None
         self.__working_path = ""
+        self.__archive_fn = ""
 
         if not os.path.exists(self.__ecotaxa_path):
             # create the path!
@@ -205,7 +206,7 @@ class SegmenterProcess(multiprocessing.Process):
             # Write objects to an EcoTaxa archive:
             # roi image in original color, roi image in grayscale, metadata associated with each object
             morphocut.contrib.ecotaxa.EcotaxaWriter(
-                self.archive_fn, (orig_fn, roi_orig), meta
+                self.__archive_fn, (orig_fn, roi_orig), meta
             )
 
             # Progress bar for objects
@@ -251,7 +252,7 @@ class SegmenterProcess(multiprocessing.Process):
                     logger.debug(f"Configuration loaded is {self.__global_metadata}")
 
                 # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
-                self.archive_fn = os.path.join(
+                self.__archive_fn = os.path.join(
                     self.__ecotaxa_path,
                     # filename includes project name, timestamp and sample id
                     f"export_{self.__global_metadata['sample_project']}_{self.__global_metadata['process_datetime']}_{self.__global_metadata['sample_id']}.zip",
