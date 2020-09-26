@@ -42,10 +42,10 @@
                 "y": 40,
                 "wires": [
                     {
-                        "id": "9939b59.42195c8"
+                        "id": "afa9f4b.2e77988"
                     },
                     {
-                        "id": "afa9f4b.2e77988"
+                        "id": "672d89a8.4e6968"
                     }
                 ]
             }
@@ -449,7 +449,20 @@
         "in": [],
         "out": [],
         "env": [],
-        "color": "#DDAA99"
+        "color": "#D7D7A0",
+        "icon": "node-red/db.svg"
+    },
+    {
+        "id": "674362b7.9b6574",
+        "type": "subflow",
+        "name": "Camera settings",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "color": "#3FADB5",
+        "icon": "font-awesome/fa-camera"
     },
     {
         "id": "779606c9.19d2b8",
@@ -457,7 +470,7 @@
         "z": "",
         "name": "Monitor RPi",
         "tab": "d10d9d99.00f4b8",
-        "order": 12,
+        "order": 13,
         "disp": true,
         "width": 24,
         "collapse": false
@@ -468,7 +481,7 @@
         "z": "",
         "name": "Acquisition actuation",
         "tab": "d10d9d99.00f4b8",
-        "order": 9,
+        "order": 10,
         "disp": true,
         "width": 24,
         "collapse": false
@@ -479,7 +492,7 @@
         "z": "",
         "name": "Acquisition inputs",
         "tab": "d10d9d99.00f4b8",
-        "order": 8,
+        "order": 9,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -490,7 +503,7 @@
         "z": "",
         "name": "Process metadata",
         "tab": "d10d9d99.00f4b8",
-        "order": 7,
+        "order": 8,
         "disp": true,
         "width": 24,
         "collapse": false
@@ -523,7 +536,7 @@
         "z": "",
         "name": "MQTT Plots",
         "tab": "d10d9d99.00f4b8",
-        "order": 11,
+        "order": 12,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -556,7 +569,7 @@
         "z": "",
         "name": "Pump actuation",
         "tab": "d10d9d99.00f4b8",
-        "order": 6,
+        "order": 7,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -567,7 +580,7 @@
         "z": "",
         "name": "Focus actuation",
         "tab": "d10d9d99.00f4b8",
-        "order": 5,
+        "order": 6,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -623,7 +636,7 @@
         "tab": "d10d9d99.00f4b8",
         "order": 4,
         "disp": true,
-        "width": 24,
+        "width": "24",
         "collapse": false
     },
     {
@@ -777,7 +790,18 @@
         "z": "",
         "name": "Segmentation control",
         "tab": "d10d9d99.00f4b8",
-        "order": 10,
+        "order": 11,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "e8b67968.dea6",
+        "type": "ui_group",
+        "z": "",
+        "name": "Camera settings",
+        "tab": "d10d9d99.00f4b8",
+        "order": 5,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -1577,38 +1601,17 @@
         ]
     },
     {
-        "id": "9939b59.42195c8",
-        "type": "exec",
-        "z": "d95291dc.83b0b8",
-        "command": "ps -ax | grep \"python3 /home/pi/PlanktonScope/scripts/main.py\"| head -1 | awk -F \" \" '{print$1}' ",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 700,
-        "y": 40,
-        "wires": [
-            [
-                "672d89a8.4e6968"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "672d89a8.4e6968",
         "type": "exec",
         "z": "d95291dc.83b0b8",
-        "command": "kill",
+        "command": "killall python3",
         "addpay": true,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 1170,
+        "x": 730,
         "y": 40,
         "wires": [
             [],
@@ -3309,7 +3312,7 @@
         "label": "Name of the ship",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3331,7 +3334,7 @@
         "tooltip": "",
         "place": "Select",
         "group": "71c63dd4.311c44",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3379,7 +3382,7 @@
         "label": "Name of the operator",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3400,7 +3403,7 @@
         "label": "Name of the project*",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3421,7 +3424,7 @@
         "label": "ID of the station*",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3520,10 +3523,10 @@
         "z": "81483277.2521e",
         "group": "71c63dd4.311c44",
         "name": "",
-        "order": 6,
+        "order": 1,
         "width": 24,
         "height": 2,
-        "format": "<div ng-bind-html=\"msg.payload\">Fill the different inputs concerning the sample you would to image.</div>",
+        "format": "<div ng-bind-html=\"msg.payload\">Fill the different inputs concerning the sample you want to image.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -3548,8 +3551,7 @@
         "y": 220,
         "wires": [
             [
-                "7cd7b4d0.cfc56c",
-                "3b040a6c.6b3dbe"
+                "7cd7b4d0.cfc56c"
             ]
         ]
     },
@@ -3563,7 +3565,7 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1740,
+        "x": 1760,
         "y": 220,
         "wires": [
             []
@@ -3577,7 +3579,7 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 1470,
+        "x": 1510,
         "y": 220,
         "wires": [
             [
@@ -3629,7 +3631,8 @@
         "y": 80,
         "wires": [
             [
-                "83f2e27a.b59688"
+                "83f2e27a.b59688",
+                "172d187b.ad216"
             ]
         ],
         "info": "# PlanktonScope Help\nWhen the **Pi** is booting, **Node-RED** will be initiated and this node will be activated once and execute the following nodes."
@@ -3664,6 +3667,8 @@
         "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 1300,
         "y": 140,
         "wires": [
@@ -3789,7 +3794,7 @@
         "name": "RPi commands",
         "env": [],
         "x": 920,
-        "y": 780,
+        "y": 820,
         "wires": []
     },
     {
@@ -3878,7 +3883,7 @@
         "name": "",
         "env": [],
         "x": 920,
-        "y": 820,
+        "y": 860,
         "wires": []
     },
     {
@@ -3938,7 +3943,7 @@
         "name": "RPi",
         "info": "",
         "x": 890,
-        "y": 740,
+        "y": 780,
         "wires": []
     },
     {
@@ -3980,8 +3985,8 @@
         "tooltip": "",
         "group": "59434d8d.70ed94",
         "order": 7,
-        "width": 0,
-        "height": 0,
+        "width": "0",
+        "height": "0",
         "passthru": true,
         "decouple": "false",
         "topic": "",
@@ -4124,7 +4129,7 @@
         "z": "d95291dc.83b0b8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
+        "timeout": "2",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -4163,8 +4168,8 @@
         "y": 140,
         "wires": [
             [
-                "9939b59.42195c8",
-                "afa9f4b.2e77988"
+                "afa9f4b.2e77988",
+                "672d89a8.4e6968"
             ]
         ]
     },
@@ -4304,7 +4309,7 @@
         "name": "",
         "env": [],
         "x": 930,
-        "y": 680,
+        "y": 720,
         "wires": []
     },
     {
@@ -4314,7 +4319,7 @@
         "name": "Segmentation",
         "info": "",
         "x": 910,
-        "y": 640,
+        "y": 680,
         "wires": []
     },
     {
@@ -4326,8 +4331,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1870,
-        "y": 280,
+        "x": 1310,
+        "y": 920,
         "wires": []
     },
     {
@@ -4335,17 +4340,221 @@
         "type": "function",
         "z": "e8d4d920.35344",
         "name": "Encapsulate config",
-        "func": "msg.payload = {\n    \"action\":\"update_config\", \n    \"config\":msg.payload\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "func": "msg.payload = {\n    \"action\":\"update_config\", \n    \"config\":{\n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_nb_step\":global.get(\"focus_nb_step\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n    }\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1490,
-        "y": 280,
+        "x": 1130,
+        "y": 920,
         "wires": [
             [
                 "cd84b9db.02778"
             ]
         ]
+    },
+    {
+        "id": "eb27a17a.6a8e",
+        "type": "ui_button",
+        "z": "e8d4d920.35344",
+        "name": "",
+        "group": "71c63dd4.311c44",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update config",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 920,
+        "y": 920,
+        "wires": [
+            [
+                "3b040a6c.6b3dbe"
+            ]
+        ]
+    },
+    {
+        "id": "16aa0238.209276",
+        "type": "ui_slider",
+        "z": "674362b7.9b6574",
+        "name": "Iso slider",
+        "label": "ISO",
+        "tooltip": "Possible values are  100, 200, 320, 400, 500, 640, 800",
+        "group": "e8b67968.dea6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "imager/image",
+        "min": "100",
+        "max": "800",
+        "step": "20",
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "bb090334.1e21a8"
+            ]
+        ]
+    },
+    {
+        "id": "bb090334.1e21a8",
+        "type": "function",
+        "z": "674362b7.9b6574",
+        "name": "round iso",
+        "func": "// Iso should be one of 60, 100, 200, 320, 400, 500, 640, 800\n\nif (msg.payload <= 80){\n    msg.payload = 60;\n    return msg;\n}\n\nif (msg.payload <= 150){\n    msg.payload = 100;\n    return msg;\n}\n\nif (msg.payload <= 260){\n    msg.payload = 200;\n    return msg;\n}\n\nif (msg.payload <= 360){\n    msg.payload = 320;\n    return msg;\n}\n\nif (msg.payload <= 450){\n    msg.payload = 400;\n    return msg;\n}\n\nif (msg.payload <= 565){\n    msg.payload = 500;\n    return msg;\n}\n\nif (msg.payload <= 700){\n    msg.payload = 640;\n    return msg;\n}\n\n\nif (700 < msg.payload){\n    msg.payload = 800;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "16aa0238.209276",
+                "8ea9dc9a.c7d87"
+            ]
+        ]
+    },
+    {
+        "id": "8ea9dc9a.c7d87",
+        "type": "function",
+        "z": "674362b7.9b6574",
+        "name": "Encapsulate settings",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"iso\":msg.payload}\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "845e06e1.0d812"
+            ]
+        ]
+    },
+    {
+        "id": "5765a825.a595c8",
+        "type": "ui_slider",
+        "z": "674362b7.9b6574",
+        "name": "Shutter speed slider",
+        "label": "Shutter Speed",
+        "tooltip": "In microseconds, up to 5000µs, 500µs by default",
+        "group": "e8b67968.dea6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "imager/image",
+        "min": "10",
+        "max": "5000",
+        "step": "10",
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "c38509b.fb08af8"
+            ]
+        ]
+    },
+    {
+        "id": "c38509b.fb08af8",
+        "type": "function",
+        "z": "674362b7.9b6574",
+        "name": "Encapsulate settings",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"shutter_speed\":msg.payload}\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "845e06e1.0d812"
+            ]
+        ]
+    },
+    {
+        "id": "845e06e1.0d812",
+        "type": "mqtt out",
+        "z": "674362b7.9b6574",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1020,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "2350e507.d4e302",
+        "type": "inject",
+        "z": "674362b7.9b6574",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "500",
+        "payloadType": "num",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "5765a825.a595c8"
+            ]
+        ]
+    },
+    {
+        "id": "2edd922b.a471a6",
+        "type": "inject",
+        "z": "674362b7.9b6574",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "100",
+        "payloadType": "num",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "16aa0238.209276"
+            ]
+        ]
+    },
+    {
+        "id": "649552a6.bf68fc",
+        "type": "subflow:674362b7.9b6574",
+        "z": "e8d4d920.35344",
+        "name": "",
+        "env": [],
+        "x": 920,
+        "y": 640,
+        "wires": []
     }
 ]

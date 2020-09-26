@@ -251,6 +251,14 @@ class ImagerProcess(multiprocessing.Process):
 
         elif action == "update_config":
             if self.__imager.state.name is "stop":
+                if "config" not in last_message:
+                    logger.error(
+                        f"The received message has the wrong argument {last_message}"
+                    )
+                    self.imager_client.client.publish(
+                        "status/imager", '{"status":"Configuration message error"}'
+                    )
+                    return
                 logger.info("Updating the configuration now with the received data")
                 # Updating the configuration with the passed parameter in payload["config"]
                 nodered_metadata = last_message["config"]
@@ -271,6 +279,53 @@ class ImagerProcess(multiprocessing.Process):
                 logger.info("Configuration has been updated")
             else:
                 logger.error("We can't update the configuration while we are imaging.")
+                # Publish the status "Interrupted" to via MQTT to Node-RED
+                self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
+            pass
+
+        elif action == "settings":
+            if self.__imager.state.name is "stop":
+                if "settings" not in last_message:
+                    logger.error(
+                        f"The received message has the wrong argument {last_message}"
+                    )
+                    self.imager_client.client.publish(
+                        "status/imager", '{"status":"Camera settings error"}'
+                    )
+                    return
+                logger.info("Updating the camera settings now with the received data")
+                # Updating the configuration with the passed parameter in payload["config"]
+                settings = last_message["settings"]
+                if "resolution" in settings:
+                    self.__resolution = settings.get("resolution", self.__resolution)
+                    logger.debug(
+                        f"Updating the camera resolution to {self.__resolution}"
+                    )
+                    self.__camera.resolution = self.__resolution
+
+                if "iso" in settings:
+                    self.__iso = settings.get("iso", self.__iso)
+                    logger.debug(f"Updating the camera iso to {self.__iso}")
+                    self.__camera.iso = self.__iso
+
+                if "shutter_speed" in settings:
+                    self.__shutter_speed = settings.get(
+                        "shutter_speed", self.__shutter_speed
+                    )
+                    logger.debug(
+                        f"Updating the camera shutter speed to {self.__shutter_speed}"
+                    )
+                    self.__camera.shutter_speed = self.__shutter_speed
+
+                # Publish the status "Config updated" to via MQTT to Node-RED
+                self.imager_client.client.publish(
+                    "status/imager", '{"status":"Camera settings updated"}'
+                )
+                logger.info("Camera settings have been updated")
+            else:
+                logger.error(
+                    "We can't update the camera settings while we are imaging."
+                )
                 # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
             pass
