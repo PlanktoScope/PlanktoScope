@@ -3,14 +3,14 @@ nav:
     - Setup:
         - Basic Install: easy_install.md
         - Expert Setup: expert_setup.md
-    - Remote Access: remote_access.md
+        - Remote Access: remote_access.md
     - Usage:
         - Collection devices: collection_devices.md
     - Under the hood:
         - Software architecture: software_architecture.md
         - MQTT Messages: mqtt_messages.md
     - Contribute:
-        - Edit this doc: edit_this_doc.md
+        - Edit this documentation: edit_this_doc.md
         - Edit the code: edit_the_code.md
     - About:
         - License: license.md
@@ -21,5 +21,6 @@ theme:
 markdown_extensions:
     - smarty
     - sane_lists
+    - admonition
     - toc:
         permalink: true
