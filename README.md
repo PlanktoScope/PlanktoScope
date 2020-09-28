@@ -44,7 +44,7 @@ The first boot to the desktop may take up to 120 seconds. This is normal and is 
 
 Make sure you have access to internet and update/upgrade your fresh Raspbian install.
 
-Update your Pi first. Open up a terminal, and do the following:
+Update your Pi first. Open up a terminal or connect via ssh to the Raspberry, and type in the following:
 ```sh
 sudo apt update -y
 sudo apt upgrade -y
@@ -58,18 +58,9 @@ sudo reboot now
 
 ## Raspberry Pi configuration
 
-### Clone this repository!
-
-First of all, and to ensure you have the latest documentation available locally, you should clone this repository using git.
-
-Simply run the following in a terminal:
-```sh
-git clone https://github.com/PlanktonPlanet/PlanktonScope/
-```
-
 ### Enable Camera/SSH/I2C in raspi-config
 
-You can now launch the configuration tool:
+You can launch the configuration tool:
 ```sh
 sudo raspi-config
 ```
