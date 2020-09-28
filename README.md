@@ -10,6 +10,8 @@ The PlanktoScope is an open-source, affordable imaging platform for citizen ocea
 
 The goal of the PlanktoScope is to allow citizen to engage in scientific programs, either at sea or onshore. You can use the PlanktoScope to image the different species of Plankton living in a body of water.
 
+
+## Get the papers!
 The PlanktoScope has been described in a paper available on the [bioRxiv preprint server](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1). The first results of this program and its outline are also available as a [preprint](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1).
 
 |[![PlanktoScope Preprint](docs/readme/planktoscope_pub.png)](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1)|[![PlanktonPlanet Preprint](docs/readme/planktonplanet_pub.png)](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1)|
