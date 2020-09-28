@@ -193,7 +193,7 @@ class SegmenterProcess(multiprocessing.Process):
             # Publish the json containing all the metadata to via MQTT to Node-RED
             morphocut.Call(
                 self.segmenter_client.client.publish,
-                "status/segmentater/metric",
+                "status/segmenter/metric",
                 json_meta,
             )
 
@@ -217,7 +217,7 @@ class SegmenterProcess(multiprocessing.Process):
             # Publish the object_id to via MQTT to Node-RED
             morphocut.Call(
                 self.segmenter_client.client.publish,
-                "status/segmentater/object_id",
+                "status/segmenter/object_id",
                 f'{{"object_id":"{object_id}"}}',
             )
 
