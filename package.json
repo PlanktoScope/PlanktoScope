@@ -1,0 +1,19 @@
+{
+    "name": "PlanktonScope",
+    "description": "Planktonscope main software project",
+    "version": "0.1",
+    "dependencies": {
+        "node-red-contrib-gpsd": "1.0.2",
+        "node-red-contrib-interval": "0.0.1",
+        "node-red-contrib-python3-function": "0.0.4",
+        "node-red-contrib-web-worldmap": "2.4.1",
+        "node-red-dashboard": "2.23.0",
+        "node-red-node-pi-gpio": "1.1.1"
+    },
+    "node-red": {
+        "settings": {
+            "flowFile": "flows/main.json",
+            "credentialsFile": "flows/main_cred.json"
+        }
+    }
+}
