@@ -1,0 +1,1 @@
+# Details about used MQTT messages

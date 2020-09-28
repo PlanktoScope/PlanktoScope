@@ -1,15 +1,19 @@
 site_name: PlanktoScope
 nav:
     - Setup:
-        - Basic Install: install.md
+        - Basic Install: easy_install.md
         - Expert Setup: expert_setup.md
     - Remote Access: remote_access.md
     - Usage:
         - Collection devices: collection_devices.md
-    - Software architecture: software_architecture.md
+    - Under the hood:
+        - Software architecture: software_architecture.md
+        - MQTT Messages: mqtt_messages.md
+    - Contribute:
+        - Edit this doc: edit_this_doc.md
+        - Edit the code: edit_the_code.md
     - About:
         - License: license.md
-        - Edit this doc: edit_this_doc.md
 theme:
   name: readthedocs
   collapse_navigation: false

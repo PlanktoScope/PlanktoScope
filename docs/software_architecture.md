@@ -1,1 +1,1 @@
-# The software architecture is described here
+# The software architecture will be described here eventually
