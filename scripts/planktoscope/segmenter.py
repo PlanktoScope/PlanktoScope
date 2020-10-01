@@ -174,7 +174,7 @@ class SegmenterProcess(multiprocessing.Process):
 
             # Define the name of each object
             object_fn = morphocut.str.Format(
-                os.path.join("/home/pi/PlanktonScope/", "OBJECTS", "{name}.jpg"),
+                os.path.join(self.__working_path, "objects", "{name}.jpg"),
                 name=object_id,
             )
 
@@ -242,31 +242,51 @@ class SegmenterProcess(multiprocessing.Process):
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Started"}'
             )
-
             img_paths = [x[0] for x in os.walk(self.__img_path)]
             logger.info(f"The pipeline will be run in {len(img_paths)} directories")
+            logger.debug(f"The pipeline will be run in these directories {img_paths}")
             for path in img_paths:
-                logger.info(f"Loading the metadata file for {path}")
-                with open(os.path.join(path, "metadata.json"), "r") as config_file:
-                    self.__global_metadata = json.load(config_file)
-                    logger.debug(f"Configuration loaded is {self.__global_metadata}")
+                logger.info("Checking for the presence of metadata.json")
+                if os.path.exists(os.path.join(path, "metadata.json")):
+                    # The file exists, let's run the pipe!
+                    logger.info(f"Loading the metadata file for {path}")
+                    with open(os.path.join(path, "metadata.json"), "r") as config_file:
+                        self.__global_metadata = json.load(config_file)
+                        logger.debug(
+                            f"Configuration loaded is {self.__global_metadata}"
+                        )
 
-                # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
-                self.__archive_fn = os.path.join(
-                    self.__ecotaxa_path,
-                    # filename includes project name, timestamp and sample id
-                    f"export_{self.__global_metadata['sample_project']}_{self.__global_metadata['process_datetime']}_{self.__global_metadata['sample_id']}.zip",
-                )
+                    project = self.__global_metadata["sample_project"].replace(" ", "_")
+                    date = self.__global_metadata["process_datetime"]
+                    sample = self.__global_metadata["sample_id"]
+                    # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
+                    self.__archive_fn = os.path.join(
+                        self.__ecotaxa_path,
+                        # filename includes project name, timestamp and sample id
+                        f"export_{project}_{date}_{sample}.zip",
+                    )
 
-                logger.info(f"Starting the pipeline in {path}")
-                # Start the MorphoCut Pipeline on the found path
-                self.__working_path = path
+                    self.__working_path = path
 
-                try:
-                    self.__pipe.run()
-                except Exception as e:
-                    logger.exception(f"There was an error in the pipeline {e}")
-                logger.info(f"Pipeline has been run for {path}")
+                    # Create the objects path
+                    if not os.path.exists(os.path.join(self.__working_path, "objects")):
+                        # create the path!
+                        os.makedirs(os.path.join(self.__working_path, "objects"))
+
+                    logger.debug(f"The archive folder is {self.__archive_fn}")
+
+                    self.__create_morphocut_pipeline()
+
+                    logger.info(f"Starting the pipeline in {path}")
+
+                    # Start the MorphoCut Pipeline on the found path
+                    try:
+                        self.__pipe.run()
+                    except Exception as e:
+                        logger.exception(f"There was an error in the pipeline {e}")
+                    logger.info(f"Pipeline has been run for {path}")
+                else:
+                    logger.info("Moving to the next folder, this one's empty")
 
             # remove directory
             # shutil.rmtree(import_path)
@@ -320,7 +340,7 @@ class SegmenterProcess(multiprocessing.Process):
         )
 
         # Instantiate the morphocut pipeline
-        self.__create_morphocut_pipeline()
+        # self.__create_morphocut_pipeline()
 
         # Publish the status "Ready" to via MQTT to Node-RED
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Ready"}')
