@@ -264,7 +264,9 @@ class ImagerProcess(multiprocessing.Process):
                 nodered_metadata = last_message["config"]
                 # Definition of the few important metadata
                 local_metadata = {
-                    "process_datetime": datetime.datetime.now().isoformat(),
+                    "process_datetime": datetime.datetime.now()
+                    .isoformat()
+                    .split(".")[0],
                     "acq_camera_resolution": self.__resolution,
                     "acq_camera_iso": self.__iso,
                     "acq_camera_shutter_speed": self.__shutter_speed,
@@ -350,6 +352,7 @@ class ImagerProcess(multiprocessing.Process):
                 # We only keep the date '2020-09-25T15:25:21.079769'
                 self.__global_metadata["process_datetime"].split("T")[0],
                 str(self.__global_metadata["sample_id"]),
+                str(self.__global_metadata["acq_id"]),
             )
             if not os.path.exists(self.__export_path):
                 # create the path!
@@ -374,7 +377,7 @@ class ImagerProcess(multiprocessing.Process):
                 json.dumps(
                     {
                         "action": "move",
-                        "direction": "BACKWARD",
+                        "direction": "FORWARD",
                         "volume": self.__pump_volume,
                         "flowrate": 2,
                     }
@@ -399,6 +402,7 @@ class ImagerProcess(multiprocessing.Process):
             filename_path = os.path.join(self.__export_path, filename)
 
             logger.info(f"Capturing an image to {filename_path}")
+            # TODO Insert here a delay to stabilize the flow before we image
 
             # Capture an image with the proper filename
             self.__camera.capture(filename_path)
@@ -409,7 +413,7 @@ class ImagerProcess(multiprocessing.Process):
             # Publish the name of the image to via MQTT to Node-RED
             self.imager_client.client.publish(
                 "status/imager",
-                f'{{"status":"{filename} has been imaged."}}',
+                f'{{"status":"{self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}."}}',
             )
 
             # Increment the counter
