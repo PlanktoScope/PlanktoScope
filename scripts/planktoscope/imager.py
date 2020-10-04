@@ -154,7 +154,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__iso = iso
         self.__shutter_speed = shutter_speed
         self.__exposure_mode = "fixedfps"
-        self.__base_path = "/home/pi/PlanktonScope/img"
+        self.__base_path = "/home/pi/data/img"
         self.__export_path = ""
         self.__global_metadata = None
 

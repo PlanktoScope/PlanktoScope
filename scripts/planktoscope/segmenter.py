@@ -63,8 +63,8 @@ class SegmenterProcess(multiprocessing.Process):
         self.stop_event = event
         self.__pipe = None
         self.segmenter_client = None
-        self.__img_path = "/home/pi/PlanktonScope/img"
-        self.__export_path = "/home/pi/PlanktonScope/export"
+        self.__img_path = "/home/pi/data/img"
+        self.__export_path = "/home/pi/data/export"
         self.__ecotaxa_path = os.path.join(self.__export_path, "ecotaxa")
         self.__global_metadata = None
         self.__working_path = ""
