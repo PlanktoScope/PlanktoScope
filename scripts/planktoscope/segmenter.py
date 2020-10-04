@@ -214,11 +214,15 @@ class SegmenterProcess(multiprocessing.Process):
                 morphocut.str.Format("Object {object_id}", object_id=object_id)
             )
 
+            id_json = morphocut.str.Format(
+                '{"object_id":"{object_id}"}', object_id=object_id
+            )
+
             # Publish the object_id to via MQTT to Node-RED
             morphocut.Call(
                 self.segmenter_client.client.publish,
                 "status/segmenter/object_id",
-                f'{{"object_id":"{object_id}"}}',
+                id_json,
             )
 
             # Set the LEDs as Green
