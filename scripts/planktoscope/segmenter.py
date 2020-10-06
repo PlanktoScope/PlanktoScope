@@ -361,3 +361,8 @@ class SegmenterProcess(multiprocessing.Process):
         self.segmenter_client.shutdown()
         logger.success("Segmenter process shut down! See you!")
 
+
+# This is called if this script is launched directly
+if __name__ == "__main__":
+    # TODO This should be a test suite for this library
+    pass

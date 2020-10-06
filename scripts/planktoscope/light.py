@@ -90,6 +90,7 @@ def light(state):
 
 # This is called if this script is launched directly
 if __name__ == "__main__":
+    # TODO This should be a test suite for this library
     import RPi.GPIO as GPIO
     import sys
 
