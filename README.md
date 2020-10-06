@@ -1,8 +1,8 @@
 # An open and affordable imaging platform for citizen oceanography
 
-![PlanktoScope Render](docs/readme/planktoscope_cad.png)
+![PlanktoScope Render](docs/readme/planktoscope_cad.webp)
 
-![Plankton collage](docs/readme/plankton_collage.jpg)
+![Plankton collage](docs/readme/plankton_collage.webp)
 
 
 # What is this?
@@ -14,7 +14,7 @@ The goal of the PlanktoScope is to allow citizen to engage in scientific program
 ## Get the papers!
 The PlanktoScope has been described in a paper available on the [bioRxiv preprint server](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1). The first results of this program and its outline are also available as a [preprint](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1).
 
-|[![PlanktoScope Preprint](docs/readme/planktoscope_pub.png)](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1)|[![PlanktonPlanet Preprint](docs/readme/planktonplanet_pub.png)](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1)|
+|[![PlanktoScope Preprint](docs/readme/planktoscope_pub.webp)](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1)|[![PlanktonPlanet Preprint](docs/readme/planktonplanet_pub.webp)](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1)|
 |--------|--------|
 
 

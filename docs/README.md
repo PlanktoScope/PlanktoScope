@@ -1,6 +1,6 @@
 # Welcome to the PlanktoScope build and use documentation
 
-![PlanktoScope](readme/planktoscope_cad.png)
+![PlanktoScope](readme/planktoscope_cad.webp)
 
 You can find here more information about how to build your own PlanktoScope.
 
@@ -14,8 +14,9 @@ You can find here more information about how to build your own PlanktoScope.
  - [Information about collection devices](collection_devices)
 
 ## Under the hood:
- - [Software architecte](software_architecture)
+ - [Software architecture](software_architecture)
  - [MQTT Messages](mqtt_messages)
+ - How does the segmentation works (soon)
 
 ## Contribute
  - [Find out how to contribute to this documentation and help edit it](edit_this_doc)
