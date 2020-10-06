@@ -175,6 +175,7 @@ class StepperProcess(multiprocessing.Process):
 
     def __init__(self, event):
         super(StepperProcess, self).__init__()
+        logger.info("Initialising the stepper process")
 
         self.stop_event = event
 
@@ -244,7 +245,7 @@ class StepperProcess(multiprocessing.Process):
             logger.error(f"{self.stepper_type} is what was supplied")
             return
 
-        logger.debug(f"Stepper initialisation is over")
+        logger.info(f"Stepper initialisation is over")
 
     def treat_command(self):
         command = ""
@@ -495,6 +496,8 @@ class StepperProcess(multiprocessing.Process):
         self.actuator_client.client.publish("status/pump", '{"status":"Ready"}')
         # Publish the status "Ready" to via MQTT to Node-RED
         self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
+
+        logger.success("Stepper is READY!")
         while not self.stop_event.is_set():
             # check if a new message has been received
             self.treat_command()
@@ -515,7 +518,7 @@ class StepperProcess(multiprocessing.Process):
         self.pump_stepper.shutdown()
         self.focus_stepper.shutdown()
         self.actuator_client.shutdown()
-        logger.info("Stepper process shut down! See you!")
+        logger.success("Stepper process shut down! See you!")
 
 
 # This is called if this script is launched directly

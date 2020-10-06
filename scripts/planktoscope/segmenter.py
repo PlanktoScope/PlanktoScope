@@ -75,7 +75,7 @@ class SegmenterProcess(multiprocessing.Process):
             os.makedirs(self.__ecotaxa_path)
         # Morphocut's pipeline will be created at runtime otherwise shit ensues
 
-        logger.info("planktoscope.segmenter is initialised and ready to go!")
+        logger.success("planktoscope.segmenter is initialised and ready to go!")
 
     def __create_morphocut_pipeline(self):
         """Creates the Morphocut Pipeline"""
@@ -349,7 +349,7 @@ class SegmenterProcess(multiprocessing.Process):
         # Publish the status "Ready" to via MQTT to Node-RED
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Ready"}')
 
-        logger.info("Ready to roll!")
+        logger.success("Segmenter is READY!")
 
         # This is the loop
         while not self.stop_event.is_set():
@@ -359,4 +359,5 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info("Shutting down the segmenter process")
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Dead"}')
         self.segmenter_client.shutdown()
-        logger.info("Segmenter process shut down! See you!")
+        logger.success("Segmenter process shut down! See you!")
+

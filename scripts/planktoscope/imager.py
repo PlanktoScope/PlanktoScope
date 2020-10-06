@@ -162,7 +162,7 @@ class ImagerProcess(multiprocessing.Process):
         # FIXME We should save the metadata to a file in the folder too
         # TODO create a directory structure per day/per imaging session
 
-        logger.info("planktoscope.imager is initialised and ready to go!")
+        logger.success("planktoscope.imager is initialised and ready to go!")
 
     @logger.catch
     def start_camera(self):
@@ -401,8 +401,9 @@ class ImagerProcess(multiprocessing.Process):
             # Define the filename of the image
             filename_path = os.path.join(self.__export_path, filename)
 
-            logger.info(f"Capturing an image to {filename_path}")
-            # TODO Insert here a delay to stabilize the flow before we image
+            logger.info(
+                f"Capturing image {self.__img_done + 1}/{self.__img_goal} to {filename_path}"
+            )
 
             # Capture an image with the proper filename
             self.__camera.capture(filename_path)
@@ -413,7 +414,7 @@ class ImagerProcess(multiprocessing.Process):
             # Publish the name of the image to via MQTT to Node-RED
             self.imager_client.client.publish(
                 "status/imager",
-                f'{{"status":"{self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}."}}',
+                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}"}}',
             )
 
             # Increment the counter
@@ -483,6 +484,9 @@ class ImagerProcess(multiprocessing.Process):
             topic="imager/#", name="imager_client"
         )
 
+        self.imager_client.client.publish("status/imager", '{"status":"Starting up"}')
+
+        logger.info("Initialising the camera")
         # PiCamera settings
         self.__camera = picamera.PiCamera(resolution=self.__resolution)
         self.__camera.iso = self.__iso
@@ -502,7 +506,7 @@ class ImagerProcess(multiprocessing.Process):
         # Publish the status "Ready" to via MQTT to Node-RED
         self.imager_client.client.publish("status/imager", '{"status":"Ready"}')
 
-        logger.info("Let's rock and roll!")
+        logger.success("Camera is READY!")
 
         # This is the loop
         while not self.stop_event.is_set():
@@ -517,6 +521,8 @@ class ImagerProcess(multiprocessing.Process):
         self.__camera.close()
         logger.debug("Stopping the streaming thread")
         server.shutdown()
+        logger.debug("Stopping MQTT")
         self.imager_client.shutdown()
         # self.streaming_thread.kill()
-        logger.info("Imager process shut down! See you!")
+        logger.success("Imager process shut down! See you!")
+
