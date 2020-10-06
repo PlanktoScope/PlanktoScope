@@ -31,30 +31,6 @@
         "icon": "font-awesome/fa-camera"
     },
     {
-        "id": "d95291dc.83b0b8",
-        "type": "subflow",
-        "name": "Python Startup",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 40,
-                "y": 40,
-                "wires": [
-                    {
-                        "id": "afa9f4b.2e77988"
-                    },
-                    {
-                        "id": "672d89a8.4e6968"
-                    }
-                ]
-            }
-        ],
-        "out": [],
-        "env": [],
-        "color": "#DDAA99"
-    },
-    {
         "id": "1bc3f9f9.1ee996",
         "type": "subflow",
         "name": "Acquisition inputs",
@@ -372,6 +348,10 @@
                     {
                         "id": "b69e435f.b93558",
                         "port": 0
+                    },
+                    {
+                        "id": "d9930546.489a58",
+                        "port": 0
                     }
                 ]
             }
@@ -465,14 +445,41 @@
         "icon": "font-awesome/fa-camera"
     },
     {
+        "id": "d95291dc.83b0b8",
+        "type": "subflow",
+        "name": "Python Startup",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 160,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "afa9f4b.2e77988"
+                    },
+                    {
+                        "id": "35ea3cf0.a398ac"
+                    },
+                    {
+                        "id": "a776b9fc.d542e8"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
         "id": "779606c9.19d2b8",
         "type": "ui_group",
         "z": "",
         "name": "Monitor RPi",
-        "tab": "d10d9d99.00f4b8",
+        "tab": "a3de84cd.c01b6",
         "order": 13,
         "disp": true,
-        "width": 24,
+        "width": "24",
         "collapse": false
     },
     {
@@ -481,7 +488,7 @@
         "z": "",
         "name": "Acquisition actuation",
         "tab": "d10d9d99.00f4b8",
-        "order": 10,
+        "order": 11,
         "disp": true,
         "width": 24,
         "collapse": false
@@ -492,7 +499,7 @@
         "z": "",
         "name": "Acquisition inputs",
         "tab": "d10d9d99.00f4b8",
-        "order": 9,
+        "order": 10,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -503,32 +510,10 @@
         "z": "",
         "name": "Process metadata",
         "tab": "d10d9d99.00f4b8",
-        "order": 8,
+        "order": 9,
         "disp": true,
         "width": 24,
         "collapse": false
-    },
-    {
-        "id": "9a69f0bc.60dcd",
-        "type": "mqtt-broker",
-        "z": "",
-        "name": "",
-        "broker": "127.0.0.1",
-        "port": "1883",
-        "clientid": "test",
-        "usetls": false,
-        "compatmode": false,
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": ""
     },
     {
         "id": "6d1af0ab.7b4a18",
@@ -536,7 +521,7 @@
         "z": "",
         "name": "MQTT Plots",
         "tab": "d10d9d99.00f4b8",
-        "order": 12,
+        "order": 14,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -550,7 +535,7 @@
         "order": 2,
         "disp": true,
         "width": "24",
-        "collapse": false
+        "collapse": true
     },
     {
         "id": "4361c3b6.e2b7a4",
@@ -561,7 +546,7 @@
         "order": 3,
         "disp": true,
         "width": "24",
-        "collapse": false
+        "collapse": true
     },
     {
         "id": "34f03c4a.abdf94",
@@ -569,7 +554,7 @@
         "z": "",
         "name": "Pump actuation",
         "tab": "d10d9d99.00f4b8",
-        "order": 7,
+        "order": 8,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -580,7 +565,7 @@
         "z": "",
         "name": "Focus actuation",
         "tab": "d10d9d99.00f4b8",
-        "order": 6,
+        "order": 7,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -611,7 +596,7 @@
         "id": "71c63dd4.311c44",
         "type": "ui_group",
         "z": "",
-        "name": "General samples metadata",
+        "name": "Sample Metadata",
         "tab": "d10d9d99.00f4b8",
         "order": 1,
         "disp": true,
@@ -634,7 +619,7 @@
         "z": "",
         "name": "Streaming camera",
         "tab": "d10d9d99.00f4b8",
-        "order": 4,
+        "order": 5,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -718,9 +703,9 @@
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "PlanktoScope Dashboard",
             "hideToolbar": "false",
-            "allowSwipe": "false",
+            "allowSwipe": "true",
             "lockMenu": "false",
             "allowTempTheme": "true",
             "dateFormat": "DD/MM/YYYY",
@@ -735,15 +720,6 @@
                 "py": 0
             }
         }
-    },
-    {
-        "id": "488f4f9a.e0651",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "ab1d06d6.bf9898",
-        "order": 7,
-        "width": 6,
-        "height": 1
     },
     {
         "id": "a3de84cd.c01b6",
@@ -763,26 +739,8 @@
         "tab": "a3de84cd.c01b6",
         "order": 1,
         "disp": true,
-        "width": 11,
+        "width": 13,
         "collapse": false
-    },
-    {
-        "id": "79482db5.1401ec",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "adcd0ef7.81a7f8",
-        "order": 2,
-        "width": 11,
-        "height": 1
-    },
-    {
-        "id": "3b4814af.e30e54",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "adcd0ef7.81a7f8",
-        "order": 4,
-        "width": 5,
-        "height": 1
     },
     {
         "id": "566dcd6a.03db74",
@@ -790,7 +748,7 @@
         "z": "",
         "name": "Segmentation control",
         "tab": "d10d9d99.00f4b8",
-        "order": 11,
+        "order": 12,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -801,10 +759,68 @@
         "z": "",
         "name": "Camera settings",
         "tab": "d10d9d99.00f4b8",
-        "order": 5,
+        "order": 6,
+        "disp": true,
+        "width": "24",
+        "collapse": true
+    },
+    {
+        "id": "f1dc35d9.99b9f8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "adcd0ef7.81a7f8",
+        "order": 2,
+        "width": 13,
+        "height": 1
+    },
+    {
+        "id": "248136a7.29b74a",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "adcd0ef7.81a7f8",
+        "order": 4,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "7b7849e8.363288",
+        "type": "ui_group",
+        "z": "1a447be0.198674",
+        "name": "GPS",
+        "tab": "d10d9d99.00f4b8",
+        "order": 4,
         "disp": true,
         "width": "24",
         "collapse": false
+    },
+    {
+        "id": "91acd434.6205",
+        "type": "ui_group",
+        "z": "bee3b478.ef4b88",
+        "name": "Status",
+        "tab": "d10d9d99.00f4b8",
+        "order": 13,
+        "disp": true,
+        "width": "24",
+        "collapse": true
+    },
+    {
+        "id": "4e3f24b.177a7dc",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "de7c8e82.7faa98",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "4bb924fe.fc097c",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "de7c8e82.7faa98",
+        "order": 9,
+        "width": 10,
+        "height": 1
     },
     {
         "id": "98b8d88c.dc5d",
@@ -1033,7 +1049,7 @@
             },
             {
                 "t": "lte",
-                "v": "40",
+                "v": "35",
                 "vt": "num"
             }
         ],
@@ -1420,7 +1436,7 @@
         "z": "130e0533.4f1813",
         "name": "",
         "group": "75a5ce1f.728d",
-        "order": 2,
+        "order": 1,
         "width": 16,
         "height": 1,
         "passthru": false,
@@ -1436,7 +1452,8 @@
         "y": 100,
         "wires": [
             [
-                "c9f510c0.7d1328"
+                "52ea7d01.711034",
+                "40c12463.a1f84c"
             ]
         ]
     },
@@ -1445,12 +1462,12 @@
         "type": "function",
         "z": "130e0533.4f1813",
         "name": "image.js",
-        "func": "state = global.get(\"state\");\nglobal.set('img_counter',0);\nglobal.set('obj_counter',0);\nif (state === null){state=\"free\"}\n\nvar sleep_before= global.get(\"custom_sleep_before\");\nvar nb_step= global.get(\"custom_nb_step\");\nvar nb_frame= global.get(\"custom_nb_frame\");\n\nif (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Duration before the acquisition\";\n    \n}else if (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of step in between two frames\";\n    \n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    \n}else {\n    nb_frame=nb_frame-1;\n    msg.payload={\"action\":\"image\", \n                    \"sleep\":sleep_before,\n                    \"volume\":nb_step,\n                    \"nb_frame\":nb_frame,\n                }\n}\n\nreturn msg;",
+        "func": "state = global.get(\"state\");\nglobal.set('img_counter',0);\nglobal.set('obj_counter',0);\nif (state === null){state=\"free\"}\n\nvar sleep_before= global.get(\"custom_sleep_before\");\nvar nb_step= global.get(\"custom_nb_step\");\nvar nb_frame= global.get(\"custom_nb_frame\");\n\nif (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Duration before the acquisition\";\n    \n}else if (nb_step === undefined || nb_step === \"\" || nb_step === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of step in between two frames\";\n    \n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    \n}else {\n    msg.payload={\"action\":\"image\", \n                    \"sleep\":sleep_before,\n                    \"volume\":nb_step,\n                    \"nb_frame\":nb_frame,\n                }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 380,
+        "x": 560,
         "y": 100,
         "wires": [
             [
@@ -1481,7 +1498,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 510,
+        "x": 710,
         "y": 100,
         "wires": [
             [
@@ -1506,8 +1523,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 690,
-        "y": 120,
+        "x": 870,
+        "y": 140,
         "wires": [
             []
         ]
@@ -1521,8 +1538,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 670,
-        "y": 80,
+        "x": 850,
+        "y": 60,
         "wires": []
     },
     {
@@ -1531,7 +1548,7 @@
         "z": "130e0533.4f1813",
         "name": "Stop Acquisition",
         "group": "75a5ce1f.728d",
-        "order": 1,
+        "order": 2,
         "width": 8,
         "height": 1,
         "passthru": true,
@@ -1565,67 +1582,12 @@
         "wires": []
     },
     {
-        "id": "9998aa86.74bb",
-        "type": "exec",
-        "z": "d95291dc.83b0b8",
-        "command": "python3 /home/pi/PlanktonScope/scripts/main.py",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 840,
-        "y": 140,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "35ded403.3d7244",
-        "type": "template",
-        "z": "d95291dc.83b0b8",
-        "name": "main.py",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "python",
-        "syntax": "plain",
-        "template": "#Library to send command over I2C for the light module on the fan and subprocess to run bash command\nimport smbus, subprocess\n################################################################################\n#LEDs Actuation\n################################################################################\n\n#define the bus used to actuate the light module on the fan\nbus = smbus.SMBus(1)\n\ndef rgb(R,G,B):\n    #Update LED n1\n    bus.write_byte_data(0x0d, 0x00, 0)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update LED n2\n    bus.write_byte_data(0x0d, 0x00, 1)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update LED n3\n    bus.write_byte_data(0x0d, 0x00, 2)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update the I2C Bus in order to really update the LEDs new values\n    cmd=\"i2cdetect -y 1\"\n    subprocess.Popen(cmd.split(),stdout=subprocess.PIPE)\n    \n#Present the RED color\nrgb(255,0,0)\n\n################################################################################\n#Actuator Libraries\n################################################################################\n\n#Library for exchaning messages with Node-RED\nimport paho.mqtt.client as mqtt\n\n#Library to control the PiCamera\nfrom picamera import PiCamera\n\n#Libraries to control the steppers for focusing and pumping\nfrom adafruit_motor import stepper\nfrom adafruit_motorkit import MotorKit\n\n################################################################################\n#Practical Libraries\n################################################################################\n\n#Library to get date and time for folder name and filename\nfrom datetime import datetime, timedelta\n\n#Library to be able to sleep for a duration\nfrom time import sleep\n\n#Libraries manipulate json format, execute bash commands\nimport json, shutil, os\n\n################################################################################\n#Morphocut Libraries\n################################################################################\n\nfrom skimage.util import img_as_ubyte\nfrom morphocut import Call\nfrom morphocut.contrib.ecotaxa import EcotaxaWriter\nfrom morphocut.contrib.zooprocess import CalculateZooProcessFeatures\nfrom morphocut.core import Pipeline\nfrom morphocut.file import Find\nfrom morphocut.image import (ExtractROI,\n    FindRegions,\n    ImageReader,\n    ImageWriter,\n    RescaleIntensity,\n    RGB2Gray\n)\nfrom morphocut.stat import RunningMedian\nfrom morphocut.str import Format\nfrom morphocut.stream import TQDM, Enumerate, FilterVariables\n\n################################################################################\n#Other image processing Libraries\n################################################################################\n\nfrom skimage.feature import canny\nfrom skimage.color import rgb2gray, label2rgb\nfrom skimage.morphology import disk\nfrom skimage.morphology import erosion, dilation, closing\nfrom skimage.measure import label, regionprops\nimport cv2\n\n################################################################################\n#Streaming PiCamera over server\n################################################################################\nimport io\nimport picamera\nimport logging\nimport socketserver\nfrom threading import Condition\nfrom http import server\nimport threading\n\n################################################################################\n#Get possibility to generate random numbers\n################################################################################\n# generate random integer values\nfrom random import seed\nfrom random import randint\n\n\n\n################################################################################\n#Creation of the webpage containing the PiCamera Streaming\n################################################################################\n\nPAGE=\"\"\"\\\n<html>\n<head>\n<title>PlanktonScope v2 | PiCamera Streaming</title>\n</head>\n<body>\n<img src=\"stream.mjpg\" width=\"1280\" height=\"960\" />\n</body>\n</html>\n\"\"\"\n\n################################################################################\n#Classes for the PiCamera Streaming\n################################################################################\n\nclass StreamingOutput(object):\n    def __init__(self):\n        self.frame = None\n        self.buffer = io.BytesIO()\n        self.condition = Condition()\n\n    def write(self, buf):\n        if buf.startswith(b'\\xff\\xd8'):\n            # New frame, copy the existing buffer's content and notify all\n            # clients it's available\n            self.buffer.truncate()\n            with self.condition:\n                self.frame = self.buffer.getvalue()\n                self.condition.notify_all()\n            self.buffer.seek(0)\n        return self.buffer.write(buf)\n\nclass StreamingHandler(server.BaseHTTPRequestHandler):\n    def do_GET(self):\n        if self.path == '/':\n            self.send_response(301)\n            self.send_header('Location', '/index.html')\n            self.end_headers()\n        elif self.path == '/index.html':\n            content = PAGE.encode('utf-8')\n            self.send_response(200)\n            self.send_header('Content-Type', 'text/html')\n            self.send_header('Content-Length', len(content))\n            self.end_headers()\n            self.wfile.write(content)\n        elif self.path == '/stream.mjpg':\n            self.send_response(200)\n            self.send_header('Age', 0)\n            self.send_header('Cache-Control', 'no-cache, private')\n            self.send_header('Pragma', 'no-cache')\n            self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=FRAME')\n            self.end_headers()\n            try:\n                while True:\n                    with output.condition:\n                        output.condition.wait()\n                        frame = output.frame\n                    self.wfile.write(b'--FRAME\\r\\n')\n                    self.send_header('Content-Type', 'image/jpeg')\n                    self.send_header('Content-Length', len(frame))\n                    self.end_headers()\n                    self.wfile.write(frame)\n                    self.wfile.write(b'\\r\\n')\n            except Exception as e:\n                logging.warning(\n                    'Removed streaming client %s: %s',\n                    self.client_address, str(e))\n        else:\n            self.send_error(404)\n            self.end_headers()\n\nclass StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):\n    allow_reuse_address = True\n    daemon_threads = True\n\n################################################################################\n#MQTT core functions\n################################################################################\n\n#Run this function in order to connect to the client (Node-RED)\ndef on_connect(client, userdata, flags, rc):\n    #Print when connected\n    print(\"Connected! - \" + str(rc))\n    #When connected, run subscribe()\n    client.subscribe(\"actuator/#\")\n    #Turn green the light module\n    rgb(0,255,0)\n\n#Run this function in order to subscribe to all the topics begining by actuator\ndef on_subscribe(client, obj, mid, granted_qos):\n    #Print when subscribed\n    print(\"Subscribed! - \"+str(mid)+\" \"+str(granted_qos))\n\n#Run this command when Node-RED is sending a message on the subscribed topic\ndef on_message(client, userdata, msg):\n    #Print the topic and the message\n    print(msg.topic+\" \"+str(msg.qos)+\" \"+str(msg.payload))\n    #Update the global variables command, args and counter\n    global command\n    global args\n    global counter\n    #Parse the topic to find the command. ex : actuator/pump -> pump\n    command=msg.topic.split(\"/\")[1]\n    #Decode the message to find the arguments\n    args=str(msg.payload.decode())\n    #Reset the counter to 0\n    counter=0\n\n################################################################################\n#Init functions\n################################################################################\n\n#define the names for the 2 exsting steppers\nkit = MotorKit()\npump_stepper = kit.stepper1\nfocus_stepper = kit.stepper2\n#Make sure the steppers are release and do not use any power\npump_stepper.release()\nfocus_stepper.release()\n\n#Precise the settings of the PiCamera\ncamera = PiCamera()\ncamera.resolution = (3280, 2464)\ncamera.iso = 60\ncamera.shutter_speed = 500\ncamera.exposure_mode = 'fixedfps'\n\n#Declare the global variables command, args and counter\ncommand = ''\nargs = ''\ncounter=''\n\n#MQTT Client functions definition\nclient = mqtt.Client()\nclient.connect(\"192.168.4.1\",1883,60)\nclient.on_connect = on_connect\nclient.on_subscribe = on_subscribe\nclient.on_message = on_message\nclient.loop_start()\n\n################################################################################\n#Definition of the few important metadata\n################################################################################\n\nlocal_metadata = {\n    \"process_datetime\": datetime.now(),\n    \"acq_camera_resolution\" : camera.resolution,\n    \"acq_camera_iso\" : camera.iso,\n    \"acq_camera_shutter_speed\" : camera.shutter_speed\n}\n\n#Read the content of config.json containing the metadata defined on Node-RED\nconfig_json = open('/home/pi/PlanktonScope/config.json','r')\nnode_red_metadata = json.loads(config_json.read())\n\n#Concat the local metadata and the metadata from Node-RED\nglobal_metadata = {**local_metadata, **node_red_metadata}\n\n#Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa\narchive_fn = os.path.join(\"/home/pi/PlanktonScope/\",\"export\", \"ecotaxa_export.zip\")\n\n################################################################################\n#MorphoCut Script\n################################################################################\n\n#Define processing pipeline\nwith Pipeline() as p:\n\n    #Recursively find .jpg files in import_path.\n    #Sort to get consective frames.\n    abs_path = Find(\"/home/pi/PlanktonScope/tmp\", [\".jpg\"], sort=True, verbose=True)\n\n    #Extract name from abs_path\n    name = Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)\n\n    #Set the LEDs as Green\n    Call(rgb, 0,255,0)\n\n    #Read image\n    img = ImageReader(abs_path)\n\n    #Show progress bar for frames\n    TQDM(Format(\"Frame {name}\", name=name))\n\n    #Apply running median to approximate the background image\n    flat_field = RunningMedian(img, 5)\n\n    #Correct image\n    img = img / flat_field\n\n    #Rescale intensities and convert to uint8 to speed up calculations\n    img = RescaleIntensity(img, in_range=(0, 1.1), dtype=\"uint8\")\n\n    #Publish the json containing all the metadata to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/name\", name)\n\n    #Filter variable to reduce memory load\n    FilterVariables(name,img)\n\n    #Save cleaned images\n    #frame_fn = Format(os.path.join(\"/home/pi/PlanktonScope/tmp\",\"CLEAN\", \"{name}.jpg\"), name=name)\n    #ImageWriter(frame_fn, img)\n\n    #Convert image to uint8 gray\n    img_gray = RGB2Gray(img)\n\n    #?\n    img_gray = Call(img_as_ubyte, img_gray)\n\n    #Canny edge detection using OpenCV\n    img_canny = Call(cv2.Canny, img_gray, 50,100)\n\n    #Dilate using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))\n    img_dilate = Call(cv2.dilate, img_canny, kernel, iterations=2)\n\n    #Close using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5))\n    img_close = Call(cv2.morphologyEx, img_dilate, cv2.MORPH_CLOSE, kernel, iterations=1)\n\n    #Erode using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))\n    mask = Call(cv2.erode, img_close, kernel, iterations=2)\n\n    #Find objects\n    regionprops = FindRegions(\n        mask, img_gray, min_area=1000, padding=10, warn_empty=name\n    )\n\n    #Set the LEDs as Purple\n    Call(rgb, 255,0,255)\n\n    # For an object, extract a vignette/ROI from the image\n    roi_orig = ExtractROI(img, regionprops, bg_color=255)\n\n    # Generate an object identifier\n    i = Enumerate()\n\n    #Call(print,i)\n\n    #Define the ID of each object\n    object_id = Format(\"{name}_{i:d}\", name=name, i=i)\n\n    #Call(print,object_id)\n\n    #Define the name of each object\n    object_fn = Format(os.path.join(\"/home/pi/PlanktonScope/\",\"OBJECTS\", \"{name}.jpg\"), name=object_id)\n\n    #Save the image of the object with its name\n    ImageWriter(object_fn, roi_orig)\n\n    #Calculate features. The calculated features are added to the global_metadata.\n    #Returns a Variable representing a dict for every object in the stream.\n    meta = CalculateZooProcessFeatures(\n        regionprops, prefix=\"object_\", meta=global_metadata\n    )\n\n    #Get all the metadata\n    json_meta = Call(json.dumps,meta, sort_keys=True, default=str)\n\n    #Publish the json containing all the metadata to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/metric\", json_meta)\n\n    #Add object_id to the metadata dictionary\n    meta[\"object_id\"] = object_id\n\n    #Generate object filenames\n    orig_fn = Format(\"{object_id}.jpg\", object_id=object_id)\n\n    #Write objects to an EcoTaxa archive:\n    #roi image in original color, roi image in grayscale, metadata associated with each object\n    EcotaxaWriter(archive_fn, (orig_fn, roi_orig), meta)\n\n    #Progress bar for objects\n    TQDM(Format(\"Object {object_id}\", object_id=object_id))\n\n    #Publish the object_id to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/object_id\", object_id)\n\n    #Set the LEDs as Green\n    Call(rgb, 0,255,0)\n\n################################################################################\n#While loop for capting commands from Node-RED\n################################################################################\n\noutput = StreamingOutput()\naddress = ('192.168.4.1', 8000)\nserver = StreamingServer(address, StreamingHandler)\nthreading.Thread(target=server.serve_forever).start()\ncamera.start_recording(output, format='mjpeg', resize=(640, 480))\n\nwhile True:\n\n    ############################################################################\n    #Pump Event\n    ############################################################################\n\n    #If the command is \"pump\"\n    if (command==\"pump\"):\n\n        #Set the LEDs as Blue\n        rgb(0,0,255)\n\n        #Get direction from the different received arguments\n        direction=args.split(\" \")[0]\n\n        #Get delay (in between steps) from the different received arguments\n        delay=float(args.split(\" \")[1])\n\n        #Get number of steps from the different received arguments\n        nb_step=int(args.split(\" \")[2])\n\n        #Print status\n        print(\"The pump has been started.\")\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/pump\", delay);\n\n        ########################################################################\n        while True:\n\n            #Depending on direction, select the right direction for the pump\n            if direction == \"BACKWARD\":\n                direction=stepper.BACKWARD\n\n            if direction == \"FORWARD\":\n                direction=stepper.FORWARD\n\n            #Actuate the pump for one step in the right direction\n            pump_stepper.onestep(direction=direction, style=stepper.DOUBLE)\n\n            #Increment the counter\n            counter+=1\n\n            #Wait during the delay to pump at the right flowrate\n            sleep(delay)\n\n            ####################################################################\n            #If counter reach the number of step, break\n            if counter>nb_step:\n\n                #Release the pump stepper to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The pumping is done.\")\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/pump\", \"Done\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"pump\", break this while loop\n            if command!=\"pump\":\n\n                #Release the pump stepper to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The pump has been interrompted.\")\n\n                #Publish the status \"Interrompted\" to via MQTT to Node-RED\n                client.publish(\"receiver/pump\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    ############################################################################\n    #Focus Event\n    ############################################################################\n\n    #If the command is \"focus\"\n    elif (command==\"focus\"):\n\n        #Set the LEDs as Yellow\n        rgb(255,255,0)\n\n        #Get direction from the different received arguments\n        direction=args.split(\" \")[0]\n\n        #Get number of steps from the different received arguments\n        nb_step=int(args.split(\" \")[1])\n\n        #Print status\n        print(\"The focus has been started.\")\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/focus\", \"Start\");\n\n        ########################################################################\n        while True:\n\n            #Depending on direction, select the right direction for the focus\n            if direction == \"FORWARD\":\n                direction=stepper.FORWARD\n\n            if direction == \"BACKWARD\":\n                direction=stepper.BACKWARD\n\n            #Actuate the focus for one microstep in the right direction\n            focus_stepper.onestep(direction=direction, style=stepper.MICROSTEP)\n\n            #Increment the counter\n            counter+=1\n\n            ####################################################################\n            #If counter reach the number of step, break\n            if counter>nb_step:\n\n                #Release the focus steppers to stop power draw\n                focus_stepper.release()\n\n                #Print status\n                print(\"The focusing is done.\")\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/focus\", \"Done\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"pump\", break this while loop\n            if command!=\"focus\":\n\n                #Release the focus steppers to stop power draw\n                focus_stepper.release()\n\n                #Print status\n                print(\"The stage has been interrompted.\")\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/focus\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    ############################################################################\n    #Image Event\n    ############################################################################\n\n    elif (command==\"image\"):\n\n        #Get duration to wait before an image from the different received arguments\n        sleep_before=int(args.split(\" \")[0])\n\n        #Get number of step in between two images from the different received arguments\n        nb_step=int(args.split(\" \")[1])\n\n        #Get the number of frames to image from the different received arguments\n        nb_frame=int(args.split(\" \")[2])\n\n        #Sleep a duration before to start acquisition\n        sleep(sleep_before)\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/image\", \"Start\");\n\n        #Set the LEDs as Blue\n        rgb(0,0,255)\n\n        #Pump duing a given number of steps (in between each image)\n        for i in range(nb_step):\n\n            #If the command is still image - pump a defined nb of steps\n            if (command==\"image\"):\n\n                #Actuate the pump for one step in the FORWARD direction\n                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)\n\n                #The flowrate is fixed for now.\n                sleep(0.01)\n\n            #If the command isn't image anymore - break\n            else:\n\n                break\n\n\n        #Set the LEDs as Green\n        rgb(0,255,0)\n\n        while True:\n            #Release the pump stepper to stop power draw\n            pump_stepper.release()\n\n            #Set the LEDs as Cyan\n            rgb(0,255,255)\n\n            #Increment the counter\n            counter+=1\n\n            #Get datetime\n            datetime_tmp=datetime.now().strftime(\"%H_%M_%S_%f\")\n\n            #Print datetime\n            print(datetime_tmp)\n\n            #Define the filename of the image\n            filename = os.path.join(\"/home/pi/PlanktonScope/tmp\",datetime_tmp+\".jpg\")\n\n            #Capture an image with the proper filename\n            camera.capture(filename)\n\n            #Set the LEDs as Green\n            rgb(0,255,0)\n\n            #Publish the name of the image to via MQTT to Node-RED\n\n            client.publish(\"receiver/image\", datetime_tmp+\".jpg has been imaged.\");\n            \n            #Set the LEDs as Blue\n            rgb(0,0,255)\n\n            #Pump during a given nb of steps\n            for i in range(nb_step):\n\n                #Actuate the pump for one step in the FORWARD direction\n                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)\n\n                #The flowrate is fixed for now.\n                sleep(0.01)\n\n            #Wait a fixed delay which set the framerate as < than 2 imag/sec\n            sleep(0.5)\n\n            #Set the LEDs as Green\n            rgb(0,255,0)\n\n            ####################################################################\n            #If counter reach the number of frame, break\n            if(counter>nb_frame):\n\n                #Publish the status \"Completed\" to via MQTT to Node-RED\n                client.publish(\"receiver/image\", \"Completed\");\n\n                #Release the pump steppers to stop power draw\n                pump_stepper.release()\n\n                #Publish the status \"Start\" to via MQTT to Node-RED\n                client.publish(\"receiver/segmentation\", \"Start\");\n\n                #Start the MorphoCut Pipeline\n                p.run()\n\n                #remove directory\n                #shutil.rmtree(import_path)\n\n                #Publish the status \"Completed\" to via MQTT to Node-RED\n                client.publish(\"receiver/segmentation\", \"Completed\");\n\n                #Set the LEDs as White\n                rgb(255,255,255)\n\n                sample_project=node_red_metadata['sample_project'];\n                \n                acq_id=node_red_metadata['acq_id'];\n                \n                export_name = str(sample_project)+\"_\"+str(acq_id)+\".zip\"\n                \n                \n                os.popen(\"mv /home/pi/PlanktonScope/export/ecotaxa_export.zip /home/pi/PlanktonScope/export/\"+export_name)\n                \n                os.popen(\"rm -rf /home/pi/PlanktonScope/tmp/*.jpg\")\n                \n                os.popen(\"rm -rf /home/pi/PlanktonScope/OBJECTS/*.jpg\")\n                \n\n                #Let it happen\n                sleep(1)\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n                    \n                #Set the LEDs as Green\n                rgb(0,255,255)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"image\", break this while loop\n            if command!=\"image\":\n\n                #Release the pump steppers to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The imaging has been interrompted.\")\n\n                #Publish the status \"Interrompted\" to via MQTT to Node-RED\n                client.publish(\"receiver/image\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    else:\n        #Its just waiting to receive command from Node-RED\n        sleep(0.4)\n",
-        "output": "str",
-        "x": 560,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "672d89a8.4e6968",
-        "type": "exec",
-        "z": "d95291dc.83b0b8",
-        "command": "killall python3",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 730,
-        "y": 40,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
         "id": "d3caa802.6f22d8",
         "type": "ui_text_input",
         "z": "1bc3f9f9.1ee996",
         "name": "custom_nb_step",
-        "label": "Number of steps in between two images",
-        "tooltip": "",
+        "label": "Volume in mL between two images",
+        "tooltip": "TODO This should be in mm ?",
         "group": "758f41b8.1680c8",
         "order": 2,
         "width": 0,
@@ -1669,6 +1631,8 @@
         "func": "msg.payload = msg.payload.custom_nb_step;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 220,
         "y": 80,
         "wires": [
@@ -1780,7 +1744,8 @@
         "y": 300,
         "wires": [
             [
-                "2aa5b118.d75f2e"
+                "2aa5b118.d75f2e",
+                "f6fd015e.5c1fe"
             ]
         ]
     },
@@ -1820,16 +1785,20 @@
         "y": 300,
         "wires": [
             [
-                "117aad13.53e11b"
+                "117aad13.53e11b",
+                "d700c8a1.2d1f48"
             ],
             [
-                "117aad13.53e11b"
+                "117aad13.53e11b",
+                "dc72e121.0aacd"
             ],
             [
-                "af9a1d81.c21fa8"
+                "af9a1d81.c21fa8",
+                "5a159d39.3bdca4"
             ],
             [
-                "30a9de16.d55cda"
+                "30a9de16.d55cda",
+                "89058790.909e7"
             ]
         ]
     },
@@ -1845,16 +1814,16 @@
                 "t": "else"
             },
             {
-                "t": "cont",
-                "v": "jpg",
-                "vt": "str"
+                "t": "jsonata_exp",
+                "v": "$contains(msg.payload.status, \"jpg\")\t",
+                "vt": "jsonata"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 580,
-        "y": 320,
+        "x": 640,
+        "y": 340,
         "wires": [
             [
                 "117aad13.53e11b"
@@ -1872,8 +1841,10 @@
         "func": "img_counter=global.get('img_counter')\nimg_counter=img_counter+1\nglobal.set('img_counter',img_counter)\nmsg.payload = img_counter\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 860,
-        "y": 360,
+        "initialize": "",
+        "finalize": "",
+        "x": 900,
+        "y": 400,
         "wires": [
             [
                 "abd84e73.aefc9"
@@ -1905,7 +1876,7 @@
         "order": 1,
         "width": 24,
         "height": 2,
-        "label": "img_counter",
+        "label": "image counter",
         "chartType": "horizontalBar",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -1919,6 +1890,7 @@
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -1932,8 +1904,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1070,
-        "y": 360,
+        "x": 1370,
+        "y": 400,
         "wires": [
             []
         ]
@@ -1970,7 +1942,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 570,
+        "x": 630,
         "y": 480,
         "wires": [
             [
@@ -2023,7 +1995,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1070,
+        "x": 1370,
         "y": 500,
         "wires": [
             []
@@ -2037,11 +2009,14 @@
         "func": "msg.payload=msg.payload.object_area\nmsg.topic=\"area\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 960,
+        "initialize": "",
+        "finalize": "",
+        "x": 1000,
         "y": 540,
         "wires": [
             [
-                "6f64625f.243fd4"
+                "6f64625f.243fd4",
+                "f6fd015e.5c1fe"
             ]
         ]
     },
@@ -2053,7 +2028,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 830,
+        "x": 870,
         "y": 540,
         "wires": [
             [
@@ -2075,7 +2050,7 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1380,
+        "x": 1390,
         "y": 280,
         "wires": []
     },
@@ -2102,6 +2077,7 @@
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -2115,7 +2091,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1100,
+        "x": 1370,
         "y": 540,
         "wires": [
             []
@@ -2134,7 +2110,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 910,
+        "x": 920,
         "y": 460,
         "wires": []
     },
@@ -2145,7 +2121,7 @@
         "name": "",
         "group": "adcd0ef7.81a7f8",
         "order": 3,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "Reboot",
@@ -2153,7 +2129,7 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "off",
+        "payload": "reboot",
         "payloadType": "str",
         "topic": "reboot",
         "x": 240,
@@ -2170,7 +2146,7 @@
         "z": "9c3e6ad4.7471a8",
         "command": "sudo",
         "addpay": true,
-        "append": "",
+        "append": "now",
         "useSpawn": "false",
         "timer": "2",
         "oldrc": false,
@@ -2190,7 +2166,7 @@
         "name": "",
         "group": "adcd0ef7.81a7f8",
         "order": 5,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "Shutdown",
@@ -2198,11 +2174,11 @@
         "color": "",
         "bgcolor": "#AD1625",
         "icon": "",
-        "payload": "off",
+        "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
-        "x": 240,
-        "y": 140,
+        "x": 230,
+        "y": 160,
         "wires": [
             [
                 "677f762b.43c648"
@@ -2214,10 +2190,10 @@
         "type": "python3-function",
         "z": "9c3e6ad4.7471a8",
         "name": "action",
-        "func": "#!/usr/bin/python\nimport smbus\nimport time\nbus = smbus.SMBus(1)\ntime.sleep(1)\n#turn off fan RGB\nbus.write_byte_data(0x0d, 0x07, 0x00)\nbus.write_byte_data(0x0d, 0x07, 0x00)\n\nmsg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
+        "func": "#!/usr/bin/python\nimport smbus\nimport time\nbus = smbus.SMBus(1)\ntime.sleep(1)\n#turn off fan RGB\nbus.write_byte_data(0x0d, 0x07, 0x00)\nbus.write_byte_data(0x0d, 0x07, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
         "outputs": 1,
         "x": 390,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "50d1becd.7b5f",
@@ -2237,7 +2213,7 @@
         "oldrc": false,
         "name": "i2c update",
         "x": 550,
-        "y": 140,
+        "y": 160,
         "wires": [
             [],
             [],
@@ -2352,7 +2328,7 @@
         "type": "ui_worldmap",
         "z": "1a447be0.198674",
         "d": true,
-        "group": "ab1d06d6.bf9898",
+        "group": "7b7849e8.363288",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -3027,7 +3003,7 @@
         "mode": "number",
         "delay": 300,
         "topic": "pump_manual_volume",
-        "x": 480,
+        "x": 510,
         "y": 80,
         "wires": [
             []
@@ -3063,10 +3039,10 @@
         "passthru": true,
         "outs": "end",
         "topic": "pump_flowrate",
-        "min": 0,
-        "max": "20",
+        "min": "0.1",
+        "max": "10",
         "step": "0.1",
-        "x": 500,
+        "x": 480,
         "y": 40,
         "wires": [
             []
@@ -3096,7 +3072,7 @@
         "label": "Distance in µm",
         "tooltip": "This will be rounded to the nearest 25µm",
         "group": "de7c8e82.7faa98",
-        "order": 2,
+        "order": 8,
         "width": 8,
         "height": 1,
         "passthru": true,
@@ -3125,7 +3101,8 @@
         "y": 40,
         "wires": [
             [
-                "f49b3397.2599f8"
+                "f49b3397.2599f8",
+                "d9930546.489a58"
             ]
         ]
     },
@@ -3135,8 +3112,8 @@
         "z": "a0f9bde.423644",
         "name": "DOWN",
         "group": "de7c8e82.7faa98",
-        "order": 3,
-        "width": 6,
+        "order": 4,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "label": "",
@@ -3161,8 +3138,8 @@
         "z": "a0f9bde.423644",
         "name": "UP",
         "group": "de7c8e82.7faa98",
-        "order": 1,
-        "width": 6,
+        "order": 2,
+        "width": 3,
         "height": 1,
         "passthru": false,
         "label": "",
@@ -3258,7 +3235,7 @@
         "z": "a0f9bde.423644",
         "name": "stop focus",
         "group": "de7c8e82.7faa98",
-        "order": 4,
+        "order": 6,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -3461,7 +3438,7 @@
         "func": "msg.payload = msg.payload.sample_ship;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 240,
+        "x": 250,
         "y": 160,
         "wires": [
             [
@@ -3522,17 +3499,17 @@
         "type": "ui_template",
         "z": "81483277.2521e",
         "group": "71c63dd4.311c44",
-        "name": "",
+        "name": "Information message",
         "order": 1,
         "width": 24,
-        "height": 2,
-        "format": "<div ng-bind-html=\"msg.payload\">Fill the different inputs concerning the sample you want to image.</div>",
+        "height": "1",
+        "format": "<div layout=\"row\">Fill the different inputs concerning the sample you want to image.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
         "x": 420,
-        "y": 320,
+        "y": 40,
         "wires": [
             []
         ]
@@ -3565,7 +3542,7 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1760,
+        "x": 1710,
         "y": 220,
         "wires": [
             []
@@ -3579,7 +3556,7 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 1510,
+        "x": 1460,
         "y": 220,
         "wires": [
             [
@@ -3597,7 +3574,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 360,
+        "x": 370,
         "y": 80,
         "wires": [
             [
@@ -3681,13 +3658,13 @@
         "id": "9f81fc0f.814988",
         "type": "rpi-gpio out",
         "z": "e8d4d920.35344",
-        "name": "",
+        "name": "LED OUTPUT",
         "pin": "40",
         "set": true,
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 440,
+        "x": 540,
         "y": 180,
         "wires": []
     },
@@ -3776,7 +3753,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 920,
+        "x": 930,
         "y": 220,
         "wires": [
             [
@@ -3837,22 +3814,12 @@
         "icon": "node-red-dashboard/ui_switch.png"
     },
     {
-        "id": "172d187b.ad216",
-        "type": "subflow:d95291dc.83b0b8",
-        "z": "e8d4d920.35344",
-        "name": "",
-        "env": [],
-        "x": 300,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "590670c8.5b17c",
         "type": "subflow:130e0533.4f1813",
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 930,
+        "x": 940,
         "y": 580,
         "wires": []
     },
@@ -3872,7 +3839,7 @@
         "z": "e8d4d920.35344",
         "name": "Edit config.json on changes",
         "info": "",
-        "x": 1300,
+        "x": 1320,
         "y": 40,
         "wires": []
     },
@@ -3892,7 +3859,7 @@
         "z": "e8d4d920.35344",
         "name": "Create and run python code receiving MQTT queries",
         "info": "",
-        "x": 410,
+        "x": 420,
         "y": 240,
         "wires": []
     },
@@ -3912,7 +3879,7 @@
         "z": "e8d4d920.35344",
         "name": "Get metadata from config.json",
         "info": "",
-        "x": 340,
+        "x": 350,
         "y": 40,
         "wires": []
     },
@@ -3920,9 +3887,9 @@
         "id": "5d22882.f86d2f8",
         "type": "comment",
         "z": "e8d4d920.35344",
-        "name": "Turn on the white LED",
+        "name": "White LED control",
         "info": "",
-        "x": 320,
+        "x": 310,
         "y": 140,
         "wires": []
     },
@@ -3984,9 +3951,9 @@
         "label": "LED",
         "tooltip": "",
         "group": "59434d8d.70ed94",
-        "order": 7,
-        "width": "0",
-        "height": "0",
+        "order": 2,
+        "width": 0,
+        "height": 0,
         "passthru": true,
         "decouple": "false",
         "topic": "",
@@ -3999,7 +3966,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 270,
+        "x": 390,
         "y": 180,
         "wires": [
             [
@@ -4016,7 +3983,7 @@
             "cb77803f.357f88"
         ],
         "x": 110,
-        "y": 400,
+        "y": 560,
         "wires": [
             [
                 "a30fe92c.6b73e8"
@@ -4027,24 +3994,24 @@
         "id": "a30fe92c.6b73e8",
         "type": "ui_text",
         "z": "1a447be0.198674",
-        "group": "ab1d06d6.bf9898",
-        "order": 4,
+        "group": "7b7849e8.363288",
+        "order": 2,
         "width": 6,
         "height": 1,
         "name": "GPS Status Display",
         "label": "GPS Status:",
         "format": "{{msg.status.text}}",
         "layout": "row-left",
-        "x": 610,
-        "y": 400,
+        "x": 600,
+        "y": 560,
         "wires": []
     },
     {
         "id": "ec0d715e.19fdd",
         "type": "ui_text",
         "z": "1a447be0.198674",
-        "group": "ab1d06d6.bf9898",
-        "order": 5,
+        "group": "7b7849e8.363288",
+        "order": 3,
         "width": 6,
         "height": 1,
         "name": "Latitude",
@@ -4052,15 +4019,15 @@
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
         "layout": "row-left",
         "x": 640,
-        "y": 300,
+        "y": 340,
         "wires": []
     },
     {
         "id": "f8c5f7ef.e93908",
         "type": "ui_text",
         "z": "1a447be0.198674",
-        "group": "ab1d06d6.bf9898",
-        "order": 6,
+        "group": "7b7849e8.363288",
+        "order": 4,
         "width": 6,
         "height": 1,
         "name": "Longitude",
@@ -4068,7 +4035,7 @@
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
         "layout": "row-right",
         "x": 640,
-        "y": 340,
+        "y": 380,
         "wires": []
     },
     {
@@ -4082,7 +4049,7 @@
         "initialize": "",
         "finalize": "",
         "x": 350,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "ec0d715e.19fdd",
@@ -4094,6 +4061,7 @@
         "id": "74554b33.14ab6c",
         "type": "file",
         "z": "1a447be0.198674",
+        "d": true,
         "name": "gpsd_output",
         "filename": "/home/pi/gpsd.json",
         "appendNewline": true,
@@ -4124,56 +4092,6 @@
         ]
     },
     {
-        "id": "afa9f4b.2e77988",
-        "type": "delay",
-        "z": "d95291dc.83b0b8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 460,
-        "y": 140,
-        "wires": [
-            [
-                "9998aa86.74bb"
-            ]
-        ]
-    },
-    {
-        "id": "1df370a8.6c70ff",
-        "type": "ui_button",
-        "z": "d95291dc.83b0b8",
-        "name": "Restart Python",
-        "group": "adcd0ef7.81a7f8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Restart Python",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "#AD1625",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 100,
-        "y": 140,
-        "wires": [
-            [
-                "afa9f4b.2e77988",
-                "672d89a8.4e6968"
-            ]
-        ]
-    },
-    {
         "id": "2aa5b118.d75f2e",
         "type": "json",
         "z": "bee3b478.ef4b88",
@@ -4200,7 +4118,7 @@
         "syntax": "mustache",
         "template": "The {{topic}} is {{payload.status}}",
         "output": "str",
-        "x": 1120,
+        "x": 1170,
         "y": 280,
         "wires": [
             [
@@ -4229,7 +4147,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 890,
+        "x": 930,
         "y": 280,
         "wires": [
             [
@@ -4243,9 +4161,9 @@
         "z": "4b508eab.dccae8",
         "name": "Start segmentation",
         "group": "566dcd6a.03db74",
-        "order": 2,
-        "width": "16",
-        "height": "1",
+        "order": 1,
+        "width": 16,
+        "height": 1,
         "passthru": false,
         "label": "Start segmentation",
         "tooltip": "",
@@ -4269,9 +4187,9 @@
         "z": "4b508eab.dccae8",
         "name": "Stop segmentation",
         "group": "566dcd6a.03db74",
-        "order": 1,
-        "width": "8",
-        "height": "1",
+        "order": 2,
+        "width": 8,
+        "height": 1,
         "passthru": true,
         "label": "Stop segmentation",
         "tooltip": "",
@@ -4308,7 +4226,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 930,
+        "x": 940,
         "y": 720,
         "wires": []
     },
@@ -4321,63 +4239,6 @@
         "x": 910,
         "y": 680,
         "wires": []
-    },
-    {
-        "id": "cd84b9db.02778",
-        "type": "mqtt out",
-        "z": "e8d4d920.35344",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 1310,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "3b040a6c.6b3dbe",
-        "type": "function",
-        "z": "e8d4d920.35344",
-        "name": "Encapsulate config",
-        "func": "msg.payload = {\n    \"action\":\"update_config\", \n    \"config\":{\n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_nb_step\":global.get(\"focus_nb_step\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n    }\n};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1130,
-        "y": 920,
-        "wires": [
-            [
-                "cd84b9db.02778"
-            ]
-        ]
-    },
-    {
-        "id": "eb27a17a.6a8e",
-        "type": "ui_button",
-        "z": "e8d4d920.35344",
-        "name": "",
-        "group": "71c63dd4.311c44",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Update config",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 920,
-        "y": 920,
-        "wires": [
-            [
-                "3b040a6c.6b3dbe"
-            ]
-        ]
     },
     {
         "id": "16aa0238.209276",
@@ -4414,7 +4275,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
+        "x": 460,
         "y": 100,
         "wires": [
             [
@@ -4433,7 +4294,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 680,
+        "x": 660,
         "y": 100,
         "wires": [
             [
@@ -4447,7 +4308,7 @@
         "z": "674362b7.9b6574",
         "name": "Shutter speed slider",
         "label": "Shutter Speed",
-        "tooltip": "In microseconds, up to 5000µs, 500µs by default",
+        "tooltip": "In microseconds, up to 5000µs, 10µs by default",
         "group": "e8b67968.dea6",
         "order": 2,
         "width": 0,
@@ -4476,7 +4337,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 680,
+        "x": 660,
         "y": 220,
         "wires": [
             [
@@ -4493,7 +4354,7 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1020,
+        "x": 950,
         "y": 160,
         "wires": []
     },
@@ -4512,9 +4373,9 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "500",
+        "payload": "10",
         "payloadType": "num",
-        "x": 120,
+        "x": 110,
         "y": 220,
         "wires": [
             [
@@ -4537,7 +4398,7 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "100",
+        "payload": "500",
         "payloadType": "num",
         "x": 110,
         "y": 100,
@@ -4554,7 +4415,712 @@
         "name": "",
         "env": [],
         "x": 920,
-        "y": 640,
+        "y": 620,
         "wires": []
+    },
+    {
+        "id": "bb62da8a.ebc328",
+        "type": "ui_switch",
+        "z": "130e0533.4f1813",
+        "name": "",
+        "label": "Pump FORWARD/BACKWARD",
+        "tooltip": "",
+        "group": "75a5ce1f.728d",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "FORWARD",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "BACKWARD",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "743041f8.d2b9b",
+        "type": "inject",
+        "z": "e8d4d920.35344",
+        "name": "OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "f44de853.0c855"
+            ]
+        ]
+    },
+    {
+        "id": "f6fd015e.5c1fe",
+        "type": "debug",
+        "z": "bee3b478.ef4b88",
+        "name": "segmenter area",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "9998aa86.74bb",
+        "type": "exec",
+        "z": "d95291dc.83b0b8",
+        "command": "python3 /home/pi/PlanktonScope/scripts/main.py",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 830,
+        "y": 140,
+        "wires": [
+            [],
+            [],
+            [
+                "de4ba211.e1d3f"
+            ]
+        ]
+    },
+    {
+        "id": "35ded403.3d7244",
+        "type": "template",
+        "z": "d95291dc.83b0b8",
+        "name": "main.py",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "#Library to send command over I2C for the light module on the fan and subprocess to run bash command\nimport smbus, subprocess\n################################################################################\n#LEDs Actuation\n################################################################################\n\n#define the bus used to actuate the light module on the fan\nbus = smbus.SMBus(1)\n\ndef rgb(R,G,B):\n    #Update LED n1\n    bus.write_byte_data(0x0d, 0x00, 0)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update LED n2\n    bus.write_byte_data(0x0d, 0x00, 1)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update LED n3\n    bus.write_byte_data(0x0d, 0x00, 2)\n    bus.write_byte_data(0x0d, 0x01, R)\n    bus.write_byte_data(0x0d, 0x02, G)\n    bus.write_byte_data(0x0d, 0x03, B)\n\n    #Update the I2C Bus in order to really update the LEDs new values\n    cmd=\"i2cdetect -y 1\"\n    subprocess.Popen(cmd.split(),stdout=subprocess.PIPE)\n    \n#Present the RED color\nrgb(255,0,0)\n\n################################################################################\n#Actuator Libraries\n################################################################################\n\n#Library for exchaning messages with Node-RED\nimport paho.mqtt.client as mqtt\n\n#Library to control the PiCamera\nfrom picamera import PiCamera\n\n#Libraries to control the steppers for focusing and pumping\nfrom adafruit_motor import stepper\nfrom adafruit_motorkit import MotorKit\n\n################################################################################\n#Practical Libraries\n################################################################################\n\n#Library to get date and time for folder name and filename\nfrom datetime import datetime, timedelta\n\n#Library to be able to sleep for a duration\nfrom time import sleep\n\n#Libraries manipulate json format, execute bash commands\nimport json, shutil, os\n\n################################################################################\n#Morphocut Libraries\n################################################################################\n\nfrom skimage.util import img_as_ubyte\nfrom morphocut import Call\nfrom morphocut.contrib.ecotaxa import EcotaxaWriter\nfrom morphocut.contrib.zooprocess import CalculateZooProcessFeatures\nfrom morphocut.core import Pipeline\nfrom morphocut.file import Find\nfrom morphocut.image import (ExtractROI,\n    FindRegions,\n    ImageReader,\n    ImageWriter,\n    RescaleIntensity,\n    RGB2Gray\n)\nfrom morphocut.stat import RunningMedian\nfrom morphocut.str import Format\nfrom morphocut.stream import TQDM, Enumerate, FilterVariables\n\n################################################################################\n#Other image processing Libraries\n################################################################################\n\nfrom skimage.feature import canny\nfrom skimage.color import rgb2gray, label2rgb\nfrom skimage.morphology import disk\nfrom skimage.morphology import erosion, dilation, closing\nfrom skimage.measure import label, regionprops\nimport cv2\n\n################################################################################\n#Streaming PiCamera over server\n################################################################################\nimport io\nimport picamera\nimport logging\nimport socketserver\nfrom threading import Condition\nfrom http import server\nimport threading\n\n################################################################################\n#Get possibility to generate random numbers\n################################################################################\n# generate random integer values\nfrom random import seed\nfrom random import randint\n\n\n\n################################################################################\n#Creation of the webpage containing the PiCamera Streaming\n################################################################################\n\nPAGE=\"\"\"\\\n<html>\n<head>\n<title>PlanktonScope v2 | PiCamera Streaming</title>\n</head>\n<body>\n<img src=\"stream.mjpg\" width=\"1280\" height=\"960\" />\n</body>\n</html>\n\"\"\"\n\n################################################################################\n#Classes for the PiCamera Streaming\n################################################################################\n\nclass StreamingOutput(object):\n    def __init__(self):\n        self.frame = None\n        self.buffer = io.BytesIO()\n        self.condition = Condition()\n\n    def write(self, buf):\n        if buf.startswith(b'\\xff\\xd8'):\n            # New frame, copy the existing buffer's content and notify all\n            # clients it's available\n            self.buffer.truncate()\n            with self.condition:\n                self.frame = self.buffer.getvalue()\n                self.condition.notify_all()\n            self.buffer.seek(0)\n        return self.buffer.write(buf)\n\nclass StreamingHandler(server.BaseHTTPRequestHandler):\n    def do_GET(self):\n        if self.path == '/':\n            self.send_response(301)\n            self.send_header('Location', '/index.html')\n            self.end_headers()\n        elif self.path == '/index.html':\n            content = PAGE.encode('utf-8')\n            self.send_response(200)\n            self.send_header('Content-Type', 'text/html')\n            self.send_header('Content-Length', len(content))\n            self.end_headers()\n            self.wfile.write(content)\n        elif self.path == '/stream.mjpg':\n            self.send_response(200)\n            self.send_header('Age', 0)\n            self.send_header('Cache-Control', 'no-cache, private')\n            self.send_header('Pragma', 'no-cache')\n            self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=FRAME')\n            self.end_headers()\n            try:\n                while True:\n                    with output.condition:\n                        output.condition.wait()\n                        frame = output.frame\n                    self.wfile.write(b'--FRAME\\r\\n')\n                    self.send_header('Content-Type', 'image/jpeg')\n                    self.send_header('Content-Length', len(frame))\n                    self.end_headers()\n                    self.wfile.write(frame)\n                    self.wfile.write(b'\\r\\n')\n            except Exception as e:\n                logging.warning(\n                    'Removed streaming client %s: %s',\n                    self.client_address, str(e))\n        else:\n            self.send_error(404)\n            self.end_headers()\n\nclass StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):\n    allow_reuse_address = True\n    daemon_threads = True\n\n################################################################################\n#MQTT core functions\n################################################################################\n\n#Run this function in order to connect to the client (Node-RED)\ndef on_connect(client, userdata, flags, rc):\n    #Print when connected\n    print(\"Connected! - \" + str(rc))\n    #When connected, run subscribe()\n    client.subscribe(\"actuator/#\")\n    #Turn green the light module\n    rgb(0,255,0)\n\n#Run this function in order to subscribe to all the topics begining by actuator\ndef on_subscribe(client, obj, mid, granted_qos):\n    #Print when subscribed\n    print(\"Subscribed! - \"+str(mid)+\" \"+str(granted_qos))\n\n#Run this command when Node-RED is sending a message on the subscribed topic\ndef on_message(client, userdata, msg):\n    #Print the topic and the message\n    print(msg.topic+\" \"+str(msg.qos)+\" \"+str(msg.payload))\n    #Update the global variables command, args and counter\n    global command\n    global args\n    global counter\n    #Parse the topic to find the command. ex : actuator/pump -> pump\n    command=msg.topic.split(\"/\")[1]\n    #Decode the message to find the arguments\n    args=str(msg.payload.decode())\n    #Reset the counter to 0\n    counter=0\n\n################################################################################\n#Init functions\n################################################################################\n\n#define the names for the 2 exsting steppers\nkit = MotorKit()\npump_stepper = kit.stepper1\nfocus_stepper = kit.stepper2\n#Make sure the steppers are release and do not use any power\npump_stepper.release()\nfocus_stepper.release()\n\n#Precise the settings of the PiCamera\ncamera = PiCamera()\ncamera.resolution = (3280, 2464)\ncamera.iso = 60\ncamera.shutter_speed = 500\ncamera.exposure_mode = 'fixedfps'\n\n#Declare the global variables command, args and counter\ncommand = ''\nargs = ''\ncounter=''\n\n#MQTT Client functions definition\nclient = mqtt.Client()\nclient.connect(\"192.168.4.1\",1883,60)\nclient.on_connect = on_connect\nclient.on_subscribe = on_subscribe\nclient.on_message = on_message\nclient.loop_start()\n\n################################################################################\n#Definition of the few important metadata\n################################################################################\n\nlocal_metadata = {\n    \"process_datetime\": datetime.now(),\n    \"acq_camera_resolution\" : camera.resolution,\n    \"acq_camera_iso\" : camera.iso,\n    \"acq_camera_shutter_speed\" : camera.shutter_speed\n}\n\n#Read the content of config.json containing the metadata defined on Node-RED\nconfig_json = open('/home/pi/PlanktonScope/config.json','r')\nnode_red_metadata = json.loads(config_json.read())\n\n#Concat the local metadata and the metadata from Node-RED\nglobal_metadata = {**local_metadata, **node_red_metadata}\n\n#Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa\narchive_fn = os.path.join(\"/home/pi/PlanktonScope/\",\"export\", \"ecotaxa_export.zip\")\n\n################################################################################\n#MorphoCut Script\n################################################################################\n\n#Define processing pipeline\nwith Pipeline() as p:\n\n    #Recursively find .jpg files in import_path.\n    #Sort to get consective frames.\n    abs_path = Find(\"/home/pi/PlanktonScope/tmp\", [\".jpg\"], sort=True, verbose=True)\n\n    #Extract name from abs_path\n    name = Call(lambda p: os.path.splitext(os.path.basename(p))[0], abs_path)\n\n    #Set the LEDs as Green\n    Call(rgb, 0,255,0)\n\n    #Read image\n    img = ImageReader(abs_path)\n\n    #Show progress bar for frames\n    TQDM(Format(\"Frame {name}\", name=name))\n\n    #Apply running median to approximate the background image\n    flat_field = RunningMedian(img, 5)\n\n    #Correct image\n    img = img / flat_field\n\n    #Rescale intensities and convert to uint8 to speed up calculations\n    img = RescaleIntensity(img, in_range=(0, 1.1), dtype=\"uint8\")\n\n    #Publish the json containing all the metadata to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/name\", name)\n\n    #Filter variable to reduce memory load\n    FilterVariables(name,img)\n\n    #Save cleaned images\n    #frame_fn = Format(os.path.join(\"/home/pi/PlanktonScope/tmp\",\"CLEAN\", \"{name}.jpg\"), name=name)\n    #ImageWriter(frame_fn, img)\n\n    #Convert image to uint8 gray\n    img_gray = RGB2Gray(img)\n\n    #?\n    img_gray = Call(img_as_ubyte, img_gray)\n\n    #Canny edge detection using OpenCV\n    img_canny = Call(cv2.Canny, img_gray, 50,100)\n\n    #Dilate using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))\n    img_dilate = Call(cv2.dilate, img_canny, kernel, iterations=2)\n\n    #Close using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (5, 5))\n    img_close = Call(cv2.morphologyEx, img_dilate, cv2.MORPH_CLOSE, kernel, iterations=1)\n\n    #Erode using OpenCV\n    kernel = Call(cv2.getStructuringElement, cv2.MORPH_ELLIPSE, (15, 15))\n    mask = Call(cv2.erode, img_close, kernel, iterations=2)\n\n    #Find objects\n    regionprops = FindRegions(\n        mask, img_gray, min_area=1000, padding=10, warn_empty=name\n    )\n\n    #Set the LEDs as Purple\n    Call(rgb, 255,0,255)\n\n    # For an object, extract a vignette/ROI from the image\n    roi_orig = ExtractROI(img, regionprops, bg_color=255)\n\n    # Generate an object identifier\n    i = Enumerate()\n\n    #Call(print,i)\n\n    #Define the ID of each object\n    object_id = Format(\"{name}_{i:d}\", name=name, i=i)\n\n    #Call(print,object_id)\n\n    #Define the name of each object\n    object_fn = Format(os.path.join(\"/home/pi/PlanktonScope/\",\"OBJECTS\", \"{name}.jpg\"), name=object_id)\n\n    #Save the image of the object with its name\n    ImageWriter(object_fn, roi_orig)\n\n    #Calculate features. The calculated features are added to the global_metadata.\n    #Returns a Variable representing a dict for every object in the stream.\n    meta = CalculateZooProcessFeatures(\n        regionprops, prefix=\"object_\", meta=global_metadata\n    )\n\n    #Get all the metadata\n    json_meta = Call(json.dumps,meta, sort_keys=True, default=str)\n\n    #Publish the json containing all the metadata to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/metric\", json_meta)\n\n    #Add object_id to the metadata dictionary\n    meta[\"object_id\"] = object_id\n\n    #Generate object filenames\n    orig_fn = Format(\"{object_id}.jpg\", object_id=object_id)\n\n    #Write objects to an EcoTaxa archive:\n    #roi image in original color, roi image in grayscale, metadata associated with each object\n    EcotaxaWriter(archive_fn, (orig_fn, roi_orig), meta)\n\n    #Progress bar for objects\n    TQDM(Format(\"Object {object_id}\", object_id=object_id))\n\n    #Publish the object_id to via MQTT to Node-RED\n    Call(client.publish, \"receiver/segmentation/object_id\", object_id)\n\n    #Set the LEDs as Green\n    Call(rgb, 0,255,0)\n\n################################################################################\n#While loop for capting commands from Node-RED\n################################################################################\n\noutput = StreamingOutput()\naddress = ('192.168.4.1', 8000)\nserver = StreamingServer(address, StreamingHandler)\nthreading.Thread(target=server.serve_forever).start()\ncamera.start_recording(output, format='mjpeg', resize=(640, 480))\n\nwhile True:\n\n    ############################################################################\n    #Pump Event\n    ############################################################################\n\n    #If the command is \"pump\"\n    if (command==\"pump\"):\n\n        #Set the LEDs as Blue\n        rgb(0,0,255)\n\n        #Get direction from the different received arguments\n        direction=args.split(\" \")[0]\n\n        #Get delay (in between steps) from the different received arguments\n        delay=float(args.split(\" \")[1])\n\n        #Get number of steps from the different received arguments\n        nb_step=int(args.split(\" \")[2])\n\n        #Print status\n        print(\"The pump has been started.\")\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/pump\", delay);\n\n        ########################################################################\n        while True:\n\n            #Depending on direction, select the right direction for the pump\n            if direction == \"BACKWARD\":\n                direction=stepper.BACKWARD\n\n            if direction == \"FORWARD\":\n                direction=stepper.FORWARD\n\n            #Actuate the pump for one step in the right direction\n            pump_stepper.onestep(direction=direction, style=stepper.DOUBLE)\n\n            #Increment the counter\n            counter+=1\n\n            #Wait during the delay to pump at the right flowrate\n            sleep(delay)\n\n            ####################################################################\n            #If counter reach the number of step, break\n            if counter>nb_step:\n\n                #Release the pump stepper to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The pumping is done.\")\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/pump\", \"Done\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"pump\", break this while loop\n            if command!=\"pump\":\n\n                #Release the pump stepper to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The pump has been interrompted.\")\n\n                #Publish the status \"Interrompted\" to via MQTT to Node-RED\n                client.publish(\"receiver/pump\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    ############################################################################\n    #Focus Event\n    ############################################################################\n\n    #If the command is \"focus\"\n    elif (command==\"focus\"):\n\n        #Set the LEDs as Yellow\n        rgb(255,255,0)\n\n        #Get direction from the different received arguments\n        direction=args.split(\" \")[0]\n\n        #Get number of steps from the different received arguments\n        nb_step=int(args.split(\" \")[1])\n\n        #Print status\n        print(\"The focus has been started.\")\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/focus\", \"Start\");\n\n        ########################################################################\n        while True:\n\n            #Depending on direction, select the right direction for the focus\n            if direction == \"FORWARD\":\n                direction=stepper.FORWARD\n\n            if direction == \"BACKWARD\":\n                direction=stepper.BACKWARD\n\n            #Actuate the focus for one microstep in the right direction\n            focus_stepper.onestep(direction=direction, style=stepper.MICROSTEP)\n\n            #Increment the counter\n            counter+=1\n\n            ####################################################################\n            #If counter reach the number of step, break\n            if counter>nb_step:\n\n                #Release the focus steppers to stop power draw\n                focus_stepper.release()\n\n                #Print status\n                print(\"The focusing is done.\")\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/focus\", \"Done\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"pump\", break this while loop\n            if command!=\"focus\":\n\n                #Release the focus steppers to stop power draw\n                focus_stepper.release()\n\n                #Print status\n                print(\"The stage has been interrompted.\")\n\n                #Publish the status \"Done\" to via MQTT to Node-RED\n                client.publish(\"receiver/focus\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    ############################################################################\n    #Image Event\n    ############################################################################\n\n    elif (command==\"image\"):\n\n        #Get duration to wait before an image from the different received arguments\n        sleep_before=int(args.split(\" \")[0])\n\n        #Get number of step in between two images from the different received arguments\n        nb_step=int(args.split(\" \")[1])\n\n        #Get the number of frames to image from the different received arguments\n        nb_frame=int(args.split(\" \")[2])\n\n        #Sleep a duration before to start acquisition\n        sleep(sleep_before)\n\n        #Publish the status \"Start\" to via MQTT to Node-RED\n        client.publish(\"receiver/image\", \"Start\");\n\n        #Set the LEDs as Blue\n        rgb(0,0,255)\n\n        #Pump duing a given number of steps (in between each image)\n        for i in range(nb_step):\n\n            #If the command is still image - pump a defined nb of steps\n            if (command==\"image\"):\n\n                #Actuate the pump for one step in the FORWARD direction\n                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)\n\n                #The flowrate is fixed for now.\n                sleep(0.01)\n\n            #If the command isn't image anymore - break\n            else:\n\n                break\n\n\n        #Set the LEDs as Green\n        rgb(0,255,0)\n\n        while True:\n            #Release the pump stepper to stop power draw\n            pump_stepper.release()\n\n            #Set the LEDs as Cyan\n            rgb(0,255,255)\n\n            #Increment the counter\n            counter+=1\n\n            #Get datetime\n            datetime_tmp=datetime.now().strftime(\"%H_%M_%S_%f\")\n\n            #Print datetime\n            print(datetime_tmp)\n\n            #Define the filename of the image\n            filename = os.path.join(\"/home/pi/PlanktonScope/tmp\",datetime_tmp+\".jpg\")\n\n            #Capture an image with the proper filename\n            camera.capture(filename)\n\n            #Set the LEDs as Green\n            rgb(0,255,0)\n\n            #Publish the name of the image to via MQTT to Node-RED\n\n            client.publish(\"receiver/image\", datetime_tmp+\".jpg has been imaged.\");\n            \n            #Set the LEDs as Blue\n            rgb(0,0,255)\n\n            #Pump during a given nb of steps\n            for i in range(nb_step):\n\n                #Actuate the pump for one step in the FORWARD direction\n                pump_stepper.onestep(direction=stepper.FORWARD, style=stepper.DOUBLE)\n\n                #The flowrate is fixed for now.\n                sleep(0.01)\n\n            #Wait a fixed delay which set the framerate as < than 2 imag/sec\n            sleep(0.5)\n\n            #Set the LEDs as Green\n            rgb(0,255,0)\n\n            ####################################################################\n            #If counter reach the number of frame, break\n            if(counter>nb_frame):\n\n                #Publish the status \"Completed\" to via MQTT to Node-RED\n                client.publish(\"receiver/image\", \"Completed\");\n\n                #Release the pump steppers to stop power draw\n                pump_stepper.release()\n\n                #Publish the status \"Start\" to via MQTT to Node-RED\n                client.publish(\"receiver/segmentation\", \"Start\");\n\n                #Start the MorphoCut Pipeline\n                p.run()\n\n                #remove directory\n                #shutil.rmtree(import_path)\n\n                #Publish the status \"Completed\" to via MQTT to Node-RED\n                client.publish(\"receiver/segmentation\", \"Completed\");\n\n                #Set the LEDs as White\n                rgb(255,255,255)\n\n                sample_project=node_red_metadata['sample_project'];\n                \n                acq_id=node_red_metadata['acq_id'];\n                \n                export_name = str(sample_project)+\"_\"+str(acq_id)+\".zip\"\n                \n                \n                os.popen(\"mv /home/pi/PlanktonScope/export/ecotaxa_export.zip /home/pi/PlanktonScope/export/\"+export_name)\n                \n                os.popen(\"rm -rf /home/pi/PlanktonScope/tmp/*.jpg\")\n                \n                os.popen(\"rm -rf /home/pi/PlanktonScope/OBJECTS/*.jpg\")\n                \n\n                #Let it happen\n                sleep(1)\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n\n                #Change the command to not re-enter in this while loop\n                command=\"wait\"\n                    \n                #Set the LEDs as Green\n                rgb(0,255,255)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n            ####################################################################\n            #If a new received command isn't \"image\", break this while loop\n            if command!=\"image\":\n\n                #Release the pump steppers to stop power draw\n                pump_stepper.release()\n\n                #Print status\n                print(\"The imaging has been interrompted.\")\n\n                #Publish the status \"Interrompted\" to via MQTT to Node-RED\n                client.publish(\"receiver/image\", \"Interrompted\");\n\n                #Set the LEDs as Green\n                rgb(0,255,0)\n\n                #Reset the counter to 0\n                counter=0\n\n                break\n\n    else:\n        #Its just waiting to receive command from Node-RED\n        sleep(0.4)\n",
+        "output": "str",
+        "x": 760,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "672d89a8.4e6968",
+        "type": "exec",
+        "z": "d95291dc.83b0b8",
+        "command": "sudo killall -9 python3",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Hard kill",
+        "x": 1280,
+        "y": 100,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "172d187b.ad216",
+        "type": "subflow:d95291dc.83b0b8",
+        "z": "e8d4d920.35344",
+        "name": "",
+        "env": [],
+        "x": 300,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "afa9f4b.2e77988",
+        "type": "delay",
+        "z": "d95291dc.83b0b8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "9998aa86.74bb"
+            ]
+        ]
+    },
+    {
+        "id": "1df370a8.6c70ff",
+        "type": "ui_button",
+        "z": "d95291dc.83b0b8",
+        "name": "Restart Python",
+        "group": "adcd0ef7.81a7f8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Restart Python",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "afa9f4b.2e77988",
+                "39edf8d2.bc92e8"
+            ]
+        ]
+    },
+    {
+        "id": "39edf8d2.bc92e8",
+        "type": "function",
+        "z": "d95291dc.83b0b8",
+        "name": "",
+        "func": "msg.kill = \"SIGTERM\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "9998aa86.74bb",
+                "de4ba211.e1d3f",
+                "a776b9fc.d542e8"
+            ]
+        ]
+    },
+    {
+        "id": "de4ba211.e1d3f",
+        "type": "debug",
+        "z": "d95291dc.83b0b8",
+        "name": "output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7aa2e737.e16d98",
+        "type": "status",
+        "z": "d95291dc.83b0b8",
+        "name": "",
+        "scope": [
+            "9998aa86.74bb"
+        ],
+        "x": 960,
+        "y": 260,
+        "wires": [
+            [
+                "439b952c.3e9cf4"
+            ]
+        ]
+    },
+    {
+        "id": "439b952c.3e9cf4",
+        "type": "debug",
+        "z": "d95291dc.83b0b8",
+        "name": "status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "status",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "631688df.6f74c",
+        "type": "ui_switch",
+        "z": "1a447be0.198674",
+        "name": "",
+        "label": "Manual input",
+        "tooltip": "",
+        "group": "7b7849e8.363288",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "c05c94eb.25471"
+            ]
+        ]
+    },
+    {
+        "id": "c05c94eb.25471",
+        "type": "function",
+        "z": "1a447be0.198674",
+        "name": "Enable Invert",
+        "func": "msg.enabled = !msg.payload;\nmsg.payload = \"\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 460,
+        "wires": [
+            [
+                "ec0d715e.19fdd",
+                "1b5cd285.71fa15",
+                "f8c5f7ef.e93908"
+            ]
+        ]
+    },
+    {
+        "id": "6d0acc39.1d2e9c",
+        "type": "ui_text_input",
+        "z": "1a447be0.198674",
+        "name": "Lat Manual",
+        "label": "Latitude",
+        "tooltip": "",
+        "group": "7b7849e8.363288",
+        "order": 7,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "mode": "text",
+        "delay": "2000",
+        "topic": "latitude",
+        "x": 650,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b5cd285.71fa15",
+        "type": "change",
+        "z": "1a447be0.198674",
+        "name": "invert",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "$not(msg.enabled)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 480,
+        "wires": [
+            [
+                "6d0acc39.1d2e9c",
+                "8c2f9e2.0f3cd6"
+            ]
+        ]
+    },
+    {
+        "id": "8c2f9e2.0f3cd6",
+        "type": "ui_text_input",
+        "z": "1a447be0.198674",
+        "name": "Lon Manual",
+        "label": "Longitude",
+        "tooltip": "",
+        "group": "7b7849e8.363288",
+        "order": 6,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "mode": "text",
+        "delay": "2000",
+        "topic": "longitude",
+        "x": 650,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34a51d85.680172",
+        "type": "inject",
+        "z": "1a447be0.198674",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "c05c94eb.25471",
+                "60308f41.f3b54"
+            ]
+        ]
+    },
+    {
+        "id": "52ea7d01.711034",
+        "type": "function",
+        "z": "130e0533.4f1813",
+        "name": "Encapsulate config",
+        "func": "msg.payload = {\n    \"action\":\"update_config\", \n    \"config\":{\n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_nb_step\":global.get(\"focus_nb_step\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n    }\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 60,
+        "wires": [
+            [
+                "c3e50240.82aa58"
+            ]
+        ]
+    },
+    {
+        "id": "40c12463.a1f84c",
+        "type": "delay",
+        "z": "130e0533.4f1813",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "c9f510c0.7d1328"
+            ]
+        ]
+    },
+    {
+        "id": "4d1b02cb.83b51c",
+        "type": "ui_button",
+        "z": "130e0533.4f1813",
+        "name": "",
+        "group": "4361c3b6.e2b7a4",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update config",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "imager/image",
+        "x": 200,
+        "y": 60,
+        "wires": [
+            [
+                "52ea7d01.711034"
+            ]
+        ]
+    },
+    {
+        "id": "5a159d39.3bdca4",
+        "type": "ui_text",
+        "z": "bee3b478.ef4b88",
+        "group": "91acd434.6205",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "imager",
+        "label": "Imager status:",
+        "format": "{{msg.payload.status}}",
+        "layout": "col-center",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "89058790.909e7",
+        "type": "ui_text",
+        "z": "bee3b478.ef4b88",
+        "group": "91acd434.6205",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "segmenter",
+        "label": "Segmenter status:",
+        "format": "{{msg.payload.status}}",
+        "layout": "col-center",
+        "x": 890,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "dc72e121.0aacd",
+        "type": "ui_text",
+        "z": "bee3b478.ef4b88",
+        "group": "91acd434.6205",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "focus",
+        "label": "Focus status:",
+        "format": "{{msg.payload.status}}",
+        "layout": "col-center",
+        "x": 870,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d700c8a1.2d1f48",
+        "type": "ui_text",
+        "z": "bee3b478.ef4b88",
+        "group": "91acd434.6205",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "pump",
+        "label": "Pump status:",
+        "format": "{{msg.payload.status}}",
+        "layout": "col-center",
+        "x": 870,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d95c87fe.e4ccd",
+        "type": "ui_button",
+        "z": "a0f9bde.423644",
+        "name": "",
+        "group": "de7c8e82.7faa98",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "UP 1mm",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":1}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "a8dfcfd1.c5863"
+            ]
+        ]
+    },
+    {
+        "id": "1be18c84.59a4ab",
+        "type": "ui_button",
+        "z": "a0f9bde.423644",
+        "name": "",
+        "group": "de7c8e82.7faa98",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "DOWN 1mm",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":1}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "a8dfcfd1.c5863"
+            ]
+        ]
+    },
+    {
+        "id": "d9930546.489a58",
+        "type": "ui_slider",
+        "z": "a0f9bde.423644",
+        "name": "focus_distance",
+        "label": "",
+        "tooltip": "in µm",
+        "group": "de7c8e82.7faa98",
+        "order": 3,
+        "width": 8,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "focus_distance",
+        "min": "25",
+        "max": "2000",
+        "step": "25",
+        "x": 540,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a30a6af.fa662",
+        "type": "ui_switch",
+        "z": "1a447be0.198674",
+        "d": true,
+        "name": "Worldmap",
+        "label": "Display worldmap",
+        "tooltip": "",
+        "group": "7b7849e8.363288",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "60308f41.f3b54"
+            ]
+        ]
+    },
+    {
+        "id": "60308f41.f3b54",
+        "type": "function",
+        "z": "1a447be0.198674",
+        "d": true,
+        "name": "Enable",
+        "func": "msg.enabled = msg.payload;\nmsg.payload = \"\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "f7ae988c.184598"
+            ]
+        ]
+    },
+    {
+        "id": "35ea3cf0.a398ac",
+        "type": "exec",
+        "z": "d95291dc.83b0b8",
+        "command": "sudo killall -15 python3",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Soft kill",
+        "x": 1280,
+        "y": 40,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a776b9fc.d542e8",
+        "type": "delay",
+        "z": "d95291dc.83b0b8",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 700,
+        "y": 100,
+        "wires": [
+            [
+                "672d89a8.4e6968"
+            ]
+        ]
     }
 ]
