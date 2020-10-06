@@ -123,7 +123,7 @@ if __name__ == "__main__":
     segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
     segmenter_thread.start()
 
-    logger.info("Looks like everything is set up and running, have fun!")
+    logger.success("Looks like everything is set up and running, have fun!")
 
     while run:
         # TODO look into ways of restarting the dead threads
@@ -141,6 +141,7 @@ if __name__ == "__main__":
 
     logger.info("Shutting down the shop")
     shutdown_event.set()
+    time.sleep(0.5)
     stepper_thread.join()
     imager_thread.join()
     segmenter_thread.join()
