@@ -209,15 +209,15 @@ class StepperProcess(multiprocessing.Process):
         # define the names for the 2 exsting steppers
         if self.stepper_type == "adafruit":
             logger.info("Loading the adafruit configuration")
-        kit = adafruit_motorkit.MotorKit()
-        if reverse:
-            self.pump_stepper = stepper(kit.stepper2, adafruit_motor.stepper.DOUBLE)
-            self.focus_stepper = stepper(
+            kit = adafruit_motorkit.MotorKit()
+            if reverse:
+                self.pump_stepper = stepper(kit.stepper2, adafruit_motor.stepper.DOUBLE)
+                self.focus_stepper = stepper(
                     kit.stepper1, adafruit_motor.stepper.MICROSTEP, size=45
-            )
-        else:
-            self.pump_stepper = stepper(kit.stepper1, adafruit_motor.stepper.DOUBLE)
-            self.focus_stepper = stepper(
+                )
+            else:
+                self.pump_stepper = stepper(kit.stepper1, adafruit_motor.stepper.DOUBLE)
+                self.focus_stepper = stepper(
                     kit.stepper2, adafruit_motor.stepper.MICROSTEP, size=45
                 )
         elif self.stepper_type == "waveshare":
@@ -237,7 +237,7 @@ class StepperProcess(multiprocessing.Process):
                 self.focus_stepper = stepper(
                     StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4),
                     size=45,
-            )
+                )
         else:
             logger.error(
                 "The stepper control type is not recognized. Should be 'adafruit' or 'waveshare'"
@@ -398,7 +398,7 @@ class StepperProcess(multiprocessing.Process):
         # However we have a fixed delay of at least 2.5ms per step due to the library
         # Our maximum speed is thus about 400 pulses per second or 0.5mm/sec of stage speed
         if self.stepper_type == "adafruit":
-        delay = max((1 / steps_per_second) - 0.0025, 0)
+            delay = max((1 / steps_per_second) - 0.0025, 0)
         else:
             delay = 1 / steps_per_second
         logger.debug(f"The delay between two steps is {delay}s")
@@ -459,7 +459,7 @@ class StepperProcess(multiprocessing.Process):
         # nb_steps = 5200 * 15 = 78000
         # sps = 3mL/min * 5200s/mL = 15600s/min / 60 => 260sps
         if self.stepper_type == "adafruit":
-        delay = max((1 / steps_per_second) - 0.0025, 0)
+            delay = max((1 / steps_per_second) - 0.0025, 0)
         else:
             delay = 1 / steps_per_second
         logger.debug(f"The delay between two steps is {delay}s")
@@ -523,6 +523,7 @@ class StepperProcess(multiprocessing.Process):
 
 # This is called if this script is launched directly
 if __name__ == "__main__":
+    # TODO This should be a test suite for this library
     # Starts the stepper thread for actuators
     # This needs to be in a threading or multiprocessing wrapper
     stepper_thread = StepperProcess()
