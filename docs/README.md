@@ -10,6 +10,9 @@ You can find here more information about how to build your own PlanktoScope.
  - [How to setup your PlanktoScope the hard way (also known as the Expert's path)](expert_setup.md)
  - [Some information about how to setup a remote access](remote_access.md)
 
+## Build your machine!
+ - [Assembly Guide](assembly_guide.md)
+ 
 ## Usage
  - [Information about collection devices](collection_devices.md)
 
