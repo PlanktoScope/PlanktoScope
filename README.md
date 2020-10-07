@@ -19,9 +19,11 @@ The PlanktoScope has been described in a paper available on the [bioRxiv preprin
 
 
 # Key Features
-- A list
-- of a lot of
-- features!
+- Image small animals and algae living in water
+- Focus stage control
+- Pump control
+- Automatic image capture
+- Automatic segmentation
 
 # How do I build one?
 You can access the complete documentation on [Read The Docs](https://planktonscope.readthedocs.io/).
