@@ -22,6 +22,9 @@ You can find here more information about how to build your own PlanktoScope.
  - [Create Master SD Card or backup your PlanktoScope](create_sd.md)
  - How does the segmentation works (soon)
 
+## Changelog
+ - [Changelog](changelog.md)
+
 ## Contribute
  - [Find out how to contribute to this documentation and help edit it](edit_this_doc.md)
  - [Contribute to the code, here is the getting started](edit_the_code.md)
