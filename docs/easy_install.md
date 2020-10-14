@@ -2,7 +2,7 @@
 
 ## Download the image
 
-For ease of setup, a preconfigured image is provided. You can download it from [here](http://planktonscope.su.domains/Images_raspberry/Raspbian_Buster_Morphocut_WiFi.img).
+For ease of setup, a preconfigured image is provided. You can download it from [here](https://drive.google.com/file/d/1zOmbmXqt5uELQC0FTha1ndjJyMvehGSk/view?usp=sharing).
 
 ## Writing the image to the SD card
 

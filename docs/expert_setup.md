@@ -3,7 +3,7 @@
 ## Install and setup Raspbian on your Raspberry Pi
 
 ### Computer setup
-In order to make it easy to connect to the PlanktoScop, you may want to install [avahi](https://en.wikipedia.org/wiki/Avahi_%28software%29) or the [Bonjour](https://en.wikipedia.org/wiki/Bonjour_%28software%29) service on any computer you will use to access the PlanktoScop interface. This will allow you to connect to the PlantoScop using an address similar such as http://planktoscope.local instead of an IP address.
+In order to make it easy to connect to the PlanktoScope, you may want to install [avahi](https://en.wikipedia.org/wiki/Avahi_%28software%29) or the [Bonjour](https://en.wikipedia.org/wiki/Bonjour_%28software%29) service on any computer you will use to access the PlanktoScope interface. This will allow you to connect to the PlantoScop using an address similar such as http://planktoscope.local instead of an IP address.
 
 ### Download the image
 
@@ -63,11 +63,11 @@ You can now launch the configuration tool:
 sudo raspi-config
 ```
 
-While you're here, a wise thing to do would be to change the default password for the `pi` user. This is very warmly recommended if your PlanktoScop is connected to a shared network you do not control. Just select the first option `1 Change User Password`.
+While you're here, a wise thing to do would be to change the default password for the `pi` user. This is very warmly recommended if your PlanktoScope is connected to a shared network you do not control. Just select the first option `1 Change User Password`.
 
 You may also want to change the default hostname of your Raspberry. To do so, choose option `2 Network Options` then `N1 Hostname`. Choose a new hostname. We recommend using `planktoscope`.
 
-We need to activate a few things for the PlanktoScop to work properly.
+We need to activate a few things for the PlanktoScope to work properly.
 
 First, we need to activate the camera interface. Choose `5 Interfacing Options`, then `P1 Camera` and `Yes`.
 
@@ -88,11 +88,11 @@ Reboot your Pi safely.
 sudo reboot now
 ```
 
-## Install the needed libraries for the PlanktoScop
+## Install the needed libraries for the PlanktoScope
 
 Most of the following happens in a command line environment. If you are using the desktop, please start a terminal emulator.
 
-You can also connect to your PlanktoScop by using ssh using `ssh pi@planktoscope.local`.
+You can also connect to your PlanktoScope by using ssh using `ssh pi@planktoscope.local`.
 
 You can then run the following to make sure your Raspberry has the necessary components to install and build everything it needs and to create the necessary folders:
 
@@ -202,7 +202,7 @@ If the interface is loading and a picture is displayed, you can now stop this in
 
 ### Install Ultimate GPS HAT
 
-You can start by testing that the GPS module is working. Either install your PlanktoScop with a view of the sky, or connect the external antenna.
+You can start by testing that the GPS module is working. Either install your PlanktoScope with a view of the sky, or connect the external antenna.
 
 Now you need to run the following:
 ```sh
@@ -294,7 +294,7 @@ pi@planktoscope:~ $ gpsmon
 
 #### Bonus Configuration: Automatic time update from GPSD
 
-The Adafruit GPS HAT allows your PlanktoScop to automatically sets its time to the GPS received one. Moreover, since the PPS (Pulse Per Second) output is activated, you can even set your PlanktoScope to act as a stratum 1 timeserver.
+The Adafruit GPS HAT allows your PlanktoScope to automatically sets its time to the GPS received one. Moreover, since the PPS (Pulse Per Second) output is activated, you can even set your PlanktoScope to act as a stratum 1 timeserver.
 
 We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`:
 ```
@@ -526,7 +526,7 @@ sudo systemctl start nodered.service
 Make sure Node-RED is correctly installed by reaching the following page from the browser of your pi http://localhost:1880 or http://planktoscope.local:1880 from another computer on the same network.
 
 #### Install the necessary nodes
-These nodes will be used by the PlanktoScop software and needs to be installed:
+These nodes will be used by the PlanktoScope software and needs to be installed:
 ```sh
 cd ~/.node-red/
 npm install node-red-dashboard node-red-contrib-python3-function node-red-contrib-camerapi node-red-contrib-gpsd node-red-contrib-web-worldmap node-red-contrib-interval

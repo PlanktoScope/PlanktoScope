@@ -19,6 +19,7 @@ You can find here more information about how to build your own PlanktoScope.
 ## Under the hood:
  - [Software architecture](software_architecture.md)
  - [MQTT Messages](mqtt_messages.md)
+ - [Create Master SD Card or backup your PlanktoScope](create_sd.md)
  - How does the segmentation works (soon)
 
 ## Contribute

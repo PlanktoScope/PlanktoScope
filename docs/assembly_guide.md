@@ -16,7 +16,7 @@
 - Super glue
 - Standoffs (M2.5), M3 screws and nuts
 
-Make sure you have your screwdriver kit, soldering iron, and components ready. Also, remember to flash the Planktonscope image disk on the SD card before installing the Raspberry Pi.
+Make sure you have your screwdriver kit, soldering iron, and components ready. Also, remember to flash the PlanktoScope image disk on the SD card before installing the Raspberry Pi.
 
 If you are not familiar with any process, such as soldering, tapping, or wiring, try and familiarize yourself with the topics first.
 
@@ -231,9 +231,24 @@ Secure the laser cut sides to the base plate **A** with the screws and nuts.
 ## Step 28: Insert the camera ribbon cable in the camera
 ![Step28](assembly_guide/pictures/step28.webp)
 
-You can now connect the camera flex cable into the connector on the camera board. Once again, gently pull up the tensioners, insert the cable in the right orientation, and push the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as it is possible to damage it. 
+You can now connect the camera flex cable into the connector on the camera board. Once again, gently pull up the tensioners, insert the cable in the right orientation, and push the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as it is possible to damage it.
 
-## Step 29: Insert the ribbon cable
+## Step 29: Assemble the GPIO ribbon cable
+If you didn't get an already assembled ribbon cable, you need to build it yourself.
+
+The orientation of the connector does not really matter. However, you need to make sure that both connectors are oriented in the same direction and are on the same side of the ribbon.
+
+To assemble, slide the ribbon in its connector and close it off. You need to tighten it really hard. It's very warmly recommended to use a vice to do so.
+
+!!! warning
+    Once assembled, the ribbon should NOT look like this:
+    ![Ribbon wrong](assembly_guide/pictures/ribbon_wrong.webp)
+
+    It should rather look like this:
+    ![Ribbon good](assembly_guide/pictures/ribbon_good.webp)
+
+
+## Step 30: Insert the ribbon cable
 ![Step28](assembly_guide/render/step28.webp)
 
 Attach the GPIO ribbon to connect the cooling fan HAT to the GPS HAT.
@@ -242,7 +257,7 @@ Attach the GPIO ribbon to connect the cooling fan HAT to the GPS HAT.
     You can try to route the flat ribbon from the camera under the ribbon cable you are connecting now.
     ![Step31](assembly_guide/pictures/step31.webp)
 
-## Step 30: Fluidic assembly
+## Step 31: Fluidic assembly
 ![Step29](assembly_guide/render/step29.webp)
 
 Feed in the tubing from syringe 1 to form the fluidic path as shown.
@@ -257,18 +272,18 @@ Feed in a length of tubing as shown through motor mount **H** and illumination m
 
 ![Step34](assembly_guide/pictures/step34.webp)
 
-## Step 31: Close your PlanktoScope
+## Step 32: Close your PlanktoScope
 
 !!! warning
     Take a moment to check your wiring one last time. Also check the routing, make sure the LED wires and the pump stepper wires are in their dedicated channel.
 
 ![Step33](assembly_guide/render/step33.webp)
 
-Place the top **L** into the slots on the Planktonscope body. Secure it in place with screws and nuts.
+Place the top **L** into the slots on the PlanktoScope body. Secure it in place with screws and nuts.
 
 ![Step34](assembly_guide/render/step34.webp)
 
-## Step 32: Enjoy!
+## Step 33: Enjoy!
 
 Congratulations on a job well done. You can have some rest, get a tea and some biscuits!
 
