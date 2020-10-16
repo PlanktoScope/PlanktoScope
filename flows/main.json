@@ -3823,7 +3823,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 940,
+        "x": 930,
         "y": 580,
         "wires": []
     },
@@ -4230,7 +4230,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 940,
+        "x": 930,
         "y": 720,
         "wires": []
     },
@@ -4832,7 +4832,7 @@
         "type": "function",
         "z": "130e0533.4f1813",
         "name": "Encapsulate config",
-        "func": "msg.payload = {\n    \"action\":\"update_config\", \n    \"config\":{\n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"custom_nb_frame\":global.get(\"custom_nb_frame\"),\n        \"custom_nb_step\":global.get(\"custom_nb_step\"),\n        \"custom_segmentation\":global.get(\"custom_segmentation\"),\n        \"custom_sleep_before\":global.get(\"custom_sleep_before\"),\n        \"focus_nb_step\":global.get(\"focus_nb_step\"),\n        \"pump_flowrate\":global.get(\"pump_flowrate\"),\n        \"pump_manual_volume\":global.get(\"pump_manual_volume\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n    }\n};\nreturn msg;",
+        "func": "msg.payload = {\n    \"action\":\"update_config\", \n    \"config\":{\n        \"sample_project\":global.get(\"sample_project\"),\n        \"sample_id\":global.get(\"sample_id\"),\n        \"sample_ship\":global.get(\"sample_ship\"),\n        \"sample_operator\":global.get(\"sample_operator\"),\n        \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n        \n        \"acq_id\":global.get(\"acq_id\"),\n        \"acq_instrument\":global.get(\"acq_instrument\"),\n        //\"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n        \"acq_celltype\":global.get(\"acq_celltype\"),\n        \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n        \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n        \"acq_min_esd\":global.get(\"acq_min_esd\"),\n        \"acq_max_esd\":global.get(\"acq_max_esd\"),\n        \"acq_volume\":global.get(\"acq_volume\"),\n        \"acq_magnification\":global.get(\"magnification\"),\n        \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n        \"acq_camera_name\":\"Pi Camera V2.1 - 8MP\",\n        \"acq_nb_frame\":global.get(\"custom_nb_frame\"),\n\n        \"object_date\":global.get(\"object_date\"),\n        \"object_time\":global.get(\"object_time\"),\n        \"object_lat\":global.get(\"object_lat\"),\n        \"object_lon\":global.get(\"object_lon\"),\n        \"object_depth_min\":global.get(\"object_depth_min\"),\n        \"object_depth_max\":global.get(\"object_depth_max\"),\n        \n        \"process_pixel\":global.get(\"process_pixel\"),\n        \"process_id\":global.get(\"process_id\")\n    }\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
