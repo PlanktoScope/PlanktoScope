@@ -805,7 +805,7 @@
         "collapse": true
     },
     {
-        "id": "4e3f24b.177a7dc",
+        "id": "4e32f028.234248",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "de7c8e82.7faa98",
@@ -814,7 +814,7 @@
         "height": 1
     },
     {
-        "id": "4bb924fe.fc097c",
+        "id": "10565c64.d848dc",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "de7c8e82.7faa98",
@@ -1847,7 +1847,8 @@
         "y": 400,
         "wires": [
             [
-                "abd84e73.aefc9"
+                "abd84e73.aefc9",
+                "e2913641.ea203"
             ]
         ]
     },
@@ -1859,11 +1860,14 @@
         "func": "obj_counter=global.get('obj_counter')\nobj_counter=obj_counter+1\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 900,
         "y": 500,
         "wires": [
             [
-                "d0d14f00.e2ff88"
+                "d0d14f00.e2ff88",
+                "b3f6e410.547fc"
             ]
         ]
     },
@@ -1874,7 +1878,7 @@
         "name": "img_counter",
         "group": "6d1af0ab.7b4a18",
         "order": 1,
-        "width": 24,
+        "width": 21,
         "height": 2,
         "label": "image counter",
         "chartType": "horizontalBar",
@@ -1965,8 +1969,8 @@
         "z": "bee3b478.ef4b88",
         "name": "obj_counter",
         "group": "6d1af0ab.7b4a18",
-        "order": 2,
-        "width": 24,
+        "order": 3,
+        "width": 21,
         "height": 2,
         "label": "obj_counter",
         "chartType": "horizontalBar",
@@ -2060,7 +2064,7 @@
         "z": "bee3b478.ef4b88",
         "name": "chart area",
         "group": "6d1af0ab.7b4a18",
-        "order": 3,
+        "order": 5,
         "width": 24,
         "height": 7,
         "label": "chart area",
@@ -2091,7 +2095,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1370,
+        "x": 1360,
         "y": 540,
         "wires": [
             []
@@ -2110,7 +2114,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 920,
+        "x": 910,
         "y": 460,
         "wires": []
     },
@@ -2228,7 +2232,7 @@
         "label": "Minimum depth (m)",
         "tooltip": "",
         "group": "ab1d06d6.bf9898",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "wrap": false,
@@ -2252,7 +2256,7 @@
         "label": "Maximum depth (m)",
         "tooltip": "",
         "group": "ab1d06d6.bf9898",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "wrap": false,
@@ -3502,7 +3506,7 @@
         "name": "Information message",
         "order": 1,
         "width": 24,
-        "height": "1",
+        "height": 1,
         "format": "<div layout=\"row\">Fill the different inputs concerning the sample you want to image.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -3995,7 +3999,7 @@
         "type": "ui_text",
         "z": "1a447be0.198674",
         "group": "7b7849e8.363288",
-        "order": 2,
+        "order": 3,
         "width": 6,
         "height": 1,
         "name": "GPS Status Display",
@@ -4011,7 +4015,7 @@
         "type": "ui_text",
         "z": "1a447be0.198674",
         "group": "7b7849e8.363288",
-        "order": 3,
+        "order": 4,
         "width": 6,
         "height": 1,
         "name": "Latitude",
@@ -4027,7 +4031,7 @@
         "type": "ui_text",
         "z": "1a447be0.198674",
         "group": "7b7849e8.363288",
-        "order": 4,
+        "order": 5,
         "width": 6,
         "height": 1,
         "name": "Longitude",
@@ -4684,7 +4688,7 @@
         "label": "Manual input",
         "tooltip": "",
         "group": "7b7849e8.363288",
-        "order": 1,
+        "order": 2,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -4735,7 +4739,7 @@
         "label": "Latitude",
         "tooltip": "",
         "group": "7b7849e8.363288",
-        "order": 7,
+        "order": 8,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -4784,7 +4788,7 @@
         "label": "Longitude",
         "tooltip": "",
         "group": "7b7849e8.363288",
-        "order": 6,
+        "order": 7,
         "width": 12,
         "height": 1,
         "passthru": false,
@@ -5038,7 +5042,7 @@
         "label": "Display worldmap",
         "tooltip": "",
         "group": "7b7849e8.363288",
-        "order": 5,
+        "order": 6,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -5120,6 +5124,71 @@
         "wires": [
             [
                 "672d89a8.4e6968"
+            ]
+        ]
+    },
+    {
+        "id": "e2913641.ea203",
+        "type": "ui_text",
+        "z": "bee3b478.ef4b88",
+        "group": "6d1af0ab.7b4a18",
+        "order": 2,
+        "width": 3,
+        "height": 2,
+        "name": "img_count",
+        "label": "Images count",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 1360,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b3f6e410.547fc",
+        "type": "ui_text",
+        "z": "bee3b478.ef4b88",
+        "group": "6d1af0ab.7b4a18",
+        "order": 4,
+        "width": 3,
+        "height": 2,
+        "name": "obj_count",
+        "label": "Objects count",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 1360,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "81c0a465.c4f0b",
+        "type": "inject",
+        "z": "bee3b478.ef4b88",
+        "name": "Init graphs",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 1150,
+        "y": 460,
+        "wires": [
+            [
+                "e2913641.ea203",
+                "abd84e73.aefc9",
+                "b3f6e410.547fc",
+                "d0d14f00.e2ff88",
+                "6f64625f.243fd4"
             ]
         ]
     }
