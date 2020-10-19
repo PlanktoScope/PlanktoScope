@@ -19,11 +19,11 @@ import os
 logger.add(
     # sys.stdout,
     "PlanktoScope_{time}.log",
-    rotation="01:00",
-    retention="1 month",
+    rotation="5 MB",
+    retention="1 week",
     compression=".tar.gz",
     enqueue=True,
-    level="INFO",
+    level="DEBUG",
 )
 
 # The available level for the logger are as follows:
