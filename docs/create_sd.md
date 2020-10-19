@@ -71,6 +71,12 @@ Notably, do not forget to edit/remove the following files:
 - `mnt/etc/wpa_supplicant/wpa_supplicant.conf`: wifi configuration and network secrets
 - `mnt/home/pi/.ssh/authorized_keys`: public ssh keys authorized to connect to this planktoscope
 - `mnt/home/pi/data/`: this folder has all the images taken before by your machine, you may want to clean it up too
+- `mnt/home/pi/.*history`: bash and python history
+- `mnt/home/pi/.gitconfig`: git config
+
+!!! info
+    If you want to distribute the image you created, you need to start the service that will recreate the host ssh keys on startup:
+    `sudo ln -s /lib/systemd/system/regenerate_ssh_host_keys.service etc/systemd/system/multi-user.target.wants/regenerate_ssh_host_keys.service`
 
 Once your cleanup is done, unmount the image with `sudo umount mnt`.
 
@@ -84,13 +90,13 @@ chmod +x pishrink.sh
 
 Now, starts PiShrink on your image, and watch it do its magic:
 ```sh
-sudo ./pishrink.sh -z -a -p planktoscopeimage.img
+sudo ./pishrink.sh -z -a planktoscopeimage.img
 ```
 
-The following flag are recommened, but you can change them depending on your needs:
+The flags `-z -a` are used to compress the image to a gz file using the multithread version of gzip (pigz).
 
-- `-z -a`: compress the image to a gz file using the multithread version of gz
-- `-p`: remove logs, apt archives, and similar things
+!!! info
+    If you want to distribute the image you created, you should use the flag `-p` with PiShrink to remove logs, apt archives, ssh hosts keys and similar things.
 
-You now have a compressed that should be between 10 and 100 times smaller than the one you started with. You can distribute it, archive it, do whatever you please with it!
+You now have a compressed image that should be between 10 and 100 times smaller than the one you started with. You can distribute it (don't forget to do the steps above first), archive it, do whatever you please with it!
 
