@@ -36,7 +36,7 @@ Make sure you have access to internet and update/upgrade your fresh Raspbian ins
 Update your Pi first. Open up a terminal, and do the following:
 ```sh
 sudo apt update -y
-sudo apt upgrade -y
+sudo apt full-upgrade -y
 sudo apt install git
 ```
 
@@ -111,7 +111,10 @@ sudo pip3 install adafruit-blinka
 sudo pip3 install adafruit-circuitpython-motorkit
 ```
 
-It is recommended to test this setup by creating this small script under the name `test/blinkatest.py` and running it (you can use the editor nano if you are using the terminal).
+#### Testing the installation and the wiring
+
+It is recommended to test this setup by creating this small script under the name `test/blinkatest.py` and running it (you can use the editor nano if you are using the terminal). If you are using the image provided, you may find that the script is already there.
+
 ```python
 #!/usr/bin/python3
 import board
@@ -136,14 +139,14 @@ print("SPI ok!")
 print("done!")
 ```
 
-To run the script, just run the following:
+To start the script, just run the following:
 ```sh
 chmod +x test/blinkatest.py
 ./test/blinkatest.py
 ```
 
 The output should be similar to this:
-```
+```sh
 pi@planktoscope:~ $ ./test/blinkatest.py
 Hello blinka!
 Digital IO ok!
@@ -153,7 +156,7 @@ done!
 ```
 
 Also, to make sure the wiring is good, we are going to use `sudo i2cdetect -y 1` to see if our devices are detected:
-```
+```sh
 pi@planktoscope:~ $ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- 0d -- --
