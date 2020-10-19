@@ -381,7 +381,7 @@ class StepperProcess(multiprocessing.Process):
             return
 
         # We are going to use microsteps, so we need to multiply by 16 the steps number
-        nb_steps = self.focus_steps_per_mm * distance * 16
+        nb_steps = round(self.focus_steps_per_mm * distance * 16, 0)
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.focus_steps_per_mm * 16
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
@@ -436,7 +436,7 @@ class StepperProcess(multiprocessing.Process):
             logger.error("It should be either FORWARD or BACKWARD")
             return
 
-        nb_steps = self.pump_steps_per_ml * volume
+        nb_steps = round(self.pump_steps_per_ml * volume, 0)
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
         steps_per_second = speed * self.pump_steps_per_ml / 60
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
