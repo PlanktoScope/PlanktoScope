@@ -805,7 +805,7 @@
         "collapse": true
     },
     {
-        "id": "4e32f028.234248",
+        "id": "2c0efb95.057c34",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "de7c8e82.7faa98",
@@ -814,7 +814,7 @@
         "height": 1
     },
     {
-        "id": "10565c64.d848dc",
+        "id": "ddb0b515.5183c8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "de7c8e82.7faa98",
@@ -1744,8 +1744,7 @@
         "y": 300,
         "wires": [
             [
-                "2aa5b118.d75f2e",
-                "f6fd015e.5c1fe"
+                "2aa5b118.d75f2e"
             ]
         ]
     },
@@ -1797,8 +1796,7 @@
                 "5a159d39.3bdca4"
             ],
             [
-                "30a9de16.d55cda",
-                "89058790.909e7"
+                "30a9de16.d55cda"
             ]
         ]
     },
@@ -1844,7 +1842,7 @@
         "initialize": "",
         "finalize": "",
         "x": 900,
-        "y": 400,
+        "y": 380,
         "wires": [
             [
                 "abd84e73.aefc9",
@@ -1885,7 +1883,7 @@
         "legend": "false",
         "xformat": "HH:mm:ss",
         "interpolate": "linear",
-        "nodata": "",
+        "nodata": "Images count will be shown here once the imaging is started",
         "dot": false,
         "ymin": "",
         "ymax": "",
@@ -1950,7 +1948,8 @@
         "y": 480,
         "wires": [
             [
-                "117aad13.53e11b"
+                "117aad13.53e11b",
+                "89058790.909e7"
             ],
             [
                 "c2d35803.b5024"
@@ -1959,7 +1958,7 @@
                 "f71d0cda.0a4f88"
             ],
             [
-                "87d402c5.c02008"
+                "d7944cf2.1ddb18"
             ]
         ]
     },
@@ -1977,7 +1976,7 @@
         "legend": "false",
         "xformat": "HH:mm:ss",
         "interpolate": "linear",
-        "nodata": "",
+        "nodata": "Objects count will be shown here once the segmentation is started",
         "dot": false,
         "ymin": "",
         "ymax": "",
@@ -1986,6 +1985,7 @@
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": true,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -2015,28 +2015,11 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1000,
+        "x": 880,
         "y": 540,
         "wires": [
             [
-                "6f64625f.243fd4",
-                "f6fd015e.5c1fe"
-            ]
-        ]
-    },
-    {
-        "id": "87d402c5.c02008",
-        "type": "json",
-        "z": "bee3b478.ef4b88",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 870,
-        "y": 540,
-        "wires": [
-            [
-                "d7944cf2.1ddb18"
+                "6f64625f.243fd4"
             ]
         ]
     },
@@ -2072,7 +2055,7 @@
         "legend": "false",
         "xformat": "HH:mm:ss",
         "interpolate": "linear",
-        "nodata": "",
+        "nodata": "Objects area will be shown here once the segmentation is started",
         "dot": true,
         "ymin": "",
         "ymax": "",
@@ -2081,7 +2064,7 @@
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
-        "useUTC": false,
+        "useUTC": true,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -2095,7 +2078,7 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 1360,
+        "x": 1370,
         "y": 540,
         "wires": [
             []
@@ -2114,7 +2097,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 910,
+        "x": 920,
         "y": 460,
         "wires": []
     },
@@ -4108,7 +4091,8 @@
         "y": 300,
         "wires": [
             [
-                "ecedbda4.fed15"
+                "ecedbda4.fed15",
+                "f6fd015e.5c1fe"
             ]
         ]
     },
@@ -4481,6 +4465,7 @@
         "id": "f6fd015e.5c1fe",
         "type": "debug",
         "z": "bee3b478.ef4b88",
+        "d": true,
         "name": "segmenter area",
         "active": true,
         "tosidebar": true,
@@ -4490,8 +4475,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1320,
-        "y": 660,
+        "x": 640,
+        "y": 620,
         "wires": []
     },
     {
@@ -4924,7 +4909,7 @@
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
         "x": 890,
-        "y": 240,
+        "y": 420,
         "wires": []
     },
     {
@@ -5142,7 +5127,7 @@
         "label": "Images count",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 1360,
+        "x": 1370,
         "y": 360,
         "wires": []
     },
@@ -5183,15 +5168,48 @@
         "topic": "",
         "payload": "0",
         "payloadType": "num",
-        "x": 1150,
-        "y": 460,
+        "x": 590,
+        "y": 700,
         "wires": [
             [
-                "e2913641.ea203",
-                "abd84e73.aefc9",
-                "b3f6e410.547fc",
-                "d0d14f00.e2ff88",
-                "6f64625f.243fd4"
+                "cbcf66e1.7b1588",
+                "d3a02ef1.d473b"
+            ]
+        ]
+    },
+    {
+        "id": "cbcf66e1.7b1588",
+        "type": "function",
+        "z": "bee3b478.ef4b88",
+        "name": "obj_counter init",
+        "func": "obj_counter=0\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 900,
+        "y": 640,
+        "wires": [
+            [
+                "b3f6e410.547fc"
+            ]
+        ]
+    },
+    {
+        "id": "d3a02ef1.d473b",
+        "type": "function",
+        "z": "bee3b478.ef4b88",
+        "name": "img_counter init",
+        "func": "img_counter=0\nglobal.set('img_counter',img_counter)\nmsg.payload = img_counter\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 900,
+        "y": 600,
+        "wires": [
+            [
+                "e2913641.ea203"
             ]
         ]
     }
