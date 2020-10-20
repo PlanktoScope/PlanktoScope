@@ -63,16 +63,22 @@ class SegmenterProcess(multiprocessing.Process):
         self.stop_event = event
         self.__pipe = None
         self.segmenter_client = None
-        self.__img_path = "/home/pi/data/img"
-        self.__export_path = "/home/pi/data/export"
+        self.__img_path = "/home/pi/data/img/"
+        self.__export_path = "/home/pi/data/export/"
+        self.__objects_base_path = "/home/pi/data/objects/"
         self.__ecotaxa_path = os.path.join(self.__export_path, "ecotaxa")
         self.__global_metadata = None
         self.__working_path = ""
+        self.__working_obj_path = ""
         self.__archive_fn = ""
 
         if not os.path.exists(self.__ecotaxa_path):
             # create the path!
             os.makedirs(self.__ecotaxa_path)
+
+        if not os.path.exists(self.__objects_base_path):
+            # create the path!
+            os.makedirs(self.__objects_base_path)
         # Morphocut's pipeline will be created at runtime otherwise shit ensues
 
         logger.success("planktoscope.segmenter is initialised and ready to go!")
@@ -85,7 +91,7 @@ class SegmenterProcess(multiprocessing.Process):
             # TODO wrap morphocut.Call(logger.debug()) in something that allows it not to be added to the pipeline
             # if the logger.level is not debug. Might not be as easy as it sounds.
             # Recursively find .jpg files in import_path.
-            # Sort to get consective frames.
+            # Sort to get consecutive frames.
             abs_path = morphocut.file.Find(
                 self.__working_path, [".jpg"], sort=True, verbose=True
             )
@@ -174,7 +180,7 @@ class SegmenterProcess(multiprocessing.Process):
 
             # Define the name of each object
             object_fn = morphocut.str.Format(
-                os.path.join(self.__working_path, "objects", "{name}.jpg"),
+                os.path.join(self.__working_obj_path, "{name}.jpg"),
                 name=object_id,
             )
 
@@ -215,7 +221,7 @@ class SegmenterProcess(multiprocessing.Process):
             )
 
             id_json = morphocut.str.Format(
-                '{"object_id":"{object_id}"}', object_id=object_id
+                '{{"object_id":"{object_id}"}}', object_id=object_id
             )
 
             # Publish the object_id to via MQTT to Node-RED
@@ -248,9 +254,9 @@ class SegmenterProcess(multiprocessing.Process):
             )
             img_paths = [x[0] for x in os.walk(self.__img_path)]
             logger.info(f"The pipeline will be run in {len(img_paths)} directories")
-            logger.debug(f"The pipeline will be run in these directories {img_paths}")
+            logger.debug(f"Those are {img_paths}")
             for path in img_paths:
-                logger.info("Checking for the presence of metadata.json")
+                logger.info(f"{path}: Checking for the presence of metadata.json")
                 if os.path.exists(os.path.join(path, "metadata.json")):
                     # The file exists, let's run the pipe!
                     logger.info(f"Loading the metadata file for {path}")
@@ -272,10 +278,23 @@ class SegmenterProcess(multiprocessing.Process):
 
                     self.__working_path = path
 
+                    # recreate the subfolder img architecture of this folder inside objects
+                    # when we split the working path with the base img path, we get the date/sample architecture back
+                    # "/home/pi/data/img/2020-10-17/5/5".split("/home/pi/data/img/")[1] => '2020-10-17/5/5'
+                    sample_path = self.__working_path.split(self.__img_path)[1].strip()
+                    logger.debug(f"base obj path is {self.__objects_base_path}")
+                    logger.debug(f"sample path is {sample_path}")
+                    self.__working_obj_path = os.path.join(
+                        self.__objects_base_path, sample_path
+                    )
+
+                    logger.debug(
+                        f"The working objects path is {self.__working_obj_path}"
+                    )
                     # Create the objects path
-                    if not os.path.exists(os.path.join(self.__working_path, "objects")):
+                    if not os.path.exists(self.__working_obj_path):
                         # create the path!
-                        os.makedirs(os.path.join(self.__working_path, "objects"))
+                        os.makedirs(self.__working_obj_path)
 
                     logger.debug(f"The archive folder is {self.__archive_fn}")
 
@@ -290,7 +309,7 @@ class SegmenterProcess(multiprocessing.Process):
                         logger.exception(f"There was an error in the pipeline {e}")
                     logger.info(f"Pipeline has been run for {path}")
                 else:
-                    logger.info("Moving to the next folder, this one's empty")
+                    logger.info(f"Moving to the next folder, {path} is empty")
 
             # remove directory
             # shutil.rmtree(import_path)
