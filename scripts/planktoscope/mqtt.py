@@ -87,6 +87,8 @@ class MQTT_Client:
     @logger.catch
     def connect(self):
         logger.info(f"trying to connect to {self.server}:{self.port}")
+        # TODO add try: except ConnectionRefusedError: block here
+        # This is a symptom that Mosquitto may have failed to start
         self.client.connect(self.server, self.port, 60)
         self.client.on_connect = self.on_connect
         self.client.on_subscribe = self.on_subscribe
@@ -122,6 +124,7 @@ class MQTT_Client:
     # Run this function in order to subscribe to all the topics begining by actuator
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
+        # TODO Fix bug when this is called outside of this init function (for example when the imager subscribe to status/pump)
         logger.success(
             f"{self.name} subscribed to {self.topic}! - mid:{str(mid)} qos:{str(granted_qos)}"
         )

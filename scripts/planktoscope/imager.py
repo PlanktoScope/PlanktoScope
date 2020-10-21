@@ -99,6 +99,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                         output.condition.wait()
                         frame = output.frame
                     self.wfile.write(b"--FRAME\r\n")
+                    # TODO exception BrokenPipeError here
                     self.send_header("Content-Type", "image/jpeg")
                     self.send_header("Content-Length", len(frame))
                     self.end_headers()
@@ -157,10 +158,6 @@ class ImagerProcess(multiprocessing.Process):
         self.__base_path = "/home/pi/data/img"
         self.__export_path = ""
         self.__global_metadata = None
-
-        # TODO implement a way to receive directly the metadata from Node-Red via MQTT
-        # FIXME We should save the metadata to a file in the folder too
-        # TODO create a directory structure per day/per imaging session
 
         logger.success("planktoscope.imager is initialised and ready to go!")
 
