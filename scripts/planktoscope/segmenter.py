@@ -341,8 +341,6 @@ class SegmenterProcess(multiprocessing.Process):
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Busy"}'
             )
-            pass
-
         elif action != "":
             logger.warning(
                 f"We did not understand the received request {action} - {last_message}"

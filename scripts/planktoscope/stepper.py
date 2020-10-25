@@ -188,7 +188,7 @@ class StepperProcess(multiprocessing.Process):
             logger.info(
                 "The hardware configuration file doesn't exists, using defaults"
             )
-            configuration = dict()
+            configuration = {}
 
         reverse = False
 
@@ -371,7 +371,7 @@ class StepperProcess(multiprocessing.Process):
         )
 
         # Validation of inputs
-        if direction != "UP" and direction != "DOWN":
+        if direction not in ["UP", "DOWN"]:
             logger.error("The direction command is not recognised")
             logger.error("It should be either UP or DOWN")
             return
@@ -431,7 +431,7 @@ class StepperProcess(multiprocessing.Process):
         logger.info(f"The pump will move {direction} for {volume}mL at {speed}mL/min")
 
         # Validation of inputs
-        if direction != "FORWARD" and direction != "BACKWARD":
+        if direction not in ["FORWARD", "BACKWARD"]:
             logger.error("The direction command is not recognised")
             logger.error("It should be either FORWARD or BACKWARD")
             return

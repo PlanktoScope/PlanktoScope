@@ -280,8 +280,6 @@ class ImagerProcess(multiprocessing.Process):
                 logger.error("We can't update the configuration while we are imaging.")
                 # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
-            pass
-
         elif action == "settings":
             if self.__imager.state.name is "stop":
                 if "settings" not in last_message:
@@ -327,8 +325,6 @@ class ImagerProcess(multiprocessing.Process):
                 )
                 # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
-            pass
-
         elif action != "":
             logger.warning(
                 f"We did not understand the received request {action} - {last_message}"
@@ -429,7 +425,6 @@ class ImagerProcess(multiprocessing.Process):
                 self.__imager.change(planktoscope.imager_state_machine.Stop)
                 # Set the LEDs as Green
                 planktoscope.light.setRGB(0, 255, 255)
-                return
             else:
                 # We have not reached the final stage, let's keep imaging
                 # Set the LEDs as Blue
@@ -459,12 +454,11 @@ class ImagerProcess(multiprocessing.Process):
 
                 # Change state towards Waiting for pump
                 self.__imager.change(planktoscope.imager_state_machine.Waiting)
-                return
-
-        elif self.__imager.state.name is "waiting":
             return
-
-        elif self.__imager.state.name is "stop":
+        elif (
+            self.__imager.state.name is "waiting"
+            or self.__imager.state.name is "stop"
+        ):
             return
 
     ################################################################################

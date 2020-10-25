@@ -82,10 +82,10 @@ def setRGBColor(color):
 def light(state):
     """Turn the LED on or off"""
 
-    if state == "on":
-        RPi.GPIO.output(21, RPi.GPIO.HIGH)
     if state == "off":
         RPi.GPIO.output(21, RPi.GPIO.LOW)
+    elif state == "on":
+        RPi.GPIO.output(21, RPi.GPIO.HIGH)
 
 
 # This is called if this script is launched directly
