@@ -84,7 +84,7 @@ def light(state):
 
     if state == "on":
         RPi.GPIO.output(21, RPi.GPIO.HIGH)
-    if state == "off":
+    elif state == "off":
         RPi.GPIO.output(21, RPi.GPIO.LOW)
 
 

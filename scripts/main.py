@@ -53,6 +53,9 @@ import planktoscope.segmenter
 # Import the planktonscope LED module
 import planktoscope.light
 
+# Import the planktonscope uuidName module
+import planktoscope.uuidName
+
 
 # global variable that keeps the wheels spinning
 run = True
@@ -75,18 +78,17 @@ if __name__ == "__main__":
     # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
     with open("/boot/config.txt", "r") as config_file:
         for i, line in enumerate(config_file):
-            if line.startswith("gpu_mem"):
-                if int(line.split("=")[1].strip()) < 256:
-                    logger.error(
-                        "The GPU memory size is less than 256, this will prevent the camera from running properly"
-                    )
-                    logger.error(
-                        "Please edit the file /boot/config.txt to change the gpu_mem value to at least 256"
-                    )
-                    logger.error(
-                        "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
-                    )
-                    sys.exit(1)
+            if line.startswith("gpu_mem") and int(line.split("=")[1].strip()) < 256:
+                logger.error(
+                    "The GPU memory size is less than 256, this will prevent the camera from running properly"
+                )
+                logger.error(
+                    "Please edit the file /boot/config.txt to change the gpu_mem value to at least 256"
+                )
+                logger.error(
+                    "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
+                )
+                sys.exit(1)
 
     # Let's make sure the used base path exists
     img_path = "/home/pi/PlanktonScope/img"
@@ -101,8 +103,7 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(export_path)
 
-    with open("/sys/firmware/devicetree/base/serial-number", "r") as config_file:
-        logger.info(f"This PlanktoScope unique ID is {config_file.readline()}")
+    logger.info(f"This PlanktoScope unique ID is {planktoscope.uuidName.getSerial()}")
 
     # Prepare the event for a gracefull shutdown
     shutdown_event = multiprocessing.Event()
