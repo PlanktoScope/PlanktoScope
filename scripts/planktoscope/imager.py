@@ -482,6 +482,7 @@ class ImagerProcess(multiprocessing.Process):
         logger.info("Initialising the camera")
         # PiCamera settings
         self.__camera = picamera.PiCamera(resolution=self.__resolution)
+        # TODO Check camera version here
         self.__camera.iso = self.__iso
         self.__camera.shutter_speed = self.__shutter_speed
         self.__camera.exposure_mode = self.__exposure_mode

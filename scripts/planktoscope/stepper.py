@@ -25,9 +25,11 @@ class StepperWaveshare:
 
         RPi.GPIO.setmode(RPi.GPIO.BCM)
         RPi.GPIO.setwarnings(False)
-        RPi.GPIO.setup(self.dir_pin, RPi.GPIO.OUT)
-        RPi.GPIO.setup(self.step_pin, RPi.GPIO.OUT)
-        RPi.GPIO.setup(self.enable_pin, RPi.GPIO.OUT)
+        RPi.GPIO.setup(
+            [self.dir_pin, self.step_pin, self.enable_pin],
+            RPi.GPIO.OUT,
+            initial=RPi.GPIO.HIGH,
+        )
         self.release()
 
     def release(self):
@@ -191,9 +193,11 @@ class StepperProcess(multiprocessing.Process):
             configuration = {}
 
         reverse = False
+        microsteps = 16
 
         # parse the config data. If the key is absent, we are using the default value
         reverse = configuration.get("stepper_reverse", reverse)
+        microsteps = configuration.get("microsteps", microsteps)
         self.focus_steps_per_mm = configuration.get(
             "focus_steps_per_mm", self.focus_steps_per_mm
         )
@@ -209,7 +213,7 @@ class StepperProcess(multiprocessing.Process):
         # define the names for the 2 exsting steppers
         if self.stepper_type == "adafruit":
             logger.info("Loading the adafruit configuration")
-            kit = adafruit_motorkit.MotorKit()
+            kit = adafruit_motorkit.MotorKit(steppers_microsteps=microsteps)
             if reverse:
                 self.pump_stepper = stepper(kit.stepper2, adafruit_motor.stepper.DOUBLE)
                 self.focus_stepper = stepper(
@@ -222,6 +226,9 @@ class StepperProcess(multiprocessing.Process):
                 )
         elif self.stepper_type == "waveshare":
             logger.info("Loading the waveshare configuration")
+            logger.debug(
+                f"Configured microsteps is {microsteps}, check the hardware switches if the stage does not move the intended distance"
+            )
             if reverse:
                 self.pump_stepper = stepper(
                     StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4)
@@ -380,17 +387,17 @@ class StepperProcess(multiprocessing.Process):
             logger.error("You are trying to move more than the stage physical size")
             return
 
-        # We are going to use microsteps, so we need to multiply by 16 the steps number
-        nb_steps = round(self.focus_steps_per_mm * distance * 16, 0)
+        # We are going to use 32 microsteps, so we need to multiply by 32 the steps number
+        nb_steps = round(self.focus_steps_per_mm * distance * 32, 0)
         logger.debug(f"The number of steps that will be applied is {nb_steps}")
-        steps_per_second = speed * self.focus_steps_per_mm * 16
+        steps_per_second = speed * self.focus_steps_per_mm * 32
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
 
         if steps_per_second > 400:
             steps_per_second = 400
             logger.warning("The requested speed is faster than the maximum safe speed")
             logger.warning(
-                f"The speed of the motor is going to be limited to {steps_per_second/16/self.focus_steps_per_mm}mm/sec"
+                f"The speed of the motor is going to be limited to {steps_per_second/32/self.focus_steps_per_mm}mm/sec"
             )
 
         # On linux, the minimal acceptable delay managed by the system is 0.1ms
