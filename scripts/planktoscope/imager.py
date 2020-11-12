@@ -99,14 +99,13 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                         output.condition.wait()
                         frame = output.frame
                     self.wfile.write(b"--FRAME\r\n")
-                    # TODO exception BrokenPipeError here
                     self.send_header("Content-Type", "image/jpeg")
                     self.send_header("Content-Length", len(frame))
                     self.end_headers()
                     self.wfile.write(frame)
                     self.wfile.write(b"\r\n")
-            except Exception as e:
-                logger.exception(f"Removed streaming client {self.client_address}")
+            except BrokenPipeError as e:
+                logger.info(f"Removed streaming client {self.client_address}")
         else:
             self.send_error(404)
             self.end_headers()
