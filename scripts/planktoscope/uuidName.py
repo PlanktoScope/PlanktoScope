@@ -48,7 +48,7 @@ def uuidMachineName(machine="", type=1):
     while len(x) > 0:
         tup = popHexPair(x)
         n = tup[0]
-        if count >= random.randint(2, 4):
+        if count >= random.randint(2, 4):  # nosec
             name += " "
             count = 0
         name += combos[n]
@@ -86,7 +86,7 @@ def uuidName():
     while len(x) > 0:
         tup = popHexPair(x)
         n = tup[0]
-        if count >= random.randint(2, 4):
+        if count >= random.randint(2, 4):  # nosec
             name += " "
             count = 0
         name += combos[n]
