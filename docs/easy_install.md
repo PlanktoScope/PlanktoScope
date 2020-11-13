@@ -21,6 +21,16 @@ Once flashing is over, you can unmount the SD card from the computer (usually do
 
 Insert now the card in the Raspberry installed in your PlanktonScope.
 
+## Install a mDNS client
+
+To access the PlanktoScope services through your browser, you need to install a mDNS client.
+
+If you are running a linux machine, you are in luck. Avahi-client is probably already installed on your machine. Check with your package manager.
+
+If you are running a Windows machine, you will need to install the Bonjour service. It's a client developped by Apple. However, if you already use iTunes, Skype or even Photoshop, you may already have a client installed. Try skipping to the next step. If you can't access the linked page, come back here!
+
+To install the client, download the installer [here](https://download.info.apple.com/Mac_OS_X/061-8098.20100603.gthyu/BonjourPSSetup.exe) and launch it.
+
 ## Start playing!
 
 Start up your PlanktonScope and connect to its WiFi network. You can now access the webpage at http://planktonscope.local:1880/ui to start using your machine!
