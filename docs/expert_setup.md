@@ -173,35 +173,6 @@ The device appearing at addresses 60 and 70 is our motor controller. Address `0d
 
 In case the motor controller does not appear, shutdown your Planktoscope and check the wiring. If your board is using a connector instead of a soldered pin connection (as happens with the Adafruit Bonnet Motor Controller), sometimes the pins on the male side need to be bent a little to make good contact. In any case, do not hesitate to ask for help in Slack.
 
-### Install RPi Cam Web Interface
-
-You can find more information about the RPi Cam Web Interface on [eLinux' website](https://elinux.org/RPi-Cam-Web-Interface).
-
-To set it up, clone the code from Github and enable and run the install script with the following commands
-```sh
-cd ~/libraries
-git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
-cd RPi_Cam_Web_Interface
-./install.sh
-```
-
-Change the autostart setting to No, and then press Enter to allow default setting of the installation. Once everything is installed, press Enter to start the RPi Cam Web Interface now.
-
-To test the interface locally, try accessing this url from the browser in the Raspberry: http://localhost/html
-
-You can also try to access this page from another computer connected to the same network.
-
-If your computer has `avahi` or the `Bonjour` service installed and running, you can directly use this url: http://raspberrypi.local/html/ .
-
-If this is not the case, you first need to find the IP address of your Raspberry Pi by running the following:
-```sh
-sudo ip addr show | grep 'inet 1'
-```
-
-The web page can then be accessed at `http://[IP_ADDRESS]/html/`.
-
-If the interface is loading and a picture is displayed, you can now stop this interface for now by simply running `./stop.sh`.
-
 
 ### Install Ultimate GPS HAT
 

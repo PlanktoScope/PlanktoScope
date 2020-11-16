@@ -12,10 +12,10 @@ import datetime
 import time
 
 # Libraries manipulate json format, execute bash commands
-import json, shutil, os
+import json, shutil
 
-# Library to control the PiCamera
-import picamera
+# Library for path and filesystem manipulations
+import os
 
 # Library for starting processes
 import multiprocessing
@@ -27,36 +27,22 @@ import planktoscope.light
 # import planktoscope.streamer
 import planktoscope.imager_state_machine
 
+# import raspimjpeg module
+import planktoscope.raspimjpeg
+
 
 ################################################################################
 # Streaming PiCamera over server
 ################################################################################
-import io
 import socketserver
 import http.server
 import threading
+import functools
+
 
 ################################################################################
 # Classes for the PiCamera Streaming
 ################################################################################
-class StreamingOutput(object):
-    def __init__(self):
-        self.frame = None
-        self.buffer = io.BytesIO()
-        self.condition = threading.Condition()
-
-    def write(self, buf):
-        if buf.startswith(b"\xff\xd8"):
-            # New frame, copy the existing buffer's content and notify all
-            # clients it's available
-            self.buffer.truncate()
-            with self.condition:
-                self.frame = self.buffer.getvalue()
-                self.condition.notify_all()
-            self.buffer.seek(0)
-        return self.buffer.write(buf)
-
-
 class StreamingHandler(http.server.BaseHTTPRequestHandler):
     # Webpage content containing the PiCamera Streaming
     PAGE = """\
@@ -69,6 +55,10 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
     </body>
     </html>
     """
+
+    def __init__(self, delay, *args, **kwargs):
+        self.delay = delay
+        super(StreamingHandler, self).__init__(*args, **kwargs)
 
     @logger.catch
     def do_GET(self):
@@ -95,15 +85,23 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             try:
                 while True:
-                    with output.condition:
-                        output.condition.wait()
-                        frame = output.frame
-                    self.wfile.write(b"--FRAME\r\n")
-                    self.send_header("Content-Type", "image/jpeg")
-                    self.send_header("Content-Length", len(frame))
-                    self.end_headers()
-                    self.wfile.write(frame)
-                    self.wfile.write(b"\r\n")
+                    try:
+                        with open("/dev/shm/mjpeg/cam.jpg", "rb") as jpeg:
+                            frame = jpeg.read()
+                    except FileNotFoundError as e:
+                        logger.error(f"Camera has not been started yet")
+                        time.sleep(5)
+                    except Exception as e:
+                        logger.exception(f"An exception occured {e}")
+                    else:
+                        self.wfile.write(b"--FRAME\r\n")
+                        self.send_header("Content-Type", "image/jpeg")
+                        self.send_header("Content-Length", len(frame))
+                        self.end_headers()
+                        self.wfile.write(frame)
+                        self.wfile.write(b"\r\n")
+                        time.sleep(self.delay)
+
             except BrokenPipeError as e:
                 logger.info(f"Removed streaming client {self.client_address}")
         else:
@@ -116,10 +114,7 @@ class StreamingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
     daemon_threads = True
 
 
-output = StreamingOutput()
-
 logger.info("planktoscope.imager is loaded")
-
 
 ################################################################################
 # Main Imager class
@@ -128,20 +123,35 @@ class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
     @logger.catch
-    def __init__(self, event, resolution=(3280, 2464), iso=60, shutter_speed=500):
+    def __init__(self, stop_event, iso=100, shutter_speed=500):
         """Initialize the Imager class
 
         Args:
-            event (multiprocessing.Event): shutdown event
-            resolution (tuple, optional): Camera native resolution. Defaults to (3280, 2464).
-            iso (int, optional): ISO sensitivity. Defaults to 60.
+            stop_event (multiprocessing.Event): shutdown event
+            iso (int, optional): ISO sensitivity. Defaults to 100.
             shutter_speed (int, optional): Shutter speed of the camera. Defaults to 500.
         """
         super(ImagerProcess, self).__init__(name="imager")
 
         logger.info("planktoscope.imager is initialising")
 
-        self.stop_event = event
+        if os.path.exists("/home/pi/PlanktonScope/hardware.json"):
+            # load hardware.json
+            with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
+                configuration = json.load(config_file)
+                logger.debug(f"Hardware configuration loaded is {configuration}")
+        else:
+            logger.info(
+                "The hardware configuration file doesn't exists, using defaults"
+            )
+            configuration = {}
+
+        self.__camera_type = "v2.1"
+
+        # parse the config data. If the key is absent, we are using the default value
+        self.__camera_type = configuration.get("camera_type", self.__camera_type)
+
+        self.stop_event = stop_event
         self.__imager = planktoscope.imager_state_machine.Imager()
         self.__img_goal = 0
         self.__img_done = 0
@@ -149,8 +159,29 @@ class ImagerProcess(multiprocessing.Process):
         self.__pump_volume = None
         self.__img_goal = None
         self.imager_client = None
-        self.__camera = None
-        self.__resolution = resolution
+
+        # Initialise the camera and the process
+        # Also starts the streaming to the temporary file
+        self.__camera = planktoscope.raspimjpeg.raspimjpeg()
+
+        try:
+            self.__camera.start()
+        except Exception as e:
+            logger.exception(
+                f"An exception has occured when starting up raspimjpeg: {e}"
+            )
+            exit(1)
+
+        if self.__camera.sensor_name == "IMX219":  # Camera v2.1
+            self.__resolution = (3280, 2464)
+        elif self.__camera.sensor_name == "IMX477":  # Camera HQ
+            self.__resolution = (4056, 3040)
+        else:
+            self.__resolution = (1280, 1024)
+            logger.error(
+                f"The connected camera {self.__camera.sensor_name} is not recognized, please check your camera"
+            )
+
         self.__iso = iso
         self.__shutter_speed = shutter_speed
         self.__exposure_mode = "fixedfps"
@@ -158,12 +189,43 @@ class ImagerProcess(multiprocessing.Process):
         self.__export_path = ""
         self.__global_metadata = None
 
-        logger.success("planktoscope.imager is initialised and ready to go!")
+        logger.info("Initialising the camera with the default settings")
+        try:
+            self.__camera.resolution = self.__resolution
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the resolution, trying again"
+            )
+            self.__camera.resolution = self.__resolution
+        time.sleep(0.1)
 
-    @logger.catch
-    def start_camera(self):
-        """Start the camera streaming process"""
-        self.__camera.start_recording(output, format="mjpeg", resize=(640, 480))
+        try:
+            self.__camera.iso = self.__iso
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the ISO number, trying again"
+            )
+            self.__camera.iso = self.__iso
+        time.sleep(0.1)
+
+        try:
+            self.__camera.shutter_speed = self.__shutter_speed
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the shutter speed, trying again"
+            )
+            self.__camera.shutter_speed = self.__shutter_speed
+        time.sleep(0.1)
+
+        try:
+            self.__camera.exposure_mode = self.__exposure_mode
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the exposure mode, trying again"
+            )
+            self.__camera.exposure_mode = self.__exposure_mode
+
+        logger.success("planktoscope.imager is initialised and ready to go!")
 
     def pump_callback(self, client, userdata, msg):
         """Callback for when we receive an MQTT message
@@ -196,93 +258,93 @@ class ImagerProcess(multiprocessing.Process):
 
     def __message_image(self, last_message):
         """Actions for when we receive a message"""
-            if (
-                "sleep" not in last_message
-                or "volume" not in last_message
-                or "nb_frame" not in last_message
-            ):
+        if (
+            "sleep" not in last_message
+            or "volume" not in last_message
+            or "nb_frame" not in last_message
+        ):
             logger.error(f"The received message has the wrong argument {last_message}")
-                self.imager_client.client.publish("status/imager", '{"status":"Error"}')
-                return
-            # Change the state of the machine
-            self.__imager.change(planktoscope.imager_state_machine.Imaging)
+            self.imager_client.client.publish("status/imager", '{"status":"Error"}')
+            return
+        # Change the state of the machine
+        self.__imager.change(planktoscope.imager_state_machine.Imaging)
 
-            # Get duration to wait before an image from the different received arguments
-            self.__sleep_before = float(last_message["sleep"])
-            # Get volume in between two images from the different received arguments
-            self.__pump_volume = float(last_message["volume"])
-            # Get the number of frames to image from the different received arguments
-            self.__img_goal = int(last_message["nb_frame"])
+        # Get duration to wait before an image from the different received arguments
+        self.__sleep_before = float(last_message["sleep"])
+        # Get volume in between two images from the different received arguments
+        self.__pump_volume = float(last_message["volume"])
+        # Get the number of frames to image from the different received arguments
+        self.__img_goal = int(last_message["nb_frame"])
 
-            self.imager_client.client.publish("status/imager", '{"status":"Started"}')
+        self.imager_client.client.publish("status/imager", '{"status":"Started"}')
 
     def __message_stop(self, last_message):
         #   Remove callback for "status/pump" and unsubscribe
-            self.imager_client.client.message_callback_remove("status/pump")
-            self.imager_client.client.unsubscribe("status/pump")
+        self.imager_client.client.message_callback_remove("status/pump")
+        self.imager_client.client.unsubscribe("status/pump")
 
-            # Stops the pump
-            self.imager_client.client.publish("actuator/pump", '{"action": "stop"}')
+        # Stops the pump
+        self.imager_client.client.publish("actuator/pump", '{"action": "stop"}')
 
-            logger.info("The imaging has been interrupted.")
+        logger.info("The imaging has been interrupted.")
 
-            # Publish the status "Interrupted" to via MQTT to Node-RED
+        # Publish the status "Interrupted" to via MQTT to Node-RED
         self.imager_client.client.publish("status/imager", '{"status":"Interrupted"}')
 
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
+        # Set the LEDs as Green
+        planktoscope.light.setRGB(0, 255, 0)
 
-            # Change state to Stop
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
+        # Change state to Stop
+        self.__imager.change(planktoscope.imager_state_machine.Stop)
 
     def __message_update(self, last_message):
         if self.__imager.state.name == "stop":
-                if "config" not in last_message:
-                    logger.error(
-                        f"The received message has the wrong argument {last_message}"
-                    )
-                    self.imager_client.client.publish(
-                        "status/imager", '{"status":"Configuration message error"}'
-                    )
-                    return
-                logger.info("Updating the configuration now with the received data")
-                # Updating the configuration with the passed parameter in payload["config"]
-                nodered_metadata = last_message["config"]
-                # Definition of the few important metadata
-                local_metadata = {
-                "process_datetime": datetime.datetime.now().isoformat().split(".")[0],
-                    "acq_camera_resolution": self.__resolution,
-                    "acq_camera_iso": self.__iso,
-                    "acq_camera_shutter_speed": self.__shutter_speed,
-                }
-                # Concat the local metadata and the metadata from Node-RED
-                self.__global_metadata = {**local_metadata, **nodered_metadata}
-
-                # Publish the status "Config updated" to via MQTT to Node-RED
-                self.imager_client.client.publish(
-                    "status/imager", '{"status":"Config updated"}'
+            if "config" not in last_message:
+                logger.error(
+                    f"The received message has the wrong argument {last_message}"
                 )
-                logger.info("Configuration has been updated")
-            else:
-                logger.error("We can't update the configuration while we are imaging.")
-                # Publish the status "Interrupted" to via MQTT to Node-RED
-                self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
+                self.imager_client.client.publish(
+                    "status/imager", '{"status":"Configuration message error"}'
+                )
+                return
+            logger.info("Updating the configuration now with the received data")
+            # Updating the configuration with the passed parameter in payload["config"]
+            nodered_metadata = last_message["config"]
+            # Definition of the few important metadata
+            local_metadata = {
+                "process_datetime": datetime.datetime.now().isoformat().split(".")[0],
+                "acq_camera_resolution": self.__resolution,
+                "acq_camera_iso": self.__iso,
+                "acq_camera_shutter_speed": self.__shutter_speed,
+            }
+            # Concat the local metadata and the metadata from Node-RED
+            self.__global_metadata = {**local_metadata, **nodered_metadata}
+
+            # Publish the status "Config updated" to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/imager", '{"status":"Config updated"}'
+            )
+            logger.info("Configuration has been updated")
+        else:
+            logger.error("We can't update the configuration while we are imaging.")
+            # Publish the status "Interrupted" to via MQTT to Node-RED
+            self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
 
     def __message_settings(self, last_message):
         if self.__imager.state.name == "stop":
-                if "settings" not in last_message:
-                    logger.error(
-                        f"The received message has the wrong argument {last_message}"
-                    )
-                    self.imager_client.client.publish(
-                        "status/imager", '{"status":"Camera settings error"}'
-                    )
-                    return
-                logger.info("Updating the camera settings now with the received data")
-                # Updating the configuration with the passed parameter in payload["config"]
-                settings = last_message["settings"]
-                if "resolution" in settings:
-                    self.__resolution = settings.get("resolution", self.__resolution)
+            if "settings" not in last_message:
+                logger.error(
+                    f"The received message has the wrong argument {last_message}"
+                )
+                self.imager_client.client.publish(
+                    "status/imager", '{"status":"Camera settings error"}'
+                )
+                return
+            logger.info("Updating the camera settings now with the received data")
+            # Updating the configuration with the passed parameter in payload["config"]
+            settings = last_message["settings"]
+            if "resolution" in settings:
+                self.__resolution = settings.get("resolution", self.__resolution)
                 logger.debug(f"Updating the camera resolution to {self.__resolution}")
                 try:
                     self.__camera.resolution = self.__resolution
@@ -298,9 +360,9 @@ class ImagerProcess(multiprocessing.Process):
                     )
                     return
 
-                if "iso" in settings:
-                    self.__iso = settings.get("iso", self.__iso)
-                    logger.debug(f"Updating the camera iso to {self.__iso}")
+            if "iso" in settings:
+                self.__iso = settings.get("iso", self.__iso)
+                logger.debug(f"Updating the camera iso to {self.__iso}")
                 try:
                     self.__camera.iso = self.__iso
                 except TimeoutError as e:
@@ -315,13 +377,13 @@ class ImagerProcess(multiprocessing.Process):
                     )
                     return
 
-                if "shutter_speed" in settings:
-                    self.__shutter_speed = settings.get(
-                        "shutter_speed", self.__shutter_speed
-                    )
-                    logger.debug(
-                        f"Updating the camera shutter speed to {self.__shutter_speed}"
-                    )
+            if "shutter_speed" in settings:
+                self.__shutter_speed = settings.get(
+                    "shutter_speed", self.__shutter_speed
+                )
+                logger.debug(
+                    f"Updating the camera shutter speed to {self.__shutter_speed}"
+                )
                 try:
                     self.__camera.shutter_speed = self.__shutter_speed
                 except TimeoutError as e:
@@ -335,15 +397,15 @@ class ImagerProcess(multiprocessing.Process):
                         "status/imager", '{"status":"Error: Shutter speed not valid"}'
                     )
                     return
-                # Publish the status "Config updated" to via MQTT to Node-RED
-                self.imager_client.client.publish(
-                    "status/imager", '{"status":"Camera settings updated"}'
-                )
-                logger.info("Camera settings have been updated")
-            else:
+            # Publish the status "Config updated" to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/imager", '{"status":"Camera settings updated"}'
+            )
+            logger.info("Camera settings have been updated")
+        else:
             logger.error("We can't update the camera settings while we are imaging.")
-                # Publish the status "Interrupted" to via MQTT to Node-RED
-                self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
+            # Publish the status "Interrupted" to via MQTT to Node-RED
+            self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
 
     @logger.catch
     def treat_message(self):
@@ -379,126 +441,129 @@ class ImagerProcess(multiprocessing.Process):
         # TODO we should make sure here that we are not writing to an existing folder
         # otherwise we might overwrite the metadata.json file
 
+        # subscribe to status/pump
+        self.imager_client.client.subscribe("status/pump")
+        self.imager_client.client.message_callback_add(
+            "status/pump", self.pump_callback
+        )
+
+        logger.info("Setting up the directory structure for storing the pictures")
+        self.__export_path = os.path.join(
+            self.__base_path,
+            # We only keep the date '2020-09-25T15:25:21.079769'
+            self.__global_metadata["process_datetime"].split("T")[0],
+            str(self.__global_metadata["sample_id"]),
+            str(self.__global_metadata["acq_id"]),
+        )
+        if not os.path.exists(self.__export_path):
+            # create the path!
+            os.makedirs(self.__export_path)
+
+        # Export the metadata to a json file
+        logger.info("Exporting the metadata to a metadata.json")
+        config_path = os.path.join(self.__export_path, "metadata.json")
+        with open(config_path, "w") as metadata_file:
+            json.dump(self.__global_metadata, metadata_file)
+            logger.debug(
+                f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
+            )
+
+        # Sleep a duration before to start acquisition
+        time.sleep(self.__sleep_before)
+
+        # Set the LEDs as Blue
+        planktoscope.light.setRGB(0, 0, 255)
+        self.imager_client.client.publish(
+            "actuator/pump",
+            json.dumps(
+                {
+                    "action": "move",
+                    "direction": "FORWARD",
+                    "volume": self.__pump_volume,
+                    "flowrate": 2,
+                }
+            ),
+        )
+        # FIXME We should probably update the global metadata here with the current datetime/position/etc...
+
+        # Set the LEDs as Green
+        planktoscope.light.setRGB(0, 255, 0)
+
+        # Change state towards Waiting for pump
+        self.__imager.change(planktoscope.imager_state_machine.Waiting)
+
+    def __state_capture(self):
+        # Set the LEDs as Cyan
+        planktoscope.light.setRGB(0, 255, 255)
+
+        filename = f"{datetime.datetime.now().strftime('%H_%M_%S_%f')}.jpg"
+
+        # Define the filename of the image
+        filename_path = os.path.join(self.__export_path, filename)
+
+        logger.info(
+            f"Capturing image {self.__img_done + 1}/{self.__img_goal} to {filename_path}"
+        )
+
+        # Capture an image with the proper filename
+        try:
+            self.__camera.capture(filename_path)
+        except TimeoutError as e:
+            logger.error("A timeout happened while waiting for a capture to happen")
+
+        # Set the LEDs as Green
+        planktoscope.light.setRGB(0, 255, 0)
+
+        # Publish the name of the image to via MQTT to Node-RED
+        self.imager_client.client.publish(
+            "status/imager",
+            f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}"}}',
+        )
+
+        # Increment the counter
+        self.__img_done += 1
+
+        # If counter reach the number of frame, break
+        if self.__img_done >= self.__img_goal:
+            # Reset the counter to 0
+            self.__img_done = 0
+
+            # Publish the status "Done" to via MQTT to Node-RED
+            self.imager_client.client.publish("status/imager", '{"status":"Done"}')
+
+            # Change state towards done
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 255)
+        else:
+            # We have not reached the final stage, let's keep imaging
+            # Set the LEDs as Blue
+            planktoscope.light.setRGB(0, 0, 255)
+
             # subscribe to status/pump
             self.imager_client.client.subscribe("status/pump")
             self.imager_client.client.message_callback_add(
                 "status/pump", self.pump_callback
             )
 
-            logger.info("Setting up the directory structure for storing the pictures")
-            self.__export_path = os.path.join(
-                self.__base_path,
-                # We only keep the date '2020-09-25T15:25:21.079769'
-                self.__global_metadata["process_datetime"].split("T")[0],
-                str(self.__global_metadata["sample_id"]),
-                str(self.__global_metadata["acq_id"]),
-            )
-            if not os.path.exists(self.__export_path):
-                # create the path!
-                os.makedirs(self.__export_path)
-
-            # Export the metadata to a json file
-            logger.info("Exporting the metadata to a metadata.json")
-            config_path = os.path.join(self.__export_path, "metadata.json")
-            with open(config_path, "w") as metadata_file:
-                json.dump(self.__global_metadata, metadata_file)
-                logger.debug(
-                    f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
-                )
-
-            # Sleep a duration before to start acquisition
-            time.sleep(self.__sleep_before)
-
-            # Set the LEDs as Blue
-            planktoscope.light.setRGB(0, 0, 255)
+            # Pump during a given volume
             self.imager_client.client.publish(
                 "actuator/pump",
                 json.dumps(
                     {
                         "action": "move",
-                        "direction": "FORWARD",
+                        "direction": "BACKWARD",
                         "volume": self.__pump_volume,
                         "flowrate": 2,
                     }
                 ),
             )
-            # FIXME We should probably update the global metadata here with the current datetime/position/etc...
 
             # Set the LEDs as Green
             planktoscope.light.setRGB(0, 255, 0)
 
             # Change state towards Waiting for pump
             self.__imager.change(planktoscope.imager_state_machine.Waiting)
-
-    def __state_capture(self):
-            # Set the LEDs as Cyan
-            planktoscope.light.setRGB(0, 255, 255)
-
-            filename = f"{datetime.datetime.now().strftime('%H_%M_%S_%f')}.jpg"
-
-            # Define the filename of the image
-            filename_path = os.path.join(self.__export_path, filename)
-
-            logger.info(
-                f"Capturing image {self.__img_done + 1}/{self.__img_goal} to {filename_path}"
-            )
-
-            # Capture an image with the proper filename
-            self.__camera.capture(filename_path)
-
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
-
-            # Publish the name of the image to via MQTT to Node-RED
-            self.imager_client.client.publish(
-                "status/imager",
-                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}"}}',
-            )
-
-            # Increment the counter
-            self.__img_done += 1
-
-            # If counter reach the number of frame, break
-            if self.__img_done >= self.__img_goal:
-                # Reset the counter to 0
-                self.__img_done = 0
-
-                # Publish the status "Done" to via MQTT to Node-RED
-                self.imager_client.client.publish("status/imager", '{"status":"Done"}')
-
-                # Change state towards done
-                self.__imager.change(planktoscope.imager_state_machine.Stop)
-                # Set the LEDs as Green
-                planktoscope.light.setRGB(0, 255, 255)
-            else:
-                # We have not reached the final stage, let's keep imaging
-                # Set the LEDs as Blue
-                planktoscope.light.setRGB(0, 0, 255)
-
-                # subscribe to status/pump
-                self.imager_client.client.subscribe("status/pump")
-                self.imager_client.client.message_callback_add(
-                    "status/pump", self.pump_callback
-                )
-
-                # Pump during a given volume
-                self.imager_client.client.publish(
-                    "actuator/pump",
-                    json.dumps(
-                        {
-                            "action": "move",
-                            "direction": "BACKWARD",
-                            "volume": self.__pump_volume,
-                            "flowrate": 2,
-                        }
-                    ),
-                )
-
-                # Set the LEDs as Green
-                planktoscope.light.setRGB(0, 255, 0)
-
-                # Change state towards Waiting for pump
-                self.__imager.change(planktoscope.imager_state_machine.Waiting)
 
     @logger.catch
     def state_machine(self):
@@ -529,19 +594,12 @@ class ImagerProcess(multiprocessing.Process):
 
         self.imager_client.client.publish("status/imager", '{"status":"Starting up"}')
 
-        logger.info("Initialising the camera")
-        # PiCamera settings
-        self.__camera = picamera.PiCamera(resolution=self.__resolution)
-        # TODO Check camera version here
-        self.__camera.iso = self.__iso
-        self.__camera.shutter_speed = self.__shutter_speed
-        self.__camera.exposure_mode = self.__exposure_mode
-
-        address = ("", 8000)
-        server = StreamingServer(address, StreamingHandler)
-        # Starts the streaming server process
         logger.info("Starting the streaming server thread")
-        self.start_camera()
+        address = ("", 8000)
+        fps = 16
+        refresh_delay = 1 / fps
+        handler = functools.partial(StreamingHandler, refresh_delay)
+        server = StreamingServer(address, handler)
         self.streaming_thread = threading.Thread(
             target=server.serve_forever, daemon=True
         )
@@ -552,16 +610,14 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.success("Camera is READY!")
 
-        # This is the loop
+        # This is the main loop
         while not self.stop_event.is_set():
             self.treat_message()
             self.state_machine()
-            time.sleep(0.001)
 
         logger.info("Shutting down the imager process")
         self.imager_client.client.publish("status/imager", '{"status":"Dead"}')
-        logger.debug("Stopping the camera")
-        self.__camera.stop_recording()
+        logger.debug("Stopping the raspimjpeg process")
         self.__camera.close()
         logger.debug("Stopping the streaming thread")
         server.shutdown()
