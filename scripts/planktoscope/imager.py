@@ -166,6 +166,13 @@ class ImagerProcess(multiprocessing.Process):
         self.__camera.start_recording(output, format="mjpeg", resize=(640, 480))
 
     def pump_callback(self, client, userdata, msg):
+        """Callback for when we receive an MQTT message
+
+        Args:
+            client: Paho MQTT client information
+            userdata: userdata of the message
+            msg: actual message received
+        """
         # Print the topic and the message
         logger.info(f"{self.name}: {msg.topic} {str(msg.qos)} {str(msg.payload)}")
         if msg.topic != "status/pump":
@@ -175,7 +182,7 @@ class ImagerProcess(multiprocessing.Process):
             return
         payload = json.loads(msg.payload.decode())
         logger.debug(f"parsed payload is {payload}")
-        if self.__imager.state.name is "waiting":
+        if self.__imager.state.name == "waiting":
             if payload["status"] == "Done":
                 self.__imager.change(planktoscope.imager_state_machine.Capture)
                 self.imager_client.client.message_callback_remove("status/pump")
@@ -187,31 +194,16 @@ class ImagerProcess(multiprocessing.Process):
                 "There is an error, status is not waiting for the pump and yet we received a pump message"
             )
 
-    @logger.catch
-    def treat_message(self):
-        action = ""
-        if self.imager_client.new_message_received():
-            logger.info("We received a new message")
-            last_message = self.imager_client.msg["payload"]
-            logger.debug(last_message)
-            action = self.imager_client.msg["payload"]["action"]
-            logger.debug(action)
-            self.imager_client.read_message()
-
-        # If the command is "image"
-        if action == "image":
-            # {"action":"image","sleep":5,"volume":1,"nb_frame":200}
+    def __message_image(self, last_message):
+        """Actions for when we receive a message"""
             if (
                 "sleep" not in last_message
                 or "volume" not in last_message
                 or "nb_frame" not in last_message
             ):
-                logger.error(
-                    f"The received message has the wrong argument {last_message}"
-                )
+            logger.error(f"The received message has the wrong argument {last_message}")
                 self.imager_client.client.publish("status/imager", '{"status":"Error"}')
                 return
-
             # Change the state of the machine
             self.__imager.change(planktoscope.imager_state_machine.Imaging)
 
@@ -224,8 +216,8 @@ class ImagerProcess(multiprocessing.Process):
 
             self.imager_client.client.publish("status/imager", '{"status":"Started"}')
 
-        elif action == "stop":
-            # Remove callback for "status/pump" and unsubscribe
+    def __message_stop(self, last_message):
+        #   Remove callback for "status/pump" and unsubscribe
             self.imager_client.client.message_callback_remove("status/pump")
             self.imager_client.client.unsubscribe("status/pump")
 
@@ -235,9 +227,7 @@ class ImagerProcess(multiprocessing.Process):
             logger.info("The imaging has been interrupted.")
 
             # Publish the status "Interrupted" to via MQTT to Node-RED
-            self.imager_client.client.publish(
-                "status/imager", '{"status":"Interrupted"}'
-            )
+        self.imager_client.client.publish("status/imager", '{"status":"Interrupted"}')
 
             # Set the LEDs as Green
             planktoscope.light.setRGB(0, 255, 0)
@@ -245,8 +235,8 @@ class ImagerProcess(multiprocessing.Process):
             # Change state to Stop
             self.__imager.change(planktoscope.imager_state_machine.Stop)
 
-        elif action == "update_config":
-            if self.__imager.state.name is "stop":
+    def __message_update(self, last_message):
+        if self.__imager.state.name == "stop":
                 if "config" not in last_message:
                     logger.error(
                         f"The received message has the wrong argument {last_message}"
@@ -260,9 +250,7 @@ class ImagerProcess(multiprocessing.Process):
                 nodered_metadata = last_message["config"]
                 # Definition of the few important metadata
                 local_metadata = {
-                    "process_datetime": datetime.datetime.now()
-                    .isoformat()
-                    .split(".")[0],
+                "process_datetime": datetime.datetime.now().isoformat().split(".")[0],
                     "acq_camera_resolution": self.__resolution,
                     "acq_camera_iso": self.__iso,
                     "acq_camera_shutter_speed": self.__shutter_speed,
@@ -280,8 +268,8 @@ class ImagerProcess(multiprocessing.Process):
                 # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
 
-        elif action == "settings":
-            if self.__imager.state.name is "stop":
+    def __message_settings(self, last_message):
+        if self.__imager.state.name == "stop":
                 if "settings" not in last_message:
                     logger.error(
                         f"The received message has the wrong argument {last_message}"
@@ -295,15 +283,37 @@ class ImagerProcess(multiprocessing.Process):
                 settings = last_message["settings"]
                 if "resolution" in settings:
                     self.__resolution = settings.get("resolution", self.__resolution)
-                    logger.debug(
-                        f"Updating the camera resolution to {self.__resolution}"
+                logger.debug(f"Updating the camera resolution to {self.__resolution}")
+                try:
+                    self.__camera.resolution = self.__resolution
+                except TimeoutError as e:
+                    logger.error(
+                        "A timeout has occured when setting the resolution, trying again"
                     )
                     self.__camera.resolution = self.__resolution
+                except ValueError as e:
+                    logger.error("The requested resolution is not valid!")
+                    self.imager_client.client.publish(
+                        "status/imager", '{"status":"Error: Resolution not valid"}'
+                    )
+                    return
 
                 if "iso" in settings:
                     self.__iso = settings.get("iso", self.__iso)
                     logger.debug(f"Updating the camera iso to {self.__iso}")
+                try:
                     self.__camera.iso = self.__iso
+                except TimeoutError as e:
+                    logger.error(
+                        "A timeout has occured when setting the ISO number, trying again"
+                    )
+                    self.__camera.iso = self.__iso
+                except ValueError as e:
+                    logger.error("The requested ISO number is not valid!")
+                    self.imager_client.client.publish(
+                        "status/imager", '{"status":"Error: Iso number not valid"}'
+                    )
+                    return
 
                 if "shutter_speed" in settings:
                     self.__shutter_speed = settings.get(
@@ -312,28 +322,63 @@ class ImagerProcess(multiprocessing.Process):
                     logger.debug(
                         f"Updating the camera shutter speed to {self.__shutter_speed}"
                     )
+                try:
                     self.__camera.shutter_speed = self.__shutter_speed
-
+                except TimeoutError as e:
+                    logger.error(
+                        "A timeout has occured when setting the shutter speed, trying again"
+                    )
+                    self.__camera.shutter_speed = self.__shutter_speed
+                except ValueError as e:
+                    logger.error("The requested shutter speed is not valid!")
+                    self.imager_client.client.publish(
+                        "status/imager", '{"status":"Error: Shutter speed not valid"}'
+                    )
+                    return
                 # Publish the status "Config updated" to via MQTT to Node-RED
                 self.imager_client.client.publish(
                     "status/imager", '{"status":"Camera settings updated"}'
                 )
                 logger.info("Camera settings have been updated")
             else:
-                logger.error(
-                    "We can't update the camera settings while we are imaging."
-                )
+            logger.error("We can't update the camera settings while we are imaging.")
                 # Publish the status "Interrupted" to via MQTT to Node-RED
                 self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
 
-        elif action != "":
+    @logger.catch
+    def treat_message(self):
+        action = ""
+        if self.imager_client.new_message_received():
+            logger.info("We received a new message")
+            last_message = self.imager_client.msg["payload"]
+            logger.debug(last_message)
+            action = self.imager_client.msg["payload"]["action"]
+            logger.debug(action)
+            self.imager_client.read_message()
+
+        # If the command is "image"
+        if action == "image":
+            # {"action":"image","sleep":5,"volume":1,"nb_frame":200}
+            self.__message_image(last_message)
+
+        elif action == "stop":
+            self.__message_stop(last_message)
+
+        elif action == "update_config":
+            self.__message_update(last_message)
+
+        elif action == "settings":
+            self.__message_settings(last_message)
+
+        elif action not in ["image", "stop", "update_config", "settings", ""]:
             logger.warning(
                 f"We did not understand the received request {action} - {last_message}"
             )
 
-    @logger.catch
-    def state_machine(self):
-        if self.__imager.state.name is "imaging":
+    def __state_imaging(self):
+        # TODO we should make sure here that we are not writing to an existing folder
+        # otherwise we might overwrite the metadata.json file
+
             # subscribe to status/pump
             self.imager_client.client.subscribe("status/pump")
             self.imager_client.client.message_callback_add(
@@ -384,9 +429,8 @@ class ImagerProcess(multiprocessing.Process):
 
             # Change state towards Waiting for pump
             self.__imager.change(planktoscope.imager_state_machine.Waiting)
-            return
 
-        elif self.__imager.state.name is "capture":
+    def __state_capture(self):
             # Set the LEDs as Cyan
             planktoscope.light.setRGB(0, 255, 255)
 
@@ -455,11 +499,18 @@ class ImagerProcess(multiprocessing.Process):
 
                 # Change state towards Waiting for pump
                 self.__imager.change(planktoscope.imager_state_machine.Waiting)
+
+    @logger.catch
+    def state_machine(self):
+        if self.__imager.state.name == "imaging":
+            self.__state_imaging()
             return
 
-        elif (
-            self.__imager.state.name is "waiting" or self.__imager.state.name is "stop"
-        ):
+        elif self.__imager.state.name == "capture":
+            self.__state_capture()
+            return
+
+        elif self.__imager.state.name == ["waiting", "stop"]:
             return
 
     ################################################################################
