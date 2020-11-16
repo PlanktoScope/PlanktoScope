@@ -104,6 +104,9 @@ if __name__ == "__main__":
         os.makedirs(export_path)
 
     logger.info(f"This PlanktoScope unique ID is {planktoscope.uuidName.getSerial()}")
+    logger.info(
+        f"This PlanktoScope unique name is {planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())}"
+    )
 
     # Prepare the event for a gracefull shutdown
     shutdown_event = multiprocessing.Event()
