@@ -254,6 +254,92 @@ class StepperProcess(multiprocessing.Process):
 
         logger.info(f"Stepper initialisation is over")
 
+    def __message_pump(self, last_message):
+        logger.debug("We have received a pumping command")
+        if last_message["action"] == "stop":
+            logger.debug("We have received a stop pump command")
+            self.pump_stepper.shutdown()
+
+            # Print status
+            logger.info("The pump has been interrupted")
+
+            # Publish the status "Interrupted" to via MQTT to Node-RED
+            self.actuator_client.client.publish(
+                "status/pump", '{"status":"Interrupted"}'
+            )
+
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 0)
+
+        elif last_message["action"] == "move":
+            logger.debug("We have received a move pump command")
+            # Set the LEDs as Blue
+            planktoscope.light.setRGB(0, 0, 255)
+
+            if (
+                "direction" not in last_message
+                or "volume" not in last_message
+                or "flowrate" not in last_message
+            ):
+                logger.error(
+                    f"The received message has the wrong argument {last_message}"
+                )
+                self.actuator_client.client.publish("status/pump", '{"status":"Error"}')
+                return
+            # Get direction from the different received arguments
+            direction = last_message["direction"]
+            # Get delay (in between steps) from the different received arguments
+            volume = float(last_message["volume"])
+            # Get number of steps from the different received arguments
+            flowrate = float(last_message["flowrate"])
+
+            # Print status
+            logger.info("The pump is started.")
+            self.pump(direction, volume, flowrate)
+        else:
+            logger.warning(f"The received message was not understood {last_message}")
+
+    def __message_focus(self, last_message):
+        logger.debug("We have received a focusing request")
+        # If a new received command is "focus" but args contains "stop" we stop!
+        if last_message["action"] == "stop":
+            logger.debug("We have received a stop focus command")
+            self.focus_stepper.shutdown()
+
+            # Print status
+            logger.info("The focus has been interrupted")
+
+            # Publish the status "Interrupted" to via MQTT to Node-RED
+            self.actuator_client.client.publish(
+                "status/focus", '{"status":"Interrupted"}'
+            )
+
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 0)
+
+        elif last_message["action"] == "move":
+            logger.debug("We have received a move focus command")
+            # Set the LEDs as Yellow
+            planktoscope.light.setRGB(255, 255, 0)
+
+            if "direction" not in last_message or "distance" not in last_message:
+                logger.error(
+                    f"The received message has the wrong argument {last_message}"
+                )
+                self.actuator_client.client.publish(
+                    "status/focus", '{"status":"Error"}'
+                )
+            # Get direction from the different received arguments
+            direction = last_message["direction"]
+            # Get number of steps from the different received arguments
+            distance = float(last_message["distance"])
+
+            # Print status
+            logger.info("The focus movement is started.")
+            self.focus(direction, distance)
+        else:
+            logger.warning(f"The received message was not understood {last_message}")
+
     def treat_command(self):
         command = ""
         if self.actuator_client.new_message_received():
@@ -266,100 +352,11 @@ class StepperProcess(multiprocessing.Process):
 
             # If the command is "pump"
             if command == "pump":
-                logger.debug("We have received a pumping command")
-                if last_message["action"] == "stop":
-                    logger.debug("We have received a stop pump command")
-                    self.pump_stepper.shutdown()
-
-                    # Print status
-                    logger.info("The pump has been interrupted")
-
-                    # Publish the status "Interrupted" to via MQTT to Node-RED
-                    self.actuator_client.client.publish(
-                        "status/pump", '{"status":"Interrupted"}'
-                    )
-
-                    # Set the LEDs as Green
-                    planktoscope.light.setRGB(0, 255, 0)
-
-                elif last_message["action"] == "move":
-                    logger.debug("We have received a move pump command")
-                    # Set the LEDs as Blue
-                    planktoscope.light.setRGB(0, 0, 255)
-
-                    if (
-                        "direction" not in last_message
-                        or "volume" not in last_message
-                        or "flowrate" not in last_message
-                    ):
-                        logger.error(
-                            f"The received message has the wrong argument {last_message}"
-                        )
-                        self.actuator_client.client.publish(
-                            "status/pump", '{"status":"Error"}'
-                        )
-                        return
-                    # Get direction from the different received arguments
-                    direction = last_message["direction"]
-                    # Get delay (in between steps) from the different received arguments
-                    volume = float(last_message["volume"])
-                    # Get number of steps from the different received arguments
-                    flowrate = float(last_message["flowrate"])
-
-                    # Print status
-                    logger.info("The pump is started.")
-                    self.pump(direction, volume, flowrate)
-                else:
-                    logger.warning(
-                        f"The received message was not understood {last_message}"
-                    )
+                self.__message_pump(last_message)
 
             # If the command is "focus"
             elif command == "focus":
-                logger.debug("We have received a focusing request")
-                # If a new received command is "focus" but args contains "stop" we stop!
-                if last_message["action"] == "stop":
-                    logger.debug("We have received a stop focus command")
-                    self.focus_stepper.shutdown()
-
-                    # Print status
-                    logger.info("The focus has been interrupted")
-
-                    # Publish the status "Interrupted" to via MQTT to Node-RED
-                    self.actuator_client.client.publish(
-                        "status/focus", '{"status":"Interrupted"}'
-                    )
-
-                    # Set the LEDs as Green
-                    planktoscope.light.setRGB(0, 255, 0)
-
-                elif last_message["action"] == "move":
-                    logger.debug("We have received a move focus command")
-                    # Set the LEDs as Yellow
-                    planktoscope.light.setRGB(255, 255, 0)
-
-                    if (
-                        "direction" not in last_message
-                        or "distance" not in last_message
-                    ):
-                        logger.error(
-                            f"The received message has the wrong argument {last_message}"
-                        )
-                        self.actuator_client.client.publish(
-                            "status/focus", '{"status":"Error"}'
-                        )
-                    # Get direction from the different received arguments
-                    direction = last_message["direction"]
-                    # Get number of steps from the different received arguments
-                    distance = float(last_message["distance"])
-
-                    # Print status
-                    logger.info("The focus movement is started.")
-                    self.focus(direction, distance)
-                else:
-                    logger.warning(
-                        f"The received message was not understood {last_message}"
-                    )
+                self.__message_focus(last_message)
             elif command != "":
                 logger.warning(
                     f"We did not understand the received request {command} - {last_message}"
@@ -518,7 +515,6 @@ class StepperProcess(multiprocessing.Process):
                     "status/focus",
                     '{"status":"Done"}',
                 )
-            time.sleep(0)
         logger.info("Shutting down the stepper process")
         self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
         self.actuator_client.client.publish("status/focus", '{"status":"Dead"}')
