@@ -21,25 +21,6 @@ import multiprocessing
 import planktoscope.mqtt
 import planktoscope.light
 
-
-################################################################################
-# Morphocut Libraries
-################################################################################
-import morphocut
-import morphocut.file
-import morphocut.image
-import morphocut.stat
-import morphocut.stream
-import morphocut.str
-import morphocut.contrib.ecotaxa
-import morphocut.contrib.zooprocess
-
-################################################################################
-# Other image processing Libraries
-################################################################################
-import skimage.util
-import cv2
-
 logger.info("planktoscope.segmenter is loaded")
 
 
@@ -356,10 +337,29 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info(
             f"The segmenter control thread has been started in process {os.getpid()}"
         )
+
         # MQTT Service connection
         self.segmenter_client = planktoscope.mqtt.MQTT_Client(
             topic="segmenter/#", name="segmenter_client"
         )
+
+        ################################################################################
+        # Morphocut Libraries
+        ################################################################################
+        import morphocut
+        import morphocut.file
+        import morphocut.image
+        import morphocut.stat
+        import morphocut.stream
+        import morphocut.str
+        import morphocut.contrib.ecotaxa
+        import morphocut.contrib.zooprocess
+
+        ################################################################################
+        # Other image processing Libraries
+        ################################################################################
+        import skimage.util
+        import cv2
 
         # Instantiate the morphocut pipeline
         # self.__create_morphocut_pipeline()
