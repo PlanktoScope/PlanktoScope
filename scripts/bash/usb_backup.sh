@@ -107,8 +107,11 @@ do_backup()
             BACKUP_FOLDER="${MOUNT_POINT}/planktoscope_data/${MACHINE}"
             ${log} "Machine name is ${MACHINE}, backup folder is ${BACKUP_FOLDER}"
             mkdir -p "$BACKUP_FOLDER"
-            rsync -rtD --modify-window=1 --update --progress "$SOURCE" "$BACKUP_FOLDER"
-            # Ideally here, we should check for the integrity of files
+            rsync -rtD --modify-window=1 --update "$SOURCE" "$BACKUP_FOLDER"
+            if ! python3 -m planktoscope.integrity -c "$BACKUP_FOLDER"; then
+                ${log} "ERROR: The files were corrupted during the copy!"
+            else
+                ${log} "All files copied successfully!"
         else
             ${log} "Warning: ${DEVICE} does not contain the special file planktoscope.backup at its root"
         fi
