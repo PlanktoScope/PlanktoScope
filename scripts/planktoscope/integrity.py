@@ -13,25 +13,27 @@ import hashlib
 # Logger library compatible with multiprocessing
 from loguru import logger
 
+integrity_file_name = "integrity.check"
 
-def get_checksum(filename):
+
+def get_checksum(filepath):
     """returns the sha1 checksum of the file
 
     Args:
-        filename (string): file name of the file to calculate the checksum of
+        filepath (string): file name of the file to calculate the checksum of
 
     Returns:
         string: sha1 checksum of the file
     """
-    logger.debug(f"Calculating the integrity of {filename}'s content")
-    if not os.path.exists(filename):
+    logger.debug(f"Calculating the integrity of {filepath}'s content")
+    if not os.path.exists(filepath):
         # The file does not exists!
-        logger.error(f"The file {filename} does not exists!")
+        logger.error(f"The file {filepath} does not exists!")
         raise FileNotFoundError
 
     # since we are just doing integrity verification, we can use an "insecure" hashing algorithm. If it's good for git, it's good for us.
     sha1 = hashlib.sha1()  # nosec
-    with open(filename, "rb") as f:
+    with open(filepath, "rb") as f:
         while True:
             # Let's read chunks in the algorithm block size we use
             chunk = f.read(sha1.block_size)
@@ -42,26 +44,26 @@ def get_checksum(filename):
     return sha1.hexdigest()
 
 
-def get_filename_checksum(filename):
+def get_filename_checksum(filepath):
     """returns the sha1 checksum of the filename, a null character and the data
 
     Args:
-        filename (string): file name of the file to calculate the checksum of
+        filepath (string): file name of the file to calculate the checksum of
 
     Returns:
         string: sha1 checksum of the filename and its content
     """
-    logger.debug(f"Calculating the integrity of {filename}'s content and its filename")
-    if not os.path.exists(filename):
+    logger.debug(f"Calculating the integrity of {filepath}'s content and its filename")
+    if not os.path.exists(filepath):
         # The file does not exists!
-        logger.error(f"The file {filename} does not exists!")
+        logger.error(f"The file {filepath} does not exists!")
         raise FileNotFoundError
 
     # since we are just doing integrity verification, we can use an "insecure" hashing algorithm. If it's good for git, it's good for us.
     sha1 = hashlib.sha1()  # nosec
-    sha1.update(os.path.split(filename)[1].encode())
+    sha1.update(os.path.split(filepath)[1].encode())
     sha1.update("\00".encode())
-    with open(filename, "rb") as f:
+    with open(filepath, "rb") as f:
         while True:
             # Let's read chunks in the algorithm block size we use
             chunk = f.read(sha1.block_size)
@@ -87,7 +89,7 @@ def create_integrity_file(path):
         # make sure the directory exists
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
-    integrity_file_path = os.path.join(path, "integrity.check")
+    integrity_file_path = os.path.join(path, integrity_file_name)
     if os.path.exists(integrity_file_path):
         logger.error(f"The integrity file already exists in the folder {path}")
         # The file already exists!
@@ -110,7 +112,7 @@ def append_to_integrity_file(filepath):
         logger.error(f"The file {filename} does not exists!")
         raise FileNotFoundError
 
-    integrity_file_path = os.path.join(os.path.dirname(filepath), "integrity.check")
+    integrity_file_path = os.path.join(os.path.dirname(filepath), integrity_file_name)
     # Check that the integrity files exists
     if not os.path.exists(integrity_file_path):
         logger.debug(f"The integrity file does not exists in the folder of {filepath}")
@@ -127,12 +129,77 @@ def scan_path_to_integrity(path):
     pass
 
 
+def check_integrity(path):
+    valid = []
+    not_valid = []
+    integrity_file_path = os.path.join(path, integrity_file_name)
+
+    with open(integrity_file_path, "r") as integrity_file:
+        if integrity_file.readline().startswith(
+            "#"
+        ) and integrity_file.readline().startswith("#"):
+            for line in integrity_file:
+                filename, size, checksum = line.rstrip().split(",")
+                filepath = os.path.join(path, filename)
+                actual_checksum = get_filename_checksum(filepath)
+                actual_size = os.path.getsize(filepath)
+                if actual_checksum == checksum and actual_size == int(size):
+                    valid.append(filename)
+                else:
+                    print(
+                        f"{filename} with checksum {actual_checksum} vs {checksum} and size {actual_size} vs {size} is not valid"
+                    )
+                    not_valid.append(filename)
+        else:
+            print(f"The integrity file at {integrity_file_path} is not valid")
+    return (valid, not_valid)
+
+
 def check_path_integrity(path):
     # TODO implement the method that recursively reads the integrity file of a repository and checks everything down to the file
-    pass
+    # Recursively scan all directories and save the ones with an integrity file in them
+    to_scan = [
+        root for root, dirs, files in os.walk(path) if integrity_file_name in files
+    ]
+
+    valid_list = []
+    not_valid_list = []
+    for folder in to_scan:
+        valid, not_valid = check_integrity(folder)
+        valid_list += valid
+        not_valid_list += not_valid
+    if not_valid_list:
+        print(
+            f"{len(not_valid_list)} inconsistent file(s) have been found, please check them manually"
+        )
+        print(not_valid_list)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    # TODO add here a way to check a folder integrity easily with a simple command line
-    # something like python3 scripts/planktoscope/integrity.py -c path/to/folder/to/check
-    pass
+    import sys
+
+    logger.remove()
+
+    if len(sys.argv) > 2:
+        # let's check them arguments
+        if sys.argv[1] != "-c":
+            print(
+                "To check the integrity of files in a given folder, please use python3 -m planktoscope.integrity -c /path/to/folder"
+            )
+            exit(0)
+        else:
+            path_to_check = sys.argv[2]
+            # let's check if the path exists
+            if not os.path.exists(path_to_check):
+                print("The path to check doesn't exists")
+                exit(1)
+
+            # the path exists, let's check it!
+            error = check_path_integrity(path_to_check)
+            if error:
+                exit(error)
+            print("All the files are valid")
+
+    exit(0)
