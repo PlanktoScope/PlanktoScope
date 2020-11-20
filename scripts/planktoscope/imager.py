@@ -30,6 +30,9 @@ import planktoscope.imager_state_machine
 # import raspimjpeg module
 import planktoscope.raspimjpeg
 
+# Integrity verification module
+import planktoscope.integrity
+
 
 ################################################################################
 # Streaming PiCamera over server
@@ -186,6 +189,10 @@ class ImagerProcess(multiprocessing.Process):
         self.__shutter_speed = shutter_speed
         self.__exposure_mode = "fixedfps"
         self.__base_path = "/home/pi/data/img"
+        # Let's make sure the base path exists
+        if not os.path.exists(self.__base_path):
+            os.makedirs(self.__base_path)
+
         self.__export_path = ""
         self.__global_metadata = None
 
@@ -455,6 +462,7 @@ class ImagerProcess(multiprocessing.Process):
             str(self.__global_metadata["sample_id"]),
             str(self.__global_metadata["acq_id"]),
         )
+
         if not os.path.exists(self.__export_path):
             # create the path!
             os.makedirs(self.__export_path)
@@ -466,6 +474,14 @@ class ImagerProcess(multiprocessing.Process):
             json.dump(self.__global_metadata, metadata_file)
             logger.debug(
                 f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
+            )
+
+        # Create the integrity file in this export path
+        try:
+            planktoscope.integrity.create_integrity_file(self.__export_path)
+        except FileExistsError as e:
+            logger.info(
+                f"The integrity file already exists in this export path {self.__export_path}"
             )
 
         # Sleep a duration before to start acquisition
@@ -510,9 +526,29 @@ class ImagerProcess(multiprocessing.Process):
             self.__camera.capture(filename_path)
         except TimeoutError as e:
             logger.error("A timeout happened while waiting for a capture to happen")
+            # Publish the name of the image to via MQTT to Node-RED
+            self.imager_client.client.publish(
+                "status/imager",
+                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} WAS NOT CAPTURED! STOPPING THE PROCESS!"}}',
+            )
+            # Reset the counter to 0
+            self.__img_done = 0
+            # Change state towards stop
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            # Set the LEDs as Green
+            planktoscope.light.setRGB(0, 255, 255)
+            return
 
         # Set the LEDs as Green
         planktoscope.light.setRGB(0, 255, 0)
+
+        # Add the checksum of the captured image to the integrity file
+        try:
+            planktoscope.integrity.append_to_integrity_file(filename_path)
+        except FileNotFoundError as e:
+            logger.error(
+                f"{filename_path} was not found, the camera may not have worked properly!"
+            )
 
         # Publish the name of the image to via MQTT to Node-RED
         self.imager_client.client.publish(
@@ -535,6 +571,7 @@ class ImagerProcess(multiprocessing.Process):
             self.__imager.change(planktoscope.imager_state_machine.Stop)
             # Set the LEDs as Green
             planktoscope.light.setRGB(0, 255, 255)
+            return
         else:
             # We have not reached the final stage, let's keep imaging
             # Set the LEDs as Blue
