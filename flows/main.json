@@ -36,23 +36,7 @@
         "name": "Acquisition inputs",
         "info": "",
         "category": "",
-        "in": [
-            {
-                "x": 40,
-                "y": 40,
-                "wires": [
-                    {
-                        "id": "8887f3e7.e79b5"
-                    },
-                    {
-                        "id": "14be4afa.2ba67d"
-                    },
-                    {
-                        "id": "600c2b46.83db14"
-                    }
-                ]
-            }
-        ],
+        "in": [],
         "out": [
             {
                 "x": 740,
@@ -289,20 +273,7 @@
         "name": "Pump actuation",
         "info": "",
         "category": "",
-        "in": [
-            {
-                "x": 40,
-                "y": 40,
-                "wires": [
-                    {
-                        "id": "cc757614.c8fc58"
-                    },
-                    {
-                        "id": "8ae06f9a.4b253"
-                    }
-                ]
-            }
-        ],
+        "in": [],
         "out": [
             {
                 "x": 700,
@@ -329,21 +300,11 @@
         "name": "Focus actuation",
         "info": "",
         "category": "",
-        "in": [
-            {
-                "x": 40,
-                "y": 40,
-                "wires": [
-                    {
-                        "id": "411211be.745ef8"
-                    }
-                ]
-            }
-        ],
+        "in": [],
         "out": [
             {
                 "x": 1040,
-                "y": 40,
+                "y": 100,
                 "wires": [
                     {
                         "id": "b69e435f.b93558",
@@ -477,7 +438,7 @@
         "z": "",
         "name": "Monitor RPi",
         "tab": "a3de84cd.c01b6",
-        "order": 13,
+        "order": 3,
         "disp": true,
         "width": "24",
         "collapse": false
@@ -735,11 +696,11 @@
         "id": "adcd0ef7.81a7f8",
         "type": "ui_group",
         "z": "",
-        "name": "RPi commands",
+        "name": "RPi commands (DANGER ZONE)",
         "tab": "a3de84cd.c01b6",
-        "order": 1,
+        "order": 2,
         "disp": true,
-        "width": 13,
+        "width": "24",
         "collapse": false
     },
     {
@@ -765,24 +726,6 @@
         "collapse": true
     },
     {
-        "id": "f1dc35d9.99b9f8",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "adcd0ef7.81a7f8",
-        "order": 2,
-        "width": 13,
-        "height": 1
-    },
-    {
-        "id": "248136a7.29b74a",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "adcd0ef7.81a7f8",
-        "order": 4,
-        "width": 5,
-        "height": 1
-    },
-    {
         "id": "7b7849e8.363288",
         "type": "ui_group",
         "z": "1a447be0.198674",
@@ -805,7 +748,7 @@
         "collapse": true
     },
     {
-        "id": "2c0efb95.057c34",
+        "id": "75af537.47398ac",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "de7c8e82.7faa98",
@@ -814,12 +757,41 @@
         "height": 1
     },
     {
-        "id": "ddb0b515.5183c8",
+        "id": "3ba80beb.b6b564",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "de7c8e82.7faa98",
         "order": 9,
         "width": 10,
+        "height": 1
+    },
+    {
+        "id": "411742cf.3abb8c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Machine Name",
+        "tab": "a3de84cd.c01b6",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "fa24782f.abed2",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "adcd0ef7.81a7f8",
+        "order": 2,
+        "width": 24,
+        "height": 1
+    },
+    {
+        "id": "f36716e2.a9898",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "adcd0ef7.81a7f8",
+        "order": 4,
+        "width": 9,
         "height": 1
     },
     {
@@ -848,6 +820,18 @@
         "type": "inject",
         "z": "21b3da63.2cef2e",
         "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
         "repeat": "1",
         "crontab": "",
         "once": false,
@@ -2107,8 +2091,8 @@
         "z": "9c3e6ad4.7471a8",
         "name": "",
         "group": "adcd0ef7.81a7f8",
-        "order": 3,
-        "width": 4,
+        "order": 5,
+        "width": 7,
         "height": 1,
         "passthru": false,
         "label": "Reboot",
@@ -2138,7 +2122,7 @@
         "timer": "2",
         "oldrc": false,
         "name": "cmd",
-        "x": 530,
+        "x": 550,
         "y": 80,
         "wires": [
             [],
@@ -2152,8 +2136,8 @@
         "z": "9c3e6ad4.7471a8",
         "name": "",
         "group": "adcd0ef7.81a7f8",
-        "order": 5,
-        "width": 4,
+        "order": 3,
+        "width": 8,
         "height": 1,
         "passthru": false,
         "label": "Shutdown",
@@ -2164,7 +2148,7 @@
         "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
-        "x": 230,
+        "x": 240,
         "y": 160,
         "wires": [
             [
@@ -2199,7 +2183,7 @@
         "timer": "1",
         "oldrc": false,
         "name": "i2c update",
-        "x": 550,
+        "x": 560,
         "y": 160,
         "wires": [
             [],
@@ -2615,7 +2599,7 @@
         "func": "msg.payload = msg.payload.acq_id+1;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 210,
+        "x": 200,
         "y": 40,
         "wires": [
             [
@@ -2711,6 +2695,8 @@
         "func": "msg.payload = msg.payload.acq_fnumber_objective;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 260,
         "y": 360,
         "wires": [
@@ -2990,26 +2976,10 @@
         "mode": "number",
         "delay": 300,
         "topic": "pump_manual_volume",
-        "x": 510,
+        "x": 500,
         "y": 80,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "8ae06f9a.4b253",
-        "type": "function",
-        "z": "977131e7.c2e76",
-        "name": "get pump_manual_volume",
-        "func": "msg.payload = msg.payload.pump_manual_volume;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 220,
-        "y": 80,
-        "wires": [
-            [
-                "f1b85f22.ac673"
-            ]
         ]
     },
     {
@@ -3036,22 +3006,6 @@
         ]
     },
     {
-        "id": "cc757614.c8fc58",
-        "type": "function",
-        "z": "977131e7.c2e76",
-        "name": "get pump_flowrate",
-        "func": "msg.payload = msg.payload.pump_flowrate;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 190,
-        "y": 40,
-        "wires": [
-            [
-                "b8bf2a9.be099d8"
-            ]
-        ]
-    },
-    {
         "id": "f49b3397.2599f8",
         "type": "ui_text_input",
         "z": "a0f9bde.423644",
@@ -3071,25 +3025,6 @@
         "wires": [
             [
                 "b69e435f.b93558"
-            ]
-        ]
-    },
-    {
-        "id": "411211be.745ef8",
-        "type": "function",
-        "z": "a0f9bde.423644",
-        "name": "get focus_distance",
-        "func": "msg.payload = msg.payload.focus_distance;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 220,
-        "y": 40,
-        "wires": [
-            [
-                "f49b3397.2599f8",
-                "d9930546.489a58"
             ]
         ]
     },
@@ -3276,7 +3211,7 @@
         "label": "Name of the ship",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3298,7 +3233,7 @@
         "tooltip": "",
         "place": "Select",
         "group": "71c63dd4.311c44",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3346,7 +3281,7 @@
         "label": "Name of the operator",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3367,7 +3302,7 @@
         "label": "Name of the project*",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3388,7 +3323,7 @@
         "label": "ID of the station*",
         "tooltip": "",
         "group": "71c63dd4.311c44",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3425,7 +3360,7 @@
         "func": "msg.payload = msg.payload.sample_ship;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 250,
+        "x": 240,
         "y": 160,
         "wires": [
             [
@@ -3487,7 +3422,7 @@
         "z": "81483277.2521e",
         "group": "71c63dd4.311c44",
         "name": "Information message",
-        "order": 1,
+        "order": 2,
         "width": 24,
         "height": 1,
         "format": "<div layout=\"row\">Fill the different inputs concerning the sample you want to image.</div>",
@@ -3511,7 +3446,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1300,
+        "x": 1340,
         "y": 220,
         "wires": [
             [
@@ -3529,7 +3464,7 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1710,
+        "x": 1750,
         "y": 220,
         "wires": [
             []
@@ -3543,7 +3478,7 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 1460,
+        "x": 1500,
         "y": 220,
         "wires": [
             [
@@ -3561,7 +3496,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 370,
+        "x": 410,
         "y": 80,
         "wires": [
             [
@@ -3591,12 +3526,14 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 80,
+        "x": 100,
+        "y": 240,
         "wires": [
             [
                 "83f2e27a.b59688",
-                "172d187b.ad216"
+                "c31360e5.5d804",
+                "cdf769fd.a196",
+                "452af41c.43940c"
             ]
         ],
         "info": "# PlanktonScope Help\nWhen the **Pi** is booting, **Node-RED** will be initiated and this node will be activated once and execute the following nodes."
@@ -3609,17 +3546,14 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 610,
+        "x": 650,
         "y": 80,
         "wires": [
             [
                 "1f2d3f3d.5eeff9",
                 "64b58fc8.cdc4e",
                 "c94db91f.7cf2b8",
-                "70625f12.179948",
-                "f56b39e5.245b4",
-                "24a381c3.761f56",
-                "6a7bbade.f3174c"
+                "70625f12.179948"
             ]
         ]
     },
@@ -3633,7 +3567,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1300,
+        "x": 1340,
         "y": 140,
         "wires": [
             [
@@ -3651,7 +3585,7 @@
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 540,
+        "x": 580,
         "y": 180,
         "wires": []
     },
@@ -3669,7 +3603,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 930,
+        "x": 970,
         "y": 440,
         "wires": [
             []
@@ -3681,7 +3615,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 930,
+        "x": 970,
         "y": 140,
         "wires": [
             [
@@ -3695,7 +3629,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 920,
+        "x": 960,
         "y": 360,
         "wires": [
             [
@@ -3709,7 +3643,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 920,
+        "x": 960,
         "y": 400,
         "wires": [
             [
@@ -3723,7 +3657,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 940,
+        "x": 980,
         "y": 180,
         "wires": [
             [
@@ -3740,7 +3674,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 930,
+        "x": 960,
         "y": 220,
         "wires": [
             [
@@ -3757,7 +3691,7 @@
         "z": "e8d4d920.35344",
         "name": "RPi commands",
         "env": [],
-        "x": 920,
+        "x": 960,
         "y": 820,
         "wires": []
     },
@@ -3767,8 +3701,8 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 320,
-        "y": 320,
+        "x": 360,
+        "y": 460,
         "wires": []
     },
     {
@@ -3777,7 +3711,7 @@
         "z": "e8d4d920.35344",
         "name": "Process metadata",
         "env": [],
-        "x": 930,
+        "x": 970,
         "y": 260,
         "wires": [
             [
@@ -3791,8 +3725,8 @@
         "z": "e8d4d920.35344",
         "name": "Acquisition inputs",
         "env": [],
-        "x": 930,
-        "y": 540,
+        "x": 970,
+        "y": 580,
         "wires": [
             [
                 "6725d70.a4aed28"
@@ -3806,8 +3740,8 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 930,
-        "y": 580,
+        "x": 970,
+        "y": 620,
         "wires": []
     },
     {
@@ -3816,7 +3750,7 @@
         "z": "e8d4d920.35344",
         "name": "Inject config.json in GUI inputs",
         "info": "",
-        "x": 660,
+        "x": 700,
         "y": 40,
         "wires": []
     },
@@ -3826,7 +3760,7 @@
         "z": "e8d4d920.35344",
         "name": "Edit config.json on changes",
         "info": "",
-        "x": 1320,
+        "x": 1360,
         "y": 40,
         "wires": []
     },
@@ -3836,7 +3770,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 920,
+        "x": 960,
         "y": 860,
         "wires": []
     },
@@ -3846,8 +3780,8 @@
         "z": "e8d4d920.35344",
         "name": "Create and run python code receiving MQTT queries",
         "info": "",
-        "x": 420,
-        "y": 240,
+        "x": 450,
+        "y": 380,
         "wires": []
     },
     {
@@ -3856,8 +3790,8 @@
         "z": "e8d4d920.35344",
         "name": "On Load",
         "info": "",
-        "x": 120,
-        "y": 40,
+        "x": 100,
+        "y": 200,
         "wires": []
     },
     {
@@ -3866,7 +3800,7 @@
         "z": "e8d4d920.35344",
         "name": "Get metadata from config.json",
         "info": "",
-        "x": 350,
+        "x": 390,
         "y": 40,
         "wires": []
     },
@@ -3876,7 +3810,7 @@
         "z": "e8d4d920.35344",
         "name": "White LED control",
         "info": "",
-        "x": 310,
+        "x": 350,
         "y": 140,
         "wires": []
     },
@@ -3886,7 +3820,7 @@
         "z": "e8d4d920.35344",
         "name": "Visible on the GUI",
         "info": "",
-        "x": 930,
+        "x": 970,
         "y": 40,
         "wires": []
     },
@@ -3896,7 +3830,7 @@
         "z": "e8d4d920.35344",
         "name": "RPi",
         "info": "",
-        "x": 890,
+        "x": 930,
         "y": 780,
         "wires": []
     },
@@ -3906,7 +3840,7 @@
         "z": "e8d4d920.35344",
         "name": "Metadata",
         "info": "",
-        "x": 900,
+        "x": 940,
         "y": 100,
         "wires": []
     },
@@ -3916,7 +3850,7 @@
         "z": "e8d4d920.35344",
         "name": "Actuation",
         "info": "",
-        "x": 900,
+        "x": 940,
         "y": 320,
         "wires": []
     },
@@ -3926,8 +3860,8 @@
         "z": "e8d4d920.35344",
         "name": "Acquisition",
         "info": "",
-        "x": 900,
-        "y": 500,
+        "x": 940,
+        "y": 540,
         "wires": []
     },
     {
@@ -3953,7 +3887,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 390,
+        "x": 430,
         "y": 180,
         "wires": [
             [
@@ -4215,7 +4149,7 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 930,
+        "x": 970,
         "y": 720,
         "wires": []
     },
@@ -4225,7 +4159,7 @@
         "z": "e8d4d920.35344",
         "name": "Segmentation",
         "info": "",
-        "x": 910,
+        "x": 950,
         "y": 680,
         "wires": []
     },
@@ -4403,8 +4337,8 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 920,
-        "y": 620,
+        "x": 960,
+        "y": 480,
         "wires": []
     },
     {
@@ -4448,12 +4382,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 270,
+        "x": 310,
         "y": 180,
         "wires": [
             [
@@ -4542,8 +4476,8 @@
         "z": "e8d4d920.35344",
         "name": "",
         "env": [],
-        "x": 300,
-        "y": 280,
+        "x": 340,
+        "y": 420,
         "wires": []
     },
     {
@@ -5014,7 +4948,7 @@
         "max": "2000",
         "step": "25",
         "x": 540,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "f49b3397.2599f8"
@@ -5210,6 +5144,172 @@
         "wires": [
             [
                 "e2913641.ea203"
+            ]
+        ]
+    },
+    {
+        "id": "c31360e5.5d804",
+        "type": "rpi-gpio out",
+        "z": "e8d4d920.35344",
+        "name": "Pump Enable",
+        "pin": "7",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 330,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "cdf769fd.a196",
+        "type": "rpi-gpio out",
+        "z": "e8d4d920.35344",
+        "name": "Focus Enable",
+        "pin": "32",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 340,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7ed84a57.18378c",
+        "type": "comment",
+        "z": "e8d4d920.35344",
+        "name": "Initialize Waveshare HAT",
+        "info": "********",
+        "x": 370,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4828d2f4.7c712c",
+        "type": "function",
+        "z": "e8d4d920.35344",
+        "name": "set global",
+        "func": "var value = msg.payload;\nvar key = msg.topic;\n\nglobal.set(key,value);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "452af41c.43940c",
+        "type": "python3-function",
+        "z": "e8d4d920.35344",
+        "name": "Get MachineName",
+        "func": "import sys\nsys.path.append('/home/pi/PlanktonScope/scripts')\nimport planktoscope.uuidName\n\nmsg['payload'] = planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())\nmsg['topic'] = \"MachineName\"\nreturn msg",
+        "outputs": 1,
+        "x": 350,
+        "y": 540,
+        "wires": [
+            [
+                "4828d2f4.7c712c",
+                "c2abdf2b.f0a3e"
+            ]
+        ]
+    },
+    {
+        "id": "c2abdf2b.f0a3e",
+        "type": "ui_template",
+        "z": "e8d4d920.35344",
+        "group": "411742cf.3abb8c",
+        "name": "Machine Name",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"text-align: center;font-size: 2em;\"><span id=\"machine_name\" ng-bind-html=\"msg.payload\" ></span></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 560,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa22d6d5.f8a15",
+        "type": "inject",
+        "z": "a0f9bde.423644",
+        "name": "Default: 500µm",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "500",
+        "payloadType": "num",
+        "x": 220,
+        "y": 40,
+        "wires": [
+            [
+                "f49b3397.2599f8",
+                "d9930546.489a58"
+            ]
+        ]
+    },
+    {
+        "id": "a87e400c.aaf68",
+        "type": "inject",
+        "z": "977131e7.c2e76",
+        "name": "Default: 2ml/min",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 180,
+        "y": 40,
+        "wires": [
+            [
+                "b8bf2a9.be099d8"
+            ]
+        ]
+    },
+    {
+        "id": "98e6d756.7dab38",
+        "type": "inject",
+        "z": "977131e7.c2e76",
+        "name": "Default: 1ml",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "f1b85f22.ac673"
             ]
         ]
     }
