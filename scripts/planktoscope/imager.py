@@ -126,7 +126,7 @@ class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
     @logger.catch
-    def __init__(self, stop_event, iso=100, shutter_speed=500):
+    def __init__(self, stop_event, iso=200, shutter_speed=20):
         """Initialize the Imager class
 
         Args:
@@ -188,6 +188,12 @@ class ImagerProcess(multiprocessing.Process):
         self.__iso = iso
         self.__shutter_speed = shutter_speed
         self.__exposure_mode = "fixedfps"
+        self.__white_balance = "off"
+        self.__white_balance_gain = (
+            200,
+            140,
+        )  # Those values were tested on a HQ camera to give a whitish background
+
         self.__base_path = "/home/pi/data/img"
         # Let's make sure the base path exists
         if not os.path.exists(self.__base_path):
@@ -231,6 +237,24 @@ class ImagerProcess(multiprocessing.Process):
                 "A timeout has occured when setting the exposure mode, trying again"
             )
             self.__camera.exposure_mode = self.__exposure_mode
+        time.sleep(0.1)
+
+        try:
+            self.__camera.white_balance = self.__white_balance
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the white balance mode, trying again"
+            )
+            self.__camera.white_balance = self.__white_balance
+        time.sleep(0.1)
+
+        try:
+            self.__camera.white_balance_gain = self.__white_balance_gain
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the white balance gain, trying again"
+            )
+            self.__camera.white_balance_gain = self.__white_balance_gain
 
         logger.success("planktoscope.imager is initialised and ready to go!")
 
@@ -324,6 +348,9 @@ class ImagerProcess(multiprocessing.Process):
                 "acq_camera_iso": self.__iso,
                 "acq_camera_shutter_speed": self.__shutter_speed,
             }
+            # TODO add here the field size metadata
+            # For cam HQ 4,15mm x 3,14mm, résolution 1µm/px
+            # For cam 2.1 2.31mm x 1,74mm, résolution 0.7µm/px
             # Concat the local metadata and the metadata from Node-RED
             self.__global_metadata = {**local_metadata, **nodered_metadata}
 
