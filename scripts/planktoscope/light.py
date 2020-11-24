@@ -8,7 +8,7 @@
 # Library to send command over I2C for the light module on the fan
 import smbus
 import RPi.GPIO
-import subprocess
+import subprocess  # nosec
 
 # define the bus used to actuate the light module on the fan
 bus = smbus.SMBus(1)
@@ -22,25 +22,26 @@ rgb_off_reg = 0x07
 ################################################################################
 # LEDs functions
 ################################################################################
+
+
+def i2c_update():
+    # Update the I2C Bus in order to really update the LEDs new values
+    subprocess.Popen("i2cdetect -y 1".split(), stdout=subprocess.PIPE)  # nosec
+
+
 def setRGB(R, G, B):
     """Update all LED at the same time"""
     bus.write_byte_data(DEVICE_ADDRESS, 0x00, 0xFF)
     bus.write_byte_data(DEVICE_ADDRESS, 0x01, R & 0xFF)
     bus.write_byte_data(DEVICE_ADDRESS, 0x02, G & 0xFF)
     bus.write_byte_data(DEVICE_ADDRESS, 0x03, B & 0xFF)
-
-    # Update the I2C Bus in order to really update the LEDs new values
-    cmd = "i2cdetect -y 1"
-    subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+    i2c_update()
 
 
 def setRGBOff():
     """Turn off the RGB LED"""
     bus.write_byte_data(DEVICE_ADDRESS, 0x07, 0x00)
-
-    # Update the I2C Bus in order to really update the LEDs new values
-    cmd = "i2cdetect -y 1"
-    subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+    i2c_update()
 
 
 def setRGBEffect(effect):
@@ -87,6 +88,10 @@ def light(state):
     elif state == "off":
         RPi.GPIO.output(21, RPi.GPIO.LOW)
 
+
+## Wait message: Green
+## Actuate message: White
+## Pumping message: Blue
 
 # This is called if this script is launched directly
 if __name__ == "__main__":

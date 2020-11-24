@@ -25,6 +25,7 @@ class raspimjpeg(object):
         self.__binary = "/home/pi/PlanktonScope/scripts/raspimjpeg/bin/raspimjpeg"
         self.__statusfile = "/dev/shm/mjpeg/status_mjpeg.txt"
         self.__pipe = "/home/pi/PlanktonScope/scripts/raspimjpeg/FIFO"
+        self.__sensor_name = ""
 
         # make sure the status file exists and is empty
         if not os.path.exists(self.__statusfile):
@@ -371,6 +372,32 @@ class raspimjpeg(object):
         else:
             logger.error(
                 f"The camera white balance mode specified ({mode}) is not valid"
+            )
+            raise ValueError
+
+    @property
+    def white_balance_gain(self):
+        return self.__white_balance_gain
+
+    @white_balance_gain.setter
+    def white_balance_gain(self, gain):
+        """Change the camera white balance gain
+
+            The gain value should be a int between 0 and 300. By default the camera
+            is set to use 150 both for the red and the blue gain.
+
+        Args:
+            gain (tuple of int): Red gain and blue gain to use
+        """
+        logger.debug(f"Setting the white balance mode to {gain}")
+        if (0 < gain[0] < 300) and (0 < gain[1] < 300):
+            self.__white_balance_gain = gain
+            self.__send_command(
+                f"ag {self.__white_balance_gain[0]} {self.__white_balance_gain[1]}"
+            )
+        else:
+            logger.error(
+                f"The camera white balance gain specified ({gain}) is not valid"
             )
             raise ValueError
 
