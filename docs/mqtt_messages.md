@@ -68,13 +68,13 @@ This topic controls the camera and capture. The message allowed is a JSON messag
 ```json
 {
   "action": "image",
-  "sleep": 5,
+  "pump_direction": "FORWARD",
   "volume": 1,
   "nb_frame": 200
 }
 ```
 
-Sleep in seconds and volume in mL.
+Volume is in mL.
 
 This topic can also receive a config update message:
 ```json

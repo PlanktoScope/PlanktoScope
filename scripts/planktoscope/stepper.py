@@ -16,7 +16,7 @@ logger.info("planktoscope.stepper is loaded")
 
 
 class StepperWaveshare:
-    """A bipolar stepper motor."""
+    """A bipolar stepper motor using the Waveshare HAT."""
 
     def __init__(self, dir_pin, step_pin, enable_pin):
         self.dir_pin = dir_pin
@@ -178,6 +178,7 @@ class StepperProcess(multiprocessing.Process):
     def __init__(self, event):
         super(StepperProcess, self).__init__()
         logger.info("Initialising the stepper process")
+        RPi.GPIO.setup([12, 4], RPi.GPIO.OUT, initial=RPi.GPIO.HIGH)
 
         self.stop_event = event
 

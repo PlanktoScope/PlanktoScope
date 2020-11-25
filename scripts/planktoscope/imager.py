@@ -160,6 +160,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__img_done = 0
         self.__sleep_before = None
         self.__pump_volume = None
+        self.__pump_direction = "FORWARD"
         self.__img_goal = None
         self.imager_client = None
 
@@ -303,7 +304,12 @@ class ImagerProcess(multiprocessing.Process):
         # Get duration to wait before an image from the different received arguments
         self.__sleep_before = float(last_message["sleep"])
         # Get volume in between two images from the different received arguments
-        self.__pump_volume = float(last_message["volume"])
+        # Minimal volume is 0.1mL
+        self.__pump_volume = max(float(last_message["volume"]), 0.1)
+
+        # Get the pump direction message
+        self.__pump_direction = last_message["pump_direction"]
+
         # Get the number of frames to image from the different received arguments
         self.__img_goal = int(last_message["nb_frame"])
 
@@ -471,6 +477,21 @@ class ImagerProcess(multiprocessing.Process):
                 f"We did not understand the received request {action} - {last_message}"
             )
 
+    def __pump_message(self):
+        """Sends a message to the pump process"""
+        # Pump during a given volume
+        self.imager_client.client.publish(
+            "actuator/pump",
+            json.dumps(
+                {
+                    "action": "move",
+                    "direction": self.__pump_direction,
+                    "volume": self.__pump_volume,
+                    "flowrate": 2,
+                }
+            ),
+        )
+
     def __state_imaging(self):
         # TODO we should make sure here that we are not writing to an existing folder
         # otherwise we might overwrite the metadata.json file
@@ -516,17 +537,9 @@ class ImagerProcess(multiprocessing.Process):
 
         # Set the LEDs as Blue
         planktoscope.light.setRGB(0, 0, 255)
-        self.imager_client.client.publish(
-            "actuator/pump",
-            json.dumps(
-                {
-                    "action": "move",
-                    "direction": "FORWARD",
-                    "volume": self.__pump_volume,
-                    "flowrate": 2,
-                }
-            ),
-        )
+
+        self.__pump_message()
+
         # FIXME We should probably update the global metadata here with the current datetime/position/etc...
 
         # Set the LEDs as Green
@@ -610,18 +623,7 @@ class ImagerProcess(multiprocessing.Process):
                 "status/pump", self.pump_callback
             )
 
-            # Pump during a given volume
-            self.imager_client.client.publish(
-                "actuator/pump",
-                json.dumps(
-                    {
-                        "action": "move",
-                        "direction": "BACKWARD",
-                        "volume": self.__pump_volume,
-                        "flowrate": 2,
-                    }
-                ),
-            )
+            self.__pump_message()
 
             # Set the LEDs as Green
             planktoscope.light.setRGB(0, 255, 0)
