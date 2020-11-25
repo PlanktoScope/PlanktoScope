@@ -92,6 +92,7 @@ def light(state):
 ## Wait message: Green
 ## Actuate message: White
 ## Pumping message: Blue
+## Pumping 2 message: BLue + Green
 
 # This is called if this script is launched directly
 if __name__ == "__main__":
