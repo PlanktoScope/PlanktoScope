@@ -304,8 +304,7 @@ class ImagerProcess(multiprocessing.Process):
         # Get duration to wait before an image from the different received arguments
         self.__sleep_before = float(last_message["sleep"])
         # Get volume in between two images from the different received arguments
-        # Minimal volume is 0.1mL
-        self.__pump_volume = max(float(last_message["volume"]), 0.1)
+        self.__pump_volume = float(last_message["volume"])
 
         # Get the pump direction message
         self.__pump_direction = last_message["pump_direction"]
@@ -680,6 +679,7 @@ class ImagerProcess(multiprocessing.Process):
         while not self.stop_event.is_set():
             self.treat_message()
             self.state_machine()
+            time.sleep(0.0001)
 
         logger.info("Shutting down the imager process")
         self.imager_client.client.publish("status/imager", '{"status":"Dead"}')
