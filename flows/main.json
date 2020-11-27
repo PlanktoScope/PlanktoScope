@@ -1788,7 +1788,7 @@
         "payloadType": "str",
         "topic": "actuator/focus",
         "x": 190,
-        "y": 640,
+        "y": 740,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -1814,7 +1814,7 @@
         "payloadType": "str",
         "topic": "actuator/focus",
         "x": 190,
-        "y": 600,
+        "y": 700,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3213,7 +3213,7 @@
         "repair": false,
         "outputs": 2,
         "x": 470,
-        "y": 620,
+        "y": 720,
         "wires": [
             [
                 "62030521.88317c"
@@ -3237,8 +3237,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 650,
-        "y": 640,
+        "x": 670,
+        "y": 740,
         "wires": [
             []
         ]
@@ -3254,7 +3254,7 @@
         "initialize": "",
         "finalize": "",
         "x": 320,
-        "y": 620,
+        "y": 720,
         "wires": [
             [
                 "1f7cea1d.fbe61e"
@@ -3279,11 +3279,11 @@
         "payload": "{\"action\":\"stop\"}",
         "payloadType": "json",
         "topic": "actuator/focus",
-        "x": 180,
-        "y": 680,
+        "x": 170,
+        "y": 580,
         "wires": [
             [
-                "fd05f252.5a90c"
+                "62030521.88317c"
             ]
         ]
     },
@@ -3296,21 +3296,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 630,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "fd05f252.5a90c",
-        "type": "mqtt out",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 630,
-        "y": 680,
+        "x": 650,
+        "y": 620,
         "wires": []
     },
     {
@@ -3352,7 +3339,7 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "x": 180,
-        "y": 520,
+        "y": 620,
         "wires": [
             [
                 "62030521.88317c"
@@ -3378,7 +3365,7 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "x": 170,
-        "y": 560,
+        "y": 660,
         "wires": [
             [
                 "62030521.88317c"
@@ -3575,8 +3562,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 930,
-        "y": 840,
+        "x": 1010,
+        "y": 940,
         "wires": []
     },
     {
@@ -5133,22 +5120,9 @@
         "y": 180,
         "wires": [
             [
-                "e2af9066.9c0178"
+                "bdc8ce57.de1f08"
             ]
         ]
-    },
-    {
-        "id": "e2af9066.9c0178",
-        "type": "mqtt out",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 310,
-        "y": 180,
-        "wires": []
     },
     {
         "id": "b402f719.55bc98",
@@ -6135,11 +6109,12 @@
         "links": [
             "52af9ac0.60eb24"
         ],
-        "x": 875,
-        "y": 420,
+        "x": 835,
+        "y": 460,
         "wires": [
             [
-                "cc205a38.f86ea"
+                "cc205a38.f86ea",
+                "93478941.a80e18"
             ]
         ]
     },
@@ -6292,7 +6267,7 @@
         "y": 940,
         "wires": [
             [
-                "45c83cd2.15aee4"
+                "845e06e1.0d812"
             ]
         ]
     },
@@ -6310,22 +6285,9 @@
         "y": 1000,
         "wires": [
             [
-                "45c83cd2.15aee4"
+                "845e06e1.0d812"
             ]
         ]
-    },
-    {
-        "id": "45c83cd2.15aee4",
-        "type": "mqtt out",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 930,
-        "y": 960,
-        "wires": []
     },
     {
         "id": "5ca6cdb6.3a6684",
@@ -6399,6 +6361,118 @@
         "wires": [
             [
                 "7b699798.3d568"
+            ]
+        ]
+    },
+    {
+        "id": "227b4b67.5a0f2c",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "1",
+        "oldrc": false,
+        "name": "git user.email",
+        "x": 1150,
+        "y": 500,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "93478941.a80e18",
+        "type": "template",
+        "z": "1371dec5.76e671",
+        "name": "git config",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "git config --global --replace-all user.email \"{{payload}}\"",
+        "output": "str",
+        "x": 980,
+        "y": 500,
+        "wires": [
+            [
+                "227b4b67.5a0f2c"
+            ]
+        ]
+    },
+    {
+        "id": "daedda1b.9805b8",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Encapsulate settings",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"white_balance\":msg.payload}\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 1060,
+        "wires": [
+            [
+                "845e06e1.0d812"
+            ]
+        ]
+    },
+    {
+        "id": "82722a3c.846b3",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "60e44330.50bdec"
+            ]
+        ]
+    },
+    {
+        "id": "60e44330.50bdec",
+        "type": "ui_switch",
+        "z": "bccd1f23.87219",
+        "name": "AWB",
+        "label": "Auto White Balance",
+        "tooltip": "",
+        "group": "8c38a81e.9897a8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "imager/image",
+        "style": "",
+        "onvalue": "auto",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 410,
+        "y": 1060,
+        "wires": [
+            [
+                "daedda1b.9805b8"
             ]
         ]
     }

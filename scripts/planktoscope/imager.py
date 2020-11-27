@@ -440,7 +440,7 @@ class ImagerProcess(multiprocessing.Process):
             if "white_balance_gain" in settings:
                 if "red" in settings["white_balance_gain"]:
                     logger.debug(
-                        f"Updating the camera white balance red gain to to {settings['white_balance_gain']}"
+                        f"Updating the camera white balance red gain to {settings['white_balance_gain']}"
                     )
                     self.__white_balance_gain = (
                         settings["white_balance_gain"].get(
@@ -450,7 +450,7 @@ class ImagerProcess(multiprocessing.Process):
                     )
                 if "blue" in settings["white_balance_gain"]:
                     logger.debug(
-                        f"Updating the camera white balance blue gain to to {settings['white_balance_gain']}"
+                        f"Updating the camera white balance blue gain to {settings['white_balance_gain']}"
                     )
                     self.__white_balance_gain = (
                         self.__white_balance_gain[0],
@@ -459,7 +459,7 @@ class ImagerProcess(multiprocessing.Process):
                         ),
                     )
                 logger.debug(
-                    f"Updating the camera white balance gain to to {self.__white_balance_gain}"
+                    f"Updating the camera white balance gain to {self.__white_balance_gain}"
                 )
                 try:
                     self.__camera.white_balance_gain = self.__white_balance_gain
@@ -473,6 +473,31 @@ class ImagerProcess(multiprocessing.Process):
                     self.imager_client.client.publish(
                         "status/imager",
                         '{"status":"Error: White balance gain not valid"}',
+                    )
+                    return
+
+            if "white_balance" in settings:
+                logger.debug(
+                    f"Updating the camera white balance mode to {settings['white_balance']}"
+                )
+                self.__white_balance = settings.get(
+                    "white_balance", self.__white_balance
+                )
+                logger.debug(
+                    f"Updating the camera white balance mode to {self.__white_balance}"
+                )
+                try:
+                    self.__camera.white_balance = self.__white_balance
+                except TimeoutError as e:
+                    logger.error(
+                        "A timeout has occured when setting the white balance, trying again"
+                    )
+                    self.__camera.white_balance = self.__white_balance
+                except ValueError as e:
+                    logger.error("The requested white balance is not valid!")
+                    self.imager_client.client.publish(
+                        "status/imager",
+                        f'{"status":"Error: White balance mode {self.__white_balance} is not valid"}',
                     )
                     return
             # Publish the status "Config updated" to via MQTT to Node-RED
