@@ -88,17 +88,6 @@
         "color": "#DDAA99"
     },
     {
-        "id": "4ed15f63.9d1468",
-        "type": "subflow",
-        "name": "MQTT Receive",
-        "info": "",
-        "category": "",
-        "in": [],
-        "out": [],
-        "env": [],
-        "color": "#DDAA99"
-    },
-    {
         "id": "20ae9e26.17d73a",
         "type": "subflow",
         "name": "Get global for config.json",
@@ -3774,12 +3763,8 @@
             [
                 "1fa7fddf.18161a"
             ],
-            [
-                "8c3e4a1c.1ebbb"
-            ],
-            [
-                "8c3e4a1c.1ebbb"
-            ]
+            [],
+            []
         ]
     },
     {
@@ -4074,8 +4059,7 @@
         "wires": [
             [
                 "52ea7d01.711034",
-                "40c12463.a1f84c",
-                "f62d9622.621318"
+                "40c12463.a1f84c"
             ]
         ],
         "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
@@ -4567,8 +4551,7 @@
         "y": 720,
         "wires": [
             [
-                "bdc6718a.dd5d48",
-                "f783aefd.c3bfd8"
+                "bdc6718a.dd5d48"
             ]
         ]
     },
@@ -4907,7 +4890,7 @@
         "format": "{{msg.payload.acq_instrument}}",
         "layout": "row-spread",
         "x": 1040,
-        "y": 700,
+        "y": 720,
         "wires": []
     },
     {
@@ -4954,8 +4937,8 @@
         "label": "Camera Name",
         "format": "{{msg.payload.acq_camera}}",
         "layout": "row-spread",
-        "x": 1040,
-        "y": 740,
+        "x": 1220,
+        "y": 780,
         "wires": []
     },
     {
@@ -5080,23 +5063,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "8c3e4a1c.1ebbb",
-        "type": "debug",
-        "z": "1371dec5.76e671",
-        "name": "Update",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 560,
-        "y": 540,
-        "wires": []
     },
     {
         "id": "6451f991.aaac1",
@@ -5320,8 +5286,8 @@
                 "6742014e.1bb238"
             ],
             [
-                "2b009bd7.c07004",
-                "307c851e.fb0f7a"
+                "307c851e.fb0f7a",
+                "2b9d6988.d84836"
             ]
         ]
     },
@@ -5338,7 +5304,7 @@
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
         "x": 1110,
-        "y": 900,
+        "y": 880,
         "wires": []
     },
     {
@@ -5354,7 +5320,7 @@
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
         "x": 1110,
-        "y": 860,
+        "y": 840,
         "wires": []
     },
     {
@@ -5370,7 +5336,7 @@
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
         "x": 1110,
-        "y": 820,
+        "y": 800,
         "wires": []
     },
     {
@@ -6206,27 +6172,10 @@
         "y": 300,
         "wires": [
             [
-                "8e16aa2f.e40398",
-                "f62d9622.621318"
+                "8e16aa2f.e40398"
             ]
         ],
         "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
-    },
-    {
-        "id": "f62d9622.621318",
-        "type": "debug",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1210,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "43737d43.eb0e9c",
@@ -6473,6 +6422,85 @@
         "wires": [
             [
                 "daedda1b.9805b8"
+            ]
+        ]
+    },
+    {
+        "id": "2b9d6988.d84836",
+        "type": "switch",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "status",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "camera_name",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 990,
+        "y": 900,
+        "wires": [
+            [
+                "2b009bd7.c07004"
+            ],
+            [
+                "3bbb756a.84190a"
+            ]
+        ]
+    },
+    {
+        "id": "3bbb756a.84190a",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "set camera name",
+        "func": "global.set(\"acq_camera\", msg.payload.camera_name);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1150,
+        "y": 920,
+        "wires": [
+            [
+                "559a8085.1d6b9"
+            ]
+        ]
+    },
+    {
+        "id": "559a8085.1d6b9",
+        "type": "link out",
+        "z": "baa1e3d9.cb29d",
+        "name": "Camera Name",
+        "links": [
+            "30067f35.532f2"
+        ],
+        "x": 1305,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "30067f35.532f2",
+        "type": "link in",
+        "z": "1371dec5.76e671",
+        "name": "Camera Name",
+        "links": [
+            "559a8085.1d6b9"
+        ],
+        "x": 1095,
+        "y": 780,
+        "wires": [
+            [
+                "f783aefd.c3bfd8"
             ]
         ]
     }

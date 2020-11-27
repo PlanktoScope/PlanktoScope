@@ -723,6 +723,19 @@ class ImagerProcess(multiprocessing.Process):
 
         self.imager_client.client.publish("status/imager", '{"status":"Starting up"}')
 
+        if self.__camera.sensor_name == "IMX219":  # Camera v2.1
+            self.imager_client.client.publish(
+                "status/imager", '{"camera_name":"Camera v2.1"}'
+            )
+        elif self.__camera.sensor_name == "IMX477":  # Camera HQ
+            self.imager_client.client.publish(
+                "status/imager", '{"camera_name":"HQ Camera"}'
+            )
+        else:
+            self.imager_client.client.publish(
+                "status/imager", '{"camera_name":"Not recognized"}'
+            )
+
         logger.info("Starting the streaming server thread")
         address = ("", 8000)
         fps = 16
