@@ -1478,7 +1478,7 @@
         "timer": "1",
         "oldrc": false,
         "name": "i2c update",
-        "x": 520,
+        "x": 530,
         "y": 1080,
         "wires": [
             [],
@@ -3777,16 +3777,15 @@
         "command": "bash /home/pi/PlanktonScope/scripts/bash/update.sh",
         "addpay": false,
         "append": "",
-        "useSpawn": "false",
-        "timer": "2",
+        "useSpawn": "true",
+        "timer": "",
         "oldrc": false,
         "name": "Update",
         "x": 300,
         "y": 520,
         "wires": [
             [
-                "1fa7fddf.18161a",
-                "8c3e4a1c.1ebbb"
+                "1fa7fddf.18161a"
             ],
             [
                 "8c3e4a1c.1ebbb"
@@ -4036,7 +4035,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<div><center>If you want to update to the latest code version of Node-Red and Python, please click here.\nWe are trying to save your changes with git stash and restore them afterwards, but clearly, things may break!</center></div>",
+        "format": "<div><center>If you want to update to the latest code version of Node-Red and Python, please click here.\nWe are trying to save your configuration changes with git stash and restore them afterwards, but clearly, things may break!\nIf you have made changes to the flow, you will lose them. Please commit those changes from Node-Red interface, from the Project History tab.</center></div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4752,8 +4751,7 @@
         "y": 700,
         "wires": [
             [
-                "3e64877a.9684b",
-                "1bdd7f07.616f69"
+                "3e64877a.9684b"
             ],
             [],
             []
@@ -4770,7 +4768,7 @@
         "initialize": "",
         "finalize": "",
         "x": 790,
-        "y": 640,
+        "y": 660,
         "wires": [
             [
                 "8343fa69.49339"
@@ -4954,7 +4952,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 1040,
-        "y": 640,
+        "y": 660,
         "wires": []
     },
     {
@@ -4971,23 +4969,6 @@
         "layout": "row-spread",
         "x": 1040,
         "y": 740,
-        "wires": []
-    },
-    {
-        "id": "1bdd7f07.616f69",
-        "type": "debug",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 790,
-        "y": 680,
         "wires": []
     },
     {
