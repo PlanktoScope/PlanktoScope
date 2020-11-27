@@ -126,7 +126,7 @@ class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
     @logger.catch
-    def __init__(self, stop_event, iso=200, shutter_speed=20):
+    def __init__(self, stop_event, iso=100, shutter_speed=1):
         """Initialize the Imager class
 
         Args:
@@ -434,6 +434,45 @@ class ImagerProcess(multiprocessing.Process):
                     logger.error("The requested shutter speed is not valid!")
                     self.imager_client.client.publish(
                         "status/imager", '{"status":"Error: Shutter speed not valid"}'
+                    )
+                    return
+
+            if "white_balance_gain" in settings:
+                if "red" in settings["white_balance_gain"]:
+                    logger.debug(
+                        f"Updating the camera white balance red gain to to {settings['white_balance_gain']}"
+                    )
+                    self.__white_balance_gain = (
+                        settings["white_balance_gain"].get(
+                            "red", self.__white_balance_gain[0]
+                        ),
+                        self.__white_balance_gain[1],
+                    )
+                if "blue" in settings["white_balance_gain"]:
+                    logger.debug(
+                        f"Updating the camera white balance blue gain to to {settings['white_balance_gain']}"
+                    )
+                    self.__white_balance_gain = (
+                        self.__white_balance_gain[0],
+                        settings["white_balance_gain"].get(
+                            "blue", self.__white_balance_gain[1]
+                        ),
+                    )
+                logger.debug(
+                    f"Updating the camera white balance gain to to {self.__white_balance_gain}"
+                )
+                try:
+                    self.__camera.white_balance_gain = self.__white_balance_gain
+                except TimeoutError as e:
+                    logger.error(
+                        "A timeout has occured when setting the white balance gain, trying again"
+                    )
+                    self.__camera.white_balance_gain = self.__white_balance_gain
+                except ValueError as e:
+                    logger.error("The requested white balance gain is not valid!")
+                    self.imager_client.client.publish(
+                        "status/imager",
+                        '{"status":"Error: White balance gain not valid"}',
                     )
                     return
             # Publish the status "Config updated" to via MQTT to Node-RED

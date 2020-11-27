@@ -733,15 +733,6 @@
         "height": 1
     },
     {
-        "id": "ee894df1.f9372",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "707d9797.c8e798",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "f4e2e0a1.33948",
         "type": "ui_spacer",
         "name": "spacer",
@@ -838,6 +829,15 @@
         "group": "b7919ae2.c01788",
         "order": 2,
         "width": 5,
+        "height": 1
+    },
+    {
+        "id": "8789db4f.9528a8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "707d9797.c8e798",
+        "order": 5,
+        "width": 1,
         "height": 1
     },
     {
@@ -1581,7 +1581,7 @@
         "name": "Stream Pi Camera",
         "order": 1,
         "width": 18,
-        "height": "14",
+        "height": 14,
         "format": "<center>\n  <img src=\"http://planktoscope.local:8000/stream.mjpg\"\n    width=\"100%\" height=\"100%\">\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -2367,7 +2367,7 @@
         "name": "",
         "events": "change",
         "x": 1060,
-        "y": 1000,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -2387,7 +2387,7 @@
         "topic": "",
         "name": "",
         "x": 1070,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -2403,7 +2403,7 @@
         "initialize": "",
         "finalize": "",
         "x": 670,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             [
                 "652d812a.7d808"
@@ -2417,7 +2417,7 @@
         "name": "",
         "events": "change",
         "x": 1060,
-        "y": 1040,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -2445,7 +2445,7 @@
         "repair": false,
         "outputs": 2,
         "x": 830,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             [
                 "f58a0c4.e207df"
@@ -2859,7 +2859,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 500,
-        "y": 1000,
+        "y": 1120,
         "wires": [
             [
                 "6c792043.b6ff9"
@@ -2885,7 +2885,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 500,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             [
                 "fe840e05.b46f3"
@@ -3529,7 +3529,7 @@
         "z": "bccd1f23.87219",
         "name": "Shutter speed slider",
         "label": "Shutter Speed",
-        "tooltip": "In microseconds, up to 2500µs, 10µs by default",
+        "tooltip": "In microseconds, up to 1000µs, 1µs by default",
         "group": "8c38a81e.9897a8",
         "order": 1,
         "width": 0,
@@ -3537,9 +3537,9 @@
         "passthru": true,
         "outs": "end",
         "topic": "imager/image",
-        "min": "10",
-        "max": "2500",
-        "step": "10",
+        "min": "1",
+        "max": "1000",
+        "step": "1",
         "x": 390,
         "y": 880,
         "wires": [
@@ -3583,7 +3583,7 @@
         "id": "2350e507.d4e302",
         "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "Default: 10µs",
+        "name": "Default: 1µs",
         "props": [
             {
                 "p": "payload"
@@ -3594,7 +3594,7 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "10",
+        "payload": "1",
         "payloadType": "num",
         "x": 110,
         "y": 880,
@@ -3621,7 +3621,7 @@
         "topic": "",
         "payload": "100",
         "payloadType": "num",
-        "x": 120,
+        "x": 110,
         "y": 820,
         "wires": [
             [
@@ -3788,8 +3788,12 @@
                 "1fa7fddf.18161a",
                 "8c3e4a1c.1ebbb"
             ],
-            [],
-            []
+            [
+                "8c3e4a1c.1ebbb"
+            ],
+            [
+                "8c3e4a1c.1ebbb"
+            ]
         ]
     },
     {
@@ -6267,5 +6271,154 @@
         "x": 1210,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "43737d43.eb0e9c",
+        "type": "ui_slider",
+        "z": "bccd1f23.87219",
+        "name": "WB Red slider",
+        "label": "WB: Red",
+        "tooltip": "from 1.0 to 3.0",
+        "group": "8c38a81e.9897a8",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "imager/image",
+        "min": "1.0",
+        "max": "3.0",
+        "step": "0.01",
+        "x": 380,
+        "y": 940,
+        "wires": [
+            [
+                "5e147425.7666ec"
+            ]
+        ]
+    },
+    {
+        "id": "5e147425.7666ec",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Encapsulate settings",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"white_balance_gain\":{\n        \"red\":Math.round(msg.payload*100)\n        }\n    }\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 940,
+        "wires": [
+            [
+                "45c83cd2.15aee4"
+            ]
+        ]
+    },
+    {
+        "id": "4b708426.adeeb4",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Encapsulate settings",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"white_balance_gain\":{\n        \"blue\":Math.round(msg.payload*100)\n        }\n    }\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 1000,
+        "wires": [
+            [
+                "45c83cd2.15aee4"
+            ]
+        ]
+    },
+    {
+        "id": "45c83cd2.15aee4",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 930,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "5ca6cdb6.3a6684",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: WB 2.0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2.0",
+        "payloadType": "num",
+        "x": 120,
+        "y": 940,
+        "wires": [
+            [
+                "43737d43.eb0e9c"
+            ]
+        ]
+    },
+    {
+        "id": "7b699798.3d568",
+        "type": "ui_slider",
+        "z": "bccd1f23.87219",
+        "name": "WB Blue slider",
+        "label": "WB: Blue",
+        "tooltip": "from 1.0 to 3.0",
+        "group": "8c38a81e.9897a8",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "outs": "end",
+        "topic": "imager/image",
+        "min": "1.0",
+        "max": "3.0",
+        "step": "0.01",
+        "x": 380,
+        "y": 1000,
+        "wires": [
+            [
+                "4b708426.adeeb4"
+            ]
+        ]
+    },
+    {
+        "id": "7db56b9d.37f52c",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: WB 1.4",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1.4",
+        "payloadType": "num",
+        "x": 120,
+        "y": 1000,
+        "wires": [
+            [
+                "7b699798.3d568"
+            ]
+        ]
     }
 ]
