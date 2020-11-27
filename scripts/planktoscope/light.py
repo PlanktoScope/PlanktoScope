@@ -5,6 +5,9 @@
 # Turn off using this command line :
 # python3.7 path/to/file/light.py off
 
+# Logger library compatible with multiprocessing
+from loguru import logger
+
 # Library to send command over I2C for the light module on the fan
 import smbus
 import RPi.GPIO
@@ -31,17 +34,23 @@ def i2c_update():
 
 def setRGB(R, G, B):
     """Update all LED at the same time"""
-    bus.write_byte_data(DEVICE_ADDRESS, 0x00, 0xFF)
-    bus.write_byte_data(DEVICE_ADDRESS, 0x01, R & 0xFF)
-    bus.write_byte_data(DEVICE_ADDRESS, 0x02, G & 0xFF)
-    bus.write_byte_data(DEVICE_ADDRESS, 0x03, B & 0xFF)
-    i2c_update()
+    try:
+        bus.write_byte_data(DEVICE_ADDRESS, 0x00, 0xFF)
+        bus.write_byte_data(DEVICE_ADDRESS, 0x01, R & 0xFF)
+        bus.write_byte_data(DEVICE_ADDRESS, 0x02, G & 0xFF)
+        bus.write_byte_data(DEVICE_ADDRESS, 0x03, B & 0xFF)
+        i2c_update()
+    except Exception as e:
+        logger.exception(f"An Exception has occured in the light library at {e}")
 
 
 def setRGBOff():
     """Turn off the RGB LED"""
-    bus.write_byte_data(DEVICE_ADDRESS, 0x07, 0x00)
-    i2c_update()
+    try:
+        bus.write_byte_data(DEVICE_ADDRESS, 0x07, 0x00)
+        i2c_update()
+    except Exception as e:
+        logger.exception(f"An Exception has occured in the light library at {e}")
 
 
 def setRGBEffect(effect):
@@ -55,13 +64,19 @@ def setRGBEffect(effect):
     """
 
     if effect >= 0 and effect <= 4:
-        bus.write_byte_data(DEVICE_ADDRESS, rgb_effect_reg, effect & 0xFF)
+        try:
+            bus.write_byte_data(DEVICE_ADDRESS, rgb_effect_reg, effect & 0xFF)
+        except Exception as e:
+            logger.exception(f"An Exception has occured in the light library at {e}")
 
 
 def setRGBSpeed(speed):
     """Set the effect speed, 1-3, 3 being the fastest speed"""
     if speed >= 1 and speed <= 3:
-        bus.write_byte_data(DEVICE_ADDRESS, rgb_speed_reg, speed & 0xFF)
+        try:
+            bus.write_byte_data(DEVICE_ADDRESS, rgb_speed_reg, speed & 0xFF)
+        except Exception as e:
+            logger.exception(f"An Exception has occured in the light library at {e}")
 
 
 def setRGBColor(color):
@@ -77,7 +92,10 @@ def setRGBColor(color):
     """
 
     if color >= 0 and color <= 6:
-        bus.write_byte_data(DEVICE_ADDRESS, rgb_color_reg, color & 0xFF)
+        try:
+            bus.write_byte_data(DEVICE_ADDRESS, rgb_color_reg, color & 0xFF)
+        except Exception as e:
+            logger.exception(f"An Exception has occured in the light library at {e}")
 
 
 def light(state):
