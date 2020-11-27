@@ -10,5 +10,6 @@ sudo killall -15 python3
 git stash
 git pull
 git checkout stash@{0} -- config.json hardware.json
+git stash drop
 sudo systemctl restart nodered.service
 ${log} "Done!"
