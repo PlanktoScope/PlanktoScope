@@ -112,6 +112,9 @@ do_backup()
                 ${log} "ERROR: The files were corrupted during the copy!"
             else
                 ${log} "All files copied successfully!"
+                ${log} "Starting purge!"
+                rm -R $SOURCE*
+            fi
         else
             ${log} "Warning: ${DEVICE} does not contain the special file planktoscope.backup at its root"
         fi
