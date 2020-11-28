@@ -821,7 +821,7 @@
         "height": 1
     },
     {
-        "id": "8789db4f.9528a8",
+        "id": "c38a23a2.5dfc4",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "707d9797.c8e798",
@@ -975,7 +975,8 @@
             [
                 "bc503fa5.f46dd",
                 "2c8c45ab.610c0a",
-                "cef370c7.1f7a"
+                "cef370c7.1f7a",
+                "11b51f8f.acd308"
             ],
             [],
             []
@@ -4935,7 +4936,7 @@
         "height": 0,
         "name": "",
         "label": "Camera Name",
-        "format": "{{msg.payload.acq_camera}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 1220,
         "y": 780,
@@ -6085,29 +6086,6 @@
         ]
     },
     {
-        "id": "892fcd9b.d34a1",
-        "type": "switch",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 1440,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "9bd72495.a8a098",
         "type": "ui_text",
         "z": "baa1e3d9.cb29d",
@@ -6183,16 +6161,16 @@
         "z": "bccd1f23.87219",
         "name": "WB Red slider",
         "label": "WB: Red",
-        "tooltip": "from 1.0 to 3.0",
+        "tooltip": "from 1.0 to 8.0",
         "group": "8c38a81e.9897a8",
-        "order": 3,
-        "width": 5,
+        "order": 4,
+        "width": 8,
         "height": 1,
         "passthru": true,
         "outs": "end",
         "topic": "imager/image",
         "min": "1.0",
-        "max": "3.0",
+        "max": "8.0",
         "step": "0.01",
         "x": 380,
         "y": 940,
@@ -6269,16 +6247,16 @@
         "z": "bccd1f23.87219",
         "name": "WB Blue slider",
         "label": "WB: Blue",
-        "tooltip": "from 1.0 to 3.0",
+        "tooltip": "from 1.0 to 8.0",
         "group": "8c38a81e.9897a8",
-        "order": 4,
-        "width": 5,
+        "order": 5,
+        "width": 8,
         "height": 1,
         "passthru": true,
         "outs": "end",
         "topic": "imager/image",
         "min": "1.0",
-        "max": "3.0",
+        "max": "8.0",
         "step": "0.01",
         "x": 380,
         "y": 1000,
@@ -6402,9 +6380,9 @@
         "label": "Auto White Balance",
         "tooltip": "",
         "group": "8c38a81e.9897a8",
-        "order": 5,
-        "width": 0,
-        "height": 0,
+        "order": 3,
+        "width": 2,
+        "height": 2,
         "passthru": true,
         "decouple": "false",
         "topic": "imager/image",
@@ -6463,7 +6441,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "set camera name",
-        "func": "global.set(\"acq_camera\", msg.payload.camera_name);",
+        "func": "global.set(\"acq_camera\", msg.payload.camera_name);\n\nmsg.payload = msg.payload.camera_name;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6496,12 +6474,25 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 1095,
+        "x": 1075,
         "y": 780,
         "wires": [
             [
                 "f783aefd.c3bfd8"
             ]
+        ]
+    },
+    {
+        "id": "11b51f8f.acd308",
+        "type": "python3-function",
+        "z": "1371dec5.76e671",
+        "name": "fan.py",
+        "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\nif temp <= 35:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp <= 38:\n    bus.write_byte_data(addr, fan_reg, 0x04)\nelif temp <= 43:\n    bus.write_byte_data(addr, fan_reg, 0x06)\nelif temp <= 48:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelif temp <= 52:\n    bus.write_byte_data(addr, fan_reg, 0x09)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
+        "outputs": 1,
+        "x": 1100,
+        "y": 200,
+        "wires": [
+            []
         ]
     }
 ]

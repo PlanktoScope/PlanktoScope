@@ -390,7 +390,7 @@ class raspimjpeg(object):
             gain (tuple of int): Red gain and blue gain to use
         """
         logger.debug(f"Setting the white balance mode to {gain}")
-        if (0 < gain[0] < 300) and (0 < gain[1] < 300):
+        if (0 < gain[0] < 800) and (0 < gain[1] < 800):
             self.__white_balance_gain = gain
             self.__send_command(
                 f"ag {self.__white_balance_gain[0]} {self.__white_balance_gain[1]}"
