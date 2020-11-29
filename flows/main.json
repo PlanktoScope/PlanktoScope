@@ -331,7 +331,7 @@
         "tab": "36739a35.7cce36",
         "order": 1,
         "disp": true,
-        "width": 6
+        "width": 24
     },
     {
         "id": "737ec584.2eea2c",
@@ -1856,32 +1856,6 @@
                 "2a65c3ec.49a6bc"
             ]
         ]
-    },
-    {
-        "id": "18afe75e.288219",
-        "type": "ui_gauge",
-        "z": "c1660bc.e7ff7f8",
-        "name": "",
-        "group": "c0ebfc57.42527",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 720,
-        "y": 280,
-        "wires": []
     },
     {
         "id": "abafd6e6.04a5f8",
@@ -5973,7 +5947,7 @@
         "label": "Imaged volume",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1180,
+        "x": 1260,
         "y": 260,
         "wires": []
     },
@@ -5982,12 +5956,12 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "imaged volume calc",
-        "func": "camera = global.get(\"acq_camera\");\n\nif (camera == \"HQ Camera\"){\n    volume = (4.15*3.14*msg.payload/1000) / 1000\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = (2.31*1.74*msg.payload/1000) / 1000\n}\nelse{\n    msg.payload = \"The camera is not known to this system\"\n    return msg;\n}\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\nmsg.payload = volume.toFixed(4) + \" mL\"\nreturn msg;",
+        "func": "camera = global.get(\"acq_camera\");\ncell = global.get(\"acq_celltype\");\n\nif (camera == \"HQ Camera\"){\n    volume = (4.15*3.14*cell/1000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = (2.31*1.74*cell/1000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\n\nmsg.payload = volume.toFixed(4) + \" mL\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 960,
+        "x": 1040,
         "y": 260,
         "wires": [
             [
@@ -6008,7 +5982,7 @@
         "label": "Pump volume",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1180,
+        "x": 1260,
         "y": 300,
         "wires": []
     },
@@ -6022,7 +5996,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 950,
+        "x": 1030,
         "y": 300,
         "wires": [
             [
@@ -6336,7 +6310,8 @@
         "z": "baa1e3d9.cb29d",
         "name": "Camera Name",
         "links": [
-            "30067f35.532f2"
+            "30067f35.532f2",
+            "572a6daa.6004c4"
         ],
         "x": 1305,
         "y": 920,
@@ -6767,6 +6742,42 @@
         "wires": [
             [
                 "fb887036.12429"
+            ]
+        ]
+    },
+    {
+        "id": "2911fbc6.d28c24",
+        "type": "ui_template",
+        "z": "c1660bc.e7ff7f8",
+        "group": "c0ebfc57.42527",
+        "name": "Image browser",
+        "order": 1,
+        "width": 24,
+        "height": 24,
+        "format": "<div><center>\n    <object data=\"http://planktoscope.local:80/\" width=\"100%\" height=\"100%\" onerror=\"alert('URL invalid !!');\"></object>\n</center>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 600,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "572a6daa.6004c4",
+        "type": "link in",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "links": [
+            "559a8085.1d6b9"
+        ],
+        "x": 895,
+        "y": 260,
+        "wires": [
+            [
+                "99b11fe4.2795d"
             ]
         ]
     }
