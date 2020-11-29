@@ -360,7 +360,7 @@
         "tab": "737ec584.2eea2c",
         "order": 1,
         "disp": true,
-        "width": 11,
+        "width": 10,
         "collapse": false
     },
     {
@@ -512,7 +512,7 @@
         "type": "ui_group",
         "name": "Danger Zone (DO NOT TOUCH HERE UNLESS YOU KNOW WHAT YOU ARE DOING)",
         "tab": "d9cd733b.ab73d",
-        "order": 5,
+        "order": 7,
         "disp": true,
         "width": 24,
         "collapse": false
@@ -523,9 +523,9 @@
         "z": "",
         "name": "Navigation",
         "tab": "d9cd733b.ab73d",
-        "order": 7,
+        "order": 6,
         "disp": false,
-        "width": "24",
+        "width": 10,
         "collapse": false
     },
     {
@@ -594,7 +594,7 @@
         "id": "cf5d9f0e.d57e7",
         "type": "ui_group",
         "z": "",
-        "name": "Sample Net Location",
+        "name": "Net Metadata",
         "tab": "737ec584.2eea2c",
         "order": 3,
         "disp": true,
@@ -602,76 +602,13 @@
         "collapse": false
     },
     {
-        "id": "5a0e69ac.725268",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3ca00bf9.e5cac4",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "ca7a56b3.89805",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3ca00bf9.e5cac4",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "aab3b337.985c98",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 2,
-        "width": 9,
-        "height": 1
-    },
-    {
-        "id": "5324b3d4.72d6d4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 4,
-        "width": 9,
-        "height": 1
-    },
-    {
-        "id": "8780f7f3.52ee5",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 5,
-        "width": 9,
-        "height": 1
-    },
-    {
-        "id": "5e847442.3e340c",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 7,
-        "width": 9,
-        "height": 1
-    },
-    {
-        "id": "cc4fe53d.f4dc4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 9,
-        "width": 10,
-        "height": 1
-    },
-    {
         "id": "ce9e278.781eed8",
         "type": "ui_group",
         "name": "Information",
         "tab": "d9cd733b.ab73d",
-        "order": 6,
+        "order": 5,
         "disp": true,
-        "width": "6",
+        "width": 10,
         "collapse": false
     },
     {
@@ -717,24 +654,6 @@
         "height": 1
     },
     {
-        "id": "894786f4.7552b8",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 7,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "5835ad3b.5e9ff4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 12,
-        "width": 4,
-        "height": 1
-    },
-    {
         "id": "b001a150.faa548",
         "type": "ui_spacer",
         "name": "spacer",
@@ -762,7 +681,79 @@
         "height": 1
     },
     {
-        "id": "de621043.b31528",
+        "id": "9715083f.10e3",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "3ca00bf9.e5cac4",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "c4f96e9a.09e738",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 2,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "8c6ed0ee.25b9b8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 4,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "91f16338.34b4e",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 5,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "6c77293e.422168",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 7,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "3c649b0d.73c95c",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 9,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "61cbfe72.ee8ef",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 9,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "41a8079d.95ce48",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "cf5d9f0e.d57e7",
+        "order": 13,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "90a195f8.0f1008",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "4322c187.e73e5",
@@ -771,34 +762,61 @@
         "height": 1
     },
     {
-        "id": "b0a2c4ff.ce75b",
+        "id": "57c4bb5c.952d9c",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
         "order": 2,
-        "width": 6,
+        "width": 2,
         "height": 1
     },
     {
-        "id": "f1326cca.4ab1f",
+        "id": "da6aee4f.4575e",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
-        "order": 3,
-        "width": 1,
+        "order": 4,
+        "width": 2,
         "height": 1
     },
     {
-        "id": "a27ea76d.b9989",
+        "id": "d517ce18.9f4d28",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
         "order": 5,
-        "width": 1,
+        "width": 2,
         "height": 1
     },
     {
-        "id": "17a79a42.2912ce",
+        "id": "200200fa.7e301",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "fd54e34d.f85e",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "613f1f0a.5ff3e",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7bedf48.6e15f0c",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b7919ae2.c01788",
@@ -879,7 +897,7 @@
         "name": "",
         "group": "3ca00bf9.e5cac4",
         "order": 1,
-        "width": 4,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Home",
@@ -952,8 +970,7 @@
             [
                 "bc503fa5.f46dd",
                 "2c8c45ab.610c0a",
-                "cef370c7.1f7a",
-                "11b51f8f.acd308"
+                "cef370c7.1f7a"
             ],
             [],
             []
@@ -1311,7 +1328,7 @@
         "label": "Fan",
         "tooltip": "",
         "group": "3ca00bf9.e5cac4",
-        "order": 6,
+        "order": 3,
         "width": 3,
         "height": 1,
         "passthru": true,
@@ -1463,7 +1480,7 @@
         "rules": [
             {
                 "t": "gt",
-                "v": "50",
+                "v": "40",
                 "vt": "num"
             },
             {
@@ -2109,8 +2126,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 440,
-        "y": 1180,
+        "x": 460,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -2129,8 +2146,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 850,
-        "y": 1300,
+        "x": 870,
+        "y": 1420,
         "wires": [
             []
         ]
@@ -2145,8 +2162,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 450,
-        "y": 1240,
+        "x": 470,
+        "y": 1360,
         "wires": [
             [
                 "f5e66a2f.0d09d8"
@@ -2178,8 +2195,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 840,
-        "y": 1220,
+        "x": 860,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -2206,8 +2223,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 610,
-        "y": 1240,
+        "x": 630,
+        "y": 1360,
         "wires": [
             [
                 "726a7822.cd6298",
@@ -2226,7 +2243,7 @@
         "label": "Latitude",
         "tooltip": "36°57'9\" N",
         "group": "cf5d9f0e.d57e7",
-        "order": 2,
+        "order": 3,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2234,7 +2251,7 @@
         "delay": 300,
         "topic": "object_lat",
         "x": 680,
-        "y": 780,
+        "y": 860,
         "wires": [
             [
                 "42795da1.0ee104"
@@ -2249,7 +2266,7 @@
         "label": "Longitude",
         "tooltip": "110°4'21\" W",
         "group": "cf5d9f0e.d57e7",
-        "order": 3,
+        "order": 4,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2257,7 +2274,7 @@
         "delay": 300,
         "topic": "object_lon",
         "x": 680,
-        "y": 820,
+        "y": 900,
         "wires": [
             [
                 "42795da1.0ee104"
@@ -2271,13 +2288,13 @@
         "name": "object_date",
         "label": "Date",
         "group": "cf5d9f0e.d57e7",
-        "order": 4,
+        "order": 5,
         "width": 5,
         "height": 1,
         "passthru": true,
         "topic": "object_date",
         "x": 670,
-        "y": 860,
+        "y": 940,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -2292,7 +2309,7 @@
         "label": "Time",
         "tooltip": "UTC time, 03:23:00 or 15:45",
         "group": "cf5d9f0e.d57e7",
-        "order": 5,
+        "order": 6,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2300,7 +2317,7 @@
         "delay": 300,
         "topic": "object_time",
         "x": 670,
-        "y": 900,
+        "y": 980,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -2753,8 +2770,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 280,
-        "y": 1180,
+        "x": 300,
+        "y": 1300,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -2779,8 +2796,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 280,
-        "y": 1240,
+        "x": 300,
+        "y": 1360,
         "wires": [
             [
                 "986d960a.c75908"
@@ -2893,16 +2910,16 @@
         "type": "ui_template",
         "z": "baa1e3d9.cb29d",
         "group": "b5d61bc7.54fe48",
-        "name": "show global",
-        "order": 6,
+        "name": "Show Metadata",
+        "order": 9,
         "width": 0,
         "height": 0,
-        "format": "<div >\n    <strong>Sample Project:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_project\"></span><br>\n    <strong>Sample Ship:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_ship\"></span><br>\n    <strong>sample operator:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_operator\"></span><br>\n    <strong>sample id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_id\"></span><br>\n    <strong>sample sampling_gear:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_sampling_gear\"></span><br>\n\n    <strong>acq id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_id\"></span><br>\n    <strong>acq instrument:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_instrument\"></span><br>\n    <strong>acq instrument_id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_instrument_id\"></span><br>\n    <strong>acq camera:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_camera\"></span><br>\n    <strong>acq celltype:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_celltype\"></span><br>\n    <strong>acq minimum_mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_minimum_mesh\"></span><br>\n    <strong>acq maximum_mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_maximum_mesh\"></span><br>\n    <strong>acq min_esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_min_esd\"></span><br>\n    <strong>acq max_esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_max_esd\"></span><br>\n    <strong>acq volume:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_volume\"></span><br>\n    <strong>acq magnification:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_magnification\"></span><br>\n    <strong>acq fnumber_objective:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_fnumber_objective\"></span><br>\n    <strong>acq software:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_software\"></span><br>\n    <strong>acq flowrate:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sug_flowrate\"></span><br>\n\n    <strong>object lat:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lat\"></span><br>\n    <strong>object lon:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lon\"></span><br>\n    <strong>object lat end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lat_end\"></span><br>\n    <strong>object lon end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lon_end\"></span><br>\n    <strong>object date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_date\"></span><br>\n    <strong>object time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_time\"></span><br>\n    <strong>object date end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_date_end\"></span><br>\n    <strong>object time end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_time_end\"></span><br>\n    <strong>object depth min:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_depth_min\"></span><br>\n    <strong>object depth max:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_depth_max\"></span><br>\n\n    <strong>process pixel:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.process_pixel\"></span><br>\n    <strong>process id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.process_id\"></span>\n</div>\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
+        "format": "<div>\n    <table style=\"text-align: center; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td>\n                <h2>Sample</h2><br>\n                <strong>project:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_project\"></span><br>\n                <strong>ship:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_ship\"></span><br>\n                <strong>operator:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_operator\"></span><br>\n                <strong>id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_id\"></span><br>\n                <strong>sampling gear:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_sampling_gear\"></span><br>\n                <strong>concentrated volume:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_concentrated_sample_volume\"></span><br>\n                <strong>gear net opening:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_gear_net_opening\"></span><br></td>\n            <td>\n                <h2>Acquisition</h2><br>\n                <strong>id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_id\"></span><br>\n                <strong>instrument:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_instrument\"></span><br>\n                <strong>instrument id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_instrument_id\"></span><br>\n                <strong>camera:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_camera\"></span><br>\n                <strong>celltype:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_celltype\"></span><br>\n                <strong>minimum mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_minimum_mesh\"></span><br>\n                <strong>maximum mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_maximum_mesh\"></span><br>\n                <strong>min esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_min_esd\"></span><br>\n                <strong>max esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_max_esd\"></span><br>\n                <strong>volume:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_volume\"></span><br>\n                <strong>magnification:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_magnification\"></span><br>\n                <strong>fnumber objective:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_fnumber_objective\"></span><br>\n                <strong>software:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_software\"></span><br>\n                <strong>flowrate:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sug_flowrate\"></span><br></td>\n        </tr>\n        <tr style=\"vertical-align: top\">\n            <td>\n                <h2>Object</h2><br>\n                <strong>latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lat\"></span><br>\n                <strong>longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lon\"></span><br>\n                <strong>latitude end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lat_end\"></span><br>\n                <strong>longitude end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lon_end\"></span><br>\n                <strong>date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_date\"></span><br>\n                <strong>time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_time\"></span><br>\n                <strong>date end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_date_end\"></span><br>\n                <strong>time end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_time_end\"></span><br>\n                <strong>depth min:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_depth_min\"></span><br>\n                <strong>depth max:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_depth_max\"></span><br></td>\n            <td>\n                <h2>Process</h2><br>\n                <strong>pixel:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.process_pixel\"></span><br>\n                <strong>id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.process_id\"></span></td>\n        </tr>\n    </table>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1250,
+        "x": 1260,
         "y": 500,
         "wires": [
             []
@@ -3854,7 +3871,7 @@
         "type": "ui_template",
         "z": "1371dec5.76e671",
         "group": "1be83144.4fe4bf",
-        "name": "",
+        "name": "Update message",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -3863,7 +3880,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 100,
+        "x": 130,
         "y": 460,
         "wires": [
             []
@@ -4056,7 +4073,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Encapsulate config",
-        "func": "if (global.get(\"sample_sampling_gear\")==\"net\") {\n    msg.payload = {\n        \"action\":\"update_config\", \n        \"config\":{\n            \"sample_project\":global.get(\"sample_project\"),\n            \"sample_id\":global.get(\"sample_id\"),\n            \"sample_ship\":global.get(\"sample_ship\"),\n            \"sample_operator\":global.get(\"sample_operator\"),\n            \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n            \n            \"acq_id\":global.get(\"acq_id\"),\n            \"acq_instrument\":global.get(\"acq_instrument\"),\n            \"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n            \"acq_celltype\":global.get(\"acq_celltype\"),\n            \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n            \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n            \"acq_min_esd\":global.get(\"acq_min_esd\"),\n            \"acq_max_esd\":global.get(\"acq_max_esd\"),\n            \"acq_volume\":global.get(\"acq_volume\"),\n            \"acq_magnification\":global.get(\"magnification\"),\n            \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n            \"acq_camera_name\":global.get(\"acq_camera_name\"),\n            \"acq_imaged_volume\":global.get(\"acq_imaged_volume\"),\n            \"acq_nb_frame\":global.get(\"nb_frame\"),\n    \n            \"object_date\":global.get(\"object_date\"),\n            \"object_time\":global.get(\"object_time\"),\n            \"object_lat\":global.get(\"object_lat\"),\n            \"object_lon\":global.get(\"object_lon\"),\n            \"object_date_end\":global.get(\"object_date_end\"),\n            \"object_time_end\":global.get(\"object_time_end\"),\n            \"object_lat_end\":global.get(\"object_lat_end\"),\n            \"object_lon_end\":global.get(\"object_lon_end\"),\n            \"object_depth_min\":global.get(\"object_depth_min\"),\n            \"object_depth_max\":global.get(\"object_depth_max\"),\n            \n            \"process_pixel\":global.get(\"process_pixel\"),\n            \"process_id\":global.get(\"process_id\")\n        }\n    };\n}\nelse {\n    msg.payload = {\n        \"action\":\"update_config\", \n        \"config\":{\n            \"sample_project\":global.get(\"sample_project\"),\n            \"sample_id\":global.get(\"sample_id\"),\n            \"sample_ship\":global.get(\"sample_ship\"),\n            \"sample_operator\":global.get(\"sample_operator\"),\n            \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n            \n            \"acq_id\":global.get(\"acq_id\"),\n            \"acq_instrument\":global.get(\"acq_instrument\"),\n            \"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n            \"acq_celltype\":global.get(\"acq_celltype\"),\n            \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n            \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n            \"acq_min_esd\":global.get(\"acq_min_esd\"),\n            \"acq_max_esd\":global.get(\"acq_max_esd\"),\n            \"acq_volume\":global.get(\"acq_volume\"),\n            \"acq_magnification\":global.get(\"magnification\"),\n            \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n            \"acq_camera_name\":global.get(\"acq_camera_name\"),\n            \"acq_nb_frame\":global.get(\"nb_frame\"),\n    \n            \"object_date\":global.get(\"object_date\"),\n            \"object_time\":global.get(\"object_time\"),\n            \"object_lat\":global.get(\"object_lat\"),\n            \"object_lon\":global.get(\"object_lon\"),\n            \"object_depth_min\":global.get(\"object_depth_min\"),\n            \"object_depth_max\":global.get(\"object_depth_max\"),\n            \n            \"process_pixel\":global.get(\"process_pixel\"),\n            \"process_id\":global.get(\"process_id\")\n        }\n    };\n}\nreturn msg;",
+        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\n\t\t\"acq_id\": global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_magnification\": global.get(\"magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera_name\": global.get(\"acq_camera_name\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_id\": global.get(\"process_id\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear == \"net\") {\n\tmsg.payload.config = { ...msg.payload.config ,\n\t\t\t\"sample_gear_net_opening\": global.get(\"sample_gear_net_opening\"),\n\t\t\t\"object_date_end\": global.get(\"object_date_end\"),\n\t\t\t\"object_time_end\": global.get(\"object_time_end\"),\n\t\t\t\"object_lat_end\": global.get(\"object_lat_end\"),\n\t\t\t\"object_lon_end\": global.get(\"object_lon_end\")\n\t};\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4163,7 +4180,7 @@
         "level": "1",
         "freq": "",
         "out": "out",
-        "x": 470,
+        "x": 480,
         "y": 600,
         "wires": []
     },
@@ -4430,8 +4447,8 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 830,
-        "y": 1260,
+        "x": 850,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -4444,7 +4461,7 @@
         "label": "Latitude",
         "tooltip": "36°57'9\" N",
         "group": "cf5d9f0e.d57e7",
-        "order": 7,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4452,7 +4469,7 @@
         "delay": 300,
         "topic": "object_lat_end",
         "x": 660,
-        "y": 980,
+        "y": 1060,
         "wires": [
             [
                 "42795da1.0ee104"
@@ -4467,7 +4484,7 @@
         "label": "Longitude",
         "tooltip": "110°4'21\" W",
         "group": "cf5d9f0e.d57e7",
-        "order": 8,
+        "order": 9,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4475,7 +4492,7 @@
         "delay": 300,
         "topic": "object_lon_end",
         "x": 660,
-        "y": 1020,
+        "y": 1100,
         "wires": [
             [
                 "42795da1.0ee104"
@@ -4489,13 +4506,13 @@
         "name": "object_date_end",
         "label": "Date",
         "group": "cf5d9f0e.d57e7",
-        "order": 9,
+        "order": 11,
         "width": 5,
         "height": 1,
         "passthru": true,
         "topic": "object_date_end",
         "x": 660,
-        "y": 1060,
+        "y": 1140,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -4518,7 +4535,7 @@
         "delay": 300,
         "topic": "object_time_end",
         "x": 660,
-        "y": 1100,
+        "y": 1180,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -4536,7 +4553,7 @@
         "initialize": "",
         "finalize": "",
         "x": 960,
-        "y": 840,
+        "y": 920,
         "wires": [
             []
         ]
@@ -4552,7 +4569,7 @@
         "initialize": "",
         "finalize": "",
         "x": 960,
-        "y": 800,
+        "y": 880,
         "wires": [
             []
         ]
@@ -4733,7 +4750,7 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "ce9e278.781eed8",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "name": "",
@@ -4749,7 +4766,7 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "ce9e278.781eed8",
-        "order": 0,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "",
@@ -4765,7 +4782,7 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "ce9e278.781eed8",
-        "order": 1,
+        "order": 3,
         "width": 0,
         "height": 0,
         "name": "",
@@ -4781,7 +4798,7 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "ce9e278.781eed8",
-        "order": 0,
+        "order": 2,
         "width": 0,
         "height": 0,
         "name": "",
@@ -4839,7 +4856,7 @@
         "z": "b771c342.49603",
         "d": true,
         "group": "cf5d9f0e.d57e7",
-        "order": 11,
+        "order": 12,
         "width": 6,
         "height": 1,
         "name": "GPS Status Display",
@@ -4860,8 +4877,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 230,
-        "y": 560,
+        "x": 950,
+        "y": 800,
         "wires": [
             []
         ]
@@ -4981,7 +4998,7 @@
         "initialize": "",
         "finalize": "",
         "x": 980,
-        "y": 760,
+        "y": 840,
         "wires": [
             [
                 "9f501f49.45645"
@@ -5060,7 +5077,7 @@
         "label": "Object depth Max",
         "tooltip": "",
         "group": "3e1ba03d.f01d8",
-        "order": 8,
+        "order": 7,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -5068,7 +5085,7 @@
         "delay": 300,
         "topic": "object_depth_max",
         "x": 650,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "9f501f49.45645"
@@ -5091,7 +5108,7 @@
         "delay": 300,
         "topic": "object_depth_min",
         "x": 650,
-        "y": 540,
+        "y": 580,
         "wires": [
             [
                 "9f501f49.45645"
@@ -5324,10 +5341,9 @@
         "initialize": "",
         "finalize": "",
         "x": 1140,
-        "y": 1100,
+        "y": 1080,
         "wires": [
             [
-                "b7c3a3ad.9bf32",
                 "39812a27.6cb10e"
             ]
         ]
@@ -5399,32 +5415,16 @@
         ]
     },
     {
-        "id": "b7c3a3ad.9bf32",
-        "type": "ui_text",
-        "z": "baa1e3d9.cb29d",
-        "group": "b5d61bc7.54fe48",
-        "order": 4,
-        "width": 5,
-        "height": 2,
-        "name": "Image Count",
-        "label": "Images count",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "x": 1590,
-        "y": 1120,
-        "wires": []
-    },
-    {
         "id": "1a2e721a.f5e876",
         "type": "ui_gauge",
         "z": "baa1e3d9.cb29d",
-        "name": "Image Donut",
+        "name": "progress donut",
         "group": "b5d61bc7.54fe48",
-        "order": 1,
-        "width": 4,
+        "order": 3,
+        "width": 6,
         "height": 3,
         "gtype": "donut",
-        "title": "progress",
+        "title": "",
         "label": "%",
         "format": "{{value}}",
         "min": 0,
@@ -5436,7 +5436,7 @@
         ],
         "seg1": "50",
         "seg2": "75",
-        "x": 1590,
+        "x": 1600,
         "y": 1080,
         "wires": []
     },
@@ -5450,58 +5450,11 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1400,
+        "x": 1380,
         "y": 1080,
         "wires": [
             [
                 "1a2e721a.f5e876"
-            ]
-        ]
-    },
-    {
-        "id": "1585d7e9.ea2d28",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "name": "img_counter init",
-        "func": "img_counter=0\nglobal.set('img_counter',img_counter)\nmsg.payload = img_counter\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1340,
-        "y": 1160,
-        "wires": [
-            [
-                "b7c3a3ad.9bf32"
-            ]
-        ]
-    },
-    {
-        "id": "e1a2f1b3.fe1758",
-        "type": "inject",
-        "z": "baa1e3d9.cb29d",
-        "name": "Init graphs",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 1130,
-        "y": 1160,
-        "wires": [
-            [
-                "1585d7e9.ea2d28"
             ]
         ]
     },
@@ -6337,8 +6290,9 @@
         "id": "11b51f8f.acd308",
         "type": "python3-function",
         "z": "1371dec5.76e671",
+        "d": true,
         "name": "fan temperature",
-        "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\nif temp <= 35:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp <= 38:\n    bus.write_byte_data(addr, fan_reg, 0x05)\nelif temp <= 43:\n    bus.write_byte_data(addr, fan_reg, 0x07)\nelif temp <= 48:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelif temp <= 52:\n    bus.write_byte_data(addr, fan_reg, 0x09)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
+        "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\n# 0x01 full speed, 0x02: 20% speed, ..., 0x09: 90% speed\n\nif temp < 38:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp < 43:\n    bus.write_byte_data(addr, fan_reg, 0x02)\nelif temp < 46:\n    bus.write_byte_data(addr, fan_reg, 0x04)\nelif temp < 48:\n    bus.write_byte_data(addr, fan_reg, 0x06)\nelif temp < 52:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
         "outputs": 1,
         "x": 1120,
         "y": 100,
@@ -6387,7 +6341,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\"group\":{\"show\":[\"Sample_Sample_Net_Location\"],\"hide\":[\"Sample_Sample_Location\"]}}",
+                "to": "{\"group\":{\"show\":[\"Sample_Net_Metadata\"],\"hide\":[\"Sample_Sample_Location\"]}}",
                 "tot": "json"
             },
             {
@@ -6421,7 +6375,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\"group\":{\"hide\":[\"Sample_Sample_Net_Location\"],\"show\":[\"Sample_Sample_Location\"]}}",
+                "to": "{\"group\":{\"hide\":[\"Sample_Net_Metadata\"],\"show\":[\"Sample_Sample_Location\"]}}",
                 "tot": "json"
             },
             {
@@ -6473,7 +6427,7 @@
         "delay": 300,
         "topic": "object_lat",
         "x": 680,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "42795da1.0ee104"
@@ -6496,7 +6450,7 @@
         "delay": 300,
         "topic": "object_lon",
         "x": 680,
-        "y": 620,
+        "y": 700,
         "wires": [
             [
                 "42795da1.0ee104"
@@ -6516,7 +6470,7 @@
         "passthru": true,
         "topic": "object_date",
         "x": 670,
-        "y": 660,
+        "y": 740,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -6539,7 +6493,7 @@
         "delay": 300,
         "topic": "object_time",
         "x": 670,
-        "y": 700,
+        "y": 780,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -6552,7 +6506,7 @@
         "z": "b771c342.49603",
         "group": "cf5d9f0e.d57e7",
         "name": "Net throw location",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "format": "<div><h3>Net throw location</h3></div>",
@@ -6561,7 +6515,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "x": 650,
-        "y": 740,
+        "y": 820,
         "wires": [
             []
         ]
@@ -6572,7 +6526,7 @@
         "z": "b771c342.49603",
         "group": "cf5d9f0e.d57e7",
         "name": "Net throw retrieval",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "format": "<div><h3>Net throw retrieval</h3></div>",
@@ -6581,7 +6535,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "x": 650,
-        "y": 940,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -6731,7 +6685,7 @@
         "order": 1,
         "width": 24,
         "height": 24,
-        "format": "<div><center>\n    <object data=\"http://planktoscope.local:80/\" width=\"100%\" height=\"100%\" onerror=\"alert('URL invalid !!');\"></object>\n</center>\n</div>",
+        "format": "<div>\n    <center>\n        <object data=\"http://planktoscope.local:80/\" width=\"1400px\" height=\"1100px\"></object>\n    </center>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -6756,6 +6710,72 @@
             [
                 "99b11fe4.2795d"
             ]
+        ]
+    },
+    {
+        "id": "642ff403.1ed91c",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_concentrated_sample_volume",
+        "label": "Concentrated sample volume",
+        "tooltip": "Volume extracted from the net",
+        "group": "3e1ba03d.f01d8",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "sample_concentrated_sample_volume",
+        "x": 590,
+        "y": 500,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "e967b844.46aa48",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_gear_net_opening",
+        "label": "Net opening",
+        "tooltip": "in mm",
+        "group": "cf5d9f0e.d57e7",
+        "order": 1,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "sample_gear_net_opening",
+        "x": 620,
+        "y": 620,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "8032ea50.1b57f",
+        "type": "ui_template",
+        "z": "baa1e3d9.cb29d",
+        "group": "b5d61bc7.54fe48",
+        "name": "progress header",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<center><h2>Capture progress</h2></center>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 1610,
+        "y": 1040,
+        "wires": [
+            []
         ]
     }
 ]

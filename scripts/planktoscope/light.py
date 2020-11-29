@@ -8,25 +8,55 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-# Library to send command over I2C for the light module on the fan
-import smbus
-import RPi.GPIO
 import subprocess  # nosec
 
-# define the bus used to actuate the light module on the fan
-bus = smbus.SMBus(1)
+# Library to send command over I2C for the light module on the fan
+try:
+    import smbus2 as smbus
+except ModuleNotFoundError:
+    subprocess.Popen("pip3 install smbus2".split(), stdout=subprocess.PIPE)  # nosec
+    import smbus2 as smbus
+
+import enum
 
 DEVICE_ADDRESS = 0x0D
-rgb_effect_reg = 0x04
-rgb_speed_reg = 0x05
-rgb_color_reg = 0x06
-rgb_off_reg = 0x07
+
+
+@enum.unique
+class Register(enum.IntEnum):
+    led_select = 0x00
+    red = 0x01
+    green = 0x02
+    blue = 0x03
+    rgb_effect = 0x04
+    rgb_speed = 0x05
+    rgb_color = 0x06
+    rgb_off = 0x07
+
+
+@enum.unique
+class Effect(enum.IntEnum):
+    Water = 0
+    Breathing = 1
+    Marquee = 2
+    Rainbow = 3
+    Colorful = 4
+
+
+@enum.unique
+class EffectColor(enum.IntEnum):
+    Red = 0
+    Green = 1
+    Blue = 2
+    Yellow = 3
+    Purple = 4
+    Cyan = 5
+    White = 6
+
 
 ################################################################################
 # LEDs functions
 ################################################################################
-
-
 def i2c_update():
     # Update the I2C Bus in order to really update the LEDs new values
     subprocess.Popen("i2cdetect -y 1".split(), stdout=subprocess.PIPE)  # nosec
@@ -35,11 +65,14 @@ def i2c_update():
 def setRGB(R, G, B):
     """Update all LED at the same time"""
     try:
-        bus.write_byte_data(DEVICE_ADDRESS, 0x00, 0xFF)
-        bus.write_byte_data(DEVICE_ADDRESS, 0x01, R & 0xFF)
-        bus.write_byte_data(DEVICE_ADDRESS, 0x02, G & 0xFF)
-        bus.write_byte_data(DEVICE_ADDRESS, 0x03, B & 0xFF)
-        i2c_update()
+        with smbus.SMBus(1) as bus:
+            bus.write_byte_data(
+                DEVICE_ADDRESS, Register.led_select, 0xFF
+            )  # 0xFF write to all LEDs, 0x01/0x02/0x03 to choose first, second or third LED
+            bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
+        # i2c_update()
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
 
@@ -47,81 +80,143 @@ def setRGB(R, G, B):
 def setRGBOff():
     """Turn off the RGB LED"""
     try:
-        bus.write_byte_data(DEVICE_ADDRESS, 0x07, 0x00)
-        i2c_update()
+        with smbus.SMBus(1) as bus:
+            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
+        # i2c_update()
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
 
 
-def setRGBEffect(effect):
-    """Choose an effect, 0-4
+def setRGBEffect(bus, effect):
+    """Choose an effect, type Effect
 
-    0: Water light
-    1: Breathing light
-    2: Marquee
-    3: Rainbow lights
-    4: Colorful lights
+    Effect.Water: Rotating color between LEDs (color has an effect)
+    Effect.Breathing: Breathing color effect
+    Effect.Marquee: Flashing color transition between all LEDs
+    Effect.Rainbow: Smooth color transition between all LEDs
+    Effect.Colorful: Colorful transition separately between all LEDs
     """
-
-    if effect >= 0 and effect <= 4:
+    if effect in Effect:
         try:
-            bus.write_byte_data(DEVICE_ADDRESS, rgb_effect_reg, effect & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_effect, effect & 0xFF)
         except Exception as e:
             logger.exception(f"An Exception has occured in the light library at {e}")
 
 
-def setRGBSpeed(speed):
+def setRGBSpeed(bus, speed):
     """Set the effect speed, 1-3, 3 being the fastest speed"""
-    if speed >= 1 and speed <= 3:
+    if 1 <= speed <= 3:
         try:
-            bus.write_byte_data(DEVICE_ADDRESS, rgb_speed_reg, speed & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_speed, speed & 0xFF)
         except Exception as e:
             logger.exception(f"An Exception has occured in the light library at {e}")
 
 
-def setRGBColor(color):
-    """Set the color of the water light and breathing light effect, 0-6
+def setRGBColor(bus, color):
+    """Set the color of the water light and breathing light effect, of type EffectColor
 
-    0: Red
-    1: Green (default)
-    2: Blue
-    3: Yellow
-    4: Purple
-    5: Cyan
-    6: White
+    EffectColor.Red, EffectColor.Green (default), EffectColor.Blue, EffectColor.Yellow,
+    EffectColor.Purple, EffectColor.Cyan, EffectColor.White
     """
-
-    if color >= 0 and color <= 6:
+    if color in EffectColor:
         try:
-            bus.write_byte_data(DEVICE_ADDRESS, rgb_color_reg, color & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_color, color & 0xFF)
         except Exception as e:
             logger.exception(f"An Exception has occured in the light library at {e}")
 
 
-def light(state):
-    """Turn the LED on or off"""
+def ready():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.Green)
+        setRGBSpeed(bus, 1)
+        setRGBEffect(bus, Effect.Breathing)
+    # i2c_update()
 
-    if state == "on":
-        RPi.GPIO.output(21, RPi.GPIO.HIGH)
-    elif state == "off":
-        RPi.GPIO.output(21, RPi.GPIO.LOW)
+
+def error():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.Red)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
+    # i2c_update()
 
 
-## Wait message: Green
-## Actuate message: White
-## Pumping message: Blue
-## Pumping 2 message: BLue + Green
+def interrupted():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.Yellow)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
+    # i2c_update()
+
+
+def pumping():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.Blue)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
+    # i2c_update()
+
+
+def focusing():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.Purple)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
+    # i2c_update()
+
+
+def imaging():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.White)
+        setRGBSpeed(bus, 1)
+        setRGBEffect(bus, Effect.Breathing)
+    # i2c_update()
+
+
+def segmenting():
+    with smbus.SMBus(1) as bus:
+        setRGBColor(bus, EffectColor.Purple)
+        setRGBSpeed(bus, 1)
+        setRGBEffect(bus, Effect.Breathing)
+    # i2c_update()
+
 
 # This is called if this script is launched directly
 if __name__ == "__main__":
     # TODO This should be a test suite for this library
-    import RPi.GPIO as GPIO
-    import sys
+    import time
 
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(21, GPIO.OUT)
+    print("ready")
+    ready()
+    time.sleep(10)
+    print("error")
+    error()
+    time.sleep(10)
+    print("pumping")
+    pumping()
+    time.sleep(10)
+    print("focusing")
+    focusing()
+    time.sleep(10)
+    print("imaging")
+    imaging()
+    time.sleep(10)
+    print("segmenting")
+    segmenting()
+    time.sleep(10)
+    with smbus.SMBus(1) as bus:
+        setRGBSpeed(bus, 3)
+    for effect in Effect:
+        print(effect.name)
+        with smbus.SMBus(1) as bus:
+            setRGBEffect(bus, effect)
+        time.sleep(2)
+    with smbus.SMBus(1) as bus:
+        setRGBEffect(bus, Effect.Breathing)
+    for color in EffectColor:
+        print(color.name)
+        with smbus.SMBus(1) as bus:
+            setRGBColor(bus, color)
+        time.sleep(2)
 
-    state = str(sys.argv[1])
-
-    light(state)
+    setRGBOff()
