@@ -735,60 +735,6 @@
         "height": 1
     },
     {
-        "id": "9698828d.faacb8",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4322c187.e73e5",
-        "order": 6,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "52335429.3ccffc",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4322c187.e73e5",
-        "order": 9,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "14361a81.e5f03d",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 2,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "d54e2186.0e6d2",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "ff5055f4.d3636",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "67ccad31.7b2c5c",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b7919ae2.c01788",
-        "order": 2,
-        "width": 5,
-        "height": 1
-    },
-    {
         "id": "b001a150.faa548",
         "type": "ui_spacer",
         "name": "spacer",
@@ -813,6 +759,51 @@
         "group": "46be9c86.dea684",
         "order": 7,
         "width": 10,
+        "height": 1
+    },
+    {
+        "id": "de621043.b31528",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "4322c187.e73e5",
+        "order": 7,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "b0a2c4ff.ce75b",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f1326cca.4ab1f",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a27ea76d.b9989",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "17a79a42.2912ce",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b7919ae2.c01788",
+        "order": 2,
+        "width": 5,
         "height": 1
     },
     {
@@ -1653,7 +1644,7 @@
         "delay": 300,
         "topic": "acq_id",
         "x": 650,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "fb887036.12429",
@@ -2091,6 +2082,11 @@
                 "type": "num"
             },
             {
+                "label": "300 µm capillary",
+                "value": 300,
+                "type": "num"
+            },
+            {
                 "label": "400 μm µ-Slide I Luer",
                 "value": 400,
                 "type": "num"
@@ -2109,7 +2105,7 @@
         "payload": "",
         "topic": "acq_celltype",
         "x": 630,
-        "y": 80,
+        "y": 240,
         "wires": [
             [
                 "fb887036.12429",
@@ -2170,7 +2166,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Check form",
-        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_ship= global.get(\"sample_ship\");\nvar sample_id= global.get(\"sample_id\");\nvar sample_operator= global.get(\"sample_operator\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\nvar object_lat= global.get(\"object_lat\");\nvar object_lon= global.get(\"object_lon\");\nvar object_date= global.get(\"object_date\");\nvar object_time= global.get(\"object_time\");\n\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n}\n\nelse if (sample_ship === undefined || sample_ship === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ship\"\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of throw\"\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of throw\"\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of throw\"\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of throw\"\n}\nelse if (sample_sampling_gear == \"net\"){\n    var object_lat_end= global.get(\"object_lat_end\");\n    var object_lon_end= global.get(\"object_lon_end\");\n    var object_date_end= global.get(\"object_date_end\");\n    var object_time_end= global.get(\"object_time_end\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n    }\n    \n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n    }\n    \n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n    }\n    \n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n    }\n}\nelse {\n    msg.topic = \"Change Tab\"\n    msg.payload={\"tab\":\"Optic Configuration\"};\n}\nreturn msg;\n",
+        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_ship= global.get(\"sample_ship\");\nvar sample_id= global.get(\"sample_id\");\nvar sample_operator= global.get(\"sample_operator\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\nvar object_lat= global.get(\"object_lat\");\nvar object_lon= global.get(\"object_lon\");\nvar object_date= global.get(\"object_date\");\nvar object_time= global.get(\"object_time\");\n\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n}\n\nelse if (sample_ship === undefined || sample_ship === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ship\"\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of throw\"\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of throw\"\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of throw\"\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of throw\"\n}\nelse if (sample_sampling_gear == \"net\"){\n    var object_lat_end= global.get(\"object_lat_end\");\n    var object_lon_end= global.get(\"object_lon_end\");\n    var object_date_end= global.get(\"object_date_end\");\n    var object_time_end= global.get(\"object_time_end\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n    }\n    \n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n    }\n    \n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n    }\n    \n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n    }\n    else {\n        msg.topic = \"Change Tab\"\n        msg.payload={\"tab\":\"Optic Configuration\"};\n    }\n}\nelse {\n    msg.topic = \"Change Tab\"\n    msg.payload={\"tab\":\"Optic Configuration\"};\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2927,33 +2923,15 @@
         "order": 6,
         "width": 0,
         "height": 0,
-        "format": "<div >\n    <strong>Sample Project:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.sample_project\"></span><br>\n    <strong>Sample Ship:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.sample_ship\"></span><br>\n    <strong>sample operator:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.sample_operator\"></span><br>\n    <strong>sample id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.sample_id\"></span><br>\n    <strong>sample sampling_gear:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.sample_sampling_gear\"></span><br>\n\n    <strong>acq id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_id\"></span><br>\n    <strong>acq instrument:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_instrument\"></span><br>\n    <strong>acq instrument_id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_instrument_id\"></span><br>\n    <strong>acq camera:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_camera\"></span><br>\n    <strong>acq celltype:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_celltype\"></span><br>\n    <strong>acq minimum_mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_minimum_mesh\"></span><br>\n    <strong>acq maximum_mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_maximum_mesh\"></span><br>\n    <strong>acq min_esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_min_esd\"></span><br>\n    <strong>acq max_esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_max_esd\"></span><br>\n    <strong>acq volume:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_volume\"></span><br>\n    <strong>acq magnification:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_magnification\"></span><br>\n    <strong>acq fnumber_objective:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_fnumber_objective\"></span><br>\n    <strong>acq software:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.acq_software\"></span><br>\n    <strong>acq flowrate:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.sug_flowrate\"></span><br>\n\n    <strong>object lat:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat\"></span><br>\n    <strong>object lon:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon\"></span><br>\n    <strong>object lat end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span><br>\n    <strong>object lon end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span><br>\n    <strong>object date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date\"></span><br>\n    <strong>object time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time\"></span><br>\n    <strong>object date end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span><br>\n    <strong>object time end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span><br>\n    <strong>object depth min:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_depth_min\"></span><br>\n    <strong>object depth max:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_depth_max\"></span><br>\n\n    <strong>process pixel:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.process_pixel\"></span><br>\n    <strong>process id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.process_id\"></span>\n</div>\n",
+        "format": "<div >\n    <strong>Sample Project:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_project\"></span><br>\n    <strong>Sample Ship:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_ship\"></span><br>\n    <strong>sample operator:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_operator\"></span><br>\n    <strong>sample id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_id\"></span><br>\n    <strong>sample sampling_gear:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sample_sampling_gear\"></span><br>\n\n    <strong>acq id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_id\"></span><br>\n    <strong>acq instrument:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_instrument\"></span><br>\n    <strong>acq instrument_id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_instrument_id\"></span><br>\n    <strong>acq camera:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_camera\"></span><br>\n    <strong>acq celltype:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_celltype\"></span><br>\n    <strong>acq minimum_mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_minimum_mesh\"></span><br>\n    <strong>acq maximum_mesh:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_maximum_mesh\"></span><br>\n    <strong>acq min_esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_min_esd\"></span><br>\n    <strong>acq max_esd:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_max_esd\"></span><br>\n    <strong>acq volume:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_volume\"></span><br>\n    <strong>acq magnification:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_magnification\"></span><br>\n    <strong>acq fnumber_objective:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_fnumber_objective\"></span><br>\n    <strong>acq software:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.acq_software\"></span><br>\n    <strong>acq flowrate:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.sug_flowrate\"></span><br>\n\n    <strong>object lat:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lat\"></span><br>\n    <strong>object lon:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lon\"></span><br>\n    <strong>object lat end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lat_end\"></span><br>\n    <strong>object lon end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_lon_end\"></span><br>\n    <strong>object date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_date\"></span><br>\n    <strong>object time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_time\"></span><br>\n    <strong>object date end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_date_end\"></span><br>\n    <strong>object time end:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_time_end\"></span><br>\n    <strong>object depth min:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_depth_min\"></span><br>\n    <strong>object depth max:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.object_depth_max\"></span><br>\n\n    <strong>process pixel:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.process_pixel\"></span><br>\n    <strong>process id:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.config.process_id\"></span>\n</div>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 950,
+        "x": 1250,
         "y": 500,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "e2919164.70927",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "name": "get global",
-        "func": "msg.payload = {\n    \"sample_project\":global.get(\"sample_project\"),\n    \"sample_ship\":global.get(\"sample_ship\"),\n    \"sample_operator\":global.get(\"sample_operator\"),\n    \"sample_id\":global.get(\"sample_id\"),\n    \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n    \n    \"acq_id\":global.get(\"acq_id\"),\n    \"acq_instrument\":global.get(\"acq_instrument\"),\n    \"acq_instrument_id\":global.get(\"acq_instrument_id\"),\n    \"acq_camera\":global.get(\"acq_camera\"),\n    \"acq_celltype\":global.get(\"acq_celltype\"),\n    \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n    \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n    \"acq_min_esd\":global.get(\"acq_min_esd\"),\n    \"acq_max_esd\":global.get(\"acq_max_esd\"),\n    \"acq_volume\":global.get(\"acq_volume\"),\n    \"acq_magnification\":global.get(\"acq_magnification\"),\n    \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n    \"acq_software\":global.get(\"acq_software\"),\n    \"acq_flowrate\":global.get(\"sug_flowrate\"),\n    \n    \"object_lat\":global.get(\"object_lat\"),\n    \"object_lon\":global.get(\"object_lon\"),\n    \"object_lat_end\":global.get(\"object_lat_end\"),\n    \"object_lon_end\":global.get(\"object_lon_end\"),\n    \"object_date\":global.get(\"object_date\"),\n    \"object_time\":global.get(\"object_time\"),\n    \"object_date_end\":global.get(\"object_date_end\"),\n    \"object_time_end\":global.get(\"object_time_end\"),\n    \"object_depth_min\":global.get(\"object_depth_min\"),\n    \"object_depth_max\":global.get(\"object_depth_max\"),\n    \n    \"process_pixel\":global.get(\"process_pixel\"),\n    \"process_id\":global.get(\"process_id\")\n        \n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 780,
-        "y": 500,
-        "wires": [
-            [
-                "29be525e.0c87fe"
-            ]
         ]
     },
     {
@@ -3948,7 +3926,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Image control",
-        "func": "state = global.get(\"state\");\nglobal.set('img_counter',0);\nglobal.set('obj_counter',0);\nif (state === null){state=\"free\"}\n\nvar nb_frame= global.get(\"nb_frame\");\nvar acq_celltype= global.get(\"acq_celltype\");\nvar acq_minimum_mesh= global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh= global.get(\"acq_maximum_mesh\");\nvar acq_id= global.get(\"acq_id\");\nvar pump_direction= global.get(\"pump_direction\");\nvar imaging_pump_volume= global.get(\"imaging_pump_volume\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Type of the flowcell\"\n}else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Lower fraction size\"\n}else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Upper fraction size\"\n}else if (imaging_pump_volume === undefined || imaging_pump_volume === \"\" || imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume inbetween images\"\n}else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Acquisition ID\"\n}else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    \n}else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n    \n}else {\n    msg.payload={\"action\":\"image\", \n                    \"sleep\":1,\n                    \"pump_direction\": pump_direction,\n                    \"volume\":imaging_pump_volume,\n                    \"nb_frame\":nb_frame,\n                }\n}\n\nreturn msg;",
+        "func": "state = global.get(\"state\");\nglobal.set('img_counter', 0);\nglobal.set('obj_counter', 0);\nif (state === null) {\n    state = \"free\"\n}\n\nvar nb_frame = global.get(\"nb_frame\");\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar acq_id = global.get(\"acq_id\");\nvar pump_direction = global.get(\"pump_direction\");\nvar imaging_pump_volume = global.get(\"imaging_pump_volume\");\nvar sleep_before = global.get(\"sleep_before\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Type of the flowcell\"\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Lower fraction size\"\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Upper fraction size\"\n} else if (imaging_pump_volume === undefined || imaging_pump_volume === \"\" || imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume inbetween images\"\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Acquisition ID\"\n} else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n} else if (sleep_before === undefined || sleep_before === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n} else {\n    msg.payload = {\n        \"action\": \"image\",\n        \"sleep\": sleep_before,\n        \"pump_direction\": pump_direction,\n        \"volume\": imaging_pump_volume,\n        \"nb_frame\": nb_frame,\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4076,7 +4054,7 @@
         "label": "Pump direction",
         "tooltip": "BACKWARD / FORWARD",
         "group": "4322c187.e73e5",
-        "order": 7,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4113,7 +4091,8 @@
         "y": 540,
         "wires": [
             [
-                "c3e50240.82aa58"
+                "c3e50240.82aa58",
+                "29be525e.0c87fe"
             ]
         ]
     },
@@ -4146,7 +4125,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "group": "4322c187.e73e5",
-        "order": 8,
+        "order": 9,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -4163,7 +4142,6 @@
         "wires": [
             [
                 "52ea7d01.711034",
-                "e2919164.70927",
                 "a4abb1ae.2ae418"
             ]
         ]
@@ -4681,7 +4659,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "x": 90,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "f3658d30.b8448",
@@ -4702,8 +4680,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 310,
-        "y": 240,
+        "x": 300,
+        "y": 280,
         "wires": [
             [
                 "6b34c456.83178c"
@@ -4719,7 +4697,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 320,
-        "y": 80,
+        "y": 240,
         "wires": [
             [
                 "cc0ca68b.4263a8"
@@ -4936,7 +4914,7 @@
         "payload": "10",
         "payloadType": "num",
         "x": 310,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "51b4d0df.d70a88"
@@ -5070,8 +5048,8 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "env": [],
-        "x": 770,
-        "y": 460,
+        "x": 930,
+        "y": 500,
         "wires": [
             []
         ]
@@ -5092,7 +5070,7 @@
         "delay": 300,
         "topic": "nb_frame",
         "x": 640,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "fb887036.12429",
@@ -6023,7 +6001,7 @@
         "type": "ui_text",
         "z": "baa1e3d9.cb29d",
         "group": "4322c187.e73e5",
-        "order": 5,
+        "order": 6,
         "width": 5,
         "height": 1,
         "name": "Pump volume",
@@ -6039,7 +6017,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "pump volume calc",
-        "func": "var acq_volume = global.get(\"acq_volume\");\nvar nb_frame = global.get(\"nb_frame\");\n\nvar pump_volume =  Math.max((Number(acq_volume) / Number(nb_frame)), 0.01).toFixed(4)\n\nglobal.set(\"imaging_pump_volume\", pump_volume)\n\nmsg.payload = pump_volume + \" mL per frame\"\nreturn msg;",
+        "func": "var acq_volume = global.get(\"acq_volume\");\nvar nb_frame = global.get(\"nb_frame\");\n\nvar pump_volume =  Math.max((Number(acq_volume) / Number(nb_frame)), 0.01).toFixed(3)\n\nglobal.set(\"imaging_pump_volume\", pump_volume)\n\nmsg.payload = pump_volume + \" mL/frame\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6739,6 +6717,57 @@
         "y": 880,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a8bf2334.279c",
+        "type": "inject",
+        "z": "baa1e3d9.cb29d",
+        "name": "Default: 0.5",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0.5",
+        "payloadType": "num",
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "49ea1123.ee1768"
+            ]
+        ]
+    },
+    {
+        "id": "49ea1123.ee1768",
+        "type": "ui_numeric",
+        "z": "baa1e3d9.cb29d",
+        "name": "sleep_before",
+        "label": "Delay to stabilize image (s)",
+        "tooltip": "Happens before every capture",
+        "group": "4322c187.e73e5",
+        "order": 5,
+        "width": 5,
+        "height": 2,
+        "wrap": false,
+        "passthru": true,
+        "topic": "sleep_before",
+        "format": "{{value}}",
+        "min": "0.1",
+        "max": "5",
+        "step": "0.1",
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "fb887036.12429"
+            ]
         ]
     }
 ]

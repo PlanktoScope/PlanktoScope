@@ -595,9 +595,6 @@ class ImagerProcess(multiprocessing.Process):
                 f"The integrity file already exists in this export path {self.__export_path}"
             )
 
-        # Sleep a duration before to start acquisition
-        time.sleep(self.__sleep_before)
-
         # Set the LEDs as Blue
         planktoscope.light.setRGB(0, 0, 255)
 
@@ -623,6 +620,9 @@ class ImagerProcess(multiprocessing.Process):
         logger.info(
             f"Capturing image {self.__img_done + 1}/{self.__img_goal} to {filename_path}"
         )
+
+        # Sleep a duration before to start acquisition
+        time.sleep(self.__sleep_before)
 
         # Capture an image with the proper filename
         try:
