@@ -6587,33 +6587,10 @@
         ]
     },
     {
-        "id": "b412c67e.8b751",
-        "type": "ui_text_input",
-        "z": "cb95299c.2817c8",
-        "name": "process_id",
-        "label": "Process unique ID*",
-        "tooltip": "",
-        "group": "abeb6dad.635a2",
-        "order": 1,
-        "width": 10,
-        "height": 1,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "process_id",
-        "x": 390,
-        "y": 180,
-        "wires": [
-            [
-                "c8749cbb.55254"
-            ]
-        ]
-    },
-    {
         "id": "b0081852.be553",
         "type": "inject",
         "z": "cb95299c.2817c8",
-        "name": "Default: 1",
+        "name": "Default process_id: 1",
         "props": [
             {
                 "p": "payload"
@@ -6627,14 +6604,14 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "process_id",
         "payload": "1",
         "payloadType": "num",
-        "x": 160,
-        "y": 180,
+        "x": 360,
+        "y": 200,
         "wires": [
             [
-                "b412c67e.8b751"
+                "c8749cbb.55254"
             ]
         ]
     },
@@ -6648,8 +6625,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 720,
-        "y": 180,
+        "x": 560,
+        "y": 200,
         "wires": [
             []
         ]
