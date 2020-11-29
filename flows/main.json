@@ -6337,11 +6337,11 @@
         "id": "11b51f8f.acd308",
         "type": "python3-function",
         "z": "1371dec5.76e671",
-        "name": "fan.py",
-        "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\nif temp <= 35:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp <= 38:\n    bus.write_byte_data(addr, fan_reg, 0x04)\nelif temp <= 43:\n    bus.write_byte_data(addr, fan_reg, 0x06)\nelif temp <= 48:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelif temp <= 52:\n    bus.write_byte_data(addr, fan_reg, 0x09)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
+        "name": "fan temperature",
+        "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\nif temp <= 35:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp <= 38:\n    bus.write_byte_data(addr, fan_reg, 0x05)\nelif temp <= 43:\n    bus.write_byte_data(addr, fan_reg, 0x07)\nelif temp <= 48:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelif temp <= 52:\n    bus.write_byte_data(addr, fan_reg, 0x09)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
         "outputs": 1,
-        "x": 1100,
-        "y": 200,
+        "x": 1120,
+        "y": 100,
         "wires": [
             []
         ]
