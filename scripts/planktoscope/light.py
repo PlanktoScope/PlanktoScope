@@ -8,13 +8,14 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-import subprocess  # nosec
 
 # Library to send command over I2C for the light module on the fan
 try:
     import smbus2 as smbus
-except ModuleNotFoundError:
-    subprocess.Popen("pip3 install smbus2".split(), stdout=subprocess.PIPE)  # nosec
+except ModuleNotFoundError:  # We need this to install the library on machine that do not have the module yet
+    import subprocess  # nosec
+
+    subprocess.run("pip3 install smbus2".split())  # nosec
     import smbus2 as smbus
 
 import enum
@@ -57,11 +58,6 @@ class EffectColor(enum.IntEnum):
 ################################################################################
 # LEDs functions
 ################################################################################
-def i2c_update():
-    # Update the I2C Bus in order to really update the LEDs new values
-    subprocess.Popen("i2cdetect -y 1".split(), stdout=subprocess.PIPE)  # nosec
-
-
 def setRGB(R, G, B):
     """Update all LED at the same time"""
     try:
@@ -72,7 +68,6 @@ def setRGB(R, G, B):
             bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
-        # i2c_update()
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
 
@@ -82,7 +77,6 @@ def setRGBOff():
     try:
         with smbus.SMBus(1) as bus:
             bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
-        # i2c_update()
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
 
@@ -130,7 +124,6 @@ def ready():
         setRGBColor(bus, EffectColor.Green)
         setRGBSpeed(bus, 1)
         setRGBEffect(bus, Effect.Breathing)
-    # i2c_update()
 
 
 def error():
@@ -138,7 +131,6 @@ def error():
         setRGBColor(bus, EffectColor.Red)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-    # i2c_update()
 
 
 def interrupted():
@@ -146,7 +138,6 @@ def interrupted():
         setRGBColor(bus, EffectColor.Yellow)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-    # i2c_update()
 
 
 def pumping():
@@ -154,7 +145,6 @@ def pumping():
         setRGBColor(bus, EffectColor.Blue)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-    # i2c_update()
 
 
 def focusing():
@@ -162,7 +152,6 @@ def focusing():
         setRGBColor(bus, EffectColor.Purple)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-    # i2c_update()
 
 
 def imaging():
@@ -170,7 +159,6 @@ def imaging():
         setRGBColor(bus, EffectColor.White)
         setRGBSpeed(bus, 1)
         setRGBEffect(bus, Effect.Breathing)
-    # i2c_update()
 
 
 def segmenting():
@@ -178,7 +166,6 @@ def segmenting():
         setRGBColor(bus, EffectColor.Purple)
         setRGBSpeed(bus, 1)
         setRGBEffect(bus, Effect.Breathing)
-    # i2c_update()
 
 
 # This is called if this script is launched directly

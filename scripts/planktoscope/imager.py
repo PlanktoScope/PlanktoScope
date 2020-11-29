@@ -327,8 +327,7 @@ class ImagerProcess(multiprocessing.Process):
         # Publish the status "Interrupted" to via MQTT to Node-RED
         self.imager_client.client.publish("status/imager", '{"status":"Interrupted"}')
 
-        # Set the LEDs as Green
-        planktoscope.light.setRGB(0, 255, 0)
+        planktoscope.light.interrupted()
 
         # Change state to Stop
         self.__imager.change(planktoscope.imager_state_machine.Stop)
@@ -542,6 +541,9 @@ class ImagerProcess(multiprocessing.Process):
 
     def __pump_message(self):
         """Sends a message to the pump process"""
+
+        planktoscope.light.pumping()
+
         # Pump during a given volume
         self.imager_client.client.publish(
             "actuator/pump",
@@ -595,22 +597,15 @@ class ImagerProcess(multiprocessing.Process):
                 f"The integrity file already exists in this export path {self.__export_path}"
             )
 
-        # Set the LEDs as Blue
-        planktoscope.light.setRGB(0, 0, 255)
-
         self.__pump_message()
 
         # FIXME We should probably update the global metadata here with the current datetime/position/etc...
-
-        # Set the LEDs as Green
-        planktoscope.light.setRGB(0, 255, 0)
 
         # Change state towards Waiting for pump
         self.__imager.change(planktoscope.imager_state_machine.Waiting)
 
     def __state_capture(self):
-        # Set the LEDs as Cyan
-        planktoscope.light.setRGB(0, 255, 255)
+        planktoscope.light.imaging()
 
         filename = f"{datetime.datetime.now().strftime('%H_%M_%S_%f')}.jpg"
 
@@ -638,12 +633,8 @@ class ImagerProcess(multiprocessing.Process):
             self.__img_done = 0
             # Change state towards stop
             self.__imager.change(planktoscope.imager_state_machine.Stop)
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 255)
+            planktoscope.light.error()
             return
-
-        # Set the LEDs as Green
-        planktoscope.light.setRGB(0, 255, 0)
 
         # Add the checksum of the captured image to the integrity file
         try:
@@ -672,13 +663,10 @@ class ImagerProcess(multiprocessing.Process):
 
             # Change state towards done
             self.__imager.change(planktoscope.imager_state_machine.Stop)
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 255)
+            planktoscope.light.ready()
             return
         else:
             # We have not reached the final stage, let's keep imaging
-            # Set the LEDs as Blue
-            planktoscope.light.setRGB(0, 0, 255)
 
             # subscribe to status/pump
             self.imager_client.client.subscribe("status/pump")
@@ -687,9 +675,6 @@ class ImagerProcess(multiprocessing.Process):
             )
 
             self.__pump_message()
-
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
 
             # Change state towards Waiting for pump
             self.__imager.change(planktoscope.imager_state_machine.Waiting)

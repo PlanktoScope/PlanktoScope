@@ -53,7 +53,6 @@
 # We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque
 import paho.mqtt.client as mqtt
 import json
-import planktoscope.light
 
 # Logger library compatible with multiprocessing
 from loguru import logger
@@ -117,8 +116,6 @@ class MQTT_Client:
         )
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
-        # Turn green the light module
-        planktoscope.light.setRGB(0, 255, 0)
 
     @logger.catch
     # Run this function in order to subscribe to all the topics begining by actuator

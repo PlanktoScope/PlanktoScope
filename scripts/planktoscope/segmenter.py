@@ -60,7 +60,6 @@ class SegmenterProcess(multiprocessing.Process):
         if not os.path.exists(self.__objects_base_path):
             # create the path!
             os.makedirs(self.__objects_base_path)
-        # Morphocut's pipeline will be created at runtime otherwise shit ensues
 
         logger.success("planktoscope.segmenter is initialised and ready to go!")
 
@@ -82,8 +81,7 @@ class SegmenterProcess(multiprocessing.Process):
                 lambda p: os.path.splitext(os.path.basename(p))[0], abs_path
             )
 
-            # Set the LEDs as Green
-            morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
+            morphocut.Call(planktoscope.light.segmenting())
 
             # Read image
             img = morphocut.image.ImageReader(abs_path)
@@ -142,9 +140,6 @@ class SegmenterProcess(multiprocessing.Process):
             regionprops = morphocut.image.FindRegions(
                 mask, img_gray, min_area=1000, padding=10, warn_empty=name
             )
-
-            # Set the LEDs as Purple
-            morphocut.Call(planktoscope.light.setRGB, 255, 0, 255)
 
             # For an object, extract a vignette/ROI from the image
             roi_orig = morphocut.image.ExtractROI(img, regionprops, bg_color=255)
@@ -212,8 +207,6 @@ class SegmenterProcess(multiprocessing.Process):
                 id_json,
             )
 
-            # Set the LEDs as Green
-            morphocut.Call(planktoscope.light.setRGB, 0, 255, 0)
         logger.info("Morphocut's Pipeline has been created")
 
     @logger.catch
@@ -287,6 +280,7 @@ class SegmenterProcess(multiprocessing.Process):
                     try:
                         self.__pipe.run()
                     except Exception as e:
+                        planktoscope.light.error()
                         logger.exception(f"There was an error in the pipeline {e}")
                     logger.info(f"Pipeline has been run for {path}")
                 else:
@@ -299,14 +293,7 @@ class SegmenterProcess(multiprocessing.Process):
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Done"}'
             )
-
-            # Set the LEDs as White
-            planktoscope.light.setRGB(255, 255, 255)
-
-            # cmd = os.popen("rm -rf /home/pi/PlanktonScope/tmp/*.jpg")
-
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
+            planktoscope.light.ready()
 
         elif action == "stop":
             logger.info("The segmentation has been interrupted.")
@@ -315,6 +302,7 @@ class SegmenterProcess(multiprocessing.Process):
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Interrupted"}'
             )
+            planktoscope.light.interrupted()
 
         elif action == "update_config":
             logger.error("We can't update the configuration while we are segmenting.")

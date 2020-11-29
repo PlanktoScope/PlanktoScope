@@ -269,13 +269,11 @@ class StepperProcess(multiprocessing.Process):
                 "status/pump", '{"status":"Interrupted"}'
             )
 
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
+            planktoscope.light.ready()
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move pump command")
-            # Set the LEDs as Blue
-            planktoscope.light.setRGB(0, 0, 255)
+            planktoscope.light.pumping()
 
             if (
                 "direction" not in last_message
@@ -315,13 +313,11 @@ class StepperProcess(multiprocessing.Process):
                 "status/focus", '{"status":"Interrupted"}'
             )
 
-            # Set the LEDs as Green
-            planktoscope.light.setRGB(0, 255, 0)
+            planktoscope.light.ready()
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move focus command")
-            # Set the LEDs as Yellow
-            planktoscope.light.setRGB(255, 255, 0)
+            planktoscope.light.focusing()
 
             if "direction" not in last_message or "distance" not in last_message:
                 logger.error(
@@ -354,7 +350,6 @@ class StepperProcess(multiprocessing.Process):
             # If the command is "pump"
             if command == "pump":
                 self.__message_pump(last_message)
-
             # If the command is "focus"
             elif command == "focus":
                 self.__message_focus(last_message)
@@ -507,15 +502,18 @@ class StepperProcess(multiprocessing.Process):
             # check if a new message has been received
             self.treat_command()
             if self.pump_stepper.move():
+                planktoscope.light.ready()
                 self.actuator_client.client.publish(
                     "status/pump",
                     '{"status":"Done"}',
                 )
             if self.focus_stepper.move():
+                planktoscope.light.ready()
                 self.actuator_client.client.publish(
                     "status/focus",
                     '{"status":"Done"}',
                 )
+            time.sleep(0.0001)
         logger.info("Shutting down the stepper process")
         self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
         self.actuator_client.client.publish("status/focus", '{"status":"Dead"}')
