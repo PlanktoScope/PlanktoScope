@@ -1355,10 +1355,10 @@
         "id": "2549f778.4eb828",
         "type": "python3-function",
         "z": "1371dec5.76e671",
-        "name": "fan.py",
-        "func": "#!/usr/bin/python\nimport smbus\nimport sys\n\nstate = msg[\"payload\"]\n\nbus = smbus.SMBus(1)\n\nDEVICE_ADDRESS = 0x0d\n\nif state == \"off\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\nif state == \"on\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)",
+        "name": "fan control",
+        "func": "#!/usr/bin/python\nimport smbus\n\nstate = msg[\"payload\"]\n\nbus = smbus.SMBus(1)\n\nDEVICE_ADDRESS = 0x0d\n\nif state == \"off\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\nif state == \"on\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n",
         "outputs": 1,
-        "x": 1090,
+        "x": 1110,
         "y": 40,
         "wires": [
             []
@@ -1401,8 +1401,8 @@
         "timer": "2",
         "oldrc": false,
         "name": "cmd",
-        "x": 510,
-        "y": 1000,
+        "x": 530,
+        "y": 1040,
         "wires": [
             [],
             [],
@@ -1440,13 +1440,12 @@
         "type": "python3-function",
         "z": "1371dec5.76e671",
         "name": "action",
-        "func": "#!/usr/bin/python\nimport smbus\nimport time\nbus = smbus.SMBus(1)\ntime.sleep(1)\n#turn off fan RGB\nbus.write_byte_data(0x0d, 0x07, 0x00)\nbus.write_byte_data(0x0d, 0x07, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
+        "func": "#!/usr/bin/python\nimport smbus\n\nbus = smbus.SMBus(1)\n#turn off LED\nbus.write_byte_data(0x0d, 0x07, 0x00)\n#turn off Fan\nbus.write_byte_data(0x0d, 0x08, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
         "outputs": 1,
-        "x": 330,
+        "x": 350,
         "y": 1040,
         "wires": [
             [
-                "b7ab1ada.1f4158",
                 "d9a924bc.0ca078"
             ]
         ]
@@ -1462,8 +1461,8 @@
         "timer": "1",
         "oldrc": false,
         "name": "i2c update",
-        "x": 530,
-        "y": 1080,
+        "x": 630,
+        "y": 1140,
         "wires": [
             [],
             [],
@@ -4671,7 +4670,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 300,
+        "x": 310,
         "y": 280,
         "wires": [
             [
@@ -4822,7 +4821,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "",
+        "onceDelay": "0.01",
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
