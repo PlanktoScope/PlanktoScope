@@ -51,18 +51,17 @@ bottom = height - padding
 x = 0
 
 # Load default font.
-# font = PIL.ImageFont.truetype(font="truetype/dejavu/DejaVuSansMono.ttf", size=13)
+font = PIL.ImageFont.truetype(font="truetype/dejavu/DejaVuSansMono.ttf", size=15)
 
 # Draw a black filled box to clear the image.
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-draw.text(
-    (0, 0),
-    machineName.replace(" ", "\n"),
-    font=PIL.ImageFont.truetype(font="truetype/dejavu/DejaVuSansMono.ttf", size=15),
-    fill=255,
-    align="center",
-)
+
+text_size = font.getsize_multiline(machineName.replace(" ", "\n"))
+x = width / 2 - text_size[0] / 2
+
+draw.text((x, 0), machineName.replace(" ", "\n"), font=font, fill=255, align="center")
+
 # draw.text((0, top + 15), "READY", font=font, fill=255)
 # now = datetime.datetime.isoformat(datetime.datetime.now())[:-16]
 # draw.text(
