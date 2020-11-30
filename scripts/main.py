@@ -56,6 +56,9 @@ import planktoscope.light
 # Import the planktonscope uuidName module
 import planktoscope.uuidName
 
+# Import the planktonscope display module for the OLED screen
+import planktoscope.display
+
 
 # global variable that keeps the wheels spinning
 run = True
