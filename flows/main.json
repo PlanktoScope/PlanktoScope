@@ -1128,7 +1128,8 @@
         "wires": [
             [
                 "45e1912a.36a23",
-                "84ac8611.1a6ac8"
+                "84ac8611.1a6ac8",
+                "eaf74a43.fa27d"
             ],
             [],
             []
@@ -6775,6 +6776,501 @@
         "y": 1040,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "fd137b53.0c707",
+        "type": "ui_dropdown",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Choose USB device",
+        "group": "52d1b77.28369c8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "No Drive Detected",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "device_path",
+        "x": 1580,
+        "y": 160,
+        "wires": [
+            [
+                "2ce8de63.49f4c2"
+            ]
+        ]
+    },
+    {
+        "id": "e2be0960.e56da8",
+        "type": "ui_button",
+        "z": "1371dec5.76e671",
+        "name": "Detect drive",
+        "group": "52d1b77.28369c8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Detect drive",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 890,
+        "y": 160,
+        "wires": [
+            [
+                "81d4c224.69f82"
+            ]
+        ]
+    },
+    {
+        "id": "81d4c224.69f82",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "lsblk --bytes --json --paths --output-all",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "detect drive",
+        "x": 1070,
+        "y": 160,
+        "wires": [
+            [
+                "f0d5e093.ad2c58"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f0d5e093.ad2c58",
+        "type": "json",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1230,
+        "y": 160,
+        "wires": [
+            [
+                "7ea3074b.9e0208"
+            ]
+        ]
+    },
+    {
+        "id": "7ea3074b.9e0208",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "[payload.blockdevices.children[mountpoint=null].name]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 160,
+        "wires": [
+            [
+                "fd137b53.0c707"
+            ]
+        ]
+    },
+    {
+        "id": "446923c0.0fa6a4",
+        "type": "ui_button",
+        "z": "1371dec5.76e671",
+        "name": "Backup to USB",
+        "group": "52d1b77.28369c8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Backup to USB",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 900,
+        "y": 240,
+        "wires": [
+            [
+                "cab20e8c.a08ff8"
+            ]
+        ]
+    },
+    {
+        "id": "2ce8de63.49f4c2",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "set local",
+        "func": "flow.set(msg.topic,msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1740,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cab20e8c.a08ff8",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "get device_path",
+        "func": "msg.payload = flow.get(\"device_path\");\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1100,
+        "y": 240,
+        "wires": [
+            [
+                "68594ee1.dcfec8"
+            ]
+        ]
+    },
+    {
+        "id": "eb274437.23fc5",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "sudo /home/pi/PlanktonScope/scripts/bash/usb_backup.sh",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "usb_backup.sh",
+        "x": 1440,
+        "y": 260,
+        "wires": [
+            [
+                "c8d89fce.9ae1f"
+            ],
+            [],
+            [
+                "94935a31.a8bcb"
+            ]
+        ]
+    },
+    {
+        "id": "68594ee1.dcfec8",
+        "type": "switch",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "No Drive Detected",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 1270,
+        "y": 240,
+        "wires": [
+            [
+                "a0ba0668.484418"
+            ],
+            [
+                "eb274437.23fc5"
+            ]
+        ]
+    },
+    {
+        "id": "a0ba0668.484418",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1430,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8d89fce.9ae1f",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1650,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "58f68bf5.3327dc",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1810,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94935a31.a8bcb",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "error message",
+        "func": "switch (msg.payload.code){\ncase 0:\n    msg.payload = \"All files successfully copied, you can remove your usb drive!\";\n    break;\ncase 1:\n    msg.payload = \"There was an error!\";\n    break;\ncase 2:\n    msg.payload = \"Error: your device is already mounted\"\n    break;\ncase 3:\n    msg.payload = \"Error while mounting the device\"\n    break;\ncase 4:\n    msg.payload = \"Error: some files were corrupted during the copy!\"\n    break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1640,
+        "y": 280,
+        "wires": [
+            [
+                "58f68bf5.3327dc"
+            ]
+        ]
+    },
+    {
+        "id": "8d704f09.5841b8",
+        "type": "ui_button",
+        "z": "1371dec5.76e671",
+        "name": "Purge local",
+        "group": "52d1b77.28369c8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Purge local data",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "THIS IS GOING TO WIPE ALL THE LOCAL DATA. MAKE SURE YOU DID A BACKUP TO AN USB DRIVE BEFOREHAND.",
+        "payloadType": "str",
+        "topic": "BE EXTRA CAREFUL",
+        "x": 890,
+        "y": 320,
+        "wires": [
+            [
+                "50f6fb96.7465ec"
+            ]
+        ]
+    },
+    {
+        "id": "50f6fb96.7465ec",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "GO BACK",
+        "cancel": "YES I'M SURE, I WANT TO PURGE THE DATA",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1110,
+        "y": 320,
+        "wires": [
+            [
+                "421cd75a.07af7"
+            ]
+        ]
+    },
+    {
+        "id": "a0116bd6.414a58",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1610,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "421cd75a.07af7",
+        "type": "switch",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "YES I'M SURE",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1270,
+        "y": 320,
+        "wires": [
+            [
+                "aec34ef9.a1e09"
+            ]
+        ]
+    },
+    {
+        "id": "aec34ef9.a1e09",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "rm -R /home/pi/data/*",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "rm data",
+        "x": 1420,
+        "y": 320,
+        "wires": [
+            [
+                "a0116bd6.414a58"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "eaf74a43.fa27d",
+        "type": "switch",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "90",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "24df077a.cb252"
+            ]
+        ]
+    },
+    {
+        "id": "46d5e78b.15f998",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 790,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24df077a.cb252",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "full disk msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"Your drive has reached 90% capacity, you should do a backup to an external drive and a purge.\"",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 420,
+        "wires": [
+            [
+                "46d5e78b.15f998"
+            ]
         ]
     }
 ]

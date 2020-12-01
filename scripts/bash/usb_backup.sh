@@ -10,11 +10,11 @@
 # a USB drive.
 
 PATH="$PATH:/usr/bin:/usr/local/bin:/usr/sbin:/usr/local/sbin:/bin:/sbin"
-log="logger -t usb-backup.sh -s "
+log="echo "
 
 usage()
 {
-    ${log} "Usage: $0 device_name (e.g. sdb1)"
+    ${log} "Usage: $0 device_path (e.g. /dev/sdb1)"
     exit 1
 }
 
@@ -22,8 +22,8 @@ if [[ $# -ne 1 ]]; then
     usage
 fi
 
-DEVBASE=$1
-DEVICE="/dev/${DEVBASE}"
+DEVICE=$1
+DEVBASE=$(echo "${DEVICE}" | cut -d'/' -f 3)
 SOURCE="/home/pi/data/" # source of files
 
 # See if this drive is already mounted, and if so where
@@ -35,7 +35,7 @@ do_mount()
 {
     if [[ -n ${MOUNT_POINT} ]]; then
         ${log} "Warning: ${DEVICE} is already mounted at ${MOUNT_POINT}"
-        exit 1
+        exit 2
     fi
 
     # Get info for this drive: $ID_FS_LABEL and $ID_FS_TYPE
@@ -71,7 +71,7 @@ do_mount()
     if ! mount -o ${OPTS} "${DEVICE}" "${MOUNT_POINT}"; then
         ${log} "Error mounting ${DEVICE} (status = $?)"
         rmdir "${MOUNT_POINT}"
-        exit 1
+        exit 3
     else
         # Track the mounted drives
         echo "${MOUNT_POINT}:${DEVBASE}" | cat >> "/var/log/usb-mount.track" 
@@ -94,29 +94,24 @@ do_unmount()
 
 }
 
-
 do_backup()
 {
     do_mount
     if [[ -z ${MOUNT_POINT} ]]; then
         ${log} "Warning: ${DEVICE} is not mounted"
     else
-        if [[ -f "${MOUNT_POINT}/planktoscope.backup" ]]; then
-            ${log} "Starting to backup local files"
-            MACHINE=$(python3 -c "import planktoscope.uuidName as uuidName; print(uuidName.machineName(machine=uuidName.getSerial()).replace(' ','_'))")
-            BACKUP_FOLDER="${MOUNT_POINT}/planktoscope_data/${MACHINE}"
-            ${log} "Machine name is ${MACHINE}, backup folder is ${BACKUP_FOLDER}"
-            mkdir -p "$BACKUP_FOLDER"
-            rsync -rtD --modify-window=1 --update "$SOURCE" "$BACKUP_FOLDER"
-            if ! python3 -m planktoscope.integrity -c "$BACKUP_FOLDER"; then
-                ${log} "ERROR: The files were corrupted during the copy!"
-            else
-                ${log} "All files copied successfully!"
-                ${log} "Starting purge!"
-                rm -R $SOURCE*
-            fi
+        ${log} "Starting to backup the local files"
+        MACHINE=$(python3 -c "import planktoscope.uuidName as uuidName; print(uuidName.machineName(machine=uuidName.getSerial()).replace(' ','_'))")
+        BACKUP_FOLDER="${MOUNT_POINT}/planktoscope_data/${MACHINE}"
+        ${log} "Machine name is ${MACHINE}, backup folder is ${BACKUP_FOLDER}"
+        mkdir -p "$BACKUP_FOLDER"
+        rsync -rtD --modify-window=1 --update "$SOURCE" "$BACKUP_FOLDER"
+        if ! python3 -m planktoscope.integrity -c "$BACKUP_FOLDER"; then
+            ${log} "ERROR: Some files were corrupted during the copy!"
+            do_unmount
+            exit 4
         else
-            ${log} "Warning: ${DEVICE} does not contain the special file planktoscope.backup at its root"
+            ${log} "All files copied successfully!"
         fi
         do_unmount
     fi
@@ -124,5 +119,3 @@ do_backup()
 
 
 do_backup
-
-

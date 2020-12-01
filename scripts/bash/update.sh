@@ -12,6 +12,15 @@ function update(){
     sudo systemctl restart nodered.service
 }
 
+function special(){
+    if [[ -f "/etc/systemd/system/usb-mount@.service" ]]; then
+        sudo rm /etc/systemd/system/usb-mount@.service
+    fi
+    if [[ -f "/etc/udev/rules.d/99-local.rules" ]]; then
+        sudo rm /etc/udev/rules.d/99-local.rules
+    fi
+}
+
 ${log} "Updating the main repository"
 cd /home/pi/PlanktonScope || { echo "/home/pi/PlanktonScope does not exist"; exit 1; }
 
@@ -29,6 +38,7 @@ else
         git checkout origin/master scripts/bash/update.sh
         exec scripts/bash/update.sh
     fi
+    special
     update
     ${log} "Done!"
 fi
