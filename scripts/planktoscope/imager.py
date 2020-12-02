@@ -33,6 +33,9 @@ import planktoscope.raspimjpeg
 # Integrity verification module
 import planktoscope.integrity
 
+# Uuid module
+import planktoscope.uuidName
+
 
 ################################################################################
 # Streaming PiCamera over server
@@ -294,6 +297,7 @@ class ImagerProcess(multiprocessing.Process):
             "sleep" not in last_message
             or "volume" not in last_message
             or "nb_frame" not in last_message
+            or "pump_direction" not in last_message
         ):
             logger.error(f"The received message has the wrong argument {last_message}")
             self.imager_client.client.publish("status/imager", '{"status":"Error"}')
@@ -303,6 +307,7 @@ class ImagerProcess(multiprocessing.Process):
 
         # Get duration to wait before an image from the different received arguments
         self.__sleep_before = float(last_message["sleep"])
+
         # Get volume in between two images from the different received arguments
         self.__pump_volume = float(last_message["volume"])
 
@@ -311,6 +316,9 @@ class ImagerProcess(multiprocessing.Process):
 
         # Get the number of frames to image from the different received arguments
         self.__img_goal = int(last_message["nb_frame"])
+
+        # Reset the counter to 0
+        self.__img_done = 0
 
         self.imager_client.client.publish("status/imager", '{"status":"Started"}')
 
@@ -342,21 +350,10 @@ class ImagerProcess(multiprocessing.Process):
                     "status/imager", '{"status":"Configuration message error"}'
                 )
                 return
+
             logger.info("Updating the configuration now with the received data")
             # Updating the configuration with the passed parameter in payload["config"]
-            nodered_metadata = last_message["config"]
-            # Definition of the few important metadata
-            local_metadata = {
-                "process_datetime": datetime.datetime.now().isoformat().split(".")[0],
-                "acq_camera_resolution": self.__resolution,
-                "acq_camera_iso": self.__iso,
-                "acq_camera_shutter_speed": self.__shutter_speed,
-            }
-            # TODO add here the field size metadata
-            # For cam HQ 4,15mm x 3,14mm, résolution 1µm/px
-            # For cam 2.1 2.31mm x 1,74mm, résolution 0.7µm/px
-            # Concat the local metadata and the metadata from Node-RED
-            self.__global_metadata = {**local_metadata, **nodered_metadata}
+            self.__global_metadata = last_message["config"]
 
             # Publish the status "Config updated" to via MQTT to Node-RED
             self.imager_client.client.publish(
@@ -558,32 +555,58 @@ class ImagerProcess(multiprocessing.Process):
         )
 
     def __state_imaging(self):
-        # TODO we should make sure here that we are not writing to an existing folder
-        # otherwise we might overwrite the metadata.json file
-
         # subscribe to status/pump
         self.imager_client.client.subscribe("status/pump")
         self.imager_client.client.message_callback_add(
             "status/pump", self.pump_callback
         )
 
+        # Definition of the few important metadata
+        local_metadata = {
+            "acq_local_datetime": datetime.datetime.now().isoformat().split(".")[0],
+            "acq_camera_resolution": self.__resolution,
+            "acq_camera_iso": self.__iso,
+            "acq_camera_shutter_speed": self.__shutter_speed,
+            "acq_uuid": planktoscope.uuidName.uuidMachineName(
+                machine=planktoscope.uuidName.getSerial()
+            ),
+            "sample_uuid": planktoscope.uuidName.uuidMachineName(
+                machine=planktoscope.uuidName.getSerial()
+            ),
+        }
+
+        # Concat the local metadata and the metadata from Node-RED
+        self.__global_metadata = {**self.__global_metadata, **local_metadata}
+
         logger.info("Setting up the directory structure for storing the pictures")
         self.__export_path = os.path.join(
             self.__base_path,
-            # We only keep the date '2020-09-25T15:25:21.079769'
-            self.__global_metadata["process_datetime"].split("T")[0],
+            self.__global_metadata["object_date"],
             str(self.__global_metadata["sample_id"]),
             str(self.__global_metadata["acq_id"]),
         )
 
-        if not os.path.exists(self.__export_path):
+        if os.path.exists(self.__export_path):
+            # If this path exists, then ids are reused when they should not
+            logger.error(f"The export path at {self.__export_path} already exists")
+            self.imager_client.client.publish(
+                "status/imager",
+                '{"status":"Configuration update error: Chosen id are already in use!"}',
+            )
+            # Reset the counter to 0
+            self.__img_done = 0
+            # Change state towards stop
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            planktoscope.light.error()
+            return
+        else:
             # create the path!
             os.makedirs(self.__export_path)
 
         # Export the metadata to a json file
         logger.info("Exporting the metadata to a metadata.json")
-        config_path = os.path.join(self.__export_path, "metadata.json")
-        with open(config_path, "w") as metadata_file:
+        metadata_filepath = os.path.join(self.__export_path, "metadata.json")
+        with open(metadata_filepath, "w") as metadata_file:
             json.dump(self.__global_metadata, metadata_file)
             logger.debug(
                 f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
@@ -596,10 +619,15 @@ class ImagerProcess(multiprocessing.Process):
             logger.info(
                 f"The integrity file already exists in this export path {self.__export_path}"
             )
+        # Add the metadata.json file to the integrity file
+        try:
+            planktoscope.integrity.append_to_integrity_file(metadata_filepath)
+        except FileNotFoundError as e:
+            logger.error(
+                f"{metadata_filepath} was not found, the metadata.json may not have been created properly!"
+            )
 
         self.__pump_message()
-
-        # FIXME We should probably update the global metadata here with the current datetime/position/etc...
 
         # Change state towards Waiting for pump
         self.__imager.change(planktoscope.imager_state_machine.Waiting)

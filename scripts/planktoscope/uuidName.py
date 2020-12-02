@@ -23,6 +23,7 @@ def popHexPair(s):
 
 def uuidMachineName(machine="", type=1):
     """Generates a universally unique name, including the machine name
+
     When using a type 4 id, the machine name is not taken into account as the uuid is completely random
 
     Args:
@@ -38,7 +39,7 @@ def uuidMachineName(machine="", type=1):
         if machine == "":
             id = str(uuid.uuid1())
         else:
-            id = str(uuid.uuid1(int(str(machine)[-12:], 16)))
+            id = str(uuid.uuid1(node=int(str(machine)[-12:], 16)))
     name = ""
     x = id.rsplit("-", 1)
     machine = x[1]
