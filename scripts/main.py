@@ -56,10 +56,6 @@ import planktoscope.light
 # Import the planktonscope uuidName module
 import planktoscope.uuidName
 
-# Import the planktonscope display module for the OLED screen
-import planktoscope.display
-
-
 # global variable that keeps the wheels spinning
 run = True
 
@@ -132,6 +128,9 @@ if __name__ == "__main__":
 
     logger.success("Looks like everything is set up and running, have fun!")
     planktoscope.light.ready()
+
+    # Import the planktonscope display module for the OLED screen
+    import planktoscope.display
 
     while run:
         # TODO look into ways of restarting the dead threads

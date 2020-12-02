@@ -63,54 +63,22 @@
         "category": "",
         "in": [
             {
-                "x": 440,
+                "x": 500,
                 "y": 860,
                 "wires": [
                     {
-                        "id": "cdc75496.45f748"
+                        "id": "752a925a.2d11b4"
                     }
                 ]
             }
         ],
         "out": [
             {
-                "x": 1240,
+                "x": 1220,
                 "y": 300,
                 "wires": [
                     {
                         "id": "ad541674.4791c8",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [],
-        "color": "#DDAA99"
-    },
-    {
-        "id": "20ae9e26.17d73a",
-        "type": "subflow",
-        "name": "Get global for config.json",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 60,
-                "y": 80,
-                "wires": [
-                    {
-                        "id": "b584292a.24b08"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 340,
-                "y": 80,
-                "wires": [
-                    {
-                        "id": "b584292a.24b08",
                         "port": 0
                     }
                 ]
@@ -396,6 +364,8 @@
     {
         "id": "196518b2.4d53b7",
         "type": "ui_group",
+        "z": "",
+        "d": true,
         "name": "Group 5",
         "tab": "3a6bb13f.c9703e",
         "order": 5,
@@ -512,7 +482,7 @@
         "type": "ui_group",
         "name": "Danger Zone (DO NOT TOUCH HERE UNLESS YOU KNOW WHAT YOU ARE DOING)",
         "tab": "d9cd733b.ab73d",
-        "order": 7,
+        "order": 8,
         "disp": true,
         "width": 24,
         "collapse": false
@@ -523,7 +493,7 @@
         "z": "",
         "name": "Navigation",
         "tab": "d9cd733b.ab73d",
-        "order": 6,
+        "order": 7,
         "disp": false,
         "width": 10,
         "collapse": false
@@ -645,15 +615,6 @@
         "collapse": false
     },
     {
-        "id": "c38a23a2.5dfc4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "707d9797.c8e798",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "b001a150.faa548",
         "type": "ui_spacer",
         "name": "spacer",
@@ -681,34 +642,27 @@
         "height": 1
     },
     {
-        "id": "61cbfe72.ee8ef",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 9,
-        "width": 5,
-        "height": 1
+        "id": "52d1b77.28369c8",
+        "type": "ui_group",
+        "z": "",
+        "name": "USB Backup",
+        "tab": "d9cd733b.ab73d",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
-        "id": "41a8079d.95ce48",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 13,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "90a195f8.0f1008",
+        "id": "a411788e.45a8c8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "4322c187.e73e5",
-        "order": 7,
+        "order": 8,
         "width": 10,
         "height": 1
     },
     {
-        "id": "57c4bb5c.952d9c",
+        "id": "d4c1caa0.890fd8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
@@ -717,7 +671,7 @@
         "height": 1
     },
     {
-        "id": "da6aee4f.4575e",
+        "id": "79ebf4e3.1b427c",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
@@ -726,7 +680,7 @@
         "height": 1
     },
     {
-        "id": "d517ce18.9f4d28",
+        "id": "75450d64.f4d56c",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
@@ -735,7 +689,7 @@
         "height": 1
     },
     {
-        "id": "200200fa.7e301",
+        "id": "6b099e83.09f0c8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
@@ -744,7 +698,7 @@
         "height": 1
     },
     {
-        "id": "fd54e34d.f85e",
+        "id": "2644b2c2.9c138e",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
@@ -753,7 +707,7 @@
         "height": 1
     },
     {
-        "id": "613f1f0a.5ff3e",
+        "id": "fca12a17.304738",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b5d61bc7.54fe48",
@@ -762,7 +716,7 @@
         "height": 1
     },
     {
-        "id": "7bedf48.6e15f0c",
+        "id": "76e8a3c5.176964",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "b7919ae2.c01788",
@@ -771,7 +725,45 @@
         "height": 1
     },
     {
-        "id": "dba4b2a4.0eff2",
+        "id": "86697376.47c108",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "707d9797.c8e798",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "226903fb.014ba4",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 9,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "a393ee49.38373",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "cf5d9f0e.d57e7",
+        "order": 13,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "a7d64879.38298",
+        "type": "ui_group",
+        "z": "",
+        "name": "Python Log",
+        "tab": "d9cd733b.ab73d",
+        "order": 9,
+        "disp": true,
+        "width": 10,
+        "collapse": false
+    },
+    {
+        "id": "8859245a.6ec268",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "3ca00bf9.e5cac4",
@@ -780,7 +772,7 @@
         "height": 1
     },
     {
-        "id": "bd185575.9bdf4",
+        "id": "8f231033.e8cd1",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -789,7 +781,7 @@
         "height": 1
     },
     {
-        "id": "fff4bd1.35252c",
+        "id": "bbafae91.f93888",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -798,7 +790,7 @@
         "height": 1
     },
     {
-        "id": "15be27ea.5cb8f8",
+        "id": "267c6276.8e7706",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -807,7 +799,7 @@
         "height": 1
     },
     {
-        "id": "fd67170c.c19f38",
+        "id": "a2b1594f.be9aa8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -816,7 +808,7 @@
         "height": 1
     },
     {
-        "id": "defd1c8c.62fc78",
+        "id": "c2b17f8e.30585",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -830,8 +822,8 @@
         "z": "eaae323a.31b3",
         "name": "",
         "events": "change",
-        "x": 520,
-        "y": 60,
+        "x": 560,
+        "y": 160,
         "wires": [
             []
         ]
@@ -844,8 +836,8 @@
         "func": "\nmsg.payload={\"tab\":msg.payload};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 360,
-        "y": 60,
+        "x": 400,
+        "y": 160,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -909,7 +901,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 130,
-        "y": 1140,
+        "y": 1160,
         "wires": [
             [
                 "60fd157b.8a5aac"
@@ -923,7 +915,7 @@
         "name": "",
         "events": "change",
         "x": 280,
-        "y": 1140,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -964,7 +956,7 @@
         "useSpawn": "",
         "timer": "",
         "name": "RPi Temp.",
-        "x": 310,
+        "x": 330,
         "y": 120,
         "wires": [
             [
@@ -1011,7 +1003,6 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": true,
         "outputs": 1,
         "x": 570,
         "y": 140,
@@ -1029,7 +1020,7 @@
         "useSpawn": "",
         "timer": "",
         "name": "CPU Load",
-        "x": 310,
+        "x": 330,
         "y": 200,
         "wires": [
             [
@@ -1050,8 +1041,8 @@
         "useSpawn": "",
         "timer": "",
         "name": "Free Memory",
-        "x": 310,
-        "y": 300,
+        "x": 340,
+        "y": 280,
         "wires": [
             [
                 "e84f6e08.5d147",
@@ -1083,7 +1074,7 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 580,
+        "x": 590,
         "y": 180,
         "wires": []
     },
@@ -1110,7 +1101,7 @@
         "seg1": "",
         "seg2": "",
         "x": 580,
-        "y": 280,
+        "y": 260,
         "wires": []
     },
     {
@@ -1123,8 +1114,8 @@
         "useSpawn": "",
         "timer": "",
         "name": "Disk Usage",
-        "x": 310,
-        "y": 400,
+        "x": 330,
+        "y": 360,
         "wires": [
             [
                 "45e1912a.36a23",
@@ -1158,7 +1149,7 @@
         "seg1": "",
         "seg2": "",
         "x": 570,
-        "y": 380,
+        "y": 340,
         "wires": []
     },
     {
@@ -1195,7 +1186,6 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": true,
         "outputs": 1,
         "x": 570,
         "y": 220,
@@ -1238,10 +1228,9 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": true,
         "outputs": 1,
         "x": 570,
-        "y": 320,
+        "y": 300,
         "wires": [
             []
         ]
@@ -1281,10 +1270,9 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": true,
         "outputs": 1,
         "x": 570,
-        "y": 420,
+        "y": 380,
         "wires": [
             []
         ]
@@ -1310,8 +1298,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
-        "y": 260,
+        "x": 100,
+        "y": 240,
         "wires": [
             [
                 "3910d662.fa1f7a",
@@ -1362,7 +1350,9 @@
         "x": 1110,
         "y": 40,
         "wires": [
-            []
+            [
+                "b7ab1ada.1f4158"
+            ]
         ]
     },
     {
@@ -1383,8 +1373,8 @@
         "payload": "reboot",
         "payloadType": "str",
         "topic": "reboot",
-        "x": 120,
-        "y": 1000,
+        "x": 160,
+        "y": 980,
         "wires": [
             [
                 "ee57d11c.ed1dd"
@@ -1402,8 +1392,8 @@
         "timer": "2",
         "oldrc": false,
         "name": "cmd",
-        "x": 530,
-        "y": 1040,
+        "x": 630,
+        "y": 1020,
         "wires": [
             [],
             [],
@@ -1428,8 +1418,8 @@
         "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
-        "x": 120,
-        "y": 1080,
+        "x": 150,
+        "y": 1060,
         "wires": [
             [
                 "ee57d11c.ed1dd"
@@ -1443,8 +1433,8 @@
         "name": "action",
         "func": "#!/usr/bin/python\nimport smbus\n\nbus = smbus.SMBus(1)\n#turn off LED\nbus.write_byte_data(0x0d, 0x07, 0x00)\n#turn off Fan\nbus.write_byte_data(0x0d, 0x08, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
         "outputs": 1,
-        "x": 350,
-        "y": 1040,
+        "x": 450,
+        "y": 1020,
         "wires": [
             [
                 "d9a924bc.0ca078"
@@ -1462,8 +1452,8 @@
         "timer": "1",
         "oldrc": false,
         "name": "i2c update",
-        "x": 630,
-        "y": 1140,
+        "x": 1290,
+        "y": 40,
         "wires": [
             [],
             [],
@@ -1588,7 +1578,7 @@
         "initialize": "",
         "finalize": "",
         "x": 880,
-        "y": 340,
+        "y": 380,
         "wires": [
             []
         ]
@@ -1601,7 +1591,7 @@
         "label": "Min fraction size (μm)",
         "tooltip": "",
         "group": "404c301a.19c4e",
-        "order": 2,
+        "order": 1,
         "width": 5,
         "height": 1,
         "wrap": false,
@@ -1627,7 +1617,7 @@
         "label": "Max fraction size (μm)",
         "tooltip": "",
         "group": "404c301a.19c4e",
-        "order": 3,
+        "order": 2,
         "width": 5,
         "height": 1,
         "wrap": false,
@@ -1661,11 +1651,10 @@
         "delay": 300,
         "topic": "acq_id",
         "x": 650,
-        "y": 280,
+        "y": 240,
         "wires": [
             [
-                "fb887036.12429",
-                "67091ac0.8f9f6c"
+                "fb887036.12429"
             ]
         ]
     },
@@ -1744,6 +1733,7 @@
         "format": "<md-button ng-click=\"send({payload:'Gallery'})\" style=\"height:100%;\">\n    <i class=\"fa fa-file-image-o fa-5x\"></i>\n    <div style=\"margin-top:30px;\">Gallery</div>\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
+        "resendOnRefresh": false,
         "templateScope": "local",
         "x": 160,
         "y": 220,
@@ -1785,7 +1775,7 @@
         "z": "bccd1f23.87219",
         "name": "up",
         "group": "fbd92986.1028c8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1820,8 +1810,8 @@
         "mode": "number",
         "delay": 300,
         "topic": "pump_manual_volume",
-        "x": 320,
-        "y": 340,
+        "x": 510,
+        "y": 380,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -1845,8 +1835,8 @@
         "min": 0,
         "max": "20",
         "step": "0.1",
-        "x": 340,
-        "y": 300,
+        "x": 540,
+        "y": 340,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -1957,7 +1947,7 @@
         ],
         "payload": "",
         "topic": "sample_sampling_gear",
-        "x": 640,
+        "x": 630,
         "y": 460,
         "wires": [
             [
@@ -1981,7 +1971,7 @@
         "mode": "text",
         "delay": 300,
         "topic": "sample_operator",
-        "x": 660,
+        "x": 650,
         "y": 420,
         "wires": [
             [
@@ -2046,8 +2036,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1240,
-        "y": 540,
+        "x": 1080,
+        "y": 460,
         "wires": [
             []
         ]
@@ -2057,13 +2047,13 @@
         "type": "ui_dropdown",
         "z": "baa1e3d9.cb29d",
         "name": "acq_celltype",
-        "label": "Thickness flowcell*",
+        "label": "Flowcell thickness*",
         "tooltip": "",
         "place": "Select option",
-        "group": "404c301a.19c4e",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "group": "4322c187.e73e5",
+        "order": 6,
+        "width": 5,
+        "height": 1,
         "passthru": true,
         "multiple": false,
         "options": [
@@ -2096,7 +2086,7 @@
         "payload": "",
         "topic": "acq_celltype",
         "x": 630,
-        "y": 240,
+        "y": 200,
         "wires": [
             [
                 "fb887036.12429",
@@ -2114,8 +2104,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 940,
-        "y": 180,
+        "x": 900,
+        "y": 200,
         "wires": [
             []
         ]
@@ -2146,7 +2136,7 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 870,
+        "x": 770,
         "y": 1420,
         "wires": [
             []
@@ -2157,8 +2147,8 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Check form",
-        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_ship= global.get(\"sample_ship\");\nvar sample_id= global.get(\"sample_id\");\nvar sample_operator= global.get(\"sample_operator\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\nvar object_lat= global.get(\"object_lat\");\nvar object_lon= global.get(\"object_lon\");\nvar object_date= global.get(\"object_date\");\nvar object_time= global.get(\"object_time\");\n\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n}\n\nelse if (sample_ship === undefined || sample_ship === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ship\"\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of throw\"\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of throw\"\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of throw\"\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of throw\"\n}\nelse if (sample_sampling_gear == \"net\"){\n    var object_lat_end= global.get(\"object_lat_end\");\n    var object_lon_end= global.get(\"object_lon_end\");\n    var object_date_end= global.get(\"object_date_end\");\n    var object_time_end= global.get(\"object_time_end\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n    }\n    \n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n    }\n    \n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n    }\n    \n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n    }\n    else {\n        msg.topic = \"Change Tab\"\n        msg.payload={\"tab\":\"Optic Configuration\"};\n    }\n}\nelse {\n    msg.topic = \"Change Tab\"\n    msg.payload={\"tab\":\"Optic Configuration\"};\n}\nreturn msg;\n",
-        "outputs": 1,
+        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_ship= global.get(\"sample_ship\");\nvar sample_id= global.get(\"sample_id\");\nvar sample_operator= global.get(\"sample_operator\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\nvar object_lat= global.get(\"object_lat\");\nvar object_lon= global.get(\"object_lon\");\nvar object_date= global.get(\"object_date\");\nvar object_time= global.get(\"object_time\");\n\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n    return [null, msg];\n}\n\nelse if (sample_ship === undefined || sample_ship === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ship\"\n    return [null, msg];\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n    return [null, msg];\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n    return [null, msg];\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n    return [null, msg];\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of sample\"\n    return [null, msg];\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of sample\"\n    return [null, msg];\n}\nelse if (sample_sampling_gear == \"net\"){\n    var object_lat_end= global.get(\"object_lat_end\");\n    var object_lon_end= global.get(\"object_lon_end\");\n    var object_date_end= global.get(\"object_date_end\");\n    var object_time_end= global.get(\"object_time_end\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n        return [null, msg];\n    }\n}\nmsg.topic = \"Change Tab\"\nmsg.payload={\"tab\":\"Optic Configuration\"};\n\nreturn [msg, null];",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -2166,8 +2156,16 @@
         "y": 1360,
         "wires": [
             [
-                "f5e66a2f.0d09d8"
+                "726a7822.cd6298",
+                "e2b277c1.07283"
+            ],
+            [
+                "52f6b103.1efb6"
             ]
+        ],
+        "outputLabels": [
+            "message",
+            "error"
         ]
     },
     {
@@ -2195,44 +2193,10 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 860,
+        "x": 760,
         "y": 1340,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "f5e66a2f.0d09d8",
-        "type": "switch",
-        "z": "b771c342.49603",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Change Tab",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Missing entry :",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 630,
-        "y": 1360,
-        "wires": [
-            [
-                "726a7822.cd6298",
-                "e2b277c1.07283"
-            ],
-            [
-                "52f6b103.1efb6"
-            ]
         ]
     },
     {
@@ -2241,20 +2205,20 @@
         "z": "b771c342.49603",
         "name": "object_lat",
         "label": "Latitude",
-        "tooltip": "36°57'9\" N",
+        "tooltip": "36.5794° N",
         "group": "cf5d9f0e.d57e7",
         "order": 3,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "object_lat",
-        "x": 680,
-        "y": 860,
+        "x": 620,
+        "y": 820,
         "wires": [
             [
-                "42795da1.0ee104"
+                "7953b1b2.d53ed8"
             ]
         ]
     },
@@ -2264,20 +2228,20 @@
         "z": "b771c342.49603",
         "name": "object_lon",
         "label": "Longitude",
-        "tooltip": "110°4'21\" W",
+        "tooltip": "110.421° W",
         "group": "cf5d9f0e.d57e7",
         "order": 4,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "object_lon",
-        "x": 680,
-        "y": 900,
+        "x": 610,
+        "y": 860,
         "wires": [
             [
-                "42795da1.0ee104"
+                "7953b1b2.d53ed8"
             ]
         ]
     },
@@ -2293,8 +2257,8 @@
         "height": 1,
         "passthru": true,
         "topic": "object_date",
-        "x": 670,
-        "y": 940,
+        "x": 1250,
+        "y": 820,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -2316,8 +2280,8 @@
         "mode": "text",
         "delay": 300,
         "topic": "object_time",
-        "x": 670,
-        "y": 980,
+        "x": 1250,
+        "y": 860,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -2330,8 +2294,8 @@
         "z": "bccd1f23.87219",
         "name": "",
         "events": "change",
-        "x": 1060,
-        "y": 1120,
+        "x": 560,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -2350,8 +2314,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1070,
-        "y": 1220,
+        "x": 570,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -2361,62 +2325,24 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Check form",
-        "func": "var acq_fnumber_objective= global.get(\"acq_fnumber_objective\");\n\nif (acq_fnumber_objective === undefined || acq_fnumber_objective === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Focal Length of the objective\"\n}\n\nelse {\n    msg.topic = \"Change Tab\"\n    msg.payload={\"tab\":\"Fluidic Acquisition\"};\n}\nreturn msg;\n",
-        "outputs": 1,
+        "func": "var acq_fnumber_objective= global.get(\"acq_fnumber_objective\");\n\nif (acq_fnumber_objective === undefined || acq_fnumber_objective === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Focal Length of the objective\";\n    return [null, msg];\n}\n\nmsg.topic = \"Change Tab\";\nmsg.payload={\"tab\":\"Fluidic Acquisition\"};\nreturn [msg, null];",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 670,
-        "y": 1180,
+        "x": 330,
+        "y": 1260,
         "wires": [
             [
-                "652d812a.7d808"
-            ]
-        ]
-    },
-    {
-        "id": "f58a0c4.e207df",
-        "type": "ui_ui_control",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "events": "change",
-        "x": 1060,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "652d812a.7d808",
-        "type": "switch",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Change Tab",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Missing entry :",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 830,
-        "y": 1180,
-        "wires": [
-            [
-                "f58a0c4.e207df"
+                "6c792043.b6ff9"
             ],
             [
                 "902429eb.ceacb8"
             ]
+        ],
+        "outputLabels": [
+            "message",
+            "error"
         ]
     },
     {
@@ -2516,6 +2442,7 @@
         "width": 0,
         "height": 0,
         "passthru": true,
+        "multiple": false,
         "options": [
             {
                 "label": "f 25mm 1/2\" 5MP IR",
@@ -2545,8 +2472,8 @@
         ],
         "payload": "",
         "topic": "acq_fnumber_objective",
-        "x": 1080,
-        "y": 100,
+        "x": 1190,
+        "y": 140,
         "wires": [
             [
                 "8038414a.34461"
@@ -2567,7 +2494,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1670,
+        "x": 1680,
         "y": 100,
         "wires": [
             []
@@ -2577,21 +2504,38 @@
         "id": "8038414a.34461",
         "type": "function",
         "z": "bccd1f23.87219",
-        "name": "calculate",
-        "func": "global.set(msg.topic,msg.payload);\nvar acq_fnumber_objective = String(global.get(msg.topic));\n\nswitch(acq_fnumber_objective) {\n  case \"25\":\n    global.set(\"acq_magnification\",0.6);\n    global.set(\"process_pixel\",1.86);\n    global.set(\"sug_min\",60);\n    global.set(\"sug_max\",670);\n    global.set(\"sug_flowrate\",3);\n    break;\n  case \"16\":\n    global.set(\"acq_magnification\",0.94);\n    global.set(\"process_pixel\",1.19);\n    global.set(\"sug_min\",40);\n    global.set(\"sug_max\",430);\n    global.set(\"sug_flowrate\",2.4);\n    break;\n  case \"12\":\n    global.set(\"acq_magnification\",1.20);\n    global.set(\"process_pixel\",0.94);\n    global.set(\"sug_min\",30);\n    global.set(\"sug_max\",340);\n    global.set(\"sug_flowrate\",1.25);\n    break;\n  case \"8\":\n    global.set(\"acq_magnification\",1.78);\n    global.set(\"process_pixel\",0.63);\n    global.set(\"sug_min\",20);\n    global.set(\"sug_max\",230);\n    global.set(\"sug_flowrate\",0.42);\n    break;\n  case \"6\":\n    global.set(\"acq_magnification\",2.36);\n    global.set(\"process_pixel\",0.48);\n    global.set(\"sug_min\",15);\n    global.set(\"sug_max\",170);\n    global.set(\"sug_flowrate\",0.32);\n    break;\n}\nreturn msg;",
-        "outputs": 1,
+        "name": "Calculate optics",
+        "func": "global.set(msg.topic,msg.payload);\n\nvar acq_fnumber_objective = String(global.get(msg.topic));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\nglobal.set(\"acq_magnification\",acq_magnification);\nglobal.set(\"process_pixel\",process_pixel);\n\nreturn [{payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}, {payload: sug_flowrate}];",
+        "outputs": 5,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1280,
-        "y": 100,
+        "x": 1440,
+        "y": 160,
         "wires": [
             [
-                "ad87820f.b1d1e",
-                "d68a52ee.82e8e",
-                "238f26b1.e2089a",
-                "6e0f6d36.a6b854"
-            ]
+                "9b515beb.4aea48"
+            ],
+            [
+                "3d2360ad.e41e7"
+            ],
+            [
+                "8e66977b.9166a8"
+            ],
+            [
+                "26b32f2c.c64fc"
+            ],
+            []
+        ],
+        "inputLabels": [
+            "acq_fnumber_objective"
+        ],
+        "outputLabels": [
+            "acq_magnification",
+            "process_pixel",
+            "sug_min",
+            "sug_max",
+            "sug_flowrate"
         ]
     },
     {
@@ -2653,74 +2597,6 @@
         ]
     },
     {
-        "id": "ad87820f.b1d1e",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "get magnification",
-        "func": "var magnification = global.get(\"acq_magnification\");\nmsg.payload = magnification;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1490,
-        "y": 100,
-        "wires": [
-            [
-                "9b515beb.4aea48"
-            ]
-        ]
-    },
-    {
-        "id": "d68a52ee.82e8e",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "get process_pixel",
-        "func": "var process_pixel = global.get(\"process_pixel\");\nmsg.payload = process_pixel;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1490,
-        "y": 140,
-        "wires": [
-            [
-                "3d2360ad.e41e7"
-            ]
-        ]
-    },
-    {
-        "id": "238f26b1.e2089a",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "get sug_min",
-        "func": "var sug_min = global.get(\"sug_min\");\nmsg.payload = sug_min;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1470,
-        "y": 180,
-        "wires": [
-            [
-                "8e66977b.9166a8"
-            ]
-        ]
-    },
-    {
-        "id": "6e0f6d36.a6b854",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "get sug_max",
-        "func": "var sug_max = global.get(\"sug_max\");\nmsg.payload = sug_max;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1470,
-        "y": 220,
-        "wires": [
-            [
-                "26b32f2c.c64fc"
-            ]
-        ]
-    },
-    {
         "id": "bb2bb7ce.1d1458",
         "type": "ui_template",
         "z": "baa1e3d9.cb29d",
@@ -2746,8 +2622,8 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "events": "change",
-        "x": 1020,
-        "y": 80,
+        "x": 1340,
+        "y": 40,
         "wires": [
             []
         ]
@@ -2822,8 +2698,8 @@
         "payload": "{\"tab\":\"Sample\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 500,
-        "y": 1120,
+        "x": 140,
+        "y": 1220,
         "wires": [
             [
                 "6c792043.b6ff9"
@@ -2848,8 +2724,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 500,
-        "y": 1180,
+        "x": 140,
+        "y": 1260,
         "wires": [
             [
                 "fe840e05.b46f3"
@@ -2874,34 +2750,11 @@
         "payload": "{\"tab\":\"Optic Configuration\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 880,
-        "y": 80,
+        "x": 1200,
+        "y": 40,
         "wires": [
             [
                 "d0c5b57d.590818"
-            ]
-        ]
-    },
-    {
-        "id": "389bef3.d94c61",
-        "type": "ui_text_input",
-        "z": "baa1e3d9.cb29d",
-        "name": "acq_volume",
-        "label": "Volume to pass (ml)",
-        "tooltip": "",
-        "group": "4322c187.e73e5",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "acq_volume",
-        "x": 630,
-        "y": 200,
-        "wires": [
-            [
-                "fb887036.12429"
             ]
         ]
     },
@@ -2943,44 +2796,13 @@
         "id": "3cb96380.e575ec",
         "type": "function",
         "z": "bccd1f23.87219",
-        "name": "pump.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    \n}else if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    \n}else {\n    volume = global.get(\"pump_manual_volume\");\n    msg.volume = volume;\n    flowrate = global.get(\"pump_flowrate\");\n    msg.topic = \"actuator/pump\";\n    \n    if(state===\"free\"){\n        // msg.payload is FORWARD or BACKWARD here\n        msg.payload={\"action\":\"move\", \n                    \"direction\":msg.payload,\n                    \"volume\":volume,\n                    \"flowrate\":flowrate};\n    }\n}\nreturn msg;",
-        "outputs": 1,
+        "name": "pump",
+        "func": "var manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    return [null, msg];\n}\nelse if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    return [null, msg];\n}\nelse {\n    msg.topic = \"actuator/pump\";\n    // msg.payload is FORWARD or BACKWARD here\n    msg.payload={\"action\":\"move\", \n                \"direction\":msg.payload,\n                \"volume\":manual_volume,\n                \"flowrate\":flowrate};\n}\nreturn [msg, null];",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 360,
-        "y": 240,
-        "wires": [
-            [
-                "43fa762d.35bcb"
-            ]
-        ],
-        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
-    },
-    {
-        "id": "43fa762d.35bcb",
-        "type": "switch",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "actuator/pump",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Missing entry :",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 490,
+        "x": 370,
         "y": 240,
         "wires": [
             [
@@ -2989,6 +2811,13 @@
             [
                 "8bcce348.efc1a"
             ]
+        ],
+        "inputLabels": [
+            "direction"
+        ],
+        "outputLabels": [
+            "message",
+            "error"
         ]
     },
     {
@@ -3005,8 +2834,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 650,
-        "y": 260,
+        "x": 570,
+        "y": 240,
         "wires": [
             []
         ]
@@ -3020,8 +2849,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 630,
-        "y": 220,
+        "x": 550,
+        "y": 180,
         "wires": []
     },
     {
@@ -3044,39 +2873,6 @@
         "wires": [
             [
                 "dbd6bde.99db64"
-            ]
-        ]
-    },
-    {
-        "id": "1f7cea1d.fbe61e",
-        "type": "switch",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "actuator/focus",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Missing entry :",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 470,
-        "y": 720,
-        "wires": [
-            [
-                "62030521.88317c"
-            ],
-            [
-                "d71d224f.0585d8"
             ]
         ]
     },
@@ -3104,18 +2900,28 @@
         "id": "65ad39d.b6d4d48",
         "type": "function",
         "z": "bccd1f23.87219",
-        "name": "focus.js",
-        "func": "state = global.get(\"state\");\n\nif (state == null){state=\"free\"}\n\nvar distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n}else {\n    distance = global.get(\"focus_distance\");\n    if(state===\"free\"){\n        // msg.payload is UP or DOWN here\n        msg.payload={\"action\":\"move\", \n                    \"direction\":msg.payload,\n                    \"distance\":(distance/1000)};\n    }\n}\nreturn msg;",
-        "outputs": 1,
+        "name": "focus",
+        "func": "var distance = global.get(\"focus_distance\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n    return [null, msg]\n}else {\n    distance = global.get(\"focus_distance\");\n    // msg.payload is UP or DOWN here\n    msg.payload={\"action\":\"move\", \n                \"direction\":msg.payload,\n                \"distance\":(distance/1000)};\n}\nreturn [msg, null];",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 320,
+        "x": 370,
         "y": 720,
         "wires": [
             [
-                "1f7cea1d.fbe61e"
+                "62030521.88317c"
+            ],
+            [
+                "d71d224f.0585d8"
             ]
+        ],
+        "inputLabels": [
+            "direction"
+        ],
+        "outputLabels": [
+            "message",
+            "error"
         ]
     },
     {
@@ -3154,7 +2960,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 650,
-        "y": 620,
+        "y": 660,
         "wires": []
     },
     {
@@ -3167,7 +2973,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 620,
+        "x": 580,
         "y": 440,
         "wires": [
             [
@@ -3183,7 +2989,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -3491,7 +3297,7 @@
         "payload": "5",
         "payloadType": "num",
         "x": 130,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "34c81624.df1cea"
@@ -3516,7 +3322,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 110,
-        "y": 340,
+        "y": 380,
         "wires": [
             [
                 "68962547.34a67c"
@@ -3545,7 +3351,7 @@
         "y": 300,
         "wires": [
             [
-                "16f3cef4.0acac9"
+                "33c28dc1.238002"
             ]
         ]
     },
@@ -3584,8 +3390,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 710,
-        "y": 320,
+        "x": 810,
+        "y": 340,
         "wires": []
     },
     {
@@ -3606,7 +3412,7 @@
         "payload": "",
         "payloadType": "str",
         "topic": "update",
-        "x": 100,
+        "x": 120,
         "y": 520,
         "wires": [
             [
@@ -3625,7 +3431,7 @@
         "timer": "",
         "oldrc": false,
         "name": "Update",
-        "x": 300,
+        "x": 320,
         "y": 520,
         "wires": [
             [
@@ -3639,7 +3445,7 @@
         "id": "9998aa86.74bb",
         "type": "exec",
         "z": "1371dec5.76e671",
-        "command": "python3 /home/pi/PlanktonScope/scripts/main.py",
+        "command": "python3 -u /home/pi/PlanktonScope/scripts/main.py",
         "addpay": false,
         "append": "",
         "useSpawn": "true",
@@ -3647,32 +3453,12 @@
         "oldrc": false,
         "name": "",
         "x": 860,
-        "y": 940,
+        "y": 900,
         "wires": [
-            [],
             [],
             [
-                "de4ba211.e1d3f"
-            ]
-        ]
-    },
-    {
-        "id": "672d89a8.4e6968",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "d": true,
-        "command": "sudo killall -9 python3",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Hard kill",
-        "x": 980,
-        "y": 880,
-        "wires": [
-            [],
-            [],
+                "a8a8e339.8d017"
+            ],
             []
         ]
     },
@@ -3692,7 +3478,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 460,
-        "y": 940,
+        "y": 900,
         "wires": [
             [
                 "9998aa86.74bb"
@@ -3708,7 +3494,7 @@
         "order": 6,
         "width": 6,
         "height": 1,
-        "passthru": false,
+        "passthru": true,
         "label": "Restart Python",
         "tooltip": "",
         "color": "",
@@ -3717,8 +3503,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 100,
-        "y": 940,
+        "x": 140,
+        "y": 900,
         "wires": [
             [
                 "afa9f4b.2e77988",
@@ -3728,96 +3514,22 @@
         ]
     },
     {
-        "id": "de4ba211.e1d3f",
-        "type": "debug",
-        "z": "1371dec5.76e671",
-        "name": "output",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1210,
-        "y": 960,
-        "wires": []
-    },
-    {
-        "id": "7aa2e737.e16d98",
-        "type": "status",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "scope": [
-            "9998aa86.74bb"
-        ],
-        "x": 1220,
-        "y": 900,
-        "wires": [
-            [
-                "439b952c.3e9cf4"
-            ]
-        ]
-    },
-    {
-        "id": "439b952c.3e9cf4",
-        "type": "debug",
-        "z": "1371dec5.76e671",
-        "name": "status",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "status",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1450,
-        "y": 900,
-        "wires": []
-    },
-    {
         "id": "35ea3cf0.a398ac",
         "type": "exec",
         "z": "1371dec5.76e671",
         "command": "sudo killall -15 python3",
-        "addpay": true,
+        "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Python soft kill",
         "x": 480,
-        "y": 880,
+        "y": 960,
         "wires": [
             [],
             [],
             []
-        ]
-    },
-    {
-        "id": "a776b9fc.d542e8",
-        "type": "delay",
-        "z": "1371dec5.76e671",
-        "d": true,
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "4",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 740,
-        "y": 880,
-        "wires": [
-            [
-                "672d89a8.4e6968"
-            ]
         ]
     },
     {
@@ -3827,8 +3539,7 @@
         "name": "once",
         "props": [
             {
-                "p": "topic",
-                "vt": "str"
+                "p": "payload"
             }
         ],
         "repeat": "",
@@ -3836,14 +3547,15 @@
         "once": true,
         "onceDelay": "",
         "topic": "",
+        "payload": "start",
+        "payloadType": "str",
         "x": 130,
-        "y": 820,
+        "y": 700,
         "wires": [
             [
-                "afa9f4b.2e77988",
-                "3829adc.ccc87d2",
                 "452af41c.43940c",
-                "b3c21aa9.8c06c"
+                "b3c21aa9.8c06c",
+                "1df370a8.6c70ff"
             ]
         ]
     },
@@ -3852,14 +3564,14 @@
         "type": "exec",
         "z": "1371dec5.76e671",
         "command": "sudo killall -15 raspimjpeg",
-        "addpay": true,
+        "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "Raspimjpeg soft kill",
         "x": 490,
-        "y": 820,
+        "y": 840,
         "wires": [
             [],
             [],
@@ -3880,8 +3592,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 130,
-        "y": 460,
+        "x": 110,
+        "y": 480,
         "wires": [
             []
         ]
@@ -3892,7 +3604,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "group": "4322c187.e73e5",
-        "order": 11,
+        "order": 12,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -3917,53 +3629,23 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Image control",
-        "func": "state = global.get(\"state\");\nglobal.set('img_counter', 0);\nglobal.set('obj_counter', 0);\nif (state === null) {\n    state = \"free\"\n}\n\nvar nb_frame = global.get(\"nb_frame\");\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar acq_id = global.get(\"acq_id\");\nvar pump_direction = global.get(\"pump_direction\");\nvar imaging_pump_volume = global.get(\"imaging_pump_volume\");\nvar sleep_before = global.get(\"sleep_before\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Type of the flowcell\"\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Lower fraction size\"\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Upper fraction size\"\n} else if (imaging_pump_volume === undefined || imaging_pump_volume === \"\" || imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume inbetween images\"\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Acquisition ID\"\n} else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n} else if (sleep_before === undefined || sleep_before === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n} else {\n    msg.payload = {\n        \"action\": \"image\",\n        \"sleep\": sleep_before,\n        \"pump_direction\": pump_direction,\n        \"volume\": imaging_pump_volume,\n        \"nb_frame\": nb_frame,\n    }\n}\n\nreturn msg;",
-        "outputs": 1,
+        "func": "// Reset the number of images taken\nglobal.set('img_counter', 0);\n\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar imaging_pump_volume = global.get(\"imaging_pump_volume\");\nvar acq_id = global.get(\"acq_id\");\nvar nb_frame = global.get(\"nb_frame\");\nvar pump_direction = global.get(\"pump_direction\");\nvar sleep_before = global.get(\"sleep_before\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Type of the flowcell\";\n    return [null, msg];\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Lower fraction size\";\n    return [null, msg];\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Upper fraction size\";\n    return [null, msg];\n} else if (imaging_pump_volume === undefined || imaging_pump_volume === \"\" || imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Volume inbetween images\";\n    return [null, msg];\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Acquisition ID\";\n    return [null, msg];\n} else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    return [null, msg];\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n    return [null, msg];\n} else if (sleep_before === undefined || sleep_before === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n    return [null, msg];\n}\nmsg.payload = {\n    \"action\": \"image\",\n    \"sleep\": sleep_before,\n    \"pump_direction\": pump_direction,\n    \"volume\": imaging_pump_volume,\n    \"nb_frame\": nb_frame,\n}\n\nreturn [msg, null];",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 730,
+        "x": 740,
         "y": 580,
         "wires": [
             [
                 "52ea7d01.711034",
                 "40c12463.a1f84c"
-            ]
-        ],
-        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
-    },
-    {
-        "id": "d6ebaa2.ea21d58",
-        "type": "switch",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "imager/image",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Missing entry :",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1090,
-        "y": 580,
-        "wires": [
-            [
-                "c3e50240.82aa58"
             ],
             [
                 "20e0a8c8.edbeb"
             ]
-        ]
+        ],
+        "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktonScope/scripts/focus.py 650 up\n"
     },
     {
         "id": "20e0a8c8.edbeb",
@@ -3979,7 +3661,7 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1250,
+        "x": 990,
         "y": 620,
         "wires": [
             []
@@ -4004,7 +3686,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "Stop Acquisition",
         "group": "4322c187.e73e5",
-        "order": 10,
+        "order": 11,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4045,7 +3727,7 @@
         "label": "Pump direction",
         "tooltip": "BACKWARD / FORWARD",
         "group": "4322c187.e73e5",
-        "order": 8,
+        "order": 9,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4102,11 +3784,11 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 940,
+        "x": 1000,
         "y": 580,
         "wires": [
             [
-                "d6ebaa2.ea21d58"
+                "c3e50240.82aa58"
             ]
         ]
     },
@@ -4116,7 +3798,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "group": "4322c187.e73e5",
-        "order": 9,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -4145,11 +3827,10 @@
         "func": "import sys\nsys.path.append('/home/pi/PlanktonScope/scripts')\nimport planktoscope.uuidName\n\nmsg['payload'] = planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())\nmsg['topic'] = \"acq_instrument_id\";\nreturn msg",
         "outputs": 1,
         "x": 490,
-        "y": 760,
+        "y": 780,
         "wires": [
             [
                 "4828d2f4.7c712c",
-                "e2f39a35.f57298",
                 "a400a97e.e333a8"
             ]
         ]
@@ -4208,7 +3889,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 350,
+        "x": 330,
         "y": 300,
         "wires": [
             [
@@ -4226,7 +3907,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 340,
+        "x": 330,
         "y": 340,
         "wires": [
             [
@@ -4244,7 +3925,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 340,
+        "x": 320,
         "y": 380,
         "wires": [
             [
@@ -4262,7 +3943,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 360,
+        "x": 340,
         "y": 420,
         "wires": [
             [
@@ -4278,7 +3959,7 @@
         "func": "msg.payload = msg.payload.sample_sampling_gear;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 380,
+        "x": 360,
         "y": 460,
         "wires": [
             [
@@ -4322,22 +4003,6 @@
         ]
     },
     {
-        "id": "b584292a.24b08",
-        "type": "function",
-        "z": "20ae9e26.17d73a",
-        "name": "get global",
-        "func": "msg.payload={\n    \"sample_project\":global.get(\"sample_project\"),\n    \"sample_id\":global.get(\"sample_id\"),\n    \"sample_ship\":global.get(\"sample_ship\"),\n    \"sample_operator\":global.get(\"sample_operator\"),\n    \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n    \n    \n    \"acq_id\":global.get(\"acq_id\"),\n    \"acq_instrument\":global.get(\"acq_instrument\"),\n    \"acq_instrument_id\":global.get(\"machine_name\"),\n    \"acq_celltype\":global.get(\"acq_celltype\"),\n    \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n    \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n    \"acq_min_esd\":global.get(\"acq_min_esd\"),\n    \"acq_max_esd\":global.get(\"acq_max_esd\"),\n    \"acq_volume\":global.get(\"acq_volume\"),\n    \"acq_magnification\":global.get(\"magnification\"),\n    \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n    \"acq_camera\":global.get(\"camera\"),\n    \n    \"object_depth_min\":global.get(\"object_depth_min\"),\n    \"object_depth_max\":global.get(\"object_depth_max\"),\n    \"process_pixel\":global.get(\"process_pixel\"),\n    \"process_id\":global.get(\"process_id\")\n};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 200,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "7205d267.36adcc",
         "type": "file",
         "z": "1c24ad9c.bebec2",
@@ -4361,7 +4026,7 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 810,
+        "x": 790,
         "y": 860,
         "wires": [
             [
@@ -4447,7 +4112,7 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 850,
+        "x": 750,
         "y": 1380,
         "wires": [
             []
@@ -4459,20 +4124,20 @@
         "z": "b771c342.49603",
         "name": "object_lat_end",
         "label": "Latitude",
-        "tooltip": "36°57'9\" N",
+        "tooltip": "36.5794° N",
         "group": "cf5d9f0e.d57e7",
         "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "object_lat_end",
-        "x": 660,
-        "y": 1060,
+        "x": 600,
+        "y": 940,
         "wires": [
             [
-                "42795da1.0ee104"
+                "7953b1b2.d53ed8"
             ]
         ]
     },
@@ -4482,20 +4147,20 @@
         "z": "b771c342.49603",
         "name": "object_lon_end",
         "label": "Longitude",
-        "tooltip": "110°4'21\" W",
+        "tooltip": "110.421° W",
         "group": "cf5d9f0e.d57e7",
         "order": 9,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "object_lon_end",
-        "x": 660,
-        "y": 1100,
+        "x": 600,
+        "y": 980,
         "wires": [
             [
-                "42795da1.0ee104"
+                "7953b1b2.d53ed8"
             ]
         ]
     },
@@ -4506,13 +4171,13 @@
         "name": "object_date_end",
         "label": "Date",
         "group": "cf5d9f0e.d57e7",
-        "order": 11,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": true,
         "topic": "object_date_end",
-        "x": 660,
-        "y": 1140,
+        "x": 1230,
+        "y": 940,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -4527,15 +4192,15 @@
         "label": "Time",
         "tooltip": "UTC time, 03:23:00 or 15:45",
         "group": "cf5d9f0e.d57e7",
-        "order": 10,
+        "order": 11,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": 300,
         "topic": "object_time_end",
-        "x": 660,
-        "y": 1180,
+        "x": 1230,
+        "y": 980,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -4552,8 +4217,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 960,
-        "y": 920,
+        "x": 1540,
+        "y": 860,
         "wires": [
             []
         ]
@@ -4568,8 +4233,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 960,
-        "y": 880,
+        "x": 1540,
+        "y": 820,
         "wires": [
             []
         ]
@@ -4606,7 +4271,7 @@
         "initialize": "",
         "finalize": "",
         "x": 790,
-        "y": 660,
+        "y": 680,
         "wires": [
             [
                 "8343fa69.49339"
@@ -4623,8 +4288,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 820,
-        "y": 100,
+        "x": 920,
+        "y": 140,
         "wires": [
             [
                 "cc966678.da8d08"
@@ -4636,8 +4301,8 @@
         "type": "subflow:1c24ad9c.bebec2",
         "z": "bccd1f23.87219",
         "name": "",
-        "x": 600,
-        "y": 100,
+        "x": 720,
+        "y": 140,
         "wires": [
             [
                 "68fa1227.dbdd5c"
@@ -4649,12 +4314,12 @@
         "type": "subflow:1c24ad9c.bebec2",
         "z": "baa1e3d9.cb29d",
         "name": "",
+        "env": [],
         "x": 90,
-        "y": 200,
+        "y": 180,
         "wires": [
             [
                 "f3658d30.b8448",
-                "1f133196.96564e",
                 "d3ca8847.4d1ae",
                 "5e3dec55.881074",
                 "de2c90cf.b73b08"
@@ -4672,7 +4337,7 @@
         "initialize": "",
         "finalize": "",
         "x": 310,
-        "y": 280,
+        "y": 240,
         "wires": [
             [
                 "6b34c456.83178c"
@@ -4688,7 +4353,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 320,
-        "y": 240,
+        "y": 200,
         "wires": [
             [
                 "cc0ca68b.4263a8"
@@ -4724,24 +4389,6 @@
         "wires": [
             [
                 "6008a8bb.259f08"
-            ]
-        ]
-    },
-    {
-        "id": "1f133196.96564e",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "name": "get acq_volume",
-        "func": "msg.payload = msg.payload.acq_volume;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 320,
-        "y": 200,
-        "wires": [
-            [
-                "389bef3.d94c61"
             ]
         ]
     },
@@ -4790,7 +4437,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 1040,
-        "y": 660,
+        "y": 680,
         "wires": []
     },
     {
@@ -4868,33 +4515,13 @@
         "wires": []
     },
     {
-        "id": "3269f55f.05d0d2",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "DD to DMS",
-        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nmsg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 950,
-        "y": 800,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "48879182.6fd718",
         "type": "inject",
         "z": "baa1e3d9.cb29d",
-        "name": "Default: 10",
+        "name": "Default: 100",
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -4902,10 +4529,10 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "10",
+        "payload": "100",
         "payloadType": "num",
         "x": 310,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
                 "51b4d0df.d70a88"
@@ -4926,8 +4553,8 @@
         "raw": false,
         "topic": "",
         "name": "Update notif",
-        "x": 570,
-        "y": 500,
+        "x": 530,
+        "y": 520,
         "wires": [
             []
         ]
@@ -4988,36 +4615,6 @@
         ]
     },
     {
-        "id": "42795da1.0ee104",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "DDMM.MMMM to DD",
-        "func": "// Format 36°57.4439' N, 110°4.2100' W\n// From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\nfunction ConvertDDMMToDD(input) {\n    var parts = input.split(/[^\\d\\w]+/);\n    var dd = Number(parts[0]) + (Number(parts[1]) + Number(parts[2])/10000)/60;\n\n    if (parts[3] == \"S\" || parts[3] == \"W\") {\n        dd = dd * -1;\n    } // Don't do anything for N or E\n    return dd.toFixed(6);\n}\n\nmsg.payload = ConvertDDMMToDD(msg.payload)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 980,
-        "y": 840,
-        "wires": [
-            [
-                "9f501f49.45645"
-            ]
-        ]
-    },
-    {
-        "id": "cdc75496.45f748",
-        "type": "subflow:20ae9e26.17d73a",
-        "z": "1c24ad9c.bebec2",
-        "x": 610,
-        "y": 860,
-        "wires": [
-            [
-                "2e6ddf51.c0dba"
-            ]
-        ]
-    },
-    {
         "id": "6b2239f3.41fa3",
         "type": "function",
         "z": "baa1e3d9.cb29d",
@@ -5034,18 +4631,6 @@
         ]
     },
     {
-        "id": "a4abb1ae.2ae418",
-        "type": "subflow:1c24ad9c.bebec2",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "env": [],
-        "x": 930,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "51b4d0df.d70a88",
         "type": "ui_text_input",
         "z": "baa1e3d9.cb29d",
@@ -5053,19 +4638,20 @@
         "label": "Number of images to acquire",
         "tooltip": "",
         "group": "4322c187.e73e5",
-        "order": 3,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": 5,
+        "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "nb_frame",
         "x": 640,
-        "y": 320,
+        "y": 280,
         "wires": [
             [
                 "fb887036.12429",
-                "67091ac0.8f9f6c"
+                "67091ac0.8f9f6c",
+                "99b11fe4.2795d"
             ]
         ]
     },
@@ -5562,7 +5148,6 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": false,
         "outputs": 1,
         "x": 1340,
         "y": 840,
@@ -5641,7 +5226,6 @@
             "#9467bd",
             "#c5b0d5"
         ],
-        "useOldStyle": false,
         "outputs": 1,
         "x": 1320,
         "y": 920,
@@ -5662,7 +5246,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
+        "x": 840,
         "y": 760,
         "wires": []
     },
@@ -5844,8 +5428,8 @@
         "timer": "1",
         "oldrc": false,
         "name": "git user.name",
-        "x": 1160,
-        "y": 420,
+        "x": 1280,
+        "y": 500,
         "wires": [
             [],
             [],
@@ -5863,8 +5447,8 @@
         "syntax": "mustache",
         "template": "git config --global --replace-all user.name \"{{payload}}\"",
         "output": "str",
-        "x": 980,
-        "y": 420,
+        "x": 1100,
+        "y": 500,
         "wires": [
             [
                 "105e3033.152848"
@@ -5879,8 +5463,8 @@
         "links": [
             "52af9ac0.60eb24"
         ],
-        "x": 835,
-        "y": 460,
+        "x": 955,
+        "y": 540,
         "wires": [
             [
                 "cc205a38.f86ea",
@@ -5893,15 +5477,15 @@
         "type": "ui_text",
         "z": "baa1e3d9.cb29d",
         "group": "4322c187.e73e5",
-        "order": 4,
+        "order": 5,
         "width": 5,
         "height": 1,
-        "name": "Imaged volume",
-        "label": "Imaged volume",
+        "name": "Total imaged volume",
+        "label": "Total imaged volume",
         "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 1260,
-        "y": 260,
+        "layout": "col-center",
+        "x": 1180,
+        "y": 240,
         "wires": []
     },
     {
@@ -5909,13 +5493,13 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "imaged volume calc",
-        "func": "camera = global.get(\"acq_camera\");\ncell = global.get(\"acq_celltype\");\n\nif (camera == \"HQ Camera\"){\n    volume = (4.15*3.14*cell/1000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = (2.31*1.74*cell/1000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\n\nmsg.payload = volume.toFixed(4) + \" mL\"\nreturn msg;",
+        "func": "camera = global.get(\"acq_camera\");\ncell = global.get(\"acq_celltype\");\nnb_frame = global.get(\"nb_frame\");\n\nif (camera == \"HQ Camera\"){\n    volume = nb_frame * (4.15*3.14*cell/1000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = nb_frame * (2.31*1.74*cell/1000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\n\nmsg.payload = volume.toFixed(2) + \" mL\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1040,
-        "y": 260,
+        "x": 940,
+        "y": 240,
         "wires": [
             [
                 "9bd72495.a8a098"
@@ -5928,14 +5512,14 @@
         "type": "ui_text",
         "z": "baa1e3d9.cb29d",
         "group": "4322c187.e73e5",
-        "order": 6,
+        "order": 7,
         "width": 5,
         "height": 1,
-        "name": "Pump volume",
-        "label": "Pump volume",
+        "name": "Total pumped volume",
+        "label": "Total pumped volume",
         "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 1260,
+        "layout": "col-center",
+        "x": 1180,
         "y": 300,
         "wires": []
     },
@@ -5943,13 +5527,13 @@
         "id": "67091ac0.8f9f6c",
         "type": "function",
         "z": "baa1e3d9.cb29d",
-        "name": "pump volume calc",
-        "func": "var acq_volume = global.get(\"acq_volume\");\nvar nb_frame = global.get(\"nb_frame\");\n\nvar pump_volume =  Math.max((Number(acq_volume) / Number(nb_frame)), 0.01).toFixed(3)\n\nglobal.set(\"imaging_pump_volume\", pump_volume)\n\nmsg.payload = pump_volume + \" mL/frame\"\nreturn msg;",
+        "name": "acq_volume calc",
+        "func": "var imaging_pump_volume = global.get(\"imaging_pump_volume\");\nvar nb_frame = global.get(\"nb_frame\");\n\nvar acq_volume =  (Number(nb_frame)*Number(imaging_pump_volume)).toFixed(2)\nglobal.set(\"acq_volume\", acq_volume)\n\nmsg.payload = acq_volume + \" mL\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1030,
+        "x": 930,
         "y": 300,
         "wires": [
             [
@@ -6105,8 +5689,8 @@
         "timer": "1",
         "oldrc": false,
         "name": "git user.email",
-        "x": 1150,
-        "y": 500,
+        "x": 1270,
+        "y": 580,
         "wires": [
             [],
             [],
@@ -6124,8 +5708,8 @@
         "syntax": "mustache",
         "template": "git config --global --replace-all user.email \"{{payload}}\"",
         "output": "str",
-        "x": 980,
-        "y": 500,
+        "x": 1100,
+        "y": 580,
         "wires": [
             [
                 "227b4b67.5a0f2c"
@@ -6264,7 +5848,8 @@
         "name": "Camera Name",
         "links": [
             "30067f35.532f2",
-            "572a6daa.6004c4"
+            "572a6daa.6004c4",
+            "cfc783d7.d6ceb"
         ],
         "x": 1305,
         "y": 920,
@@ -6294,8 +5879,8 @@
         "name": "fan temperature",
         "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\n# 0x01 full speed, 0x02: 20% speed, ..., 0x09: 90% speed\n\nif temp < 38:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp < 43:\n    bus.write_byte_data(addr, fan_reg, 0x02)\nelif temp < 46:\n    bus.write_byte_data(addr, fan_reg, 0x04)\nelif temp < 48:\n    bus.write_byte_data(addr, fan_reg, 0x06)\nelif temp < 52:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
         "outputs": 1,
-        "x": 1120,
-        "y": 100,
+        "x": 1520,
+        "y": 40,
         "wires": [
             []
         ]
@@ -6320,8 +5905,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 1210,
-        "y": 460,
+        "x": 1090,
+        "y": 420,
         "wires": [
             [
                 "66b362ee.80b5b4"
@@ -6357,8 +5942,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1380,
-        "y": 440,
+        "x": 1260,
+        "y": 400,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -6391,8 +5976,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1390,
-        "y": 480,
+        "x": 1270,
+        "y": 440,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -6405,8 +5990,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 1580,
-        "y": 460,
+        "x": 1460,
+        "y": 420,
         "wires": [
             []
         ]
@@ -6417,20 +6002,20 @@
         "z": "b771c342.49603",
         "name": "object_lat",
         "label": "Latitude",
-        "tooltip": "36°57'9\" N",
+        "tooltip": "36.5794° N",
         "group": "cef1e703.bcf3c8",
         "order": 1,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "object_lat",
-        "x": 680,
-        "y": 660,
+        "x": 620,
+        "y": 700,
         "wires": [
             [
-                "42795da1.0ee104"
+                "7953b1b2.d53ed8"
             ]
         ]
     },
@@ -6440,20 +6025,20 @@
         "z": "b771c342.49603",
         "name": "object_lon",
         "label": "Longitude",
-        "tooltip": "110°4'21\" W",
+        "tooltip": "110.421° W",
         "group": "cef1e703.bcf3c8",
         "order": 2,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "object_lon",
-        "x": 680,
-        "y": 700,
+        "x": 610,
+        "y": 740,
         "wires": [
             [
-                "42795da1.0ee104"
+                "7953b1b2.d53ed8"
             ]
         ]
     },
@@ -6469,8 +6054,8 @@
         "height": 1,
         "passthru": true,
         "topic": "object_date",
-        "x": 670,
-        "y": 740,
+        "x": 1250,
+        "y": 700,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -6492,8 +6077,8 @@
         "mode": "text",
         "delay": 300,
         "topic": "object_time",
-        "x": 670,
-        "y": 780,
+        "x": 1250,
+        "y": 740,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -6514,8 +6099,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 650,
-        "y": 820,
+        "x": 590,
+        "y": 780,
         "wires": [
             []
         ]
@@ -6534,8 +6119,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 650,
-        "y": 1020,
+        "x": 590,
+        "y": 900,
         "wires": [
             []
         ]
@@ -6658,9 +6243,9 @@
         "label": "Delay to stabilize image (s)",
         "tooltip": "Happens before every capture",
         "group": "4322c187.e73e5",
-        "order": 5,
+        "order": 4,
         "width": 5,
-        "height": 2,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "sleep_before",
@@ -6704,7 +6289,7 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 895,
+        "x": 795,
         "y": 260,
         "wires": [
             [
@@ -7270,6 +6855,340 @@
         "wires": [
             [
                 "46d5e78b.15f998"
+            ]
+        ]
+    },
+    {
+        "id": "df1ea904.cd261",
+        "type": "ui_slider",
+        "z": "baa1e3d9.cb29d",
+        "name": "imaging_pump_volume",
+        "label": "Pumped volume (mL)",
+        "tooltip": "inbetween frames",
+        "group": "4322c187.e73e5",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "imaging_pump_volume",
+        "min": "0.01",
+        "max": "1",
+        "step": "0.01",
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "fb887036.12429",
+                "67091ac0.8f9f6c"
+            ]
+        ]
+    },
+    {
+        "id": "a4abb1ae.2ae418",
+        "type": "subflow:1c24ad9c.bebec2",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "env": [],
+        "x": 930,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "752a925a.2d11b4",
+        "type": "function",
+        "z": "1c24ad9c.bebec2",
+        "name": "get global",
+        "func": "msg.payload={\n    \"sample_project\":global.get(\"sample_project\"),\n    \"sample_id\":global.get(\"sample_id\"),\n    \"sample_ship\":global.get(\"sample_ship\"),\n    \"sample_operator\":global.get(\"sample_operator\"),\n    \"sample_sampling_gear\":global.get(\"sample_sampling_gear\"),\n    \n    \n    \"acq_id\":global.get(\"acq_id\"),\n    \"acq_instrument\":global.get(\"acq_instrument\"),\n    \"acq_instrument_id\":global.get(\"machine_name\"),\n    \"acq_celltype\":global.get(\"acq_celltype\"),\n    \"acq_minimum_mesh\":global.get(\"acq_minimum_mesh\"),\n    \"acq_maximum_mesh\":global.get(\"acq_maximum_mesh\"),\n    \"acq_min_esd\":global.get(\"acq_min_esd\"),\n    \"acq_max_esd\":global.get(\"acq_max_esd\"),\n    \"acq_magnification\":global.get(\"magnification\"),\n    \"acq_fnumber_objective\":global.get(\"acq_fnumber_objective\"),\n    \"acq_camera\":global.get(\"camera\"),\n    \n    \"object_depth_min\":global.get(\"object_depth_min\"),\n    \"object_depth_max\":global.get(\"object_depth_max\"),\n    \"process_pixel\":global.get(\"process_pixel\"),\n    \"process_id\":global.get(\"process_id\")\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 860,
+        "wires": [
+            [
+                "2e6ddf51.c0dba"
+            ]
+        ]
+    },
+    {
+        "id": "cfc783d7.d6ceb",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Camera Name",
+        "links": [
+            "559a8085.1d6b9"
+        ],
+        "x": 1275,
+        "y": 180,
+        "wires": [
+            [
+                "8038414a.34461"
+            ]
+        ]
+    },
+    {
+        "id": "db44a49e.960558",
+        "type": "ui_dropdown",
+        "z": "b771c342.49603",
+        "name": "",
+        "label": "Coordinates type",
+        "tooltip": "",
+        "place": "Coordinates type",
+        "group": "3e1ba03d.f01d8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "DD.DDDD° N (45.543° N)",
+                "value": "dd",
+                "type": "str"
+            },
+            {
+                "label": "DD°MM.MMMM'N (45°54.534' N)",
+                "value": "ddm",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "coordinates_type",
+        "x": 590,
+        "y": 1020,
+        "wires": [
+            [
+                "8318ab20.aa34f8"
+            ]
+        ]
+    },
+    {
+        "id": "7953b1b2.d53ed8",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Validate Location",
+        "func": "function ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439' N, 110°4.2100' W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    var parts = input.split(/[^\\d\\w]+/);\n    var dd = Number(parts[0]) + (Number(parts[1]) + Number(parts[2])/10000)/60;\n    return dd.toFixed(6) + parts[3];\n}\n\nif (flow.get(\"coordinates_type\") == \"ddm\"){\n    msg.payload = ConvertDDMMToDD(msg.payload)\n}\n\n// Input Format 36.574439° N, 110.42100° W\nvar direction = msg.payload.match(/[NSEW]/);\nvar position = msg.payload.match(/[\\+\\-\\d\\.]+/);\n\nif (direction === null)\n{\n    msg.topic = \"Error with the coordinates\"\n    msg.payload = \"You need to explicitely enter N/S/E/W\"\n    return [null, msg];\n}\n\n// Test that position is only made of digits!\nif(! /^\\d+$/.test(position)){\n    msg.topic = \"Error with the coordinates\"\n    msg.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n    return [null, msg];\n}\ndd = Number(position)\n\n// Check latitude\nif (direction == \"S\" || direction == \"N\") {\n    if (dd>90.0){\n        msg.topic = \"Error with the coordinates\"\n        msg.payload = \"Latitude is more than 90°\"\n        return [null, msg];\n    }\n}\n\n// Check longitude\nif (direction == \"W\" || direction == \"E\") {\n    if (dd>180.0){\n        msg.topic = \"Error with the coordinates\"\n        msg.payload = \"Longitude is more than 180°\"\n        return [null, msg];\n    }\n}\n\nif (direction == \"S\" || direction == \"W\") {\n    dd = dd * -1;\n} // Don't do anything for N or E\nmsg.payload = dd.toFixed(4);\nreturn [msg, null];\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 870,
+        "y": 840,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ],
+            [
+                "c0ce5626.b6c5"
+            ]
+        ],
+        "inputLabels": [
+            "location"
+        ],
+        "outputLabels": [
+            "checked location",
+            "error"
+        ]
+    },
+    {
+        "id": "c0ce5626.b6c5",
+        "type": "ui_toast",
+        "z": "b771c342.49603",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1070,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8318ab20.aa34f8",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "set local",
+        "func": "flow.set(msg.topic,msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 780,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc20cd7e.afaab8",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "Default: dd",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "coordinates_type",
+        "payload": "dd",
+        "payloadType": "str",
+        "x": 390,
+        "y": 1020,
+        "wires": [
+            [
+                "db44a49e.960558"
+            ]
+        ]
+    },
+    {
+        "id": "33c28dc1.238002",
+        "type": "function",
+        "z": "cb95299c.2817c8",
+        "name": "reset obj_counter",
+        "func": "global.set('obj_counter', 0);\n\nreturn msg;global.set('img_counter', 0);\nglobal.set('obj_counter', 0);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "16f3cef4.0acac9"
+            ]
+        ]
+    },
+    {
+        "id": "9d847a3d.36865",
+        "type": "ui_template",
+        "z": "1371dec5.76e671",
+        "group": "a7d64879.38298",
+        "name": "Log table",
+        "order": 1,
+        "width": 10,
+        "height": 10,
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"log_table\" style=\"font-family: mono;font-size: 5px;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 1420,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8a8e339.8d017",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Log array",
+        "func": "var log = context.get(\"python_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\ncontext.set(\"python_log\", log);\n\nmsg.payload = log;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1240,
+        "y": 940,
+        "wires": [
+            [
+                "9d847a3d.36865"
+            ]
+        ]
+    },
+    {
+        "id": "80dac8cb.0f7418",
+        "type": "ui_button",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "group": "a7d64879.38298",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Clear Log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 1080,
+        "y": 1020,
+        "wires": [
+            [
+                "23c9d9e1.2ba546"
+            ]
+        ]
+    },
+    {
+        "id": "78108dd8.66017c",
+        "type": "catch",
+        "z": "1371dec5.76e671",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 830,
+        "y": 980,
+        "wires": [
+            [
+                "a9616afc.977d58"
+            ]
+        ]
+    },
+    {
+        "id": "a9616afc.977d58",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get error",
+        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1000,
+        "y": 980,
+        "wires": [
+            [
+                "a8a8e339.8d017"
+            ]
+        ]
+    },
+    {
+        "id": "23c9d9e1.2ba546",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Clear log",
+        "func": "context.set(\"python_log\", []);\n\nmsg.payload = [];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1240,
+        "y": 1020,
+        "wires": [
+            [
+                "9d847a3d.36865"
             ]
         ]
     }
