@@ -7918,5 +7918,30 @@
             [],
             []
         ]
+    },
+    {
+        "id": "2dc762df.08cd7e",
+        "type": "inject",
+        "z": "baa1e3d9.cb29d",
+        "name": "Default: 0.01",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0.05",
+        "payloadType": "num",
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "df1ea904.cd261"
+            ]
+        ]
     }
 ]

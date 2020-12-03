@@ -581,6 +581,20 @@ class ImagerProcess(multiprocessing.Process):
         # Concat the local metadata and the metadata from Node-RED
         self.__global_metadata = {**self.__global_metadata, **local_metadata}
 
+        if "object_date" not in self.__global_metadata:
+            # If this path exists, then ids are reused when they should not
+            logger.error(f"The metadata did not contain object_date!")
+            self.imager_client.client.publish(
+                "status/imager",
+                '{"status":"Configuration update error: object_date is missing!"}',
+            )
+            # Reset the counter to 0
+            self.__img_done = 0
+            # Change state towards stop
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            planktoscope.light.error()
+            return
+
         logger.info("Setting up the directory structure for storing the pictures")
         self.__export_path = os.path.join(
             self.__base_path,
