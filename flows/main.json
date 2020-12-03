@@ -302,7 +302,7 @@
         "type": "ui_tab",
         "z": "",
         "name": "Gallery",
-        "icon": "fa fa-file-image-o",
+        "icon": "fa-file-image-o",
         "order": 6,
         "disabled": false,
         "hidden": false
@@ -310,11 +310,13 @@
     {
         "id": "c0ebfc57.42527",
         "type": "ui_group",
+        "z": "",
         "name": "Group 1",
         "tab": "36739a35.7cce36",
         "order": 1,
-        "disp": true,
-        "width": 24
+        "disp": false,
+        "width": "24",
+        "collapse": false
     },
     {
         "id": "737ec584.2eea2c",
@@ -1857,6 +1859,16 @@
         "passthru": true,
         "multiple": false,
         "options": [
+            {
+                "label": "High Speed Net",
+                "value": "net_hsn",
+                "type": "str"
+            },
+            {
+                "label": "Tara Decknet",
+                "value": "net_decknet",
+                "type": "str"
+            },
             {
                 "label": "Plankton net",
                 "value": "net",
@@ -5483,7 +5495,7 @@
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
+                "t": "cont",
                 "v": "net",
                 "vt": "str"
             },
@@ -5509,7 +5521,7 @@
         "id": "66b362ee.80b5b4",
         "type": "change",
         "z": "b771c342.49603",
-        "name": "Activate",
+        "name": "Activate Net group",
         "rules": [
             {
                 "t": "set",
@@ -5531,7 +5543,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1260,
+        "x": 1290,
         "y": 400,
         "wires": [
             [
@@ -5543,7 +5555,7 @@
         "id": "399cb596.1eaf1a",
         "type": "change",
         "z": "b771c342.49603",
-        "name": "Deactivate",
+        "name": "Deactivate Net group",
         "rules": [
             {
                 "t": "set",
@@ -5565,7 +5577,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1270,
+        "x": 1300,
         "y": 440,
         "wires": [
             [
@@ -5579,7 +5591,7 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 1460,
+        "x": 1500,
         "y": 420,
         "wires": [
             []
