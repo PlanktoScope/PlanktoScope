@@ -19,6 +19,10 @@ function special(){
     if [[ -f "/etc/udev/rules.d/99-local.rules" ]]; then
         sudo rm /etc/udev/rules.d/99-local.rules
     fi
+    if ! [ -x "$(hash thumbsup &> /dev/null)" ] ; then
+        ${log} "thumbsup is not installed, installing now"
+        sudo npm install -g thumbsup
+    fi
 }
 
 ${log} "Updating the main repository"
