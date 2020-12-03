@@ -21,7 +21,11 @@ function special(){
     fi
     if ! [ -x "$(hash thumbsup &> /dev/null)" ] ; then
         ${log} "thumbsup is not installed, installing now"
-        sudo npm install -g thumbsup
+        sudo chown -R pi:pi /usr/lib/node_modules/
+        if npm install -g thumbsup; then
+            ${log} "Error when installing thumbsup"
+        fi
+        sudo chown -R root:root /usr/lib/node_modules/
     fi
 }
 
