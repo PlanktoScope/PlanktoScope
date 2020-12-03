@@ -858,7 +858,7 @@
         "height": 1
     },
     {
-        "id": "692eec9a.2996cc",
+        "id": "e53fb724.7feff8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "3e1ba03d.f01d8",
@@ -867,7 +867,7 @@
         "height": 1
     },
     {
-        "id": "9c34106a.4c5998",
+        "id": "3e6c5bc0.8a0544",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "cf5d9f0e.d57e7",
@@ -6151,7 +6151,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Validate Location",
-        "func": "function ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439' N, 110°4.2100' W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    var parts = input.split(/[^\\d\\w]+/);\n    var dd = Number(parts[0]) + (Number(parts[1]) + Number(parts[2])/10000)/60;\n    return dd.toFixed(6) + parts[3];\n}\n\nif (flow.get(\"coordinates_type\") == \"ddm\"){\n    msg.payload = ConvertDDMMToDD(msg.payload)\n}\n\n// Input Format 36.574439° N, 110.42100° W\nvar direction = msg.payload.match(/[NSEW]/);\nvar position = msg.payload.match(/[\\+\\-\\d\\.]+/);\n\nif (direction === null)\n{\n    msg.topic = \"Error with the coordinates\"\n    msg.payload = \"You need to explicitely enter N/S/E/W\"\n    return [null, msg];\n}\n\n// Test that position is only made of digits!\nif(! /^\\d+$/.test(position)){\n    msg.topic = \"Error with the coordinates\"\n    msg.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n    return [null, msg];\n}\ndd = Number(position)\n\n// Check latitude\nif (direction == \"S\" || direction == \"N\") {\n    if (dd>90.0){\n        msg.topic = \"Error with the coordinates\"\n        msg.payload = \"Latitude is more than 90°\"\n        return [null, msg];\n    }\n}\n\n// Check longitude\nif (direction == \"W\" || direction == \"E\") {\n    if (dd>180.0){\n        msg.topic = \"Error with the coordinates\"\n        msg.payload = \"Longitude is more than 180°\"\n        return [null, msg];\n    }\n}\n\nif (direction == \"S\" || direction == \"W\") {\n    dd = dd * -1;\n} // Don't do anything for N or E\nmsg.payload = dd.toFixed(4);\nreturn [msg, null];\n",
+        "func": "function ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439' N, 110°4.2100' W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    var parts = input.split(/[^\\d\\w]+/);\n    var dd = Number(parts[0]) + (Number(parts[1]) + Number(parts[2])/10000)/60;\n    return dd.toFixed(6) + parts[3];\n}\n\nif (flow.get(\"coordinates_type\") == \"ddm\"){\n    msg.payload = ConvertDDMMToDD(msg.payload)\n}\n\n// Input Format 36.574439° N, 110.42100° W\nvar direction = msg.payload.match(/[NSEW]/);\nvar position = msg.payload.match(/[\\+\\-\\d\\.]+/);\n\nif (direction === null)\n{\n    msg.topic = \"Error with the coordinates\"\n    msg.payload = \"You need to explicitely enter N/S/E/W\"\n    return [null, msg];\n}\n\n// Test that position is only made of digits!\nif(/^[\\+\\-]/.test(position)){\n    msg.topic = \"Error with the coordinates\"\n    msg.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n    return [null, msg];\n}\ndd = Number(position)\n\n// Check latitude\nif (direction == \"S\" || direction == \"N\") {\n    if (dd>90.0){\n        msg.topic = \"Error with the coordinates\"\n        msg.payload = \"Latitude is more than 90°\"\n        return [null, msg];\n    }\n}\n\n// Check longitude\nif (direction == \"W\" || direction == \"E\") {\n    if (dd>180.0){\n        msg.topic = \"Error with the coordinates\"\n        msg.payload = \"Longitude is more than 180°\"\n        return [null, msg];\n    }\n}\n\nif (direction == \"S\" || direction == \"W\") {\n    dd = dd * -1;\n} // Don't do anything for N or E\nmsg.payload = dd.toFixed(4);\nreturn [msg, null];\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
