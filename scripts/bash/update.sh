@@ -26,6 +26,17 @@ function special(){
             ${log} "Error when installing thumbsup"
         fi
         sudo chown -R root:root /usr/lib/node_modules/
+        ${log} "Thumbsup installed, installing dependencies now"
+        sudo apt install -y libimage-exiftool-perl graphicsmagick
+        sudo apt autoremove -y
+        ${log} "Install complete, running thumbsup for the first time now"
+        thumbsup --config /home/pi/PlanktonScope/scripts/thumbsup/config.json
+    fi
+    if ![[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
+        ${log} "Nginx config is not installed, doing that now"
+        sudo cp /home/pi/PlanktonScope/scripts/thumbsup/gallery.conf /etc/nginx/sites-available/gallery.conf
+        sudo ln -s /etc/nginx/sites-available/gallery.conf /etc/nginx/sites-enabled/gallery.conf
+        sudo nginx -t && sudo systemctl reload nginx
     fi
 }
 
