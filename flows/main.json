@@ -742,24 +742,6 @@
         "height": 1
     },
     {
-        "id": "226903fb.014ba4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 9,
-        "width": 5,
-        "height": 1
-    },
-    {
-        "id": "a393ee49.38373",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 13,
-        "width": 4,
-        "height": 1
-    },
-    {
         "id": "a7d64879.38298",
         "type": "ui_group",
         "z": "",
@@ -873,6 +855,24 @@
         "group": "1be83144.4fe4bf",
         "order": 9,
         "width": 8,
+        "height": 1
+    },
+    {
+        "id": "692eec9a.2996cc",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 10,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "9c34106a.4c5998",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "cf5d9f0e.d57e7",
+        "order": 13,
+        "width": 4,
         "height": 1
     },
     {
@@ -1837,7 +1837,7 @@
         "delay": "1000",
         "topic": "sample_ship",
         "x": 670,
-        "y": 340,
+        "y": 80,
         "wires": [
             [
                 "9f501f49.45645"
@@ -1893,7 +1893,7 @@
         "payload": "",
         "topic": "sample_sampling_gear",
         "x": 630,
-        "y": 460,
+        "y": 200,
         "wires": [
             [
                 "9f501f49.45645",
@@ -1917,7 +1917,7 @@
         "delay": "1000",
         "topic": "sample_operator",
         "x": 650,
-        "y": 420,
+        "y": 160,
         "wires": [
             [
                 "9f501f49.45645",
@@ -1941,7 +1941,7 @@
         "delay": "1000",
         "topic": "sample_project",
         "x": 660,
-        "y": 300,
+        "y": 40,
         "wires": [
             [
                 "9f501f49.45645"
@@ -1964,7 +1964,7 @@
         "delay": "1000",
         "topic": "sample_id",
         "x": 670,
-        "y": 380,
+        "y": 120,
         "wires": [
             [
                 "9f501f49.45645"
@@ -1982,7 +1982,7 @@
         "initialize": "",
         "finalize": "",
         "x": 1080,
-        "y": 460,
+        "y": 200,
         "wires": [
             []
         ]
@@ -2061,8 +2061,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 460,
-        "y": 1300,
+        "x": 340,
+        "y": 880,
         "wires": [
             []
         ]
@@ -2081,8 +2081,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 770,
-        "y": 1420,
+        "x": 650,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -2097,8 +2097,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
-        "y": 1360,
+        "x": 350,
+        "y": 940,
         "wires": [
             [
                 "726a7822.cd6298",
@@ -2126,8 +2126,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 290,
-        "y": 1420,
+        "x": 170,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -2138,8 +2138,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 760,
-        "y": 1340,
+        "x": 640,
+        "y": 920,
         "wires": [
             []
         ]
@@ -2160,7 +2160,7 @@
         "delay": "1000",
         "topic": "object_lat",
         "x": 620,
-        "y": 820,
+        "y": 560,
         "wires": [
             [
                 "7953b1b2.d53ed8"
@@ -2183,7 +2183,7 @@
         "delay": "1000",
         "topic": "object_lon",
         "x": 610,
-        "y": 860,
+        "y": 600,
         "wires": [
             [
                 "7953b1b2.d53ed8"
@@ -2203,7 +2203,7 @@
         "passthru": true,
         "topic": "object_date",
         "x": 1250,
-        "y": 820,
+        "y": 560,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -2226,7 +2226,7 @@
         "delay": 300,
         "topic": "object_time",
         "x": 1250,
-        "y": 860,
+        "y": 600,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -2591,8 +2591,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 300,
-        "y": 1300,
+        "x": 180,
+        "y": 880,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -2617,8 +2617,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 300,
-        "y": 1360,
+        "x": 180,
+        "y": 940,
         "wires": [
             [
                 "986d960a.c75908"
@@ -3522,7 +3522,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Encapsulate config",
-        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\n\t\t\"acq_id\": global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_magnification\": global.get(\"magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera_name\": global.get(\"acq_camera_name\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_id\": global.get(\"process_id\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear == \"net\") {\n\tmsg.payload.config = { ...msg.payload.config ,\n\t\t\t\"sample_gear_net_opening\": global.get(\"sample_gear_net_opening\"),\n\t\t\t\"object_date_end\": global.get(\"object_date_end\"),\n\t\t\t\"object_time_end\": global.get(\"object_time_end\"),\n\t\t\t\"object_lat_end\": global.get(\"object_lat_end\"),\n\t\t\t\"object_lon_end\": global.get(\"object_lon_end\")\n\t};\n}\nreturn msg;",
+        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\n\t\t\"acq_id\": global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_magnification\": global.get(\"magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera_name\": global.get(\"acq_camera_name\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_id\": global.get(\"process_id\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear == \"net\") {\n\tmsg.payload.config = { ...msg.payload.config ,\n\t\t\t\"sample_gear_net_opening\": global.get(\"sample_gear_net_opening\"),\n\t\t\t\"object_date_end\": global.get(\"object_date_end\"),\n\t\t\t\"object_time_end\": global.get(\"object_time_end\"),\n\t\t\t\"object_lat_end\": global.get(\"object_lat_end\"),\n\t\t\t\"object_lon_end\": global.get(\"object_lon_end\")\n\t};\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3629,7 +3629,7 @@
         "initialize": "",
         "finalize": "",
         "x": 330,
-        "y": 300,
+        "y": 40,
         "wires": [
             [
                 "9c882b37.fde668"
@@ -3647,7 +3647,7 @@
         "initialize": "",
         "finalize": "",
         "x": 330,
-        "y": 340,
+        "y": 80,
         "wires": [
             [
                 "4557d689.a4fa88"
@@ -3665,7 +3665,7 @@
         "initialize": "",
         "finalize": "",
         "x": 320,
-        "y": 380,
+        "y": 120,
         "wires": [
             [
                 "94eb4221.9b92c"
@@ -3683,7 +3683,7 @@
         "initialize": "",
         "finalize": "",
         "x": 340,
-        "y": 420,
+        "y": 160,
         "wires": [
             [
                 "82c5fc77.59c97"
@@ -3695,11 +3695,13 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_sampling_gear",
-        "func": "msg.payload = msg.payload.sample_sampling_gear;\nreturn msg;",
+        "func": "if (msg.payload.sample_sampling_gear === null){\n    msg.payload = \"net\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 360,
-        "y": 460,
+        "y": 200,
         "wires": [
             [
                 "fcfc31ae.af3af"
@@ -3834,7 +3836,7 @@
         "name": "",
         "env": [],
         "x": 90,
-        "y": 380,
+        "y": 120,
         "wires": [
             [
                 "d027a6bf.7049e8",
@@ -3851,8 +3853,8 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 750,
-        "y": 1380,
+        "x": 630,
+        "y": 960,
         "wires": [
             []
         ]
@@ -3873,7 +3875,7 @@
         "delay": "1000",
         "topic": "object_lat_end",
         "x": 600,
-        "y": 940,
+        "y": 680,
         "wires": [
             [
                 "7953b1b2.d53ed8"
@@ -3896,7 +3898,7 @@
         "delay": "1000",
         "topic": "object_lon_end",
         "x": 600,
-        "y": 980,
+        "y": 720,
         "wires": [
             [
                 "7953b1b2.d53ed8"
@@ -3916,7 +3918,7 @@
         "passthru": true,
         "topic": "object_date_end",
         "x": 1230,
-        "y": 940,
+        "y": 680,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -3939,7 +3941,7 @@
         "delay": 300,
         "topic": "object_time_end",
         "x": 1230,
-        "y": 980,
+        "y": 720,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -3957,7 +3959,7 @@
         "initialize": "",
         "finalize": "",
         "x": 1540,
-        "y": 860,
+        "y": 600,
         "wires": [
             []
         ]
@@ -3973,7 +3975,7 @@
         "initialize": "",
         "finalize": "",
         "x": 1540,
-        "y": 820,
+        "y": 560,
         "wires": [
             []
         ]
@@ -4202,8 +4204,8 @@
         "d": true,
         "name": "GPS Status",
         "scope": [],
-        "x": 310,
-        "y": 1500,
+        "x": 190,
+        "y": 1080,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -4223,8 +4225,8 @@
         "label": "GPS Status:",
         "format": "{{msg.status.text}}",
         "layout": "row-left",
-        "x": 810,
-        "y": 1500,
+        "x": 690,
+        "y": 1080,
         "wires": []
     },
     {
@@ -4356,7 +4358,7 @@
         "label": "Object depth Max",
         "tooltip": "",
         "group": "3e1ba03d.f01d8",
-        "order": 7,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4364,7 +4366,7 @@
         "delay": "1000",
         "topic": "object_depth_max",
         "x": 650,
-        "y": 540,
+        "y": 280,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4379,7 +4381,7 @@
         "label": "Object Depth Min",
         "tooltip": "",
         "group": "3e1ba03d.f01d8",
-        "order": 6,
+        "order": 7,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -4387,7 +4389,7 @@
         "delay": "1000",
         "topic": "object_depth_min",
         "x": 650,
-        "y": 580,
+        "y": 320,
         "wires": [
             [
                 "9f501f49.45645"
@@ -5108,7 +5110,7 @@
             "35eb925e.5f8016"
         ],
         "x": 815,
-        "y": 420,
+        "y": 160,
         "wires": []
     },
     {
@@ -5507,7 +5509,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1090,
-        "y": 420,
+        "y": 160,
         "wires": [
             [
                 "66b362ee.80b5b4"
@@ -5544,7 +5546,7 @@
         "to": "",
         "reg": false,
         "x": 1290,
-        "y": 400,
+        "y": 140,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -5578,7 +5580,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 440,
+        "y": 180,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -5592,7 +5594,7 @@
         "name": "",
         "events": "change",
         "x": 1500,
-        "y": 420,
+        "y": 160,
         "wires": [
             []
         ]
@@ -5613,7 +5615,7 @@
         "delay": "1000",
         "topic": "object_lat",
         "x": 620,
-        "y": 700,
+        "y": 440,
         "wires": [
             [
                 "7953b1b2.d53ed8"
@@ -5636,7 +5638,7 @@
         "delay": "1000",
         "topic": "object_lon",
         "x": 610,
-        "y": 740,
+        "y": 480,
         "wires": [
             [
                 "7953b1b2.d53ed8"
@@ -5656,7 +5658,7 @@
         "passthru": true,
         "topic": "object_date",
         "x": 1250,
-        "y": 700,
+        "y": 440,
         "wires": [
             [
                 "29f2b365.4327ec"
@@ -5679,7 +5681,7 @@
         "delay": 300,
         "topic": "object_time",
         "x": 1250,
-        "y": 740,
+        "y": 480,
         "wires": [
             [
                 "1a945afa.d60aad"
@@ -5701,7 +5703,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "x": 590,
-        "y": 780,
+        "y": 520,
         "wires": [
             []
         ]
@@ -5721,7 +5723,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "x": 590,
-        "y": 900,
+        "y": 640,
         "wires": [
             []
         ]
@@ -5903,10 +5905,10 @@
         "type": "ui_text_input",
         "z": "b771c342.49603",
         "name": "sample_concentrated_sample_volume",
-        "label": "Concentrated sample volume",
-        "tooltip": "Volume extracted from the net",
+        "label": "Concentrated sample volume (mL)",
+        "tooltip": "Volume extracted from the net (in mL)",
         "group": "3e1ba03d.f01d8",
-        "order": 8,
+        "order": 9,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -5914,7 +5916,7 @@
         "delay": "1000",
         "topic": "sample_concentrated_sample_volume",
         "x": 590,
-        "y": 500,
+        "y": 240,
         "wires": [
             [
                 "9f501f49.45645"
@@ -5937,7 +5939,7 @@
         "delay": "1000",
         "topic": "sample_gear_net_opening",
         "x": 620,
-        "y": 620,
+        "y": 360,
         "wires": [
             [
                 "9f501f49.45645"
@@ -6117,7 +6119,7 @@
         "tooltip": "",
         "place": "Coordinates type",
         "group": "3e1ba03d.f01d8",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -6137,7 +6139,7 @@
         "payload": "",
         "topic": "coordinates_type",
         "x": 590,
-        "y": 1020,
+        "y": 760,
         "wires": [
             [
                 "8318ab20.aa34f8"
@@ -6155,7 +6157,7 @@
         "initialize": "",
         "finalize": "",
         "x": 870,
-        "y": 840,
+        "y": 580,
         "wires": [
             [
                 "9f501f49.45645"
@@ -6187,7 +6189,7 @@
         "topic": "",
         "name": "",
         "x": 1070,
-        "y": 860,
+        "y": 600,
         "wires": [
             []
         ]
@@ -6203,7 +6205,7 @@
         "initialize": "",
         "finalize": "",
         "x": 780,
-        "y": 1020,
+        "y": 760,
         "wires": [
             []
         ]
@@ -6230,7 +6232,7 @@
         "payload": "dd",
         "payloadType": "str",
         "x": 390,
-        "y": 1020,
+        "y": 760,
         "wires": [
             [
                 "db44a49e.960558"
