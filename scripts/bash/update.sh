@@ -22,7 +22,7 @@ function special(){
     if ! [ -x "$(hash thumbsup &> /dev/null)" ] ; then
         ${log} "thumbsup is not installed, installing now"
         sudo chown -R pi:pi /usr/lib/node_modules/
-        sudo chown -R pi:pi /usr/bin/
+        sudo chown pi:pi /usr/bin
         if npm install -g thumbsup; then
             ${log} "Error when installing thumbsup"
         else
@@ -33,7 +33,7 @@ function special(){
             thumbsup --config /home/pi/PlanktonScope/scripts/thumbsup/config.json
         fi
         sudo chown -R root:root /usr/lib/node_modules/
-        sudo chown -R root:root /usr/bin
+        sudo chown root:root /usr/bin
     fi
     if ! [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
         ${log} "Nginx config is not installed, doing that now"
