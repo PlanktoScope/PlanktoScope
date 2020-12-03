@@ -19,7 +19,7 @@ function special(){
     if [[ -f "/etc/udev/rules.d/99-local.rules" ]]; then
         sudo rm /etc/udev/rules.d/99-local.rules
     fi
-    if ! [ -x "$(hash thumbsup &> /dev/null)" ] ; then
+    if ! hash thumbsup &> /dev/null ; then
         ${log} "thumbsup is not installed, installing now"
         sudo chown -R pi:pi /usr/lib/node_modules/
         sudo chown pi:pi /usr/bin
