@@ -662,6 +662,7 @@ class ImagerProcess(multiprocessing.Process):
             )
             # Reset the counter to 0
             self.__img_done = 0
+            self.__img_goal = 0
             # Change state towards stop
             self.__imager.change(planktoscope.imager_state_machine.Stop)
             planktoscope.light.error()

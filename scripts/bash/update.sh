@@ -38,6 +38,12 @@ function special(){
         sudo ln -s /etc/nginx/sites-available/gallery.conf /etc/nginx/sites-enabled/gallery.conf
         sudo nginx -t && sudo systemctl reload nginx
     fi
+    if ![[ -f "/etc/nginx/sites-available/img.conf" ]]; then
+        ${log} "Getting rid of the old nginx config"
+        sudo rm /etc/nginx/sites-available/img.conf
+        sudo rm /etc/nginx/sites-enabled/img.conf
+        sudo nginx -t && sudo systemctl reload nginx
+    fi
 }
 
 ${log} "Updating the main repository"

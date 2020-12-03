@@ -42,7 +42,7 @@ class Imaging(ImagerState):
     """ State of getting ready to start """
 
     name = "imaging"
-    allowed = ["waiting"]
+    allowed = ["waiting", "stop"]
 
 
 class Waiting(ImagerState):
