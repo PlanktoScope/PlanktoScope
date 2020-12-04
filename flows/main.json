@@ -6287,8 +6287,7 @@
         "y": 400,
         "wires": [
             [
-                "9d30f7b5.aac88",
-                "25c80a31.8bbb3e"
+                "9d30f7b5.aac88"
             ]
         ]
     },
@@ -6306,12 +6305,8 @@
         "x": 890,
         "y": 400,
         "wires": [
-            [
-                "25c80a31.8bbb3e"
-            ],
-            [
-                "25c80a31.8bbb3e"
-            ],
+            [],
+            [],
             []
         ]
     },
@@ -6340,22 +6335,6 @@
                 "167d7bd0.679ce4"
             ]
         ]
-    },
-    {
-        "id": "25c80a31.8bbb3e",
-        "type": "debug",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 970,
-        "y": 580,
-        "wires": []
     },
     {
         "id": "6d4ce391.04abf4",
@@ -7060,7 +7039,7 @@
         "id": "6868b4c4.65987c",
         "type": "exec",
         "z": "f21ba04.c26266",
-        "command": "sudo wpa_cli -i wlan0 reconfigure",
+        "command": "sudo /usr/bin/autohotspotN >/dev/null",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
