@@ -9,6 +9,7 @@ function update(){
     git checkout stash@'{0}' -- config.json hardware.json
     # TODO we need to change this to drop stash@{1} if changes made to the flow are to be restored by the user
     git stash drop
+    sudo nginx -t && sudo systemctl reload nginx
     sudo systemctl restart nodered.service
 }
 
@@ -23,18 +24,15 @@ function special(){
         ${log} "Getting rid of the old nginx config"
         sudo rm /etc/nginx/sites-available/img.conf
         sudo rm /etc/nginx/sites-enabled/img.conf
-        sudo nginx -t && sudo systemctl reload nginx
     fi
     if ! [[ -f "/etc/nginx/sites-enabled/gallery.conf" ]]; then
         ${log} "Nginx config is not installed, doing that now"
         sudo ln -s /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
-        sudo nginx -t && sudo systemctl reload nginx
     fi
     if [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
         ${log} "Nginx config is installed, changing the links now"
         sudo rm /etc/nginx/sites-enabled/gallery.conf /etc/nginx/sites-available/gallery.conf
         sudo ln -s /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
-        sudo nginx -t && sudo systemctl reload nginx
     fi
 }
 

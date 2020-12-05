@@ -199,12 +199,14 @@
   <xsl:template match="/">
     <html>
       <head>
-        <title>Debian Repository</title>
+        <title>PlanktoScope Explorer</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/bootstrap.min.css" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/all.min.css" crossorigin="anonymous" />
         <style type="text/css">
-          /* Sticky footer styles
+          /* Sticky footer stylesintegrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" 
+          integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" 
+          integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" 
           -------------------------------------------------- */
           html {
             position: relative;
@@ -234,7 +236,7 @@
       <body>
         <!-- Begin page content -->
         <main role="main" class="container">
-          <h1 class="mt-5">Debian Repository</h1>
+          <h1 class="mt-5">PlanktoScope Explorer</h1>
           <ol class="breadcrumb"><xsl:call-template name="breadcrumb"><xsl:with-param name="list" select="$path" /></xsl:call-template></ol>
           <div class="list">
             <table class="table" summary="Directory Listing" cellpadding="0" cellspacing="0">
@@ -259,7 +261,7 @@
 
         <footer class="footer">
           <div class="container">
-            <span class="text-muted">Debian Repository</span>
+            <span class="text-muted">PlanktoScope Explorer</span>
           </div>
         </footer>
       </body>
