@@ -192,7 +192,7 @@
         "type": "ui_tab",
         "z": "",
         "name": "System Monitoring",
-        "icon": "fa-cogs",
+        "icon": "fa-thermometer-full",
         "order": 7,
         "disabled": false,
         "hidden": false
@@ -1851,7 +1851,7 @@
         "order": 1,
         "width": 4,
         "height": 4,
-        "format": "<md-button ng-click=\"send({payload: {tab:'System Monitoring'}})\" style=\"height:100%;\">\n    <i class=\"fa fa-cogs fa-5x\"></i>\n    <div style=\"margin-top:30px;\">System Monitoring</div>\n</md-button>",
+        "format": "<md-button ng-click=\"send({payload: {tab:'System Monitoring'}})\" style=\"height:100%;\">\n    <i class=\"fa fa-thermometer-full fa-5x\"></i>\n    <div style=\"margin-top:30px;\">System Monitoring</div>\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
