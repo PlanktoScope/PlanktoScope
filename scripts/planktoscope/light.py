@@ -8,13 +8,12 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
+import subprocess  # nosec
 
 # Library to send command over I2C for the light module on the fan
 try:
     import smbus2 as smbus
 except ModuleNotFoundError:  # We need this to install the library on machine that do not have the module yet
-    import subprocess  # nosec
-
     subprocess.run("pip3 install smbus2".split())  # nosec
     import smbus2 as smbus
 
@@ -55,6 +54,11 @@ class EffectColor(enum.IntEnum):
     White = 6
 
 
+def i2c_update():
+    # Update the I2C Bus in order to really update the LEDs new values
+    subprocess.Popen("i2cdetect -y 1".split(), stdout=subprocess.PIPE)  # nosec
+
+
 ################################################################################
 # LEDs functions
 ################################################################################
@@ -62,9 +66,13 @@ def setRGB(R, G, B):
     """Update all LED at the same time"""
     try:
         with smbus.SMBus(1) as bus:
+            bus.write_byte_data(DEVICE_ADDRESS, Register.led_select, 0xFF)
             bus.write_byte_data(
                 DEVICE_ADDRESS, Register.led_select, 0xFF
             )  # 0xFF write to all LEDs, 0x01/0x02/0x03 to choose first, second or third LED
+            bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
+            bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
@@ -76,6 +84,7 @@ def setRGBOff():
     """Turn off the RGB LED"""
     try:
         with smbus.SMBus(1) as bus:
+            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
             bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
@@ -122,49 +131,70 @@ def setRGBColor(bus, color):
 def ready():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Green)
+        setRGBColor(bus, EffectColor.Green)
         setRGBSpeed(bus, 1)
+        setRGBSpeed(bus, 1)
+        setRGBEffect(bus, Effect.Breathing)
         setRGBEffect(bus, Effect.Breathing)
 
 
 def error():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Red)
+        setRGBColor(bus, EffectColor.Red)
         setRGBSpeed(bus, 3)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
         setRGBEffect(bus, Effect.Water)
 
 
 def interrupted():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Yellow)
+        setRGBColor(bus, EffectColor.Yellow)
         setRGBSpeed(bus, 3)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
         setRGBEffect(bus, Effect.Water)
 
 
 def pumping():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Blue)
+        setRGBColor(bus, EffectColor.Blue)
         setRGBSpeed(bus, 3)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
         setRGBEffect(bus, Effect.Water)
 
 
 def focusing():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Purple)
+        setRGBColor(bus, EffectColor.Purple)
         setRGBSpeed(bus, 3)
+        setRGBSpeed(bus, 3)
+        setRGBEffect(bus, Effect.Water)
         setRGBEffect(bus, Effect.Water)
 
 
 def imaging():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.White)
+        setRGBColor(bus, EffectColor.White)
         setRGBSpeed(bus, 1)
+        setRGBSpeed(bus, 1)
+        setRGBEffect(bus, Effect.Breathing)
         setRGBEffect(bus, Effect.Breathing)
 
 
 def segmenting():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Purple)
+        setRGBColor(bus, EffectColor.Purple)
         setRGBSpeed(bus, 1)
+        setRGBSpeed(bus, 1)
+        setRGBEffect(bus, Effect.Breathing)
         setRGBEffect(bus, Effect.Breathing)
 
 
@@ -175,22 +205,48 @@ if __name__ == "__main__":
 
     print("ready")
     ready()
-    time.sleep(10)
+    time.sleep(5)
     print("error")
     error()
-    time.sleep(10)
+    time.sleep(5)
     print("pumping")
     pumping()
-    time.sleep(10)
+    time.sleep(5)
     print("focusing")
     focusing()
-    time.sleep(10)
+    time.sleep(5)
     print("imaging")
     imaging()
-    time.sleep(10)
+    time.sleep(5)
     print("segmenting")
     segmenting()
-    time.sleep(10)
+    time.sleep(5)
+    print("with i2c_update now!")
+    print("ready")
+    ready()
+    i2c_update()
+    time.sleep(5)
+    print("error")
+    error()
+    i2c_update()
+    time.sleep(5)
+    print("pumping")
+    pumping()
+    i2c_update()
+    time.sleep(5)
+    print("focusing")
+    focusing()
+    i2c_update()
+    time.sleep(5)
+    print("imaging")
+    imaging()
+    i2c_update()
+    time.sleep(5)
+    print("segmenting")
+    segmenting()
+    i2c_update()
+    time.sleep(5)
+
     with smbus.SMBus(1) as bus:
         setRGBSpeed(bus, 3)
     for effect in Effect:

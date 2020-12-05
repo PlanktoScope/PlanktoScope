@@ -25,15 +25,15 @@ function special(){
         sudo rm /etc/nginx/sites-enabled/img.conf
         sudo nginx -t && sudo systemctl reload nginx
     fi
-    if [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
-        ${log} "Updating the old nginx config"
-        sudo rm /etc/nginx/sites-available/gallery.conf
-        sudo rm /etc/nginx/sites-enabled/gallery.conf
-    fi
-    if ! [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
+    if ! [[ -f "/etc/nginx/sites-enabled/gallery.conf" ]]; then
         ${log} "Nginx config is not installed, doing that now"
-        sudo cp /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-available/gallery.conf
-        sudo ln -s /etc/nginx/sites-available/gallery.conf /etc/nginx/sites-enabled/gallery.conf
+        sudo ln -s /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
+        sudo nginx -t && sudo systemctl reload nginx
+    fi
+    if [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
+        ${log} "Nginx config is installed, changing the links now"
+        sudo rm /etc/nginx/sites-enabled/gallery.conf /etc/nginx/sites-available/gallery.conf
+        sudo ln -s /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
         sudo nginx -t && sudo systemctl reload nginx
     fi
 }
@@ -44,10 +44,10 @@ cd /home/pi/PlanktonScope || { echo "/home/pi/PlanktonScope does not exist"; exi
 # TODO We need to add here a way to load the latest version of this script and execute it again
 remote=$(git ls-remote -h origin master | awk '{print $1}')
 local=$(git rev-parse HEAD)
-${log} "Local : $local - Remote: $remote"
 if [[ "$local" == "$remote" ]]; then
     ${log} "nothing to do!"
 else
+    ${log} "Local and Remote are different, we have to update!"
     git fetch
     UPDATE=$(git diff --numstat origin/master scripts/bash/update.sh | awk '/update.sh/ {print $NF}')
     if [[ -n "${UPDATE}" ]]; then

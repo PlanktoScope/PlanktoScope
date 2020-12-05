@@ -1427,7 +1427,7 @@
         "type": "python3-function",
         "z": "1371dec5.76e671",
         "name": "fan control",
-        "func": "#!/usr/bin/python\nimport smbus\n\nstate = msg[\"payload\"]\n\nbus = smbus.SMBus(1)\n\nDEVICE_ADDRESS = 0x0d\n\nif state == \"off\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\nif state == \"on\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n",
+        "func": "#!/usr/bin/python\nimport smbus\n\nstate = msg[\"payload\"]\n\nbus = smbus.SMBus(1)\n\nDEVICE_ADDRESS = 0x0d\n\n# command happens twice, for reasons\nif state == \"off\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\nif state == \"on\":\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n    bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n",
         "outputs": 1,
         "x": 1110,
         "y": 40,
