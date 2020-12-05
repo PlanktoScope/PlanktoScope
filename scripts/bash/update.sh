@@ -19,25 +19,9 @@ function special(){
     if [[ -f "/etc/udev/rules.d/99-local.rules" ]]; then
         sudo rm /etc/udev/rules.d/99-local.rules
     fi
-    if ! hash thumbsup &> /dev/null ; then
-        ${log} "thumbsup is not installed, installing now"
-        sudo chown -R pi:pi /usr/lib/node_modules/
-        sudo chown pi:pi /usr/bin
-        if npm install -g thumbsup; then
-            ${log} "Error when installing thumbsup"
-        else
-            ${log} "Thumbsup installed, installing dependencies now"
-            sudo apt install -y libimage-exiftool-perl graphicsmagick
-            sudo apt autoremove -y
-            ${log} "Install complete, running thumbsup for the first time now"
-            thumbsup --config /home/pi/PlanktonScope/scripts/thumbsup/config.json
-        fi
-        sudo chown -R root:root /usr/lib/node_modules/
-        sudo chown root:root /usr/bin
-    fi
     if ! [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
         ${log} "Nginx config is not installed, doing that now"
-        sudo cp /home/pi/PlanktonScope/scripts/thumbsup/gallery.conf /etc/nginx/sites-available/gallery.conf
+        sudo cp /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-available/gallery.conf
         sudo ln -s /etc/nginx/sites-available/gallery.conf /etc/nginx/sites-enabled/gallery.conf
         sudo nginx -t && sudo systemctl reload nginx
     fi

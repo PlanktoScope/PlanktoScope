@@ -8,9 +8,6 @@ from loguru import logger
 # Library to get date and time for folder name and filename
 import datetime
 
-# Subprocess is used to update the gallery folder
-import subprocess  # nosec
-
 # Library to be able to sleep for a given duration
 import time
 
@@ -695,11 +692,6 @@ class ImagerProcess(multiprocessing.Process):
             "status/imager",
             f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}"}}',
         )
-
-        # Update the gallery with the new image
-        subprocess.Popen(
-            "thumbsup --config /home/pi/PlanktonScope/scripts/thumbsup/config.json".split()
-        )  # nosec
 
         # Increment the counter
         self.__img_done += 1
