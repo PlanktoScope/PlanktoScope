@@ -194,8 +194,8 @@ class ImagerProcess(multiprocessing.Process):
         self.__exposure_mode = "fixedfps"
         self.__white_balance = "off"
         self.__white_balance_gain = (
-            200,
-            140,
+            configuration.get("wb_red_gain", 2.00) * 100,
+            configuration.get("wb_blue_gain", 1.40) * 100,
         )  # Those values were tested on a HQ camera to give a whitish background
 
         self.__base_path = "/home/pi/data/img"
