@@ -6310,7 +6310,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "pauseType": "delay",
-        "timeout": "5",
+        "timeout": "3",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -6440,7 +6440,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "label": "Clear Log",
         "tooltip": "",
         "color": "",
@@ -6495,7 +6495,7 @@
         "type": "function",
         "z": "9daf9e2b.019fc",
         "name": "Clear log",
-        "func": "flow.set(\"python_log\", []);\n\nmsg.payload = [];\nreturn msg;",
+        "func": "flow.set(\"python_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8381,6 +8381,31 @@
         "wires": [
             [
                 "8038414a.34461"
+            ]
+        ]
+    },
+    {
+        "id": "f4f6e3fa.0234f",
+        "type": "inject",
+        "z": "9daf9e2b.019fc",
+        "name": "once",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 1170,
+        "y": 460,
+        "wires": [
+            [
+                "7a1dedf.1c63094"
             ]
         ]
     }
