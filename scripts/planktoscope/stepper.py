@@ -283,7 +283,10 @@ class StepperProcess(multiprocessing.Process):
                 logger.error(
                     f"The received message has the wrong argument {last_message}"
                 )
-                self.actuator_client.client.publish("status/pump", '{"status":"Error"}')
+                self.actuator_client.client.publish(
+                    "status/pump",
+                    '{"status":"Error, the message is missing an argument"}',
+                )
                 return
             # Get direction from the different received arguments
             direction = last_message["direction"]
@@ -291,6 +294,12 @@ class StepperProcess(multiprocessing.Process):
             volume = float(last_message["volume"])
             # Get number of steps from the different received arguments
             flowrate = float(last_message["flowrate"])
+            if flowrate == 0:
+                logger.error(f"The flowrate should not be == 0")
+                self.actuator_client.client.publish(
+                    "status/pump", '{"status":"Error, The flowrate should not be == 0"}'
+                )
+                return
 
             # Print status
             logger.info("The pump is started.")
