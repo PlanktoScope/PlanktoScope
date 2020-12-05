@@ -28,6 +28,7 @@ function special(){
     if [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
         ${log} "Updating the old nginx config"
         sudo rm /etc/nginx/sites-available/gallery.conf
+        sudo rm /etc/nginx/sites-enabled/gallery.conf
     fi
     if ! [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
         ${log} "Nginx config is not installed, doing that now"
