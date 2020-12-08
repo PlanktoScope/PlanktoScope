@@ -5544,9 +5544,9 @@
         "passthru": false,
         "outs": "end",
         "topic": "imaging_pump_volume",
-        "min": "0.01",
-        "max": "1",
-        "step": "0.01",
+        "min": "0.001",
+        "max": "0.5",
+        "step": "0.001",
         "x": 590,
         "y": 320,
         "wires": [
@@ -5858,47 +5858,14 @@
         "id": "bcb20e39.00cea8",
         "type": "function",
         "z": "f21ba04.c26266",
-        "name": "parseInfo",
-        "func": "var ip = msg.payload.match(/inet ([0-9\\.]+)/)[1]\nvar mask = msg.payload.match(/netmask ([0-9\\.]+)/)[1]\nvar broadcast = msg.payload.match(/broadcast ([0-9\\.]+)/)[1]\n\n\nnode.send({topic: 'ip', payload: ip})\nnode.send({topic: 'mask', payload: mask})\nnode.send({topic: 'broadcast', payload: broadcast})",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 640,
-        "y": 180,
-        "wires": [
-            [
-                "b10ebb83.8214a8"
-            ]
-        ]
-    },
-    {
-        "id": "b10ebb83.8214a8",
-        "type": "switch",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "ip",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "mask",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "broadcast",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
+        "name": "parse IP Info",
+        "func": "if (msg.payload === null){\n    var ip = \"\";\n    var mask = \"\";\n    var broadcast = \"\";\n}\nelse{\n    var ip = msg.payload.match(/inet ([0-9\\.]+)/)[1];\n    var mask = msg.payload.match(/netmask ([0-9\\.]+)/)[1];\n    var broadcast = msg.payload.match(/broadcast ([0-9\\.]+)/)[1];\n}\n\nreturn [{topic: 'ip', payload: ip},{topic: 'mask', payload: mask},{topic: 'broadcast', payload: broadcast}]",
         "outputs": 3,
-        "x": 810,
-        "y": 181,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 730,
+        "y": 180,
         "wires": [
             [
                 "d71c8185.800fd"
@@ -5909,6 +5876,11 @@
             [
                 "dc305a26.b33fc"
             ]
+        ],
+        "outputLabels": [
+            "ip",
+            "mask",
+            "broadcast"
         ]
     },
     {
@@ -5990,8 +5962,8 @@
             "password": ""
         },
         "payload": "",
-        "submit": "UPDATE",
-        "cancel": "RESET",
+        "submit": "Add the network",
+        "cancel": "Reset fields",
         "topic": "",
         "x": 1160,
         "y": 80,
@@ -6060,11 +6032,13 @@
         "id": "151819d4.0dbe56",
         "type": "function",
         "z": "f21ba04.c26266",
-        "name": "parseInfo",
-        "func": "var ssid = msg.payload.match(/ESSID:\"([^\"]+)\"/)[1]\n\n\nnode.send({topic: 'ssid', payload: ssid})\n",
+        "name": "parse SSID",
+        "func": "if (msg.payload !== null){\n    var ssid = msg.payload.match(/ESSID:\"([^\"]+)\"/)[1];\n}\nelse\n{\n    var ssid = \"\";\n}\n\n\nnode.send({topic: 'ssid', payload: ssid})\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 720,
+        "initialize": "",
+        "finalize": "",
+        "x": 730,
         "y": 260,
         "wires": [
             [
@@ -6892,19 +6866,21 @@
         "id": "4ecb6be2.ad39f4",
         "type": "ui_toast",
         "z": "f21ba04.c26266",
-        "position": "top right",
+        "position": "dialog",
         "displayTime": "3",
         "highlight": "",
         "sendall": true,
-        "outputs": 0,
+        "outputs": 1,
         "ok": "OK",
         "cancel": "",
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1670,
+        "x": 1650,
         "y": 180,
-        "wires": []
+        "wires": [
+            []
+        ]
     },
     {
         "id": "f30bf784.90d58",
@@ -8406,6 +8382,69 @@
         "wires": [
             [
                 "7a1dedf.1c63094"
+            ]
+        ]
+    },
+    {
+        "id": "991d1df9.3ffb3",
+        "type": "function",
+        "z": "f21ba04.c26266",
+        "name": "reset wpa_supplicant.conf",
+        "func": "country_code = flow.get(\"country_code\")\n\nvar template = `sudo tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=${country_code}\n\nEOF`\n\nmsg.payload = template\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 660,
+        "y": 460,
+        "wires": [
+            [
+                "2124997d.2cbf0e"
+            ]
+        ]
+    },
+    {
+        "id": "2124997d.2cbf0e",
+        "type": "exec",
+        "z": "f21ba04.c26266",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "resetConf",
+        "x": 880,
+        "y": 460,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8b3a1ecb.c4d2e8",
+        "type": "ui_button",
+        "z": "f21ba04.c26266",
+        "name": "",
+        "group": "9e409235.73cd7",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset wifi networks",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "",
+        "payload": "country_code",
+        "payloadType": "flow",
+        "topic": "",
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "991d1df9.3ffb3"
             ]
         ]
     }
