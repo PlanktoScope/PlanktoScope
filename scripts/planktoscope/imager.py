@@ -596,8 +596,8 @@ class ImagerProcess(multiprocessing.Process):
         self.__export_path = os.path.join(
             self.__base_path,
             self.__global_metadata["object_date"],
-            str(self.__global_metadata["sample_id"]),
-            str(self.__global_metadata["acq_id"]),
+            str(self.__global_metadata["sample_id"]).replace(" ", "_"),
+            str(self.__global_metadata["acq_id"]).replace(" ", "_"),
         )
 
         if os.path.exists(self.__export_path):
