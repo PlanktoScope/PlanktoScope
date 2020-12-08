@@ -24,7 +24,7 @@ class raspimjpeg(object):
         self.__configfile = "/home/pi/PlanktonScope/scripts/raspimjpeg/raspimjpeg.conf"
         self.__binary = "/home/pi/PlanktonScope/scripts/raspimjpeg/bin/raspimjpeg"
         self.__statusfile = "/dev/shm/mjpeg/status_mjpeg.txt"
-        self.__pipe = "/home/pi/PlanktonScope/scripts/raspimjpeg/FIFO"
+        self.__pipe = "/dev/shm/mjpeg/FIFO"
         self.__sensor_name = ""
 
         # make sure the status file exists and is empty
@@ -472,3 +472,8 @@ class raspimjpeg(object):
         logger.debug("Killing raspimjpeg in a nice way")
         self.__process.terminate()
         self.__process.wait()
+
+    def kill(self):
+        """Kill the process."""
+        logger.debug("Killing raspimjpeg in a very dirty way")
+        self.__process.terminate()
