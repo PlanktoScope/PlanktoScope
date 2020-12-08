@@ -240,6 +240,10 @@ class SegmenterProcess(multiprocessing.Process):
                             f"Configuration loaded is {self.__global_metadata}"
                         )
 
+                    # TODO Remove all the keys that don't start with acq, sample, object or process
+                    # Otherwise Ecotaxata is annoying as fuck
+                    self.__global_metadata.pop("description")
+
                     project = self.__global_metadata["sample_project"].replace(" ", "_")
                     date = self.__global_metadata["process_datetime"]
                     sample = self.__global_metadata["sample_id"]
