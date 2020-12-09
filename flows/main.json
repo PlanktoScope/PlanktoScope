@@ -5462,7 +5462,7 @@
         "id": "eaf74a43.fa27d",
         "type": "switch",
         "z": "1371dec5.76e671",
-        "name": "",
+        "name": "if disk > 90%",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -5475,11 +5475,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 490,
+        "x": 590,
         "y": 420,
         "wires": [
             [
-                "24df077a.cb252"
+                "6d09f428.930bcc"
             ]
         ]
     },
@@ -5497,7 +5497,7 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 790,
+        "x": 1070,
         "y": 420,
         "wires": [
             []
@@ -5522,7 +5522,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 630,
+        "x": 910,
         "y": 420,
         "wires": [
             [
@@ -7169,8 +7169,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1070,
-        "y": 940,
+        "x": 1090,
+        "y": 960,
         "wires": [
             []
         ]
@@ -7231,33 +7231,15 @@
         "ok": "GO BACK",
         "cancel": "YES I'M SURE, I WANT TO PURGE THE DATA",
         "raw": false,
-        "topic": "",
+        "topic": "Data purge",
         "name": "",
-        "x": 370,
+        "x": 350,
         "y": 980,
         "wires": [
             [
                 "d80e6307.3aaf8"
             ]
         ]
-    },
-    {
-        "id": "b57cc390.f055c8",
-        "type": "ui_toast",
-        "z": "1371dec5.76e671",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 870,
-        "y": 980,
-        "wires": []
     },
     {
         "id": "d80e6307.3aaf8",
@@ -7288,21 +7270,21 @@
         "id": "4a8cb5d4.52e4bc",
         "type": "exec",
         "z": "1371dec5.76e671",
-        "command": "rm -R /home/pi/data/*",
+        "command": "rm -r /home/pi/data/img /home/pi/data/objects /home/pi/data/export",
         "addpay": false,
         "append": "",
-        "useSpawn": "true",
+        "useSpawn": "false",
         "timer": "",
         "oldrc": false,
         "name": "rm data",
         "x": 680,
         "y": 980,
         "wires": [
-            [
-                "b57cc390.f055c8"
-            ],
             [],
-            []
+            [],
+            [
+                "c5b1e763.d1bba8"
+            ]
         ]
     },
     {
@@ -8445,6 +8427,47 @@
         "wires": [
             [
                 "991d1df9.3ffb3"
+            ]
+        ]
+    },
+    {
+        "id": "c5b1e763.d1bba8",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "error message",
+        "func": "switch (msg.payload.code){\ncase 0:\n    msg.payload = \"/home/pi/data was purged successfully!\";\n    break;\ndefault:\n    msg.payload = \"There was an error! The error code is \" + msg.payload.code;\n    break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 900,
+        "y": 980,
+        "wires": [
+            [
+                "81a48376.27a66"
+            ]
+        ]
+    },
+    {
+        "id": "6d09f428.930bcc",
+        "type": "delay",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "24df077a.cb252"
             ]
         ]
     }
