@@ -348,7 +348,6 @@ class StepperProcess(multiprocessing.Process):
 
     def treat_command(self):
         command = ""
-        if self.actuator_client.new_message_received():
             logger.info("We received a new message")
             last_message = self.actuator_client.msg["payload"]
             logger.debug(last_message)
@@ -366,7 +365,6 @@ class StepperProcess(multiprocessing.Process):
                 logger.warning(
                     f"We did not understand the received request {command} - {last_message}"
                 )
-        return
 
     def focus(self, direction, distance, speed=focus_max_speed):
         """moves the focus stepper
@@ -507,22 +505,26 @@ class StepperProcess(multiprocessing.Process):
         self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
 
         logger.success("Stepper is READY!")
+        delay = 0.001
         while not self.stop_event.is_set():
-            # check if a new message has been received
+            if self.actuator_client.new_message_received():
             self.treat_command()
             if self.pump_stepper.move():
+                delay = 0.0001
                 planktoscope.light.ready()
                 self.actuator_client.client.publish(
                     "status/pump",
                     '{"status":"Done"}',
                 )
             if self.focus_stepper.move():
+                delay = 0.0001
                 planktoscope.light.ready()
                 self.actuator_client.client.publish(
                     "status/focus",
                     '{"status":"Done"}',
                 )
-            time.sleep(0.0001)
+            time.sleep(delay)
+            delay = 0.001
         logger.info("Shutting down the stepper process")
         self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
         self.actuator_client.client.publish("status/focus", '{"status":"Dead"}')
