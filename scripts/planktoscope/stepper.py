@@ -348,23 +348,21 @@ class StepperProcess(multiprocessing.Process):
 
     def treat_command(self):
         command = ""
-            logger.info("We received a new message")
-            last_message = self.actuator_client.msg["payload"]
-            logger.debug(last_message)
-            command = self.actuator_client.msg["topic"].split("/", 1)[1]
-            logger.debug(command)
-            self.actuator_client.read_message()
-
-            # If the command is "pump"
-            if command == "pump":
-                self.__message_pump(last_message)
-            # If the command is "focus"
-            elif command == "focus":
-                self.__message_focus(last_message)
-            elif command != "":
-                logger.warning(
-                    f"We did not understand the received request {command} - {last_message}"
-                )
+        logger.info("We received a new message")
+        last_message = self.actuator_client.msg["payload"]
+        logger.debug(last_message)
+        command = self.actuator_client.msg["topic"].split("/", 1)[1]
+        logger.debug(command)
+        self.actuator_client.read_message()
+        
+        if command == "pump":
+            self.__message_pump(last_message)
+        elif command == "focus":
+            self.__message_focus(last_message)
+        elif command != "":
+            logger.warning(
+                f"We did not understand the received request {command} - {last_message}"
+            )
 
     def focus(self, direction, distance, speed=focus_max_speed):
         """moves the focus stepper
@@ -508,7 +506,7 @@ class StepperProcess(multiprocessing.Process):
         delay = 0.001
         while not self.stop_event.is_set():
             if self.actuator_client.new_message_received():
-            self.treat_command()
+                self.treat_command()
             if self.pump_stepper.move():
                 delay = 0.0001
                 planktoscope.light.ready()
