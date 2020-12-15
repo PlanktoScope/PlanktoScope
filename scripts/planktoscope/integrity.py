@@ -109,7 +109,7 @@ def append_to_integrity_file(filepath):
     """
     # Append to the integrity file the specific file
     if not os.path.exists(filepath):
-        logger.error(f"The file {filename} does not exists!")
+        logger.error(f"The file at {filepath} does not exists!")
         raise FileNotFoundError
 
     integrity_file_path = os.path.join(os.path.dirname(filepath), integrity_file_name)
