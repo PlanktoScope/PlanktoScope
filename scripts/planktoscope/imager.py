@@ -663,8 +663,15 @@ class ImagerProcess(multiprocessing.Process):
             planktoscope.integrity.append_to_integrity_file(filename_path)
         except FileNotFoundError as e:
             logger.error(
-                f"{filename_path} was not found, the camera did not work properly!"
+                f"{filename_path} was not found, the camera did not work properly! Trying again"
             )
+            self.imager_client.client.publish(
+                "status/imager",
+                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} was not found, retrying the capture now."}}',
+            )
+            # Let's try again after a tiny delay!
+            time.sleep(1)
+            return
 
         # Publish the name of the image to via MQTT to Node-RED
         self.imager_client.client.publish(
@@ -677,10 +684,8 @@ class ImagerProcess(multiprocessing.Process):
 
         # If counter reach the number of frame, break
         if self.__img_done >= self.__img_goal:
-            # Reset the counter to 0
             self.__img_done = 0
 
-            # Publish the status "Done" to via MQTT to Node-RED
             self.imager_client.client.publish("status/imager", '{"status":"Done"}')
 
             self.__imager.change(planktoscope.imager_state_machine.Stop)
@@ -688,7 +693,6 @@ class ImagerProcess(multiprocessing.Process):
             return
         else:
             # We have not reached the final stage, let's keep imaging
-
             self.imager_client.client.subscribe("status/pump")
 
             self.__pump_message()
