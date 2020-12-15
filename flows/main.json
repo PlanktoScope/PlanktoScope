@@ -7279,7 +7279,7 @@
         "id": "4a8cb5d4.52e4bc",
         "type": "exec",
         "z": "1371dec5.76e671",
-        "command": "rm -r /home/pi/data/img /home/pi/data/objects /home/pi/data/export",
+        "command": "rm -rf /home/pi/data/img /home/pi/data/objects /home/pi/data/export",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -7289,12 +7289,12 @@
         "x": 680,
         "y": 980,
         "wires": [
-            [],
-            [],
             [
                 "c5b1e763.d1bba8"
+            ],
+            [],
+            []
             ]
-        ]
     },
     {
         "id": "2dc762df.08cd7e",
@@ -8419,7 +8419,7 @@
         "z": "f21ba04.c26266",
         "name": "",
         "group": "9e409235.73cd7",
-        "order": 6,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8444,7 +8444,7 @@
         "type": "function",
         "z": "1371dec5.76e671",
         "name": "error message",
-        "func": "switch (msg.payload.code){\ncase 0:\n    msg.payload = \"/home/pi/data was purged successfully!\";\n    break;\ndefault:\n    msg.payload = \"There was an error! The error code is \" + msg.payload.code;\n    break;\n}\nreturn msg;",
+        "func": "// TODO revoir cette partie\n\nswitch (msg.rc.code){\ncase 0:\n    msg.payload = \"/home/pi/data was purged successfully!\";\n    break;\ndefault:\n    msg.payload = \"There was an error! The error is \" + msg.rc.message;\n    break;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
