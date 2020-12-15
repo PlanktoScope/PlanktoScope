@@ -3066,7 +3066,7 @@
         "z": "bccd1f23.87219",
         "name": "Shutter speed slider",
         "label": "Shutter Speed",
-        "tooltip": "In microseconds, up to 1000µs, 1µs by default",
+        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
         "group": "8c38a81e.9897a8",
         "order": 1,
         "width": 0,
@@ -3074,7 +3074,7 @@
         "passthru": true,
         "outs": "end",
         "topic": "imager/image",
-        "min": "1",
+        "min": "125",
         "max": "1000",
         "step": "1",
         "x": 390,
@@ -3120,7 +3120,7 @@
         "id": "2350e507.d4e302",
         "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "Default: 1µs",
+        "name": "Default: 125µs",
         "props": [
             {
                 "p": "payload"
@@ -3131,9 +3131,9 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "1",
+        "payload": "125",
         "payloadType": "num",
-        "x": 110,
+        "x": 120,
         "y": 800,
         "wires": [
             [
@@ -6619,7 +6619,7 @@
         "timer": "1",
         "oldrc": false,
         "name": "git user.name",
-        "x": 1400,
+        "x": 1140,
         "y": 60,
         "wires": [
             [],
@@ -6638,7 +6638,7 @@
         "syntax": "mustache",
         "template": "git config --global --replace-all user.name \"{{payload}}\"",
         "output": "str",
-        "x": 1220,
+        "x": 960,
         "y": 60,
         "wires": [
             [
@@ -6655,7 +6655,7 @@
             "52af9ac0.60eb24",
             "3caed565.fad25a"
         ],
-        "x": 1035,
+        "x": 775,
         "y": 100,
         "wires": [
             [
@@ -6675,7 +6675,7 @@
         "timer": "1",
         "oldrc": false,
         "name": "git user.email",
-        "x": 1390,
+        "x": 1130,
         "y": 140,
         "wires": [
             [],
@@ -6694,7 +6694,7 @@
         "syntax": "mustache",
         "template": "git config --global --replace-all user.email \"{{payload}}\"",
         "output": "str",
-        "x": 1220,
+        "x": 960,
         "y": 140,
         "wires": [
             [
