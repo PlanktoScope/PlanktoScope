@@ -761,15 +761,6 @@
         "hidden": false
     },
     {
-        "id": "9f545703.7f44b8",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "9e409235.73cd7",
-        "order": 4,
-        "width": 6,
-        "height": 1
-    },
-    {
         "id": "2489e51c.eed77a",
         "type": "ui_tab",
         "z": "",
@@ -950,6 +941,24 @@
         "group": "b7919ae2.c01788",
         "order": 2,
         "width": 5,
+        "height": 1
+    },
+    {
+        "id": "bfec963a.5a4988",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "9e409235.73cd7",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "91dfe8eb.658218",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "9e409235.73cd7",
+        "order": 5,
+        "width": 6,
         "height": 1
     },
     {
@@ -5952,7 +5961,7 @@
             {
                 "label": "Password",
                 "value": "password",
-                "type": "password",
+                "type": "text",
                 "required": true,
                 "rows": null
             }
@@ -6103,9 +6112,9 @@
         "z": "f21ba04.c26266",
         "name": "",
         "group": "9e409235.73cd7",
-        "order": 6,
-        "width": 0,
-        "height": 0,
+        "order": 7,
+        "width": 3,
+        "height": 1,
         "passthru": false,
         "label": "Change Country Code",
         "tooltip": "",
@@ -6131,9 +6140,9 @@
         "label": "Country Code",
         "tooltip": "ISO/IEC alpha2 country code",
         "group": "9e409235.73cd7",
-        "order": 5,
-        "width": 0,
-        "height": 0,
+        "order": 6,
+        "width": 3,
+        "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": "500",
