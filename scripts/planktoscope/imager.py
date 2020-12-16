@@ -12,10 +12,11 @@ import datetime
 import time
 
 # Libraries manipulate json format, execute bash commands
-import json, shutil
+import json
 
 # Library for path and filesystem manipulations
 import os
+import shutil
 
 # Library for starting processes
 import multiprocessing
@@ -166,6 +167,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__pump_direction = "FORWARD"
         self.__img_goal = None
         self.imager_client = None
+        self.__error = 0
 
         # Initialise the camera and the process
         # Also starts the streaming to the temporary file
@@ -196,7 +198,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__white_balance_gain = (
             configuration.get("wb_red_gain", 2.00) * 100,
             configuration.get("wb_blue_gain", 1.40) * 100,
-        )  # Those values were tested on a HQ camera to give a whitish background
+        )
 
         self.__base_path = "/home/pi/data/img"
         # Let's make sure the base path exists
@@ -491,7 +493,9 @@ class ImagerProcess(multiprocessing.Process):
                     self.__imager.change(planktoscope.imager_state_machine.Capture)
                     self.imager_client.client.unsubscribe("status/pump")
                 else:
-                    logger.info(f"The pump is not done yet {payload}")
+                    logger.info(
+                        f"The pump is not done yet {self.imager_client.msg['payload']}"
+                    )
             else:
                 logger.error(
                     "There is an error, we received an unexpected pump message"
@@ -641,39 +645,25 @@ class ImagerProcess(multiprocessing.Process):
         # Sleep a duration before to start acquisition
         time.sleep(self.__sleep_before)
 
-        # Capture an image with the proper filename
+        # Capture an image to the temporary file
         try:
-            self.__camera.capture(filename_path)
+            self.__camera.capture("", timeout=5)
         except TimeoutError as e:
-            logger.error("A timeout happened while waiting for a capture to happen")
-            # Publish the name of the image to via MQTT to Node-RED
-            self.imager_client.client.publish(
-                "status/imager",
-                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} WAS NOT CAPTURED! STOPPING THE PROCESS!"}}',
-            )
-            # Reset the counter to 0
-            self.__img_done = 0
-            self.__img_goal = 0
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
-            planktoscope.light.error()
+            self.__capture_error("timeout during capture")
             return
+
+        logger.debug(f"Copying the image from the temp file to {filename_path}")
+        shutil.copy("/dev/shm/mjpeg/image.jpg", filename_path)
+        logger.debug("Syncing the disk")
+        os.sync()
 
         # Add the checksum of the captured image to the integrity file
         try:
             planktoscope.integrity.append_to_integrity_file(filename_path)
         except FileNotFoundError as e:
-            logger.error(
-                f"{filename_path} was not found, the camera did not work properly! Trying again"
-            )
-            self.imager_client.client.publish(
-                "status/imager",
-                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} was not found, retrying the capture now."}}',
-            )
-            # Let's try again after a tiny delay!
-            time.sleep(1)
+            self.__capture_error(f"{filename_path} was not found")
             return
 
-        # Publish the name of the image to via MQTT to Node-RED
         self.imager_client.client.publish(
             "status/imager",
             f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} has been imaged to {filename}"}}',
@@ -681,6 +671,7 @@ class ImagerProcess(multiprocessing.Process):
 
         # Increment the counter
         self.__img_done += 1
+        self.__error = 0
 
         # If counter reach the number of frame, break
         if self.__img_done >= self.__img_goal:
@@ -690,7 +681,6 @@ class ImagerProcess(multiprocessing.Process):
 
             self.__imager.change(planktoscope.imager_state_machine.Stop)
             planktoscope.light.ready()
-            return
         else:
             # We have not reached the final stage, let's keep imaging
             self.imager_client.client.subscribe("status/pump")
@@ -698,6 +688,27 @@ class ImagerProcess(multiprocessing.Process):
             self.__pump_message()
 
             self.__imager.change(planktoscope.imager_state_machine.Waiting)
+
+    def __capture_error(self, message=""):
+        logger.error(f"An error occurred during the capture: {message}")
+        planktoscope.light.error()
+        if self.__error:
+            logger.error("This is a repeating problem, stopping the capture now")
+            self.imager_client.client.publish(
+                "status/imager",
+                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} WAS NOT CAPTURED! STOPPING THE PROCESS!"}}',
+            )
+            self.__img_done = 0
+            self.__img_goal = 0
+            self.__error = 0
+            self.__imager.change(planktoscope.imager_state_machine.Stop)
+        else:
+            self.__error += 1
+            self.imager_client.client.publish(
+                "status/imager",
+                f'{{"status":"Image {self.__img_done + 1}/{self.__img_goal} was not captured due to this error:{message}! Retrying once!"}}',
+            )
+        time.sleep(1)
 
     @logger.catch
     def state_machine(self):

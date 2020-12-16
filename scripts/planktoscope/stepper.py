@@ -354,7 +354,7 @@ class StepperProcess(multiprocessing.Process):
         command = self.actuator_client.msg["topic"].split("/", 1)[1]
         logger.debug(command)
         self.actuator_client.read_message()
-        
+
         if command == "pump":
             self.__message_pump(last_message)
         elif command == "focus":

@@ -458,9 +458,10 @@ class raspimjpeg(object):
             self.__send_command(f"im")
         else:
             self.__send_command(f"im {path}")
+        time.sleep(0.1)
 
         self.__wait_for_output("Capturing image", timeout / 2)
-        self.__wait_for_status("ready", timeout / 2)
+        self.__wait_for_output("Ready", timeout / 2)
 
     def stop(self):
         """Halt and release the camera. """
