@@ -73,9 +73,7 @@ def setRGB(R, G, B):
             bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
             bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
-            bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
-            bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
-            bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
+        i2c_update()
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
 
@@ -85,7 +83,7 @@ def setRGBOff():
     try:
         with smbus.SMBus(1) as bus:
             bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
-            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
+        i2c_update()
     except Exception as e:
         logger.exception(f"An Exception has occured in the light library at {e}")
 
@@ -130,72 +128,60 @@ def setRGBColor(bus, color):
 
 def ready():
     with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Green)
-        setRGBColor(bus, EffectColor.Green)
-        setRGBSpeed(bus, 1)
+        setRGBColor(bus, EffectColor.Blue)
         setRGBSpeed(bus, 1)
         setRGBEffect(bus, Effect.Breathing)
-        setRGBEffect(bus, Effect.Breathing)
+        i2c_update()
 
 
 def error():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Red)
-        setRGBColor(bus, EffectColor.Red)
-        setRGBSpeed(bus, 3)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-        setRGBEffect(bus, Effect.Water)
+        i2c_update()
 
 
 def interrupted():
     with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Yellow)
+        setRGBOff()
+        time.sleep(1)
         setRGBColor(bus, EffectColor.Yellow)
         setRGBSpeed(bus, 3)
-        setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-        setRGBEffect(bus, Effect.Water)
+        i2c_update()
 
 
 def pumping():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Blue)
-        setRGBColor(bus, EffectColor.Blue)
-        setRGBSpeed(bus, 3)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-        setRGBEffect(bus, Effect.Water)
+        i2c_update()
 
 
 def focusing():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Purple)
-        setRGBColor(bus, EffectColor.Purple)
-        setRGBSpeed(bus, 3)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
-        setRGBEffect(bus, Effect.Water)
+        i2c_update()
 
 
 def imaging():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.White)
-        setRGBColor(bus, EffectColor.White)
-        setRGBSpeed(bus, 1)
         setRGBSpeed(bus, 1)
         setRGBEffect(bus, Effect.Breathing)
-        setRGBEffect(bus, Effect.Breathing)
+        i2c_update()
 
 
 def segmenting():
     with smbus.SMBus(1) as bus:
         setRGBColor(bus, EffectColor.Purple)
-        setRGBColor(bus, EffectColor.Purple)
-        setRGBSpeed(bus, 1)
         setRGBSpeed(bus, 1)
         setRGBEffect(bus, Effect.Breathing)
-        setRGBEffect(bus, Effect.Breathing)
+        i2c_update()
 
 
 # This is called if this script is launched directly
