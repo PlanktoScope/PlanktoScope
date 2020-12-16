@@ -56,6 +56,9 @@ import planktoscope.light
 # Import the planktonscope uuidName module
 import planktoscope.uuidName
 
+# Import the planktonscope display module for the OLED screen
+import planktoscope.display
+
 # global variable that keeps the wheels spinning
 run = True
 
@@ -126,11 +129,11 @@ if __name__ == "__main__":
     segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
     segmenter_thread.start()
 
+    logger.info("Starting the display module")
+    display = planktoscope.display.Display()
+
     logger.success("Looks like everything is set up and running, have fun!")
     planktoscope.light.ready()
-
-    # Import the planktonscope display module for the OLED screen
-    import planktoscope.display
 
     while run:
         # TODO look into ways of restarting the dead threads
@@ -145,14 +148,15 @@ if __name__ == "__main__":
             logger.error("The segmenter process died unexpectedly! Oh no!")
             break
         time.sleep(1)
-
+    display.display_text("Bye Bye!")
     logger.info("Shutting down the shop")
     shutdown_event.set()
-    time.sleep(0.5)
+    time.sleep(1)
     stepper_thread.join()
     imager_thread.join()
     segmenter_thread.join()
     stepper_thread.close()
     imager_thread.close()
     segmenter_thread.close()
+    display.stop()
     logger.info("Bye")
