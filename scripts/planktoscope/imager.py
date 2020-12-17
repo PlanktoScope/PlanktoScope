@@ -606,7 +606,7 @@ class ImagerProcess(multiprocessing.Process):
         logger.info("Exporting the metadata to a metadata.json")
         metadata_filepath = os.path.join(self.__export_path, "metadata.json")
         with open(metadata_filepath, "w") as metadata_file:
-            json.dump(self.__global_metadata, metadata_file)
+            json.dump(self.__global_metadata, metadata_file, indent="4")
             logger.debug(
                 f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
             )
@@ -654,6 +654,8 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.debug(f"Copying the image from the temp file to {filename_path}")
         shutil.copy("/dev/shm/mjpeg/image.jpg", filename_path)
+        # TODO Try to stop the camera streaming and display instead each captured image
+        # os.rename("/dev/shm/mjpeg/image.jpg", "/dev/shm/mjpeg/cam.jpg")
         logger.debug("Syncing the disk")
         os.sync()
 

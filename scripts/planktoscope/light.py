@@ -144,8 +144,6 @@ def error():
 
 def interrupted():
     with smbus.SMBus(1) as bus:
-        setRGBOff()
-        time.sleep(1)
         setRGBColor(bus, EffectColor.Yellow)
         setRGBSpeed(bus, 3)
         setRGBEffect(bus, Effect.Water)
