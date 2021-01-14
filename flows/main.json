@@ -6787,7 +6787,7 @@
         "type": "function",
         "z": "f21ba04.c26266",
         "name": "showMessage",
-        "func": "\nmsg.payload = msg.payload.trim() === 'OK' ? \"Wifi configuration updated successfully\" : \"Error while updating wifi configuration\"\n\nreturn msg;",
+        "func": "msg.payload = \"Wifi configuration updated successfully\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
