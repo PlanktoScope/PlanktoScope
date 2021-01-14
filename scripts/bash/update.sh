@@ -14,32 +14,12 @@ function update(){
 }
 
 function special(){
-    if [[ -f "/etc/systemd/system/usb-mount@.service" ]]; then
-        sudo rm /etc/systemd/system/usb-mount@.service
-    fi
-    if [[ -f "/etc/udev/rules.d/99-local.rules" ]]; then
-        sudo rm /etc/udev/rules.d/99-local.rules
-    fi
-    if [[ -f "/etc/nginx/sites-available/img.conf" ]]; then
-        ${log} "Getting rid of the old nginx config"
-        sudo rm /etc/nginx/sites-available/img.conf
-        sudo rm /etc/nginx/sites-enabled/img.conf
-    fi
-    if ! [[ -f "/etc/nginx/sites-enabled/gallery.conf" ]]; then
-        ${log} "Nginx config is not installed, doing that now"
-        sudo ln -s /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
-    fi
-    if [[ -f "/etc/nginx/sites-available/gallery.conf" ]]; then
-        ${log} "Nginx config is installed, changing the links now"
-        sudo rm /etc/nginx/sites-enabled/gallery.conf /etc/nginx/sites-available/gallery.conf
-        sudo ln -s /home/pi/PlanktonScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
-    fi
+    ${log} "Nothing special to do!"
 }
 
 ${log} "Updating the main repository"
 cd /home/pi/PlanktonScope || { echo "/home/pi/PlanktonScope does not exist"; exit 1; }
 
-# TODO We need to add here a way to load the latest version of this script and execute it again
 remote=$(git ls-remote -h origin master | awk '{print $1}')
 local=$(git rev-parse HEAD)
 if [[ "$local" == "$remote" ]]; then
