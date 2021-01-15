@@ -927,7 +927,18 @@
         "height": 1
     },
     {
-        "id": "f96a2499.af22c",
+        "id": "fc5e4e6f.5b1c8",
+        "type": "ui_group",
+        "z": "",
+        "name": "GPS Status",
+        "tab": "737ec584.2eea2c",
+        "order": 5,
+        "disp": true,
+        "width": 10,
+        "collapse": false
+    },
+    {
+        "id": "d9e6e70f.97c318",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "3e1ba03d.f01d8",
@@ -936,7 +947,7 @@
         "height": 1
     },
     {
-        "id": "2e16776f.5958f8",
+        "id": "80153260.896c98",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "3e1ba03d.f01d8",
@@ -945,11 +956,11 @@
         "height": 1
     },
     {
-        "id": "f6e697a.a0d6668",
+        "id": "20a51061.5d6be8",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 11,
+        "group": "fc5e4e6f.5b1c8",
+        "order": 3,
         "width": 1,
         "height": 1
     },
@@ -2193,10 +2204,16 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 230,
-        "y": 700,
+        "x": 250,
+        "y": 940,
         "wires": [
-            []
+            [
+                "258b4562.9f778a",
+                "54e37580.fdc31c",
+                "cc21ca16.b92928",
+                "4a4de52c.cf2884",
+                "35ad311f.344c76"
+            ]
         ]
     },
     {
@@ -4016,34 +4033,18 @@
         "wires": []
     },
     {
-        "id": "906d9fea.4bab48",
-        "type": "status",
-        "z": "b771c342.49603",
-        "d": true,
-        "name": "GPS Status",
-        "scope": [],
-        "x": 250,
-        "y": 780,
-        "wires": [
-            [
-                "7116e906.9f50f"
-            ]
-        ]
-    },
-    {
         "id": "7116e906.9f50f",
         "type": "ui_text",
         "z": "b771c342.49603",
-        "d": true,
-        "group": "3e1ba03d.f01d8",
-        "order": 12,
-        "width": 2,
+        "group": "fc5e4e6f.5b1c8",
+        "order": 1,
+        "width": 10,
         "height": 1,
         "name": "GPS Status Display",
         "label": "GPS Status:",
-        "format": "{{msg.status.text}}",
-        "layout": "row-left",
-        "x": 750,
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 740,
         "y": 780,
         "wires": []
     },
@@ -5404,7 +5405,7 @@
         "tooltip": "Volume extracted from the net (in mL)",
         "group": "3e1ba03d.f01d8",
         "order": 10,
-        "width": 7,
+        "width": 10,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -8411,5 +8412,140 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "4fb4e0ad.c417c",
+        "type": "ui_text",
+        "z": "b771c342.49603",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 6,
+        "width": 5,
+        "height": 1,
+        "name": "Latitude",
+        "label": "Latitude",
+        "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
+        "layout": "col-center",
+        "x": 700,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "8d2b5026.13e6e8",
+        "type": "ui_text",
+        "z": "b771c342.49603",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "name": "Longitude",
+        "label": "Longitude",
+        "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
+        "layout": "col-center",
+        "x": 700,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "258b4562.9f778a",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Convert DD to DMS",
+        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nmsg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 480,
+        "y": 840,
+        "wires": [
+            [
+                "4fb4e0ad.c417c",
+                "8d2b5026.13e6e8"
+            ]
+        ]
+    },
+    {
+        "id": "7c4ce5f3.62dd5c",
+        "type": "ui_text",
+        "z": "b771c342.49603",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 4,
+        "width": 2,
+        "height": 1,
+        "name": "Speed",
+        "label": "Speed",
+        "format": "{{msg.payload}} kts",
+        "layout": "col-center",
+        "x": 690,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "54e37580.fdc31c",
+        "type": "ui_text",
+        "z": "b771c342.49603",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "name": "Direction",
+        "label": "Direction",
+        "format": "{{msg.payload.track}} °",
+        "layout": "col-center",
+        "x": 700,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "cc21ca16.b92928",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "GPS Mode",
+        "func": "switch (msg.payload.mode){\n case 1:msg.payload = \"No Fix\"; break\n case 2:msg.payload = \"2D Fix\"; break\n case 3:msg.payload = \"3D Fix\"; break\n default: msg.payload = \"No info\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 780,
+        "wires": [
+            [
+                "7116e906.9f50f"
+            ]
+        ]
+    },
+    {
+        "id": "4a4de52c.cf2884",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Speed conversion",
+        "func": "msg.payload = (0|msg.payload.speed) * 1.9438\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 900,
+        "wires": [
+            [
+                "7c4ce5f3.62dd5c"
+            ]
+        ]
+    },
+    {
+        "id": "35ad311f.344c76",
+        "type": "ui_text",
+        "z": "b771c342.49603",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "name": "Time",
+        "label": "Time",
+        "format": "{{msg.payload.time}}",
+        "layout": "col-center",
+        "x": 690,
+        "y": 980,
+        "wires": []
     }
 ]
