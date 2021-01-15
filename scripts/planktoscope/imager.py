@@ -550,7 +550,7 @@ class ImagerProcess(multiprocessing.Process):
         # Definition of the few important metadata
         local_metadata = {
             "acq_local_datetime": datetime.datetime.now().isoformat().split(".")[0],
-            "acq_camera_resolution": self.__resolution,
+            "acq_camera_resolution": f"{self.__resolution[0]}x{self.__resolution[1]}",
             "acq_camera_iso": self.__iso,
             "acq_camera_shutter_speed": self.__shutter_speed,
             "acq_uuid": planktoscope.uuidName.uuidMachineName(
@@ -606,7 +606,7 @@ class ImagerProcess(multiprocessing.Process):
         logger.info("Exporting the metadata to a metadata.json")
         metadata_filepath = os.path.join(self.__export_path, "metadata.json")
         with open(metadata_filepath, "w") as metadata_file:
-            json.dump(self.__global_metadata, metadata_file, indent="4")
+            json.dump(self.__global_metadata, metadata_file, indent=4)
             logger.debug(
                 f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
             )
