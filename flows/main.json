@@ -965,6 +965,26 @@
         "height": 1
     },
     {
+        "id": "f3ca28ef.4df0a8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Shutdown",
+        "tab": "3a6bb13f.c9703e",
+        "order": 7,
+        "disp": true,
+        "width": 4,
+        "collapse": false
+    },
+    {
+        "id": "3dfd8a69.69ed56",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "f3ca28ef.4df0a8",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
         "id": "4e78af2d.90be7",
         "type": "ui_ui_control",
         "z": "eaae323a.31b3",
@@ -8547,5 +8567,310 @@
         "x": 690,
         "y": 980,
         "wires": []
+    },
+    {
+        "id": "dab82064.26a8d",
+        "type": "ui_button",
+        "z": "eaae323a.31b3",
+        "name": "Unlock button",
+        "group": "f3ca28ef.4df0a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Unlock button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "shutdown",
+        "payloadType": "flow",
+        "topic": "",
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "6c3a3b4.78cad44"
+            ]
+        ]
+    },
+    {
+        "id": "1c658761.b852a1",
+        "type": "ui_toast",
+        "z": "eaae323a.31b3",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "YES PLEASE",
+        "cancel": "NO!",
+        "raw": false,
+        "topic": "Are you sure?",
+        "name": "Confirmation message",
+        "x": 800,
+        "y": 380,
+        "wires": [
+            [
+                "8f1b8e23.daafe"
+            ]
+        ]
+    },
+    {
+        "id": "a48ff63f.db5e18",
+        "type": "inject",
+        "z": "eaae323a.31b3",
+        "name": "disabled",
+        "props": [
+            {
+                "p": "enabled",
+                "v": "false",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "d58039a9.6e7928"
+            ]
+        ]
+    },
+    {
+        "id": "b67a7147.65fcd8",
+        "type": "ui_button",
+        "z": "eaae323a.31b3",
+        "name": "Shutdown button",
+        "group": "f3ca28ef.4df0a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Shutdown",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "icon": "fa-power-off fa-2x",
+        "payload": "Do you want to turn the machine off now?",
+        "payloadType": "str",
+        "topic": "",
+        "x": 570,
+        "y": 380,
+        "wires": [
+            [
+                "1c658761.b852a1"
+            ]
+        ]
+    },
+    {
+        "id": "d58039a9.6e7928",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "shutdown",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "shutdown",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 360,
+        "wires": [
+            [
+                "b67a7147.65fcd8"
+            ]
+        ]
+    },
+    {
+        "id": "6c3a3b4.78cad44",
+        "type": "function",
+        "z": "eaae323a.31b3",
+        "name": "Toggle",
+        "func": "flow.set(\"shutdown\", !flow.get(\"shutdown\"))\nmsg.enabled = flow.get(\"shutdown\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "b67a7147.65fcd8"
+            ]
+        ]
+    },
+    {
+        "id": "d1153ad6.40d738",
+        "type": "ui_template",
+        "z": "eaae323a.31b3",
+        "group": "f3ca28ef.4df0a8",
+        "name": "Shutdown information",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<center>To prevent data corruption, please <b>always shutdown the machine</b> before unplugging the unit.\n<br><br>\nRememver to first unlock the shutdown button.\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 120,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e08cfcb8.2a67e8",
+        "type": "link out",
+        "z": "eaae323a.31b3",
+        "name": "Home shutdown button",
+        "links": [
+            "b81b990a.d4dca"
+        ],
+        "x": 715,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ce7087fc.dcc9e8",
+        "type": "ui_toast",
+        "z": "eaae323a.31b3",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "Turning off now!",
+        "name": "Shutdown message",
+        "x": 620,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b81b990a.d4dca",
+        "type": "link in",
+        "z": "9daf9e2b.019fc",
+        "name": "Shutdown",
+        "links": [
+            "e08cfcb8.2a67e8"
+        ],
+        "x": 435,
+        "y": 460,
+        "wires": [
+            [
+                "4af9112d.87767"
+            ]
+        ]
+    },
+    {
+        "id": "7d1626a0.deb85",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "shutdown!",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "shutdown",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 480,
+        "wires": [
+            [
+                "e08cfcb8.2a67e8"
+            ]
+        ]
+    },
+    {
+        "id": "8f1b8e23.daafe",
+        "type": "switch",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "NO!",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "d58039a9.6e7928"
+            ],
+            [
+                "7d1626a0.deb85",
+                "281a56c9.ec7902"
+            ]
+        ]
+    },
+    {
+        "id": "281a56c9.ec7902",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "Shutdown message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Please wait a minute before disconnecting the machine from its power supply!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 520,
+        "wires": [
+            [
+                "ce7087fc.dcc9e8"
+            ]
+        ]
     }
 ]
