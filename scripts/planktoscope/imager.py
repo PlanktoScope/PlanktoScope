@@ -130,7 +130,7 @@ class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
     @logger.catch
-    def __init__(self, stop_event):
+    def __init__(self, stop_event, iso=100, shutter_speed=1):
         """Initialize the Imager class
 
         Args:
@@ -179,7 +179,6 @@ class ImagerProcess(multiprocessing.Process):
             logger.exception(
                 f"An exception has occured when starting up raspimjpeg: {e}"
             )
-            logger.error("Shutting off the process now")
             exit(1)
 
         if self.__camera.sensor_name == "IMX219":  # Camera v2.1
@@ -192,15 +191,14 @@ class ImagerProcess(multiprocessing.Process):
                 f"The connected camera {self.__camera.sensor_name} is not recognized, please check your camera"
             )
 
-        self.__iso = 0
-        self.__shutter_speed = 100
-        self.__exposure_mode = "off"
+        self.__iso = iso
+        self.__shutter_speed = shutter_speed
+        self.__exposure_mode = "fixedfps"
         self.__white_balance = "off"
         self.__white_balance_gain = (
             configuration.get("wb_red_gain", 2.00) * 100,
             configuration.get("wb_blue_gain", 1.40) * 100,
         )
-        self.__image_gain = (100, 100)
 
         self.__base_path = "/home/pi/data/img"
         # Let's make sure the base path exists
@@ -263,15 +261,6 @@ class ImagerProcess(multiprocessing.Process):
                 "A timeout has occured when setting the white balance gain, trying again"
             )
             self.__camera.white_balance_gain = self.__white_balance_gain
-        time.sleep(0.1)
-
-        try:
-            self.__camera.image_gain = self.__image_gain
-        except TimeoutError as e:
-            logger.error(
-                "A timeout has occured when setting the image gain, trying again"
-            )
-            self.__camera.image_gain = self.__image_gain
 
         logger.success("planktoscope.imager is initialised and ready to go!")
 
@@ -476,40 +465,6 @@ class ImagerProcess(multiprocessing.Process):
                         f'{"status":"Error: White balance mode {self.__white_balance} is not valid"}',
                     )
                     return
-
-            if "image_gain" in settings:
-                if "analog" in settings["image_gain"]:
-                    logger.debug(
-                        f"Updating the camera analog gain to {settings['image_gain']}"
-                    )
-                    self.__image_gain = (
-                        settings["image_gain"].get("analog", self.__image_gain[0]),
-                        self.__image_gain[1],
-                    )
-                if "digital" in settings["image_gain"]:
-                    logger.debug(
-                        f"Updating the camera digital gain to {settings['image_gain']}"
-                    )
-                    self.__image_gain = (
-                        self.__image_gain[0],
-                        settings["image_gain"].get("digital", self.__image_gain[1]),
-                    )
-                logger.debug(f"Updating the camera image gain to {self.__image_gain}")
-                try:
-                    self.__camera.image_gain = self.__image_gain
-                except TimeoutError as e:
-                    logger.error(
-                        "A timeout has occured when setting the image gain, trying again"
-                    )
-                    self.__camera.image_gain = self.__image_gain
-                except ValueError as e:
-                    logger.error("The requested image gain is not valid!")
-                    self.imager_client.client.publish(
-                        "status/imager",
-                        '{"status":"Error: Chosen image gain is not valid"}',
-                    )
-                    return
-
             # Publish the status "Config updated" to via MQTT to Node-RED
             self.imager_client.client.publish(
                 "status/imager", '{"status":"Camera settings updated"}'
@@ -583,14 +538,14 @@ class ImagerProcess(multiprocessing.Process):
                     "action": "move",
                     "direction": self.__pump_direction,
                     "volume": self.__pump_volume,
-                    "flowrate": 0.25,
+                    "flowrate": 2,
                 }
             ),
         )
 
     def __state_imaging(self):
         # subscribe to status/pump
-        # self.imager_client.client.subscribe("status/pump")
+        self.imager_client.client.subscribe("status/pump")
 
         # Definition of the few important metadata
         local_metadata = {
@@ -651,7 +606,7 @@ class ImagerProcess(multiprocessing.Process):
         logger.info("Exporting the metadata to a metadata.json")
         metadata_filepath = os.path.join(self.__export_path, "metadata.json")
         with open(metadata_filepath, "w") as metadata_file:
-            json.dump(self.__global_metadata, metadata_file, indent=4)
+            json.dump(self.__global_metadata, metadata_file, indent="4")
             logger.debug(
                 f"Metadata dumped in {metadata_file} are {self.__global_metadata}"
             )
@@ -730,9 +685,9 @@ class ImagerProcess(multiprocessing.Process):
             planktoscope.light.ready()
         else:
             # We have not reached the final stage, let's keep imaging
-            # self.imager_client.client.subscribe("status/pump")
+            self.imager_client.client.subscribe("status/pump")
 
-            # self.__pump_message()
+            self.__pump_message()
 
             self.__imager.change(planktoscope.imager_state_machine.Waiting)
 
@@ -767,11 +722,7 @@ class ImagerProcess(multiprocessing.Process):
             self.__state_capture()
             return
 
-        elif self.__imager.state.name == "waiting":
-            self.__imager.change(planktoscope.imager_state_machine.Capture)
-            return
-
-        elif self.__imager.state.name == "stop":
+        elif self.__imager.state.name == ["waiting", "stop"]:
             return
 
     ################################################################################
