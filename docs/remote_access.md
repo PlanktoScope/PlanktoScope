@@ -2,20 +2,88 @@
 
 ## Setting up a Raspberry Pi as an access point in a standalone network (NAT)
 
-This tutorial is adapted from an official Raspberry Pi tutorial that you can find [here](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md#internet-sharing).
+This tutorial is adapted from a tutorial that you can find [here](https://www.raspberryconnect.com/projects/65-raspberrypi-hotspot-accesspoints/157-raspberry-pi-auto-wifi-hotspot-switch-internet).
 
 In order to work as an access point, the Raspberry Pi will need to have access point software installed, along with DHCP server software to provide connecting devices with a network address.
 
 To create an access point, we'll need DNSMasq and HostAPD. Install all the required software in one go with this command::
 ```
-        sudo apt install dnsmasq hostapd
+sudo apt install dnsmasq hostapd
 ```
 
 Since the configuration files are not ready yet, turn the new software off as follows::
 ```
-        sudo systemctl stop dnsmasq
-        sudo systemctl stop hostapd
+sudo systemctl unmask hostapd
+sudo systemctl disable dnsmasq
+sudo systemctl disable hostapd
 ```
+
+### Configuring HostAPD
+
+Using a text editor edit the hostapd configuration file. This file won't exist at this stage so will be blank: `sudo nano /etc/hostapd/hostapd.conf`
+
+```
+#2.4GHz setup wifi 80211 b,g,n
+interface=wlan0
+driver=nl80211
+ssid=RPiHotspotN
+hw_mode=g
+channel=8
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=1234567890
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=CCMP TKIP
+rsn_pairwise=CCMP
+
+#80211n - Change GB to your WiFi country code
+country_code=GB
+ieee80211n=1
+ieee80211d=1
+```
+
+The interface will be wlan0
+The driver nl80211 works with the Raspberry RPi 4, RPi 3B+, RPi 3 & Pi Zero W onboard WiFi but you will need to check that your wifi dongle is compatable and can use Access Point mode.
+
+For more information on wifi dongles see elinux.org/RPi_USB_Wi-Fi_Adapters
+
+The SSID is the name of the WiFi signal broadcast from the RPi, which you will connect to with your Tablet or phones WiFi settings.
+Channel can be set between 1 and 13. If you are having trouble connection because of to many wifi signals in your area are using channel 8 then try another channel.
+Wpa_passphrase is the password you will need to enter when you first connect a device to your Raspberry Pi's hotspot. This should be at least 8 characters and a bit more difficult to guess than my example.
+The country_code should be set to your country to comply with local RF laws. You may experience connection issues if this is not correct. Your country_code can be found in /etc/wpa_supplicant/wpa_supplicant.conf or in Raspberry Pi Configuration - Localisation settings
+
+To save the config file press `ctrl + O` and to exit nano press `ctrl + X`.
+
+Now the defaults file needs to be updated to point to where the config file is stored.
+In terminal enter the command
+`sudo nano /etc/default/hostapd`
+
+Change `#DAEMON_CONF=""` to `DAEMON_CONF="/etc/hostapd/hostapd.conf"`
+
+Check the `DAEMON_OPTS=""` is preceded by a #, so is `#DAEMON_OPTS=""`.
+
+And save.
+
+### DNSmasq configuration
+
+Next dnsmasq needs to be configured to allow the Rpi to act as a router and issue ip addresses. Open the dnsmasq.conf file with `sudo nano /etc/dnsmasq.conf`
+
+Go to the bottom of the file and add the following lines:
+```
+#AutoHotspot config
+interface=wlan0
+bind-dynamic 
+server=8.8.8.8
+domain-needed
+bogus-priv
+dhcp-range=192.168.50.150,192.168.50.200,12h
+```
+
+and then save `ctrl + O` and exit `ctrl + X`.
+
 
 ### Configuring a static IP
 
