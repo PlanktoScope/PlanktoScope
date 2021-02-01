@@ -2,6 +2,33 @@
 
 ## Image changelog
 
+### V2.2: released 2021-01-15
+Breaking changes:
+
+- new UI: more intuitive and more complete, with data validations checks and helpful tooltips
+
+
+Improvements:
+
+- Random camera crash solved: instead of using the python picamera library, we now use a compiled binary, `raspimjpeg` (whose source code is [here](https://github.com/PlanktonPlanet/userland/tree/master/host_applications/linux/apps/raspicam)). It's controlled through a FIFO pipe.
+- Raspberry HQ camera support (the pixels are bigger (1,55µm vs 1,12µm on the camera v2.1) so with the same optics, the resolving power of your images is going to be reduced at 1µm per pixel vs 0,7µm per pixel with the 25mm/16mm lens couple).
+- White balance control of the image 
+- Data backup on USB drive: all the files contained in `/home/pi/data` are copied over to your usb key
+- Integrity check of the generated files (for now only for raw pictures and `metadata.json`. A file called `integrity.check` is created alongside the images. This file contains one line per file, with the filename, its size and a checksum of both its filename and its content.
+- Gallery: allows you to browse the data folder to see the images you captured and the segmentation results.
+- Update mechanism: for now, this only updates the code of the PlanktoScope and not the underlying OS.
+- Wifi configuration tab: you can configure the Wifi network you want the machine to connect to.
+- Hardware configuration tab: to customize the settings dependind on the hardware you use, (pump steps per mL, stepper driver type).
+
+
+Probably broken:
+
+- Embedded segmentation: it's been a while since we touched it. It should still be working, but you may experience bugs with it... If that's the case, please come forward so we can help solve those before the next release!
+
+
+**[Image download link](https://drive.google.com/file/d/1fht8r7P6_bVsfIIwo7wnGLQ_1uxWCnos/view?usp=sharing)**
+
+
 ### V2.1: released 2020-10-14
 Breaking changes firsts:
 
