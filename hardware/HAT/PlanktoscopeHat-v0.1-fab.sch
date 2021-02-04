@@ -15279,13 +15279,13 @@ OSHW_LOGO</description>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="+5V/1" device=""/>
 <part name="WP" library="SparkFun-Jumpers" library_urn="urn:adsk.eagle:library:528" deviceset="JUMPER-SMT_2_NO" device="_SILK" package3d_urn="urn:adsk.eagle:package:39279/1"/>
 <part name="C19" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="CAP_CERAMIC" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="10uF"/>
-<part name="C20" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="CAP_CERAMIC" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="1uF"/>
+<part name="C20" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="CAP_CERAMIC" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="1µF"/>
 <part name="EN" library="SparkFun-Jumpers" library_urn="urn:adsk.eagle:library:528" deviceset="JUMPER-SMT_3_1-NC_PASTE" device="_SILK" package3d_urn="urn:adsk.eagle:package:39293/1"/>
 <part name="GND18" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="MOT1" library="PScope" deviceset="S4B-XH-SM4-TB(LF)(SN)" device=""/>
 <part name="MOT2" library="PScope" deviceset="S4B-XH-SM4-TB(LF)(SN)" device=""/>
-<part name="R11" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="RESISTOR" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="500R"/>
-<part name="R12" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="RESISTOR" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="5k"/>
+<part name="R11" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="RESISTOR" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="499R"/>
+<part name="R12" library="microbuilder" library_urn="urn:adsk.eagle:library:18156183" deviceset="RESISTOR" device="_0805MP" package3d_urn="urn:adsk.eagle:package:18156346/1" value="4.99k"/>
 <part name="D2" library="Diode" library_urn="urn:adsk.eagle:library:16378169" deviceset="DIODE" device="DO-214AC(SMA)" package3d_urn="urn:adsk.eagle:package:16378188/1" value="DIODE"/>
 <part name="GND19" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
@@ -15453,6 +15453,11 @@ OSHW_LOGO</description>
 <text x="248.92" y="104.14" size="2.54" layer="97" align="center">+5v @ 3A PSU (7.5v-28v Input)</text>
 <text x="30.734" y="51.308" size="1.778" layer="97">DIAG0/ERROR</text>
 <text x="30.734" y="48.768" size="1.778" layer="97">DIAG1/STALL</text>
+<text x="213.36" y="190.5" size="1.778" layer="97" align="center">R16/R17 value
+controls the available output
+current of the driver
+2R is 100mA
+10R is 20mA</text>
 </plain>
 <instances>
 <instance part="K1" gate="A" x="50.8" y="152.4" smashed="yes">
@@ -15472,7 +15477,8 @@ OSHW_LOGO</description>
 <attribute name="VALUE" x="73.66" y="119.38" size="1.778" layer="96"/>
 </instance>
 <instance part="R1" gate="G$1" x="68.58" y="223.52" smashed="yes" rot="R90">
-<attribute name="NAME" x="71.12" y="223.7486" size="1.778" layer="95"/>
+<attribute name="NAME" x="66.04" y="223.52" size="1.27" layer="95" font="vector" rot="R90" align="center"/>
+<attribute name="VALUE" x="68.58" y="223.52" size="1.016" layer="96" font="vector" ratio="15" rot="R90" align="center"/>
 </instance>
 <instance part="+3V10" gate="G$1" x="63.5" y="238.76" smashed="yes">
 <attribute name="VALUE" x="66.04" y="241.3" size="1.778" layer="96" rot="R180"/>
@@ -15485,13 +15491,16 @@ OSHW_LOGO</description>
 </instance>
 <instance part="C1" gate="G$1" x="20.32" y="215.9" smashed="yes">
 <attribute name="DIELECTRIC" x="20.32" y="215.9" size="1.778" layer="96" display="off"/>
-<attribute name="NAME" x="21.844" y="216.281" size="1.778" layer="95"/>
+<attribute name="NAME" x="18.03" y="217.15" size="1.27" layer="95" font="vector" rot="R90" align="center"/>
+<attribute name="VALUE" x="22.62" y="217.15" size="1.27" layer="96" font="vector" rot="R90" align="center"/>
 </instance>
 <instance part="R2" gate="G$1" x="78.74" y="223.52" smashed="yes" rot="R90">
-<attribute name="NAME" x="81.28" y="223.7486" size="1.778" layer="95"/>
+<attribute name="NAME" x="76.2" y="223.52" size="1.27" layer="95" font="vector" rot="R90" align="center"/>
+<attribute name="VALUE" x="78.74" y="223.52" size="1.016" layer="96" font="vector" ratio="15" rot="R90" align="center"/>
 </instance>
 <instance part="R3" gate="G$1" x="38.1" y="228.6" smashed="yes" rot="R90">
-<attribute name="NAME" x="40.64" y="228.8286" size="1.778" layer="95"/>
+<attribute name="NAME" x="35.56" y="228.6" size="1.27" layer="95" font="vector" rot="R90" align="center"/>
+<attribute name="VALUE" x="38.1" y="228.6" size="1.016" layer="96" font="vector" ratio="15" rot="R90" align="center"/>
 </instance>
 <instance part="+3V4" gate="G$1" x="38.1" y="238.76" smashed="yes">
 <attribute name="VALUE" x="40.64" y="241.3" size="1.778" layer="96" rot="R180"/>
@@ -17258,6 +17267,10 @@ OSHW_LOGO</description>
 </schematic>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
