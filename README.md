@@ -31,6 +31,6 @@ You can access the complete documentation on [Read The Docs](https://planktonsco
 # How do I get involved?
 There are several ways to join the development effort, share your progress with your build or just ask for help.
 
-We are using slack as a communication platform between interested parties. You can [request to join by filling this form](https://forms.gle/4JnziFjVgjq56aT17).
+We are using slack as a communication platform between interested parties. You can [request to join by filling this form](https://docs.google.com/forms/d/e/1FAIpQLSfcod-avpzWVmWj42_hW1v2mMSHm0DAGXHxVECFig2dnKHxGQ/viewform).
 
 This repository is also a good way to get involved. Please fill in an issue if you witnessed a bug in the software or hardware. If you are able, you can also join the development effort. Look through the [issues opened](https://github.com/PlanktonPlanet/PlanktonScope/labels/good%20first%20issue) and choose one that piques your interest. Let us know you want to work on it in the comments, we may even be able to guide your beginnings around the code.
