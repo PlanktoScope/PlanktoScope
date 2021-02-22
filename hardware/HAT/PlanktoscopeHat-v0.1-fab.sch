@@ -15433,9 +15433,9 @@ OSHW_LOGO</description>
 <sheet>
 <plain>
 <text x="289.56" y="20.32" size="1.778" layer="94" ratio="15">Drawn by:</text>
-<text x="289.56" y="16.51" size="1.778" layer="94" ratio="15">Checked  by:</text>
-<text x="289.56" y="5.08" size="1.778" layer="94">FLYFISH TECHNOLOGIES d.o.o.</text>
-<text x="309.88" y="20.32" size="1.778" layer="94">Ivan Zilic</text>
+<text x="290.068" y="12.7" size="1.778" layer="94" ratio="15">Checked  by:</text>
+<text x="289.56" y="5.08" size="1.778" layer="94">Plankton Planet</text>
+<text x="308.356" y="20.32" size="1.778" layer="94">Romain Bazile</text>
 <text x="374.65" y="5.08" size="2.54" layer="94" ratio="10">v0.1</text>
 <wire x1="353.06" y1="104.14" x2="355.6" y2="104.14" width="0.1524" layer="97"/>
 <wire x1="355.6" y1="101.6" x2="355.6" y2="106.68" width="0.1524" layer="97"/>
