@@ -33,9 +33,11 @@ GPIO20 for Stall output
 PWM1 control through GPIO13
 
 #### LED0 control
+PWM dimming frequency range: 6.5 kHz to 100 kHz
 PWM0 control through GPIO18
 
 #### LED1 control
+PWM dimming frequency range: 6.5 kHz to 100 kHz
 PWM0 control through GPIO12
 
 
