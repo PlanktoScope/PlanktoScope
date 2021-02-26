@@ -71,6 +71,28 @@ def uuidMachineName(machine="", type=1):
     return name.title()
 
 
+def uuidMachine(machine="", type=1):
+    """Generates a universally unique id, including the machine id
+
+    When using a type 4 id, the machine name is not taken into account as the uuid is completely random
+
+    Args:
+        machine (str, optional): hex string that defines a machine serial number. Defaults to "".
+        type (int, optional): uuid type to use (1 is node dependant, 4 is completely random). Defaults to 1.
+
+    Returns:
+        str: universally unique id
+    """
+    if type == 4:
+        id = str(uuid.uuid4())
+    else:
+        if machine == "":
+            id = str(uuid.uuid1())
+        else:
+            id = str(uuid.uuid1(node=int(str(machine)[-12:], 16)))
+    return id
+
+
 def uuidName():
     """Generates a universally unique name, without the machine unique part
     When used alone, this function can have collisions with other uuname generated on other machines.
