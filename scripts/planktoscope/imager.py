@@ -553,10 +553,10 @@ class ImagerProcess(multiprocessing.Process):
             "acq_camera_resolution": f"{self.__resolution[0]}x{self.__resolution[1]}",
             "acq_camera_iso": self.__iso,
             "acq_camera_shutter_speed": self.__shutter_speed,
-            "acq_uuid": planktoscope.uuidName.uuidMachineName(
+            "acq_uuid": planktoscope.uuidName.uuidMachine(
                 machine=planktoscope.uuidName.getSerial()
             ),
-            "sample_uuid": planktoscope.uuidName.uuidMachineName(
+            "sample_uuid": planktoscope.uuidName.uuidMachine(
                 machine=planktoscope.uuidName.getSerial()
             ),
         }
