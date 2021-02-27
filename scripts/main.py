@@ -129,6 +129,13 @@ if __name__ == "__main__":
     segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
     segmenter_thread.start()
 
+
+    # Starts the module process
+    # Uncomment here as needed
+    # logger.info("Starting the module process")
+    # module_thread = planktoscope.module.ModuleProcess(shutdown_event)
+    # module_thread.start()
+
     logger.info("Starting the display module")
     display = planktoscope.display.Display()
 
@@ -155,8 +162,12 @@ if __name__ == "__main__":
     stepper_thread.join()
     imager_thread.join()
     segmenter_thread.join()
+    # Uncomment this for clean shutdown
+    # module_thread.join()
     stepper_thread.close()
     imager_thread.close()
     segmenter_thread.close()
+    # Uncomment this for clean shutdown
+    # module_thread.close()
     display.stop()
     logger.info("Bye")
