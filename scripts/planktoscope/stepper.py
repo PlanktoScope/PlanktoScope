@@ -1,6 +1,4 @@
 # Libraries to control the steppers for focusing and pumping
-import adafruit_motor.stepper
-import adafruit_motorkit
 import time
 import json
 import os
@@ -8,92 +6,37 @@ import planktoscope.mqtt
 import multiprocessing
 import RPi.GPIO
 
+import shush
+
 # Logger library compatible with multiprocessing
 from loguru import logger
 
 logger.info("planktoscope.stepper is loaded")
 
 
-class StepperWaveshare:
-    """A bipolar stepper motor using the Waveshare HAT."""
-
-    def __init__(self, dir_pin, step_pin, enable_pin):
-        self.dir_pin = dir_pin
-        self.step_pin = step_pin
-        self.enable_pin = enable_pin
-
-        RPi.GPIO.setmode(RPi.GPIO.BCM)
-        RPi.GPIO.setwarnings(False)
-        RPi.GPIO.setup(
-            [self.dir_pin, self.step_pin, self.enable_pin],
-            RPi.GPIO.OUT,
-            initial=RPi.GPIO.HIGH,
-        )
-        self.release()
-
-    def release(self):
-        """Releases all the coils so the motor can free spin, also won't use any power"""
-        self.__digital_write(self.enable_pin, 1)
-
-    def __digital_write(self, pin, value):
-        RPi.GPIO.output(pin, value)
-
-    def stop(self):
-        self.__digital_write(self.enable_pin, 1)
-
-    def onestep(self, *, direction=adafruit_motor.stepper.FORWARD, style=""):
-        """Performs one step.
-        :param int direction: Either `FORWARD` or `BACKWARD`"""
-
-        if direction == adafruit_motor.stepper.FORWARD:
-            self.__digital_write(self.enable_pin, 0)
-            self.__digital_write(self.dir_pin, 1)
-        elif direction == adafruit_motor.stepper.BACKWARD:
-            self.__digital_write(self.enable_pin, 0)
-            self.__digital_write(self.dir_pin, 0)
-        else:
-            logger.error(
-                "The direction must be : adafruit_motor.stepper.FORWARD or adafruit_motor.stepper.BACKWARD"
-            )
-            self.release()
-            return
-
-        # This delay is just to make sure the chip had time to take the dir/enable pin
-        # into account, min delay is 650ns
-        time.sleep(0.000001)
-        self.__digital_write(self.step_pin, True)
-        # This delay is the minimal time high for the step impulse, 2µs
-        time.sleep(0.000005)
-        self.__digital_write(self.step_pin, False)
+"""Step forward"""
+FORWARD = 1
+""""Step backward"""
+BACKWARD = 2
+"""Stepper controller 1"""
+STEPPER1 = 0
+""""Stepper controller 2"""
+STEPPER2 = 1
 
 
 class stepper:
-    def __init__(self, stepper, style=adafruit_motor.stepper.SINGLE, size=0):
+    def __init__(self, stepper, size=0):
         """Initialize the stepper class
 
         Args:
-            stepper (adafruit_motorkit.Motorkit().stepper or StepperWaveshare): reference to the object that controls the stepper
-            style (adafruit_motor.stepper): style of the movement SINGLE, DOUBLE, MICROSTEP
+            stepper (either STEPPER1 or STEPPER2): reference to the object that controls the stepper
             size (int): maximum number of steps of this stepper (aka stage size). Can be 0 if not applicable
         """
-        self.__stepper = stepper
-        self.__style = style
+        self.__stepper = shush.Motor(stepper)
         self.__size = size
-        self.__position = 0
         self.__goal = 0
         self.__direction = ""
-        self.__next_step_date = time.monotonic()
-        self.__delay = 0
-        # Make sure the stepper is released and do not use any power
-        self.__stepper.release()
-
-    def step_waiting(self):
-        """Is there a step waiting to be actuated
-
-        Returns:
-            Bool: if time has come to push the step
-        """
-        return time.monotonic() > self.__next_step_date
+        self.__stepper.disable_motor()
 
     def at_goal(self):
         """Is the motor at its goal
@@ -101,68 +44,58 @@ class stepper:
         Returns:
             Bool: True if position and goal are identical
         """
-        return self.__position == self.__goal
+        return self.__stepper.get_position() == self.__goal
 
-    def next_step_date(self):
-        """set the next step date"""
-        self.__next_step_date = self.__next_step_date + self.__delay
-
-    def initial_step_date(self):
-        """set the initial step date"""
-        self.__next_step_date = time.monotonic() + self.__delay
-
-    def move(self):
-        """move the stepper
+    def is_moving(self):
+        """is the stepper in movement?
 
         Returns:
-          Bool: True if the step done was the last one of the movement
+          Bool: True if the stepper is moving
         """
-        if self.step_waiting() and not self.at_goal():
-            self.__stepper.onestep(
-                direction=self.__direction,
-                style=self.__style,
-            )
-            if self.__direction == adafruit_motor.stepper.FORWARD:
-                self.__position += 1
-            elif self.__direction == adafruit_motor.stepper.BACKWARD:
-                self.__position -= 1
-            if not self.at_goal():
-                self.next_step_date()
-            else:
-                logger.success("The stepper has reached its goal")
-                self.__stepper.release()
-                return True
-        return False
+        return self.__stepper.get_velocity() != 0
 
-    def go(self, direction, distance, delay):
+    def go(self, direction, distance):
         """move in the given direction for the given distance
 
         Args:
-          direction (adafruit_motor.stepper): gives the movement direction
-          distance
-          delay
+          direction: gives the movement direction
+          distance:
         """
-        self.__delay = delay
         self.__direction = direction
-        if self.__direction == adafruit_motor.stepper.FORWARD:
-            self.__goal = self.__position + distance
-        elif self.__direction == adafruit_motor.stepper.BACKWARD:
-            self.__goal = self.__position - distance
+        if self.__direction == FORWARD:
+            self.__goal = int(self.__stepper.get_position() + distance)
+        elif self.__direction == BACKWARD:
+            self.__goal = int(self.__stepper.get_position() - distance)
         else:
             logger.error(f"The given direction is wrong {direction}")
-        self.initial_step_date()
+        self.__stepper.enable_motor()
+        self.__stepper.go_to(self.__goal)
 
     def shutdown(self):
         """Shutdown everything ASAP"""
-        self.__goal = self.__position
-        self.__stepper.release()
+        self.__stepper.stop_motor()
+        self.__stepper.disable_motor()
+        self.__goal = self.__stepper.get_position()
 
     def release(self):
-        self.__stepper.release()
+        self.__stepper.disable_motor()
+
+    @property
+    def max_speed(self):
+        return self.__stepper.ramp.VMAX
+
+    @max_speed.setter
+    def max_speed(self, max_speed):
+        """Change the stepper max speed
+
+        Args:
+            max_speed (int): max speed reachable by the stepper
+        """
+        logger.debug(f"Setting stepper max speed to {max_speed}")
+        self.__stepper.set_VMAX(int(max_speed))
 
 
 class StepperProcess(multiprocessing.Process):
-
     focus_steps_per_mm = 40
     # 507 steps per ml for Planktonscope standard
     # 5200 for custom NEMA14 pump with 0.8mm ID Tube
@@ -172,14 +105,13 @@ class StepperProcess(multiprocessing.Process):
     # pump max speed is in ml/min
     pump_max_speed = 30
 
-    stepper_type = "adafruit"
-
     def __init__(self, event):
         super(StepperProcess, self).__init__()
         logger.info("Initialising the stepper process")
-        RPi.GPIO.setup([12, 4], RPi.GPIO.OUT, initial=RPi.GPIO.HIGH)
 
         self.stop_event = event
+        self.focus_started = False
+        self.pump_started = False
 
         if os.path.exists("/home/pi/PlanktonScope/hardware.json"):
             # load hardware.json
@@ -193,11 +125,9 @@ class StepperProcess(multiprocessing.Process):
             configuration = {}
 
         reverse = False
-        microsteps = 16
 
         # parse the config data. If the key is absent, we are using the default value
         reverse = configuration.get("stepper_reverse", reverse)
-        microsteps = configuration.get("microsteps", microsteps)
         self.focus_steps_per_mm = configuration.get(
             "focus_steps_per_mm", self.focus_steps_per_mm
         )
@@ -208,49 +138,16 @@ class StepperProcess(multiprocessing.Process):
             "focus_max_speed", self.focus_max_speed
         )
         self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
-        self.stepper_type = configuration.get("stepper_type", self.stepper_type)
 
         # define the names for the 2 exsting steppers
-        if self.stepper_type == "adafruit":
-            logger.info("Loading the adafruit configuration")
-            kit = adafruit_motorkit.MotorKit(steppers_microsteps=microsteps)
-            if reverse:
-                self.pump_stepper = stepper(kit.stepper2, adafruit_motor.stepper.DOUBLE)
-                self.focus_stepper = stepper(
-                    kit.stepper1, adafruit_motor.stepper.MICROSTEP, size=45
-                )
-            else:
-                self.pump_stepper = stepper(kit.stepper1, adafruit_motor.stepper.DOUBLE)
-                self.focus_stepper = stepper(
-                    kit.stepper2, adafruit_motor.stepper.MICROSTEP, size=45
-                )
-        elif self.stepper_type == "waveshare":
-            logger.info("Loading the waveshare configuration")
-            logger.debug(
-                f"Configured microsteps is {microsteps}, check the hardware switches if the stage does not move the intended distance"
-            )
-            if reverse:
-                self.pump_stepper = stepper(
-                    StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4)
-                )
-                self.focus_stepper = stepper(
-                    StepperWaveshare(dir_pin=13, step_pin=19, enable_pin=12),
-                    size=45,
-                )
-            else:
-                self.pump_stepper = stepper(
-                    StepperWaveshare(dir_pin=13, step_pin=19, enable_pin=12)
-                )
-                self.focus_stepper = stepper(
-                    StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4),
-                    size=45,
-                )
+        if reverse:
+            self.pump_stepper = stepper(STEPPER2)
+            self.focus_stepper = stepper(STEPPER1, size=45)
         else:
-            logger.error(
-                "The stepper control type is not recognized. Should be 'adafruit' or 'waveshare'"
-            )
-            logger.error(f"{self.stepper_type} is what was supplied")
-            return
+            self.pump_stepper = stepper(STEPPER1)
+            self.focus_stepper = stepper(STEPPER2, size=45)
+        # self.focus_stepper.max_speed = self.focus_max_speed # TODO fix this to convert unit to steps
+        # self.pump_stepper.max_speed = self.pump_max_speed
 
         logger.info(f"Stepper initialisation is over")
 
@@ -378,28 +275,12 @@ class StepperProcess(multiprocessing.Process):
             logger.error("You are trying to move more than the stage physical size")
             return
 
-        # We are going to use 32 microsteps, so we need to multiply by 32 the steps number
-        nb_steps = round(self.focus_steps_per_mm * distance * 32, 0)
-        logger.debug(f"The number of steps that will be applied is {nb_steps}")
-        steps_per_second = speed * self.focus_steps_per_mm * 32
+        # We are going to use 256 microsteps, so we need to multiply by 256 the steps number
+        nb_steps = round(self.focus_steps_per_mm * distance * 256, 0)
+        logger.debug(f"The number of microsteps that will be applied is {nb_steps}")
+        steps_per_second = speed * self.focus_steps_per_mm * 256
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
-
-        if steps_per_second > 400:
-            steps_per_second = 400
-            logger.warning("The requested speed is faster than the maximum safe speed")
-            logger.warning(
-                f"The speed of the motor is going to be limited to {steps_per_second/32/self.focus_steps_per_mm}mm/sec"
-            )
-
-        # On linux, the minimal acceptable delay managed by the system is 0.1ms
-        # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
-        # However we have a fixed delay of at least 2.5ms per step due to the library
-        # Our maximum speed is thus about 400 pulses per second or 0.5mm/sec of stage speed
-        if self.stepper_type == "adafruit":
-            delay = max((1 / steps_per_second) - 0.0025, 0)
-        else:
-            delay = 1 / steps_per_second
-        logger.debug(f"The delay between two steps is {delay}s")
+        # self.focus_stepper.max_speed = int(steps_per_second)
 
         # Publish the status "Started" to via MQTT to Node-RED
         self.actuator_client.client.publish(
@@ -409,10 +290,14 @@ class StepperProcess(multiprocessing.Process):
 
         # Depending on direction, select the right direction for the focus
         if direction == "UP":
-            self.focus_stepper.go(adafruit_motor.stepper.FORWARD, nb_steps, delay)
+            self.focus_started = True
+            self.focus_stepper.go(FORWARD, nb_steps)
+            return
 
         if direction == "DOWN":
-            self.focus_stepper.go(adafruit_motor.stepper.BACKWARD, nb_steps, delay)
+            self.focus_started = True
+            self.focus_stepper.go(BACKWARD, nb_steps)
+            return
 
     # The pump max speed will be at about 400 full steps per second
     # This amounts to 0.9mL per seconds maximum, or 54mL/min
@@ -434,33 +319,12 @@ class StepperProcess(multiprocessing.Process):
             logger.error("It should be either FORWARD or BACKWARD")
             return
 
-        nb_steps = round(self.pump_steps_per_ml * volume, 0)
-        logger.debug(f"The number of steps that will be applied is {nb_steps}")
-        steps_per_second = speed * self.pump_steps_per_ml / 60
+        # TMC5160 is configured for 256 microsteps
+        nb_steps = round(self.pump_steps_per_ml * volume * 256, 0)
+        logger.debug(f"The number of microsteps that will be applied is {nb_steps}")
+        steps_per_second = speed * self.pump_steps_per_ml * 256 / 60
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
-
-        if steps_per_second > 400:
-            steps_per_second = 400
-            logger.warning("The requested speed is faster than the maximum safe speed")
-            logger.warning(
-                f"The speed of the motor is going to be limited to {steps_per_second*60/self.pump_steps_per_ml}mL/min"
-            )
-        # On linux, the minimal acceptable delay managed by the system is 0.1ms
-        # see https://stackoverflow.com/questions/1133857/how-accurate-is-pythons-time-sleep
-        # However we have a fixed delay of at least 2.5ms per step due to the library
-        # Our maximum speed is thus about 400 pulses per second or 2 turn per second of the pump
-        # 10mL => 6140 pas
-        # 1.18gr => 1.18mL
-        # Actual pas/mL => 5200
-        # Max speed is 400 steps/sec, or 4.6mL/min
-        # 15mL at 3mL/min
-        # nb_steps = 5200 * 15 = 78000
-        # sps = 3mL/min * 5200s/mL = 15600s/min / 60 => 260sps
-        if self.stepper_type == "adafruit":
-            delay = max((1 / steps_per_second) - 0.0025, 0)
-        else:
-            delay = 1 / steps_per_second
-        logger.debug(f"The delay between two steps is {delay}s")
+        # self.pump_stepper.max_speed = int(steps_per_second)
 
         # Publish the status "Started" to via MQTT to Node-RED
         self.actuator_client.client.publish(
@@ -470,10 +334,14 @@ class StepperProcess(multiprocessing.Process):
 
         # Depending on direction, select the right direction for the focus
         if direction == "FORWARD":
-            self.pump_stepper.go(adafruit_motor.stepper.FORWARD, nb_steps, delay)
+            self.pump_started = True
+            self.pump_stepper.go(FORWARD, nb_steps)
+            return
 
         if direction == "BACKWARD":
-            self.pump_stepper.go(adafruit_motor.stepper.BACKWARD, nb_steps, delay)
+            self.pump_started = True
+            self.pump_stepper.go(BACKWARD, nb_steps)
+            return
 
     @logger.catch
     def run(self):
@@ -496,26 +364,26 @@ class StepperProcess(multiprocessing.Process):
         self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
 
         logger.success("Stepper is READY!")
-        delay = 0.001
         while not self.stop_event.is_set():
             if self.actuator_client.new_message_received():
                 self.treat_command()
-            if self.pump_stepper.move():
-                delay = 0.0001
-                planktoscope.light.ready()
+            if self.pump_started and self.pump_stepper.at_goal():
+                logger.success(f"The pump movement is over!")
                 self.actuator_client.client.publish(
                     "status/pump",
                     '{"status":"Done"}',
                 )
-            if self.focus_stepper.move():
-                delay = 0.0001
-                planktoscope.light.ready()
+                self.pump_started = False
+                self.pump_stepper.release()
+            if self.focus_started and self.focus_stepper.at_goal():
+                logger.success(f"The focus movement is over!")
                 self.actuator_client.client.publish(
                     "status/focus",
                     '{"status":"Done"}',
                 )
-            time.sleep(delay)
-            delay = 0.001
+                self.focus_started = False
+                self.pump_stepper.release()
+            time.sleep(0.01)
         logger.info("Shutting down the stepper process")
         self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
         self.actuator_client.client.publish("status/focus", '{"status":"Dead"}')
