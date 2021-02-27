@@ -1,249 +1,195 @@
-#!/usr/bin/env python
-# Turn on using this command line :
-# python3.7 path/to/file/light.py on
-
-# Turn off using this command line :
-# python3.7 path/to/file/light.py off
-
+################################################################################
+# Practical Libraries
+################################################################################
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-import subprocess  # nosec
+import os, time
 
-# Library to send command over I2C for the light module on the fan
-try:
-    import smbus2 as smbus
-except ModuleNotFoundError:  # We need this to install the library on machine that do not have the module yet
-    subprocess.run("pip3 install smbus2".split())  # nosec
-    import smbus2 as smbus
+# Library for starting processes
+import multiprocessing
 
-import enum
+# Basic planktoscope libraries
+import planktoscope.mqtt
 
-DEVICE_ADDRESS = 0x0D
+import RPi.GPIO
 
+logger.info("planktoscope.light is loaded")
 
-@enum.unique
-class Register(enum.IntEnum):
-    led_select = 0x00
-    red = 0x01
-    green = 0x02
-    blue = 0x03
-    rgb_effect = 0x04
-    rgb_speed = 0x05
-    rgb_color = 0x06
-    rgb_off = 0x07
+FREQUENCY = 50000
+"""PWM Frequency in Hz"""
+led0Pin = 18
+led1Pin = 12
 
 
-@enum.unique
-class Effect(enum.IntEnum):
-    Water = 0
-    Breathing = 1
-    Marquee = 2
-    Rainbow = 3
-    Colorful = 4
+class pwm_led:
+    def __init__(self, led):
+        RPi.GPIO.setmode(RPi.GPIO.BCM)
+        self.led = led
+        if self.led == 0:
+            RPi.GPIO.setup(led0Pin, RPi.GPIO.OUT)
+            RPi.GPIO.output(led0Pin, RPi.GPIO.LOW)
+            self.pwm0 = RPi.GPIO.PWM(led0Pin, FREQUENCY)
+            self.pwm0.start(0)
+        elif self.led == 1:
+            RPi.GPIO.setup(led1Pin, RPi.GPIO.OUT)
+            RPi.GPIO.output(led1Pin, RPi.GPIO.LOW)
+            self.pwm1 = RPi.GPIO.PWM(led1Pin, FREQUENCY)
+            self.pwm1.start(0)
 
+    def change_duty(self, dc):
+        if self.led == 0:
+            self.pwm0.ChangeDutyCycle(dc)
+        elif self.led == 1:
+            self.pwm1.ChangeDutyCycle(dc)
 
-@enum.unique
-class EffectColor(enum.IntEnum):
-    Red = 0
-    Green = 1
-    Blue = 2
-    Yellow = 3
-    Purple = 4
-    Cyan = 5
-    White = 6
+    def off(self):
+        if self.led == 0:
+            self.pwm0.ChangeDutyCycle(0)
+        elif self.led == 1:
+            self.pwm1.ChangeDutyCycle(0)
 
+    def on(self):
+        if self.led == 0:
+            self.pwm0.ChangeDutyCycle(100)
+        elif self.led == 1:
+            self.pwm1.ChangeDutyCycle(100)
 
-def i2c_update():
-    # Update the I2C Bus in order to really update the LEDs new values
-    subprocess.Popen("i2cdetect -y 1".split(), stdout=subprocess.PIPE)  # nosec
+    def stop(self):
+        if self.led == 0:
+            self.pwm0.stop()
+        elif self.led == 1:
+            self.pwm1.stop()
 
 
 ################################################################################
-# LEDs functions
+# Main Segmenter class
 ################################################################################
-def setRGB(R, G, B):
-    """Update all LED at the same time"""
-    try:
-        with smbus.SMBus(1) as bus:
-            bus.write_byte_data(DEVICE_ADDRESS, Register.led_select, 0xFF)
-            bus.write_byte_data(
-                DEVICE_ADDRESS, Register.led_select, 0xFF
-            )  # 0xFF write to all LEDs, 0x01/0x02/0x03 to choose first, second or third LED
-            bus.write_byte_data(DEVICE_ADDRESS, Register.red, R & 0xFF)
-            bus.write_byte_data(DEVICE_ADDRESS, Register.green, G & 0xFF)
-            bus.write_byte_data(DEVICE_ADDRESS, Register.blue, B & 0xFF)
-        i2c_update()
-    except Exception as e:
-        logger.exception(f"An Exception has occured in the light library at {e}")
+class LightProcess(multiprocessing.Process):
+    """This class contains the main definitions for the light of the PlanktoScope"""
 
+    @logger.catch
+    def __init__(self, event):
+        """Initialize the Light class
 
-def setRGBOff():
-    """Turn off the RGB LED"""
-    try:
-        with smbus.SMBus(1) as bus:
-            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_off, 0x00)
-        i2c_update()
-    except Exception as e:
-        logger.exception(f"An Exception has occured in the light library at {e}")
+        Args:
+            event (multiprocessing.Event): shutdown event
+        """
+        super(LightProcess, self).__init__(name="light")
 
+        logger.info("planktoscope.light is initialising")
 
-def setRGBEffect(bus, effect):
-    """Choose an effect, type Effect
+        self.stop_event = event
+        self.light_client = None
+        self.led0 = pwm_led(0)
+        self.led1 = pwm_led(1)
 
-    Effect.Water: Rotating color between LEDs (color has an effect)
-    Effect.Breathing: Breathing color effect
-    Effect.Marquee: Flashing color transition between all LEDs
-    Effect.Rainbow: Smooth color transition between all LEDs
-    Effect.Colorful: Colorful transition separately between all LEDs
-    """
-    if effect in Effect:
-        try:
-            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_effect, effect & 0xFF)
-        except Exception as e:
-            logger.exception(f"An Exception has occured in the light library at {e}")
+        logger.success("planktoscope.light is initialised and ready to go!")
 
+    @logger.catch
+    def treat_message(self):
+        action = ""
+        if self.light_client.new_message_received():
+            logger.info("We received a new message")
+            last_message = self.light_client.msg["payload"]
+            logger.debug(last_message)
+            self.light_client.read_message()
+            if "action" not in last_message:
+                logger.error(
+                    f"The received message has the wrong argument {last_message}"
+                )
+                self.light_client.client.publish("status/light", '{"status":"Error"}')
+                return
+            action = last_message["action"]
+        if action == "on":
+            # {"action":"on", "led":"1"}
+            logger.info("Turn the light on.")
+            if "led" not in last_message:
+                self.led0.on()
+                self.led1.on()
+                self.light_client.client.publish(
+                    "status/light", '{"status":"Led 1&2: On"}'
+                )
+            else:
+                if last_message["led"] == "1":
+                    self.led0.on()
+                    self.light_client.client.publish(
+                        "status/light", '{"status":"Led 1: On"}'
+                    )
+                elif last_message["led"] == "2":
+                    self.led1.on()
+                    self.light_client.client.publish(
+                        "status/light", '{"status":"Led 2: On"}'
+                    )
+                else:
+                    self.light_client.client.publish(
+                        "status/light", '{"status":"Error with led number"}'
+                    )
+        elif action == "off":
+            # {"action":"off", "led":"1"}
+            logger.info("Turn the light off.")
+            if "led" not in last_message:
+                self.led0.off()
+                self.led1.off()
+                self.light_client.client.publish(
+                    "status/light", '{"status":"Led 1&2: Off"}'
+                )
+            else:
+                if last_message["led"] == "1":
+                    self.led0.off()
+                    self.light_client.client.publish(
+                        "status/light", '{"status":"Led 1: Off"}'
+                    )
+                elif last_message["led"] == "2":
+                    self.led1.off()
+                    self.light_client.client.publish(
+                        "status/light", '{"status":"Led 2: Off"}'
+                    )
+                else:
+                    self.light_client.client.publish(
+                        "status/light", '{"status":"Error with led number"}'
+                    )
 
-def setRGBSpeed(bus, speed):
-    """Set the effect speed, 1-3, 3 being the fastest speed"""
-    if 1 <= speed <= 3:
-        try:
-            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_speed, speed & 0xFF)
-        except Exception as e:
-            logger.exception(f"An Exception has occured in the light library at {e}")
+        elif action != "":
+            logger.warning(
+                f"We did not understand the received request {action} - {last_message}"
+            )
 
+    ################################################################################
+    # While loop for capturing commands from Node-RED
+    ################################################################################
+    @logger.catch
+    def run(self):
+        """This is the function that needs to be started to create a thread"""
+        logger.info(
+            f"The light control thread has been started in process {os.getpid()}"
+        )
 
-def setRGBColor(bus, color):
-    """Set the color of the water light and breathing light effect, of type EffectColor
+        # MQTT Service connection
+        self.light_client = planktoscope.mqtt.MQTT_Client(
+            topic="light/#", name="light_client"
+        )
 
-    EffectColor.Red, EffectColor.Green (default), EffectColor.Blue, EffectColor.Yellow,
-    EffectColor.Purple, EffectColor.Cyan, EffectColor.White
-    """
-    if color in EffectColor:
-        try:
-            bus.write_byte_data(DEVICE_ADDRESS, Register.rgb_color, color & 0xFF)
-        except Exception as e:
-            logger.exception(f"An Exception has occured in the light library at {e}")
+        # Publish the status "Ready" to via MQTT to Node-RED
+        self.light_client.client.publish("status/light", '{"status":"Ready"}')
 
+        logger.success("Light module is READY!")
 
-def ready():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Blue)
-        setRGBSpeed(bus, 1)
-        setRGBEffect(bus, Effect.Breathing)
-        i2c_update()
+        # This is the loop
+        while not self.stop_event.is_set():
+            self.treat_message()
+            time.sleep(0.1)
 
-
-def error():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Red)
-        setRGBSpeed(bus, 3)
-        setRGBEffect(bus, Effect.Water)
-        i2c_update()
-
-
-def interrupted():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Yellow)
-        setRGBSpeed(bus, 3)
-        setRGBEffect(bus, Effect.Water)
-        i2c_update()
-
-
-def pumping():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Blue)
-        setRGBSpeed(bus, 3)
-        setRGBEffect(bus, Effect.Water)
-        i2c_update()
-
-
-def focusing():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Purple)
-        setRGBSpeed(bus, 3)
-        setRGBEffect(bus, Effect.Water)
-        i2c_update()
-
-
-def imaging():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.White)
-        setRGBSpeed(bus, 1)
-        setRGBEffect(bus, Effect.Breathing)
-        i2c_update()
-
-
-def segmenting():
-    with smbus.SMBus(1) as bus:
-        setRGBColor(bus, EffectColor.Purple)
-        setRGBSpeed(bus, 1)
-        setRGBEffect(bus, Effect.Breathing)
-        i2c_update()
+        logger.info("Shutting down the light process")
+        self.led0.stop()
+        self.led1.stop()
+        RPi.GPIO.cleanup()
+        self.light_client.client.publish("status/light", '{"status":"Dead"}')
+        self.light_client.shutdown()
+        logger.success("Light process shut down! See you!")
 
 
 # This is called if this script is launched directly
 if __name__ == "__main__":
-    # TODO This should be a test suite for this library
-    import time
-
-    print("ready")
-    ready()
-    time.sleep(5)
-    print("error")
-    error()
-    time.sleep(5)
-    print("pumping")
-    pumping()
-    time.sleep(5)
-    print("focusing")
-    focusing()
-    time.sleep(5)
-    print("imaging")
-    imaging()
-    time.sleep(5)
-    print("segmenting")
-    segmenting()
-    time.sleep(5)
-    print("with i2c_update now!")
-    print("ready")
-    ready()
-    i2c_update()
-    time.sleep(5)
-    print("error")
-    error()
-    i2c_update()
-    time.sleep(5)
-    print("pumping")
-    pumping()
-    i2c_update()
-    time.sleep(5)
-    print("focusing")
-    focusing()
-    i2c_update()
-    time.sleep(5)
-    print("imaging")
-    imaging()
-    i2c_update()
-    time.sleep(5)
-    print("segmenting")
-    segmenting()
-    i2c_update()
-    time.sleep(5)
-
-    with smbus.SMBus(1) as bus:
-        setRGBSpeed(bus, 3)
-    for effect in Effect:
-        print(effect.name)
-        with smbus.SMBus(1) as bus:
-            setRGBEffect(bus, effect)
-        time.sleep(2)
-    with smbus.SMBus(1) as bus:
-        setRGBEffect(bus, Effect.Breathing)
-    for color in EffectColor:
-        print(color.name)
-        with smbus.SMBus(1) as bus:
-            setRGBColor(bus, color)
-        time.sleep(2)
-
-    setRGBOff()
+    led0.change_duty(50)
+    led1.change_duty(0)

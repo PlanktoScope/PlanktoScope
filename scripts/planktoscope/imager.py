@@ -23,7 +23,6 @@ import multiprocessing
 
 # Basic planktoscope libraries
 import planktoscope.mqtt
-import planktoscope.light
 
 # import planktoscope.streamer
 import planktoscope.imager_state_machine
@@ -305,8 +304,6 @@ class ImagerProcess(multiprocessing.Process):
         # Publish the status "Interrupted" to via MQTT to Node-RED
         self.imager_client.client.publish("status/imager", '{"status":"Interrupted"}')
 
-        planktoscope.light.interrupted()
-
         self.__imager.change(planktoscope.imager_state_machine.Stop)
 
     def __message_update(self, last_message):
@@ -528,8 +525,6 @@ class ImagerProcess(multiprocessing.Process):
     def __pump_message(self):
         """Sends a message to the pump process"""
 
-        planktoscope.light.pumping()
-
         # Pump during a given volume
         self.imager_client.client.publish(
             "actuator/pump",
@@ -575,7 +570,6 @@ class ImagerProcess(multiprocessing.Process):
             self.__img_done = 0
             # Change state towards stop
             self.__imager.change(planktoscope.imager_state_machine.Stop)
-            planktoscope.light.error()
             return
 
         logger.info("Setting up the directory structure for storing the pictures")
@@ -596,7 +590,6 @@ class ImagerProcess(multiprocessing.Process):
             # Reset the counter to 0
             self.__img_done = 0
             self.__imager.change(planktoscope.imager_state_machine.Stop)
-            planktoscope.light.error()
             return
         else:
             # create the path!
@@ -631,8 +624,6 @@ class ImagerProcess(multiprocessing.Process):
         self.__imager.change(planktoscope.imager_state_machine.Waiting)
 
     def __state_capture(self):
-        planktoscope.light.imaging()
-
         filename = f"{datetime.datetime.now().strftime('%H_%M_%S_%f')}.jpg"
 
         # Define the filename of the image
@@ -682,7 +673,6 @@ class ImagerProcess(multiprocessing.Process):
             self.imager_client.client.publish("status/imager", '{"status":"Done"}')
 
             self.__imager.change(planktoscope.imager_state_machine.Stop)
-            planktoscope.light.ready()
         else:
             # We have not reached the final stage, let's keep imaging
             self.imager_client.client.subscribe("status/pump")
@@ -693,7 +683,6 @@ class ImagerProcess(multiprocessing.Process):
 
     def __capture_error(self, message=""):
         logger.error(f"An error occurred during the capture: {message}")
-        planktoscope.light.error()
         if self.__error:
             logger.error("This is a repeating problem, stopping the capture now")
             self.imager_client.client.publish(

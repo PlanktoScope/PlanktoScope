@@ -19,7 +19,6 @@ import multiprocessing
 
 # Basic planktoscope libraries
 import planktoscope.mqtt
-import planktoscope.light
 
 logger.info("planktoscope.segmenter is loaded")
 
@@ -80,8 +79,6 @@ class SegmenterProcess(multiprocessing.Process):
             name = morphocut.Call(
                 lambda p: os.path.splitext(os.path.basename(p))[0], abs_path
             )
-
-            morphocut.Call(planktoscope.light.segmenting())
 
             # Read image
             img = morphocut.image.ImageReader(abs_path)
@@ -284,7 +281,6 @@ class SegmenterProcess(multiprocessing.Process):
                     try:
                         self.__pipe.run()
                     except Exception as e:
-                        planktoscope.light.error()
                         logger.exception(f"There was an error in the pipeline {e}")
                     logger.info(f"Pipeline has been run for {path}")
                 else:
@@ -297,7 +293,6 @@ class SegmenterProcess(multiprocessing.Process):
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Done"}'
             )
-            planktoscope.light.ready()
 
         elif action == "stop":
             logger.info("The segmentation has been interrupted.")
@@ -306,7 +301,6 @@ class SegmenterProcess(multiprocessing.Process):
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Interrupted"}'
             )
-            planktoscope.light.interrupted()
 
         elif action == "update_config":
             logger.error("We can't update the configuration while we are segmenting.")

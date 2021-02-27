@@ -129,6 +129,10 @@ if __name__ == "__main__":
     segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
     segmenter_thread.start()
 
+    # Starts the light process
+    logger.info("Starting the light control process (step 5/4)")
+    light_thread = planktoscope.light.LightProcess(shutdown_event)
+    light_thread.start()
 
     # Starts the module process
     # Uncomment here as needed
@@ -140,7 +144,6 @@ if __name__ == "__main__":
     display = planktoscope.display.Display()
 
     logger.success("Looks like everything is set up and running, have fun!")
-    planktoscope.light.ready()
 
     while run:
         # TODO look into ways of restarting the dead threads
@@ -162,11 +165,13 @@ if __name__ == "__main__":
     stepper_thread.join()
     imager_thread.join()
     segmenter_thread.join()
+    light_thread.join()
     # Uncomment this for clean shutdown
     # module_thread.join()
     stepper_thread.close()
     imager_thread.close()
     segmenter_thread.close()
+    light_thread.close()
     # Uncomment this for clean shutdown
     # module_thread.close()
     display.stop()

@@ -5,7 +5,6 @@ import time
 import json
 import os
 import planktoscope.mqtt
-import planktoscope.light
 import multiprocessing
 import RPi.GPIO
 
@@ -269,11 +268,8 @@ class StepperProcess(multiprocessing.Process):
                 "status/pump", '{"status":"Interrupted"}'
             )
 
-            planktoscope.light.ready()
-
         elif last_message["action"] == "move":
             logger.debug("We have received a move pump command")
-            planktoscope.light.pumping()
 
             if (
                 "direction" not in last_message
@@ -322,11 +318,8 @@ class StepperProcess(multiprocessing.Process):
                 "status/focus", '{"status":"Interrupted"}'
             )
 
-            planktoscope.light.ready()
-
         elif last_message["action"] == "move":
             logger.debug("We have received a move focus command")
-            planktoscope.light.focusing()
 
             if "direction" not in last_message or "distance" not in last_message:
                 logger.error(
