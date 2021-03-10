@@ -94,6 +94,12 @@ You can mount the camera using the appropriate holes on the camera mount **G**. 
 
 The LED can then be wired up and put into its mount **F**. If you wire the LED yourself, remember to give enough length to reach the motor driver on the other end of the microscope. You can also add a bit of glue to fix **F** to the motor mount **E** at this time to make assembly easier, though it is not required.
 
+!!! warning
+    ![Led](assembly_guide/render/led.webp)
+
+    This picture shows the correct wiring for the LED. Please make sure the red wire is on the long pin of the LED.
+
+
 ## Step 10: Vertical slices assembly
 You can now start placing the motor mount/LED assembly- **B**,
 ![Step5](assembly_guide/render/step5.webp)
