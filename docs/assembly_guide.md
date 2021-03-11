@@ -138,7 +138,14 @@ Your setup should look like this. Don't worry about the wiring, we'll have a loo
 
 You will now want to wire the steppers and pump to the terminals on the motor driver board.
 
-If your wires are too short, you can invert the pump and the focus wiring. However, you will have to remember to change the configuration later on.
+!!! info
+    The PlanktoScope **uses only bipolar stepper motors** (with 4 wires coming out, and two coils inside), so you need to identify the two wires working together for each coil. The [RepRap Wiki has great information](https://reprap.org/wiki/Stepper_wiring#.22pair.22_wires_on_4_wire_motors) on how to do this, either with a multimeter or without.
+    
+    You can find more information about stepper motors and how they work in this [document](http://resources.linengineering.com/acton/attachment/3791/f-00ca/1/-/-/-/-/Stepper%20Motor%20Basics.pdf).
+
+
+!!! tip
+    If your wires are too short, you can invert the pump and the focus wiring. However, you will have to remember to change the configuration later on.
 
 !!! tip
     Make sure the wires are properly connected by pulling on them a little. They should not come loose.
