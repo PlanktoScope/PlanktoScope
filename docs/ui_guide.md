@@ -111,6 +111,24 @@ Before purging the local data, make sure your data has been backed up at least t
     For this machine, this means creating two copies on two different USB drives of the data before purging it from the device.
     Also, you should backup your device after each acquisition.
 
+## Wifi
+
+![Administration](ui_guide/wifi.webp)
+
+This page will give you information about the network the PlanktoScope is connected to. It will also allows you to connect your machine to a new WiFi network.
+
+Start by doing a network scan by clicking on the `Scan` button. The list will be populated with detected networks after a few seconds. You can then choose one of them, enter its password and click on `Add the network` to connect to it. The wifi network of the PlanktoScope will disappear after a few seconds, so **you will need to connect back to the same network you just put the machine on**.
+
+Finally, if you are not located in France, please update the Country code in the field below. This will ensure the PlanktoScope complies with local Wifi regulations (such as maximum emitted power, duty cycle and such).
+
+Clicking on the button `Reset wifi networks` will erase ALL networks saved previously by the machine. If you do this, it will disconnect immediately from any network it's connected to, and will put up its own network.
+
+!!! info
+    For now, only WPA/WPA2 Personnal security system is supported. If you need another security system supported, get in touch with us.
+
+!!! warning
+    Please be mindful about the security policies of your organisation before connecting your device to a network (either through Wifi or with an Ethernet cable). A lot of research institutions don't allow devices not controlled by them to be connected to their network without first going on an approved list with a least a basic security checkup.
+
 
 ## Administration
 

@@ -303,3 +303,6 @@ Congratulations on a job well done. You can have some rest, get a tea and some b
 ![Step35](assembly_guide/render/step35.webp)
 
 You can now plug the machine in and test it. If you have choose the Expert's path, now is a good time to [finish setting up your machine](expert_setup.md).
+
+## Step 34: Read the getting started guide
+[A guide to get started with your machine use is available!](getting_started.md)
