@@ -20,6 +20,26 @@ import multiprocessing
 # Basic planktoscope libraries
 import planktoscope.mqtt
 
+
+################################################################################
+# Morphocut Libraries
+################################################################################
+import morphocut
+import morphocut.file
+import morphocut.image
+import morphocut.stat
+import morphocut.stream
+import morphocut.str
+import morphocut.contrib.ecotaxa
+import morphocut.contrib.zooprocess
+
+################################################################################
+# Other image processing Libraries
+################################################################################
+import skimage.util
+import cv2
+
+
 logger.info("planktoscope.segmenter is loaded")
 
 
@@ -328,27 +348,6 @@ class SegmenterProcess(multiprocessing.Process):
         self.segmenter_client = planktoscope.mqtt.MQTT_Client(
             topic="segmenter/#", name="segmenter_client"
         )
-
-        ################################################################################
-        # Morphocut Libraries
-        ################################################################################
-        import morphocut
-        import morphocut.file
-        import morphocut.image
-        import morphocut.stat
-        import morphocut.stream
-        import morphocut.str
-        import morphocut.contrib.ecotaxa
-        import morphocut.contrib.zooprocess
-
-        ################################################################################
-        # Other image processing Libraries
-        ################################################################################
-        import skimage.util
-        import cv2
-
-        # Instantiate the morphocut pipeline
-        # self.__create_morphocut_pipeline()
 
         # Publish the status "Ready" to via MQTT to Node-RED
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Ready"}')
