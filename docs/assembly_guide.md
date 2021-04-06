@@ -153,7 +153,7 @@ You will now want to wire the steppers and pump to the terminals on the motor dr
 ## Step 14: Raspberry Pi setup and installation
 ![Step24](assembly_guide/pictures/step24.webp)
 
-At this point, you can insert your flashed SD card into your Raspberry Pi. [Consult the guide for flashing your SD card](https://www.planktonscope.org/replicate/prepare-your-pi) before you do this. The heat sink can also be added to the processor.
+At this point, you can insert your flashed SD card into your Raspberry Pi. [Consult the guide for flashing your SD card](https://www.planktoscope.org/replicate/assemble-your-kit) before you do this. The heat sink can also be added to the processor.
 
 !!! note
     If you choose the Expert path, you still need to flash your sd card, either with the [lite version](https://downloads.raspberrypi.org/raspios_lite_armhf_latest) of Raspberry OS or with the [desktop version](https://downloads.raspberrypi.org/raspios_armhf_latest).
