@@ -23,8 +23,8 @@ class raspimjpeg(object):
     def __init__(self, *args, **kwargs):
         self.__configfile = "/home/pi/PlanktonScope/scripts/raspimjpeg/raspimjpeg.conf"
         self.__binary = "/home/pi/PlanktonScope/scripts/raspimjpeg/bin/raspimjpeg"
-        self.__statusfile = "/dev/shm/mjpeg/status_mjpeg.txt"
-        self.__pipe = "/dev/shm/mjpeg/FIFO"
+        self.__statusfile = "/dev/shm/mjpeg/status_mjpeg.txt"  # nosec
+        self.__pipe = "/dev/shm/mjpeg/FIFO"  # nosec
         self.__sensor_name = ""
 
         # make sure the status file exists and is empty
@@ -48,8 +48,19 @@ class raspimjpeg(object):
         if not os.path.exists(self.__configfile):
             logger.error("The config file does not exists!")
 
-    def start(self):
+    def start(self, force=False):
         logger.debug("Starting up raspimjpeg")
+        if force:
+            # let's kill all rogue Raspimjpeg first
+            try:
+                subprocess.run(  # nosec
+                    "sudo killall -9 raspimjpeg".split(),
+                    shell=True,
+                    timeout=1,
+                    check=True,
+                )
+            except Exception as e:
+                logger.exception(f"Killing Raspimjpeg failed because of {e}")
         # The input to this call are perfectly controlled
         # hence the nosec comment to deactivate bandit error
         self.__process = subprocess.Popen(  # nosec
@@ -70,6 +81,7 @@ class raspimjpeg(object):
             logger.exception(
                 f"A timeout happened while waiting for RaspiMJPEG to start: {e}"
             )
+            raise e
 
         try:
             width_string = self.__parse_output_for("Camera Max Width:")
@@ -78,6 +90,8 @@ class raspimjpeg(object):
             logger.exception(
                 f"A timeout happened while waiting for RaspiMJPEG to start: {e}"
             )
+            raise e
+
         try:
             height_string = self.__parse_output_for("Camera Max Height")
             self.__height = height_string.rsplit(" ", 1)[1]
@@ -85,6 +99,7 @@ class raspimjpeg(object):
             logger.exception(
                 f"A timeout happened while waiting for RaspiMJPEG to start: {e}"
             )
+            raise e
 
         try:
             self.__wait_for_output("Starting command loop")
@@ -92,6 +107,7 @@ class raspimjpeg(object):
             logger.exception(
                 f"A timeout happened while waiting for RaspiMJPEG to start: {e}"
             )
+            raise e
 
     def status(self):
         return self.__get_status()
@@ -464,7 +480,7 @@ class raspimjpeg(object):
         self.__wait_for_output("Ready", timeout / 2)
 
     def stop(self):
-        """Halt and release the camera. """
+        """Halt and release the camera."""
         logger.debug("Releasing the camera now")
         self.__send_command(f"ru 0")
 
