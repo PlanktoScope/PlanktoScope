@@ -69,7 +69,6 @@ class MQTT_Client:
 
     def __init__(self, topic, server="127.0.0.1", port=1883, name="client"):
         # Declare the global variables command and args
-        self.command = ""
         self.args = ""
         self.__new_message = False
         self.msg = None
@@ -131,15 +130,11 @@ class MQTT_Client:
     def on_message(self, client, userdata, msg):
         # Print the topic and the message
         logger.info(f"{self.name}: {msg.topic} {str(msg.qos)} {str(msg.payload)}")
-        # Parse the topic to find the command. ex : actuator/pump -> pump
-        # This only removes the top-level topic!
-        self.command = msg.topic.split("/", 1)[1]
-        logger.debug(f"command is {self.command}")
         # Decode the message to find the arguments
         self.args = json.loads(msg.payload.decode())
         logger.debug(f"args are {self.args}")
         self.msg = {"topic": msg.topic, "payload": self.args}
-        logger.debug(f"msg is {self.msg} or {msg}")
+        logger.debug(f"msg is {self.msg}")
         self.__new_message = True
 
     @logger.catch
