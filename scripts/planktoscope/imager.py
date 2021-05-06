@@ -93,7 +93,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
             try:
                 while True:
                     try:
-                        with open("/dev/shm/mjpeg/cam.jpg", "rb") as jpeg:
+                        with open("/dev/shm/mjpeg/cam.jpg", "rb") as jpeg:  # nosec
                             frame = jpeg.read()
                     except FileNotFoundError as e:
                         logger.error(f"Camera has not been started yet")
@@ -129,7 +129,6 @@ logger.info("planktoscope.imager is loaded")
 class ImagerProcess(multiprocessing.Process):
     """This class contains the main definitions for the imager of the PlanktoScope"""
 
-    @logger.catch
     def __init__(self, stop_event, iso=100, shutter_speed=1):
         """Initialize the Imager class
 
@@ -179,7 +178,14 @@ class ImagerProcess(multiprocessing.Process):
             logger.exception(
                 f"An exception has occured when starting up raspimjpeg: {e}"
             )
-            exit(1)
+            try:
+                self.__camera.start(true)
+            except Exception as e:
+                logger.exception(
+                    f"A second exception has occured when starting up raspimjpeg: {e}"
+                )
+                logger.error(f"This error can't be recovered from, terminating now")
+                raise e
 
         if self.__camera.sensor_name == "IMX219":  # Camera v2.1
             self.__resolution = (3280, 2464)
@@ -653,7 +659,7 @@ class ImagerProcess(multiprocessing.Process):
             return
 
         logger.debug(f"Copying the image from the temp file to {filename_path}")
-        shutil.copy("/dev/shm/mjpeg/image.jpg", filename_path)
+        shutil.copy("/dev/shm/mjpeg/image.jpg", filename_path)  # nosec
         # TODO Try to stop the camera streaming and display instead each captured image
         # os.rename("/dev/shm/mjpeg/image.jpg", "/dev/shm/mjpeg/cam.jpg")
         logger.debug("Syncing the disk")
