@@ -120,9 +120,14 @@ if __name__ == "__main__":
     stepper_thread.start()
 
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 3/4)")
-    imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
-    imager_thread.start()
+    logger.info("Starting the imager control process (step 3/6)")
+    try:
+        imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
+    except:
+        logger.error("The imager control process could not be started")
+        imager_thread = None
+    else:
+        imager_thread.start()
 
     # Starts the segmenter process
     logger.info("Starting the segmenter control process (step 4/4)")
@@ -151,7 +156,7 @@ if __name__ == "__main__":
         if not stepper_thread.is_alive():
             logger.error("The stepper process died unexpectedly! Oh no!")
             break
-        if not imager_thread.is_alive():
+        if imager_thread and not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
         if not segmenter_thread.is_alive():
@@ -163,13 +168,15 @@ if __name__ == "__main__":
     shutdown_event.set()
     time.sleep(1)
     stepper_thread.join()
-    imager_thread.join()
+    if imager_thread:
+        imager_thread.join()
     segmenter_thread.join()
     light_thread.join()
     # Uncomment this for clean shutdown
     # module_thread.join()
     stepper_thread.close()
-    imager_thread.close()
+    if imager_thread:
+        imager_thread.close()
     segmenter_thread.close()
     light_thread.close()
     # Uncomment this for clean shutdown
