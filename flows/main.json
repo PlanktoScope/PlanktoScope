@@ -5984,7 +5984,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "1be83144.4fe4bf",
-        "order": 10,
+        "order": 15,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -5996,8 +5996,8 @@
         "payload": "reboot",
         "payloadType": "str",
         "topic": "reboot",
-        "x": 400,
-        "y": 420,
+        "x": 420,
+        "y": 680,
         "wires": [
             [
                 "611a8b1c.a829b4"
@@ -6015,8 +6015,8 @@
         "timer": "2",
         "oldrc": false,
         "name": "cmd",
-        "x": 690,
-        "y": 460,
+        "x": 710,
+        "y": 720,
         "wires": [
             [],
             [],
@@ -6029,7 +6029,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "1be83144.4fe4bf",
-        "order": 8,
+        "order": 17,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -6041,8 +6041,8 @@
         "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
-        "x": 390,
-        "y": 500,
+        "x": 410,
+        "y": 760,
         "wires": [
             [
                 "611a8b1c.a829b4"
@@ -6060,8 +6060,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 1100,
-        "y": 340,
+        "x": 1120,
+        "y": 600,
         "wires": [
             [],
             [
@@ -6085,8 +6085,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 700,
-        "y": 340,
+        "x": 720,
+        "y": 600,
         "wires": [
             [
                 "fa914867.0a0658"
@@ -6099,7 +6099,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Restart Python",
         "group": "1be83144.4fe4bf",
-        "order": 6,
+        "order": 12,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -6112,8 +6112,8 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 380,
-        "y": 340,
+        "x": 400,
+        "y": 600,
         "wires": [
             [
                 "1575db82.742854",
@@ -6133,8 +6133,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Python soft kill",
-        "x": 720,
-        "y": 400,
+        "x": 740,
+        "y": 660,
         "wires": [
             [],
             [],
@@ -6152,8 +6152,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Raspimjpeg soft kill",
-        "x": 730,
-        "y": 280,
+        "x": 750,
+        "y": 540,
         "wires": [
             [],
             [],
@@ -6174,8 +6174,8 @@
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1660,
-        "y": 380,
+        "x": 1700,
+        "y": 640,
         "wires": [
             []
         ]
@@ -6190,8 +6190,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1480,
-        "y": 300,
+        "x": 1500,
+        "y": 560,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -6216,8 +6216,8 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 1320,
-        "y": 460,
+        "x": 1340,
+        "y": 720,
         "wires": [
             [
                 "73500be7.9ab7c4"
@@ -6231,8 +6231,8 @@
         "name": "Catch Errors",
         "scope": null,
         "uncaught": false,
-        "x": 1070,
-        "y": 400,
+        "x": 1090,
+        "y": 660,
         "wires": [
             [
                 "f9a871d5.a73828"
@@ -6249,8 +6249,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1240,
-        "y": 400,
+        "x": 1260,
+        "y": 660,
         "wires": [
             [
                 "8b511c2b.9c24c8"
@@ -6267,8 +6267,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1480,
-        "y": 460,
+        "x": 1500,
+        "y": 720,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -6292,8 +6292,8 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 130,
-        "y": 340,
+        "x": 150,
+        "y": 600,
         "wires": [
             [
                 "466eb611.4da048"
@@ -6492,11 +6492,11 @@
         "z": "9daf9e2b.019fc",
         "name": "Update",
         "group": "1be83144.4fe4bf",
-        "order": 3,
+        "order": 9,
         "width": 6,
         "height": 1,
         "passthru": false,
-        "label": "Update",
+        "label": "System Update",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -6504,8 +6504,9 @@
         "payload": "",
         "payloadType": "str",
         "topic": "update",
-        "x": 400,
-        "y": 220,
+        "topicType": "str",
+        "x": 440,
+        "y": 460,
         "wires": [
             [
                 "2d2ef1fd.40e6e6"
@@ -6523,8 +6524,8 @@
         "timer": "",
         "oldrc": false,
         "name": "Update",
-        "x": 700,
-        "y": 220,
+        "x": 720,
+        "y": 460,
         "wires": [
             [
                 "64f61762.68c788",
@@ -6551,7 +6552,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 390,
+        "x": 410,
         "y": 180,
         "wires": [
             []
@@ -6571,8 +6572,8 @@
         "raw": false,
         "topic": "",
         "name": "Update notif",
-        "x": 970,
-        "y": 200,
+        "x": 1030,
+        "y": 440,
         "wires": [
             []
         ]
@@ -8911,5 +8912,182 @@
                 "9f501f49.45645"
             ]
         ]
+    },
+    {
+        "id": "83c5a708.a5715",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "git --git-dir=/home/pi/PlanktonScope/.git describe --long --tags",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "Get git revision",
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "af2b8d95.195bb8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d334d264.8a7728",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "git --git-dir=/home/pi/PlanktonScope/.git branch --list",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Get git branch",
+        "x": 640,
+        "y": 260,
+        "wires": [
+            [
+                "e5e8e66c.899588"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e4342b66.72972",
+        "type": "ui_button",
+        "z": "9daf9e2b.019fc",
+        "name": "get git branch",
+        "group": "1be83144.4fe4bf",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Update branch list",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "mi-compare_arrows",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 410,
+        "y": 260,
+        "wires": [
+            [
+                "d334d264.8a7728"
+            ]
+        ]
+    },
+    {
+        "id": "3f13b9f8.bac94e",
+        "type": "ui_dropdown",
+        "z": "9daf9e2b.019fc",
+        "name": "Git branch list",
+        "label": "Switch branch to",
+        "tooltip": "",
+        "place": "branch",
+        "group": "1be83144.4fe4bf",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "multiple": false,
+        "options": [],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1020,
+        "y": 260,
+        "wires": [
+            [
+                "d037a624.60bea8"
+            ]
+        ]
+    },
+    {
+        "id": "e5e8e66c.899588",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "filter branch",
+        "func": "msg.options = msg.payload.trimEnd().split('\\n')\nmsg.payload = msg.options.find((str) => str.startsWith('*'));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 830,
+        "y": 260,
+        "wires": [
+            [
+                "3f13b9f8.bac94e"
+            ]
+        ]
+    },
+    {
+        "id": "c1fb03f7.e675f8",
+        "type": "inject",
+        "z": "9daf9e2b.019fc",
+        "name": "once",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "d334d264.8a7728",
+                "83c5a708.a5715"
+            ]
+        ]
+    },
+    {
+        "id": "d037a624.60bea8",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "git --git-dir=/home/pi/PlanktonScope/.git checkout",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "git checkout branch",
+        "x": 1270,
+        "y": 260,
+        "wires": [
+            [],
+            [
+                "d334d264.8a7728",
+                "83c5a708.a5715"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "af2b8d95.195bb8",
+        "type": "ui_text",
+        "z": "9daf9e2b.019fc",
+        "group": "1be83144.4fe4bf",
+        "order": 2,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Current code version",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 1040,
+        "y": 340,
+        "wires": []
     }
 ]
