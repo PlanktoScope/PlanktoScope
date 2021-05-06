@@ -37,7 +37,8 @@ class Display(object):
         self.display_text(machineName.replace(" ", "\n"))
 
     def display_text(self, message):
-        logger.info(f"Displaying message {message}")
+        text = message.replace("\n", " ")
+        logger.info(f"Displaying message {text}")
 
         # Clear display.
         self.__clear()
