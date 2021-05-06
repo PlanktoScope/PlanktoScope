@@ -72,7 +72,7 @@ def handler_stop_signals(signum, frame):
 if __name__ == "__main__":
     logger.info("Welcome!")
     logger.info(
-        "Initialising signals handling and sanitizing the directories (step 1/4)"
+        "Initialising signals handling and sanitizing the directories (step 1/6)"
     )
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     shutdown_event.clear()
 
     # Starts the stepper process for actuators
-    logger.info("Starting the stepper control process (step 2/4)")
+    logger.info("Starting the stepper control process (step 2/6)")
     stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         imager_thread.start()
 
     # Starts the segmenter process
-    logger.info("Starting the segmenter control process (step 4/4)")
+    logger.info("Starting the segmenter control process (step 4/6)")
     segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
     segmenter_thread.start()
 
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     # module_thread = planktoscope.module.ModuleProcess(shutdown_event)
     # module_thread.start()
 
-    logger.info("Starting the display module")
+    logger.info("Starting the display control (step 6/6)")
     display = planktoscope.display.Display()
 
     logger.success("Looks like everything is set up and running, have fun!")
