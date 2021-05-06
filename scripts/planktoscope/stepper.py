@@ -81,18 +81,46 @@ class stepper:
         self.__stepper.disable_motor()
 
     @property
-    def max_speed(self):
-        return self.__stepper.ramp.VMAX
+    def speed(self):
+        return self.__stepper.ramp_VMAX
 
-    @max_speed.setter
-    def max_speed(self, max_speed):
-        """Change the stepper max speed
+    @speed.setter
+    def speed(self, speed):
+        """Change the stepper speed
 
         Args:
-            max_speed (int): max speed reachable by the stepper
+            speed (int): speed of the movement by the stepper, in microsteps unit/s
         """
-        logger.debug(f"Setting stepper max speed to {max_speed}")
-        self.__stepper.set_VMAX(int(max_speed))
+        logger.debug(f"Setting stepper speed to {speed}")
+        self.__stepper.ramp_VMAX = int(speed)
+
+    @property
+    def acceleration(self):
+        return self.__stepper.ramp_AMAX
+
+    @acceleration.setter
+    def acceleration(self, acceleration):
+        """Change the stepper acceleration
+
+        Args:
+            acceleration (int): acceleration reachable by the stepper, in microsteps unit/s²
+        """
+        logger.debug(f"Setting stepper acceleration to {acceleration}")
+        self.__stepper.ramp_AMAX = int(acceleration)
+
+    @property
+    def deceleration(self):
+        return self.__stepper.ramp_DMAX
+
+    @deceleration.setter
+    def deceleration(self, deceleration):
+        """Change the stepper deceleration
+
+        Args:
+            deceleration (int): deceleration reachable by the stepper, in microsteps unit/s²
+        """
+        logger.debug(f"Setting stepper deceleration to {deceleration}")
+        self.__stepper.ramp_DMAX = int(deceleration)
 
 
 class StepperProcess(multiprocessing.Process):
@@ -101,9 +129,9 @@ class StepperProcess(multiprocessing.Process):
     # 5200 for custom NEMA14 pump with 0.8mm ID Tube
     pump_steps_per_ml = 507
     # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the Planktonscope can send
-    focus_max_speed = 0.5
+    focus_max_speed = 5
     # pump max speed is in ml/min
-    pump_max_speed = 30
+    pump_max_speed = 50
 
     def __init__(self, event):
         super(StepperProcess, self).__init__()
@@ -146,8 +174,18 @@ class StepperProcess(multiprocessing.Process):
         else:
             self.pump_stepper = stepper(STEPPER1)
             self.focus_stepper = stepper(STEPPER2, size=45)
-        # self.focus_stepper.max_speed = self.focus_max_speed # TODO fix this to convert unit to steps
-        # self.pump_stepper.max_speed = self.pump_max_speed
+
+        # Set stepper controller max speed
+
+        self.focus_stepper.acceleration = 1000
+        self.focus_stepper.deceleration = self.focus_stepper.acceleration
+        self.focus_stepper.speed = self.focus_max_speed * self.focus_steps_per_mm * 256
+
+        self.pump_stepper.acceleration = 2000
+        self.pump_stepper.deceleration = self.pump_stepper.acceleration
+        self.pump_stepper.speed = (
+            self.pump_max_speed * self.pump_steps_per_ml * 256 / 60
+        )
 
         logger.info(f"Stepper initialisation is over")
 
@@ -230,9 +268,14 @@ class StepperProcess(multiprocessing.Process):
             # Get number of steps from the different received arguments
             distance = float(last_message["distance"])
 
+            speed = float(last_message["speed"]) if "speed" in last_message else 0
+
             # Print status
             logger.info("The focus movement is started.")
-            self.focus(direction, distance)
+            if speed:
+                self.focus(direction, distance, speed)
+            else:
+                self.focus(direction, distance)
         else:
             logger.warning(f"The received message was not understood {last_message}")
 
@@ -255,11 +298,17 @@ class StepperProcess(multiprocessing.Process):
             )
 
     def focus(self, direction, distance, speed=focus_max_speed):
-        """moves the focus stepper
+        """Moves the focus stepper
 
         direction is either UP or DOWN
         distance is received in mm
-        speed is in mm/sec"""
+        speed is in mm/sec
+
+        Args:
+            direction (string): either UP or DOWN
+            distance (int): distance to move the stage, in mm
+            speed (int, optional): max speed of the stage, in mm/sec. Defaults to focus_max_speed.
+        """
 
         logger.info(
             f"The focus stage will move {direction} for {distance}mm at {speed}mm/sec"
@@ -278,9 +327,14 @@ class StepperProcess(multiprocessing.Process):
         # We are going to use 256 microsteps, so we need to multiply by 256 the steps number
         nb_steps = round(self.focus_steps_per_mm * distance * 256, 0)
         logger.debug(f"The number of microsteps that will be applied is {nb_steps}")
+        if speed > self.focus_max_speed:
+            speed = self.focus_max_speed
+            logger.warning(
+                f"Focus stage speed has been clamped to a maximum safe speed of {speed} mm/sec"
+            )
         steps_per_second = speed * self.focus_steps_per_mm * 256
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
-        # self.focus_stepper.max_speed = int(steps_per_second)
+        self.focus_stepper.speed = int(steps_per_second)
 
         # Publish the status "Started" to via MQTT to Node-RED
         self.actuator_client.client.publish(
@@ -305,11 +359,13 @@ class StepperProcess(multiprocessing.Process):
     # Stepper is 200 steps/round, or 393steps/ml
     # https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
     def pump(self, direction, volume, speed=pump_max_speed):
-        """moves the pump stepper
+        """Moves the pump stepper
 
-        direction is either FORWARD or BACKWARD
-        volume is in mL
-        speed is in mL/min"""
+        Args:
+            direction (string): direction of the pumping
+            volume (int): volume to pump, in mL
+            speed (int, optional): speed of pumping, in mL/min. Defaults to pump_max_speed.
+        """
 
         logger.info(f"The pump will move {direction} for {volume}mL at {speed}mL/min")
 
@@ -322,9 +378,14 @@ class StepperProcess(multiprocessing.Process):
         # TMC5160 is configured for 256 microsteps
         nb_steps = round(self.pump_steps_per_ml * volume * 256, 0)
         logger.debug(f"The number of microsteps that will be applied is {nb_steps}")
+        if speed > self.pump_max_speed:
+            speed = self.pump_max_speed
+            logger.warning(
+                f"Pump speed has been clamped to a maximum safe speed of {speed}mL/min"
+            )
         steps_per_second = speed * self.pump_steps_per_ml * 256 / 60
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
-        # self.pump_stepper.max_speed = int(steps_per_second)
+        self.pump_stepper.speed = int(steps_per_second)
 
         # Publish the status "Started" to via MQTT to Node-RED
         self.actuator_client.client.publish(

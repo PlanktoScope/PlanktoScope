@@ -4,8 +4,6 @@ from shush.board import Board, s1, gpio
 from shush.drivers import tmc5160_reg as reg
 import time
 
-from shush.params import Ramp as ramp
-
 
 class Motor(Board):
     def __init__(self, motor: int):
@@ -36,7 +34,7 @@ class Motor(Board):
         # Set default motor parameters
 
         # MULTISTEP_FILT = 1, EN_PWM_MODE = 1 enables stealthChop
-        self.write(reg.GCONF, 0x0000000C)
+        self.write(reg.GCONF, 0b0000000000001110)
         # TOFF = 3, HSTRT = 4, HEND = 1, TBL = 2, CHM = 0 (spreadCycle)
         self.write(reg.CHOPCONF, 0x000100C3)
         # IHOLD = 2, IRUN = 15 (max current), IHOLDDELAY = 8
@@ -58,59 +56,97 @@ class Motor(Board):
     # TODO: add some more functionality...
     # Add stallGuard + coolStep (datasheet page 52)
 
-    def set_VSTART(self, value: int):
+    @property
+    def ramp_VSTART(self):
+        return self.__ramp_VSTART
+
+    @ramp_VSTART.setter
+    def ramp_VSTART(self, value: int):
         self.write(reg.VSTART, value)
-        ramp.VSTART = value
+        self.__ramp_VSTART = value
 
-    def set_A1(self, value: int):
+    @property
+    def ramp_A1(self):
+        return self.__ramp_A1
+
+    @ramp_A1.setter
+    def ramp_A1(self, value: int):
         self.write(reg.A1, value)
-        ramp.A1 = value
+        self.__ramp_A1 = value
 
-    def set_V1(self, value: int):
+    @property
+    def ramp_V1(self):
+        return self.__ramp_V1
+
+    @ramp_V1.setter
+    def ramp_V1(self, value: int):
         self.write(reg.V1, value)
-        ramp.V1 = value
+        self.__ramp_V1 = value
 
-    def set_AMAX(self, value: int):
+    @property
+    def ramp_AMAX(self):
+        return self.__ramp_AMAX
+
+    @ramp_AMAX.setter
+    def ramp_AMAX(self, value: int):
         self.write(reg.AMAX, value)
-        ramp.AMAX = value
+        self.__ramp_AMAX = value
 
-    def set_VMAX(self, value: int):
+    @property
+    def ramp_VMAX(self):
+        return self.__ramp_VMAX
+
+    @ramp_VMAX.setter
+    def ramp_VMAX(self, value: int):
         self.write(reg.VMAX, value)
-        ramp.VMAX = value
+        self.__ramp_VMAX = value
 
-    def set_DMAX(self, value: int):
+    @property
+    def ramp_DMAX(self):
+        return self.__ramp_DMAX
+
+    @ramp_DMAX.setter
+    def ramp_DMAX(self, value: int):
         self.write(reg.DMAX, value)
-        ramp.DMAX = value
+        self.__ramp_DMAX = value
 
-    def set_D1(self, value: int):
+    @property
+    def ramp_D1(self):
+        return self.__ramp_D1
+
+    @ramp_D1.setter
+    def ramp_D1(self, value: int):
         self.write(reg.D1, value)
-        ramp.D1 = value
+        self.__ramp_D1 = value
 
-    def set_VSTOP(self, value: int):
+    @property
+    def ramp_VSTOP(self):
+        return self.__ramp_VSTOP
+
+    @ramp_VSTOP.setter
+    def ramp_VSTOP(self, value: int):
         self.write(reg.VSTOP, value)
-        ramp.VSTOP = value
+        self.__ramp_VSTOP = value
 
     def write_ramp_params(self):
-        self.set_VSTART(ramp.VSTART)
-        self.set_A1(ramp.A1)
-        self.set_V1(ramp.V1)
-        self.set_AMAX(ramp.AMAX)
-        self.set_VMAX(ramp.VMAX)
-        self.set_DMAX(ramp.DMAX)
-        self.set_D1(ramp.D1)
-        self.set_VSTOP(ramp.VSTOP)
+        self.ramp_VSTART = self.ramp_VSTART
+        self.ramp_A1 = self.ramp_A1
+        self.ramp_V1 = self.ramp_V1
+        self.ramp_AMAX = self.ramp_AMAX
+        self.ramp_VMAX = self.ramp_VMAX
+        self.ramp_DMAX = self.ramp_DMAX
+        self.ramp_D1 = self.ramp_D1
+        self.ramp_VSTOP = self.ramp_VSTOP
 
     def reset_ramp_defaults(self):
-        ramp.VSTART = 1
-        ramp.A1 = 25000
-        ramp.V1 = 250000
-        ramp.AMAX = 5000
-        ramp.VMAX = 1000000
-        ramp.DMAX = 5000
-        ramp.D1 = 50000
-        ramp.VSTOP = 10
-
-        self.write_ramp_params()
+        self.ramp_VSTART = 1
+        self.ramp_A1 = 2000
+        self.ramp_V1 = 3000
+        self.ramp_AMAX = 5000
+        self.ramp_VMAX = 100000
+        self.ramp_DMAX = 5000
+        self.ramp_D1 = 4000
+        self.ramp_VSTOP = 10
 
     def enable_switch(self, direction: int):
         # Configure limit switch.
@@ -300,7 +336,7 @@ class Motor(Board):
         while self.get_velocity() != 0:
             time.sleep(0.01)
         self.hold_mode()
-        self.set_VMAX(ramp.VMAX)
+        self.ramp_VMAX = self.ramp_VMAX
 
     def hold_mode(self):
         self.write(reg.RAMPMODE, 3)
