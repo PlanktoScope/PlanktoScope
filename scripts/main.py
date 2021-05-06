@@ -135,9 +135,14 @@ if __name__ == "__main__":
     segmenter_thread.start()
 
     # Starts the light process
-    logger.info("Starting the light control process (step 5/4)")
-    light_thread = planktoscope.light.LightProcess(shutdown_event)
-    light_thread.start()
+    logger.info("Starting the light control process (step 5/6)")
+    try:
+        light_thread = planktoscope.light.LightProcess(shutdown_event)
+    except:
+        logger.error("The light control process could not be started")
+        light_thread = None
+    else:
+        light_thread.start()
 
     # Starts the module process
     # Uncomment here as needed
@@ -171,14 +176,16 @@ if __name__ == "__main__":
     if imager_thread:
         imager_thread.join()
     segmenter_thread.join()
-    light_thread.join()
+    if light_thread:
+        light_thread.join()
     # Uncomment this for clean shutdown
     # module_thread.join()
     stepper_thread.close()
     if imager_thread:
         imager_thread.close()
     segmenter_thread.close()
-    light_thread.close()
+    if light_thread:
+        light_thread.close()
     # Uncomment this for clean shutdown
     # module_thread.close()
     display.stop()
