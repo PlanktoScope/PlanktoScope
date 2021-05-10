@@ -100,6 +100,7 @@ class Display(object):
 
     def stop(self):
         logger.info("Display is out!")
+        self.display_text("Shutdown in 5s")
         self.__clear()
 
 
