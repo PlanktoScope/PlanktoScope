@@ -2,6 +2,20 @@
 
 ## Image changelog
 
+### V2.2.1: released 2021-05-11
+Bugfix:
+
+- Package update to fix an issue were newer boards would not get recognised properly, leading to an early crash of the python script.
+
+
+Improvement:
+
+- Addition of a small menu to switch branches of the software. This is going to be of use mainly to developers.
+
+
+**[Image download link](https://drive.google.com/file/d/1y0k_NDXN0yT5caZrXhjLYXgQVxu-D5ql/view?usp=sharing)**
+
+
 ### V2.2: released 2021-01-15
 Breaking changes:
 

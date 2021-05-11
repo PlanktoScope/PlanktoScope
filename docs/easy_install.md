@@ -2,7 +2,7 @@
 
 ## Download the image
 
-For ease of setup, a preconfigured image is provided. You can download it from [here](https://drive.google.com/file/d/1fht8r7P6_bVsfIIwo7wnGLQ_1uxWCnos/view?usp=sharing).
+For ease of setup, a preconfigured image is provided. You can download it from [here](https://drive.google.com/file/d/1y0k_NDXN0yT5caZrXhjLYXgQVxu-D5ql/view?usp=sharing).
 
 ## Writing the image to the SD card
 
