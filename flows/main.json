@@ -721,15 +721,6 @@
         "collapse": true
     },
     {
-        "id": "537a50c5.f6f428",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3ca00bf9.e5cac4",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "9e409235.73cd7",
         "type": "ui_group",
         "z": "",
@@ -770,51 +761,6 @@
         "order": 9,
         "disabled": false,
         "hidden": false
-    },
-    {
-        "id": "dcb4c0a9.288b38",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 2,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "778e749.ced338c",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 4,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "e7b7752b.d85918",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 5,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "8bc9bd19.816888",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 7,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "165dcd04.e6d253",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 9,
-        "width": 8,
-        "height": 1
     },
     {
         "id": "b0fb559a.6966a8",
@@ -982,6 +928,69 @@
         "group": "f3ca28ef.4df0a8",
         "order": 3,
         "width": 4,
+        "height": 1
+    },
+    {
+        "id": "7da406a5.27eb4",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "77f746b.53f1538",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "d85ab67c.dc7a9",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "5bbb684a.85e138",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 9,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "11b62f82.d3965",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 10,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "d160563f.c1a0e8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 12,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "ff30b2d8.51102",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 14,
+        "width": 8,
         "height": 1
     },
     {
@@ -1431,12 +1440,13 @@
         "label": "Fan",
         "tooltip": "",
         "group": "3ca00bf9.e5cac4",
-        "order": 3,
-        "width": 1,
+        "order": 2,
+        "width": 2,
         "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "",
+        "topicType": "str",
         "style": "",
         "onvalue": "on",
         "onvalueType": "str",
@@ -1446,6 +1456,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
         "x": 940,
         "y": 40,
         "wires": [
@@ -3329,11 +3340,10 @@
         "payload": "start",
         "payloadType": "str",
         "x": 130,
-        "y": 580,
+        "y": 620,
         "wires": [
             [
-                "452af41c.43940c",
-                "b3c21aa9.8c06c"
+                "452af41c.43940c"
             ]
         ]
     },
@@ -3835,45 +3845,6 @@
         ]
     },
     {
-        "id": "b3c21aa9.8c06c",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "git --git-dir /home/pi/PlanktonScope/.git/ rev-parse --short master",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "git rev",
-        "x": 310,
-        "y": 540,
-        "wires": [
-            [
-                "3e64877a.9684b"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "3e64877a.9684b",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "store version",
-        "func": "msg.payload = \"PlanktoScope v2.2-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 590,
-        "y": 520,
-        "wires": [
-            [
-                "8343fa69.49339"
-            ]
-        ]
-    },
-    {
         "id": "68fa1227.dbdd5c",
         "type": "function",
         "z": "bccd1f23.87219",
@@ -4018,22 +3989,6 @@
         "layout": "row-spread",
         "x": 610,
         "y": 600,
-        "wires": []
-    },
-    {
-        "id": "8343fa69.49339",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "ce9e278.781eed8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Software version",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 840,
-        "y": 520,
         "wires": []
     },
     {
@@ -6136,7 +6091,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "1be83144.4fe4bf",
-        "order": 15,
+        "order": 13,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -6148,6 +6103,7 @@
         "payload": "reboot",
         "payloadType": "str",
         "topic": "reboot",
+        "topicType": "str",
         "x": 420,
         "y": 680,
         "wires": [
@@ -6181,7 +6137,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "1be83144.4fe4bf",
-        "order": 17,
+        "order": 15,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -6193,6 +6149,7 @@
         "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
+        "topicType": "str",
         "x": 410,
         "y": 760,
         "wires": [
@@ -6208,8 +6165,8 @@
         "name": "action",
         "func": "#!/usr/bin/python\nimport smbus\n\nbus = smbus.SMBus(1)\n#turn off LED\nbus.write_byte_data(0x0d, 0x07, 0x00)\n#turn off Fan\nbus.write_byte_data(0x0d, 0x08, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
         "outputs": 1,
-        "x": 690,
-        "y": 460,
+        "x": 590,
+        "y": 720,
         "wires": [
             [
                 "611a8b1c.a829b4"
@@ -6227,7 +6184,7 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 1120,
+        "x": 1090,
         "y": 600,
         "wires": [
             [],
@@ -6266,7 +6223,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Restart Python",
         "group": "1be83144.4fe4bf",
-        "order": 12,
+        "order": 11,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -6383,7 +6340,7 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 1340,
+        "x": 1260,
         "y": 720,
         "wires": [
             [
@@ -6515,7 +6472,7 @@
         "level": "1",
         "freq": "",
         "out": "out",
-        "x": 420,
+        "x": 410,
         "y": 80,
         "wires": []
     },
@@ -6570,7 +6527,7 @@
         "timer": "1",
         "oldrc": false,
         "name": "git user.name",
-        "x": 1140,
+        "x": 1150,
         "y": 60,
         "wires": [
             [],
@@ -6626,7 +6583,7 @@
         "timer": "1",
         "oldrc": false,
         "name": "git user.email",
-        "x": 1130,
+        "x": 1150,
         "y": 140,
         "wires": [
             [],
@@ -6659,7 +6616,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Update",
         "group": "1be83144.4fe4bf",
-        "order": 9,
+        "order": 8,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -6672,7 +6629,7 @@
         "payloadType": "str",
         "topic": "update",
         "topicType": "str",
-        "x": 440,
+        "x": 300,
         "y": 460,
         "wires": [
             [
@@ -6691,15 +6648,16 @@
         "timer": "",
         "oldrc": false,
         "name": "Update",
-        "x": 720,
+        "x": 480,
         "y": 460,
         "wires": [
             [
                 "64f61762.68c788",
-                "8b511c2b.9c24c8"
+                "8b511c2b.9c24c8",
+                "83c5a708.a5715",
+                "d334d264.8a7728"
             ],
             [
-                "64f61762.68c788",
                 "8b511c2b.9c24c8"
             ],
             []
@@ -6714,13 +6672,13 @@
         "order": 1,
         "width": 12,
         "height": 2,
-        "format": "<div><center>If you want to update to the latest code version of Node-Red and Python, please click here.\nWe are trying to save your configuration changes with git stash and restore them afterwards, but clearly, things may break!\nIf you have made changes to the flow, you will lose them. Please commit those changes from Node-Red interface, from the Project History tab.</center></div>",
+        "format": "<div><center>If you want to update to the latest code version of Node-Red and Python, please click here.\nWe are trying to save your configuration changes with git stash and restore them afterwards, but clearly, things may break!\nAlso, you can choose the branch you want to update to. BE CAREFUL, selecting a branch WILL update the code immediately.\nIf you have made changes to the flow, you will lose them. Please commit those changes from Node-Red interface, from the Project History tab.</center></div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "x": 410,
-        "y": 180,
+        "y": 200,
         "wires": [
             []
         ]
@@ -7852,8 +7810,8 @@
         "links": [
             "e41870d7.300eb8"
         ],
-        "x": 155,
-        "y": 300,
+        "x": 175,
+        "y": 560,
         "wires": [
             [
                 "466eb611.4da048"
@@ -8280,8 +8238,8 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 1170,
-        "y": 460,
+        "x": 1110,
+        "y": 720,
         "wires": [
             [
                 "7a1dedf.1c63094"
@@ -8781,8 +8739,8 @@
         "links": [
             "e08cfcb8.2a67e8"
         ],
-        "x": 435,
-        "y": 460,
+        "x": 455,
+        "y": 720,
         "wires": [
             [
                 "4af9112d.87767"
@@ -8876,20 +8834,6 @@
         ]
     },
     {
-        "id": "b3448fbb.351d28",
-        "type": "rpi-gpio out",
-        "z": "1371dec5.76e671",
-        "name": "Fan",
-        "pin": "33",
-        "set": false,
-        "level": "0",
-        "freq": "25000",
-        "out": "pwm",
-        "x": 1110,
-        "y": 40,
-        "wires": []
-    },
-    {
         "id": "f6ff420b.0af648",
         "type": "ui_slider",
         "z": "bccd1f23.87219",
@@ -8903,7 +8847,6 @@
         "passthru": true,
         "outs": "end",
         "topic": "focus_speed",
-        "topicType": "str",
         "min": "250",
         "max": "2500",
         "step": "250",
@@ -8958,7 +8901,6 @@
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
-        "topicType": "str",
         "x": 350,
         "y": 520,
         "wires": [
@@ -8985,7 +8927,6 @@
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
-        "topicType": "str",
         "x": 340,
         "y": 600,
         "wires": [
@@ -9040,7 +8981,6 @@
         "wrap": false,
         "passthru": true,
         "topic": "acq_maximum_mesh",
-        "topicType": "str",
         "format": "{{value}}",
         "min": "200",
         "max": "2000",
@@ -9067,7 +9007,6 @@
         "wrap": false,
         "passthru": true,
         "topic": "acq_minimum_mesh",
-        "topicType": "str",
         "format": "{{value}}",
         "min": 0,
         "max": "300",
@@ -9091,12 +9030,12 @@
         "timer": "",
         "oldrc": false,
         "name": "Get git revision",
-        "x": 640,
+        "x": 660,
         "y": 340,
         "wires": [
             [
                 "af2b8d95.195bb8",
-                "b6bc9b81.ff942"
+                "aa2dbb6.4cd9948"
             ],
             [],
             []
@@ -9113,7 +9052,7 @@
         "timer": "",
         "oldrc": false,
         "name": "Get git branch",
-        "x": 640,
+        "x": 660,
         "y": 260,
         "wires": [
             [
@@ -9129,8 +9068,8 @@
         "z": "9daf9e2b.019fc",
         "name": "get git branch",
         "group": "1be83144.4fe4bf",
-        "order": 4,
-        "width": 4,
+        "order": 3,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Update branch list",
@@ -9141,7 +9080,6 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "topicType": "str",
         "x": 410,
         "y": 260,
         "wires": [
@@ -9156,7 +9094,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Git branch list",
         "label": "Switch branch to",
-        "tooltip": "",
+        "tooltip": "If you choose something, the code WILL be updated to that branch, don't touch if you don't know what you are doing!",
         "place": "branch",
         "group": "1be83144.4fe4bf",
         "order": 5,
@@ -9166,13 +9104,13 @@
         "multiple": false,
         "options": [],
         "payload": "",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 1020,
-        "y": 260,
+        "topic": "branch",
+        "topicType": "str",
+        "x": 1320,
+        "y": 340,
         "wires": [
             [
-                "d037a624.60bea8"
+                "2d2ef1fd.40e6e6"
             ]
         ]
     },
@@ -9186,7 +9124,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 830,
+        "x": 930,
         "y": 260,
         "wires": [
             [
@@ -9221,57 +9159,81 @@
         ]
     },
     {
-        "id": "d037a624.60bea8",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "git --git-dir=/home/pi/PlanktonScope/.git checkout",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "git checkout branch",
-        "x": 1270,
-        "y": 260,
-        "wires": [
-            [],
-            [
-                "d334d264.8a7728",
-                "83c5a708.a5715"
-            ],
-            []
-        ]
-    },
-    {
         "id": "af2b8d95.195bb8",
         "type": "ui_text",
         "z": "9daf9e2b.019fc",
         "group": "1be83144.4fe4bf",
         "order": 2,
-        "width": 12,
+        "width": 7,
         "height": 1,
         "name": "",
         "label": "Current code version",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 1040,
-        "y": 340,
+        "x": 920,
+        "y": 320,
         "wires": []
     },
     {
-        "id": "b6bc9b81.ff942",
-        "type": "function",
+        "id": "aa2dbb6.4cd9948",
+        "type": "link out",
         "z": "9daf9e2b.019fc",
-        "name": "save process_commit",
-        "func": "global.set(\"process_commit\", msg.payload);\n",
+        "name": "get git revision",
+        "links": [
+            "be6bddd3.2004f"
+        ],
+        "x": 835,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "5112444.5be803c",
+        "type": "ui_text",
+        "z": "1371dec5.76e671",
+        "group": "ce9e278.781eed8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "[System Monitoring] version",
+        "label": "Software version",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 800,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "16548734.7fe631",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "store version",
+        "func": "msg.payload = \"PlanktoScope-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1040,
-        "y": 380,
+        "x": 590,
+        "y": 520,
         "wires": [
-            []
+            [
+                "5112444.5be803c"
+            ]
+        ]
+    },
+    {
+        "id": "be6bddd3.2004f",
+        "type": "link in",
+        "z": "1371dec5.76e671",
+        "name": "git version",
+        "links": [
+            "aa2dbb6.4cd9948"
+        ],
+        "x": 455,
+        "y": 520,
+        "wires": [
+            [
+                "16548734.7fe631"
+            ]
         ]
     }
 ]
