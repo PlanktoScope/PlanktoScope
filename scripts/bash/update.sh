@@ -28,6 +28,7 @@ function update(){
 function special_before(){
     cd /home/pi/.node-red || { echo "/home/pi/.node-red does not exist"; exit 1; }
     npm install copy-dependencies
+    pip3 install --update adafruit-blinka adafruit-platformdetect loguru Pillow pyserial smbus2 matplotlib morphocut adafruit-circuitpython-motor adafruit-circuitpython-motorkit adafruit-circuitpython-pca9685 numpy paho-mqtt
     ${log} "Nothing else special to do before updating!"
 }
 
