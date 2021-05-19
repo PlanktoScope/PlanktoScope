@@ -37,6 +37,7 @@ function special_after(){
     node_modules/copy-dependencies/index.js projects/PlanktonScope ./
     # updating and installing now whatever module has been added to package.json
     npm update
+    sudo pip3 install -U -r /home/pi/PlanktonScope/requirements.txt
     ${log} "Nothing else special to do after updating!"
 }
 
