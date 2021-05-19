@@ -99,11 +99,23 @@ A camera settings message can also be received here. The fields `iso` and `shutt
 This topic controls the segmentation process. The message is a JSON object:
 ```json
 {
-  "action": "segment"
+  "action": "segment",
+  "path": "/path/to/segment",
+  "settings": {
+    "force": False,
+    "recursive": True,
+    "ecotaxa": True,
+    "keep": True
+  }
 }
 ```
 
 `action` can also be `stop`.
+The `action` element is the only element required. If no `path` is supplied, the whole images repository is segmented recursively (this is very long!).
+`force` is going to overcome the presence of the file `done` that is here to prevent for resegmenting a folder already segmented.
+`recursive` will force parsing all folders below `path`.
+`ecotaxa` activates the export of an ecotaxa compatible archive.
+`keep` allows to remove or keep the roi (when you do an ecotaxa export, no effects otherwise, the roi are kept).
 
 - Receive only
 
@@ -173,3 +185,10 @@ Status of the segmentation. It's a JSON object with:
 ```
 
 #### `status/segmenter/metric`
+```json
+{
+  "name": "01_13_28_232066_0",
+  "metadata": {
+      "label": 0, "width": 29, "height": 80, ....
+}
+```
