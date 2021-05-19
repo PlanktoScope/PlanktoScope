@@ -131,14 +131,16 @@ if __name__ == "__main__":
 
     # Starts the segmenter process
     logger.info("Starting the segmenter control process (step 4/6)")
-    segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
+    segmenter_thread = planktoscope.segmenter.SegmenterProcess(
+        shutdown_event, "/home/pi/data"
+    )
     segmenter_thread.start()
 
     # Starts the light process
     logger.info("Starting the light control process (step 5/6)")
     try:
         light_thread = planktoscope.light.LightProcess(shutdown_event)
-    except:
+    except Exception as e:
         logger.error("The light control process could not be started")
         light_thread = None
     else:
