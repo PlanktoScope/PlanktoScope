@@ -120,7 +120,7 @@ if __name__ == "__main__":
     stepper_thread.start()
 
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 3/6)")
+    logger.info("Starting the imager control process (step 3/4)")
     try:
         imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
     except:
@@ -131,9 +131,10 @@ if __name__ == "__main__":
 
     # Starts the segmenter process
     logger.info("Starting the segmenter control process (step 4/4)")
-    segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event)
+    segmenter_thread = planktoscope.segmenter.SegmenterProcess(
+        shutdown_event, "/home/pi/data"
+    )
     segmenter_thread.start()
-
 
     # Starts the module process
     # Uncomment here as needed

@@ -992,33 +992,6 @@
         "height": 1
     },
     {
-        "id": "7fdc961c.837a1",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 3,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "ff9fd243.02bfd",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 5,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "6f51c860.a27ff",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 7,
-        "width": 10,
-        "height": 1
-    },
-    {
         "id": "cfe2288f.a8862",
         "type": "ui_group",
         "z": "",
@@ -1028,6 +1001,33 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "934b51b3.585b28",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "abeb6dad.635a2",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "626cde70.2c2918",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "6bacc64.0a25c38",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 6,
+        "width": 3,
+        "height": 1
     },
     {
         "id": "4e78af2d.90be7",
@@ -1059,8 +1059,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 410,
-        "y": 460,
+        "x": 430,
+        "y": 600,
         "wires": [
             [
                 "f0fb77cf.8f1c28"
@@ -1073,8 +1073,8 @@
         "z": "cb95299c.2817c8",
         "name": "",
         "events": "change",
-        "x": 720,
-        "y": 460,
+        "x": 740,
+        "y": 600,
         "wires": [
             []
         ]
@@ -1482,7 +1482,6 @@
         "passthru": true,
         "decouple": "false",
         "topic": "",
-        "topicType": "str",
         "style": "",
         "onvalue": "on",
         "onvalueType": "str",
@@ -1492,7 +1491,6 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "animate": true,
         "x": 940,
         "y": 40,
         "wires": [
@@ -1910,9 +1908,9 @@
         "passthru": true,
         "outs": "end",
         "topic": "pump_flowrate",
-        "min": "0.1",
-        "max": "20",
-        "step": "0.1",
+        "min": "0.5",
+        "max": "100",
+        "step": "0.5",
         "x": 540,
         "y": 340,
         "wires": [
@@ -3075,7 +3073,6 @@
         "passthru": true,
         "outs": "end",
         "topic": "imager/image",
-        "topicType": "str",
         "min": "125",
         "max": "1000",
         "step": "1",
@@ -3224,7 +3221,7 @@
         "z": "cb95299c.2817c8",
         "name": "Start segmentation",
         "group": "abeb6dad.635a2",
-        "order": 4,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -3236,12 +3233,12 @@
         "payload": "{\"action\":\"segment\"}",
         "payloadType": "json",
         "topic": "segmenter/segment",
-        "topicType": "str",
         "x": 370,
-        "y": 300,
+        "y": 460,
         "wires": [
             [
-                "33c28dc1.238002"
+                "33c28dc1.238002",
+                "c72a1064.1ec388"
             ]
         ]
     },
@@ -3249,10 +3246,11 @@
         "id": "27be7971.b3fbce",
         "type": "ui_button",
         "z": "cb95299c.2817c8",
+        "d": true,
         "name": "Stop segmentation",
         "group": "abeb6dad.635a2",
-        "order": 5,
-        "width": 5,
+        "order": 8,
+        "width": 4,
         "height": 1,
         "passthru": true,
         "label": "Stop segmentation",
@@ -3264,7 +3262,7 @@
         "payloadType": "json",
         "topic": "segmenter/segment",
         "x": 370,
-        "y": 340,
+        "y": 520,
         "wires": [
             [
                 "16f3cef4.0acac9"
@@ -3280,8 +3278,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 810,
-        "y": 340,
+        "x": 850,
+        "y": 520,
         "wires": []
     },
     {
@@ -4499,18 +4497,18 @@
         "id": "8f3788f6.ddcf98",
         "type": "function",
         "z": "cb95299c.2817c8",
-        "name": "obj_counter.js",
-        "func": "obj_counter=global.get('obj_counter')\nobj_counter=obj_counter+1\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
+        "name": "obj_counter",
+        "func": "obj_counter = flow.get('obj_counter')\nobj_counter = obj_counter + 1\nflow.set('obj_counter', obj_counter)\nmsg.payload = obj_counter\nmsg.topic = \"object count\"\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 820,
-        "y": 840,
+        "x": 810,
+        "y": 800,
         "wires": [
             [
-                "9d53dbe2.dbffe8",
-                "fa3b7929.ac7da8"
+                "fa3b7929.ac7da8",
+                "9d53dbe2.dbffe8"
             ]
         ]
     },
@@ -4570,7 +4568,7 @@
         "z": "cb95299c.2817c8",
         "name": "counter graph",
         "group": "46be9c86.dea684",
-        "order": 6,
+        "order": 7,
         "width": 10,
         "height": 2,
         "label": "",
@@ -4611,7 +4609,7 @@
         "type": "function",
         "z": "cb95299c.2817c8",
         "name": "ex : area",
-        "func": "msg.payload=msg.payload.object_area\nmsg.topic=\"area\"\n\nreturn msg;",
+        "func": "// Payload looks like this:\n// {'name': '01_13_28_232066_0',\n//  'metadata': {\n//      'label': 0, 'width': 29, 'height': 80, ....\n\nmsg.payload=msg.payload.metadata.area_exc\nmsg.topic=\"area\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4678,7 +4676,7 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 1320,
+        "x": 1330,
         "y": 920,
         "wires": [
             []
@@ -4697,7 +4695,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 840,
+        "x": 830,
         "y": 760,
         "wires": []
     },
@@ -4770,7 +4768,7 @@
         "type": "ui_text",
         "z": "cb95299c.2817c8",
         "group": "46be9c86.dea684",
-        "order": 4,
+        "order": 5,
         "width": 4,
         "height": 1,
         "name": "counter",
@@ -4799,32 +4797,15 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "object count",
         "payload": "0",
         "payloadType": "num",
         "x": 810,
-        "y": 800,
+        "y": 880,
         "wires": [
             [
-                "cd10a556.6a9a08"
-            ]
-        ]
-    },
-    {
-        "id": "cd10a556.6a9a08",
-        "type": "function",
-        "z": "cb95299c.2817c8",
-        "name": "obj_counter init",
-        "func": "obj_counter=0\nglobal.set('obj_counter',obj_counter)\nmsg.payload = obj_counter\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1000,
-        "y": 800,
-        "wires": [
-            [
-                "fa3b7929.ac7da8"
+                "ac439738.28bc18",
+                "4f3f7c4a.cb21c4"
             ]
         ]
     },
@@ -5200,8 +5181,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 760,
-        "y": 240,
+        "x": 780,
+        "y": 380,
         "wires": [
             []
         ]
@@ -5212,7 +5193,7 @@
         "z": "cb95299c.2817c8",
         "group": "46be9c86.dea684",
         "name": "Object counts",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "format": "<div><center><h2>Object counts</h2></center></div>",
@@ -5240,7 +5221,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 1320,
+        "x": 1330,
         "y": 880,
         "wires": [
             []
@@ -5550,13 +5531,13 @@
         "type": "function",
         "z": "cb95299c.2817c8",
         "name": "prepare segmentation",
-        "func": "global.set('obj_counter', 0);\n\nvar segmentation_list = flow.get('segmentation_list')\nif (segmentation_list !== undefined && segmentation_list !== \"\") {\n    msg.payload['path'] = segmentation_list\n}\n\nreturn msg;",
+        "func": "global.set('obj_counter', 0);\n\nvar segmentation_list = flow.get('segmentation_list')\nif (segmentation_list !== undefined && segmentation_list !== \"\") {\n    msg.payload['path'] = segmentation_list\n}\n\n\nvar force = flow.get('force')\nif (force !== undefined && force !== \"\") {\n    msg.payload['settings'] = {\"force\":Boolean(force)}\n}\n\n\nvar recursive = flow.get('recursive')\nif (recursive !== undefined && recursive !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"recursive\"] = Boolean(recursive)\n    }\n    else{\n        msg.payload['settings'] = {\"recursive\": Boolean(recursive)}\n    }\n}\n\nvar ecotaxa = flow.get('ecotaxa')\nif (ecotaxa !== undefined && ecotaxa !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"ecotaxa\"] = Boolean(ecotaxa)\n    }\n    else{\n        msg.payload['settings'] = {\"ecotaxa\": Boolean(ecotaxa)}\n    }\n}\n\nvar keep = flow.get('keep')\nif (keep !== undefined && keep !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"keep\"] = Boolean(keep)\n    }\n    else{\n        msg.payload['settings'] = {\"keep\": Boolean(keep)}\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 600,
-        "y": 300,
+        "x": 620,
+        "y": 460,
         "wires": [
             [
                 "16f3cef4.0acac9"
@@ -6197,7 +6178,6 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "topicType": "str",
         "x": 400,
         "y": 600,
         "wires": [
@@ -6590,8 +6570,7 @@
         "payload": "",
         "payloadType": "str",
         "topic": "update",
-        "topicType": "str",
-        "x": 300,
+        "x": 260,
         "y": 460,
         "wires": [
             [
@@ -6610,7 +6589,7 @@
         "timer": "",
         "oldrc": false,
         "name": "Update",
-        "x": 480,
+        "x": 460,
         "y": 460,
         "wires": [
             [
@@ -6659,7 +6638,7 @@
         "raw": false,
         "topic": "",
         "name": "Update notif",
-        "x": 1030,
+        "x": 730,
         "y": 440,
         "wires": [
             []
@@ -8083,8 +8062,8 @@
         "z": "cb95299c.2817c8",
         "name": "",
         "env": [],
-        "x": 410,
-        "y": 240,
+        "x": 430,
+        "y": 380,
         "wires": [
             [
                 "3b72d11c.86e9e6"
@@ -8101,8 +8080,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 580,
-        "y": 240,
+        "x": 600,
+        "y": 380,
         "wires": [
             [
                 "c8749cbb.55254"
@@ -8987,20 +8966,19 @@
         "z": "cb95299c.2817c8",
         "group": "abeb6dad.635a2",
         "name": "",
-        "order": 3,
+        "order": 7,
         "width": 10,
         "height": 11,
-        "lineType": "two",
+        "lineType": "one",
         "actionType": "check",
         "allowHTML": false,
         "outputs": 1,
         "topic": "",
-        "x": 650,
+        "x": 770,
         "y": 140,
         "wires": [
             [
-                "cb3b87b5.63c4",
-                "739ba213.584e3c"
+                "cb3b87b5.63c4"
             ]
         ]
     },
@@ -9010,7 +8988,7 @@
         "z": "cb95299c.2817c8",
         "name": "",
         "dirname": "/home/pi/data/img/",
-        "pathRegex": ".*",
+        "pathRegex": "",
         "isRecursive": true,
         "findDir": true,
         "isArray": true,
@@ -9018,7 +8996,7 @@
         "y": 140,
         "wires": [
             [
-                "3ea12061.ce62c"
+                "ba2947.c854deb8"
             ]
         ]
     },
@@ -9028,7 +9006,7 @@
         "z": "cb95299c.2817c8",
         "name": "Refresh",
         "group": "abeb6dad.635a2",
-        "order": 2,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9040,7 +9018,6 @@
         "payload": "",
         "payloadType": "date",
         "topic": "update",
-        "topicType": "str",
         "x": 260,
         "y": 140,
         "wires": [
@@ -9297,9 +9274,8 @@
         "options": [],
         "payload": "",
         "topic": "branch",
-        "topicType": "str",
-        "x": 1020,
-        "y": 260,
+        "x": 1160,
+        "y": 320,
         "wires": [
             [
                 "2d2ef1fd.40e6e6"
@@ -9351,29 +9327,6 @@
         ]
     },
     {
-        "id": "d037a624.60bea8",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "d": true,
-        "command": "git --git-dir=/home/pi/PlanktonScope/.git checkout",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "git checkout branch",
-        "x": 1230,
-        "y": 260,
-        "wires": [
-            [],
-            [
-                "d334d264.8a7728",
-                "83c5a708.a5715"
-            ],
-            []
-        ]
-    },
-    {
         "id": "af2b8d95.195bb8",
         "type": "ui_text",
         "z": "9daf9e2b.019fc",
@@ -9385,7 +9338,7 @@
         "label": "Current code version",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 920,
+        "x": 860,
         "y": 320,
         "wires": []
     },
@@ -9394,12 +9347,12 @@
         "type": "function",
         "z": "cb95299c.2817c8",
         "name": "update segmentation_list",
-        "func": "var segmentation_list = flow.get('segmentation_list');\n\nif (segmentation_list === undefined || segmentation_list === \"\") {\n    segmentation_list = []\n    console.log(\"error\")\n}\n\nif (msg.payload.isChecked){\n    if (segmentation_list.includes(msg.payload.title) === false){\n        segmentation_list.push(msg.payload.title)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = segmentation_list.indexOf('machin')\n    segmentation_list.splice(pos, 1)\n}\n\nflow.set('segmentation_list', segmentation_list)",
+        "func": "var segmentation_list = flow.get('segmentation_list');\n\nif (segmentation_list === undefined || segmentation_list === \"\") {\n    segmentation_list = []\n    console.log(\"error\")\n}\n\npath = \"/home/pi/data/img/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (segmentation_list.includes(path) === false){\n        segmentation_list.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = segmentation_list.indexOf(path)\n    segmentation_list.splice(pos, 1)\n}\n\nflow.set('segmentation_list', segmentation_list)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 910,
+        "x": 950,
         "y": 140,
         "wires": [
             []
@@ -9438,7 +9391,7 @@
         "name": "Update message",
         "order": 1,
         "width": 10,
-        "height": "3",
+        "height": 3,
         "format": "<div><left>You can choose here in which folder(s) you want the segmentation script to run. A few details though:\n<br>The segmentation is run recursively in all folders. So if you select a top level folder, the segmentation will be run in all subfolders.\n<br>Also, you will be able to chose wether for force the segmentation for folders in which it has run already.</left></div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -9645,7 +9598,6 @@
         "payload": "",
         "payloadType": "str",
         "topic": "topic",
-        "topicType": "msg",
         "x": 670,
         "y": 1480,
         "wires": [
@@ -9653,16 +9605,6 @@
                 "c60030d4.317418"
             ]
         ]
-    },
-    {
-        "id": "c98d3495.b04278",
-        "type": "comment",
-        "z": "9daf9e2b.019fc",
-        "name": "",
-        "info": "Ajouter ici un update en fait vers la nouvelle branche (il faut qu'on éteigne et rallume les scripts et tout le tintouin)",
-        "x": 1260,
-        "y": 280,
-        "wires": []
     },
     {
         "id": "c60030d4.317418",
@@ -9718,23 +9660,6 @@
         ]
     },
     {
-        "id": "739ba213.584e3c",
-        "type": "debug",
-        "z": "cb95299c.2817c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 200,
-        "wires": []
-    },
-    {
         "id": "b6bc9b81.ff942",
         "type": "function",
         "z": "9daf9e2b.019fc",
@@ -9772,8 +9697,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 590,
-        "y": 520,
+        "x": 860,
+        "y": 360,
         "wires": [
             [
                 "5112444.5be803c"
@@ -9793,6 +9718,505 @@
         "wires": [
             [
                 "16548734.7fe631"
+            ]
+        ]
+    },
+    {
+        "id": "ba2947.c854deb8",
+        "type": "function",
+        "z": "cb95299c.2817c8",
+        "name": "remove common",
+        "func": "function remove_path(item, index, array) {\n  array[index] = item.replace(\"/home/pi/data/img/\", \"\")\n} \n\nmsg.payload.forEach(remove_path)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 140,
+        "wires": [
+            [
+                "3ea12061.ce62c"
+            ]
+        ]
+    },
+    {
+        "id": "21af0db1.c2c182",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "recursive toggle",
+        "group": "abeb6dad.635a2",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "label": "Recursive folder",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "x": 480,
+        "y": 220,
+        "wires": [
+            [
+                "880b192a.88e2d"
+            ]
+        ]
+    },
+    {
+        "id": "dffb9881.feef8",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "force toggle",
+        "group": "abeb6dad.635a2",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "label": "Force rework",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "a4f68fa6.5d77f8"
+            ]
+        ]
+    },
+    {
+        "id": "880b192a.88e2d",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "recursive",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4f68fa6.5d77f8",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "force",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ef1b43b.b0f064",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "dffb9881.feef8",
+                "a4f68fa6.5d77f8"
+            ]
+        ]
+    },
+    {
+        "id": "f078c068.eacf58",
+        "type": "ui_template",
+        "z": "cb95299c.2817c8",
+        "group": "46be9c86.dea684",
+        "name": "Stream Segmented object",
+        "order": 2,
+        "width": 10,
+        "height": 8,
+        "format": "<center>\n    Latest object segmented:<br/>\n  <img src=\"http://planktoscope.local:8001/object.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://planktoscope.local:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    style=\"max-width: 100%;max-height: 100%;\">\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 1370,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43f97b93.b76294",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "21af0db1.c2c182",
+                "880b192a.88e2d"
+            ]
+        ]
+    },
+    {
+        "id": "ac439738.28bc18",
+        "type": "function",
+        "z": "cb95299c.2817c8",
+        "name": "chart init",
+        "func": "obj=[{\"series\": [],\"data\": [],\"labels\": []}]\nmsg.payload = obj\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 980,
+        "y": 880,
+        "wires": [
+            [
+                "458cd82e.03d258"
+            ]
+        ]
+    },
+    {
+        "id": "4f3f7c4a.cb21c4",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "obj_counter",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 840,
+        "wires": [
+            [
+                "fa3b7929.ac7da8",
+                "9d53dbe2.dbffe8"
+            ]
+        ]
+    },
+    {
+        "id": "6bce0f60.f48998",
+        "type": "link in",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "links": [
+            "596fc9d4.46c75"
+        ],
+        "x": 855,
+        "y": 840,
+        "wires": [
+            [
+                "4f3f7c4a.cb21c4",
+                "ac439738.28bc18"
+            ]
+        ]
+    },
+    {
+        "id": "596fc9d4.46c75",
+        "type": "link out",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "links": [
+            "6bce0f60.f48998"
+        ],
+        "x": 715,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "c72a1064.1ec388",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "Reset counters",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object count",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 500,
+        "wires": [
+            [
+                "596fc9d4.46c75"
+            ]
+        ]
+    },
+    {
+        "id": "9367534a.fb8568",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "Ecotaxa archive",
+        "group": "abeb6dad.635a2",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "label": "Ecotaxa archive",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "x": 1080,
+        "y": 220,
+        "wires": [
+            [
+                "25ac4f9a.5b05c8"
+            ]
+        ]
+    },
+    {
+        "id": "25ac4f9a.5b05c8",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ecotaxa",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1280,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bef78886.8f0b98",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "9367534a.fb8568",
+                "25ac4f9a.5b05c8"
+            ]
+        ]
+    },
+    {
+        "id": "32465a4e.8fcac6",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "Keep objects",
+        "group": "abeb6dad.635a2",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "label": "Keep objects",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "x": 1070,
+        "y": 300,
+        "wires": [
+            [
+                "8dd6f57f.b77f98"
+            ]
+        ]
+    },
+    {
+        "id": "8dd6f57f.b77f98",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "keep",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1270,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8090df89.c029e",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 910,
+        "y": 280,
+        "wires": [
+            [
+                "32465a4e.8fcac6",
+                "8dd6f57f.b77f98"
             ]
         ]
     }
