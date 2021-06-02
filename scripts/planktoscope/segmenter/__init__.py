@@ -507,7 +507,7 @@ class SegmenterProcess(multiprocessing.Process):
                 )
         return (object_number, len(regionprops))
 
-    def _pipe(self):
+    def _pipe(self, ecotaxa_export):
         logger.info("Finding images")
         images_list = self._find_files(
             self.__working_path, ("JPG", "jpg", "JPEG", "jpeg")
@@ -638,18 +638,27 @@ class SegmenterProcess(multiprocessing.Process):
             f"We also found {total_objects} objects, or an average of {total_objects / (total_duration * 60)}objects per second"
         )
 
-        planktoscope.segmenter.ecotaxa.ecotaxa_export(
-            self.__archive_fn,
-            self.__global_metadata,
-            self.__working_obj_path,
-            keep_files=True,
-        )
+        if ecotaxa_export:
+            if "objects" in self.__global_metadata:
+                if planktoscope.segmenter.ecotaxa.ecotaxa_export(
+                    self.__archive_fn,
+                    self.__global_metadata,
+                    self.__working_obj_path,
+                    keep_files=True,
+                ):
+                    logger.error("The ecotaxa export could not be completed")
+                else:
+                    logger.succes("Ecotaxa archive export completed for this folder")
+            else:
+                logger.info("There are no objects to export")
+        else:
+            logger.info("We are not creating the ecotaxa output archive for this folder")
 
         # cleanup
         # we're done free some mem
         self.__flat = None
 
-    def segment_all(self, paths: list):
+    def segment_all(self, paths: list, force, ecotaxa_export):
         """Starts the segmentation in all the folders given recursively
 
         Args:
@@ -660,9 +669,9 @@ class SegmenterProcess(multiprocessing.Process):
             for x in os.walk(path):
                 if x[0] not in img_paths:
                     img_paths.append(x[0])
-        self.segment_list(img_paths)
+        self.segment_list(img_paths, force, ecotaxa_export)
 
-    def segment_list(self, path_list: list, force=True):
+    def segment_list(self, path_list: list, force=True, ecotaxa_export=True):
         """Starts the segmentation in the folders given
 
         Args:
@@ -676,7 +685,7 @@ class SegmenterProcess(multiprocessing.Process):
                 # The file exists, let's check if we force or not
                 if force:
                     # forcing, let's gooooo
-                    if not self.segment_path(path):
+                    if not self.segment_path(path, ecotaxa_export):
                         logger.error(f"There was en error while segmenting {path}")
                 else:
                     # we need to check for the presence of done.txt in each folder
@@ -686,14 +695,14 @@ class SegmenterProcess(multiprocessing.Process):
                             f"Moving to the next folder, {path} has already been segmented"
                         )
                     else:
-                        if not self.segment_path(path):
+                        if not self.segment_path(path, ecotaxa_export):
                             logger.error(f"There was en error while segmenting {path}")
             else:
                 logger.debug(f"Moving to the next folder, {path} has no metadata.json")
         # Publish the status "Done" to via MQTT to Node-RED
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Done"}')
 
-    def segment_path(self, path):
+    def segment_path(self, path, ecotaxa_export):
         """Starts the segmentation in the given path
 
         Args:
@@ -755,7 +764,7 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info(f"Starting the pipeline in {path}")
 
         try:
-            self._pipe()
+            self._pipe(ecotaxa_export)
         except Exception as e:
             logger.exception(f"There was an error in the pipeline {e}")
             return False
@@ -781,6 +790,7 @@ class SegmenterProcess(multiprocessing.Process):
                 path = None
                 recursive = True
                 force = False
+                ecotaxa_export = True
                 # {"action":"segment"}
                 if "settings" in last_message:
                     if "force" in last_message["settings"]:
@@ -789,6 +799,9 @@ class SegmenterProcess(multiprocessing.Process):
                     if "recursive" in last_message["settings"]:
                         # parse folders recursively starting from the given parameter
                         recursive = last_message["settings"]["recursive"]
+                    if "ecotaxa" in last_message["settings"]:
+                        # generate ecotaxa output archive
+                        ecotaxa_export = last_message["settings"]["ecotaxa"]
                     # TODO eventually add customisation to segmenter parameters here
 
                 if "path" in last_message:
@@ -800,9 +813,9 @@ class SegmenterProcess(multiprocessing.Process):
                 )
                 if path:
                     if recursive:
-                        self.segment_all(path)
+                        self.segment_all(path, force, ecotaxa_export)
                     else:
-                        self.segment_list(path)
+                        self.segment_list(path, force, ecotaxa_export)
                 else:
                     self.segment_all(self.__img_path)
 

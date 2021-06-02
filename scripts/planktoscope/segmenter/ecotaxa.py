@@ -199,7 +199,11 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
         # empty table, one line per object
         tsv_content = []
 
-        object_list = metadata.pop("objects")
+        if "objects" in metadata:
+            object_list = metadata.pop("objects")
+        else:
+            logger.error("No objects metadata recorded, cannot continue the export")
+            return 0
 
         # fix crappy old camera resolution that was not exported as string
         if type(metadata["acq_camera_resolution"]) != str:
@@ -248,3 +252,4 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
                 path_or_buf=tsv_file, sep="\t", encoding="utf-8", index=False
             )
     logger.success("Ecotaxa archive is ready!")
+    return 1
