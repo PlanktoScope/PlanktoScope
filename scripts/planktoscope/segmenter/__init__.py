@@ -779,7 +779,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__archive_fn = os.path.join(
             self.__ecotaxa_path,
             # filename includes project name, timestamp and sample id
-            f"export_{project}_{date}_{sample}.zip",
+            f"ecotaxa_{project}_{date}_{sample}.zip",
         )
 
         self.__working_path = path
