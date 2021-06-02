@@ -19,7 +19,7 @@ function update(){
     sudo killall -15 raspimjpeg
     sudo killall -15 python3
     git stash
-    git merge
+    git checkout --force $BRANCH
     git checkout stash@'{0}' -- config.json hardware.json
     # TODO we need to change this to drop stash@{1} if changes made to the flow are to be restored by the user
     git stash drop
