@@ -515,7 +515,6 @@ class SegmenterProcess(multiprocessing.Process):
             else:
                 self.__global_metadata.update({"objects": [object_metadata]})
 
-        # TODO make the TSV for ecotaxa
         if self.__save_debug_img:
             if object_number:
                 for region in regionprops_filtered:
@@ -526,26 +525,25 @@ class SegmenterProcess(multiprocessing.Process):
                         cv2.MARKER_CROSS,
                     )
                     tagged_image = cv2.rectangle(
-                        img,
+                        tagged_image,
                         pt1=region.bbox[-3:-5:-1],
                         pt2=region.bbox[-1:-3:-1],
                         color=(150, 0, 200),
                         thickness=1,
                     )
-
-                # contours = [region.bbox for region in regionprops_filtered]
-                # for contour in contours:
-                #    tagged_image = cv2.rectangle(
-                #        img, pt1=(contours[0][1],contours[0][0]), pt2=(contours[0][3],contours[0][2]), color=(0, 0, 255), thickness=2
-                #    )
-                # contours = [region.coords for region in regionprops_filtered]
-                # for contour in contours:
-                #    tagged_image = cv2.drawContours(
-                #        img_erode_2, contour, -1, color=(0, 0, 255), thickness=2
-                #    )
-
-                # cv2.imshow("tagged_image", tagged_image.astype("uint8"))
-                # cv2.waitKey(0)
+                    contours, hierarchy = cv2.findContours(
+                        np.uint8(region.image),
+                        mode=cv2.RETR_TREE,  # RETR_FLOODFILL or RETR_EXTERNAL
+                        method=cv2.CHAIN_APPROX_NONE,
+                    )
+                    tagged_image = cv2.drawContours(
+                        tagged_image,
+                        contours,
+                        -1,
+                        (238, 130, 238),
+                        thickness=1,
+                        offset=(region.bbox[1], region.bbox[0]),
+                    )
                 self._save_image(
                     tagged_image,
                     os.path.join(self.__working_debug_path, "tagged.jpg"),
