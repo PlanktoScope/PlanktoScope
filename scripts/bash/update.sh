@@ -38,6 +38,7 @@ function special_after(){
     # updating and installing now whatever module has been added to package.json
     npm update
     sudo pip3 install -U -r /home/pi/PlanktonScope/requirements.txt
+    python3 -m pip install -U scikit-image
     ${log} "Nothing else special to do after updating!"
 }
 
