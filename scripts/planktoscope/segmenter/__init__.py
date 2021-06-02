@@ -48,6 +48,7 @@ import planktoscope.segmenter.ecotaxa
 import skimage.util
 import skimage.transform
 import skimage.measure
+import skimage.exposure
 import cv2
 import scipy.stats
 import numpy as np
@@ -229,7 +230,8 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info("Starting the mask creation")
 
         pipeline = [
-            "adaptative_threshold",
+            # "adaptative_threshold",
+            "simple_threshold",
             "remove_previous_mask",
             "erode",
             "dilate",
@@ -700,7 +702,9 @@ class SegmenterProcess(multiprocessing.Process):
             else:
                 logger.info("There are no objects to export")
         else:
-            logger.info("We are not creating the ecotaxa output archive for this folder")
+            logger.info(
+                "We are not creating the ecotaxa output archive for this folder"
+            )
 
         # cleanup
         # we're done free some mem
