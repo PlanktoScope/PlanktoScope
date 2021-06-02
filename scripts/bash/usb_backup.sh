@@ -105,7 +105,7 @@ do_backup()
         BACKUP_FOLDER="${MOUNT_POINT}/planktoscope_data/${MACHINE}"
         ${log} "Machine name is ${MACHINE}, backup folder is ${BACKUP_FOLDER}"
         mkdir -p "$BACKUP_FOLDER"
-        rsync -rtD --modify-window=1 --update "$SOURCE" "$BACKUP_FOLDER"
+        rsync -rtD --modify-window=1 --update -W --inplace  "$SOURCE" "$BACKUP_FOLDER"
         if ! python3 -m planktoscope.integrity -c "$BACKUP_FOLDER"; then
             ${log} "ERROR: Some files were corrupted during the copy!"
             do_unmount
