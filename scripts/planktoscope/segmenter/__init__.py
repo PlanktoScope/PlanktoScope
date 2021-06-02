@@ -696,9 +696,9 @@ class SegmenterProcess(multiprocessing.Process):
                     self.__working_obj_path,
                     keep_files=True,
                 ):
-                    logger.error("The ecotaxa export could not be completed")
-                else:
                     logger.succes("Ecotaxa archive export completed for this folder")
+                else:
+                    logger.error("The ecotaxa export could not be completed")
             else:
                 logger.info("There are no objects to export")
         else:
