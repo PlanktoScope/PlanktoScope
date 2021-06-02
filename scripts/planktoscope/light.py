@@ -51,7 +51,7 @@ class i2c_led:
     DEVICE_ADDRESS = 0x64
     DEFAULT_CURRENT = 20
 
-    led_selectPin = 18
+    LED_selectPin = 18
 
     def __init__(self):
         self.VLED_short = False
@@ -62,7 +62,7 @@ class i2c_led:
         self.IVFM = False
         RPi.GPIO.setwarnings(False)
         RPi.GPIO.setmode(RPi.GPIO.BCM)
-        RPi.GPIO.setup(led_selectPin, RPi.GPIO.OUT)
+        RPi.GPIO.setup(self.LED_selectPin, RPi.GPIO.OUT)
         self.output_to_led1()
         self.on = False
         try:
@@ -86,11 +86,11 @@ class i2c_led:
 
     def output_to_led1(self):
         logger.debug("Switching output to LED 1")
-        RPi.GPIO.output(led_selectPin, RPi.GPIO.HIGH)
+        RPi.GPIO.output(self.LED_selectPin, RPi.GPIO.HIGH)
 
     def output_to_led2(self):
         logger.debug("Switching output to LED 2")
-        RPi.GPIO.output(led_selectPin, RPi.GPIO.LOW)
+        RPi.GPIO.output(self.LED_selectPin, RPi.GPIO.LOW)
 
     def get_id(self):
         led_id = self._read_byte(self.Register.id_reset)
