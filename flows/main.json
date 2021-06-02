@@ -2928,10 +2928,10 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"action\":\"off\"}",
+        "payload": "off",
         "payloadType": "str",
-        "x": 150,
-        "y": 160,
+        "x": 140,
+        "y": 120,
         "wires": [
             [
                 "f0775525.cf806"
@@ -8984,43 +8984,43 @@
             {
                 "label": "100",
                 "value": "100",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#009933"
             },
             {
                 "label": "200",
                 "value": "200",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#999999"
             },
             {
                 "label": "320",
                 "value": "320",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#ff6666"
             },
             {
                 "label": "400",
                 "value": "400",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#009999"
             },
             {
                 "label": "500",
                 "value": "500",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#cccc00"
             },
             {
                 "label": "640",
                 "value": "640",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#ff33cc"
             },
             {
                 "label": "800",
                 "value": "800",
-                "valueType": "str",
+                "valueType": "num",
                 "color": "#cc6600"
             }
         ],
@@ -9036,11 +9036,11 @@
         "id": "f0775525.cf806",
         "type": "ui_multistate_switch",
         "z": "bccd1f23.87219",
-        "name": "light_state",
+        "name": "light_control",
         "group": "4248342d.e55fac",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 5,
+        "height": 1,
         "label": "Light  ",
         "stateField": "payload",
         "enableField": "enable",
@@ -9050,19 +9050,19 @@
         "options": [
             {
                 "label": "Off",
-                "value": "{\"action\":\"off\"}",
+                "value": "off",
                 "valueType": "str",
                 "color": "#009933"
             },
             {
                 "label": "On",
-                "value": "{\"action\":\"on\"}",
+                "value": "on",
                 "valueType": "str",
                 "color": "#999999"
             }
         ],
         "x": 310,
-        "y": 160,
+        "y": 120,
         "wires": [
             [
                 "99ae4886.8d43c"
@@ -9073,14 +9073,14 @@
         "id": "99ae4886.8d43c",
         "type": "function",
         "z": "bccd1f23.87219",
-        "name": "Encapsulate settings",
-        "func": "msg.topic = \"light\"\nreturn msg;",
+        "name": "Prepare message",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nvar led_output = flow.get('led_output')\nif (led_output !== undefined && led_output !== \"\") {\n    msg.payload[\"led\"] = led_output\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 500,
-        "y": 160,
+        "x": 490,
+        "y": 120,
         "wires": [
             [
                 "d31fcead.7e2ef"
@@ -9096,8 +9096,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 670,
-        "y": 160,
+        "x": 650,
+        "y": 120,
         "wires": []
     },
     {
@@ -10084,6 +10084,93 @@
                 "32465a4e.8fcac6",
                 "8dd6f57f.b77f98"
             ]
+        ]
+    },
+    {
+        "id": "4535ab65.009354",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "led_output",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "label": "LED output",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "1",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "2",
+                "value": "2",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "152f58e5.ca51df"
+            ]
+        ]
+    },
+    {
+        "id": "703d6ecd.62af88",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "4535ab65.009354"
+            ]
+        ]
+    },
+    {
+        "id": "152f58e5.ca51df",
+        "type": "change",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "led_output",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 160,
+        "wires": [
+            []
         ]
     }
 ]
