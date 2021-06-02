@@ -120,9 +120,9 @@ class SegmenterProcess(multiprocessing.Process):
                 filenames = sorted(filenames)
             return [fn for fn in filenames if fn.endswith(extension)]
 
-    def _manual_median(self, array_of_5):
-        array_of_5.sort(axis=0)
-        return array_of_5[2]
+    def _manual_median(self, images_array):
+        images_array.sort(axis=0)
+        return images_array[int(len(images_array) / 2)]
 
     def _save_image(self, image, path):
         PIL.Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)).save(path)
@@ -131,7 +131,22 @@ class SegmenterProcess(multiprocessing.Process):
         PIL.Image.fromarray(mask).save(path)
 
     def _calculate_flat(self, images_list, images_number, images_root_path):
+        """Calculate a flat image from given list and images number
+
+        Args:
+            images_list (string): list of filenames to calculate a flat for
+            images_number (int): image number to use, must be odd!
+            images_root_path (string): path where to find the images
+
+        Returns:
+            image: median of previously sent images
+        """
         # TODO make this calculation optional if a flat already exists
+
+        # check to make sure images_number is odd
+        if not images_number % 2:
+            images_number -= 1
+
         # make sure image number is smaller than image list
         if images_number > len(images_list):
             logger.error(
