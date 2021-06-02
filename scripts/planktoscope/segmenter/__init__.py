@@ -390,12 +390,17 @@ class SegmenterProcess(multiprocessing.Process):
         }
 
     def _stream(self, img):
+        def pipe_full(conn):
+            r, w, x = select.select([], [conn], [], 0.0)
+            return len(w) == 0
+
         img_object = io.BytesIO()
         PIL.Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)).save(
             img_object, format="JPEG"
         )
         logger.debug("Sending the object in the pipe!")
-        planktoscope.segmenter.streamer.sender.send(img_object)
+        if not pipe_full(planktoscope.segmenter.streamer.sender):
+            planktoscope.segmenter.streamer.sender.send(img_object)
 
     def _slice_image(self, img, name, mask, start_count=0):
         """Slice a given image using give mask
