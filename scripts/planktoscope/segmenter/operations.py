@@ -19,7 +19,7 @@ def adaptative_threshold(img):
     # start = time.monotonic()
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
 
-    logger.debug("Threshold calc")
+    logger.debug("Adaptative threshold calc")
     # img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # ret, mask = cv2.threshold(img_gray, 127, 200, cv2.THRESH_OTSU)
@@ -36,13 +36,12 @@ def adaptative_threshold(img):
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
     # logger.debug(time.monotonic() - start)
     # logger.success(f"Threshold used was {ret}")
-    logger.success(f"Threshold is done")
+    logger.success(f"Adaptative threshold is done")
     return mask
 
 
 def simple_threshold(img):
     """Apply a threshold to a color image to get a mask from it
-    Uses an adaptative threshold with a blocksize of 19 and reduction of 4.
 
     Args:
         img (cv2 img): Image to extract the mask from
@@ -53,24 +52,17 @@ def simple_threshold(img):
     # start = time.monotonic()
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
 
-    logger.debug("Threshold calc")
+    logger.debug("Simple threshold calc")
     # img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # ret, mask = cv2.threshold(img_gray, 127, 200, cv2.THRESH_OTSU)
-    mask = cv2.adaptiveThreshold(
-        img_gray,
-        maxValue=255,
-        adaptiveMethod=cv2.ADAPTIVE_THRESH_MEAN_C,
-        thresholdType=cv2.THRESH_BINARY_INV,
-        blockSize=19,  # must be odd
-        C=4,
+    ret, mask = cv2.threshold(
+        img_gray, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE
     )
-    # mask = 255 - img_tmaskhres
 
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
     # logger.debug(time.monotonic() - start)
-    # logger.success(f"Threshold used was {ret}")
-    logger.success(f"Threshold is done")
+    logger.info(f"Threshold value used was {ret}")
+    logger.success(f"Simple threshold is done")
     return mask
 
 
@@ -97,7 +89,7 @@ def erode(mask):
 
 
 def dilate(mask):
-    """Apply a dilate operation to the given mask, with an elliptic kernel of 4x4
+    """Apply a dilate operation to the given mask, with an elliptic kernel of 8x8
 
     Args:
         mask (cv2 img): mask to apply the operation on
@@ -109,7 +101,7 @@ def dilate(mask):
     # start = time.monotonic()
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
 
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (8, 8))
     mask_dilate = cv2.dilate(mask, kernel)
 
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
@@ -119,7 +111,7 @@ def dilate(mask):
 
 
 def close(mask):
-    """Apply a close operation to the given mask, with an elliptic kernel of 4x4
+    """Apply a close operation to the given mask, with an elliptic kernel of 8x8
 
     Args:
         mask (cv2 img): mask to apply the operation on
@@ -131,7 +123,7 @@ def close(mask):
     # start = time.monotonic()
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
 
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (8, 8))
     mask_close = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
@@ -141,7 +133,7 @@ def close(mask):
 
 
 def erode2(mask):
-    """Apply an erode operation to the given mask, with an elliptic kernel of 4x4
+    """Apply an erode operation to the given mask, with an elliptic kernel of 8x8
 
     Args:
         mask (cv2 img): mask to apply the operation on
@@ -153,7 +145,7 @@ def erode2(mask):
     # start = time.monotonic()
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
 
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (8, 8))
     mask_erode_2 = cv2.erode(mask, kernel)
 
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
