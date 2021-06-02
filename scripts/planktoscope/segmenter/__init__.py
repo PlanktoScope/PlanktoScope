@@ -21,6 +21,7 @@ import io
 
 import threading
 import functools
+import select
 
 # Basic planktoscope libraries
 import planktoscope.mqtt
@@ -414,6 +415,30 @@ class SegmenterProcess(multiprocessing.Process):
         Returns:
             tuple: (Number of saved objects, original number of objects before size filtering)
         """
+
+        def __augment_slice(dim_slice, max_dims, size=10):
+            # transform tuple in list
+            dim_slice = list(dim_slice)
+            # dim_slice[0] is the vertical component
+            # dim_slice[1] is the horizontal component
+            # dim_slice[1].start,dim_slice[0].start is the top left corner
+            for i in range(2):
+                if dim_slice[i].start < size:
+                    dim_slice[i] = slice(0, dim_slice[i].stop)
+                else:
+                    dim_slice[i] = slice(dim_slice[i].start - size, dim_slice[i].stop)
+
+            # dim_slice[1].stop,dim_slice[0].stop is the bottom right corner
+            for i in range(2):
+                if dim_slice[i].stop + size == max_dims[i]:
+                    dim_slice[i] = slice(dim_slice[i].start, max_dims[i])
+                else:
+                    dim_slice[i] = slice(dim_slice[i].start, dim_slice[i].stop + size)
+
+            # transform back list in tuple
+            dim_slice = tuple(dim_slice)
+            return dim_slice
+
         # TODO retrieve here all those from the global metadata
         minESD = 40  # microns
         minArea = math.pi * (minESD / 2) * (minESD / 2)
@@ -437,9 +462,17 @@ class SegmenterProcess(multiprocessing.Process):
                 "status/segmenter/object_id",
                 f'{{"object_id":"{region.label}"}}',
             )
+
+            # First extract to get all the metadata about the image
             obj_image = img[region.slice]
+            colors = self._get_color_info(obj_image, region.filled_image)
+            metadata = self._extract_metadata_from_regionprop(region)
+
+            # Second extract to get a bigger image for saving
+            obj_image = img[__augment_slice(region.slice, labels.shape, 10)]
             object_id = f"{name}_{i}"
             object_fn = os.path.join(self.__working_obj_path, f"{object_id}.jpg")
+
             self._save_image(obj_image, object_fn)
             self._stream(obj_image)
 
@@ -448,9 +481,6 @@ class SegmenterProcess(multiprocessing.Process):
                     region.filled_image,
                     os.path.join(self.__working_debug_path, f"obj_{i}_mask.jpg"),
                 )
-
-            colors = self._get_color_info(obj_image, region.filled_image)
-            metadata = self._extract_metadata_from_regionprop(region)
 
             object_metadata = {
                 "name": f"{object_id}",
