@@ -807,6 +807,9 @@ class SegmenterProcess(multiprocessing.Process):
                     if "ecotaxa" in last_message["settings"]:
                         # generate ecotaxa output archive
                         ecotaxa_export = last_message["settings"]["ecotaxa"]
+                    if "keep" in last_message["settings"]:
+                        # keep debug images
+                        self.__save_debug_img = last_message["settings"]["keep"]
                     # TODO eventually add customisation to segmenter parameters here
 
                 if "path" in last_message:
