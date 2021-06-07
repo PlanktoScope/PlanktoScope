@@ -244,7 +244,7 @@ class LightProcess(multiprocessing.Process):
         self.light_client = None
         try:
             self.led = i2c_led()
-            self.led.set_torch_current(self.DEFAULT_CURRENT)
+            self.led.set_torch_current(self.led.DEFAULT_CURRENT)
             self.led.output_to_led1()
             self.led.activate_torch_ramp()
             self.led.activate_torch()
@@ -255,7 +255,7 @@ class LightProcess(multiprocessing.Process):
             self.led.output_to_led1()
         except Exception as e:
             logger.error(
-                "We have encountered an error trying to start the LED module, stopping now"
+                f"We have encountered an error trying to start the LED module, stopping now, exception is {e}"
             )
             self.led.output_to_led2()
             raise e
@@ -288,7 +288,7 @@ class LightProcess(multiprocessing.Process):
             last_message = self.light_client.msg["payload"]
             logger.debug(last_message)
             self.light_client.read_message()
-            if "action" not in last_message or "settings" not in last_message:
+            if "action" not in last_message and "settings" not in last_message:
                 logger.error(
                     f"The received message has the wrong argument {last_message}"
                 )
@@ -297,76 +297,77 @@ class LightProcess(multiprocessing.Process):
                     '{"status":"Received message did not contain action or settings"}',
                 )
                 return
-        if "action" in last_message:
-            if last_message["action"] == "on":
-                # {"action":"on", "led":"1"}
-                logger.info("Turning the light on.")
-                if "led" not in last_message or last_message["led"] == "1":
-                    self.led_on(0)
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Led 1: On"}'
-                    )
-                elif last_message["led"] == "2":
-                    self.led_on(1)
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Led 2: On"}'
-                    )
+        if last_message:
+            if "action" in last_message:
+                if last_message["action"] == "on":
+                    # {"action":"on", "led":"1"}
+                    logger.info("Turning the light on.")
+                    if "led" not in last_message or last_message["led"] == 1:
+                        self.led_on(0)
+                        self.light_client.client.publish(
+                            "status/light", '{"status":"Led 1: On"}'
+                        )
+                    elif last_message["led"] == 2:
+                        self.led_on(1)
+                        self.light_client.client.publish(
+                            "status/light", '{"status":"Led 2: On"}'
+                        )
+                    else:
+                        self.light_client.client.publish(
+                            "status/light", '{"status":"Error with led number"}'
+                        )
+                elif last_message["action"] == "off":
+                    # {"action":"off", "led":"1"}
+                    logger.info("Turn the light off.")
+                    if "led" not in last_message or last_message["led"] == 1:
+                        self.led_off(0)
+                        self.light_client.client.publish(
+                            "status/light", '{"status":"Led 1: Off"}'
+                        )
+                    elif last_message["led"] == 2:
+                        self.led_off(1)
+                        self.light_client.client.publish(
+                            "status/light", '{"status":"Led 2: Off"}'
+                        )
+                    else:
+                        self.light_client.client.publish(
+                            "status/light", '{"status":"Error with led number"}'
+                        )
                 else:
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Error with led number"}'
+                    logger.warning(
+                        f"We did not understand the received request {action} - {last_message}"
                     )
-            elif last_message["action"] == "off":
-                # {"action":"off", "led":"1"}
-                logger.info("Turn the light off.")
-                if "led" not in last_message or last_message["led"] == "1":
-                    self.led_off(0)
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Led 1: Off"}'
-                    )
-                elif last_message["led"] == "2":
-                    self.led_off(1)
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Led 2: Off"}'
-                    )
+            if "settings" in last_message:
+                if "current" in last_message["settings"]:
+                    # {"settings":{"current":"20"}}
+                    current = last_message["settings"]["current"]
+                    if self.led.get_state():
+                        # Led is on, rejecting the change
+                        self.light_client.client.publish(
+                            "status/light",
+                            '{"status":"Turn off the LED before changing the current"}',
+                        )
+                        return
+                    logger.info(f"Switching the LED current to {current}mA")
+                    try:
+                        self.led.set_torch_current(current)
+                    except:
+                        self.light_client.client.publish(
+                            "status/light",
+                            '{"status":"Error while setting the current, power cycle your machine"}',
+                        )
+                    else:
+                        self.light_client.client.publish(
+                            "status/light", f'{{"status":"Current set to {current}mA"}}'
+                        )
                 else:
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Error with led number"}'
+                    logger.warning(
+                        f"We did not understand the received settings request in {last_message}"
                     )
-            else:
-                logger.warning(
-                    f"We did not understand the received request {action} - {last_message}"
-                )
-        if "settings" in last_message:
-            if "current" in last_message["settings"]:
-                # {"settings":{"current":"20"}}
-                current = last_message["settings"]["current"]
-                if self.led.get_state():
-                    # Led is on, rejecting the change
                     self.light_client.client.publish(
                         "status/light",
-                        '{"status":"Turn off the LED before changing the current"}',
+                        f'{{"status":"Settings request not understood in {last_message}"}}',
                     )
-                    return
-                logger.info(f"Switching the LED current to {current}mA")
-                try:
-                    self.led.set_torch_current(current)
-                except:
-                    self.light_client.client.publish(
-                        "status/light",
-                        '{"status":"Error while setting the current, power cycle your machine"}',
-                    )
-                else:
-                    self.light_client.client.publish(
-                        "status/light", f'{{"status":"Current set to {current}mA"}}'
-                    )
-            else:
-                logger.warning(
-                    f"We did not understand the received settings request in {last_message}"
-                )
-                self.light_client.client.publish(
-                    "status/light",
-                    f'{{"status":"Settings request not understood in {last_message}"}}',
-                )
 
     ################################################################################
     # While loop for capturing commands from Node-RED
