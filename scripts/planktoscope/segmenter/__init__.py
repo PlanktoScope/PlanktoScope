@@ -778,7 +778,35 @@ class SegmenterProcess(multiprocessing.Process):
         date = datetime.datetime.utcnow().isoformat()
         sample = self.__global_metadata["sample_id"].replace(" ", "_")
 
-        # TODO Add process informations to metadata here
+        # TODO Make this dynamic: if we change operations order and/or parameters, we need to make this evolve.
+        self.__global_metadata["process_1st_operation"] = {
+            "type": "remove_background",
+            "parameters": {"type": "flat"},
+        }
+        self.__global_metadata["process_2nd_operation"] = {
+            "type": "simple_threshold",
+            "parameters": {"algorithm": "THRESH_TRIANGLE"},
+        }
+        self.__global_metadata["process_3rd_operation"] = {
+            "type": "remove_previous_mask",
+            "parameters": {},
+        }
+        self.__global_metadata["process_4th_operation"] = {
+            "type": "erode",
+            "parameters": {"kernel_size": 2, "kernel_shape": "rectangle"},
+        }
+        self.__global_metadata["process_5th_operation"] = {
+            "type": "dilate",
+            "parameters": {"kernel_size": 8, "kernel_shape": "ellipse"},
+        }
+        self.__global_metadata["process_6th_operation"] = {
+            "type": "close",
+            "parameters": {"kernel_size": 8, "kernel_shape": "ellipse"},
+        }
+        self.__global_metadata["process_7th_operation"] = {
+            "type": "erode",
+            "parameters": {"kernel_size": 8, "kernel_shape": "ellipse"},
+        }
 
         # Define the name of the .zip file that will contain the images and the .tsv table for EcoTaxa
         self.__archive_fn = os.path.join(
