@@ -10294,6 +10294,13 @@
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "on",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -10301,10 +10308,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 490,
+        "x": 480,
         "y": 160,
         "wires": [
-            []
+            [
+                "f0775525.cf806",
+                "99ae4886.8d43c"
+            ]
         ]
     }
 ]
