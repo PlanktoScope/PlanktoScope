@@ -9,6 +9,16 @@ fi
 
 ${log} "Updating the main repository to branch $BRANCH"
 
+function auto_update(){
+    git fetch
+    UPDATE=$(git diff --numstat origin/$BRANCH scripts/bash/update.sh | awk '/update.sh/ {print $NF}')
+    if [[ -n "${UPDATE}" ]]; then
+        # Update the file and restart the script
+        git checkout origin/$BRANCH scripts/bash/update.sh
+        exec scripts/bash/update.sh $BRANCH
+    fi
+}
+
 function restart(){
     sudo nginx -t && sudo systemctl reload nginx
     sudo systemctl restart nodered.service
@@ -19,7 +29,13 @@ function update(){
     sudo killall -15 raspimjpeg
     sudo killall -15 python3
     git stash
-    git checkout --force $BRANCH
+    # TODO detect branch change and use git pull on same branch and checkout on diff branch
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    if [ "$CURRENT_BRANCH" -eq $BRANCH ]; then
+        git merge
+    else
+        git checkout --force $BRANCH
+    fi
     git checkout stash@'{0}' -- config.json hardware.json
     # TODO we need to change this to drop stash@{1} if changes made to the flow are to be restored by the user
     git stash drop
@@ -49,13 +65,7 @@ if [[ "$local" == "$remote" ]]; then
     ${log} "nothing to do!"
 else
     ${log} "Local and Remote are different, we have to update!"
-    git fetch
-    UPDATE=$(git diff --numstat origin/$BRANCH scripts/bash/update.sh | awk '/update.sh/ {print $NF}')
-    if [[ -n "${UPDATE}" ]]; then
-        # Update the file and restart the script
-        git checkout origin/$BRANCH scripts/bash/update.sh
-        exec scripts/bash/update.sh $BRANCH
-    fi
+    auto_update
     special_before
     update
     special_after
