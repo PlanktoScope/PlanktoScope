@@ -601,7 +601,8 @@ class SegmenterProcess(multiprocessing.Process):
 
             # Publish the object_id to via MQTT to Node-RED
             self.segmenter_client.client.publish(
-                "status/segmenter", f'{{"status":"Segmenting image {filename}"}}'
+                "status/segmenter",
+                f'{{"status":"Segmenting image {filename}, image {i+1}/{images_count}"}}',
             )
 
             # we recalculate the flat if the heuristics detected we should
@@ -696,7 +697,7 @@ class SegmenterProcess(multiprocessing.Process):
                     self.__working_obj_path,
                     keep_files=True,
                 ):
-                    logger.succes("Ecotaxa archive export completed for this folder")
+                    logger.success("Ecotaxa archive export completed for this folder")
                 else:
                     logger.error("The ecotaxa export could not be completed")
             else:

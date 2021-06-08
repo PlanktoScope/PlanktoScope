@@ -241,13 +241,13 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
 
         # add the tsv to the archive
         archive.writestr(
-            "export_ecotaxa.tsv",
+            "ecotaxa_export.tsv",
             io.BytesIO(
                 tsv_content.to_csv(sep="\t", encoding="utf-8", index=False).encode()
             ).read(),
         )
         if keep_files:
-            tsv_file = os.path.join(image_base_path, "export_ecotaxa.tsv")
+            tsv_file = os.path.join(image_base_path, "ecotaxa_export.tsv")
             tsv_content.to_csv(
                 path_or_buf=tsv_file, sep="\t", encoding="utf-8", index=False
             )
