@@ -26,10 +26,13 @@ import planktoscope.mqtt
 import planktoscope.light
 
 # import planktoscope.streamer
-import planktoscope.imager_state_machine
+import planktoscope.imager.state_machine
 
 # import raspimjpeg module
-import planktoscope.raspimjpeg
+import planktoscope.imager.raspimjpeg
+
+# import streamer module
+import planktoscope.imager.streamer
 
 # Integrity verification module
 import planktoscope.integrity
@@ -38,87 +41,9 @@ import planktoscope.integrity
 import planktoscope.uuidName
 
 
-################################################################################
-# Streaming PiCamera over server
-################################################################################
-import socketserver
-import http.server
+# Libraries for the streaming server
 import threading
 import functools
-
-
-################################################################################
-# Classes for the PiCamera Streaming
-################################################################################
-class StreamingHandler(http.server.BaseHTTPRequestHandler):
-    # Webpage content containing the PiCamera Streaming
-    PAGE = """\
-    <html>
-    <head>
-    <title>PlanktonScope v2 | PiCamera Streaming</title>
-    </head>
-    <body>
-    <img src="stream.mjpg" width="100%" height="100%" />
-    </body>
-    </html>
-    """
-
-    def __init__(self, delay, *args, **kwargs):
-        self.delay = delay
-        super(StreamingHandler, self).__init__(*args, **kwargs)
-
-    @logger.catch
-    def do_GET(self):
-        if self.path == "/":
-            self.send_response(301)
-            self.send_header("Location", "/index.html")
-            self.end_headers()
-        elif self.path == "/index.html":
-            content = self.PAGE.encode("utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html")
-            self.send_header("Content-Length", len(content))
-            self.end_headers()
-            self.wfile.write(content)
-        elif self.path == "/stream.mjpg":
-            self.send_response(200)
-            self.send_header("Age", 0)
-            self.send_header("Cache-Control", "no-cache, private")
-            self.send_header("Pragma", "no-cache")
-            self.send_header(
-                "Content-Type", "multipart/x-mixed-replace; boundary=FRAME"
-            )
-
-            self.end_headers()
-            try:
-                while True:
-                    try:
-                        with open("/dev/shm/mjpeg/cam.jpg", "rb") as jpeg:  # nosec
-                            frame = jpeg.read()
-                    except FileNotFoundError as e:
-                        logger.error(f"Camera has not been started yet")
-                        time.sleep(5)
-                    except Exception as e:
-                        logger.exception(f"An exception occured {e}")
-                    else:
-                        self.wfile.write(b"--FRAME\r\n")
-                        self.send_header("Content-Type", "image/jpeg")
-                        self.send_header("Content-Length", len(frame))
-                        self.end_headers()
-                        self.wfile.write(frame)
-                        self.wfile.write(b"\r\n")
-                        time.sleep(self.delay)
-
-            except BrokenPipeError as e:
-                logger.info(f"Removed streaming client {self.client_address}")
-        else:
-            self.send_error(404)
-            self.end_headers()
-
-
-class StreamingServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
-    allow_reuse_address = True
-    daemon_threads = True
 
 
 logger.info("planktoscope.imager is loaded")
@@ -158,7 +83,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__camera_type = configuration.get("camera_type", self.__camera_type)
 
         self.stop_event = stop_event
-        self.__imager = planktoscope.imager_state_machine.Imager()
+        self.__imager = planktoscope.imager.state_machine.Imager()
         self.__img_goal = 0
         self.__img_done = 0
         self.__sleep_before = None
@@ -170,7 +95,7 @@ class ImagerProcess(multiprocessing.Process):
 
         # Initialise the camera and the process
         # Also starts the streaming to the temporary file
-        self.__camera = planktoscope.raspimjpeg.raspimjpeg()
+        self.__camera = planktoscope.imager.raspimjpeg.raspimjpeg()
 
         try:
             self.__camera.start()
@@ -179,7 +104,7 @@ class ImagerProcess(multiprocessing.Process):
                 f"An exception has occured when starting up raspimjpeg: {e}"
             )
             try:
-                self.__camera.start(true)
+                self.__camera.start(True)
             except Exception as e:
                 logger.exception(
                     f"A second exception has occured when starting up raspimjpeg: {e}"
@@ -281,7 +206,7 @@ class ImagerProcess(multiprocessing.Process):
             logger.error(f"The received message has the wrong argument {last_message}")
             self.imager_client.client.publish("status/imager", '{"status":"Error"}')
             return
-        self.__imager.change(planktoscope.imager_state_machine.Imaging)
+        self.__imager.change(planktoscope.imager.state_machine.Imaging)
 
         # Get duration to wait before an image from the different received arguments
         self.__sleep_before = float(last_message["sleep"])
@@ -496,7 +421,7 @@ class ImagerProcess(multiprocessing.Process):
             )
             if self.__imager.state.name == "waiting":
                 if self.imager_client.msg["payload"]["status"] == "Done":
-                    self.__imager.change(planktoscope.imager_state_machine.Capture)
+                    self.__imager.change(planktoscope.imager.state_machine.Capture)
                     self.imager_client.client.unsubscribe("status/pump")
                 else:
                     logger.info(
@@ -634,7 +559,7 @@ class ImagerProcess(multiprocessing.Process):
 
         self.__pump_message()
 
-        self.__imager.change(planktoscope.imager_state_machine.Waiting)
+        self.__imager.change(planktoscope.imager.state_machine.Waiting)
 
     def __state_capture(self):
         planktoscope.light.imaging()
@@ -695,7 +620,7 @@ class ImagerProcess(multiprocessing.Process):
 
             self.__pump_message()
 
-            self.__imager.change(planktoscope.imager_state_machine.Waiting)
+            self.__imager.change(planktoscope.imager.state_machine.Waiting)
 
     def __capture_error(self, message=""):
         logger.error(f"An error occurred during the capture: {message}")
@@ -709,7 +634,7 @@ class ImagerProcess(multiprocessing.Process):
             self.__img_done = 0
             self.__img_goal = 0
             self.__error = 0
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            self.__imager.change(planktoscope.imager.state_machine.Stop)
         else:
             self.__error += 1
             self.imager_client.client.publish(
@@ -762,10 +687,12 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.info("Starting the streaming server thread")
         address = ("", 8000)
-        fps = 16
+        fps = 15
         refresh_delay = 1 / fps
-        handler = functools.partial(StreamingHandler, refresh_delay)
-        server = StreamingServer(address, handler)
+        handler = functools.partial(
+            planktoscope.imager.streamer.StreamingHandler, refresh_delay
+        )
+        server = planktoscope.imager.streamer.StreamingServer(address, handler)
         self.streaming_thread = threading.Thread(
             target=server.serve_forever, daemon=True
         )

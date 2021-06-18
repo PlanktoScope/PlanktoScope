@@ -53,12 +53,7 @@ class raspimjpeg(object):
         if force:
             # let's kill all rogue Raspimjpeg first
             try:
-                subprocess.run(  # nosec
-                    "sudo killall -9 raspimjpeg".split(),
-                    shell=True,
-                    timeout=1,
-                    check=True,
-                )
+                self.killall()
             except Exception as e:
                 logger.exception(f"Killing Raspimjpeg failed because of {e}")
         # The input to this call are perfectly controlled
@@ -494,3 +489,8 @@ class raspimjpeg(object):
         """Kill the process."""
         logger.debug("Killing raspimjpeg in a very dirty way")
         self.__process.terminate()
+
+    def killall(self):
+        """Literally erases the raspimjpeg process(es)"""
+        logger.debug("Killing raspimjpeg in a very ugly dirty way")
+        subprocess.run("sudo killall -q -9 raspimjpeg".split(), timeout=1)  # nosec
