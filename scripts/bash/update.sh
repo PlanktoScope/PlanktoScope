@@ -1,8 +1,13 @@
 #!/bin/bash
-log="logger -t update.sh -s "
+log="echo -e"
 
+REMOTE_BRANCHES=$(git --git-dir=/home/pi/PlanktonScope/.git branch --remotes --list | awk '/HEAD/{next;} split($1, a, "/") {print a[2]}')
 if [[ $# == 1 ]]; then
-    BRANCH=$1
+    if [[ $REMOTE_BRANCHES =~ (^| )$1($| ) ]]; then
+        BRANCH=$1
+    else
+        BRANCH="master"
+    fi
 else
     BRANCH="master"
 fi
@@ -11,8 +16,9 @@ ${log} "Updating the main repository to branch $BRANCH"
 
 function auto_update(){
     git fetch
-    UPDATE=$(git diff --numstat origin/$BRANCH scripts/bash/update.sh | awk '/update.sh/ {print $NF}')
-    if [[ -n "${UPDATE}" ]]; then
+    NEWVERSION=$(git diff --numstat origin/$BRANCH scripts/bash/update.sh | awk '/update.sh/ {print $NF}')
+    if [[ -n "${NEWVERSION}" ]]; then
+        ${log} "Updating the update script first"
         # Update the file and restart the script
         git checkout origin/$BRANCH scripts/bash/update.sh
         exec scripts/bash/update.sh $BRANCH
@@ -31,8 +37,8 @@ function update(){
     git stash
     # TODO detect branch change and use git pull on same branch and checkout on diff branch
     CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-    if [ "$CURRENT_BRANCH" -eq $BRANCH ]; then
-        git merge
+    if [[ "$CURRENT_BRANCH" == "$BRANCH" ]]; then
+        git pull
     else
         git checkout --force $BRANCH
     fi
@@ -44,7 +50,7 @@ function update(){
 function special_before(){
     cd /home/pi/.node-red || { echo "/home/pi/.node-red does not exist"; exit 1; }
     npm install copy-dependencies
-    pip3 install --update adafruit-blinka adafruit-platformdetect loguru Pillow pyserial smbus2 matplotlib morphocut adafruit-circuitpython-motor adafruit-circuitpython-motorkit adafruit-circuitpython-pca9685 numpy paho-mqtt
+    pip3 install --upgrade adafruit-blinka adafruit-platformdetect loguru Pillow pyserial smbus2 matplotlib morphocut adafruit-circuitpython-motor adafruit-circuitpython-motorkit adafruit-circuitpython-pca9685 numpy paho-mqtt
     ${log} "Nothing else special to do before updating!"
 }
 
@@ -58,18 +64,20 @@ function special_after(){
     ${log} "Nothing else special to do after updating!"
 }
 
-
+echo -e "Update on $(date)\n\n\n\n" >> /home/pi/update.log
 cd /home/pi/PlanktonScope || { echo "/home/pi/PlanktonScope does not exist"; exit 1; }
 remote=$(git ls-remote -h origin $BRANCH | awk '{print $1}')
 local=$(git rev-parse HEAD)
 if [[ "$local" == "$remote" ]]; then
-    ${log} "nothing to do!"
+    ${log} "Nothing to do!"
 else
-    ${log} "Local and Remote are different, we have to update!"
-    auto_update
-    special_before
-    update
-    special_after
-    restart
-    ${log} "Done!"
+    ${log} "Local and Remote are different, we have to update, starting now... Please Wait."
+    auto_update &>> /home/pi/update.log
+    special_before &>> /home/pi/update.log
+    ${log} "Everything is ready, doing the update now!"
+    update &>> /home/pi/update.log
+    special_after &>> /home/pi/update.log
+    ${log} "Update is complete, let's restart now."
+    restart &>> /home/pi/update.log
 fi
+${log} "Update done!"

@@ -314,7 +314,8 @@
                 "primary": "indigo",
                 "accents": "blue",
                 "warn": "red",
-                "background": "grey"
+                "background": "grey",
+                "palette": "light"
             }
         },
         "site": {
@@ -879,7 +880,16 @@
         "collapse": false
     },
     {
-        "id": "7551712b.8ef1b8",
+        "id": "f0eab4f4.40bc08",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "13f34bee.279a44",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -888,34 +898,34 @@
         "height": 1
     },
     {
-        "id": "74adb5c6.b38aa4",
+        "id": "a862072d.0ec1e8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
         "order": 6,
-        "width": 12,
-        "height": 1
-    },
-    {
-        "id": "5296bfb6.a27f6",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 7,
         "width": 3,
         "height": 1
     },
     {
-        "id": "4179b30f.de0144",
+        "id": "ac09f674.27d14",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 8,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "bbc09199.173ee",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
         "order": 9,
-        "width": 3,
+        "width": 12,
         "height": 1
     },
     {
-        "id": "8c8cf500.19fde",
+        "id": "4b444d98.a84854",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -924,57 +934,39 @@
         "height": 1
     },
     {
-        "id": "a39d5554.7b4f38",
+        "id": "5b88d5d8.baac64",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
         "order": 11,
-        "width": 12,
-        "height": 1
-    },
-    {
-        "id": "9694f7f4.22987",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 12,
         "width": 4,
         "height": 1
     },
     {
-        "id": "8bd48fcc.096fc",
+        "id": "df135e23.9d5ba",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "1be83144.4fe4bf",
+        "order": 13,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "6d0cfbad.fb566c",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
         "order": 14,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "f01875cc.409c4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 15,
         "width": 12,
         "height": 1
     },
     {
-        "id": "8290ff38.260b6",
+        "id": "7d988743.b75b",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
-        "order": 17,
+        "order": 16,
         "width": 8,
-        "height": 1
-    },
-    {
-        "id": "f0eab4f4.40bc08",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 5,
         "height": 1
     },
     {
@@ -5982,7 +5974,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "1be83144.4fe4bf",
-        "order": 16,
+        "order": 15,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -6027,7 +6019,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "1be83144.4fe4bf",
-        "order": 18,
+        "order": 17,
         "width": 2,
         "height": 1,
         "passthru": false,
@@ -6112,7 +6104,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Restart Python",
         "group": "1be83144.4fe4bf",
-        "order": 13,
+        "order": 12,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -6504,7 +6496,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Update",
         "group": "1be83144.4fe4bf",
-        "order": 8,
+        "order": 7,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -6513,9 +6505,10 @@
         "color": "",
         "bgcolor": "",
         "icon": "mi-system_update",
-        "payload": "",
+        "payload": " ",
         "payloadType": "str",
         "topic": "update",
+        "topicType": "str",
         "x": 260,
         "y": 460,
         "wires": [
@@ -6558,7 +6551,7 @@
         "name": "Update message",
         "order": 1,
         "width": 12,
-        "height": 2,
+        "height": 3,
         "format": "<div><center>If you want to update to the latest code version of Node-Red and Python, please click here.\nWe are trying to save your configuration changes with git stash and restore them afterwards, but clearly, things may break!\nAlso, you can choose the branch you want to update to. BE CAREFUL, selecting a branch WILL update the code immediately.\nIf you have made changes to the flow, you will lose them. Please commit those changes from Node-Red interface, from the Project History tab.</center></div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -8921,7 +8914,8 @@
         "y": 340,
         "wires": [
             [
-                "af2b8d95.195bb8"
+                "af2b8d95.195bb8",
+                "6c20d6a7.869b6"
             ],
             [],
             []
@@ -8931,7 +8925,7 @@
         "id": "d334d264.8a7728",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "git --git-dir=/home/pi/PlanktonScope/.git branch --list",
+        "command": "git --git-dir=/home/pi/PlanktonScope/.git branch --remotes --list | awk '/HEAD/{next;} split($1, a, \"/\") {print a[2]}'",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -9009,11 +9003,12 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 930,
+        "x": 870,
         "y": 260,
         "wires": [
             [
-                "3f13b9f8.bac94e"
+                "3f13b9f8.bac94e",
+                "ccc7d79b.a419f"
             ]
         ]
     },
@@ -9055,7 +9050,7 @@
         "label": "Current code version",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 860,
+        "x": 900,
         "y": 320,
         "wires": []
     },
@@ -9099,7 +9094,7 @@
         "z": "1371dec5.76e671",
         "name": "git version",
         "links": [
-            "aa2dbb6.4cd9948"
+            "6c20d6a7.869b6"
         ],
         "x": 455,
         "y": 520,
@@ -9624,18 +9619,6 @@
         ]
     },
     {
-        "id": "b6bc9b81.ff942",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "get git revision",
-        "outputs": 1,
-        "x": 835,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "ba2947.c854deb8",
         "type": "function",
         "z": "cb95299c.2817c8",
@@ -10131,6 +10114,70 @@
             [
                 "32465a4e.8fcac6",
                 "8dd6f57f.b77f98"
+            ]
+        ]
+    },
+    {
+        "id": "6c20d6a7.869b6",
+        "type": "link out",
+        "z": "9daf9e2b.019fc",
+        "name": "Git revision",
+        "links": [
+            "be6bddd3.2004f"
+        ],
+        "x": 815,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "7de3a9b4.0ab108",
+        "type": "ui_toast",
+        "z": "9daf9e2b.019fc",
+        "position": "top right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "Git branch update",
+        "x": 1290,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ccc7d79b.a419f",
+        "type": "change",
+        "z": "9daf9e2b.019fc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "List update successfull",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Branch list update",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 260,
+        "wires": [
+            [
+                "7de3a9b4.0ab108"
             ]
         ]
     }
