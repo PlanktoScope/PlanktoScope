@@ -66,9 +66,9 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.info("planktoscope.imager is initialising")
 
-        if os.path.exists("/home/pi/PlanktonScope/hardware.json"):
+        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
             # load hardware.json
-            with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
+            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
         else:

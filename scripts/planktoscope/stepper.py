@@ -165,10 +165,10 @@ class stepper:
 class StepperProcess(multiprocessing.Process):
 
     focus_steps_per_mm = 40
-    # 507 steps per ml for Planktonscope standard
+    # 507 steps per ml for PlanktoScope standard
     # 5200 for custom NEMA14 pump with 0.8mm ID Tube
     pump_steps_per_ml = 507
-    # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the Planktonscope can send
+    # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the PlanktoScope can send
     focus_max_speed = 0.5
     # pump max speed is in ml/min
     pump_max_speed = 30
@@ -182,9 +182,9 @@ class StepperProcess(multiprocessing.Process):
 
         self.stop_event = event
 
-        if os.path.exists("/home/pi/PlanktonScope/hardware.json"):
+        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
             # load hardware.json
-            with open("/home/pi/PlanktonScope/hardware.json", "r") as config_file:
+            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
         else:

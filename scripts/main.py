@@ -41,22 +41,22 @@ logger.info("Starting the PlanktoScope python script!")
 # Library for exchaning messages with Node-RED
 import planktoscope.mqtt
 
-# Import the planktonscope stepper module
+# Import the planktoscope stepper module
 import planktoscope.stepper
 
-# Import the planktonscope imager module
+# Import the planktoscope imager module
 import planktoscope.imager
 
-# Import the planktonscope segmenter module
+# Import the planktoscope segmenter module
 import planktoscope.segmenter
 
-# Import the planktonscope LED module
+# Import the planktoscope LED module
 import planktoscope.light
 
-# Import the planktonscope uuidName module
+# Import the planktoscope uuidName module
 import planktoscope.uuidName
 
-# Import the planktonscope display module for the OLED screen
+# Import the planktoscope display module for the OLED screen
 import planktoscope.display
 
 # global variable that keeps the wheels spinning
@@ -93,13 +93,13 @@ if __name__ == "__main__":
                 sys.exit(1)
 
     # Let's make sure the used base path exists
-    img_path = "/home/pi/PlanktonScope/img"
+    img_path = "/home/pi/PlanktoScope/img"
     # check if this path exists
     if not os.path.exists(img_path):
         # create the path!
         os.makedirs(img_path)
 
-    export_path = "/home/pi/PlanktonScope/export"
+    export_path = "/home/pi/PlanktoScope/export"
     # check if this path exists
     if not os.path.exists(export_path):
         # create the path!
