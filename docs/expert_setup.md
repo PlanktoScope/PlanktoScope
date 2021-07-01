@@ -85,20 +85,25 @@ Last steps we need to do is to increase the amount of memory available to the GP
 
 These steps can also be done from the Raspberry Pi Configuration GUI tool that you can find in `Main Menu > Preferences`. Go to the `Interfaces` tab. Pay attention, here the Serial Port must be enabled, but the Serial Port Console must be disabled.
 
-!!! Special optionnal step: overclocking
-  We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`. Open the file with `sudo nano /boot/config.txt` and add the following at the end:
-  ```
-  # Pi overclock
-  over_voltage=6
-  arm_freq=2000
-  ```
-  Those settings were verified to be stable, but if you notice any weird behavior under a high load, remove those lines.
+!!! tip
+    Special optionnal step: overclocking
+    We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`. Open the file with `sudo nano /boot/config.txt` and add the following at the end:
+    ```
+    # Pi overclock
+    over_voltage=6
+    arm_freq=2000
+    ```
+    Those settings were verified to be stable, but if you notice any weird behavior under a high load, remove those lines.
 
 
 Reboot your Pi safely.
 ```sh
 sudo reboot now
 ```
+
+## AutoHotSpot Setup
+
+See the document [Remote Access](remote_access.md)
 
 ## Install the needed libraries for the PlanktoScope
 
@@ -121,6 +126,15 @@ mkdir test libraries
 To simplify setup, we provide requirements.txt:
 ```sh
 pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
+```
+
+
+### Add to python path
+
+```
+ln -s /home/pi/PlanktoScope/scripts/planktoscope /home/pi/.local/lib/python3.7/site-packages/planktoscope
+sudo mkdir -p /root/.local/lib/python3.7/site-packages
+sudo ln -s /home/pi/PlanktoScope/scripts/planktoscope /root/.local/lib/python3.7/site-packages/planktoscope
 ```
 
 ### Check CircuitPython's install
@@ -188,6 +202,44 @@ The device appearing at addresses 60 and 70 is our motor controller. Address `0d
 
 In case the motor controller does not appear, shutdown your Planktoscope and check the wiring. If your board is using a connector instead of a soldered pin connection (as happens with the Adafruit Bonnet Motor Controller), sometimes the pins on the male side need to be bent a little to make good contact. In any case, do not hesitate to ask for help in Slack.
 
+
+### Deactivate steppers
+Create `sudo nano /etc/systemd/system/gpio-init.service`:
+```
+[Unit]
+Description=GPIO Init
+DefaultDependencies=false
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/stepper-disable
+Restart=no
+
+[Install]
+WantedBy=sysinit.target
+```
+
+And activate with `sudo systemctl enable autohotspot.service`.
+
+
+Create the script with `sudo nano /usr/bin/stepper-disable`:
+```sh
+#!/bin/sh -e
+
+
+# Initialise GPIO 4 and 12 to output to deactivate the steppers
+if [ ! -e /sys/class/gpio/gpio4 ]; then
+    echo "4" > /sys/class/gpio/export
+fi
+
+if [ ! -e /sys/class/gpio/gpio12 ]; then
+    echo "12" > /sys/class/gpio/export
+fi
+echo "out" > /sys/class/gpio/gpio4/direction
+echo "out" > /sys/class/gpio/gpio12/direction
+echo "1" > /sys/class/gpio/gpio4/value
+echo "1" > /sys/class/gpio/gpio12/value
+```
 
 ### Install Ultimate GPS HAT
 
