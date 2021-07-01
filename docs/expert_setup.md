@@ -110,6 +110,10 @@ You can then run the following to make sure your Raspberry has the necessary com
 
 ```sh
 sudo apt install build-essential python3 python3-pip
+sudo update-alternatives --install $(which python) python $(readlink -f $(which python2)) 1
+sudo update-alternatives --install $(which python) python $(readlink -f $(which python3)) 2
+sudo update-alternatives --config python
+# Choose line 0
 mkdir test libraries
 ```
 
@@ -474,13 +478,17 @@ The MorphoCut documentation can be found [on this page](https://morphocut.readth
 
 ### Nginx Setup
 
+To display the gallery, we need to setup an nginx webserver.
 
+Type in the following commands:
 ```
 sudo apt install nginx
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /home/pi/PlanktoScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
 sudo nginx -t && sudo systemctl reload nginx
 ```
+
+If you navigate to http://planktoscope.local:80, you should see the library opened.
 
 ### Install Node-RED
 
