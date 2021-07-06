@@ -238,7 +238,7 @@ class ImagerProcess(multiprocessing.Process):
 
         planktoscope.light.interrupted()
 
-        self.__imager.change(planktoscope.imager_state_machine.Stop)
+        self.__imager.change(planktoscope.imager.state_machine.Stop)
 
     def __message_update(self, last_message):
         if self.__imager.state.name == "stop":
@@ -505,7 +505,7 @@ class ImagerProcess(multiprocessing.Process):
             # Reset the counter to 0
             self.__img_done = 0
             # Change state towards stop
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            self.__imager.change(planktoscope.imager.state_machine.Stop)
             planktoscope.light.error()
             return
 
@@ -526,7 +526,7 @@ class ImagerProcess(multiprocessing.Process):
             )
             # Reset the counter to 0
             self.__img_done = 0
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            self.__imager.change(planktoscope.imager.state_machine.Stop)
             planktoscope.light.error()
             return
         else:
@@ -612,7 +612,7 @@ class ImagerProcess(multiprocessing.Process):
 
             self.imager_client.client.publish("status/imager", '{"status":"Done"}')
 
-            self.__imager.change(planktoscope.imager_state_machine.Stop)
+            self.__imager.change(planktoscope.imager.state_machine.Stop)
             planktoscope.light.ready()
         else:
             # We have not reached the final stage, let's keep imaging
