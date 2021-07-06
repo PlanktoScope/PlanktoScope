@@ -551,6 +551,17 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 ```
 Type `y` at both prompts to accept the installation and its settings.
 
+### Override Node-RED default settings to make it start after Mosquitto
+
+We need to make sure nodered only starts after Mosquitto. And Mosquitto waits for a network connection to appear before starting.
+
+To change this behavior, we need to override Node-red default setting. We modify the default service unit file with the following:
+```sh
+sudo mkdir -p /etc/systemd/system/nodered.service.d/
+sudo cp /home/pi/PlanktoScope/scripts/raspbian_configuration/etc/systemd/system/nodered.service.d/override.conf /etc/systemd/system/nodered.service.d/override.conf
+sudo systemctl daemon-reload
+```
+
 #### Enable start on boot and launch Node-RED
 To run Node-RED when the Pi is turned on or restarted, you need to enable the systemd service by running this command:
 ```sh
@@ -579,7 +590,7 @@ sudo systemctl restart nodered.service
 We need to move the PlanktoScope folder in the right place, in the `projects` subfolder of Node-Red and link this new folder to our `/home/`. To do so, in the terminal type the following::
 ```sh
 mv /home/pi/PlanktoScope /home/pi/.node-red/projects/
-ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope
+ln -s ./.node-red/projects/PlanktoScope /home/pi/PlanktoScope
 ```
 
 We will now install the missing nodes. These nodes will be used by the PlanktoScope software:
