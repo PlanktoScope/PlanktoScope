@@ -19,7 +19,7 @@ jobs:
         contains(github.event.issue.labels.*.name, 'hardware') ||
         contains(github.event.pull_request.labels.*.name, 'hardware')
       with:
-        project: 'https://github.com/PlanktonPlanet/PlanktonScope/projects/2'
+        project: 'https://github.com/PlanktonPlanet/PlanktoScope/projects/2'
         column_name: 'Bugs'
 
     - name: Assign issues and pull requests with `software` label to project `Sofware`
@@ -28,5 +28,5 @@ jobs:
         contains(github.event.issue.labels.*.name, 'software') ||
         contains(github.event.pull_request.labels.*.name, 'software')
       with:
-        project: 'https://github.com/PlanktonPlanet/PlanktonScope/projects/1'
+        project: 'https://github.com/PlanktonPlanet/PlanktoScope/projects/1'
         column_name: 'To Do'

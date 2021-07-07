@@ -1,4 +1,4 @@
-# PlanktonScope Simple Setup Guide
+# PlanktoScope Simple Setup Guide
 
 ## Download the image
 
@@ -19,7 +19,7 @@ Review your selections and click 'Flash!' to begin writing data to the SD card.
 ## Inserting the SD card
 Once flashing is over, you can unmount the SD card from the computer (usually done by right clicking on the card icon in the taskbar).
 
-Insert now the card in the Raspberry installed in your PlanktonScope.
+Insert now the card in the Raspberry installed in your PlanktoScope.
 
 ## Install a mDNS client
 
@@ -33,4 +33,4 @@ To install the client, download the installer [here](https://download.info.apple
 
 ## Start playing!
 
-Start up your PlanktonScope and connect to its WiFi network. You can now access the webpage at http://planktonscope.local:1880/ui to start using your machine!
+Start up your PlanktoScope and connect to its WiFi network. You can now access the webpage at http://planktoscope.local:1880/ui to start using your machine!

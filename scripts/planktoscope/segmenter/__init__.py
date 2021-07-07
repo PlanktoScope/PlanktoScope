@@ -975,9 +975,4 @@ class SegmenterProcess(multiprocessing.Process):
 # This is called if this script is launched directly
 if __name__ == "__main__":
     # TODO This should be a test suite for this library
-    segmenter_thread = SegmenterProcess(
-        None, "/home/rbazile/Documents/pro/PlanktonPlanet/Planktonscope/Segmenter/data/"
-    )
-    segmenter_thread.segment_path(
-        "/home/rbazile/Documents/pro/PlanktonPlanet/Planktonscope/Segmenter/data/test"
-    )
+    pass

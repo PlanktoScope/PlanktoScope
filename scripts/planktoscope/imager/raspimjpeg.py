@@ -21,8 +21,8 @@ import subprocess  # nosec
 ################################################################################
 class raspimjpeg(object):
     def __init__(self, *args, **kwargs):
-        self.__configfile = "/home/pi/PlanktonScope/scripts/raspimjpeg/raspimjpeg.conf"
-        self.__binary = "/home/pi/PlanktonScope/scripts/raspimjpeg/bin/raspimjpeg"
+        self.__configfile = "/home/pi/PlanktoScope/scripts/raspimjpeg/raspimjpeg.conf"
+        self.__binary = "/home/pi/PlanktoScope/scripts/raspimjpeg/bin/raspimjpeg"
         self.__statusfile = "/dev/shm/mjpeg/status_mjpeg.txt"  # nosec
         self.__pipe = "/dev/shm/mjpeg/FIFO"  # nosec
         self.__sensor_name = ""

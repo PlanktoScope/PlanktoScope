@@ -18,7 +18,7 @@ Example of metadata file received
   "sample_sampling_gear": "net_hsn",
   "sample_concentrated_sample_volume": 100,
   "acq_id": "Tara atlantique sud 2021_hsn_2021_01_22_1",
-  "acq_instrument": "PlanktonScope v2.2",
+  "acq_instrument": "PlanktoScope v2.2",
   "acq_instrument_id": "Babane Batoukoa",
   "acq_celltype": 300,
   "acq_minimum_mesh": 20,

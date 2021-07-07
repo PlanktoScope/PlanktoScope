@@ -53,7 +53,7 @@ First of all, and to ensure you have the latest documentation available locally,
 
 Simply run the following in a terminal:
 ```sh
-git clone https://github.com/PlanktonPlanet/PlanktonScope/
+git clone https://github.com/PlanktonPlanet/PlanktoScope/
 ```
 
 ### Enable Camera/SSH/I2C in raspi-config
@@ -63,30 +63,47 @@ You can now launch the configuration tool:
 sudo raspi-config
 ```
 
-While you're here, a wise thing to do would be to change the default password for the `pi` user. This is very warmly recommended if your PlanktoScope is connected to a shared network you do not control. Just select the first option `1 Change User Password`.
+While you're here, a wise thing to do would be to change the default password for the `pi` user. This is very warmly recommended if your PlanktoScope is connected to a shared network you do not control. Just select the first option `1 System Options`, the `S3 Password`.
 
-You may also want to change the default hostname of your Raspberry. To do so, choose option `2 Network Options` then `N1 Hostname`. Choose a new hostname. We recommend using `planktoscope`.
+You may also want to change the default hostname of your Raspberry. To do so, choose option `1 System Options` then `S4 Hostname`. Choose a new hostname. We recommend using `planktoscope` as this name will then appear.
 
 We need to activate a few things for the PlanktoScope to work properly.
 
-First, we need to activate the camera interface. Choose `5 Interfacing Options`, then `P1 Camera` and `Yes`.
+First, we need to activate the camera interface. Choose `3 Interface Options`, then `P1 Camera` and `Yes`.
 
-Now, you can go to `5 Interfacing Options`, then `P2 SSH`. Choose `Yes` to activate the SSH access.
+Now, you can go to `3 Interface Options`, then `P2 SSH`. Choose `Yes` to activate the SSH access.
 
-Again, select `5 Interfacing Options`, then `P4 SPI`. Choose `Yes` to enable the SPI interface.
+Again, select `3 Interface Options`, then `P4 SPI`. Choose `Yes` to enable the SPI interface.
 
-One more, select `5 Interfacing Options`, then `P5 I2C`. Choose `Yes` to enable the ARM I2C interface of the Raspberry.
+One more, select `3 Interface Options`, then `P5 I2C`. Choose `Yes` to enable the ARM I2C interface of the Raspberry.
 
-Finally, select `5 Interfacing Options`, then `P6 Serial`.
+Finally, select `3 Interface Options`, then `P6 Serial`.
 
 This time, choose `No` to deactivate the login shell on the serial connection, but then choose `Yes` to keep the Serial port hardware enabled.
 
+Last steps we need to do is to increase the amount of memory available to the GPU. Select `4 Performance Options`, then `P2 GPU Memory`. Write `256` in the field and choose OK.
+
 These steps can also be done from the Raspberry Pi Configuration GUI tool that you can find in `Main Menu > Preferences`. Go to the `Interfaces` tab. Pay attention, here the Serial Port must be enabled, but the Serial Port Console must be disabled.
+
+!!! tip
+    Special optionnal step: overclocking
+    We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`. Open the file with `sudo nano /boot/config.txt` and add the following at the end:
+    ```
+    # Pi overclock
+    over_voltage=6
+    arm_freq=2000
+    ```
+    Those settings were verified to be stable, but if you notice any weird behavior under a high load, remove those lines.
+
 
 Reboot your Pi safely.
 ```sh
 sudo reboot now
 ```
+
+## AutoHotSpot Setup
+
+See the document [Remote Access](remote_access.md)
 
 ## Install the needed libraries for the PlanktoScope
 
@@ -98,18 +115,30 @@ You can then run the following to make sure your Raspberry has the necessary com
 
 ```sh
 sudo apt install build-essential python3 python3-pip
+sudo update-alternatives --install $(which python) python $(readlink -f $(which python2)) 1
+sudo update-alternatives --install $(which python) python $(readlink -f $(which python3)) 2
+sudo update-alternatives --config python
+# Choose line 0
 mkdir test libraries
 ```
 
-### Install CircuitPython
-Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi). You can start at the chapter `Install Python Libraries`.
-
-For the record, the command are as following, however, Adafruit's page might have been updated, so please make sure this is still needed:
+### Install all python libraries
+To simplify setup, we provide requirements.txt:
 ```sh
-sudo pip3 install RPI.GPIO
-sudo pip3 install adafruit-blinka
-sudo pip3 install adafruit-circuitpython-motorkit
+pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
 ```
+
+
+### Add to python path
+
+```
+ln -s /home/pi/PlanktoScope/scripts/planktoscope /home/pi/.local/lib/python3.7/site-packages/planktoscope
+sudo mkdir -p /root/.local/lib/python3.7/site-packages
+sudo ln -s /home/pi/PlanktoScope/scripts/planktoscope /root/.local/lib/python3.7/site-packages/planktoscope
+```
+
+### Check CircuitPython's install
+Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi). You can start at the chapter `Install Python Libraries`.
 
 #### Testing the installation and the wiring
 
@@ -173,6 +202,44 @@ The device appearing at addresses 60 and 70 is our motor controller. Address `0d
 
 In case the motor controller does not appear, shutdown your Planktoscope and check the wiring. If your board is using a connector instead of a soldered pin connection (as happens with the Adafruit Bonnet Motor Controller), sometimes the pins on the male side need to be bent a little to make good contact. In any case, do not hesitate to ask for help in Slack.
 
+
+### Deactivate steppers
+Create `sudo nano /etc/systemd/system/gpio-init.service`:
+```
+[Unit]
+Description=GPIO Init
+DefaultDependencies=false
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/stepper-disable
+Restart=no
+
+[Install]
+WantedBy=sysinit.target
+```
+
+And activate with `sudo systemctl enable autohotspot.service`.
+
+
+Create the script with `sudo nano /usr/bin/stepper-disable`:
+```sh
+#!/bin/sh -e
+
+
+# Initialise GPIO 4 and 12 to output to deactivate the steppers
+if [ ! -e /sys/class/gpio/gpio4 ]; then
+    echo "4" > /sys/class/gpio/export
+fi
+
+if [ ! -e /sys/class/gpio/gpio12 ]; then
+    echo "12" > /sys/class/gpio/export
+fi
+echo "out" > /sys/class/gpio/gpio4/direction
+echo "out" > /sys/class/gpio/gpio12/direction
+echo "1" > /sys/class/gpio/gpio4/value
+echo "1" > /sys/class/gpio/gpio12/value
+```
 
 ### Install Ultimate GPS HAT
 
@@ -265,6 +332,8 @@ pi@planktoscope:~ $ gpsmon
 (64) $GPGSA,A,3,16,27,30,10,18,21,20,08,11,07,26,,1.43,0.87,1.13*0B
 (72) $GPRMC,110924.000,A,4533.4809,N,00103.7367,W,0.01,156.23,210720,,,D*71
 ```
+
+You can leave with `CTRL+C`.
 
 #### Bonus Configuration: Automatic time update from GPSD
 
@@ -401,8 +470,8 @@ Raspberry Pi Details:
 
 You will also need to install some python modules:
 ```sh
-sudo apt install python3-smbus i2c-tools
-sudo pip3 install Adafruit-SSD1306
+sudo apt install i2c-tools
+sudo pip3 install smbus2
 ```
 
 More information can be found on Yahboom website, on the page [Installing RGB Cooling HAT](https://www.yahboom.net/study/RGB_Cooling_HAT).
@@ -416,50 +485,33 @@ sudo apt install mosquitto mosquitto-clients
 
 ```
 
-### Install mqtt-paho
-
-In order to send and receive data from python, you need this library. Run the following:
-```
-sudo pip3 install paho-mqtt
-```
-
-
-### Install OpenCV
+### Check OpenCV's installation
 
 We need to install the latest OpenCV version. Unfortunately, it is not available in the repositories. We are going to install it directly by using pip.
 
 First, we need to install the needed dependencies, then we will directly install opencv:
 ```sh
-sudo apt install libgtk-3-0 libavformat58 libtiff5 libcairo2 libqt4-test libpango-1.0-0 libopenexr23 libavcodec58 libilmbase23 libatk1.0-0 libpangocairo-1.0-0 libwebp6 libqtgui4 libavutil56 libjasper1 libqtcore4 libcairo-gobject2 libswscale5 libgdk-pixbuf2.0-0 libhdf5-dev libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev libavformat-dev libswscale-dev libwebp-dev libatlas-base-dev
-sudo pip3 install "picamera[array]"
-sudo pip3 install opencv-contrib-python==4.1.0.25
+sudo apt install libgtk-3-0 libavformat58 libavcodec58 libqt4-test libopenexr23 libilmbase23 libqtgui4 libavutil56 libjasper1 libqtcore4 libcairo-gobject2 libswscale5 libhdf5-dev libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev libavformat-dev libswscale-dev libwebp-dev libatlas-base-dev
 ```
 
 You can now check that opencv is properly installed by running a python interpreter and importing the cv2 module.
 ```sh
 pi@planktoscope:~ $ python3
-Python 3.7.3 (default, Dec 20 2019, 18:57:59)
+Python 3.7.3 (default, Jan 22 2021, 20:04:44) 
 [GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import cv2
 >>> cv2.__version__
-'4.1.0'
+'4.4.0'
 >>> quit()
 ```
 
-If all goes well, the displayed version number should be `4.1.0`.
+If all goes well, the displayed version number should be `4.4.0`.
 
 More detailed information can be found on this [website](https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/).
 
 
-### Install MorphoCut
-
-MorphoCut is packaged on PyPI and can be installed with pip:
-
-```sh
-sudo apt install python3-scipy
-sudo pip3 install -U git+https://github.com/morphocut/morphocut.git
-```
+### Check MorphoCut's installation
 
 To test the installation, open up once again a python interpreter and import the morphocut module:
 ```sh
@@ -476,6 +528,20 @@ Type "help", "copyright", "credits" or "license" for more information.
 The MorphoCut documentation can be found [on this page](https://morphocut.readthedocs.io/en/stable/index.html).
 
 
+### Nginx Setup
+
+To display the gallery, we need to setup an nginx webserver.
+
+Type in the following commands:
+```
+sudo apt install nginx
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /home/pi/PlanktoScope/scripts/gallery/gallery.conf /etc/nginx/sites-enabled/gallery.conf
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+If you navigate to http://planktoscope.local:80, you should see the library opened.
+
 ### Install Node-RED
 
 #### Download and installation
@@ -484,6 +550,17 @@ To install Node.js, npm and Node-RED onto a Raspberry Pi, you just need to run t
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
 Type `y` at both prompts to accept the installation and its settings.
+
+### Override Node-RED default settings to make it start after Mosquitto
+
+We need to make sure nodered only starts after Mosquitto. And Mosquitto waits for a network connection to appear before starting.
+
+To change this behavior, we need to override Node-red default setting. We modify the default service unit file with the following:
+```sh
+sudo mkdir -p /etc/systemd/system/nodered.service.d/
+sudo cp /home/pi/PlanktoScope/scripts/raspbian_configuration/etc/systemd/system/nodered.service.d/override.conf /etc/systemd/system/nodered.service.d/override.conf
+sudo systemctl daemon-reload
+```
 
 #### Enable start on boot and launch Node-RED
 To run Node-RED when the Pi is turned on or restarted, you need to enable the systemd service by running this command:
@@ -499,24 +576,34 @@ sudo systemctl start nodered.service
 #### Check the installation
 Make sure Node-RED is correctly installed by reaching the following page from the browser of your pi http://localhost:1880 or http://planktoscope.local:1880 from another computer on the same network.
 
-#### Install the necessary nodes
-These nodes will be used by the PlanktoScope software and needs to be installed:
+#### Install the necessary nodes and activate necessary features
+
+We are going to activate the Projects feature of Node-Red as this will help us manage and track changes to the flows. Open the file `settings.js` with an editor (for example with `nano ~/.node-red/settings.js`) so we can change the following lines (you can use `CTRL+_` to quickly navigate to the line indicated):
+ - Line 75: uncomment the line (remove the //) that ends with flowFilePretty: true,
+ - Line 337: set enabled to true
+
+Restart Node-RED to take into account those changes:
 ```sh
-cd ~/.node-red/
-npm install node-red-dashboard node-red-contrib-python3-function node-red-contrib-camerapi node-red-contrib-gpsd node-red-contrib-web-worldmap node-red-contrib-interval
+sudo systemctl restart nodered.service
 ```
-We are also going to activate the Projects feature of Node-Red as this will help us manage and track changes to the flows. Open the file `settings.js` with an editor (for example with `nano settings.js`) so we can change the following lines:
+
+We need to move the PlanktoScope folder in the right place, in the `projects` subfolder of Node-Red and link this new folder to our `/home/`. To do so, in the terminal type the following::
+```sh
+mv /home/pi/PlanktoScope /home/pi/.node-red/projects/
+ln -s ./.node-red/projects/PlanktoScope /home/pi/PlanktoScope
 ```
-Line 68: uncomment the line (remove the //) that ends with flowFilePretty: true,
-Line 296: set enabled to true
+
+We will now install the missing nodes. These nodes will be used by the PlanktoScope software:
+```sh
+cd /home/pi/.node-red/
+npm install copy-dependencies
+node_modules/copy-dependencies/index.js projects/PlanktoScope ./
+npm update
 ```
 
 Save you changes.
 
 The final step before restarting node-red is to link the projects directory from within node-red folder to our main home directory. To do so, just open a terminal and type the following:
-```bash
-ln -s /home/pi/.node-red/projects/PlanktonScope /home/pi/PlanktonScope
-```
 
 You can now restart the nodered service:
 ```
@@ -527,9 +614,9 @@ sudo systemctl restart nodered.service
 
 If you now open the Node-Red GUI in your browser, it will ask you to setup the project, an email and a username (so if you make changes to the flow and want to share them we can know who made them).
 
-You can now choose to clone an existing repository. Choose a name that makes sense for you, and in the `Git repository URL` field put the main Planktonscope repository: `https://www.github.com/PlanktonPlanet/PlanktonScope.git`.
+Open your browser and navigate to http://planktoscope.local:1880. In the prompt, select `Open existing project` button at the bottom, choose the PlanktoScope project and click on `Open Project`. Eventually, merge the proposed changes.
 
-The latest flow version will be imported immediately.
+The latest flow version will be available immediately.
 
 
 #### More information
@@ -556,7 +643,7 @@ sudo reboot now
 
 Updates are published on Github regurlarly. Make sure to update once in a while by running this command:
 ```sh
-cd PlanktonScope
+cd PlanktoScope
 git pull
 ```
 
