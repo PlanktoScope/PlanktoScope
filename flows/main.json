@@ -711,7 +711,6 @@
     {
         "id": "6be36295.0ab324",
         "type": "ui_group",
-        "z": "",
         "name": "Settings",
         "tab": "b0fb559a.6966a8",
         "order": 1,
@@ -750,7 +749,6 @@
     {
         "id": "f3ca28ef.4df0a8",
         "type": "ui_group",
-        "z": "",
         "name": "Shutdown",
         "tab": "3a6bb13f.c9703e",
         "order": 7,
@@ -959,7 +957,6 @@
     {
         "id": "cfe2288f.a8862",
         "type": "ui_group",
-        "z": "",
         "name": "GPS Status",
         "tab": "d9cd733b.ab73d",
         "order": 8,
@@ -2802,6 +2799,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 180,
         "y": 540,
         "wires": [
@@ -2828,6 +2826,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 170,
         "y": 580,
         "wires": [
@@ -3703,11 +3702,12 @@
         "type": "function",
         "z": "1371dec5.76e671",
         "name": "store version",
-        "func": "msg.payload = \"PlanktoScope v2.2-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
+        "func": "msg.payload = \"PlanktoScope v2.3-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 590,
         "y": 520,
         "wires": [
@@ -4778,7 +4778,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 940,
+        "x": 930,
         "y": 240,
         "wires": [
             [
@@ -6285,7 +6285,7 @@
         "level": "1",
         "freq": "",
         "out": "out",
-        "x": 420,
+        "x": 410,
         "y": 80,
         "wires": []
     },
@@ -6325,7 +6325,9 @@
         "wires": [
             [
                 "43cf8ff7.75231",
-                "4bca8a25.15be3c"
+                "4bca8a25.15be3c",
+                "6db0fcf5.f0effc",
+                "5fc4ede4.72516c"
             ]
         ]
     },
@@ -7312,7 +7314,7 @@
         "mode": "text",
         "delay": "0",
         "topic": "sample_total_flowmeter_start",
-        "x": 1350,
+        "x": 1340,
         "y": 180,
         "wires": [
             [
@@ -8728,6 +8730,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 350,
         "y": 520,
         "wires": [
@@ -8754,6 +8757,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 340,
         "y": 600,
         "wires": [
@@ -9558,7 +9562,9 @@
         "x": 860,
         "y": 360,
         "wires": [
-            []
+            [
+                "6c20d6a7.869b6"
+            ]
         ]
     },
     {
@@ -10158,14 +10164,15 @@
         ]
     },
     {
-        "type": "link out",
         "id": "6c20d6a7.869b6",
+        "type": "link out",
         "z": "9daf9e2b.019fc",
         "name": "Git revision",
         "links": [
-            "be6bddd3.2004f"
+            "be6bddd3.2004f",
+            "9373b3f6.33a2b"
         ],
-        "x": 815,
+        "x": 1015,
         "y": 360,
         "wires": []
     },
@@ -10220,5 +10227,49 @@
                 "7de3a9b4.0ab108"
             ]
         ]
+    },
+    {
+        "id": "9373b3f6.33a2b",
+        "type": "link in",
+        "z": "1371dec5.76e671",
+        "name": "Git Rev",
+        "links": [
+            "6c20d6a7.869b6"
+        ],
+        "x": 335,
+        "y": 500,
+        "wires": [
+            [
+                "3e64877a.9684b"
+            ]
+        ]
+    },
+    {
+        "id": "5fc4ede4.72516c",
+        "type": "rpi-gpio out",
+        "z": "9daf9e2b.019fc",
+        "name": "HAT Pump Enable",
+        "pin": "16",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 430,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "6db0fcf5.f0effc",
+        "type": "rpi-gpio out",
+        "z": "9daf9e2b.019fc",
+        "name": "HAT Focus Enable",
+        "pin": "29",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 430,
+        "y": 160,
+        "wires": []
     }
 ]
