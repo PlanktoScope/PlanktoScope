@@ -7,6 +7,9 @@ exec_prefix = ${prefix}
 
 all: eepmake eepdump
 
+eeprom: eeprom_settings.txt
+	./eepmake eeprom_settings.txt eeprom.eep
+
 eepmake: eeptypes.h eepmake.c
 	$(CC) $(CFLAGS) eepmake.c -o eepmake
 
@@ -24,5 +27,9 @@ uninstall:
 	rm -f $(DESTDIR)$(prefix)/bin/eepmake
 	rm -f $(DESTDIR)$(prefix)/bin/eepdump
 	rm -f $(DESTDIR)$(exec_prefix)/sbin/eepflash.sh
+
 clean:
-	rm -f eepmake eepdump
+	rm -f eepmake eepdump eeprom.eep
+
+flash: eeprom
+	sudo ./eepflash.sh -w -t=24c32 -f=eeprom.eep
