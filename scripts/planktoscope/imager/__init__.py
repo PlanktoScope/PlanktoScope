@@ -124,7 +124,7 @@ class ImagerProcess(multiprocessing.Process):
 
         self.__iso = iso
         self.__shutter_speed = shutter_speed
-        self.__exposure_mode = "fixedfps"
+        self.__exposure_mode = "off"
         self.__white_balance = "off"
         self.__white_balance_gain = (
             configuration.get("wb_red_gain", 2.00) * 100,
