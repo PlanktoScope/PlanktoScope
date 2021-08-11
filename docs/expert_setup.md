@@ -83,6 +83,11 @@ This time, choose `No` to deactivate the login shell on the serial connection, b
 
 Last steps we need to do is to increase the amount of memory available to the GPU. Select `4 Performance Options`, then `P2 GPU Memory`. Write `256` in the field and choose OK.
 
+Also, to be able to use the ISO8601 datetime standard, we need to change the locale in use. Choose `5 Localisations Options`, then `L1 Locale` and press space after selecting the `en_DK.UTF8`. Press Enter and then select the en_DK locale as default for your system.
+
+!!!info
+    The en_DK is a hack where month and day names are in English, but date and time format uses the ISO8601 format. See https://serverfault.com/questions/17118/how-do-i-set-the-date-format-to-iso-globally-in-linux
+
 These steps can also be done from the Raspberry Pi Configuration GUI tool that you can find in `Main Menu > Preferences`. Go to the `Interfaces` tab. Pay attention, here the Serial Port must be enabled, but the Serial Port Console must be disabled.
 
 !!! tip
