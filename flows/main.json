@@ -7185,8 +7185,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 100,
-        "y": 180,
+        "x": 120,
+        "y": 400,
         "wires": [
             [
                 "e10f5e55.00b828",
@@ -7214,8 +7214,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
-        "y": 140,
+        "x": 350,
+        "y": 360,
         "wires": [
             [
                 "dee52a36.2af72"
@@ -7231,7 +7231,7 @@
         "tooltip": "",
         "place": "",
         "group": "6be36295.0ab324",
-        "order": 3,
+        "order": 4,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -7246,12 +7246,18 @@
                 "label": "",
                 "value": "waveshare",
                 "type": "str"
+            },
+            {
+                "label": "",
+                "value": "pscope_hat",
+                "type": "str"
             }
         ],
         "payload": "",
         "topic": "stepper_type",
-        "x": 610,
-        "y": 140,
+        "topicType": "str",
+        "x": 670,
+        "y": 360,
         "wires": [
             [
                 "2068e7f.f4efb18",
@@ -7267,8 +7273,8 @@
         "links": [
             "45a7b5aa.2ed20c"
         ],
-        "x": 955,
-        "y": 160,
+        "x": 1015,
+        "y": 380,
         "wires": []
     },
     {
@@ -7286,8 +7292,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 820,
-        "y": 160,
+        "x": 880,
+        "y": 380,
         "wires": [
             [
                 "e41870d7.300eb8"
@@ -7334,8 +7340,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 840,
-        "y": 200,
+        "x": 900,
+        "y": 420,
         "wires": [
             []
         ]
@@ -7359,8 +7365,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 180,
+        "x": 360,
+        "y": 440,
         "wires": [
             [
                 "cd1987c7.027f58"
@@ -7375,7 +7381,7 @@
         "label": "Invert stepper output",
         "tooltip": "Stepper 1 is controlled by output 1 or the other way around",
         "group": "6be36295.0ab324",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -7390,8 +7396,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 600,
-        "y": 180,
+        "x": 660,
+        "y": 440,
         "wires": [
             [
                 "8e3b3d3c.955148",
@@ -7418,8 +7424,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
-        "y": 220,
+        "x": 370,
+        "y": 400,
         "wires": [
             [
                 "ee58b91c.396108"
@@ -7434,15 +7440,16 @@
         "label": "Pump: steps per mL",
         "tooltip": "",
         "group": "6be36295.0ab324",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
         "mode": "number",
         "delay": "2000",
         "topic": "pump_steps_per_ml",
-        "x": 580,
-        "y": 220,
+        "topicType": "str",
+        "x": 640,
+        "y": 400,
         "wires": [
             [
                 "2068e7f.f4efb18",
@@ -7456,7 +7463,7 @@
         "z": "1eaf21c8.f7a21e",
         "group": "6be36295.0ab324",
         "name": "Stepper controller type header",
-        "order": 2,
+        "order": 3,
         "width": 3,
         "height": 1,
         "format": "<div>Stepper controller type</div>",
@@ -7476,7 +7483,7 @@
         "z": "1eaf21c8.f7a21e",
         "group": "6be36295.0ab324",
         "name": "Information",
-        "order": 1,
+        "order": 2,
         "width": 6,
         "height": 3,
         "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will make the python back-end to restart.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
@@ -10535,6 +10542,121 @@
             [
                 "32465a4e.8fcac6",
                 "8dd6f57f.b77f98"
+            ]
+        ]
+    },
+    {
+        "id": "a7e5c7f4.644678",
+        "type": "ui_dropdown",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Machine Version",
+        "label": "Machine version",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "6be36295.0ab324",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "PlanktoScope v1.0",
+                "type": "str"
+            },
+            {
+                "label": "PlanktoScope 2.1 (adafruit version)",
+                "value": "PlanktoScope v2.1",
+                "type": "str"
+            },
+            {
+                "label": "PlanktoScope 2.2 (waveshare hat)",
+                "value": "PlanktoScope v2.2",
+                "type": "str"
+            },
+            {
+                "label": "PlanktoScope 2.3 (custom hat)",
+                "value": "PlanktoScope v2.3",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_instrument",
+        "topicType": "str",
+        "x": 590,
+        "y": 160,
+        "wires": [
+            [
+                "3e2c5c1c.4c57b4"
+            ]
+        ]
+    },
+    {
+        "id": "1cfadc66.3cde8c",
+        "type": "subflow:1c24ad9c.bebec2",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "env": [],
+        "x": 690,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e2c5c1c.4c57b4",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Set and update settings",
+        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"2.1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1600};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"waveshare\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:2000};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"pscope_hat\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:3200};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 370,
+        "y": 280,
+        "wires": [
+            [
+                "1cfadc66.3cde8c"
+            ],
+            [
+                "dee52a36.2af72"
+            ],
+            [
+                "ee58b91c.396108"
+            ]
+        ]
+    },
+    {
+        "id": "427c312.fc5e65",
+        "type": "subflow:1c24ad9c.bebec2",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "env": [],
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "237809c1.2c64ce"
+            ]
+        ]
+    },
+    {
+        "id": "237809c1.2c64ce",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "get acq_instrument",
+        "func": "msg.payload = msg.payload.acq_instrument;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "a7e5c7f4.644678"
             ]
         ]
     }
