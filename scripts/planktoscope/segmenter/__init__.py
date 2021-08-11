@@ -456,10 +456,10 @@ class SegmenterProcess(multiprocessing.Process):
             dim_slice = tuple(dim_slice)
             return dim_slice
 
-        # TODO retrieve here all those from the global metadata
-        minESD = 40  # microns
+        minMesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
+        minESD = minMesh * 2
         minArea = math.pi * (minESD / 2) * (minESD / 2)
-        pixel_size = 1.01  # to be retrieved from metadata
+        pixel_size = self.__global_metadata.get("process_pixels", 1.0)
         # minsizepix = minArea / pixel_size / pixel_size
         minsizepix = (minESD / pixel_size) ** 2
 
