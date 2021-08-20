@@ -576,6 +576,7 @@ class SegmenterProcess(multiprocessing.Process):
         # TODO check image list here to find if a flat exists
         # we recalculate the flat every 10 pictures
         if recalculate_flat:
+            recalculate_flat = False
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Calculating flat"}'
             )
@@ -585,13 +586,12 @@ class SegmenterProcess(multiprocessing.Process):
                 )
             else:
                 self._calculate_flat(images_list[0:10], 10, self.__working_path)
-            recalculate_flat = False
 
-        if self.__save_debug_img:
-            self._save_image(
-                self.__flat,
-                os.path.join(self.__working_debug_path, "flat_color.jpg"),
-            )
+            if self.__save_debug_img:
+                self._save_image(
+                    self.__flat,
+                    os.path.join(self.__working_debug_path, "flat_color.jpg"),
+                )
 
         average_time = 0
 
@@ -607,7 +607,11 @@ class SegmenterProcess(multiprocessing.Process):
 
             # we recalculate the flat if the heuristics detected we should
             if recalculate_flat:  # not i % 10 and i < (images_count - 10)
-                if i > (len(images_list) - 11):
+                recalculate_flat = False
+                if len(images_list) == 10:
+                    # We are too close to the end of the list, take the previous 10 images instead of the next 10
+                    flat = self._calculate_flat(images_list, 10, self.__working_path)
+                elif i > (len(images_list) - 11):
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
                     flat = self._calculate_flat(
                         images_list[i - 10 : i], 10, self.__working_path
@@ -616,7 +620,6 @@ class SegmenterProcess(multiprocessing.Process):
                     flat = self._calculate_flat(
                         images_list[i : i + 10], 10, self.__working_path
                     )
-                recalculate_flat = False
                 if self.__save_debug_img:
                     self._save_image(
                         self.__flat,
@@ -662,7 +665,7 @@ class SegmenterProcess(multiprocessing.Process):
             objects_count, _ = self._slice_image(img, name, mask, total_objects)
             total_objects += objects_count
             # Simple heuristic to detect a movement of the flow cell and a change in the resulting flat
-            if objects_count > average_objects + 20:
+            if average_objects != 0 and objects_count > average_objects + 20:
                 logger.debug(
                     f"We need to recalculate a flat since we have {objects_count} new objects instead of the average of {average_objects}"
                 )
