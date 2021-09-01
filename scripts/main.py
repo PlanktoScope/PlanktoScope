@@ -66,6 +66,7 @@ run = True
 def handler_stop_signals(signum, frame):
     """This handler simply stop the forever running loop in __main__"""
     global run
+    logger.info(f"Received a signal asking to stop {signum}")
     run = False
 
 
@@ -131,10 +132,15 @@ if __name__ == "__main__":
 
     # Starts the segmenter process
     logger.info("Starting the segmenter control process (step 4/6)")
-    segmenter_thread = planktoscope.segmenter.SegmenterProcess(
-        shutdown_event, "/home/pi/data"
-    )
-    segmenter_thread.start()
+    try:
+        segmenter_thread = planktoscope.segmenter.SegmenterProcess(
+            shutdown_event, "/home/pi/data"
+        )
+    except Exception as e:
+        logger.error("The segmenter control process could not be started")
+        segmenter_thread = None
+    else:
+        segmenter_thread.start()
 
     # Starts the light process
     logger.info("Starting the light control process (step 5/6)")
@@ -163,32 +169,38 @@ if __name__ == "__main__":
         if not stepper_thread.is_alive():
             logger.error("The stepper process died unexpectedly! Oh no!")
             break
-        if imager_thread and not imager_thread.is_alive():
+        if not imager_thread or not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
-        if not segmenter_thread.is_alive():
+        if not segmenter_thread or not segmenter_thread.is_alive():
             logger.error("The segmenter process died unexpectedly! Oh no!")
             break
         time.sleep(1)
+
     display.display_text("Bye Bye!")
     logger.info("Shutting down the shop")
     shutdown_event.set()
     time.sleep(1)
+
     stepper_thread.join()
     if imager_thread:
         imager_thread.join()
-    segmenter_thread.join()
+    if segmenter_thread:
+        segmenter_thread.join()
     if light_thread:
         light_thread.join()
     # Uncomment this for clean shutdown
     # module_thread.join()
+
     stepper_thread.close()
     if imager_thread:
         imager_thread.close()
-    segmenter_thread.close()
+    if segmenter_thread:
+        segmenter_thread.close()
     if light_thread:
         light_thread.close()
     # Uncomment this for clean shutdown
     # module_thread.close()
+
     display.stop()
     logger.info("Bye")
