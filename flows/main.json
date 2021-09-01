@@ -5582,13 +5582,14 @@
         "type": "exec",
         "z": "9daf9e2b.019fc",
         "command": "sudo",
-        "addpay": true,
+        "addpay": "payload",
         "append": "now",
         "useSpawn": "false",
         "timer": "2",
+        "winHide": false,
         "oldrc": false,
-        "name": "cmd",
-        "x": 710,
+        "name": "sudo cmd now",
+        "x": 740,
         "y": 720,
         "wires": [
             [],
@@ -5762,6 +5763,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1500,
         "y": 560,
         "wires": [
@@ -5788,6 +5790,7 @@
         "payload": "",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 1340,
         "y": 720,
         "wires": [
@@ -5839,6 +5842,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1500,
         "y": 720,
         "wires": [
@@ -6082,9 +6086,7 @@
         "x": 260,
         "y": 460,
         "wires": [
-            [
-                "2d2ef1fd.40e6e6"
-            ]
+            []
         ]
     },
     {
@@ -6555,6 +6557,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 910,
         "y": 940,
         "wires": [
@@ -8612,9 +8615,7 @@
         "x": 1160,
         "y": 320,
         "wires": [
-            [
-                "2d2ef1fd.40e6e6"
-            ]
+            []
         ]
     },
     {
@@ -8822,7 +8823,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 410,
+        "x": 420,
         "y": 1260,
         "wires": [
             [
