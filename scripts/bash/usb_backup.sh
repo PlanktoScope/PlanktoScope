@@ -106,6 +106,7 @@ do_backup()
         ${log} "Machine name is ${MACHINE}, backup folder is ${BACKUP_FOLDER}"
         mkdir -p "$BACKUP_FOLDER"
         rsync -rtD --modify-window=1 --update -W --inplace  "$SOURCE" "$BACKUP_FOLDER"
+        ${log} "Main copy done, checking integrity now"
         if ! python3 -m planktoscope.integrity -c "$BACKUP_FOLDER"; then
             ${log} "ERROR: Some files were corrupted during the copy!"
             do_unmount
