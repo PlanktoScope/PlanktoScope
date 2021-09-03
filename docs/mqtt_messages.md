@@ -84,12 +84,17 @@ This topic can also receive a config update message:
 }
 ```
 
-A camera settings message can also be received here. The fields `iso` and `shutter_speed` are optionals:
+A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain`, `white_balance` and `image_gain` are optionals:
 ```json
 {
   "action": "settings",
-  "iso": 100,
-  "shutter_speed": 40
+  "settings":{
+    "iso": 100,
+    "shutter_speed": 40,
+    "white_balance_gain": {"red": 100, "blue": 100},
+    "white_balance": "auto",
+    "image_gain": {"analog": 100, "digital": 100}
+  }
 }
 ```
 
@@ -112,9 +117,13 @@ This topic controls the segmentation process. The message is a JSON object:
 
 `action` can also be `stop`.
 The `action` element is the only element required. If no `path` is supplied, the whole images repository is segmented recursively (this is very long!).
+
 `force` is going to overcome the presence of the file `done` that is here to prevent for resegmenting a folder already segmented.
+
 `recursive` will force parsing all folders below `path`.
+
 `ecotaxa` activates the export of an ecotaxa compatible archive.
+
 `keep` allows to remove or keep the roi (when you do an ecotaxa export, no effects otherwise, the roi are kept).
 
 - Receive only

@@ -291,9 +291,9 @@ Also change the `DEVICES` line to add the device we are going to use `/dev/seria
 DEVICES="/dev/serial0"
 ```
 
-Finally, we want to add the parameter `-n` to `GPSD_OPTIONS`:
+Finally, we want to add the parameter `-n -r` to `GPSD_OPTIONS`:
 ```sh
-GPSD_OPTIONS="-n"
+GPSD_OPTIONS="-n -r"
 ```
 
 Save your work, and restart gpsd by running the following:
@@ -390,19 +390,25 @@ We need to edit the configuration of chrony, to activate both the GPS time synch
 
 Edit the file `/etc/chrony/chrony.conf` and replace its content with the following:
 ```
-server 0.pool.ntp.org maxpoll 5
-server 1.pool.ntp.org maxpoll 5
-server 2.pool.ntp.org maxpoll 5
-server 3.pool.ntp.org maxpoll 5
+pool pool.ntp.org iburst maxsources 4
 
 driftfile /var/lib/chrony/drift
 
-allow
-
+# allow to make big changes to clock if difference with ref clock is more than 1 seconds
 makestep 1 5
 
-refclock SHM 2 pps refid NMEA
+refclock SHM 0 refid NMEA offset 0.006
+refclock SHM 1 pps refid NME+
+refclock SOCK /var/run/chrony.sock delay 0.0 refid SOCK
+# noselect poll 8 filter 1000
 #refclock PPS /dev/pps0 precision 1e-7 noselect refid GPPS
+
+allow all
+
+rtcsync
+
+logdir /var/log/chrony
+log rtc refclocks
 ```
 
 Before restarting `chrony`, we need to make sure the timesync service from systemd is deactivated:

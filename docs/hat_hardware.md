@@ -10,6 +10,11 @@ Configured through a kernel driver.
 #### OLED Display
 Address 0x3c
 
+#### LED control: LM36011
+Address 0x64
+Control through specific software, current range from 0 to 376mA in normal mode, up to 1.5A in flash mode.
+
+
 ### SPI0 Bus
 #### Motor Controller 0: TMC5160
 Chip Enable: SPI0_CE0
@@ -32,14 +37,11 @@ GPIO20 for Stall output
 #### Fan control
 PWM1 control through GPIO13
 
-#### LED0 control
-PWM dimming frequency range: 6.5 kHz to 100 kHz
-PWM0 control through GPIO18
+#### LED Output selection
+GPIO18: high for LED1, low for LED2
 
-#### LED1 control
-PWM dimming frequency range: 6.5 kHz to 100 kHz
-PWM0 control through GPIO12
-
+#### LED Strobe
+GPIO22 for pulse
 
 ### I2C0 Bus
 #### EEPROM M24C32
