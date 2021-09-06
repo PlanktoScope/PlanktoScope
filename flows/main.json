@@ -3548,6 +3548,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
+        "payloadType": "str",
         "x": 210,
         "y": 60,
         "wires": [
@@ -3600,27 +3601,6 @@
         "x": 690,
         "y": 940,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b3c21aa9.8c06c",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "git --git-dir /home/pi/PlanktoScope/.git/ rev-parse --short master",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "git rev",
-        "x": 310,
-        "y": 540,
-        "wires": [
-            [
-                "3e64877a.9684b"
-            ],
-            [],
             []
         ]
     },
@@ -6001,7 +5981,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "",
+        "onceDelay": "2",
         "topic": "",
         "payload": "start",
         "payloadType": "str",
@@ -6075,7 +6055,7 @@
         "level": "1",
         "freq": "",
         "out": "out",
-        "x": 400,
+        "x": 420,
         "y": 120,
         "wires": []
     },
@@ -8318,20 +8298,6 @@
         ]
     },
     {
-        "id": "b3448fbb.351d28",
-        "type": "rpi-gpio out",
-        "z": "1371dec5.76e671",
-        "name": "Fan",
-        "pin": "33",
-        "set": false,
-        "level": "0",
-        "freq": "25000",
-        "out": "pwm",
-        "x": 1110,
-        "y": 40,
-        "wires": []
-    },
-    {
         "id": "2d371e59.b0e50a",
         "type": "inject",
         "z": "bccd1f23.87219",
@@ -8611,7 +8577,7 @@
         "wires": [
             [
                 "af2b8d95.195bb8",
-                "6c20d6a7.869b6"
+                "b6bc9b81.ff942"
             ],
             [],
             []
@@ -8747,149 +8713,6 @@
         "x": 900,
         "y": 320,
         "wires": []
-    },
-    {
-        "id": "5112444.5be803c",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "ce9e278.781eed8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "[System Monitoring] version",
-        "label": "Software version",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 800,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "16548734.7fe631",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "store version",
-        "func": "msg.payload = \"PlanktoScope-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 570,
-        "y": 520,
-        "wires": [
-            [
-                "5112444.5be803c"
-            ]
-        ]
-    },
-    {
-        "id": "be6bddd3.2004f",
-        "type": "link in",
-        "z": "1371dec5.76e671",
-        "name": "git version",
-        "links": [
-            "6c20d6a7.869b6"
-        ],
-        "x": 455,
-        "y": 520,
-        "wires": [
-            [
-                "16548734.7fe631"
-            ]
-        ]
-    },
-    {
-        "id": "3ea12061.ce62c",
-        "type": "ui_list",
-        "z": "cb95299c.2817c8",
-        "group": "abeb6dad.635a2",
-        "name": "",
-        "order": 7,
-        "width": 10,
-        "height": 11,
-        "lineType": "one",
-        "actionType": "check",
-        "allowHTML": false,
-        "outputs": 1,
-        "topic": "",
-        "x": 770,
-        "y": 140,
-        "wires": [
-            [
-                "cb3b87b5.63c4"
-            ]
-        ]
-    },
-    {
-        "id": "8bd8fb2c.53fa4",
-        "type": "dir2files",
-        "z": "cb95299c.2817c8",
-        "name": "",
-        "dirname": "/home/pi/data/img/",
-        "pathRegex": "",
-        "isRecursive": true,
-        "findDir": true,
-        "isArray": true,
-        "x": 460,
-        "y": 140,
-        "wires": [
-            [
-                "ba2947.c854deb8"
-            ]
-        ]
-    },
-    {
-        "id": "127d4ee.f8ad1b1",
-        "type": "ui_button",
-        "z": "cb95299c.2817c8",
-        "name": "Refresh",
-        "group": "abeb6dad.635a2",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Update acquisition's folder list",
-        "tooltip": "Refresh the list of previous acquisitions",
-        "color": "",
-        "bgcolor": "",
-        "icon": "mi-find_replace",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "update",
-        "x": 260,
-        "y": 140,
-        "wires": [
-            [
-                "8bd8fb2c.53fa4",
-                "56f845f5.e7c054"
-            ]
-        ]
-    },
-    {
-        "id": "946ce9ee.092cf",
-        "type": "inject",
-        "z": "cb95299c.2817c8",
-        "name": "Init",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 270,
-        "y": 100,
-        "wires": [
-            [
-                "8bd8fb2c.53fa4",
-                "56f845f5.e7c054"
-            ]
-        ]
     },
     {
         "id": "f0775525.cf806",
@@ -9255,7 +9078,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 860,
+        "x": 900,
         "y": 360,
         "wires": [
             [
@@ -9737,103 +9560,6 @@
         ]
     },
     {
-        "id": "4535ab65.009354",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "led_output",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 6,
-        "height": 1,
-        "label": "LED output",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "1",
-                "value": "1",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "2",
-                "value": "2",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 310,
-        "y": 180,
-        "wires": [
-            [
-                "152f58e5.ca51df"
-            ]
-        ]
-    },
-    {
-        "id": "703d6ecd.62af88",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 1",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 120,
-        "y": 180,
-        "wires": [
-            [
-                "4535ab65.009354"
-            ]
-        ]
-    },
-    {
-        "id": "152f58e5.ca51df",
-        "type": "change",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "led_output",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 180,
-        "wires": [
-            [
-                "f0775525.cf806",
-                "99ae4886.8d43c"
-            ]
-        ]
-    },
-    {
         "id": "6c20d6a7.869b6",
         "type": "link out",
         "z": "9daf9e2b.019fc",
@@ -9842,7 +9568,7 @@
             "be6bddd3.2004f",
             "9373b3f6.33a2b"
         ],
-        "x": 1015,
+        "x": 1035,
         "y": 360,
         "wires": []
     },
@@ -9906,8 +9632,8 @@
         "links": [
             "6c20d6a7.869b6"
         ],
-        "x": 335,
-        "y": 500,
+        "x": 375,
+        "y": 520,
         "wires": [
             [
                 "3e64877a.9684b"
@@ -10033,6 +9759,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 910,
         "y": 1060,
         "wires": [
@@ -10738,7 +10465,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "passthru": true,
+        "passthru": false,
         "multiple": false,
         "options": [
             {
