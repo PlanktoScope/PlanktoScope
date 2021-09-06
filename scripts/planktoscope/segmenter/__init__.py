@@ -954,7 +954,14 @@ class SegmenterProcess(multiprocessing.Process):
         handler = functools.partial(
             planktoscope.segmenter.streamer.StreamingHandler, refresh_delay
         )
-        server = planktoscope.segmenter.streamer.StreamingServer(address, handler)
+        try:
+            server = planktoscope.segmenter.streamer.StreamingServer(address, handler)
+        except Exception as e:
+            logger.exception(
+                f"An exception has occured when starting up the segmenter: {e}"
+            )
+            raise e
+
         self.streaming_thread = threading.Thread(
             target=server.serve_forever, daemon=True
         )
