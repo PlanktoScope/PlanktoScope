@@ -719,13 +719,14 @@
         "hidden": false
     },
     {
-        "id": "bf163cd3.8abe38",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b7919ae2.c01788",
-        "order": 2,
-        "width": 5,
-        "height": 1
+        "id": "6be36295.0ab324",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "b0fb559a.6966a8",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "bfec963a.5a4988",
@@ -756,7 +757,17 @@
         "collapse": false
     },
     {
-        "id": "d9e6e70f.97c318",
+        "id": "f3ca28ef.4df0a8",
+        "type": "ui_group",
+        "name": "Shutdown",
+        "tab": "3a6bb13f.c9703e",
+        "order": 7,
+        "disp": true,
+        "width": 4,
+        "collapse": false
+    },
+    {
+        "id": "3dfd8a69.69ed56",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "3e1ba03d.f01d8",
@@ -936,6 +947,43 @@
         "group": "1be83144.4fe4bf",
         "order": 16,
         "width": 8,
+        "height": 1
+    },
+    {
+        "id": "cfe2288f.a8862",
+        "type": "ui_group",
+        "name": "GPS Status",
+        "tab": "d9cd733b.ab73d",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "934b51b3.585b28",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "abeb6dad.635a2",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "626cde70.2c2918",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "6bacc64.0a25c38",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 6,
+        "width": 3,
         "height": 1
     },
     {
@@ -2841,6 +2889,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 180,
         "y": 540,
         "wires": [
@@ -2867,6 +2916,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 170,
         "y": 580,
         "wires": [
@@ -3711,6 +3761,46 @@
         "y": 660,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "b3c21aa9.8c06c",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "git --git-dir /home/pi/PlanktoScope/.git/ rev-parse --short master",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "git rev",
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "3e64877a.9684b"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3e64877a.9684b",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "store version",
+        "func": "msg.payload = \"PlanktoScope v2.3-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 520,
+        "wires": [
+            [
+                "8343fa69.49339"
+            ]
         ]
     },
     {
@@ -4785,7 +4875,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 940,
+        "x": 930,
         "y": 240,
         "wires": [
             [
@@ -6321,7 +6411,7 @@
         "level": "1",
         "freq": "",
         "out": "out",
-        "x": 400,
+        "x": 410,
         "y": 80,
         "wires": []
     },
@@ -6361,7 +6451,9 @@
         "wires": [
             [
                 "43cf8ff7.75231",
-                "4bca8a25.15be3c"
+                "4bca8a25.15be3c",
+                "6db0fcf5.f0effc",
+                "5fc4ede4.72516c"
             ]
         ]
     },
@@ -7348,7 +7440,7 @@
         "mode": "text",
         "delay": "0",
         "topic": "sample_total_flowmeter_start",
-        "x": 1350,
+        "x": 1340,
         "y": 180,
         "wires": [
             [
@@ -8750,6 +8842,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 350,
         "y": 520,
         "wires": [
@@ -8776,6 +8869,7 @@
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 340,
         "y": 600,
         "wires": [
@@ -9588,6 +9682,24 @@
         ]
     },
     {
+        "id": "b6bc9b81.ff942",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "save process_commit",
+        "func": "global.set(\"process_commit\", msg.payload);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 860,
+        "y": 360,
+        "wires": [
+            [
+                "6c20d6a7.869b6"
+            ]
+        ]
+    },
+    {
         "id": "ba2947.c854deb8",
         "type": "function",
         "z": "cb95299c.2817c8",
@@ -10087,14 +10199,112 @@
         ]
     },
     {
+        "id": "4535ab65.009354",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "led_output",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "label": "LED output",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "1",
+                "value": "1",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "2",
+                "value": "2",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "152f58e5.ca51df"
+            ]
+        ]
+    },
+    {
+        "id": "703d6ecd.62af88",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "4535ab65.009354"
+            ]
+        ]
+    },
+    {
+        "id": "152f58e5.ca51df",
+        "type": "change",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "led_output",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "f0775525.cf806",
+                "99ae4886.8d43c"
+            ]
+        ]
+    },
+    {
         "id": "6c20d6a7.869b6",
         "type": "link out",
         "z": "9daf9e2b.019fc",
         "name": "Git revision",
         "links": [
-            "be6bddd3.2004f"
+            "be6bddd3.2004f",
+            "9373b3f6.33a2b"
         ],
-        "x": 815,
+        "x": 1015,
         "y": 360,
         "wires": []
     },
@@ -10149,5 +10359,49 @@
                 "7de3a9b4.0ab108"
             ]
         ]
+    },
+    {
+        "id": "9373b3f6.33a2b",
+        "type": "link in",
+        "z": "1371dec5.76e671",
+        "name": "Git Rev",
+        "links": [
+            "6c20d6a7.869b6"
+        ],
+        "x": 335,
+        "y": 500,
+        "wires": [
+            [
+                "3e64877a.9684b"
+            ]
+        ]
+    },
+    {
+        "id": "5fc4ede4.72516c",
+        "type": "rpi-gpio out",
+        "z": "9daf9e2b.019fc",
+        "name": "HAT Pump Enable",
+        "pin": "16",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 430,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "6db0fcf5.f0effc",
+        "type": "rpi-gpio out",
+        "z": "9daf9e2b.019fc",
+        "name": "HAT Focus Enable",
+        "pin": "29",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "x": 430,
+        "y": 160,
+        "wires": []
     }
 ]
