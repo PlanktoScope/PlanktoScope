@@ -101,6 +101,10 @@
                     {
                         "id": "ad541674.4791c8",
                         "port": 0
+                    },
+                    {
+                        "id": "f439663c.8abd3",
+                        "port": 0
                     }
                 ]
             }
@@ -143,6 +147,7 @@
     {
         "id": "833bc5bb.217ba8",
         "type": "ui_group",
+        "z": "",
         "name": "Preview",
         "tab": "181bb236.1e94be",
         "order": 1,
@@ -202,7 +207,7 @@
         "tab": "181bb236.1e94be",
         "order": 4,
         "disp": true,
-        "width": 10,
+        "width": 6,
         "collapse": false
     },
     {
@@ -315,21 +320,21 @@
             }
         },
         "site": {
-            "name": "PlanktosScope",
+            "name": "PlanktoScope",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
             "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
+            "dateFormat": "Y-MM-DD",
             "sizes": {
                 "sx": 55,
                 "sy": 55,
-                "gx": 5,
-                "gy": 5,
-                "cx": 5,
-                "cy": 5,
-                "px": 5,
-                "py": 5
+                "gx": 4,
+                "gy": 4,
+                "cx": 4,
+                "cy": 4,
+                "px": 4,
+                "py": 4
             }
         }
     },
@@ -458,7 +463,7 @@
         "tab": "181bb236.1e94be",
         "order": 2,
         "disp": true,
-        "width": 10,
+        "width": 4,
         "collapse": false
     },
     {
@@ -468,7 +473,7 @@
         "tab": "181bb236.1e94be",
         "order": 5,
         "disp": true,
-        "width": 10,
+        "width": 4,
         "collapse": false
     },
     {
@@ -478,7 +483,7 @@
         "tab": "181bb236.1e94be",
         "order": 6,
         "disp": false,
-        "width": "10",
+        "width": 4,
         "collapse": false
     },
     {
@@ -649,7 +654,7 @@
         "tab": "181bb236.1e94be",
         "order": 3,
         "disp": true,
-        "width": "10",
+        "width": 6,
         "collapse": false
     },
     {
@@ -776,100 +781,7 @@
         "height": 1
     },
     {
-        "id": "80153260.896c98",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 7,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "20a51061.5d6be8",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "f3ca28ef.4df0a8",
-        "type": "ui_group",
-        "name": "Shutdown",
-        "tab": "3a6bb13f.c9703e",
-        "order": 7,
-        "disp": true,
-        "width": 4,
-        "collapse": false
-    },
-    {
-        "id": "3dfd8a69.69ed56",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "f3ca28ef.4df0a8",
-        "order": 3,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "cfe2288f.a8862",
-        "type": "ui_group",
-        "name": "GPS Status",
-        "tab": "d9cd733b.ab73d",
-        "order": 8,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "934b51b3.585b28",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "abeb6dad.635a2",
-        "order": 9,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "626cde70.2c2918",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 4,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "6bacc64.0a25c38",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 6,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "cee2ca2f.3dfe18",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "b0fb559a.6966a8",
-        "order": 1,
-        "disp": false,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "f0eab4f4.40bc08",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 5,
-        "height": 1
-    },
-    {
-        "id": "13f34bee.279a44",
+        "id": "10cbc233.b5ddf6",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "1be83144.4fe4bf",
@@ -987,6 +899,98 @@
         "height": 1
     },
     {
+        "id": "72a9216.2ff48e",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "4322c187.e73e5",
+        "order": 8,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "1b664927.c91d1f",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "1a663b6a.ab5805",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "8eeed8d8.ad9098",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "be1c5ce7.004e",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "c2fe38e9.555e3",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "89bd18b7.c779a8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "3cbbfa5d.efa636",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "b7919ae2.c01788",
+        "order": 2,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "fbe38571.ac8f58",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 5,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "1e14d5c2.8530da",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
         "id": "4e78af2d.90be7",
         "type": "ui_ui_control",
         "z": "eaae323a.31b3",
@@ -1101,7 +1105,7 @@
         "nodata": "",
         "dot": false,
         "ymin": "30",
-        "ymax": "60",
+        "ymax": "70",
         "removeOlder": "20",
         "removeOlderPoints": "200",
         "removeOlderUnit": "60",
@@ -1120,6 +1124,7 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
         "x": 570,
         "y": 140,
         "wires": [
@@ -1190,7 +1195,7 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 590,
+        "x": 580,
         "y": 180,
         "wires": []
     },
@@ -1439,6 +1444,7 @@
         "passthru": true,
         "decouple": "false",
         "topic": "",
+        "topicType": "str",
         "style": "",
         "onvalue": "on",
         "onvalueType": "str",
@@ -1448,6 +1454,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
         "x": 940,
         "y": 40,
         "wires": [
@@ -1592,7 +1599,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "x": 130,
-        "y": 60,
+        "y": 40,
         "wires": [
             []
         ]
@@ -1607,7 +1614,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 860,
+        "x": 880,
         "y": 440,
         "wires": [
             []
@@ -1837,39 +1844,14 @@
         "tooltip": "Tiny values are accepted down to 0.001mL",
         "group": "707d9797.c8e798",
         "order": 3,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": "0",
         "topic": "pump_manual_volume",
-        "x": 600,
+        "x": 610,
         "y": 420,
-        "wires": [
-            [
-                "dc48dc42.98d18"
-            ]
-        ]
-    },
-    {
-        "id": "34c81624.df1cea",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "pump_flowrate",
-        "label": "Flowrate (ml/min)*",
-        "tooltip": "",
-        "group": "707d9797.c8e798",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "pump_flowrate",
-        "min": "0.5",
-        "max": "100",
-        "step": "0.5",
-        "x": 580,
-        "y": 380,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -2161,7 +2143,7 @@
         "name": "",
         "events": "change",
         "x": 400,
-        "y": 580,
+        "y": 880,
         "wires": [
             []
         ]
@@ -2181,7 +2163,7 @@
         "topic": "",
         "name": "",
         "x": 710,
-        "y": 700,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -2196,13 +2178,12 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 410,
-        "y": 640,
+        "x": 470,
+        "y": 940,
         "wires": [
             [
                 "726a7822.cd6298",
-                "e2b277c1.07283",
-                "9a18a4b4.178448"
+                "e2b277c1.07283"
             ],
             [
                 "52f6b103.1efb6"
@@ -2227,14 +2208,14 @@
         "gst": false,
         "att": false,
         "x": 250,
-        "y": 940,
+        "y": 1240,
         "wires": [
             [
                 "258b4562.9f778a",
                 "54e37580.fdc31c",
                 "cc21ca16.b92928",
                 "4a4de52c.cf2884",
-                "35ad311f.344c76"
+                "73c4a14a.9b93c8"
             ]
         ]
     },
@@ -2245,7 +2226,7 @@
         "name": "",
         "events": "change",
         "x": 700,
-        "y": 620,
+        "y": 920,
         "wires": [
             []
         ]
@@ -2315,7 +2296,7 @@
         "name": "Backward",
         "group": "707d9797.c8e798",
         "order": 2,
-        "width": 2,
+        "width": 1,
         "height": 1,
         "passthru": false,
         "label": "",
@@ -2341,7 +2322,7 @@
         "name": "Forward",
         "group": "707d9797.c8e798",
         "order": 4,
-        "width": 2,
+        "width": 1,
         "height": 1,
         "passthru": true,
         "label": "",
@@ -2425,7 +2406,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1450,
+        "x": 1460,
         "y": 120,
         "wires": [
             []
@@ -2441,7 +2422,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1200,
+        "x": 1220,
         "y": 180,
         "wires": [
             [
@@ -2483,7 +2464,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1450,
+        "x": 1460,
         "y": 160,
         "wires": [
             []
@@ -2578,7 +2559,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 240,
-        "y": 580,
+        "y": 880,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -2604,7 +2585,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 240,
-        "y": 640,
+        "y": 940,
         "wires": [
             [
                 "986d960a.c75908"
@@ -2618,7 +2599,7 @@
         "name": "",
         "group": "7a0b4877.a5d268",
         "order": 1,
-        "width": 5,
+        "width": 2,
         "height": 1,
         "passthru": false,
         "label": "Previous",
@@ -2644,7 +2625,7 @@
         "name": "",
         "group": "7a0b4877.a5d268",
         "order": 2,
-        "width": 5,
+        "width": 2,
         "height": 1,
         "passthru": false,
         "label": "Continue",
@@ -2850,7 +2831,7 @@
         "payload": "{\"action\":\"stop\"}",
         "payloadType": "json",
         "topic": "actuator/focus",
-        "x": 560,
+        "x": 570,
         "y": 560,
         "wires": [
             [
@@ -2877,8 +2858,8 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 3,
-        "width": 3,
+        "order": 2,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "UP 1mm",
@@ -2905,7 +2886,7 @@
         "name": "",
         "group": "fbd92986.1028c8",
         "order": 7,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "DOWN 1mm",
@@ -2922,31 +2903,6 @@
         "wires": [
             [
                 "62030521.88317c"
-            ]
-        ]
-    },
-    {
-        "id": "69d4ea6c.4c1e2c",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "focus_distance",
-        "label": "Focus Distance",
-        "tooltip": "in µm",
-        "group": "fbd92986.1028c8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "focus_distance",
-        "min": "25",
-        "max": "2000",
-        "step": "25",
-        "x": 580,
-        "y": 460,
-        "wires": [
-            [
-                "dc48dc42.98d18"
             ]
         ]
     },
@@ -2971,7 +2927,7 @@
         "y": 460,
         "wires": [
             [
-                "69d4ea6c.4c1e2c"
+                "be33e564.029358"
             ]
         ]
     },
@@ -3021,7 +2977,7 @@
         "y": 380,
         "wires": [
             [
-                "34c81624.df1cea"
+                "cb2d5174.cfe9f"
             ]
         ]
     },
@@ -3299,7 +3255,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Encapsulate config",
-        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_id\": global.get(\"process_id\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktonPlanet/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\nreturn msg;",
+        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_id\": global.get(\"process_id\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktonPlanet/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3634,7 +3590,7 @@
         "name": "",
         "env": [],
         "x": 690,
-        "y": 660,
+        "y": 960,
         "wires": [
             []
         ]
@@ -3737,7 +3693,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 300,
+        "x": 310,
         "y": 240,
         "wires": [
             [
@@ -3854,7 +3810,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "x": 730,
-        "y": 840,
+        "y": 1080,
         "wires": []
     },
     {
@@ -3889,7 +3845,7 @@
         "name": "stop pump",
         "group": "707d9797.c8e798",
         "order": 5,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": true,
         "label": " STOP PUMP",
@@ -4510,7 +4466,7 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1340,
+        "x": 1350,
         "y": 680,
         "wires": []
     },
@@ -4569,7 +4525,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
+        "x": 840,
         "y": 760,
         "wires": []
     },
@@ -5050,15 +5006,16 @@
         "z": "b771c342.49603",
         "name": "sample_concentrated_sample_volume",
         "label": "Concentrated sample volume (mL)",
-        "tooltip": "Volume extracted from the net (in mL)",
+        "tooltip": "Volume extracted from the net codend (in mL)",
         "group": "3e1ba03d.f01d8",
-        "order": 10,
+        "order": 12,
         "width": 10,
         "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": "0",
         "topic": "sample_concentrated_sample_volume",
+        "topicType": "str",
         "x": 590,
         "y": 360,
         "wires": [
@@ -5075,7 +5032,7 @@
         "label": "Net opening dimension (mm)",
         "tooltip": "Size of the net mouth opening (in mm)",
         "group": "cf5d9f0e.d57e7",
-        "order": 3,
+        "order": 1,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -5250,8 +5207,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1070,
-        "y": 540,
+        "x": 1230,
+        "y": 620,
         "wires": [
             []
         ]
@@ -6955,7 +6912,7 @@
         "cancel": "Reset",
         "topic": "sample_location",
         "x": 660,
-        "y": 500,
+        "y": 580,
         "wires": [
             [
                 "14658615.47c862"
@@ -6969,7 +6926,7 @@
         "name": "net_throw_location",
         "label": "Net Throw Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "options": [
@@ -6988,14 +6945,14 @@
                 "rows": null
             },
             {
-                "label": "Date (YYYY-MM-DD, UTC)",
+                "label": "Date (YYYY-MM-DD UTC)",
                 "value": "object_date",
                 "type": "text",
                 "required": true,
                 "rows": null
             },
             {
-                "label": "Time (HH:MM(:SS), UTC 24h)",
+                "label": "Time (HH:MM, UTC 24h)",
                 "value": "object_time",
                 "type": "text",
                 "required": true,
@@ -7012,8 +6969,10 @@
         "submit": "Validate",
         "cancel": "Reset",
         "topic": "net_throw_location",
+        "topicType": "str",
+        "splitLayout": false,
         "x": 650,
-        "y": 540,
+        "y": 620,
         "wires": [
             [
                 "14658615.47c862"
@@ -7027,7 +6986,7 @@
         "name": "net_retrieval_location",
         "label": "Net Retrieval Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "options": [
@@ -7046,14 +7005,14 @@
                 "rows": null
             },
             {
-                "label": "Date (YYYY-MM-DD, UTC)",
+                "label": "Date (YYYY-MM-DD UTC)",
                 "value": "object_date_end",
                 "type": "text",
                 "required": true,
                 "rows": null
             },
             {
-                "label": "Time (HH:MM(:SS), UTC 24h)",
+                "label": "Time (HH:MM, UTC 24h)",
                 "value": "object_time_end",
                 "type": "text",
                 "required": true,
@@ -7070,8 +7029,10 @@
         "submit": "Validate",
         "cancel": "Reset",
         "topic": "net_retrieval_location",
+        "topicType": "str",
+        "splitLayout": false,
         "x": 640,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "14658615.47c862"
@@ -7089,21 +7050,22 @@
         "initialize": "",
         "finalize": "",
         "x": 930,
-        "y": 540,
+        "y": 620,
         "wires": [
             [
-                "c0ce5626.b6c5"
+                "c0ce5626.b6c5",
+                "9a18a4b4.178448"
             ],
             [
                 "56d40584.eff4e4"
             ]
         ],
         "inputLabels": [
-            "location"
+            "Location form data"
         ],
         "outputLabels": [
-            "checked location",
-            ""
+            "Message",
+            "Location validated"
         ]
     },
     {
@@ -7171,11 +7133,12 @@
         "mode": "text",
         "delay": "0",
         "topic": "sample_total_flowmeter_start",
-        "x": 1340,
+        "topicType": "str",
+        "x": 1350,
         "y": 180,
         "wires": [
             [
-                "c23967d8.8d088"
+                "e9bc112c.eb75f8"
             ]
         ]
     },
@@ -7194,33 +7157,13 @@
         "mode": "text",
         "delay": "0",
         "topic": "sample_total_flowmeter_end",
+        "topicType": "str",
         "x": 1340,
         "y": 220,
         "wires": [
             [
-                "c23967d8.8d088"
+                "e9bc112c.eb75f8"
             ]
-        ]
-    },
-    {
-        "id": "c23967d8.8d088",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Store sample_total_volume",
-        "func": "if (msg.topic == \"sample_total_flowmeter_start\"){\n    context.set(\"sample_total_flowmeter_start\", msg.payload);\n}\nif (msg.topic == \"sample_total_flowmeter_end\"){\n    context.set(\"sample_total_flowmeter_end\", msg.payload);\n}\nif (context.keys().length == 2){\n    sample_total_volume = context.get(\"sample_total_flowmeter_end\") - context.get(\"sample_total_flowmeter_start\");\n    global.set(\"sample_total_volume\", sample_total_volume);\n}\n\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1640,
-        "y": 200,
-        "wires": [
-            [],
-            []
-        ],
-        "outputLabels": [
-            "decknet activation",
-            "group display control"
         ]
     },
     {
@@ -7973,15 +7916,17 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "calculate sample_total_volume",
-        "func": "var object_lat = global.get(\"object_lat\")\nvar object_lon = global.get(\"object_lon\")\nvar object_lat_end = global.get(\"object_lat_end\")\nvar object_lon_end = global.get(\"object_lon_end\")\nvar sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\n\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\ndecpl=4  // Dec places of minutes output\n\nellipse = {\"name\":\"WSG84\", \"a\":6378.137/1.852, \"invf\":298.257223563}\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2){\n    var d,crs12,crs21\n    var argacos\n    var a,invf\n    \n    // lat and lon in radian\n    lat1=(Math.PI/180)*lat1\n    lat2=(Math.PI/180)*lat2\n    lon1=(Math.PI/180)*lon1\n    lon2=(Math.PI/180)*lon2\n    \n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n    \n    /* get distance conversion factor */\n    dc=1.852 //km\n    //alert(\"dc=\" +dc)\n    \n    //showProps(ellipse,\"ellipse\")\n    \n    // elliptic code\n    d=crsdist_ell(lat1,-lon1,lat2,-lon2,ellipse)  // ellipse uses East negative\n    d=d*dc  // go to physical units\n    \n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1,lon1,lat2,lon2){ // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1+lat2===0) && (Math.abs(lon1-lon2)==Math.PI) && \n    (Math.abs(lat1) != (Math.PI/180)*90)){\t\n    \talert(\"Course between antipodal points is undefined\")\n    }\n    \n    d = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1,glon1,glat2,glon2,ellipse){\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    a=ellipse.a\n    f=1/ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy,y, sa, c2a, cz, e, c, d\n    var EPS= 0.00000000005\n    var faz, baz, s\n    var iter=1\n    var MAXITER=100\n    if ((glat1+glat2===0) && (Math.abs(glon1-glon2)==Math.PI)){\n        alert(\"Course and distance between antipodal points is undefined\")\n        glat1=glat1+0.00001 // allow algorithm to complete\n    }\n    if (glat1==glat2 && (glon1==glon2 || Math.abs(Math.abs(glon1-glon2)-2*Math.PI) <  EPS)){\n        alert(\"Points 1 and 2 are identical- course undefined\")\n        out=new MakeArray(0)\n        out.d=0\n        out.crs12=0\n        out.crs21=Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan (glat1)\n    tu2 = r * Math.tan (glat2)\n    cu1 = 1 / Math.sqrt (1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt (1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER))\n    {\n        iter=iter+1\n        sx = Math.sin (x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos (x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2 (sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n            e = cz * cz * 2 - 1\n            c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n            d = x\n            x = ((e * cy * c + cz) * sy * c + y) * sa\n            x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt ((1 / (r * r) - 1) * c2a + 1)\n    x +=1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy*sy*4-3)*(1-e-e)*cz*d/6-x)*d/4+cz)*sy*d+y)*c*a*r\n    if (Math.abs(iter-MAXITER)<EPS){\n        alert(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y,x){\n    var out\n    if (x <0)            { out= Math.atan(y/x)+Math.PI}\n    if ((x >0) && (y>=0)){ out= Math.atan(y/x)}\n    if ((x >0) && (y<0)) { out= Math.atan(y/x)+2*Math.PI}\n    if ((x===0) && (y>0)) { out= Math.PI/2}\n    if ((x===0) && (y<0)) { out= 3*Math.PI/2}  \n    if ((x===0) && (y===0)) {\n        alert(\"atan2(0,0) undefined\")\n        out= 0\n    }  \n    return out\n}\n\nfunction showProps(obj,objName){\n    var result=\"\"\n    for (var i in obj){\n        result +=objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    alert(result)\n}\n\nif (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\"){\n    distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n    \n    sample_total_volume = distance_km*(Math.PI*(sample_gear_net_opening/2)*(sample_gear_net_opening/2))/1000// cubic meter\n    sample_total_volume = Math.round((sample_total_volume + Number.EPSILON) * 1000) / 1000\n    global.set(\"sample_total_volume\", sample_total_volume)\n    msg.payload = sample_total_volume\n}\nelse {\n    msg.payload = 0\n}\n\n\nreturn msg",
+        "func": "\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\ndecpl=4  // Dec places of minutes output\n\nellipse = {\"name\":\"WSG84\", \"a\":6378.137/1.852, \"invf\":298.257223563}\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2){\n    var d,crs12,crs21\n    var argacos\n    var a,invf\n    \n    // lat and lon in radian\n    lat1=(Math.PI/180)*lat1\n    lat2=(Math.PI/180)*lat2\n    lon1=(Math.PI/180)*lon1\n    lon2=(Math.PI/180)*lon2\n    \n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n    \n    /* get distance conversion factor */\n    dc=1.852 //km\n    //alert(\"dc=\" +dc)\n    \n    //showProps(ellipse,\"ellipse\")\n    \n    // elliptic code\n    d=crsdist_ell(lat1,-lon1,lat2,-lon2,ellipse)  // ellipse uses East negative\n    d=d*dc  // go to physical units\n    \n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1,lon1,lat2,lon2){ // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1+lat2===0) && (Math.abs(lon1-lon2)==Math.PI) && \n    (Math.abs(lat1) != (Math.PI/180)*90)){\t\n    \talert(\"Course between antipodal points is undefined\")\n    }\n    \n    d = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1,glon1,glat2,glon2,ellipse){\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    a=ellipse.a\n    f=1/ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy,y, sa, c2a, cz, e, c, d\n    var EPS= 0.00000000005\n    var faz, baz, s\n    var iter=1\n    var MAXITER=100\n    if ((glat1+glat2===0) && (Math.abs(glon1-glon2)==Math.PI)){\n        alert(\"Course and distance between antipodal points is undefined\")\n        glat1=glat1+0.00001 // allow algorithm to complete\n    }\n    if (glat1==glat2 && (glon1==glon2 || Math.abs(Math.abs(glon1-glon2)-2*Math.PI) <  EPS)){\n        alert(\"Points 1 and 2 are identical- course undefined\")\n        out=new MakeArray(0)\n        out.d=0\n        out.crs12=0\n        out.crs21=Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan (glat1)\n    tu2 = r * Math.tan (glat2)\n    cu1 = 1 / Math.sqrt (1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt (1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER))\n    {\n        iter=iter+1\n        sx = Math.sin (x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos (x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2 (sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n            e = cz * cz * 2 - 1\n            c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n            d = x\n            x = ((e * cy * c + cz) * sy * c + y) * sa\n            x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt ((1 / (r * r) - 1) * c2a + 1)\n    x +=1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy*sy*4-3)*(1-e-e)*cz*d/6-x)*d/4+cz)*sy*d+y)*c*a*r\n    if (Math.abs(iter-MAXITER)<EPS){\n        alert(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y,x){\n    var out\n    if (x <0)            { out= Math.atan(y/x)+Math.PI}\n    if ((x >0) && (y>=0)){ out= Math.atan(y/x)}\n    if ((x >0) && (y<0)) { out= Math.atan(y/x)+2*Math.PI}\n    if ((x===0) && (y>0)) { out= Math.PI/2}\n    if ((x===0) && (y<0)) { out= 3*Math.PI/2}  \n    if ((x===0) && (y===0)) {\n        alert(\"atan2(0,0) undefined\")\n        out= 0\n    }  \n    return out\n}\n\nfunction showProps(obj,objName){\n    var result=\"\"\n    for (var i in obj){\n        result +=objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    alert(result)\n}\n\n\nif (msg.payload.startsWith(\"All\")){\n    msg.topic=\"sample_total_volume\"\n    var object_lat_end = global.get(\"object_lat_end\")\n    var object_lon_end = global.get(\"object_lon_end\")\n    if (!(isNaN(object_lat_end) && isNaN(object_lon_end))){\n        var object_lat = global.get(\"object_lat\")\n        var object_lon = global.get(\"object_lon\")\n        var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n        var sample_sampling_gear= global.get(\"sample_sampling_gear\");\n        \n        if (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\"){\n            distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n            \n            sample_total_volume = distance_km*(Math.PI*(sample_gear_net_opening/2)*(sample_gear_net_opening/2)) // liters\n            sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n            msg.payload = sample_total_volume\n        }\n        else {\n            msg.payload = 0\n        }\n    }\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 770,
-        "y": 580,
+        "x": 730,
+        "y": 760,
         "wires": [
-            []
+            [
+                "4f6afc5a.81e454"
+            ]
         ]
     },
     {
@@ -7997,7 +7942,7 @@
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
         "layout": "col-center",
         "x": 700,
-        "y": 820,
+        "y": 1120,
         "wires": []
     },
     {
@@ -8013,7 +7958,7 @@
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
         "layout": "col-center",
         "x": 700,
-        "y": 860,
+        "y": 1160,
         "wires": []
     },
     {
@@ -8026,8 +7971,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 490,
-        "y": 900,
+        "x": 500,
+        "y": 1140,
         "wires": [
             [
                 "4fb4e0ad.c417c",
@@ -8048,7 +7993,7 @@
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
         "x": 690,
-        "y": 900,
+        "y": 1200,
         "wires": []
     },
     {
@@ -8064,7 +8009,7 @@
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
         "x": 700,
-        "y": 940,
+        "y": 1240,
         "wires": []
     },
     {
@@ -8077,8 +8022,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 450,
-        "y": 780,
+        "x": 470,
+        "y": 1080,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -8095,8 +8040,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
-        "y": 900,
+        "x": 490,
+        "y": 1200,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -8116,7 +8061,7 @@
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
         "x": 690,
-        "y": 980,
+        "y": 1280,
         "wires": []
     },
     {
@@ -8279,7 +8224,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<center>To prevent data corruption, please <b>always shutdown the machine</b> before unplugging the unit.\n<br><br>\nRememver to first unlock the shutdown button.\n</center>",
+        "format": "<center>To prevent data corruption, please <b>always shutdown the machine</b> before unplugging the unit.\n<br><br>\nRemember to first unlock the shutdown button.\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": false,
         "resendOnRefresh": true,
@@ -8425,29 +8370,18 @@
         ]
     },
     {
-        "id": "f6ff420b.0af648",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "focus_speed",
-        "label": "Focus Speed",
-        "tooltip": "in µm/sec",
-        "group": "fbd92986.1028c8",
-        "order": 8,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "focus_speed",
-        "min": "250",
-        "max": "2500",
-        "step": "250",
-        "x": 570,
-        "y": 500,
-        "wires": [
-            [
-                "dc48dc42.98d18"
-            ]
-        ]
+        "id": "b3448fbb.351d28",
+        "type": "rpi-gpio out",
+        "z": "1371dec5.76e671",
+        "name": "Fan",
+        "pin": "33",
+        "set": false,
+        "level": "0",
+        "freq": "25000",
+        "out": "pwm",
+        "x": 1110,
+        "y": 40,
+        "wires": []
     },
     {
         "id": "2d371e59.b0e50a",
@@ -8470,7 +8404,7 @@
         "y": 500,
         "wires": [
             [
-                "f6ff420b.0af648"
+                "3a86de51.765b9a"
             ]
         ]
     },
@@ -8480,8 +8414,8 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 2,
-        "width": 3,
+        "order": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "UP 100um",
@@ -8508,7 +8442,7 @@
         "name": "",
         "group": "fbd92986.1028c8",
         "order": 6,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "DOWN 100um",
@@ -8565,8 +8499,8 @@
         "type": "ui_numeric",
         "z": "b771c342.49603",
         "name": "acq_maximum_mesh",
-        "label": "Max fraction size (μm)",
-        "tooltip": "",
+        "label": "Maximal fraction size (μm)",
+        "tooltip": "Maximal filtration mesh pore size",
         "group": "3e1ba03d.f01d8",
         "order": 8,
         "width": 5,
@@ -8574,6 +8508,7 @@
         "wrap": false,
         "passthru": true,
         "topic": "acq_maximum_mesh",
+        "topicType": "str",
         "format": "{{value}}",
         "min": "200",
         "max": "2000",
@@ -8591,8 +8526,8 @@
         "type": "ui_numeric",
         "z": "b771c342.49603",
         "name": "acq_minimum_mesh",
-        "label": "Min fraction size (μm)",
-        "tooltip": "",
+        "label": "Minimal fraction size (μm)",
+        "tooltip": "Net mesh pore size or minimal filtration mesh pore size",
         "group": "3e1ba03d.f01d8",
         "order": 7,
         "width": 5,
@@ -8600,6 +8535,7 @@
         "wrap": false,
         "passthru": true,
         "topic": "acq_minimum_mesh",
+        "topicType": "str",
         "format": "{{value}}",
         "min": 0,
         "max": "300",
@@ -8609,6 +8545,99 @@
         "wires": [
             [
                 "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "3ea12061.ce62c",
+        "type": "ui_list",
+        "z": "cb95299c.2817c8",
+        "group": "abeb6dad.635a2",
+        "name": "",
+        "order": 7,
+        "width": 10,
+        "height": 11,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "cb3b87b5.63c4"
+            ]
+        ]
+    },
+    {
+        "id": "8bd8fb2c.53fa4",
+        "type": "dir2files",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "dirname": "/home/pi/data/img/",
+        "pathRegex": "",
+        "isRecursive": true,
+        "findDir": true,
+        "isArray": true,
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "ba2947.c854deb8"
+            ]
+        ]
+    },
+    {
+        "id": "127d4ee.f8ad1b1",
+        "type": "ui_button",
+        "z": "cb95299c.2817c8",
+        "name": "Refresh",
+        "group": "abeb6dad.635a2",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update acquisition's folder list",
+        "tooltip": "Refresh the list of previous acquisitions",
+        "color": "",
+        "bgcolor": "",
+        "icon": "mi-find_replace",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "update",
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "8bd8fb2c.53fa4",
+                "56f845f5.e7c054"
+            ]
+        ]
+    },
+    {
+        "id": "946ce9ee.092cf",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "8bd8fb2c.53fa4",
+                "56f845f5.e7c054"
             ]
         ]
     },
@@ -9464,7 +9493,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1370,
+        "x": 1380,
         "y": 600,
         "wires": [
             []
@@ -9533,7 +9562,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1010,
+        "x": 1020,
         "y": 840,
         "wires": [
             [
@@ -9756,39 +9785,13 @@
         ]
     },
     {
-        "id": "8090df89.c029e",
-        "type": "inject",
-        "z": "cb95299c.2817c8",
-        "name": "0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 910,
-        "y": 280,
-        "wires": [
-            [
-                "32465a4e.8fcac6",
-                "8dd6f57f.b77f98"
-            ]
-        ]
-    },
-    {
         "id": "4535ab65.009354",
         "type": "ui_multistate_switch",
         "z": "bccd1f23.87219",
         "name": "led_output",
         "group": "4248342d.e55fac",
         "order": 2,
-        "width": 5,
+        "width": 6,
         "height": 1,
         "label": "LED output",
         "stateField": "payload",
@@ -10022,7 +10025,7 @@
         "min": "125",
         "max": "1000",
         "step": "1",
-        "x": 590,
+        "x": 600,
         "y": 880,
         "wires": [
             [
@@ -10069,33 +10072,6 @@
         ]
     },
     {
-        "id": "43737d43.eb0e9c",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "WB Red slider",
-        "label": "WB: Red",
-        "tooltip": "from 1.0 to 8.0",
-        "group": "8c38a81e.9897a8",
-        "order": 6,
-        "width": 8,
-        "height": 1,
-        "passthru": true,
-        "outs": "end",
-        "topic": "red",
-        "topicType": "str",
-        "min": "1.0",
-        "max": "8.0",
-        "step": "0.01",
-        "x": 580,
-        "y": 1040,
-        "wires": [
-            [
-                "5e147425.7666ec",
-                "d361a2c4.0990f8"
-            ]
-        ]
-    },
-    {
         "id": "5e147425.7666ec",
         "type": "function",
         "z": "bccd1f23.87219",
@@ -10105,38 +10081,11 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 920,
+        "x": 910,
         "y": 1060,
         "wires": [
             [
                 "845e06e1.0d812"
-            ]
-        ]
-    },
-    {
-        "id": "7b699798.3d568",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "WB Blue slider",
-        "label": "WB: Blue",
-        "tooltip": "from 1.0 to 8.0",
-        "group": "8c38a81e.9897a8",
-        "order": 7,
-        "width": 8,
-        "height": 1,
-        "passthru": true,
-        "outs": "end",
-        "topic": "blue",
-        "topicType": "str",
-        "min": "1.0",
-        "max": "8.0",
-        "step": "0.01",
-        "x": 580,
-        "y": 1080,
-        "wires": [
-            [
-                "5e147425.7666ec",
-                "d361a2c4.0990f8"
             ]
         ]
     },
@@ -10238,7 +10187,7 @@
         "y": 1040,
         "wires": [
             [
-                "43737d43.eb0e9c"
+                "d5415af6.e06cc"
             ]
         ]
     },
@@ -10265,7 +10214,7 @@
         "y": 1080,
         "wires": [
             [
-                "7b699798.3d568"
+                "dba68c1f.e3144"
             ]
         ]
     },
@@ -10307,7 +10256,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 350,
         "y": 960,
         "wires": [
             [
@@ -10359,14 +10308,14 @@
         "tooltip": "From 1.0 to 12.0",
         "group": "8c38a81e.9897a8",
         "order": 1,
-        "width": 5,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "analog",
         "topicType": "str",
-        "x": 580,
+        "x": 590,
         "y": 960,
         "wires": [
             [
@@ -10385,8 +10334,8 @@
         "tooltip": "From 1.0 to 64.0. Overexpose starting at 4.0",
         "group": "8c38a81e.9897a8",
         "order": 2,
-        "width": 5,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "passthru": true,
         "mode": "number",
         "delay": 300,
@@ -10411,7 +10360,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 930,
+        "x": 900,
         "y": 980,
         "wires": [
             [
@@ -10463,7 +10412,7 @@
         "topic": "",
         "payload": "100",
         "payloadType": "num",
-        "x": 120,
+        "x": 130,
         "y": 840,
         "wires": [
             [
@@ -10478,8 +10427,8 @@
         "name": "ISO selector",
         "group": "8c38a81e.9897a8",
         "order": 3,
-        "width": 10,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "label": "ISO",
         "stateField": "payload",
         "enableField": "enable",
@@ -10557,11 +10506,271 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 730,
+        "x": 740,
         "y": 840,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
+            ]
+        ]
+    },
+    {
+        "id": "be33e564.029358",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "focus_distance",
+        "label": "Focus Distance (in µm)",
+        "tooltip": "in µm, 25µm resolution",
+        "group": "fbd92986.1028c8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "focus_distance",
+        "topicType": "str",
+        "x": 580,
+        "y": 460,
+        "wires": [
+            [
+                "dc48dc42.98d18"
+            ]
+        ]
+    },
+    {
+        "id": "3a86de51.765b9a",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "focus_speed",
+        "label": "Focus Speed (in µm/sec)",
+        "tooltip": "in µm/sec",
+        "group": "fbd92986.1028c8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "focus_speed",
+        "topicType": "str",
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "dc48dc42.98d18"
+            ]
+        ]
+    },
+    {
+        "id": "cb2d5174.cfe9f",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "pump_flowrate",
+        "label": "Flowrate (ml/min)*",
+        "tooltip": "",
+        "group": "707d9797.c8e798",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "pump_flowrate",
+        "topicType": "str",
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "dc48dc42.98d18"
+            ]
+        ]
+    },
+    {
+        "id": "d5415af6.e06cc",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "WB Red input",
+        "label": "WB: Red",
+        "tooltip": "From 1.0 to 8.0",
+        "group": "8c38a81e.9897a8",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "red",
+        "topicType": "str",
+        "x": 580,
+        "y": 1040,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ]
+        ]
+    },
+    {
+        "id": "dba68c1f.e3144",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "WB Blue input",
+        "label": "WB: Blue",
+        "tooltip": "From 1.0 to 64.0",
+        "group": "8c38a81e.9897a8",
+        "order": 7,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "blue",
+        "topicType": "str",
+        "x": 580,
+        "y": 1080,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ]
+        ]
+    },
+    {
+        "id": "73c4a14a.9b93c8",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Convert time",
+        "func": "msg.payload.time = msg.payload.time.replace('T', ' ')\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 1280,
+        "wires": [
+            [
+                "35ad311f.344c76"
+            ]
+        ]
+    },
+    {
+        "id": "f439663c.8abd3",
+        "type": "ui_ui_control",
+        "z": "1c24ad9c.bebec2",
+        "name": "Connect Event",
+        "events": "connect",
+        "x": 900,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58de1340.3cc354",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_dilution_factor",
+        "label": "Dilution Factor",
+        "tooltip": "0.5 if diluted by two; 2 if concentrated by a factor 2",
+        "group": "3e1ba03d.f01d8",
+        "order": 13,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "sample_dilution_factor",
+        "topicType": "str",
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "4f6afc5a.81e454",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_total_volume",
+        "label": "Filtered volume (in L)",
+        "tooltip": "Calculated or hand filled",
+        "group": "3e1ba03d.f01d8",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "500",
+        "topic": "sample_total_volume",
+        "topicType": "str",
+        "x": 1020,
+        "y": 760,
+        "wires": [
+            [
+                "e1f2f6eb.fe1dd"
+            ]
+        ]
+    },
+    {
+        "id": "e1f2f6eb.fe1dd",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "set global",
+        "func": "global.set(msg.topic,msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1220,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e9bc112c.eb75f8",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Calculate volume",
+        "func": "if (msg.topic == \"sample_total_flowmeter_start\"){\n    context.set(\"sample_total_flowmeter_start\", msg.payload);\n}\nif (msg.topic == \"sample_total_flowmeter_end\"){\n    context.set(\"sample_total_flowmeter_end\", msg.payload);\n}\n\nif (context.keys().length == 2){\n    sample_total_volume = context.get(\"sample_total_flowmeter_end\") - context.get(\"sample_total_flowmeter_start\");\n    msg.topic=\"sample_total_volume\"\n    msg.payload=sample_total_volume\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1610,
+        "y": 200,
+        "wires": [
+            [
+                "4f6afc5a.81e454"
+            ]
+        ]
+    },
+    {
+        "id": "8090df89.c029e",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 910,
+        "y": 280,
+        "wires": [
+            [
+                "32465a4e.8fcac6",
+                "8dd6f57f.b77f98"
             ]
         ]
     }
