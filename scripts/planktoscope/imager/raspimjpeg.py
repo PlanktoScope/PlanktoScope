@@ -413,6 +413,29 @@ class raspimjpeg(object):
             raise ValueError
 
     @property
+    def image_gain(self):
+        return self.__image_gain
+
+    @image_gain.setter
+    def image_gain(self, gain):
+        """Change the camera image gain
+
+            The analog gain value should be an int between 100 and 1200 for the analog gain and
+            between 100 and 6400 for the digital gain.
+            By default the camera is set to use 1.0 both for the analog and the digital gain.
+
+        Args:
+            gain (tuple of int): Image gain to use
+        """
+        logger.debug(f"Setting the analog gain to {gain}")
+        if (100 <= gain[0] <= 1200) and (100 <= gain[1] < 6400):
+            self.__image_gain = gain
+            self.__send_command(f"ig {self.__image_gain[0]} {self.__image_gain[1]}")
+        else:
+            logger.error(f"The camera image gain specified ({gain}) is not valid")
+            raise ValueError
+
+    @property
     def image_quality(self):
         return self.__image_quality
 

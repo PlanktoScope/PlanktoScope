@@ -124,11 +124,15 @@ class ImagerProcess(multiprocessing.Process):
 
         self.__iso = iso
         self.__shutter_speed = shutter_speed
-        self.__exposure_mode = "off"
+        self.__exposure_mode = "auto"
         self.__white_balance = "off"
         self.__white_balance_gain = (
-            configuration.get("wb_red_gain", 2.00) * 100,
-            configuration.get("wb_blue_gain", 1.40) * 100,
+            int(configuration.get("red_gain", 2.00) * 100),
+            int(configuration.get("blue_gain", 1.40) * 100),
+        )
+        self.__image_gain = (
+            int(configuration.get("analog_gain", 1.00) * 100),
+            int(configuration.get("digital_gain", 1.00) * 100),
         )
 
         self.__base_path = "/home/pi/data/img"
@@ -192,6 +196,15 @@ class ImagerProcess(multiprocessing.Process):
                 "A timeout has occured when setting the white balance gain, trying again"
             )
             self.__camera.white_balance_gain = self.__white_balance_gain
+        time.sleep(0.1)
+
+        try:
+            self.__camera.image_gain = self.__image_gain
+        except TimeoutError as e:
+            logger.error(
+                "A timeout has occured when setting the white balance gain, trying again"
+            )
+            self.__camera.image_gain = self.__image_gain
 
         logger.success("planktoscope.imager is initialised and ready to go!")
 
@@ -394,6 +407,39 @@ class ImagerProcess(multiprocessing.Process):
                     self.imager_client.client.publish(
                         "status/imager",
                         f'{"status":"Error: White balance mode {self.__white_balance} is not valid"}',
+                    )
+                    return
+
+            if "image_gain" in settings:
+                if "analog" in settings["image_gain"]:
+                    logger.debug(
+                        f"Updating the camera image analog gain to {settings['image_gain']}"
+                    )
+                    self.__image_gain = (
+                        settings["image_gain"].get("analog", self.__image_gain[0]),
+                        self.__image_gain[1],
+                    )
+                if "digital" in settings["image_gain"]:
+                    logger.debug(
+                        f"Updating the camera image digital gain to {settings['image_gain']}"
+                    )
+                    self.__image_gain = (
+                        self.__image_gain[0],
+                        settings["image_gain"].get("digital", self.__image_gain[1]),
+                    )
+                logger.debug(f"Updating the camera image gain to {self.__image_gain}")
+                try:
+                    self.__camera.image_gain = self.__image_gain
+                except TimeoutError as e:
+                    logger.error(
+                        "A timeout has occured when setting the white balance gain, trying again"
+                    )
+                    self.__camera.image_gain = self.__image_gain
+                except ValueError as e:
+                    logger.error("The requested image gain is not valid!")
+                    self.imager_client.client.publish(
+                        "status/imager",
+                        '{"status":"Error: Image gain not valid"}',
                     )
                     return
             # Publish the status "Config updated" to via MQTT to Node-RED

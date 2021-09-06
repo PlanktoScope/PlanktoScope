@@ -200,7 +200,7 @@
         "type": "ui_group",
         "name": "Optic Characterization",
         "tab": "181bb236.1e94be",
-        "order": 2,
+        "order": 4,
         "disp": true,
         "width": 10,
         "collapse": false
@@ -456,7 +456,7 @@
         "type": "ui_group",
         "name": "Focus Adjustment",
         "tab": "181bb236.1e94be",
-        "order": 4,
+        "order": 2,
         "disp": true,
         "width": 10,
         "collapse": false
@@ -2257,7 +2257,7 @@
         "name": "",
         "events": "change",
         "x": 560,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             []
         ]
@@ -2277,7 +2277,7 @@
         "topic": "",
         "name": "",
         "x": 570,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -2293,7 +2293,7 @@
         "initialize": "",
         "finalize": "",
         "x": 330,
-        "y": 1140,
+        "y": 1180,
         "wires": [
             [
                 "6c792043.b6ff9",
@@ -2630,7 +2630,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 140,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             [
                 "6c792043.b6ff9"
@@ -2656,7 +2656,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 140,
-        "y": 1140,
+        "y": 1180,
         "wires": [
             [
                 "fe840e05.b46f3"
@@ -3670,7 +3670,6 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [],
         "x": 590,
         "y": 520,
         "wires": [
@@ -7781,7 +7780,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "x": 550,
-        "y": 1140,
+        "y": 1180,
         "wires": [
             []
         ]
@@ -9998,9 +9997,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [],
         "x": 900,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -10015,7 +10013,7 @@
         "label": "Shutter Speed",
         "tooltip": "In microseconds, up to 1000µs, 125µs by default",
         "group": "8c38a81e.9897a8",
-        "order": 5,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -10025,7 +10023,7 @@
         "max": "1000",
         "step": "1",
         "x": 590,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -10042,7 +10040,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 1210,
-        "y": 940,
+        "y": 980,
         "wires": []
     },
     {
@@ -10063,7 +10061,7 @@
         "payload": "125",
         "payloadType": "num",
         "x": 120,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "5765a825.a595c8"
@@ -10078,21 +10076,22 @@
         "label": "WB: Red",
         "tooltip": "from 1.0 to 8.0",
         "group": "8c38a81e.9897a8",
-        "order": 3,
+        "order": 6,
         "width": 8,
         "height": 1,
         "passthru": true,
         "outs": "end",
-        "topic": "wb_red_gain",
+        "topic": "red",
+        "topicType": "str",
         "min": "1.0",
         "max": "8.0",
         "step": "0.01",
         "x": 580,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "5e147425.7666ec",
-                "56835fa1.2fe538"
+                "d361a2c4.0990f8"
             ]
         ]
     },
@@ -10106,9 +10105,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [],
         "x": 920,
-        "y": 1020,
+        "y": 1060,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -10123,21 +10121,22 @@
         "label": "WB: Blue",
         "tooltip": "from 1.0 to 8.0",
         "group": "8c38a81e.9897a8",
-        "order": 4,
+        "order": 7,
         "width": 8,
         "height": 1,
         "passthru": true,
         "outs": "end",
-        "topic": "wb_blue_gain",
+        "topic": "blue",
+        "topicType": "str",
         "min": "1.0",
         "max": "8.0",
         "step": "0.01",
         "x": 580,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "5e147425.7666ec",
-                "56835fa1.2fe538"
+                "d361a2c4.0990f8"
             ]
         ]
     },
@@ -10159,7 +10158,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 110,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "60e44330.50bdec"
@@ -10174,12 +10173,13 @@
         "label": "Auto White Balance",
         "tooltip": "",
         "group": "8c38a81e.9897a8",
-        "order": 2,
+        "order": 5,
         "width": 2,
         "height": 2,
         "passthru": true,
         "decouple": "false",
-        "topic": "imager/image",
+        "topic": "white_balance",
+        "topicType": "str",
         "style": "",
         "onvalue": "auto",
         "onvalueType": "str",
@@ -10189,8 +10189,9 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
         "x": 550,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -10204,7 +10205,7 @@
         "name": "",
         "env": [],
         "x": 120,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "6be64480.7e7e24",
@@ -10218,13 +10219,13 @@
         "id": "6be64480.7e7e24",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get wb_red_gain",
+        "name": "Get red_gain",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.wb_red_gain",
+                "to": "payload.red_gain",
                 "tot": "msg"
             }
         ],
@@ -10233,8 +10234,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
-        "y": 1000,
+        "x": 330,
+        "y": 1040,
         "wires": [
             [
                 "43737d43.eb0e9c"
@@ -10245,13 +10246,13 @@
         "id": "6d49d161.13628",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get wb_blue_gain",
+        "name": "Get blue_gain",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.wb_blue_gain",
+                "to": "payload.blue_gain",
                 "tot": "msg"
             }
         ],
@@ -10260,8 +10261,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
-        "y": 1040,
+        "x": 340,
+        "y": 1080,
         "wires": [
             [
                 "7b699798.3d568"
@@ -10274,8 +10275,8 @@
         "z": "bccd1f23.87219",
         "name": "",
         "env": [],
-        "x": 880,
-        "y": 980,
+        "x": 960,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -10307,7 +10308,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 920,
+        "y": 960,
         "wires": [
             [
                 "a6c7eec4.f7a918"
@@ -10341,7 +10342,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "66b37eef.f3f9e"
@@ -10352,6 +10353,7 @@
         "id": "a6c7eec4.f7a918",
         "type": "ui_text_input",
         "z": "bccd1f23.87219",
+        "d": true,
         "name": "Analog gain field",
         "label": "Analog Gain",
         "tooltip": "From 1.0 to 12.0",
@@ -10362,14 +10364,14 @@
         "passthru": true,
         "mode": "number",
         "delay": 300,
-        "topic": "analog_gain",
+        "topic": "analog",
         "topicType": "str",
         "x": 580,
-        "y": 920,
+        "y": 960,
         "wires": [
             [
-                "8ea9dc9a.c7d87",
-                "56835fa1.2fe538"
+                "44e02933.a66688",
+                "d361a2c4.0990f8"
             ]
         ]
     },
@@ -10377,6 +10379,7 @@
         "id": "66b37eef.f3f9e",
         "type": "ui_text_input",
         "z": "bccd1f23.87219",
+        "d": true,
         "name": "Digital gain field",
         "label": "Digital Gain",
         "tooltip": "From 1.0 to 64.0. Overexpose starting at 4.0",
@@ -10387,14 +10390,178 @@
         "passthru": true,
         "mode": "number",
         "delay": 300,
-        "topic": "digital_gain",
+        "topic": "digital",
         "topicType": "str",
         "x": 580,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
-                "8ea9dc9a.c7d87",
+                "44e02933.a66688",
+                "d361a2c4.0990f8"
+            ]
+        ]
+    },
+    {
+        "id": "44e02933.a66688",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Encapsulate image gain settings",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"image_gain\":{\n        [msg.topic]:Math.round(msg.payload*100)\n        }\n    }\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 930,
+        "y": 980,
+        "wires": [
+            [
+                "845e06e1.0d812"
+            ]
+        ]
+    },
+    {
+        "id": "d361a2c4.0990f8",
+        "type": "change",
+        "z": "bccd1f23.87219",
+        "name": "topic *_gain",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "topic&'_gain'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 1020,
+        "wires": [
+            [
                 "56835fa1.2fe538"
+            ]
+        ]
+    },
+    {
+        "id": "d8d006bf.2947f",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: ISO 100",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "100",
+        "payloadType": "num",
+        "x": 120,
+        "y": 840,
+        "wires": [
+            [
+                "9feb06fb.43b558"
+            ]
+        ]
+    },
+    {
+        "id": "9feb06fb.43b558",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "ISO selector",
+        "group": "8c38a81e.9897a8",
+        "order": 3,
+        "width": 10,
+        "height": 1,
+        "label": "ISO",
+        "stateField": "payload",
+        "enableField": "enable",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "options": [
+            {
+                "label": "100",
+                "value": "100",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "200",
+                "value": "200",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "320",
+                "value": "320",
+                "valueType": "num",
+                "color": "#ff6666"
+            },
+            {
+                "label": "400",
+                "value": "400",
+                "valueType": "num",
+                "color": "#009999"
+            },
+            {
+                "label": "500",
+                "value": "500",
+                "valueType": "num",
+                "color": "#cccc00"
+            },
+            {
+                "label": "640",
+                "value": "640",
+                "valueType": "num",
+                "color": "#ff33cc"
+            },
+            {
+                "label": "800",
+                "value": "800",
+                "valueType": "num",
+                "color": "#cc6600"
+            }
+        ],
+        "x": 570,
+        "y": 840,
+        "wires": [
+            [
+                "eb9966de.cf13c8"
+            ]
+        ]
+    },
+    {
+        "id": "eb9966de.cf13c8",
+        "type": "change",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "iso",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 840,
+        "wires": [
+            [
+                "8ea9dc9a.c7d87"
             ]
         ]
     }
