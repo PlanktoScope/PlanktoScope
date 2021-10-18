@@ -206,7 +206,7 @@
         "tab": "181bb236.1e94be",
         "order": 4,
         "disp": true,
-        "width": 6,
+        "width": "6",
         "collapse": false
     },
     {
@@ -879,33 +879,6 @@
         "collapse": false
     },
     {
-        "id": "934b51b3.585b28",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "abeb6dad.635a2",
-        "order": 9,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "626cde70.2c2918",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 4,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "6bacc64.0a25c38",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 6,
-        "width": 3,
-        "height": 1
-    },
-    {
         "id": "72a9216.2ff48e",
         "type": "ui_spacer",
         "name": "spacer",
@@ -995,6 +968,46 @@
         "group": "fc5e4e6f.5b1c8",
         "order": 3,
         "width": 1,
+        "height": 1
+    },
+    {
+        "id": "97148e8d8e298f1a",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "abeb6dad.635a2",
+        "order": 7,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "3b2eccc574e6a9ae",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "abeb6dad.635a2",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "bbd6431d97c86f97",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "5f98f5f140f0ecde",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 6,
+        "width": 3,
         "height": 1
     },
     {
@@ -2037,6 +2050,7 @@
         ],
         "payload": "",
         "topic": "acq_celltype",
+        "topicType": "str",
         "x": 670,
         "y": 100,
         "wires": [
@@ -2270,57 +2284,6 @@
         ]
     },
     {
-        "id": "cc966678.da8d08",
-        "type": "ui_dropdown",
-        "z": "bccd1f23.87219",
-        "name": "acq_fnumber_objective",
-        "label": "M12 Lens*",
-        "tooltip": "",
-        "place": "Select option",
-        "group": "4248342d.e55fac",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
-                "label": "f 16mm 1/2.5\" 5MP IR",
-                "value": 16,
-                "type": "num"
-            },
-            {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
-                "label": "f 6mm 1/2.5\" 5MP IR",
-                "value": 6,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "acq_fnumber_objective",
-        "x": 1170,
-        "y": 40,
-        "wires": [
-            [
-                "328cec46.09e40c"
-            ]
-        ]
-    },
-    {
         "id": "9b515beb.4aea48",
         "type": "ui_template",
         "z": "bccd1f23.87219",
@@ -2334,8 +2297,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1460,
-        "y": 120,
+        "x": 1340,
+        "y": 80,
         "wires": [
             []
         ]
@@ -2345,15 +2308,18 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nglobal.set(\"acq_magnification\",acq_magnification);\nglobal.set(\"process_pixel\",process_pixel);\n\nreturn [{payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}];",
-        "outputs": 4,
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\n\nreturn [{payload: acq_fnumber_objective}, {payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}];",
+        "outputs": 5,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 180,
+        "x": 1080,
+        "y": 120,
         "wires": [
+            [
+                "335a730b9a3830ff"
+            ],
             [
                 "9b515beb.4aea48"
             ],
@@ -2375,7 +2341,7 @@
             "process_pixel",
             "sug_min",
             "sug_max",
-            "sug_flowrate"
+            ""
         ]
     },
     {
@@ -2392,8 +2358,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1460,
-        "y": 160,
+        "x": 1340,
+        "y": 120,
         "wires": [
             []
         ]
@@ -2411,8 +2377,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1440,
-        "y": 200,
+        "x": 1320,
+        "y": 160,
         "wires": [
             []
         ]
@@ -2430,8 +2396,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1440,
-        "y": 240,
+        "x": 1320,
+        "y": 200,
         "wires": [
             []
         ]
@@ -2954,7 +2920,7 @@
         "d": true,
         "name": "Stop segmentation",
         "group": "abeb6dad.635a2",
-        "order": 8,
+        "order": 12,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -3171,7 +3137,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Encapsulate config",
-        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_id\": global.get(\"process_id\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktonPlanet/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\nreturn msg;",
+        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_datetime\": \"Segmentation timestamp\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktonPlanet/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3373,7 +3339,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 470,
+        "x": 480,
         "y": 60,
         "wires": [
             [
@@ -3463,7 +3429,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "str",
-        "x": 210,
+        "x": 230,
         "y": 60,
         "wires": [
             [
@@ -3560,38 +3526,6 @@
         ]
     },
     {
-        "id": "68fa1227.dbdd5c",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "get acq_fnumber_objective",
-        "func": "msg.payload = msg.payload.acq_fnumber_objective;\n\nglobal.set(\"acq_fnumber_objective\",msg.payload);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 900,
-        "y": 40,
-        "wires": [
-            [
-                "cc966678.da8d08",
-                "328cec46.09e40c"
-            ]
-        ]
-    },
-    {
-        "id": "1c45ea1c.80234e",
-        "type": "subflow:1c24ad9c.bebec2",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "x": 700,
-        "y": 40,
-        "wires": [
-            [
-                "68fa1227.dbdd5c"
-            ]
-        ]
-    },
-    {
         "id": "5921d0d0.a3d568",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "baa1e3d9.cb29d",
@@ -3635,6 +3569,9 @@
         "func": "msg.payload = msg.payload.acq_celltype;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 340,
         "y": 100,
         "wires": [
@@ -4549,7 +4486,6 @@
         "z": "b771c342.49603",
         "name": "Sample Operator",
         "links": [
-            "c1d4934c.9bb628",
             "35eb925e.5f8016"
         ],
         "x": 815,
@@ -4582,6 +4518,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 960,
         "y": 100,
         "wires": [
@@ -4729,7 +4666,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 780,
+        "libs": [],
+        "x": 960,
         "y": 380,
         "wires": [
             []
@@ -5018,12 +4956,13 @@
         "id": "cfc783d7.d6ceb",
         "type": "link in",
         "z": "bccd1f23.87219",
-        "name": "Camera Name",
+        "name": "Optics recalculation",
         "links": [
-            "559a8085.1d6b9"
+            "559a8085.1d6b9",
+            "5d5ad36d2c50dcc2"
         ],
-        "x": 1035,
-        "y": 200,
+        "x": 915,
+        "y": 120,
         "wires": [
             [
                 "8038414a.34461"
@@ -5055,11 +4994,12 @@
         "type": "function",
         "z": "cb95299c.2817c8",
         "name": "prepare segmentation",
-        "func": "global.set('obj_counter', 0);\n\nvar segmentation_list = flow.get('segmentation_list')\nif (segmentation_list !== undefined && segmentation_list !== \"\") {\n    msg.payload['path'] = segmentation_list\n}\n\n\nvar force = flow.get('force')\nif (force !== undefined && force !== \"\") {\n    msg.payload['settings'] = {\"force\":Boolean(force)}\n}\n\n\nvar recursive = flow.get('recursive')\nif (recursive !== undefined && recursive !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"recursive\"] = Boolean(recursive)\n    }\n    else{\n        msg.payload['settings'] = {\"recursive\": Boolean(recursive)}\n    }\n}\n\nvar ecotaxa = flow.get('ecotaxa')\nif (ecotaxa !== undefined && ecotaxa !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"ecotaxa\"] = Boolean(ecotaxa)\n    }\n    else{\n        msg.payload['settings'] = {\"ecotaxa\": Boolean(ecotaxa)}\n    }\n}\n\nvar keep = flow.get('keep')\nif (keep !== undefined && keep !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"keep\"] = Boolean(keep)\n    }\n    else{\n        msg.payload['settings'] = {\"keep\": Boolean(keep)}\n    }\n}\n\nreturn msg;",
+        "func": "global.set('obj_counter', 0);\n\nvar segmentation_list = flow.get('segmentation_list')\nif (segmentation_list !== undefined && segmentation_list !== \"\") {\n    msg.payload['path'] = segmentation_list\n}\n\n\nvar force = flow.get('force')\nif (force !== undefined && force !== \"\") {\n    msg.payload['settings'] = {\"force\":Boolean(force)}\n}\n\n\nvar recursive = flow.get('recursive')\nif (recursive !== undefined && recursive !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"recursive\"] = Boolean(recursive)\n    }\n    else{\n        msg.payload['settings'] = {\"recursive\": Boolean(recursive)}\n    }\n}\n\nvar ecotaxa = flow.get('ecotaxa')\nif (ecotaxa !== undefined && ecotaxa !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"ecotaxa\"] = Boolean(ecotaxa)\n    }\n    else{\n        msg.payload['settings'] = {\"ecotaxa\": Boolean(ecotaxa)}\n    }\n}\n\nvar keep = flow.get('keep')\nif (keep !== undefined && keep !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"keep\"] = Boolean(keep)\n    }\n    else{\n        msg.payload['settings'] = {\"keep\": Boolean(keep)}\n    }\n}\n\nvar process_id = global.get('process_id')\nif (process_id !== undefined && process_id !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"process_id\"] = process_id\n    }\n    else{\n        msg.payload['settings'] = {\"process_id\": process_id}\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 620,
         "y": 460,
         "wires": [
@@ -6015,8 +5955,7 @@
         "z": "9daf9e2b.019fc",
         "name": "Git config",
         "links": [
-            "52af9ac0.60eb24",
-            "3caed565.fad25a"
+            "52af9ac0.60eb24"
         ],
         "x": 795,
         "y": 100,
@@ -6901,6 +6840,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1080,
         "y": 240,
         "wires": [
@@ -7109,12 +7049,14 @@
         "name": "",
         "env": [],
         "x": 120,
-        "y": 400,
+        "y": 420,
         "wires": [
             [
                 "e10f5e55.00b828",
                 "c534fd26.13741",
-                "54ba7f16.709ad8"
+                "54ba7f16.709ad8",
+                "c67c305004f87e39",
+                "11955bbeefc29ab4"
             ]
         ]
     },
@@ -7192,11 +7134,11 @@
         "id": "e41870d7.300eb8",
         "type": "link out",
         "z": "1eaf21c8.f7a21e",
-        "name": "Stepper_type change",
+        "name": "Stepper config change",
         "links": [
             "45a7b5aa.2ed20c"
         ],
-        "x": 1015,
+        "x": 1195,
         "y": 380,
         "wires": []
     },
@@ -7244,11 +7186,12 @@
         "type": "function",
         "z": "4ed26b8b.253504",
         "name": "Update and retrieve hardware_conf",
-        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\nif (msg.topic !== null){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
+        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 240,
         "y": 200,
         "wires": [
@@ -7486,7 +7429,7 @@
         "y": 380,
         "wires": [
             [
-                "c8749cbb.55254"
+                "56971109c8be3b54"
             ]
         ]
     },
@@ -7537,33 +7480,6 @@
         "y": 1180,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "328cec46.09e40c",
-        "type": "change",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "acq_fnumber_objective",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 160,
-        "wires": [
-            [
-                "8038414a.34461"
-            ]
         ]
     },
     {
@@ -8372,7 +8288,7 @@
         "z": "cb95299c.2817c8",
         "group": "abeb6dad.635a2",
         "name": "",
-        "order": 7,
+        "order": 9,
         "width": 10,
         "height": 11,
         "lineType": "one",
@@ -8412,7 +8328,7 @@
         "z": "cb95299c.2817c8",
         "name": "Refresh",
         "group": "abeb6dad.635a2",
-        "order": 6,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9038,7 +8954,7 @@
         "z": "cb95299c.2817c8",
         "name": "recursive toggle",
         "group": "abeb6dad.635a2",
-        "order": 2,
+        "order": 4,
         "width": 5,
         "height": 1,
         "label": "Recursive folder",
@@ -9343,7 +9259,7 @@
         "z": "cb95299c.2817c8",
         "name": "Ecotaxa archive",
         "group": "abeb6dad.635a2",
-        "order": 4,
+        "order": 6,
         "width": 5,
         "height": 1,
         "label": "Ecotaxa archive",
@@ -9590,7 +9506,6 @@
         "z": "9daf9e2b.019fc",
         "name": "Git revision",
         "links": [
-            "be6bddd3.2004f",
             "9373b3f6.33a2b"
         ],
         "x": 1015,
@@ -9724,7 +9639,8 @@
         "height": 0,
         "passthru": true,
         "outs": "end",
-        "topic": "imager/image",
+        "topic": "shutter_speed",
+        "topicType": "str",
         "min": "125",
         "max": "1000",
         "step": "1",
@@ -10547,6 +10463,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 370,
         "y": 280,
         "wires": [
@@ -10675,6 +10592,240 @@
             [
                 "49ea1123.ee1768"
             ]
+        ]
+    },
+    {
+        "id": "56971109c8be3b54",
+        "type": "ui_text_input",
+        "z": "cb95299c.2817c8",
+        "name": "process_id",
+        "label": "Process unique ID*",
+        "tooltip": "",
+        "group": "abeb6dad.635a2",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "process_id",
+        "topicType": "str",
+        "x": 790,
+        "y": 380,
+        "wires": [
+            [
+                "c8749cbb.55254"
+            ]
+        ]
+    },
+    {
+        "id": "c67c305004f87e39",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Get process_pixel_fixed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.process_pixel_fixed",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "244ca5dd62df2bcd"
+            ]
+        ]
+    },
+    {
+        "id": "244ca5dd62df2bcd",
+        "type": "ui_text_input",
+        "z": "1eaf21c8.f7a21e",
+        "name": "process_pixel_fixed",
+        "label": "Pixel size calibration",
+        "tooltip": "Object size in µm / pixel. 0 will remove this calibration.",
+        "group": "6be36295.0ab324",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": "1000",
+        "topic": "process_pixel_fixed",
+        "topicType": "str",
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "8e3b3d3c.955148",
+                "f9b47f4b1da15778"
+            ]
+        ]
+    },
+    {
+        "id": "f9b47f4b1da15778",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Set or remove if null",
+        "func": "if (msg.payload == 0){\n    global.set(msg.topic,undefined)\n}\nelse {\n    global.set(msg.topic,msg.payload);\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 480,
+        "wires": [
+            [
+                "5d5ad36d2c50dcc2"
+            ]
+        ]
+    },
+    {
+        "id": "5d5ad36d2c50dcc2",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Process_pixel calibration",
+        "links": [
+            "cfc783d7.d6ceb"
+        ],
+        "x": 1195,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6146ba22df928516",
+        "type": "ui_dropdown",
+        "z": "1eaf21c8.f7a21e",
+        "name": "acq_fnumber_objective",
+        "label": "M12 Lens",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "6be36295.0ab324",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "topicType": "str",
+        "x": 630,
+        "y": 520,
+        "wires": [
+            [
+                "a6983d3232b570a7",
+                "8e3b3d3c.955148"
+            ]
+        ]
+    },
+    {
+        "id": "a6983d3232b570a7",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "acq_fnumber_objective",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 520,
+        "wires": [
+            [
+                "5d5ad36d2c50dcc2"
+            ]
+        ]
+    },
+    {
+        "id": "11955bbeefc29ab4",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Get acq_fnumber_objective",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acq_fnumber_objective",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 520,
+        "wires": [
+            [
+                "6146ba22df928516"
+            ]
+        ]
+    },
+    {
+        "id": "335a730b9a3830ff",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "4248342d.e55fac",
+        "name": "Lens",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload\">\n    </span>mm\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 1310,
+        "y": 40,
+        "wires": [
+            []
         ]
     }
 ]
