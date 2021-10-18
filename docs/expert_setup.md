@@ -91,13 +91,13 @@ Also, to be able to use the ISO8601 datetime standard, we need to change the loc
 These steps can also be done from the Raspberry Pi Configuration GUI tool that you can find in `Main Menu > Preferences`. Go to the `Interfaces` tab. Pay attention, here the Serial Port must be enabled, but the Serial Port Console must be disabled.
 
 !!! tip
-    Special optionnal step: overclocking
-    We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`. Open the file with `sudo nano /boot/config.txt` and add the following at the end:
-    ```
-    # Pi overclock
-    over_voltage=6
-    arm_freq=2000
-    ```
+    Optional step: overclocking
+    It's possible to overclock the machine and get a bit more performance out of it. Open `/boot/config.txt` with `sudo nano /boot/config.txt` and add at the end of the file on two new lines:
+    
+    `over_voltage=6`
+
+    `arm_freq=2000` 
+    
     Those settings were verified to be stable, but if you notice any weird behavior under a high load, remove those lines.
 
 
