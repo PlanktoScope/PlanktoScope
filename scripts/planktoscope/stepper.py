@@ -253,7 +253,7 @@ class StepperProcess(multiprocessing.Process):
             logger.error(f"{self.stepper_type} is what was supplied")
             return
 
-        logger.info(f"Stepper initialisation is over")
+        logger.info("Stepper initialisation is over")
 
     def __message_pump(self, last_message):
         logger.debug("We have received a pumping command")
@@ -295,7 +295,7 @@ class StepperProcess(multiprocessing.Process):
             # Get number of steps from the different received arguments
             flowrate = float(last_message["flowrate"])
             if flowrate == 0:
-                logger.error(f"The flowrate should not be == 0")
+                logger.error("The flowrate should not be == 0")
                 self.actuator_client.client.publish(
                     "status/pump", '{"status":"Error, The flowrate should not be == 0"}'
                 )

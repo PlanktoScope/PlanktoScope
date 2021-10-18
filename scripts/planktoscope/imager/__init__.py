@@ -543,7 +543,7 @@ class ImagerProcess(multiprocessing.Process):
 
         if "object_date" not in self.__global_metadata:
             # If this path exists, then ids are reused when they should not
-            logger.error(f"The metadata did not contain object_date!")
+            logger.error("The metadata did not contain object_date!")
             self.imager_client.client.publish(
                 "status/imager",
                 '{"status":"Configuration update error: object_date is missing!"}',
@@ -768,7 +768,6 @@ class ImagerProcess(multiprocessing.Process):
         logger.success("Imager process shut down! See you!")
 
 
-# This is called if this script is launched directly
+# TODO This should be a test suite for this library
 if __name__ == "__main__":
-    # TODO This should be a test suite for this library
     pass
