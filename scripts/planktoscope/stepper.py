@@ -187,7 +187,7 @@ class StepperProcess(multiprocessing.Process):
             self.pump_max_speed * self.pump_steps_per_ml * 256 / 60
         )
 
-        logger.info(f"Stepper initialisation is over")
+        logger.info("Stepper initialisation is over")
 
     def __message_pump(self, last_message):
         logger.debug("We have received a pumping command")
@@ -226,7 +226,7 @@ class StepperProcess(multiprocessing.Process):
             # Get number of steps from the different received arguments
             flowrate = float(last_message["flowrate"])
             if flowrate == 0:
-                logger.error(f"The flowrate should not be == 0")
+                logger.error("The flowrate should not be == 0")
                 self.actuator_client.client.publish(
                     "status/pump", '{"status":"Error, The flowrate should not be == 0"}'
                 )
@@ -429,7 +429,7 @@ class StepperProcess(multiprocessing.Process):
             if self.actuator_client.new_message_received():
                 self.treat_command()
             if self.pump_started and self.pump_stepper.at_goal():
-                logger.success(f"The pump movement is over!")
+                logger.success("The pump movement is over!")
                 self.actuator_client.client.publish(
                     "status/pump",
                     '{"status":"Done"}',
@@ -437,7 +437,7 @@ class StepperProcess(multiprocessing.Process):
                 self.pump_started = False
                 self.pump_stepper.release()
             if self.focus_started and self.focus_stepper.at_goal():
-                logger.success(f"The focus movement is over!")
+                logger.success("The focus movement is over!")
                 self.actuator_client.client.publish(
                     "status/focus",
                     '{"status":"Done"}',
