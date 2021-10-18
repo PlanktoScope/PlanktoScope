@@ -92,12 +92,15 @@ These steps can also be done from the Raspberry Pi Configuration GUI tool that y
 
 !!! tip
     Special optionnal step: overclocking
+
     We are first going to make sure that your PlanktoScope receives proper PPS signal. We need to add the following line at the end of `/boot/config.txt`. Open the file with `sudo nano /boot/config.txt` and add the following at the end:
+
     ```
     # Pi overclock
     over_voltage=6
     arm_freq=2000
     ```
+
     Those settings were verified to be stable, but if you notice any weird behavior under a high load, remove those lines.
 
 
@@ -135,14 +138,17 @@ pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
 
 
 ### Add to python path
+We need to do this to make sure we can call the modules from any path in the system, and not just from the `scripts` folder:
 
 ```
 ln -s /home/pi/PlanktoScope/scripts/planktoscope /home/pi/.local/lib/python3.7/site-packages/planktoscope
+ln -s /home/pi/PlanktoScope/scripts/shush /home/pi/.local/lib/python3.7/site-packages/shush
 sudo mkdir -p /root/.local/lib/python3.7/site-packages
 sudo ln -s /home/pi/PlanktoScope/scripts/planktoscope /root/.local/lib/python3.7/site-packages/planktoscope
+sudo ln -s /home/pi/PlanktoScope/scripts/shush /home/pi/.local/lib/python3.7/site-packages/shush
 ```
 
-### Check CircuitPython's install
+### [ADAFRUIT VERSION] Check CircuitPython's install
 Start by following [Adafruit's guide](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi). You can start at the chapter `Install Python Libraries`.
 
 #### Testing the installation and the wiring
@@ -207,6 +213,60 @@ The device appearing at addresses 60 and 70 is our motor controller. Address `0d
 
 In case the motor controller does not appear, shutdown your Planktoscope and check the wiring. If your board is using a connector instead of a soldered pin connection (as happens with the Adafruit Bonnet Motor Controller), sometimes the pins on the male side need to be bent a little to make good contact. In any case, do not hesitate to ask for help in Slack.
 
+### [PSCOPE_HAT VERSION] Test the stepper controllers
+After wiring the steppers, please run the following script, you can create it in `~/test/stepper_controller.py`:
+```python
+#!/usr/bin/python3
+import shush
+import time
+
+m1 = shush.Motor(0)
+m1.enable_motor()
+m2 = shush.Motor(1)
+m2.enable_motor()
+
+
+# This function takes the target position as an input.
+# It prints the current position and the iteration.
+# The motor spins until it gets to the target position
+# before allowing the next command.
+def spin(motor, target):
+    motor.go_to(target)
+
+    i = 0
+
+    while motor.get_position() != target:
+        print(motor.get_position())
+        print(i)
+        i += 1
+
+
+while True:
+    # Spin 5 rotations from start
+    spin(m1, 256000)
+
+    time.sleep(0.5)
+    # Spin back 5 rotations to starting point
+    spin(m1, 0)
+
+    time.sleep(0.5)
+    # Spin 5 rotations from start
+    spin(m2, 256000)
+
+    time.sleep(0.5)
+    # Spin back 5 rotations to starting point
+    spin(m2, 0)
+
+    time.sleep(0.5)
+```
+
+To start the script, just run the following:
+```sh
+chmod +x ~/test/stepper_controller.py
+~/test/stepper_controller.py
+```
+
+The pump should run in one direction then in the other, and the focus stage should move in one direction and then in another.
 
 ### Deactivate steppers
 Create `sudo nano /etc/systemd/system/gpio-init.service`:
@@ -505,6 +565,11 @@ First, we need to install the needed dependencies, then we will directly install
 sudo apt install libgtk-3-0 libavformat58 libavcodec58 libqt4-test libopenexr23 libilmbase23 libqtgui4 libavutil56 libjasper1 libqtcore4 libcairo-gobject2 libswscale5 libhdf5-dev libilmbase-dev libopenexr-dev libgstreamer1.0-dev libavcodec-dev libavformat-dev libswscale-dev libwebp-dev libatlas-base-dev
 ```
 
+Install now openCV diretly with pip:
+```sh
+pip install opencv-contrib-python
+```
+
 You can now check that opencv is properly installed by running a python interpreter and importing the cv2 module.
 ```sh
 pi@planktoscope:~ $ python3
@@ -590,6 +655,7 @@ Make sure Node-RED is correctly installed by reaching the following page from th
 #### Install the necessary nodes and activate necessary features
 
 We are going to activate the Projects feature of Node-Red as this will help us manage and track changes to the flows. Open the file `settings.js` with an editor (for example with `nano ~/.node-red/settings.js`) so we can change the following lines (you can use `CTRL+_` to quickly navigate to the line indicated):
+
  - Line 75: uncomment the line (remove the //) that ends with flowFilePretty: true,
  - Line 337: set enabled to true
 
