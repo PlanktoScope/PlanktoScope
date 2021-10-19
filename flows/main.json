@@ -59,7 +59,7 @@
         "id": "f21ba04.c26266",
         "type": "tab",
         "label": "WIFI Management",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -699,6 +699,7 @@
     {
         "id": "1b49ae0f.602d6a",
         "type": "ui_tab",
+        "d": true,
         "name": "Wifi",
         "icon": "wifi",
         "order": 8,
@@ -1000,6 +1001,15 @@
         "group": "46be9c86.dea684",
         "order": 6,
         "width": 3,
+        "height": 1
+    },
+    {
+        "id": "fd209ebb.7e2dd8",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 1,
         "height": 1
     },
     {
@@ -1650,7 +1660,7 @@
         "min": 0,
         "max": "300",
         "step": "10",
-        "x": 600,
+        "x": 640,
         "y": 120,
         "wires": [
             [
@@ -1676,7 +1686,7 @@
         "min": "200",
         "max": "2000",
         "step": "100",
-        "x": 600,
+        "x": 640,
         "y": 160,
         "wires": [
             [
@@ -1700,7 +1710,7 @@
         "delay": 300,
         "topic": "acq_id",
         "x": 690,
-        "y": 180,
+        "y": 200,
         "wires": [
             [
                 "fb887036.12429"
@@ -1801,7 +1811,7 @@
         "z": "bccd1f23.87219",
         "name": "down",
         "group": "fbd92986.1028c8",
-        "order": 5,
+        "order": 6,
         "width": 4,
         "height": 1,
         "passthru": true,
@@ -1827,7 +1837,7 @@
         "z": "bccd1f23.87219",
         "name": "up",
         "group": "fbd92986.1028c8",
-        "order": 1,
+        "order": 3,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -1862,7 +1872,7 @@
         "mode": "text",
         "delay": "0",
         "topic": "pump_manual_volume",
-        "x": 600,
+        "x": 610,
         "y": 420,
         "wires": [
             [
@@ -2126,7 +2136,7 @@
         "topic": "acq_celltype",
         "topicType": "str",
         "x": 670,
-        "y": 100,
+        "y": 40,
         "wires": [
             [
                 "fb887036.12429",
@@ -2371,7 +2381,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1330,
+        "x": 1340,
         "y": 80,
         "wires": [
             []
@@ -2826,7 +2836,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 2,
+        "order": 1,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -2853,7 +2863,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 7,
+        "order": 8,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -3604,7 +3614,9 @@
                 "de2c90cf.b73b08",
                 "4be09c97f86897d9",
                 "f573206abefa9518",
-                "f948151ab4031df4"
+                "f948151ab4031df4",
+                "5e3dec55.881074",
+                "d3ca8847.4d1ae"
             ]
         ]
     },
@@ -3619,7 +3631,7 @@
         "initialize": "",
         "finalize": "",
         "x": 330,
-        "y": 180,
+        "y": 200,
         "wires": [
             [
                 "6b34c456.83178c"
@@ -3638,7 +3650,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 100,
+        "y": 40,
         "wires": [
             [
                 "cc0ca68b.4263a8"
@@ -3653,7 +3665,7 @@
         "func": "msg.payload = msg.payload.acq_minimum_mesh;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 350,
+        "x": 370,
         "y": 120,
         "wires": [
             [
@@ -3669,7 +3681,7 @@
         "func": "msg.payload = msg.payload.acq_maximum_mesh;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 350,
+        "x": 370,
         "y": 160,
         "wires": [
             [
@@ -3844,7 +3856,7 @@
         "delay": 300,
         "topic": "nb_frame",
         "x": 680,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "fb887036.12429",
@@ -4835,7 +4847,7 @@
         "max": "5",
         "step": "0.1",
         "x": 670,
-        "y": 140,
+        "y": 80,
         "wires": [
             [
                 "fb887036.12429"
@@ -4870,8 +4882,8 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 735,
-        "y": 60,
+        "x": 795,
+        "y": 100,
         "wires": [
             [
                 "99b11fe4.2795d"
@@ -4895,7 +4907,7 @@
         "topic": "sample_concentrated_sample_volume",
         "topicType": "str",
         "x": 590,
-        "y": 360,
+        "y": 440,
         "wires": [
             [
                 "9f501f49.45645"
@@ -5035,7 +5047,7 @@
         "max": "0.5",
         "step": "0.001",
         "x": 630,
-        "y": 260,
+        "y": 280,
         "wires": [
             [
                 "fb887036.12429",
@@ -5630,7 +5642,6 @@
         "append": "now",
         "useSpawn": "false",
         "timer": "2",
-        "winHide": false,
         "oldrc": false,
         "name": "sudo cmd now",
         "x": 740,
@@ -6126,6 +6137,7 @@
         "id": "e564e9ad.7c312",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
+        "d": true,
         "name": "Update",
         "group": "1be83144.4fe4bf",
         "order": 7,
@@ -7145,7 +7157,7 @@
         "name": "",
         "env": [],
         "x": 120,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
                 "e10f5e55.00b828",
@@ -7699,7 +7711,6 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
-        "allowrate": false,
         "x": 760,
         "y": 420,
         "wires": [
@@ -7796,7 +7807,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 490,
+        "x": 500,
         "y": 1140,
         "wires": [
             [
@@ -8225,7 +8236,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 3,
+        "order": 2,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -8252,7 +8263,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "group": "fbd92986.1028c8",
-        "order": 6,
+        "order": 7,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -9657,7 +9668,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 910,
         "y": 1060,
         "wires": [
             [
@@ -9891,7 +9902,7 @@
         "delay": 300,
         "topic": "analog",
         "topicType": "str",
-        "x": 580,
+        "x": 590,
         "y": 960,
         "wires": [
             [
@@ -9936,7 +9947,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 910,
+        "x": 900,
         "y": 980,
         "wires": [
             [
@@ -10217,11 +10228,12 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Convert time",
-        "func": "msg.payload.time = msg.payload.time.replace('T', ' ')\nreturn msg;",
+        "func": "if (msg.payload.time){\n    msg.payload.time = msg.payload.time.replace('T', ' ');\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 470,
         "y": 1280,
         "wires": [
@@ -10505,7 +10517,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "51b4d0df.d70a88"
@@ -10524,7 +10536,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 260,
+        "y": 280,
         "wires": [
             [
                 "df1ea904.cd261"
@@ -10543,7 +10555,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 140,
+        "y": 80,
         "wires": [
             [
                 "49ea1123.ee1768"
