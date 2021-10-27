@@ -4513,7 +4513,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "imaged volume calc",
-        "func": "camera = global.get(\"acq_camera\");\ncell = global.get(\"acq_celltype\");\nnb_frame = global.get(\"nb_frame\");\nvar volume = 0\nif (camera == \"HQ Camera\"){\n    volume = nb_frame * (4.15*3.14*cell/1000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = nb_frame * (2.31*1.74*cell/1000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\n\nmsg.payload = volume.toFixed(2) + \" mL\"\nreturn msg;",
+        "func": "camera = global.get(\"acq_camera\");\ncell = global.get(\"acq_celltype\");\nnb_frame = global.get(\"nb_frame\");\nglobal.get(\"process_pixel\",process_pixel);\n\nvar volume = 0\nif (camera == \"HQ Camera\"){\n    volume = nb_frame * (process_pixel*4056*process_pixel*3040*cell/1000000000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = nb_frame * (process_pixel*3280*process_pixel*2464*cell/1000000000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\n\nmsg.payload = volume.toFixed(2) + \" mL\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
