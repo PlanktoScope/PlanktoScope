@@ -1862,7 +1862,7 @@
         "mode": "text",
         "delay": "0",
         "topic": "pump_manual_volume",
-        "x": 610,
+        "x": 600,
         "y": 420,
         "wires": [
             [
@@ -1985,6 +1985,7 @@
         ],
         "payload": "",
         "topic": "sample_sampling_gear",
+        "topicType": "str",
         "x": 630,
         "y": 200,
         "wires": [
@@ -2370,7 +2371,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1340,
+        "x": 1330,
         "y": 80,
         "wires": [
             []
@@ -3349,7 +3350,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 300,
         "y": 80,
         "wires": [
             [
@@ -3400,7 +3401,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_sampling_gear",
-        "func": "if (msg.payload.sample_sampling_gear === null){\n    msg.payload = \"net\";\n    global.set(\"sample_sampling_gear\",msg.payload);\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\nreturn msg;",
+        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"net\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3410,8 +3411,7 @@
         "y": 200,
         "wires": [
             [
-                "fcfc31ae.af3af",
-                "46eb1bf8.3dc5f4"
+                "fcfc31ae.af3af"
             ]
         ]
     },
@@ -3544,17 +3544,19 @@
         "name": "",
         "env": [],
         "x": 70,
-        "y": 120,
+        "y": 220,
         "wires": [
             [
                 "d027a6bf.7049e8",
                 "5a811caf.0f3144",
                 "45911c98.2bd83c",
                 "1e09a4ab.72996b",
-                "296c73f.78ff10c",
                 "8dff1648.82e42",
                 "9f04c5ec.75f3d8",
-                "f408a273.4fb538"
+                "f408a273.4fb538",
+                "e73fd87d.d24e4",
+                "489c8e06.cc7d6",
+                "a3272681.f271c8"
             ]
         ]
     },
@@ -6822,7 +6824,7 @@
         },
         "payload": "",
         "submit": "Validate",
-        "cancel": "Reset",
+        "cancel": "",
         "topic": "net_throw_location",
         "topicType": "str",
         "splitLayout": false,
@@ -6882,7 +6884,7 @@
         },
         "payload": "",
         "submit": "Validate",
-        "cancel": "Reset",
+        "cancel": "",
         "topic": "net_retrieval_location",
         "topicType": "str",
         "splitLayout": false,
@@ -6899,11 +6901,12 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Validate Location / Timestamp",
-        "func": "function ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (!input.match(/\\d+°\\d+\\.*\\d*\\'[NSEW]/)){\n    \treturn \"parsing error\"\n    }\n    var parts = input.split(/[^\\d.\\w]+/)\n    if (parts.length != 3){\n    \treturn \"parsing error\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + parts[2]\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(\"'\")){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\n\nif (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\"}, payload_for_form]\n",
+        "func": "function ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (!input.match(/\\d+°\\d+\\.*\\d*\\'[NSEW]/)){\n    \treturn \"parsing error\"\n    }\n    var parts = input.split(/[^\\d.\\w]+/)\n    if (parts.length != 3){\n    \treturn \"parsing error\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + parts[2]\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(\"'\")){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\nmsg.valid = false\n\nif (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 930,
         "y": 620,
         "wires": [
@@ -6924,34 +6927,11 @@
         ]
     },
     {
-        "id": "296c73f.78ff10c",
-        "type": "delay",
-        "z": "b771c342.49603",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "2",
-        "randomUnits": "milliseconds",
-        "drop": false,
-        "x": 140,
-        "y": 200,
-        "wires": [
-            [
-                "a3272681.f271c8"
-            ]
-        ]
-    },
-    {
         "id": "46eb1bf8.3dc5f4",
         "type": "function",
         "z": "b771c342.49603",
         "name": "Net check",
-        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\"],\"hide\":[\"Sample_Sample_Location\"]}};\n}\nelse{\n    activation_msg.payload = {\"group\":{\"hide\":[\"Sample_Net_Metadata\"],\"show\":[\"Sample_Sample_Location\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
+        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\"],\"hide\":[\"Sample_Sample_Location\"]}};\n}\nelse{\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Location\"], \"hide\":[\"Sample_Net_Metadata\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -6990,7 +6970,7 @@
         "delay": "0",
         "topic": "sample_total_flowmeter_start",
         "topicType": "str",
-        "x": 1350,
+        "x": 1340,
         "y": 220,
         "wires": [
             [
@@ -7760,11 +7740,12 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "calculate sample_total_volume",
-        "func": "\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\ndecpl=4  // Dec places of minutes output\n\nellipse = {\"name\":\"WSG84\", \"a\":6378.137/1.852, \"invf\":298.257223563}\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2){\n    var d,crs12,crs21\n    var argacos\n    var a,invf\n    \n    // lat and lon in radian\n    lat1=(Math.PI/180)*lat1\n    lat2=(Math.PI/180)*lat2\n    lon1=(Math.PI/180)*lon1\n    lon2=(Math.PI/180)*lon2\n    \n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n    \n    /* get distance conversion factor */\n    dc=1.852 //km\n    //alert(\"dc=\" +dc)\n    \n    //showProps(ellipse,\"ellipse\")\n    \n    // elliptic code\n    d=crsdist_ell(lat1,-lon1,lat2,-lon2,ellipse)  // ellipse uses East negative\n    d=d*dc  // go to physical units\n    \n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1,lon1,lat2,lon2){ // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1+lat2===0) && (Math.abs(lon1-lon2)==Math.PI) && \n    (Math.abs(lat1) != (Math.PI/180)*90)){\t\n    \talert(\"Course between antipodal points is undefined\")\n    }\n    \n    d = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1,glon1,glat2,glon2,ellipse){\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    a=ellipse.a\n    f=1/ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy,y, sa, c2a, cz, e, c, d\n    var EPS= 0.00000000005\n    var faz, baz, s\n    var iter=1\n    var MAXITER=100\n    if ((glat1+glat2===0) && (Math.abs(glon1-glon2)==Math.PI)){\n        alert(\"Course and distance between antipodal points is undefined\")\n        glat1=glat1+0.00001 // allow algorithm to complete\n    }\n    if (glat1==glat2 && (glon1==glon2 || Math.abs(Math.abs(glon1-glon2)-2*Math.PI) <  EPS)){\n        alert(\"Points 1 and 2 are identical- course undefined\")\n        out=new MakeArray(0)\n        out.d=0\n        out.crs12=0\n        out.crs21=Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan (glat1)\n    tu2 = r * Math.tan (glat2)\n    cu1 = 1 / Math.sqrt (1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt (1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER))\n    {\n        iter=iter+1\n        sx = Math.sin (x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos (x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2 (sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n            e = cz * cz * 2 - 1\n            c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n            d = x\n            x = ((e * cy * c + cz) * sy * c + y) * sa\n            x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt ((1 / (r * r) - 1) * c2a + 1)\n    x +=1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy*sy*4-3)*(1-e-e)*cz*d/6-x)*d/4+cz)*sy*d+y)*c*a*r\n    if (Math.abs(iter-MAXITER)<EPS){\n        alert(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y,x){\n    var out\n    if (x <0)            { out= Math.atan(y/x)+Math.PI}\n    if ((x >0) && (y>=0)){ out= Math.atan(y/x)}\n    if ((x >0) && (y<0)) { out= Math.atan(y/x)+2*Math.PI}\n    if ((x===0) && (y>0)) { out= Math.PI/2}\n    if ((x===0) && (y<0)) { out= 3*Math.PI/2}  \n    if ((x===0) && (y===0)) {\n        alert(\"atan2(0,0) undefined\")\n        out= 0\n    }  \n    return out\n}\n\nfunction showProps(obj,objName){\n    var result=\"\"\n    for (var i in obj){\n        result +=objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    alert(result)\n}\n\n\nif (msg.payload.startsWith(\"All\")){\n    msg.topic=\"sample_total_volume\"\n    var object_lat_end = global.get(\"object_lat_end\")\n    var object_lon_end = global.get(\"object_lon_end\")\n    if (!(isNaN(object_lat_end) && isNaN(object_lon_end))){\n        var object_lat = global.get(\"object_lat\")\n        var object_lon = global.get(\"object_lon\")\n        var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n        var sample_sampling_gear= global.get(\"sample_sampling_gear\");\n        \n        if (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\"){\n            distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n            \n            sample_total_volume = distance_km*(Math.PI*(sample_gear_net_opening/2)*(sample_gear_net_opening/2)) // liters\n            sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n            msg.payload = sample_total_volume\n        }\n        else {\n            msg.payload = 0\n        }\n    }\n    return msg\n}",
+        "func": "\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\ndecpl=4  // Dec places of minutes output\n\nellipse = {\"name\":\"WSG84\", \"a\":6378.137/1.852, \"invf\":298.257223563}\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2){\n    var d,crs12,crs21\n    var argacos\n    var a,invf\n    \n    // lat and lon in radian\n    lat1=(Math.PI/180)*lat1\n    lat2=(Math.PI/180)*lat2\n    lon1=(Math.PI/180)*lon1\n    lon2=(Math.PI/180)*lon2\n    \n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n    \n    /* get distance conversion factor */\n    dc=1.852 //km\n    //alert(\"dc=\" +dc)\n    \n    //showProps(ellipse,\"ellipse\")\n    \n    // elliptic code\n    d=crsdist_ell(lat1,-lon1,lat2,-lon2,ellipse)  // ellipse uses East negative\n    d=d*dc  // go to physical units\n    \n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1,lon1,lat2,lon2){ // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1+lat2===0) && (Math.abs(lon1-lon2)==Math.PI) && \n    (Math.abs(lat1) != (Math.PI/180)*90)){\t\n    \talert(\"Course between antipodal points is undefined\")\n    }\n    \n    d = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1,glon1,glat2,glon2,ellipse){\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    a=ellipse.a\n    f=1/ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy,y, sa, c2a, cz, e, c, d\n    var EPS= 0.00000000005\n    var faz, baz, s\n    var iter=1\n    var MAXITER=100\n    if ((glat1+glat2===0) && (Math.abs(glon1-glon2)==Math.PI)){\n        alert(\"Course and distance between antipodal points is undefined\")\n        glat1=glat1+0.00001 // allow algorithm to complete\n    }\n    if (glat1==glat2 && (glon1==glon2 || Math.abs(Math.abs(glon1-glon2)-2*Math.PI) <  EPS)){\n        alert(\"Points 1 and 2 are identical- course undefined\")\n        out=new MakeArray(0)\n        out.d=0\n        out.crs12=0\n        out.crs21=Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan (glat1)\n    tu2 = r * Math.tan (glat2)\n    cu1 = 1 / Math.sqrt (1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt (1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER))\n    {\n        iter=iter+1\n        sx = Math.sin (x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos (x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2 (sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n            e = cz * cz * 2 - 1\n            c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n            d = x\n            x = ((e * cy * c + cz) * sy * c + y) * sa\n            x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt ((1 / (r * r) - 1) * c2a + 1)\n    x +=1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy*sy*4-3)*(1-e-e)*cz*d/6-x)*d/4+cz)*sy*d+y)*c*a*r\n    if (Math.abs(iter-MAXITER)<EPS){\n        alert(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y,x){\n    var out\n    if (x <0)            { out= Math.atan(y/x)+Math.PI}\n    if ((x >0) && (y>=0)){ out= Math.atan(y/x)}\n    if ((x >0) && (y<0)) { out= Math.atan(y/x)+2*Math.PI}\n    if ((x===0) && (y>0)) { out= Math.PI/2}\n    if ((x===0) && (y<0)) { out= 3*Math.PI/2}  \n    if ((x===0) && (y===0)) {\n        alert(\"atan2(0,0) undefined\")\n        out= 0\n    }  \n    return out\n}\n\nfunction showProps(obj,objName){\n    var result=\"\"\n    for (var i in obj){\n        result +=objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    alert(result)\n}\n\n\nif (msg.valid){\n    msg.topic=\"sample_total_volume\"\n    \n    var object_lat_end = global.get(\"object_lat_end\")\n    var object_lon_end = global.get(\"object_lon_end\")\n    var sample_sampling_gear = global.get(\"sample_sampling_gear\")\n    \n    if (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\") {\n        if (!(isNaN(object_lat_end) && isNaN(object_lon_end))){\n            var object_lat = global.get(\"object_lat\")\n            var object_lon = global.get(\"object_lon\")\n            var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n            distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n\n            sample_total_volume = distance_km*(Math.PI*(sample_gear_net_opening/2)*(sample_gear_net_opening/2)) // liters\n            sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n            msg.payload = sample_total_volume\n            return msg\n        }\n    }\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 930,
         "y": 760,
         "wires": [
@@ -7815,7 +7796,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 500,
+        "x": 490,
         "y": 1140,
         "wires": [
             [
@@ -9593,7 +9574,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 900,
+        "x": 940,
         "y": 940,
         "wires": [
             [
@@ -9676,7 +9657,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 920,
         "y": 1060,
         "wires": [
             [
@@ -9910,7 +9891,7 @@
         "delay": 300,
         "topic": "analog",
         "topicType": "str",
-        "x": 590,
+        "x": 580,
         "y": 960,
         "wires": [
             [
@@ -9955,7 +9936,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 900,
+        "x": 910,
         "y": 980,
         "wires": [
             [
@@ -10768,6 +10749,13 @@
                 "pt": "msg",
                 "to": "payload.acq_fnumber_objective",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_fnumber_objective",
+                "tot": "str"
             }
         ],
         "action": "",
