@@ -4863,13 +4863,13 @@
         "order": 1,
         "width": 24,
         "height": 24,
-        "format": "<div>\n    <center>\n        <object data=\"http://planktoscope.local:80/\" width=\"1400px\" height=\"1100px\"></object>\n    </center>\n</div>",
+        "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 380,
-        "y": 120,
+        "x": 400,
+        "y": 100,
         "wires": [
             []
         ]
@@ -5157,37 +5157,6 @@
         "wires": [
             [
                 "dbc0d44.5361b28"
-            ]
-        ]
-    },
-    {
-        "id": "3db572cd.cf972e",
-        "type": "inject",
-        "z": "f21ba04.c26266",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 270,
-        "y": 180,
-        "wires": [
-            [
-                "b9bf06d6.26c518",
-                "4c0400c.69a1e8",
-                "448b4c37.be50bc"
             ]
         ]
     },
@@ -9173,7 +9142,7 @@
         "order": 2,
         "width": 10,
         "height": 8,
-        "format": "<center>\n    Latest object segmented:<br/>\n  <img src=\"http://planktoscope.local:8001/object.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://planktoscope.local:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    style=\"max-width: 100%;max-height: 100%;\">\n</center>",
+        "format": "<span ng-bind-html=\"msg.payload\"></span>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -10812,7 +10781,10 @@
         "name": "IP",
         "links": [
             "142bc61a0bde1ba9",
-            "c515edcd8681c244"
+            "c515edcd8681c244",
+            "7fb91a7fd6d2518c",
+            "604659d148759b84",
+            "3bb4970164f5e7b2"
         ],
         "x": 1035,
         "y": 160,
@@ -10885,6 +10857,88 @@
         "wires": [
             [
                 "bb2bb7ce.1d1458"
+            ]
+        ]
+    },
+    {
+        "id": "604659d148759b84",
+        "type": "link in",
+        "z": "cb95299c.2817c8",
+        "name": "Cam Stream",
+        "links": [
+            "49111a72f4e32740"
+        ],
+        "x": 975,
+        "y": 600,
+        "wires": [
+            [
+                "e077b83ad375cb95"
+            ]
+        ]
+    },
+    {
+        "id": "e077b83ad375cb95",
+        "type": "template",
+        "z": "cb95299c.2817c8",
+        "name": "Prepare stream HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<center>\n    Latest object segmented:<br/>\n    <img src=\"http://{{payload}}:8001/object.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://{{payload}}:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    style=\"max-width: 100%;max-height: 100%;\">\n</center>",
+        "output": "str",
+        "x": 1120,
+        "y": 600,
+        "wires": [
+            [
+                "f078c068.eacf58"
+            ]
+        ]
+    },
+    {
+        "id": "3bb4970164f5e7b2",
+        "type": "link in",
+        "z": "c1660bc.e7ff7f8",
+        "name": "Cam Stream",
+        "links": [
+            "49111a72f4e32740"
+        ],
+        "x": 255,
+        "y": 100,
+        "wires": [
+            [
+                "2911fbc6.d28c24"
+            ]
+        ]
+    },
+    {
+        "id": "3db572cd.cf972e",
+        "type": "inject",
+        "z": "f21ba04.c26266",
+        "name": "once",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "b9bf06d6.26c518",
+                "4c0400c.69a1e8",
+                "448b4c37.be50bc"
             ]
         ]
     }
