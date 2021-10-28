@@ -1615,12 +1615,12 @@
         "order": 1,
         "width": 18,
         "height": 14,
-        "format": "<center>\n  <img src=\"http://planktoscope.local:8000/stream.mjpg\"\n    width=\"100%\" height=\"100%\">\n</center>",
+        "format": "<span ng-bind-html=\"msg.payload\"></span>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 130,
+        "x": 610,
         "y": 40,
         "wires": [
             []
@@ -2495,12 +2495,12 @@
         "order": 1,
         "width": 10,
         "height": 8,
-        "format": "<center>\n  <img src=\"http://planktoscope.local:8000/stream.mjpg\"\n    width=\"100%\" height=\"100%\">\n</center>",
+        "format": "<span ng-bind-html=\"msg.payload\"></span>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 910,
+        "x": 550,
         "y": 40,
         "wires": [
             []
@@ -5295,16 +5295,18 @@
         "type": "function",
         "z": "f21ba04.c26266",
         "name": "parse IP Info",
-        "func": "if (msg.payload === null){\n    var ip = \"\";\n    var mask = \"\";\n    var broadcast = \"\";\n}\nelse{\n    var ip = msg.payload.match(/inet ([0-9\\.]+)/)[1];\n    var mask = msg.payload.match(/netmask ([0-9\\.]+)/)[1];\n    var broadcast = msg.payload.match(/broadcast ([0-9\\.]+)/)[1];\n}\n\nreturn [{topic: 'ip', payload: ip},{topic: 'mask', payload: mask},{topic: 'broadcast', payload: broadcast}]",
+        "func": "var ip = \"planktoscope.local\";\nvar mask = \"\";\nvar broadcast = \"\";\n\nif (msg.payload !== null){\n    ip = msg.payload.match(/inet ([0-9\\.]+)/)[1];\n    mask = msg.payload.match(/netmask ([0-9\\.]+)/)[1];\n    broadcast = msg.payload.match(/broadcast ([0-9\\.]+)/)[1];\n}\n\nreturn [{topic: 'ip', payload: ip},{topic: 'mask', payload: mask},{topic: 'broadcast', payload: broadcast}]",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 730,
         "y": 180,
         "wires": [
             [
-                "d71c8185.800fd"
+                "d71c8185.800fd",
+                "49111a72f4e32740"
             ],
             [
                 "67d052ba.99ff24"
@@ -5331,8 +5333,8 @@
         "label": "IP",
         "format": "{{msg.payload || '---'}}",
         "layout": "row-spread",
-        "x": 990,
-        "y": 141,
+        "x": 930,
+        "y": 140,
         "wires": []
     },
     {
@@ -5347,8 +5349,8 @@
         "label": "Netmask",
         "format": "{{msg.payload || '---'}}",
         "layout": "row-spread",
-        "x": 1000,
-        "y": 181,
+        "x": 940,
+        "y": 180,
         "wires": []
     },
     {
@@ -5363,8 +5365,8 @@
         "label": "Broadcast",
         "format": "{{msg.payload || '---'}}",
         "layout": "row-spread",
-        "x": 1010,
-        "y": 220,
+        "x": 950,
+        "y": 219,
         "wires": []
     },
     {
@@ -5460,8 +5462,8 @@
         "label": "SSID",
         "format": "{{msg.payload || '---'}}",
         "layout": "row-spread",
-        "x": 990,
-        "y": 260,
+        "x": 930,
+        "y": 259,
         "wires": []
     },
     {
@@ -10801,6 +10803,89 @@
         "y": 40,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "49111a72f4e32740",
+        "type": "link out",
+        "z": "f21ba04.c26266",
+        "name": "IP",
+        "links": [
+            "142bc61a0bde1ba9",
+            "c515edcd8681c244"
+        ],
+        "x": 1035,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "142bc61a0bde1ba9",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Cam Stream",
+        "links": [
+            "49111a72f4e32740"
+        ],
+        "x": 235,
+        "y": 40,
+        "wires": [
+            [
+                "3ca8be38ddb269e9"
+            ]
+        ]
+    },
+    {
+        "id": "3ca8be38ddb269e9",
+        "type": "template",
+        "z": "bccd1f23.87219",
+        "name": "Prepare stream HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<center>\n  <img src=\"http://{{payload}}:8000/stream.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://{{payload}}:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
+        "output": "str",
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "6a84252a.d52a0c"
+            ]
+        ]
+    },
+    {
+        "id": "c515edcd8681c244",
+        "type": "link in",
+        "z": "baa1e3d9.cb29d",
+        "name": "Cam Stream",
+        "links": [
+            "49111a72f4e32740"
+        ],
+        "x": 195,
+        "y": 40,
+        "wires": [
+            [
+                "a77625dc21c8a3cc"
+            ]
+        ]
+    },
+    {
+        "id": "a77625dc21c8a3cc",
+        "type": "template",
+        "z": "baa1e3d9.cb29d",
+        "name": "Prepare stream HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<center>\n  <img src=\"http://{{payload}}:8000/stream.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://{{payload}}:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
+        "output": "str",
+        "x": 340,
+        "y": 40,
+        "wires": [
+            [
+                "bb2bb7ce.1d1458"
+            ]
         ]
     }
 ]
