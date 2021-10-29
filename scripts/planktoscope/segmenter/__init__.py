@@ -460,7 +460,7 @@ class SegmenterProcess(multiprocessing.Process):
         minMesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
         minESD = minMesh * 2
         minArea = math.pi * (minESD / 2) * (minESD / 2)
-        pixel_size = self.__global_metadata.get("process_pixels", 1.0)
+        pixel_size = self.__global_metadata.get("process_pixel", 1.0)
         # minsizepix = minArea / pixel_size / pixel_size
         minsizepix = (minESD / pixel_size) ** 2
 
