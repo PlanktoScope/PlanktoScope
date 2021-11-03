@@ -138,8 +138,8 @@ if __name__ == "__main__":
         )
     except Exception as e:
         logger.error("The segmenter control process could not be started")
-    else:
         segmenter_thread = None
+    else:
         segmenter_thread.start()
 
     # Starts the module process
