@@ -108,7 +108,7 @@ class ImagerProcess(multiprocessing.Process):
                 logger.exception(
                     f"A second exception has occured when starting up raspimjpeg: {e}"
                 )
-                logger.error(f"This error can't be recovered from, terminating now")
+                logger.error("This error can't be recovered from, terminating now")
                 raise e
 
         if self.__camera.sensor_name == "IMX219":  # Camera v2.1
@@ -276,6 +276,7 @@ class ImagerProcess(multiprocessing.Process):
             self.imager_client.client.publish("status/imager", '{"status":"Busy"}')
 
     def __message_settings(self, last_message):
+        # TODO simplify this method, move timeout error check inside self.__camera.resolution/iso/etc.
         if self.__imager.state.name == "stop":
             if "settings" not in last_message:
                 logger.error(
@@ -553,8 +554,8 @@ class ImagerProcess(multiprocessing.Process):
         self.__export_path = os.path.join(
             self.__base_path,
             self.__global_metadata["object_date"],
-            str(self.__global_metadata["sample_id"]).replace(" ", "_"),
-            str(self.__global_metadata["acq_id"]).replace(" ", "_"),
+            str(self.__global_metadata["sample_id"]).replace(" ", "_").strip("'"),
+            str(self.__global_metadata["acq_id"]).replace(" ", "_").strip("'"),
         )
 
         if os.path.exists(self.__export_path):
