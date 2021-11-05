@@ -35,7 +35,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                         with open("/dev/shm/mjpeg/cam.jpg", "rb") as jpeg:  # nosec
                             frame = jpeg.read()
                     except FileNotFoundError as e:
-                        logger.error(f"Camera has not been started yet")
+                        logger.error("Camera has not been started yet")
                         time.sleep(5)
                     except Exception as e:
                         logger.exception(f"An exception occured {e}")

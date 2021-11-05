@@ -31,6 +31,7 @@ class Display(object):
             logger.success("planktoscope.display is ready!")
         except Exception as e:
             logger.error("Could not detect the display")
+            logger.error(f"Exception was {e}")
             self.display_available = False
 
     def display_machine_name(self):

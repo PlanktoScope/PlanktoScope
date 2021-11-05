@@ -36,7 +36,7 @@ def adaptative_threshold(img):
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
     # logger.debug(time.monotonic() - start)
     # logger.success(f"Threshold used was {ret}")
-    logger.success(f"Adaptative threshold is done")
+    logger.success("Adaptative threshold is done")
     return mask
 
 
@@ -62,7 +62,7 @@ def simple_threshold(img):
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
     # logger.debug(time.monotonic() - start)
     logger.info(f"Threshold value used was {ret}")
-    logger.success(f"Simple threshold is done")
+    logger.success("Simple threshold is done")
     return mask
 
 

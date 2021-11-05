@@ -181,7 +181,7 @@ class raspimjpeg(object):
             return status
         except FileNotFoundError as e:
             logger.error(
-                f"The status file was not found, make sure the filesystem has not been corrupted"
+                "The status file was not found, make sure the filesystem has not been corrupted"
             )
             return ""
 
@@ -489,7 +489,7 @@ class raspimjpeg(object):
         """
         logger.debug(f"Capturing an image to {path}")
         if path == "":
-            self.__send_command(f"im")
+            self.__send_command("im")
         else:
             self.__send_command(f"im {path}")
         time.sleep(0.1)
@@ -500,7 +500,7 @@ class raspimjpeg(object):
     def stop(self):
         """Halt and release the camera."""
         logger.debug("Releasing the camera now")
-        self.__send_command(f"ru 0")
+        self.__send_command("ru 0")
 
     def close(self):
         """Kill the process."""

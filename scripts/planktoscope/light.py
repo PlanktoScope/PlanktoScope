@@ -76,10 +76,7 @@ class i2c_led:
                 self.flash_timeout = False
                 self.IVFM = False
             led_id = self.get_id()
-        except OSError as e:
-            logger.exception(f"Error with the LED control module, {e}")
-            raise
-        except Exception as e:
+        except (OSError, Exception) as e:
             logger.exception(f"Error with the LED control module, {e}")
             raise
         logger.debug(f"LED module id is {led_id}")
