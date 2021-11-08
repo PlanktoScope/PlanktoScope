@@ -574,6 +574,7 @@
         "clientid": "Client_node",
         "usetls": false,
         "compatmode": false,
+        "protocolVersion": 4,
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
@@ -5082,20 +5083,20 @@
         "id": "63b885ac.46f384",
         "type": "switch",
         "z": "f21ba04.c26266",
-        "name": "ifWifi",
+        "name": "Check",
         "property": "name",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "Wifi",
-                "vt": "str"
+                "v": "name in [\"Wifi\", \"Optic Configuration\", \"Fluidic Acquisition\"]",
+                "vt": "jsonata"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 271,
+        "x": 270,
         "y": 80,
         "wires": [
             [
