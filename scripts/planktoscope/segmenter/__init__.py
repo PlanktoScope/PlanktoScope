@@ -723,11 +723,13 @@ class SegmenterProcess(multiprocessing.Process):
         # we're done free some mem
         self.__flat = None
 
-    def segment_all(self, paths: list, force, ecotaxa_export):
+    def segment_all(self, paths: list, force=False, ecotaxa_export=True):
         """Starts the segmentation in all the folders given recursively
 
         Args:
-            paths (list, optional): path list to recursively explore. Defaults to [self.__img_path].
+            paths (list): path list to recursively explore.
+            force (bool, optional): force the rework on all paths given. Defaults to False.
+            ecotaxa_export (bool, optional): generates ecotaxa export data. Defaults to True.
         """
         img_paths = []
         for path in paths:
@@ -736,11 +738,13 @@ class SegmenterProcess(multiprocessing.Process):
                     img_paths.append(x[0])
         self.segment_list(img_paths, force, ecotaxa_export)
 
-    def segment_list(self, path_list: list, force=True, ecotaxa_export=True):
+    def segment_list(self, path_list: list, force=False, ecotaxa_export=True):
         """Starts the segmentation in the folders given
 
         Args:
-            path_list (list): [description]
+            paths (list): path list to recursively explore.
+            force (bool, optional): force the rework on all paths given. Defaults to False.
+            ecotaxa_export (bool, optional): generates ecotaxa export data. Defaults to True.
         """
         logger.info(f"The pipeline will be run in {len(path_list)} directories")
         logger.debug(f"Those are {path_list}")
@@ -760,26 +764,21 @@ class SegmenterProcess(multiprocessing.Process):
             logger.debug(f"{path}: Checking for the presence of metadata.json")
             if os.path.exists(os.path.join(path, "metadata.json")):
                 # The file exists, let's check if we force or not
-                if force:
+                # we also need to check for the presence of done.txt in each folder
+                logger.debug(
+                    f"{path}: Checking for the presence of done.txt or forcing({force})"
+                )
+                if os.path.exists(os.path.join(path, "done.txt")) and not force:
+                    logger.debug(
+                        f"Moving to the next folder, {path} has already been segmented"
+                    )
+                else:
                     # forcing, let's gooooo
                     try:
                         self.segment_path(path, ecotaxa_export)
                     except Exception as e:
                         logger.error(f"There was an error while segmenting {path}")
                         exception = e
-                else:
-                    # we need to check for the presence of done.txt in each folder
-                    logger.debug(f"{path}: Checking for the presence of done.txt")
-                    if os.path.exists(os.path.join(path, "done.txt")):
-                        logger.debug(
-                            f"Moving to the next folder, {path} has already been segmented"
-                        )
-                    else:
-                        try:
-                            self.segment_path(path, ecotaxa_export)
-                        except Exception as e:
-                            logger.error(f"There was an error while segmenting {path}")
-                            exception = e
             else:
                 logger.debug(f"Moving to the next folder, {path} has no metadata.json")
         if exception is None:
@@ -957,7 +956,7 @@ class SegmenterProcess(multiprocessing.Process):
                     else:
                         self.segment_list(path, force, ecotaxa_export)
                 else:
-                    self.segment_all(self.__img_path)
+                    self.segment_all(self.__img_path, force, ecotaxa_export)
 
             elif last_message["action"] == "stop":
                 logger.info("The segmentation has been interrupted.")
