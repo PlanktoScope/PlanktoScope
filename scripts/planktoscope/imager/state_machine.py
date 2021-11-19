@@ -7,7 +7,7 @@ from loguru import logger
 # "start imager" as imager
 # "capture image" as capture
 #
-# START->imager["init"]
+# START->stop["init"]
 # imager->pump["start pumping"]
 # pump->stop["stop"]
 # stop->imager["start"]
