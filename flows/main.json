@@ -926,26 +926,6 @@
         "height": 1
     },
     {
-        "id": "fbe38571.ac8f58",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 5,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "1e14d5c2.8530da",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "97148e8d8e298f1a",
         "type": "ui_spacer",
         "z": "cb95299c.2817c8",
@@ -6749,7 +6729,7 @@
         "name": "net_throw_location",
         "label": "Net Throw Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
         "options": [
@@ -6809,7 +6789,7 @@
         "name": "net_retrieval_location",
         "label": "Net Retrieval Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 3,
+        "order": 5,
         "width": 0,
         "height": 0,
         "options": [
@@ -6928,7 +6908,7 @@
         "label": "Decknet flowmeter start",
         "tooltip": "in L",
         "group": "cf5d9f0e.d57e7",
-        "order": 5,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -6952,7 +6932,7 @@
         "label": "Decknet flowmeter end",
         "tooltip": "in L",
         "group": "cf5d9f0e.d57e7",
-        "order": 6,
+        "order": 9,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -6974,7 +6954,7 @@
         "z": "b771c342.49603",
         "group": "cf5d9f0e.d57e7",
         "name": "Decknet flowmeter read",
-        "order": 4,
+        "order": 7,
         "width": 10,
         "height": 1,
         "format": "<div style=\"line-height: 100%;\">\n    <p class=\"formlabel\" style=\"font-size: larger;\">Decknet flowmeter readings</p>\n    <p style=\"font-size: smaller;\">Those values are used to calculate <font style=\"font-family: mono;\">sample_total_volume</font>. Values are in L.</p>\n</div>\n",
@@ -8253,7 +8233,7 @@
         "y": 360,
         "wires": [
             [
-                "5517c129.1617e"
+                "1aad56b31b5647ce"
             ]
         ]
     },
@@ -8272,61 +8252,7 @@
         "y": 400,
         "wires": [
             [
-                "9f3edbe2.43c728"
-            ]
-        ]
-    },
-    {
-        "id": "9f3edbe2.43c728",
-        "type": "ui_numeric",
-        "z": "b771c342.49603",
-        "name": "acq_maximum_mesh",
-        "label": "Maximal fraction size (μm)",
-        "tooltip": "Maximal filtration mesh pore size",
-        "group": "3e1ba03d.f01d8",
-        "order": 8,
-        "width": 5,
-        "height": 1,
-        "wrap": false,
-        "passthru": true,
-        "topic": "acq_maximum_mesh",
-        "topicType": "str",
-        "format": "{{value}}",
-        "min": "200",
-        "max": "2000",
-        "step": "100",
-        "x": 640,
-        "y": 400,
-        "wires": [
-            [
-                "9f501f49.45645"
-            ]
-        ]
-    },
-    {
-        "id": "5517c129.1617e",
-        "type": "ui_numeric",
-        "z": "b771c342.49603",
-        "name": "acq_minimum_mesh",
-        "label": "Minimal fraction size (μm)",
-        "tooltip": "Net mesh pore size or minimal filtration mesh pore size",
-        "group": "3e1ba03d.f01d8",
-        "order": 7,
-        "width": 5,
-        "height": 1,
-        "wrap": false,
-        "passthru": true,
-        "topic": "acq_minimum_mesh",
-        "topicType": "str",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "300",
-        "step": "10",
-        "x": 640,
-        "y": 360,
-        "wires": [
-            [
-                "9f501f49.45645"
+                "10eb31a2d7a6590c"
             ]
         ]
     },
@@ -10440,16 +10366,18 @@
         "type": "ui_text_input",
         "z": "b771c342.49603",
         "name": "sample_speed_through_water",
-        "label": "Speed Through Water",
-        "tooltip": "in kts",
-        "group": "3e1ba03d.f01d8",
-        "order": 13,
+        "label": "Speed Through Water (kts)",
+        "tooltip": "in knots",
+        "group": "cf5d9f0e.d57e7",
+        "order": 2,
         "width": 10,
         "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": "0",
         "topic": "sample_speed_through_water",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 610,
         "y": 520,
@@ -10938,6 +10866,58 @@
         "wires": [
             [
                 "bcb20e39.00cea8"
+            ]
+        ]
+    },
+    {
+        "id": "1aad56b31b5647ce",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "acq_minimum_mesh",
+        "label": "Minimal fraction size (μm)",
+        "tooltip": "Net mesh pore size or minimal filtration mesh pore size",
+        "group": "3e1ba03d.f01d8",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "acq_minimum_mesh",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "10eb31a2d7a6590c",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "acq_maximum_mesh",
+        "label": "Maximal fraction size (μm)",
+        "tooltip": "Maximal filtration mesh pore size",
+        "group": "3e1ba03d.f01d8",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "acq_maximum_mesh",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "9f501f49.45645"
             ]
         ]
     }
