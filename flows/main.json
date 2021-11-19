@@ -5100,33 +5100,6 @@
         ]
     },
     {
-        "id": "63b885ac.46f384",
-        "type": "switch",
-        "z": "f21ba04.c26266",
-        "name": "Check",
-        "property": "name",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "name in [\"Wifi\", \"Optic Configuration\", \"Fluidic Acquisition\"]",
-                "vt": "jsonata"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 270,
-        "y": 80,
-        "wires": [
-            [
-                "b9bf06d6.26c518",
-                "4c0400c.69a1e8",
-                "448b4c37.be50bc"
-            ]
-        ]
-    },
-    {
         "id": "4c0400c.69a1e8",
         "type": "exec",
         "z": "f21ba04.c26266",
@@ -5352,7 +5325,7 @@
         "y": 80,
         "wires": [
             [
-                "63b885ac.46f384"
+                "f103cd20eb4362a4"
             ]
         ]
     },
@@ -10891,9 +10864,8 @@
         "repeat": "60",
         "crontab": "",
         "once": true,
-        "onceDelay": "2",
+        "onceDelay": "1",
         "topic": "",
-        "payload": "",
         "payloadType": "date",
         "x": 270,
         "y": 180,
@@ -10971,6 +10943,35 @@
             [
                 "9f501f49.45645"
             ]
+        ]
+    },
+    {
+        "id": "f103cd20eb4362a4",
+        "type": "function",
+        "z": "f21ba04.c26266",
+        "name": "check tab",
+        "func": "if (msg.name === \"Wifi\"){\n    return [msg, msg]\n}\n\nif ([\"Optic Configuration\", \"Fluidic Acquisition\", \"Segmentation\", \"Gallery\"].includes(msg.name)){\n    return [null, msg]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "b9bf06d6.26c518",
+                "4c0400c.69a1e8",
+                "448b4c37.be50bc"
+            ],
+            [
+                "4c0400c.69a1e8",
+                "448b4c37.be50bc"
+            ]
+        ],
+        "outputLabels": [
+            "interface",
+            "ip"
         ]
     }
 ]
