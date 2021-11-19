@@ -35,11 +35,10 @@ def uuidMachineName(machine="", type=1):
     """
     if type == 4:
         id = str(uuid.uuid4())
+    elif machine == "":
+        id = str(uuid.uuid1())
     else:
-        if machine == "":
-            id = str(uuid.uuid1())
-        else:
-            id = str(uuid.uuid1(node=int(str(machine)[-12:], 16)))
+        id = str(uuid.uuid1(node=int(str(machine)[-12:], 16)))
     name = ""
     x = id.rsplit("-", 1)
     machine = x[1]
@@ -84,13 +83,13 @@ def uuidMachine(machine="", type=1):
         str: universally unique id
     """
     if type == 4:
-        id = str(uuid.uuid4())
+        return str(uuid.uuid4())
     else:
-        if machine == "":
-            id = str(uuid.uuid1())
-        else:
-            id = str(uuid.uuid1(node=int(str(machine)[-12:], 16)))
-    return id
+        return (
+            str(uuid.uuid1())
+            if machine == ""
+            else str(uuid.uuid1(node=int(str(machine)[-12:], 16)))
+        )
 
 
 def uuidName():
@@ -151,11 +150,11 @@ def getSerial():
     Returns:
         str: serial number or MAC address
     """
-    if os.path.exists("/sys/firmware/devicetree/base/serial-number"):
-        with open("/sys/firmware/devicetree/base/serial-number", "r") as serial_file:
-            return serial_file.readline().strip("\x00")
-    else:
+    if not os.path.exists("/sys/firmware/devicetree/base/serial-number"):
         return str(uuid.getnode())
+
+    with open("/sys/firmware/devicetree/base/serial-number", "r") as serial_file:
+        return serial_file.readline().strip("\x00")
 
 
 if __name__ == "__main__":

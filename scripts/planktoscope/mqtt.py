@@ -117,20 +117,20 @@ class MQTT_Client:
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
 
-    @logger.catch
     # Run this function in order to subscribe to all the topics begining by actuator
+    @logger.catch
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
         # TODO Fix bug when this is called outside of this init function (for example when the imager subscribe to status/pump)
         logger.success(
-            f"{self.name} subscribed to {self.topic}! - mid:{str(mid)} qos:{str(granted_qos)}"
+            f"{self.name} subscribed to {self.topic}! - mid:{mid} qos:{granted_qos}"
         )
 
     # Run this command when Node-RED is sending a message on the subscribed topic
     @logger.catch
     def on_message(self, client, userdata, msg):
         # Print the topic and the message
-        logger.info(f"{self.name}: {msg.topic} {str(msg.qos)} {str(msg.payload)}")
+        logger.info(f"{self.name}: {msg.topic} {msg.qos} {msg.payload}")
         # Parse the topic to find the command. ex : actuator/pump -> pump
         # This only removes the top-level topic!
         self.command = msg.topic.split("/", 1)[1]
@@ -157,7 +157,7 @@ class MQTT_Client:
         return self.__new_message
 
     def read_message(self):
-        logger.debug(f"clearing the __new_message flag")
+        logger.debug("clearing the __new_message flag")
         self.__new_message = False
 
     @logger.catch
