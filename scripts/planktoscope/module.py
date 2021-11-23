@@ -52,7 +52,7 @@ class ModuleProcess(multiprocessing.Process):
             action = last_message["action"]
         if action == "on":
             # Treat the received messages here
-
+            pass
         elif action != "":
             logger.warning(
                 f"We did not understand the received request {action} - {last_message}"
@@ -93,3 +93,4 @@ class ModuleProcess(multiprocessing.Process):
 # This is called if this script is launched directly
 if __name__ == "__main__":
     # This should be tests of your module
+    pass

@@ -13,7 +13,7 @@ class Motor(Board):
             self.chip_select = s1.m0_cs
             self.enable = s1.m0_enable
             self.spi = Board.spi0
-        if motor == 1:
+        elif motor == 1:
             self.chip_select = s1.m1_cs
             self.enable = s1.m1_enable
             self.spi = Board.spi1
@@ -53,7 +53,7 @@ class Motor(Board):
         # Set XTARGET to 0, which holds the motor at the current position
         self.write(reg.XTARGET, 0)
 
-    # TODO: add some more functionality...
+    # TODO: #105 add some more functionality...
     # Add stallGuard + coolStep (datasheet page 52)
 
     @property
