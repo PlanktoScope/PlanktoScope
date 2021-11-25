@@ -813,11 +813,16 @@ class SegmenterProcess(multiprocessing.Process):
             )
         )
 
-        project = self.__global_metadata["sample_project"].replace(" ", "_")
-        sample = self.__global_metadata["sample_id"].replace(" ", "_")
-        date = datetime.datetime.utcnow().isoformat()
+        def clean_name(name):
+            s1="".join(c for c in name if c.isalnum() or c == " ")
+            s1 = s1.replace(" ","_")
+            return s1
 
-        self.__global_metadata["process_datetime"] = date
+        project = clean_name(self.__global_metadata["sample_project"])
+        sample = clean_name(self.__global_metadata["sample_id"])
+        date = clean_name(self.__global_metadata["object_date"])
+
+        self.__global_metadata["process_datetime"] = datetime.datetime.utcnow().isoformat()
         self.__global_metadata["process_uuid"] = self.__process_uuid
         self.__global_metadata["process_id"] = f"{project}_{sample}_{self.__process_id}"
 
