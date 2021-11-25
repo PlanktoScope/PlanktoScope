@@ -66,16 +66,33 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.info("planktoscope.imager is initialising")
 
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-                configuration = json.load(config_file)
-                logger.debug(f"Hardware configuration loaded is {configuration}")
-        else:
-            logger.info(
-                "The hardware configuration file doesn't exists, using defaults"
-            )
-            configuration = {}
+
+        # ce qui change : avant configuration = {} mais du coup 'using defaults' c'était config vide
+        #                 os.path.getsize() retourne une erreur de type OSError si le fichier n'existe pas
+        default_config = {
+                    "stepper_reverse": false,
+                    "microsteps": 32,
+                    "focus_steps_per_mm": 40,
+                    "pump_steps_per_ml": 507,
+                    "focus_max_speed": 0.5,
+                    "pump_max_speed": 30,
+                    "stepper_type": "adafruit",
+                    "wb_red_gain": 2,
+                    "wb_blue_gain": 1.41,
+                    "analog_gain": 1.0,
+                    "digital_gain": 1.0
+                    }
+        configuration = default_config
+        try:
+            if os.path.getsize("/home/pi/PlanktoScope/hardware.json") > 0 :
+                # load hardware.json
+                with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+                    configuration = json.load(config_file)
+                    logger.debug(f"Hardware configuration loaded is {configuration}")
+            else:
+                logger.info("The hardware configuration file is empty, using defaults")
+        except OSError:
+            logger.error("The hardware configuration file is missing, using defaults")
 
         self.__camera_type = "v2.1"
 
