@@ -1146,7 +1146,7 @@
         "useSpawn": "",
         "timer": "",
         "name": "Free Memory",
-        "x": 340,
+        "x": 330,
         "y": 280,
         "wires": [
             [
@@ -1179,7 +1179,7 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 590,
+        "x": 580,
         "y": 180,
         "wires": []
     },
@@ -1439,11 +1439,11 @@
         "officon": "",
         "offcolor": "",
         "animate": true,
-        "x": 940,
+        "x": 880,
         "y": 40,
         "wires": [
             [
-                "2549f778.4eb828"
+                "7fb13a4a53b612a0"
             ]
         ]
     },
@@ -1452,13 +1452,13 @@
         "type": "python3-function",
         "z": "1371dec5.76e671",
         "name": "fan control",
-        "func": "try:\n    import smbus2 as smbus\n    \n    state = msg[\"payload\"]\n    \n    bus = smbus.SMBus(1)\n    \n    DEVICE_ADDRESS = 0x0d\n    # command happens twice, for reasons\n    if state == \"off\":\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\n    if state == \"on\":\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\nexcept:\n    pass",
+        "func": "import smbus2 as smbus\n\nstate = msg[\"payload\"]\nbus = smbus.SMBus(1)\n\nDEVICE_ADDRESS = 0x0d\n# command happens twice, for reasons\nif state == \"off\":\n    with smbus.SMBus(1) as bus:\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x00)\n    return msg\nif state == \"on\":\n    with smbus.SMBus(1) as bus:\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n        bus.write_byte_data(DEVICE_ADDRESS, 0x08, 0x01)\n    return msg\n",
         "outputs": 1,
-        "x": 1110,
+        "x": 1150,
         "y": 40,
         "wires": [
             [
-                "b7ab1ada.1f4158"
+                "e640ebb5c397f424"
             ]
         ]
     },
@@ -1471,9 +1471,10 @@
         "append": "",
         "useSpawn": "false",
         "timer": "1",
+        "winHide": false,
         "oldrc": false,
         "name": "i2c update",
-        "x": 1290,
+        "x": 1440,
         "y": 40,
         "wires": [
             [],
@@ -3695,7 +3696,7 @@
         "label": "Software version",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 850,
+        "x": 840,
         "y": 520,
         "wires": []
     },
@@ -4715,8 +4716,8 @@
         "name": "fan temperature",
         "func": "import smbus\nbus = smbus.SMBus(1)\n\naddr = 0x0d\nfan_reg = 0x08\n\ntemp = float( msg[\"payload\"])\n\n# 0x01 full speed, 0x02: 20% speed, ..., 0x09: 90% speed\n\nif temp < 38:\n    bus.write_byte_data(addr, fan_reg, 0x00)\nelif temp < 43:\n    bus.write_byte_data(addr, fan_reg, 0x02)\nelif temp < 46:\n    bus.write_byte_data(addr, fan_reg, 0x04)\nelif temp < 48:\n    bus.write_byte_data(addr, fan_reg, 0x06)\nelif temp < 52:\n    bus.write_byte_data(addr, fan_reg, 0x08)\nelse:\n    bus.write_byte_data(addr, fan_reg, 0x01)\n\nreturn msg",
         "outputs": 1,
-        "x": 1500,
-        "y": 40,
+        "x": 1440,
+        "y": 120,
         "wires": [
             []
         ]
@@ -10920,6 +10921,50 @@
         "outputLabels": [
             "interface",
             "ip"
+        ]
+    },
+    {
+        "id": "e640ebb5c397f424",
+        "type": "delay",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 1300,
+        "y": 40,
+        "wires": [
+            [
+                "b7ab1ada.1f4158"
+            ]
+        ]
+    },
+    {
+        "id": "7fb13a4a53b612a0",
+        "type": "rbe",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 1010,
+        "y": 40,
+        "wires": [
+            [
+                "2549f778.4eb828"
+            ]
         ]
     }
 ]
