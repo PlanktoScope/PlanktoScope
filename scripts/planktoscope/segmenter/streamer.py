@@ -50,6 +50,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                             )
                             break
                         frame = file.getvalue()
+                        # TODO #101 insert try block here to catch ConnectionResetError: [Errno 104] Connection reset by peer
                         self.wfile.write(b"--FRAME\r\n")
                         self.send_header("Content-Type", "image/jpeg")
                         self.send_header("Content-Length", len(frame))

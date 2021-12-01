@@ -11,11 +11,7 @@ from loguru import logger
 import subprocess  # nosec
 
 # Library to send command over I2C for the light module on the fan
-try:
-    import smbus2 as smbus
-except ModuleNotFoundError:  # We need this to install the library on machine that do not have the module yet
-    subprocess.run("pip3 install smbus2".split())  # nosec
-    import smbus2 as smbus
+import smbus2 as smbus
 
 import enum
 

@@ -205,7 +205,7 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
             logger.error("No objects metadata recorded, cannot continue the export")
             return 0
 
-        # fix crappy old camera resolution that was not exported as string
+        # sometimes the camera resolution is not exported as string
         if type(metadata["acq_camera_resolution"]) != str:
             metadata[
                 "acq_camera_resolution"
@@ -216,7 +216,7 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
             tsv_line = {}
             tsv_line.update(metadata)
             tsv_line.update(("object_" + k, v) for k, v in roi["metadata"].items())
-            tsv_line.update({"object_id": roi["name"]})
+            tsv_line["object_id"] = roi["name"]
 
             filename = roi["name"] + ".jpg"
 

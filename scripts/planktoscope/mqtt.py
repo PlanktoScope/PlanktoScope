@@ -86,7 +86,7 @@ class MQTT_Client:
     @logger.catch
     def connect(self):
         logger.info(f"trying to connect to {self.server}:{self.port}")
-        # TODO add try: except ConnectionRefusedError: block here
+        # TODO #104 add try: except ConnectionRefusedError: block here
         # This is a symptom that Mosquitto may have failed to start
         self.client.connect(self.server, self.port, 60)
         self.client.on_connect = self.on_connect

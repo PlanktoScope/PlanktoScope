@@ -274,7 +274,7 @@ class SegmenterProcess(multiprocessing.Process):
         h_stddev = np.std(h_channel, where=mask)
         s_stddev = np.std(s_channel, where=mask)
         v_stddev = np.std(v_channel, where=mask)
-        # TODO Add skewness and kurtosis calculation (with scipy) here
+        # TODO #103 Add skewness and kurtosis calculation (with scipy) here
         # using https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.skew.html#scipy.stats.skew
         # and https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kurtosis.html#scipy.stats.kurtosis
         # h_quartiles = np.quantile(h_channel, quartiles)
@@ -789,7 +789,7 @@ class SegmenterProcess(multiprocessing.Process):
         else:
             self.segmenter_client.client.publish(
                 "status/segmenter",
-                f'{{"status":"An exception was raised during the segmentation: {e}."}}',
+                f'{{"status":"An exception was raised during the segmentation: {exception}."}}',
             )
         # Reset process_id
         self.__process_id = ""
@@ -856,6 +856,7 @@ class SegmenterProcess(multiprocessing.Process):
             self.__ecotaxa_path,
             # filename includes project name, timestamp and sample id
             f"ecotaxa_{project}_{date}_{sample}.zip",
+        # TODO #102 sanitize the filename to remove potential problems with spaces and special characters
         )
 
         self.__working_path = path
@@ -978,7 +979,7 @@ class SegmenterProcess(multiprocessing.Process):
 
             elif last_message["action"] != "":
                 logger.warning(
-                    f"We did not understand the received request {action} - {last_message}"
+                    f"We did not understand the received request {last_message}"
                 )
 
     ################################################################################

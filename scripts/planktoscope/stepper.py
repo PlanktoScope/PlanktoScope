@@ -185,6 +185,7 @@ class StepperProcess(multiprocessing.Process):
         if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
             # load hardware.json
             with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+                # TODO #100 insert guard for config_file empty
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
         else:
