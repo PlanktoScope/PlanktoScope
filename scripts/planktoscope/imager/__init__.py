@@ -69,8 +69,8 @@ class ImagerProcess(multiprocessing.Process):
 
         # ce qui change : avant configuration = {} mais du coup 'using defaults' c'était config vide
         #                 os.path.getsize() retourne une erreur de type OSError si le fichier n'existe pas
-        default_config = {
-                    "stepper_reverse": false,
+        configuration = {
+                    "stepper_reverse": False,
                     "microsteps": 32,
                     "focus_steps_per_mm": 40,
                     "pump_steps_per_ml": 507,
@@ -82,18 +82,15 @@ class ImagerProcess(multiprocessing.Process):
                     "analog_gain": 1.0,
                     "digital_gain": 1.0
                     }
-        configuration = default_config
-        try:
-            if os.path.getsize("/home/pi/PlanktoScope/hardware.json") > 0 :
-                # load hardware.json
-                with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-                    configuration = json.load(config_file)
-                    logger.debug(f"Hardware configuration loaded is {configuration}")
-            else:
-                logger.info("The hardware configuration file is empty, using defaults")
-        except OSError:
-            logger.error("The hardware configuration file is missing, using defaults")
-
+        
+        if os.path.exists("/home/pi/PlanktoScope/hardware.json") and os.path.getsize("/home/pi/PlanktoScope/hardware.json") > 0 :
+            # load hardware.json
+            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+                configuration.update(json.load(config_file))
+                logger.debug(f"Hardware configuration loaded is {configuration}")
+        else:
+            logger.info("The hardware configuration file is empty or missing, using defaults")
+        
         self.__camera_type = "v2.1"
 
         # parse the config data. If the key is absent, we are using the default value
@@ -144,12 +141,12 @@ class ImagerProcess(multiprocessing.Process):
         self.__exposure_mode = "auto"
         self.__white_balance = "off"
         self.__white_balance_gain = (
-            int(configuration.get("red_gain", 2.00) * 100),
-            int(configuration.get("blue_gain", 1.40) * 100),
+            int(configuration.get("wb_red_gain") * 100), # why do we multiply by 100?
+            int(configuration.get("wb_blue_gain") * 100),
         )
         self.__image_gain = (
-            int(configuration.get("analog_gain", 1.00) * 100),
-            int(configuration.get("digital_gain", 1.00) * 100),
+            int(configuration.get("analog_gain") * 100),
+            int(configuration.get("digital_gain") * 100),
         )
 
         self.__base_path = "/home/pi/data/img"

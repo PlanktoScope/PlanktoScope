@@ -164,17 +164,6 @@ class stepper:
 
 class StepperProcess(multiprocessing.Process):
 
-    focus_steps_per_mm = 40
-    # 507 steps per ml for PlanktoScope standard
-    # 5200 for custom NEMA14 pump with 0.8mm ID Tube
-    pump_steps_per_ml = 507
-    # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the PlanktoScope can send
-    focus_max_speed = 0.5
-    # pump max speed is in ml/min
-    pump_max_speed = 30
-
-    stepper_type = "adafruit"
-
     def __init__(self, event):
         super(StepperProcess, self).__init__()
         logger.info("Initialising the stepper process")
@@ -182,10 +171,9 @@ class StepperProcess(multiprocessing.Process):
 
         self.stop_event = event
 
-        # ce qui change : avant configuration = {} mais du coup 'using defaults' c'était config vide
-        #                 os.path.getsize() retourne une erreur de type OSError si le fichier n'existe pas
-        default_config = {
-                    "stepper_reverse": false,
+        # default configuration
+        configuration = {
+                    "stepper_reverse": False,
                     "microsteps": 32,
                     "focus_steps_per_mm": 40,
                     "pump_steps_per_ml": 507,
@@ -197,17 +185,14 @@ class StepperProcess(multiprocessing.Process):
                     "analog_gain": 1.0,
                     "digital_gain": 1.0
                     }
-        configuration = default_config
-        try:
-            if os.path.getsize("/home/pi/PlanktoScope/hardware.json") > 0 :
-                # load hardware.json
-                with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-                    configuration = json.load(config_file)
-                    logger.debug(f"Hardware configuration loaded is {configuration}")
-            else:
-                logger.info("The hardware configuration file is empty, using defaults")
-        except OSError:
-            logger.error("The hardware configuration file is missing, using defaults")
+
+        if os.path.exists("/home/pi/PlanktoScope/hardware.json") and os.path.getsize("/home/pi/PlanktoScope/hardware.json") > 0 :
+            # load hardware.json
+            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+                configuration.update(json.load(config_file))
+                logger.debug(f"Hardware configuration loaded is {configuration}")
+        else:
+            logger.info("The hardware configuration file is empty or missing, using defaults")
 
         reverse = False
         microsteps = 16
@@ -215,17 +200,11 @@ class StepperProcess(multiprocessing.Process):
         # parse the config data. If the key is absent, we are using the default value
         reverse = configuration.get("stepper_reverse", reverse)
         microsteps = configuration.get("microsteps", microsteps)
-        self.focus_steps_per_mm = configuration.get(
-            "focus_steps_per_mm", self.focus_steps_per_mm
-        )
-        self.pump_steps_per_ml = configuration.get(
-            "pump_steps_per_ml", self.pump_steps_per_ml
-        )
-        self.focus_max_speed = configuration.get(
-            "focus_max_speed", self.focus_max_speed
-        )
-        self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
-        self.stepper_type = configuration.get("stepper_type", self.stepper_type)
+        self.focus_steps_per_mm = configuration["focus_steps_per_mm"]
+        self.pump_steps_per_ml = configuration["pump_steps_per_ml"]
+        self.focus_max_speed = configuration["focus_max_speed"]
+        self.pump_max_speed = configuration["pump_max_speed"]
+        self.stepper_type = configuration["stepper_type"]
 
         # define the names for the 2 exsting steppers
         if self.stepper_type == "adafruit":
