@@ -589,10 +589,11 @@ class SegmenterProcess(multiprocessing.Process):
             )
             if images_count < 10:
                 self._calculate_flat(
-                    images_list[0:images_count], images_count, self.__working_path
+                    images_list[:images_count], images_count, self.__working_path
                 )
+
             else:
-                self._calculate_flat(images_list[0:10], 10, self.__working_path)
+                self._calculate_flat(images_list[:10], 10, self.__working_path)
 
             if self.__save_debug_img:
                 self._save_image(
@@ -1040,6 +1041,4 @@ class SegmenterProcess(multiprocessing.Process):
 
 
 # This is called if this script is launched directly
-if __name__ == "__main__":
-    # TODO This should be a test suite for this library
-    pass
+pass
