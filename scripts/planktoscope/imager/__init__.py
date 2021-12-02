@@ -66,9 +66,7 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.info("planktoscope.imager is initialising")
 
-
-        # ce qui change : avant configuration = {} mais du coup 'using defaults' c'était config vide
-        #                 os.path.getsize() retourne une erreur de type OSError si le fichier n'existe pas
+        # default configuration
         configuration = {
                     "stepper_reverse": False,
                     "microsteps": 32,
