@@ -440,7 +440,7 @@
         "type": "ui_group",
         "name": "Sample Location",
         "tab": "737ec584.2eea2c",
-        "order": 2,
+        "order": 3,
         "disp": false,
         "width": "10",
         "collapse": false
@@ -450,7 +450,7 @@
         "type": "ui_group",
         "name": "Validation",
         "tab": "737ec584.2eea2c",
-        "order": 4,
+        "order": 5,
         "disp": false,
         "width": 10,
         "collapse": false
@@ -603,7 +603,7 @@
         "type": "ui_group",
         "name": "Net Metadata",
         "tab": "737ec584.2eea2c",
-        "order": 3,
+        "order": 4,
         "disp": false,
         "width": "10",
         "collapse": false
@@ -729,7 +729,7 @@
         "type": "ui_group",
         "name": "GPS Status",
         "tab": "737ec584.2eea2c",
-        "order": 5,
+        "order": 6,
         "disp": true,
         "width": 10,
         "collapse": false
@@ -975,7 +975,18 @@
         "height": 1
     },
     {
-        "id": "04c041ea28512d50",
+        "id": "7bc0a4c416e4545c",
+        "type": "ui_group",
+        "name": "Culture Date and Time",
+        "tab": "737ec584.2eea2c",
+        "order": 2,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6c31ad948a9d62fd",
         "type": "ui_spacer",
         "z": "b771c342.49603",
         "name": "spacer",
@@ -985,27 +996,7 @@
         "height": 1
     },
     {
-        "id": "49bd0a8bc3fa78fb",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 3,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "97f85e36a84b9b9c",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 6,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "7bd72ae0fc591439",
+        "id": "d65a6ccdeb9d35d6",
         "type": "ui_spacer",
         "z": "b771c342.49603",
         "name": "spacer",
@@ -1793,17 +1784,29 @@
                 "label": "Single location (with net or bucket)",
                 "value": "single_location",
                 "type": "str"
+            },
+            {
+                "label": "Lab culture",
+                "value": "culture",
+                "type": "str"
+            },
+            {
+                "label": "Test",
+                "value": "test",
+                "type": "str"
             }
         ],
         "payload": "",
         "topic": "sample_sampling_gear",
         "topicType": "str",
+        "className": "",
         "x": 630,
         "y": 200,
         "wires": [
             [
                 "9f501f49.45645",
-                "46eb1bf8.3dc5f4"
+                "46eb1bf8.3dc5f4",
+                "3ac7b631f5d8ef90"
             ]
         ]
     },
@@ -2389,7 +2392,7 @@
         "name": "net_throw_location",
         "label": "Net Throw Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 4,
+        "order": 3,
         "width": 0,
         "height": 0,
         "options": [
@@ -2434,6 +2437,7 @@
         "topic": "net_throw_location",
         "topicType": "str",
         "splitLayout": false,
+        "className": "",
         "x": 650,
         "y": 620,
         "wires": [
@@ -2449,7 +2453,7 @@
         "name": "net_retrieval_location",
         "label": "Net Retrieval Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 5,
+        "order": 4,
         "width": 0,
         "height": 0,
         "options": [
@@ -2507,7 +2511,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Validate Location / Timestamp",
-        "func": "function ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (!input.match(/\\d+°\\d+\\.*\\d*\\'[NSEW]/)){\n    \treturn \"parsing error\"\n    }\n    var parts = input.split(/[^\\d.\\w]+/)\n    if (parts.length != 3){\n    \treturn \"parsing error\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + parts[2]\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(\"'\")){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\nmsg.valid = false\n\nif (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n",
+        "func": "// Code added here will be run once\n// whenever the node is started.\nfunction ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (!input.match(/\\d+°\\d+\\.*\\d*\\'[NSEW]/)){\n    \treturn \"parsing error\"\n    }\n    var parts = input.split(/[^\\d.\\w]+/)\n    if (parts.length != 3){\n    \treturn \"parsing error\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + parts[2]\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(\"'\")){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\nmsg.valid = false\n\nif (msg.topic == \"culture_timestamp\"){\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    return [{topic: \"Date and time format valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n}\nelse if (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2537,7 +2541,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Net check",
-        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\"],\"hide\":[\"Sample_Sample_Location\"]}};\n}\nelse{\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Location\"], \"hide\":[\"Sample_Net_Metadata\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
+        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\"],\"hide\":[\"Sample_Sample_Location\",\"Sample_Culture_Date_and_Time\"]}};\n}\nelse if (msg.payload != \"culture\" && msg.payload != \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Location\"], \"hide\":[\"Sample_Net_Metadata\",\"Sample_Culture_Date_and_Time\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2568,7 +2572,7 @@
         "label": "Decknet flowmeter start",
         "tooltip": "in L",
         "group": "cf5d9f0e.d57e7",
-        "order": 8,
+        "order": 6,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -2576,7 +2580,7 @@
         "delay": "0",
         "topic": "sample_total_flowmeter_start",
         "topicType": "str",
-        "x": 1340,
+        "x": 1350,
         "y": 220,
         "wires": [
             [
@@ -2592,7 +2596,7 @@
         "label": "Decknet flowmeter end",
         "tooltip": "in L",
         "group": "cf5d9f0e.d57e7",
-        "order": 9,
+        "order": 7,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -2614,7 +2618,7 @@
         "z": "b771c342.49603",
         "group": "cf5d9f0e.d57e7",
         "name": "Decknet flowmeter read",
-        "order": 7,
+        "order": 5,
         "width": 10,
         "height": 1,
         "format": "<div style=\"line-height: 100%;\">\n    <p class=\"formlabel\" style=\"font-size: larger;\">Decknet flowmeter readings</p>\n    <p style=\"font-size: smaller;\">Those values are used to calculate <font style=\"font-family: mono;\">sample_total_volume</font>. Values are in L.</p>\n</div>\n",
@@ -3052,6 +3056,77 @@
         "wires": [
             [
                 "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "3ac7b631f5d8ef90",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Culture check",
+        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 320,
+        "wires": [
+            [
+                "cbb123ab.fd3428"
+            ],
+            [
+                "05c6aff2afbd69cf"
+            ]
+        ],
+        "outputLabels": [
+            "decknet activation",
+            ""
+        ]
+    },
+    {
+        "id": "05c6aff2afbd69cf",
+        "type": "ui_form",
+        "z": "b771c342.49603",
+        "name": "culture_timestamp",
+        "label": "Culture timestamp",
+        "group": "7bc0a4c416e4545c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Date (YYYY-MM-DD, UTC)",
+                "value": "object_date",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Time (HH:MM(:SS), UTC 24h)",
+                "value": "object_time",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "object_date": "",
+            "object_time": ""
+        },
+        "payload": "",
+        "submit": "Validate",
+        "cancel": "Reset",
+        "topic": "culture_timestamp",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 650,
+        "y": 700,
+        "wires": [
+            [
+                "14658615.47c862"
             ]
         ]
     },
@@ -8456,7 +8531,7 @@
         "y": 40,
         "wires": [
             [
-                "bce26c0cb4d77483"
+                "952db22920d7d5f1"
             ]
         ]
     },
@@ -9598,7 +9673,7 @@
         ]
     },
     {
-        "id": "bce26c0cb4d77483",
+        "id": "952db22920d7d5f1",
         "type": "rpi-gpio out",
         "z": "1371dec5.76e671",
         "name": "Fan",
