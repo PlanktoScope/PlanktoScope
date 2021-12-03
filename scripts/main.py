@@ -78,6 +78,10 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
+    # Create script PID file, so it's easy to kill the main process without ravaging all python script in the OS
+    with open('/tmp/pscope_pid', 'w') as f:
+        f.write(str(os.getpid()))
+    
     # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
     with open("/boot/config.txt", "r") as config_file:
         for i, line in enumerate(config_file):
@@ -190,4 +194,8 @@ if __name__ == "__main__":
     # module_thread.close()
 
     display.stop()
+
+    # Cleanup pid file
+    os.remove('/tmp/pscope_pid')
+    
     logger.info("Bye")
