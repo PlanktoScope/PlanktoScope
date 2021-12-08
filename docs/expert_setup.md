@@ -142,7 +142,7 @@ ln -s /home/pi/PlanktoScope/scripts/planktoscope /home/pi/.local/lib/python3.7/s
 ln -s /home/pi/PlanktoScope/scripts/shush /home/pi/.local/lib/python3.7/site-packages/shush
 sudo mkdir -p /root/.local/lib/python3.7/site-packages
 sudo ln -s /home/pi/PlanktoScope/scripts/planktoscope /root/.local/lib/python3.7/site-packages/planktoscope
-sudo ln -s /home/pi/PlanktoScope/scripts/shush /home/pi/.local/lib/python3.7/site-packages/shush
+sudo ln -s /home/pi/PlanktoScope/scripts/shush /root/.local/lib/python3.7/site-packages/shush
 ```
 
 ### [ADAFRUIT VERSION] Check CircuitPython's install
