@@ -1725,8 +1725,11 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_ship",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 670,
         "y": 80,
         "wires": [
@@ -1823,8 +1826,11 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_operator",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 650,
         "y": 160,
         "wires": [
@@ -1847,8 +1853,11 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_project",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 660,
         "y": 40,
         "wires": [
@@ -1870,8 +1879,11 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_id",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 670,
         "y": 120,
         "wires": [
@@ -1890,6 +1902,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1080,
         "y": 200,
         "wires": [
@@ -2203,8 +2216,11 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "300",
         "topic": "object_depth_max",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 650,
         "y": 240,
         "wires": [
@@ -2226,8 +2242,11 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "300",
         "topic": "object_depth_min",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 650,
         "y": 280,
         "wires": [
@@ -2273,8 +2292,10 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_concentrated_sample_volume",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 590,
         "y": 440,
@@ -2297,8 +2318,11 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_gear_net_opening",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 620,
         "y": 320,
         "wires": [
@@ -2577,10 +2601,12 @@
         "height": 1,
         "passthru": false,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_total_flowmeter_start",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
-        "x": 1350,
+        "x": 1340,
         "y": 220,
         "wires": [
             [
@@ -2601,8 +2627,10 @@
         "height": 1,
         "passthru": false,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_total_flowmeter_end",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 1340,
         "y": 260,
@@ -2912,8 +2940,10 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_dilution_factor",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 640,
         "y": 480,
@@ -2936,8 +2966,10 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": "500",
+        "delay": "300",
         "topic": "sample_total_volume",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 1220,
         "y": 760,
@@ -2994,7 +3026,7 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "300",
         "topic": "sample_speed_through_water",
         "sendOnBlur": true,
         "className": "",
@@ -3020,7 +3052,7 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": 300,
+        "delay": "300",
         "topic": "acq_minimum_mesh",
         "sendOnBlur": true,
         "className": "",
@@ -3046,7 +3078,7 @@
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": 300,
+        "delay": "300",
         "topic": "acq_maximum_mesh",
         "sendOnBlur": true,
         "className": "",
@@ -3231,8 +3263,11 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": "0",
+        "delay": "300",
         "topic": "pump_manual_volume",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 600,
         "y": 420,
         "wires": [
@@ -4158,6 +4193,7 @@
         "min": "125",
         "max": "1000",
         "step": "1",
+        "className": "",
         "x": 600,
         "y": 880,
         "wires": [
@@ -4273,6 +4309,7 @@
         "officon": "",
         "offcolor": "",
         "animate": true,
+        "className": "",
         "x": 550,
         "y": 920,
         "wires": [
@@ -4566,9 +4603,15 @@
         "label": "ISO",
         "stateField": "payload",
         "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
         "rounded": true,
         "useThemeColors": true,
         "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
         "options": [
             {
                 "label": "100",
@@ -4663,6 +4706,8 @@
         "mode": "number",
         "delay": 300,
         "topic": "focus_distance",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 580,
         "y": 460,
@@ -4687,6 +4732,8 @@
         "mode": "number",
         "delay": 300,
         "topic": "focus_speed",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 570,
         "y": 500,
@@ -4735,6 +4782,8 @@
         "mode": "number",
         "delay": 300,
         "topic": "red",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 580,
         "y": 1040,
@@ -4760,6 +4809,8 @@
         "mode": "number",
         "delay": 300,
         "topic": "blue",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 580,
         "y": 1080,
@@ -4840,6 +4891,9 @@
         "mode": "text",
         "delay": 300,
         "topic": "acq_id",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 690,
         "y": 180,
         "wires": [
@@ -4892,6 +4946,7 @@
         "payload": "",
         "topic": "acq_celltype",
         "topicType": "str",
+        "className": "",
         "x": 670,
         "y": 100,
         "wires": [
@@ -4906,7 +4961,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "set global",
-        "func": "global.set(msg.topic, msg.payload);",
+        "func": "global.set(msg.topic, msg.payload);\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4915,7 +4970,9 @@
         "x": 920,
         "y": 180,
         "wires": [
-            []
+            [
+                "52ea7d01.711034"
+            ]
         ]
     },
     {
@@ -5027,7 +5084,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Image control",
-        "func": "// Reset the number of images taken\nflow.set('img_counter', 0);\n\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar imaging_pump_volume = global.get(\"imaging_pump_volume\");\nvar acq_id = global.get(\"acq_id\");\nvar nb_frame = global.get(\"nb_frame\");\nvar pump_direction = global.get(\"pump_direction\");\nvar sleep_before = global.get(\"sleep_before\");\nvar object_date = global.get(\"object_date\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Type of the flowcell\";\n    return [null, msg];\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Lower fraction size\";\n    return [null, msg];\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Upper fraction size\";\n    return [null, msg];\n} else if (imaging_pump_volume === undefined || imaging_pump_volume === \"\" || imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Volume inbetween images\";\n    return [null, msg];\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Acquisition ID\";\n    return [null, msg];\n} else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    return [null, msg];\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n    return [null, msg];\n} else if (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n    return [null, msg];\n}else if (object_date === undefined || object_date === \"\" || object_date === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Object date\";\n    return [null, msg];\n}\n\nmsg.payload = {\n    \"action\": \"image\",\n    \"sleep\": sleep_before,\n    \"pump_direction\": pump_direction,\n    \"volume\": imaging_pump_volume,\n    \"nb_frame\": nb_frame,\n}\n\nreturn [msg, null];",
+        "func": "// Reset the number of images taken\nflow.set('img_counter', 0);\n\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar imaging_pump_volume = global.get(\"imaging_pump_volume\");\nvar acq_id = global.get(\"acq_id\");\nvar nb_frame = global.get(\"nb_frame\");\nvar pump_direction = global.get(\"pump_direction\");\nvar sleep_before = global.get(\"sleep_before\");\nvar object_date = global.get(\"object_date\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Type of the flowcell\";\n    return [null, msg];\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Lower fraction size\";\n    return [null, msg];\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Upper fraction size\";\n    return [null, msg];\n} else if (imaging_pump_volume === undefined || imaging_pump_volume === \"\" || imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Volume inbetween images\";\n    return [null, msg];\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Acquisition ID\";\n    return [null, msg];\n} else if (nb_frame === undefined || nb_frame === \"\" || nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    return [null, msg];\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n    return [null, msg];\n} else if (sleep_before === undefined || sleep_before === \"\" || sleep_before === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n    return [null, msg];\n}else if (object_date === undefined || object_date === \"\" || object_date === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Object date\";\n    return [null, msg];\n}\n\nmsg.payload = {\n    \"action\": \"image\",\n    \"sleep\": sleep_before,\n    \"pump_direction\": pump_direction,\n    \"volume\": imaging_pump_volume,\n    \"nb_frame\": nb_frame,\n}\nmsg.send = true\n\nreturn [msg, null];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -5076,7 +5133,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 1130,
-        "y": 400,
+        "y": 420,
         "wires": []
     },
     {
@@ -5154,8 +5211,8 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Encapsulate config",
-        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_datetime\": \"Segmentation timestamp\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktonPlanet/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\nreturn msg;",
-        "outputs": 1,
+        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_datetime\": \"Segmentation timestamp\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktonPlanet/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\n\nif ( msg.send == true){\n\treturn [msg, msg]\n}\nelse{\n\treturn [msg, null]\n}",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -5164,8 +5221,10 @@
         "y": 400,
         "wires": [
             [
-                "c3e50240.82aa58",
                 "29be525e.0c87fe"
+            ],
+            [
+                "c3e50240.82aa58"
             ]
         ]
     },
@@ -5207,10 +5266,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "save",
         "payload": "",
         "payloadType": "str",
         "topic": "imager/image",
+        "topicType": "str",
         "x": 420,
         "y": 400,
         "wires": [
@@ -5334,6 +5395,9 @@
         "mode": "number",
         "delay": 300,
         "topic": "nb_frame",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 680,
         "y": 220,
         "wires": [
@@ -5752,10 +5816,12 @@
         "wrap": false,
         "passthru": true,
         "topic": "sleep_before",
+        "topicType": "str",
         "format": "{{value}}",
         "min": "0.1",
         "max": "5",
         "step": "0.1",
+        "className": "",
         "x": 670,
         "y": 140,
         "wires": [
@@ -5814,9 +5880,11 @@
         "passthru": true,
         "outs": "end",
         "topic": "imaging_pump_volume",
+        "topicType": "str",
         "min": "0.001",
         "max": "0.5",
         "step": "0.001",
+        "className": "",
         "x": 630,
         "y": 260,
         "wires": [
@@ -5849,7 +5917,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
+        "x": 330,
         "y": 220,
         "wires": [
             [
@@ -5887,7 +5955,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
+        "x": 340,
         "y": 140,
         "wires": [
             [
@@ -5928,6 +5996,42 @@
             [
                 "bb2bb7ce.1d1458"
             ]
+        ]
+    },
+    {
+        "id": "ad153212312f0347",
+        "type": "ui_ui_control",
+        "z": "baa1e3d9.cb29d",
+        "name": "onTab",
+        "events": "all",
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "9b69ea945b587192"
+            ]
+        ]
+    },
+    {
+        "id": "9b69ea945b587192",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "check tab",
+        "func": "if (msg.name == \"Fluidic Acquisition\"){\n    return { \"topic\": \"imager/ image\" }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "52ea7d01.711034"
+            ]
+        ],
+        "outputLabels": [
+            "interface"
         ]
     },
     {
@@ -7143,6 +7247,8 @@
         "mode": "text",
         "delay": 300,
         "topic": "process_id",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 790,
         "y": 380,
@@ -7287,7 +7393,7 @@
         "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
-        "x": 410,
+        "x": 420,
         "y": 760,
         "wires": [
             [
@@ -8269,7 +8375,7 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 590,
+        "x": 580,
         "y": 180,
         "wires": []
     },
@@ -8779,7 +8885,7 @@
         "label": "Software version",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 850,
+        "x": 840,
         "y": 520,
         "wires": []
     },
