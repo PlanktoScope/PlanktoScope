@@ -4722,64 +4722,6 @@
         ]
     },
     {
-        "id": "f59a2f0d.5e9af",
-        "type": "ui_numeric",
-        "z": "baa1e3d9.cb29d",
-        "d": true,
-        "name": "acq_minimum_mesh",
-        "label": "Min fraction size (μm)",
-        "tooltip": "",
-        "group": "404c301a.19c4e",
-        "order": 1,
-        "width": 5,
-        "height": 1,
-        "wrap": false,
-        "passthru": true,
-        "topic": "acq_minimum_mesh",
-        "topicType": "str",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "300",
-        "step": "10",
-        "className": "",
-        "x": 640,
-        "y": 160,
-        "wires": [
-            [
-                "fb887036.12429"
-            ]
-        ]
-    },
-    {
-        "id": "6008a8bb.259f08",
-        "type": "ui_numeric",
-        "z": "baa1e3d9.cb29d",
-        "d": true,
-        "name": "acq_maximum_mesh",
-        "label": "Max fraction size (μm)",
-        "tooltip": "",
-        "group": "404c301a.19c4e",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "wrap": false,
-        "passthru": true,
-        "topic": "acq_maximum_mesh",
-        "topicType": "str",
-        "format": "{{value}}",
-        "min": "200",
-        "max": "2000",
-        "step": "10",
-        "className": "",
-        "x": 640,
-        "y": 200,
-        "wires": [
-            [
-                "fb887036.12429"
-            ]
-        ]
-    },
-    {
         "id": "6b34c456.83178c",
         "type": "ui_text_input",
         "z": "baa1e3d9.cb29d",
@@ -5205,9 +5147,7 @@
                 "de2c90cf.b73b08",
                 "4be09c97f86897d9",
                 "f573206abefa9518",
-                "f948151ab4031df4",
-                "5e3dec55.881074",
-                "d3ca8847.4d1ae"
+                "f948151ab4031df4"
             ]
         ]
     },
@@ -5245,46 +5185,6 @@
         "wires": [
             [
                 "cc0ca68b.4263a8"
-            ]
-        ]
-    },
-    {
-        "id": "5e3dec55.881074",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "d": true,
-        "name": "get acq_minimum_mesh",
-        "func": "msg.payload = msg.payload.acq_minimum_mesh;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 160,
-        "wires": [
-            [
-                "f59a2f0d.5e9af"
-            ]
-        ]
-    },
-    {
-        "id": "d3ca8847.4d1ae",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "d": true,
-        "name": "get acq_maximum_mesh",
-        "func": "msg.payload = msg.payload.acq_maximum_mesh;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 200,
-        "wires": [
-            [
-                "6008a8bb.259f08"
             ]
         ]
     },
@@ -5819,35 +5719,6 @@
         ]
     },
     {
-        "id": "df1ea904.cd261",
-        "type": "ui_slider",
-        "z": "baa1e3d9.cb29d",
-        "d": true,
-        "name": "imaging_pump_volume",
-        "label": "Pumped volume (mL)",
-        "tooltip": "inbetween frames",
-        "group": "4322c187.e73e5",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "imaging_pump_volume",
-        "topicType": "str",
-        "min": "0.001",
-        "max": "0.5",
-        "step": "0.001",
-        "className": "",
-        "x": 630,
-        "y": 320,
-        "wires": [
-            [
-                "fb887036.12429",
-                "67091ac0.8f9f6c"
-            ]
-        ]
-    },
-    {
         "id": "a4abb1ae.2ae418",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "baa1e3d9.cb29d",
@@ -5893,7 +5764,6 @@
         "y": 320,
         "wires": [
             [
-                "df1ea904.cd261",
                 "5caf2937aeda4e4a"
             ]
         ]
@@ -6008,8 +5878,8 @@
         "max": "0.5",
         "step": "0.001",
         "className": "",
-        "x": 700,
-        "y": 360,
+        "x": 670,
+        "y": 320,
         "wires": [
             [
                 "67091ac0.8f9f6c",
