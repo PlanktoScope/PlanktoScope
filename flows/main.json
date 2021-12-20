@@ -974,6 +974,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "none",
+        "allProps": false,
         "x": 480,
         "y": 60,
         "wires": [
@@ -1041,6 +1042,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 910,
         "y": 60,
         "wires": [
@@ -1063,7 +1065,6 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payloadType": "str",
         "x": 230,
         "y": 60,
         "wires": [
@@ -1236,18 +1237,6 @@
             [
                 "bb0a8725.a1849"
             ]
-        ]
-    },
-    {
-        "id": "4e78af2d.90be7",
-        "type": "ui_ui_control",
-        "z": "eaae323a.31b3",
-        "name": "",
-        "events": "change",
-        "x": 440,
-        "y": 160,
-        "wires": [
-            []
         ]
     },
     {
@@ -1669,6 +1658,18 @@
             [
                 "ce7087fc.dcc9e8"
             ]
+        ]
+    },
+    {
+        "id": "4e78af2d.90be7",
+        "type": "ui_ui_control",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "events": "change",
+        "x": 440,
+        "y": 160,
+        "wires": [
+            []
         ]
     },
     {
@@ -3012,6 +3013,8 @@
         "mode": "number",
         "delay": "300",
         "topic": "acq_minimum_mesh",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 640,
         "y": 360,
@@ -4497,6 +4500,7 @@
                 "color": "#cc6600"
             }
         ],
+        "topic": "",
         "x": 570,
         "y": 840,
         "wires": [
@@ -4721,6 +4725,7 @@
         "id": "f59a2f0d.5e9af",
         "type": "ui_numeric",
         "z": "baa1e3d9.cb29d",
+        "d": true,
         "name": "acq_minimum_mesh",
         "label": "Min fraction size (μm)",
         "tooltip": "",
@@ -4731,10 +4736,12 @@
         "wrap": false,
         "passthru": true,
         "topic": "acq_minimum_mesh",
+        "topicType": "str",
         "format": "{{value}}",
         "min": 0,
         "max": "300",
         "step": "10",
+        "className": "",
         "x": 640,
         "y": 160,
         "wires": [
@@ -4747,6 +4754,7 @@
         "id": "6008a8bb.259f08",
         "type": "ui_numeric",
         "z": "baa1e3d9.cb29d",
+        "d": true,
         "name": "acq_maximum_mesh",
         "label": "Max fraction size (μm)",
         "tooltip": "",
@@ -4757,10 +4765,12 @@
         "wrap": false,
         "passthru": true,
         "topic": "acq_maximum_mesh",
+        "topicType": "str",
         "format": "{{value}}",
         "min": "200",
         "max": "2000",
-        "step": "100",
+        "step": "10",
+        "className": "",
         "x": 640,
         "y": 200,
         "wires": [
@@ -4805,7 +4815,7 @@
         "place": "Select option",
         "group": "4322c187.e73e5",
         "order": 6,
-        "width": 5,
+        "width": "7",
         "height": 1,
         "passthru": true,
         "multiple": false,
@@ -4961,10 +4971,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "camera",
         "payload": "",
         "payloadType": "str",
         "topic": "imager/image",
+        "topicType": "str",
         "x": 460,
         "y": 480,
         "wires": [
@@ -5044,10 +5056,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "cancel",
         "payload": "{\"action\":\"stop\"}",
         "payloadType": "json",
         "topic": "imager/image",
+        "topicType": "str",
         "x": 460,
         "y": 520,
         "wires": [
@@ -5083,6 +5097,7 @@
         "passthru": true,
         "decouple": "false",
         "topic": "pump_direction",
+        "topicType": "str",
         "style": "",
         "onvalue": "FORWARD",
         "onvalueType": "str",
@@ -5092,6 +5107,8 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
+        "className": "",
         "x": 460,
         "y": 560,
         "wires": [
@@ -5235,10 +5252,14 @@
         "id": "5e3dec55.881074",
         "type": "function",
         "z": "baa1e3d9.cb29d",
+        "d": true,
         "name": "get acq_minimum_mesh",
         "func": "msg.payload = msg.payload.acq_minimum_mesh;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 370,
         "y": 160,
         "wires": [
@@ -5251,10 +5272,14 @@
         "id": "d3ca8847.4d1ae",
         "type": "function",
         "z": "baa1e3d9.cb29d",
+        "d": true,
         "name": "get acq_maximum_mesh",
         "func": "msg.payload = msg.payload.acq_maximum_mesh;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 370,
         "y": 200,
         "wires": [
@@ -5302,6 +5327,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 660,
         "y": 560,
         "wires": [
@@ -5392,6 +5418,7 @@
         "label": "Imager status:",
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
+        "className": "",
         "x": 770,
         "y": 740,
         "wires": []
@@ -5408,6 +5435,7 @@
         "label": "Focus status:",
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
+        "className": "",
         "x": 770,
         "y": 700,
         "wires": []
@@ -5424,6 +5452,7 @@
         "label": "Pump status:",
         "format": "{{msg.payload.status}}",
         "layout": "col-center",
+        "className": "",
         "x": 770,
         "y": 660,
         "wires": []
@@ -5598,6 +5627,7 @@
         "label": "Total imaged volume",
         "format": "{{msg.payload}}",
         "layout": "col-center",
+        "className": "",
         "x": 1200,
         "y": 140,
         "wires": []
@@ -5634,6 +5664,7 @@
         "label": "Total pumped volume",
         "format": "{{msg.payload}} mL",
         "layout": "col-center",
+        "className": "",
         "x": 1200,
         "y": 300,
         "wires": []
@@ -5648,6 +5679,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 950,
         "y": 300,
         "wires": [
@@ -5790,6 +5822,7 @@
         "id": "df1ea904.cd261",
         "type": "ui_slider",
         "z": "baa1e3d9.cb29d",
+        "d": true,
         "name": "imaging_pump_volume",
         "label": "Pumped volume (mL)",
         "tooltip": "inbetween frames",
@@ -5860,7 +5893,8 @@
         "y": 320,
         "wires": [
             [
-                "df1ea904.cd261"
+                "df1ea904.cd261",
+                "5caf2937aeda4e4a"
             ]
         ]
     },
@@ -5952,6 +5986,35 @@
         ],
         "outputLabels": [
             "interface"
+        ]
+    },
+    {
+        "id": "5caf2937aeda4e4a",
+        "type": "ui_numeric",
+        "z": "baa1e3d9.cb29d",
+        "name": "imaging_pump_volume",
+        "label": "Select Pumped volume (mL) : ",
+        "tooltip": "",
+        "group": "4322c187.e73e5",
+        "order": 1,
+        "width": "5",
+        "height": "1",
+        "wrap": false,
+        "passthru": true,
+        "topic": "imaging_pump_volume",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0.02",
+        "max": "0.5",
+        "step": "0.001",
+        "className": "",
+        "x": 700,
+        "y": 360,
+        "wires": [
+            [
+                "67091ac0.8f9f6c",
+                "fb887036.12429"
+            ]
         ]
     },
     {
