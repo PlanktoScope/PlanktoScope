@@ -3281,6 +3281,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 330,
         "y": 1180,
         "wires": [
@@ -3514,10 +3515,12 @@
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
+        "className": "",
         "icon": "keyboard_tab",
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
+        "topicType": "str",
         "x": 140,
         "y": 1180,
         "wires": [
@@ -7467,6 +7470,7 @@
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 1580,
         "y": 640,
         "wires": [
@@ -7506,6 +7510,7 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "fa-eraser",
         "payload": "",
         "payloadType": "str",
@@ -7813,6 +7818,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 150,
         "y": 260,
         "wires": [
@@ -8045,6 +8051,7 @@
         "label": "Current code version",
         "format": "{{msg.payload}}",
         "layout": "row-center",
+        "className": "",
         "x": 900,
         "y": 320,
         "wires": []
@@ -8091,6 +8098,7 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "Git branch update",
         "x": 1290,
