@@ -1,10 +1,9 @@
-# /etc/systemd/system/autohotspot.timer
 [Unit]
-Description=Run autohotspotN every 5 minutes, starting 10 seconds after system boot
+Description=Run autohotspotN every 5 minutes, starting 5 seconds after system boot
 
 [Timer]
 OnBootSec=5sec
-OnUnitActivateSec=5min 
+OnUnitActiveSec=5min 
 
 [Install]
 WantedBy=timers.target
