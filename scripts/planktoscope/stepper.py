@@ -18,10 +18,11 @@ logger.info("planktoscope.stepper is loaded")
 class StepperWaveshare:
     """A bipolar stepper motor using the Waveshare HAT."""
 
-    def __init__(self, dir_pin, step_pin, enable_pin):
+    def __init__(self, dir_pin, step_pin, enable_pin, stepper_type):
         self.dir_pin = dir_pin
         self.step_pin = step_pin
         self.enable_pin = enable_pin
+        self.stepper_type = stepper_type
 
         RPi.GPIO.setmode(RPi.GPIO.BCM)
         RPi.GPIO.setwarnings(False)
@@ -34,23 +35,32 @@ class StepperWaveshare:
 
     def release(self):
         """Releases all the coils so the motor can free spin, also won't use any power"""
-        self.__digital_write(self.enable_pin, 1)
+        self.stop()
 
     def __digital_write(self, pin, value):
         RPi.GPIO.output(pin, value)
 
     def stop(self):
-        self.__digital_write(self.enable_pin, 1)
+        if self.stepper_type == "waveshareRev2.1":
+            self.__digital_write(self.enable_pin, 0)
+        else:
+            self.__digital_write(self.enable_pin, 1)
 
     def onestep(self, *, direction=adafruit_motor.stepper.FORWARD, style=""):
         """Performs one step.
         :param int direction: Either `FORWARD` or `BACKWARD`"""
 
         if direction == adafruit_motor.stepper.FORWARD:
-            self.__digital_write(self.enable_pin, 0)
+            if self.stepper_type == "waveshareRev2.1":
+                self.__digital_write(self.enable_pin, 1)
+            else:
+                self.__digital_write(self.enable_pin, 0)
             self.__digital_write(self.dir_pin, 1)
         elif direction == adafruit_motor.stepper.BACKWARD:
-            self.__digital_write(self.enable_pin, 0)
+            if self.stepper_type == "waveshareRev2.1":
+                self.__digital_write(self.enable_pin, 1)
+            else:
+                self.__digital_write(self.enable_pin, 0)
             self.__digital_write(self.dir_pin, 0)
         else:
             logger.error(
@@ -226,25 +236,25 @@ class StepperProcess(multiprocessing.Process):
                 self.focus_stepper = stepper(
                     kit.stepper2, adafruit_motor.stepper.MICROSTEP, size=45
                 )
-        elif self.stepper_type == "waveshare":
+        elif "waveshare" in self.stepper_type:
             logger.info("Loading the waveshare configuration")
             logger.debug(
                 f"Configured microsteps is {microsteps}, check the hardware switches if the stage does not move the intended distance"
             )
             if reverse:
                 self.pump_stepper = stepper(
-                    StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4)
+                    StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4, stepper_type=self.stepper_type)
                 )
                 self.focus_stepper = stepper(
-                    StepperWaveshare(dir_pin=13, step_pin=19, enable_pin=12),
+                    StepperWaveshare(dir_pin=13, step_pin=19, enable_pin=12, stepper_type=self.stepper_type),
                     size=45,
                 )
             else:
                 self.pump_stepper = stepper(
-                    StepperWaveshare(dir_pin=13, step_pin=19, enable_pin=12)
+                    StepperWaveshare(dir_pin=13, step_pin=19, enable_pin=12, stepper_type=self.stepper_type)
                 )
                 self.focus_stepper = stepper(
-                    StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4),
+                    StepperWaveshare(dir_pin=24, step_pin=18, enable_pin=4, stepper_type=self.stepper_type),
                     size=45,
                 )
         else:
