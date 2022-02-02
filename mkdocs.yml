@@ -1,0 +1,35 @@
+site_name: PlanktoScope
+nav:
+    - Setup:
+        - Basic Install: easy_install.md
+        - Expert Setup: expert_setup.md
+        - Remote Access: remote_access.md
+    - Assembly:
+        - Assembly guide: assembly_guide.md
+    - Usage:
+        - Getting started: getting_started.md
+        - User Interface: ui_guide.md
+        - Collection devices: collection_devices.md
+    - Hardware:
+        - Planktoscope HAT: hat_hardware.md
+    - Under the hood:
+        - Software architecture: software_architecture.md
+        - MQTT Messages: mqtt_messages.md
+        - Create Master SD Card: create_sd.md
+        - Update the Device Tree: update_device-tree.md
+    - Changelog:
+        - Changelog: changelog.md
+    - Contribute:
+        - Edit this documentation: edit_this_doc.md
+        - Edit the code: edit_the_code.md
+    - About:
+        - License: license.md
+theme:
+    name: readthedocs
+
+markdown_extensions:
+    - smarty
+    - sane_lists
+    - admonition
+    - toc:
+        permalink: true

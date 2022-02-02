@@ -1,0 +1,8 @@
+if [ "$interface" = "eth0" ] && [ "$if_up" ]; then
+  systemctl start dnsmasq
+  if [ "$reason" = "STATIC" ] || [ "$reason" = "TIMEOUT" ] || [ "$reason" = "EXPIRE" ] || [ "$reason" = "NAK" ]; then
+    systemctl start dnsmasq
+  elif [ "$reason" = "NOCARRIER" ] || [ "$reason" = "INFORM" ] || [ "$reason" = "DEPARTED" ]; then
+    systemctl stop dnsmasq
+  fi
+fi
