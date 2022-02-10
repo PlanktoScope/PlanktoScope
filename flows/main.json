@@ -110,6 +110,7 @@
             }
         ],
         "env": [],
+        "meta": {},
         "color": "#DDAA99"
     },
     {
@@ -248,7 +249,7 @@
                 "default": "#0094CE",
                 "baseColor": "#5900ce",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false,
+                "edited": true,
                 "reset": false
             },
             "darkTheme": {
@@ -261,18 +262,18 @@
             "customTheme": {
                 "name": "Plancton_1",
                 "default": "#4B7930",
-                "baseColor": "#00aaff",
+                "baseColor": "#186891",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#783072",
-                    "value": "#00aaff",
+                    "default": "#186891",
+                    "value": "#186891",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#00aaff",
+                    "value": "#186891",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -280,15 +281,15 @@
                     "edited": true
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": true
                 },
                 "group-textColor": {
-                    "value": "#4dc3ff",
-                    "edited": false
+                    "value": "#2397d3",
+                    "edited": true
                 },
                 "group-borderColor": {
-                    "value": "#000000",
+                    "value": "#555555",
                     "edited": true
                 },
                 "group-backgroundColor": {
@@ -296,15 +297,15 @@
                     "edited": true
                 },
                 "widget-textColor": {
-                    "value": "#111111",
+                    "value": "#eeeeee",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#00aaff",
+                    "value": "#186891",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": true
                 },
                 "base-font": {
@@ -454,7 +455,7 @@
         "type": "ui_group",
         "name": "Validation",
         "tab": "737ec584.2eea2c",
-        "order": 6,
+        "order": 5,
         "disp": false,
         "width": 10,
         "collapse": false
@@ -744,7 +745,7 @@
         "type": "ui_group",
         "name": "GPS Status",
         "tab": "737ec584.2eea2c",
-        "order": 7,
+        "order": 6,
         "disp": true,
         "width": "10",
         "collapse": false,
@@ -769,78 +770,6 @@
         "disp": true,
         "width": "6",
         "collapse": false
-    },
-    {
-        "id": "72a9216.2ff48e",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4322c187.e73e5",
-        "order": 8,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "1b664927.c91d1f",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 2,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "1a663b6a.ab5805",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 4,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "8eeed8d8.ad9098",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 5,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "be1c5ce7.004e",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 6,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "c2fe38e9.555e3",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 7,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "89bd18b7.c779a8",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b5d61bc7.54fe48",
-        "order": 8,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "3cbbfa5d.efa636",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "b7919ae2.c01788",
-        "order": 2,
-        "width": 5,
-        "height": 1
     },
     {
         "id": "7bc0a4c416e4545c",
@@ -975,8 +904,8 @@
         "id": "bfcfdfdacc5f7350",
         "type": "ui_group",
         "name": "Mode débutant",
-        "tab": "737ec584.2eea2c",
-        "order": 5,
+        "tab": "c9194f02.9d5e9",
+        "order": 7,
         "disp": true,
         "width": 20,
         "collapse": false,
@@ -1020,6 +949,86 @@
         "group": "fc5e4e6f.5b1c8",
         "order": 5,
         "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f69df77bac8ed73c",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "4322c187.e73e5",
+        "order": 8,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "baa64e4a268b622e",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "4322c187.e73e5",
+        "order": 9,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "160d43f1d1be4a88",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "93c9436645d5efaf",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "9d98964025be6145",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "1944fe17c29f87fe",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "c82be935ce9b6920",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f41266f1e7daa79b",
+        "type": "ui_spacer",
+        "z": "baa1e3d9.cb29d",
+        "name": "spacer",
+        "group": "b5d61bc7.54fe48",
+        "order": 8,
+        "width": 2,
         "height": 1
     },
     {
@@ -1732,6 +1741,47 @@
         "y": 160,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "2ec0a88c34526b86",
+        "type": "function",
+        "z": "eaae323a.31b3",
+        "name": "Global mode setup",
+        "func": "var mode= 0;\nglobal.set(\"mode\",mode);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "912aa8800e51bfa5",
+        "type": "inject",
+        "z": "eaae323a.31b3",
+        "name": "Setting mode global",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "2ec0a88c34526b86"
+            ]
         ]
     },
     {
@@ -2860,6 +2910,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 750,
         "y": 1040,
         "wires": [
@@ -3021,6 +3072,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1420,
         "y": 760,
         "wires": [
@@ -3110,6 +3162,8 @@
         "mode": "number",
         "delay": "300",
         "topic": "acq_maximum_mesh",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 640,
         "y": 400,
@@ -3192,106 +3246,6 @@
         ]
     },
     {
-        "id": "c5d492e187838c05",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Change mode",
-        "func": "var activation_msg = {}\n\nif (msg.payload === 0){\n    //activation_msg.payload = {\"group\":{\"show\":[\"Sample Identification\"],\"hide\":[\"Mode débutant\"]}};\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Identification\",\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\",\"Sample_GPS_Status\"],\"hide\":[\"Sample_Mode_débutant\"]}};    \n    return activation_msg;\n}\nelse if (msg.payload === 1){\n    //activation_msg.payload = {\"group\":{\"show\":[\"Mode débutant\"],\"hide\":[\"Sample Identification,Culture Date and Time, Sample Location, Net Metadata, Validation, GPS Status\"]}};\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Mode_débutant\"],\"hide\":[\"Sample_Sample_Identification\",\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_GPS_Status\"]}};\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 560,
-        "wires": [
-            [
-                "b2919c1f882acabc"
-            ]
-        ]
-    },
-    {
-        "id": "b2919c1f882acabc",
-        "type": "ui_ui_control",
-        "z": "b771c342.49603",
-        "name": "show/hide net groups",
-        "events": "change",
-        "x": 340,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6bd7c40d65ad2af3",
-        "type": "ui_multistate_switch",
-        "z": "b771c342.49603",
-        "name": "Mode selection",
-        "group": "5517c651.b2f668",
-        "order": 3,
-        "width": 10,
-        "height": 1,
-        "label": "",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "never",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "Expert mode",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Beginner mode",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "topic": "",
-        "x": 180,
-        "y": 520,
-        "wires": [
-            [
-                "c5d492e187838c05"
-            ]
-        ]
-    },
-    {
-        "id": "696d6a74bd90afe8",
-        "type": "inject",
-        "z": "b771c342.49603",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 120,
-        "y": 480,
-        "wires": [
-            [
-                "6bd7c40d65ad2af3"
-            ]
-        ]
-    },
-    {
         "id": "76acd2c1783e2a25",
         "type": "debug",
         "z": "b771c342.49603",
@@ -3307,27 +3261,6 @@
         "x": 1270,
         "y": 420,
         "wires": []
-    },
-    {
-        "id": "aa04e3b871c9dc7f",
-        "type": "ui_template",
-        "z": "b771c342.49603",
-        "group": "bfcfdfdacc5f7350",
-        "name": "Update message",
-        "order": 1,
-        "width": 20,
-        "height": 5,
-        "format": "<div><center>Vous êtes ici dans le mode débutant!</center></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 150,
-        "y": 660,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "6a84252a.d52a0c",
@@ -4995,8 +4928,8 @@
         "tooltip": "",
         "place": "Select option",
         "group": "4322c187.e73e5",
-        "order": 6,
-        "width": "7",
+        "order": 7,
+        "width": 7,
         "height": 1,
         "passthru": true,
         "multiple": false,
@@ -5146,7 +5079,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "group": "4322c187.e73e5",
-        "order": 12,
+        "order": 13,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -5231,7 +5164,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "Stop Acquisition",
         "group": "4322c187.e73e5",
-        "order": 11,
+        "order": 12,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -5274,7 +5207,7 @@
         "label": "Pump direction",
         "tooltip": "BACKWARD / FORWARD",
         "group": "4322c187.e73e5",
-        "order": 9,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -5352,7 +5285,7 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "group": "4322c187.e73e5",
-        "order": 10,
+        "order": 11,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -5483,7 +5416,7 @@
         "label": "Number of images to acquire",
         "tooltip": "",
         "group": "4322c187.e73e5",
-        "order": 2,
+        "order": 3,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -5798,7 +5731,7 @@
         "type": "ui_text",
         "z": "baa1e3d9.cb29d",
         "group": "4322c187.e73e5",
-        "order": 7,
+        "order": 6,
         "width": 5,
         "height": 1,
         "name": "Total pumped volume",
@@ -5873,6 +5806,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 810,
         "y": 780,
         "wires": [
@@ -6107,9 +6041,9 @@
         "label": "Select Pumped volume (mL) : ",
         "tooltip": "",
         "group": "4322c187.e73e5",
-        "order": 1,
-        "width": "5",
-        "height": "1",
+        "order": 2,
+        "width": 5,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "imaging_pump_volume",
@@ -6125,6 +6059,421 @@
             [
                 "67091ac0.8f9f6c",
                 "fb887036.12429"
+            ]
+        ]
+    },
+    {
+        "id": "1ffcd52e93271266",
+        "type": "ui_ui_control",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "events": "change",
+        "x": 1280,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7735eeda428d214",
+        "type": "ui_button",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "group": "b7919ae2.c01788",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Continue",
+        "tooltip": "",
+        "color": "#097479",
+        "bgcolor": "white",
+        "className": "",
+        "icon": "keyboard_tab",
+        "payload": "{\"tab\":\"Segmentation\"}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 1140,
+        "y": 700,
+        "wires": [
+            [
+                "1ffcd52e93271266"
+            ]
+        ]
+    },
+    {
+        "id": "21031ffc6f65e987",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "Change mode",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Fluidic_Acquisition_Preview\",\"Fluidic_Acquisition_Acquisition\", \"Fluidic_Acquisition_Statistics\", \"Fluidic_Acquisition_Status\",\"Fraction size\"],\"hide\":[\"Fluidic_Acquisition_Mode_débutant\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Fluidic_Acquisition_Mode_débutant\"],\"hide\":[\"Fluidic_Acquisition_Preview\",\"Fluidic_Acquisition_Acquisition\", \"Fluidic_Acquisition_Statistics\", \"Fluidic_Acquisition_Status\",\"Fraction size\"]}};\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 1100,
+        "wires": [
+            [
+                "74b222e832764b41"
+            ]
+        ]
+    },
+    {
+        "id": "74b222e832764b41",
+        "type": "ui_ui_control",
+        "z": "baa1e3d9.cb29d",
+        "name": "show/hide net groups",
+        "events": "change",
+        "x": 880,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "159f2c48f920d7d6",
+        "type": "ui_multistate_switch",
+        "z": "baa1e3d9.cb29d",
+        "name": "Mode selection",
+        "group": "b7919ae2.c01788",
+        "order": 3,
+        "width": 10,
+        "height": 1,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "change",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Expert mode",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Beginner mode",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 300,
+        "y": 1060,
+        "wires": [
+            [
+                "4f25cc7d67324a4d"
+            ]
+        ]
+    },
+    {
+        "id": "da61207b6e43cffc",
+        "type": "inject",
+        "z": "baa1e3d9.cb29d",
+        "name": "Default: Expert mode",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "mode",
+        "payloadType": "global",
+        "x": 120,
+        "y": 980,
+        "wires": [
+            [
+                "159f2c48f920d7d6"
+            ]
+        ]
+    },
+    {
+        "id": "cb83d6cacf4f0117",
+        "type": "ui_template",
+        "z": "baa1e3d9.cb29d",
+        "group": "bfcfdfdacc5f7350",
+        "name": "Mode débutant message",
+        "order": 1,
+        "width": 20,
+        "height": 5,
+        "format": "<div><center>Vous êtes ici dans le mode débutant!</center></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1070,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a906d3253974acca",
+        "type": "change",
+        "z": "baa1e3d9.cb29d",
+        "name": "Change global mode",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mode",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 1000,
+        "wires": [
+            [
+                "319bff50477bc5fc"
+            ]
+        ]
+    },
+    {
+        "id": "319bff50477bc5fc",
+        "type": "link out",
+        "z": "baa1e3d9.cb29d",
+        "name": "out_acquisition_mode",
+        "mode": "link",
+        "links": [
+            "17f73dfecfb50dc8",
+            "01ca5224721735b1"
+        ],
+        "x": 835,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "127fd2e4447c6ad1",
+        "type": "link in",
+        "z": "baa1e3d9.cb29d",
+        "name": "in_acquisition_mode",
+        "links": [
+            "3c4aa170a76d7456",
+            "32e6370ecfcb3fa6"
+        ],
+        "x": 75,
+        "y": 1120,
+        "wires": [
+            [
+                "159f2c48f920d7d6"
+            ]
+        ]
+    },
+    {
+        "id": "4f25cc7d67324a4d",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "Get mode value",
+        "func": "if (msg.payload != global.get(\"mode\")){\n    return msg;\n}\nelse {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1060,
+        "wires": [
+            [
+                "21031ffc6f65e987",
+                "a906d3253974acca"
+            ]
+        ]
+    },
+    {
+        "id": "d3dade2cda9a8ecc",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "Change mode",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Fluidic_Acquisition_Preview\",\"Fluidic_Acquisition_Acquisition\", \"Fluidic_Acquisition_Statistics\", \"Fluidic_Acquisition_Status\",\"Fraction size\"],\"hide\":[\"Fluidic_Acquisition_Mode_débutant\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Fluidic_Acquisition_Mode_débutant\"],\"hide\":[\"Fluidic_Acquisition_Preview\",\"Fluidic_Acquisition_Acquisition\", \"Fluidic_Acquisition_Statistics\", \"Fluidic_Acquisition_Status\",\"Fraction size\"]}};\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1280,
+        "wires": [
+            [
+                "b893d50229537d73"
+            ]
+        ]
+    },
+    {
+        "id": "b893d50229537d73",
+        "type": "ui_ui_control",
+        "z": "baa1e3d9.cb29d",
+        "name": "show/hide net groups",
+        "events": "change",
+        "x": 900,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f88d04913517c59b",
+        "type": "ui_multistate_switch",
+        "z": "baa1e3d9.cb29d",
+        "name": "Mode selection",
+        "group": "5517c651.b2f668",
+        "order": 3,
+        "width": 10,
+        "height": 1,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "change",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Expert mode",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Beginner mode",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 340,
+        "y": 1240,
+        "wires": [
+            [
+                "e6cbce2ec9702d22"
+            ]
+        ]
+    },
+    {
+        "id": "aee46911fe23833c",
+        "type": "inject",
+        "z": "baa1e3d9.cb29d",
+        "name": "Default: Expert mode",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "mode",
+        "payloadType": "global",
+        "x": 120,
+        "y": 1240,
+        "wires": [
+            [
+                "f88d04913517c59b"
+            ]
+        ]
+    },
+    {
+        "id": "6b324132357fc51d",
+        "type": "change",
+        "z": "baa1e3d9.cb29d",
+        "name": "Change global mode",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mode",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 1180,
+        "wires": [
+            [
+                "32e6370ecfcb3fa6"
+            ]
+        ]
+    },
+    {
+        "id": "32e6370ecfcb3fa6",
+        "type": "link out",
+        "z": "baa1e3d9.cb29d",
+        "name": "out_sample_mode",
+        "mode": "link",
+        "links": [
+            "127fd2e4447c6ad1"
+        ],
+        "x": 815,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "01ca5224721735b1",
+        "type": "link in",
+        "z": "baa1e3d9.cb29d",
+        "name": "in_sample_mode",
+        "links": [
+            "319bff50477bc5fc"
+        ],
+        "x": 195,
+        "y": 1340,
+        "wires": [
+            [
+                "f88d04913517c59b"
+            ]
+        ]
+    },
+    {
+        "id": "e6cbce2ec9702d22",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "Get mode value",
+        "func": "if (msg.payload != global.get(\"mode\")){\n    return msg;\n}\nelse {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1240,
+        "wires": [
+            [
+                "d3dade2cda9a8ecc",
+                "6b324132357fc51d"
             ]
         ]
     },
