@@ -2130,8 +2130,7 @@
                 "f408a273.4fb538",
                 "e73fd87d.d24e4",
                 "489c8e06.cc7d6",
-                "a3272681.f271c8",
-                "e3d9594dcc289eba"
+                "a3272681.f271c8"
             ]
         ]
     },
@@ -2307,8 +2306,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1230,
-        "y": 620,
+        "x": 1990,
+        "y": 880,
         "wires": [
             []
         ]
@@ -2366,8 +2365,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "sample_location",
-        "x": 660,
-        "y": 580,
+        "x": 1420,
+        "y": 840,
         "wires": [
             [
                 "14658615.47c862"
@@ -2427,8 +2426,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 650,
-        "y": 620,
+        "x": 1410,
+        "y": 880,
         "wires": [
             [
                 "14658615.47c862"
@@ -2488,8 +2487,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 640,
-        "y": 660,
+        "x": 1400,
+        "y": 920,
         "wires": [
             [
                 "14658615.47c862"
@@ -2664,8 +2663,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 760,
+        "x": 1690,
+        "y": 1020,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -2856,7 +2855,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Convert time",
-        "func": "if (msg.payload.time){\n    msg.payload.time = msg.payload.time.replace('T', ' ');\n    msg.payload.time = msg.payload.time.replace('.000Z', ' UTC');\n\n    return msg;\n}",
+        "func": "if (msg.payload.time){\n    msg.payload.time = msg.payload.time.replace('T', ' ');\n    msg.payload.time = msg.payload.time.replace(/.{3}\\dZ$/, ' UTC');\n\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2866,7 +2865,8 @@
         "y": 1280,
         "wires": [
             [
-                "35ad311f.344c76"
+                "35ad311f.344c76",
+                "58249066ba04fb19"
             ]
         ]
     },
@@ -2914,8 +2914,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1220,
-        "y": 760,
+        "x": 1980,
+        "y": 1020,
         "wires": [
             [
                 "e1f2f6eb.fe1dd"
@@ -2932,8 +2932,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1420,
-        "y": 760,
+        "x": 2180,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -3093,8 +3093,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 650,
-        "y": 700,
+        "x": 1410,
+        "y": 960,
         "wires": [
             [
                 "14658615.47c862"
@@ -3121,8 +3121,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 170,
-        "y": 560,
+        "x": 900,
+        "y": 620,
         "wires": [
             [
                 "ae70f39284d2e033"
@@ -3140,8 +3140,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 620,
+        "x": 1690,
+        "y": 880,
         "wires": [
             [
                 "c0ce5626.b6c5",
@@ -3170,8 +3170,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 620,
+        "x": 900,
+        "y": 660,
         "wires": [
             [
                 "ae70f39284d2e033"
@@ -3189,8 +3189,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 620,
+        "x": 1120,
+        "y": 660,
         "wires": [
             [
                 "c33f1124.af6688"
@@ -3206,8 +3206,8 @@
         "links": [
             "2b7d9c3a94eadf25"
         ],
-        "x": 895,
-        "y": 1120,
+        "x": 815,
+        "y": 1140,
         "wires": []
     },
     {
@@ -3218,8 +3218,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 25,
-        "y": 720,
+        "x": 775,
+        "y": 660,
         "wires": [
             [
                 "e338fbd49a4e9fc6"
@@ -3227,7 +3227,103 @@
         ]
     },
     {
-        "id": "e3d9594dcc289eba",
+        "id": "6a5ae53c5c507053",
+        "type": "ui_button",
+        "z": "b771c342.49603",
+        "name": "GPS pre fill sample date",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Prefill date",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "str",
+        "topic": "gps_date",
+        "topicType": "str",
+        "x": 890,
+        "y": 700,
+        "wires": [
+            [
+                "7a739cae4903f510"
+            ]
+        ]
+    },
+    {
+        "id": "2f6370f095a73f67",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "date and time to string",
+        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\nmsg.payload.time = parts[1]\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 820,
+        "wires": [
+            [
+                "7a739cae4903f510"
+            ]
+        ]
+    },
+    {
+        "id": "7a739cae4903f510",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "msg_location = {}\n\nif(msg.topic == \"date and time\"){\n    context.set(\"date\",msg.payload.date);\n    context.set(\"time\",msg.payload.time);\n}\n\n\nif(msg.topic == \"gps_date\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_date\": context.get(\"date\")}\n    return msg_location\n}\n\nif(msg.topic == \"gps_time\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_time\": context.get(\"time\")}\n    return msg_location\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 820,
+        "wires": [
+            [
+                "c33f1124.af6688",
+                "3c33313ebb7b0707"
+            ]
+        ]
+    },
+    {
+        "id": "39b8dd0a4590d0db",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "",
+        "links": [
+            "58249066ba04fb19"
+        ],
+        "x": 515,
+        "y": 660,
+        "wires": [
+            [
+                "2f6370f095a73f67"
+            ]
+        ]
+    },
+    {
+        "id": "58249066ba04fb19",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "Time and date data",
+        "mode": "link",
+        "links": [
+            "39b8dd0a4590d0db"
+        ],
+        "x": 595,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "3c33313ebb7b0707",
         "type": "debug",
         "z": "b771c342.49603",
         "name": "",
@@ -3239,9 +3335,37 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 120,
-        "y": 420,
+        "x": 1150,
+        "y": 940,
         "wires": []
+    },
+    {
+        "id": "386b3a470980ed53",
+        "type": "ui_button",
+        "z": "b771c342.49603",
+        "name": "GPS pre fill sample date",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Prefill date",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "str",
+        "topic": "gps_time",
+        "topicType": "str",
+        "x": 890,
+        "y": 760,
+        "wires": [
+            [
+                "7a739cae4903f510"
+            ]
+        ]
     },
     {
         "id": "6a84252a.d52a0c",
@@ -3257,6 +3381,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 610,
         "y": 40,
         "wires": [
