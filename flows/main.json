@@ -349,11 +349,11 @@
     {
         "id": "c0ebfc57.42527",
         "type": "ui_group",
-        "name": "Galery group_1",
+        "name": "Images",
         "tab": "36739a35.7cce36",
         "order": 1,
         "disp": false,
-        "width": "24",
+        "width": "20",
         "collapse": false,
         "className": ""
     },
@@ -847,46 +847,6 @@
         "height": 1
     },
     {
-        "id": "97148e8d8e298f1a",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "abeb6dad.635a2",
-        "order": 7,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "3b2eccc574e6a9ae",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "abeb6dad.635a2",
-        "order": 11,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "bbd6431d97c86f97",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 4,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "5f98f5f140f0ecde",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 6,
-        "width": 3,
-        "height": 1
-    },
-    {
         "id": "7bc0a4c416e4545c",
         "type": "ui_group",
         "name": "Culture Date and Time",
@@ -964,6 +924,55 @@
         "group": "1be83144.4fe4bf",
         "order": 17,
         "width": 8,
+        "height": 1
+    },
+    {
+        "id": "4dd5a10b2eda120a",
+        "type": "ui_group",
+        "name": "Navigation",
+        "tab": "36739a35.7cce36",
+        "order": 3,
+        "disp": false,
+        "width": 5,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8849bce411ac2d05",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "451503f30d8dee86",
+        "type": "ui_group",
+        "name": "Group 3",
+        "tab": "36739a35.7cce36",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "4f8a217f583814ed",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 4,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "ed30561f444e8942",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 6,
+        "width": 3,
         "height": 1
     },
     {
@@ -5964,7 +5973,7 @@
         "z": "cb95299c.2817c8",
         "name": "Start segmentation",
         "group": "abeb6dad.635a2",
-        "order": 10,
+        "order": 7,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -5994,8 +6003,8 @@
         "d": true,
         "name": "Stop segmentation",
         "group": "abeb6dad.635a2",
-        "order": 12,
-        "width": 4,
+        "order": 8,
+        "width": 5,
         "height": 1,
         "passthru": true,
         "label": "Stop segmentation",
@@ -6031,12 +6040,14 @@
         "id": "8f3788f6.ddcf98",
         "type": "function",
         "z": "cb95299c.2817c8",
+        "d": true,
         "name": "obj_counter",
         "func": "obj_counter = flow.get('obj_counter')\nobj_counter = obj_counter + 1\nflow.set('obj_counter', obj_counter)\nmsg.payload = obj_counter\nmsg.topic = \"object count\"\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 810,
         "y": 800,
         "wires": [
@@ -6100,6 +6111,7 @@
         "id": "9d53dbe2.dbffe8",
         "type": "ui_chart",
         "z": "cb95299c.2817c8",
+        "d": true,
         "name": "counter graph",
         "group": "46be9c86.dea684",
         "order": 7,
@@ -6132,6 +6144,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 1340,
         "y": 840,
         "wires": [
@@ -6301,6 +6315,7 @@
         "id": "fa3b7929.ac7da8",
         "type": "ui_text",
         "z": "cb95299c.2817c8",
+        "d": true,
         "group": "46be9c86.dea684",
         "order": 5,
         "width": 4,
@@ -6309,6 +6324,7 @@
         "label": "",
         "format": "{{msg.payload}}",
         "layout": "col-center",
+        "className": "",
         "x": 1320,
         "y": 800,
         "wires": []
@@ -6372,26 +6388,6 @@
         "libs": [],
         "x": 960,
         "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d43c3ed9.e6cb1",
-        "type": "ui_template",
-        "z": "cb95299c.2817c8",
-        "group": "46be9c86.dea684",
-        "name": "Object counts",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "format": "<div><center><h2>Object counts</h2></center></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 1340,
-        "y": 760,
         "wires": [
             []
         ]
@@ -6473,7 +6469,7 @@
         "z": "cb95299c.2817c8",
         "group": "abeb6dad.635a2",
         "name": "",
-        "order": 9,
+        "order": 10,
         "width": 10,
         "height": 11,
         "lineType": "one",
@@ -6513,7 +6509,7 @@
         "z": "cb95299c.2817c8",
         "name": "Refresh",
         "group": "abeb6dad.635a2",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -6521,10 +6517,12 @@
         "tooltip": "Refresh the list of previous acquisitions",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "mi-find_replace",
         "payload": "",
         "payloadType": "date",
         "topic": "update",
+        "topicType": "str",
         "x": 260,
         "y": 140,
         "wires": [
@@ -6570,6 +6568,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 990,
         "y": 140,
         "wires": [
@@ -6631,6 +6630,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 630,
         "y": 140,
         "wires": [
@@ -6857,6 +6857,7 @@
         "id": "4f3f7c4a.cb21c4",
         "type": "change",
         "z": "cb95299c.2817c8",
+        "d": true,
         "name": "",
         "rules": [
             {
@@ -7182,14 +7183,36 @@
         ]
     },
     {
+        "id": "d43c3ed9.e6cb1",
+        "type": "ui_template",
+        "z": "cb95299c.2817c8",
+        "d": true,
+        "group": "46be9c86.dea684",
+        "name": "Object counts",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div><center><h2>Object counts</h2></center></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1340,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "2911fbc6.d28c24",
         "type": "ui_template",
         "z": "c1660bc.e7ff7f8",
         "group": "c0ebfc57.42527",
         "name": "Image browser",
         "order": 1,
-        "width": "11",
-        "height": "13",
+        "width": 20,
+        "height": 14,
         "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -7222,11 +7245,12 @@
         "id": "a955d730babe2b30",
         "type": "ui_button",
         "z": "c1660bc.e7ff7f8",
+        "d": true,
         "name": "",
-        "group": "c0ebfc57.42527",
+        "group": "4dd5a10b2eda120a",
         "order": 1,
-        "width": "5",
-        "height": "1",
+        "width": 5,
+        "height": 1,
         "passthru": false,
         "label": "Back to gallery",
         "tooltip": "",
@@ -7235,10 +7259,10 @@
         "className": "",
         "icon": "keyboard_return",
         "payload": "{\"tab\":\"Gallery\"}",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 340,
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 320,
         "y": 160,
         "wires": [
             [
@@ -7250,12 +7274,41 @@
         "id": "d86d02f47d7705ca",
         "type": "ui_ui_control",
         "z": "c1660bc.e7ff7f8",
+        "d": true,
         "name": "",
-        "events": "all",
+        "events": "change",
         "x": 520,
         "y": 160,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "ddc81bfa62fa5fda",
+        "type": "ui_button",
+        "z": "c1660bc.e7ff7f8",
+        "name": "Refresh",
+        "group": "4dd5a10b2eda120a",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Reload the picture folders",
+        "tooltip": "Refresh ",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mi-find_replace",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "update",
+        "topicType": "str",
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "2911fbc6.d28c24"
+            ]
         ]
     },
     {
@@ -9919,6 +9972,7 @@
         "append": "",
         "useSpawn": "false",
         "timer": "",
+        "winHide": false,
         "oldrc": false,
         "name": "getInfo",
         "x": 450,
