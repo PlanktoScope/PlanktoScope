@@ -259,52 +259,52 @@
                 "reset": false
             },
             "customTheme": {
-                "name": "Untitled Theme 1",
+                "name": "Plancton_1",
                 "default": "#4B7930",
-                "baseColor": "#783072",
+                "baseColor": "#00aaff",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#4B7930",
-                    "value": "#783072",
+                    "default": "#783072",
+                    "value": "#00aaff",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#783072",
+                    "value": "#00aaff",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#f80d0d",
+                    "value": "#111111",
                     "edited": true
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#e3ff0f",
+                    "value": "#ffffff",
                     "edited": true
                 },
                 "group-textColor": {
-                    "value": "#af46a6",
+                    "value": "#4dc3ff",
                     "edited": false
                 },
                 "group-borderColor": {
-                    "value": "#da1010",
+                    "value": "#000000",
                     "edited": true
                 },
                 "group-backgroundColor": {
-                    "value": "#0cdbdf",
+                    "value": "#333333",
                     "edited": true
                 },
                 "widget-textColor": {
-                    "value": "#eeeeee",
+                    "value": "#111111",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#783072",
+                    "value": "#00aaff",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffae00",
+                    "value": "#ffffff",
                     "edited": true
                 },
                 "base-font": {
@@ -385,7 +385,8 @@
         "order": 1,
         "disp": true,
         "width": "10",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "4e0cd5ea.17e59c",
@@ -445,14 +446,15 @@
         "order": 3,
         "disp": false,
         "width": "10",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "5517c651.b2f668",
         "type": "ui_group",
         "name": "Validation",
         "tab": "737ec584.2eea2c",
-        "order": 5,
+        "order": 6,
         "disp": false,
         "width": 10,
         "collapse": false
@@ -618,7 +620,8 @@
         "order": 4,
         "disp": false,
         "width": "10",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "ce9e278.781eed8",
@@ -741,10 +744,11 @@
         "type": "ui_group",
         "name": "GPS Status",
         "tab": "737ec584.2eea2c",
-        "order": 6,
+        "order": 7,
         "disp": true,
-        "width": 10,
-        "collapse": false
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "f3ca28ef.4df0a8",
@@ -968,7 +972,18 @@
         "height": 1
     },
     {
-        "id": "a85db1b727f19e7a",
+        "id": "bfcfdfdacc5f7350",
+        "type": "ui_group",
+        "name": "Mode débutant",
+        "tab": "737ec584.2eea2c",
+        "order": 5,
+        "disp": true,
+        "width": 20,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7da8c27c1e45b777",
         "type": "ui_spacer",
         "z": "b771c342.49603",
         "name": "spacer",
@@ -978,7 +993,27 @@
         "height": 1
     },
     {
-        "id": "2499e67f7630dff5",
+        "id": "9e08b5333e2fd29d",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "cf5d9f0e.d57e7",
+        "order": 1,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "54daae381af345eb",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "cf5d9f0e.d57e7",
+        "order": 7,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "a7a5340e3f718f7f",
         "type": "ui_spacer",
         "z": "b771c342.49603",
         "name": "spacer",
@@ -1320,6 +1355,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 140,
         "y": 180,
         "wires": [
@@ -1901,8 +1937,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 400,
-        "y": 880,
+        "x": 680,
+        "y": 840,
         "wires": [
             []
         ]
@@ -1921,8 +1957,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 710,
-        "y": 980,
+        "x": 990,
+        "y": 940,
         "wires": [
             []
         ]
@@ -1938,8 +1974,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 940,
+        "x": 750,
+        "y": 900,
         "wires": [
             [
                 "726a7822.cd6298",
@@ -1967,8 +2003,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 250,
-        "y": 1240,
+        "x": 530,
+        "y": 1200,
         "wires": [
             [
                 "258b4562.9f778a",
@@ -1985,8 +2021,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 700,
-        "y": 900,
+        "x": 980,
+        "y": 860,
         "wires": [
             []
         ]
@@ -2011,8 +2047,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 240,
-        "y": 880,
+        "x": 520,
+        "y": 840,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -2039,8 +2075,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 240,
-        "y": 940,
+        "x": 520,
+        "y": 900,
         "wires": [
             [
                 "986d960a.c75908"
@@ -2171,8 +2207,8 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 690,
-        "y": 940,
+        "x": 970,
+        "y": 900,
         "wires": [
             []
         ]
@@ -2189,8 +2225,8 @@
         "label": "GPS Status:",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 730,
-        "y": 1080,
+        "x": 1010,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2303,7 +2339,7 @@
         "label": "Net opening dimension (mm)",
         "tooltip": "Size of the net mouth opening (in mm)",
         "group": "cf5d9f0e.d57e7",
-        "order": 7,
+        "order": 3,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -2409,7 +2445,7 @@
         "name": "net_throw_location",
         "label": "Net Throw Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 6,
+        "order": 8,
         "width": 0,
         "height": 0,
         "options": [
@@ -2470,7 +2506,7 @@
         "name": "net_retrieval_location",
         "label": "Net Retrieval Location",
         "group": "cf5d9f0e.d57e7",
-        "order": 1,
+        "order": 9,
         "width": 0,
         "height": 0,
         "options": [
@@ -2590,7 +2626,7 @@
         "label": "Decknet flowmeter start",
         "tooltip": "in L",
         "group": "cf5d9f0e.d57e7",
-        "order": 4,
+        "order": 6,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -2616,7 +2652,7 @@
         "label": "Decknet flowmeter end",
         "tooltip": "in L",
         "group": "cf5d9f0e.d57e7",
-        "order": 5,
+        "order": 2,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -2640,7 +2676,7 @@
         "z": "b771c342.49603",
         "group": "cf5d9f0e.d57e7",
         "name": "Decknet flowmeter read",
-        "order": 3,
+        "order": 5,
         "width": 10,
         "height": 1,
         "format": "<div style=\"line-height: 100%;\">\n    <p class=\"formlabel\" style=\"font-size: larger;\">Decknet flowmeter readings</p>\n    <p style=\"font-size: smaller;\">Those values are used to calculate <font style=\"font-family: mono;\">sample_total_volume</font>. Values are in L.</p>\n</div>\n",
@@ -2648,6 +2684,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 1330,
         "y": 180,
         "wires": [
@@ -2742,8 +2779,8 @@
         "label": "Latitude",
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
         "layout": "col-center",
-        "x": 700,
-        "y": 1120,
+        "x": 980,
+        "y": 1080,
         "wires": []
     },
     {
@@ -2758,8 +2795,8 @@
         "label": "Longitude",
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
         "layout": "col-center",
-        "x": 700,
-        "y": 1160,
+        "x": 980,
+        "y": 1120,
         "wires": []
     },
     {
@@ -2772,8 +2809,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 490,
-        "y": 1140,
+        "x": 770,
+        "y": 1100,
         "wires": [
             [
                 "4fb4e0ad.c417c",
@@ -2793,8 +2830,8 @@
         "label": "Speed",
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
-        "x": 690,
-        "y": 1200,
+        "x": 970,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2809,8 +2846,8 @@
         "label": "Direction",
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
-        "x": 700,
-        "y": 1240,
+        "x": 980,
+        "y": 1200,
         "wires": []
     },
     {
@@ -2823,8 +2860,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
-        "y": 1080,
+        "x": 750,
+        "y": 1040,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -2841,8 +2878,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 490,
-        "y": 1200,
+        "x": 770,
+        "y": 1160,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -2861,8 +2898,8 @@
         "label": "Time",
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
-        "x": 690,
-        "y": 1280,
+        "x": 970,
+        "y": 1240,
         "wires": []
     },
     {
@@ -2914,8 +2951,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1280,
+        "x": 750,
+        "y": 1240,
         "wires": [
             [
                 "35ad311f.344c76"
@@ -3016,7 +3053,7 @@
         "label": "Speed Through Water (kts)",
         "tooltip": "in knots",
         "group": "cf5d9f0e.d57e7",
-        "order": 2,
+        "order": 4,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3097,7 +3134,8 @@
         "y": 320,
         "wires": [
             [
-                "cbb123ab.fd3428"
+                "cbb123ab.fd3428",
+                "76acd2c1783e2a25"
             ],
             [
                 "05c6aff2afbd69cf"
@@ -3151,6 +3189,144 @@
             [
                 "14658615.47c862"
             ]
+        ]
+    },
+    {
+        "id": "c5d492e187838c05",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Change mode",
+        "func": "var activation_msg = {}\n\nif (msg.payload === 0){\n    //activation_msg.payload = {\"group\":{\"show\":[\"Sample Identification\"],\"hide\":[\"Mode débutant\"]}};\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Identification\",\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\",\"Sample_GPS_Status\"],\"hide\":[\"Sample_Mode_débutant\"]}};    \n    return activation_msg;\n}\nelse if (msg.payload === 1){\n    //activation_msg.payload = {\"group\":{\"show\":[\"Mode débutant\"],\"hide\":[\"Sample Identification,Culture Date and Time, Sample Location, Net Metadata, Validation, GPS Status\"]}};\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Mode_débutant\"],\"hide\":[\"Sample_Sample_Identification\",\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_GPS_Status\"]}};\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 560,
+        "wires": [
+            [
+                "b2919c1f882acabc"
+            ]
+        ]
+    },
+    {
+        "id": "b2919c1f882acabc",
+        "type": "ui_ui_control",
+        "z": "b771c342.49603",
+        "name": "show/hide net groups",
+        "events": "change",
+        "x": 340,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bd7c40d65ad2af3",
+        "type": "ui_multistate_switch",
+        "z": "b771c342.49603",
+        "name": "Mode selection",
+        "group": "5517c651.b2f668",
+        "order": 3,
+        "width": 10,
+        "height": 1,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Expert mode",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Beginner mode",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "c5d492e187838c05"
+            ]
+        ]
+    },
+    {
+        "id": "696d6a74bd90afe8",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "Default: Expert mode",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "6bd7c40d65ad2af3"
+            ]
+        ]
+    },
+    {
+        "id": "76acd2c1783e2a25",
+        "type": "debug",
+        "z": "b771c342.49603",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1270,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "aa04e3b871c9dc7f",
+        "type": "ui_template",
+        "z": "b771c342.49603",
+        "group": "bfcfdfdacc5f7350",
+        "name": "Update message",
+        "order": 1,
+        "width": 20,
+        "height": 5,
+        "format": "<div><center>Vous êtes ici dans le mode débutant!</center></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 150,
+        "y": 660,
+        "wires": [
+            []
         ]
     },
     {
@@ -4030,9 +4206,15 @@
         "label": "Light  ",
         "stateField": "payload",
         "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
         "rounded": true,
         "useThemeColors": true,
         "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
         "options": [
             {
                 "label": "Off",
@@ -4047,6 +4229,7 @@
                 "color": "#999999"
             }
         ],
+        "topic": "",
         "x": 350,
         "y": 120,
         "wires": [
