@@ -77,6 +77,38 @@
         "info": ""
     },
     {
+        "id": "4ed26b8b.253504",
+        "type": "subflow",
+        "name": "Hardware config",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "53d163be.47cf24"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1040,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "ddb4b136.fc0b78",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
         "id": "1c24ad9c.bebec2",
         "type": "subflow",
         "name": "Config",
@@ -104,38 +136,6 @@
                     },
                     {
                         "id": "f439663c.8abd3",
-                        "port": 0
-                    }
-                ]
-            }
-        ],
-        "env": [],
-        "color": "#DDAA99"
-    },
-    {
-        "id": "4ed26b8b.253504",
-        "type": "subflow",
-        "name": "Hardware config",
-        "info": "",
-        "category": "",
-        "in": [
-            {
-                "x": 40,
-                "y": 200,
-                "wires": [
-                    {
-                        "id": "53d163be.47cf24"
-                    }
-                ]
-            }
-        ],
-        "out": [
-            {
-                "x": 1040,
-                "y": 80,
-                "wires": [
-                    {
-                        "id": "ddb4b136.fc0b78",
                         "port": 0
                     }
                 ]
@@ -896,15 +896,6 @@
         "className": ""
     },
     {
-        "id": "6c31ad948a9d62fd",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "9b6dc1eeb6aacf25",
         "type": "ui_spacer",
         "z": "9daf9e2b.019fc",
@@ -963,6 +954,151 @@
         "order": 14,
         "width": 8,
         "height": 1
+    },
+    {
+        "id": "47e3c331080748b2",
+        "type": "ui_spacer",
+        "z": "bccd1f23.87219",
+        "name": "spacer",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1f63860d.5f5efa",
+        "type": "file in",
+        "z": "4ed26b8b.253504",
+        "name": "",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 380,
+        "y": 80,
+        "wires": [
+            [
+                "8c1fda48.d7d828"
+            ]
+        ],
+        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
+    },
+    {
+        "id": "8c1fda48.d7d828",
+        "type": "json",
+        "z": "4ed26b8b.253504",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 650,
+        "y": 80,
+        "wires": [
+            [
+                "ddb4b136.fc0b78"
+            ]
+        ]
+    },
+    {
+        "id": "82099021.9ceb08",
+        "type": "file",
+        "z": "4ed26b8b.253504",
+        "name": "",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 780,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb0a8725.a1849",
+        "type": "json",
+        "z": "4ed26b8b.253504",
+        "name": "Create JSON",
+        "property": "payload",
+        "action": "str",
+        "pretty": true,
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "82099021.9ceb08"
+            ]
+        ]
+    },
+    {
+        "id": "f748d952.4b6bc8",
+        "type": "inject",
+        "z": "4ed26b8b.253504",
+        "name": "Load config",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "1f63860d.5f5efa"
+            ]
+        ]
+    },
+    {
+        "id": "ddb4b136.fc0b78",
+        "type": "change",
+        "z": "4ed26b8b.253504",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "hardware_conf",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53d163be.47cf24",
+        "type": "function",
+        "z": "4ed26b8b.253504",
+        "name": "Update and retrieve hardware_conf",
+        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 200,
+        "wires": [
+            [
+                "bb0a8725.a1849"
+            ]
+        ]
     },
     {
         "id": "6465bdd5.15eb8c",
@@ -1101,141 +1237,6 @@
         "y": 100,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "1f63860d.5f5efa",
-        "type": "file in",
-        "z": "4ed26b8b.253504",
-        "name": "",
-        "filename": "/home/pi/PlanktoScope/hardware.json",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "x": 380,
-        "y": 80,
-        "wires": [
-            [
-                "8c1fda48.d7d828"
-            ]
-        ],
-        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
-    },
-    {
-        "id": "8c1fda48.d7d828",
-        "type": "json",
-        "z": "4ed26b8b.253504",
-        "name": "Parse JSON",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 650,
-        "y": 80,
-        "wires": [
-            [
-                "ddb4b136.fc0b78"
-            ]
-        ]
-    },
-    {
-        "id": "82099021.9ceb08",
-        "type": "file",
-        "z": "4ed26b8b.253504",
-        "name": "",
-        "filename": "/home/pi/PlanktoScope/hardware.json",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 780,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bb0a8725.a1849",
-        "type": "json",
-        "z": "4ed26b8b.253504",
-        "name": "Create JSON",
-        "property": "payload",
-        "action": "str",
-        "pretty": true,
-        "x": 500,
-        "y": 200,
-        "wires": [
-            [
-                "82099021.9ceb08"
-            ]
-        ]
-    },
-    {
-        "id": "f748d952.4b6bc8",
-        "type": "inject",
-        "z": "4ed26b8b.253504",
-        "name": "Load config",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 80,
-        "wires": [
-            [
-                "1f63860d.5f5efa"
-            ]
-        ]
-    },
-    {
-        "id": "ddb4b136.fc0b78",
-        "type": "change",
-        "z": "4ed26b8b.253504",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "hardware_conf",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 870,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "53d163be.47cf24",
-        "type": "function",
-        "z": "4ed26b8b.253504",
-        "name": "Update and retrieve hardware_conf",
-        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 200,
-        "wires": [
-            [
-                "bb0a8725.a1849"
-            ]
         ]
     },
     {
@@ -4017,33 +4018,6 @@
         ]
     },
     {
-        "id": "5765a825.a595c8",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "Shutter speed slider",
-        "label": "Shutter Speed",
-        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
-        "group": "8c38a81e.9897a8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "shutter_speed",
-        "topicType": "str",
-        "min": "125",
-        "max": "1000",
-        "step": "1",
-        "className": "",
-        "x": 600,
-        "y": 880,
-        "wires": [
-            [
-                "8ea9dc9a.c7d87"
-            ]
-        ]
-    },
-    {
         "id": "845e06e1.0d812",
         "type": "mqtt out",
         "z": "bccd1f23.87219",
@@ -4055,31 +4029,6 @@
         "x": 1210,
         "y": 980,
         "wires": []
-    },
-    {
-        "id": "2350e507.d4e302",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 125µs",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "125",
-        "payloadType": "num",
-        "x": 120,
-        "y": 880,
-        "wires": [
-            [
-                "5765a825.a595c8"
-            ]
-        ]
     },
     {
         "id": "5e147425.7666ec",
@@ -4104,7 +4053,7 @@
         "id": "82722a3c.846b3",
         "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "Default: OFF",
+        "name": "Default: ON",
         "props": [
             {
                 "p": "payload"
@@ -4115,47 +4064,13 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
+        "payload": "on",
+        "payloadType": "str",
         "x": 110,
         "y": 920,
         "wires": [
             [
-                "60e44330.50bdec"
-            ]
-        ]
-    },
-    {
-        "id": "60e44330.50bdec",
-        "type": "ui_switch",
-        "z": "bccd1f23.87219",
-        "name": "AWB",
-        "label": "Auto White Balance",
-        "tooltip": "",
-        "group": "8c38a81e.9897a8",
-        "order": 5,
-        "width": 2,
-        "height": 2,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "white_balance",
-        "topicType": "str",
-        "style": "",
-        "onvalue": "auto",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "animate": true,
-        "className": "",
-        "x": 550,
-        "y": 920,
-        "wires": [
-            [
-                "8ea9dc9a.c7d87"
+                "6c5451ce63e79adc"
             ]
         ]
     },
@@ -4319,7 +4234,7 @@
         "label": "Analog Gain",
         "tooltip": "From 1.0 to 12.0",
         "group": "8c38a81e.9897a8",
-        "order": 1,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4345,7 +4260,7 @@
         "label": "Digital Gain",
         "tooltip": "From 1.0 to 64.0. Overexpose starting at 4.0",
         "group": "8c38a81e.9897a8",
-        "order": 2,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4404,6 +4319,243 @@
         "wires": [
             [
                 "56835fa1.2fe538"
+            ]
+        ]
+    },
+    {
+        "id": "be33e564.029358",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "focus_distance",
+        "label": "Focus Distance (in µm)",
+        "tooltip": "in µm, 25µm resolution",
+        "group": "fbd92986.1028c8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "focus_distance",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 580,
+        "y": 460,
+        "wires": [
+            [
+                "dc48dc42.98d18"
+            ]
+        ]
+    },
+    {
+        "id": "3a86de51.765b9a",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "focus_speed",
+        "label": "Focus Speed (in µm/sec)",
+        "tooltip": "in µm/sec",
+        "group": "fbd92986.1028c8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "focus_speed",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "dc48dc42.98d18"
+            ]
+        ]
+    },
+    {
+        "id": "cb2d5174.cfe9f",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "pump_flowrate",
+        "label": "Flowrate (ml/min)*",
+        "tooltip": "",
+        "group": "707d9797.c8e798",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "pump_flowrate",
+        "topicType": "str",
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "dc48dc42.98d18"
+            ]
+        ]
+    },
+    {
+        "id": "d5415af6.e06cc",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "WB Red input",
+        "label": "WB: Red",
+        "tooltip": "From 1.0 to 8.0",
+        "group": "8c38a81e.9897a8",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "red",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 580,
+        "y": 1040,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ]
+        ]
+    },
+    {
+        "id": "dba68c1f.e3144",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "WB Blue input",
+        "label": "WB: Blue",
+        "tooltip": "From 1.0 to 64.0",
+        "group": "8c38a81e.9897a8",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "blue",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 580,
+        "y": 1080,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ]
+        ]
+    },
+    {
+        "id": "335a730b9a3830ff",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "4248342d.e55fac",
+        "name": "Lens",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload\">\n    </span>mm\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 1310,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "142bc61a0bde1ba9",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Cam Stream",
+        "links": [
+            "49111a72f4e32740"
+        ],
+        "x": 235,
+        "y": 40,
+        "wires": [
+            [
+                "3ca8be38ddb269e9"
+            ]
+        ]
+    },
+    {
+        "id": "3ca8be38ddb269e9",
+        "type": "template",
+        "z": "bccd1f23.87219",
+        "name": "Prepare stream HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<center>\n  <img src=\"http://{{payload}}:8000/stream.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://{{payload}}:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
+        "output": "str",
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "6a84252a.d52a0c"
+            ]
+        ]
+    },
+    {
+        "id": "5765a825.a595c8",
+        "type": "ui_slider",
+        "z": "bccd1f23.87219",
+        "name": "Shutter speed slider",
+        "label": "Shutter Speed",
+        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
+        "group": "8c38a81e.9897a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "shutter_speed",
+        "topicType": "str",
+        "min": "125",
+        "max": "1000",
+        "step": "1",
+        "className": "",
+        "x": 600,
+        "y": 880,
+        "wires": [
+            [
+                "8ea9dc9a.c7d87"
+            ]
+        ]
+    },
+    {
+        "id": "2350e507.d4e302",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: 125µs",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "125",
+        "payloadType": "num",
+        "x": 120,
+        "y": 880,
+        "wires": [
+            [
+                "5765a825.a595c8"
             ]
         ]
     },
@@ -4533,187 +4685,224 @@
         ]
     },
     {
-        "id": "be33e564.029358",
-        "type": "ui_text_input",
+        "id": "5765a825.a595c8",
+        "type": "ui_slider",
         "z": "bccd1f23.87219",
-        "name": "focus_distance",
-        "label": "Focus Distance (in µm)",
-        "tooltip": "in µm, 25µm resolution",
-        "group": "fbd92986.1028c8",
+        "name": "Shutter speed slider",
+        "label": "Shutter Speed",
+        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
+        "group": "8c38a81e.9897a8",
         "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "focus_distance",
-        "sendOnBlur": true,
-        "className": "",
+        "outs": "end",
+        "topic": "shutter_speed",
         "topicType": "str",
-        "x": 580,
-        "y": 460,
+        "min": "125",
+        "max": "1000",
+        "step": "1",
+        "className": "",
+        "x": 600,
+        "y": 880,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "8ea9dc9a.c7d87"
             ]
         ]
     },
     {
-        "id": "3a86de51.765b9a",
-        "type": "ui_text_input",
+        "id": "2350e507.d4e302",
+        "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "focus_speed",
-        "label": "Focus Speed (in µm/sec)",
-        "tooltip": "in µm/sec",
-        "group": "fbd92986.1028c8",
-        "order": 5,
+        "name": "Default: 125µs",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "125",
+        "payloadType": "num",
+        "x": 120,
+        "y": 880,
+        "wires": [
+            [
+                "5765a825.a595c8"
+            ]
+        ]
+    },
+    {
+        "id": "d8d006bf.2947f",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: ISO 100",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "100",
+        "payloadType": "num",
+        "x": 130,
+        "y": 840,
+        "wires": [
+            [
+                "9feb06fb.43b558"
+            ]
+        ]
+    },
+    {
+        "id": "9feb06fb.43b558",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "ISO selector",
+        "group": "8c38a81e.9897a8",
+        "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "focus_speed",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
+        "label": "ISO",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "100",
+                "value": "100",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "200",
+                "value": "200",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "320",
+                "value": "320",
+                "valueType": "num",
+                "color": "#ff6666"
+            },
+            {
+                "label": "400",
+                "value": "400",
+                "valueType": "num",
+                "color": "#009999"
+            },
+            {
+                "label": "500",
+                "value": "500",
+                "valueType": "num",
+                "color": "#cccc00"
+            },
+            {
+                "label": "640",
+                "value": "640",
+                "valueType": "num",
+                "color": "#ff33cc"
+            },
+            {
+                "label": "800",
+                "value": "800",
+                "valueType": "num",
+                "color": "#cc6600"
+            }
+        ],
+        "topic": "",
         "x": 570,
-        "y": 500,
+        "y": 840,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "eb9966de.cf13c8"
             ]
         ]
     },
     {
-        "id": "cb2d5174.cfe9f",
-        "type": "ui_text_input",
+        "id": "eb9966de.cf13c8",
+        "type": "change",
         "z": "bccd1f23.87219",
-        "name": "pump_flowrate",
-        "label": "Flowrate (ml/min)*",
-        "tooltip": "",
-        "group": "707d9797.c8e798",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "pump_flowrate",
-        "topicType": "str",
-        "x": 580,
-        "y": 380,
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "iso",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 840,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "8ea9dc9a.c7d87"
             ]
         ]
     },
     {
-        "id": "d5415af6.e06cc",
-        "type": "ui_text_input",
+        "id": "6c5451ce63e79adc",
+        "type": "ui_multistate_switch",
         "z": "bccd1f23.87219",
-        "name": "WB Red input",
-        "label": "WB: Red",
-        "tooltip": "From 1.0 to 8.0",
+        "name": "Auto white balance",
         "group": "8c38a81e.9897a8",
         "order": 6,
-        "width": 4,
+        "width": 6,
         "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "red",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 580,
-        "y": 1040,
-        "wires": [
-            [
-                "d361a2c4.0990f8",
-                "5e147425.7666ec"
-            ]
-        ]
-    },
-    {
-        "id": "dba68c1f.e3144",
-        "type": "ui_text_input",
-        "z": "bccd1f23.87219",
-        "name": "WB Blue input",
-        "label": "WB: Blue",
-        "tooltip": "From 1.0 to 64.0",
-        "group": "8c38a81e.9897a8",
-        "order": 7,
-        "width": 4,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "blue",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 580,
-        "y": 1080,
-        "wires": [
-            [
-                "d361a2c4.0990f8",
-                "5e147425.7666ec"
-            ]
-        ]
-    },
-    {
-        "id": "335a730b9a3830ff",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "Lens",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload\">\n    </span>mm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1310,
-        "y": 40,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "142bc61a0bde1ba9",
-        "type": "link in",
-        "z": "bccd1f23.87219",
-        "name": "Cam Stream",
-        "links": [
-            "49111a72f4e32740"
+        "label": "Auto white balance",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "On",
+                "value": "on",
+                "valueType": "str",
+                "color": "#009933"
+            },
+            {
+                "label": "Off",
+                "value": "off",
+                "valueType": "str",
+                "color": "#999999"
+            }
         ],
-        "x": 235,
-        "y": 40,
+        "topic": "",
+        "x": 590,
+        "y": 920,
         "wires": [
             [
-                "3ca8be38ddb269e9"
-            ]
-        ]
-    },
-    {
-        "id": "3ca8be38ddb269e9",
-        "type": "template",
-        "z": "bccd1f23.87219",
-        "name": "Prepare stream HTML",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "<center>\n  <img src=\"http://{{payload}}:8000/stream.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://{{payload}}:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
-        "output": "str",
-        "x": 380,
-        "y": 40,
-        "wires": [
-            [
-                "6a84252a.d52a0c"
+                "8ea9dc9a.c7d87"
             ]
         ]
     },
