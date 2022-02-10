@@ -1979,10 +1979,12 @@
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
+        "className": "",
         "icon": "keyboard_return",
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
+        "topicType": "str",
         "x": 240,
         "y": 880,
         "wires": [
@@ -2005,11 +2007,13 @@
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
+        "className": "",
         "icon": "keyboard_tab",
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 240,
+        "topicType": "str",
+        "x": 220,
         "y": 940,
         "wires": [
             [
@@ -7147,26 +7151,6 @@
         ]
     },
     {
-        "id": "2911fbc6.d28c24",
-        "type": "ui_template",
-        "z": "c1660bc.e7ff7f8",
-        "group": "c0ebfc57.42527",
-        "name": "Image browser",
-        "order": 1,
-        "width": 24,
-        "height": 24,
-        "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 400,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "3bb4970164f5e7b2",
         "type": "link in",
         "z": "c1660bc.e7ff7f8",
@@ -7180,6 +7164,27 @@
             [
                 "2911fbc6.d28c24"
             ]
+        ]
+    },
+    {
+        "id": "2911fbc6.d28c24",
+        "type": "ui_template",
+        "z": "c1660bc.e7ff7f8",
+        "group": "c0ebfc57.42527",
+        "name": "Image browser",
+        "order": 1,
+        "width": 24,
+        "height": 24,
+        "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 400,
+        "y": 100,
+        "wires": [
+            []
         ]
     },
     {
