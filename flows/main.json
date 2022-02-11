@@ -204,10 +204,11 @@
         "type": "ui_group",
         "name": "Optic Characterization",
         "tab": "181bb236.1e94be",
-        "order": 4,
+        "order": 2,
         "disp": true,
         "width": "6",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "858a0e3c.987fe",
@@ -460,9 +461,9 @@
         "type": "ui_group",
         "name": "Focus Adjustment",
         "tab": "181bb236.1e94be",
-        "order": 2,
+        "order": 4,
         "disp": true,
-        "width": 11,
+        "width": 12,
         "collapse": false
     },
     {
@@ -472,7 +473,7 @@
         "tab": "181bb236.1e94be",
         "order": 5,
         "disp": true,
-        "width": 4,
+        "width": 12,
         "collapse": false
     },
     {
@@ -482,7 +483,7 @@
         "tab": "181bb236.1e94be",
         "order": 6,
         "disp": false,
-        "width": 4,
+        "width": 12,
         "collapse": false
     },
     {
@@ -953,16 +954,6 @@
         "group": "1be83144.4fe4bf",
         "order": 14,
         "width": 8,
-        "height": 1
-    },
-    {
-        "id": "4908cc89929f2b9d",
-        "type": "ui_spacer",
-        "z": "bccd1f23.87219",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 1,
         "height": 1
     },
     {
@@ -3125,7 +3116,7 @@
         "name": "Stream Pi Camera",
         "order": 1,
         "width": 18,
-        "height": 14,
+        "height": 13,
         "format": "<span ng-bind-html=\"msg.payload\"></span>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -3159,7 +3150,7 @@
         "z": "bccd1f23.87219",
         "name": "left",
         "group": "fbd92986.1028c8",
-        "order": 11,
+        "order": 4,
         "width": 2,
         "height": 2,
         "passthru": true,
@@ -3187,7 +3178,7 @@
         "z": "bccd1f23.87219",
         "name": "right",
         "group": "fbd92986.1028c8",
-        "order": 17,
+        "order": 10,
         "width": 2,
         "height": 2,
         "passthru": false,
@@ -3217,8 +3208,8 @@
         "label": "Volume to pass (ml)",
         "tooltip": "Tiny values are accepted down to 0.001mL",
         "group": "707d9797.c8e798",
-        "order": 3,
-        "width": 2,
+        "order": 5,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "text",
@@ -3299,9 +3290,9 @@
         "z": "bccd1f23.87219",
         "name": "Backward",
         "group": "707d9797.c8e798",
-        "order": 2,
-        "width": 1,
-        "height": 1,
+        "order": 1,
+        "width": 2,
+        "height": 2,
         "passthru": false,
         "label": "",
         "tooltip": "",
@@ -3325,9 +3316,9 @@
         "z": "bccd1f23.87219",
         "name": "Forward",
         "group": "707d9797.c8e798",
-        "order": 4,
-        "width": 1,
-        "height": 1,
+        "order": 3,
+        "width": 2,
+        "height": 2,
         "passthru": true,
         "label": "",
         "tooltip": "",
@@ -3346,32 +3337,12 @@
         ]
     },
     {
-        "id": "9b515beb.4aea48",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "Magnification",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    </span>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1330,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "8038414a.34461",
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\n\nreturn [{payload: acq_fnumber_objective}, {payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}];",
-        "outputs": 5,
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;  \n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -3381,87 +3352,13 @@
         "wires": [
             [
                 "335a730b9a3830ff"
-            ],
-            [
-                "9b515beb.4aea48"
-            ],
-            [
-                "3d2360ad.e41e7"
-            ],
-            [
-                "8e66977b.9166a8"
-            ],
-            [
-                "26b32f2c.c64fc"
             ]
         ],
         "inputLabels": [
             "acq_fnumber_objective"
         ],
         "outputLabels": [
-            "acq_magnification",
-            "process_pixel",
-            "sug_min",
-            "sug_max",
-            ""
-        ]
-    },
-    {
-        "id": "3d2360ad.e41e7",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "process_pixel",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1340,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8e66977b.9166a8",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "min_size",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1320,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "26b32f2c.c64fc",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "max_size",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1320,
-        "y": 200,
-        "wires": [
-            []
+            "msg1"
         ]
     },
     {
@@ -3471,7 +3368,7 @@
         "name": "",
         "group": "7a0b4877.a5d268",
         "order": 1,
-        "width": 2,
+        "width": 6,
         "height": 1,
         "passthru": false,
         "label": "Previous",
@@ -3497,7 +3394,7 @@
         "name": "",
         "group": "7a0b4877.a5d268",
         "order": 2,
-        "width": 2,
+        "width": 6,
         "height": 1,
         "passthru": false,
         "label": "Continue",
@@ -3646,8 +3543,8 @@
         "z": "bccd1f23.87219",
         "name": "stop focus",
         "group": "fbd92986.1028c8",
-        "order": 19,
-        "width": 11,
+        "order": 12,
+        "width": 12,
         "height": 1,
         "passthru": true,
         "label": " STOP FOCUS",
@@ -3685,7 +3582,7 @@
         "z": "bccd1f23.87219",
         "name": "right 1mm",
         "group": "fbd92986.1028c8",
-        "order": 16,
+        "order": 9,
         "width": 1,
         "height": 2,
         "passthru": false,
@@ -3713,7 +3610,7 @@
         "z": "bccd1f23.87219",
         "name": "left 1mm",
         "group": "fbd92986.1028c8",
-        "order": 12,
+        "order": 5,
         "width": 1,
         "height": 2,
         "passthru": false,
@@ -3841,9 +3738,9 @@
         "z": "bccd1f23.87219",
         "name": "stop pump",
         "group": "707d9797.c8e798",
-        "order": 5,
-        "width": 4,
-        "height": 1,
+        "order": 4,
+        "width": 5,
+        "height": 2,
         "passthru": true,
         "label": " STOP PUMP",
         "tooltip": "",
@@ -3920,7 +3817,7 @@
         "z": "bccd1f23.87219",
         "name": "right 100um",
         "group": "fbd92986.1028c8",
-        "order": 15,
+        "order": 8,
         "width": 1,
         "height": 2,
         "passthru": false,
@@ -3948,7 +3845,7 @@
         "z": "bccd1f23.87219",
         "name": "left 100um",
         "group": "fbd92986.1028c8",
-        "order": 13,
+        "order": 6,
         "width": 1,
         "height": 2,
         "passthru": false,
@@ -3977,14 +3874,20 @@
         "name": "light_control",
         "group": "4248342d.e55fac",
         "order": 1,
-        "width": 5,
+        "width": 6,
         "height": 1,
         "label": "Light  ",
         "stateField": "payload",
         "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
         "rounded": true,
         "useThemeColors": true,
         "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
         "options": [
             {
                 "label": "Off",
@@ -3999,6 +3902,7 @@
                 "color": "#999999"
             }
         ],
+        "topic": "",
         "x": 350,
         "y": 120,
         "wires": [
@@ -4017,6 +3921,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 940,
         "y": 940,
         "wires": [
@@ -4242,7 +4147,7 @@
         "label": "Analog Gain",
         "tooltip": "From 1.0 to 12.0",
         "group": "8c38a81e.9897a8",
-        "order": 5,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4268,7 +4173,7 @@
         "label": "Digital Gain",
         "tooltip": "From 1.0 to 64.0. Overexpose starting at 4.0",
         "group": "8c38a81e.9897a8",
-        "order": 9,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4338,8 +4243,8 @@
         "label": "Focus Distance (in µm)",
         "tooltip": "in µm, 25µm resolution",
         "group": "fbd92986.1028c8",
-        "order": 14,
-        "width": 3,
+        "order": 7,
+        "width": 4,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -4364,8 +4269,8 @@
         "label": "Focus Speed (in µm/sec)",
         "tooltip": "in µm/sec",
         "group": "fbd92986.1028c8",
-        "order": 18,
-        "width": 3,
+        "order": 11,
+        "width": 4,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -4390,9 +4295,9 @@
         "label": "Flowrate (ml/min)*",
         "tooltip": "",
         "group": "707d9797.c8e798",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": 3,
+        "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": 300,
@@ -4414,8 +4319,8 @@
         "label": "WB: Red",
         "tooltip": "From 1.0 to 8.0",
         "group": "8c38a81e.9897a8",
-        "order": 7,
-        "width": 6,
+        "order": 5,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -4441,8 +4346,8 @@
         "label": "WB: Blue",
         "tooltip": "From 1.0 to 64.0",
         "group": "8c38a81e.9897a8",
-        "order": 8,
-        "width": 6,
+        "order": 6,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -4465,17 +4370,18 @@
         "type": "ui_template",
         "z": "bccd1f23.87219",
         "group": "4248342d.e55fac",
-        "name": "Lens",
+        "name": "Information Lens",
         "order": 3,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload\">\n    </span>mm\n</div>",
+        "format": "<h9>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload.acq_fnumber_objective\">\n    </span>mm\n</h9>\n<h9>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload.acq_magnification\">\n    </span>\n</h9>\n<h9>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload.process_pixel\"></span>\n    μm\n</h9>\n<h9>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload.sug_min\"></span>\n    μm\n</h9>\n<h9>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload.sug_max\"></span>\n    μm\n</h9>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
-        "resendOnRefresh": false,
+        "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 1310,
-        "y": 40,
+        "className": "",
+        "x": 1330,
+        "y": 120,
         "wires": [
             []
         ]
@@ -4523,7 +4429,7 @@
         "label": "Shutter Speed",
         "tooltip": "In microseconds, up to 1000µs, 125µs by default",
         "group": "8c38a81e.9897a8",
-        "order": 4,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4598,7 +4504,7 @@
         "z": "bccd1f23.87219",
         "name": "ISO selector",
         "group": "8c38a81e.9897a8",
-        "order": 3,
+        "order": 1,
         "width": 0,
         "height": 0,
         "label": "ISO",
@@ -4698,9 +4604,9 @@
         "z": "bccd1f23.87219",
         "name": "Auto white balance",
         "group": "8c38a81e.9897a8",
-        "order": 6,
-        "width": 6,
-        "height": 1,
+        "order": 4,
+        "width": 0,
+        "height": 0,
         "label": "Auto white balance",
         "stateField": "payload",
         "enableField": "enable",
@@ -4745,7 +4651,7 @@
         "order": 3,
         "width": 4,
         "height": 1,
-        "format": "<h12>RIGHT</h12>",
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">RIGHT</div>\n  <div class=\"infoR\">\n      <div class=\"element 1\">100 µm</div>\n      <div class=\"element 2\">1 mm</div>\n      <div class=\"element 3\">Manual</div>\n  </div>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4766,7 +4672,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<style>\n    h12 {\n        color: white;\n        text-align: center;\n        font-size: 21px;\n    }\n    h11 {\n        color: white;\n        text-align: center;\n        font-size: 17px;\n    }\n</style>\n",
+        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 13px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 13px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4787,14 +4693,14 @@
         "order": 1,
         "width": 4,
         "height": 1,
-        "format": "<h12>LEFT</h12>",
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">LEFT</div>\n  <div class=\"infoL\">\n      <div class=\"element 1\">100 µm</div>\n      <div class=\"element 2\">1 mm</div>\n      <div class=\"element 3\">Manual</div>\n  </div>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1550,
-        "y": 660,
+        "x": 1370,
+        "y": 700,
         "wires": [
             []
         ]
@@ -4806,166 +4712,152 @@
         "group": "fbd92986.1028c8",
         "name": "Manual Config",
         "order": 2,
-        "width": 3,
+        "width": 4,
         "height": 1,
-        "format": "<h12>Manual Configuration</h12>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1740,
-        "y": 660,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9ace66ca88871c75",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Right 100 µm",
-        "order": 8,
-        "width": 1,
-        "height": 1,
-        "format": "<h11>100 µm</h11>",
+        "format": "<div id=\"title\">Manual Configuration</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
         "x": 1400,
-        "y": 780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "368901818aaf56b1",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Right 1 mm",
-        "order": 9,
-        "width": 1,
-        "height": 1,
-        "format": "<h11>1</br> mm</h11>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1390,
         "y": 740,
         "wires": [
             []
         ]
     },
     {
-        "id": "7c15856aa20fb587",
+        "id": "ad85ea57d765c39d",
         "type": "ui_template",
         "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Right Manual",
-        "order": 10,
-        "width": 2,
-        "height": 1,
-        "format": "<h11>Manual</h11>",
+        "group": "6f97e7ae.270c48",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1390,
-        "y": 700,
+        "x": 990,
+        "y": 500,
         "wires": [
             []
         ]
     },
     {
-        "id": "4137dfcde828f076",
-        "type": "ui_template",
+        "id": "9bc3e85c28d70120",
+        "type": "link in",
         "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Left 100 µm",
-        "order": 6,
-        "width": 1,
-        "height": 1,
-        "format": "<h11>100 µm</h11>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1570,
-        "y": 780,
+        "name": "Choice objective",
+        "links": [
+            "95b374a91cb16f2b"
+        ],
+        "x": 255,
+        "y": 180,
         "wires": [
-            []
+            [
+                "413b72d5fa015592"
+            ]
         ]
     },
     {
-        "id": "580849cad44966ed",
-        "type": "ui_template",
+        "id": "413b72d5fa015592",
+        "type": "ui_dropdown",
         "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Left 1 mm",
-        "order": 5,
-        "width": 1,
-        "height": 1,
-        "format": "<h11>1</br> mm</h11>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
+        "name": "acq_fnumber_objective",
+        "label": "M12 Lens",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Choose your lens",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "topicType": "str",
         "className": "",
-        "x": 1570,
-        "y": 740,
+        "x": 430,
+        "y": 180,
         "wires": [
-            []
+            [
+                "75b7aeca42db75bd"
+            ]
         ]
     },
     {
-        "id": "3d8a6412d1c5d75e",
-        "type": "ui_template",
+        "id": "a0cf63c7abd6fc68",
+        "type": "inject",
         "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Left Manual",
-        "order": 4,
-        "width": 2,
-        "height": 1,
-        "format": "<h11></br>Manual</h11>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1570,
-        "y": 700,
+        "name": "DEFAULT : 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 230,
+        "y": 240,
         "wires": [
-            []
+            [
+                "413b72d5fa015592"
+            ]
         ]
     },
     {
-        "id": "9d6425a177384ec6",
-        "type": "ui_template",
+        "id": "75b7aeca42db75bd",
+        "type": "link out",
         "z": "bccd1f23.87219",
-        "group": "fbd92986.1028c8",
-        "name": "Text Manual",
-        "order": 7,
-        "width": 3,
-        "height": 1,
-        "format": "<h11></br>Choose your values</h11>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1730,
-        "y": 700,
-        "wires": [
-            []
-        ]
+        "name": "",
+        "mode": "link",
+        "links": [
+            "a9f290c81031e81e"
+        ],
+        "x": 625,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "f59a2f0d.5e9af",
@@ -5966,7 +5858,8 @@
         "links": [
             "30067f35.532f2",
             "572a6daa.6004c4",
-            "cfc783d7.d6ceb"
+            "cfc783d7.d6ceb",
+            "6746f61cadaa1038"
         ],
         "x": 965,
         "y": 780,
@@ -10978,7 +10871,7 @@
         "label": "Invert stepper output",
         "tooltip": "Stepper 1 is controlled by output 1 or the other way around",
         "group": "6be36295.0ab324",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -11037,7 +10930,7 @@
         "label": "Pump: steps per mL",
         "tooltip": "",
         "group": "6be36295.0ab324",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -11290,64 +11183,12 @@
         "z": "1eaf21c8.f7a21e",
         "name": "Process_pixel calibration",
         "links": [
-            "cfc783d7.d6ceb"
+            "cfc783d7.d6ceb",
+            "6746f61cadaa1038"
         ],
         "x": 1195,
         "y": 500,
         "wires": []
-    },
-    {
-        "id": "6146ba22df928516",
-        "type": "ui_dropdown",
-        "z": "1eaf21c8.f7a21e",
-        "name": "acq_fnumber_objective",
-        "label": "M12 Lens",
-        "tooltip": "",
-        "place": "Select option",
-        "group": "6be36295.0ab324",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
-                "label": "f 16mm 1/2.5\" 5MP IR",
-                "value": 16,
-                "type": "num"
-            },
-            {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
-                "label": "f 6mm 1/2.5\" 5MP IR",
-                "value": 6,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "acq_fnumber_objective",
-        "topicType": "str",
-        "x": 630,
-        "y": 520,
-        "wires": [
-            [
-                "a6983d3232b570a7",
-                "8e3b3d3c.955148"
-            ]
-        ]
     },
     {
         "id": "a6983d3232b570a7",
@@ -11406,7 +11247,37 @@
         "y": 520,
         "wires": [
             [
-                "6146ba22df928516"
+                "95b374a91cb16f2b"
+            ]
+        ]
+    },
+    {
+        "id": "95b374a91cb16f2b",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choice objective",
+        "mode": "link",
+        "links": [
+            "9bc3e85c28d70120"
+        ],
+        "x": 575,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a9f290c81031e81e",
+        "type": "link in",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "links": [
+            "75b7aeca42db75bd"
+        ],
+        "x": 735,
+        "y": 520,
+        "wires": [
+            [
+                "8e3b3d3c.955148",
+                "a6983d3232b570a7"
             ]
         ]
     }
