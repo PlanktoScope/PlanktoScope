@@ -203,12 +203,13 @@
     {
         "id": "4248342d.e55fac",
         "type": "ui_group",
-        "name": "Optic Characterization",
+        "name": "Optic Characterization Expert",
         "tab": "181bb236.1e94be",
-        "order": 4,
+        "order": 2,
         "disp": true,
         "width": "6",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "858a0e3c.987fe",
@@ -463,12 +464,13 @@
     {
         "id": "fbd92986.1028c8",
         "type": "ui_group",
-        "name": "Focus Adjustment",
+        "name": "Focus Adjustment Expert",
         "tab": "181bb236.1e94be",
-        "order": 2,
+        "order": 4,
         "disp": true,
-        "width": 4,
-        "collapse": false
+        "width": "12",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "707d9797.c8e798",
@@ -477,7 +479,7 @@
         "tab": "181bb236.1e94be",
         "order": 5,
         "disp": true,
-        "width": 4,
+        "width": 12,
         "collapse": false
     },
     {
@@ -487,7 +489,7 @@
         "tab": "181bb236.1e94be",
         "order": 6,
         "disp": false,
-        "width": 4,
+        "width": 12,
         "collapse": false
     },
     {
@@ -657,12 +659,13 @@
     {
         "id": "8c38a81e.9897a8",
         "type": "ui_group",
-        "name": "Camera Settings",
+        "name": "Camera Settings Expert",
         "tab": "181bb236.1e94be",
         "order": 3,
         "disp": true,
-        "width": 6,
-        "collapse": false
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "52d1b77.28369c8",
@@ -781,15 +784,6 @@
         "width": "10",
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "6c31ad948a9d62fd",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 1,
-        "height": 1
     },
     {
         "id": "9b6dc1eeb6aacf25",
@@ -1252,6 +1246,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 160,
         "y": 60,
         "wires": [
@@ -2198,6 +2193,7 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
         "x": 1230,
@@ -2404,8 +2400,8 @@
         "y": 620,
         "wires": [
             [
-                "c0ce5626.b6c5",
-                "9a18a4b4.178448"
+                "9a18a4b4.178448",
+                "c0ce5626.b6c5"
             ],
             [
                 "56d40584.eff4e4"
@@ -3032,12 +3028,13 @@
         "name": "Stream Pi Camera",
         "order": 1,
         "width": 18,
-        "height": 14,
+        "height": 13,
         "format": "<span ng-bind-html=\"msg.payload\"></span>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 610,
         "y": 40,
         "wires": [
@@ -3055,7 +3052,7 @@
         "initialize": "",
         "finalize": "",
         "x": 880,
-        "y": 440,
+        "y": 500,
         "wires": [
             []
         ]
@@ -3064,22 +3061,24 @@
         "id": "811cd88c.daf528",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "down",
+        "name": "left",
         "group": "fbd92986.1028c8",
-        "order": 6,
-        "width": 4,
-        "height": 1,
+        "order": 4,
+        "width": 2,
+        "height": 2,
         "passthru": true,
         "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-double-down fa-3x",
+        "className": "",
+        "icon": "fa-angle-double-left fa-3x",
         "payload": "DOWN",
         "payloadType": "str",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 550,
-        "y": 800,
+        "y": 860,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3090,22 +3089,24 @@
         "id": "edda4df4.76de2",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "up",
+        "name": "right",
         "group": "fbd92986.1028c8",
-        "order": 3,
-        "width": 4,
-        "height": 1,
+        "order": 10,
+        "width": 2,
+        "height": 2,
         "passthru": false,
         "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-double-up fa-3x",
+        "className": "",
+        "icon": "fa-angle-double-right fa-3x",
         "payload": "UP",
         "payloadType": "str",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 550,
-        "y": 760,
+        "y": 820,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3120,8 +3121,8 @@
         "label": "Volume to pass (ml)",
         "tooltip": "Tiny values are accepted down to 0.001mL",
         "group": "707d9797.c8e798",
-        "order": 3,
-        "width": 2,
+        "order": 5,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "text",
@@ -3131,7 +3132,7 @@
         "className": "",
         "topicType": "str",
         "x": 600,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -3145,7 +3146,7 @@
         "name": "",
         "events": "change",
         "x": 560,
-        "y": 1140,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -3165,7 +3166,7 @@
         "topic": "",
         "name": "",
         "x": 570,
-        "y": 1220,
+        "y": 1420,
         "wires": [
             []
         ]
@@ -3254,122 +3255,28 @@
         ]
     },
     {
-        "id": "9b515beb.4aea48",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "Magnification",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    </span>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1330,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "8038414a.34461",
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\n\nreturn [{payload: acq_fnumber_objective}, {payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}];",
-        "outputs": 5,
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;  \n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1080,
+        "x": 980,
         "y": 120,
         "wires": [
             [
                 "335a730b9a3830ff"
-            ],
-            [
-                "9b515beb.4aea48"
-            ],
-            [
-                "3d2360ad.e41e7"
-            ],
-            [
-                "8e66977b.9166a8"
-            ],
-            [
-                "26b32f2c.c64fc"
             ]
         ],
         "inputLabels": [
             "acq_fnumber_objective"
         ],
         "outputLabels": [
-            "acq_magnification",
-            "process_pixel",
-            "sug_min",
-            "sug_max",
-            ""
-        ]
-    },
-    {
-        "id": "3d2360ad.e41e7",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "process_pixel",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1340,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8e66977b.9166a8",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "min_size",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1320,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "26b32f2c.c64fc",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "max_size",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1320,
-        "y": 200,
-        "wires": [
-            []
+            "msg1"
         ]
     },
     {
@@ -3523,10 +3430,11 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
-        "x": 1090,
-        "y": 800,
+        "x": 1010,
+        "y": 820,
         "wires": [
             []
         ]
@@ -3541,8 +3449,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 850,
-        "y": 780,
+        "x": 810,
+        "y": 820,
         "wires": [
             [
                 "62030521.88317c"
@@ -3596,31 +3504,32 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1210,
-        "y": 720,
+        "x": 1010,
+        "y": 700,
         "wires": []
     },
     {
         "id": "3bd43039.bc5fb8",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "right 1mm",
         "group": "fbd92986.1028c8",
-        "order": 1,
-        "width": 4,
-        "height": 1,
+        "order": 9,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "UP 1mm",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-up fa-3x",
+        "className": "",
+        "icon": "fa-angle-right fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 560,
-        "y": 600,
+        "x": 570,
+        "y": 660,
         "wires": [
             [
                 "62030521.88317c"
@@ -3631,23 +3540,24 @@
         "id": "c0663029.2d03b",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "left 1mm",
         "group": "fbd92986.1028c8",
-        "order": 8,
-        "width": 4,
-        "height": 1,
+        "order": 5,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "DOWN 1mm",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-down fa-3x",
+        "className": "",
+        "icon": "fa-angle-left fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
-        "y": 720,
+        "x": 560,
+        "y": 780,
         "wires": [
             [
                 "62030521.88317c"
@@ -3672,7 +3582,7 @@
         "payload": "500",
         "payloadType": "num",
         "x": 120,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "be33e564.029358"
@@ -3700,7 +3610,8 @@
         "y": 120,
         "wires": [
             [
-                "f0775525.cf806"
+                "f0775525.cf806",
+                "36b07697f00a4016"
             ]
         ]
     },
@@ -3722,7 +3633,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 130,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "cb2d5174.cfe9f"
@@ -3747,7 +3658,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 110,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
                 "68962547.34a67c"
@@ -3791,7 +3702,7 @@
             "559a8085.1d6b9",
             "5d5ad36d2c50dcc2"
         ],
-        "x": 915,
+        "x": 815,
         "y": 120,
         "wires": [
             [
@@ -3805,7 +3716,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "x": 550,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -3828,7 +3739,7 @@
         "payload": "1000",
         "payloadType": "num",
         "x": 130,
-        "y": 500,
+        "y": 560,
         "wires": [
             [
                 "3a86de51.765b9a"
@@ -3839,23 +3750,24 @@
         "id": "167cda35.c9b6ae",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "right 100um",
         "group": "fbd92986.1028c8",
-        "order": 2,
-        "width": 4,
-        "height": 1,
+        "order": 8,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "UP 100um",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-up fa-3x",
+        "className": "",
+        "icon": "fa-angle-right fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 640,
+        "y": 700,
         "wires": [
             [
                 "62030521.88317c"
@@ -3866,23 +3778,24 @@
         "id": "72a7c597.9374fc",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "left 100um",
         "group": "fbd92986.1028c8",
-        "order": 7,
-        "width": 4,
-        "height": 1,
+        "order": 6,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "DOWN 100um",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-down fa-3x",
+        "className": "",
+        "icon": "fa-angle-left fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 580,
-        "y": 680,
+        "x": 570,
+        "y": 740,
         "wires": [
             [
                 "62030521.88317c"
@@ -3943,8 +3856,9 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 940,
-        "y": 940,
+        "y": 1140,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -3959,7 +3873,7 @@
         "label": "Shutter Speed",
         "tooltip": "In microseconds, up to 1000µs, 125µs by default",
         "group": "8c38a81e.9897a8",
-        "order": 4,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3971,7 +3885,7 @@
         "step": "1",
         "className": "",
         "x": 600,
-        "y": 880,
+        "y": 1020,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -3988,7 +3902,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 1210,
-        "y": 980,
+        "y": 1180,
         "wires": []
     },
     {
@@ -4009,10 +3923,11 @@
         "payload": "125",
         "payloadType": "num",
         "x": 120,
-        "y": 880,
+        "y": 1080,
         "wires": [
             [
-                "5765a825.a595c8"
+                "5765a825.a595c8",
+                "336226c6a630465a"
             ]
         ]
     },
@@ -4028,7 +3943,7 @@
         "finalize": "",
         "libs": [],
         "x": 920,
-        "y": 1060,
+        "y": 1260,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -4039,7 +3954,7 @@
         "id": "82722a3c.846b3",
         "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "Default: OFF",
+        "name": "Default: ON",
         "props": [
             {
                 "p": "payload"
@@ -4050,47 +3965,13 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
+        "payload": "on",
+        "payloadType": "str",
         "x": 110,
-        "y": 920,
+        "y": 1120,
         "wires": [
             [
-                "60e44330.50bdec"
-            ]
-        ]
-    },
-    {
-        "id": "60e44330.50bdec",
-        "type": "ui_switch",
-        "z": "bccd1f23.87219",
-        "name": "AWB",
-        "label": "Auto White Balance",
-        "tooltip": "",
-        "group": "8c38a81e.9897a8",
-        "order": 5,
-        "width": 2,
-        "height": 2,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "white_balance",
-        "topicType": "str",
-        "style": "",
-        "onvalue": "auto",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "animate": true,
-        "className": "",
-        "x": 550,
-        "y": 920,
-        "wires": [
-            [
-                "8ea9dc9a.c7d87"
+                "6c5451ce63e79adc"
             ]
         ]
     },
@@ -4101,7 +3982,7 @@
         "name": "",
         "env": [],
         "x": 120,
-        "y": 1020,
+        "y": 1220,
         "wires": [
             [
                 "6be64480.7e7e24",
@@ -4131,7 +4012,7 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 1040,
+        "y": 1240,
         "wires": [
             [
                 "d5415af6.e06cc"
@@ -4158,7 +4039,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1080,
+        "y": 1280,
         "wires": [
             [
                 "dba68c1f.e3144"
@@ -4172,7 +4053,7 @@
         "name": "",
         "env": [],
         "x": 960,
-        "y": 1020,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -4204,7 +4085,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 960,
+        "y": 1160,
         "wires": [
             [
                 "a6c7eec4.f7a918"
@@ -4238,7 +4119,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1000,
+        "y": 1200,
         "wires": [
             [
                 "66b37eef.f3f9e"
@@ -4254,7 +4135,7 @@
         "label": "Analog Gain",
         "tooltip": "From 1.0 to 12.0",
         "group": "8c38a81e.9897a8",
-        "order": 1,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4263,7 +4144,7 @@
         "topic": "analog",
         "topicType": "str",
         "x": 580,
-        "y": 960,
+        "y": 1160,
         "wires": [
             [
                 "44e02933.a66688",
@@ -4280,7 +4161,7 @@
         "label": "Digital Gain",
         "tooltip": "From 1.0 to 64.0. Overexpose starting at 4.0",
         "group": "8c38a81e.9897a8",
-        "order": 2,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4289,7 +4170,7 @@
         "topic": "digital",
         "topicType": "str",
         "x": 580,
-        "y": 1000,
+        "y": 1200,
         "wires": [
             [
                 "44e02933.a66688",
@@ -4308,7 +4189,7 @@
         "initialize": "",
         "finalize": "",
         "x": 910,
-        "y": 980,
+        "y": 1180,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -4335,7 +4216,7 @@
         "to": "",
         "reg": false,
         "x": 790,
-        "y": 1020,
+        "y": 1220,
         "wires": [
             [
                 "56835fa1.2fe538"
@@ -4360,10 +4241,11 @@
         "payload": "100",
         "payloadType": "num",
         "x": 130,
-        "y": 840,
+        "y": 980,
         "wires": [
             [
-                "9feb06fb.43b558"
+                "9feb06fb.43b558",
+                "7b40a26b77b6ad8b"
             ]
         ]
     },
@@ -4460,8 +4342,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
-        "y": 840,
+        "x": 760,
+        "y": 920,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -4476,9 +4358,9 @@
         "label": "Focus Distance (in µm)",
         "tooltip": "in µm, 25µm resolution",
         "group": "fbd92986.1028c8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
+        "order": 7,
+        "width": 4,
+        "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": 300,
@@ -4487,7 +4369,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -4502,9 +4384,9 @@
         "label": "Focus Speed (in µm/sec)",
         "tooltip": "in µm/sec",
         "group": "fbd92986.1028c8",
-        "order": 5,
-        "width": 0,
-        "height": 0,
+        "order": 11,
+        "width": 4,
+        "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": 300,
@@ -4513,7 +4395,7 @@
         "className": "",
         "topicType": "str",
         "x": 570,
-        "y": 500,
+        "y": 560,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -4554,8 +4436,8 @@
         "label": "WB: Red",
         "tooltip": "From 1.0 to 8.0",
         "group": "8c38a81e.9897a8",
-        "order": 6,
-        "width": 4,
+        "order": 5,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -4565,7 +4447,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 1040,
+        "y": 1240,
         "wires": [
             [
                 "d361a2c4.0990f8",
@@ -4581,8 +4463,8 @@
         "label": "WB: Blue",
         "tooltip": "From 1.0 to 64.0",
         "group": "8c38a81e.9897a8",
-        "order": 7,
-        "width": 4,
+        "order": 6,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -4592,7 +4474,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 1080,
+        "y": 1280,
         "wires": [
             [
                 "d361a2c4.0990f8",
@@ -4605,17 +4487,18 @@
         "type": "ui_template",
         "z": "bccd1f23.87219",
         "group": "4248342d.e55fac",
-        "name": "Lens",
+        "name": "Information Lens",
         "order": 3,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload\">\n    </span>mm\n</div>",
+        "format": "<h9>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload.acq_fnumber_objective\">\n    </span>mm\n</h9>\n<h9>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload.acq_magnification\">\n    </span>\n</h9>\n<h9>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload.process_pixel\"></span>\n    μm\n</h9>\n<h9>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload.sug_min\"></span>\n    μm\n</h9>\n<h9>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload.sug_max\"></span>\n    μm\n</h9>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
-        "resendOnRefresh": false,
+        "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 1310,
-        "y": 40,
+        "className": "",
+        "x": 1190,
+        "y": 120,
         "wires": [
             []
         ]
@@ -5585,7 +5468,9 @@
         "links": [
             "30067f35.532f2",
             "572a6daa.6004c4",
-            "cfc783d7.d6ceb"
+            "cfc783d7.d6ceb",
+            "6746f61cadaa1038",
+            "dfefeb6072e3ee44"
         ],
         "x": 965,
         "y": 780,
@@ -10293,7 +10178,9 @@
             "c515edcd8681c244",
             "7fb91a7fd6d2518c",
             "604659d148759b84",
-            "3bb4970164f5e7b2"
+            "3bb4970164f5e7b2",
+            "e930a47cb7fae6eb",
+            "e76f25605ee25030"
         ],
         "x": 1035,
         "y": 160,
@@ -10634,7 +10521,7 @@
         "label": "Invert stepper output",
         "tooltip": "Stepper 1 is controlled by output 1 or the other way around",
         "group": "6be36295.0ab324",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10693,7 +10580,7 @@
         "label": "Pump: steps per mL",
         "tooltip": "",
         "group": "6be36295.0ab324",
-        "order": 6,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10946,64 +10833,13 @@
         "z": "1eaf21c8.f7a21e",
         "name": "Process_pixel calibration",
         "links": [
-            "cfc783d7.d6ceb"
+            "cfc783d7.d6ceb",
+            "6746f61cadaa1038",
+            "dfefeb6072e3ee44"
         ],
         "x": 1195,
         "y": 500,
         "wires": []
-    },
-    {
-        "id": "6146ba22df928516",
-        "type": "ui_dropdown",
-        "z": "1eaf21c8.f7a21e",
-        "name": "acq_fnumber_objective",
-        "label": "M12 Lens",
-        "tooltip": "",
-        "place": "Select option",
-        "group": "6be36295.0ab324",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
-                "label": "f 16mm 1/2.5\" 5MP IR",
-                "value": 16,
-                "type": "num"
-            },
-            {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
-                "label": "f 6mm 1/2.5\" 5MP IR",
-                "value": 6,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "acq_fnumber_objective",
-        "topicType": "str",
-        "x": 630,
-        "y": 520,
-        "wires": [
-            [
-                "a6983d3232b570a7",
-                "8e3b3d3c.955148"
-            ]
-        ]
     },
     {
         "id": "a6983d3232b570a7",
@@ -11062,7 +10898,7 @@
         "y": 520,
         "wires": [
             [
-                "6146ba22df928516"
+                "95b374a91cb16f2b"
             ]
         ]
     },
@@ -11808,6 +11644,553 @@
         "y": 300,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "7e3a6f5233943da5",
+        "type": "ui_group",
+        "name": "Optic Characterization Beginner",
+        "tab": "181bb236.1e94be",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4a3d149548f7d6bf",
+        "type": "ui_group",
+        "name": "Camera Settings Beginner",
+        "tab": "181bb236.1e94be",
+        "order": 9,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "957f2e43d9ce521e",
+        "type": "ui_group",
+        "name": "Focus Adjustment Beginner",
+        "tab": "181bb236.1e94be",
+        "order": 10,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6c5451ce63e79adc",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "Auto white balance",
+        "group": "8c38a81e.9897a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Auto white balance",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "On",
+                "value": "on",
+                "valueType": "str",
+                "color": "#009933"
+            },
+            {
+                "label": "Off",
+                "value": "off",
+                "valueType": "str",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 590,
+        "y": 1120,
+        "wires": [
+            [
+                "8ea9dc9a.c7d87"
+            ]
+        ]
+    },
+    {
+        "id": "d40215e1e17a9807",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Right",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">RIGHT</div>\n  <div class=\"infoR\">\n      <div class=\"element 1\">100 µm</div>\n      <div class=\"element 2\">1 mm</div>\n      <div class=\"element 3\">Manual</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 330,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6893082a3d7de514",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "6f97e7ae.270c48",
+        "name": "style",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 13px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 13px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 330,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "543d5731872d632b",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Left",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">LEFT</div>\n  <div class=\"infoL\">\n      <div class=\"element 1\">100 µm</div>\n      <div class=\"element 2\">1 mm</div>\n      <div class=\"element 3\">Manual</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 330,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1284940f84e0807",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Manual Config",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "format": "<div id=\"title\">Manual Configuration</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 360,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad85ea57d765c39d",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "6f97e7ae.270c48",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 990,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9bc3e85c28d70120",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Choice objective",
+        "links": [
+            "95b374a91cb16f2b"
+        ],
+        "x": 195,
+        "y": 220,
+        "wires": [
+            [
+                "413b72d5fa015592",
+                "3581eb5deb889b01"
+            ]
+        ]
+    },
+    {
+        "id": "413b72d5fa015592",
+        "type": "ui_dropdown",
+        "z": "bccd1f23.87219",
+        "name": "acq_fnumber_objective",
+        "label": "Choose Your Lens",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "topicType": "str",
+        "className": "",
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "75b7aeca42db75bd"
+            ]
+        ]
+    },
+    {
+        "id": "75b7aeca42db75bd",
+        "type": "link out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "a9f290c81031e81e"
+        ],
+        "x": 555,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "36b07697f00a4016",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "light_control",
+        "group": "7e3a6f5233943da5",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "Light  ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "On",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "cbb8afed.0a026"
+            ]
+        ]
+    },
+    {
+        "id": "3581eb5deb889b01",
+        "type": "ui_dropdown",
+        "z": "bccd1f23.87219",
+        "name": "acq_fnumber_objective",
+        "label": "Choose Your Lens",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "7e3a6f5233943da5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "topicType": "str",
+        "className": "",
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "75b7aeca42db75bd"
+            ]
+        ]
+    },
+    {
+        "id": "766492c0efbd2f58",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "413b72d5fa015592",
+                "75b7aeca42db75bd",
+                "3581eb5deb889b01"
+            ]
+        ]
+    },
+    {
+        "id": "7b40a26b77b6ad8b",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "ISO selector",
+        "group": "4a3d149548f7d6bf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "ISO",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "100",
+                "value": "100",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "200",
+                "value": "200",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "320",
+                "value": "320",
+                "valueType": "num",
+                "color": "#ff6666"
+            },
+            {
+                "label": "400",
+                "value": "400",
+                "valueType": "num",
+                "color": "#009999"
+            },
+            {
+                "label": "500",
+                "value": "500",
+                "valueType": "num",
+                "color": "#cccc00"
+            },
+            {
+                "label": "640",
+                "value": "640",
+                "valueType": "num",
+                "color": "#ff33cc"
+            },
+            {
+                "label": "800",
+                "value": "800",
+                "valueType": "num",
+                "color": "#cc6600"
+            }
+        ],
+        "topic": "",
+        "x": 570,
+        "y": 940,
+        "wires": [
+            [
+                "eb9966de.cf13c8"
+            ]
+        ]
+    },
+    {
+        "id": "336226c6a630465a",
+        "type": "ui_slider",
+        "z": "bccd1f23.87219",
+        "name": "Shutter speed slider",
+        "label": "Shutter Speed",
+        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
+        "group": "4a3d149548f7d6bf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "shutter_speed",
+        "topicType": "str",
+        "min": "125",
+        "max": "1000",
+        "step": "1",
+        "className": "",
+        "x": 600,
+        "y": 1060,
+        "wires": [
+            [
+                "8ea9dc9a.c7d87"
+            ]
+        ]
+    },
+    {
+        "id": "95b374a91cb16f2b",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choice objective",
+        "mode": "link",
+        "links": [
+            "9bc3e85c28d70120",
+            "4d29b4f3ab226c2c"
+        ],
+        "x": 575,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a9f290c81031e81e",
+        "type": "link in",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "links": [
+            "75b7aeca42db75bd",
+            "9d94dcc24bdc7ea1"
+        ],
+        "x": 735,
+        "y": 520,
+        "wires": [
+            [
+                "8e3b3d3c.955148",
+                "a6983d3232b570a7"
+            ]
+        ]
+    },
+    {
+        "id": "52f756c93fac4d70",
+        "type": "inject",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 720,
+        "y": 620,
+        "wires": [
+            [
+                "a6983d3232b570a7"
+            ]
         ]
     }
 ]
