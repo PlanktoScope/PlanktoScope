@@ -202,7 +202,7 @@
     {
         "id": "4248342d.e55fac",
         "type": "ui_group",
-        "name": "Optic Characterization",
+        "name": "Optic Characterization Expert",
         "tab": "181bb236.1e94be",
         "order": 2,
         "disp": true,
@@ -459,12 +459,13 @@
     {
         "id": "fbd92986.1028c8",
         "type": "ui_group",
-        "name": "Focus Adjustment",
+        "name": "Focus Adjustment Expert",
         "tab": "181bb236.1e94be",
         "order": 4,
         "disp": true,
-        "width": 12,
-        "collapse": false
+        "width": "12",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "707d9797.c8e798",
@@ -651,12 +652,13 @@
     {
         "id": "8c38a81e.9897a8",
         "type": "ui_group",
-        "name": "Camera Settings",
+        "name": "Camera Settings Expert",
         "tab": "181bb236.1e94be",
         "order": 3,
         "disp": true,
-        "width": 6,
-        "collapse": false
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "52d1b77.28369c8",
@@ -955,6 +957,39 @@
         "order": 14,
         "width": 8,
         "height": 1
+    },
+    {
+        "id": "7e3a6f5233943da5",
+        "type": "ui_group",
+        "name": "Optic Characterization Beginner",
+        "tab": "181bb236.1e94be",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4a3d149548f7d6bf",
+        "type": "ui_group",
+        "name": "Camera Settings Beginner",
+        "tab": "181bb236.1e94be",
+        "order": 9,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "957f2e43d9ce521e",
+        "type": "ui_group",
+        "name": "Focus Adjustment Beginner",
+        "tab": "181bb236.1e94be",
+        "order": 10,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "1f63860d.5f5efa",
@@ -1366,6 +1401,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 160,
         "y": 60,
         "wires": [
@@ -2283,26 +2319,6 @@
         ]
     },
     {
-        "id": "c0ce5626.b6c5",
-        "type": "ui_toast",
-        "z": "b771c342.49603",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 1230,
-        "y": 620,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "c33f1124.af6688",
         "type": "ui_form",
         "z": "b771c342.49603",
@@ -2496,8 +2512,8 @@
         "y": 620,
         "wires": [
             [
-                "c0ce5626.b6c5",
-                "9a18a4b4.178448"
+                "9a18a4b4.178448",
+                "c0ce5626.b6c5"
             ],
             [
                 "56d40584.eff4e4"
@@ -3109,6 +3125,27 @@
         ]
     },
     {
+        "id": "c0ce5626.b6c5",
+        "type": "ui_toast",
+        "z": "b771c342.49603",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1230,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "6a84252a.d52a0c",
         "type": "ui_template",
         "z": "bccd1f23.87219",
@@ -3122,6 +3159,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 610,
         "y": 40,
         "wires": [
@@ -3139,7 +3177,7 @@
         "initialize": "",
         "finalize": "",
         "x": 880,
-        "y": 440,
+        "y": 500,
         "wires": [
             []
         ]
@@ -3165,7 +3203,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 550,
-        "y": 800,
+        "y": 860,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3193,7 +3231,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 550,
-        "y": 760,
+        "y": 820,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3219,7 +3257,7 @@
         "className": "",
         "topicType": "str",
         "x": 600,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -3233,7 +3271,7 @@
         "name": "",
         "events": "change",
         "x": 560,
-        "y": 1140,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -3253,7 +3291,7 @@
         "topic": "",
         "name": "",
         "x": 570,
-        "y": 1220,
+        "y": 1420,
         "wires": [
             []
         ]
@@ -3263,13 +3301,14 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Check form",
-        "func": "var acq_fnumber_objective= global.get(\"acq_fnumber_objective\");\n\nif (acq_fnumber_objective === undefined || acq_fnumber_objective === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Focal Length of the objective\";\n    return [null, msg];\n}\n\nmsg.topic = \"Change Tab\";\nmsg.payload={\"tab\":\"Fluidic Acquisition\"};\nreturn [msg, null];",
+        "func": "var acq_fnumber_objective= global.get(\"acq_fnumber_objective\");\n\nif (acq_fnumber_objective === undefined || acq_fnumber_objective === \"\" || acq_fnumber_objective === 0) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Focal Length of the objective\";\n    return [null, msg];\n}\n\nmsg.topic = \"Change Tab\";\nmsg.payload={\"tab\":\"Fluidic Acquisition\"};\nreturn [msg, null];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 330,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             [
                 "6c792043.b6ff9",
@@ -3303,7 +3342,7 @@
         "payloadType": "str",
         "topic": "actuator/pump",
         "x": 560,
-        "y": 280,
+        "y": 340,
         "wires": [
             [
                 "3cb96380.e575ec"
@@ -3329,7 +3368,7 @@
         "payloadType": "str",
         "topic": "actuator/pump",
         "x": 560,
-        "y": 320,
+        "y": 380,
         "wires": [
             [
                 "3cb96380.e575ec"
@@ -3347,7 +3386,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1080,
+        "x": 980,
         "y": 120,
         "wires": [
             [
@@ -3380,7 +3419,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 140,
-        "y": 1140,
+        "y": 1340,
         "wires": [
             [
                 "6c792043.b6ff9"
@@ -3406,7 +3445,7 @@
         "payloadType": "json",
         "topic": "",
         "x": 140,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             [
                 "fe840e05.b46f3"
@@ -3439,7 +3478,7 @@
         "initialize": "",
         "finalize": "",
         "x": 750,
-        "y": 300,
+        "y": 360,
         "wires": [
             [
                 "bdc8ce57.de1f08"
@@ -3471,7 +3510,7 @@
         "topic": "",
         "name": "",
         "x": 1090,
-        "y": 300,
+        "y": 360,
         "wires": [
             []
         ]
@@ -3486,7 +3525,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 1210,
-        "y": 260,
+        "y": 320,
         "wires": []
     },
     {
@@ -3501,10 +3540,11 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
-        "x": 1090,
-        "y": 800,
+        "x": 1010,
+        "y": 820,
         "wires": [
             []
         ]
@@ -3519,8 +3559,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 850,
-        "y": 780,
+        "x": 810,
+        "y": 820,
         "wires": [
             [
                 "62030521.88317c"
@@ -3556,7 +3596,7 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "x": 570,
-        "y": 560,
+        "y": 620,
         "wires": [
             [
                 "62030521.88317c"
@@ -3572,8 +3612,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1210,
-        "y": 720,
+        "x": 1010,
+        "y": 700,
         "wires": []
     },
     {
@@ -3597,7 +3637,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "62030521.88317c"
@@ -3625,7 +3665,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 560,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "62030521.88317c"
@@ -3650,7 +3690,7 @@
         "payload": "500",
         "payloadType": "num",
         "x": 120,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "be33e564.029358"
@@ -3678,7 +3718,8 @@
         "y": 120,
         "wires": [
             [
-                "f0775525.cf806"
+                "f0775525.cf806",
+                "36b07697f00a4016"
             ]
         ]
     },
@@ -3700,7 +3741,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 130,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "cb2d5174.cfe9f"
@@ -3725,7 +3766,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 110,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
                 "68962547.34a67c"
@@ -3746,12 +3787,14 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "fa-pause fa-2x",
         "payload": "{\"action\":\"stop\"}",
         "payloadType": "json",
         "topic": "actuator/pump",
+        "topicType": "str",
         "x": 570,
-        "y": 240,
+        "y": 300,
         "wires": [
             [
                 "bdc8ce57.de1f08"
@@ -3767,7 +3810,7 @@
             "559a8085.1d6b9",
             "5d5ad36d2c50dcc2"
         ],
-        "x": 915,
+        "x": 815,
         "y": 120,
         "wires": [
             [
@@ -3781,7 +3824,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "x": 550,
-        "y": 1180,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -3804,7 +3847,7 @@
         "payload": "1000",
         "payloadType": "num",
         "x": 130,
-        "y": 500,
+        "y": 560,
         "wires": [
             [
                 "3a86de51.765b9a"
@@ -3832,7 +3875,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 640,
+        "y": 700,
         "wires": [
             [
                 "62030521.88317c"
@@ -3860,7 +3903,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "62030521.88317c"
@@ -3904,7 +3947,7 @@
         ],
         "topic": "",
         "x": 350,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "cbb8afed.0a026"
@@ -3923,7 +3966,7 @@
         "finalize": "",
         "libs": [],
         "x": 940,
-        "y": 940,
+        "y": 1140,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -3940,7 +3983,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 1210,
-        "y": 980,
+        "y": 1180,
         "wires": []
     },
     {
@@ -3955,7 +3998,7 @@
         "finalize": "",
         "libs": [],
         "x": 920,
-        "y": 1060,
+        "y": 1260,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -3980,7 +4023,7 @@
         "payload": "on",
         "payloadType": "str",
         "x": 110,
-        "y": 920,
+        "y": 1120,
         "wires": [
             [
                 "6c5451ce63e79adc"
@@ -3994,7 +4037,7 @@
         "name": "",
         "env": [],
         "x": 120,
-        "y": 1020,
+        "y": 1220,
         "wires": [
             [
                 "6be64480.7e7e24",
@@ -4024,7 +4067,7 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 1040,
+        "y": 1240,
         "wires": [
             [
                 "d5415af6.e06cc"
@@ -4051,7 +4094,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1080,
+        "y": 1280,
         "wires": [
             [
                 "dba68c1f.e3144"
@@ -4065,7 +4108,7 @@
         "name": "",
         "env": [],
         "x": 960,
-        "y": 1020,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -4097,7 +4140,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 960,
+        "y": 1160,
         "wires": [
             [
                 "a6c7eec4.f7a918"
@@ -4131,7 +4174,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1000,
+        "y": 1200,
         "wires": [
             [
                 "66b37eef.f3f9e"
@@ -4156,7 +4199,7 @@
         "topic": "analog",
         "topicType": "str",
         "x": 580,
-        "y": 960,
+        "y": 1160,
         "wires": [
             [
                 "44e02933.a66688",
@@ -4182,7 +4225,7 @@
         "topic": "digital",
         "topicType": "str",
         "x": 580,
-        "y": 1000,
+        "y": 1200,
         "wires": [
             [
                 "44e02933.a66688",
@@ -4201,7 +4244,7 @@
         "initialize": "",
         "finalize": "",
         "x": 910,
-        "y": 980,
+        "y": 1180,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -4228,7 +4271,7 @@
         "to": "",
         "reg": false,
         "x": 790,
-        "y": 1020,
+        "y": 1220,
         "wires": [
             [
                 "56835fa1.2fe538"
@@ -4254,7 +4297,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -4280,7 +4323,7 @@
         "className": "",
         "topicType": "str",
         "x": 570,
-        "y": 500,
+        "y": 560,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -4304,7 +4347,7 @@
         "topic": "pump_flowrate",
         "topicType": "str",
         "x": 580,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -4330,7 +4373,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 1040,
+        "y": 1240,
         "wires": [
             [
                 "d361a2c4.0990f8",
@@ -4357,7 +4400,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 1080,
+        "y": 1280,
         "wires": [
             [
                 "d361a2c4.0990f8",
@@ -4380,7 +4423,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1330,
+        "x": 1190,
         "y": 120,
         "wires": [
             []
@@ -4441,7 +4484,7 @@
         "step": "1",
         "className": "",
         "x": 600,
-        "y": 880,
+        "y": 1020,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -4466,10 +4509,11 @@
         "payload": "125",
         "payloadType": "num",
         "x": 120,
-        "y": 880,
+        "y": 1080,
         "wires": [
             [
-                "5765a825.a595c8"
+                "5765a825.a595c8",
+                "336226c6a630465a"
             ]
         ]
     },
@@ -4491,10 +4535,11 @@
         "payload": "100",
         "payloadType": "num",
         "x": 130,
-        "y": 840,
+        "y": 980,
         "wires": [
             [
-                "9feb06fb.43b558"
+                "9feb06fb.43b558",
+                "7b40a26b77b6ad8b"
             ]
         ]
     },
@@ -4563,8 +4608,9 @@
                 "color": "#cc6600"
             }
         ],
+        "topic": "",
         "x": 570,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "eb9966de.cf13c8"
@@ -4590,8 +4636,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
-        "y": 840,
+        "x": 760,
+        "y": 920,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -4635,7 +4681,7 @@
         ],
         "topic": "",
         "x": 590,
-        "y": 920,
+        "y": 1120,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -4657,8 +4703,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1370,
-        "y": 660,
+        "x": 330,
+        "y": 720,
         "wires": [
             []
         ]
@@ -4678,8 +4724,8 @@
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 1370,
-        "y": 620,
+        "x": 330,
+        "y": 680,
         "wires": [
             []
         ]
@@ -4699,8 +4745,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1370,
-        "y": 700,
+        "x": 330,
+        "y": 760,
         "wires": [
             []
         ]
@@ -4720,8 +4766,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1400,
-        "y": 740,
+        "x": 360,
+        "y": 800,
         "wires": [
             []
         ]
@@ -4742,7 +4788,7 @@
         "templateScope": "local",
         "className": "",
         "x": 990,
-        "y": 500,
+        "y": 560,
         "wires": [
             []
         ]
@@ -4755,11 +4801,12 @@
         "links": [
             "95b374a91cb16f2b"
         ],
-        "x": 255,
-        "y": 180,
+        "x": 195,
+        "y": 220,
         "wires": [
             [
-                "413b72d5fa015592"
+                "413b72d5fa015592",
+                "3581eb5deb889b01"
             ]
         ]
     },
@@ -4768,7 +4815,7 @@
         "type": "ui_dropdown",
         "z": "bccd1f23.87219",
         "name": "acq_fnumber_objective",
-        "label": "M12 Lens",
+        "label": "Choose Your Lens",
         "tooltip": "",
         "place": "Select option",
         "group": "4248342d.e55fac",
@@ -4778,11 +4825,6 @@
         "passthru": true,
         "multiple": false,
         "options": [
-            {
-                "label": "Choose your lens",
-                "value": 0,
-                "type": "num"
-            },
             {
                 "label": "f 25mm 1/2\" 5MP IR",
                 "value": 25,
@@ -4813,36 +4855,11 @@
         "topic": "acq_fnumber_objective",
         "topicType": "str",
         "className": "",
-        "x": 430,
-        "y": 180,
+        "x": 370,
+        "y": 200,
         "wires": [
             [
                 "75b7aeca42db75bd"
-            ]
-        ]
-    },
-    {
-        "id": "a0cf63c7abd6fc68",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "DEFAULT : 0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 230,
-        "y": 240,
-        "wires": [
-            [
-                "413b72d5fa015592"
             ]
         ]
     },
@@ -4855,9 +4872,234 @@
         "links": [
             "a9f290c81031e81e"
         ],
-        "x": 625,
-        "y": 180,
+        "x": 555,
+        "y": 220,
         "wires": []
+    },
+    {
+        "id": "36b07697f00a4016",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "light_control",
+        "group": "7e3a6f5233943da5",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "Light  ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "On",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "cbb8afed.0a026"
+            ]
+        ]
+    },
+    {
+        "id": "3581eb5deb889b01",
+        "type": "ui_dropdown",
+        "z": "bccd1f23.87219",
+        "name": "acq_fnumber_objective",
+        "label": "Choose Your Lens",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "7e3a6f5233943da5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "f 25mm 1/2\" 5MP IR",
+                "value": 25,
+                "type": "num"
+            },
+            {
+                "label": "f 16mm 1/2.5\" 5MP IR",
+                "value": 16,
+                "type": "num"
+            },
+            {
+                "label": "f 12mm 1/2.5\" 5MP IR",
+                "value": 12,
+                "type": "num"
+            },
+            {
+                "label": "f 8mm 1/2.5\" 5MP IR",
+                "value": 8,
+                "type": "num"
+            },
+            {
+                "label": "f 6mm 1/2.5\" 5MP IR",
+                "value": 6,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "acq_fnumber_objective",
+        "topicType": "str",
+        "className": "",
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "75b7aeca42db75bd"
+            ]
+        ]
+    },
+    {
+        "id": "766492c0efbd2f58",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: OFF",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "413b72d5fa015592",
+                "75b7aeca42db75bd",
+                "3581eb5deb889b01"
+            ]
+        ]
+    },
+    {
+        "id": "7b40a26b77b6ad8b",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "ISO selector",
+        "group": "4a3d149548f7d6bf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "ISO",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "100",
+                "value": "100",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "200",
+                "value": "200",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "320",
+                "value": "320",
+                "valueType": "num",
+                "color": "#ff6666"
+            },
+            {
+                "label": "400",
+                "value": "400",
+                "valueType": "num",
+                "color": "#009999"
+            },
+            {
+                "label": "500",
+                "value": "500",
+                "valueType": "num",
+                "color": "#cccc00"
+            },
+            {
+                "label": "640",
+                "value": "640",
+                "valueType": "num",
+                "color": "#ff33cc"
+            },
+            {
+                "label": "800",
+                "value": "800",
+                "valueType": "num",
+                "color": "#cc6600"
+            }
+        ],
+        "topic": "",
+        "x": 570,
+        "y": 940,
+        "wires": [
+            [
+                "eb9966de.cf13c8"
+            ]
+        ]
+    },
+    {
+        "id": "336226c6a630465a",
+        "type": "ui_slider",
+        "z": "bccd1f23.87219",
+        "name": "Shutter speed slider",
+        "label": "Shutter Speed",
+        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
+        "group": "4a3d149548f7d6bf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "shutter_speed",
+        "topicType": "str",
+        "min": "125",
+        "max": "1000",
+        "step": "1",
+        "className": "",
+        "x": 600,
+        "y": 1060,
+        "wires": [
+            [
+                "8ea9dc9a.c7d87"
+            ]
+        ]
     },
     {
         "id": "f59a2f0d.5e9af",
@@ -5859,7 +6101,8 @@
             "30067f35.532f2",
             "572a6daa.6004c4",
             "cfc783d7.d6ceb",
-            "6746f61cadaa1038"
+            "6746f61cadaa1038",
+            "dfefeb6072e3ee44"
         ],
         "x": 965,
         "y": 780,
@@ -10530,7 +10773,9 @@
             "c515edcd8681c244",
             "7fb91a7fd6d2518c",
             "604659d148759b84",
-            "3bb4970164f5e7b2"
+            "3bb4970164f5e7b2",
+            "e930a47cb7fae6eb",
+            "e76f25605ee25030"
         ],
         "x": 1035,
         "y": 160,
@@ -11184,7 +11429,8 @@
         "name": "Process_pixel calibration",
         "links": [
             "cfc783d7.d6ceb",
-            "6746f61cadaa1038"
+            "6746f61cadaa1038",
+            "dfefeb6072e3ee44"
         ],
         "x": 1195,
         "y": 500,
@@ -11258,7 +11504,8 @@
         "name": "Choice objective",
         "mode": "link",
         "links": [
-            "9bc3e85c28d70120"
+            "9bc3e85c28d70120",
+            "4d29b4f3ab226c2c"
         ],
         "x": 575,
         "y": 520,
@@ -11270,13 +11517,39 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "links": [
-            "75b7aeca42db75bd"
+            "75b7aeca42db75bd",
+            "9d94dcc24bdc7ea1"
         ],
         "x": 735,
         "y": 520,
         "wires": [
             [
                 "8e3b3d3c.955148",
+                "a6983d3232b570a7"
+            ]
+        ]
+    },
+    {
+        "id": "52f756c93fac4d70",
+        "type": "inject",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 720,
+        "y": 620,
+        "wires": [
+            [
                 "a6983d3232b570a7"
             ]
         ]
