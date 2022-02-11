@@ -462,7 +462,7 @@
         "tab": "181bb236.1e94be",
         "order": 2,
         "disp": true,
-        "width": 4,
+        "width": 11,
         "collapse": false
     },
     {
@@ -956,7 +956,7 @@
         "height": 1
     },
     {
-        "id": "47e3c331080748b2",
+        "id": "4908cc89929f2b9d",
         "type": "ui_spacer",
         "z": "bccd1f23.87219",
         "name": "spacer",
@@ -3157,20 +3157,22 @@
         "id": "811cd88c.daf528",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "down",
+        "name": "left",
         "group": "fbd92986.1028c8",
-        "order": 6,
-        "width": 4,
-        "height": 1,
+        "order": 11,
+        "width": 2,
+        "height": 2,
         "passthru": true,
         "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-double-down fa-3x",
+        "className": "",
+        "icon": "fa-angle-double-left fa-3x",
         "payload": "DOWN",
         "payloadType": "str",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 550,
         "y": 800,
         "wires": [
@@ -3183,20 +3185,22 @@
         "id": "edda4df4.76de2",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "up",
+        "name": "right",
         "group": "fbd92986.1028c8",
-        "order": 3,
-        "width": 4,
-        "height": 1,
+        "order": 17,
+        "width": 2,
+        "height": 2,
         "passthru": false,
         "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-double-up fa-3x",
+        "className": "",
+        "icon": "fa-angle-double-right fa-3x",
         "payload": "UP",
         "payloadType": "str",
         "topic": "actuator/focus",
+        "topicType": "str",
         "x": 550,
         "y": 760,
         "wires": [
@@ -3642,9 +3646,9 @@
         "z": "bccd1f23.87219",
         "name": "stop focus",
         "group": "fbd92986.1028c8",
-        "order": 9,
-        "width": 0,
-        "height": 0,
+        "order": 19,
+        "width": 11,
+        "height": 1,
         "passthru": true,
         "label": " STOP FOCUS",
         "tooltip": "",
@@ -3679,22 +3683,23 @@
         "id": "3bd43039.bc5fb8",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "right 1mm",
         "group": "fbd92986.1028c8",
-        "order": 1,
-        "width": 4,
-        "height": 1,
+        "order": 16,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "UP 1mm",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-up fa-3x",
+        "className": "",
+        "icon": "fa-angle-right fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 560,
+        "x": 570,
         "y": 600,
         "wires": [
             [
@@ -3706,22 +3711,23 @@
         "id": "c0663029.2d03b",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "left 1mm",
         "group": "fbd92986.1028c8",
-        "order": 8,
-        "width": 4,
-        "height": 1,
+        "order": 12,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "DOWN 1mm",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-down fa-3x",
+        "className": "",
+        "icon": "fa-angle-left fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
+        "x": 560,
         "y": 720,
         "wires": [
             [
@@ -3912,17 +3918,18 @@
         "id": "167cda35.c9b6ae",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "right 100um",
         "group": "fbd92986.1028c8",
-        "order": 2,
-        "width": 4,
-        "height": 1,
+        "order": 15,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "UP 100um",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-up fa-3x",
+        "className": "",
+        "icon": "fa-angle-right fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
@@ -3939,22 +3946,23 @@
         "id": "72a7c597.9374fc",
         "type": "ui_button",
         "z": "bccd1f23.87219",
-        "name": "",
+        "name": "left 100um",
         "group": "fbd92986.1028c8",
-        "order": 7,
-        "width": 4,
-        "height": 1,
+        "order": 13,
+        "width": 1,
+        "height": 2,
         "passthru": false,
-        "label": "DOWN 100um",
+        "label": "",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
-        "icon": "fa-angle-down fa-3x",
+        "className": "",
+        "icon": "fa-angle-left fa-3x",
         "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.1}",
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 580,
+        "x": 570,
         "y": 680,
         "wires": [
             [
@@ -4330,9 +4338,9 @@
         "label": "Focus Distance (in µm)",
         "tooltip": "in µm, 25µm resolution",
         "group": "fbd92986.1028c8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
+        "order": 14,
+        "width": 3,
+        "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": 300,
@@ -4356,9 +4364,9 @@
         "label": "Focus Speed (in µm/sec)",
         "tooltip": "in µm/sec",
         "group": "fbd92986.1028c8",
-        "order": 5,
-        "width": 0,
-        "height": 0,
+        "order": 18,
+        "width": 3,
+        "height": 1,
         "passthru": true,
         "mode": "number",
         "delay": 300,
@@ -4685,184 +4693,6 @@
         ]
     },
     {
-        "id": "5765a825.a595c8",
-        "type": "ui_slider",
-        "z": "bccd1f23.87219",
-        "name": "Shutter speed slider",
-        "label": "Shutter Speed",
-        "tooltip": "In microseconds, up to 1000µs, 125µs by default",
-        "group": "8c38a81e.9897a8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "shutter_speed",
-        "topicType": "str",
-        "min": "125",
-        "max": "1000",
-        "step": "1",
-        "className": "",
-        "x": 600,
-        "y": 880,
-        "wires": [
-            [
-                "8ea9dc9a.c7d87"
-            ]
-        ]
-    },
-    {
-        "id": "2350e507.d4e302",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 125µs",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "125",
-        "payloadType": "num",
-        "x": 120,
-        "y": 880,
-        "wires": [
-            [
-                "5765a825.a595c8"
-            ]
-        ]
-    },
-    {
-        "id": "d8d006bf.2947f",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: ISO 100",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "100",
-        "payloadType": "num",
-        "x": 130,
-        "y": 840,
-        "wires": [
-            [
-                "9feb06fb.43b558"
-            ]
-        ]
-    },
-    {
-        "id": "9feb06fb.43b558",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "ISO selector",
-        "group": "8c38a81e.9897a8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "ISO",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "never",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "100",
-                "value": "100",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "200",
-                "value": "200",
-                "valueType": "num",
-                "color": "#999999"
-            },
-            {
-                "label": "320",
-                "value": "320",
-                "valueType": "num",
-                "color": "#ff6666"
-            },
-            {
-                "label": "400",
-                "value": "400",
-                "valueType": "num",
-                "color": "#009999"
-            },
-            {
-                "label": "500",
-                "value": "500",
-                "valueType": "num",
-                "color": "#cccc00"
-            },
-            {
-                "label": "640",
-                "value": "640",
-                "valueType": "num",
-                "color": "#ff33cc"
-            },
-            {
-                "label": "800",
-                "value": "800",
-                "valueType": "num",
-                "color": "#cc6600"
-            }
-        ],
-        "topic": "",
-        "x": 570,
-        "y": 840,
-        "wires": [
-            [
-                "eb9966de.cf13c8"
-            ]
-        ]
-    },
-    {
-        "id": "eb9966de.cf13c8",
-        "type": "change",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "iso",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 760,
-        "y": 840,
-        "wires": [
-            [
-                "8ea9dc9a.c7d87"
-            ]
-        ]
-    },
-    {
         "id": "6c5451ce63e79adc",
         "type": "ui_multistate_switch",
         "z": "bccd1f23.87219",
@@ -4904,6 +4734,237 @@
             [
                 "8ea9dc9a.c7d87"
             ]
+        ]
+    },
+    {
+        "id": "d40215e1e17a9807",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Right",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "format": "<h12>RIGHT</h12>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1370,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6893082a3d7de514",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "6f97e7ae.270c48",
+        "name": "style",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    h12 {\n        color: white;\n        text-align: center;\n        font-size: 21px;\n    }\n    h11 {\n        color: white;\n        text-align: center;\n        font-size: 17px;\n    }\n</style>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 1370,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "543d5731872d632b",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Left",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "format": "<h12>LEFT</h12>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1550,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1284940f84e0807",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Manual Config",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "format": "<h12>Manual Configuration</h12>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1740,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ace66ca88871c75",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Right 100 µm",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "format": "<h11>100 µm</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1400,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "368901818aaf56b1",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Right 1 mm",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "format": "<h11>1</br> mm</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1390,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c15856aa20fb587",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Right Manual",
+        "order": 10,
+        "width": 2,
+        "height": 1,
+        "format": "<h11>Manual</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1390,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4137dfcde828f076",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Left 100 µm",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "format": "<h11>100 µm</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1570,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "580849cad44966ed",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Left 1 mm",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "format": "<h11>1</br> mm</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1570,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d8a6412d1c5d75e",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Left Manual",
+        "order": 4,
+        "width": 2,
+        "height": 1,
+        "format": "<h11></br>Manual</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1570,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d6425a177384ec6",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "fbd92986.1028c8",
+        "name": "Text Manual",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "format": "<h11></br>Choose your values</h11>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1730,
+        "y": 700,
+        "wires": [
+            []
         ]
     },
     {
