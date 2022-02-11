@@ -451,7 +451,7 @@
         "type": "ui_group",
         "name": "Validation",
         "tab": "737ec584.2eea2c",
-        "order": 8,
+        "order": 10,
         "disp": false,
         "width": 10,
         "collapse": false
@@ -1149,6 +1149,28 @@
         "order": 17,
         "width": 1,
         "height": 1
+    },
+    {
+        "id": "c9aaf84f0d1abd88",
+        "type": "ui_group",
+        "name": "Resum",
+        "tab": "737ec584.2eea2c",
+        "order": 8,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "eda2c2de40a75200",
+        "type": "ui_group",
+        "name": "Resum net",
+        "tab": "737ec584.2eea2c",
+        "order": 9,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "6465bdd5.15eb8c",
@@ -1954,8 +1976,7 @@
             [
                 "9f501f49.45645",
                 "46eb1bf8.3dc5f4",
-                "3ac7b631f5d8ef90",
-                "da3c32b54e587180"
+                "3ac7b631f5d8ef90"
             ]
         ]
     },
@@ -2287,7 +2308,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_sampling_gear",
-        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"single_location\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\n\nmsg.payload = \"single_location\";\nreturn msg;",
+        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"single_location\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\n\n//msg.payload = \"single_location\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2496,7 +2517,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1990,
+        "x": 2230,
         "y": 880,
         "wires": [
             []
@@ -2555,7 +2576,7 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "sample_location",
-        "x": 1420,
+        "x": 1660,
         "y": 840,
         "wires": [
             [
@@ -2616,7 +2637,7 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1410,
+        "x": 1650,
         "y": 880,
         "wires": [
             [
@@ -2677,7 +2698,7 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1400,
+        "x": 1640,
         "y": 920,
         "wires": [
             [
@@ -2690,7 +2711,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Net check",
-        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\", \"Sample_Prefill_net\"],\"hide\":[\"Sample_Sample_Location\",\"Sample_Culture_Date_and_Time\", \"Sample_Prefill_sample\"]}};\n}\nelse if (msg.payload != \"culture\" && msg.payload != \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Location\",\"Sample_Prefill_sample\"], \"hide\":[\"Sample_Net_Metadata\",\"Sample_Culture_Date_and_Time\",\"Sample_Prefill_net\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
+        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\", \"Sample_Prefill_net\", \"Sample_Resum_net\"],\"hide\":[\"Sample_Sample_Location\",\"Sample_Culture_Date_and_Time\", \"Sample_Prefill_sample\", \"Sample_Resum\"]}};\n}\nelse if (msg.payload != \"culture\" && msg.payload != \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Location\",\"Sample_Prefill_sample\", \"Sample_Resum\"], \"hide\":[\"Sample_Net_Metadata\",\"Sample_Culture_Date_and_Time\",\"Sample_Prefill_net\", \"Sample_Resum_net\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2848,14 +2869,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "calculate sample_total_volume",
-        "func": "\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\ndecpl=4  // Dec places of minutes output\n\nellipse = {\"name\":\"WSG84\", \"a\":6378.137/1.852, \"invf\":298.257223563}\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2){\n    var d,crs12,crs21\n    var argacos\n    var a,invf\n    \n    // lat and lon in radian\n    lat1=(Math.PI/180)*lat1\n    lat2=(Math.PI/180)*lat2\n    lon1=(Math.PI/180)*lon1\n    lon2=(Math.PI/180)*lon2\n    \n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n    \n    /* get distance conversion factor */\n    dc=1.852 //km\n    //alert(\"dc=\" +dc)\n    \n    //showProps(ellipse,\"ellipse\")\n    \n    // elliptic code\n    d=crsdist_ell(lat1,-lon1,lat2,-lon2,ellipse)  // ellipse uses East negative\n    d=d*dc  // go to physical units\n    \n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1,lon1,lat2,lon2){ // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1+lat2===0) && (Math.abs(lon1-lon2)==Math.PI) && \n    (Math.abs(lat1) != (Math.PI/180)*90)){\t\n    \talert(\"Course between antipodal points is undefined\")\n    }\n    \n    d = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1,glon1,glat2,glon2,ellipse){\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    a=ellipse.a\n    f=1/ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy,y, sa, c2a, cz, e, c, d\n    var EPS= 0.00000000005\n    var faz, baz, s\n    var iter=1\n    var MAXITER=100\n    if ((glat1+glat2===0) && (Math.abs(glon1-glon2)==Math.PI)){\n        alert(\"Course and distance between antipodal points is undefined\")\n        glat1=glat1+0.00001 // allow algorithm to complete\n    }\n    if (glat1==glat2 && (glon1==glon2 || Math.abs(Math.abs(glon1-glon2)-2*Math.PI) <  EPS)){\n        alert(\"Points 1 and 2 are identical- course undefined\")\n        out=new MakeArray(0)\n        out.d=0\n        out.crs12=0\n        out.crs21=Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan (glat1)\n    tu2 = r * Math.tan (glat2)\n    cu1 = 1 / Math.sqrt (1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt (1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER))\n    {\n        iter=iter+1\n        sx = Math.sin (x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos (x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2 (sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n            e = cz * cz * 2 - 1\n            c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n            d = x\n            x = ((e * cy * c + cz) * sy * c + y) * sa\n            x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt ((1 / (r * r) - 1) * c2a + 1)\n    x +=1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy*sy*4-3)*(1-e-e)*cz*d/6-x)*d/4+cz)*sy*d+y)*c*a*r\n    if (Math.abs(iter-MAXITER)<EPS){\n        alert(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y,x){\n    var out\n    if (x <0)            { out= Math.atan(y/x)+Math.PI}\n    if ((x >0) && (y>=0)){ out= Math.atan(y/x)}\n    if ((x >0) && (y<0)) { out= Math.atan(y/x)+2*Math.PI}\n    if ((x===0) && (y>0)) { out= Math.PI/2}\n    if ((x===0) && (y<0)) { out= 3*Math.PI/2}  \n    if ((x===0) && (y===0)) {\n        alert(\"atan2(0,0) undefined\")\n        out= 0\n    }  \n    return out\n}\n\nfunction showProps(obj,objName){\n    var result=\"\"\n    for (var i in obj){\n        result +=objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    alert(result)\n}\n\n\nif (msg.valid){\n    msg.topic=\"sample_total_volume\"\n    \n    var object_lat_end = global.get(\"object_lat_end\")\n    var object_lon_end = global.get(\"object_lon_end\")\n    var sample_sampling_gear = global.get(\"sample_sampling_gear\")\n    \n    if (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\") {\n        if (!(isNaN(object_lat_end) && isNaN(object_lon_end))){\n            var object_lat = global.get(\"object_lat\")\n            var object_lon = global.get(\"object_lon\")\n            var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n            distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n\n            sample_total_volume = distance_km*(Math.PI*(sample_gear_net_opening/2)*(sample_gear_net_opening/2)) // liters\n            sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n            msg.payload = sample_total_volume\n            return msg\n        }\n    }\n}",
+        "func": "\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\ndecpl=4  // Dec places of minutes output\n\nellipse = {\"name\":\"WSG84\", \"a\":6378.137/1.852, \"invf\":298.257223563}\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2){\n    var d,crs12,crs21\n    var argacos\n    var a,invf\n    \n    // lat and lon in radian\n    lat1=(Math.PI/180)*lat1\n    lat2=(Math.PI/180)*lat2\n    lon1=(Math.PI/180)*lon1\n    lon2=(Math.PI/180)*lon2\n    \n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n    \n    /* get distance conversion factor */\n    dc=1.852 //km\n    //alert(\"dc=\" +dc)\n    \n    //showProps(ellipse,\"ellipse\")\n\n    // elliptic code\n    d=crsdist_ell(lat1,-lon1,lat2,-lon2,ellipse)  // ellipse uses East negative\n    d=d*dc  // go to physical units\n\n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1,lon1,lat2,lon2){ // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1+lat2===0) && (Math.abs(lon1-lon2)==Math.PI) && \n    (Math.abs(lat1) != (Math.PI/180)*90)){\t\n    \t//alert(\"Course between antipodal points is undefined\")\n    }\n    d = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1,glon1,glat2,glon2,ellipse){\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n\n    a=ellipse.a\n    f=1/ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy,y, sa, c2a, cz, e, c, d\n    var EPS= 0.00000000005\n    var faz, baz, s\n    var iter=1\n    var MAXITER=100\n\n    if ((glat1+glat2===0) && (Math.abs(glon1-glon2)==Math.PI)){\n        //alert(\"Course and distance between antipodal points is undefined\")\n        glat1=glat1+0.00001 // allow algorithm to complete\n    }\n\n    if (glat1==glat2 && (glon1==glon2 || Math.abs(Math.abs(glon1-glon2)-2*Math.PI) <  EPS)){\n        //alert(\"Points 1 and 2 are identical- course undefined\")\n        out= {}\n        out.d=0\n        out.crs12=0\n        out.crs21=Math.PI\n        return out\n    }\n    \n    r = 1 - f\n    tu1 = r * Math.tan (glat1)\n    tu2 = r * Math.tan (glat2)\n    cu1 = 1 / Math.sqrt (1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt (1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n\n\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER))\n    {\n        iter=iter+1\n        sx = Math.sin (x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos (x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2 (sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n            e = cz * cz * 2 - 1\n            c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n            d = x\n            x = ((e * cy * c + cz) * sy * c + y) * sa\n            x = (1 - c) * x * f + glon2 - glon1\n    }\n\n    x = Math.sqrt ((1 / (r * r) - 1) * c2a + 1)\n    x +=1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy*sy*4-3)*(1-e-e)*cz*d/6-x)*d/4+cz)*sy*d+y)*c*a*r\n    if (Math.abs(iter-MAXITER)<EPS){\n        //alert(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y,x){\n    var out\n    if (x <0)            { out= Math.atan(y/x)+Math.PI}\n    if ((x >0) && (y>=0)){ out= Math.atan(y/x)}\n    if ((x >0) && (y<0)) { out= Math.atan(y/x)+2*Math.PI}\n    if ((x===0) && (y>0)) { out= Math.PI/2}\n    if ((x===0) && (y<0)) { out= 3*Math.PI/2}  \n    if ((x===0) && (y===0)) {\n        //alert(\"atan2(0,0) undefined\")\n        out= 0\n    }  \n    return out\n}\n\nfunction showProps(obj,objName){\n    var result=\"\"\n    for (var i in obj){\n        result +=objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    alert(result)\n}\n\n\nif (msg.valid){\n    msg.topic=\"sample_total_volume\"\n    \n    var object_lat_end = global.get(\"object_lat_end\")\n    var object_lon_end = global.get(\"object_lon_end\")\n    var sample_sampling_gear = global.get(\"sample_sampling_gear\")\n\n    if (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\") {\n        if (!(isNaN(object_lat_end) && isNaN(object_lon_end))){\n            var object_lat = global.get(\"object_lat\")\n            var object_lon = global.get(\"object_lon\")\n            var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n            distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n\n            sample_total_volume = distance_km*(Math.PI*(sample_gear_net_opening/2)*(sample_gear_net_opening/2)) // liters\n            sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n            msg.payload = sample_total_volume\n\n            return msg\n        }\n    }\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2080,
-        "y": 940,
+        "x": 2340,
+        "y": 920,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -3106,8 +3127,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 2370,
-        "y": 940,
+        "x": 2730,
+        "y": 920,
         "wires": [
             [
                 "e1f2f6eb.fe1dd"
@@ -3124,8 +3145,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 2570,
-        "y": 940,
+        "x": 2950,
+        "y": 920,
         "wires": [
             []
         ]
@@ -3227,7 +3248,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Culture check",
-        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
+        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Resum\" , \"Sample_Resum_net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Resum\", \"Sample_Resum_net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -3285,7 +3306,7 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1410,
+        "x": 1650,
         "y": 960,
         "wires": [
             [
@@ -3585,23 +3606,6 @@
         ]
     },
     {
-        "id": "7f64ad1f40d9b8ed",
-        "type": "debug",
-        "z": "b771c342.49603",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1910,
-        "y": 740,
-        "wires": []
-    },
-    {
         "id": "14658615.47c862",
         "type": "function",
         "z": "b771c342.49603",
@@ -3612,15 +3616,18 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1690,
+        "x": 1930,
         "y": 880,
         "wires": [
             [
                 "c0ce5626.b6c5",
                 "9a18a4b4.178448",
-                "7f64ad1f40d9b8ed"
+                "5b51ea3a049b5794"
             ],
-            []
+            [
+                "4c4d548577a253bb",
+                "3e141eac389fdd9f"
+            ]
         ],
         "inputLabels": [
             "Location form data"
@@ -3650,23 +3657,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "da3c32b54e587180",
-        "type": "debug",
-        "z": "b771c342.49603",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 480,
-        "wires": []
     },
     {
         "id": "0d869284d8928ab6",
@@ -4092,6 +4082,82 @@
             [
                 "0777da8c09792a70"
             ]
+        ]
+    },
+    {
+        "id": "4c4d548577a253bb",
+        "type": "ui_template",
+        "z": "b771c342.49603",
+        "group": "c9aaf84f0d1abd88",
+        "name": "Show Metadata",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td STYLE=\"padding:0 0 0 20px;\">\n                <p><strong>latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span>\n                </p>\n                <p><strong>longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span>\n                </p>\n                <p><strong>date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span></p>\n                <p><strong>time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span></p>\n            </td>\n        </tr>\n    </table>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1890,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c544ac031b6cf88c",
+        "type": "ui_template",
+        "z": "b771c342.49603",
+        "group": "eda2c2de40a75200",
+        "name": "Show Metadata",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td STYLE=\"padding:0 0 0 20px;\">\n                <p><strong>latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span>\n                </p>\n                <p><strong>longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span>\n                </p>\n                <p><strong>date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span></p>\n                <p><strong>time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span></p>\n            </td>\n        </tr>\n    </table>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 2410,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b51ea3a049b5794",
+        "type": "debug",
+        "z": "b771c342.49603",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1970,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "3e141eac389fdd9f",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "if (msg.payload.object_lat_end == undefined) {\n\tnode.warn(\"hello\")\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2210,
+        "y": 1080,
+        "wires": [
+            []
         ]
     },
     {
