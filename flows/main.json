@@ -4092,7 +4092,7 @@
         "order": 9,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td STYLE=\"padding:0 0 0 20px;\">\n                <p><strong>latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span>\n                </p>\n                <p><strong>longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span>\n                </p>\n                <p><strong>date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span></p>\n                <p><strong>time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span></p>\n            </td>\n        </tr>\n    </table>\n</div>",
+        "format": "<div class=\"conteneur\">   \n    <div class=\"infoR\">       \n        <div class=\"element 1\">\n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lat_end\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lon_end\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.date_end\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.time_end\"></span> <br>\n        </div>       \n    </div> \n</div>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -4113,7 +4113,7 @@
         "order": 9,
         "width": 0,
         "height": 0,
-        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td STYLE=\"padding:0 0 0 20px;\">\n                <p><strong>latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span>\n                </p>\n                <p><strong>longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span>\n                </p>\n                <p><strong>date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span></p>\n                <p><strong>time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span></p>\n            </td>\n        </tr>\n    </table>\n</div>",
+        "format": "<div class=\"conteneur\">   \n    <div class=\"infoR\">       \n        <div class=\"element 1\">\n            <div class=\"text\">Throw</div>  \n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lat\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lon\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.date\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.time\"></span> <br>\n        </div>       \n        <div class=\"element 2\">\n            <div class=\"text\">Retrival</div>  \n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lat_end\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lon_end\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.date_end\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.time_end\"></span> <br>\n        </div>       \n\n    </div> \n</div>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -4147,18 +4147,40 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "var temp1, temp2\n//Reception de retrevial location\nif (msg.payload.object_lat_end == undefined) {\n\tcontext.set(\"lat_end\", global.get(\"object_lat_end\") )\n    context.set(\"lon_end\", global.get(\"object_lon_end\") )\n    \n    temp1 = global.get(\"object_date_end\").match(/\\d{2}/g).join('-').replace(\"-\",\"\")\n    \n    temp2 = global.get(\"object_time_end\").match(/\\d{2}/g).join(':')\n    \n    context.set(\"date_end\", temp1 )\n    context.set(\"time_end\", temp2 )\n}\n//reception de net throw location\nelse{\n    context.set(\"lat\", msg.payload.object_lat_end )\n    context.set(\"lon\", msg.payload.object_lon_end )\n    context.set(\"date\", msg.payload.object_date_end )\n    context.set(\"time\", msg.payload.object_time_end )\n}\n\n//For eatch data receive, refresh data\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;",
+        "func": "var temp1, temp2, temp3, temp4\n//Reception de retrevial location\nif (msg.payload.object_lat_end == undefined) {\n\t\n    temp1 = ConvertDDToDMS(global.get(\"object_lat_end\"), false)\n    temp2 = ConvertDDToDMS(global.get(\"object_lon_end\"), true)\n    temp3 = global.get(\"object_date_end\").match(/\\d{2}/g).join('-').replace(\"-\",\"\")\n    temp4 = global.get(\"object_time_end\").match(/\\d{2}/g).join(':')\n    \n    context.set(\"lat_end\", temp1 )\n    context.set(\"lon_end\", temp2 )\n    context.set(\"date_end\", temp3 )\n    context.set(\"time_end\", temp4 )\n}\n//reception de net throw location\nelse{\n    context.set(\"lat\", msg.payload.object_lat_end )\n    context.set(\"lon\", msg.payload.object_lon_end )\n    context.set(\"date\", msg.payload.object_date_end )\n    context.set(\"time\", msg.payload.object_time_end )\n}\n\n//For eatch data receive, refresh data\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;\n\n\n\nfunction ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D<0?lng?'W':'S':lng?'E':'N'\n    var deg = 0|(D<0?D=-D:D)\n    var min = 0|D%1*60\n    var sec = (0|D*60%1*6000)/100\n    return (deg+ \"°\" +min+ \"'\" + sec + \"\\\"\" + \" \" + dir)\n}",
         "outputs": 1,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n//Data for retrieval\ncontext.set(\"lat_end\", \"None\")\ncontext.set(\"lon_end\", \"None\")\ncontext.set(\"date_end\", \"None\")\ncontext.set(\"time_end\", \"None\")\n\n//Data for throw\ncontext.set(\"lat\", \"None\")\ncontext.set(\"lon\", \"None\")\ncontext.set(\"date\", \"None\")\ncontext.set(\"time\", \"None\")\n",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n//Data for retrieval\ncontext.set(\"lat_end\", \"None\")\ncontext.set(\"lon_end\", \"None\")\ncontext.set(\"date_end\", \"None\")\ncontext.set(\"time_end\", \"None\")\n\n//Data for throw\ncontext.set(\"lat\", \"None\")\ncontext.set(\"lon\", \"None\")\ncontext.set(\"date\", \"None\")\ncontext.set(\"time\", \"None\")\n\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;",
         "finalize": "",
         "libs": [],
         "x": 2210,
         "y": 1080,
         "wires": [
             [
-                "5b51ea3a049b5794"
+                "5b51ea3a049b5794",
+                "c544ac031b6cf88c"
             ]
+        ]
+    },
+    {
+        "id": "f3808f3b5baab789",
+        "type": "ui_template",
+        "z": "b771c342.49603",
+        "group": "6f97e7ae.270c48",
+        "name": "Style",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<style>     \n.conteneur: {\n    display: flex;\n    flex-direction: column;\n    width: 13.8em;\n}     \n.element:nth-child(1) {\n    flex:1;    \n    padding-left: 5%;\n}     \n.element:nth-child(2) {\n    flex:1; \n    padding-left: 5%;\n\n}     \n.infoR {\n    display: flex;         \n    flex-direction: row;         \n    text-align: left;        \n    font-size: 13px;\n}     \n    \n.text {        \n    font-size: 20px;        \n    padding: 5px;        \n    text-align: center;     \n} \n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 2380,
+        "y": 1000,
+        "wires": [
+            []
         ]
     },
     {
