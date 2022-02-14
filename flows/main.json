@@ -4131,7 +4131,7 @@
         ],
         "topic": "",
         "x": 350,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "cbb8afed.0a026"
@@ -4713,7 +4713,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -4904,7 +4904,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .element:nth-child(4)\n    {\n        flex:1;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n    p {\n        font-size: 12px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
+        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .element:nth-child(4)\n    {\n        flex:1;\n    }\n    .element4\n    {\n        flex:1;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n    p {\n        font-size: 12px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -5358,7 +5358,8 @@
         "y": 2000,
         "wires": [
             [
-                "7d266d4166315d99"
+                "7d266d4166315d99",
+                "313fe02cb59030d9"
             ]
         ]
     },
@@ -5388,27 +5389,6 @@
         ]
     },
     {
-        "id": "94482f8733f7cf81",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "bfcfdfdacc5f7350",
-        "name": "Mode débutant message",
-        "order": 1,
-        "width": 20,
-        "height": 5,
-        "format": "<div><center>Vous êtes ici dans le mode débutant!</center></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1190,
-        "y": 1960,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "d77b6caec1ba8d4d",
         "type": "change",
         "z": "bccd1f23.87219",
@@ -5427,7 +5407,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 800,
+        "x": 820,
         "y": 1940,
         "wires": [
             [
@@ -5474,7 +5454,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 2000,
+        "y": 1980,
         "wires": [
             [
                 "313fe02cb59030d9",
@@ -5491,7 +5471,7 @@
         "order": 3,
         "width": 4,
         "height": 1,
-        "format": "<div class=\"conteneur\">\n  <div class=\"text\">RIGHT</div>\n  <div class=\"infoR\">\n        <div class=\"element 1\">10 µm</div>\n        <div class=\"element 2\">100 µm</div>\n        <div class=\"element 3\">1 mm</div>\n        <div class=\"element 4\">1 mm</div>\n  </div>\n</div>",
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">RIGHT</div>\n  <div class=\"infoR\">\n        <div class=\"element 1\">10 µm</div>\n        <div class=\"element 2\">100 µm</div>\n        <div class=\"element4\">1 mm</div>\n        <div class=\"element 5\">10 mm</div>\n  </div>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -5512,7 +5492,7 @@
         "order": 1,
         "width": 4,
         "height": 1,
-        "format": "<div class=\"conteneur\">\n  <div class=\"text\">LEFT</div>\n  <div class=\"infoL\">\n        <div class=\"element 1\">10 µm</div>\n        <div class=\"element 2\">100 µm</div>\n        <div class=\"element 3\">1 mm</div>\n        <div class=\"element 4\">1 mm</div>\n  </div>\n</div>",
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">LEFT</div>\n  <div class=\"infoL\">\n        <div class=\"element 1\">10 µm</div>\n        <div class=\"element 2\">100 µm</div>\n        <div class=\"element4\">1 mm</div>\n        <div class=\"element 5\">10 mm</div>\n  </div>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -12690,8 +12670,8 @@
         "topic": "",
         "payload": "0",
         "payloadType": "num",
-        "x": 720,
-        "y": 620,
+        "x": 710,
+        "y": 580,
         "wires": [
             [
                 "a6983d3232b570a7"
