@@ -2308,7 +2308,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_sampling_gear",
-        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"single_location\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\n\n//msg.payload = \"single_location\";\nreturn msg;",
+        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"single_location\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4092,7 +4092,7 @@
         "order": 9,
         "width": 0,
         "height": 0,
-        "format": "<div class=\"conteneur\">   \n    <div class=\"infoR\">       \n        <div class=\"element 1\">\n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lat_end\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lon_end\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.date_end\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.time_end\"></span> <br>\n        </div>       \n    </div> \n</div>",
+        "format": "<div class=\"conteneur\">   \n    <div class=\"infoR\">       \n        <div class=\"element 1\">\n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span> <br>\n        </div>       \n    </div> \n</div>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -4126,23 +4126,6 @@
         ]
     },
     {
-        "id": "5b51ea3a049b5794",
-        "type": "debug",
-        "z": "b771c342.49603",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1970,
-        "y": 1400,
-        "wires": []
-    },
-    {
         "id": "3e141eac389fdd9f",
         "type": "function",
         "z": "b771c342.49603",
@@ -4157,7 +4140,6 @@
         "y": 1080,
         "wires": [
             [
-                "5b51ea3a049b5794",
                 "c544ac031b6cf88c"
             ]
         ]
@@ -8742,6 +8724,7 @@
         "id": "b40d1f65.39e14",
         "type": "template",
         "z": "9daf9e2b.019fc",
+        "d": true,
         "name": "git config",
         "field": "payload",
         "fieldType": "msg",
@@ -8797,6 +8780,7 @@
         "id": "6d7dd372.3b7814",
         "type": "template",
         "z": "9daf9e2b.019fc",
+        "d": true,
         "name": "git config",
         "field": "payload",
         "fieldType": "msg",
