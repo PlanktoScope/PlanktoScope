@@ -466,7 +466,7 @@
         "type": "ui_group",
         "name": "Focus Adjustment Expert",
         "tab": "181bb236.1e94be",
-        "order": 4,
+        "order": 6,
         "disp": true,
         "width": "12",
         "collapse": false,
@@ -477,7 +477,7 @@
         "type": "ui_group",
         "name": "Fluidic Manual Manipulation",
         "tab": "181bb236.1e94be",
-        "order": 5,
+        "order": 8,
         "disp": true,
         "width": 12,
         "collapse": false
@@ -487,9 +487,9 @@
         "type": "ui_group",
         "name": "Navigation",
         "tab": "181bb236.1e94be",
-        "order": 6,
+        "order": 9,
         "disp": false,
-        "width": 12,
+        "width": 6,
         "collapse": false
     },
     {
@@ -661,7 +661,7 @@
         "type": "ui_group",
         "name": "Camera Settings Expert",
         "tab": "181bb236.1e94be",
-        "order": 3,
+        "order": 4,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -740,7 +740,7 @@
         "tab": "b0fb559a.6966a8",
         "order": 1,
         "disp": false,
-        "width": "6",
+        "width": 8,
         "collapse": false
     },
     {
@@ -950,7 +950,7 @@
         "type": "ui_group",
         "name": "Optic Characterization Beginner",
         "tab": "181bb236.1e94be",
-        "order": 8,
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -961,7 +961,7 @@
         "type": "ui_group",
         "name": "Camera Settings Beginner",
         "tab": "181bb236.1e94be",
-        "order": 9,
+        "order": 5,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -972,9 +972,9 @@
         "type": "ui_group",
         "name": "Focus Adjustment Beginner",
         "tab": "181bb236.1e94be",
-        "order": 10,
+        "order": 7,
         "disp": true,
-        "width": "6",
+        "width": 12,
         "collapse": false,
         "className": ""
     },
@@ -3769,7 +3769,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 550,
-        "y": 860,
+        "y": 660,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3797,7 +3797,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 550,
-        "y": 820,
+        "y": 700,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -3813,7 +3813,7 @@
         "tooltip": "Tiny values are accepted down to 0.001mL",
         "group": "707d9797.c8e798",
         "order": 5,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": true,
         "mode": "text",
@@ -3837,7 +3837,7 @@
         "name": "",
         "events": "change",
         "x": 560,
-        "y": 1340,
+        "y": 1760,
         "wires": [
             []
         ]
@@ -3857,7 +3857,7 @@
         "topic": "",
         "name": "",
         "x": 570,
-        "y": 1420,
+        "y": 1840,
         "wires": [
             []
         ]
@@ -3873,8 +3873,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 1180,
+        "x": 290,
+        "y": 1800,
         "wires": [
             [
                 "6c792043.b6ff9",
@@ -3895,9 +3895,9 @@
         "z": "bccd1f23.87219",
         "name": "Backward",
         "group": "707d9797.c8e798",
-        "order": 2,
-        "width": 1,
-        "height": 1,
+        "order": 1,
+        "width": 2,
+        "height": 2,
         "passthru": false,
         "label": "",
         "tooltip": "",
@@ -3909,8 +3909,8 @@
         "payloadType": "str",
         "topic": "actuator/pump",
         "topicType": "str",
-        "x": 560,
-        "y": 280,
+        "x": 800,
+        "y": 240,
         "wires": [
             [
                 "3cb96380.e575ec"
@@ -3923,9 +3923,9 @@
         "z": "bccd1f23.87219",
         "name": "Forward",
         "group": "707d9797.c8e798",
-        "order": 4,
-        "width": 1,
-        "height": 1,
+        "order": 3,
+        "width": 2,
+        "height": 2,
         "passthru": true,
         "label": "",
         "tooltip": "",
@@ -3937,8 +3937,8 @@
         "payloadType": "str",
         "topic": "actuator/pump",
         "topicType": "str",
-        "x": 560,
-        "y": 320,
+        "x": 800,
+        "y": 280,
         "wires": [
             [
                 "3cb96380.e575ec"
@@ -3950,7 +3950,7 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;  \n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.696;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"6\":\n        acq_magnification= 4.2;\n        process_pixel= 0.273;\n        sug_min= 15;\n        sug_max= 161;\n        sug_flowrate= 0.9;\n        break;\n      case \"3.6\":\n        acq_magnification= 8;\n        process_pixel= 0.143;\n        sug_min= 9;\n        sug_max= 96.75;\n        sug_flowrate= 0.54;\n        break;\n      case \"1.71\":\n        acq_magnification= 14;\n        process_pixel= 0.079;\n        sug_min= 4.275;\n        sug_max= 45.95;\n        sug_flowrate= 0.2565;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\n\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3960,7 +3960,8 @@
         "y": 120,
         "wires": [
             [
-                "335a730b9a3830ff"
+                "335a730b9a3830ff",
+                "66c31ceb7f02964e"
             ]
         ],
         "inputLabels": [
@@ -3977,7 +3978,7 @@
         "name": "",
         "group": "7a0b4877.a5d268",
         "order": 1,
-        "width": 2,
+        "width": 3,
         "height": 1,
         "passthru": false,
         "label": "Previous",
@@ -3990,8 +3991,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 140,
-        "y": 1140,
+        "x": 100,
+        "y": 1760,
         "wires": [
             [
                 "6c792043.b6ff9"
@@ -4005,7 +4006,7 @@
         "name": "",
         "group": "7a0b4877.a5d268",
         "order": 2,
-        "width": 2,
+        "width": 3,
         "height": 1,
         "passthru": false,
         "label": "Continue",
@@ -4018,8 +4019,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 140,
-        "y": 1180,
+        "x": 100,
+        "y": 1800,
         "wires": [
             [
                 "fe840e05.b46f3"
@@ -4052,8 +4053,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
-        "y": 300,
+        "x": 990,
+        "y": 260,
         "wires": [
             [
                 "bdc8ce57.de1f08"
@@ -4085,8 +4086,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1090,
-        "y": 300,
+        "x": 1330,
+        "y": 260,
         "wires": [
             []
         ]
@@ -4105,8 +4106,8 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1210,
-        "y": 260,
+        "x": 1450,
+        "y": 220,
         "wires": []
     },
     {
@@ -4124,8 +4125,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1010,
-        "y": 820,
+        "x": 1070,
+        "y": 700,
         "wires": [
             []
         ]
@@ -4141,7 +4142,7 @@
         "initialize": "",
         "finalize": "",
         "x": 810,
-        "y": 820,
+        "y": 680,
         "wires": [
             [
                 "62030521.88317c"
@@ -4164,7 +4165,7 @@
         "z": "bccd1f23.87219",
         "name": "stop focus",
         "group": "fbd92986.1028c8",
-        "order": 9,
+        "order": 12,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4179,7 +4180,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "62030521.88317c"
@@ -4195,8 +4196,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1010,
-        "y": 700,
+        "x": 990,
+        "y": 900,
         "wires": []
     },
     {
@@ -4220,7 +4221,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 660,
+        "y": 740,
         "wires": [
             [
                 "62030521.88317c"
@@ -4248,7 +4249,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 560,
-        "y": 780,
+        "y": 860,
         "wires": [
             [
                 "62030521.88317c"
@@ -4362,9 +4363,9 @@
         "z": "bccd1f23.87219",
         "name": "stop pump",
         "group": "707d9797.c8e798",
-        "order": 5,
+        "order": 4,
         "width": 4,
-        "height": 1,
+        "height": 2,
         "passthru": true,
         "label": " STOP PUMP",
         "tooltip": "",
@@ -4376,8 +4377,8 @@
         "payloadType": "json",
         "topic": "actuator/pump",
         "topicType": "str",
-        "x": 570,
-        "y": 240,
+        "x": 810,
+        "y": 200,
         "wires": [
             [
                 "bdc8ce57.de1f08"
@@ -4407,7 +4408,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "x": 550,
-        "y": 1380,
+        "y": 1800,
         "wires": [
             []
         ]
@@ -4458,7 +4459,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 700,
+        "y": 780,
         "wires": [
             [
                 "62030521.88317c"
@@ -4486,7 +4487,7 @@
         "topic": "actuator/focus",
         "topicType": "str",
         "x": 570,
-        "y": 740,
+        "y": 820,
         "wires": [
             [
                 "62030521.88317c"
@@ -4530,7 +4531,7 @@
         ],
         "topic": "",
         "x": 350,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "cbb8afed.0a026"
@@ -4549,7 +4550,7 @@
         "finalize": "",
         "libs": [],
         "x": 940,
-        "y": 1140,
+        "y": 1520,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -4564,7 +4565,7 @@
         "label": "Shutter Speed",
         "tooltip": "In microseconds, up to 1000µs, 125µs by default",
         "group": "8c38a81e.9897a8",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4576,7 +4577,7 @@
         "step": "1",
         "className": "",
         "x": 600,
-        "y": 1020,
+        "y": 1400,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -4593,7 +4594,7 @@
         "retain": "",
         "broker": "8dc3722c.06efa8",
         "x": 1210,
-        "y": 1180,
+        "y": 1560,
         "wires": []
     },
     {
@@ -4614,7 +4615,7 @@
         "payload": "125",
         "payloadType": "num",
         "x": 120,
-        "y": 1080,
+        "y": 1400,
         "wires": [
             [
                 "5765a825.a595c8",
@@ -4634,7 +4635,7 @@
         "finalize": "",
         "libs": [],
         "x": 920,
-        "y": 1260,
+        "y": 1640,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -4659,7 +4660,7 @@
         "payload": "on",
         "payloadType": "str",
         "x": 110,
-        "y": 1120,
+        "y": 1440,
         "wires": [
             [
                 "6c5451ce63e79adc"
@@ -4673,7 +4674,7 @@
         "name": "",
         "env": [],
         "x": 120,
-        "y": 1220,
+        "y": 1600,
         "wires": [
             [
                 "6be64480.7e7e24",
@@ -4703,7 +4704,7 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 1240,
+        "y": 1620,
         "wires": [
             [
                 "d5415af6.e06cc"
@@ -4730,7 +4731,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1280,
+        "y": 1660,
         "wires": [
             [
                 "dba68c1f.e3144"
@@ -4744,7 +4745,7 @@
         "name": "",
         "env": [],
         "x": 960,
-        "y": 1220,
+        "y": 1600,
         "wires": [
             []
         ]
@@ -4776,7 +4777,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1160,
+        "y": 1540,
         "wires": [
             [
                 "a6c7eec4.f7a918"
@@ -4810,7 +4811,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 1200,
+        "y": 1580,
         "wires": [
             [
                 "66b37eef.f3f9e"
@@ -4826,7 +4827,7 @@
         "label": "Analog Gain",
         "tooltip": "From 1.0 to 12.0",
         "group": "8c38a81e.9897a8",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4835,7 +4836,7 @@
         "topic": "analog",
         "topicType": "str",
         "x": 580,
-        "y": 1160,
+        "y": 1540,
         "wires": [
             [
                 "44e02933.a66688",
@@ -4861,7 +4862,7 @@
         "topic": "digital",
         "topicType": "str",
         "x": 580,
-        "y": 1200,
+        "y": 1580,
         "wires": [
             [
                 "44e02933.a66688",
@@ -4880,7 +4881,7 @@
         "initialize": "",
         "finalize": "",
         "x": 910,
-        "y": 1180,
+        "y": 1560,
         "wires": [
             [
                 "845e06e1.0d812"
@@ -4907,7 +4908,7 @@
         "to": "",
         "reg": false,
         "x": 790,
-        "y": 1220,
+        "y": 1600,
         "wires": [
             [
                 "56835fa1.2fe538"
@@ -4932,7 +4933,7 @@
         "payload": "100",
         "payloadType": "num",
         "x": 130,
-        "y": 980,
+        "y": 1360,
         "wires": [
             [
                 "9feb06fb.43b558",
@@ -5007,7 +5008,7 @@
         ],
         "topic": "",
         "x": 570,
-        "y": 840,
+        "y": 1320,
         "wires": [
             [
                 "eb9966de.cf13c8"
@@ -5034,7 +5035,7 @@
         "to": "",
         "reg": false,
         "x": 760,
-        "y": 920,
+        "y": 1340,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -5101,9 +5102,9 @@
         "label": "Flowrate (ml/min)*",
         "tooltip": "",
         "group": "707d9797.c8e798",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": 4,
+        "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": 300,
@@ -5112,7 +5113,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "dc48dc42.98d18"
@@ -5138,7 +5139,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 1240,
+        "y": 1620,
         "wires": [
             [
                 "d361a2c4.0990f8",
@@ -5165,7 +5166,7 @@
         "className": "",
         "topicType": "str",
         "x": 580,
-        "y": 1280,
+        "y": 1660,
         "wires": [
             [
                 "d361a2c4.0990f8",
@@ -5179,7 +5180,7 @@
         "z": "bccd1f23.87219",
         "group": "4248342d.e55fac",
         "name": "Information Lens",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "format": "<h9>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload.acq_fnumber_objective\">\n    </span>mm\n</h9>\n<h9>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload.acq_magnification\">\n    </span>\n</h9>\n<h9>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload.process_pixel\"></span>\n    μm\n</h9>\n<h9>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload.sug_min\"></span>\n    μm\n</h9>\n<h9>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload.sug_max\"></span>\n    μm\n</h9>\n",
@@ -5266,7 +5267,7 @@
         ],
         "topic": "",
         "x": 590,
-        "y": 1120,
+        "y": 1480,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -5288,8 +5289,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 330,
-        "y": 720,
+        "x": 190,
+        "y": 740,
         "wires": [
             []
         ]
@@ -5300,17 +5301,17 @@
         "z": "bccd1f23.87219",
         "group": "6f97e7ae.270c48",
         "name": "style",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 13px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 13px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
+        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .element:nth-child(4)\n    {\n        flex:1;\n    }\n    .element4\n    {\n        flex:1;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n    p {\n        font-size: 12px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 330,
-        "y": 680,
+        "x": 190,
+        "y": 700,
         "wires": [
             []
         ]
@@ -5330,8 +5331,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 330,
-        "y": 760,
+        "x": 190,
+        "y": 780,
         "wires": [
             []
         ]
@@ -5345,14 +5346,14 @@
         "order": 2,
         "width": 4,
         "height": 1,
-        "format": "<div id=\"title\">Manual Configuration</div>",
+        "format": "<p>\n    Manual Configuration\n</p>\n<p>\n    Choose the translation values below\n</p>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 360,
-        "y": 800,
+        "x": 220,
+        "y": 820,
         "wires": [
             []
         ]
@@ -5386,8 +5387,8 @@
         "links": [
             "95b374a91cb16f2b"
         ],
-        "x": 195,
-        "y": 220,
+        "x": 155,
+        "y": 200,
         "wires": [
             [
                 "413b72d5fa015592",
@@ -5404,35 +5405,30 @@
         "tooltip": "",
         "place": "Select option",
         "group": "4248342d.e55fac",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
         "multiple": false,
         "options": [
             {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
                 "label": "f 16mm 1/2.5\" 5MP IR",
                 "value": 16,
                 "type": "num"
             },
             {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
                 "label": "f 6mm 1/2.5\" 5MP IR",
                 "value": 6,
+                "type": "num"
+            },
+            {
+                "label": "f 3.6mm 1/2.5\" 5MP IR",
+                "value": 3.6,
+                "type": "num"
+            },
+            {
+                "label": "f 1.71mm 1/2.5\" 5MP IR",
+                "value": 1.71,
                 "type": "num"
             }
         ],
@@ -5457,8 +5453,8 @@
         "links": [
             "a9f290c81031e81e"
         ],
-        "x": 555,
-        "y": 220,
+        "x": 575,
+        "y": 280,
         "wires": []
     },
     {
@@ -5521,28 +5517,23 @@
         "multiple": false,
         "options": [
             {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
                 "label": "f 16mm 1/2.5\" 5MP IR",
                 "value": 16,
                 "type": "num"
             },
             {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
                 "label": "f 6mm 1/2.5\" 5MP IR",
                 "value": 6,
+                "type": "num"
+            },
+            {
+                "label": "f 3.6mm 1/2.5\" 5MP IR",
+                "value": 3.6,
+                "type": "num"
+            },
+            {
+                "label": "f 1.71mm 1/2.5\" 5MP IR",
+                "value": 1.71,
                 "type": "num"
             }
         ],
@@ -5575,7 +5566,7 @@
         "topic": "",
         "payload": "0",
         "payloadType": "num",
-        "x": 150,
+        "x": 110,
         "y": 280,
         "wires": [
             [
@@ -5652,7 +5643,7 @@
         ],
         "topic": "",
         "x": 570,
-        "y": 940,
+        "y": 1360,
         "wires": [
             [
                 "eb9966de.cf13c8"
@@ -5679,7 +5670,7 @@
         "step": "1",
         "className": "",
         "x": 600,
-        "y": 1060,
+        "y": 1440,
         "wires": [
             [
                 "8ea9dc9a.c7d87"
@@ -8654,6 +8645,7 @@
         "id": "ddc81bfa62fa5fda",
         "type": "ui_button",
         "z": "c1660bc.e7ff7f8",
+        "d": true,
         "name": "Refresh",
         "group": "4dd5a10b2eda120a",
         "order": 2,
@@ -12415,7 +12407,6 @@
                 "e10f5e55.00b828",
                 "c534fd26.13741",
                 "54ba7f16.709ad8",
-                "c67c305004f87e39",
                 "11955bbeefc29ab4"
             ]
         ]
@@ -12457,7 +12448,7 @@
         "place": "",
         "group": "6be36295.0ab324",
         "order": 4,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "multiple": false,
@@ -12639,6 +12630,8 @@
         "mode": "number",
         "delay": "2000",
         "topic": "pump_steps_per_ml",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 640,
         "y": 400,
@@ -12656,7 +12649,7 @@
         "group": "6be36295.0ab324",
         "name": "Stepper controller type header",
         "order": 3,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "format": "<div>Stepper controller type</div>",
         "storeOutMessages": true,
@@ -12676,8 +12669,8 @@
         "group": "6be36295.0ab324",
         "name": "Information",
         "order": 2,
-        "width": 6,
-        "height": 3,
+        "width": 8,
+        "height": 2,
         "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will make the python back-end to restart.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -12705,29 +12698,30 @@
         "multiple": false,
         "options": [
             {
-                "label": "",
-                "value": "PlanktoScope v1.0",
+                "label": "Projet Lac0scope 0 (adafruit)",
+                "value": "Projet Lac0scope 0",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.1 (adafruit version)",
-                "value": "PlanktoScope v2.1",
+                "label": "Projet Lac0scope 1 (adafruit)",
+                "value": "Projet Lac0scope 1",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.2 (waveshare hat)",
-                "value": "PlanktoScope v2.2",
+                "label": "Projet Lac0scope 2 (adafruit)",
+                "value": "Projet Lac0scope 2",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.3 (custom hat)",
-                "value": "PlanktoScope v2.3",
+                "label": "Projet Lac0scope 3 (adafruit)",
+                "value": "Projet Lac0scope 3",
                 "type": "str"
             }
         ],
         "payload": "",
         "topic": "acq_instrument",
         "topicType": "str",
+        "className": "",
         "x": 600,
         "y": 160,
         "wires": [
@@ -12753,7 +12747,7 @@
         "type": "function",
         "z": "1eaf21c8.f7a21e",
         "name": "Set and update settings",
-        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"2.1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1600};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"waveshare\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:2000};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"pscope_hat\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:3200};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
+        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"Lac0scope 0\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:434};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"Lac0scope 1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:428};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"Lac0scope 2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1310};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"Lac0scope 3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1776};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -12818,7 +12812,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.process_pixel_fixed",
+                "to": "payload.process_pixel",
                 "tot": "msg"
             }
         ],
@@ -12849,9 +12843,11 @@
         "passthru": true,
         "mode": "number",
         "delay": "1000",
-        "topic": "process_pixel_fixed",
+        "topic": "process_pixel",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
-        "x": 650,
+        "x": 640,
         "y": 480,
         "wires": [
             [
@@ -12947,7 +12943,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 520,
+        "y": 560,
         "wires": [
             [
                 "95b374a91cb16f2b"
@@ -12964,8 +12960,8 @@
             "9bc3e85c28d70120",
             "4d29b4f3ab226c2c"
         ],
-        "x": 575,
-        "y": 520,
+        "x": 555,
+        "y": 560,
         "wires": []
     },
     {
@@ -13003,8 +12999,8 @@
         "topic": "",
         "payload": "0",
         "payloadType": "num",
-        "x": 720,
-        "y": 620,
+        "x": 710,
+        "y": 580,
         "wires": [
             [
                 "a6983d3232b570a7"
@@ -13196,6 +13192,543 @@
         "wires": [
             [
                 "4091947c8187153f"
+            ]
+        ]
+    },
+    {
+        "id": "4647b4c9d3eb6365",
+        "type": "ui_group",
+        "name": "Mode selection",
+        "tab": "181bb236.1e94be",
+        "order": 10,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c3c62a5ce276fd4d",
+        "type": "ui_spacer",
+        "z": "bccd1f23.87219",
+        "name": "spacer",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "313fe02cb59030d9",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Change mode",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Optic_Configuration_Preview\",\"Optic_Configuration_Optic_Characterization_Expert\", \"Optic_Configuration_Camera_Settings_Expert\", \"Optic_Configuration_Focus_Adjustment_Expert\", \"Optic_Configuration_Fluidic_Manual_Manipulation\", \"Optic_Configuration_Navigation\"],\"hide\":[\"Optic_Configuration_Optic_Characterization_Beginner\", \"Optic_Configuration_Camera_Settings_Beginner\", \"Optic_Configuration_Focus_Adjustment_Beginner\",]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Optic_Configuration_Preview\",\"Optic_Configuration_Optic_Characterization_Beginner\", \"Optic_Configuration_Camera_Settings_Beginner\", \"Optic_Configuration_Focus_Adjustment_Beginner\", \"Optic_Configuration_Fluidic_Manual_Manipulation\", \"Optic_Configuration_Navigation\"],\"hide\":[\"Optic_Configuration_Optic_Characterization_Expert\", \"Optic_Configuration_Camera_Settings_Expert\", \"Optic_Configuration_Focus_Adjustment_Expert\",]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 2040,
+        "wires": [
+            [
+                "073aefe6ebd2b6cf"
+            ]
+        ]
+    },
+    {
+        "id": "073aefe6ebd2b6cf",
+        "type": "ui_ui_control",
+        "z": "bccd1f23.87219",
+        "name": "show/hide net groups",
+        "events": "change",
+        "x": 1000,
+        "y": 2040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d79b1f1d435e715",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "Mode selection",
+        "group": "4647b4c9d3eb6365",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "change",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Expert mode",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Beginner mode",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 420,
+        "y": 2000,
+        "wires": [
+            [
+                "7d266d4166315d99",
+                "313fe02cb59030d9"
+            ]
+        ]
+    },
+    {
+        "id": "e247edf45c9131f3",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Default: Expert mode",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "mode",
+        "payloadType": "global",
+        "x": 180,
+        "y": 1940,
+        "wires": [
+            [
+                "7d79b1f1d435e715"
+            ]
+        ]
+    },
+    {
+        "id": "d77b6caec1ba8d4d",
+        "type": "change",
+        "z": "bccd1f23.87219",
+        "name": "Change global mode",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mode",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 1940,
+        "wires": [
+            [
+                "bfce8e77727b9fbf"
+            ]
+        ]
+    },
+    {
+        "id": "bfce8e77727b9fbf",
+        "type": "link out",
+        "z": "bccd1f23.87219",
+        "name": "out_optic_configuration",
+        "mode": "link",
+        "links": [
+            "127fd2e4447c6ad1"
+        ],
+        "x": 955,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "a45e550cb5e1c1d1",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "in_optic_configuration",
+        "links": [],
+        "x": 195,
+        "y": 2060,
+        "wires": [
+            [
+                "7d79b1f1d435e715"
+            ]
+        ]
+    },
+    {
+        "id": "7d266d4166315d99",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Get mode value",
+        "func": "if (msg.payload != global.get(\"mode\")){\n    return msg;\n}\nelse {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1980,
+        "wires": [
+            [
+                "313fe02cb59030d9",
+                "d77b6caec1ba8d4d"
+            ]
+        ]
+    },
+    {
+        "id": "8fcff5cdebc013f8",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "957f2e43d9ce521e",
+        "name": "Right",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">RIGHT</div>\n  <div class=\"infoR\">\n        <div class=\"element 1\">10 µm</div>\n        <div class=\"element 2\">100 µm</div>\n        <div class=\"element4\">1 mm</div>\n        <div class=\"element 5\">10 mm</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 190,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3770173700cf0db2",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "957f2e43d9ce521e",
+        "name": "Left",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "format": "<div class=\"conteneur\">\n  <div class=\"text\">LEFT</div>\n  <div class=\"infoL\">\n        <div class=\"element 1\">10 µm</div>\n        <div class=\"element 2\">100 µm</div>\n        <div class=\"element4\">1 mm</div>\n        <div class=\"element 5\">10 mm</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 190,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa0a591a1f5fd74c",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "right 1mm",
+        "group": "957f2e43d9ce521e",
+        "order": 10,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-double-right fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":1}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 570,
+        "y": 980,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "4f949a16d44eecd9",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "right 100um",
+        "group": "957f2e43d9ce521e",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-right fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.1}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 570,
+        "y": 1020,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "2a482500e06e1516",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "left 10mm",
+        "group": "957f2e43d9ce521e",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-double-left fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":10}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 560,
+        "y": 1100,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "d7be69b77c0dcb2b",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "left 1mm",
+        "group": "957f2e43d9ce521e",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-double-left fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":1}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 560,
+        "y": 1140,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "2960771b315ca9de",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "right 10um",
+        "group": "957f2e43d9ce521e",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-right fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":0.01}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 570,
+        "y": 1060,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "2347b45c7bd1ae1c",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "right 10mm",
+        "group": "957f2e43d9ce521e",
+        "order": 11,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-double-right fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"UP\",\"distance\":10}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 570,
+        "y": 940,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "a08a74dac08241e6",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "left 100um",
+        "group": "957f2e43d9ce521e",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-left fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.1}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 570,
+        "y": 1180,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "0539e37448b4cb9c",
+        "type": "ui_button",
+        "z": "bccd1f23.87219",
+        "name": "left 10um",
+        "group": "957f2e43d9ce521e",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-angle-left fa-3x",
+        "payload": "{\"action\":\"move\",\"direction\":\"DOWN\",\"distance\":0.01}",
+        "payloadType": "json",
+        "topic": "actuator/focus",
+        "topicType": "str",
+        "x": 560,
+        "y": 1220,
+        "wires": [
+            [
+                "62030521.88317c"
+            ]
+        ]
+    },
+    {
+        "id": "7f9793edddad3212",
+        "type": "ui_template",
+        "z": "bccd1f23.87219",
+        "group": "957f2e43d9ce521e",
+        "name": "Manual Config",
+        "order": 2,
+        "width": 4,
+        "height": 2,
+        "format": "<p>\n    In order to focus on your sample you can move it to the right or to the left to obtain a sharp image.\n</p>\n<p>\n    The values displayed correspond to the length of the translation\n</p>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 220,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66c31ceb7f02964e",
+        "type": "link out",
+        "z": "bccd1f23.87219",
+        "name": "Pixel Resolution",
+        "mode": "link",
+        "links": [
+            "1c3676fd3f8aa26d"
+        ],
+        "x": 1135,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1c3676fd3f8aa26d",
+        "type": "link in",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Pixel Resolution",
+        "links": [
+            "66c31ceb7f02964e"
+        ],
+        "x": 155,
+        "y": 520,
+        "wires": [
+            [
+                "c67c305004f87e39"
+            ]
+        ]
+    },
+    {
+        "id": "209b9e73d5114297",
+        "type": "inject",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Default: Lac0scope 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Projet Lac0scope 2",
+        "payloadType": "str",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "a7e5c7f4.644678"
             ]
         ]
     }
