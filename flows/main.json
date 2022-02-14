@@ -740,7 +740,7 @@
         "tab": "b0fb559a.6966a8",
         "order": 1,
         "disp": false,
-        "width": "6",
+        "width": 8,
         "collapse": false
     },
     {
@@ -3551,7 +3551,7 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;  \n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.696;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"6\":\n        acq_magnification= 4.2;\n        process_pixel= 0.273;\n        sug_min= 15;\n        sug_max= 161;\n        sug_flowrate= 0.9;\n        break;\n      case \"3.6\":\n        acq_magnification= 8;\n        process_pixel= 0.143;\n        sug_min= 9;\n        sug_max= 96.75;\n        sug_flowrate= 0.54;\n        break;\n      case \"1.71\":\n        acq_magnification= 14;\n        process_pixel= 0.079;\n        sug_min= 4.275;\n        sug_max= 45.95;\n        sug_flowrate= 0.2565;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\n\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3561,7 +3561,8 @@
         "y": 120,
         "wires": [
             [
-                "335a730b9a3830ff"
+                "335a730b9a3830ff",
+                "66c31ceb7f02964e"
             ]
         ],
         "inputLabels": [
@@ -5012,28 +5013,23 @@
         "multiple": false,
         "options": [
             {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
                 "label": "f 16mm 1/2.5\" 5MP IR",
                 "value": 16,
                 "type": "num"
             },
             {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
                 "label": "f 6mm 1/2.5\" 5MP IR",
                 "value": 6,
+                "type": "num"
+            },
+            {
+                "label": "f 3.6mm 1/2.5\" 5MP IR",
+                "value": 3.6,
+                "type": "num"
+            },
+            {
+                "label": "f 1.71mm 1/2.5\" 5MP IR",
+                "value": 1.71,
                 "type": "num"
             }
         ],
@@ -5122,28 +5118,23 @@
         "multiple": false,
         "options": [
             {
-                "label": "f 25mm 1/2\" 5MP IR",
-                "value": 25,
-                "type": "num"
-            },
-            {
                 "label": "f 16mm 1/2.5\" 5MP IR",
                 "value": 16,
                 "type": "num"
             },
             {
-                "label": "f 12mm 1/2.5\" 5MP IR",
-                "value": 12,
-                "type": "num"
-            },
-            {
-                "label": "f 8mm 1/2.5\" 5MP IR",
-                "value": 8,
-                "type": "num"
-            },
-            {
                 "label": "f 6mm 1/2.5\" 5MP IR",
                 "value": 6,
+                "type": "num"
+            },
+            {
+                "label": "f 3.6mm 1/2.5\" 5MP IR",
+                "value": 3.6,
+                "type": "num"
+            },
+            {
+                "label": "f 1.71mm 1/2.5\" 5MP IR",
+                "value": 1.71,
                 "type": "num"
             }
         ],
@@ -5748,6 +5739,19 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "66c31ceb7f02964e",
+        "type": "link out",
+        "z": "bccd1f23.87219",
+        "name": "Pixel Resolution",
+        "mode": "link",
+        "links": [
+            "1c3676fd3f8aa26d"
+        ],
+        "x": 1135,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "6b34c456.83178c",
@@ -12082,7 +12086,6 @@
                 "e10f5e55.00b828",
                 "c534fd26.13741",
                 "54ba7f16.709ad8",
-                "c67c305004f87e39",
                 "11955bbeefc29ab4"
             ]
         ]
@@ -12124,7 +12127,7 @@
         "place": "",
         "group": "6be36295.0ab324",
         "order": 4,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "multiple": false,
@@ -12240,7 +12243,7 @@
         "label": "Invert stepper output",
         "tooltip": "Stepper 1 is controlled by output 1 or the other way around",
         "group": "6be36295.0ab324",
-        "order": 6,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -12299,13 +12302,15 @@
         "label": "Pump: steps per mL",
         "tooltip": "",
         "group": "6be36295.0ab324",
-        "order": 7,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
         "mode": "number",
         "delay": "2000",
         "topic": "pump_steps_per_ml",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 640,
         "y": 400,
@@ -12323,7 +12328,7 @@
         "group": "6be36295.0ab324",
         "name": "Stepper controller type header",
         "order": 3,
-        "width": 3,
+        "width": 4,
         "height": 1,
         "format": "<div>Stepper controller type</div>",
         "storeOutMessages": true,
@@ -12343,8 +12348,8 @@
         "group": "6be36295.0ab324",
         "name": "Information",
         "order": 2,
-        "width": 6,
-        "height": 3,
+        "width": 8,
+        "height": 2,
         "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will make the python back-end to restart.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -12372,29 +12377,30 @@
         "multiple": false,
         "options": [
             {
-                "label": "",
-                "value": "PlanktoScope v1.0",
+                "label": "Projet Lac0scope 0 (adafruit)",
+                "value": "Projet Lac0scope 0",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.1 (adafruit version)",
-                "value": "PlanktoScope v2.1",
+                "label": "Projet Lac0scope 1 (adafruit)",
+                "value": "Projet Lac0scope 1",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.2 (waveshare hat)",
-                "value": "PlanktoScope v2.2",
+                "label": "Projet Lac0scope 2 (adafruit)",
+                "value": "Projet Lac0scope 2",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.3 (custom hat)",
-                "value": "PlanktoScope v2.3",
+                "label": "Projet Lac0scope 3 (adafruit)",
+                "value": "Projet Lac0scope 3",
                 "type": "str"
             }
         ],
         "payload": "",
         "topic": "acq_instrument",
         "topicType": "str",
+        "className": "",
         "x": 600,
         "y": 160,
         "wires": [
@@ -12420,7 +12426,7 @@
         "type": "function",
         "z": "1eaf21c8.f7a21e",
         "name": "Set and update settings",
-        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"2.1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1600};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"waveshare\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:2000};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"pscope_hat\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:3200};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
+        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"Lac0scope 0\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:434};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"Lac0scope 1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:428};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"Lac0scope 2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1310};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"Lac0scope 3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1776};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -12485,7 +12491,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.process_pixel_fixed",
+                "to": "payload.process_pixel",
                 "tot": "msg"
             }
         ],
@@ -12510,15 +12516,17 @@
         "label": "Pixel size calibration",
         "tooltip": "Object size in µm / pixel. 0 will remove this calibration.",
         "group": "6be36295.0ab324",
-        "order": 8,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
         "mode": "number",
         "delay": "1000",
-        "topic": "process_pixel_fixed",
+        "topic": "process_pixel",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
-        "x": 650,
+        "x": 640,
         "y": 480,
         "wires": [
             [
@@ -12614,7 +12622,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 520,
+        "y": 560,
         "wires": [
             [
                 "95b374a91cb16f2b"
@@ -12631,8 +12639,8 @@
             "9bc3e85c28d70120",
             "4d29b4f3ab226c2c"
         ],
-        "x": 575,
-        "y": 520,
+        "x": 555,
+        "y": 560,
         "wires": []
     },
     {
@@ -12675,6 +12683,47 @@
         "wires": [
             [
                 "a6983d3232b570a7"
+            ]
+        ]
+    },
+    {
+        "id": "1c3676fd3f8aa26d",
+        "type": "link in",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Pixel Resolution",
+        "links": [
+            "66c31ceb7f02964e"
+        ],
+        "x": 155,
+        "y": 520,
+        "wires": [
+            [
+                "c67c305004f87e39"
+            ]
+        ]
+    },
+    {
+        "id": "209b9e73d5114297",
+        "type": "inject",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Default: Lac0scope 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Projet Lac0scope 2",
+        "payloadType": "str",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "a7e5c7f4.644678"
             ]
         ]
     }
