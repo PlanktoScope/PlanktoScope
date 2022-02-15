@@ -51,7 +51,7 @@
     {
         "id": "1371dec5.76e671",
         "type": "tab",
-        "label": "Settings",
+        "label": "System Monitoring",
         "disabled": false,
         "info": ""
     },
@@ -75,6 +75,14 @@
         "label": "Hardware Settings",
         "disabled": false,
         "info": ""
+    },
+    {
+        "id": "31d8721d35506f94",
+        "type": "tab",
+        "label": "File Browser",
+        "disabled": false,
+        "info": "",
+        "env": []
     },
     {
         "id": "1c24ad9c.bebec2",
@@ -227,19 +235,9 @@
         "type": "ui_group",
         "name": "Navigation",
         "tab": "8d16beb8.9b3fb",
-        "order": 3,
+        "order": 4,
         "disp": false,
-        "width": 10,
-        "collapse": false
-    },
-    {
-        "id": "3da7da8f.179606",
-        "type": "ui_group",
-        "name": "Processor",
-        "tab": "d9cd733b.ab73d",
-        "order": 1,
-        "disp": true,
-        "width": "6",
+        "width": 16,
         "collapse": false
     },
     {
@@ -540,39 +538,9 @@
         "type": "ui_group",
         "name": "Navigation",
         "tab": "d9cd733b.ab73d",
-        "order": 7,
+        "order": 5,
         "disp": true,
-        "width": 6,
-        "collapse": false
-    },
-    {
-        "id": "b5ba3f26.2e722",
-        "type": "ui_group",
-        "name": "CPU Temperature",
-        "tab": "d9cd733b.ab73d",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "806d69c8.67fc58",
-        "type": "ui_group",
-        "name": "Memory",
-        "tab": "d9cd733b.ab73d",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "405183bc.d8991c",
-        "type": "ui_group",
-        "name": "Disk Usage",
-        "tab": "d9cd733b.ab73d",
-        "order": 4,
-        "disp": true,
-        "width": "6",
+        "width": 8,
         "collapse": false
     },
     {
@@ -600,12 +568,13 @@
     {
         "id": "abeb6dad.635a2",
         "type": "ui_group",
-        "name": "Control",
+        "name": "Control Expert",
         "tab": "8d16beb8.9b3fb",
         "order": 1,
         "disp": true,
-        "width": 10,
-        "collapse": false
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "cf5d9f0e.d57e7",
@@ -623,9 +592,9 @@
         "type": "ui_group",
         "name": "Information",
         "tab": "d9cd733b.ab73d",
-        "order": 5,
+        "order": 3,
         "disp": true,
-        "width": 6,
+        "width": 8,
         "collapse": false
     },
     {
@@ -643,9 +612,9 @@
         "type": "ui_group",
         "name": "Status",
         "tab": "8d16beb8.9b3fb",
-        "order": 2,
+        "order": 3,
         "disp": true,
-        "width": 10,
+        "width": 16,
         "collapse": false
     },
     {
@@ -664,9 +633,9 @@
         "type": "ui_group",
         "name": "USB Backup",
         "tab": "d9cd733b.ab73d",
-        "order": 6,
+        "order": 2,
         "disp": true,
-        "width": "6",
+        "width": 9,
         "collapse": true
     },
     {
@@ -762,9 +731,9 @@
         "type": "ui_group",
         "name": "GPS Status",
         "tab": "d9cd733b.ab73d",
-        "order": 8,
+        "order": 4,
         "disp": true,
-        "width": "6",
+        "width": 8,
         "collapse": false
     },
     {
@@ -885,31 +854,11 @@
         "type": "ui_group",
         "name": "Mode_selection",
         "tab": "3a6bb13f.c9703e",
-        "order": 11,
+        "order": 12,
         "disp": false,
         "width": 6,
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "9f498074cdbbaf7a",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 4,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "ec33fc6b8899fadf",
-        "type": "ui_spacer",
-        "z": "cb95299c.2817c8",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 6,
-        "width": 3,
-        "height": 1
     },
     {
         "id": "527c2bcfd97bfea3",
@@ -1420,6 +1369,117 @@
         "name": "Group 9",
         "tab": "3a6bb13f.c9703e",
         "order": 10,
+        "disp": false,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d1074b91f48dc4dc",
+        "type": "ui_group",
+        "name": "Control Beginner",
+        "tab": "8d16beb8.9b3fb",
+        "order": 2,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "95e8070e39325f76",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f6dad1660c0f562f",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "04f11fc5c7038d29",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c9c6f10390a612ba",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 9,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "3eeba14ef23c3133",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "12d48dee8409914a",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 11,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "d89ce6f9f1138668",
+        "type": "ui_group",
+        "name": "System Information",
+        "tab": "d9cd733b.ab73d",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "160e81fb.f1c86e",
+        "type": "ui_group",
+        "name": "File Browser",
+        "tab": "b63d1f91.68095",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "b63d1f91.68095",
+        "type": "ui_tab",
+        "name": "File Browser",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "15e287911568ec50",
+        "type": "ui_group",
+        "name": "Group 10",
+        "tab": "3a6bb13f.c9703e",
+        "order": 11,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -2004,7 +2064,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "x": 120,
-        "y": 420,
+        "y": 460,
         "wires": [
             []
         ]
@@ -2185,7 +2245,7 @@
         "type": "function",
         "z": "eaae323a.31b3",
         "name": "Change mode",
-        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Group_1\",\"Home_Group_2\", \"Home_Group_3\", \"Home_Group_4\", \"Home_Group_5\", \"Home_Group_6\", \"Home_Group_7\", \"Home_Group_8\", \"Home_Group_9\", \"Home_Shutdown\", \"Home_Mode_selection\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Group_1\", \"Home_Group_2\", \"Home_Group_3\", \"Home_Group_4\", \"Home_Group_5\", \"Home_Group_6\", \"Home_Shutdown\", \"Home_Mode_selection\"],\"hide\":[\"Home_Group_7\", \"Home_Group_8\", \"Home_Group_9\"]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Group_1\",\"Home_Group_2\", \"Home_Group_3\", \"Home_Group_4\", \"Home_Group_5\", \"Home_Group_6\", \"Home_Group_7\", \"Home_Group_8\", \"Home_Group_9\", \"Home_Group_10\", \"Home_Shutdown\", \"Home_Mode_selection\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Group_1\", \"Home_Group_2\", \"Home_Group_3\", \"Home_Group_4\", \"Home_Group_5\", \"Home_Group_6\", \"Home_Shutdown\", \"Home_Mode_selection\"],\"hide\":[\"Home_Group_10\", \"Home_Group_7\", \"Home_Group_8\", \"Home_Group_9\"]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2431,6 +2491,29 @@
         "className": "",
         "x": 130,
         "y": 380,
+        "wires": [
+            [
+                "4e78af2d.90be7"
+            ]
+        ]
+    },
+    {
+        "id": "4ba4f26a1bc0de59",
+        "type": "ui_template",
+        "z": "eaae323a.31b3",
+        "group": "15e287911568ec50",
+        "name": "File Browser",
+        "order": 1,
+        "width": 4,
+        "height": 4,
+        "format": "<md-button ng-click=\"send({payload: {tab:'File Browser'}})\" style=\"height:100%;\">\n    <i class=\"fa fa-solid fa-folder fa-5x\"></i>\n    <div style=\"margin-top:30px;\">File Browser</div>\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 150,
+        "y": 420,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -8828,8 +8911,8 @@
         "name": "",
         "group": "64903b47.4034e4",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "passthru": false,
         "label": "Home",
         "tooltip": "",
@@ -8841,8 +8924,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 430,
-        "y": 600,
+        "x": 450,
+        "y": 660,
         "wires": [
             [
                 "f0fb77cf.8f1c28"
@@ -8855,8 +8938,8 @@
         "z": "cb95299c.2817c8",
         "name": "",
         "events": "change",
-        "x": 740,
-        "y": 600,
+        "x": 760,
+        "y": 660,
         "wires": [
             []
         ]
@@ -8867,7 +8950,7 @@
         "z": "cb95299c.2817c8",
         "name": "Start segmentation",
         "group": "abeb6dad.635a2",
-        "order": 10,
+        "order": 7,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -8881,8 +8964,8 @@
         "payloadType": "json",
         "topic": "segmenter/segment",
         "topicType": "str",
-        "x": 370,
-        "y": 460,
+        "x": 390,
+        "y": 520,
         "wires": [
             [
                 "33c28dc1.238002",
@@ -8897,7 +8980,7 @@
         "d": true,
         "name": "Stop segmentation",
         "group": "abeb6dad.635a2",
-        "order": 11,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -8909,8 +8992,8 @@
         "payload": "{\"action\":\"stop\"}",
         "payloadType": "json",
         "topic": "segmenter/segment",
-        "x": 370,
-        "y": 520,
+        "x": 390,
+        "y": 580,
         "wires": [
             [
                 "16f3cef4.0acac9"
@@ -8926,8 +9009,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 850,
-        "y": 520,
+        "x": 870,
+        "y": 580,
         "wires": []
     },
     {
@@ -8942,8 +9025,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 800,
+        "x": 830,
+        "y": 860,
         "wires": [
             [
                 "fa3b7929.ac7da8",
@@ -8983,8 +9066,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 490,
-        "y": 740,
+        "x": 510,
+        "y": 800,
         "wires": [
             [
                 "b9a23b91.93638",
@@ -9008,7 +9091,7 @@
         "d": true,
         "name": "counter graph",
         "group": "46be9c86.dea684",
-        "order": 7,
+        "order": 8,
         "width": 10,
         "height": 2,
         "label": "",
@@ -9040,8 +9123,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1340,
-        "y": 840,
+        "x": 1360,
+        "y": 900,
         "wires": [
             []
         ]
@@ -9056,8 +9139,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 800,
-        "y": 920,
+        "x": 820,
+        "y": 980,
         "wires": [
             [
                 "458cd82e.03d258"
@@ -9078,18 +9161,19 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1340,
-        "y": 680,
+        "x": 1360,
+        "y": 740,
         "wires": []
     },
     {
         "id": "458cd82e.03d258",
         "type": "ui_chart",
         "z": "cb95299c.2817c8",
+        "d": true,
         "name": "Area chart",
         "group": "46be9c86.dea684",
-        "order": 9,
-        "width": 10,
+        "order": 13,
+        "width": 16,
         "height": 6,
         "label": "",
         "chartType": "line",
@@ -9118,8 +9202,10 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 1330,
-        "y": 920,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1350,
+        "y": 980,
         "wires": [
             []
         ]
@@ -9137,8 +9223,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
-        "y": 760,
+        "x": 850,
+        "y": 820,
         "wires": []
     },
     {
@@ -9152,8 +9238,8 @@
         "syntax": "mustache",
         "template": "The {{topic}} is {{payload.status}}",
         "output": "str",
-        "x": 1100,
-        "y": 680,
+        "x": 1120,
+        "y": 740,
         "wires": [
             [
                 "a4f0f0d1.3aca88"
@@ -9181,8 +9267,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 680,
+        "x": 870,
+        "y": 740,
         "wires": [
             [
                 "7088a5be.0c79a4"
@@ -9195,21 +9281,20 @@
         "z": "cb95299c.2817c8",
         "group": "46be9c86.dea684",
         "order": 1,
-        "width": 10,
+        "width": 16,
         "height": 1,
         "name": "segmenter",
         "label": "Segmenter status:",
         "format": "{{msg.payload.status}}",
         "layout": "row-spread",
-        "x": 810,
-        "y": 720,
+        "x": 830,
+        "y": 780,
         "wires": []
     },
     {
         "id": "fa3b7929.ac7da8",
         "type": "ui_text",
         "z": "cb95299c.2817c8",
-        "d": true,
         "group": "46be9c86.dea684",
         "order": 5,
         "width": 4,
@@ -9219,8 +9304,8 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 1320,
-        "y": 800,
+        "x": 1340,
+        "y": 860,
         "wires": []
     },
     {
@@ -9244,8 +9329,8 @@
         "topic": "object count",
         "payload": "0",
         "payloadType": "num",
-        "x": 810,
-        "y": 880,
+        "x": 830,
+        "y": 940,
         "wires": [
             [
                 "ac439738.28bc18",
@@ -9261,8 +9346,8 @@
         "links": [
             "dcf5bd45.16a8d"
         ],
-        "x": 295,
-        "y": 740,
+        "x": 315,
+        "y": 800,
         "wires": [
             [
                 "aa38dbbc.cf0a9"
@@ -9280,8 +9365,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 960,
-        "y": 380,
+        "x": 980,
+        "y": 440,
         "wires": [
             []
         ]
@@ -9290,7 +9375,6 @@
         "id": "d43c3ed9.e6cb1",
         "type": "ui_template",
         "z": "cb95299c.2817c8",
-        "d": true,
         "group": "46be9c86.dea684",
         "name": "Object counts",
         "order": 3,
@@ -9302,8 +9386,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1340,
-        "y": 760,
+        "x": 1360,
+        "y": 820,
         "wires": [
             []
         ]
@@ -9312,9 +9396,10 @@
         "id": "857e90c1.cd25b",
         "type": "ui_template",
         "z": "cb95299c.2817c8",
+        "d": true,
         "group": "46be9c86.dea684",
         "name": "Area chart",
-        "order": 8,
+        "order": 12,
         "width": 0,
         "height": 0,
         "format": "<div><center><h2>Area chart</h2></center></div>",
@@ -9322,8 +9407,9 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 1330,
-        "y": 880,
+        "className": "",
+        "x": 1350,
+        "y": 940,
         "wires": [
             []
         ]
@@ -9339,8 +9425,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 460,
+        "x": 640,
+        "y": 520,
         "wires": [
             [
                 "16f3cef4.0acac9"
@@ -9353,8 +9439,8 @@
         "z": "cb95299c.2817c8",
         "name": "",
         "env": [],
-        "x": 430,
-        "y": 380,
+        "x": 450,
+        "y": 440,
         "wires": [
             [
                 "3b72d11c.86e9e6"
@@ -9371,11 +9457,12 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 600,
-        "y": 380,
+        "x": 620,
+        "y": 440,
         "wires": [
             [
-                "56971109c8be3b54"
+                "56971109c8be3b54",
+                "3ca9b0414618388b"
             ]
         ]
     },
@@ -9385,16 +9472,16 @@
         "z": "cb95299c.2817c8",
         "group": "abeb6dad.635a2",
         "name": "",
-        "order": 13,
+        "order": 10,
         "width": 10,
-        "height": 11,
+        "height": 9,
         "lineType": "one",
         "actionType": "check",
         "allowHTML": false,
         "outputs": 1,
         "topic": "",
-        "x": 790,
-        "y": 140,
+        "x": 810,
+        "y": 120,
         "wires": [
             [
                 "cb3b87b5.63c4"
@@ -9425,7 +9512,7 @@
         "z": "cb95299c.2817c8",
         "name": "Refresh",
         "group": "abeb6dad.635a2",
-        "order": 12,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9485,7 +9572,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 1010,
         "y": 140,
         "wires": [
             []
@@ -9551,7 +9638,8 @@
         "y": 140,
         "wires": [
             [
-                "3ea12061.ce62c"
+                "3ea12061.ce62c",
+                "2875bba3bb165e0b"
             ]
         ]
     },
@@ -9585,7 +9673,7 @@
             }
         ],
         "x": 480,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "880b192a.88e2d"
@@ -9622,7 +9710,7 @@
             }
         ],
         "x": 470,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "a4f68fa6.5d77f8"
@@ -9648,8 +9736,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 690,
-        "y": 240,
+        "x": 710,
+        "y": 260,
         "wires": [
             []
         ]
@@ -9673,8 +9761,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
-        "y": 280,
+        "x": 700,
+        "y": 300,
         "wires": [
             []
         ]
@@ -9697,7 +9785,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 270,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "dffb9881.feef8",
@@ -9712,15 +9800,15 @@
         "group": "46be9c86.dea684",
         "name": "Stream Segmented object",
         "order": 2,
-        "width": 10,
-        "height": 8,
+        "width": 16,
+        "height": 9,
         "format": "<span ng-bind-html=\"msg.payload\"></span>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1370,
-        "y": 600,
+        "x": 1390,
+        "y": 660,
         "wires": [
             []
         ]
@@ -9743,7 +9831,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 270,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "21af0db1.c2c182",
@@ -9761,8 +9849,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 980,
-        "y": 880,
+        "x": 1000,
+        "y": 940,
         "wires": [
             [
                 "458cd82e.03d258"
@@ -9789,8 +9877,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1010,
-        "y": 840,
+        "x": 1030,
+        "y": 900,
         "wires": [
             [
                 "fa3b7929.ac7da8",
@@ -9806,8 +9894,8 @@
         "links": [
             "596fc9d4.46c75"
         ],
-        "x": 855,
-        "y": 840,
+        "x": 875,
+        "y": 900,
         "wires": [
             [
                 "4f3f7c4a.cb21c4",
@@ -9823,8 +9911,8 @@
         "links": [
             "6bce0f60.f48998"
         ],
-        "x": 715,
-        "y": 500,
+        "x": 735,
+        "y": 560,
         "wires": []
     },
     {
@@ -9853,8 +9941,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 600,
-        "y": 500,
+        "x": 620,
+        "y": 560,
         "wires": [
             [
                 "596fc9d4.46c75"
@@ -9867,7 +9955,7 @@
         "z": "cb95299c.2817c8",
         "name": "Ecotaxa archive",
         "group": "abeb6dad.635a2",
-        "order": 9,
+        "order": 6,
         "width": 5,
         "height": 1,
         "label": "Ecotaxa archive",
@@ -9891,7 +9979,7 @@
             }
         ],
         "x": 1080,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "25ac4f9a.5b05c8"
@@ -9918,7 +10006,7 @@
         "to": "",
         "reg": false,
         "x": 1280,
-        "y": 240,
+        "y": 260,
         "wires": [
             []
         ]
@@ -9927,7 +10015,7 @@
         "id": "bef78886.8f0b98",
         "type": "inject",
         "z": "cb95299c.2817c8",
-        "name": "1",
+        "name": "0",
         "props": [
             {
                 "p": "payload"
@@ -9938,10 +10026,10 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "1",
+        "payload": "0",
         "payloadType": "num",
         "x": 910,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "9367534a.fb8568",
@@ -9955,7 +10043,7 @@
         "z": "cb95299c.2817c8",
         "name": "Keep objects",
         "group": "abeb6dad.635a2",
-        "order": 8,
+        "order": 5,
         "width": 5,
         "height": 1,
         "label": "Keep objects",
@@ -9979,7 +10067,7 @@
             }
         ],
         "x": 1070,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "8dd6f57f.b77f98"
@@ -10006,7 +10094,7 @@
         "to": "",
         "reg": false,
         "x": 1270,
-        "y": 280,
+        "y": 300,
         "wires": [
             []
         ]
@@ -10029,7 +10117,7 @@
         "payload": "1",
         "payloadType": "num",
         "x": 910,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "32465a4e.8fcac6",
@@ -10055,8 +10143,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 790,
-        "y": 380,
+        "x": 810,
+        "y": 460,
         "wires": [
             [
                 "c8749cbb.55254"
@@ -10071,8 +10159,8 @@
         "links": [
             "49111a72f4e32740"
         ],
-        "x": 975,
-        "y": 600,
+        "x": 995,
+        "y": 660,
         "wires": [
             [
                 "e077b83ad375cb95"
@@ -10090,8 +10178,8 @@
         "syntax": "mustache",
         "template": "<center>\n    Latest object segmented:<br/>\n    <img src=\"http://{{payload}}:8001/object.mjpg\"\n    onerror=\"this.onerror=null; this.src='http://{{payload}}:80/error.svg'\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please restart your machine.\"\n    style=\"max-width: 100%;max-height: 100%;\">\n</center>",
         "output": "str",
-        "x": 1120,
-        "y": 600,
+        "x": 1140,
+        "y": 660,
         "wires": [
             [
                 "f078c068.eacf58"
@@ -10103,14 +10191,14 @@
         "type": "function",
         "z": "cb95299c.2817c8",
         "name": "Change mode",
-        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"TAB_NAME_GROUPE_NAME\",\"TAB_NAME_GROUPE_NAME\"],\"hide\":[\"TAB_NAME_GROUPE_NAME\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"TAB_NAME_GROUPE_NAME\"],\"hide\":[\"TAB_NAME_GROUPE_NAME\",\"TAB_NAME_GROUPE_NAME\"]}};\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Segmentation_Control_Expert\",\"Segmentation_Status\", \"Segmentation_Navigation\"],\"hide\":[\"Segmentation_Control_Beginner\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Segmentation_Control_Beginner\",\"Segmentation_Status\", \"Segmentation_Navigation\"],\"hide\":[\"Segmentation_Control_Expert\"]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 1120,
+        "y": 1180,
         "wires": [
             [
                 "79229923bf5fb26a"
@@ -10124,7 +10212,7 @@
         "name": "show/hide net groups",
         "events": "change",
         "x": 980,
-        "y": 1120,
+        "y": 1180,
         "wires": [
             []
         ]
@@ -10136,7 +10224,7 @@
         "name": "Mode selection",
         "group": "64903b47.4034e4",
         "order": 2,
-        "width": 10,
+        "width": 8,
         "height": 1,
         "label": "",
         "stateField": "payload",
@@ -10166,7 +10254,7 @@
         ],
         "topic": "",
         "x": 580,
-        "y": 1080,
+        "y": 1140,
         "wires": [
             [
                 "783d2f1273a4036a",
@@ -10192,7 +10280,7 @@
         "payload": "mode",
         "payloadType": "global",
         "x": 360,
-        "y": 1080,
+        "y": 1140,
         "wires": [
             [
                 "eb4902f193579b72"
@@ -10219,7 +10307,7 @@
         "to": "",
         "reg": false,
         "x": 980,
-        "y": 1040,
+        "y": 1100,
         "wires": [
             [
                 "082af9181824a196"
@@ -10242,7 +10330,7 @@
             "c840a7c66cf51acc"
         ],
         "x": 1135,
-        "y": 1040,
+        "y": 1100,
         "wires": []
     },
     {
@@ -10260,7 +10348,7 @@
             "c2d9b90e27bc022c"
         ],
         "x": 435,
-        "y": 1180,
+        "y": 1240,
         "wires": [
             [
                 "eb4902f193579b72"
@@ -10279,10 +10367,166 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 1040,
+        "y": 1100,
         "wires": [
             [
                 "84a208ae8f528987"
+            ]
+        ]
+    },
+    {
+        "id": "17198497cd321090",
+        "type": "ui_template",
+        "z": "cb95299c.2817c8",
+        "group": "d1074b91f48dc4dc",
+        "name": "Update message",
+        "order": 1,
+        "width": 10,
+        "height": 3,
+        "format": "<div><left>You can choose here in which folder(s) you want the segmentation script to run. A few details though:\n<br>The segmentation is run recursively in all folders. So if you select a top level folder, the segmentation will be run in all subfolders.\n<br>Also, you will be able to chose wether for force the segmentation for folders in which it has run already.</left></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 490,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef2bcf0ddcdffa84",
+        "type": "ui_button",
+        "z": "cb95299c.2817c8",
+        "name": "Refresh",
+        "group": "d1074b91f48dc4dc",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update acquisition's folder list",
+        "tooltip": "Refresh the list of previous acquisitions",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mi-find_replace",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "update",
+        "topicType": "str",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "56f845f5.e7c054",
+                "8bd8fb2c.53fa4"
+            ]
+        ]
+    },
+    {
+        "id": "2875bba3bb165e0b",
+        "type": "ui_list",
+        "z": "cb95299c.2817c8",
+        "group": "d1074b91f48dc4dc",
+        "name": "",
+        "order": 6,
+        "width": 10,
+        "height": 11,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 810,
+        "y": 160,
+        "wires": [
+            [
+                "cb3b87b5.63c4"
+            ]
+        ]
+    },
+    {
+        "id": "5337d1c8921e76e3",
+        "type": "ui_button",
+        "z": "cb95299c.2817c8",
+        "name": "Start segmentation",
+        "group": "d1074b91f48dc4dc",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Start segmentation",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"action\":\"segment\"}",
+        "payloadType": "json",
+        "topic": "segmenter/segment",
+        "topicType": "str",
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "33c28dc1.238002",
+                "c72a1064.1ec388"
+            ]
+        ]
+    },
+    {
+        "id": "8dded6e10f955b58",
+        "type": "ui_button",
+        "z": "cb95299c.2817c8",
+        "d": true,
+        "name": "Stop segmentation",
+        "group": "d1074b91f48dc4dc",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "label": "Stop segmentation",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "className": "",
+        "icon": "",
+        "payload": "{\"action\":\"stop\"}",
+        "payloadType": "json",
+        "topic": "segmenter/segment",
+        "topicType": "str",
+        "x": 390,
+        "y": 620,
+        "wires": [
+            [
+                "16f3cef4.0acac9"
+            ]
+        ]
+    },
+    {
+        "id": "3ca9b0414618388b",
+        "type": "ui_text_input",
+        "z": "cb95299c.2817c8",
+        "name": "process_id",
+        "label": "Process unique ID*",
+        "tooltip": "",
+        "group": "d1074b91f48dc4dc",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "process_id",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 810,
+        "y": 420,
+        "wires": [
+            [
+                "c8749cbb.55254"
             ]
         ]
     },
@@ -11064,7 +11308,7 @@
         "wires": [
             [
                 "af2b8d95.195bb8",
-                "b6bc9b81.ff942"
+                "6c20d6a7.869b6"
             ],
             [],
             []
@@ -11202,24 +11446,6 @@
         "x": 900,
         "y": 320,
         "wires": []
-    },
-    {
-        "id": "b6bc9b81.ff942",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "save process_commit",
-        "func": "global.set(\"process_commit\", msg.payload);\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 900,
-        "y": 360,
-        "wires": [
-            [
-                "6c20d6a7.869b6"
-            ]
-        ]
     },
     {
         "id": "6c20d6a7.869b6",
@@ -11579,10 +11805,10 @@
         "type": "ui_gauge",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "b5ba3f26.2e722",
+        "group": "d89ce6f9f1138668",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 6,
+        "height": 4,
         "gtype": "gage",
         "title": "CPU Temperature",
         "label": "°C",
@@ -11596,6 +11822,7 @@
         ],
         "seg1": "",
         "seg2": "",
+        "className": "",
         "x": 610,
         "y": 100,
         "wires": []
@@ -11627,10 +11854,10 @@
         "type": "ui_chart",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "b5ba3f26.2e722",
-        "order": 2,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 3,
+        "width": 6,
+        "height": 3,
         "label": "",
         "chartType": "line",
         "legend": "false",
@@ -11659,6 +11886,7 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
+        "className": "",
         "x": 570,
         "y": 140,
         "wires": [
@@ -11712,10 +11940,10 @@
         "type": "ui_gauge",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "3da7da8f.179606",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 2,
+        "width": 6,
+        "height": 4,
         "gtype": "gage",
         "title": "Processor",
         "label": "%",
@@ -11729,6 +11957,7 @@
         ],
         "seg1": "",
         "seg2": "",
+        "className": "",
         "x": 580,
         "y": 180,
         "wires": []
@@ -11738,10 +11967,10 @@
         "type": "ui_gauge",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "806d69c8.67fc58",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 5,
+        "width": 6,
+        "height": 4,
         "gtype": "gage",
         "title": "Memory",
         "label": "%",
@@ -11755,6 +11984,7 @@
         ],
         "seg1": "",
         "seg2": "",
+        "className": "",
         "x": 580,
         "y": 260,
         "wires": []
@@ -11786,10 +12016,10 @@
         "type": "ui_gauge",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "405183bc.d8991c",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 6,
+        "width": 6,
+        "height": 4,
         "gtype": "gage",
         "title": "Disk",
         "label": "%",
@@ -11803,6 +12033,7 @@
         ],
         "seg1": "",
         "seg2": "",
+        "className": "",
         "x": 570,
         "y": 340,
         "wires": []
@@ -11812,10 +12043,10 @@
         "type": "ui_chart",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "3da7da8f.179606",
-        "order": 2,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 4,
+        "width": 6,
+        "height": 3,
         "label": "",
         "chartType": "line",
         "legend": "false",
@@ -11830,6 +12061,7 @@
         "removeOlderUnit": "60",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -11842,6 +12074,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 570,
         "y": 220,
         "wires": [
@@ -11853,10 +12087,10 @@
         "type": "ui_chart",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "806d69c8.67fc58",
-        "order": 2,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 7,
+        "width": 6,
+        "height": 3,
         "label": "",
         "chartType": "line",
         "legend": "false",
@@ -11884,6 +12118,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 570,
         "y": 300,
         "wires": [
@@ -11895,10 +12131,10 @@
         "type": "ui_chart",
         "z": "1371dec5.76e671",
         "name": "",
-        "group": "405183bc.d8991c",
-        "order": 2,
-        "width": 0,
-        "height": 0,
+        "group": "d89ce6f9f1138668",
+        "order": 8,
+        "width": 6,
+        "height": 3,
         "label": "",
         "chartType": "line",
         "legend": "false",
@@ -11926,6 +12162,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 570,
         "y": 380,
         "wires": [
@@ -11973,7 +12211,7 @@
         "tooltip": "",
         "group": "3ca00bf9.e5cac4",
         "order": 2,
-        "width": 2,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "decouple": "false",
@@ -12177,20 +12415,6 @@
         ]
     },
     {
-        "id": "e2f39a35.f57298",
-        "type": "subflow:1c24ad9c.bebec2",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "env": [],
-        "x": 570,
-        "y": 560,
-        "wires": [
-            [
-                "bdc6718a.dd5d48"
-            ]
-        ]
-    },
-    {
         "id": "3e64877a.9684b",
         "type": "function",
         "z": "1371dec5.76e671",
@@ -12218,8 +12442,9 @@
         "height": 0,
         "name": "",
         "label": "Instrument Type",
-        "format": "{{msg.payload.acq_instrument}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
+        "className": "",
         "x": 840,
         "y": 560,
         "wires": []
@@ -12381,7 +12606,7 @@
         "name": "",
         "group": "3ca00bf9.e5cac4",
         "order": 1,
-        "width": 4,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Home",
@@ -12920,8 +13145,8 @@
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
         "order": 1,
-        "width": 6,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "name": "GPS Status Display",
         "label": "GPS Status:",
         "format": "{{msg.payload}}",
@@ -12935,8 +13160,8 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
-        "order": 5,
-        "width": 3,
+        "order": 6,
+        "width": 4,
         "height": 1,
         "name": "Latitude",
         "label": "Latitude",
@@ -12951,8 +13176,8 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
-        "order": 6,
-        "width": 3,
+        "order": 7,
+        "width": 4,
         "height": 1,
         "name": "Longitude",
         "label": "Longitude",
@@ -12986,8 +13211,8 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
-        "order": 3,
-        "width": 3,
+        "order": 4,
+        "width": 4,
         "height": 1,
         "name": "Speed",
         "label": "Speed",
@@ -13002,8 +13227,8 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
-        "order": 4,
-        "width": 3,
+        "order": 5,
+        "width": 4,
         "height": 1,
         "name": "Direction",
         "label": "Direction",
@@ -13055,8 +13280,8 @@
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
         "order": 2,
-        "width": 6,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "name": "GPS UTC datetime",
         "label": "GPS UTC datetime",
         "format": "{{msg.payload.time}}",
@@ -13071,7 +13296,7 @@
         "z": "1371dec5.76e671",
         "name": "",
         "group": "cfe2288f.a8862",
-        "order": 6,
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -13115,9 +13340,9 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "cfe2288f.a8862",
-        "order": 2,
-        "width": 6,
-        "height": 1,
+        "order": 3,
+        "width": 0,
+        "height": 0,
         "name": "Local UTC datetime",
         "label": "Local UTC datetime",
         "format": "{{msg.payload}}",
@@ -13202,6 +13427,178 @@
         "wires": [
             [
                 "2549f778.4eb828"
+            ]
+        ]
+    },
+    {
+        "id": "6cdcee66c59df982",
+        "type": "link in",
+        "z": "1371dec5.76e671",
+        "name": "Name Machine",
+        "links": [
+            "7d2fdac8f6d69a07"
+        ],
+        "x": 575,
+        "y": 560,
+        "wires": [
+            [
+                "bdc6718a.dd5d48"
+            ]
+        ]
+    },
+    {
+        "id": "7d2e578f76e45415",
+        "type": "dir2files",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "dirname": "/home/pi/data/img/",
+        "pathRegex": "",
+        "isRecursive": true,
+        "findDir": true,
+        "isArray": true,
+        "x": 420,
+        "y": 1680,
+        "wires": [
+            [
+                "dca4a38b0341d50b"
+            ]
+        ]
+    },
+    {
+        "id": "d43b6e5d5c52f37b",
+        "type": "ui_button",
+        "z": "1371dec5.76e671",
+        "name": "Refresh",
+        "group": "52d1b77.28369c8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update acquisition's folder list",
+        "tooltip": "Refresh the list of previous acquisitions",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mi-find_replace",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "update",
+        "topicType": "str",
+        "x": 220,
+        "y": 1680,
+        "wires": [
+            [
+                "7d2e578f76e45415",
+                "f04601a388462bf9"
+            ]
+        ]
+    },
+    {
+        "id": "d6103bdac4fab899",
+        "type": "inject",
+        "z": "1371dec5.76e671",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 1640,
+        "wires": [
+            [
+                "7d2e578f76e45415",
+                "f04601a388462bf9"
+            ]
+        ]
+    },
+    {
+        "id": "a80167afeb8ad54e",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "update save_list",
+        "func": "var segmentation_list = flow.get('segmentation_list');\n\nif (segmentation_list === undefined || segmentation_list === \"\") {\n    segmentation_list = []\n    console.log(\"error\")\n}\n\npath = \"/home/pi/data/img/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (segmentation_list.includes(path) === false){\n        segmentation_list.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = segmentation_list.indexOf(path)\n    segmentation_list.splice(pos, 1)\n}\n\nflow.set('segmentation_list', segmentation_list)",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f04601a388462bf9",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "Reset save_list",
+        "rules": [
+            {
+                "t": "set",
+                "p": "save_list",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 1640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dca4a38b0341d50b",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "remove common",
+        "func": "function remove_path(item, index, array) {\n  array[index] = item.replace(\"/home/pi/data/img/\", \"\")\n} \n\nmsg.payload.forEach(remove_path)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 1680,
+        "wires": [
+            [
+                "bca7225d4b40670a"
+            ]
+        ]
+    },
+    {
+        "id": "bca7225d4b40670a",
+        "type": "ui_list",
+        "z": "1371dec5.76e671",
+        "group": "52d1b77.28369c8",
+        "name": "",
+        "order": 5,
+        "width": 9,
+        "height": 7,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 770,
+        "y": 1680,
+        "wires": [
+            [
+                "a80167afeb8ad54e"
             ]
         ]
     },
@@ -14516,7 +14913,8 @@
         "y": 160,
         "wires": [
             [
-                "3e2c5c1c.4c57b4"
+                "3e2c5c1c.4c57b4",
+                "7d2fdac8f6d69a07"
             ]
         ]
     },
@@ -15010,7 +15408,7 @@
         "id": "209b9e73d5114297",
         "type": "inject",
         "z": "1eaf21c8.f7a21e",
-        "name": "Default: Lac0scope 2",
+        "name": "Default: Projet Lac0scope 2",
         "props": [
             {
                 "p": "payload"
@@ -15023,11 +15421,949 @@
         "topic": "",
         "payload": "Projet Lac0scope 2",
         "payloadType": "str",
-        "x": 320,
+        "x": 300,
         "y": 200,
         "wires": [
             [
                 "a7e5c7f4.644678"
+            ]
+        ]
+    },
+    {
+        "id": "7d2fdac8f6d69a07",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Name Machine",
+        "mode": "link",
+        "links": [
+            "6cdcee66c59df982"
+        ],
+        "x": 805,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4fa73dd9.83cca4",
+        "type": "comment",
+        "z": "31d8721d35506f94",
+        "name": "File Browser",
+        "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
+        "x": 150,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "993d7272.843ae",
+        "type": "fs-file-lister",
+        "z": "31d8721d35506f94",
+        "name": "Files",
+        "start": "/home/pi",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 550,
+        "y": 120,
+        "wires": [
+            [
+                "3e094f82.15d6e",
+                "dd88bd23.37cde"
+            ]
+        ]
+    },
+    {
+        "id": "d185a45.2327a58",
+        "type": "inject",
+        "z": "31d8721d35506f94",
+        "name": "Init",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "change",
+        "payload": "/home/pi",
+        "payloadType": "str",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "a715f7a4.a398a8",
+        "type": "ui_button",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 1,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Refresh",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "refresh",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "eb17c7ee.e61988",
+        "type": "ui_dropdown",
+        "z": "31d8721d35506f94",
+        "name": "File Selector",
+        "label": "",
+        "tooltip": "",
+        "place": "Select a file",
+        "group": "160e81fb.f1c86e",
+        "order": 10,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 950,
+        "y": 120,
+        "wires": [
+            [
+                "be4830df.5775d"
+            ]
+        ]
+    },
+    {
+        "id": "dd88bd23.37cde",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Format data",
+        "func": "// format the data for the dropdown\nmsg.options = [];\nfor (var i=0; i<msg.payload.length; i++) {\n    // This is a file\n    obj = {};\n    obj [msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '')]=msg.payload[i].name;\n    msg.options.push(obj);\n}\nmsg.payload={};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 120,
+        "wires": [
+            [
+                "eb17c7ee.e61988"
+            ]
+        ]
+    },
+    {
+        "id": "638728aa.cd0b08",
+        "type": "ui_template",
+        "z": "31d8721d35506f94",
+        "group": "160e81fb.f1c86e",
+        "name": "",
+        "order": 6,
+        "width": 18,
+        "height": 3,
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1140,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d27e846.b31db8",
+        "type": "template",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>File Name</th><th>Size</th><th>Created</th><th>Changed</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 980,
+        "y": 180,
+        "wires": [
+            [
+                "638728aa.cd0b08"
+            ]
+        ]
+    },
+    {
+        "id": "3e094f82.15d6e",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Convert timestamps",
+        "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 180,
+        "wires": [
+            [
+                "9d27e846.b31db8"
+            ]
+        ]
+    },
+    {
+        "id": "7b7e0d58.05e244",
+        "type": "ui_button",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "delete",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "8da8147a.999af8"
+            ]
+        ]
+    },
+    {
+        "id": "7d490dd1.8458b4",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Get filename",
+        "func": "// Get the filename from the flow context\nlet filename = flow.get(\"fileselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (filename===undefined) {\n    return;\n}\n\n// return the filename to the file-in node to delete\nmsg.filename = filename;\n\nif (msg.filename.replace(/^.*(\\\\|\\/|\\:)/, '')[0]!==\".\") {\n    // Only do this if this is a file, we don't delete folders\n    // and delete the context/selection as we are deleting the file as well\n    flow.set(\"fileselected\");\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 400,
+        "wires": [
+            [
+                "372ee262.fc94de"
+            ]
+        ]
+    },
+    {
+        "id": "372ee262.fc94de",
+        "type": "file",
+        "z": "31d8721d35506f94",
+        "name": "Delete file",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "delete",
+        "encoding": "none",
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "993d7272.843ae",
+                "5219875b.c070d8"
+            ]
+        ]
+    },
+    {
+        "id": "aa8c482.93734b8",
+        "type": "http in",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "url": "/download",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "d969ba04.e24028"
+            ]
+        ]
+    },
+    {
+        "id": "d19cc7d8.646328",
+        "type": "http response",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d969ba04.e24028",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Get the file name",
+        "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "e92381c3.c4cd2"
+            ]
+        ],
+        "outputLabels": [
+            "Folder selected",
+            "File selected"
+        ]
+    },
+    {
+        "id": "e92381c3.c4cd2",
+        "type": "file in",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 640,
+        "y": 540,
+        "wires": [
+            [
+                "99ff4953.d0d5c8"
+            ]
+        ]
+    },
+    {
+        "id": "99ff4953.d0d5c8",
+        "type": "change",
+        "z": "31d8721d35506f94",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "text/csv",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Disposition",
+                "pt": "msg",
+                "to": "contentdisposition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "d19cc7d8.646328"
+            ]
+        ]
+    },
+    {
+        "id": "2519dd0d.54d6b2",
+        "type": "ui_button",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 12,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Graph",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "show_chart",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 130,
+        "y": 720,
+        "wires": [
+            [
+                "30f41c01.358a54"
+            ]
+        ]
+    },
+    {
+        "id": "30f41c01.358a54",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Get filename",
+        "func": "// Get the filename from the flow context\nlet filename = flow.get(\"fileselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (filename===undefined) {\n    return;\n}\n\n// return the filename to the file-in node to delete\nmsg.filename = filename;\n\nif (msg.filename.replace(/^.*(\\\\|\\/|\\:)/, '')[0]!==\".\") {\n    // Only do this if this is a file, we don't delete folders\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 720,
+        "wires": [
+            [
+                "4f4072b6.0c320c"
+            ]
+        ]
+    },
+    {
+        "id": "4f4072b6.0c320c",
+        "type": "file in",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 480,
+        "y": 720,
+        "wires": [
+            [
+                "4d254665.d508e8"
+            ]
+        ]
+    },
+    {
+        "id": "4d254665.d508e8",
+        "type": "csv",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 630,
+        "y": 720,
+        "wires": [
+            [
+                "7dcec769.580718"
+            ]
+        ]
+    },
+    {
+        "id": "84810f0e.43f4e",
+        "type": "debug",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1050,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7dcec769.580718",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Format data for chart",
+        "func": "var chart = [{\n    \"series\":[],\n    \"data\":[],\n    \"labels\":[msg.filename]\n}];\n\n\n/*\nvar pressure = [];\nvar out2 = [];\n\nfor (var i=0; i<msg.payload.length; i++) {\n    pressure.push({\"x\":msg.payload[i].timestamp, \"y\":msg.payload[i].pressure});\n    out2.push({\"x\":msg.payload[i].timestamp, \"y\":msg.payload[i].out2*200});\n\n}\nchart[0].data.push(pressure);\nchart[0].data.push(out2);\n*/\n\nlet columns = 0;\n\nfor(var series in msg.payload[0]) {\n    if(series!==\"timestamp\") {\n        chart[0].series.push(series);\n        chart[0].data.push([]);\n        columns++;\n    }\n}\n\n\nfor (var j=0; j<msg.payload.length; j++) {\n   for(var i=0;i<columns;i++) {\n       chart[0].data[i].push({\"x\":msg.payload[j].timestamp, \"y\":msg.payload[j][chart[0].series[i]]});\n   } \n}\n\n\n\n\nmsg.payload = chart;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 840,
+        "y": 720,
+        "wires": [
+            [
+                "5022cb53.8adc44",
+                "84810f0e.43f4e"
+            ]
+        ]
+    },
+    {
+        "id": "5022cb53.8adc44",
+        "type": "ui_chart",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 13,
+        "width": 18,
+        "height": 2,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 1040,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "554f0095.ac1b2",
+        "type": "ui_toast",
+        "z": "31d8721d35506f94",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "Yes",
+        "cancel": "No",
+        "raw": false,
+        "topic": "",
+        "name": "Confirmation",
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "24df84fe.ebf45c"
+            ]
+        ]
+    },
+    {
+        "id": "8da8147a.999af8",
+        "type": "change",
+        "z": "31d8721d35506f94",
+        "name": "Set message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Delete confirmation",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Are you sure you want to delete this file?",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "554f0095.ac1b2"
+            ]
+        ]
+    },
+    {
+        "id": "24df84fe.ebf45c",
+        "type": "switch",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Yes",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 340,
+        "wires": [
+            [
+                "7d490dd1.8458b4"
+            ]
+        ]
+    },
+    {
+        "id": "3d4e5e51.bdf952",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Folder handling",
+        "func": "let folder = context.get(\"folder\");\nif (folder===undefined) {\n    folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nlet hidden = context.get(\"hidden\");\nif (hidden===undefined) {\n    hidden=false;\n    context.set(\"hidden\", hidden);\n}\n\nif (msg.topic===\"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop();\n    folder=the_arr.join('/'); \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "993d7272.843ae",
+                "399ac341.7d43bc",
+                "5219875b.c070d8"
+            ]
+        ]
+    },
+    {
+        "id": "399ac341.7d43bc",
+        "type": "ui_text",
+        "z": "31d8721d35506f94",
+        "group": "160e81fb.f1c86e",
+        "order": 4,
+        "width": 9,
+        "height": 1,
+        "name": "",
+        "label": "Folder:",
+        "format": "{{msg.payload.start}}",
+        "layout": "row-left",
+        "x": 520,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b40ea1d8.c700a",
+        "type": "ui_button",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Up",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "arrow_upwards",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "up",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "80940e39.5035b",
+        "type": "ui_button",
+        "z": "31d8721d35506f94",
+        "d": true,
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 9,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Open",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "folder_open",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 170,
+        "y": 460,
+        "wires": [
+            [
+                "8c1dfaac.979588"
+            ]
+        ]
+    },
+    {
+        "id": "8c1dfaac.979588",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Change folder",
+        "func": "// Get the filename from the flow context\nlet folderselected = flow.get(\"folderselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (folderselected===undefined) {\n    return;\n}\n\nmsg.topic = \"change\";\nmsg.payload = folderselected;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "58414ec4.c716e",
+        "type": "ui_button",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "group": "160e81fb.f1c86e",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "autorenew",
+        "payload": "/home/pi",
+        "payloadType": "str",
+        "topic": "change",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "5219875b.c070d8",
+        "type": "fs-file-lister",
+        "z": "31d8721d35506f94",
+        "name": "Folders",
+        "start": "/home/pi",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "directories",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "ebc234be.d53fe8",
+                "01735e14b167b9b7"
+            ]
+        ]
+    },
+    {
+        "id": "37485c24.212054",
+        "type": "ui_dropdown",
+        "z": "31d8721d35506f94",
+        "name": "Folder Selector",
+        "label": "",
+        "tooltip": "",
+        "place": "Select a folder",
+        "group": "160e81fb.f1c86e",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 960,
+        "y": 220,
+        "wires": [
+            [
+                "2875c79f.531558"
+            ]
+        ]
+    },
+    {
+        "id": "ebc234be.d53fe8",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Format data",
+        "func": "// format the data for the dropdown\nmsg.options = [];\nfor (var i=0; i<msg.payload.length; i++) {\n    // This is a foler\n    obj = {};\n    obj [\"[\"+msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '')+\"]\"]=msg.payload[i].name;\n    msg.options.push(obj);\n}\nmsg.payload={};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 750,
+        "y": 220,
+        "wires": [
+            [
+                "37485c24.212054"
+            ]
+        ]
+    },
+    {
+        "id": "be4830df.5775d",
+        "type": "change",
+        "z": "31d8721d35506f94",
+        "name": "Save selection",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fileselected",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2875c79f.531558",
+        "type": "change",
+        "z": "31d8721d35506f94",
+        "name": "Save selection",
+        "rules": [
+            {
+                "t": "set",
+                "p": "folderselected",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 220,
+        "wires": [
+            [
+                "8c1dfaac.979588"
+            ]
+        ]
+    },
+    {
+        "id": "928e60a7.994be",
+        "type": "ui_switch",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "label": "Hidden",
+        "tooltip": "Show hidden files or not",
+        "group": "160e81fb.f1c86e",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "decouple": "false",
+        "topic": "hidden",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "check_box",
+        "oncolor": "#000000",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "check_box_outline_blank",
+        "offcolor": "#000000",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            [
+                "3d4e5e51.bdf952"
+            ]
+        ]
+    },
+    {
+        "id": "01735e14b167b9b7",
+        "type": "function",
+        "z": "31d8721d35506f94",
+        "name": "Convert timestamps",
+        "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 280,
+        "wires": [
+            [
+                "7577296ea79ec3b2"
+            ]
+        ]
+    },
+    {
+        "id": "581fdaa8332f52f2",
+        "type": "ui_template",
+        "z": "31d8721d35506f94",
+        "group": "160e81fb.f1c86e",
+        "name": "",
+        "order": 7,
+        "width": 18,
+        "height": 3,
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1140,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7577296ea79ec3b2",
+        "type": "template",
+        "z": "31d8721d35506f94",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>Folder Name</th><th>Size</th><th>Created</th><th>Changed</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?foldername={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 980,
+        "y": 280,
+        "wires": [
+            [
+                "581fdaa8332f52f2"
             ]
         ]
     }
