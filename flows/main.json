@@ -288,15 +288,15 @@
                 },
                 "group-textColor": {
                     "value": "#2397d3",
-                    "edited": true
+                    "edited": false
                 },
                 "group-borderColor": {
                     "value": "#555555",
-                    "edited": true
+                    "edited": false
                 },
                 "group-backgroundColor": {
                     "value": "#333333",
-                    "edited": true
+                    "edited": false
                 },
                 "widget-textColor": {
                     "value": "#eeeeee",
@@ -330,14 +330,14 @@
             "allowTempTheme": "true",
             "dateFormat": "Y-MM-DD",
             "sizes": {
-                "sx": 55,
-                "sy": 55,
-                "gx": 4,
-                "gy": 4,
-                "cx": 4,
-                "cy": 4,
-                "px": 4,
-                "py": 4
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
             }
         }
     },
@@ -455,12 +455,13 @@
     {
         "id": "5517c651.b2f668",
         "type": "ui_group",
-        "name": "Validation",
+        "name": "Navigation",
         "tab": "737ec584.2eea2c",
-        "order": 10,
-        "disp": false,
-        "width": 10,
-        "collapse": false
+        "order": 12,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "fbd92986.1028c8",
@@ -808,46 +809,6 @@
         "width": 6
     },
     {
-        "id": "7da8c27c1e45b777",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 5,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "9e08b5333e2fd29d",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 1,
-        "width": 5,
-        "height": 1
-    },
-    {
-        "id": "54daae381af345eb",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "cf5d9f0e.d57e7",
-        "order": 7,
-        "width": 5,
-        "height": 1
-    },
-    {
-        "id": "a7a5340e3f718f7f",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "7e3a6f5233943da5",
         "type": "ui_group",
         "name": "Optic Characterization Beginner",
@@ -951,19 +912,9 @@
         "tab": "181bb236.1e94be",
         "order": 10,
         "disp": false,
-        "width": "6",
+        "width": 6,
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "c3c62a5ce276fd4d",
-        "type": "ui_spacer",
-        "z": "bccd1f23.87219",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 1,
-        "height": 1
     },
     {
         "id": "02ef954dd5a84815",
@@ -971,7 +922,7 @@
         "name": "Prefill sample",
         "tab": "737ec584.2eea2c",
         "order": 6,
-        "disp": false,
+        "disp": true,
         "width": "10",
         "collapse": false,
         "className": ""
@@ -982,187 +933,17 @@
         "name": "Prefill net",
         "tab": "737ec584.2eea2c",
         "order": 7,
-        "disp": false,
-        "width": 10,
+        "disp": true,
+        "width": "10",
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "11f745ebb8f8e2f8",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "3e1ba03d.f01d8",
-        "order": 5,
-        "width": 10,
-        "height": 1
-    },
-    {
-        "id": "021c07f7fc35a970",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "23ae31c94eff77f8",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "02ef954dd5a84815",
-        "order": 2,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "d4b3fc461575a44a",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "02ef954dd5a84815",
-        "order": 4,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "0c3d677a5c4c26a9",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "02ef954dd5a84815",
-        "order": 5,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "a3ad6f8844ce5977",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "02ef954dd5a84815",
-        "order": 7,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "b5cc2c43ebdab0af",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "02ef954dd5a84815",
-        "order": 8,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "29c5cb3bb9d834d7",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "02ef954dd5a84815",
-        "order": 10,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "9049b2a7146dc476",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "d2bea088dbd2d30a",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 5,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "db298f66db19f360",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 7,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "66d5f1363caafd83",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 8,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "32aa3db388f88995",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 10,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "6b4ad0a17c653cad",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 12,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "ce678d80e8d9a6c4",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 13,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "866d9c65ee893a5c",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 15,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "f07ec052bcf66d4b",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "a961c5663b1f739d",
-        "order": 17,
-        "width": 1,
-        "height": 1
     },
     {
         "id": "c9aaf84f0d1abd88",
         "type": "ui_group",
         "name": "Summary",
         "tab": "737ec584.2eea2c",
-        "order": 8,
+        "order": 10,
         "disp": true,
         "width": "10",
         "collapse": false,
@@ -1173,7 +954,7 @@
         "type": "ui_group",
         "name": "Summary Net",
         "tab": "737ec584.2eea2c",
-        "order": 9,
+        "order": 11,
         "disp": true,
         "width": "10",
         "collapse": false,
@@ -1424,6 +1205,227 @@
         "width": "4",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "83649a6f3a99e18e",
+        "type": "ui_spacer",
+        "z": "bccd1f23.87219",
+        "name": "spacer",
+        "group": "4248342d.e55fac",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f117c73f1f9395a9",
+        "type": "ui_group",
+        "name": "Hidden_Groupe",
+        "tab": "737ec584.2eea2c",
+        "order": 8,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8b2fb89a7d179b25",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 5,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "3dcaa1cd657ad3d4",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 6,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "b87e81411119c4cc",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 8,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "cc3494066db3ba8a",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "3e1ba03d.f01d8",
+        "order": 9,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "2716a023c8152c3d",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "cf5d9f0e.d57e7",
+        "order": 3,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "bc945015218a216c",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "fc5e4e6f.5b1c8",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f28b2d5411937897",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "02ef954dd5a84815",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "93f3c27af0f0129e",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "02ef954dd5a84815",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b3d4dcb4a81be883",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "02ef954dd5a84815",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "9b44075fdaaefeda",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "02ef954dd5a84815",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7e8275b343704a5b",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "02ef954dd5a84815",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d7cee0dd95ffbe51",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "02ef954dd5a84815",
+        "order": 9,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "23e14a55afcb5c32",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 1,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "ed2179ec561fd9c1",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 2,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "e5af704d2e6be1c0",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 3,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "da955f7cdc3d883a",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 4,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "1fe73a79d35ce7b9",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 5,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "ec05584494e99a5a",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 6,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "bf8ab77eccbfb605",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 7,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "ccaff04269882a77",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "f117c73f1f9395a9",
+        "order": 8,
+        "width": 10,
+        "height": 1
     },
     {
         "id": "6465bdd5.15eb8c",
@@ -2438,32 +2440,6 @@
         ]
     },
     {
-        "id": "4557d689.a4fa88",
-        "type": "ui_text_input",
-        "z": "b771c342.49603",
-        "name": "sample_ship",
-        "label": "Name of the ship",
-        "tooltip": "",
-        "group": "3e1ba03d.f01d8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": "300",
-        "topic": "sample_ship",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 670,
-        "y": 80,
-        "wires": [
-            [
-                "9f501f49.45645"
-            ]
-        ]
-    },
-    {
         "id": "fcfc31ae.af3af",
         "type": "ui_dropdown",
         "z": "b771c342.49603",
@@ -2472,9 +2448,9 @@
         "tooltip": "",
         "place": "Choose from list",
         "group": "3e1ba03d.f01d8",
-        "order": 6,
-        "width": 0,
-        "height": 0,
+        "order": 7,
+        "width": 10,
+        "height": 1,
         "passthru": true,
         "multiple": false,
         "options": [
@@ -2528,66 +2504,14 @@
         "topic": "sample_sampling_gear",
         "topicType": "str",
         "className": "",
-        "x": 630,
-        "y": 200,
+        "x": 730,
+        "y": 280,
         "wires": [
             [
                 "9f501f49.45645",
                 "46eb1bf8.3dc5f4",
-                "3ac7b631f5d8ef90"
-            ]
-        ]
-    },
-    {
-        "id": "82c5fc77.59c97",
-        "type": "ui_text_input",
-        "z": "b771c342.49603",
-        "name": "sample_operator",
-        "label": "Name of the operator*",
-        "tooltip": "",
-        "group": "3e1ba03d.f01d8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": "300",
-        "topic": "sample_operator",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 650,
-        "y": 160,
-        "wires": [
-            [
-                "9f501f49.45645",
-                "52af9ac0.60eb24"
-            ]
-        ]
-    },
-    {
-        "id": "9c882b37.fde668",
-        "type": "ui_text_input",
-        "z": "b771c342.49603",
-        "name": "sample_project",
-        "label": "Name of the project*",
-        "tooltip": "",
-        "group": "3e1ba03d.f01d8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": "300",
-        "topic": "sample_project",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 660,
-        "y": 40,
-        "wires": [
-            [
-                "9f501f49.45645"
+                "3ac7b631f5d8ef90",
+                "fdc7981ab1e4f8ce"
             ]
         ]
     },
@@ -2600,8 +2524,8 @@
         "tooltip": "",
         "group": "3e1ba03d.f01d8",
         "order": 4,
-        "width": 0,
-        "height": 0,
+        "width": 10,
+        "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": "300",
@@ -2609,8 +2533,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 670,
-        "y": 120,
+        "x": 870,
+        "y": 880,
         "wires": [
             [
                 "9f501f49.45645"
@@ -2628,8 +2552,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1080,
-        "y": 200,
+        "x": 1550,
+        "y": 680,
         "wires": [
             []
         ]
@@ -2640,8 +2564,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 1240,
-        "y": 1460,
+        "x": 3870,
+        "y": 200,
         "wires": [
             []
         ]
@@ -2660,8 +2584,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1490,
-        "y": 1540,
+        "x": 4120,
+        "y": 280,
         "wires": [
             []
         ]
@@ -2677,8 +2601,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1250,
-        "y": 1500,
+        "x": 3880,
+        "y": 240,
         "wires": [
             [
                 "726a7822.cd6298",
@@ -2706,8 +2630,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 410,
-        "y": 1800,
+        "x": 3040,
+        "y": 540,
         "wires": [
             [
                 "258b4562.9f778a",
@@ -2725,8 +2649,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 1480,
-        "y": 1460,
+        "x": 4110,
+        "y": 200,
         "wires": [
             []
         ]
@@ -2751,8 +2675,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 1020,
-        "y": 1460,
+        "x": 3650,
+        "y": 200,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -2777,30 +2701,11 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 1020,
-        "y": 1500,
+        "x": 3650,
+        "y": 240,
         "wires": [
             [
                 "986d960a.c75908"
-            ]
-        ]
-    },
-    {
-        "id": "d027a6bf.7049e8",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "get sample_projet",
-        "func": "msg.payload = msg.payload.sample_project;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 310,
-        "y": 40,
-        "wires": [
-            [
-                "9c882b37.fde668"
             ]
         ]
     },
@@ -2809,18 +2714,16 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_ship",
-        "func": "msg.payload = msg.payload.sample_ship;\nreturn msg;",
+        "func": "global.set(\"sample_ship\", \"None\");\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
+        "x": 310,
         "y": 80,
         "wires": [
-            [
-                "4557d689.a4fa88"
-            ]
+            []
         ]
     },
     {
@@ -2834,30 +2737,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 120,
+        "x": 380,
+        "y": 240,
         "wires": [
             [
                 "94eb4221.9b92c"
-            ]
-        ]
-    },
-    {
-        "id": "1e09a4ab.72996b",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "get sample_operator",
-        "func": "msg.payload = msg.payload.sample_operator;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 160,
-        "wires": [
-            [
-                "82c5fc77.59c97"
             ]
         ]
     },
@@ -2872,8 +2756,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 200,
+        "x": 420,
+        "y": 280,
         "wires": [
             [
                 "fcfc31ae.af3af"
@@ -2890,16 +2774,15 @@
         "y": 220,
         "wires": [
             [
-                "d027a6bf.7049e8",
                 "5a811caf.0f3144",
                 "45911c98.2bd83c",
-                "1e09a4ab.72996b",
                 "8dff1648.82e42",
                 "9f04c5ec.75f3d8",
                 "f408a273.4fb538",
                 "e73fd87d.d24e4",
                 "489c8e06.cc7d6",
-                "a3272681.f271c8"
+                "a3272681.f271c8",
+                "b4bef47fd5679587"
             ]
         ]
     },
@@ -2909,8 +2792,8 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 1470,
-        "y": 1500,
+        "x": 4100,
+        "y": 240,
         "wires": [
             []
         ]
@@ -2928,8 +2811,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "",
-        "x": 890,
-        "y": 1640,
+        "x": 3520,
+        "y": 380,
         "wires": []
     },
     {
@@ -2940,7 +2823,7 @@
         "label": "Max sampling depth (m)",
         "tooltip": "in m",
         "group": "3e1ba03d.f01d8",
-        "order": 10,
+        "order": 13,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2950,8 +2833,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 650,
-        "y": 240,
+        "x": 900,
+        "y": 940,
         "wires": [
             [
                 "9f501f49.45645"
@@ -2966,7 +2849,7 @@
         "label": "Min sampling depth (m)",
         "tooltip": "in m",
         "group": "3e1ba03d.f01d8",
-        "order": 8,
+        "order": 11,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2976,8 +2859,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 650,
-        "y": 280,
+        "x": 880,
+        "y": 1000,
         "wires": [
             [
                 "9f501f49.45645"
@@ -2985,25 +2868,13 @@
         ]
     },
     {
-        "id": "52af9ac0.60eb24",
-        "type": "link out",
-        "z": "b771c342.49603",
-        "name": "Sample Operator",
-        "links": [
-            "35eb925e.5f8016"
-        ],
-        "x": 815,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "cbb123ab.fd3428",
         "type": "ui_ui_control",
         "z": "b771c342.49603",
         "name": "show/hide net groups",
         "events": "change",
-        "x": 1320,
-        "y": 300,
+        "x": 1790,
+        "y": 780,
         "wires": [
             []
         ]
@@ -3016,7 +2887,7 @@
         "label": "Concentrated sample volume (mL)",
         "tooltip": "Volume extracted from the net codend (in mL)",
         "group": "3e1ba03d.f01d8",
-        "order": 12,
+        "order": 14,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3026,8 +2897,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 590,
-        "y": 440,
+        "x": 840,
+        "y": 1140,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3042,7 +2913,7 @@
         "label": "Net opening dimension (mm)",
         "tooltip": "Size of the net mouth opening (in mm)",
         "group": "cf5d9f0e.d57e7",
-        "order": 3,
+        "order": 7,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3052,8 +2923,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 620,
-        "y": 320,
+        "x": 820,
+        "y": 460,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3075,8 +2946,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 2230,
-        "y": 880,
+        "x": 1990,
+        "y": 1960,
         "wires": [
             []
         ]
@@ -3089,8 +2960,8 @@
         "label": "",
         "group": "cef1e703.bcf3c8",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 10,
+        "height": 1,
         "options": [
             {
                 "label": "Latitude (36.574439°N or 36°57'44.39\" N)",
@@ -3134,8 +3005,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "sample_location",
-        "x": 1660,
-        "y": 840,
+        "x": 1420,
+        "y": 1920,
         "wires": [
             [
                 "14658615.47c862"
@@ -3150,8 +3021,8 @@
         "label": "Net Throw Location",
         "group": "cf5d9f0e.d57e7",
         "order": 1,
-        "width": 10,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "options": [
             {
                 "label": "Latitude (36.574439°N or 36°57'44.39\" N)",
@@ -3195,8 +3066,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1650,
-        "y": 880,
+        "x": 1410,
+        "y": 1960,
         "wires": [
             [
                 "14658615.47c862"
@@ -3211,8 +3082,8 @@
         "label": "Net Retrieval Location",
         "group": "cf5d9f0e.d57e7",
         "order": 2,
-        "width": 10,
-        "height": 1,
+        "width": 0,
+        "height": 0,
         "options": [
             {
                 "label": "Latitude (36.574439°N or 36°57'44.39\" N)",
@@ -3256,8 +3127,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1640,
-        "y": 920,
+        "x": 1400,
+        "y": 2000,
         "wires": [
             [
                 "14658615.47c862"
@@ -3275,8 +3146,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1930,
-        "y": 880,
+        "x": 1690,
+        "y": 1960,
         "wires": [
             [
                 "c0ce5626.b6c5",
@@ -3300,14 +3171,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Net check",
-        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\", \"Sample_Prefill_net\", \"Sample_Summary_Net\"],\"hide\":[\"Sample_Sample_Location\",\"Sample_Culture_Date_and_Time\", \"Sample_Prefill_sample\", \"Sample_Summary\"]}};\n}\nelse if (msg.payload != \"culture\" && msg.payload != \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Sample_Location\",\"Sample_Prefill_sample\", \"Sample_Summary\"], \"hide\":[\"Sample_Net_Metadata\",\"Sample_Culture_Date_and_Time\",\"Sample_Prefill_net\", \"Sample_Summary_Net\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
+        "func": "var decknet = {}\nvar activation_msg = {}\n\nif (msg.payload.startsWith(\"net_decknet\")){\n    decknet.enabled = true;\n}\nelse {\n    decknet.enabled = false;\n}\n\nif (msg.payload.startsWith(\"net\")){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Net_Metadata\", \"Sample_Prefill_net\", \"Sample_Summary_Net\"],\"hide\":[\"Sample_Sample_Location\",\"Sample_Culture_Date_and_Time\", \"Sample_Prefill_sample\", \"Sample_Summary\", \"Sample_Hidden_Groupe\"]}};\n}\nelse if (msg.payload != \"culture\" && msg.payload != \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Hidden_Groupe\",\"Sample_Sample_Location\",\"Sample_Prefill_sample\", \"Sample_Summary\"], \"hide\":[\"Sample_Net_Metadata\",\"Sample_Culture_Date_and_Time\",\"Sample_Prefill_net\", \"Sample_Summary_Net\"]}};\n}\n\n\nreturn [decknet, activation_msg];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1080,
-        "y": 240,
+        "x": 1550,
+        "y": 720,
         "wires": [
             [
                 "516375fd.2ed61c",
@@ -3341,8 +3212,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1340,
-        "y": 220,
+        "x": 1810,
+        "y": 700,
         "wires": [
             [
                 "e9bc112c.eb75f8"
@@ -3367,8 +3238,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1340,
-        "y": 260,
+        "x": 1810,
+        "y": 740,
         "wires": [
             [
                 "e9bc112c.eb75f8"
@@ -3383,15 +3254,15 @@
         "name": "Decknet flowmeter read",
         "order": 4,
         "width": 10,
-        "height": 1,
+        "height": 2,
         "format": "<div style=\"line-height: 100%;\">\n    <p class=\"formlabel\" style=\"font-size: larger;\">Decknet flowmeter readings</p>\n    <p style=\"font-size: smaller;\">Those values are used to calculate <font style=\"font-family: mono;\">sample_total_volume</font>. Values are in L.</p>\n</div>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1330,
-        "y": 180,
+        "x": 1800,
+        "y": 660,
         "wires": [
             []
         ]
@@ -3407,8 +3278,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 320,
+        "x": 430,
+        "y": 400,
         "wires": [
             [
                 "e967b844.46aa48"
@@ -3426,8 +3297,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
-        "y": 240,
+        "x": 400,
+        "y": 320,
         "wires": [
             [
                 "9c7f7fc9.c8d3a"
@@ -3445,8 +3316,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
-        "y": 280,
+        "x": 400,
+        "y": 360,
         "wires": [
             [
                 "317eeeb7.8d3042"
@@ -3464,8 +3335,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2340,
-        "y": 920,
+        "x": 2100,
+        "y": 2000,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -3485,8 +3356,8 @@
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}\" {{msg.payload.lat.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 860,
-        "y": 1680,
+        "x": 3490,
+        "y": 420,
         "wires": []
     },
     {
@@ -3502,8 +3373,8 @@
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}\" {{msg.payload.lon.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 860,
-        "y": 1720,
+        "x": 3490,
+        "y": 460,
         "wires": []
     },
     {
@@ -3517,8 +3388,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1700,
+        "x": 3280,
+        "y": 440,
         "wires": [
             [
                 "4fb4e0ad.c417c",
@@ -3539,8 +3410,8 @@
         "label": "Speed",
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
-        "x": 850,
-        "y": 1760,
+        "x": 3480,
+        "y": 500,
         "wires": []
     },
     {
@@ -3555,8 +3426,8 @@
         "label": "Direction",
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
-        "x": 860,
-        "y": 1800,
+        "x": 3490,
+        "y": 540,
         "wires": []
     },
     {
@@ -3570,8 +3441,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 1640,
+        "x": 3260,
+        "y": 380,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -3589,8 +3460,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1760,
+        "x": 3280,
+        "y": 500,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -3610,8 +3481,8 @@
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 880,
-        "y": 1840,
+        "x": 3510,
+        "y": 580,
         "wires": []
     },
     {
@@ -3625,8 +3496,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 360,
+        "x": 410,
+        "y": 440,
         "wires": [
             [
                 "1aad56b31b5647ce"
@@ -3644,8 +3515,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 400,
+        "x": 410,
+        "y": 480,
         "wires": [
             [
                 "10eb31a2d7a6590c"
@@ -3663,8 +3534,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
-        "y": 1840,
+        "x": 3320,
+        "y": 580,
         "wires": [
             [
                 "35ad311f.344c76",
@@ -3680,7 +3551,7 @@
         "label": "Dilution Factor",
         "tooltip": "0.5 if diluted by two; 2 if concentrated by a factor 2",
         "group": "3e1ba03d.f01d8",
-        "order": 13,
+        "order": 16,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3690,8 +3561,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 640,
-        "y": 480,
+        "x": 890,
+        "y": 1180,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3706,7 +3577,7 @@
         "label": "Filtered volume (in L)",
         "tooltip": "Calculated or hand filled",
         "group": "3e1ba03d.f01d8",
-        "order": 11,
+        "order": 15,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3716,8 +3587,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 2730,
-        "y": 920,
+        "x": 1970,
+        "y": 1360,
         "wires": [
             [
                 "e1f2f6eb.fe1dd"
@@ -3734,8 +3605,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 2950,
-        "y": 920,
+        "x": 2190,
+        "y": 1360,
         "wires": [
             []
         ]
@@ -3750,8 +3621,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1610,
-        "y": 240,
+        "x": 2080,
+        "y": 720,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -3766,7 +3637,7 @@
         "label": "Speed Through Water (kts)",
         "tooltip": "in knots",
         "group": "cf5d9f0e.d57e7",
-        "order": 7,
+        "order": 8,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3774,8 +3645,8 @@
         "delay": "300",
         "topic": "sample_speed_through_water",
         "topicType": "str",
-        "x": 610,
-        "y": 520,
+        "x": 840,
+        "y": 500,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3790,7 +3661,7 @@
         "label": "Minimal fraction size (μm)",
         "tooltip": "Net mesh pore size or minimal filtration mesh pore size",
         "group": "3e1ba03d.f01d8",
-        "order": 7,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -3800,8 +3671,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 640,
-        "y": 360,
+        "x": 890,
+        "y": 1060,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3816,7 +3687,7 @@
         "label": "Maximal fraction size (μm)",
         "tooltip": "Maximal filtration mesh pore size",
         "group": "3e1ba03d.f01d8",
-        "order": 9,
+        "order": 12,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -3826,8 +3697,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 640,
-        "y": 400,
+        "x": 890,
+        "y": 1100,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3839,14 +3710,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Culture check",
-        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\" , \"Sample_Summary_Net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\", \"Sample_Summary_Net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
+        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\" , \"Sample_Summary_Net\",\"Sample_Hidden_Groupe\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Hidden_Groupe\"],\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\", \"Sample_Summary_Net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1100,
-        "y": 320,
+        "x": 1570,
+        "y": 800,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -3868,8 +3739,8 @@
         "label": "Culture timestamp",
         "group": "7bc0a4c416e4545c",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 10,
+        "height": 1,
         "options": [
             {
                 "label": "Date (YYYY-MM-DD, UTC)",
@@ -3897,8 +3768,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1650,
-        "y": 960,
+        "x": 1410,
+        "y": 2040,
         "wires": [
             [
                 "14658615.47c862"
@@ -3906,51 +3777,22 @@
         ]
     },
     {
-        "id": "76acd2c1783e2a25",
-        "type": "debug",
-        "z": "b771c342.49603",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1270,
-        "y": 420,
-        "wires": []
-    },
-    {
         "id": "469cf370942fc769",
         "type": "function",
         "z": "b771c342.49603",
         "name": "Change mode",
-        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"TAB_NAME_GROUPE_NAME\",\"TAB_NAME_GROUPE_NAME\"],\"hide\":[\"TAB_NAME_GROUPE_NAME\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"TAB_NAME_GROUPE_NAME\"],\"hide\":[\"TAB_NAME_GROUPE_NAME\",\"TAB_NAME_GROUPE_NAME\"]}};\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "func": "var values = {}\n\n//Mode expert\nif (msg.payload === 0){\n    values.enabled = true;\n    return values;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    values.enabled = false;\n    return values;\n}\nelse{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 1400,
+        "x": 3190,
+        "y": 140,
         "wires": [
             [
-                "8aec7fbb6d634f1d"
+                "a5b67ad53d90447b"
             ]
-        ]
-    },
-    {
-        "id": "8aec7fbb6d634f1d",
-        "type": "ui_ui_control",
-        "z": "b771c342.49603",
-        "name": "show/hide net groups",
-        "events": "change",
-        "x": 760,
-        "y": 1400,
-        "wires": [
-            []
         ]
     },
     {
@@ -3989,8 +3831,8 @@
             }
         ],
         "topic": "",
-        "x": 360,
-        "y": 1360,
+        "x": 2990,
+        "y": 100,
         "wires": [
             [
                 "73b7efc0c670625f",
@@ -4015,8 +3857,8 @@
         "topic": "",
         "payload": "mode",
         "payloadType": "global",
-        "x": 140,
-        "y": 1360,
+        "x": 2770,
+        "y": 100,
         "wires": [
             [
                 "9d08fae04cfb99e8"
@@ -4042,8 +3884,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
-        "y": 1320,
+        "x": 3470,
+        "y": 60,
         "wires": [
             [
                 "a85a1f2d75981a8c"
@@ -4065,8 +3907,8 @@
             "97f9c6da2e1095d2",
             "c840a7c66cf51acc"
         ],
-        "x": 895,
-        "y": 1320,
+        "x": 3675,
+        "y": 60,
         "wires": []
     },
     {
@@ -4083,8 +3925,8 @@
             "b6e04f52920c6dcb",
             "c2d9b90e27bc022c"
         ],
-        "x": 215,
-        "y": 1460,
+        "x": 2845,
+        "y": 200,
         "wires": [
             [
                 "9d08fae04cfb99e8"
@@ -4102,8 +3944,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 1320,
+        "x": 3190,
+        "y": 60,
         "wires": [
             [
                 "d2acc261fa0c9dd7"
@@ -4116,8 +3958,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill sample location",
         "group": "02ef954dd5a84815",
-        "order": 3,
-        "width": 4,
+        "order": 2,
+        "width": 6,
         "height": 1,
         "passthru": false,
         "label": "Prefill location",
@@ -4130,8 +3972,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 900,
-        "y": 620,
+        "x": 390,
+        "y": 1800,
         "wires": [
             [
                 "ae70f39284d2e033"
@@ -4149,8 +3991,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 660,
+        "x": 390,
+        "y": 1840,
         "wires": [
             [
                 "ae70f39284d2e033"
@@ -4168,8 +4010,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1120,
-        "y": 660,
+        "x": 610,
+        "y": 1840,
         "wires": [
             [
                 "c33f1124.af6688"
@@ -4187,8 +4029,8 @@
             "4c613fe60516ae4e",
             "e789e03a75a408c5"
         ],
-        "x": 1065,
-        "y": 1700,
+        "x": 3695,
+        "y": 440,
         "wires": []
     },
     {
@@ -4199,8 +4041,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 695,
-        "y": 660,
+        "x": 185,
+        "y": 1840,
         "wires": [
             [
                 "e338fbd49a4e9fc6"
@@ -4213,8 +4055,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill sample date",
         "group": "02ef954dd5a84815",
-        "order": 6,
-        "width": 4,
+        "order": 5,
+        "width": 6,
         "height": 1,
         "passthru": false,
         "label": "Prefill date",
@@ -4227,8 +4069,8 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 890,
-        "y": 700,
+        "x": 380,
+        "y": 1880,
         "wires": [
             [
                 "7a739cae4903f510"
@@ -4246,8 +4088,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 820,
+        "x": 370,
+        "y": 2000,
         "wires": [
             [
                 "7a739cae4903f510"
@@ -4265,8 +4107,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1120,
-        "y": 820,
+        "x": 610,
+        "y": 2000,
         "wires": [
             [
                 "c33f1124.af6688"
@@ -4281,8 +4123,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 715,
-        "y": 820,
+        "x": 205,
+        "y": 2000,
         "wires": [
             [
                 "2f6370f095a73f67"
@@ -4300,8 +4142,8 @@
             "6bec70a17424ed31",
             "3c13c020b93fa3e7"
         ],
-        "x": 865,
-        "y": 1900,
+        "x": 3495,
+        "y": 640,
         "wires": []
     },
     {
@@ -4310,8 +4152,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill sample time",
         "group": "02ef954dd5a84815",
-        "order": 9,
-        "width": 4,
+        "order": 8,
+        "width": 6,
         "height": 1,
         "passthru": false,
         "label": "Prefill time",
@@ -4324,8 +4166,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 890,
-        "y": 760,
+        "x": 380,
+        "y": 1940,
         "wires": [
             [
                 "7a739cae4903f510"
@@ -4349,8 +4191,8 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 300,
-        "y": 1580,
+        "x": 2930,
+        "y": 320,
         "wires": [
             [
                 "cc21ca16.b92928"
@@ -4374,8 +4216,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 140,
-        "y": 1880,
+        "x": 2770,
+        "y": 620,
         "wires": [
             [
                 "55acf325f62fae48"
@@ -4393,75 +4235,12 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"local\", true)",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 1880,
+        "x": 3080,
+        "y": 620,
         "wires": [
             [
                 "73c4a14a.9b93c8"
             ]
-        ]
-    },
-    {
-        "id": "e4f0999fd4d1fc8c",
-        "type": "ui_template",
-        "z": "b771c342.49603",
-        "group": "02ef954dd5a84815",
-        "name": "Affichage prefill 1",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td>\n                <h4>Prefill for : Sample Location</h4>\n                \n            </td>\n        </tr>\n    </table>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 910,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0d869284d8928ab6",
-        "type": "ui_template",
-        "z": "b771c342.49603",
-        "group": "a961c5663b1f739d",
-        "name": "affichage prefill 2",
-        "order": 1,
-        "width": 5,
-        "height": 1,
-        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td>\n                <h7>Prefill for: Throw Location</h7>\n                \n            </td>\n        </tr>\n    </table>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 750,
-        "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "702cc55cb24499b9",
-        "type": "ui_template",
-        "z": "b771c342.49603",
-        "group": "a961c5663b1f739d",
-        "name": "affichage prefill 3",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "format": "<div>\n    <table style=\"text-align: left; width:100%\">\n        <tr style=\"vertical-align: top\">\n            <td>\n                <h7>Prefill for: Retrieval Location</h7>\n                \n            </td>\n        </tr>\n    </table>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 970,
-        "y": 940,
-        "wires": [
-            []
         ]
     },
     {
@@ -4470,8 +4249,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill net location 1",
         "group": "a961c5663b1f739d",
-        "order": 4,
-        "width": 3,
+        "order": 3,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Prefill location",
@@ -4484,8 +4263,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 500,
-        "y": 1020,
+        "x": 340,
+        "y": 2240,
         "wires": [
             [
                 "6e139abd9cd02c0e"
@@ -4503,8 +4282,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 1060,
+        "x": 350,
+        "y": 2280,
         "wires": [
             [
                 "6e139abd9cd02c0e"
@@ -4522,8 +4301,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 1060,
+        "x": 570,
+        "y": 2280,
         "wires": [
             [
                 "358908cd.416ab"
@@ -4538,8 +4317,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 305,
-        "y": 1060,
+        "x": 145,
+        "y": 2280,
         "wires": [
             [
                 "694c05147fdd093d"
@@ -4552,8 +4331,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill net date 1",
         "group": "a961c5663b1f739d",
-        "order": 9,
-        "width": 3,
+        "order": 5,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Prefill date",
@@ -4566,8 +4345,8 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 490,
-        "y": 1100,
+        "x": 330,
+        "y": 2320,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -4585,8 +4364,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 490,
-        "y": 1220,
+        "x": 330,
+        "y": 2440,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -4604,8 +4383,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 1220,
+        "x": 570,
+        "y": 2440,
         "wires": [
             [
                 "358908cd.416ab"
@@ -4620,8 +4399,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 325,
-        "y": 1220,
+        "x": 165,
+        "y": 2440,
         "wires": [
             [
                 "9c3ce7821bdd6864"
@@ -4634,8 +4413,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill net time 1",
         "group": "a961c5663b1f739d",
-        "order": 14,
-        "width": 3,
+        "order": 7,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Prefill time",
@@ -4648,8 +4427,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 490,
-        "y": 1160,
+        "x": 330,
+        "y": 2380,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -4662,8 +4441,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill net location 2",
         "group": "a961c5663b1f739d",
-        "order": 6,
-        "width": 3,
+        "order": 4,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Prefill location",
@@ -4676,8 +4455,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 1080,
-        "y": 1040,
+        "x": 400,
+        "y": 2700,
         "wires": [
             [
                 "fd441ca73907e6fc"
@@ -4695,8 +4474,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1090,
-        "y": 1080,
+        "x": 410,
+        "y": 2740,
         "wires": [
             [
                 "fd441ca73907e6fc"
@@ -4714,8 +4493,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1310,
-        "y": 1080,
+        "x": 630,
+        "y": 2740,
         "wires": [
             [
                 "56d40584.eff4e4"
@@ -4730,8 +4509,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 885,
-        "y": 1080,
+        "x": 155,
+        "y": 2740,
         "wires": [
             [
                 "92f45ea22b4985a1"
@@ -4744,8 +4523,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill net date 2",
         "group": "a961c5663b1f739d",
-        "order": 11,
-        "width": 3,
+        "order": 6,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Prefill date",
@@ -4758,8 +4537,8 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 1070,
-        "y": 1120,
+        "x": 390,
+        "y": 2780,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -4777,8 +4556,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1070,
-        "y": 1240,
+        "x": 390,
+        "y": 2900,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -4796,8 +4575,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1310,
-        "y": 1240,
+        "x": 630,
+        "y": 2900,
         "wires": [
             [
                 "56d40584.eff4e4"
@@ -4812,8 +4591,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 905,
-        "y": 1240,
+        "x": 175,
+        "y": 2900,
         "wires": [
             [
                 "51e26562f24d16b4"
@@ -4826,8 +4605,8 @@
         "z": "b771c342.49603",
         "name": "GPS pre fill net time 2",
         "group": "a961c5663b1f739d",
-        "order": 16,
-        "width": 3,
+        "order": 8,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Prefill time",
@@ -4840,8 +4619,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 1070,
-        "y": 1180,
+        "x": 390,
+        "y": 2840,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -4854,7 +4633,7 @@
         "z": "b771c342.49603",
         "group": "c9aaf84f0d1abd88",
         "name": "Show data normal",
-        "order": 9,
+        "order": 2,
         "width": 0,
         "height": 0,
         "format": "<div class=\"conteneur\">   \n    <div class=\"infoR\">       \n        <div class=\"element 1\">\n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lat_end\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_lon_end\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_date_end\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.object_time_end\"></span> <br>\n        </div>       \n    </div> \n</div>",
@@ -4863,8 +4642,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1900,
-        "y": 1040,
+        "x": 1660,
+        "y": 2120,
         "wires": [
             []
         ]
@@ -4875,7 +4654,7 @@
         "z": "b771c342.49603",
         "group": "eda2c2de40a75200",
         "name": "Show data net",
-        "order": 9,
+        "order": 1,
         "width": 0,
         "height": 0,
         "format": "<div class=\"conteneur\">   \n    <div class=\"infoR\">       \n        <div class=\"element 1\">\n            <div class=\"text\">Throw</div>  \n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lat\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lon\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.date\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.time\"></span> <br>\n        </div>       \n        <div class=\"element 2\">\n            <div class=\"text\">Retrival</div>  \n            <strong>Latitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lat_end\"></span> <br>\n            <strong>Longitude:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.lon_end\"></span> <br>\n            <strong>Date:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.date_end\"></span> <br>\n            <strong>Time:</strong> <span id=\"max_size\" ng-bind-html=\"msg.payload.time_end\"></span> <br>\n        </div>       \n\n    </div> \n</div>",
@@ -4884,8 +4663,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 2400,
-        "y": 1060,
+        "x": 2160,
+        "y": 2140,
         "wires": [
             []
         ]
@@ -4901,8 +4680,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n//Data for retrieval\ncontext.set(\"lat_end\", \"None\")\ncontext.set(\"lon_end\", \"None\")\ncontext.set(\"date_end\", \"None\")\ncontext.set(\"time_end\", \"None\")\n\n//Data for throw\ncontext.set(\"lat\", \"None\")\ncontext.set(\"lon\", \"None\")\ncontext.set(\"date\", \"None\")\ncontext.set(\"time\", \"None\")\n\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;",
         "finalize": "",
         "libs": [],
-        "x": 2210,
-        "y": 1080,
+        "x": 1970,
+        "y": 2160,
         "wires": [
             [
                 "c544ac031b6cf88c"
@@ -4915,17 +4694,302 @@
         "z": "b771c342.49603",
         "group": "c9aaf84f0d1abd88",
         "name": "Style",
-        "order": 3,
+        "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<style>     \n.conteneur: {\n    display: flex;\n    flex-direction: column;\n    width: 13.8em;\n}     \n.element:nth-child(1) {\n    flex:1;    \n    padding-left: 5%;\n}     \n.element:nth-child(2) {\n    flex:1; \n    padding-left: 5%;\n\n}     \n.infoR {\n    display: flex;         \n    flex-direction: row;         \n    text-align: left;        \n    font-size: 13px;\n}     \n    \n.text {        \n    font-size: 20px;        \n    padding: 5px;        \n    text-align: center;     \n} \n</style>",
+        "format": "<style>     \n.conteneur: {\n    display: flex;\n    flex-direction: column;\n    width: 13.8em;\n}     \n.element:nth-child(1) {\n    flex:1;    \n    padding-left: 5%;\n}     \n.element:nth-child(2) {\n    flex:1; \n    padding-left: 5%;\n\n}     \n.infoR {\n    display: flex;         \n    flex-direction: row;         \n    text-align: left;        \n    font-size: 13px;\n}     \n    \n.text {        \n    font-size: 20px;        \n    padding: 5px;        \n    text-align: center;     \n} \n.titre{\n    display:flex;\n    align-items:center;\n    justify-content:center;\n    font-size: 17px;\n  \n}\n\n#Sample_Hidden_Groupe{\n    opacity:0;\n    font-size:1px;\n}\n\n\n\n\n</style>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 2380,
-        "y": 1000,
+        "x": 2290,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7444e2e24a9f1aeb",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "",
+        "links": [
+            "a5b67ad53d90447b"
+        ],
+        "x": 435,
+        "y": 860,
+        "wires": [
+            [
+                "94eb4221.9b92c",
+                "9c7f7fc9.c8d3a",
+                "317eeeb7.8d3042",
+                "1aad56b31b5647ce",
+                "10eb31a2d7a6590c",
+                "642ff403.1ed91c",
+                "58de1340.3cc354"
+            ]
+        ]
+    },
+    {
+        "id": "a5b67ad53d90447b",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "sample_activation",
+        "mode": "link",
+        "links": [
+            "7444e2e24a9f1aeb",
+            "29f82b029ca000d9"
+        ],
+        "x": 3335,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "702cc55cb24499b9",
+        "type": "ui_template",
+        "z": "b771c342.49603",
+        "group": "a961c5663b1f739d",
+        "name": "affichage prefill 3",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "format": "<div class=\"titre\">\n    Retrieval Location\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 490,
+        "y": 2080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0d869284d8928ab6",
+        "type": "ui_template",
+        "z": "b771c342.49603",
+        "group": "a961c5663b1f739d",
+        "name": "affichage prefill 2",
+        "order": 1,
+        "width": 5,
+        "height": 1,
+        "format": "<div class=\"titre\">\n    Throw Location\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 270,
+        "y": 2080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "16c983e1b53daee9",
+        "type": "ui_text",
+        "z": "b771c342.49603",
+        "group": "f117c73f1f9395a9",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": ".",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1970,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "29f82b029ca000d9",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "",
+        "links": [
+            "a5b67ad53d90447b"
+        ],
+        "x": 1655,
+        "y": 1360,
+        "wires": [
+            [
+                "4f6afc5a.81e454"
+            ]
+        ]
+    },
+    {
+        "id": "4557d689.a4fa88",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_ship",
+        "label": "Name of the ship",
+        "tooltip": "",
+        "group": "3e1ba03d.f01d8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "sample_ship",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 1200,
+        "y": 120,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "82c5fc77.59c97",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_operator",
+        "label": "Name of the operator*",
+        "tooltip": "",
+        "group": "3e1ba03d.f01d8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "sample_operator",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 1210,
+        "y": 160,
+        "wires": [
+            [
+                "9f501f49.45645",
+                "52af9ac0.60eb24"
+            ]
+        ]
+    },
+    {
+        "id": "9c882b37.fde668",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "sample_project",
+        "label": "Name of the project*",
+        "tooltip": "",
+        "group": "3e1ba03d.f01d8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "sample_project",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 1190,
+        "y": 80,
+        "wires": [
+            [
+                "9f501f49.45645"
+            ]
+        ]
+    },
+    {
+        "id": "52af9ac0.60eb24",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "Sample Operator",
+        "links": [
+            "35eb925e.5f8016"
+        ],
+        "x": 1475,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fdc7981ab1e4f8ce",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Preset with test",
+        "func": "if(msg.payload == \"test\"){\n    msg1={}; msg2={}; msg3 ={};\n    msg1.payload = \"Projet_Test\";\n    msg2.payload = \"Ship_Test\";\n    msg3.payload = \"Operator_Test\";\n    return [msg1, msg2, msg3];\n}\nelse{\n    msg1.payload = \"\";\n    msg2.payload = \"\";\n    msg3.payload = \"\";\n\n    return [msg1, msg2, msg3];\n}",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nmsg1={}; msg2={}; msg3 ={};\nmsg1.payload = \"\";\nmsg2.payload = \"\";\nmsg3.payload = \"\";\nreturn [msg1, msg2, msg3];",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 140,
+        "wires": [
+            [
+                "9c882b37.fde668"
+            ],
+            [
+                "4557d689.a4fa88"
+            ],
+            [
+                "82c5fc77.59c97"
+            ]
+        ]
+    },
+    {
+        "id": "da36a757cc21206e",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 1550,
+        "y": 40,
+        "wires": [
+            [
+                "6c5f6e39048a92e1"
+            ]
+        ]
+    },
+    {
+        "id": "6c5f6e39048a92e1",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "clear all",
+        "func": "var key = global.keys()\nfor(var i=0; i<key.length; i++){\n    global.set(key[i], undefined)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4bef47fd5679587",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "global.set(\"sample_operator\",\"None\");\nglobal.set(\"sample_project\",\"None\");\nglobal.set(\"sample_sampling_gear\",\"None\");\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 140,
         "wires": [
             []
         ]
@@ -10845,7 +10909,9 @@
         "z": "9daf9e2b.019fc",
         "name": "Git config",
         "links": [
-            "52af9ac0.60eb24"
+            "52af9ac0.60eb24",
+            "035b819e4418d6c1",
+            "a86c6e1ba3645871"
         ],
         "x": 795,
         "y": 100,
@@ -14262,6 +14328,7 @@
         "payload": "",
         "topic": "stepper_type",
         "topicType": "str",
+        "className": "",
         "x": 710,
         "y": 360,
         "wires": [
@@ -14584,6 +14651,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 330,
         "y": 160,
         "wires": [
