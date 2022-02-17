@@ -3388,8 +3388,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 80,
+        "x": 380,
+        "y": 100,
         "wires": [
             []
         ]
@@ -3399,7 +3399,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_id",
-        "func": "msg.payload = msg.payload.sample_id;\nreturn msg;",
+        "func": "msg.payload = msg.payload.sample_id;\n\nmode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3418,7 +3418,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get sample_sampling_gear",
-        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"single_location\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\n\nreturn msg;",
+        "func": "msg.topic = \"sample_sampling_gear\"\nif (msg.payload.sample_sampling_gear === undefined){\n    msg.payload = \"single_location\";\n}\nelse\n{\n    msg.payload = msg.payload.sample_sampling_gear;\n}\n\nglobal.set(\"sample_sampling_gear\",msg.payload)\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3501,7 +3501,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 900,
+        "x": 890,
         "y": 940,
         "wires": [
             [
@@ -3971,7 +3971,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get object_depth_max",
-        "func": "if (msg.payload.object_depth_max === null){\n    msg.payload = 0;\n    global.set(\"object_depth_max\",msg.payload);\n}\nelse\n{\n    msg.payload = msg.payload.object_depth_max;\n}\nreturn msg;",
+        "func": "if (msg.payload.object_depth_max === null){\n    msg.payload = 0;\n    global.set(\"object_depth_max\",msg.payload);\n}\nelse\n{\n    msg.payload = msg.payload.object_depth_max;\n}\n\nmode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3990,7 +3990,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get object_depth_min",
-        "func": "if (msg.payload.object_depth_min === null){\n    msg.payload = 0;\n    global.set(\"object_depth_min\",msg.payload);\n}\nelse\n{\n    msg.payload = msg.payload.object_depth_min;\n}\nreturn msg;",
+        "func": "if (msg.payload.object_depth_min === null){\n    msg.payload = 0;\n    global.set(\"object_depth_min\",msg.payload);\n}\nelse\n{\n    msg.payload = msg.payload.object_depth_min;\n}\n\nmode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4170,7 +4170,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get acq_minimum_mesh",
-        "func": "msg.payload = msg.payload.acq_minimum_mesh;\nreturn msg;",
+        "func": "msg.payload = msg.payload.acq_minimum_mesh;\n\nmode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4189,7 +4189,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "get acq_maximum_mesh",
-        "func": "msg.payload = msg.payload.acq_maximum_mesh;\nreturn msg;",
+        "func": "msg.payload = msg.payload.acq_maximum_mesh;\n\nmode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4470,8 +4470,7 @@
         "y": 140,
         "wires": [
             [
-                "a5b67ad53d90447b",
-                "4acb1e918be1db6b"
+                "a5b67ad53d90447b"
             ]
         ]
     },
@@ -5507,13 +5506,13 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "global.set(\"sample_operator\",\"None\");\nglobal.set(\"sample_project\",\"None\");\nglobal.set(\"sample_sampling_gear\",\"None\");\n",
+        "func": "global.set(\"sample_operator\",\"None\");\nglobal.set(\"sample_project\",\"None\");\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
+        "x": 360,
         "y": 140,
         "wires": [
             []
@@ -5562,7 +5561,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "\nif(msg.topic == \"sample_sampling_gear\"){\n    context.set(\"choose\",msg.payload)\n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n    {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n    {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n    {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n    {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n    \n    msg.payload = context.get(\"choose\");\n    return msg;\n}\n\nif(msg.enabled != undefined){\n    var value = msg.enabled;\n    msg.enabled = true;\n    \n    if(value == true){\n    \n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n    {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n    {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n    {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n    {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n    \n    msg.payload = global.get(\"sample_sampling_gear\")\n    \n    return msg;\n\n    }\n\n    else if(value == false){\n        msg.options = [\n            {\"High Speed Net\":\"net_hsn\"}, \n            {\"Single location (with net or bucket)\":\"single_location\"},\n            {\"Lab culture\":\"culture\"},\n            {\"Test\":\"test\"}]\n        \n        msg.payload = global.get(\"sample_sampling_gear\");\n        \n        return msg;\n    }\n    \n    \n    \n}\n\n\n\n",
+        "func": "msg = {}\nmode = global.get(\"mode\")\nmsg.payload = global.get(\"sample_sampling_gear\")\n\nif(mode == undefined) {\n    mode = 1;\n}\n\nmsg.enabled = true;\n    \nif(mode == 0){\n    \n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n        {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n        {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n        {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n        {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n}\n\nelse {\n    msg.options = [\n        {\"High Speed Net\":\"net_hsn\"}, \n        {\"Single location (with net or bucket)\":\"single_location\"},\n        {\"Lab culture\":\"culture\"},\n        {\"Test\":\"test\"}]\n}\n\nif(msg.payload == undefined) {\n    msg.payload = \"None\";\n}\n\nreturn msg\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"choose\",\"single_location\")",
@@ -5572,81 +5571,8 @@
         "y": 120,
         "wires": [
             [
-                "fcfc31ae.af3af",
-                "fe7d9babb1dfe28e"
+                "fcfc31ae.af3af"
             ]
-        ]
-    },
-    {
-        "id": "397de22c1c0f520d",
-        "type": "ui_dropdown",
-        "z": "b771c342.49603",
-        "d": true,
-        "name": "sample_sampling_gear",
-        "label": "Sampling gear*",
-        "tooltip": "",
-        "place": "Choose from list",
-        "group": "3e1ba03d.f01d8",
-        "order": 7,
-        "width": 10,
-        "height": 1,
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "High Speed Net",
-                "value": "net_hsn",
-                "type": "str"
-            },
-            {
-                "label": "Tara Decknet",
-                "value": "net_decknet",
-                "type": "str"
-            },
-            {
-                "label": "Plankton net",
-                "value": "net",
-                "type": "str"
-            },
-            {
-                "label": "Niskin bottle 12L",
-                "value": "niskin_12L",
-                "type": "str"
-            },
-            {
-                "label": "Niskin bottle 24L",
-                "value": "niskin_24L",
-                "type": "str"
-            },
-            {
-                "label": "Pass Hull",
-                "value": "pass_hull",
-                "type": "str"
-            },
-            {
-                "label": "Single location (with net or bucket)",
-                "value": "single_location",
-                "type": "str"
-            },
-            {
-                "label": "Lab culture",
-                "value": "culture",
-                "type": "str"
-            },
-            {
-                "label": "Test",
-                "value": "test",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "sample_sampling_gear",
-        "topicType": "str",
-        "className": "",
-        "x": 1130,
-        "y": 260,
-        "wires": [
-            []
         ]
     },
     {
@@ -5826,40 +5752,6 @@
                 "073c7d4ce2c7b3a7"
             ]
         ]
-    },
-    {
-        "id": "4acb1e918be1db6b",
-        "type": "debug",
-        "z": "b771c342.49603",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 3380,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "fe7d9babb1dfe28e",
-        "type": "debug",
-        "z": "b771c342.49603",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "6a84252a.d52a0c",
@@ -12565,7 +12457,7 @@
         "bgcolor": "white",
         "className": "",
         "icon": "keyboard_return",
-        "payload": "{\"tab\":\"Fluidic Acquisition\"}",
+        "payload": "{\"tab\":\"Segmentation\"}",
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
