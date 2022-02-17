@@ -18,13 +18,13 @@ usage()
     exit 1
 }
 
-if [[ $# -ne 1 ]]; then
+if [[ $# -ne 2 ]]; then
     usage
 fi
 
 DEVICE=$1
 DEVBASE=$(echo "${DEVICE}" | cut -d'/' -f 3)
-SOURCE="/home/pi/data/" # source of files
+SOURCE=$2 # source of files
 
 # See if this drive is already mounted, and if so where
 MOUNT_POINT=$(mount | grep "${DEVICE}" | awk '{ print $3 }')
