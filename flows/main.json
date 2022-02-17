@@ -2453,58 +2453,12 @@
         "height": 1,
         "passthru": true,
         "multiple": false,
-        "options": [
-            {
-                "label": "High Speed Net",
-                "value": "net_hsn",
-                "type": "str"
-            },
-            {
-                "label": "Tara Decknet",
-                "value": "net_decknet",
-                "type": "str"
-            },
-            {
-                "label": "Plankton net",
-                "value": "net",
-                "type": "str"
-            },
-            {
-                "label": "Niskin bottle 12L",
-                "value": "niskin_12L",
-                "type": "str"
-            },
-            {
-                "label": "Niskin bottle 24L",
-                "value": "niskin_24L",
-                "type": "str"
-            },
-            {
-                "label": "Pass Hull",
-                "value": "pass_hull",
-                "type": "str"
-            },
-            {
-                "label": "Single location (with net or bucket)",
-                "value": "single_location",
-                "type": "str"
-            },
-            {
-                "label": "Lab culture",
-                "value": "culture",
-                "type": "str"
-            },
-            {
-                "label": "Test",
-                "value": "test",
-                "type": "str"
-            }
-        ],
+        "options": [],
         "payload": "",
         "topic": "sample_sampling_gear",
         "topicType": "str",
         "className": "",
-        "x": 730,
+        "x": 770,
         "y": 280,
         "wires": [
             [
@@ -2595,7 +2549,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Check form",
-        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_id= global.get(\"sample_id\");\nvar sample_operator= global.get(\"sample_operator\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\nvar object_lat= global.get(\"object_lat\");\nvar object_lon= global.get(\"object_lon\");\nvar object_date= global.get(\"object_date\");\nvar object_time= global.get(\"object_time\");\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n    return [null, msg];\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n    return [null, msg];\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n    return [null, msg];\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n    return [null, msg];\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of sample\"\n    return [null, msg];\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of sample\"\n    return [null, msg];\n}\nelse if (sample_sampling_gear.startsWith(\"net\")){\n    var object_lat_end = global.get(\"object_lat_end\");\n    var object_lon_end = global.get(\"object_lon_end\");\n    var object_date_end = global.get(\"object_date_end\");\n    var object_time_end = global.get(\"object_time_end\");\n    var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (sample_gear_net_opening === undefined || sample_gear_net_opening === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Net opening dimension\"\n        return [null, msg];\n    }\n    \n    if (sample_sampling_gear == \"net_decknet\"){\n        var sample_total_volume = global.get(\"sample_total_volume\");\n        if (sample_total_volume === undefined || sample_total_volume === \"\") {\n            msg.topic = \"Missing entry :\"\n            msg.payload = \"Decknet flowmeter readings\"\n            return [null, msg];\n        }\n    }\n}\nmsg.topic = \"config_save\"\nmsg.payload={\"tab\":\"Optic Configuration\"};\n\nreturn [msg, null];",
+        "func": "var sample_project= global.get(\"sample_project\");\nvar sample_id= global.get(\"sample_id\");\nvar sample_operator= global.get(\"sample_operator\");\nvar sample_sampling_gear= global.get(\"sample_sampling_gear\");\nvar object_lat= global.get(\"object_lat\");\nvar object_lon= global.get(\"object_lon\");\nvar object_date= global.get(\"object_date\");\nvar object_time= global.get(\"object_time\");\nif (sample_project === undefined || sample_project === \"\" || sample_project === \"None\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n    return [null, msg];\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n    return [null, msg];\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\" || sample_operator === \"None\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n    return [null, msg];\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n    return [null, msg];\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of sample\"\n    return [null, msg];\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of sample\"\n    return [null, msg];\n}\nelse if (sample_sampling_gear.startsWith(\"net\")){\n    var object_lat_end = global.get(\"object_lat_end\");\n    var object_lon_end = global.get(\"object_lon_end\");\n    var object_date_end = global.get(\"object_date_end\");\n    var object_time_end = global.get(\"object_time_end\");\n    var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n        return [null, msg];\n    }\n    \n    else if (sample_gear_net_opening === undefined || sample_gear_net_opening === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Net opening dimension\"\n        return [null, msg];\n    }\n    \n    if (sample_sampling_gear == \"net_decknet\"){\n        var sample_total_volume = global.get(\"sample_total_volume\");\n        if (sample_total_volume === undefined || sample_total_volume === \"\") {\n            msg.topic = \"Missing entry :\"\n            msg.payload = \"Decknet flowmeter readings\"\n            return [null, msg];\n        }\n    }\n}\nmsg.topic = \"config_save\"\nmsg.payload={\"tab\":\"Optic Configuration\"};\n\nreturn [msg, null];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2630,8 +2584,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 3040,
-        "y": 540,
+        "x": 2750,
+        "y": 380,
         "wires": [
             [
                 "258b4562.9f778a",
@@ -2639,7 +2593,7 @@
                 "cc21ca16.b92928",
                 "4a4de52c.cf2884",
                 "73c4a14a.9b93c8",
-                "55acf325f62fae48"
+                "073c7d4ce2c7b3a7"
             ]
         ]
     },
@@ -2760,7 +2714,7 @@
         "y": 280,
         "wires": [
             [
-                "fcfc31ae.af3af"
+                "b7c6087569130821"
             ]
         ]
     },
@@ -2946,7 +2900,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1990,
+        "x": 2330,
         "y": 1960,
         "wires": [
             []
@@ -2978,16 +2932,16 @@
                 "rows": null
             },
             {
-                "label": "Date (YYYY-MM-DD, UTC)",
+                "label": "Date (YYYY-MM-DD, )",
                 "value": "object_date",
-                "type": "text",
+                "type": "date",
                 "required": true,
                 "rows": null
             },
             {
-                "label": "Time (HH:MM(:SS), UTC 24h)",
+                "label": "Time (HH:MM) 24h)",
                 "value": "object_time",
-                "type": "text",
+                "type": "time",
                 "required": true,
                 "rows": null
             }
@@ -3009,7 +2963,7 @@
         "y": 1920,
         "wires": [
             [
-                "14658615.47c862"
+                "2ea7ccf8ea31c39b"
             ]
         ]
     },
@@ -3041,14 +2995,14 @@
             {
                 "label": "Date (YYYY-MM-DD UTC)",
                 "value": "object_date",
-                "type": "text",
+                "type": "date",
                 "required": true,
                 "rows": null
             },
             {
                 "label": "Time (HH:MM, UTC 24h)",
                 "value": "object_time",
-                "type": "text",
+                "type": "time",
                 "required": true,
                 "rows": null
             }
@@ -3070,7 +3024,7 @@
         "y": 1960,
         "wires": [
             [
-                "14658615.47c862"
+                "2ea7ccf8ea31c39b"
             ]
         ]
     },
@@ -3102,14 +3056,14 @@
             {
                 "label": "Date (YYYY-MM-DD UTC)",
                 "value": "object_date_end",
-                "type": "text",
+                "type": "date",
                 "required": true,
                 "rows": null
             },
             {
                 "label": "Time (HH:MM, UTC 24h)",
                 "value": "object_time_end",
-                "type": "text",
+                "type": "time",
                 "required": true,
                 "rows": null
             }
@@ -3131,7 +3085,7 @@
         "y": 2000,
         "wires": [
             [
-                "14658615.47c862"
+                "2ea7ccf8ea31c39b"
             ]
         ]
     },
@@ -3146,7 +3100,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1690,
+        "x": 2030,
         "y": 1960,
         "wires": [
             [
@@ -3154,8 +3108,8 @@
                 "9a18a4b4.178448"
             ],
             [
-                "4c4d548577a253bb",
-                "3e141eac389fdd9f"
+                "3e141eac389fdd9f",
+                "8b97db46845cf99a"
             ]
         ],
         "inputLabels": [
@@ -3335,7 +3289,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2100,
+        "x": 2440,
         "y": 2000,
         "wires": [
             [
@@ -3382,7 +3336,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Convert DD to DMS",
-        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nmsg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n};\nreturn msg;",
+        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nif(msg.payload.lat == undefined || msg.payload.lat == undefined){\n    msg.payload = {\n    \"lat\":\"None\",\n    \"lon\": \"None\"\n    };\n}\nelse{\n    msg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n    }; \n}\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3528,7 +3482,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Convert time",
-        "func": "if (msg.payload.time){\n    msg.payload.time = msg.payload.time.replace('T', ' ');\n    msg.payload.time = msg.payload.time.replace(/.{3}\\dZ$/, ' UTC');\n\n    return msg;\n}\n\nif (msg.payload.time_emr){\n    msg.payload.time = msg.payload.time_emr.replace(/T/, ' ');\n    msg.payload.time = msg.payload.time_emr.replace(/.{3}\\dZ$/, ' int');\n\n    return msg;\n}",
+        "func": "\nif (msg.payload.time){\n    msg.payload.time = Convertdate_to_string(msg.payload.time)\n    return msg;\n}\n\nif (msg.payload.time_emr){\n    msg.payload.time = msg.payload.time_emr+ ' int';\n\n    return msg;\n}\n\n\n\nfunction Convertdate_to_string(msg_date) {\n    var date = new Date(msg_date)\n    return (date.getFullYear() + \"/\" + fixDigit(date.getMonth()+1) + \"/\" + fixDigit(date.getDate()) + \" \" + fixDigit(date.getHours()) + \":\" + fixDigit(date.getMinutes()) + \":\" + fixDigit(date.getSeconds()) );\n}\n\nfunction fixDigit(val){\n    return val.toString().length === 1 ? \"0\" + val : val;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3710,21 +3664,19 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Culture check",
-        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\" , \"Sample_Summary_Net\",\"Sample_Hidden_Groupe\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Hidden_Groupe\"],\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\", \"Sample_Summary_Net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
+        "func": "var activation_msg = {}\nvar date_msg = {}\nvar timestamp=new Date().toISOString();\n\n\nif (msg.payload === \"culture\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Culture_Date_and_Time\"],\"hide\":[\"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\" , \"Sample_Summary_Net\",\"Sample_Hidden_Groupe\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    date_msg.payload = {\"object_date\": timestamp.split('T')[0],\n                        \"object_time\": timestamp.split('T')[1].split('.')[0]}\n    return [activation_msg, date_msg];\n}\nelse if (msg.payload === \"test\"){\n    activation_msg.payload = {\"group\":{\"show\":[\"Sample_Hidden_Groupe\"],\"hide\":[\"Sample_Culture_Date_and_Time\", \"Sample_Sample_Location\", \"Sample_Net_Metadata\",\"Sample_Prefill_sample\",\"Sample_Prefill_net\", \"Sample_Summary\", \"Sample_Summary_Net\"]}};\n    global.set(\"object_lat\", \"-90.0000\")\n    global.set(\"object_lon\", \"0.0000\")\n    global.set(\"object_date\", timestamp.split('T')[0])\n    global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n    return [activation_msg, null];\n}\nelse{\n    return [null, null]\n}\n\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1570,
-        "y": 800,
+        "x": 1480,
+        "y": 980,
         "wires": [
             [
                 "cbb123ab.fd3428"
             ],
-            [
-                "05c6aff2afbd69cf"
-            ]
+            []
         ],
         "outputLabels": [
             "decknet activation",
@@ -3745,14 +3697,14 @@
             {
                 "label": "Date (YYYY-MM-DD, UTC)",
                 "value": "object_date",
-                "type": "text",
+                "type": "date",
                 "required": true,
                 "rows": null
             },
             {
                 "label": "Time (HH:MM(:SS), UTC 24h)",
                 "value": "object_time",
-                "type": "text",
+                "type": "time",
                 "required": true,
                 "rows": null
             }
@@ -3772,7 +3724,7 @@
         "y": 2040,
         "wires": [
             [
-                "14658615.47c862"
+                "2ea7ccf8ea31c39b"
             ]
         ]
     },
@@ -4082,7 +4034,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "date and time to string",
-        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\nmsg.payload.time = parts[1]\n\nreturn msg",
+        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\n\n\nmsg.payload.time = \"1970-01-01T\"+ parts[1].substr(0, 5)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4092,7 +4044,8 @@
         "y": 2000,
         "wires": [
             [
-                "7a739cae4903f510"
+                "7a739cae4903f510",
+                "7cea7adaa831550c"
             ]
         ]
     },
@@ -4139,8 +4092,8 @@
         "mode": "link",
         "links": [
             "39b8dd0a4590d0db",
-            "6bec70a17424ed31",
-            "3c13c020b93fa3e7"
+            "3c13c020b93fa3e7",
+            "6bec70a17424ed31"
         ],
         "x": 3495,
         "y": 640,
@@ -4175,31 +4128,6 @@
         ]
     },
     {
-        "id": "2290d1d299cb7dcd",
-        "type": "inject",
-        "z": "b771c342.49603",
-        "name": "Default GPS status",
-        "props": [
-            {
-                "p": "payload.mode",
-                "v": "0",
-                "vt": "num"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 2930,
-        "y": 320,
-        "wires": [
-            [
-                "cc21ca16.b92928"
-            ]
-        ]
-    },
-    {
         "id": "8ac9447212fcd447",
         "type": "inject",
         "z": "b771c342.49603",
@@ -4216,30 +4144,11 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 2770,
-        "y": 620,
+        "x": 2480,
+        "y": 640,
         "wires": [
             [
-                "55acf325f62fae48"
-            ]
-        ]
-    },
-    {
-        "id": "55acf325f62fae48",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Chose local or gps time",
-        "func": "if(msg.payload.time){\n    context.set(\"local\", false)\n}\n\nelse if(context.get(\"local\") == true){\n    msg.payload.time_emr = msg.payload.local_time\n    return msg;\n}\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"local\", true)",
-        "finalize": "",
-        "libs": [],
-        "x": 3080,
-        "y": 620,
-        "wires": [
-            [
-                "73c4a14a.9b93c8"
+                "58152890c539c567"
             ]
         ]
     },
@@ -4358,7 +4267,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "date and time to string",
-        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\nmsg.payload.time = parts[1]\n\nreturn msg",
+        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\nmsg.payload.time = \"1970-01-01T\"+ parts[1].substr(0, 5)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4550,7 +4459,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "date and time to string",
-        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\nmsg.payload.time = parts[1]\n\nreturn msg",
+        "func": "var parts = msg.payload.time.split(/ /)\nmsg.topic = \"date and time\"\nmsg.payload.date = parts[0]\nmsg.payload.time = \"1970-01-01T\"+ parts[1].substr(0, 5)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4642,7 +4551,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1660,
+        "x": 2000,
         "y": 2120,
         "wires": [
             []
@@ -4663,7 +4572,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 2160,
+        "x": 2500,
         "y": 2140,
         "wires": [
             []
@@ -4674,13 +4583,13 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "var temp1, temp2, temp3, temp4\n//Reception de retrevial location\nif (msg.payload.object_lat_end == undefined) {\n\t\n    temp1 = ConvertDDToDMS(global.get(\"object_lat_end\"), false)\n    temp2 = ConvertDDToDMS(global.get(\"object_lon_end\"), true)\n    temp3 = global.get(\"object_date_end\").match(/\\d{2}/g).join('-').replace(\"-\",\"\")\n    temp4 = global.get(\"object_time_end\").match(/\\d{2}/g).join(':')\n    \n    context.set(\"lat_end\", temp1 )\n    context.set(\"lon_end\", temp2 )\n    context.set(\"date_end\", temp3 )\n    context.set(\"time_end\", temp4 )\n}\n//reception de net throw location\nelse{\n    context.set(\"lat\", msg.payload.object_lat_end )\n    context.set(\"lon\", msg.payload.object_lon_end )\n    context.set(\"date\", msg.payload.object_date_end )\n    context.set(\"time\", msg.payload.object_time_end )\n}\n\n//For eatch data receive, refresh data\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;\n\n\n\nfunction ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D<0?lng?'W':'S':lng?'E':'N'\n    var deg = 0|(D<0?D=-D:D)\n    var min = 0|D%1*60\n    var sec = (0|D*60%1*6000)/100\n    return (deg+ \"°\" +min+ \"'\" + sec + \"\\\"\" + \" \" + dir)\n}",
+        "func": "var temp1, temp2, temp3, temp4\n//Reception de retrevial location\nif (msg.payload.object_lat_end == undefined) {\n\t\n    temp1 = ConvertDDToDMS(global.get(\"object_lat_end\"), false)\n    temp2 = ConvertDDToDMS(global.get(\"object_lon_end\"), true)\n    temp3 = global.get(\"object_date_end\").match(/\\d{2}/g).join('-').replace(\"-\",\"\")\n    temp4 = global.get(\"object_time_end\").match(/\\d{2}/g).join(':')\n    \n    date_time = Convertdate_to_string(temp3 + \" \"+ temp4)\n    part = date_time.split(/ /)\n    temp3 = part[0];\n    temp4 = part[1];\n    \n    context.set(\"lat_end\", temp1 )\n    context.set(\"lon_end\", temp2 )\n    context.set(\"date_end\", temp3 )\n    context.set(\"time_end\", temp4 )\n}\n//reception de net throw location\nelse{\n    context.set(\"lat\", msg.payload.object_lat_end )\n    context.set(\"lon\", msg.payload.object_lon_end )\n    \n    //Convert utc to local\n    date_time = Convertdate_to_string(msg.payload.object_date_end+\" \"+msg.payload.object_time_end)\n    part = date_time.split(/ /)\n    msg.payload.object_date_end = part[0];\n    msg.payload.object_time_end = part[1];\n    \n    context.set(\"date\", msg.payload.object_date_end )\n    context.set(\"time\", msg.payload.object_time_end )\n}\n\n//For eatch data receive, refresh data\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;\n\n\n\nfunction ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D<0?lng?'W':'S':lng?'E':'N'\n    var deg = 0|(D<0?D=-D:D)\n    var min = 0|D%1*60\n    var sec = (0|D*60%1*6000)/100\n    return (deg+ \"°\" +min+ \"'\" + sec + \"\\\"\" + \" \" + dir)\n}\n\nfunction Convertdate_to_string(msg_date) {\n    var date = new Date(msg_date)\n    \n    return (date.getFullYear() + \"/\" + fixDigit(date.getMonth()+1) + \"/\" + fixDigit(date.getDate()) + \" \" + fixDigit(date.getHours()+1) + \":\" + fixDigit(date.getMinutes()) + \":\" + fixDigit(date.getSeconds()) );\n}\n\n\nfunction fixDigit(val){\n    return val.toString().length === 1 ? \"0\" + val : val;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n//Data for retrieval\ncontext.set(\"lat_end\", \"None\")\ncontext.set(\"lon_end\", \"None\")\ncontext.set(\"date_end\", \"None\")\ncontext.set(\"time_end\", \"None\")\n\n//Data for throw\ncontext.set(\"lat\", \"None\")\ncontext.set(\"lon\", \"None\")\ncontext.set(\"date\", \"None\")\ncontext.set(\"time\", \"None\")\n\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;",
         "finalize": "",
         "libs": [],
-        "x": 1970,
+        "x": 2310,
         "y": 2160,
         "wires": [
             [
@@ -4703,7 +4612,7 @@
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 2290,
+        "x": 2630,
         "y": 2060,
         "wires": [
             []
@@ -4739,7 +4648,9 @@
         "mode": "link",
         "links": [
             "7444e2e24a9f1aeb",
-            "29f82b029ca000d9"
+            "29f82b029ca000d9",
+            "f9f5ed0d7a6155bb",
+            "68e2264e05e1a5b8"
         ],
         "x": 3335,
         "y": 200,
@@ -4992,6 +4903,313 @@
         "y": 140,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "2ea7ccf8ea31c39b",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "if(msg.topic == \"net_retrieval_location\"){\n    \n    msg.payload.object_date_end = (date_UTC(msg.payload.object_date_end))\n    msg.payload.object_time_end = (time_UTC(msg.payload.object_time_end))\n    \n}\nelse{\n    msg.payload.object_date = (date_UTC(msg.payload.object_date))\n    msg.payload.object_time = (time_UTC(msg.payload.object_time))\n}\n\nreturn msg;\n\nfunction date_UTC(msg_date) {\n    //msg_time=msg_time.replace(/Z/g,\"+01:00\")\n    var date =  new Date(msg_date)\n    return ( date.getFullYear() + \"-\" + fixDigit(date.getMonth()+1) + \"-\" + fixDigit(date.getDate() ));\n}\n\nfunction time_UTC(msg_time) {\n    //msg_time=msg_time.replace(/Z/g,\"+01:00\")\n    var time =  new Date(msg_time)\n    return (fixDigit(time.getUTCHours()) + \":\" + fixDigit(time.getUTCMinutes()) + \":\" + fixDigit(time.getUTCSeconds()) );\n}\n\nfunction fixDigit(val){\n    return val.toString().length === 1 ? \"0\" + val : val;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1720,
+        "y": 1920,
+        "wires": [
+            [
+                "14658615.47c862"
+            ]
+        ]
+    },
+    {
+        "id": "7cea7adaa831550c",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "msg_location = {}\nvar type = global.get(\"sample_sampling_gear\")\n\n\n\nif( type == \"culture\" && context.get(\"one_time\") == 0 ){\n    context.set(\"one_time\",1);\n    msg_location.payload = {\"object_date\": msg.payload.date, \"object_time\": msg.payload.time}\n    return msg_location\n\n}\n\nelse if(type != \"culture\"){\n    context.set(\"one_time\",0);\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is starte\ncontext.set(\"one_time\",0);",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 2100,
+        "wires": [
+            [
+                "05c6aff2afbd69cf"
+            ]
+        ]
+    },
+    {
+        "id": "b7c6087569130821",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "\nif(msg.topic == \"sample_sampling_gear\"){\n    context.set(\"choose\",msg.payload)\n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n    {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n    {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n    {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n    {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n    \n    msg.payload = context.get(\"choose\");\n    return msg;\n}\n\nif(msg.enabled != undefined){\n    var value = msg.enabled;\n    msg.enabled = true;\n    \n    if(value == true){\n    \n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n    {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n    {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n    {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n    {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n    \n    msg.payload = global.get(\"sample_sampling_gear\")\n    \n    return msg;\n\n    }\n\n    else if(value == false){\n        msg.options = [\n            {\"High Speed Net\":\"net_hsn\"}, \n            {\"Single location (with net or bucket)\":\"single_location\"},\n            {\"Lab culture\":\"culture\"},\n            {\"Test\":\"test\"}]\n        \n        msg.payload = global.get(\"sample_sampling_gear\");\n        \n        return msg;\n    }\n    \n    \n    \n}\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"choose\",\"single_location\")",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 120,
+        "wires": [
+            [
+                "fcfc31ae.af3af"
+            ]
+        ]
+    },
+    {
+        "id": "397de22c1c0f520d",
+        "type": "ui_dropdown",
+        "z": "b771c342.49603",
+        "d": true,
+        "name": "sample_sampling_gear",
+        "label": "Sampling gear*",
+        "tooltip": "",
+        "place": "Choose from list",
+        "group": "3e1ba03d.f01d8",
+        "order": 7,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "High Speed Net",
+                "value": "net_hsn",
+                "type": "str"
+            },
+            {
+                "label": "Tara Decknet",
+                "value": "net_decknet",
+                "type": "str"
+            },
+            {
+                "label": "Plankton net",
+                "value": "net",
+                "type": "str"
+            },
+            {
+                "label": "Niskin bottle 12L",
+                "value": "niskin_12L",
+                "type": "str"
+            },
+            {
+                "label": "Niskin bottle 24L",
+                "value": "niskin_24L",
+                "type": "str"
+            },
+            {
+                "label": "Pass Hull",
+                "value": "pass_hull",
+                "type": "str"
+            },
+            {
+                "label": "Single location (with net or bucket)",
+                "value": "single_location",
+                "type": "str"
+            },
+            {
+                "label": "Lab culture",
+                "value": "culture",
+                "type": "str"
+            },
+            {
+                "label": "Test",
+                "value": "test",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "sample_sampling_gear",
+        "topicType": "str",
+        "className": "",
+        "x": 1130,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68e2264e05e1a5b8",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "",
+        "links": [
+            "a5b67ad53d90447b"
+        ],
+        "x": 495,
+        "y": 120,
+        "wires": [
+            [
+                "b7c6087569130821"
+            ]
+        ]
+    },
+    {
+        "id": "8b97db46845cf99a",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "\nif (msg.payload.object_lat_end != undefined) {\n    \n    date_time = Convertdate_to_string(msg.payload.object_date_end+\" \"+msg.payload.object_time_end)\n    part = date_time.split(/ /)\n    msg.payload.object_date_end = part[0];\n    msg.payload.object_time_end = part[1];\n    \n    return msg;\n}\n\n\nfunction Convertdate_to_string(msg_date) {\n    var date = new Date(msg_date)\n    \n    return (date.getFullYear() + \"/\" + fixDigit(date.getMonth()+1) + \"/\" + fixDigit(date.getDate()) + \" \" + fixDigit(date.getHours()+1) + \":\" + fixDigit(date.getMinutes()) + \":\" + fixDigit(date.getSeconds()) );\n}\n\nfunction fixDigit(val){\n    return val.toString().length === 1 ? \"0\" + val : val;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1910,
+        "y": 2020,
+        "wires": [
+            [
+                "4c4d548577a253bb"
+            ]
+        ]
+    },
+    {
+        "id": "073c7d4ce2c7b3a7",
+        "type": "trigger",
+        "z": "b771c342.49603",
+        "name": "",
+        "op1": "reset",
+        "op2": "true",
+        "op1type": "str",
+        "op2type": "bool",
+        "duration": "10",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 2310,
+        "y": 540,
+        "wires": [
+            [
+                "e52f93df280bcf33"
+            ]
+        ]
+    },
+    {
+        "id": "e52f93df280bcf33",
+        "type": "trigger",
+        "z": "b771c342.49603",
+        "name": "",
+        "op1": "No Gps",
+        "op2": "true",
+        "op1type": "str",
+        "op2type": "bool",
+        "duration": "-1",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "reset",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 2510,
+        "y": 540,
+        "wires": [
+            [
+                "58152890c539c567"
+            ]
+        ]
+    },
+    {
+        "id": "78cb6b0834f0607c",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "",
+        "props": [
+            {
+                "p": "payload.object_lat_end",
+                "v": "\"45°11'34.03\" N\"",
+                "vt": "str"
+            },
+            {
+                "p": "payload.object_lon_end",
+                "v": "\"5°45'46.73\" E\"",
+                "vt": "str"
+            },
+            {
+                "p": "payload.object_date_end",
+                "v": "2022-02-17",
+                "vt": "str"
+            },
+            {
+                "p": "payload.object_time_end",
+                "v": "09:07:00",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1730,
+        "y": 2040,
+        "wires": [
+            [
+                "8b97db46845cf99a"
+            ]
+        ]
+    },
+    {
+        "id": "58152890c539c567",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "in case of no gps",
+        "func": "status = {payload:{}}\nlat = {payload:{}}\nlon = {payload:{}}\ntime ={payload:{}}\n\nif(msg.payload == \"No Gps\"){\n    status.payload.mode = -1;\n    lat.payload.lat = context.get(\"lat\")\n    lon.payload.lon = context.get(\"lon\")\n    time.payload.time_emr = context.get(\"time\");\n    return [status, lat, lon, time]\n}\n\n\n\nif(msg.payload.local_time != undefined){\n    temp = Convertdate_to_string(msg.payload.local_time)   \n    \n    context.set(\"time\", temp );\n}\n\n\nfunction Convertdate_to_string(msg_date) {\n    var date = new Date(msg_date)\n    return (date.getFullYear() + \"/\" + fixDigit(date.getMonth()+1) + \"/\" + fixDigit(date.getDate()) + \" \" + fixDigit(date.getHours()) + \":\" + fixDigit(date.getMinutes()) + \":\" + fixDigit(date.getSeconds()) );\n}\n\nfunction fixDigit(val){\n    return val.toString().length === 1 ? \"0\" + val : val;\n}",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"time\", \"0001-01-01T00:00:00.000Z\")\ncontext.set(\"lat\", \"00°00'00.00\\\" N\")\ncontext.set(\"lon\", \"00°00'00.00\\\" E\")",
+        "finalize": "",
+        "libs": [],
+        "x": 2730,
+        "y": 540,
+        "wires": [
+            [
+                "cc21ca16.b92928"
+            ],
+            [
+                "258b4562.9f778a"
+            ],
+            [
+                "4a4de52c.cf2884"
+            ],
+            [
+                "73c4a14a.9b93c8"
+            ]
+        ]
+    },
+    {
+        "id": "6e3190106af6d079",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "Start value",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "holla",
+        "payloadType": "str",
+        "x": 2060,
+        "y": 540,
+        "wires": [
+            [
+                "073c7d4ce2c7b3a7"
+            ]
         ]
     },
     {
@@ -12664,10 +12882,11 @@
         "type": "exec",
         "z": "1371dec5.76e671",
         "command": "sudo /home/pi/PlanktoScope/scripts/bash/usb_backup.sh",
-        "addpay": true,
+        "addpay": "payload",
         "append": "",
         "useSpawn": "true",
         "timer": "",
+        "winHide": false,
         "oldrc": false,
         "name": "usb_backup.sh",
         "x": 720,
@@ -12710,7 +12929,8 @@
             ],
             [
                 "c74fe76.bcba718",
-                "4997446.5176d3c"
+                "4997446.5176d3c",
+                "05e9b10dd7993aca"
             ]
         ]
     },
@@ -13270,6 +13490,23 @@
                 "2549f778.4eb828"
             ]
         ]
+    },
+    {
+        "id": "05e9b10dd7993aca",
+        "type": "debug",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 860,
+        "wires": []
     },
     {
         "id": "b9bf06d6.26c518",
