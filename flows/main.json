@@ -5992,7 +5992,7 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.696;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"6\":\n        acq_magnification= 4.2;\n        process_pixel= 0.273;\n        sug_min= 15;\n        sug_max= 161;\n        sug_flowrate= 0.9;\n        break;\n      case \"3.6\":\n        acq_magnification= 8;\n        process_pixel= 0.143;\n        sug_min= 9;\n        sug_max= 96.75;\n        sug_flowrate= 0.54;\n        break;\n      case \"1.71\":\n        acq_magnification= 14;\n        process_pixel= 0.079;\n        sug_min= 4.275;\n        sug_max= 45.95;\n        sug_flowrate= 0.2565;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\n\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\nif (acq_camera == undefined) {\n    acq_camera = \"Camera v2.1\"\n}\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.696;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"6\":\n        acq_magnification= 4.2;\n        process_pixel= 0.273;\n        sug_min= 15;\n        sug_max= 161;\n        sug_flowrate= 0.9;\n        break;\n      case \"3.6\":\n        acq_magnification= 8;\n        process_pixel= 0.143;\n        sug_min= 9;\n        sug_max= 96.75;\n        sug_flowrate= 0.54;\n        break;\n      case \"1.71\":\n        acq_magnification= 14;\n        process_pixel= 0.079;\n        sug_min= 4.275;\n        sug_max= 45.95;\n        sug_flowrate= 0.2565;\n        break;\n      case \"0\":\n        acq_magnification= 0;\n        process_pixel= 0;\n        sug_min= 0;\n        sug_max= 0;\n        sug_flowrate= 0;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n    node.warn(\"OK\")\n}\n\n\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\nvar msg1 = {payload:{}};\nmsg1.payload.acq_fnumber_objective = acq_fnumber_objective;\nmsg1.payload.acq_magnification = acq_magnification;\nmsg1.payload.process_pixel = process_pixel;\nmsg1.payload.sug_min = sug_min;\nmsg1.payload.sug_max = sug_max;\n\nreturn msg1;\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -17477,7 +17477,7 @@
         "y": 360,
         "wires": [
             [
-                "dee52a36.2af72"
+                "b29f7504364cf0ea"
             ]
         ]
     },
@@ -17516,7 +17516,7 @@
         "topic": "stepper_type",
         "topicType": "str",
         "className": "",
-        "x": 710,
+        "x": 750,
         "y": 360,
         "wires": [
             [
@@ -17533,7 +17533,7 @@
         "links": [
             "45a7b5aa.2ed20c"
         ],
-        "x": 1155,
+        "x": 1195,
         "y": 360,
         "wires": []
     },
@@ -17553,7 +17553,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1040,
+        "x": 1080,
         "y": 360,
         "wires": [
             [
@@ -17567,7 +17567,7 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 1060,
+        "x": 1100,
         "y": 400,
         "wires": [
             []
@@ -17596,7 +17596,7 @@
         "y": 440,
         "wires": [
             [
-                "cd1987c7.027f58"
+                "665d7efc068aa806"
             ]
         ]
     },
@@ -17623,7 +17623,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 720,
+        "x": 760,
         "y": 440,
         "wires": [
             [
@@ -17655,7 +17655,7 @@
         "y": 400,
         "wires": [
             [
-                "ee58b91c.396108"
+                "65d8a0bfeed001d4"
             ]
         ]
     },
@@ -17677,7 +17677,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 740,
+        "x": 780,
         "y": 400,
         "wires": [
             [
@@ -17700,8 +17700,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 790,
-        "y": 580,
+        "x": 850,
+        "y": 640,
         "wires": [
             []
         ]
@@ -17805,13 +17805,13 @@
                 "1cfadc66.3cde8c"
             ],
             [
-                "dee52a36.2af72",
                 "8e3b3d3c.955148",
-                "2068e7f.f4efb18"
+                "2068e7f.f4efb18",
+                "b29f7504364cf0ea"
             ],
             [
-                "ee58b91c.396108",
-                "8e3b3d3c.955148"
+                "8e3b3d3c.955148",
+                "65d8a0bfeed001d4"
             ]
         ]
     },
@@ -17871,7 +17871,7 @@
         "y": 480,
         "wires": [
             [
-                "244ca5dd62df2bcd"
+                "743342cefd0e6eac"
             ]
         ]
     },
@@ -17893,7 +17893,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 740,
+        "x": 780,
         "y": 480,
         "wires": [
             [
@@ -17913,7 +17913,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1080,
+        "x": 1120,
         "y": 440,
         "wires": [
             [
@@ -17931,7 +17931,7 @@
             "6746f61cadaa1038",
             "dfefeb6072e3ee44"
         ],
-        "x": 1315,
+        "x": 1355,
         "y": 440,
         "wires": []
     },
@@ -17954,7 +17954,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1120,
+        "x": 1160,
         "y": 480,
         "wires": [
             [
@@ -18019,7 +18019,7 @@
             "75b7aeca42db75bd",
             "9d94dcc24bdc7ea1"
         ],
-        "x": 895,
+        "x": 935,
         "y": 480,
         "wires": [
             [
@@ -18045,7 +18045,7 @@
         "topic": "",
         "payload": "0",
         "payloadType": "num",
-        "x": 890,
+        "x": 930,
         "y": 520,
         "wires": [
             [
@@ -18231,7 +18231,7 @@
         "links": [
             "66c31ceb7f02964e"
         ],
-        "x": 135,
+        "x": 155,
         "y": 520,
         "wires": [
             [
@@ -18276,5 +18276,81 @@
         "x": 805,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "743342cefd0e6eac",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Fix enabled",
+        "func": "mode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "244ca5dd62df2bcd"
+            ]
+        ]
+    },
+    {
+        "id": "665d7efc068aa806",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Fix enabled",
+        "func": "mode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 440,
+        "wires": [
+            [
+                "cd1987c7.027f58"
+            ]
+        ]
+    },
+    {
+        "id": "65d8a0bfeed001d4",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Fix enabled",
+        "func": "mode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "ee58b91c.396108"
+            ]
+        ]
+    },
+    {
+        "id": "b29f7504364cf0ea",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Fix enabled",
+        "func": "mode = global.get(\"mode\")\n\nif(mode == 0) {\n    msg.enabled = true\n} else {\n    msg.enabled = false\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "dee52a36.2af72"
+            ]
+        ]
     }
 ]
