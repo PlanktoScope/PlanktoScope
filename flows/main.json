@@ -699,7 +699,7 @@
         "id": "2489e51c.eed77a",
         "type": "ui_tab",
         "name": "Administration",
-        "icon": "dashboard",
+        "icon": "fa-cogs",
         "order": 11,
         "disabled": false,
         "hidden": false
@@ -708,7 +708,7 @@
         "id": "b0fb559a.6966a8",
         "type": "ui_tab",
         "name": "Hardware Settings",
-        "icon": "fa-cogs",
+        "icon": "fa-microchip",
         "order": 12,
         "disabled": false,
         "hidden": false
@@ -1259,7 +1259,7 @@
         "id": "8432773e2c23d195",
         "type": "ui_tab",
         "name": "Download Files",
-        "icon": "dashboard",
+        "icon": "fa-download",
         "order": 13,
         "disabled": false,
         "hidden": false
@@ -1278,7 +1278,7 @@
     {
         "id": "4a1683be6c899941",
         "type": "ui_group",
-        "name": "Selections des dossiers",
+        "name": "Select folder",
         "tab": "8432773e2c23d195",
         "order": 2,
         "disp": true,
@@ -1530,7 +1530,7 @@
     {
         "id": "35b8cc9737fbb93c",
         "type": "ui_group",
-        "name": "Selections des dossiers suivants",
+        "name": "Select next folder",
         "tab": "8432773e2c23d195",
         "order": 3,
         "disp": true,
@@ -1541,18 +1541,18 @@
     {
         "id": "9666b54a41785169",
         "type": "ui_group",
-        "name": "Selections du port USB",
+        "name": "USB selection",
         "tab": "8432773e2c23d195",
         "order": 1,
         "disp": true,
-        "width": 6,
+        "width": "6",
         "collapse": false,
         "className": ""
     },
     {
         "id": "7775cf1d4585df3b",
         "type": "ui_group",
-        "name": "Selections des dossiers suivants",
+        "name": "Select next folder",
         "tab": "8432773e2c23d195",
         "order": 4,
         "disp": true,
@@ -3164,7 +3164,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 160,
+        "x": 140,
         "y": 460,
         "wires": [
             [
@@ -8387,7 +8387,8 @@
         "y": 240,
         "wires": [
             [
-                "fb887036.12429"
+                "fb887036.12429",
+                "500d5f89b6a8356a"
             ]
         ]
     },
@@ -8441,7 +8442,8 @@
         "wires": [
             [
                 "fb887036.12429",
-                "99b11fe4.2795d"
+                "99b11fe4.2795d",
+                "500d5f89b6a8356a"
             ]
         ]
     },
@@ -8456,7 +8458,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 980,
         "y": 260,
         "wires": [
             [
@@ -8905,7 +8907,8 @@
             [
                 "fb887036.12429",
                 "67091ac0.8f9f6c",
-                "99b11fe4.2795d"
+                "99b11fe4.2795d",
+                "500d5f89b6a8356a"
             ]
         ]
     },
@@ -9329,7 +9332,8 @@
         "y": 160,
         "wires": [
             [
-                "fb887036.12429"
+                "fb887036.12429",
+                "500d5f89b6a8356a"
             ]
         ]
     },
@@ -9535,7 +9539,8 @@
         "wires": [
             [
                 "67091ac0.8f9f6c",
-                "fb887036.12429"
+                "fb887036.12429",
+                "500d5f89b6a8356a"
             ]
         ]
     },
@@ -9835,6 +9840,23 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "500d5f89b6a8356a",
+        "type": "debug",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "9d6abe67.6bb3d",
@@ -11487,7 +11509,7 @@
         "order": 1,
         "width": "20",
         "height": "17",
-        "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
+        "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\"></object>\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -17094,6 +17116,7 @@
         "label": "IP",
         "format": "{{msg.payload || '---'}}",
         "layout": "row-spread",
+        "className": "",
         "x": 930,
         "y": 180,
         "wires": []
@@ -17551,14 +17574,12 @@
         "type": "link out",
         "z": "f21ba04.c26266",
         "name": "IP",
+        "mode": "link",
         "links": [
             "142bc61a0bde1ba9",
-            "c515edcd8681c244",
-            "7fb91a7fd6d2518c",
-            "604659d148759b84",
             "3bb4970164f5e7b2",
-            "e930a47cb7fae6eb",
-            "e76f25605ee25030"
+            "604659d148759b84",
+            "c515edcd8681c244"
         ],
         "x": 1035,
         "y": 160,
