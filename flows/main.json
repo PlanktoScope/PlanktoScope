@@ -1545,7 +1545,7 @@
         "tab": "8432773e2c23d195",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": 8,
         "collapse": false,
         "className": ""
     },
@@ -1559,66 +1559,6 @@
         "width": "8",
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "0d5bf9299decaa0a",
-        "type": "ui_spacer",
-        "z": "ee49a6917e33b587",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 4,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "9379e46890d6b61c",
-        "type": "ui_spacer",
-        "z": "ee49a6917e33b587",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 6,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "6d5655fbaeeb2660",
-        "type": "ui_spacer",
-        "z": "ee49a6917e33b587",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 7,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "5d95392f26bd0b36",
-        "type": "ui_spacer",
-        "z": "ee49a6917e33b587",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 9,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "8d441570b6f38509",
-        "type": "ui_spacer",
-        "z": "ee49a6917e33b587",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 10,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "175206c97ead9702",
-        "type": "ui_spacer",
-        "z": "ee49a6917e33b587",
-        "name": "spacer",
-        "group": "46be9c86.dea684",
-        "order": 11,
-        "width": 3,
-        "height": 1
     },
     {
         "id": "3b7510519e97c165",
@@ -2115,6 +2055,66 @@
         "height": 1
     },
     {
+        "id": "e7d3390c8905c04f",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "8ce96deeb73f21e9",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3cb150556b561ccf",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 7,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "9ee59773fd83cfe3",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 9,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "1b159ed831021eb8",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "6a8a734bd1f10c59",
+        "type": "ui_spacer",
+        "z": "cb95299c.2817c8",
+        "name": "spacer",
+        "group": "46be9c86.dea684",
+        "order": 11,
+        "width": 3,
+        "height": 1
+    },
+    {
         "id": "6465bdd5.15eb8c",
         "type": "file in",
         "z": "1c24ad9c.bebec2",
@@ -2565,6 +2565,7 @@
         "ok": "YES PLEASE",
         "cancel": "NO!",
         "raw": false,
+        "className": "",
         "topic": "Are you sure?",
         "name": "Confirmation message",
         "x": 800,
@@ -2614,10 +2615,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "fa-power-off fa-2x",
         "payload": "Do you want to turn the machine off now?",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 550,
         "y": 580,
         "wires": [
@@ -2670,6 +2673,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 290,
         "y": 580,
         "wires": [
@@ -9868,17 +9872,17 @@
         "width": 8,
         "height": 1,
         "passthru": false,
-        "label": "Home",
+        "label": "Download Files",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
-        "icon": "home",
-        "payload": "{\"tab\":\"Home\"}",
+        "icon": "fa-download",
+        "payload": "{\"tab\":\"Download Files\"}",
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 450,
+        "x": 480,
         "y": 660,
         "wires": [
             [
@@ -18842,7 +18846,6 @@
         "y": 180,
         "wires": [
             [
-                "4bc096796a557677",
                 "cde4a7eadbcd7348"
             ]
         ]
@@ -18906,6 +18909,13 @@
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "download_path",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -18934,7 +18944,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
+        "x": 690,
         "y": 220,
         "wires": [
             [
@@ -19210,8 +19220,8 @@
         "name": "Backup to USB",
         "group": "9666b54a41785169",
         "order": 5,
-        "width": 0,
-        "height": 0,
+        "width": 5,
+        "height": 1,
         "passthru": false,
         "label": "Backup to USB",
         "tooltip": "",
@@ -19375,6 +19385,7 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
         "x": 1090,
@@ -19481,14 +19492,14 @@
         "z": "ee49a6917e33b587",
         "group": "9666b54a41785169",
         "order": 4,
-        "width": 6,
+        "width": 8,
         "height": 2,
         "name": "",
-        "label": "You are going to download",
+        "label": "You are going to download or delete",
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 800,
+        "x": 820,
         "y": 800,
         "wires": []
     },
@@ -19523,7 +19534,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
+        "x": 900,
         "y": 220,
         "wires": [
             []
@@ -19667,6 +19678,328 @@
         "wires": [
             [
                 "767f13fcd7ed3f35"
+            ]
+        ]
+    },
+    {
+        "id": "4156bf50b481d8ba",
+        "type": "ui_button",
+        "z": "ee49a6917e33b587",
+        "name": "Delete Files",
+        "group": "9666b54a41785169",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete Files",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "fa-trash",
+        "payload": "Do you realy want to delete this files ?",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "d466bda2afaa4036"
+            ]
+        ]
+    },
+    {
+        "id": "d466bda2afaa4036",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "YES",
+        "cancel": "NO",
+        "raw": false,
+        "className": "",
+        "topic": "Delete files",
+        "name": "Confirmation message",
+        "x": 320,
+        "y": 880,
+        "wires": [
+            [
+                "76eaad03795c7a37"
+            ]
+        ]
+    },
+    {
+        "id": "76eaad03795c7a37",
+        "type": "switch",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "YES",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 880,
+        "wires": [
+            [
+                "974b84c90d916a0d"
+            ]
+        ]
+    },
+    {
+        "id": "974b84c90d916a0d",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "get device_path",
+        "func": "var download_path = flow.get(\"download_path\")\nif (download_path != undefined) {\n    msg.payload = download_path;\n}\nelse {\n    msg.payload = msg.payload + \" data/\";\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 880,
+        "wires": [
+            [
+                "eb19afeb514accc0"
+            ]
+        ]
+    },
+    {
+        "id": "341947559e2690af",
+        "type": "exec",
+        "z": "ee49a6917e33b587",
+        "command": "sudo rm -r ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "delete",
+        "x": 430,
+        "y": 1020,
+        "wires": [
+            [
+                "89fa218f5f81f8ef"
+            ],
+            [],
+            [
+                "362342c1bac176db"
+            ]
+        ]
+    },
+    {
+        "id": "89fa218f5f81f8ef",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Delete files : Error",
+        "name": "",
+        "x": 600,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "dc850832f3e442f7",
+        "type": "change",
+        "z": "ee49a6917e33b587",
+        "name": "Backup starting message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The delete is starting now, please wait",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 1080,
+        "wires": [
+            [
+                "b10aaa95e1bf18bb"
+            ]
+        ]
+    },
+    {
+        "id": "b10aaa95e1bf18bb",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Delete Files",
+        "name": "",
+        "x": 810,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "362342c1bac176db",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "func": "msg.payload = \"Delete Completed\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1040,
+        "wires": [
+            [
+                "b10aaa95e1bf18bb",
+                "be9e189760ae0a40"
+            ]
+        ]
+    },
+    {
+        "id": "eb19afeb514accc0",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "YES",
+        "cancel": "NO",
+        "raw": false,
+        "className": "",
+        "topic": "You are going to delete all this folder",
+        "name": "Confirmation message",
+        "x": 840,
+        "y": 880,
+        "wires": [
+            [
+                "14069623f462fc9e"
+            ]
+        ]
+    },
+    {
+        "id": "14069623f462fc9e",
+        "type": "switch",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "YES",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 1020,
+        "wires": [
+            [
+                "dc850832f3e442f7",
+                "c5ebeb93c0047247"
+            ]
+        ]
+    },
+    {
+        "id": "c5ebeb93c0047247",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "func": "msg.payload = \"~/\" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 1020,
+        "wires": [
+            [
+                "341947559e2690af"
+            ]
+        ]
+    },
+    {
+        "id": "83b19dee1f28db21",
+        "type": "link in",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "links": [
+            "be9e189760ae0a40"
+        ],
+        "x": 55,
+        "y": 300,
+        "wires": [
+            [
+                "eec9e1c8fd75cd0d"
+            ]
+        ]
+    },
+    {
+        "id": "be9e189760ae0a40",
+        "type": "link out",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "83b19dee1f28db21"
+        ],
+        "x": 755,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "eec9e1c8fd75cd0d",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "Reset",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "cde4a7eadbcd7348"
             ]
         ]
     }
