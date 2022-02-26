@@ -1287,16 +1287,6 @@
         "className": ""
     },
     {
-        "id": "83649a6f3a99e18e",
-        "type": "ui_spacer",
-        "z": "bccd1f23.87219",
-        "name": "spacer",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "f117c73f1f9395a9",
         "type": "ui_group",
         "name": "Hidden_Groupe",
@@ -3014,7 +3004,7 @@
             "7164566e38c0e242",
             "87171ccda60d4390",
             "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "a45e550cb5e1c1d1"
         ],
         "x": 895,
         "y": 900,
@@ -3031,7 +3021,7 @@
             "4cfbba68449a28e2",
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
-            "b6e04f52920c6dcb",
+            "bfce8e77727b9fbf",
             "c2d9b90e27bc022c"
         ],
         "x": 215,
@@ -4680,12 +4670,12 @@
         "mode": "link",
         "links": [
             "127fd2e4447c6ad1",
-            "4dd140903cddda10",
             "713395d7523b16e8",
             "7164566e38c0e242",
             "87171ccda60d4390",
             "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "c840a7c66cf51acc",
+            "a45e550cb5e1c1d1"
         ],
         "x": 3675,
         "y": 60,
@@ -4701,8 +4691,8 @@
             "319bff50477bc5fc",
             "4cfbba68449a28e2",
             "7a7343ef8627ec57",
-            "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
+            "bfce8e77727b9fbf",
             "c2d9b90e27bc022c"
         ],
         "x": 2845,
@@ -6458,7 +6448,7 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
+        "x": 560,
         "y": 740,
         "wires": [
             [
@@ -6739,7 +6729,7 @@
         "name": "light_control",
         "group": "4248342d.e55fac",
         "order": 1,
-        "width": 5,
+        "width": 6,
         "height": 1,
         "label": "Light  ",
         "stateField": "payload",
@@ -7418,9 +7408,9 @@
         "z": "bccd1f23.87219",
         "group": "4248342d.e55fac",
         "name": "Information Lens",
-        "order": 4,
-        "width": 0,
-        "height": 0,
+        "order": 3,
+        "width": 6,
+        "height": 2,
         "format": "<h9>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload.acq_fnumber_objective\">\n    </span>mm\n</h9>\n<h9>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload.acq_magnification\">\n    </span>\n</h9>\n<h9>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload.process_pixel\"></span>\n    μm\n</h9>\n<h9>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload.sug_min\"></span>\n    μm\n</h9>\n<h9>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload.sug_max\"></span>\n    μm\n</h9>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -7542,7 +7532,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .element:nth-child(4)\n    {\n        flex:1;\n    }\n    .element4\n    {\n        flex:1;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n    p {\n        font-size: 12px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
+        "format": "<style>\n    .conteneur:\n    {\n        display: flex;\n      \tflex-direction: column;\n      \twidth: 13.8em;\n    }\n    .element:nth-child(1)\n    {\n        flex:1;\n    }\n    .element:nth-child(2)\n    {\n        flex:1;\n    }\n    .element:nth-child(3)\n    {\n        flex:2;\n    }\n    .element:nth-child(4)\n    {\n        flex:1;\n    }\n    .element4\n    {\n        flex:1;\n    }\n    .infoR\n    {\n        display: flex;\n        flex-direction: row;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .infoL\n    {\n        display: flex;\n        flex-direction: row-reverse;\n        text-align: center;\n      \tfont-size: 12px;\n    }\n    .text\n    {\n      \tfont-size: 20px;\n      \tpadding: 5px;\n      \ttext-align: center;\n    }\n    p {\n        font-size: 12px;\n        padding: 5px;\n      \ttext-align: center;\n    }\n</style>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -7622,7 +7612,7 @@
         "tooltip": "",
         "place": "Select option",
         "group": "4248342d.e55fac",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -8029,7 +8019,13 @@
         "name": "out_optic_configuration",
         "mode": "link",
         "links": [
-            "127fd2e4447c6ad1"
+            "127fd2e4447c6ad1",
+            "4dd140903cddda10",
+            "713395d7523b16e8",
+            "7164566e38c0e242",
+            "87171ccda60d4390",
+            "97f9c6da2e1095d2",
+            "c840a7c66cf51acc"
         ],
         "x": 955,
         "y": 1940,
@@ -8040,7 +8036,15 @@
         "type": "link in",
         "z": "bccd1f23.87219",
         "name": "in_optic_configuration",
-        "links": [],
+        "links": [
+            "082af9181824a196",
+            "319bff50477bc5fc",
+            "4cfbba68449a28e2",
+            "7a7343ef8627ec57",
+            "a85a1f2d75981a8c",
+            "b6e04f52920c6dcb",
+            "c2d9b90e27bc022c"
+        ],
         "x": 195,
         "y": 2060,
         "wires": [
@@ -9723,13 +9727,13 @@
         "name": "out_acquisition_mode",
         "mode": "link",
         "links": [
-            "127fd2e4447c6ad1",
             "4dd140903cddda10",
             "713395d7523b16e8",
             "7164566e38c0e242",
             "87171ccda60d4390",
             "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "c840a7c66cf51acc",
+            "a45e550cb5e1c1d1"
         ],
         "x": 895,
         "y": 1060,
@@ -9742,11 +9746,11 @@
         "name": "in_acquisition_mode",
         "links": [
             "082af9181824a196",
-            "319bff50477bc5fc",
             "4cfbba68449a28e2",
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
+            "bfce8e77727b9fbf",
             "c2d9b90e27bc022c"
         ],
         "x": 215,
@@ -11282,11 +11286,11 @@
         "links": [
             "127fd2e4447c6ad1",
             "4dd140903cddda10",
-            "713395d7523b16e8",
             "7164566e38c0e242",
             "87171ccda60d4390",
             "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "c840a7c66cf51acc",
+            "a45e550cb5e1c1d1"
         ],
         "x": 1135,
         "y": 1100,
@@ -11298,12 +11302,12 @@
         "z": "cb95299c.2817c8",
         "name": "in_segmentation_mode",
         "links": [
-            "082af9181824a196",
             "319bff50477bc5fc",
             "4cfbba68449a28e2",
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
+            "bfce8e77727b9fbf",
             "c2d9b90e27bc022c"
         ],
         "x": 435,
@@ -15190,8 +15194,8 @@
             "713395d7523b16e8",
             "7164566e38c0e242",
             "87171ccda60d4390",
-            "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "c840a7c66cf51acc",
+            "a45e550cb5e1c1d1"
         ],
         "x": 935,
         "y": 880,
@@ -15205,10 +15209,10 @@
         "links": [
             "082af9181824a196",
             "319bff50477bc5fc",
-            "4cfbba68449a28e2",
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
+            "bfce8e77727b9fbf",
             "c2d9b90e27bc022c"
         ],
         "x": 275,
@@ -17802,10 +17806,10 @@
             "127fd2e4447c6ad1",
             "4dd140903cddda10",
             "713395d7523b16e8",
-            "7164566e38c0e242",
             "87171ccda60d4390",
             "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "c840a7c66cf51acc",
+            "a45e550cb5e1c1d1"
         ],
         "x": 935,
         "y": 620,
@@ -17823,7 +17827,7 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
-            "c2d9b90e27bc022c"
+            "bfce8e77727b9fbf"
         ],
         "x": 255,
         "y": 760,
@@ -18701,9 +18705,9 @@
             "4dd140903cddda10",
             "713395d7523b16e8",
             "7164566e38c0e242",
-            "87171ccda60d4390",
             "97f9c6da2e1095d2",
-            "c840a7c66cf51acc"
+            "c840a7c66cf51acc",
+            "a45e550cb5e1c1d1"
         ],
         "x": 1055,
         "y": 680,
@@ -18718,9 +18722,9 @@
             "082af9181824a196",
             "319bff50477bc5fc",
             "4cfbba68449a28e2",
-            "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
+            "bfce8e77727b9fbf",
             "c2d9b90e27bc022c"
         ],
         "x": 215,
