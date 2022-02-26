@@ -35,6 +35,14 @@
         "info": ""
     },
     {
+        "id": "ee49a6917e33b587",
+        "type": "tab",
+        "label": "Download Files",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "c1660bc.e7ff7f8",
         "type": "tab",
         "label": "Gallery",
@@ -83,14 +91,6 @@
         "label": "Hardware Settings",
         "disabled": false,
         "info": ""
-    },
-    {
-        "id": "ee49a6917e33b587",
-        "type": "tab",
-        "label": "Download Files",
-        "disabled": false,
-        "info": "",
-        "env": []
     },
     {
         "id": "1c24ad9c.bebec2",
@@ -212,7 +212,7 @@
         "type": "ui_tab",
         "name": "System Monitoring",
         "icon": "fa-thermometer-full",
-        "order": 9,
+        "order": 10,
         "disabled": false,
         "hidden": false
     },
@@ -352,7 +352,7 @@
         "type": "ui_tab",
         "name": "Gallery",
         "icon": "fa-file-image-o",
-        "order": 7,
+        "order": 8,
         "disabled": false,
         "hidden": false
     },
@@ -436,7 +436,7 @@
         "type": "ui_group",
         "name": "Gallery",
         "tab": "3a6bb13f.c9703e",
-        "order": 5,
+        "order": 6,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -447,7 +447,7 @@
         "type": "ui_group",
         "name": "Systeme Monitoring",
         "tab": "3a6bb13f.c9703e",
-        "order": 7,
+        "order": 8,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -691,7 +691,7 @@
         "type": "ui_tab",
         "name": "Wifi",
         "icon": "wifi",
-        "order": 10,
+        "order": 11,
         "disabled": false,
         "hidden": false
     },
@@ -700,7 +700,7 @@
         "type": "ui_tab",
         "name": "Administration",
         "icon": "fa-cogs",
-        "order": 11,
+        "order": 12,
         "disabled": false,
         "hidden": false
     },
@@ -709,7 +709,7 @@
         "type": "ui_tab",
         "name": "Hardware Settings",
         "icon": "fa-microchip",
-        "order": 12,
+        "order": 13,
         "disabled": false,
         "hidden": false
     },
@@ -741,8 +741,9 @@
         "tab": "3a6bb13f.c9703e",
         "order": 12,
         "disp": true,
-        "width": 4,
-        "collapse": false
+        "width": "5",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "cfe2288f.a8862",
@@ -825,17 +826,6 @@
         "order": 7,
         "disp": true,
         "width": 12,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "8765cf17cd3404ab",
-        "type": "ui_group",
-        "name": "Mode_selection",
-        "tab": "3a6bb13f.c9703e",
-        "order": 13,
-        "disp": false,
-        "width": 6,
         "collapse": false,
         "className": ""
     },
@@ -1145,7 +1135,7 @@
         "type": "ui_group",
         "name": "Wifi",
         "tab": "3a6bb13f.c9703e",
-        "order": 8,
+        "order": 9,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1156,7 +1146,7 @@
         "type": "ui_group",
         "name": "Administration",
         "tab": "3a6bb13f.c9703e",
-        "order": 9,
+        "order": 10,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1167,7 +1157,7 @@
         "type": "ui_group",
         "name": "Hardware Settings",
         "tab": "3a6bb13f.c9703e",
-        "order": 10,
+        "order": 11,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1188,7 +1178,7 @@
         "type": "ui_tab",
         "name": "Gallery v2",
         "icon": "fa-file-image-o",
-        "order": 8,
+        "order": 9,
         "disabled": false,
         "hidden": false
     },
@@ -1249,7 +1239,7 @@
         "type": "ui_group",
         "name": "Gallery v2",
         "tab": "3a6bb13f.c9703e",
-        "order": 6,
+        "order": 7,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1260,7 +1250,7 @@
         "type": "ui_tab",
         "name": "Download Files",
         "icon": "fa-download",
-        "order": 13,
+        "order": 7,
         "disabled": false,
         "hidden": false
     },
@@ -1269,7 +1259,7 @@
         "type": "ui_group",
         "name": "Download Files",
         "tab": "3a6bb13f.c9703e",
-        "order": 11,
+        "order": 5,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -2105,6 +2095,17 @@
         "height": 1
     },
     {
+        "id": "f42915687348c79a",
+        "type": "ui_group",
+        "name": "Expert Mode",
+        "tab": "3a6bb13f.c9703e",
+        "order": 13,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "6465bdd5.15eb8c",
         "type": "file in",
         "z": "1c24ad9c.bebec2",
@@ -2462,7 +2463,7 @@
         "templateScope": "local",
         "className": "",
         "x": 160,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -2485,7 +2486,7 @@
         "templateScope": "local",
         "className": "",
         "x": 130,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -2679,8 +2680,8 @@
         "group": "f3ca28ef.4df0a8",
         "name": "Shutdown information",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 5,
+        "height": 3,
         "format": "<center>To prevent data corruption, please <b>always shutdown the machine</b> before unplugging the unit.\n<br><br>\nRemember to first unlock the shutdown button.\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": false,
@@ -2834,7 +2835,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 840,
+        "y": 820,
         "wires": [
             []
         ]
@@ -2856,7 +2857,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 140,
-        "y": 840,
+        "y": 820,
         "wires": [
             [
                 "2ec0a88c34526b86"
@@ -2875,7 +2876,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 980,
+        "y": 1040,
         "wires": [
             [
                 "e6b7cbb8e551345f"
@@ -2889,7 +2890,7 @@
         "name": "show/hide net groups",
         "events": "change",
         "x": 760,
-        "y": 980,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -2899,8 +2900,8 @@
         "type": "ui_multistate_switch",
         "z": "eaae323a.31b3",
         "name": "Mode selection",
-        "group": "8765cf17cd3404ab",
-        "order": 1,
+        "group": "f42915687348c79a",
+        "order": 2,
         "width": 6,
         "height": 1,
         "label": "",
@@ -2931,7 +2932,7 @@
         ],
         "topic": "",
         "x": 360,
-        "y": 940,
+        "y": 1000,
         "wires": [
             [
                 "093dbbaa548cf9b7",
@@ -2947,6 +2948,11 @@
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "enable",
+                "v": "false",
+                "vt": "bool"
             }
         ],
         "repeat": "",
@@ -2957,7 +2963,7 @@
         "payload": "mode",
         "payloadType": "global",
         "x": 140,
-        "y": 940,
+        "y": 1000,
         "wires": [
             [
                 "b03ce7341ff73485"
@@ -2984,7 +2990,7 @@
         "to": "",
         "reg": false,
         "x": 760,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "b6e04f52920c6dcb"
@@ -3007,7 +3013,7 @@
             "a45e550cb5e1c1d1"
         ],
         "x": 895,
-        "y": 900,
+        "y": 960,
         "wires": []
     },
     {
@@ -3025,7 +3031,7 @@
             "c2d9b90e27bc022c"
         ],
         "x": 215,
-        "y": 1040,
+        "y": 1100,
         "wires": [
             [
                 "b03ce7341ff73485"
@@ -3044,7 +3050,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "dbe54a0a0d8893fc"
@@ -3067,7 +3073,7 @@
         "templateScope": "local",
         "className": "",
         "x": 170,
-        "y": 340,
+        "y": 380,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -3090,7 +3096,7 @@
         "templateScope": "local",
         "className": "",
         "x": 140,
-        "y": 380,
+        "y": 420,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -3113,7 +3119,7 @@
         "templateScope": "local",
         "className": "",
         "x": 130,
-        "y": 420,
+        "y": 460,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -3136,7 +3142,7 @@
         "templateScope": "local",
         "className": "",
         "x": 160,
-        "y": 260,
+        "y": 300,
         "wires": [
             [
                 "4e78af2d.90be7"
@@ -3159,10 +3165,57 @@
         "templateScope": "local",
         "className": "",
         "x": 140,
-        "y": 460,
+        "y": 220,
         "wires": [
             [
                 "4e78af2d.90be7"
+            ]
+        ]
+    },
+    {
+        "id": "ac20dc1a08cc9deb",
+        "type": "ui_button",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "group": "f42915687348c79a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Unlock Expert Mode",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "unlock",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 120,
+        "y": 880,
+        "wires": [
+            [
+                "8e250b5519f3236d"
+            ]
+        ]
+    },
+    {
+        "id": "8e250b5519f3236d",
+        "type": "function",
+        "z": "eaae323a.31b3",
+        "name": "Toggle",
+        "func": "msg.enable = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 880,
+        "wires": [
+            [
+                "b03ce7341ff73485"
             ]
         ]
     },
@@ -9337,7 +9390,7 @@
         "step": "0.1",
         "className": "",
         "x": 670,
-        "y": 160,
+        "y": 180,
         "wires": [
             [
                 "fb887036.12429",
@@ -9353,8 +9406,8 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 795,
-        "y": 180,
+        "x": 775,
+        "y": 160,
         "wires": [
             [
                 "99b11fe4.2795d"
@@ -9442,8 +9495,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 160,
+        "x": 350,
+        "y": 180,
         "wires": [
             [
                 "49ea1123.ee1768"
@@ -11489,6 +11542,1205 @@
         "wires": [
             [
                 "c8749cbb.55254"
+            ]
+        ]
+    },
+    {
+        "id": "fc810aba72e5e946",
+        "type": "dir2files",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "dirname": "/home/pi/data/img",
+        "pathRegex": "",
+        "isRecursive": true,
+        "findDir": true,
+        "isArray": true,
+        "x": 500,
+        "y": 220,
+        "wires": [
+            [
+                "5cd546871808739f"
+            ]
+        ],
+        "inputLabels": [
+            "files"
+        ]
+    },
+    {
+        "id": "69ed58a84c8f6965",
+        "type": "inject",
+        "z": "ee49a6917e33b587",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "cde4a7eadbcd7348"
+            ]
+        ]
+    },
+    {
+        "id": "eba66c193415778c",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "update list_path1",
+        "func": "var list_path1 = flow.get('list_path1');\n\nif (list_path1 === undefined || list_path1 === \"\") {\n    list_path1 = []\n    console.log(\"error\")\n}\n\npath = \"data/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (list_path1.includes(path) === false){\n        list_path1.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = list_path1.indexOf(path)\n    list_path1.splice(pos, 1)\n}\n\nflow.set('list_path1', list_path1)\nflow.set('list_path2', [])\nflow.set('list_path3', [])\n\nreturn {};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 320,
+        "wires": [
+            [
+                "8007c75096f8ea69"
+            ]
+        ]
+    },
+    {
+        "id": "4bc096796a557677",
+        "type": "change",
+        "z": "ee49a6917e33b587",
+        "name": "Reset All List",
+        "rules": [
+            {
+                "t": "set",
+                "p": "list_path",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "list_path1",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "list_path2",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "list_path3",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "bouton_choice",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "download_path",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 180,
+        "wires": [
+            [
+                "8007c75096f8ea69",
+                "7cef951a56a80418",
+                "d333608e0d967c90"
+            ]
+        ]
+    },
+    {
+        "id": "5cd546871808739f",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "remove common",
+        "func": "function remove_path(item, index, array) {\n  array[index] = item.replace(\"/home/pi/data/\", \"\")\n} \n\nmsg.payload.forEach(remove_path)\nmsg.topic = \"list_path\"\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "2da5b04af4aa162f",
+                "8007c75096f8ea69"
+            ]
+        ]
+    },
+    {
+        "id": "c5a981d121c3e0a1",
+        "type": "ui_list",
+        "z": "ee49a6917e33b587",
+        "group": "4a1683be6c899941",
+        "name": "",
+        "order": 1,
+        "width": 8,
+        "height": 6,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 850,
+        "y": 320,
+        "wires": [
+            [
+                "eba66c193415778c",
+                "46f6bef9bbaff6d6"
+            ]
+        ]
+    },
+    {
+        "id": "cde4a7eadbcd7348",
+        "type": "ui_multistate_switch",
+        "z": "ee49a6917e33b587",
+        "name": "Selections Dossiers",
+        "group": "9666b54a41785169",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "change",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "All",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Images",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            },
+            {
+                "label": "Objects",
+                "value": "2",
+                "valueType": "num",
+                "color": "#ff6666"
+            }
+        ],
+        "topic": "",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "786f625705d4b138",
+                "4bc096796a557677",
+                "ce6a4d0c368155fc"
+            ]
+        ]
+    },
+    {
+        "id": "9e83d1c96ed6acb5",
+        "type": "dir2files",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "dirname": "/home/pi/data/objects",
+        "pathRegex": "",
+        "isRecursive": true,
+        "findDir": true,
+        "isArray": true,
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "5cd546871808739f"
+            ]
+        ]
+    },
+    {
+        "id": "786f625705d4b138",
+        "type": "switch",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "4bc096796a557677"
+            ],
+            [
+                "fc810aba72e5e946"
+            ],
+            [
+                "9e83d1c96ed6acb5"
+            ]
+        ]
+    },
+    {
+        "id": "8ab20d99e15f9d79",
+        "type": "ui_dropdown",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Choose USB device",
+        "group": "9666b54a41785169",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "No Drive Detected",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "device_path",
+        "topicType": "str",
+        "className": "",
+        "x": 820,
+        "y": 580,
+        "wires": [
+            [
+                "177bc1aceabf890b"
+            ]
+        ]
+    },
+    {
+        "id": "1d91037f349c365d",
+        "type": "ui_button",
+        "z": "ee49a6917e33b587",
+        "name": "Detect drive",
+        "group": "9666b54a41785169",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Detect drive",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-usb fa-2x",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "7641929e284f8259"
+            ]
+        ]
+    },
+    {
+        "id": "7641929e284f8259",
+        "type": "exec",
+        "z": "ee49a6917e33b587",
+        "command": "lsblk --bytes --json --paths --output-all",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "detect drive",
+        "x": 310,
+        "y": 580,
+        "wires": [
+            [
+                "848ae15a09506f17"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "848ae15a09506f17",
+        "type": "json",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 580,
+        "wires": [
+            [
+                "acdeb250539a9d91"
+            ]
+        ]
+    },
+    {
+        "id": "acdeb250539a9d91",
+        "type": "change",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "[payload.blockdevices.children[mountpoint=null].name]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 580,
+        "wires": [
+            [
+                "8ab20d99e15f9d79"
+            ]
+        ]
+    },
+    {
+        "id": "e690c0b6f9091e27",
+        "type": "ui_button",
+        "z": "ee49a6917e33b587",
+        "name": "Backup to USB",
+        "group": "9666b54a41785169",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Backup to USB",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "archive",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "USB Backup",
+        "topicType": "str",
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "cb91da4b183ac947"
+            ]
+        ]
+    },
+    {
+        "id": "177bc1aceabf890b",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "set local",
+        "func": "flow.set(msg.topic,msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb91da4b183ac947",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "get device_path",
+        "func": "msg.payload = flow.get(\"device_path\");\nvar download_path = flow.get(\"download_path\")\nif (download_path != undefined) {\n    msg.payload = msg.payload + \" \" + download_path;\n}\nelse {\n    msg.payload = msg.payload + \" data/\";\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 660,
+        "wires": [
+            [
+                "7f26cf9f0c34f41c"
+            ]
+        ]
+    },
+    {
+        "id": "2356b9c6a799057d",
+        "type": "exec",
+        "z": "ee49a6917e33b587",
+        "command": "sudo /home/pi/PlanktoScope/scripts/bash/usb_backup.sh",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "usb_backup.sh",
+        "x": 700,
+        "y": 680,
+        "wires": [
+            [
+                "85c8cc35300aadd9"
+            ],
+            [],
+            [
+                "e9c8dc20cfa646a9"
+            ]
+        ]
+    },
+    {
+        "id": "7f26cf9f0c34f41c",
+        "type": "switch",
+        "z": "ee49a6917e33b587",
+        "name": "No Drive",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "No Drive Detected",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 500,
+        "y": 660,
+        "wires": [
+            [
+                "f0faf613fee90606"
+            ],
+            [
+                "2356b9c6a799057d",
+                "db3b4dd37386d61f"
+            ]
+        ]
+    },
+    {
+        "id": "f0faf613fee90606",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 690,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85c8cc35300aadd9",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 910,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "5608baf86cae1a79",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1090,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e9c8dc20cfa646a9",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "return code",
+        "func": "switch (msg.payload.code){\ncase 0:\n    msg.payload = \"All files successfully copied, you can remove your usb drive!\";\n    break;\ncase 1:\n    msg.payload = \"There was an error!\";\n    break;\ncase 2:\n    msg.payload = \"Error: your device is already mounted\"\n    break;\ncase 3:\n    msg.payload = \"Error while mounting the device\"\n    break;\ncase 4:\n    msg.payload = \"Error: some files were corrupted during the copy!\"\n    break;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 700,
+        "wires": [
+            [
+                "5608baf86cae1a79"
+            ]
+        ]
+    },
+    {
+        "id": "db3b4dd37386d61f",
+        "type": "change",
+        "z": "ee49a6917e33b587",
+        "name": "Backup starting message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"The backup is starting now, please wait for the complete message before removing the drive\"",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 740,
+        "wires": [
+            [
+                "5608baf86cae1a79"
+            ]
+        ]
+    },
+    {
+        "id": "6f3de2b116d58cd7",
+        "type": "ui_list",
+        "z": "ee49a6917e33b587",
+        "group": "35b8cc9737fbb93c",
+        "name": "",
+        "order": 1,
+        "width": 8,
+        "height": 6,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 850,
+        "y": 400,
+        "wires": [
+            [
+                "5a7b2f6129ca8305",
+                "46f6bef9bbaff6d6"
+            ]
+        ]
+    },
+    {
+        "id": "b92196c037facd99",
+        "type": "ui_list",
+        "z": "ee49a6917e33b587",
+        "group": "7775cf1d4585df3b",
+        "name": "",
+        "order": 1,
+        "width": 8,
+        "height": 6,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 850,
+        "y": 500,
+        "wires": [
+            [
+                "6d5f76b4bbfff883",
+                "46f6bef9bbaff6d6"
+            ]
+        ]
+    },
+    {
+        "id": "767f13fcd7ed3f35",
+        "type": "ui_text",
+        "z": "ee49a6917e33b587",
+        "group": "9666b54a41785169",
+        "order": 4,
+        "width": 8,
+        "height": 2,
+        "name": "",
+        "label": "You are going to download or delete",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "8007c75096f8ea69",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "Only keep img or obj",
+        "func": "function remove_not_img_or_obj(item, index, array) {\n    const regex = new RegExp('(img|objects)\\/.+\\/.+');\n    if (regex.test(array[index])==false) {\n        if ((list_path.length==1 && (\"data/\"+array[index])==list_path[0]) || (list_path.length>=2 && (\"data/\"+array[index])==list_path[1])) {\n            msg1.payload.push({\"title\":array[index],\"isChecked\":true});\n            if (list_path.length>1) {\n                flow.set(\"list_path1\",[list_path[1]])\n            }\n        } else { \n            msg1.payload.push(array[index]);\n        }\n    }\n}\nlist_path=flow.get(\"list_path1\")\n\nif (list_path==undefined) {\n    list_path=[];\n}\n\nmsg1 = {payload:[]}\nmsg.payload = flow.get(\"list_path\")\nmsg.payload.forEach(remove_not_img_or_obj)\n\nreturn msg1",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "c5a981d121c3e0a1",
+                "7cef951a56a80418"
+            ]
+        ]
+    },
+    {
+        "id": "2da5b04af4aa162f",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "set local",
+        "func": "flow.set(msg.topic,msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a7b2f6129ca8305",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "update list_path2",
+        "func": "var list_path2 = flow.get('list_path2');\n\nif (list_path2 === undefined || list_path2 === \"\") {\n    list_path2 = []\n    console.log(\"error\")\n}\n\npath = \"data/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (list_path2.includes(path) === false){\n        list_path2.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = list_path2.indexOf(path)\n    list_path2.splice(pos, 1)\n}\n\nflow.set('list_path2', list_path2)\nflow.set('list_path3', [])\n\nreturn {}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 400,
+        "wires": [
+            [
+                "7cef951a56a80418"
+            ]
+        ]
+    },
+    {
+        "id": "6d5f76b4bbfff883",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "update list_path3",
+        "func": "var list_path3 = flow.get('list_path3');\n\nif (list_path3 === undefined || list_path3 === \"\") {\n    list_path3 = []\n    console.log(\"error\")\n}\n\npath = \"data/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (list_path3.includes(path) === false){\n        list_path3.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = list_path3.indexOf(path)\n    list_path3.splice(pos, 1)\n}\n\nflow.set('list_path3', list_path3)\n\nreturn {}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 500,
+        "wires": [
+            [
+                "d333608e0d967c90"
+            ]
+        ]
+    },
+    {
+        "id": "7cef951a56a80418",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "Only keep img or obj => /something",
+        "func": "function remove_not_img_or_obj(item, index, array) {\n    const regex1 = new RegExp(path+'\\/.+\\/.+');\n    const regex2 = new RegExp(path+'\\/.+');\n    if (regex1.test(\"data/\"+array[index])==false && regex2.test(\"data/\"+array[index])==true) {\n        if ((list_path.length==1 && (\"data/\"+array[index])==list_path[0]) || (list_path.length>=2 && (\"data/\"+array[index])==list_path[1])) {\n            msg1.payload.push({\"title\":array[index],\"isChecked\":true});\n            if (list_path.length>1) {\n                flow.set(\"list_path2\",[list_path[1]])\n            }\n        } else { \n            msg1.payload.push(array[index]);\n        }\n    }\n}\npath=flow.get(\"list_path1\")\nif (path==undefined) {\n    path=\"\"\n} else {\n    path=path[0]\n}\n\nlist_path=flow.get(\"list_path2\")\nif (list_path==undefined) {\n    list_path=[];\n}\n\nmsg1 = {payload:[]}\nmsg.payload = flow.get(\"list_path\")\nmsg.payload.forEach(remove_not_img_or_obj)\n\nreturn msg1",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "6f3de2b116d58cd7",
+                "d333608e0d967c90"
+            ]
+        ]
+    },
+    {
+        "id": "d333608e0d967c90",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "Only keep img or obj => /something/something",
+        "func": "function remove_not_img_or_obj(item, index, array) {\n    const regex = new RegExp(path+'\\/.+');\n    if (regex.test(\"data/\"+array[index])==true) {\n        if ((list_path.length==1 && (\"data/\"+array[index])==list_path[0]) || (list_path.length>=2 && (\"data/\"+array[index])==list_path[1])) {\n            msg1.payload.push({\"title\":array[index],\"isChecked\":true});\n            if (list_path.length>1) {\n                flow.set(\"list_path3\",[list_path[1]])\n            }\n        } else { \n            msg1.payload.push(array[index]);\n        }\n    }\n}\npath=flow.get(\"list_path2\")\nif (path==undefined) {\n    path=\"\"\n} else {\n    path=path[0]\n}\n\nlist_path=flow.get(\"list_path3\")\nif (list_path==undefined) {\n    list_path=[];\n}\n\nmsg1 = {payload:[]}\nmsg.payload = flow.get(\"list_path\")\nmsg.payload.forEach(remove_not_img_or_obj)\n\nreturn msg1",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 500,
+        "wires": [
+            [
+                "b92196c037facd99"
+            ]
+        ]
+    },
+    {
+        "id": "111b153dfaaf2f68",
+        "type": "link in",
+        "z": "ee49a6917e33b587",
+        "name": "Texte download",
+        "links": [
+            "46f6bef9bbaff6d6",
+            "ce6a4d0c368155fc",
+            "44343e3703437644",
+            "7c5352c31c1ac346"
+        ],
+        "x": 445,
+        "y": 800,
+        "wires": [
+            [
+                "724a4ac3403262b6"
+            ]
+        ]
+    },
+    {
+        "id": "46f6bef9bbaff6d6",
+        "type": "link out",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "111b153dfaaf2f68"
+        ],
+        "x": 995,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ce6a4d0c368155fc",
+        "type": "link out",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "111b153dfaaf2f68"
+        ],
+        "x": 295,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "724a4ac3403262b6",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "choose folder",
+        "func": "bouton = flow.get(\"bouton_choice\")\nvar download_path;\n\nif (bouton==0) {\n    download_path = \"data/\"\n} else {\n    path1 = flow.get(\"list_path1\")\n    path2 = flow.get(\"list_path2\")\n    path3 = flow.get(\"list_path3\")\n    \n    if (path3!=undefined && path3.length>=1) {\n        download_path = path3[0]\n    } else if (path2!=undefined && path2.length>=1) {\n        download_path = path2[0]\n    } else if (path1!=undefined && path1.length>=1) {\n        download_path = path1[0]\n    } else if (bouton==1) {\n        download_path = \"data/img/\"\n    } else {\n        download_path = \"data/objects/\"\n    }\n}\n\nflow.set(\"download_path\", download_path)\n\nmsg = {payload:download_path}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 800,
+        "wires": [
+            [
+                "767f13fcd7ed3f35"
+            ]
+        ]
+    },
+    {
+        "id": "4156bf50b481d8ba",
+        "type": "ui_button",
+        "z": "ee49a6917e33b587",
+        "name": "Delete Files",
+        "group": "9666b54a41785169",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete Files",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "fa-trash",
+        "payload": "Do you realy want to delete this files ?",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "d466bda2afaa4036"
+            ]
+        ]
+    },
+    {
+        "id": "d466bda2afaa4036",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "YES",
+        "cancel": "NO",
+        "raw": false,
+        "className": "",
+        "topic": "Delete files",
+        "name": "Confirmation message",
+        "x": 320,
+        "y": 880,
+        "wires": [
+            [
+                "76eaad03795c7a37"
+            ]
+        ]
+    },
+    {
+        "id": "76eaad03795c7a37",
+        "type": "switch",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "YES",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 880,
+        "wires": [
+            [
+                "974b84c90d916a0d"
+            ]
+        ]
+    },
+    {
+        "id": "974b84c90d916a0d",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "get device_path",
+        "func": "var download_path = flow.get(\"download_path\")\nif (download_path != undefined) {\n    msg.payload = download_path;\n}\nelse {\n    msg.payload = msg.payload + \" data/\";\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 880,
+        "wires": [
+            [
+                "eb19afeb514accc0"
+            ]
+        ]
+    },
+    {
+        "id": "341947559e2690af",
+        "type": "exec",
+        "z": "ee49a6917e33b587",
+        "command": "sudo rm -r ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "delete",
+        "x": 430,
+        "y": 1020,
+        "wires": [
+            [
+                "89fa218f5f81f8ef"
+            ],
+            [],
+            [
+                "362342c1bac176db"
+            ]
+        ]
+    },
+    {
+        "id": "89fa218f5f81f8ef",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Delete files : Error",
+        "name": "",
+        "x": 600,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "dc850832f3e442f7",
+        "type": "change",
+        "z": "ee49a6917e33b587",
+        "name": "Backup starting message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The delete is starting now, please wait",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 1080,
+        "wires": [
+            [
+                "b10aaa95e1bf18bb"
+            ]
+        ]
+    },
+    {
+        "id": "b10aaa95e1bf18bb",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Delete Files",
+        "name": "",
+        "x": 810,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "362342c1bac176db",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "func": "msg.payload = \"Delete Completed\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1040,
+        "wires": [
+            [
+                "b10aaa95e1bf18bb",
+                "be9e189760ae0a40"
+            ]
+        ]
+    },
+    {
+        "id": "eb19afeb514accc0",
+        "type": "ui_toast",
+        "z": "ee49a6917e33b587",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "YES",
+        "cancel": "NO",
+        "raw": false,
+        "className": "",
+        "topic": "You are going to delete all this folder",
+        "name": "Confirmation message",
+        "x": 840,
+        "y": 880,
+        "wires": [
+            [
+                "14069623f462fc9e"
+            ]
+        ]
+    },
+    {
+        "id": "14069623f462fc9e",
+        "type": "switch",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "YES",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 1020,
+        "wires": [
+            [
+                "dc850832f3e442f7",
+                "c5ebeb93c0047247"
+            ]
+        ]
+    },
+    {
+        "id": "c5ebeb93c0047247",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "func": "msg.payload = \"~/\" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 1020,
+        "wires": [
+            [
+                "341947559e2690af"
+            ]
+        ]
+    },
+    {
+        "id": "83b19dee1f28db21",
+        "type": "link in",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "links": [
+            "be9e189760ae0a40"
+        ],
+        "x": 55,
+        "y": 300,
+        "wires": [
+            [
+                "eec9e1c8fd75cd0d"
+            ]
+        ]
+    },
+    {
+        "id": "be9e189760ae0a40",
+        "type": "link out",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "83b19dee1f28db21"
+        ],
+        "x": 755,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "eec9e1c8fd75cd0d",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "Reset",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "cde4a7eadbcd7348"
             ]
         ]
     },
@@ -18807,1204 +20059,5 @@
         "x": 805,
         "y": 160,
         "wires": []
-    },
-    {
-        "id": "fc810aba72e5e946",
-        "type": "dir2files",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "dirname": "/home/pi/data/img",
-        "pathRegex": "",
-        "isRecursive": true,
-        "findDir": true,
-        "isArray": true,
-        "x": 500,
-        "y": 220,
-        "wires": [
-            [
-                "5cd546871808739f"
-            ]
-        ],
-        "inputLabels": [
-            "files"
-        ]
-    },
-    {
-        "id": "69ed58a84c8f6965",
-        "type": "inject",
-        "z": "ee49a6917e33b587",
-        "name": "Init",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 130,
-        "y": 180,
-        "wires": [
-            [
-                "cde4a7eadbcd7348"
-            ]
-        ]
-    },
-    {
-        "id": "eba66c193415778c",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "update list_path1",
-        "func": "var list_path1 = flow.get('list_path1');\n\nif (list_path1 === undefined || list_path1 === \"\") {\n    list_path1 = []\n    console.log(\"error\")\n}\n\npath = \"data/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (list_path1.includes(path) === false){\n        list_path1.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = list_path1.indexOf(path)\n    list_path1.splice(pos, 1)\n}\n\nflow.set('list_path1', list_path1)\nflow.set('list_path2', [])\nflow.set('list_path3', [])\n\nreturn {};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1030,
-        "y": 320,
-        "wires": [
-            [
-                "8007c75096f8ea69"
-            ]
-        ]
-    },
-    {
-        "id": "4bc096796a557677",
-        "type": "change",
-        "z": "ee49a6917e33b587",
-        "name": "Reset All List",
-        "rules": [
-            {
-                "t": "set",
-                "p": "list_path",
-                "pt": "flow",
-                "to": "[]",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "list_path1",
-                "pt": "flow",
-                "to": "[]",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "list_path2",
-                "pt": "flow",
-                "to": "[]",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "list_path3",
-                "pt": "flow",
-                "to": "[]",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "bouton_choice",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "download_path",
-                "pt": "flow",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 180,
-        "wires": [
-            [
-                "8007c75096f8ea69",
-                "7cef951a56a80418",
-                "d333608e0d967c90"
-            ]
-        ]
-    },
-    {
-        "id": "5cd546871808739f",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "remove common",
-        "func": "function remove_path(item, index, array) {\n  array[index] = item.replace(\"/home/pi/data/\", \"\")\n} \n\nmsg.payload.forEach(remove_path)\nmsg.topic = \"list_path\"\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 690,
-        "y": 220,
-        "wires": [
-            [
-                "2da5b04af4aa162f",
-                "8007c75096f8ea69"
-            ]
-        ]
-    },
-    {
-        "id": "c5a981d121c3e0a1",
-        "type": "ui_list",
-        "z": "ee49a6917e33b587",
-        "group": "4a1683be6c899941",
-        "name": "",
-        "order": 1,
-        "width": 8,
-        "height": 6,
-        "lineType": "one",
-        "actionType": "check",
-        "allowHTML": false,
-        "outputs": 1,
-        "topic": "",
-        "x": 850,
-        "y": 320,
-        "wires": [
-            [
-                "eba66c193415778c",
-                "46f6bef9bbaff6d6"
-            ]
-        ]
-    },
-    {
-        "id": "cde4a7eadbcd7348",
-        "type": "ui_multistate_switch",
-        "z": "ee49a6917e33b587",
-        "name": "Selections Dossiers",
-        "group": "9666b54a41785169",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "change",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "All",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Images",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            },
-            {
-                "label": "Objects",
-                "value": "2",
-                "valueType": "num",
-                "color": "#ff6666"
-            }
-        ],
-        "topic": "",
-        "x": 150,
-        "y": 240,
-        "wires": [
-            [
-                "786f625705d4b138",
-                "4bc096796a557677",
-                "ce6a4d0c368155fc"
-            ]
-        ]
-    },
-    {
-        "id": "9e83d1c96ed6acb5",
-        "type": "dir2files",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "dirname": "/home/pi/data/objects",
-        "pathRegex": "",
-        "isRecursive": true,
-        "findDir": true,
-        "isArray": true,
-        "x": 500,
-        "y": 260,
-        "wires": [
-            [
-                "5cd546871808739f"
-            ]
-        ]
-    },
-    {
-        "id": "786f625705d4b138",
-        "type": "switch",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "2",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 3,
-        "x": 330,
-        "y": 240,
-        "wires": [
-            [
-                "4bc096796a557677"
-            ],
-            [
-                "fc810aba72e5e946"
-            ],
-            [
-                "9e83d1c96ed6acb5"
-            ]
-        ]
-    },
-    {
-        "id": "8ab20d99e15f9d79",
-        "type": "ui_dropdown",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "label": "",
-        "tooltip": "",
-        "place": "Choose USB device",
-        "group": "9666b54a41785169",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "multiple": false,
-        "options": [
-            {
-                "label": "",
-                "value": "No Drive Detected",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "device_path",
-        "topicType": "str",
-        "className": "",
-        "x": 820,
-        "y": 580,
-        "wires": [
-            [
-                "177bc1aceabf890b"
-            ]
-        ]
-    },
-    {
-        "id": "1d91037f349c365d",
-        "type": "ui_button",
-        "z": "ee49a6917e33b587",
-        "name": "Detect drive",
-        "group": "9666b54a41785169",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Detect drive",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-usb fa-2x",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 130,
-        "y": 580,
-        "wires": [
-            [
-                "7641929e284f8259"
-            ]
-        ]
-    },
-    {
-        "id": "7641929e284f8259",
-        "type": "exec",
-        "z": "ee49a6917e33b587",
-        "command": "lsblk --bytes --json --paths --output-all",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "detect drive",
-        "x": 310,
-        "y": 580,
-        "wires": [
-            [
-                "848ae15a09506f17"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "848ae15a09506f17",
-        "type": "json",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 470,
-        "y": 580,
-        "wires": [
-            [
-                "acdeb250539a9d91"
-            ]
-        ]
-    },
-    {
-        "id": "acdeb250539a9d91",
-        "type": "change",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "options",
-                "pt": "msg",
-                "to": "[payload.blockdevices.children[mountpoint=null].name]",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 640,
-        "y": 580,
-        "wires": [
-            [
-                "8ab20d99e15f9d79"
-            ]
-        ]
-    },
-    {
-        "id": "e690c0b6f9091e27",
-        "type": "ui_button",
-        "z": "ee49a6917e33b587",
-        "name": "Backup to USB",
-        "group": "9666b54a41785169",
-        "order": 5,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Backup to USB",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "archive",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "USB Backup",
-        "topicType": "str",
-        "x": 140,
-        "y": 660,
-        "wires": [
-            [
-                "cb91da4b183ac947"
-            ]
-        ]
-    },
-    {
-        "id": "177bc1aceabf890b",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "set local",
-        "func": "flow.set(msg.topic,msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 980,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cb91da4b183ac947",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "get device_path",
-        "func": "msg.payload = flow.get(\"device_path\");\nvar download_path = flow.get(\"download_path\")\nif (download_path != undefined) {\n    msg.payload = msg.payload + \" \" + download_path;\n}\nelse {\n    msg.payload = msg.payload + \" data/\";\n}\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 660,
-        "wires": [
-            [
-                "7f26cf9f0c34f41c"
-            ]
-        ]
-    },
-    {
-        "id": "2356b9c6a799057d",
-        "type": "exec",
-        "z": "ee49a6917e33b587",
-        "command": "sudo /home/pi/PlanktoScope/scripts/bash/usb_backup.sh",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "usb_backup.sh",
-        "x": 700,
-        "y": 680,
-        "wires": [
-            [
-                "85c8cc35300aadd9"
-            ],
-            [],
-            [
-                "e9c8dc20cfa646a9"
-            ]
-        ]
-    },
-    {
-        "id": "7f26cf9f0c34f41c",
-        "type": "switch",
-        "z": "ee49a6917e33b587",
-        "name": "No Drive",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "No Drive Detected",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 500,
-        "y": 660,
-        "wires": [
-            [
-                "f0faf613fee90606"
-            ],
-            [
-                "2356b9c6a799057d",
-                "db3b4dd37386d61f"
-            ]
-        ]
-    },
-    {
-        "id": "f0faf613fee90606",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "dialog",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 690,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "85c8cc35300aadd9",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 910,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "5608baf86cae1a79",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "dialog",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 1090,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e9c8dc20cfa646a9",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "return code",
-        "func": "switch (msg.payload.code){\ncase 0:\n    msg.payload = \"All files successfully copied, you can remove your usb drive!\";\n    break;\ncase 1:\n    msg.payload = \"There was an error!\";\n    break;\ncase 2:\n    msg.payload = \"Error: your device is already mounted\"\n    break;\ncase 3:\n    msg.payload = \"Error while mounting the device\"\n    break;\ncase 4:\n    msg.payload = \"Error: some files were corrupted during the copy!\"\n    break;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 890,
-        "y": 700,
-        "wires": [
-            [
-                "5608baf86cae1a79"
-            ]
-        ]
-    },
-    {
-        "id": "db3b4dd37386d61f",
-        "type": "change",
-        "z": "ee49a6917e33b587",
-        "name": "Backup starting message",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "\"The backup is starting now, please wait for the complete message before removing the drive\"",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 730,
-        "y": 740,
-        "wires": [
-            [
-                "5608baf86cae1a79"
-            ]
-        ]
-    },
-    {
-        "id": "6f3de2b116d58cd7",
-        "type": "ui_list",
-        "z": "ee49a6917e33b587",
-        "group": "35b8cc9737fbb93c",
-        "name": "",
-        "order": 1,
-        "width": 8,
-        "height": 6,
-        "lineType": "one",
-        "actionType": "check",
-        "allowHTML": false,
-        "outputs": 1,
-        "topic": "",
-        "x": 850,
-        "y": 400,
-        "wires": [
-            [
-                "5a7b2f6129ca8305",
-                "46f6bef9bbaff6d6"
-            ]
-        ]
-    },
-    {
-        "id": "b92196c037facd99",
-        "type": "ui_list",
-        "z": "ee49a6917e33b587",
-        "group": "7775cf1d4585df3b",
-        "name": "",
-        "order": 1,
-        "width": 8,
-        "height": 6,
-        "lineType": "one",
-        "actionType": "check",
-        "allowHTML": false,
-        "outputs": 1,
-        "topic": "",
-        "x": 850,
-        "y": 500,
-        "wires": [
-            [
-                "6d5f76b4bbfff883",
-                "46f6bef9bbaff6d6"
-            ]
-        ]
-    },
-    {
-        "id": "767f13fcd7ed3f35",
-        "type": "ui_text",
-        "z": "ee49a6917e33b587",
-        "group": "9666b54a41785169",
-        "order": 4,
-        "width": 8,
-        "height": 2,
-        "name": "",
-        "label": "You are going to download or delete",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "x": 820,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "8007c75096f8ea69",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "Only keep img or obj",
-        "func": "function remove_not_img_or_obj(item, index, array) {\n    const regex = new RegExp('(img|objects)\\/.+\\/.+');\n    if (regex.test(array[index])==false) {\n        if ((list_path.length==1 && (\"data/\"+array[index])==list_path[0]) || (list_path.length>=2 && (\"data/\"+array[index])==list_path[1])) {\n            msg1.payload.push({\"title\":array[index],\"isChecked\":true});\n            if (list_path.length>1) {\n                flow.set(\"list_path1\",[list_path[1]])\n            }\n        } else { \n            msg1.payload.push(array[index]);\n        }\n    }\n}\nlist_path=flow.get(\"list_path1\")\n\nif (list_path==undefined) {\n    list_path=[];\n}\n\nmsg1 = {payload:[]}\nmsg.payload = flow.get(\"list_path\")\nmsg.payload.forEach(remove_not_img_or_obj)\n\nreturn msg1",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 320,
-        "wires": [
-            [
-                "c5a981d121c3e0a1",
-                "7cef951a56a80418"
-            ]
-        ]
-    },
-    {
-        "id": "2da5b04af4aa162f",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "set local",
-        "func": "flow.set(msg.topic,msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 900,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5a7b2f6129ca8305",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "update list_path2",
-        "func": "var list_path2 = flow.get('list_path2');\n\nif (list_path2 === undefined || list_path2 === \"\") {\n    list_path2 = []\n    console.log(\"error\")\n}\n\npath = \"data/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (list_path2.includes(path) === false){\n        list_path2.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = list_path2.indexOf(path)\n    list_path2.splice(pos, 1)\n}\n\nflow.set('list_path2', list_path2)\nflow.set('list_path3', [])\n\nreturn {}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1030,
-        "y": 400,
-        "wires": [
-            [
-                "7cef951a56a80418"
-            ]
-        ]
-    },
-    {
-        "id": "6d5f76b4bbfff883",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "update list_path3",
-        "func": "var list_path3 = flow.get('list_path3');\n\nif (list_path3 === undefined || list_path3 === \"\") {\n    list_path3 = []\n    console.log(\"error\")\n}\n\npath = \"data/\" + msg.payload.title\n\nif (msg.payload.isChecked){\n    if (list_path3.includes(path) === false){\n        list_path3.push(path)\n    }\n    // Element already in list, don't push it more than once\n    //segmentation_list.push(msg.payload[\"title\"])\n}\nelse {\n    var pos = list_path3.indexOf(path)\n    list_path3.splice(pos, 1)\n}\n\nflow.set('list_path3', list_path3)\n\nreturn {}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1030,
-        "y": 500,
-        "wires": [
-            [
-                "d333608e0d967c90"
-            ]
-        ]
-    },
-    {
-        "id": "7cef951a56a80418",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "Only keep img or obj => /something",
-        "func": "function remove_not_img_or_obj(item, index, array) {\n    const regex1 = new RegExp(path+'\\/.+\\/.+');\n    const regex2 = new RegExp(path+'\\/.+');\n    if (regex1.test(\"data/\"+array[index])==false && regex2.test(\"data/\"+array[index])==true) {\n        if ((list_path.length==1 && (\"data/\"+array[index])==list_path[0]) || (list_path.length>=2 && (\"data/\"+array[index])==list_path[1])) {\n            msg1.payload.push({\"title\":array[index],\"isChecked\":true});\n            if (list_path.length>1) {\n                flow.set(\"list_path2\",[list_path[1]])\n            }\n        } else { \n            msg1.payload.push(array[index]);\n        }\n    }\n}\npath=flow.get(\"list_path1\")\nif (path==undefined) {\n    path=\"\"\n} else {\n    path=path[0]\n}\n\nlist_path=flow.get(\"list_path2\")\nif (list_path==undefined) {\n    list_path=[];\n}\n\nmsg1 = {payload:[]}\nmsg.payload = flow.get(\"list_path\")\nmsg.payload.forEach(remove_not_img_or_obj)\n\nreturn msg1",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 400,
-        "wires": [
-            [
-                "6f3de2b116d58cd7",
-                "d333608e0d967c90"
-            ]
-        ]
-    },
-    {
-        "id": "d333608e0d967c90",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "Only keep img or obj => /something/something",
-        "func": "function remove_not_img_or_obj(item, index, array) {\n    const regex = new RegExp(path+'\\/.+');\n    if (regex.test(\"data/\"+array[index])==true) {\n        if ((list_path.length==1 && (\"data/\"+array[index])==list_path[0]) || (list_path.length>=2 && (\"data/\"+array[index])==list_path[1])) {\n            msg1.payload.push({\"title\":array[index],\"isChecked\":true});\n            if (list_path.length>1) {\n                flow.set(\"list_path3\",[list_path[1]])\n            }\n        } else { \n            msg1.payload.push(array[index]);\n        }\n    }\n}\npath=flow.get(\"list_path2\")\nif (path==undefined) {\n    path=\"\"\n} else {\n    path=path[0]\n}\n\nlist_path=flow.get(\"list_path3\")\nif (list_path==undefined) {\n    list_path=[];\n}\n\nmsg1 = {payload:[]}\nmsg.payload = flow.get(\"list_path\")\nmsg.payload.forEach(remove_not_img_or_obj)\n\nreturn msg1",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 600,
-        "y": 500,
-        "wires": [
-            [
-                "b92196c037facd99"
-            ]
-        ]
-    },
-    {
-        "id": "111b153dfaaf2f68",
-        "type": "link in",
-        "z": "ee49a6917e33b587",
-        "name": "Texte download",
-        "links": [
-            "46f6bef9bbaff6d6",
-            "ce6a4d0c368155fc",
-            "44343e3703437644",
-            "7c5352c31c1ac346"
-        ],
-        "x": 445,
-        "y": 800,
-        "wires": [
-            [
-                "724a4ac3403262b6"
-            ]
-        ]
-    },
-    {
-        "id": "46f6bef9bbaff6d6",
-        "type": "link out",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "111b153dfaaf2f68"
-        ],
-        "x": 995,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "ce6a4d0c368155fc",
-        "type": "link out",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "111b153dfaaf2f68"
-        ],
-        "x": 295,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "724a4ac3403262b6",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "choose folder",
-        "func": "bouton = flow.get(\"bouton_choice\")\nvar download_path;\n\nif (bouton==0) {\n    download_path = \"data/\"\n} else {\n    path1 = flow.get(\"list_path1\")\n    path2 = flow.get(\"list_path2\")\n    path3 = flow.get(\"list_path3\")\n    \n    if (path3!=undefined && path3.length>=1) {\n        download_path = path3[0]\n    } else if (path2!=undefined && path2.length>=1) {\n        download_path = path2[0]\n    } else if (path1!=undefined && path1.length>=1) {\n        download_path = path1[0]\n    } else if (bouton==1) {\n        download_path = \"data/img/\"\n    } else {\n        download_path = \"data/objects/\"\n    }\n}\n\nflow.set(\"download_path\", download_path)\n\nmsg = {payload:download_path}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 560,
-        "y": 800,
-        "wires": [
-            [
-                "767f13fcd7ed3f35"
-            ]
-        ]
-    },
-    {
-        "id": "4156bf50b481d8ba",
-        "type": "ui_button",
-        "z": "ee49a6917e33b587",
-        "name": "Delete Files",
-        "group": "9666b54a41785169",
-        "order": 6,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Delete Files",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "red",
-        "className": "",
-        "icon": "fa-trash",
-        "payload": "Do you realy want to delete this files ?",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 130,
-        "y": 880,
-        "wires": [
-            [
-                "d466bda2afaa4036"
-            ]
-        ]
-    },
-    {
-        "id": "d466bda2afaa4036",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "YES",
-        "cancel": "NO",
-        "raw": false,
-        "className": "",
-        "topic": "Delete files",
-        "name": "Confirmation message",
-        "x": 320,
-        "y": 880,
-        "wires": [
-            [
-                "76eaad03795c7a37"
-            ]
-        ]
-    },
-    {
-        "id": "76eaad03795c7a37",
-        "type": "switch",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "YES",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 490,
-        "y": 880,
-        "wires": [
-            [
-                "974b84c90d916a0d"
-            ]
-        ]
-    },
-    {
-        "id": "974b84c90d916a0d",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "get device_path",
-        "func": "var download_path = flow.get(\"download_path\")\nif (download_path != undefined) {\n    msg.payload = download_path;\n}\nelse {\n    msg.payload = msg.payload + \" data/\";\n}\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 880,
-        "wires": [
-            [
-                "eb19afeb514accc0"
-            ]
-        ]
-    },
-    {
-        "id": "341947559e2690af",
-        "type": "exec",
-        "z": "ee49a6917e33b587",
-        "command": "sudo rm -r ",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "delete",
-        "x": 430,
-        "y": 1020,
-        "wires": [
-            [
-                "89fa218f5f81f8ef"
-            ],
-            [],
-            [
-                "362342c1bac176db"
-            ]
-        ]
-    },
-    {
-        "id": "89fa218f5f81f8ef",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "Delete files : Error",
-        "name": "",
-        "x": 600,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "dc850832f3e442f7",
-        "type": "change",
-        "z": "ee49a6917e33b587",
-        "name": "Backup starting message",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "The delete is starting now, please wait",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 370,
-        "y": 1080,
-        "wires": [
-            [
-                "b10aaa95e1bf18bb"
-            ]
-        ]
-    },
-    {
-        "id": "b10aaa95e1bf18bb",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "dialog",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "Delete Files",
-        "name": "",
-        "x": 810,
-        "y": 1080,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "362342c1bac176db",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "func": "msg.payload = \"Delete Completed\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 1040,
-        "wires": [
-            [
-                "b10aaa95e1bf18bb",
-                "be9e189760ae0a40"
-            ]
-        ]
-    },
-    {
-        "id": "eb19afeb514accc0",
-        "type": "ui_toast",
-        "z": "ee49a6917e33b587",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "YES",
-        "cancel": "NO",
-        "raw": false,
-        "className": "",
-        "topic": "You are going to delete all this folder",
-        "name": "Confirmation message",
-        "x": 840,
-        "y": 880,
-        "wires": [
-            [
-                "14069623f462fc9e"
-            ]
-        ]
-    },
-    {
-        "id": "14069623f462fc9e",
-        "type": "switch",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "YES",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 130,
-        "y": 1020,
-        "wires": [
-            [
-                "dc850832f3e442f7",
-                "c5ebeb93c0047247"
-            ]
-        ]
-    },
-    {
-        "id": "c5ebeb93c0047247",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "func": "msg.payload = \"~/\" + msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 290,
-        "y": 1020,
-        "wires": [
-            [
-                "341947559e2690af"
-            ]
-        ]
-    },
-    {
-        "id": "83b19dee1f28db21",
-        "type": "link in",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "links": [
-            "be9e189760ae0a40"
-        ],
-        "x": 55,
-        "y": 300,
-        "wires": [
-            [
-                "eec9e1c8fd75cd0d"
-            ]
-        ]
-    },
-    {
-        "id": "be9e189760ae0a40",
-        "type": "link out",
-        "z": "ee49a6917e33b587",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "83b19dee1f28db21"
-        ],
-        "x": 755,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "eec9e1c8fd75cd0d",
-        "type": "function",
-        "z": "ee49a6917e33b587",
-        "name": "Reset",
-        "func": "msg.payload = 0;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 150,
-        "y": 300,
-        "wires": [
-            [
-                "cde4a7eadbcd7348"
-            ]
-        ]
     }
 ]
