@@ -205,7 +205,7 @@
         "type": "ui_tab",
         "name": "System Monitoring",
         "icon": "fa-thermometer-full",
-        "order": 10,
+        "order": 9,
         "disabled": false,
         "hidden": false
     },
@@ -420,7 +420,7 @@
         "type": "ui_group",
         "name": "Gallery",
         "tab": "3a6bb13f.c9703e",
-        "order": 6,
+        "order": 5,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -431,7 +431,7 @@
         "type": "ui_group",
         "name": "Systeme Monitoring",
         "tab": "3a6bb13f.c9703e",
-        "order": 8,
+        "order": 7,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -675,7 +675,7 @@
         "type": "ui_tab",
         "name": "Wifi",
         "icon": "wifi",
-        "order": 11,
+        "order": 10,
         "disabled": false,
         "hidden": false
     },
@@ -684,7 +684,7 @@
         "type": "ui_tab",
         "name": "Administration",
         "icon": "fa-cogs",
-        "order": 12,
+        "order": 11,
         "disabled": false,
         "hidden": false
     },
@@ -693,7 +693,7 @@
         "type": "ui_tab",
         "name": "Hardware Settings",
         "icon": "fa-microchip",
-        "order": 13,
+        "order": 12,
         "disabled": false,
         "hidden": false
     },
@@ -723,7 +723,7 @@
         "type": "ui_group",
         "name": "Shutdown",
         "tab": "3a6bb13f.c9703e",
-        "order": 12,
+        "order": 11,
         "disp": true,
         "width": "5",
         "collapse": false,
@@ -1108,7 +1108,7 @@
         "type": "ui_group",
         "name": "Wifi",
         "tab": "3a6bb13f.c9703e",
-        "order": 9,
+        "order": 8,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1119,7 +1119,7 @@
         "type": "ui_group",
         "name": "Administration",
         "tab": "3a6bb13f.c9703e",
-        "order": 10,
+        "order": 9,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1130,7 +1130,7 @@
         "type": "ui_group",
         "name": "Hardware Settings",
         "tab": "3a6bb13f.c9703e",
-        "order": 11,
+        "order": 10,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1141,7 +1141,7 @@
         "type": "ui_tab",
         "name": "Gallery",
         "icon": "fa-file-image-o",
-        "order": 9,
+        "order": 7,
         "disabled": false,
         "hidden": false
     },
@@ -1198,22 +1198,11 @@
         "className": ""
     },
     {
-        "id": "15e287911568ec50",
-        "type": "ui_group",
-        "name": "Gallery v2",
-        "tab": "3a6bb13f.c9703e",
-        "order": 7,
-        "disp": false,
-        "width": "4",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "8432773e2c23d195",
         "type": "ui_tab",
         "name": "Download Files",
         "icon": "fa-download",
-        "order": 7,
+        "order": 8,
         "disabled": false,
         "hidden": false
     },
@@ -1222,7 +1211,7 @@
         "type": "ui_group",
         "name": "Download Files",
         "tab": "3a6bb13f.c9703e",
-        "order": 5,
+        "order": 6,
         "disp": false,
         "width": "4",
         "collapse": false,
@@ -1622,7 +1611,7 @@
         "type": "ui_group",
         "name": "Expert Mode",
         "tab": "3a6bb13f.c9703e",
-        "order": 13,
+        "order": 12,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -2598,52 +2587,11 @@
         ]
     },
     {
-        "id": "2ec0a88c34526b86",
-        "type": "function",
-        "z": "eaae323a.31b3",
-        "name": "Global mode setup",
-        "func": "var mode= 0;\nglobal.set(\"mode\",mode);\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 390,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "912aa8800e51bfa5",
-        "type": "inject",
-        "z": "eaae323a.31b3",
-        "name": "Setting mode global",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 140,
-        "y": 820,
-        "wires": [
-            [
-                "2ec0a88c34526b86"
-            ]
-        ]
-    },
-    {
         "id": "6907b9e455dd2cfb",
         "type": "function",
         "z": "eaae323a.31b3",
         "name": "Change mode",
-        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Group_11\", \"Home_Group_1\",\"Home_Group_2\", \"Home_Group_3\", \"Home_Group_4\", \"Home_Group_5\", \"Home_Group_6\", \"Home_Group_7\", \"Home_Group_8\", \"Home_Group_9\", \"Home_Group_10\", \"Home_Shutdown\", \"Home_Mode_selection\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Group_11\", \"Home_Group_1\", \"Home_Group_2\", \"Home_Group_3\", \"Home_Group_4\", \"Home_Group_5\", \"Home_Group_6\", \"Home_Shutdown\", \"Home_Mode_selection\"],\"hide\":[\"Home_Group_10\", \"Home_Group_7\", \"Home_Group_8\", \"Home_Group_9\"]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Sample\", \"Home_Optic_Configuration\",\"Home_Fluidic_Acquisition\", \"Home_Segmentation\", \"Home_Download_Files\", \"Home_Gallery\", \"Home_Systeme_Monitoring\", \"Home_Wifi\", \"Home_Administration\", \"Home_Hardware_Settings\", \"Home_Shutdown\", \"Home_Expert Mode\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Sample\", \"Home_Optic_Configuration\", \"Home_Fluidic_Acquisition\", \"Home_Segmentation\", \"Home_Download_Files\", \"Home_Gallery\", \"Home_Shutdown\", \"Expert Mode\"],\"hide\":[\"Home_Systeme_Monitoring\", \"Home_Wifi\", \"Home_Administration\", \"Home_Hardware_Settings\"]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2718,7 +2666,7 @@
         "id": "3f695c512bf31d7c",
         "type": "inject",
         "z": "eaae323a.31b3",
-        "name": "Default: Expert mode",
+        "name": "Default: Beginner mode",
         "props": [
             {
                 "p": "payload"
@@ -2734,13 +2682,13 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 140,
-        "y": 1000,
+        "payload": "1",
+        "payloadType": "num",
+        "x": 670,
+        "y": 920,
         "wires": [
             [
-                "b03ce7341ff73485"
+                "26c009088528fc35"
             ]
         ]
     },
@@ -2802,10 +2750,11 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c"
+            "c2d9b90e27bc022c",
+            "de32bd4b6ba8dfd3"
         ],
         "x": 215,
-        "y": 1100,
+        "y": 1000,
         "wires": [
             [
                 "b03ce7341ff73485"
@@ -2939,15 +2888,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "unlock",
+        "payload": "Unlock Expert Mode ?",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
         "x": 120,
-        "y": 880,
+        "y": 840,
         "wires": [
             [
-                "8e250b5519f3236d"
+                "f5e823bad288c01a"
             ]
         ]
     },
@@ -2956,17 +2905,132 @@
         "type": "function",
         "z": "eaae323a.31b3",
         "name": "Toggle",
-        "func": "msg.enable = true;\nreturn msg;",
+        "func": "enable_mode = flow.get(\"enable_mode\")\n\nif (enable_mode==undefined) {\n    enable_mode = false\n}\n\nflow.set(\"enable_mode\",!enable_mode)\n\nmsg.enable = !enable_mode;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 870,
+        "y": 840,
+        "wires": [
+            [
+                "de32bd4b6ba8dfd3"
+            ]
+        ]
+    },
+    {
+        "id": "c9cffdfa0fb8be5a",
+        "type": "ui_toast",
+        "z": "eaae323a.31b3",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "YES",
+        "cancel": "NO",
+        "raw": false,
+        "className": "",
+        "topic": "Are you sure ?",
+        "name": "Confirmation message",
+        "x": 500,
         "y": 880,
         "wires": [
             [
-                "b03ce7341ff73485"
+                "8cf6f55322d7a483"
+            ]
+        ]
+    },
+    {
+        "id": "8cf6f55322d7a483",
+        "type": "switch",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "YES",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 710,
+        "y": 880,
+        "wires": [
+            [
+                "8e250b5519f3236d"
+            ]
+        ]
+    },
+    {
+        "id": "de32bd4b6ba8dfd3",
+        "type": "link out",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "127fd2e4447c6ad1",
+            "4dd140903cddda10",
+            "713395d7523b16e8",
+            "87171ccda60d4390",
+            "97f9c6da2e1095d2",
+            "a45e550cb5e1c1d1",
+            "c840a7c66cf51acc"
+        ],
+        "x": 1025,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "26c009088528fc35",
+        "type": "function",
+        "z": "eaae323a.31b3",
+        "name": "Toggle",
+        "func": "flow.set(\"enable_mode\",msg.enable)\nglobal.set(\"mode\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 920,
+        "wires": [
+            [
+                "de32bd4b6ba8dfd3"
+            ]
+        ]
+    },
+    {
+        "id": "f5e823bad288c01a",
+        "type": "switch",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "property": "enable_mode",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 840,
+        "wires": [
+            [
+                "8e250b5519f3236d"
+            ],
+            [
+                "c9cffdfa0fb8be5a"
             ]
         ]
     },
@@ -4415,31 +4479,6 @@
         ]
     },
     {
-        "id": "d5e42ba6c19232f3",
-        "type": "inject",
-        "z": "b771c342.49603",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 2770,
-        "y": 100,
-        "wires": [
-            [
-                "9d08fae04cfb99e8"
-            ]
-        ]
-    },
-    {
         "id": "d2acc261fa0c9dd7",
         "type": "change",
         "z": "b771c342.49603",
@@ -4497,10 +4536,11 @@
             "7a7343ef8627ec57",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c"
+            "c2d9b90e27bc022c",
+            "de32bd4b6ba8dfd3"
         ],
-        "x": 2845,
-        "y": 200,
+        "x": 2855,
+        "y": 100,
         "wires": [
             [
                 "9d08fae04cfb99e8"
@@ -5316,7 +5356,7 @@
             "7444e2e24a9f1aeb"
         ],
         "x": 3335,
-        "y": 200,
+        "y": 140,
         "wires": []
     },
     {
@@ -7764,31 +7804,6 @@
         ]
     },
     {
-        "id": "e247edf45c9131f3",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 180,
-        "y": 1940,
-        "wires": [
-            [
-                "7d79b1f1d435e715"
-            ]
-        ]
-    },
-    {
         "id": "d77b6caec1ba8d4d",
         "type": "change",
         "z": "bccd1f23.87219",
@@ -7846,10 +7861,11 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
-            "c2d9b90e27bc022c"
+            "c2d9b90e27bc022c",
+            "de32bd4b6ba8dfd3"
         ],
-        "x": 195,
-        "y": 2060,
+        "x": 295,
+        "y": 2000,
         "wires": [
             [
                 "7d79b1f1d435e715"
@@ -9466,31 +9482,6 @@
         ]
     },
     {
-        "id": "da61207b6e43cffc",
-        "type": "inject",
-        "z": "baa1e3d9.cb29d",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 140,
-        "y": 1100,
-        "wires": [
-            [
-                "159f2c48f920d7d6"
-            ]
-        ]
-    },
-    {
         "id": "a906d3253974acca",
         "type": "change",
         "z": "baa1e3d9.cb29d",
@@ -9546,10 +9537,11 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
-            "bfce8e77727b9fbf"
+            "bfce8e77727b9fbf",
+            "de32bd4b6ba8dfd3"
         ],
         "x": 215,
-        "y": 1160,
+        "y": 1100,
         "wires": [
             [
                 "159f2c48f920d7d6"
@@ -11004,31 +10996,6 @@
         ]
     },
     {
-        "id": "adb65229bcdcb4fd",
-        "type": "inject",
-        "z": "cb95299c.2817c8",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 360,
-        "y": 1140,
-        "wires": [
-            [
-                "eb4902f193579b72"
-            ]
-        ]
-    },
-    {
         "id": "84a208ae8f528987",
         "type": "change",
         "z": "cb95299c.2817c8",
@@ -11086,10 +11053,11 @@
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c"
+            "c2d9b90e27bc022c",
+            "de32bd4b6ba8dfd3"
         ],
         "x": 435,
-        "y": 1240,
+        "y": 1140,
         "wires": [
             [
                 "eb4902f193579b72"
@@ -14580,31 +14548,6 @@
         ]
     },
     {
-        "id": "5d98ea1d0e6aba92",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 200,
-        "y": 920,
-        "wires": [
-            [
-                "3a6737417c388a7e"
-            ]
-        ]
-    },
-    {
         "id": "102079036ea77d48",
         "type": "change",
         "z": "9daf9e2b.019fc",
@@ -14662,10 +14605,11 @@
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c"
+            "c2d9b90e27bc022c",
+            "de32bd4b6ba8dfd3"
         ],
         "x": 275,
-        "y": 1020,
+        "y": 920,
         "wires": [
             [
                 "3a6737417c388a7e"
@@ -17904,31 +17848,6 @@
         ]
     },
     {
-        "id": "1cf23216b2c6e8d6",
-        "type": "inject",
-        "z": "1eaf21c8.f7a21e",
-        "name": "Default: Expert mode",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "mode",
-        "payloadType": "global",
-        "x": 140,
-        "y": 740,
-        "wires": [
-            [
-                "d1cf69500811c980"
-            ]
-        ]
-    },
-    {
         "id": "4091947c8187153f",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
@@ -17986,10 +17905,11 @@
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c"
+            "c2d9b90e27bc022c",
+            "de32bd4b6ba8dfd3"
         ],
-        "x": 215,
-        "y": 840,
+        "x": 195,
+        "y": 740,
         "wires": [
             [
                 "d1cf69500811c980"
