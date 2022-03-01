@@ -2491,7 +2491,6 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
-        "className": "",
         "topic": "Turning off now!",
         "name": "Shutdown message",
         "x": 570,
@@ -2603,17 +2602,39 @@
         "type": "function",
         "z": "eaae323a.31b3",
         "name": "Global mode setup",
-        "func": "global.set(\"mode\",msg.payload);\n\nreturn msg;\n",
+        "func": "var mode= 0;\nglobal.set(\"mode\",mode);\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
-        "y": 860,
+        "x": 390,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "912aa8800e51bfa5",
+        "type": "inject",
+        "z": "eaae323a.31b3",
+        "name": "Setting mode global",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 140,
+        "y": 820,
         "wires": [
             [
-                "4e31c5ae80132833"
+                "2ec0a88c34526b86"
             ]
         ]
     },
@@ -2629,7 +2650,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 980,
+        "y": 1040,
         "wires": [
             [
                 "e6b7cbb8e551345f"
@@ -2643,7 +2664,7 @@
         "name": "show/hide net groups",
         "events": "change",
         "x": 760,
-        "y": 980,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -2685,7 +2706,7 @@
         ],
         "topic": "",
         "x": 360,
-        "y": 940,
+        "y": 1000,
         "wires": [
             [
                 "093dbbaa548cf9b7",
@@ -2697,7 +2718,7 @@
         "id": "3f695c512bf31d7c",
         "type": "inject",
         "z": "eaae323a.31b3",
-        "name": "Default: Beginner mode",
+        "name": "Default: Expert mode",
         "props": [
             {
                 "p": "payload"
@@ -2711,15 +2732,15 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "0.2",
+        "onceDelay": 0.1,
         "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 150,
-        "y": 860,
+        "payload": "mode",
+        "payloadType": "global",
+        "x": 140,
+        "y": 1000,
         "wires": [
             [
-                "2ec0a88c34526b86"
+                "b03ce7341ff73485"
             ]
         ]
     },
@@ -2743,7 +2764,7 @@
         "to": "",
         "reg": false,
         "x": 760,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "b6e04f52920c6dcb"
@@ -2766,7 +2787,7 @@
             "a45e550cb5e1c1d1"
         ],
         "x": 895,
-        "y": 900,
+        "y": 960,
         "wires": []
     },
     {
@@ -2781,11 +2802,10 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c",
-            "4e31c5ae80132833"
+            "c2d9b90e27bc022c"
         ],
-        "x": 235,
-        "y": 940,
+        "x": 215,
+        "y": 1100,
         "wires": [
             [
                 "b03ce7341ff73485"
@@ -2804,7 +2824,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "dbe54a0a0d8893fc"
@@ -2919,15 +2939,15 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "Are you sure ?",
+        "payload": "unlock",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 140,
-        "y": 800,
+        "x": 120,
+        "y": 880,
         "wires": [
             [
-                "9f712f177f9611cf"
+                "8e250b5519f3236d"
             ]
         ]
     },
@@ -2935,113 +2955,18 @@
         "id": "8e250b5519f3236d",
         "type": "function",
         "z": "eaae323a.31b3",
-        "name": "Enable expert mode",
-        "func": "Enable_expert = flow.get(\"Enable_expert\")\n\nif (Enable_expert == undefined) {\n    Enable_expert = false\n}\n\nflow.set(\"Enable_expert\",!Enable_expert)\n\nmsg.enable = !Enable_expert;\nreturn msg;",
+        "name": "Toggle",
+        "func": "msg.enable = true;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 820,
-        "y": 800,
-        "wires": [
-            [
-                "4e31c5ae80132833"
-            ]
-        ]
-    },
-    {
-        "id": "4e31c5ae80132833",
-        "type": "link out",
-        "z": "eaae323a.31b3",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "127fd2e4447c6ad1",
-            "4dd140903cddda10",
-            "713395d7523b16e8",
-            "97f9c6da2e1095d2",
-            "a45e550cb5e1c1d1",
-            "c840a7c66cf51acc"
-        ],
-        "x": 1035,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "abdcf79ad4aede34",
-        "type": "switch",
-        "z": "eaae323a.31b3",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "YES",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 650,
-        "y": 820,
-        "wires": [
-            [
-                "8e250b5519f3236d"
-            ]
-        ]
-    },
-    {
-        "id": "e664ce1440e98e33",
-        "type": "ui_toast",
-        "z": "eaae323a.31b3",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "YES",
-        "cancel": "NO",
-        "raw": false,
-        "className": "",
-        "topic": "Unlock Expert Mode",
-        "name": "Confirmation message",
-        "x": 480,
-        "y": 820,
-        "wires": [
-            [
-                "abdcf79ad4aede34"
-            ]
-        ]
-    },
-    {
-        "id": "9f712f177f9611cf",
-        "type": "switch",
-        "z": "eaae323a.31b3",
-        "name": "",
-        "property": "Enable_expert",
-        "propertyType": "flow",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
         "x": 310,
-        "y": 800,
+        "y": 880,
         "wires": [
             [
-                "8e250b5519f3236d"
-            ],
-            [
-                "e664ce1440e98e33"
+                "b03ce7341ff73485"
             ]
         ]
     },
@@ -4572,11 +4497,10 @@
             "7a7343ef8627ec57",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c",
-            "4e31c5ae80132833"
+            "c2d9b90e27bc022c"
         ],
-        "x": 2855,
-        "y": 140,
+        "x": 2845,
+        "y": 200,
         "wires": [
             [
                 "9d08fae04cfb99e8"
@@ -5392,7 +5316,7 @@
             "7444e2e24a9f1aeb"
         ],
         "x": 3335,
-        "y": 140,
+        "y": 200,
         "wires": []
     },
     {
@@ -7857,7 +7781,7 @@
         "payload": "mode",
         "payloadType": "global",
         "x": 180,
-        "y": 2000,
+        "y": 1940,
         "wires": [
             [
                 "7d79b1f1d435e715"
@@ -7922,11 +7846,10 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
-            "c2d9b90e27bc022c",
-            "4e31c5ae80132833"
+            "c2d9b90e27bc022c"
         ],
-        "x": 255,
-        "y": 2040,
+        "x": 195,
+        "y": 2060,
         "wires": [
             [
                 "7d79b1f1d435e715"
@@ -9250,7 +9173,6 @@
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "className": "",
         "x": 1260,
         "y": 820,
         "wires": [
@@ -9624,11 +9546,10 @@
             "7a7343ef8627ec57",
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
-            "bfce8e77727b9fbf",
-            "4e31c5ae80132833"
+            "bfce8e77727b9fbf"
         ],
         "x": 215,
-        "y": 1140,
+        "y": 1160,
         "wires": [
             [
                 "159f2c48f920d7d6"
@@ -11165,11 +11086,10 @@
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c",
-            "4e31c5ae80132833"
+            "c2d9b90e27bc022c"
         ],
         "x": 435,
-        "y": 1180,
+        "y": 1240,
         "wires": [
             [
                 "eb4902f193579b72"
@@ -14742,11 +14662,10 @@
             "a85a1f2d75981a8c",
             "b6e04f52920c6dcb",
             "bfce8e77727b9fbf",
-            "c2d9b90e27bc022c",
-            "4e31c5ae80132833"
+            "c2d9b90e27bc022c"
         ],
         "x": 275,
-        "y": 960,
+        "y": 1020,
         "wires": [
             [
                 "3a6737417c388a7e"
@@ -17570,7 +17489,6 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "className": "",
         "x": 610,
         "y": 60,
         "wires": [
@@ -18030,7 +17948,7 @@
         "to": "",
         "reg": false,
         "x": 860,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "7a7343ef8627ec57"
@@ -18052,8 +17970,8 @@
             "c840a7c66cf51acc",
             "a45e550cb5e1c1d1"
         ],
-        "x": 1035,
-        "y": 700,
+        "x": 1055,
+        "y": 680,
         "wires": []
     },
     {
@@ -18071,7 +17989,7 @@
             "c2d9b90e27bc022c"
         ],
         "x": 215,
-        "y": 780,
+        "y": 840,
         "wires": [
             [
                 "d1cf69500811c980"
@@ -18090,7 +18008,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "4091947c8187153f"
