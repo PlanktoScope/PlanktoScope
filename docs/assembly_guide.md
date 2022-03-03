@@ -1,9 +1,27 @@
 # Assembly guide of the PlanktoScope
 ![Complete](assembly_guide/pictures/complete.webp)
 
-## Step 0: Gather everything you need
+## Step 0: Laser cutting
 
-- Laser cut structure
+First, you need to make all the laser cuts to have all the necessary plexiglass parts, these cuts
+are made in opaque and transparent plexiglass of 5 mm, 2 mm and 3 mm. You can download
+the different plans in .svg format by clicking here. Make sure all holes are complete, and
+negative space is clear.
+
+Gather all these pieces on a flat surface et verifier bien qu’il ne vous en manque aucune, elles
+seront toutes necessaires à la construction du PlanktoScope
+
+![Plans](assembly_guide/pictures/plans.webp)
+
+!!! warning
+If you are doing the laser cutting yourself, please take the time to check the calibration of
+the machine and its power output for the material you are using. A tight fit is needed between
+the different plates to avoid unwanted play between critical parts.
+
+## Step 1: Gather everything you need
+
+Next, gather all the components needed to build your PlanktoScope by referring to the
+following list:
 - M12 lenses
 - Peristaltic pump and tubing
 - Raspberry Pi, motor driver board, GPIO connectors
@@ -22,191 +40,194 @@ If you are not familiar with any process, such as soldering, tapping, or wiring,
 
 Soldering deals with high heat and potentially toxic materials, so make sure to use the proper precautions.
 
-## Step 1: Laser cutting
-![Step1](assembly_guide/pictures/step1.webp)
+## Step 2: Lenses tapping and mounting
 
-Laser cut all components using the .ai file ensuring all cuts are complete. The current design should have a 5mm material thickness. Start by placing laser cut base A on a flat workspace. Make sure all holes are complete, and negative space is clear.
+Avant de commencer l’assemblage et le montage des différents composants entre eux on va
+tout d’abord préparer et monter certaines pièces comme les lentilles.
 
-!!! warning
-    If you are doing the laser cutting yourself, please take the time to check the calibration of the machine and its power output for the material you are using. A tight fit is needed between the different plates to avoid unwanted play between critical parts.
+You now need to tap the holes for the M12 lenses in stage and mount it the different K pieces. Il faut aussi tarauder la pièce D situé juste après la camera. It is helpful for alignment to do  both the objeDtive and tube lens mount together. It is important to do this as straight as  possible. A drop of mineral or olive oil can help the process. Be careful to use a right-hand tap  (that goes down when turning clockwise).
 
-## Step 2: Standoff installation
-![Step2](assembly_guide/pictures/step2.webp)
-![Step2 standoff location](assembly_guide/render/Step2.webp)
+![Step2](assembly_guide/pictures/taraudage.webp)
 
-Place 8 standoffs (M2.5 6mm) into the designated holes on the laser-cut base A. A pair of pliers make the job more comfortable. Do not overtighten as it is possible to crack the base material.
+Vous devriez obtenir l’ensemble des pièces ci-dessous avec des lentilles sachant que cela peut changer selon le nombre de lentille que vous possédez pour la pièce K
 
-![Step3](assembly_guide/pictures/step3.webp)
+![Step2](assembly_guide/pictures/D.webp)
+![Step2](assembly_guide/pictures/K.webp)
 
-## Step 3: Motor HAT preparation
-![Step4](assembly_guide/pictures/step4.webp)
-
-Insert and solder the terminal blocks and headers onto the motor driver PCB. 
-
-![Step5](assembly_guide/pictures/step5.webp)
-
-Place the motor driver PCB on to the indicated standoffs.
-
-## Step 4: Magnets setup
-![Step6](assembly_guide/pictures/step6.webp)
+## Step 3: Magnets setup
 
 Now is a good time to think about how the magnets will function within the microscope. The magnets in the sample stage will need to attract to the magnets on the flow cell holder. The magnets in the objective holder will need to attract the magnets on the mount. Keep this in mind as you are adding your magnets and tapping your respective M12 holders so your orientation will be correct.
 
-![Step8](assembly_guide/pictures/step8.webp)
+Pour résumer l’ensemble des aimants à placer, il y a des aimants entre :
 
-You can now fix your magnets into their appropriate holes on sample stage **B**.
-It is recommended to glue the magnets in place. If the magnets are too large to fit in, the holes can be widened with a handheld drill. However, they should be quite snug in place. Before you glue them in place make sure that the polarity is maintained, as they will be impossible to remove after gluing.
+- La pièce D et la pièce A2,
+- La pièce G et la pièce A2,
+- La pièce D et la pièce J2,
+- La pièce G et la pièce J2,
+- La pièce E et les pièces contenant les différentes lentilles K
+ 
+Les aimants dans les pièces D, G, A2 et J2 doivent être mis de façons a ce que les plaques
+s’emboitent comme sur l’image ci-dessous.
+![Step3](assembly_guide/pictures/box.webp)
+
+Les aimants dans les pièces E et K doivent être mis de façons à ce que les plaques s’emboitent
+comme sur l’image ci-dessous.
+![Step3](assembly_guide/pictures/E.K.webp)
+
+La même opération peut être répété sur les différentes plaques K contenant les lentilles.
+
+You can now fix your magnets into their appropriate holes. It is recommended to glue the magnets in place. If the magnets are too large to fit in, the holes can be widened with a handheld drill. However, they should be quite snug in place. Before you glue them in place make sure that the polarity is maintained, as they will be impossible to remove after gluing.
+
+## Step 4: Standoff installation
+![Step4](assembly_guide/pictures/A1.webp)
+
+Place 8 standoffs (M2.5 6mm) into the designated holes on the laser-cut base A1. A pair of
+pliers make the job more comfortable. Do not overtighten as it is possible to crack the base
+material.
+
+![Step4](assembly_guide/pictures/A1.3.webp)
 
 ## Step 5: Sample stage assembly
-![Step9](assembly_guide/pictures/step9.webp)
+You can now fit the pegs on the driver mounts into the corresponding holes on the sample
+stage. They should be glued in place with superglue or epoxy. You can spin the shaft to align
+the driver mounts on the 2 steppers if it helps making the process easier.
 
-Don’t be alarmed by the color swap, this is the sample stage **B**. You can now fit the pegs on the driver mounts into the corresponding holes on the sample stage. They should be glued in place with superglue or epoxy. You can spin the shaft to align the driver mounts on the 2 steppers if it helps making the process easier.
-
-![Step10](assembly_guide/pictures/step10.webp)
+![Step4](assembly_guide/pictures/F.1.webp)
+![Step4](assembly_guide/pictures/F.2.webp)
 
 You should now have a sample stage and motor assembly that looks like this.
 
-## Step 6: Lenses tapping and mounting
-![Step12](assembly_guide/pictures/step12.webp)
-
-You now need to tap the holes for the M12 lenses in stage and mount **M** and **D**. It is helpful for alignment to do both the objeDtive and tube lens mount together. It is important to do this as straight as possible. A drop of mineral or olive oil can help the process. Be careful to use a right-hand tap (that goes down when turning clockwise).
-
-![Step13](assembly_guide/pictures/step13.webp)
-![Step14](assembly_guide/pictures/step14.webp)
-
-![Step6-2](assembly_guide/render/step6-2.webp)
-
-You can now screw the objective lens (the 25mm one) in part **D**.
-![Step14](assembly_guide/pictures/step15.webp)
-
-## Step 7: Camera preparation
+## Step 5: Camera preparation
 You can now unscrew the lens from the Pi camera, being careful not to disturb the sensor below.
-![Image22](assembly_guide/pictures/image22.webp)
-![Image30](assembly_guide/pictures/image30.webp)
+![Step5](assembly_guide/pictures/camera.webp)
 
-## Step 8: Camera mount
-![Step17](assembly_guide/pictures/step17.webp)
+## Step 6: Camera mount
+You can mount the camera using the appropriate holes on the camera mount **C**. Be
+careful to avoid getting oil or dust on the sensor.
+![Step6](assembly_guide/pictures/C.webp)
 
-You can mount the camera using the appropriate holes on the camera mount **G**. Be careful to avoid getting oil or dust on the sensor.
+## Step 7: LED preparation
+![Step7](assembly_guide/pictures/H.webp)
 
-## Step 9: LED preparation
-![Step18](assembly_guide/pictures/step18.webp)
-
-The LED can then be wired up and put into its mount **F**. If you wire the LED yourself, remember to give enough length to reach the motor driver on the other end of the microscope. You can also add a bit of glue to fix **F** to the motor mount **E** at this time to make assembly easier, though it is not required.
+The LED can then be wired up and put into its mount **H**. If you wire the LED yourself, remember to give enough length to reach the motor driver on the other end of the microscope. You can also add a bit of glue to fix **H** to the motor mount **G** at this time to make assembly easier, though it is not required.
 
 !!! warning
-    ![Led](assembly_guide/render/led.webp)
+    ![Led](assembly_guide/render/LED.webp)
 
     This picture shows the correct wiring for the LED. Please make sure the red wire is on the long pin of the LED.
 
 
 ## Step 10: Vertical slices assembly
-You can now start placing the motor mount/LED assembly- **B**,
-![Step5](assembly_guide/render/step5.webp)
+You can now start placing the motor mount/LED assembly,
+On commence par ajouter la pièce **E**,
+![Step10](assembly_guide/pictures/E.F.webp)
 
-**C**,
-![Step6](assembly_guide/render/step6.webp)
+On ajoute ensuite les pièces **C** et **D**,
+![Step10](assembly_guide/pictures/C.D.E.F.webp)
 
-**D**,
-![Step7](assembly_guide/render/step7.webp)
+Puis la pièce **G**,
+![Step10](assembly_guide/pictures/C.D.E.F.G.webp)
 
-**E**,
-![Step8](assembly_guide/render/step8.webp)
-
-**F**,
-![Step8](assembly_guide/render/step9.webp)
-
-and **G** into the base **A**.
+Et pour finir la pièce **H**,
+![Step10](assembly_guide/pictures/C.D.E.F.G.H.webp)
 
 ## Step 11: Pump setup
-The pump can then be mounted in place on **H**. Thread the wires through the hole with the pump tubing pointed toward the holes on the mount.
-![Step19](assembly_guide/pictures/step19.webp)
+The pump can then be mounted in place on **I1** and **I2**. Thread the wires through the hole with the pump tubing pointed toward the holes on the mount. Then fix the pump in place.
+![Step11](assembly_guide/pictures/I.webp)
 
-Fix the pump in place.
-![Step20](assembly_guide/pictures/step20.webp)
+## Step 12: Connectiques
+On va maintenant passer à la fixation des différentes connectiques de notre Planktoscope, c’est-à-dire l’alimentation et le GPS qui sont reliés vers l’extérieur du PlanktoScope. Pour cela on prend les pièces B1 et B2 et les connecteurs ci-dessous.
 
-## Step 12: Pump mounting
-You can now mount the pump on base **A**.
-![Step15](assembly_guide/render/step15.webp)
+![Step12](assembly_guide/pictures/connectiques.webp)
 
-Your setup should look like this. Don't worry about the wiring, we'll have a look at it in the next step!
+Pour l’alimentation on a soudé comme ci-dessus le + et et le -. On les fixe maintenant sur la pièce **B2** en les passant à travers puis en les serrant en faisant attention au sens de la plaque pour qu’ils soient orientés vers l’extérieur. On obtient le résultat ci-dessous.
 
-![Step21](assembly_guide/pictures/step21.webp)
+![Step12](assembly_guide/pictures/connectiques.2.webp)
+
+On peut si ou le souhaite coller les pièces **B1** et **B2** ensemble en les gardant bien alignés mais ce n’est pas obligatoire.
 
 ## Step 13: Motor HAT wiring
-![Step22](assembly_guide/pictures/step22.svg)
 
-You will now want to wire the steppers and pump to the terminals on the motor driver board.
+First, insert and solder the terminal blocks and headers onto the motor driver PCB.
+![Step13](assembly_guide/pictures/HAT_motor.svg)
+
+Maintenant que l’ensemble des composants à connecter sur la carte moteur et la carte elle-même sont prêts on va effectuer l’ensemble des câblages. Pour cela on suivra le schéma ci-dessous.
+![Step13](assembly_guide/pictures/HAT_motor.2.svg)
+
 
 !!! info
     The PlanktoScope **uses only bipolar stepper motors** (with 4 wires coming out, and two coils inside), so you need to identify the two wires working together for each coil. The [RepRap Wiki has great information](https://reprap.org/wiki/Stepper_wiring#.22pair.22_wires_on_4_wire_motors) on how to do this, either with a multimeter or without.
     
     You can find more information about stepper motors and how they work in this [document](http://resources.linengineering.com/acton/attachment/3791/f-00ca/1/-/-/-/-/Stepper%20Motor%20Basics.pdf).
 
-
 !!! tip
     If your wires are too short, you can invert the pump and the focus wiring. However, you will have to remember to change the configuration later on.
 
 !!! tip
     Make sure the wires are properly connected by pulling on them a little. They should not come loose.
+    
+Une fois effectué cela devrait ressembler à l’image ci-dessous.
+![Step13](assembly_guide/pictures/HAT_motor.3.svg)
 
-## Step 14: Raspberry Pi setup and installation
-![Step24](assembly_guide/pictures/step24.webp)
+Pour faciliter l’organisation des câbles dans votre PlanktoScope n’hésitez pas à utiliser du scotch ou autre pour les maintenir entre eux et éviter qu’ils soient désordonnés
+
+Après avoir fait tous les câblages on peut fixer la carte sur la pièce **A1** comme sur l’image ci-dessous.
+![Step13](assembly_guide/pictures/HAT_motor.4.svg)
+Pour la fixer on placera directement des standoffs de 6mm avec un écrou.
+
+## Step 14: Assemblage
+On peut maintenant placer les différentes pièces que nous avons réalisés (ensemble LED/moteur/Camera, pompe, connectiques) sur les trois pièces A1, A2 et A3 en faisant attention des bien emboités les différentes pièces entre elles. Pour le moment on ne fixe pas les pièces A1, A2 et A3 au reste on fera cela a la fin. Notre PlanktoScope commence a prendre forme. 
+
+Maintenant que tout est en place vous pouvez placer les différents câbles dans les trous prévus pour sur les pièces C, D, E, F et G comme ci-dessous :
+![Step14](assembly_guide/pictures/cables.webp)
+
+## Step 15: Raspberry Pi setup and installation
+![Step15](assembly_guide/pictures/rasp_pi.svg)
 
 At this point, you can insert your flashed SD card into your Raspberry Pi. [Consult the guide for flashing your SD card](https://www.planktoscope.org/replicate/assemble-your-kit) before you do this. The heat sink can also be added to the processor.
 
 !!! note
     If you choose the Expert path, you still need to flash your sd card, either with the [lite version](https://downloads.raspberrypi.org/raspios_lite_armhf_latest) of Raspberry OS or with the [desktop version](https://downloads.raspberrypi.org/raspios_armhf_latest).
 
-![Step16](assembly_guide/render/step16.webp)
+Mount the Raspberry Pi containing the flashed SD card on the standoffs attached to the laser
+cut base A1. You will obtain this:
+![Step15](assembly_guide/pictures/HAT_motor_rasp_pi.webp)
 
-Mount the Raspberry Pi containing the flashed SD card on the standoffs attached to the laser cut base A.
+N’hésitez pas à cacher l’excédent de câbles des différents moteurs/pompe derrière la Raspberry Pi afin que cela n’interfère pas dans le reste. On fixe la Raspberry Pi cette fois ci en utilisant des standoffs de 10mm.
 
-## Step 15: Standoffs
-![Step17](assembly_guide/render/step17.webp)
-
-Add 8 standoffs (M2.5 15mm) to fix the motor driver board and the Raspberry Pi to the base. 
-
-![Step25](assembly_guide/pictures/step25.webp)
-
-## Step 16: Camera flex cable
-![Step26](assembly_guide/pictures/step26.webp)
-
-At this point you can use the Pi camera flex cable to connect the camera to the Pi. This is done by gently pulling up the tensioners, inserting the cable in the right orientation, then pushing the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as it is possible to damage it.
-
-## Step 17: Power supply wiring
-![Step29](assembly_guide/pictures/step29.webp)
-
-The power wires can be wired into place on the motor driver board.
-
-!!! tip
-    Make sure the wires are properly connected by pulling on them a little. They should not come loose.
-
-## Step 18: Prepare the GPS HAT
-![Step18-1](assembly_guide/render/step18-1.webp)
-
+## Step 16: Prepare the GPS HAT
 Insert the battery to power the GPS HAT and solder the terminal mounts in place.
+![Step16](assembly_guide/pictures/GPS_HAT.webp)
+![Step16](assembly_guide/pictures/GPS_HAT.2.webp)
 
-## Step 19: Install the GPS HAT
-![Step18](assembly_guide/render/step18.webp)
+## Step 17: Install the GPS HAT
+Mount the GPS HAT over the motor driver PCB using the standoffs attached to the laser cut
+base **A1**.
+![Step17](assembly_guide/pictures/GPS_HAT.3.webp)
 
-Mount the GPS HAT over the motor driver PCB using the standoffs attached to the laser cut base **A**.
+## Step 18: Camera flex cable
+At this point you can use the Pi camera flex cable to connect the camera to the Pi. This is done
+by gently pulling up the tensioners, inserting the cable in the right orientation, then pushing
+the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as
+it is possible to damage it.
+![Step18](assembly_guide/pictures/camera_flex.webp)
 
-## Step 20: Install the Fan HAT
+
+## Step 19: Install the Fan HAT
 ![Step19](assembly_guide/render/step19.webp)
 
-Place the cooling fan HAT above the Raspberry Pi by mounting it to the standoffs on base **A**.
+Place the cooling fan HAT above the Raspberry Pi by mounting it to the standoffs on base **A1**.
 
 !!! warning
     Be careful to slide the camera flat cable in the slot in the HAT above the connector.
 
 ## Step 21: Secure the HATS
-![Step20](assembly_guide/render/step20.webp)
+![Step21](assembly_guide/render/step20.webp)
 
-Secure the cooling fan HAT and GPS HAT by tightening the 8 screws to the standoffs on base A
+Secure the cooling fan HAT and GPS HAT by tightening the 8 screws to the standoffs on base **A1**
 
 ## Step 22: Install back panel
-![Step21](assembly_guide/render/step21.webp)
+![Step21](assembly_guide/render/side_panel.webp)
 
 Insert the laser cut border **I** into base **A**.
 
