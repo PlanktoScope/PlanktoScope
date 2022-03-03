@@ -2615,7 +2615,7 @@
         "type": "function",
         "z": "eaae323a.31b3",
         "name": "Change mode",
-        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Sample\", \"Home_Optic_Configuration\",\"Home_Fluidic_Acquisition\", \"Home_Segmentation\", \"Home_Download_Files\", \"Home_Gallery\", \"Home_Systeme_Monitoring\", \"Home_Wifi\", \"Home_Administration\", \"Home_Hardware_Settings\", \"Home_Shutdown\", \"Home_Expert Mode\"]}};    \n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Sample\", \"Home_Optic_Configuration\", \"Home_Fluidic_Acquisition\", \"Home_Segmentation\", \"Home_Download_Files\", \"Home_Gallery\", \"Home_Shutdown\", \"Expert Mode\"],\"hide\":[\"Home_Systeme_Monitoring\", \"Home_Wifi\", \"Home_Administration\", \"Home_Hardware_Settings\"]}};    \n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
+        "func": "var activation_msg = {}\n\n//Mode expert\nif (msg.payload === 0){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Sample\", \"Home_Optic_Configuration\",\"Home_Fluidic_Acquisition\", \"Home_Segmentation\", \"Home_Download_Files\", \"Home_Gallery\", \"Home_Systeme_Monitoring\", \"Home_Wifi\", \"Home_Administration\", \"Home_Hardware_Settings\", \"Home_Shutdown\", \"Home_Expert Mode\"]}};    \n    flow.set(\"groupe_are_hide\",false)\n    return activation_msg;\n}\n\n//Mode débutant\nelse if (msg.payload === 1){\n    activation_msg.payload = {\"group\":{\"show\":[\"Home_Sample\", \"Home_Optic_Configuration\", \"Home_Fluidic_Acquisition\", \"Home_Segmentation\", \"Home_Download_Files\", \"Home_Gallery\", \"Home_Shutdown\", \"Expert Mode\"],\"hide\":[\"Home_Systeme_Monitoring\", \"Home_Wifi\", \"Home_Administration\", \"Home_Hardware_Settings\"]}};    \n    flow.set(\"groupe_are_hide\",true)\n    return activation_msg;\n}\nelse{\n    return null;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3007,7 +3007,7 @@
             "a45e550cb5e1c1d1",
             "c840a7c66cf51acc"
         ],
-        "x": 515,
+        "x": 875,
         "y": 1100,
         "wires": []
     },
@@ -13872,8 +13872,7 @@
         "y": 680,
         "wires": [
             [
-                "4af9112d.87767",
-                "c8c06e4e131b1820"
+                "4af9112d.87767"
             ]
         ]
     },
