@@ -182,7 +182,7 @@ Maintenant que tout est en place vous pouvez placer les différents câbles dans
 ![Step14](assembly_guide/pictures/27.webp)
 
 ## Step 15: Raspberry Pi setup and installation
-![Step15](assembly_guide/pictures/28.svg)
+![Step15](assembly_guide/pictures/28.webp)
 
 At this point, you can insert your flashed SD card into your Raspberry Pi. [Consult the guide for flashing your SD card](https://www.planktoscope.org/replicate/assemble-your-kit) before you do this. The heat sink can also be added to the processor.
 
@@ -216,7 +216,7 @@ it is possible to damage it.
 ![Step18](assembly_guide/pictures/33.1.webp)
 
 ## Step 19: Install the Fan HAT
-![Step19](assembly_guide/render/34.webp)
+![Step19](assembly_guide/pictures/34.webp)
 
 Place the cooling fan HAT above the Raspberry Pi by mounting it to the standoffs on base **A1**.
 
@@ -224,10 +224,10 @@ Place the cooling fan HAT above the Raspberry Pi by mounting it to the standoffs
     Be careful to slide the camera flat cable in the slot in the HAT above the connector.
     
 On obtient le résultat suivant :
-![Step17](assembly_guide/pictures/35.webp)
+![Step19](assembly_guide/pictures/35.webp)
 
 ## Step 21: Secure the HATS
-![Step21](assembly_guide/render/36.webp)
+![Step21](assembly_guide/pictures/36.webp)
 
 Secure the cooling fan HAT and GPS HAT by tightening the 8 screws to the standoffs on base **A1**
 
@@ -260,22 +260,22 @@ Attach the GPIO ribbon to connect the cooling fan HAT to the GPS HAT.
     ![Step31](assembly_guide/pictures/40.webp)
 
 ## Step 25: Install side panel
-![Step25](assembly_guide/render/41.webp)
+![Step25](assembly_guide/pictures/41.webp)
 
 Place the side plate **J** into the designated slots on the base.
 
 ## Step 26: Install the other side panel
-![Step26](assembly_guide/render/42.webp)
+![Step26](assembly_guide/pictures/42.webp)
 
 Mount the side plate **K** on base **A** using the assigned slots.
 
 ## Step 27: Secure the sides together
-![Step27](assembly_guide/render/43.webp)
+![Step27](assembly_guide/pictures/43.webp)
 
 Secure the laser cut sides with the screws and nuts.
 
 ## Step 28: Secure the sides to the base plate
-![Step28](assembly_guide/render/44.webp)
+![Step28](assembly_guide/pictures/44.webp)
 
 Secure the laser cut sides to the base plate **A** with the screws and nuts.
 
