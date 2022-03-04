@@ -1,5 +1,5 @@
 # Assembly guide of the PlanktoScope
-![Complete](assembly_guide/pictures/complete.webp)
+![Complete](assembly_guide/pictures/1.webp)
 
 ## Step 0: Laser cutting
 
@@ -11,7 +11,7 @@ negative space is clear.
 Gather all these pieces on a flat surface et verifier bien qu’il ne vous en manque aucune, elles
 seront toutes necessaires à la construction du PlanktoScope
 
-![Plans](assembly_guide/pictures/plans.webp)
+![Plans](assembly_guide/pictures/2.webp)
 
 !!! warning
 If you are doing the laser cutting yourself, please take the time to check the calibration of
@@ -47,12 +47,12 @@ tout d’abord préparer et monter certaines pièces comme les lentilles.
 
 You now need to tap the holes for the M12 lenses in stage and mount it the different K pieces. Il faut aussi tarauder la pièce D situé juste après la camera. It is helpful for alignment to do  both the objeDtive and tube lens mount together. It is important to do this as straight as  possible. A drop of mineral or olive oil can help the process. Be careful to use a right-hand tap  (that goes down when turning clockwise).
 
-![Step2](assembly_guide/pictures/taraudage.webp)
+![Step2](assembly_guide/pictures/3.webp)
 
 Vous devriez obtenir l’ensemble des pièces ci-dessous avec des lentilles sachant que cela peut changer selon le nombre de lentille que vous possédez pour la pièce K
 
-![Step2](assembly_guide/pictures/D.webp)
-![Step2](assembly_guide/pictures/K.webp)
+![Step2](assembly_guide/pictures/4.webp)
+![Step2](assembly_guide/pictures/5.webp)
 
 ## Step 3: Magnets setup
 
@@ -68,51 +68,51 @@ Pour résumer l’ensemble des aimants à placer, il y a des aimants entre :
  
 Les aimants dans les pièces D, G, A2 et J2 doivent être mis de façons a ce que les plaques
 s’emboitent comme sur l’image ci-dessous.
-![Step3](assembly_guide/pictures/box.webp)
+![Step3](assembly_guide/pictures/6.webp)
 
 Les aimants dans les pièces E et K doivent être mis de façons à ce que les plaques s’emboitent
 comme sur l’image ci-dessous.
-![Step3](assembly_guide/pictures/E.K.webp)
+![Step3](assembly_guide/pictures/7.webp)
 
 La même opération peut être répété sur les différentes plaques K contenant les lentilles.
 
 You can now fix your magnets into their appropriate holes. It is recommended to glue the magnets in place. If the magnets are too large to fit in, the holes can be widened with a handheld drill. However, they should be quite snug in place. Before you glue them in place make sure that the polarity is maintained, as they will be impossible to remove after gluing.
 
 ## Step 4: Standoff installation
-![Step4](assembly_guide/pictures/A1.webp)
+![Step4](assembly_guide/pictures/8.webp)
 
 Place 8 standoffs (M2.5 6mm) into the designated holes on the laser-cut base A1. A pair of
 pliers make the job more comfortable. Do not overtighten as it is possible to crack the base
 material.
 
-![Step4](assembly_guide/pictures/A1.3.webp)
+![Step4](assembly_guide/pictures/9.webp)
 
 ## Step 5: Sample stage assembly
 You can now fit the pegs on the driver mounts into the corresponding holes on the sample
 stage. They should be glued in place with superglue or epoxy. You can spin the shaft to align
 the driver mounts on the 2 steppers if it helps making the process easier.
 
-![Step4](assembly_guide/pictures/F.1.webp)
-![Step4](assembly_guide/pictures/F.2.webp)
+![Step4](assembly_guide/pictures/10.webp)
+![Step4](assembly_guide/pictures/11.webp)
 
 You should now have a sample stage and motor assembly that looks like this.
 
 ## Step 5: Camera preparation
 You can now unscrew the lens from the Pi camera, being careful not to disturb the sensor below.
-![Step5](assembly_guide/pictures/camera.webp)
+![Step5](assembly_guide/pictures/12.webp)
 
 ## Step 6: Camera mount
 You can mount the camera using the appropriate holes on the camera mount **C**. Be
 careful to avoid getting oil or dust on the sensor.
-![Step6](assembly_guide/pictures/C.webp)
+![Step6](assembly_guide/pictures/13.webp)
 
 ## Step 7: LED preparation
-![Step7](assembly_guide/pictures/H.webp)
+![Step7](assembly_guide/pictures/14.webp)
 
 The LED can then be wired up and put into its mount **H**. If you wire the LED yourself, remember to give enough length to reach the motor driver on the other end of the microscope. You can also add a bit of glue to fix **H** to the motor mount **G** at this time to make assembly easier, though it is not required.
 
 !!! warning
-    ![Led](assembly_guide/render/LED.webp)
+    ![Step7](assembly_guide/pictures/15.webp)
 
     This picture shows the correct wiring for the LED. Please make sure the red wire is on the long pin of the LED.
 
@@ -120,39 +120,39 @@ The LED can then be wired up and put into its mount **H**. If you wire the LED y
 ## Step 10: Vertical slices assembly
 You can now start placing the motor mount/LED assembly,
 On commence par ajouter la pièce **E**,
-![Step10](assembly_guide/pictures/E.F.webp)
+![Step10](assembly_guide/pictures/16.webp)
 
 On ajoute ensuite les pièces **C** et **D**,
-![Step10](assembly_guide/pictures/C.D.E.F.webp)
+![Step10](assembly_guide/pictures/17.webp)
 
 Puis la pièce **G**,
-![Step10](assembly_guide/pictures/C.D.E.F.G.webp)
+![Step10](assembly_guide/pictures/18.webp)
 
 Et pour finir la pièce **H**,
-![Step10](assembly_guide/pictures/C.D.E.F.G.H.webp)
+![Step10](assembly_guide/pictures/19.webp)
 
 ## Step 11: Pump setup
 The pump can then be mounted in place on **I1** and **I2**. Thread the wires through the hole with the pump tubing pointed toward the holes on the mount. Then fix the pump in place.
-![Step11](assembly_guide/pictures/I.webp)
+![Step11](assembly_guide/pictures/20.webp)
 
 ## Step 12: Connectiques
 On va maintenant passer à la fixation des différentes connectiques de notre Planktoscope, c’est-à-dire l’alimentation et le GPS qui sont reliés vers l’extérieur du PlanktoScope. Pour cela on prend les pièces B1 et B2 et les connecteurs ci-dessous.
 
-![Step12](assembly_guide/pictures/connectiques.webp)
+![Step12](assembly_guide/pictures/21.webp)
 
 Pour l’alimentation on a soudé comme ci-dessus le + et et le -. On les fixe maintenant sur la pièce **B2** en les passant à travers puis en les serrant en faisant attention au sens de la plaque pour qu’ils soient orientés vers l’extérieur. On obtient le résultat ci-dessous.
 
-![Step12](assembly_guide/pictures/connectiques.2.webp)
+![Step12](assembly_guide/pictures/22.webp)
 
 On peut si ou le souhaite coller les pièces **B1** et **B2** ensemble en les gardant bien alignés mais ce n’est pas obligatoire.
 
 ## Step 13: Motor HAT wiring
 
 First, insert and solder the terminal blocks and headers onto the motor driver PCB.
-![Step13](assembly_guide/pictures/HAT_motor.svg)
+![Step13](assembly_guide/pictures/23.webp)
 
 Maintenant que l’ensemble des composants à connecter sur la carte moteur et la carte elle-même sont prêts on va effectuer l’ensemble des câblages. Pour cela on suivra le schéma ci-dessous.
-![Step13](assembly_guide/pictures/HAT_motor.2.svg)
+![Step13](assembly_guide/pictures/24.webp)
 
 
 !!! info
@@ -167,22 +167,22 @@ Maintenant que l’ensemble des composants à connecter sur la carte moteur et l
     Make sure the wires are properly connected by pulling on them a little. They should not come loose.
     
 Une fois effectué cela devrait ressembler à l’image ci-dessous.
-![Step13](assembly_guide/pictures/HAT_motor.3.svg)
+![Step13](assembly_guide/pictures/25.webp)
 
 Pour faciliter l’organisation des câbles dans votre PlanktoScope n’hésitez pas à utiliser du scotch ou autre pour les maintenir entre eux et éviter qu’ils soient désordonnés
 
 Après avoir fait tous les câblages on peut fixer la carte sur la pièce **A1** comme sur l’image ci-dessous.
-![Step13](assembly_guide/pictures/HAT_motor.4.svg)
+![Step13](assembly_guide/pictures/26.webp)
 Pour la fixer on placera directement des standoffs de 6mm avec un écrou.
 
 ## Step 14: Assemblage
 On peut maintenant placer les différentes pièces que nous avons réalisés (ensemble LED/moteur/Camera, pompe, connectiques) sur les trois pièces A1, A2 et A3 en faisant attention des bien emboités les différentes pièces entre elles. Pour le moment on ne fixe pas les pièces A1, A2 et A3 au reste on fera cela a la fin. Notre PlanktoScope commence a prendre forme. 
 
 Maintenant que tout est en place vous pouvez placer les différents câbles dans les trous prévus pour sur les pièces C, D, E, F et G comme ci-dessous :
-![Step14](assembly_guide/pictures/cables.webp)
+![Step14](assembly_guide/pictures/27.webp)
 
 ## Step 15: Raspberry Pi setup and installation
-![Step15](assembly_guide/pictures/rasp_pi.svg)
+![Step15](assembly_guide/pictures/28.svg)
 
 At this point, you can insert your flashed SD card into your Raspberry Pi. [Consult the guide for flashing your SD card](https://www.planktoscope.org/replicate/assemble-your-kit) before you do this. The heat sink can also be added to the processor.
 
@@ -191,83 +191,52 @@ At this point, you can insert your flashed SD card into your Raspberry Pi. [Cons
 
 Mount the Raspberry Pi containing the flashed SD card on the standoffs attached to the laser
 cut base A1. You will obtain this:
-![Step15](assembly_guide/pictures/HAT_motor_rasp_pi.webp)
+![Step15](assembly_guide/pictures/29.webp)
 
 N’hésitez pas à cacher l’excédent de câbles des différents moteurs/pompe derrière la Raspberry Pi afin que cela n’interfère pas dans le reste. On fixe la Raspberry Pi cette fois ci en utilisant des standoffs de 10mm.
 
 ## Step 16: Prepare the GPS HAT
 Insert the battery to power the GPS HAT and solder the terminal mounts in place.
-![Step16](assembly_guide/pictures/GPS_HAT.webp)
-![Step16](assembly_guide/pictures/GPS_HAT.2.webp)
+![Step16](assembly_guide/pictures/30.webp)
+![Step16](assembly_guide/pictures/31.webp)
 
 ## Step 17: Install the GPS HAT
 Mount the GPS HAT over the motor driver PCB using the standoffs attached to the laser cut
 base **A1**.
-![Step17](assembly_guide/pictures/GPS_HAT.3.webp)
+![Step17](assembly_guide/pictures/32.webp)
+
+On obtient le résultat suivant :
+![Step17](assembly_guide/pictures/33.webp)
 
 ## Step 18: Camera flex cable
 At this point you can use the Pi camera flex cable to connect the camera to the Pi. This is done
 by gently pulling up the tensioners, inserting the cable in the right orientation, then pushing
 the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as
 it is possible to damage it.
-![Step18](assembly_guide/pictures/camera_flex.webp)
-
+![Step18](assembly_guide/pictures/33.1.webp)
 
 ## Step 19: Install the Fan HAT
-![Step19](assembly_guide/render/step19.webp)
+![Step19](assembly_guide/render/34.webp)
 
 Place the cooling fan HAT above the Raspberry Pi by mounting it to the standoffs on base **A1**.
 
 !!! warning
     Be careful to slide the camera flat cable in the slot in the HAT above the connector.
+    
+On obtient le résultat suivant :
+![Step17](assembly_guide/pictures/35.webp)
 
 ## Step 21: Secure the HATS
-![Step21](assembly_guide/render/step20.webp)
+![Step21](assembly_guide/render/36.webp)
 
 Secure the cooling fan HAT and GPS HAT by tightening the 8 screws to the standoffs on base **A1**
 
-## Step 22: Install back panel
-![Step21](assembly_guide/render/side_panel.webp)
-
-Insert the laser cut border **I** into base **A**.
-
-## Step 23: GPS output connector
-![Step22](assembly_guide/render/step22.webp)
-
-Insert the power and GPS connectors into side plate **J**.
-
-## Step 24: Install side panel
-![Step23](assembly_guide/render/step23.webp)
-
-Place the side plate **J** into the designated slots on the base. You can connect the GPS cable to its connector on the board.
-
-!!! warning
-    The GPS connector is quite fragile, make sure to align it properly before inserting it.
-
-## Step 25: Install the other side panel
-![Step25](assembly_guide/render/step25.webp)
-
-Mount the side plate **K** on base **A** using the assigned slots.
-
-## Step 26: Secure the sides together
-![Step26](assembly_guide/render/step26.webp)
-
-Secure the laser cut sides with the screws and nuts.
-
-## Step 27: Secure the sides to the base plate
-![Step27](assembly_guide/render/step27.webp)
-
-Secure the laser cut sides to the base plate **A** with the screws and nuts.
-
-!!! warning
-    To make this easier, you can turn the assembly upside down or on its side. Be careful when doing so as the plates may fall.
-
-## Step 28: Insert the camera ribbon cable in the camera
-![Step28](assembly_guide/pictures/step28.webp)
+## Step 22: Insert the camera ribbon cable in the camera
+![Step22](assembly_guide/pictures/37.webp)
 
 You can now connect the camera flex cable into the connector on the camera board. Once again, gently pull up the tensioners, insert the cable in the right orientation, and push the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as it is possible to damage it.
 
-## Step 29: Assemble the GPIO ribbon cable
+## Step 23: Assemble the GPIO ribbon cable
 If you didn't get an already assembled ribbon cable, you need to build it yourself.
 
 The orientation of the connector does not really matter. However, you need to make sure that both connectors are oriented in the same direction and are on the same side of the ribbon.
@@ -276,54 +245,74 @@ To assemble, slide the ribbon in its connector and close it off. You need to tig
 
 !!! warning
     Once assembled, the ribbon should NOT look like this:
-    ![Ribbon wrong](assembly_guide/pictures/ribbon_wrong.webp)
+    ![Step23](assembly_guide/pictures/38.webp)
 
     It should rather look like this:
-    ![Ribbon good](assembly_guide/pictures/ribbon_good.webp)
+    ![Step23](assembly_guide/pictures/39.webp)
 
-
-## Step 30: Insert the ribbon cable
-![Step28](assembly_guide/render/step28.webp)
+## Step 24: Insert the ribbon cable
+![Step24](assembly_guide/pictures/40.1.webp)
 
 Attach the GPIO ribbon to connect the cooling fan HAT to the GPS HAT.
 
 !!! tip
     You can try to route the flat ribbon from the camera under the ribbon cable you are connecting now.
-    ![Step31](assembly_guide/pictures/step31.webp)
+    ![Step31](assembly_guide/pictures/40.webp)
 
-## Step 31: Fluidic assembly
-![Step29](assembly_guide/render/step29.webp)
+## Step 25: Install side panel
+![Step25](assembly_guide/render/41.webp)
+
+Place the side plate **J** into the designated slots on the base.
+
+## Step 26: Install the other side panel
+![Step26](assembly_guide/render/42.webp)
+
+Mount the side plate **K** on base **A** using the assigned slots.
+
+## Step 27: Secure the sides together
+![Step27](assembly_guide/render/43.webp)
+
+Secure the laser cut sides with the screws and nuts.
+
+## Step 28: Secure the sides to the base plate
+![Step28](assembly_guide/render/44.webp)
+
+Secure the laser cut sides to the base plate **A** with the screws and nuts.
+
+!!! warning
+    To make this easier, you can turn the assembly upside down or on its side. Be careful when doing so as the plates may fall.
+
+## Step 29: Fluidic assembly
+![Step29](assembly_guide/pictures/step29.webp)
 
 Feed in the tubing from syringe 1 to form the fluidic path as shown.
 
-![Step30](assembly_guide/render/step30.webp)
+![Step29](assembly_guide/pictures/step30.webp)
 
 Feed in the tubing from syringe 2 to form the fluidic path as shown
 
-![Step31](assembly_guide/render/step31.webp)
+![Step29](assembly_guide/pictures/step31.webp)
 
 Feed in a length of tubing as shown through motor mount **H** and illumination mount **FE**
 
-![Step34](assembly_guide/pictures/step34.webp)
+![Step29](assembly_guide/pictures/step34.webp)
 
-## Step 32: Close your PlanktoScope
+## Step 30: Close your PlanktoScope
 
 !!! warning
     Take a moment to check your wiring one last time. Also check the routing, make sure the LED wires and the pump stepper wires are in their dedicated channel.
 
-![Step33](assembly_guide/render/step33.webp)
-
 Place the top **L** into the slots on the PlanktoScope body. Secure it in place with screws and nuts.
+![Step30](assembly_guide/pictures/45.webp)
 
-![Step34](assembly_guide/render/step34.webp)
 
-## Step 33: Enjoy!
+## Step 31: Enjoy!
 
 Congratulations on a job well done. You can have some rest, get a tea and some biscuits!
 
-![Step35](assembly_guide/render/step35.webp)
+![Step31](assembly_guide/pictures/1.webp)
 
 You can now plug the machine in and test it. If you have choose the Expert's path, now is a good time to [finish setting up your machine](expert_setup.md).
 
-## Step 34: Read the getting started guide
+## Step 32: Read the getting started guide
 [A guide to get started with your machine use is available!](getting_started.md)
