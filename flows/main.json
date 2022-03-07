@@ -3077,8 +3077,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1230,
-        "y": 120,
+        "x": 1190,
+        "y": 180,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3111,7 +3111,9 @@
                 "9f501f49.45645",
                 "46eb1bf8.3dc5f4",
                 "3ac7b631f5d8ef90",
-                "fdc7981ab1e4f8ce"
+                "a2438617d37b4e22",
+                "fdc7981ab1e4f8ce",
+                "59242201616333de"
             ]
         ]
     },
@@ -3134,7 +3136,7 @@
         "className": "",
         "topicType": "str",
         "x": 1210,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "9f501f49.45645",
@@ -3160,8 +3162,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1220,
-        "y": 80,
+        "x": 1200,
+        "y": 100,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3187,7 +3189,7 @@
         "className": "",
         "topicType": "str",
         "x": 870,
-        "y": 880,
+        "y": 860,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3464,8 +3466,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "",
-        "x": 3520,
-        "y": 380,
+        "x": 3530,
+        "y": 420,
         "wires": []
     },
     {
@@ -3487,7 +3489,7 @@
         "className": "",
         "topicType": "str",
         "x": 890,
-        "y": 940,
+        "y": 900,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3512,8 +3514,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 880,
-        "y": 1000,
+        "x": 890,
+        "y": 940,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3528,8 +3530,8 @@
         "links": [
             "35eb925e.5f8016"
         ],
-        "x": 1475,
-        "y": 160,
+        "x": 1395,
+        "y": 140,
         "wires": []
     },
     {
@@ -3562,8 +3564,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 840,
-        "y": 1140,
+        "x": 950,
+        "y": 1100,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3611,7 +3613,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 2330,
+        "x": 2370,
         "y": 1960,
         "wires": [
             []
@@ -3670,7 +3672,7 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "sample_location",
-        "x": 1420,
+        "x": 1400,
         "y": 1920,
         "wires": [
             [
@@ -3792,7 +3794,7 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1400,
+        "x": 1420,
         "y": 2000,
         "wires": [
             [
@@ -4000,7 +4002,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2440,
+        "x": 2430,
         "y": 2000,
         "wires": [
             [
@@ -4021,8 +4023,8 @@
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}\" {{msg.payload.lat.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 3490,
-        "y": 420,
+        "x": 3500,
+        "y": 460,
         "wires": []
     },
     {
@@ -4038,8 +4040,8 @@
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}\" {{msg.payload.lon.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 3490,
-        "y": 460,
+        "x": 3500,
+        "y": 500,
         "wires": []
     },
     {
@@ -4054,7 +4056,7 @@
         "finalize": "",
         "libs": [],
         "x": 3280,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "4fb4e0ad.c417c",
@@ -4075,8 +4077,8 @@
         "label": "Speed",
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
-        "x": 3480,
-        "y": 500,
+        "x": 3490,
+        "y": 540,
         "wires": []
     },
     {
@@ -4091,8 +4093,8 @@
         "label": "Direction",
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
-        "x": 3490,
-        "y": 540,
+        "x": 3500,
+        "y": 380,
         "wires": []
     },
     {
@@ -4106,8 +4108,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3260,
-        "y": 380,
+        "x": 3250,
+        "y": 420,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -4125,8 +4127,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3280,
-        "y": 500,
+        "x": 3270,
+        "y": 540,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -4146,7 +4148,7 @@
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 3510,
+        "x": 3490,
         "y": 580,
         "wires": []
     },
@@ -4199,7 +4201,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3320,
+        "x": 3250,
         "y": 580,
         "wires": [
             [
@@ -4226,8 +4228,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 890,
-        "y": 1180,
+        "x": 900,
+        "y": 1060,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4312,7 +4314,7 @@
         "delay": "300",
         "topic": "sample_speed_through_water",
         "topicType": "str",
-        "x": 840,
+        "x": 830,
         "y": 500,
         "wires": [
             [
@@ -4338,8 +4340,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 890,
-        "y": 1060,
+        "x": 900,
+        "y": 980,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4364,8 +4366,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 890,
-        "y": 1100,
+        "x": 900,
+        "y": 1020,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4383,8 +4385,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1480,
-        "y": 980,
+        "x": 1540,
+        "y": 860,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -4674,7 +4676,7 @@
             "e789e03a75a408c5"
         ],
         "x": 3695,
-        "y": 440,
+        "y": 480,
         "wires": []
     },
     {
@@ -4787,8 +4789,8 @@
             "3c13c020b93fa3e7",
             "6bec70a17424ed31"
         ],
-        "x": 3495,
-        "y": 640,
+        "x": 3455,
+        "y": 620,
         "wires": []
     },
     {
@@ -4836,8 +4838,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 2480,
-        "y": 640,
+        "x": 2460,
+        "y": 600,
         "wires": [
             [
                 "58152890c539c567"
@@ -4906,7 +4908,7 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 340,
+        "x": 350,
         "y": 2240,
         "wires": [
             [
@@ -4925,7 +4927,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
+        "x": 310,
         "y": 2280,
         "wires": [
             [
@@ -4944,7 +4946,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 580,
         "y": 2280,
         "wires": [
             [
@@ -4960,7 +4962,7 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 145,
+        "x": 155,
         "y": 2280,
         "wires": [
             [
@@ -4988,7 +4990,7 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 330,
+        "x": 340,
         "y": 2320,
         "wires": [
             [
@@ -5007,8 +5009,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 2440,
+        "x": 340,
+        "y": 2400,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -5026,8 +5028,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 2440,
+        "x": 580,
+        "y": 2400,
         "wires": [
             [
                 "358908cd.416ab"
@@ -5042,8 +5044,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 165,
-        "y": 2440,
+        "x": 155,
+        "y": 2400,
         "wires": [
             [
                 "9c3ce7821bdd6864"
@@ -5070,8 +5072,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 330,
-        "y": 2380,
+        "x": 340,
+        "y": 2360,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -5098,7 +5100,7 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 400,
+        "x": 390,
         "y": 2700,
         "wires": [
             [
@@ -5117,7 +5119,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 350,
         "y": 2740,
         "wires": [
             [
@@ -5136,7 +5138,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
+        "x": 640,
         "y": 2740,
         "wires": [
             [
@@ -5152,7 +5154,7 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 155,
+        "x": 175,
         "y": 2740,
         "wires": [
             [
@@ -5180,7 +5182,7 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 390,
+        "x": 380,
         "y": 2780,
         "wires": [
             [
@@ -5199,8 +5201,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 2900,
+        "x": 380,
+        "y": 2860,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -5218,8 +5220,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 2900,
+        "x": 640,
+        "y": 2860,
         "wires": [
             [
                 "56d40584.eff4e4"
@@ -5235,7 +5237,7 @@
             "58249066ba04fb19"
         ],
         "x": 175,
-        "y": 2900,
+        "y": 2860,
         "wires": [
             [
                 "51e26562f24d16b4"
@@ -5262,8 +5264,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 390,
-        "y": 2840,
+        "x": 380,
+        "y": 2820,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -5285,8 +5287,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 2000,
-        "y": 2120,
+        "x": 1990,
+        "y": 2100,
         "wires": [
             []
         ]
@@ -5306,7 +5308,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 2500,
+        "x": 1980,
         "y": 2140,
         "wires": [
             []
@@ -5323,8 +5325,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n//Data for retrieval\ncontext.set(\"lat_end\", \"None\")\ncontext.set(\"lon_end\", \"None\")\ncontext.set(\"date_end\", \"None\")\ncontext.set(\"time_end\", \"None\")\n\n//Data for throw\ncontext.set(\"lat\", \"None\")\ncontext.set(\"lon\", \"None\")\ncontext.set(\"date\", \"None\")\ncontext.set(\"time\", \"None\")\n\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;",
         "finalize": "",
         "libs": [],
-        "x": 2310,
-        "y": 2160,
+        "x": 2120,
+        "y": 2020,
         "wires": [
             [
                 "c544ac031b6cf88c"
@@ -5346,7 +5348,7 @@
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 2630,
+        "x": 2470,
         "y": 2060,
         "wires": [
             []
@@ -5427,10 +5429,10 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Preset with test",
-        "func": "if(msg.payload == \"test\"){\n    msg1={}; msg2={}; msg3 ={};\n    msg1.payload = \"Projet_Test\";\n    msg2.payload = \"Ship_Test\";\n    msg3.payload = \"Operator_Test\";\n    return [msg1, msg2, msg3];\n}\nelse{\n    msg1.payload = \"\";\n    msg2.payload = \"\";\n    msg3.payload = \"\";\n\n    return [msg1, msg2, msg3];\n}",
-        "outputs": 3,
+        "func": "msg1={}; msg2={};\nmsg1.payload=global.get(\"sample_project\")\nmsg2.payload=global.get(\"sample_operator\")\n\nif (msg1.payload == \"\" || msg1.payload == undefined) {\n    if(msg.payload == \"test\"){\n        msg1.payload = \"Project_Test\";\n    } else {\n        msg1.payload = \"\";\n    }\n}\nif (msg2.payload == \"\" || msg2.payload == undefined) {\n    if(msg.payload == \"test\"){\n        msg2.payload = \"Operator_Test\";\n    } else {\n        msg2.payload = \"\";\n    }\n}\n\nreturn [msg1, msg2];",
+        "outputs": 2,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nmsg1={}; msg2={}; msg3 ={};\nmsg1.payload = \"\";\nmsg2.payload = \"\";\nmsg3.payload = \"\";\nreturn [msg1, msg2, msg3];",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nmsg1={}; msg2={};\nmsg1.payload = \"\";\nmsg2.payload = \"\";\nreturn [msg1, msg2];",
         "finalize": "",
         "libs": [],
         "x": 950,
@@ -5438,9 +5440,6 @@
         "wires": [
             [
                 "9c882b37.fde668"
-            ],
-            [
-                "4557d689.a4fa88"
             ],
             [
                 "82c5fc77.59c97"
@@ -5517,7 +5516,7 @@
         "finalize": "",
         "libs": [],
         "x": 1720,
-        "y": 1920,
+        "y": 1960,
         "wires": [
             [
                 "14658615.47c862"
@@ -5548,7 +5547,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "msg = {}\nmode = global.get(\"mode\")\nmsg.payload = global.get(\"sample_sampling_gear\")\n\nif(mode == undefined) {\n    mode = 1;\n}\n\nmsg.enabled = true;\n    \nif(mode == 0){\n    \n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n        {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n        {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n        {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n        {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n}\n\nelse {\n    msg.options = [\n        {\"High Speed Net\":\"net_hsn\"}, \n        {\"Single location (with net or bucket)\":\"single_location\"},\n        {\"Lab culture\":\"culture\"},\n        {\"Test\":\"test\"}]\n}\n\nif(msg.payload == undefined) {\n    msg.payload = \"None\";\n}\n\nreturn msg\n\n\n\n",
+        "func": "msg = {}\nmode = global.get(\"mode\")\nmsg.payload = global.get(\"sample_sampling_gear\")\n\nif(mode == undefined) {\n    mode = 1;\n}\n\nmsg.enabled = true;\n    \nif(mode == 0){\n    \n    msg.options = [{\"High Speed Net\":\"net_hsn\"}, \n        {\"Tara Decknet\":\"net_decknet\"}, {\"Plankton net\":\"net\"},\n        {\"Niskin bottle 12L\":\"niskin_12L\"},{\"Niskin bottle 24L\":\"niskin_24L\"},\n        {\"Pass Hull\":\"pass_hull\"},{\"Single location (with net or bucket)\":\"single_location\"},\n        {\"Lab culture\":\"culture\"},{\"Test\":\"test\"}]\n}\n\nelse {\n    msg.options = [\n        {\"High Speed Net\":\"net_hsn\"}, \n        {\"Single location (with net or bucket)\":\"single_location\"},\n        {\"Lab culture\":\"culture\"},\n        {\"Test\":\"test\"}]\n}\n\nif(msg.payload == undefined) {\n    msg.payload = \"\";\n}\n\nreturn msg\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"choose\",\"single_location\")",
@@ -5614,7 +5613,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 2310,
+        "x": 2290,
         "y": 540,
         "wires": [
             [
@@ -5639,7 +5638,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 2510,
+        "x": 2500,
         "y": 540,
         "wires": [
             [
@@ -5680,7 +5679,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1730,
-        "y": 2040,
+        "y": 2020,
         "wires": [
             [
                 "8b97db46845cf99a"
@@ -5737,6 +5736,129 @@
         "wires": [
             [
                 "073c7d4ce2c7b3a7"
+            ]
+        ]
+    },
+    {
+        "id": "a2438617d37b4e22",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "object_lat",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_lon",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_time",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_date",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_lat_end",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_lon_end",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_time_end",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "object_date_end",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "59242201616333de",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "77683b416da98f8e"
+        ],
+        "x": 995,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "77683b416da98f8e",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "",
+        "links": [
+            "59242201616333de"
+        ],
+        "x": 1665,
+        "y": 2100,
+        "wires": [
+            [
+                "9b7ce9a0f9ad0d3e"
+            ]
+        ]
+    },
+    {
+        "id": "9b7ce9a0f9ad0d3e",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "",
+        "func": "msg.payload.object_lat = \"\"\nmsg.payload.object_lon = \"\"\nmsg.payload.object_date = \"\"\nmsg.payload.object_time = \"\"\nmsg.payload.object_lat_end = \"\"\nmsg.payload.object_lon_end = \"\"\nmsg.payload.object_date_end = \"\"\nmsg.payload.object_time_end = \"\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1790,
+        "y": 2100,
+        "wires": [
+            [
+                "4c4d548577a253bb",
+                "c544ac031b6cf88c"
             ]
         ]
     },
@@ -6676,7 +6798,7 @@
         "id": "82722a3c.846b3",
         "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "Default: ON",
+        "name": "Default: AUTO",
         "props": [
             {
                 "p": "payload"
@@ -6687,9 +6809,9 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "on",
+        "payload": "auto",
         "payloadType": "str",
-        "x": 110,
+        "x": 120,
         "y": 1440,
         "wires": [
             [
@@ -15682,7 +15804,7 @@
         "type": "function",
         "z": "1371dec5.76e671",
         "name": "store version",
-        "func": "msg.payload = \"PlanktoScope v2.3-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
+        "func": "msg.payload = \"PlanktoScope v2.3-IESE_2022-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
