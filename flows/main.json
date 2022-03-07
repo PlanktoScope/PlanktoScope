@@ -3188,8 +3188,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 870,
-        "y": 860,
+        "x": 770,
+        "y": 560,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3207,8 +3207,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1550,
-        "y": 680,
+        "x": 1360,
+        "y": 560,
         "wires": [
             []
         ]
@@ -3219,8 +3219,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 3870,
-        "y": 200,
+        "x": 1780,
+        "y": 120,
         "wires": [
             []
         ]
@@ -3239,8 +3239,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 4120,
-        "y": 280,
+        "x": 2030,
+        "y": 200,
         "wires": [
             []
         ]
@@ -3256,8 +3256,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3880,
-        "y": 240,
+        "x": 1790,
+        "y": 160,
         "wires": [
             [
                 "726a7822.cd6298",
@@ -3285,8 +3285,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 2750,
-        "y": 380,
+        "x": 2230,
+        "y": 260,
         "wires": [
             [
                 "258b4562.9f778a",
@@ -3304,8 +3304,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 4110,
-        "y": 200,
+        "x": 2020,
+        "y": 120,
         "wires": [
             []
         ]
@@ -3330,8 +3330,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 3650,
-        "y": 200,
+        "x": 1560,
+        "y": 120,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -3356,8 +3356,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 3650,
-        "y": 240,
+        "x": 1560,
+        "y": 160,
         "wires": [
             [
                 "986d960a.c75908"
@@ -3447,8 +3447,8 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 4100,
-        "y": 240,
+        "x": 2010,
+        "y": 160,
         "wires": [
             []
         ]
@@ -3466,8 +3466,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "",
-        "x": 3530,
-        "y": 420,
+        "x": 2770,
+        "y": 300,
         "wires": []
     },
     {
@@ -3488,8 +3488,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 890,
-        "y": 900,
+        "x": 790,
+        "y": 600,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3514,8 +3514,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 890,
-        "y": 940,
+        "x": 790,
+        "y": 640,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3540,8 +3540,8 @@
         "z": "b771c342.49603",
         "name": "show/hide net groups",
         "events": "change",
-        "x": 1790,
-        "y": 780,
+        "x": 1620,
+        "y": 660,
         "wires": [
             []
         ]
@@ -3564,8 +3564,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 950,
-        "y": 1100,
+        "x": 850,
+        "y": 800,
         "wires": [
             [
                 "9f501f49.45645"
@@ -3613,8 +3613,8 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 2370,
-        "y": 1960,
+        "x": 1810,
+        "y": 900,
         "wires": [
             []
         ]
@@ -3645,14 +3645,14 @@
                 "rows": null
             },
             {
-                "label": "Date (YYYY-MM-DD, )",
+                "label": "Date (YYYY-MM-DD, UTC)",
                 "value": "object_date",
                 "type": "date",
                 "required": true,
                 "rows": null
             },
             {
-                "label": "Time (HH:MM) 24h)",
+                "label": "Time (HH:MM, UTC 24h)",
                 "value": "object_time",
                 "type": "time",
                 "required": true,
@@ -3672,8 +3672,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "sample_location",
-        "x": 1400,
-        "y": 1920,
+        "x": 780,
+        "y": 900,
         "wires": [
             [
                 "2ea7ccf8ea31c39b"
@@ -3706,7 +3706,7 @@
                 "rows": null
             },
             {
-                "label": "Date (YYYY-MM-DD UTC)",
+                "label": "Date (YYYY-MM-DD, UTC)",
                 "value": "object_date",
                 "type": "date",
                 "required": true,
@@ -3733,8 +3733,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1410,
-        "y": 1960,
+        "x": 790,
+        "y": 940,
         "wires": [
             [
                 "2ea7ccf8ea31c39b"
@@ -3767,7 +3767,7 @@
                 "rows": null
             },
             {
-                "label": "Date (YYYY-MM-DD UTC)",
+                "label": "Date (YYYY-MM-DD, UTC)",
                 "value": "object_date_end",
                 "type": "date",
                 "required": true,
@@ -3794,8 +3794,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1420,
-        "y": 2000,
+        "x": 800,
+        "y": 980,
         "wires": [
             [
                 "2ea7ccf8ea31c39b"
@@ -3813,8 +3813,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2030,
-        "y": 1960,
+        "x": 1430,
+        "y": 900,
         "wires": [
             [
                 "c0ce5626.b6c5",
@@ -3844,8 +3844,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1550,
-        "y": 720,
+        "x": 1360,
+        "y": 600,
         "wires": [
             [
                 "516375fd.2ed61c",
@@ -3879,8 +3879,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1810,
-        "y": 700,
+        "x": 1640,
+        "y": 580,
         "wires": [
             [
                 "e9bc112c.eb75f8"
@@ -3905,8 +3905,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1810,
-        "y": 740,
+        "x": 1640,
+        "y": 620,
         "wires": [
             [
                 "e9bc112c.eb75f8"
@@ -3928,8 +3928,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1800,
-        "y": 660,
+        "x": 1630,
+        "y": 540,
         "wires": [
             []
         ]
@@ -4002,8 +4002,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2430,
-        "y": 2000,
+        "x": 1870,
+        "y": 940,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -4023,8 +4023,8 @@
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}\" {{msg.payload.lat.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 3500,
-        "y": 460,
+        "x": 2740,
+        "y": 340,
         "wires": []
     },
     {
@@ -4040,8 +4040,8 @@
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}\" {{msg.payload.lon.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 3500,
-        "y": 500,
+        "x": 2740,
+        "y": 380,
         "wires": []
     },
     {
@@ -4055,8 +4055,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3280,
-        "y": 480,
+        "x": 2520,
+        "y": 360,
         "wires": [
             [
                 "4fb4e0ad.c417c",
@@ -4077,8 +4077,8 @@
         "label": "Speed",
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
-        "x": 3490,
-        "y": 540,
+        "x": 2730,
+        "y": 420,
         "wires": []
     },
     {
@@ -4093,8 +4093,8 @@
         "label": "Direction",
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
-        "x": 3500,
-        "y": 380,
+        "x": 2740,
+        "y": 260,
         "wires": []
     },
     {
@@ -4108,8 +4108,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3250,
-        "y": 420,
+        "x": 2490,
+        "y": 300,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -4127,8 +4127,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3270,
-        "y": 540,
+        "x": 2510,
+        "y": 420,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -4148,8 +4148,8 @@
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 3490,
-        "y": 580,
+        "x": 2730,
+        "y": 460,
         "wires": []
     },
     {
@@ -4201,8 +4201,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3250,
-        "y": 580,
+        "x": 2490,
+        "y": 460,
         "wires": [
             [
                 "35ad311f.344c76",
@@ -4228,8 +4228,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 900,
-        "y": 1060,
+        "x": 800,
+        "y": 760,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4254,8 +4254,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1970,
-        "y": 1360,
+        "x": 2160,
+        "y": 760,
         "wires": [
             [
                 "e1f2f6eb.fe1dd"
@@ -4273,8 +4273,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2190,
-        "y": 1360,
+        "x": 2380,
+        "y": 760,
         "wires": [
             []
         ]
@@ -4290,8 +4290,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2080,
-        "y": 720,
+        "x": 1910,
+        "y": 600,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -4340,8 +4340,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 900,
-        "y": 980,
+        "x": 800,
+        "y": 680,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4366,8 +4366,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 900,
-        "y": 1020,
+        "x": 800,
+        "y": 720,
         "wires": [
             [
                 "9f501f49.45645"
@@ -4385,8 +4385,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1540,
-        "y": 860,
+        "x": 1380,
+        "y": 660,
         "wires": [
             [
                 "cbb123ab.fd3428"
@@ -4435,8 +4435,8 @@
         "topicType": "str",
         "splitLayout": false,
         "className": "",
-        "x": 1410,
-        "y": 2040,
+        "x": 790,
+        "y": 1020,
         "wires": [
             [
                 "2ea7ccf8ea31c39b"
@@ -4454,7 +4454,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3190,
+        "x": 2500,
         "y": 140,
         "wires": [
             [
@@ -4499,7 +4499,7 @@
             }
         ],
         "topic": "",
-        "x": 2990,
+        "x": 2300,
         "y": 100,
         "wires": [
             [
@@ -4527,7 +4527,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3470,
+        "x": 2720,
         "y": 60,
         "wires": [
             [
@@ -4550,7 +4550,7 @@
             "c840a7c66cf51acc",
             "a45e550cb5e1c1d1"
         ],
-        "x": 3675,
+        "x": 2875,
         "y": 60,
         "wires": []
     },
@@ -4570,7 +4570,7 @@
             "de32bd4b6ba8dfd3",
             "d3892bf83549fd59"
         ],
-        "x": 2855,
+        "x": 2165,
         "y": 100,
         "wires": [
             [
@@ -4590,7 +4590,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3190,
+        "x": 2500,
         "y": 60,
         "wires": [
             [
@@ -4618,8 +4618,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 390,
-        "y": 1800,
+        "x": 280,
+        "y": 860,
         "wires": [
             [
                 "ae70f39284d2e033"
@@ -4637,8 +4637,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 1840,
+        "x": 230,
+        "y": 900,
         "wires": [
             [
                 "ae70f39284d2e033"
@@ -4650,14 +4650,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "var lat, lon\nmsg_location = {}\n\nif(msg.topic == \"location\"){\n    context.set(\"lat\",msg.payload.lat);\n    context.set(\"lon\",msg.payload.lon);\n}\n\nif(msg.topic == \"gps_fill\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_lat\": context.get(\"lat\"), \"object_lon\" : context.get(\"lon\")}\n    return msg_location\n}\n\n",
+        "func": "var lat, lon\nmsg_location = {}\n\nif(msg.topic == \"location\"){\n    context.set(\"lat\",msg.payload.lat);\n    context.set(\"lon\",msg.payload.lon);\n}\n\nif(msg.topic == \"gps_fill\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_lat\": context.get(\"lat\"), \"object_lon\" : context.get(\"lon\")}\n    return msg_location\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
-        "y": 1840,
+        "x": 510,
+        "y": 900,
         "wires": [
             [
                 "c33f1124.af6688"
@@ -4675,8 +4675,8 @@
             "4c613fe60516ae4e",
             "e789e03a75a408c5"
         ],
-        "x": 3695,
-        "y": 480,
+        "x": 2875,
+        "y": 360,
         "wires": []
     },
     {
@@ -4687,8 +4687,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 185,
-        "y": 1840,
+        "x": 95,
+        "y": 900,
         "wires": [
             [
                 "e338fbd49a4e9fc6"
@@ -4715,8 +4715,8 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 380,
-        "y": 1880,
+        "x": 270,
+        "y": 940,
         "wires": [
             [
                 "7a739cae4903f510"
@@ -4734,8 +4734,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 2000,
+        "x": 260,
+        "y": 1020,
         "wires": [
             [
                 "7a739cae4903f510",
@@ -4748,14 +4748,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "",
-        "func": "msg_location = {}\n\nif(msg.topic == \"date and time\"){\n    context.set(\"date\",msg.payload.date);\n    context.set(\"time\",msg.payload.time);\n}\n\n\nif(msg.topic == \"gps_date\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_date\": context.get(\"date\")}\n    return msg_location\n}\n\nif(msg.topic == \"gps_time\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_time\": context.get(\"time\")}\n    return msg_location\n}\n",
+        "func": "msg_location = {}\n\nif(msg.topic == \"date and time\"){\n    context.set(\"date\",msg.payload.date);\n    context.set(\"time\",msg.payload.time);\n}\n\n\nif(msg.topic == \"gps_date\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_date\": context.get(\"date\")}\n    return msg_location\n}\n\nif(msg.topic == \"gps_time\" && msg.payload == \"true\" ){\n    msg_location.payload = {\"object_time\": context.get(\"time\")}\n    return msg_location\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
-        "y": 2000,
+        "x": 520,
+        "y": 1020,
         "wires": [
             [
                 "c33f1124.af6688"
@@ -4770,8 +4770,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 205,
-        "y": 2000,
+        "x": 95,
+        "y": 1020,
         "wires": [
             [
                 "2f6370f095a73f67"
@@ -4789,8 +4789,8 @@
             "3c13c020b93fa3e7",
             "6bec70a17424ed31"
         ],
-        "x": 3455,
-        "y": 620,
+        "x": 2695,
+        "y": 500,
         "wires": []
     },
     {
@@ -4813,8 +4813,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 380,
-        "y": 1940,
+        "x": 270,
+        "y": 980,
         "wires": [
             [
                 "7a739cae4903f510"
@@ -4838,8 +4838,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 2460,
-        "y": 600,
+        "x": 1940,
+        "y": 460,
         "wires": [
             [
                 "58152890c539c567"
@@ -4861,8 +4861,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 270,
-        "y": 2080,
+        "x": 250,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -4882,8 +4882,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 490,
-        "y": 2080,
+        "x": 470,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -4908,8 +4908,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 350,
-        "y": 2240,
+        "x": 270,
+        "y": 1180,
         "wires": [
             [
                 "6e139abd9cd02c0e"
@@ -4927,8 +4927,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 2280,
+        "x": 230,
+        "y": 1220,
         "wires": [
             [
                 "6e139abd9cd02c0e"
@@ -4946,8 +4946,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 2280,
+        "x": 500,
+        "y": 1220,
         "wires": [
             [
                 "358908cd.416ab"
@@ -4962,8 +4962,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 155,
-        "y": 2280,
+        "x": 95,
+        "y": 1220,
         "wires": [
             [
                 "694c05147fdd093d"
@@ -4990,8 +4990,8 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 340,
-        "y": 2320,
+        "x": 260,
+        "y": 1260,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -5009,8 +5009,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 2400,
+        "x": 260,
+        "y": 1340,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -5028,8 +5028,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 2400,
+        "x": 500,
+        "y": 1340,
         "wires": [
             [
                 "358908cd.416ab"
@@ -5044,8 +5044,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 155,
-        "y": 2400,
+        "x": 95,
+        "y": 1340,
         "wires": [
             [
                 "9c3ce7821bdd6864"
@@ -5072,8 +5072,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 340,
-        "y": 2360,
+        "x": 260,
+        "y": 1300,
         "wires": [
             [
                 "4e6a3d268e741d74"
@@ -5100,8 +5100,8 @@
         "payloadType": "str",
         "topic": "gps_fill",
         "topicType": "str",
-        "x": 390,
-        "y": 2700,
+        "x": 270,
+        "y": 1400,
         "wires": [
             [
                 "fd441ca73907e6fc"
@@ -5119,8 +5119,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 2740,
+        "x": 230,
+        "y": 1440,
         "wires": [
             [
                 "fd441ca73907e6fc"
@@ -5138,8 +5138,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 2740,
+        "x": 520,
+        "y": 1440,
         "wires": [
             [
                 "56d40584.eff4e4"
@@ -5154,8 +5154,8 @@
         "links": [
             "0153d9162a928737"
         ],
-        "x": 175,
-        "y": 2740,
+        "x": 95,
+        "y": 1440,
         "wires": [
             [
                 "92f45ea22b4985a1"
@@ -5182,8 +5182,8 @@
         "payloadType": "str",
         "topic": "gps_date",
         "topicType": "str",
-        "x": 380,
-        "y": 2780,
+        "x": 260,
+        "y": 1480,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -5201,8 +5201,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 2860,
+        "x": 260,
+        "y": 1560,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -5220,8 +5220,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 2860,
+        "x": 520,
+        "y": 1560,
         "wires": [
             [
                 "56d40584.eff4e4"
@@ -5236,8 +5236,8 @@
         "links": [
             "58249066ba04fb19"
         ],
-        "x": 175,
-        "y": 2860,
+        "x": 95,
+        "y": 1560,
         "wires": [
             [
                 "51e26562f24d16b4"
@@ -5264,8 +5264,8 @@
         "payloadType": "str",
         "topic": "gps_time",
         "topicType": "str",
-        "x": 380,
-        "y": 2820,
+        "x": 260,
+        "y": 1520,
         "wires": [
             [
                 "0777da8c09792a70"
@@ -5287,8 +5287,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1990,
-        "y": 2100,
+        "x": 1390,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -5308,8 +5308,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1980,
-        "y": 2140,
+        "x": 1380,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -5325,8 +5325,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n//Data for retrieval\ncontext.set(\"lat_end\", \"None\")\ncontext.set(\"lon_end\", \"None\")\ncontext.set(\"date_end\", \"None\")\ncontext.set(\"time_end\", \"None\")\n\n//Data for throw\ncontext.set(\"lat\", \"None\")\ncontext.set(\"lon\", \"None\")\ncontext.set(\"date\", \"None\")\ncontext.set(\"time\", \"None\")\n\nvar msg_new = {payload:{}}\n\nmsg_new.payload.lat = context.get(\"lat\")\nmsg_new.payload.lon = context.get(\"lon\")\nmsg_new.payload.date = context.get(\"date\")\nmsg_new.payload.time = context.get(\"time\")\n\nmsg_new.payload.lat_end = context.get(\"lat_end\")\nmsg_new.payload.lon_end = context.get(\"lon_end\")\nmsg_new.payload.date_end = context.get(\"date_end\")\nmsg_new.payload.time_end = context.get(\"time_end\")\n\nreturn msg_new;",
         "finalize": "",
         "libs": [],
-        "x": 2120,
-        "y": 2020,
+        "x": 1520,
+        "y": 960,
         "wires": [
             [
                 "c544ac031b6cf88c"
@@ -5348,8 +5348,8 @@
         "resendOnRefresh": true,
         "templateScope": "global",
         "className": "",
-        "x": 2470,
-        "y": 2060,
+        "x": 1610,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -5362,8 +5362,8 @@
         "links": [
             "a5b67ad53d90447b"
         ],
-        "x": 435,
-        "y": 860,
+        "x": 495,
+        "y": 560,
         "wires": [
             [
                 "94eb4221.9b92c",
@@ -5387,7 +5387,7 @@
             "68e2264e05e1a5b8",
             "7444e2e24a9f1aeb"
         ],
-        "x": 3335,
+        "x": 2635,
         "y": 140,
         "wires": []
     },
@@ -5416,8 +5416,8 @@
         "links": [
             "a5b67ad53d90447b"
         ],
-        "x": 1655,
-        "y": 1360,
+        "x": 1975,
+        "y": 760,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -5429,7 +5429,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Preset with test",
-        "func": "msg1={}; msg2={};\nmsg1.payload=global.get(\"sample_project\")\nmsg2.payload=global.get(\"sample_operator\")\n\nif (msg1.payload == \"\" || msg1.payload == undefined) {\n    if(msg.payload == \"test\"){\n        msg1.payload = \"Project_Test\";\n    } else {\n        msg1.payload = \"\";\n    }\n}\nif (msg2.payload == \"\" || msg2.payload == undefined) {\n    if(msg.payload == \"test\"){\n        msg2.payload = \"Operator_Test\";\n    } else {\n        msg2.payload = \"\";\n    }\n}\n\nreturn [msg1, msg2];",
+        "func": "msg1={}; msg2={};\nmsg1.payload=global.get(\"sample_project\")\nmsg2.payload=global.get(\"sample_operator\")\n\nif (msg1.payload == \"None\" || msg1.payload == \"\" || msg1.payload == undefined) {\n    if(msg.payload == \"test\"){\n        msg1.payload = \"Project_Test\";\n    } else {\n        msg1.payload = \"\";\n    }\n}\nif (msg2.payload == \"None\" || msg2.payload == \"\" || msg2.payload == undefined) {\n    if(msg.payload == \"test\"){\n        msg2.payload = \"Operator_Test\";\n    } else {\n        msg2.payload = \"\";\n    }\n}\n\nreturn [msg1, msg2];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nmsg1={}; msg2={};\nmsg1.payload = \"\";\nmsg2.payload = \"\";\nreturn [msg1, msg2];",
@@ -5515,8 +5515,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1720,
-        "y": 1960,
+        "x": 1120,
+        "y": 900,
         "wires": [
             [
                 "14658615.47c862"
@@ -5534,8 +5534,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is starte\ncontext.set(\"one_time\",0);",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 2100,
+        "x": 520,
+        "y": 1060,
         "wires": [
             [
                 "05c6aff2afbd69cf"
@@ -5588,8 +5588,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1910,
-        "y": 2020,
+        "x": 1310,
+        "y": 960,
         "wires": [
             [
                 "4c4d548577a253bb"
@@ -5613,8 +5613,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 2290,
-        "y": 540,
+        "x": 1790,
+        "y": 420,
         "wires": [
             [
                 "e52f93df280bcf33"
@@ -5638,8 +5638,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 2500,
-        "y": 540,
+        "x": 1980,
+        "y": 420,
         "wires": [
             [
                 "58152890c539c567"
@@ -5678,8 +5678,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1730,
-        "y": 2020,
+        "x": 1130,
+        "y": 960,
         "wires": [
             [
                 "8b97db46845cf99a"
@@ -5697,8 +5697,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"time\", \"0001-01-01T00:00:00.000Z\")\ncontext.set(\"lat\", \"00°00'00.00\\\" N\")\ncontext.set(\"lon\", \"00°00'00.00\\\" E\")",
         "finalize": "",
         "libs": [],
-        "x": 2730,
-        "y": 540,
+        "x": 2210,
+        "y": 420,
         "wires": [
             [
                 "cc21ca16.b92928"
@@ -5731,8 +5731,8 @@
         "topic": "",
         "payload": "holla",
         "payloadType": "str",
-        "x": 2060,
-        "y": 540,
+        "x": 1590,
+        "y": 420,
         "wires": [
             [
                 "073c7d4ce2c7b3a7"
@@ -5834,8 +5834,8 @@
         "links": [
             "59242201616333de"
         ],
-        "x": 1665,
-        "y": 2100,
+        "x": 1065,
+        "y": 1040,
         "wires": [
             [
                 "9b7ce9a0f9ad0d3e"
@@ -5853,8 +5853,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1790,
-        "y": 2100,
+        "x": 1190,
+        "y": 1040,
         "wires": [
             [
                 "4c4d548577a253bb",
