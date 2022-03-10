@@ -6701,7 +6701,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 940,
+        "x": 960,
         "y": 1520,
         "wires": [
             [
@@ -6802,14 +6802,18 @@
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             }
         ],
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": "1",
-        "topic": "",
-        "payload": "auto",
+        "topic": "white_balance",
+        "payload": "on",
         "payloadType": "str",
         "x": 120,
         "y": 1440,
@@ -7400,7 +7404,7 @@
         "useThemeColors": true,
         "hideSelectedLabel": false,
         "multilineLabel": false,
-        "passThrough": "never",
+        "passThrough": "change",
         "inputMsg": "all",
         "userInput": "enabled_show",
         "options": [
