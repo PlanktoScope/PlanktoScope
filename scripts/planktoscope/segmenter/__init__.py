@@ -772,6 +772,7 @@ class SegmenterProcess(multiprocessing.Process):
                     logger.debug(
                         f"Moving to the next folder, {path} has already been segmented"
                     )
+                    self.segmenter_client.client.publish("status/segmenter", '{"status":"Already_done"}')
                 else:
                     # forcing, let's gooooo
                     try:
@@ -918,21 +919,21 @@ class SegmenterProcess(multiprocessing.Process):
                     # force rework of already done folder
                     force = (
                         last_message["settings"]["force"]
-                        if "force" in last_message
+                        if "force" in last_message["settings"]
                         else False
                     )
 
                     # parse folders recursively starting from the given parameter
                     recursive = (
                         last_message["settings"]["recursive"]
-                        if "recursive" in last_message
+                        if "recursive" in last_message["settings"]
                         else True
                     )
 
                     # generate ecotaxa output archive
                     ecotaxa_export = (
                         last_message["settings"]["ecotaxa"]
-                        if "ecotaxa" in last_message
+                        if "ecotaxa" in last_message["settings"]
                         else True
                     )
 
