@@ -11325,7 +11325,7 @@
         "useThemeColors": true,
         "hideSelectedLabel": false,
         "multilineLabel": false,
-        "passThrough": "change",
+        "passThrough": "always",
         "inputMsg": "all",
         "userInput": "enabled_show",
         "options": [
@@ -12325,11 +12325,11 @@
         "payloadType": "num",
         "topic": "topic",
         "topicType": "msg",
-        "x": 120,
-        "y": 60,
+        "x": 140,
+        "y": 100,
         "wires": [
             [
-                "d006cc67e72d13b5"
+                "d9188ac81ad3429f"
             ]
         ]
     },
@@ -12459,8 +12459,8 @@
         "z": "31d8721d35506f94",
         "name": "onTab",
         "events": "all",
-        "x": 110,
-        "y": 100,
+        "x": 130,
+        "y": 60,
         "wires": [
             [
                 "7a4683ef38aa7978"
@@ -12478,40 +12478,15 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 100,
-        "wires": [
-            [
-                "d006cc67e72d13b5"
-            ]
-        ],
-        "outputLabels": [
-            "interface"
-        ]
-    },
-    {
-        "id": "d006cc67e72d13b5",
-        "type": "trigger",
-        "z": "31d8721d35506f94",
-        "name": "",
-        "op1": "1",
-        "op2": "0",
-        "op1type": "str",
-        "op2type": "str",
-        "duration": "25",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "ms",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 470,
-        "y": 100,
+        "x": 280,
+        "y": 60,
         "wires": [
             [
                 "d9188ac81ad3429f"
             ]
+        ],
+        "outputLabels": [
+            "interface"
         ]
     },
     {
@@ -16786,10 +16761,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "fa-repeat fa-2x",
         "payload": "reboot",
         "payloadType": "str",
         "topic": "reboot",
+        "topicType": "str",
         "x": 420,
         "y": 680,
         "wires": [
@@ -16808,6 +16785,7 @@
         "append": "now",
         "useSpawn": "false",
         "timer": "2",
+        "winHide": false,
         "oldrc": false,
         "name": "sudo cmd now",
         "x": 740,
@@ -18430,8 +18408,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1030,
-        "y": 60,
+        "x": 890,
+        "y": 180,
         "wires": [
             []
         ]
@@ -18453,7 +18431,7 @@
         "options": [
             {
                 "label": "Projet Lac0scope 0 (Babamu Xapoiteo)",
-                "value": "Projet Lac0scope 0",
+                "value": "Projeat Lac0scope 0",
                 "type": "str"
             },
             {
@@ -18486,7 +18464,7 @@
         "wires": [
             [
                 "3e2c5c1c.4c57b4",
-                "7d2fdac8f6d69a07"
+                "593a285b59c9a2ba"
             ]
         ]
     },
@@ -18549,7 +18527,7 @@
         "type": "function",
         "z": "1eaf21c8.f7a21e",
         "name": "get acq_instrument",
-        "func": "msg.payload = msg.payload.acq_instrument;\nreturn msg;",
+        "func": "if (msg.payload.acq_instrument != undefined) {\n    msg1={}\n    msg1.payload = msg.payload.acq_instrument;\n    return msg1;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -18559,7 +18537,8 @@
         "y": 60,
         "wires": [
             [
-                "a7e5c7f4.644678"
+                "a7e5c7f4.644678",
+                "f9e535a5a1b53862"
             ]
         ]
     },
@@ -18956,19 +18935,6 @@
         ]
     },
     {
-        "id": "7d2fdac8f6d69a07",
-        "type": "link out",
-        "z": "1eaf21c8.f7a21e",
-        "name": "Name Machine",
-        "mode": "link",
-        "links": [
-            "6cdcee66c59df982"
-        ],
-        "x": 825,
-        "y": 60,
-        "wires": []
-    },
-    {
         "id": "743342cefd0e6eac",
         "type": "function",
         "z": "1eaf21c8.f7a21e",
@@ -19041,6 +19007,63 @@
         "wires": [
             [
                 "dee52a36.2af72"
+            ]
+        ]
+    },
+    {
+        "id": "7d2fdac8f6d69a07",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Name Machine",
+        "mode": "link",
+        "links": [
+            "6cdcee66c59df982"
+        ],
+        "x": 995,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "593a285b59c9a2ba",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "func": "name = global.get(\"acq_instrument\")\n\nif(name != undefined){\n    if (name == \"Projet Lac0scope 0\") {\n        msg.payload = \"Projet Lac0scope 0 (Babamu Xapoiteo)\"\n    }\n    if (name == \"Projet Lac0scope 1\") {\n        msg.payload = \"Projet Lac0scope 1 (Babajai Muqouqo)\"\n    }\n    if (name == \"Projet Lac0scope 2\") {\n        msg.payload = \"Projet Lac0scope 2 (Babayou Qexoamou)\"\n    }\n    if (name == \"Projet Lac0scope 3\") {\n        msg.payload = \"Projet Lac0scope 3 (Ense3)\"\n    }\n    return msg; \n}\n\n\n\n/*\nif (msg.payload == \"Projeat Lac0scope 0\") {\n    msg.payload = \"Projet Lac0scope 0 (Babamu Xapoiteo)\"\n}\nif (msg.payload == \"Projeat Lac0scope 1\") {\n    msg.payload = \"Projet Lac0scope 1 (Babajai Muqouqo)\"\n}\nif (msg.payload == \"Projeat Lac0scope 2\") {\n    msg.payload = \"Projet Lac0scope 2 (Babayou Qexoamou)\"\n}\nif (msg.payload == \"Projeat Lac0scope 3\") {\n    msg.payload = \"Projet Lac0scope 3 (Ense3)\"\n}\nreturn msg;\n\n*/",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 60,
+        "wires": [
+            [
+                "7d2fdac8f6d69a07"
+            ]
+        ]
+    },
+    {
+        "id": "f9e535a5a1b53862",
+        "type": "delay",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 20,
+        "wires": [
+            [
+                "593a285b59c9a2ba"
             ]
         ]
     },
