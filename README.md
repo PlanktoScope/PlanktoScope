@@ -1,53 +1,49 @@
-# An open and affordable imaging platform for citizen oceanography
+# Welcome to the Lac0scope Project website !
 
-![PlanktoScope Render](docs/readme/planktoscope_cad.webp)
+You will find on this site all the documentations applied to the Lac0scope project in relation with the PlanktoScope.
 
-![Plankton collage](docs/readme/plankton_collage.webp)
+You can find here more information about how to build your own PlanktoScope but before a bit of context and explanation on the project.
 
+##The context
 
-# What is this?
-The PlanktoScope is an open-source, affordable imaging platform for citizen oceanography. It's built around a Raspberry Pi, a couple of HATs, some stepper motors and a few centimeters of silicon tubes. Its cost is at about $500 in parts.
+Currently, a device called Planktoscope exists on the market. It is a portable digital microscope that can be used to analyze water samples in order to identify to identify the plankton species present. It has been manufactured to work with water of seas and oceans. 
 
-The goal of the PlanktoScope is to allow citizen to engage in scientific programs, either at sea or onshore. You can use the PlanktoScope to image the different species of Plankton living in a body of water.
+Our objective is to resume the research done on this device and to to modify it to make it more accessible from a point of view of use and to make it operational for operational for the fresh waters of the alpine lakes in particular by incorporating the treatment of plankton that are not present in the database at the moment. This will facilitate its subsequent deployment. 
 
+![PlanktoScope](readme/planktoscope_cad.webp)
 
-## Get the papers!
-The PlanktoScope has been described in a paper available on the [bioRxiv preprint server](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1). The first results of this program and its outline are also available as a [preprint](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1).
+This project takes place at the LiPhy laboratory (Laboratoire Interdisciplinaire de Physique), a joint research unit attached to the University of Grenoble Alpes and the CNRS. Founded in 1966, it is located on the Grenoble campus in Saint-Martin-d'Hères. 
 
-|[![PlanktoScope Preprint](docs/readme/planktoscope_pub.webp)](https://www.biorxiv.org/content/10.1101/2020.04.23.056978v1)|[![PlanktonPlanet Preprint](docs/readme/planktonplanet_pub.webp)](https://www.biorxiv.org/content/10.1101/2020.08.31.263442v1)|
-|--------|--------|
+The laboratory stands out for its multidisciplinary approach by interfacing physics with other disciplines such as mechanics or applied mathematics. Here, physics is not restricted, physics is used as a tool to decipher, create and produce complex phenomena. The main fields of activity of the laboratory are: optics, biophysics, fluid dynamics and soft matter.
 
+##The need and the stakes for the customer
 
-# Key Features
-- Image small animals and algae living in water
-- Focus stage control
-- Pump control
-- Automatic image capture
-- Automatic segmentation
+The main objective of this project is the realization of a replica of the PlanktoScope and the optimization of its microscope and its interface (CAD - Raspberry - Python - Node-Red). 
 
-# How do I build one?
-You can access the complete documentation on [Read The Docs](https://planktonscope.readthedocs.io/).
+It is thus a question of improving the initial object in order to make it usable for mountain lakes, to make it simple to set up and to make its use like "push-button" i.e. that the system must just be connected and its interface must be accessible.
 
-# How do I get involved?
-There are several ways to join the development effort, share your progress with your build or just ask for help.
+## Setup
+ - [How to setup your PlanktoScope the easy way](easy_install.md)
+ - [How to setup your PlanktoScope the hard way (also known as the Expert's path)](expert_setup.md)
 
-We are using slack as a communication platform between interested parties. You can [request to join by filling this form](https://docs.google.com/forms/d/e/1FAIpQLSfcod-avpzWVmWj42_hW1v2mMSHm0DAGXHxVECFig2dnKHxGQ/viewform).
+## Build your machine
+ - [Assembly Guide](assembly_guide.md)
+ 
+## Usage
+ - [Getting Started](getting_started.md)
+ - [Calibration](calibration.md)
+ - [Operating Mode](operating_mode.md)
+ - [User Interface Beginner Mode](beginner_mode.md)
+ - [User Interface Expert Mode](expert_mode.md)
 
-This repository is also a good way to get involved. Please fill in an issue if you witnessed a bug in the software or hardware. If you are able, you can also join the development effort. Look through the [issues opened](https://github.com/PlanktonPlanet/PlanktoScope/labels/good%20first%20issue) and choose one that piques your interest. Let us know you want to work on it in the comments, we may even be able to guide your beginnings around the code.
+## Lac0scope Contribution
+ - [Improvement of the Structure](structure_improvement.md)
+ - [Improvement of the Interface](interface_improvement.md)
+ - [Contribute to the code, here is the getting started](Make_your_modification.md)
+ - [Debug your code](debug.md)
 
-# License: Our work is fully open source
+## Power Supply
+ - [Battery Power](battery_power.md)
 
-Depending on the material they cover, different licenses apply to the files of this repository.
-
-If you make any change for your use, please fork this repository and publish your improvements. It will help others, and we can integrate those changes in this repository if needed.
-
-Also, all licenses are contaminating, if you want to use any of this material for a project that you cannot open-source, please contact us using Slack so we can see what can be done to help you and your project.
-
-## Hardware files
-All hardware files and documentation (everything in the `hardware` directory) is released under a [CERN-OHL-S-2.0 license](https://ohwr.org/cern_ohl_s_v2.txt).
-
-## Software source
-The source code (everything in the directories `flows` and `scripts`) is released under a [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
-
-## Everything else (documentation, pictures, etc...)
-Everything else is released under a [Creative Commons CC-BY-SA license](https://creativecommons.org/licenses/by-sa/4.0/).
+## Credits
+ - [More information about the sources](license.md)
