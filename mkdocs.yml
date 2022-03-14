@@ -1,0 +1,31 @@
+site_name: Lac0scope Project
+nav:
+    - Setup:
+        - Basic Install: easy_install.md
+        - Expert Setup: expert_setup.md
+    - Assembly:
+        - Assembly guide: assembly_guide.md
+    - Usage:
+        - Getting started: getting_started.md
+        - Calibration: calibration.md
+        - Operating mode: operating_mode.md
+        - User Interface Beginner Mode: beginner_mode.md
+        - User Interface Expert Mode: expert_mode.md
+    - Lac0scope Contribution:
+        - Improvement of the Structure: structure_improvement.md
+        - Improvement of the Interface: interface_improvement.md
+        - Edit the code: Make_your_modification.md
+        - Debug your code: debug.md
+    - Power Supply:
+        - Battery power: battery_power.md
+    - About:
+        - License: license.md
+theme:
+    name: readthedocs
+repo_url: https://github.com/tomlepellissier22/Lacoscope2022
+markdown_extensions:
+    - smarty
+    - sane_lists
+    - admonition
+    - toc:
+        permalink: true
