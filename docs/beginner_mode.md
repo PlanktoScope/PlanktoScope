@@ -1,12 +1,12 @@
-# User Interface Guide Beginner Mode
+# User Interface Guide : Beginner Mode
 
-You will find here the PlanktoScope user guide applied to the Lac0scope project for the beginner mode.
+You will find here the PlanktoScope's user guide applied to the Lac0scope project for the beginner mode.
 
 ![Home](ui_guide/home.webp)
 
 As previously mentioned, when you turn on your PlanktoScope, beginner mode is selected. This mode will simplify the display in order to acquire and export images.
 
-From here, you can quickly access any of the available tabs. The buttons are only the most used functionnalities of the machine. 
+From here, you can quickly access any of the available tabs. The buttons are the most used functionnalities of the machine in this mode. 
 
 Four others tabs are accessible only through the hamburger menu on the top left of the screen (the three horizontal lines) but you shouldn't need to access it in beginner mode:
 
@@ -66,7 +66,7 @@ This page allows you to control the optical setup of the acquisition.
 
 ![Optic configuration](ui_guide/optic_expert.webp)
 
-In the Optic Characterization block, you can control to turn the light on or not. You also have to choose the optics in use in the machine.
+In the Optic Characterization block, you can control to turn the light on or not. You also have to choose the optics used in the machine.
 
 !!! warning
     The selected lens is set as default but it can be changed as you wish.
@@ -100,7 +100,7 @@ We can also see at the bottom right of the page two buttons that send us to the 
 ## Gallery
 ![Gallery](ui_guide/gallery.webp)
 
-This page allows us, as we said before, to visualize our images or our objects. To display an image we start by choosing if we want to see complete images or only objects. Then, we go through the different folders and select the image we want to see in the last block "Pictures". The image is displayed in the block on the right and we have two buttons to browse the different images.
+This page allows us, as we said before, to visualize our images or our objects. To display an image we start by choosing if we want to see full images or only objects. Then, we go through the different folders and select the image we want to see in the last block "Pictures". The i is displayed in the right block and we have two buttons to browse through the images.
 
 We also see at the bottom right two buttons that send us to the pages "DOWNLOAD" allowing us to recover our images/objects on a USB key and "NEW ACQUISITION" which allows us to start again at the first step to start an acquisition. 
 
