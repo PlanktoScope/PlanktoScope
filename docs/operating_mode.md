@@ -1,5 +1,6 @@
 # Operating Mode
-With our version of Planktoscope applied to Lac0scope, the user interface has been totally modified and is now easier to understand and use. This guide will help you get familiar with it.
+
+With our version of the Planktoscope applied to the Lacoscope, the user interface has been totally modified and is now easier to understand and use. This guide will help you get familiar with it.
 
  ![Home](ui_guide/home.webp)
 
