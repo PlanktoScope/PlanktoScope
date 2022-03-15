@@ -7,8 +7,8 @@ This page is a list of the different modifications and improvements on the 2D pl
 - Modification of the place of the power holes of the motors and antenna because too close to the raspberry (short circuit and space management)
 - Use of 2 plexiglass plates 2 and 3mm to fix the antenna and motors power supply. This avoids making a hole on a 5mm plate.
 - Added a smaller hole at the entrance to avoid cables escaping.
-- Added feet to the Planktoscope to make it stable in the vertical position
+- Added feet to the Planktoscope to make it stable in the vertical position.
 - Cutting the plate supporting the Pump to fit different sizes.
-- Modification of the plates to add the magnets for the optical part
+- Modification of the plates to add the magnets for the optical part.
   
 
