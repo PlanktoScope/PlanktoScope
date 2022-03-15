@@ -18,6 +18,7 @@ From there, you can have a look at the [Operating Mode](operating_mode.md) to ch
 
 
 ## How to image plankton
+
 Before doing an acquisition, you will need to collect targets. There are several ways to do this, and you probably already have a source nearby (in a culture if you are working in a lab).
 
 However, if you have access to a body of water (even a tiny lake or river is enough), you can build yourself a plankton net to collect a sample. Once the sample is collected, either pump it with a syringe that you connect to the machine, or dip one of the silicone tube inside the sample tube you have.
