@@ -1,6 +1,6 @@
 # Expert Setup
 
-!!! Warning
+!!! warning
     This part is a copy from the official Planktoscope documentation, you can find it here : [Official doc](https://planktonscope.readthedocs.io/en/latest/expert_setup/).
 
 ## Install and setup Raspbian on your Raspberry Pi
