@@ -1,6 +1,6 @@
 # Preliminary study of battery power
 
-One of our goals is to be able to run the PlanktoScope on a portable battery to simplify its use in the field. We have therefore started to study the consumption of the PlanktoScope as well as the available hardware.
+One of our goals is to be able to power the PlanktoScope on a portable battery to simplify the use in the field. We have therefore started to study the consumption of the PlanktoScope as well as the available hardware.
 
 ## Available hardware 03/2022
 
@@ -28,7 +28,7 @@ One of our goals is to be able to run the PlanktoScope on a portable battery to 
 
 ## Current verification performed
 
-To measure the current consumed when the motor board works we created a circuit with a mutimeter in series at the output of the power supply. 
+To measure the current consumed when the motor board works, we created a circuit with a mutimeter in series at the output of the power supply. 
 Then we ran the pump at its maximum power.
 
 - Adapter + Cable converter 5->12V long : 346mA measured
@@ -36,7 +36,7 @@ Then we ran the pump at its maximum power.
 - Adjustable power supply on 12V : 1800mA measured
   
 !!!Warning
-    The value measured on the big power supply is very high and makes the voltage drop to 6V. We should understand why this happens to use it.
+    The value measured on the big power supply is very high and makes the voltage drop to 6V. In the futur we should understand why this happens to use it.
 
 
 ## First estimation of the battery life
