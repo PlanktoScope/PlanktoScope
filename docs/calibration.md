@@ -78,7 +78,7 @@ To start, this is a summary of the information to note down :
 ![Pump](calibration/custom_version.webp)
 
 !!! warning
-    If your are in **Custom Version** and you change this parameter (for example you select *Projet Lac0scope 0 (Babamu Xapoiteo)* )
+    If your are in **Custom Version** and you change this parameter, all your custom parameters will be erased (for example you select *Projet Lac0scope 0 (Babamu Xapoiteo)*).
 
 ### Lens Calibration 
 
