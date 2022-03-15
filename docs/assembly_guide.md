@@ -4,13 +4,13 @@
 
 ## Step 0: Laser cutting
 
-First, you need to make all the laser cuts to have all the necessary plexiglass parts, these cuts are made in opaque and transparent plexiglass of 5 mm, 2 mm and 3 mm. You can download the different plans in .svg format by clicking here. Make sure all holes are complete, and negative space is clear.
+First, you need to make all the laser cuts to have all the necessary plexiglass parts, these cuts are made in opaque and transparent plexiglass of 5 mm, 2 mm and 3 mm. You can download the different plans in .svg format by clicking here. Make sure all holes are completed, and negative space is clear.
 
-Gather all these pieces on a flat surface and make sure you have all the pieces you need to build the PlanktoScope
+Gather all these pieces on a flat surface and make sure you have all the pieces you need to build the PlanktoScope.
 
 ![Plans](assembly_guide/pictures/2.webp)
 
-You can download them through the following links :
+You can download them with the following links :
 
 - [Opaque 5mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/bZeqlLdjQDyYsn-WNXW_sw/content/opaque_5mm.svg?c=force&noCache=1647254539000&a=true)
 - [Part B2 3mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/ZA5Bbd68QBqe6xo_dzGR2Q/content/P1_2mm.svg?c=force&noCache=1647254588338&a=true)
@@ -18,7 +18,7 @@ You can download them through the following links :
 - [Transparent 5mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/5PYgHMnoRoezJFbSeDCGZA/content/transparent_5mm.svg?c=force&noCache=1647254661127&a=true)
 
 !!! Warning
-    If you are doing the laser cutting yourself, please take the time to check the calibration of the machine and its power output for the material you are using. A tight fit is needed between the different plates to avoid unwanted play between critical parts.
+    If you are doing the laser cutting yourself, please take the time to check the calibration of the machine and its power output for the material you are using. A tight fit is needed between the different plates to avoid unwanted spaces between critical parts.
 
 !!! Warning
     Depending on the reference of your pump the plans may not be adapted despite the efforts made to have universal plans.
@@ -49,7 +49,7 @@ Soldering deals with high heat and potentially toxic materials, so make sure to 
 
 Before starting the assembly and mounting of the different components we will first prepare and mount some parts such as first prepare and mount some parts such as lenses.
 
-You now need to tap the holes for the M12 lenses in stage and mount it the different K pieces. We must also tap the part D located just after the camera. It is helpful for alignment to do  both the objeDtive and tube lens mount together. It is important to do this as straight as  possible. A drop of mineral or olive oil can help the process. Be careful to use a right-hand tap  (that goes down when turning clockwise).
+You now need to tap the holes for the M12 lenses in stage and mount it the different K pieces. We must also tap the part D located just after the camera. It is helpful for alignment to do  both the objective and tube lens mount together. It is important to do this as straight as  possible. A drop of mineral or olive oil can help the process. Be careful to use a right-hand tap  (that goes down when turning clockwise).
 
 ![Step2](assembly_guide/pictures/3.webp)
 
@@ -60,7 +60,7 @@ You should get the following set of parts with lenses knowing that this can chan
 
 ## Step 3: Magnets setup
 
-Now is a good time to think about how the magnets will function within the microscope. The magnets in the sample stage will need to attract to the magnets on the flow cell holder. The magnets in the objective holder will need to attract the magnets on the mount. Keep this in mind as you are adding your magnets and tapping your respective M12 holders so your orientation will be correct.
+Now is a good time to think about how the magnets will function within the microscope. The magnets on the sample stage will need to be attracted to the magnets on the flow cell holder. The magnets in the objective holder will need to be attracted the magnets on the mount. Keep this in mind as you are adding your magnets and tapping your respective M12 holders so your orientation will be correct.
 
 To summarize the set of magnets to be placed, there are magnets between:
 
@@ -150,13 +150,13 @@ You can now start placing the motor mount/LED assembly,
 
 ## Step 11: Pump setup
 
-The pump can then be mounted in place on **I1** and **I2**. Thread the wires through the hole with the pump tubing pointed toward the holes on the mount. Then fix the pump in place.
+The pump can then be mounted in place on **I1** and **I2**. Pass the wires through the hole with the pump tubing pointed toward the holes on the mount. Then fix the pump in place.
 
 ![Step11](assembly_guide/pictures/20.webp)
 
 ## Step 12: Connectors
 
-Now we'll move on to fixing the various connectors of our Planktoscope, i.e. the power supply and the GPS, which are connected to the outside of the PlanktoScope. To do this, we take parts **B1** and **B2** and the connectors below.
+Now we'll move on to fixing the various connectors of our Planktoscope, i.e. the power supply and the GPS, which are connected to the outside of the PlanktoScope. To do it, we take the parts **B1** and **B2** and the connectors below.
 
 ![Step12](assembly_guide/pictures/21.webp)
 
@@ -172,7 +172,7 @@ First, insert and solder the terminal blocks and headers onto the motor driver P
 
 ![Step13](assembly_guide/pictures/23.webp)
 
-Now that all the components to be connected to the motor board and the board itself are ready, we will carry out all the wiring. To do this we will follow the diagram below.
+Now that once all the components are connected to the motor board and the board itself is ready, we will carry out all the wiring. To do this we will follow the diagram below.
 
 ![Step13](assembly_guide/pictures/24.webp)
 
@@ -200,9 +200,9 @@ After all the wiring is done, you can attach the board to the **A1** part as sho
 To fix it we will place directly 6mm standoffs with a nut.
 
 ## Step 14: Assemblage
-We can now place the different parts that we have made (LED/motor/camera, pump, connectors) on the three parts **A1**, **A2** and **A3** taking care to fit the different parts together. For the moment we don't fix the parts **A1**, **A2** and **A3** to the rest we will do that at the end. Our PlanktoScope is starting to take shape. 
+We can now place the different parts that we have made (LED/motor/camera, pump, connectors) on the three parts **A1**, **A2** and **A3** taking care to fit the different parts together. For the moment we won't fix the parts **A1**, **A2** and **A3** to the rest, we will do that at the end. Our PlanktoScope is starting to look nice. 
 
-Now that everything is in place you can place the different cables in the holes provided on parts **C**, **D**, **E**, **F** and **G** as below.
+Now that everything is in place you can move the different cables in the holes provided on parts **C**, **D**, **E**, **F** and **G** as below.
 
 ![Step14](assembly_guide/pictures/27.webp)
 
@@ -240,7 +240,7 @@ We obtain the following result:
 
 ## Step 18: Camera flex cable
 
-At this point you can use the Pi camera flex cable to connect the camera to the Pi. This is done
+At this point you can use the Pi's camera flex cable to connect the camera to the Pi. This is done
 by gently pulling up the tensioners, inserting the cable in the right orientation, then pushing
 the tensioners back in place to set the cable. Try not to kink or fold the flex cable too much as
 it is possible to damage it.
@@ -285,7 +285,7 @@ To assemble, slide the ribbon in its connector and close it off. You need to tig
 
     ![Step23](assembly_guide/pictures/38.webp)
 
-    It should rather look like this:
+    It rather should look like this:
 
     ![Step23](assembly_guide/pictures/39.webp)
 
@@ -343,7 +343,7 @@ Congratulations on a job well done. You can have some rest, get a tea and some b
 
 ![Step31](assembly_guide/pictures/1.webp)
 
-You can now plug the machine in and test it. If you have choose the Expert's path, now is a good time to [finish setting up your machine](expert_setup.md).
+You can now plug the machine and test it. If you have choose the Expert's path, now it's a good time to [finish setting up your machine](expert_setup.md).
 
 ## Step 32: Read the getting started guide
 [A guide to get started with your machine use is available!](getting_started.md)
