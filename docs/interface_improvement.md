@@ -1,12 +1,12 @@
 #Software Interface Node-RED
 This section is a list of the various changes and improvements to the Planktoscope software and the reasons for them.
 
-The Node-Red software interface has undergone many changes. The most notable one, which affects all pages, is the introduction of a beginner/expert mode to make the system easier to use but still perform well for professionals. The Gallery page has been completely revised and a download page has been created. We list here the changes you will find on each page.
+The Node-Red software interface has undergone many changes. The most notable one, which affects all pages, is the introduction of a beginner/expert mode to make the system easier to use but still perform well for professionals. The Gallery page has been completely revised and a download page has been created. Here we list the changes you will find on each page.
 
 ### Home
 
 - Expert / beginner button controlling the mode on all pages.
-- Double check for mode selection.
+- Double check for mode selection for security.
 - Added icons and links for each page (depending on the selected mode)
 
 ### Sample
