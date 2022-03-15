@@ -1,12 +1,6 @@
-# Our work is fully open source
+# Acknowledgements
 
-That's the headline, yes.
+First, we would like to thank the PlanktoScope community and especially Romain BASILE for his reactivity at the beginning of the project and Thibaut POLLINA for his feedback on our work at the end of the project. Thanks to the creators of PlanktoScope to have created this project by leaving it totally open source which allows us to work freely on it.
 
-## Hardware files
-We released our hardware files (everything in the `hardware` directory) under a [CERN OHL-S license](https://ohwr.org/cern_ohl_s_v2.txt).
+Then we wanted to thank Mrs Salima RAFAÏ and LiPhy for proposing this very interesting project. Mrs. RAFAÏ was very present to guide us and to frame us in this project which was very beneficial for us.
 
-## Software source
-Our source code (everything in the directories `flows` and `scripts`) is released under a [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
-
-## Everything else (documentation, pictures, etc...)
-Everything else is released under a [Creative Commons CC-BY-SA license](https://creativecommons.org/licenses/by-sa/4.0/).
