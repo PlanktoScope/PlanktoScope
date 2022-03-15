@@ -12,10 +12,10 @@ Gather all these pieces on a flat surface and make sure you have all the pieces 
 
 You can download them with the following links :
 
-- [Opaque 5mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/bZeqlLdjQDyYsn-WNXW_sw/content/opaque_5mm.svg?c=force&noCache=1647254539000&a=true)
-- [Part B2 3mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/ZA5Bbd68QBqe6xo_dzGR2Q/content/P1_2mm.svg?c=force&noCache=1647254588338&a=true)
-- [Part B1 2mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/Jw0G6g8oQQSvTEc5jW3r0A/content/P1_3mm.svg?c=force&noCache=1647254628010&a=true)
-- [Transparent 5mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/5PYgHMnoRoezJFbSeDCGZA/content/transparent_5mm.svg?c=force&noCache=1647254661127&a=true)
+- [Opaque 5mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/av4l4S2WQQ-XtmRUnb9Cyg/content/opaque_5mm.svg?c=force&noCache=1647348337099&a=true)
+- [Part B2 3mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/mMwSyXTYT-2O2NsnE7qOsw/content/P1_3mm.svg?c=force&noCache=1647348480813&a=true)
+- [Part B1 2mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/UbUZ3OxYRJalVsJ4BUS09Q/content/P1_2mm.svg?c=force&noCache=1647348369703&a=true)
+- [Transparent 5mm](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/bIspJP8QT82CP9U8fY6slA/content/transparent_5mm.svg?c=force&noCache=1647348538229&a=true)
 
 !!! Warning
     If you are doing the laser cutting yourself, please take the time to check the calibration of the machine and its power output for the material you are using. A tight fit is needed between the different plates to avoid unwanted spaces between critical parts.
