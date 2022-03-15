@@ -2,32 +2,32 @@
 
 ## What do we calibrate?
 
-The PlanktoScope is mesuring device. This device is intended to capture plankton'picture with metadata like time, localisation, size of plankton and other information about measure. 
+The PlanktoScope is a measuring device. This device is intended to capture plankton'picture with metadata like time, localisation, size of plankton and other information about measure. 
 
-In order to achieve this goal the PlanktoScope has a hydrolic part with pump which witch sucks thue sample and makes it pass in a channel. To finish the capture part wich cam and lens take a picture of a part of the channel.
+In order to achieve this goal the PlanktoScope has a hydrolic part with a pump pushing the sample and makes it pass in a channel. To finish the capture part with a cam and a lens wich takes a picture of a part of the channel.
 
-The composant witch need calibration are pump and the whole capture device.
+The component wich needed a calibration are the pump and the whole capture device.
 
 ![Cam and pump](calibration/cam_and_pump.webp)
 
 ## Why do we have to calibrate them?
 
-The right question is to ask **why the planktoscope need calibration ?**
+The right question to ask is **why the planktoscope need calibration ?**
 
-The Planktoscope is a measuring device and like all measuring device it need calibration to certify the results it poduces. 
+The Planktoscope is a measuring device and like all measuring device it needs calibration to certify the results it poduces. 
 
-Morover, the calibration can't be common to all devices. In fact these values change according to pump or lens witch is used. 
+Moreover, the calibration can't be common to all devices. In fact these values change according to the pump or lens used. 
 
-However for the lens calibration if we use the same len as us the factor of calibration can be stay the same.
+For the lens calibration if we use the same lens as us the factor of calibration can stay the same.
 
-But for the pump, new calibration is need for eatch pump because the value depends of motor and to the tension applied to the hose in the pump.
+But for the pump, a new calibration is needed for each pump because the value depends of the motors and the tension applied in the pump.
 
 
 An other very interesting question is **What are these values for?**
 
-1. For the pump, know the volume moved allow to set up the pump to pass exactly the volume watch by camera to analyse the entire volume without overlay or space.
+1. For the pump, knowing the volume moved allow us to set up the pump to pass exactly the volume watched by the camera to analyse the entire volume without overlay or spaces.
    
-2. For the lens, know ratio between micrometer and pixel allow to know the size of eatch object and is new parameter for identification.
+2. For the lens, knowing the ratio between micrometer and pixel allow us to know the exact size of each object and the new parameters for identification.
 
 
 
@@ -35,11 +35,11 @@ An other very interesting question is **What are these values for?**
 
 ### Pump calibration
 
-Bellow of this section we can see a shematic of hydrolic part. Pleaese prepare your PlanktoScope like this shematic thinking of filling the Tank1.
+Bellow this section we can see a shematic of hydrolic part. Please prepare your PlanktoScope like on this shematic, thinking of filling the Tank1.
 
 ![Pump](calibration/view_step_per_ml.webp)
 
-To start here is a summary of the information to note :
+To start, this is a summary of the information to note down :
 
 * Initial step by milliliter, we will call it  `Old_step`. You can found it in Node-red interface -> page `Harware Settings` -> `Pump: steps per ml`. In this example the value is **428**.
 
@@ -50,26 +50,26 @@ To start here is a summary of the information to note :
 ![Pump](calibration/pump_parameter.webp)
   
 !!! Note 
-    You can show and setup pump parameter by going to Node-red interface -> page `Optic Configuration` -> block `Fluidic Manual Manipulation`.
+    You can show and setup pump parameters by going to Node-red interface -> page `Optic Configuration` -> block `Fluidic Manual Manipulation`.
 
 * The last value, is obtained to make calibration, we will call it `Volume_pumped`. This value is a subtraction between the initial level of liquid and level after having operated the pump (with parameter described above).
 
 ![Pump](calibration/calibration_pump_exp.webp)
 
 !!! tips
-    Using a container with more greater precision
+    Use a container with a greater precision
 
 
-* Now all it's ready, to start the calibration you return to parameter of pump (Node-red interface -> page `Optic Configuration` -> block `Fluidic Manual Manipulation`) and turn on the pump in good direction (with button rotate right or left )
+* Now that everything is ready, to start the calibration you need to return to the parameters of the pump (Node-red interface -> page `Optic Configuration` -> block `Fluidic Manual Manipulation`) and turn on the pump in good direction (with button rotate right or left )
 
-* Wait for pump to finish. At the end take the value `Volume_pumped` by looking at **Tank1**.
+* Wait for the pump to finish. At the end wrote the value `Volume_pumped` by looking at **Tank1**.
 
 
-* Now you can calculate the new value of pump calibration by the following formula : 
+* Now you can calculate the new value of pump calibration with the following formula : 
 
         pump_step = Volume_target * Old_step / Volume_pumped
 
-* Now you need to setup this value to your PlanktoScope. For that you need to switch in expert mode. Go to Node-red interface -> page `Home` -> block `Expert Mode`, Click to button `UNLOCK EXPERT MODE` them say **yes** to the pop-up and swtich to `Expert mode`
+* Now you need to setup this value to your PlanktoScope. For that you need to switch in expert mode. Go to Node-red interface -> page `Home` -> block `Expert Mode`, Click to button `UNLOCK EXPERT MODE` then answer **yes** to the pop-up and swtich to `Expert mode`
 
 ![Pump](calibration/expert_button.webp)
 
@@ -82,11 +82,11 @@ To start here is a summary of the information to note :
 
 ### Lens Calibration 
 
-Before you start : To do the calibration you must have Micrometer calibration slide. You can buy it [here](https://www.gtvision.co.uk/MultiScale-Micrometer-Glass-Slide-for-Microscope-Calibration-1mm/100-10mm/100-10mm/200-Divis)
+Before you start : To do the calibration you must have a Micrometer calibration slide. You can buy it [here](https://www.gtvision.co.uk/MultiScale-Micrometer-Glass-Slide-for-Microscope-Calibration-1mm/100-10mm/100-10mm/200-Divis)
 
 ![Lens](calibration/micro_slide.webp)
 
-This calibration value change according to magnification lens used.
+This calibration value change according to the magnification of the lens used.
 
 For you information we have already value for the magnification lens describe bellow : 
 
@@ -101,7 +101,7 @@ For you information we have already value for the magnification lens describe be
 !!! Note
     Don't forget to fill the page sample, with your project name (ex: Calibration len), operator name and choose `test`
 
-* First step, you need to put micrometric silde in front of channel, like picture bellow.
+* First step, you need to put micrometric silde in front of channel, like the picture bellow.
 
 ![Process](calibration/position_of_slide.webp)
 
@@ -109,13 +109,13 @@ For you information we have already value for the magnification lens describe be
 
 ![Process](calibration/focus_button.webp)
 
-* Now you going to take a picture , in order to do this go to Node-red interface -> page `Fludic Acquisition`. In the section `Number of images to acquire` you set '1'. And to finish clik on `START ACQUISITION`
+* Now you are going to take a picture. In order to do this go to Node-red interface -> page `Fludic Acquisition`. In the section `Number of images to acquire` set '1'. And to finish clik on `START ACQUISITION`.
 
 ![Process](calibration/acquisition.webp)
 
-* Repete these step above for etach magnification lens. Please note that you need to change the `Acquisition unique id` between each picture.
+* Repete these step above for each magnification lens. Please note that you need to change the `Acquisition unique id` between each picture.
 
-Now you are in the PlanktoScope all of your picture for the calibration. To make calibration you will download these pictures and put them on your computer.
+Now you have, in the PlanktoScope, all of your picture for the calibration. To do the calibration you will download these pictures and put them on your computer.
 
 To do this follow these steps :
 * Insert a usb key in the PlanktoScope.
@@ -147,7 +147,7 @@ The goal is to measure number of pixel and to link it to the real distance (than
 
 ![Measures](calibration/imagej_value.webp)
 
-	* Thank to this value and measuring scale of calibration slide. In this example we have 7 larges stroke which corresponds to 700µm (7*100µm).
+	* Thank to this value and the measuring scale of the calibration slide. In this example we have 7 larges stroke which corresponds to 700µm (7*100µm).
 
 ```
 Calibration_value = Real_lenght / Number_of_pixel = 700 / 2560 = 0.273 µm/px
