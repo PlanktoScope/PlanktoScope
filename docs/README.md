@@ -1,8 +1,6 @@
 # Welcome to the LacoScope Project !
 You will find on this github all the documentations applied to the LacoScope project in relation with the PlanktoScope.
 
-To access to the complete documentation : https://project-lacoscope.readthedocs.io/en/latest/
-
 ## The context
 
 Currently, a device called Planktoscope exists on the market. It is a portable digital microscope that can be used to analyze water samples in order to identify to identify the plankton species present. It has been manufactured to work with water of seas and oceans.
