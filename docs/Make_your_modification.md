@@ -1,5 +1,33 @@
 # How to make your own development environment
 
+## Update your planktoscope
+
+To begin, your computer and the planktoscope must be connected to the same network and it must have internet (see [Set up a local network](Make_your_modification.md#Set_up_a_local_network)).
+
+Then you need to connect in ssh on the planktoscope that you want to update (see [Start coding](Make_your_modification.md#Start_coding))
+
+When you are connected to the planktoscope, go to the folder Planktoscope (use this command)
+
+```
+cd Planktoscope
+```
+
+And then, retrieve the code that has been modified on github with the command:
+
+```
+git pull Lacoscope_Project main
+```
+
+Now you have all the modification make on github.
+
+If this command don't work, you need to add a remote repository with the command:
+
+```
+git remote add Lacoscope_Project https://github.com/lacoscope/PlanktonScope.git
+```
+
+And do again the previous command.
+
 ## Start coding
 
 1. Remote connexion to the PlanktoScope
@@ -101,7 +129,7 @@ git push <name_of_remote> <name_of_branch>
 
 The first time the system ask you your username and password fill these section by you GitHub username and your token.
 
-## Set up a local network to develop on several Planktocope
+## Set up a local network
 
 To be able to develop remotely on different Planktoscope with an internet connection, we have to connect each PlanktoScope to a local network with an internet connection.  
 ![Coding](modification/my_network.webp)
@@ -137,7 +165,6 @@ To do it :
 * On ubuntu : [Tuto ubuntu](https://askubuntu.com/questions/359856/share-wireless-internet-connection-through-ethernet)
   
 * On Windows : [Tuto windows](https://www.tomshardware.com/how-to/share-internet-connection-windows-ethernet-wi-fi)
-
 
 ## File Organization
 
