@@ -42,5 +42,5 @@ It is thus a question of improving the initial object in order to make it usable
 ## Power Supply
  - [Battery Power](battery_power.md)
 
-## Credits
- - [More information about the sources](license.md)
+## About
+ - [More information about the sources](credits.md)
