@@ -9,7 +9,6 @@ Currently, a device called Planktoscope exists on the market. It is a portable d
 
 Our objective is to resume the research done on this device and to to modify it to make it more accessible from a point of view of use and to make it operational for operational for the fresh waters of the alpine lakes in particular by incorporating the treatment of plankton that are not present in the database at the moment. This will facilitate its subsequent deployment.
 
-PlanktoScope
 ![IMG_3090](https://user-images.githubusercontent.com/95240260/158336658-1b0a6ebc-04f5-4ef6-9c9f-e9c6f2c506c9.JPEG)
 
 This project takes place at the LiPhy laboratory (Laboratoire Interdisciplinaire de Physique), a joint research unit attached to the University of Grenoble Alpes and the CNRS. Founded in 1966, it is located on the Grenoble campus in Saint-Martin-d'Hères.
