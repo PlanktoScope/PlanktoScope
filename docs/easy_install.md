@@ -77,13 +77,3 @@ Now you can start to play with your new Planktoscope. For that we need to connec
 When you are connected to the PlanktoScope's Wifi, you just need to follow this link [http://planktoscope.local:1880/ui](http://planktoscope.local:1880/ui)  to access the control panel.
 
 If you have not yet assembled your PlanktoScope, go to the [Assembly Guide](assembly_guide.md).
-
-## Install a mDNS client
-
-To access the PlanktoScope services through your browser, you need to install a mDNS client.
-
-If you are running on a  linux machine, you are lucky. Avahi-client is probably already installed on your machine. Check with your package manager.
-
-If you are running on a Windows machine, you will need to install the Bonjour service. It's a client developped by Apple. However, if you already use iTunes, Skype or even Photoshop, you may already have a client installed. Try skipping to the next step. If you can't access the linked page, come back here!
-
-To install the client, download the installer [here](https://download.info.apple.com/Mac_OS_X/061-8098.20100603.gthyu/BonjourPSSetup.exe) and launch it.
