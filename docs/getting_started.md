@@ -1,4 +1,8 @@
 # Getting started with using the machine
+
+!!! warning
+    This part is the same as for the classic [PlanktoScope](https://planktonscope.readthedocs.io/en/latest/getting_started/#how-to-image-plankton)
+
 Congratulations! You have finished assembling your machine, now is the time to test it and learn how to use it!
 
 
