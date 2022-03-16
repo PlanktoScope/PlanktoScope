@@ -36,11 +36,11 @@ It is thus a question of improving the initial object in order to make it usable
 ## LacoScope Contribution
  - [Improvement of the Structure](structure_improvement.md)
  - [Improvement of the Interface](interface_improvement.md)
- - [Contribute to the code, here is the getting started](Make_your_modification.md)
- - [Debug your code](debug.md)
+ - [Make your modification](Make_your_modification.md)
+ - [Debug](debug.md)
 
 ## Power Supply
  - [Battery Power](battery_power.md)
 
 ## About
- - [More information about the sources](credits.md)
+ - [Credit](credits.md)
