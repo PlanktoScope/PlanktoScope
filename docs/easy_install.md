@@ -6,7 +6,7 @@ To setup you have 2 choices.
 
    * Install classic version of PlanktoScope folow this link [PlanktoScope-v2.3](https://s3.bazile.io/planktoscope/images/planktoscope-v2.3-adafruit-final.img.gz) 
   
-   * Install custom version base on PlanktoScope-v2.3 but specify the project Lacoscope, please download the image : [PlanktoScope-v2.3-IESE_2022](https://s3.bazile.io/planktoscope/images/planktoscope-v2.3-adafruit-final.img.gz) 
+   * Install custom version base on PlanktoScope-v2.3 but specify the project Lacoscope, please download the image : [PlanktoScope-v2.3-IESE_2022](https://espaces-collaboratifs.grenet.fr/share/proxy/alfresco-noauth/api/internal/shared/node/4svh5bflSqCEroWzgv5ecQ/content/PlanktoScope_V2.3-project_LacoScope.img.gz?c=force&noCache=1647424199666&a=true) 
 
 
 ## Prepare your SD card
