@@ -37,8 +37,8 @@ class Motor(Board):
         self.write(reg.GCONF, 0b0000000000001110)
         # TOFF = 3, HSTRT = 4, HEND = 1, TBL = 2, CHM = 0 (spreadCycle)
         self.write(reg.CHOPCONF, 0x000100C3)
-        # IHOLD = 2, IRUN = 15 (max current), IHOLDDELAY = 8
-        self.write(reg.IHOLD_IRUN, 0x00080F02)
+        # IHOLD = 1, IRUN = 5 (max current), IHOLDDELAY = 8
+        self.write(reg.IHOLD_IRUN, 0x00080501)
         # TPOWERDOWN = 10: Delay before powerdown in standstill
         self.write(reg.TPOWERDOWN, 0x0000000A)
         # TPWMTHRS = 500
