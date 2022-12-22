@@ -2,7 +2,7 @@
 # PlanktoScope : Open and Affordable Quantitative Imaging Platform
 
 
-![Plankton collage](docs/readme/plankton_collage.webp)
+![Plankton collage](readme/plankton_collage.webp)
 
 
 
