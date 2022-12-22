@@ -1,36 +1,30 @@
+
 # PlanktoScope Simple Setup Guide
 
-## Download the image
+## Download the Image
 
-For ease of setup, a preconfigured image is provided. You can download it from [here](https://drive.google.com/file/d/1y0k_NDXN0yT5caZrXhjLYXgQVxu-D5ql/view?usp=sharing).
+To make setup easier, a preconfigured image is provided for download. You can download the image from [this server](https://drive.google.com/file/d/199HycSWPt5980B0qhXNyW6VexvZhHLs4/view?usp=share_link).
 
-## Writing the image to the SD card
+## Write the Image to the SD Card
 
-Download the latest version of [balenaEtcher](https://www.balena.io/etcher/) and install it.
+1. Download and install the latest version of [balenaEtcher](https://www.balena.io/etcher/).
+2. Connect an SD card reader with the micro SD card inside.
+3. Open balenaEtcher and select the img file you downloaded earlier.
+4. Select the SD card you want to write the image to.
+5. Review your selections and click 'Flash!' to begin writing data to the SD card.
 
-Connect an SD card reader with the micro SD card inside.
+## Insert the SD Card
 
-Open balenaEtcher and select from your hard drive the previously downloaded img file file you wish to write to the SD card.
+Once the flashing process is complete, unmount the SD card from your computer (usually done by right-clicking on the card icon in the taskbar). Insert the card into the Raspberry Pi installed in your PlanktoScope.
 
-Select the SD card you wish to write your image to.
+## Install an mDNS Client
 
-Review your selections and click 'Flash!' to begin writing data to the SD card.
+To access the PlanktoScope services through your browser, you will need to install an mDNS client.
 
-## Inserting the SD card
-Once flashing is over, you can unmount the SD card from the computer (usually done by right clicking on the card icon in the taskbar).
+- If you are running a Linux machine, you may already have the Avahi client installed. Check with your package manager.
+- If you are running a Windows machine, you will need to install the Bonjour service. If you already have iTunes, Skype, or Photoshop installed, you may already have a client installed. If you can't access the linked page, come back here to install the client. To install the client, download the installer [here](https://download.info.apple.com/Mac_OS_X/061-8098.20100603.gthyu/BonjourPSSetup.exe) and launch it.
 
-Insert now the card in the Raspberry installed in your PlanktoScope.
+## Start Using the PlanktoScope
 
-## Install a mDNS client
-
-To access the PlanktoScope services through your browser, you need to install a mDNS client.
-
-If you are running a linux machine, you are in luck. Avahi-client is probably already installed on your machine. Check with your package manager.
-
-If you are running a Windows machine, you will need to install the Bonjour service. It's a client developped by Apple. However, if you already use iTunes, Skype or even Photoshop, you may already have a client installed. Try skipping to the next step. If you can't access the linked page, come back here!
-
-To install the client, download the installer [here](https://download.info.apple.com/Mac_OS_X/061-8098.20100603.gthyu/BonjourPSSetup.exe) and launch it.
-
-## Start playing!
-
-Start up your PlanktoScope and connect to its WiFi network. You can now access the webpage at http://planktoscope.local:1880/ui to start using your machine!
+1. Start up your PlanktoScope and connect to its WiFi network. 
+2. Access the web page at http://planktoscope.local:1880/ui to start using your machine. If you are having DNS issues, use this URL instead: http://192.168.4.1:1880/ui/.
