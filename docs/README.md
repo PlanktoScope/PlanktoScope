@@ -12,7 +12,7 @@ _"Drifting endlessly, midway between the sea of air above and the depths of the 
 
 Helping fix 30-50% of the worlds carbon dioxide and providing the foundation of a global food chain, plankton comprise the largest daily movement of biomass in the world as they traverse the oceans. The shapes, colors, and movements of these billions of creatures are as vast as the seas that sustains them. Understanding plankton is crucial to understanding the world around us, and the effect we have on that world. A hurdle for this type of study has been the sheer scale of area to explore, and the limited resources of research fleets and specialized equipment. By developing a way to scale up high quality visual exploration and documentation we can greatly increase our understanding of the complicated web of life around us, and how we are in turn impacting it.
 
-![PlanktoScope schematics](docs/readme/X-14.svg)
+![PlanktoScope schematics](readme/X-14.svg)
 
 ## What is a PlanktoScope?
 
@@ -40,7 +40,7 @@ Here are some key features of the PlanktoScope:
 You can access the complete documentation on [Read The Docs](https://planktonscope.readthedocs.io/).
 |Get the kit|Assemble your kit|Start your machine|
 |--|--|--|
-|![Get the kit](docs/readme/get_kit.png)|![Assemble your kit](docs/readme/assemble_kit.png)|![Start your machine](docs/readme/start_pscope.png)|
+|![Get the kit](readme/get_kit.png)|![Assemble your kit](readme/assemble_kit.png)|![Start your machine](readme/start_pscope.png)|
 
 ## How do I get involved?
 There are several ways to join the development effort, share your progress with your build or just ask for help.
