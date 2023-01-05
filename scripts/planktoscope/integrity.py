@@ -52,12 +52,11 @@ def get_checksum(filepath):
     sha1 = hashlib.sha1()  # nosec
     with open(filepath, "rb") as f:
         while True:
-            # Let's read chunks in the algorithm block size we use
-            chunk = f.read(sha1.block_size)
-            if not chunk:
-                break
-            sha1.update(chunk)
+            if chunk := f.read(sha1.block_size):
+                sha1.update(chunk)
 
+            else:
+                break
     return sha1.hexdigest()
 
 
@@ -82,12 +81,11 @@ def get_filename_checksum(filepath):
     sha1.update("\00".encode())
     with open(filepath, "rb") as f:
         while True:
-            # Let's read chunks in the algorithm block size we use
-            chunk = f.read(sha1.block_size)
-            if not chunk:
-                break
-            sha1.update(chunk)
+            if chunk := f.read(sha1.block_size):
+                sha1.update(chunk)
 
+            else:
+                break
     return sha1.hexdigest()
 
 
@@ -213,9 +211,7 @@ if __name__ == "__main__":
                 print("The path to check doesn't exists")
                 exit(1)
 
-            # the path exists, let's check it!
-            error = check_path_integrity(path_to_check)
-            if error:
+            if error := check_path_integrity(path_to_check):
                 exit(error)
             print("All the files are valid")
 

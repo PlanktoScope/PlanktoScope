@@ -108,6 +108,3 @@ class ModuleProcess(multiprocessing.Process):
 
 
 # This is called if this script is launched directly
-if __name__ == "__main__":
-    # This should be tests of your module
-    pass

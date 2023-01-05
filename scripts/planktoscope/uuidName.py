@@ -23,8 +23,7 @@ vowels = ["a", "e", "i", "o", "u", "ai", "eo", "ou", "io", "au", "ao", "ui", "oa
 
 combos = []
 for con in consonants:
-    for vow in vowels:
-        combos.append(con + vow)
+    combos.extend(con + vow for vow in vowels)
 combos += ["puo", "loi", "boi", "roi", "toi", "foi", "poi", "tuo", "ruo"]
 
 
@@ -33,7 +32,7 @@ def popHexPair(s):
         num = int(s, 16)
         rest = ""
     else:
-        num = int(s[0:2], 16)
+        num = int(s[:2], 16)
         rest = s[2:]
     return (num, rest)
 

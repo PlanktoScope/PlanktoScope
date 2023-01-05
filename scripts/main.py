@@ -98,10 +98,10 @@ if __name__ == "__main__":
     # Create script PID file, so it's easy to kill the main process without ravaging all python script in the OS
     with open('/tmp/pscope_pid', 'w') as f:
         f.write(str(os.getpid()))
-    
+
     # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
     with open("/boot/config.txt", "r") as config_file:
-        for i, line in enumerate(config_file):
+        for line in config_file:
             if line.startswith("gpu_mem") and int(line.split("=")[1].strip()) < 256:
                 logger.error(
                     "The GPU memory size is less than 256, this will prevent the camera from running properly"
@@ -214,5 +214,5 @@ if __name__ == "__main__":
 
     # Cleanup pid file
     os.remove('/tmp/pscope_pid')
-    
+
     logger.info("Bye")

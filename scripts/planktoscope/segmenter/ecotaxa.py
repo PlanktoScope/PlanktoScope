@@ -231,7 +231,7 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
         # let's go!
         for rank, roi in enumerate(object_list, start=1):
             tsv_line = {}
-            tsv_line.update(metadata)
+            tsv_line |= metadata
             tsv_line.update(("object_" + k, v) for k, v in roi["metadata"].items())
             tsv_line["object_id"] = roi["name"]
 
