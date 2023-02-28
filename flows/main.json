@@ -572,7 +572,7 @@
         "tab": "8d16beb8.9b3fb",
         "order": 1,
         "disp": true,
-        "width": 12,
+        "width": "12",
         "collapse": false,
         "className": ""
     },
@@ -993,7 +993,7 @@
         "tab": "8d16beb8.9b3fb",
         "order": 2,
         "disp": true,
-        "width": 12,
+        "width": "12",
         "collapse": false,
         "className": ""
     },
@@ -10084,7 +10084,6 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
         "payloadType": "date",
         "x": 230,
         "y": 100,
@@ -10174,81 +10173,7 @@
         "wires": [
             [
                 "3ea12061.ce62c",
-                "2875bba3bb165e0b"
-            ]
-        ]
-    },
-    {
-        "id": "21af0db1.c2c182",
-        "type": "ui_multistate_switch",
-        "z": "cb95299c.2817c8",
-        "name": "recursive toggle",
-        "group": "abeb6dad.635a2",
-        "order": 4,
-        "width": 6,
-        "height": 1,
-        "label": "Recursive folder",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "No",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Yes",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 440,
-        "y": 240,
-        "wires": [
-            [
-                "880b192a.88e2d"
-            ]
-        ]
-    },
-    {
-        "id": "dffb9881.feef8",
-        "type": "ui_multistate_switch",
-        "z": "cb95299c.2817c8",
-        "name": "force toggle",
-        "group": "abeb6dad.635a2",
-        "order": 3,
-        "width": 6,
-        "height": 1,
-        "label": "Force rework",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "No",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Yes",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 430,
-        "y": 320,
-        "wires": [
-            [
-                "a4f68fa6.5d77f8"
+                "b3e88ba1fb60d3e8"
             ]
         ]
     },
@@ -10323,8 +10248,8 @@
         "y": 300,
         "wires": [
             [
-                "dffb9881.feef8",
-                "a4f68fa6.5d77f8"
+                "a4f68fa6.5d77f8",
+                "b49bba832cfca6d5"
             ]
         ]
     },
@@ -10369,8 +10294,8 @@
         "y": 260,
         "wires": [
             [
-                "21af0db1.c2c182",
-                "880b192a.88e2d"
+                "880b192a.88e2d",
+                "5aab4ec92dba183f"
             ]
         ]
     },
@@ -10485,138 +10410,6 @@
         ]
     },
     {
-        "id": "9367534a.fb8568",
-        "type": "ui_multistate_switch",
-        "z": "cb95299c.2817c8",
-        "name": "Ecotaxa archive",
-        "group": "abeb6dad.635a2",
-        "order": 6,
-        "width": 6,
-        "height": 1,
-        "label": "Ecotaxa archive",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "never",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "No",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Yes",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "topic": "",
-        "x": 1040,
-        "y": 240,
-        "wires": [
-            [
-                "25ac4f9a.5b05c8"
-            ]
-        ]
-    },
-    {
-        "id": "25ac4f9a.5b05c8",
-        "type": "change",
-        "z": "cb95299c.2817c8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "ecotaxa",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1240,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bef78886.8f0b98",
-        "type": "inject",
-        "z": "cb95299c.2817c8",
-        "name": "0",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 870,
-        "y": 260,
-        "wires": [
-            [
-                "9367534a.fb8568",
-                "25ac4f9a.5b05c8"
-            ]
-        ]
-    },
-    {
-        "id": "32465a4e.8fcac6",
-        "type": "ui_multistate_switch",
-        "z": "cb95299c.2817c8",
-        "name": "Keep objects",
-        "group": "abeb6dad.635a2",
-        "order": 5,
-        "width": 6,
-        "height": 1,
-        "label": "Keep objects",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "No",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "Yes",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 1030,
-        "y": 320,
-        "wires": [
-            [
-                "8dd6f57f.b77f98"
-            ]
-        ]
-    },
-    {
         "id": "8dd6f57f.b77f98",
         "type": "change",
         "z": "cb95299c.2817c8",
@@ -10635,8 +10428,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1230,
-        "y": 300,
+        "x": 1250,
+        "y": 360,
         "wires": [
             []
         ]
@@ -10658,12 +10451,12 @@
         "topic": "",
         "payload": "0",
         "payloadType": "num",
-        "x": 870,
-        "y": 300,
+        "x": 890,
+        "y": 360,
         "wires": [
             [
-                "32465a4e.8fcac6",
-                "8dd6f57f.b77f98"
+                "8dd6f57f.b77f98",
+                "27f15ec49da60b1e"
             ]
         ]
     },
@@ -10873,93 +10666,13 @@
         ]
     },
     {
-        "id": "ef2bcf0ddcdffa84",
-        "type": "ui_button",
-        "z": "cb95299c.2817c8",
-        "name": "Refresh",
-        "group": "d1074b91f48dc4dc",
-        "order": 4,
-        "width": 6,
-        "height": 1,
-        "passthru": false,
-        "label": "Update folder list",
-        "tooltip": "Refresh the list of previous acquisitions",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "mi-find_replace",
-        "payload": "",
-        "payloadType": "date",
-        "topic": "update",
-        "topicType": "str",
-        "x": 220,
-        "y": 180,
-        "wires": [
-            [
-                "56f845f5.e7c054",
-                "8bd8fb2c.53fa4"
-            ]
-        ]
-    },
-    {
-        "id": "2875bba3bb165e0b",
-        "type": "ui_list",
-        "z": "cb95299c.2817c8",
-        "group": "d1074b91f48dc4dc",
-        "name": "",
-        "order": 6,
-        "width": 12,
-        "height": 10,
-        "lineType": "one",
-        "actionType": "check",
-        "allowHTML": false,
-        "outputs": 1,
-        "topic": "",
-        "x": 770,
-        "y": 160,
-        "wires": [
-            [
-                "cb3b87b5.63c4"
-            ]
-        ]
-    },
-    {
-        "id": "5337d1c8921e76e3",
-        "type": "ui_button",
-        "z": "cb95299c.2817c8",
-        "name": "Start segmentation",
-        "group": "d1074b91f48dc4dc",
-        "order": 3,
-        "width": 6,
-        "height": 1,
-        "passthru": false,
-        "label": "Start segmentation",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "{\"action\":\"segment\"}",
-        "payloadType": "json",
-        "topic": "segmenter/segment",
-        "topicType": "str",
-        "x": 250,
-        "y": 480,
-        "wires": [
-            [
-                "33c28dc1.238002",
-                "c72a1064.1ec388"
-            ]
-        ]
-    },
-    {
         "id": "8dded6e10f955b58",
         "type": "ui_button",
         "z": "cb95299c.2817c8",
         "d": true,
         "name": "Stop segmentation",
         "group": "d1074b91f48dc4dc",
-        "order": 5,
+        "order": 3,
         "width": 12,
         "height": 1,
         "passthru": true,
@@ -11197,6 +10910,358 @@
         "y": 1220,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "45a80bdd5385f629",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "Ecotaxa archive",
+        "group": "d1074b91f48dc4dc",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "label": "Ecotaxa archive",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1074.6666259765625,
+        "y": 235.66665649414062,
+        "wires": [
+            [
+                "326dae091057a710"
+            ]
+        ]
+    },
+    {
+        "id": "326dae091057a710",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ecotaxa",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1274.6666259765625,
+        "y": 255.66665649414062,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0241a5c066de8938",
+        "type": "inject",
+        "z": "cb95299c.2817c8",
+        "name": "0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 874.6666259765625,
+        "y": 255.66665649414062,
+        "wires": [
+            [
+                "45a80bdd5385f629",
+                "326dae091057a710",
+                "095ac6e050e6f10d"
+            ]
+        ]
+    },
+    {
+        "id": "5aab4ec92dba183f",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "recursive toggle",
+        "group": "abeb6dad.635a2",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "label": "Recursive folder",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "880b192a.88e2d"
+            ]
+        ]
+    },
+    {
+        "id": "b49bba832cfca6d5",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "force toggle",
+        "group": "abeb6dad.635a2",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "label": "Force rework",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "a4f68fa6.5d77f8"
+            ]
+        ]
+    },
+    {
+        "id": "095ac6e050e6f10d",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "Ecotaxa archive",
+        "group": "abeb6dad.635a2",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "label": "Ecotaxa archive",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1080,
+        "y": 200,
+        "wires": [
+            [
+                "326dae091057a710"
+            ]
+        ]
+    },
+    {
+        "id": "27f15ec49da60b1e",
+        "type": "ui_multistate_switch",
+        "z": "cb95299c.2817c8",
+        "name": "Keep objects",
+        "group": "abeb6dad.635a2",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "label": "Keep objects",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "No",
+                "value": "0",
+                "valueType": "num",
+                "color": "#009933"
+            },
+            {
+                "label": "Yes",
+                "value": "1",
+                "valueType": "num",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1050,
+        "y": 420,
+        "wires": [
+            [
+                "8dd6f57f.b77f98"
+            ]
+        ]
+    },
+    {
+        "id": "abf476013f67ec1a",
+        "type": "ui_button",
+        "z": "cb95299c.2817c8",
+        "name": "Start segmentation",
+        "group": "d1074b91f48dc4dc",
+        "order": 5,
+        "width": "12",
+        "height": 1,
+        "passthru": false,
+        "label": "Start segmentation",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"action\":\"segment\"}",
+        "payloadType": "json",
+        "topic": "segmenter/segment",
+        "topicType": "str",
+        "x": 250,
+        "y": 480,
+        "wires": [
+            [
+                "33c28dc1.238002",
+                "c72a1064.1ec388"
+            ]
+        ]
+    },
+    {
+        "id": "3fc483d2f350411a",
+        "type": "ui_button",
+        "z": "cb95299c.2817c8",
+        "name": "Refresh",
+        "group": "d1074b91f48dc4dc",
+        "order": 6,
+        "width": "12",
+        "height": 1,
+        "passthru": false,
+        "label": "Update folder list",
+        "tooltip": "Refresh the list of previous acquisitions",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mi-find_replace",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "update",
+        "topicType": "str",
+        "x": 224,
+        "y": 177,
+        "wires": [
+            [
+                "56f845f5.e7c054",
+                "8bd8fb2c.53fa4"
+            ]
+        ]
+    },
+    {
+        "id": "b3e88ba1fb60d3e8",
+        "type": "ui_list",
+        "z": "cb95299c.2817c8",
+        "group": "d1074b91f48dc4dc",
+        "name": "",
+        "order": 7,
+        "width": 12,
+        "height": 8,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 765,
+        "y": 174,
+        "wires": [
+            [
+                "cb3b87b5.63c4"
+            ]
         ]
     },
     {
@@ -12547,7 +12612,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1030,
+        "x": 1070,
         "y": 200,
         "wires": [
             [
@@ -12630,7 +12695,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
+        "x": 750,
         "y": 120,
         "wires": [
             [
@@ -12653,7 +12718,7 @@
         "allowHTML": false,
         "outputs": 1,
         "topic": "",
-        "x": 850,
+        "x": 910,
         "y": 200,
         "wires": [
             [
@@ -12701,6 +12766,12 @@
                 "value": "2",
                 "valueType": "num",
                 "color": "#ff6666"
+            },
+            {
+                "label": "Ecotaxa",
+                "value": "3",
+                "valueType": "str",
+                "color": "#009999"
             }
         ],
         "topic": "",
@@ -12754,11 +12825,16 @@
                 "t": "eq",
                 "v": "2",
                 "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 3,
+        "outputs": 4,
         "x": 330,
         "y": 140,
         "wires": [
@@ -12770,6 +12846,9 @@
             ],
             [
                 "9e83d1c96ed6acb5"
+            ],
+            [
+                "08c5ab954fe08c83"
             ]
         ]
     },
@@ -12906,7 +12985,7 @@
         "name": "Backup to USB",
         "group": "9666b54a41785169",
         "order": 5,
-        "width": 5,
+        "width": "3",
         "height": 1,
         "passthru": false,
         "label": "Backup to USB",
@@ -13040,7 +13119,7 @@
         "topic": "",
         "name": "",
         "x": 690,
-        "y": 620,
+        "y": 600,
         "wires": [
             []
         ]
@@ -13208,7 +13287,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
+        "x": 720,
         "y": 200,
         "wires": [
             [
@@ -13228,8 +13307,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 120,
+        "x": 1000,
+        "y": 100,
         "wires": [
             []
         ]
@@ -13817,7 +13896,7 @@
         "seg1": "",
         "seg2": "",
         "className": "",
-        "x": 1310,
+        "x": 1350,
         "y": 960,
         "wires": []
     },
@@ -14328,7 +14407,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "95",
+                "to": "90",
                 "tot": "num"
             }
         ],
@@ -14379,6 +14458,111 @@
         ],
         "outputLabels": [
             "interface"
+        ]
+    },
+    {
+        "id": "bc9086f9fa8a6b7e",
+        "type": "ui_button",
+        "z": "ee49a6917e33b587",
+        "name": "Ecotaxa",
+        "group": "9666b54a41785169",
+        "order": 5,
+        "width": "2",
+        "height": 1,
+        "passthru": false,
+        "label": "Ecotaxa",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "archive",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Ecotaxa",
+        "topicType": "str",
+        "x": 140,
+        "y": 1320,
+        "wires": [
+            [
+                "81c1e6f19f45f6cd"
+            ]
+        ]
+    },
+    {
+        "id": "81c1e6f19f45f6cd",
+        "type": "function",
+        "z": "ee49a6917e33b587",
+        "name": "get device_path",
+        "func": "var download_path = flow.get(\"download_path\")\n\nif (download_path != undefined) {\n    msg.payload = download_path;\n}\nelse {\n    msg.payload = msg.payload + \" data/\";\n}\nmsg.payload = msg.payload.replace(\"data/export/ecotaxa/\",\"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1320,
+        "wires": [
+            [
+                "be0f1174d1a18284",
+                "e08463cd885bb24c"
+            ]
+        ]
+    },
+    {
+        "id": "be0f1174d1a18284",
+        "type": "exec",
+        "z": "ee49a6917e33b587",
+        "command": "bash /home/pi/PlanktoScope/scripts/bash/ftp_connect.sh",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "ftp_connect.sh",
+        "x": 540,
+        "y": 1320,
+        "wires": [
+            [],
+            [
+                "e08463cd885bb24c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e08463cd885bb24c",
+        "type": "debug",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "08c5ab954fe08c83",
+        "type": "dir2files",
+        "z": "ee49a6917e33b587",
+        "name": "",
+        "dirname": "/home/pi/data/export/ecotaxa",
+        "pathRegex": "",
+        "isRecursive": true,
+        "findDir": false,
+        "isArray": true,
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "5cd546871808739f"
+            ]
         ]
     },
     {

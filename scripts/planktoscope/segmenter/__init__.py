@@ -856,7 +856,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__archive_fn = os.path.join(
             self.__ecotaxa_path,
             # filename includes project name, timestamp and sample id
-            f"ecotaxa_{project}_{date}_{sample}.zip",
+            f"ecotaxa_{project}_{date}_{sample}.zip".replace(":","_"),
         # TODO #102 sanitize the filename to remove potential problems with spaces and special characters
         )
 
