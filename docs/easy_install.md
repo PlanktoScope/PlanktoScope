@@ -48,6 +48,7 @@ When the light under the fan hat is blue, this mean that the installation went s
 
 !!! Tips 
     If you want more information about the meaning of led colors please read this section: [here](debug.md#others-informations)
+    
 !!! Warning
     Once the SD card with the software is inserted within the Raspberry Pi, make sure that all the electronic parts are mounted with all the necessary connections made (Pi camera, motors, GPS, fan, pump)
 
