@@ -124,7 +124,7 @@ class SegmenterProcess(multiprocessing.Process):
 
     def _manual_median(self, images_array):
         images_array.sort(axis=0)
-        return images_array[int(len(images_array) / 2)]
+        return images_array[len(images_array) // 2]
 
     def _save_image(self, image, path):
         PIL.Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB)).save(path)
@@ -579,20 +579,17 @@ class SegmenterProcess(multiprocessing.Process):
         average = 0
         total_objects = 0
         average_objects = 0
-        recalculate_flat = True
-        # TODO check image list here to find if a flat exists
-        # we recalculate the flat every 10 pictures
-        if recalculate_flat:
+        if recalculate_flat := True:
             recalculate_flat = False
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Calculating flat"}'
             )
             if images_count < 10:
                 self._calculate_flat(
-                    images_list[0:images_count], images_count, self.__working_path
+                    images_list[:images_count], images_count, self.__working_path
                 )
             else:
-                self._calculate_flat(images_list[0:10], 10, self.__working_path)
+                self._calculate_flat(images_list[:10], 10, self.__working_path)
 
             if self.__save_debug_img:
                 self._save_image(
@@ -1037,6 +1034,3 @@ class SegmenterProcess(multiprocessing.Process):
 
 
 # This is called if this script is launched directly
-if __name__ == "__main__":
-    # TODO This should be a test suite for this library
-    pass
