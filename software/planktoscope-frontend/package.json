@@ -1,0 +1,20 @@
+{
+    "name": "planktoscope",
+    "description": "The PlanktoScope Frontend based on Node-Red",
+    "version": "2.3",
+    "dependencies": {
+        "node-red-contrib-dir2files": "^0.3.0",
+        "node-red-contrib-gpsd": "^1.0.4",
+        "node-red-contrib-python3-function": "^0.0.4",
+        "node-red-contrib-ui-multistate-switch": "^1.2.2",
+        "node-red-dashboard": "^3.1.2",
+        "node-red-node-pi-gpio": "^2.0.1",
+        "node-red-node-ui-list": "^0.3.6"
+    },
+    "node-red": {
+        "settings": {
+            "flowFile": "flows/main.json",
+            "credentialsFile": "flows/main_cred.json"
+        }
+    }
+}

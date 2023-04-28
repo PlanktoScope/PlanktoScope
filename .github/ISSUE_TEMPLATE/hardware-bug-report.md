@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
 ---
 name: Hardware bug report
 about: Create a hardware bug report to help us
