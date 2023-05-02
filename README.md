@@ -37,7 +37,7 @@ Here are some key features of the PlanktoScope:
 8.  **Ease of use**: The PlanktoScope is designed to be easy to use, with instructions for assembly and use available on the PlanktoScope website.
 
 ## How do I get one?
-You can access the complete documentation on [Read The Docs](https://planktonscope.readthedocs.io/).
+You can access the complete documentation on [Read The Docs](https://planktoscope.readthedocs.io).
 |Get the kit|Assemble your kit|Start your machine|
 |--|--|--|
 |![Get the kit](docs/readme/get_kit.png)|![Assemble your kit](docs/readme/assemble_kit.png)|![Start your machine](docs/readme/start_pscope.png)|
