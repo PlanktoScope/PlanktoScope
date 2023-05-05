@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the autohotspot periodically in case a recognized wifi network comes in range
+
+[Timer]
+# TODO: if we don't need this, remove it. Ideally we could just have autohotspot start for the first
+# time based on dependencies.
+# OnBootSec=5sec
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target

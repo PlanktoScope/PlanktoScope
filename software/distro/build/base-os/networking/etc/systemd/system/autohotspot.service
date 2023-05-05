@@ -1,0 +1,15 @@
+[Unit]
+Description=Automatically generates a Hotspot when a valid SSID is not in range
+After=multi-user.target
+[Service]
+Type=oneshot
+# TODO: If we don't need this, we should remove it. Services with RemainAfterExit set are usually
+# not suitable for activation via repetitive timers, as they will only be activated once and then
+# will stay around forever. For details, refer to
+# https://www.freedesktop.org/software/systemd/man/systemd.timer.html
+# RemainAfterExit=yes
+ExecStart=/home/pi/.local/bin/autohotspot
+[Install]
+WantedBy=multi-user.target
+
+

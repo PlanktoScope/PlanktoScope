@@ -1,0 +1,10 @@
+# Start dnsmasq as the local DHCP server when we need fallback ethernet
+if [ "$interface" = "eth0" ] && [ "$if_up" ]; then
+  # TODO: if we don't need this if check (since we start dnsmasq below), remove it
+  # systemctl start dnsmasq
+  if [ "$reason" = "STATIC" ] || [ "$reason" = "TIMEOUT" ] || [ "$reason" = "EXPIRE" ] || [ "$reason" = "NAK" ]; then
+    systemctl start dnsmasq
+  elif [ "$reason" = "NOCARRIER" ] || [ "$reason" = "INFORM" ] || [ "$reason" = "DEPARTED" ]; then
+    systemctl stop dnsmasq
+  fi
+fi
