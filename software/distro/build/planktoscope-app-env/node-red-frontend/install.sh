@@ -1,7 +1,7 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The Node-RED frontend provides a graphical user interface for the PlanktoScope software.
 
-config_files_root = $(dirname $(realpath $0))
+config_files_root=$(dirname $(realpath $0))
 
 # Install Node-RED
 # TODO: run Node-RED in a Docker container instead

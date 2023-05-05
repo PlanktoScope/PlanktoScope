@@ -1,8 +1,8 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The networking configuration enables access to network services via static IP over Ethernet, and
 # via self-hosted wireless AP when a specified external wifi network is not available.
 
-config_files_root = $(dirname $(realpath $0))
+config_files_root=$(dirname $(realpath $0))
 
 # Install dependencies
 sudo apt-get update -y

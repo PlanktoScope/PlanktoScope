@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The platform hardware configuration is for configuration specific to the underlying compute
 # platform used to run the operating system. Currently the only supported platform hardware is the
 # Raspberry Pi 4. Hopefully, in the future other platforms will also be supported - in which case

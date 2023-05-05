@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eu
 # The PlanktoScope application environment is the set of all software applications
 # and configurations specific to the PlanktoScope, which builds on the base operating
 # system.

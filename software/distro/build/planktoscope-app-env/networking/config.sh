@@ -1,7 +1,7 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The networking configuration sets PlanktoScope-specific network settings.
 
-config_files_root = $(dirname $(realpath $0))
+config_files_root=$(dirname $(realpath $0))
 
 # Set the default hostname, which will be overwritten with the device-specific MAC-address-based ID
 # on each boot

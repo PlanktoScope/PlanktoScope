@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The Python backend provides a network API abstraction over hardware devices, as well as domain
 # logic for operating the PlanktoScope hardware.
 

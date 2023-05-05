@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
 # Clean up any unnecessary apt files

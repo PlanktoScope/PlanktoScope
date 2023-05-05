@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The MQTT broker provides a common message broker for PlanktoScope applications and acts as the
 # entrypoint to the Python backend's network API.
 # Eventually, the scope of responsibilities of the MQTT broker may be reduced, with various

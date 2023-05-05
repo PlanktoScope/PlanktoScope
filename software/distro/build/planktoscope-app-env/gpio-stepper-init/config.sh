@@ -1,10 +1,10 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The hardware stepper motors need to be configured for the operational behavior
 # required by the PlanktoScope's overall design.
 
 # Determine the base path for config files
 
-config_files_root = $(dirname $(realpath $0))
+config_files_root=$(dirname $(realpath $0))
 
 # Add systemd service for initializing stepper motors
 file="/etc/systemd/system/planktoscope-org.init-gpio-steppers.service"

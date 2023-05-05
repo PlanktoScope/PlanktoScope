@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eu
 # The base operating system is a clean, minimal, and roughly generic base environment
 # which is not too specific to the PlanktoScope, and which could maybe be repurposed
 # for other projects.
@@ -8,7 +8,7 @@
 
 # Determine the base path for sub-scripts
 
-build_scripts_root = $(dirname $(realpath $0))
+build_scripts_root=$(dirname $(realpath $0))
 
 # Set up pretty error printing
 

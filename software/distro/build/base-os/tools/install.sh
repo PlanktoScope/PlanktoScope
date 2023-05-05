@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The base OS tools enable basic operation of the OS, and provide generalized mechanisms for
 # bootstrapping further software (e.g. user applications) to be installed afterwards.
 

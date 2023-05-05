@@ -1,4 +1,4 @@
-#!/bin/bash -euxo pipefail
+#!/bin/bash -eux
 # The localization configuration provides a set of defaults for internationalization and
 # localization settings.
 
