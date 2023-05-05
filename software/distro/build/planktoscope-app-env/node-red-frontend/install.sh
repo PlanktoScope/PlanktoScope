@@ -32,6 +32,6 @@ ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope
 
 # Install more dependencies
 npm --prefix /home/pi/.node-red install copy-dependencies
-node run /home/pi/.node-red/node_modules/copy-dependencies/index.js \
+node /home/pi/.node-red/node_modules/copy-dependencies/index.js \
   /home/pi/.node-red/projects/PlanktoScope /home/pi/.node-red
 npm --prefix /home/pi/.node-red update
