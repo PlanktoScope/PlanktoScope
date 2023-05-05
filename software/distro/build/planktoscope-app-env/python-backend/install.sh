@@ -4,13 +4,14 @@
 
 # Install dependencies
 sudo apt-get update -y
-sudo apt-get install -y git python3-pip
+sudo apt-get install -y git python3-pip libatlas-base-dev
 
 # Get the list of Python dependencies
 mkdir -p /home/pi/PlanktoScope
 git clone https://github.com/PlanktoScope/PlanktoScope /home/pi/PlanktoScope
 
 # Install Python dependencies
+export PATH="/home/pi/.local/bin:$PATH"
 # Note: the following command emits warnings about installed scripts not being in the user’s PATH,
 # but the installed scripts will be in the user’s path after reboot:
 pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
