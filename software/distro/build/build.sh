@@ -15,18 +15,15 @@ magenta_fg=35
 bold=1
 
 script_fmt="\e[${bold};${magenta_fg}m"
-subscript_fmt="\e[${bold};${blue_fg}m"
 error_fmt="\e[${bold};${red_fg}m"
 reset_fmt='\e[0m'
 
 function report_starting {
   echo
-  echo -e "${subscript_fmt}**********${reset_fmt}"
-  echo -e "${subscript_fmt}Starting: ${1}...${reset_fmt}"
-  echo -e "${subscript_fmt}**********${reset_fmt}"
+  echo -e "${script_fmt}Starting: ${1}...${reset_fmt}"
 }
 function report_finished {
-  echo -e "${subscript_fmt}Finished: ${1}!${reset_fmt}"
+  echo -e "${script_fmt}Finished: ${1}!${reset_fmt}"
 }
 function panic {
   echo -e "${error_fmt}Error: couldn't ${1}${reset_fmt}"
