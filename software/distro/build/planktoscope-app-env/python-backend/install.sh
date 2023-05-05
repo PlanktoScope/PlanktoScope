@@ -18,6 +18,8 @@ cd /home/pi
 
 # Get the list of Python dependencies
 mkdir -p /home/pi/PlanktoScope
+# FIXME: just instead use the repo which was downloaded to provide this shell script instead (will
+# require renaming the repo directory before running the top-level build script)
 git clone https://github.com/PlanktoScope/PlanktoScope /home/pi/PlanktoScope
 
 # Install Python dependencies

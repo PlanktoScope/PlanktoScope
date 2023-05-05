@@ -31,7 +31,13 @@ mv /home/pi/PlanktoScope /home/pi/.node-red/projects/PlanktoScope
 ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope
 
 # Install more dependencies
+# FIXME: copy-dependencies should be listed as a dev dependency somewhere in the PlanktoScope repository
+# and version-locked. It would be even better if we didn't need to use copy-dependencies
 npm --prefix /home/pi/.node-red install copy-dependencies
+# For some reason, copy-dependencies seems to be unable to handle absolute paths in its args - instead,
+# it prepends (probably) the current working directory to the args, regardless of whether they're
+# absolute or relative paths. So we're forced to provide relative paths.
+cd /home/pi
 node /home/pi/.node-red/node_modules/copy-dependencies/index.js \
-  /home/pi/.node-red/projects/PlanktoScope /home/pi/.node-red
+  .node-red/projects/PlanktoScope .node-red
 npm --prefix /home/pi/.node-red update
