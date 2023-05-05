@@ -11,16 +11,15 @@ mkdir -p /home/pi/PlanktoScope
 git clone https://github.com/PlanktoScope/PlanktoScope /home/pi/PlanktoScope
 
 # Install Python dependencies
-# Note: the following command emits warnings about installed scripts not being in the user’s PATH,
-# but the installed scripts will be in the user’s path after reboot:
-pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
+export PATH="/home/pi/.local/bin:$PATH"
+pip3 install -y -U -r /home/pi/PlanktoScope/requirements.txt
 # Install opencv-contrib-python-headless instead of opencv-contrib-python
 # TODO: just update the requirements.txt file instead
-pip3 uninstall opencv-contrib-python
-pip3 install opencv-contrib-python-headless
+pip3 uninstall -y opencv-contrib-python
+pip3 install -y opencv-contrib-python-headless
 # Upgrade adafruit dependencies
 # TODO: just update the requirements.txt file instead
-pip3 install —upgrade adafruit-blinka adafruit-platformdetect
+pip3 install -y -—upgrade adafruit-blinka adafruit-platformdetect
 
 # Install Fan HAT dependencies
 sudo apt install -y i2c-tools

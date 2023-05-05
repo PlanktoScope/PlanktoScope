@@ -47,6 +47,7 @@ description="build PlanktoScope application environment"
 report_starting "$description"
 if $build_scripts_root/planktoscope-app-env/build.sh ; then
   report_finished "$description"
+  source $build_scripts_root/planktoscope-app-env/export-env.sh
 else
   panic "$description"
 fi
