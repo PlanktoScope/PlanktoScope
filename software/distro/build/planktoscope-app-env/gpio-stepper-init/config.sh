@@ -13,5 +13,5 @@ sudo systemctl enable planktoscope-org.init-gpio-steppers.service
 
 # Add shell script for initializing stepper motors
 mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/disable-gpio-steppers"
+file="/home/pi/.local/bin/release-gpio-steppers.sh"
 cp "$config_files_root$file" "$file"
