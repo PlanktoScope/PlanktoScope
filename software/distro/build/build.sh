@@ -21,9 +21,9 @@ reset_fmt='\e[0m'
 
 function report_starting {
   echo
-  echo "**********"
+  echo "${subscript_fmt}**********${reset_fmt}"
   echo -e "${subscript_fmt}Starting: ${1}...${reset_fmt}"
-  echo "**********"
+  echo "${subscript_fmt}**********${reset_fmt}"
 }
 function report_finished {
   echo -e "${subscript_fmt}Finished: ${1}!${reset_fmt}"
@@ -41,6 +41,7 @@ description="build base operating system"
 report_starting "$description"
 if $build_scripts_root/base-os/build.sh ; then
   report_finished "$description"
+  source $build_scripts_root/base-os/export-env.sh
 else
   panic "$description"
 fi

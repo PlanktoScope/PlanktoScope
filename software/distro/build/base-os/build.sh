@@ -53,6 +53,7 @@ fi
 description="configure system locales"
 report_starting "$description"
 if $build_scripts_root/localization/config.sh ; then
+  source $build_scripts_root/localization/export-env.sh
   report_finished "$description"
 else
   panic "$description"
