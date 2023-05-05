@@ -21,9 +21,9 @@ reset_fmt='\e[0m'
 
 function report_starting {
   echo
-  echo "${subscript_fmt}**********${reset_fmt}"
+  echo -e "${subscript_fmt}**********${reset_fmt}"
   echo -e "${subscript_fmt}Starting: ${1}...${reset_fmt}"
-  echo "${subscript_fmt}**********${reset_fmt}"
+  echo -e "${subscript_fmt}**********${reset_fmt}"
 }
 function report_finished {
   echo -e "${subscript_fmt}Finished: ${1}!${reset_fmt}"
