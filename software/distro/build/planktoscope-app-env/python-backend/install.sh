@@ -6,6 +6,16 @@
 sudo apt-get update -y
 sudo apt-get install -y git python3-pip libatlas-base-dev
 
+# Install Fan HAT dependencies
+sudo apt install -y i2c-tools
+mkdir -p /home/pi/libraries
+# FIXME: can we get a reproducible build of WiringPi? Or maybe just Python library support via pip?
+git clone https://github.com/WiringPi/WiringPi /home/pi/libraries/WiringPi
+# cd into WiringPi's directory because WiringPi's build script only knows how to run from there
+cd /home/pi/libraries/WiringPi
+sudo /home/pi/libraries/WiringPi/build
+cd /home/pi
+
 # Get the list of Python dependencies
 mkdir -p /home/pi/PlanktoScope
 git clone https://github.com/PlanktoScope/PlanktoScope /home/pi/PlanktoScope
@@ -22,9 +32,3 @@ pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
 # Upgrade adafruit dependencies
 # TODO: just update the requirements.txt file instead
 pip3 install --upgrade adafruit-blinka adafruit-platformdetect
-
-# Install Fan HAT dependencies
-sudo apt install -y i2c-tools
-mkdir -p /home/pi/libraries
-git clone https://github.com/WiringPi/WiringPi /home/pi/libraries/WiringPi
-sudo /home/pi/libraries/WiringPi/build
