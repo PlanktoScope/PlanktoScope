@@ -12,12 +12,16 @@ git clone https://github.com/PlanktoScope/PlanktoScope /home/pi/PlanktoScope
 
 # Install Python dependencies
 export PATH="/home/pi/.local/bin:$PATH"
+# FIXME: the following command is a workaround for the lack of proper version locking of pandas as
+# an indirect dependency, and probably only needed for a few days until pip can find the pandas 2.0.1
+# binary on piwheels
+pip3 install pandas --prefer-binary
 # Note: the following command emits warnings about installed scripts not being in the user’s PATH,
 # but the installed scripts will be in the user’s path after reboot:
 pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
 # Upgrade adafruit dependencies
 # TODO: just update the requirements.txt file instead
-pip3 install -—upgrade adafruit-blinka adafruit-platformdetect
+pip3 install --upgrade adafruit-blinka adafruit-platformdetect
 
 # Install Fan HAT dependencies
 sudo apt install -y i2c-tools
