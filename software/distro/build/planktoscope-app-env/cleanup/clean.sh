@@ -9,9 +9,9 @@ sudo apt-get clean -y
 pip3 cache purge
 
 # Remove SSH keys and make them be regenerated
-sudo rm /etc/ssh/ssh_host_*
+sudo rm -f /etc/ssh/ssh_host_*
 sudo systemctl enable regenerate_ssh_host_keys.service
 
 # Remove history files
-rm /home/pi/.bash_history
-rm /home/pi/.python_history
+rm -f /home/pi/.bash_history
+rm -f /home/pi/.python_history
