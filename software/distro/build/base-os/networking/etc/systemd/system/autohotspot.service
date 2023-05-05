@@ -8,7 +8,7 @@ Type=oneshot
 # will stay around forever. For details, refer to
 # https://www.freedesktop.org/software/systemd/man/systemd.timer.html
 # RemainAfterExit=yes
-ExecStart=/home/pi/.local/bin/autohotspot
+ExecStart=/home/pi/.local/bin/autohotspot.sh
 [Install]
 WantedBy=multi-user.target
 
