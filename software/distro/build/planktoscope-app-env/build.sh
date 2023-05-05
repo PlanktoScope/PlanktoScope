@@ -7,7 +7,7 @@
 
 # Determine the base path for sub-scripts
 
-build_scripts_root = $(dirname $(realpath $0))
+build_scripts_root = $(dirname $(realpath $BASH_SOURCE))
 
 # Set up pretty error printing
 

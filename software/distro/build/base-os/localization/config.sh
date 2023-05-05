@@ -24,7 +24,6 @@ export LANG="en_US.UTF-8"
 export LC_TIME="en_DK.UTF-8"
 export LC_MEASUREMENT="en_DK.UTF-8"
 export LC_PAPER="en_DK.UTF-8"
-sudo dpkg-reconfigure --frontend=noninteractive locales
 sudo update-locale LANG="$LANG" LC_TIME="$LC_TIME" LC_MEASUREMENT="$LC_MEASUREMENT" LC_PAPER="$LC_PAPER"
 
 # Set the timezone to UTC

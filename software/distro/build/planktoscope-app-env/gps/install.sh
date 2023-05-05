@@ -2,7 +2,7 @@
 # The GPS driver provides support for a GPS device over serial, as well as system clock updating
 # from GPS.
 
-config_files_root=$(dirname $(realpath $0))
+config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies
 sudo apt-get update -y

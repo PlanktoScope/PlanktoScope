@@ -4,7 +4,7 @@
 
 # Determine the base path for config files
 
-config_files_root=$(dirname $(realpath $0))
+config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Add systemd service for initializing stepper motors
 file="/etc/systemd/system/planktoscope-org.init-gpio-steppers.service"
