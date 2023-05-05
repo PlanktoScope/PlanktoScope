@@ -51,5 +51,6 @@ sudo systemctl enable autohotspot.service
 file="/etc/systemd/system/autohotspot.timer"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable autohotspot.timer
+mkdir -p /home/pi/.local/bin
 file="/home/pi/.local/bin/autohotspot.sh"
 cp "$config_files_root$file" "$file"
