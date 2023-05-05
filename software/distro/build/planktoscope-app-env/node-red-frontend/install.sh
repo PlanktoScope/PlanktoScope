@@ -6,7 +6,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Install Node-RED
 # TODO: run Node-RED in a Docker container instead
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered \
-  | bash -s - --confirm-install --confirm-pi
+  | bash -s - --confirm-install --confirm-pi --no-init
 
 # Create a settings file to run Node-RED in project mode
 # TODO: remove the need for project mode, because it adds a requirement for the user to enter their
@@ -14,6 +14,7 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
 # before the frontend becomes accessible/usable.
 file="/home/pi/.node-red/settings.js"
 cp "$config_files_root$file" "$file"
+sudo chown 0:0 "$file"
 
 # Add systemd service modification to make Node-RED wait until Mosquitto has started
 # FIXME: The Node-RED frontend should instead be fixed so that it does not need to wait until
