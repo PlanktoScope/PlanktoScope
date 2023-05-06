@@ -23,6 +23,7 @@ function report_starting {
   echo -e "${script_fmt}Starting: ${1}...${reset_fmt}"
 }
 function report_finished {
+  echo
   echo -e "${script_fmt}Finished: ${1}!${reset_fmt}"
 }
 function panic {

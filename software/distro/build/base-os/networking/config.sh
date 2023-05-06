@@ -31,7 +31,10 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl unmask hostapd
 sudo systemctl disable hostapd
 
-# TODO: make a proper systemd unit and script to update the SSID field of hostapd.conf and the system hostname, instead of putting a Python snippet in /etc/rc.local
+# TODO: make a proper systemd unit and script to update the SSID field of hostapd.conf and the
+# system hostname, instead of putting a Python snippet in /etc/rc.local
+# Note that if we change the system hostname then it'll also automatically change the mDNS hostname,
+# which might be undesirable.
 
 # Change dnsmasq settings
 file="/etc/dnsmasq.conf"
