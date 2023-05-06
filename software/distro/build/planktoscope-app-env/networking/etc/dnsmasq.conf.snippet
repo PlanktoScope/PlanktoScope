@@ -1,13 +1,7 @@
+
 # Private DNS for easy access to the PlanktoScope
-domain=planktoscope
-local=/planktoscope/
+domain=scope # this is for "plankto.scope"
+domain=planktoscope # this is for "default.planktoscope", "babaya-koujaini.planktoscope", etc.
+local=/scope/planktoscope/
 addn-hosts=/home/pi/.local/etc/hosts
-# TODO: can just use a single address by making the wireless AP be routed together with the ethernet
-# network? Refer to
-# https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-routed-wireless-access-point
-# Or maybe we can just run two separate instances of dnsmasq, one for wlan0 and one for eth0, each
-# assigning the same name?
-address=/w.planktoscope/192.168.4.1
-address=/.w.planktoscope/192.168.4.1 # wildcard entry for *.w.planktoscope
-address=/e.planktoscope/192.168.5.1
-address=/.e.planktoscope/192.168.5.1 # wildcard entry for *.e.planktoscope
+localise-queries # return a different IP address depending on where the DNS request came from, matching by subnet

@@ -13,6 +13,8 @@ sudo sed -i "s/127\.0\.1\.1.*${current_hostname}/127.0.1.1\t${new_hostname}/g" /
 # Change dnsmasq settings
 file="/etc/dnsmasq.conf"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
-mkdir -p /home/pi/.local/etc/hosts
-# TODO: automatically update hostfile entries for the planktoscope based on its device name, for disambiguation
-touch /home/pi/.local/etc/hosts
+mkdir -p /home/pi/.local/etc
+# TODO: add device-specific names which are automatically updated, for disambiguation. Something
+# like "babaya-koujaini-plankto.scope" or "babaya-koujaini.planktoscope".
+file="/home/pi/.local/etc/hosts"
+cp "$config_files_root$file" "$file"

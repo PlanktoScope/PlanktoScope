@@ -40,7 +40,6 @@ createAdHocNetwork() {
        ip a add 192.168.4.1/24 brd + dev "$wifidev"
        ip link set dev "$wifidev" up
        dhcpcd -k "$wifidev" >/dev/null 2>&1
-       systemctl start dnsmasq
        systemctl start hostapd
 }
 
@@ -48,7 +47,6 @@ KillHotspot() {
        echo "Shutting Down Hotspot"
        ip link set dev "$wifidev" down
        systemctl stop hostapd
-       systemctl stop dnsmasq
        ip addr flush dev "$wifidev"
        ip link set dev "$wifidev" up
        dhcpcd -n "$wifidev" >/dev/null 2>&1
@@ -78,10 +76,6 @@ chksys() {
        #Check dnsmasq is disabled
        if systemctl -all list-unit-files dnsmasq.service | grep "dnsmasq.service masked" >/dev/null 2>&1; then
               systemctl unmask dnsmasq >/dev/null 2>&1
-       fi
-       if systemctl -all list-unit-files dnsmasq.service | grep "dnsmasq.service enabled" >/dev/null 2>&1; then
-              systemctl disable dnsmasq >/dev/null 2>&1
-              systemctl stop dnsmasq >/dev/null 2>&1
        fi
 }
 
