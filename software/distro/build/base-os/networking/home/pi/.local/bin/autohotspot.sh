@@ -14,7 +14,7 @@ wifi_dev="wlan0" # device name to use; by default wlan0 is the on-board wifi chi
 
 # Determine the SSIDs of the wifi networks the RPi is configured to use:
 # FIXME: can we simplify these commands?
-wpa_ssid=$(awk '/ssid="/{ print $0 }' /etc/wpa_supplicant/wpa_supplicant.conf | \
+wpa_ssid=$(grep -e '^ *ssid="' /etc/wpa_supplicant/wpa_supplicant.conf | \
   awk -F'ssid=' '{ print $2 }' | sed 's/\r//g' | \
   awk 'BEGIN{ORS=","} {print}' | sed 's/\"//g' | sed 's/,$//')
 IFS="," read -r -a ssids <<<"$wpa_ssid"
@@ -42,7 +42,13 @@ fallback_if_unusable_wifi() {
   attempt=0
   max_attempts=10
   while : ; do
+    if ((attempt >= max_attempts)); then
+      echo "Couldn't reach the internet after $max_attempts attempts, giving up!"
+      break
+    fi
+
     if ping -c 1 -W 2 google.com | grep '1 received' >/dev/null 2>&1; then
+      echo "Successfully pinged google.com!"
       return 0
     fi
     echo "Not yet able to ping google.com (attempt $attempt of $max_attempts)!"
@@ -89,19 +95,21 @@ find_ssid() {
   attempt=0
   max_attempts=5
   while : ; do # wait for wifi if busy
-    available_ssids=$( (iw dev "$wifi_dev" scan ap-force | grep -E "SSID:" | sort | uniq) 2>&1) >/dev/null 2>&1
-    # echo "SSIDs in range: " $available_ssids
-    printf 'SSIDs in range: %s\n' "${available_ssids[@]}"
-    echo "Checking for wlan device (attempt $attempt of $max_attempts)..."
     if ((attempt >= max_attempts)); then
       echo "Couldn't scan for networks after $max_attempts attempts, giving up!"
       available_ssids=""
       return 0
-    elif echo "$available_ssids" | grep "No such device (-19)" >/dev/null 2>&1; then
+    fi
+
+    echo "Checking wlan device $wifi_dev (attempt $attempt of $max_attempts)..."
+    available_ssids=$( (iw dev "$wifi_dev" scan ap-force | grep -E "SSID:" | sort | uniq) 2>&1) >/dev/null 2>&1
+    echo "SSIDs in range:"
+    echo "$available_ssids"
+    if echo "$available_ssids" | grep "No such device (-19)" >/dev/null 2>&1; then
       handle_missing_device
       echo "Wifi device \"$wifi_dev\" does not exist!"
-      # Activate wifi so that when the device is reconnected a router will be available
-      dhcpcd --release "$wifi_dev" >/dev/null 2>&1
+      # Activate wifi connection so that when the device is reconnected a router will be available
+      dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
       exit 1
     elif echo "$available_ssids" | grep "Network is down (-100)" >/dev/null 2>&1; then
       echo "Network is down!"
@@ -117,7 +125,7 @@ find_ssid() {
       sleep 2
     elif echo "$available_ssids" | grep --invert-match "resource busy (-16)" >/dev/null 2>&1; then
       echo "SSID scan results available, checking list for matching SSID..."
-      return 0
+      break
     else
       echo "Wifi device unavailable, checking again..."
       attempt=$((attempt + 1))
@@ -125,15 +133,12 @@ find_ssid() {
     fi
   done
 
-
   for ssid in "${ssids[@]}"; do
-    if (echo "$ssidreply" | grep --fixed-strings -- "$ssid") >/dev/null 2>&1; then
-      echo "Matching SSID detected: $ssid"
+    if (echo "$available_ssids" | sed 's/^\t*SSID: //g' | grep -e "^${ssid}$") >/dev/null 2>&1; then
+      echo "Matching SSID found: $ssid"
       ssid_status="available"
       detected_ssid="$ssid"
       return 0
-    else
-      ssid_status="unavailable"
     fi
   done
 }
@@ -141,32 +146,31 @@ find_ssid() {
 initialize_system_services
 find_ssid
 
-#Create Hotspot or connect to valid wifi networks
-if [ "$ssid_status" -eq "unavailable" ]; then
+# Connect to a valid wifi network if it's available, otherwise make an isolated wifi network
+if [[ "$ssid_status" == "unavailable" ]]; then
+  echo "No external wifi network to connect to!"
   if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then
     echo "Isolated wifi network already started; nothing else to do!"
+    exit 0
   elif { wpa_cli status | grep "$wifi_dev"; } >/dev/null 2>&1; then
-    echo "Cleaning up wifi configuration files..."
+    echo "Resetting $wifi_dev..."
     wpa_cli terminate >/dev/null 2>&1
     ip addr flush "$wifi_dev"
     ip link set dev "$wifi_dev" down
     rm -r /var/run/wpa_supplicant >/dev/null 2>&1
-    start_isolated_wlan
-  else
-    echo "No SSID to connect to!"
-    start_isolated_wlan
   fi
+  start_isolated_wlan
 else
-  if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then # isolated wlan started, ssid in range
+  if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then
     stop_isolated_wlan
     echo "Connecting to external wifi network..."
-    dhcpcd --release "$wifi_dev" >/dev/null 2>&1
+    dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
     fallback_if_unusable_wifi
-  elif { wpa_cli -i "$wifi_dev" status | grep 'ip_address'; } >/dev/null 2>&1; then # already connected
+  elif { wpa_cli -i "$wifi_dev" status | grep 'ip_address'; } >/dev/null 2>&1; then
     echo "Already connected to external wifi network!"
   else
     echo "Connecting to external wifi network..."
-    dhcpcd --release "$wifi_dev" >/dev/null 2>&1
+    dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
     fallback_if_unusable_wifi
   fi
 fi
