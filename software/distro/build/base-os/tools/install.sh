@@ -2,6 +2,8 @@
 # The base OS tools enable basic operation of the OS, and provide generalized mechanisms for
 # bootstrapping further software (e.g. user applications) to be installed afterwards.
 
+config_files_root=$(dirname $(realpath $BASH_SOURCE))
+
 # Install some tools for a nicer command-line experience over ssh
 sudo apt-get update -y
 sudo apt-get install -y vim byobu git
@@ -20,3 +22,12 @@ sudo apt-get update -y # get the list of packages from the docker repo
 # is reported, docker will work after reboot.
 # Refer to https://www.reddit.com/r/raspberry_pi/comments/zblky6/comment/iytpp4g/ for details.
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Install cockpit
+sudo apt-get install -y cockpit
+curl -sSL https://repo.45drives.com/setup | sudo bash
+sudo apt-get update -y
+sudo apt-get install -y cockpit-navigator
+sudo mkdir -p /etc/cockpit/
+file="/etc/cockpit/cockpit.conf"
+sudo cp "$config_files_root$file" "$file"
