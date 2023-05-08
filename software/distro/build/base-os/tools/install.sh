@@ -24,9 +24,8 @@ sudo apt-get update -y # get the list of packages from the docker repo
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Install cockpit
-curl -sSL https://repo.45drives.com/setup | sudo bash
 sudo apt-get update -y
-sudo apt-get install -y cockpit cockpit-navigator
+sudo apt-get install -y cockpit
 sudo mkdir -p /etc/cockpit/
 file="/etc/cockpit/cockpit.conf"
 sudo cp "$config_files_root$file" "$file"
