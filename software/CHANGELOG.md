@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Previously the autohotspot script would not ignore any networks which were commented out in the `/etc/wpa_supplicant/wpa_supplicant.conf` file when checking if any networks found by scanning matched networks specified in the `wpa_supplicant.conf` file; now it ignores them, so that commented-out networks don't prevent the autohotspot from going into wireless AP mode.
 - Previously the autohotspot script would always wait 20 seconds after attempting to connect to a wifi network before checking whether the connection was successful, even if it didn't actually need to wait 20 seconds. Now the autohotspot script repeatedly attempts to ping google.com with a timeout of 2 seconds per attempt and a maximum of 10 attempts, so that the autohotspot script only waits as long as a necessary to determine that a wifi network has succeeded.
+- Previously the autohotspot script could decide that the SSID scan results were available even if no SSIDs were found (despite local wifi networks bbeing active). Now an empty SSID scan result is treated as a condition where a re-scan is required.
 - Previously the log messages from the autohotspot script had inconsistent capitalization and grammar, and slightly unclear wording. Those have now been made more clear and consistent.
 - The `adafruit-blinka` and `adafruit-platformdetect` dependencies are now updated to their latest version (though this is not yet version-locked in the `requirements.txt` file).
 

@@ -123,11 +123,15 @@ find_ssid() {
       echo "Temporary unavailable (invalid exchange)!"
       attempt=$((attempt + 1))
       sleep 2
-    elif echo "$available_ssids" | grep --invert-match "resource busy (-16)" >/dev/null 2>&1; then
+    elif echo "$available_ssids" | grep "resource busy (-16)" >/dev/null 2>&1; then
+      echo "Wifi device \"$wifi_dev\" is busy!"
+      attempt=$((attempt + 1))
+      sleep 2
+    elif echo "$available_ssids" | grep "SSID: " >/dev/null 2>&1; then
       echo "SSID scan results available, checking list for matching SSID..."
       break
     else
-      echo "Wifi device unavailable, checking again..."
+      echo "Wifi device unavailable or no wifi networks found, checking again..."
       attempt=$((attempt + 1))
       sleep 2
     fi
