@@ -33,7 +33,7 @@ function panic {
 
 # Run sub-scripts
 
-echo -e "${script_fmt}Building full operating system image...${reset_fmt}"
+echo -e "${script_fmt}Building full operating system...${reset_fmt}"
 
 description="build base operating system"
 report_starting "$description"

@@ -31,6 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- nginx is no longer installed, and the file browser on port 80 is removed. This functionality will be replaced with a different file browser before the next release.
+
 ### Fixed
 
 - Previously the autohotspot script would not ignore any networks which were commented out in the `/etc/wpa_supplicant/wpa_supplicant.conf` file when checking if any networks found by scanning matched networks specified in the `wpa_supplicant.conf` file; now it ignores them, so that commented-out networks don't prevent the autohotspot from going into wireless AP mode.

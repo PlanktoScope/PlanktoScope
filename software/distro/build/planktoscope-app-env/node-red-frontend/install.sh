@@ -23,6 +23,7 @@ sudo chown 0:0 "$file"
 sudo mkdir -p /etc/systemd/system/nodered.service.d
 file="/etc/systemd/system/nodered.service.d/override.conf"
 sudo cp "$config_files_root$file" "$file"
+sudo systemctl daemon-reload
 sudo systemctl enable nodered.service
 
 # Move the PlanktoScope project into a Node-RED project
