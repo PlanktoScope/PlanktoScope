@@ -35,9 +35,19 @@ sudo apt-get autoremove -y
 
 # Install Python dependencies
 export PATH="/home/pi/.local/bin:$PATH"
+# FIXME: the following command is needed as a workaround for the lack of proper version locking of
+# pandas as an indirect dependency, and because for some reason pip can't find the pandas 2.0.1
+# pre-built binary from piwheels
+pip3 install pandas --prefer-binary
 # Note: the following command emits warnings about installed scripts not being in the user’s PATH,
 # but the installed scripts will be in the user’s path after reboot:
 pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
 # Upgrade adafruit dependencies
-# TODO: just update the requirements.txt file instead
+# FIXME: just use the requirements.txt file instead
 pip3 install --upgrade adafruit-blinka adafruit-platformdetect
+# Fix numpy version
+# FIXME: just use the requirements.txt file instead. We need to install numpy v1.22.4 rather than
+# v1.21.4 because scipy v1.7.2 has a binary incompatibility with numpy 1.21.4 when both are installed
+# on our system via pip with piwheels, even though those two versions are supposed to be compatible.
+pip3 uninstall numpy
+pip3 install numpy==1.22.4
