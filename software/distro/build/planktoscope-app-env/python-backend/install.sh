@@ -31,14 +31,10 @@ git clone https://github.com/PlanktoScope/PlanktoScope /home/pi/PlanktoScope
 
 # Remove conflicting Python dependencies from the system
 sudo apt-get remove -y python3-numpy
-sudo apt-get autoremove
+sudo apt-get autoremove -y
 
 # Install Python dependencies
 export PATH="/home/pi/.local/bin:$PATH"
-# FIXME: the following command is a workaround for the lack of proper version locking of pandas as
-# an indirect dependency, and probably only needed for a few days until pip can find the pandas 2.0.1
-# binary on piwheels
-pip3 install pandas --prefer-binary
 # Note: the following command emits warnings about installed scripts not being in the user’s PATH,
 # but the installed scripts will be in the user’s path after reboot:
 pip3 install -U -r /home/pi/PlanktoScope/requirements.txt
