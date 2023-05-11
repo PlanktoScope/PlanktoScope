@@ -49,5 +49,5 @@ pip3 install --upgrade adafruit-blinka adafruit-platformdetect
 # FIXME: just use the requirements.txt file instead. We need to install numpy v1.22.4 rather than
 # v1.21.4 because scipy v1.7.2 has a binary incompatibility with numpy 1.21.4 when both are installed
 # on our system via pip with piwheels, even though those two versions are supposed to be compatible.
-pip3 uninstall numpy
+pip3 uninstall -y numpy
 pip3 install numpy==1.22.4
