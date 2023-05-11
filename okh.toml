@@ -1,0 +1,56 @@
+okhv = "OKH-LOSHv1.0"
+
+name = "PlanktoScope"
+function = "An open and affordable imaging platform for citizen oceanography"
+image = "/docs/images/readme/planktonplanet_pub.webp"
+
+version = "2.5"
+repo = "https://github.com/PlanktoScope/PlanktoScope"
+release = "https://github.com/PlanktoScope/PlanktoScope/releases"
+
+license = "CERN-OHL-S-2.0"
+licensor = "Thibaut Pollina, Romain Bazile, Adam Larson, Will Major, Sebastian Wendel"
+
+readme = "/README.md"
+user-manual = "/docs/protocols/basic_primer.md"
+manufacturing-instructions = "/docs/hardware/manufacturing.md"
+contribution-guide = "/docs/contribute/hardware_development.md"
+
+documentation-language = "en"
+technology-readiness-level = "OTRL-5"
+documentation-readiness-level = "ODRL-3*"
+
+bom = "/hardware/bom.csv"
+source = [
+    "/hardware/case/PlanktoScope-Case.f3z",
+    "/hardware/hat/Planktoscope-Hat.brd",
+    "/hardware/hat/Planktoscope-Hat.sch",
+]
+
+tsdc = ["CNC", "PCB", "MEC", "STD"]
+
+[[software]]
+release = "2.3"
+installation-guide = "/docs/usage/getting_started.md"
+
+[[part]]
+name = "PlanktoScope-Case"
+image = "/doc/images/hardware/planktoscope_case_00.png"
+tsdc = "CNC"
+source = "/hardware/case/PlanktoScope-Case.f3z"
+export = ["/hardware/case/PlanktoScope-Case.dxf"]
+outer-dimension-dim = "mm"
+outer-dimension = "cube(size = [275,125,105])"
+
+[[part]]
+name = "PlanktoScope-HAT"
+image = "/docs/images/hardware/planktoscope_hat_front.png"
+tsdc = "PCB"
+source = "/hardware/hat/Planktoscope-Hat.brd"
+export = [
+    "/hardware/hat/Planktoscope-Hat-gerber.zip",
+    "/hardware/hat/Planktoscope-Hat-assembly.zip",
+    "/hardware/hat/Planktoscope-Hat-diagram.pdf",
+]
+outer-dimension-dim = "mm"
+outer-dimension = "cube(size = [100,65,10])"

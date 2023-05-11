@@ -1,0 +1,144 @@
+
+[build-system]
+requires = ["hatchling", "hatch-containers", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+readme = "README.md"
+name = "PlanktoScope"
+description = "An open and affordable imaging platform for citizen oceanography"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.7"
+authors = [{ name = "Romain Bazile" }, { name = "Sebastian Wendel" }]
+keywords = []
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Image Processing",
+  "Topic :: Scientific/Engineering :: Image Recognition",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+dependencies = [
+  "paho-mqtt>=1.6.1",
+  "loguru>=0.5.3",
+  "matplotlib>=3.5.0",
+  "morphocut>=0.1.2",
+  "numpy>=1.21.4",
+  "opencv-contrib-python>=4.5.3.56",
+  "scikit-image>=0.18.3",
+  "scipy>=1.7.2",
+  "smbus2>=0.4.1",
+  "Adafruit-Blinka>=6.15.0",
+  "adafruit-circuitpython-motor>=3.3.1",
+  "adafruit-circuitpython-motorkit>=1.6.3",
+  "Adafruit-PlatformDetect>=3.17.2",
+  "picamerax~=21.9.8",
+  "Adafruit-SSD1306~=1.6.2",
+  # "RPi.GPIO>=0.7.1a4",
+  # "picamera~=1.13",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://www.planktoscope.org/"
+Documentation = "http://PlanktoScope.github.io/PlanktoScope"
+Issues = "https://github.com/PlanktoScope/PlanktoScope/issues"
+Source = "https://github.com/PlanktoScope/PlanktoScope"
+
+[project.scripts]
+planktoscope = "pkg.planktoscope_backend:main"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build]
+sources = ["./software/planktoscope-backend/src"]
+
+[tool.hatch.build.hooks.vcs]
+version-file = "./software/planktoscope-backend/src/planktoscope_backend/__about__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["main.py", "./planktoscope/*.py", "./planktoscope/**/*.py"]
+
+[tool.hatch.build.targets.wheel]
+
+[tool.hatch.envs.default]
+
+[tool.hatch.envs.dev]
+python = "310"
+dependencies = [
+  "black",
+  "coverage[toml]",
+  "isort",
+  "pydocstyle",
+  "pycodestyle",
+  "pylint",
+  "pytest",
+  "typing",
+  "pytest-cov",
+  "pytest-mock",
+  "pytest-randomly",
+  "pytest-rerunfailures",
+  "pytest-xdist",
+]
+
+[tool.hatch.envs.test]
+dependencies = [
+  "coverage[toml]",
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+  "pyspelling",
+]
+
+[tool.hatch.envs.test.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=software/planktoscope-backend --cov=tests {args}"
+no-cov = "cov --no-cov {args}"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["37", "38", "39", "310", "311"]
+
+[tool.hatch.envs.lint]
+dependencies = ["flake8", "black", "isort"]
+
+[tool.hatch.envs.lint.scripts]
+check = [
+  "flake8 .",
+  "black --check --diff software/planktoscope-backend",
+  "isort --check-only --diff software/planktoscope-backend",
+]
+fmt = [
+  "isort software/planktoscope-backend",
+  "black software/planktoscope-backend",
+  "check",
+]
+
+[tool.hatch.envs.docs]
+dependencies = [
+  "mkdocs",
+  "mkdocs-charts-plugin",
+  "mkdocs-glightbox",
+  "mkdocs-macros-plugin",
+  "mkdocs-markdownextradata-plugin",
+  "mkdocs-material-extensions",
+  "mkdocs-material",
+  "mkdocs-minify-plugin",
+  "mkdocs-redirects",
+  "mkdocs-table-reader-plugin",
+  "pygments",
+  "pymdown-extensions",
+  "linkchecker",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean --strict"
+serve = "mkdocs serve --dev-addr localhost:8000"
+validate = ["linkchecker --config .linkcheckerrc site"]
+check = ["build --no-directory-urls", "validate"]

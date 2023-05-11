@@ -1,12 +1,29 @@
-.vscode
-flow_backup.json
-flows/.main.json.backup
+# General
+*.dll
 *.log
+*.so
+*.swp
 export
-tmp
 img
+tmp
+
+# Nix
+.direnv
+.pre-commit-config.yaml
+result
+
+# Python
+/*.py[cod]
+/__pycache__
+/.benchmark
+/.coverage*
+/.pytest_cache
+
+# Node-Red
+/.main.json.backup
+/flow_backup.json
+
+# Mkdocs
+dist
 docs/_*
-*.jpg
-*.png
-*.pyc
-*__pycache__*
+site

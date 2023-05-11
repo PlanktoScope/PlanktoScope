@@ -1,0 +1,31 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: PlanktoScope
+Upstream-Contact: Thibaut Pollina <planktoscope@gmail.com>
+Source: https://github.com/PlanktoScope/PlanktoScope
+
+Files: hardware/*
+Copyright: (C) 2020-2023 Romain Bazile
+License: CERN-OHL-S-2.0
+
+Files:
+  .github
+  .vscode
+  .dockerignore
+  .editorconfig
+  .envrc
+  .gitignore
+  flake.*
+  nix/*
+  Dockerfile
+  pyproject.toml
+  okh.toml
+  mkdocs.yml
+  software/*
+Copyright: (C) 2020-2023 Romain Bazile, Sebastian Wendel
+License: GPL-3.0-or-later
+
+Files:
+  docs/*
+  README.md
+Copyright: (C) 2020-2023 Romain Bazile, Thibaut Pollina, Adam Larson, Will Major, Sebastian Wendel
+License: CC-BY-SA-4.0

@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
 ---
 name: Feature request
 about: Suggest an idea for this project
