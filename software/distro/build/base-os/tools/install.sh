@@ -24,7 +24,7 @@ sudo apt-get update -y # get the list of packages from the docker repo
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Set up Docker Swarm Mode
-file="/etc/systemd/system/first-boot-docker-swarm.conf"
+file="/etc/systemd/system/first-boot-docker-swarm.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable first-boot-docker-swarm.service
 

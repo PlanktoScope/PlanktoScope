@@ -1,7 +1,6 @@
 [Unit]
 Description=Initializes Docker swarm mode
 After=docker.service
-Wants=docker.service
 [Service]
 Type=oneshot
 ExecStartPre=systemctl disable first-boot-docker-swarm.service
@@ -10,3 +9,5 @@ ExecStartPre=systemctl disable first-boot-docker-swarm.service
 # on a ZeroTier network which is unique to each machine, for access on an overlay network over
 # multiple network interfaces.
 ExecStart=docker swarm init --advertise-addr eth0
+[Install]
+WantedBy=docker.service

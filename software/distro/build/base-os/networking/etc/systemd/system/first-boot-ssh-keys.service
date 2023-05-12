@@ -5,3 +5,5 @@ Before=sshd.service
 Type=oneshot
 ExecStartPre=systemctl disable first-boot-ssh-config.service
 ExecStart=dpkg-reconfigure --frontend=noninteractive openssh-server
+[Install]
+WantedBy=sshd.service
