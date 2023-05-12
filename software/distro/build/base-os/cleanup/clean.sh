@@ -5,9 +5,5 @@
 sudo apt-get autoremove -y
 sudo apt-get clean -y
 
-# Remove SSH keys and make them be regenerated
-sudo rm -f /etc/ssh/ssh_host_*
-sudo systemctl enable regenerate_ssh_host_keys.service
-
 # Remove history files
 rm -f /home/pi/.bash_history

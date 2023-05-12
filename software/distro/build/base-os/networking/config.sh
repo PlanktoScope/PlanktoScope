@@ -17,8 +17,13 @@ sudo bash -c "echo \"uninitialized\" > /etc/machine-id"
 sudo raspi-config nonint do_wifi_country US
 sudo rfkill unblock wifi
 
+# Set up ssh with host keys unique to each machine
 # FIXME: set up the SSH server without using raspi-config
 sudo raspi-config nonint do_ssh 0
+sudo rm -f /etc/ssh/ssh_host_*
+file="/etc/systemd/system/first-boot-ssh-keys.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable first-boot-ssh-keys.service
 
 # TODO: add basic ufw settings
 

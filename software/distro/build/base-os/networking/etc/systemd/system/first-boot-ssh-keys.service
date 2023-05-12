@@ -1,0 +1,7 @@
+[Unit]
+Description=Regenerates OpenSSH host keys
+Before=sshd.service
+[Service]
+Type=oneshot
+ExecStartPre=systemctl disable first-boot-ssh-config.service
+ExecStart=dpkg-reconfigure --frontend=noninteractive openssh-server
