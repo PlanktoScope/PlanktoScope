@@ -1,6 +1,21 @@
 ################################################################################
-# Practical Libraries
-################################################################################
+# Copyright (C) 2021 Romain Bazile
+#
+# This file is part of the PlanktoScope software.
+#
+# PlanktoScope is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# PlanktoScope is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
+
 # Logger library compatible with multiprocessing
 from loguru import logger
 
@@ -11,6 +26,8 @@ import multiprocessing
 
 # Basic planktoscope libraries
 import planktoscope.mqtt
+
+import planktoscope.i2cscanner
 
 import RPi.GPIO
 
@@ -72,10 +89,11 @@ class i2c_led:
                 self.flash_timeout = False
                 self.IVFM = False
             led_id = self.get_id()
-        except (OSError, Exception) as e:
-            logger.exception(f"Error with the LED control module, {e}")
+        except Exception as e:
+            logger.exception(f"Error with the I2C LED control module, {e}")
             raise
         logger.debug(f"LED module id is {led_id}")
+        self.set_torch_current(self.DEFAULT_CURRENT)
 
     def output_to_led1(self):
         logger.debug("Switching output to LED 1")
@@ -153,12 +171,12 @@ class i2c_led:
         logger.debug(f"Setting flash current to {value}")
         self._write_byte(self.Register.flash, value)
 
-    def activate_torch(self):
+    def on(self):
         logger.debug("Activate torch")
         self._write_byte(self.Register.enable, 0b10)
         self.on = True
 
-    def deactivate_torch(self):
+    def off(self):
         logger.debug("Deactivate torch")
         self._write_byte(self.Register.enable, 0b00)
         self.off = False
@@ -173,48 +191,61 @@ class i2c_led:
         return b
 
 
-class pwm_led:
-    def __init__(self, led):
-        RPi.GPIO.setmode(RPi.GPIO.BCM)
-        self.led = led
-        if self.led == 0:
-            RPi.GPIO.setup(led0Pin, RPi.GPIO.OUT)
-            RPi.GPIO.output(led0Pin, RPi.GPIO.LOW)
-            self.pwm0 = RPi.GPIO.PWM(led0Pin, FREQUENCY)
-            self.pwm0.start(0)
-        elif self.led == 1:
-            RPi.GPIO.setup(led1Pin, RPi.GPIO.OUT)
-            RPi.GPIO.output(led1Pin, RPi.GPIO.LOW)
-            self.pwm1 = RPi.GPIO.PWM(led1Pin, FREQUENCY)
-            self.pwm1.start(0)
+class direct_led:
+    led0Pin = 21
+    led1Pin = 22
+    led = 0
+    powered = False
 
-    def change_duty(self, dc):
-        if self.led == 0:
-            self.pwm0.ChangeDutyCycle(dc)
-        elif self.led == 1:
-            self.pwm1.ChangeDutyCycle(dc)
+    def __init__(self):
+        RPi.GPIO.setwarnings(False)
+        RPi.GPIO.setmode(RPi.GPIO.BCM)
+        RPi.GPIO.setup(self.led0Pin, RPi.GPIO.OUT)
+        RPi.GPIO.output(self.led0Pin, RPi.GPIO.LOW)
+        RPi.GPIO.setup(self.led1Pin, RPi.GPIO.OUT)
+        RPi.GPIO.output(self.led1Pin, RPi.GPIO.LOW)
 
     def off(self):
+        self.powered = False
         if self.led == 0:
             logger.debug("Turning led 1 off")
-            self.pwm0.ChangeDutyCycle(0)
+            RPi.GPIO.output(self.led0Pin, RPi.GPIO.LOW)
         elif self.led == 1:
             logger.debug("Turning led 2 off")
-            self.pwm1.ChangeDutyCycle(0)
+            RPi.GPIO.output(self.led1Pin, RPi.GPIO.LOW)
 
     def on(self):
+        self.powered = True
         if self.led == 0:
             logger.debug("Turning led 1 on")
-            self.pwm0.ChangeDutyCycle(100)
+            RPi.GPIO.output(self.led0Pin, RPi.GPIO.HIGH)
         elif self.led == 1:
             logger.debug("Turning led 2 on")
-            self.pwm1.ChangeDutyCycle(100)
+            RPi.GPIO.output(self.led1Pin, RPi.GPIO.HIGH)
 
-    def stop(self):
-        if self.led == 0:
-            self.pwm0.stop()
-        elif self.led == 1:
-            self.pwm1.stop()
+    def get_state(self):
+        return self.on
+
+    def output_to_led1(self):
+        logger.debug("Switching output to LED 1")
+        if self.powered:
+            self.off()
+            self.led = 0
+            self.on()
+        else:
+            self.led = 0
+
+    def output_to_led2(self):
+        logger.debug("Switching output to LED 2")
+        if self.powered:
+            self.off()
+            self.led = 1
+            self.on()
+        else:
+            self.led = 1
+
+    def set_torch_current(self, current):
+        pass
 
 
 ################################################################################
@@ -235,32 +266,35 @@ class LightProcess(multiprocessing.Process):
 
         self.stop_event = event
         self.light_client = None
-        try:
-            self.led = i2c_led()
-            self.led.set_torch_current(self.led.DEFAULT_CURRENT)
-            self.led.output_to_led1()
-            self.led.activate_torch_ramp()
-            self.led.activate_torch()
-            time.sleep(0.5)
-            self.led.output_to_led2()
-            time.sleep(0.5)
-            self.led.deactivate_torch()
-            self.led.output_to_led1()
-        except Exception as e:
-            logger.error(
-                f"We have encountered an error trying to start the LED module, stopping now, exception is {e}"
-            )
-            self.led.output_to_led2()
-            raise e
+        if planktoscope.i2cscanner(0x64):
+            try:
+                self.led = i2c_led()
+                self.led.activate_torch_ramp()
+            except Exception as e:
+                logger.error(
+                    f"We have encountered an error trying to start the LED module, stopping now, exception is {e}"
+                )
+                self.led.output_to_led2()
+                raise e
         else:
-            logger.success("planktoscope.light is initialised and ready to go!")
+            logger.info("No I2C led module found, switching to direct control now")
+            self.led = direct_led()
+        self.led.on()
+        time.sleep(0.5)
+        self.led.off()
+        self.led.on()
+        self.led.output_to_led2()
+        time.sleep(0.5)
+        self.led.off()
+        self.led.output_to_led1()
+        logger.success("planktoscope.light is initialised and ready to go!")
 
     def led_off(self, led):
         if led == 0:
             logger.debug("Turning led 1 off")
         elif led == 1:
             logger.debug("Turning led 2 off")
-        self.led.deactivate_torch()
+        self.led.off()
 
     def led_on(self, led):
         if led not in [0, 1]:
@@ -271,7 +305,7 @@ class LightProcess(multiprocessing.Process):
         elif led == 1:
             logger.debug("Turning led 2 on")
             self.led.output_to_led2()
-        self.led.activate_torch()
+        self.led.on()
 
     @logger.catch
     def treat_message(self):
@@ -328,31 +362,37 @@ class LightProcess(multiprocessing.Process):
                         )
                 else:
                     logger.warning(
-                        f"We did not understand the received request {action} - {last_message}"
+                        f"We did not understand the received request {last_message['action']} - {last_message}"
                     )
             if "settings" in last_message:
                 if "current" in last_message["settings"]:
-                    # {"settings":{"current":"20"}}
-                    current = last_message["settings"]["current"]
-                    if self.led.get_state():
-                        # Led is on, rejecting the change
-                        self.light_client.client.publish(
-                            "status/light",
-                            '{"status":"Turn off the LED before changing the current"}',
-                        )
-                        return
-                    logger.info(f"Switching the LED current to {current}mA")
-                    try:
-                        self.led.set_torch_current(current)
-                    except:
-                        self.light_client.client.publish(
-                            "status/light",
-                            '{"status":"Error while setting the current, power cycle your machine"}',
-                        )
+                    if isinstance(self.led, i2c_led):
+                        # {"settings":{"current":"20"}}
+                        current = last_message["settings"]["current"]
+                        led_state = self.led.get_state()
+                        logger.info(f"Switching the LED current to {current}mA")
+                        if led_state:
+                            self.led.off()
+                        try:
+                            self.led.set_torch_current(current)
+                        except Exception:
+                            self.light_client.client.publish(
+                                "status/light",
+                                '{"status":"Error while setting the current"}',
+                            )
+                        else:
+                            self.light_client.client.publish(
+                                "status/light",
+                                f'{{"status":"Current set to {current}mA"}}',
+                            )
+                        if led_state:
+                            self.led.on()
                     else:
                         self.light_client.client.publish(
-                            "status/light", f'{{"status":"Current set to {current}mA"}}'
+                            "status/light",
+                            f'{{"status":"Current is not settable on your hardware"}}',
                         )
+
                 else:
                     logger.warning(
                         f"We did not understand the received settings request in {last_message}"
@@ -388,10 +428,12 @@ class LightProcess(multiprocessing.Process):
             time.sleep(0.1)
 
         logger.info("Shutting down the light process")
-        self.led.deactivate_torch()
-        self.led.set_torch_current(1)
-        self.led.set_flash_current(1)
-        self.led.get_flags()
+        self.led.off()
+        if isinstance(self.led, i2c_led):
+            self.led.set_torch_current(1)
+            self.led.set_flash_current(1)
+            self.led.get_flags()
+
         RPi.GPIO.cleanup()
         self.light_client.client.publish("status/light", '{"status":"Dead"}')
         self.light_client.shutdown()
@@ -404,13 +446,13 @@ if __name__ == "__main__":
     led.set_torch_current(30)
     led.output_to_led1()
     led.activate_torch_ramp()
-    led.activate_torch()
+    led.on()
     time.sleep(5)
-    led.deactivate_torch()
+    led.off()
     led.set_torch_current(10)
-    led.activate_torch()
+    led.on()
     time.sleep(5)
-    led.deactivate_torch()
+    led.off()
     led.set_torch_current(1)
     led.set_flash_current(1)
     led.get_flags()
