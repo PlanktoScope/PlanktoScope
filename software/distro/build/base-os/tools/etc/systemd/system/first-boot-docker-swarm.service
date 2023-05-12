@@ -9,5 +9,7 @@ ExecStartPre=systemctl disable first-boot-docker-swarm.service
 # on a ZeroTier network which is unique to each machine, for access on an overlay network over
 # multiple network interfaces.
 ExecStart=docker swarm init --advertise-addr eth0
+ExecStartPost=systemctl restart dhcpcd.service
+ExecStartPost=systemctl restart dnsmasq.service
 [Install]
 WantedBy=docker.service
