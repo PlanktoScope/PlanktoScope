@@ -34,7 +34,7 @@ sudo shutdown -r now
 
 Afterwards, your PlanktoScope's Raspberry Pi will either connect to a wifi network (if you had previously configured it to connect to a wifi network) or make its own local isolated wifi network. If you connect another device (e.g. a phone or computer) to the PlanktoScope's Raspberry Pi over its local isolated wifi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's dashboard at one of the following URLs (try them in the following order, and just use the first one which works):
 
-- http://home.planktoscope:1880/ui (if your web browser isn't configured to use a Private DNS provider)
-- http://planktoscope.local:1880/ui (if you're on a device which supports mDNS)
-- http://192.168.4.1:1880/ui (if you're connected over the PlanktoScope's isolated wifi network)
-- http://192.168.5.1:1880/ui (if you're connected over Ethernet)
+- http://home.planktoscope:1880/ps/node-red-v2/ui (if your web browser isn't configured to use a Private DNS provider)
+- http://planktoscope.local:1880/ps/node-red-v2/ui (if you're on a device which supports mDNS)
+- http://192.168.4.1:1880/ps/node-red-v2/ui (if you're connected over the PlanktoScope's isolated wifi network)
+- http://192.168.5.1:1880/ps/node-red-v2/ui (if you're connected over Ethernet)

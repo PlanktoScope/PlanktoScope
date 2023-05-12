@@ -9,13 +9,15 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.MM
 
 ### Added
 
-- (System: networking) Previously the PlanktoScope could be connected to from 192.168.4.1 (over wifi, when running in wireless AP mode), 192.168.5.1 (over ethernet), and `planktoscope.local` (over wifi or ethernet, from a client device with mDNS support); this meant that Android devices could only connect to the PlanktoScope at 192.168.4.1, as they lack mDNS support. Now, client devices - even those without mDNS support - can connect to the PlanktoScope at `default.planktoscope`, `plankto.scope`, and/or `babaya-koujaini.planktoscope` (where `babaya-koujaini` is replaced with the PlanktoScope's Raspberry Pi's machine ID which is provided by the PlanktoScope's wifi network)
+- (System: networking) Previously the PlanktoScope could be connected to from 192.168.4.1 (over wifi, when running in wireless AP mode), 192.168.5.1 (over ethernet), and `planktoscope.local` (over wifi or ethernet, from a client device with mDNS support); this meant that Android devices could only connect to the PlanktoScope at 192.168.4.1, as they lack mDNS support. Now, client devices - even those without mDNS support - can connect to the PlanktoScope at `home.planktoscope`, and/or a URL like `babaya-koujaini.planktoscope` (where `babaya-koujaini` is replaced with the PlanktoScope's Raspberry Pi's machine ID, which is also part of the name of the PlanktoScope's wifi network)
 - (System: administration, troubleshooting, GUI) A [Cockpit](https://cockpit-project.org/) system administration dashboard is now installed and made accessible on port 9090 at URL path /admin/cockpit/ (so e.g. it's accessible at http://plankto.scope:9090/admin/cockpit/)
-- (System: administration) [Docker](https://www.docker.com/) is now installed.
+- (System: administration) [Docker](https://www.docker.com/) is now installed. Upon the first boot-up of the SD card, Docker Swarm mode is initialized; for now, only a single-member swarm (consisting of the PlanktoScope's Raspberry Pi itself) is supported.
 - (System: networking) [ufw](https://en.wikipedia.org/wiki/Uncomplicated_Firewall) is now installed, though it is disabled by default.
 
 ### Changed
 
+- (User-facing change; Application: GUI) Previously, the Node-RED dashboard was accessed on the path `/ui` on port 1880, e.g. with URLs like `http://planktoscope.local:1880/ui` or `http://192.168.4.1:1880/ui`; now, it must be accessed on the path `/ps/node-red-v2/ui` on port 1880, e.g. with URLs like `http://planktoscope.local:1880/ps/node-red-v2/ui` or `http://192.168.4.1:1880/ps/node-red-v2/ui`.
+- (User-facing change; System: GUI) Previously, the Node-RED flow editor was accessed directly on port 1880, e.g. with URLs like `http://planktoscope.local:1880` or `http://192.168.4.1:1880`; now, it must be accessed on the path `/admin/ps/node-red-v2` on port 1880, e.g. with URLs like `http://planktoscope.local:1880/admin/ps/node-red-v2` or `http://192.168.4.1:1880/admin/ps/node-red-v2`.
 - (Likely user-facing change; System) The default timezone has been changed to UTC, and we will be using UTC as the standard timezone for all PlanktoScopes.
 - (Likely user-facing change; System: networking) The default wifi country has been changed from `FR` to `US`.
 - (System: networking) Previously the autohotspot script would print the MAC addresses and SSIDs of all wifi networks found by scanning. Now it only prints the SSIDs of wifi networks found by scanning and avoids printing duplicate SSIDs, for more concise service logs.
