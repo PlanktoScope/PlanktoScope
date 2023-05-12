@@ -1,9 +1,0 @@
-[Unit]
-Description=Run autohotspotN every 5 minutes, starting 5 seconds after system boot
-
-[Timer]
-OnBootSec=5sec
-OnUnitActiveSec=5min 
-
-[Install]
-WantedBy=timers.target
