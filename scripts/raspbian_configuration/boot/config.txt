@@ -73,8 +73,11 @@ gpu_mem=256
 
 dtoverlay=pps-gpio,gpiopin=4
 
+# fan control activation
+dtoverlay=gpio-fan,temp=55000,gpiopin=13
+
 #stepper disable
-#gpio=4,12,13,18,19,24=op,dh
+gpio=4,12,18,19,24=op,dh
 
 
 # RTC RV3028
