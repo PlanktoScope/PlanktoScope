@@ -24,7 +24,7 @@ start_isolated_wlan() {
   ip link set dev "$wifi_dev" down
   ip address add 192.168.4.1/24 broadcast + dev "$wifi_dev"
   ip link set dev "$wifi_dev" up
-  dhcpcd --release "$wifi_dev" >/dev/null 2>&1
+  dhcpcd --release "$wifi_dev"
   systemctl start hostapd
 }
 
@@ -34,7 +34,7 @@ stop_isolated_wlan() {
   systemctl stop hostapd
   ip addr flush dev "$wifi_dev"
   ip link set dev "$wifi_dev" up
-  dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
+  dhcpcd --rebind "$wifi_dev"
 }
 
 fallback_if_unusable_wifi() {
@@ -47,14 +47,14 @@ fallback_if_unusable_wifi() {
       break
     fi
 
-    if ping -c 1 -W 2 google.com | grep '1 received' >/dev/null 2>&1; then
+    if ping -c 1 -W 2 google.com | grep '1 received' >/dev/null; then
       echo "Successfully pinged google.com!"
       return 0
     fi
     echo "Not yet able to ping google.com (attempt $attempt of $max_attempts)!"
-    if ! ping -c 1 -W 2 1.1.1.1 | grep '1 received' >/dev/null 2>&1; then
+    if ! ping -c 1 -W 2 1.1.1.1 | grep '1 received' >/dev/null; then
       echo "Not yet able to ping Cloudflare DNS at 1.1.1.1, either!"
-      if ! wpa_cli -i "$wifi_dev" status | grep 'ip_address' >/dev/null 2>&1; then
+      if ! wpa_cli -i "$wifi_dev" status | grep 'ip_address' >/dev/null; then
         echo "No IP address assigned to $wifi_dev yet, either!"
         sleep 2
       fi
@@ -62,23 +62,23 @@ fallback_if_unusable_wifi() {
     attempt=$((attempt + 1))
   done
   echo "Failed to connect to external wifi network! Falling back to isolated wifi network..."
-  wpa_cli terminate "$wifi_dev" >/dev/null 2>&1
+  wpa_cli terminate "$wifi_dev"
   start_isolated_wlan
 }
 
 initialize_system_services() {
   # hostapd may be masked after system updates. This fixes any drift.
   # Ensure that hostapd is unmasked and disabled
-  if systemctl -all list-unit-files hostapd.service | grep "hostapd.service masked" >/dev/null 2>&1; then
-    systemctl unmask hostapd.service >/dev/null 2>&1
+  if systemctl -all list-unit-files hostapd.service | grep "hostapd.service masked" >/dev/null; then
+    systemctl unmask hostapd.service
   fi
-  if systemctl -all list-unit-files hostapd.service | grep "hostapd.service enabled" >/dev/null 2>&1; then
-    systemctl disable hostapd.service >/dev/null 2>&1
-    systemctl stop hostapd >/dev/null 2>&1
+  if systemctl -all list-unit-files hostapd.service | grep "hostapd.service enabled" >/dev/null; then
+    systemctl disable hostapd.service
+    systemctl stop hostapd
   fi
   # Ensure that dnsmasq is unmasked
-  if systemctl -all list-unit-files dnsmasq.service | grep "dnsmasq.service masked" >/dev/null 2>&1; then
-    systemctl unmask dnsmasq >/dev/null 2>&1
+  if systemctl -all list-unit-files dnsmasq.service | grep "dnsmasq.service masked" >/dev/null; then
+    systemctl unmask dnsmasq
   fi
 }
 
@@ -105,29 +105,29 @@ find_ssid() {
     available_ssids=$( (iw dev "$wifi_dev" scan ap-force | grep -E "SSID:" | sort | uniq) 2>&1) >/dev/null 2>&1
     echo "SSIDs in range:"
     echo "$available_ssids"
-    if echo "$available_ssids" | grep "No such device (-19)" >/dev/null 2>&1; then
+    if echo "$available_ssids" | grep "No such device (-19)" >/dev/null; then
       handle_missing_device
       echo "Wifi device \"$wifi_dev\" does not exist!"
       # Activate wifi connection so that when the device is reconnected a router will be available
-      dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
+      dhcpcd --rebind "$wifi_dev"
       exit 1
-    elif echo "$available_ssids" | grep "Network is down (-100)" >/dev/null 2>&1; then
+    elif echo "$available_ssids" | grep "Network is down (-100)" >/dev/null; then
       echo "Network is down!"
       attempt=$((attempt + 1))
       sleep 2
-    elif echo "$available_ssids" | grep "Read-only file system (-30)" >/dev/null 2>&1; then
+    elif echo "$available_ssids" | grep "Read-only file system (-30)" >/dev/null; then
       echo "Running on temporary read-only file system!"
       attempt=$((attempt + 1))
       sleep 2
-    elif echo "$available_ssids" | grep "Invalid exchange (-52)" >/dev/null 2>&1; then
+    elif echo "$available_ssids" | grep "Invalid exchange (-52)" >/dev/null; then
       echo "Temporary unavailable (invalid exchange)!"
       attempt=$((attempt + 1))
       sleep 2
-    elif echo "$available_ssids" | grep "resource busy (-16)" >/dev/null 2>&1; then
+    elif echo "$available_ssids" | grep "resource busy (-16)" >/dev/null; then
       echo "Wifi device \"$wifi_dev\" is busy!"
       attempt=$((attempt + 1))
       sleep 2
-    elif echo "$available_ssids" | grep "SSID: " >/dev/null 2>&1; then
+    elif echo "$available_ssids" | grep "SSID: " >/dev/null; then
       echo "SSID scan results available, checking list for matching SSID..."
       break
     else
@@ -138,7 +138,7 @@ find_ssid() {
   done
 
   for ssid in "${ssids[@]}"; do
-    if (echo "$available_ssids" | sed 's/^\t*SSID: //g' | grep -e "^${ssid}$") >/dev/null 2>&1; then
+    if (echo "$available_ssids" | sed 's/^\t*SSID: //g' | grep -e "^${ssid}$") >/dev/null; then
       echo "Matching SSID found: $ssid"
       ssid_status="available"
       detected_ssid="$ssid"
@@ -153,28 +153,28 @@ find_ssid
 # Connect to a valid wifi network if it's available, otherwise make an isolated wifi network
 if [[ "$ssid_status" == "unavailable" ]]; then
   echo "No external wifi network to connect to!"
-  if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then
+  if systemctl status hostapd | grep "(running)" >/dev/null; then
     echo "Isolated wifi network already started; nothing else to do!"
     exit 0
-  elif { wpa_cli status | grep "$wifi_dev"; } >/dev/null 2>&1; then
+  elif { wpa_cli status | grep "$wifi_dev"; } >/dev/null; then
     echo "Resetting $wifi_dev..."
-    wpa_cli terminate >/dev/null 2>&1
+    wpa_cli terminate
     ip addr flush "$wifi_dev"
     ip link set dev "$wifi_dev" down
-    rm -r /var/run/wpa_supplicant >/dev/null 2>&1
+    rm -r /var/run/wpa_supplicant >/dev/null
   fi
   start_isolated_wlan
 else
-  if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then
+  if systemctl status hostapd | grep "(running)" >/dev/null; then
     stop_isolated_wlan
     echo "Connecting to external wifi network..."
-    dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
+    dhcpcd --rebind "$wifi_dev"
     fallback_if_unusable_wifi
   elif { wpa_cli -i "$wifi_dev" status | grep 'ip_address'; } >/dev/null 2>&1; then
     echo "Already connected to external wifi network!"
   else
     echo "Connecting to external wifi network..."
-    dhcpcd --rebind "$wifi_dev" >/dev/null 2>&1
+    dhcpcd --rebind "$wifi_dev"
     fallback_if_unusable_wifi
   fi
 fi
