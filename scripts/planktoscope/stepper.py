@@ -13,6 +13,7 @@ from loguru import logger
 
 logger.info("planktoscope.stepper is loaded")
 
+config_file_path = "/home/pi/PlanktoScope/metadata.json"
 
 """Step forward"""
 FORWARD = 1
@@ -141,9 +142,9 @@ class StepperProcess(multiprocessing.Process):
         self.focus_started = False
         self.pump_started = False
 
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+        if os.path.exists(config_file_path):
+            # load config file
+            with open(config_file_path, "r") as config_file:
                 # TODO #100 insert guard for config_file empty
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
@@ -156,17 +157,19 @@ class StepperProcess(multiprocessing.Process):
         reverse = False
 
         # parse the config data. If the key is absent, we are using the default value
-        reverse = configuration.get("stepper_reverse", reverse)
+        reverse = configuration.get("hard_stepper_reverse", reverse)
         self.focus_steps_per_mm = configuration.get(
-            "focus_steps_per_mm", self.focus_steps_per_mm
+            "hard_focus_steps_per_mm", self.focus_steps_per_mm
         )
         self.pump_steps_per_ml = configuration.get(
-            "pump_steps_per_ml", self.pump_steps_per_ml
+            "hard_pump_steps_per_ml", self.pump_steps_per_ml
         )
         self.focus_max_speed = configuration.get(
-            "focus_max_speed", self.focus_max_speed
+            "hard_focus_max_speed", self.focus_max_speed
         )
-        self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
+        self.pump_max_speed = configuration.get(
+            "hard_pump_max_speed", self.pump_max_speed
+        )
 
         # define the names for the 2 exsting steppers
         if reverse:

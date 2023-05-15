@@ -44,8 +44,10 @@ import planktoscope.uuidName
 import threading
 import functools
 
+config_file_path = "/home/pi/PlanktoScope/metadata.json"
 
 logger.info("planktoscope.imager is loaded")
+
 
 ################################################################################
 # Main Imager class
@@ -65,9 +67,9 @@ class ImagerProcess(multiprocessing.Process):
 
         logger.info("planktoscope.imager is initialising")
 
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+        if os.path.exists(config_file_path):
+            # load config file
+            with open(config_file_path, "r") as config_file:
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
         else:
@@ -79,7 +81,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__camera_type = "v2.1"
 
         # parse the config data. If the key is absent, we are using the default value
-        self.__camera_type = configuration.get("camera_type", self.__camera_type)
+        self.__camera_type = configuration.get("hard_camera_type", self.__camera_type)
 
         self.stop_event = stop_event
         self.__imager = planktoscope.imager.state_machine.Imager()
@@ -126,12 +128,12 @@ class ImagerProcess(multiprocessing.Process):
         self.__exposure_mode = "auto"
         self.__white_balance = "off"
         self.__white_balance_gain = (
-            int(configuration.get("red_gain", 2.00) * 100),
-            int(configuration.get("blue_gain", 1.40) * 100),
+            int(configuration.get("user_red_gain", 2.00) * 100),
+            int(configuration.get("user_blue_gain", 1.40) * 100),
         )
         self.__image_gain = (
-            int(configuration.get("analog_gain", 1.00) * 100),
-            int(configuration.get("digital_gain", 1.00) * 100),
+            int(configuration.get("user_analog_gain", 1.00) * 100),
+            int(configuration.get("user_digital_gain", 1.00) * 100),
         )
 
         self.__base_path = "/home/pi/data/img"
