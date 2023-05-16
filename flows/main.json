@@ -361,8 +361,8 @@
         "id": "23d77b28fecb55bb",
         "type": "junction",
         "z": "bccd1f23.87219",
-        "x": 760,
-        "y": 920,
+        "x": 640,
+        "y": 940,
         "wires": [
             [
                 "62030521.88317c"
@@ -377,7 +377,7 @@
         "y": 260,
         "wires": [
             [
-                "fb887036.12429"
+                "5ca27fdf2a1fef80"
             ]
         ]
     },
@@ -423,11 +423,11 @@
         "id": "13d04338daf07495",
         "type": "junction",
         "z": "1eaf21c8.f7a21e",
-        "x": 900,
+        "x": 880,
         "y": 400,
         "wires": [
             [
-                "285e3db1405b123b"
+                "a9acf23e7e93c730"
             ]
         ]
     },
@@ -451,12 +451,23 @@
         "id": "7094dee99bbbe6ca",
         "type": "junction",
         "z": "bccd1f23.87219",
-        "x": 1200,
-        "y": 660,
+        "x": 1300,
+        "y": 700,
         "wires": [
             [
-                "845e06e1.0d812",
-                "0449fb3f7205c9f1"
+                "845e06e1.0d812"
+            ]
+        ]
+    },
+    {
+        "id": "3d62eb9f488f0d77",
+        "type": "junction",
+        "z": "bccd1f23.87219",
+        "x": 920,
+        "y": 560,
+        "wires": [
+            [
+                "dc48dc42.98d18"
             ]
         ]
     },
@@ -4215,15 +4226,15 @@
         "id": "dc48dc42.98d18",
         "type": "function",
         "z": "bccd1f23.87219",
-        "name": "set global",
-        "func": "global.set(msg.topic,msg.payload);",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 440,
+        "x": 1140,
+        "y": 560,
         "wires": [
             [
                 "0449fb3f7205c9f1"
@@ -4250,8 +4261,8 @@
         "payloadType": "str",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 550,
-        "y": 1080,
+        "x": 430,
+        "y": 1100,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -4278,8 +4289,8 @@
         "payloadType": "str",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 550,
-        "y": 1040,
+        "x": 430,
+        "y": 1060,
         "wires": [
             [
                 "65ad39d.b6d4d48"
@@ -4308,7 +4319,7 @@
         "y": 420,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -4318,8 +4329,8 @@
         "z": "bccd1f23.87219",
         "name": "",
         "events": "change",
-        "x": 560,
-        "y": 1140,
+        "x": 620,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -4338,8 +4349,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 570,
-        "y": 1220,
+        "x": 630,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -4354,8 +4365,9 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 330,
-        "y": 1180,
+        "libs": [],
+        "x": 390,
+        "y": 1240,
         "wires": [
             [
                 "6c792043.b6ff9",
@@ -4471,8 +4483,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 140,
-        "y": 1140,
+        "x": 200,
+        "y": 1200,
         "wires": [
             [
                 "6c792043.b6ff9"
@@ -4499,8 +4511,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 140,
-        "y": 1180,
+        "x": 200,
+        "y": 1240,
         "wires": [
             [
                 "fe840e05.b46f3"
@@ -4583,8 +4595,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 970,
-        "y": 1080,
+        "x": 850,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -4600,8 +4612,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 1060,
+        "x": 650,
+        "y": 1080,
         "wires": [
             [
                 "62030521.88317c"
@@ -4638,8 +4650,8 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
-        "y": 840,
+        "x": 450,
+        "y": 860,
         "wires": [
             [
                 "23d77b28fecb55bb"
@@ -4655,8 +4667,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 950,
-        "y": 920,
+        "x": 830,
+        "y": 940,
         "wires": []
     },
     {
@@ -4679,8 +4691,8 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 560,
-        "y": 880,
+        "x": 440,
+        "y": 900,
         "wires": [
             [
                 "23d77b28fecb55bb"
@@ -4707,8 +4719,8 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
-        "y": 1000,
+        "x": 450,
+        "y": 1020,
         "wires": [
             [
                 "23d77b28fecb55bb"
@@ -4895,8 +4907,8 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
-        "y": 920,
+        "x": 450,
+        "y": 940,
         "wires": [
             [
                 "23d77b28fecb55bb"
@@ -4923,8 +4935,8 @@
         "payloadType": "json",
         "topic": "actuator/focus",
         "topicType": "str",
-        "x": 570,
-        "y": 960,
+        "x": 450,
+        "y": 980,
         "wires": [
             [
                 "23d77b28fecb55bb"
@@ -4960,7 +4972,7 @@
                 "color": "#999999"
             }
         ],
-        "x": 290,
+        "x": 470,
         "y": 120,
         "wires": [
             [
@@ -5087,15 +5099,15 @@
         "id": "8ea9dc9a.c7d87",
         "type": "function",
         "z": "bccd1f23.87219",
-        "name": "Encapsulate settings",
-        "func": "global.set(msg.topic, msg.payload)\n\nmsg.payload = {\n    \"action\":\"settings\", \n    \"settings\": { [msg.topic.replace(\"user_\", \"\")]:msg.payload}\n}\n\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "name": "Prepare imager message",
+        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\": { [msg.topic.replace(\"user_\", \"\")]:msg.payload}\n}\n\nmsg.topic = \"imager/image\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 940,
-        "y": 580,
+        "x": 1130,
+        "y": 640,
         "wires": [
             [
                 "7094dee99bbbe6ca"
@@ -5121,11 +5133,12 @@
         "max": "1000",
         "step": "1",
         "className": "",
-        "x": 600,
+        "x": 640,
         "y": 580,
         "wires": [
             [
-                "8ea9dc9a.c7d87"
+                "8ea9dc9a.c7d87",
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5138,8 +5151,8 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1290,
-        "y": 680,
+        "x": 1370,
+        "y": 700,
         "wires": []
     },
     {
@@ -5159,8 +5172,8 @@
         "topic": "",
         "payload": "125",
         "payloadType": "num",
-        "x": 800,
-        "y": 560,
+        "x": 80,
+        "y": 600,
         "wires": [
             []
         ]
@@ -5170,13 +5183,13 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Encapsulate wb gain settings",
-        "func": "var value = Math.round(msg.payload * 100)\nvalue = Math.max(0,value)\nvalue = Math.min(800,value)\n\nglobal.set(\"user_\" + msg.topic + \"_gain\", msg.payload)\n\nmsg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"white_balance_gain\":{\n        [msg.topic]: value\n        }\n    }\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
+        "func": "var value = Math.round(msg.payload * 100)\nvalue = Math.max(0, value)\nvalue = Math.min(800, value)\n\nmsg.payload = {\n    \"action\": \"settings\",\n    \"settings\": {\n        \"white_balance_gain\": {\n            [msg.topic.replace(\"user_\", \"\").replace(\"_gain\", \"\")]: value\n        }\n    }\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1040,
+        "x": 1120,
         "y": 760,
         "wires": [
             [
@@ -5201,7 +5214,7 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 710,
+        "x": 90,
         "y": 620,
         "wires": [
             []
@@ -5233,11 +5246,12 @@
         "offcolor": "",
         "animate": true,
         "className": "",
-        "x": 550,
+        "x": 690,
         "y": 620,
         "wires": [
             [
-                "8ea9dc9a.c7d87"
+                "8ea9dc9a.c7d87",
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5251,8 +5265,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_red_gain",
-                "tot": "msg"
+                "to": "user_red_gain",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5278,8 +5292,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_blue_gain",
-                "tot": "msg"
+                "to": "user_blue_gain",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5288,7 +5302,7 @@
         "to": "",
         "reg": false,
         "x": 310,
-        "y": 780,
+        "y": 820,
         "wires": [
             [
                 "dba68c1f.e3144"
@@ -5312,8 +5326,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_analog_gain",
-                "tot": "msg"
+                "to": "user_analog_gain",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5346,8 +5360,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_digital_gain",
-                "tot": "msg"
+                "to": "user_digital_gain",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5379,13 +5393,15 @@
         "mode": "number",
         "delay": 300,
         "topic": "analog",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
-        "x": 590,
+        "x": 650,
         "y": 660,
         "wires": [
             [
                 "44e02933.a66688",
-                "d361a2c4.0990f8"
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5405,13 +5421,15 @@
         "mode": "number",
         "delay": 300,
         "topic": "digital",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
-        "x": 580,
+        "x": 660,
         "y": 700,
         "wires": [
             [
                 "44e02933.a66688",
-                "d361a2c4.0990f8"
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5426,37 +5444,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
-        "y": 660,
+        "x": 1110,
+        "y": 700,
         "wires": [
             [
                 "7094dee99bbbe6ca"
             ]
-        ]
-    },
-    {
-        "id": "d361a2c4.0990f8",
-        "type": "change",
-        "z": "bccd1f23.87219",
-        "name": "topic *_gain",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "topic&'_gain'",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 950,
-        "y": 700,
-        "wires": [
-            []
         ]
     },
     {
@@ -5476,7 +5469,7 @@
         "topic": "",
         "payload": "100",
         "payloadType": "num",
-        "x": 790,
+        "x": 90,
         "y": 540,
         "wires": [
             []
@@ -5500,7 +5493,7 @@
         "useThemeColors": true,
         "hideSelectedLabel": false,
         "multilineLabel": false,
-        "passThrough": "change",
+        "passThrough": "always",
         "inputMsg": "all",
         "userInput": "enabled_show",
         "options": [
@@ -5548,11 +5541,12 @@
             }
         ],
         "topic": "user_iso",
-        "x": 570,
+        "x": 670,
         "y": 540,
         "wires": [
             [
-                "8ea9dc9a.c7d87"
+                "8ea9dc9a.c7d87",
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5574,11 +5568,11 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 600,
+        "x": 640,
         "y": 460,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5600,11 +5594,11 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 590,
+        "x": 650,
         "y": 500,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5626,11 +5620,11 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 600,
+        "x": 640,
         "y": 380,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5648,15 +5642,16 @@
         "passthru": true,
         "mode": "number",
         "delay": "500",
-        "topic": "red",
+        "topic": "user_red_gain",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 580,
+        "x": 660,
         "y": 740,
         "wires": [
             [
-                "6365d9c509df290a"
+                "6365d9c509df290a",
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5674,15 +5669,16 @@
         "passthru": true,
         "mode": "number",
         "delay": "500",
-        "topic": "blue",
+        "topic": "user_blue_gain",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 580,
-        "y": 780,
+        "x": 660,
+        "y": 820,
         "wires": [
             [
-                "6365d9c509df290a"
+                "6365d9c509df290a",
+                "3d62eb9f488f0d77"
             ]
         ]
     },
@@ -5726,17 +5722,16 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Constrain wb value",
-        "func": "if (msg.payload < 0.0 || msg.payload > 8.0){\n    msg.payload = Math.max(0.00, msg.payload)\n    msg.payload = Math.min(8.00, msg.payload)\n    if (msg.topic == \"red\"){\n        return [null,msg,null]\n    }\n    if (msg.topic == \"blue\"){\n        return [null,null,msg]\n    }\n}\nreturn [msg,null,null];",
+        "func": "if (msg.payload < 0.0 || msg.payload > 8.0){\n    msg.payload = Math.max(0.00, msg.payload)\n    msg.payload = Math.min(8.00, msg.payload)\n    if (msg.topic.contains(\"red\")){\n        return [null,msg,null]\n    }\n    if (msg.topic.contains(\"blue\")){\n        return [null,null,msg]\n    }\n}\nreturn [msg,null,null];",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
-        "y": 760,
+        "x": 850,
+        "y": 780,
         "wires": [
             [
-                "d361a2c4.0990f8",
                 "5e147425.7666ec"
             ],
             [
@@ -5765,8 +5760,8 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "bccd1f23.87219",
         "name": "",
-        "x": 580,
-        "y": 1180,
+        "x": 640,
+        "y": 1240,
         "wires": []
     },
     {
@@ -5859,8 +5854,8 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "bccd1f23.87219",
         "name": "",
-        "x": 1320,
-        "y": 440,
+        "x": 1340,
+        "y": 560,
         "wires": []
     },
     {
@@ -5873,15 +5868,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "100",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.user_iso",
-                "tot": "msg"
+                "to": "user_iso",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5901,21 +5889,14 @@
         "id": "2f3cbb68aaad8710",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_analog_gain",
+        "name": "Get user_shutter_speed",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "125",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.user_shutter_speed",
-                "tot": "msg"
+                "to": "user_shutter_speed",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5923,7 +5904,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 320,
+        "x": 330,
         "y": 580,
         "wires": [
             [
@@ -5935,21 +5916,14 @@
         "id": "2b3217c91c188c10",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_analog_gain",
+        "name": "Get user_white_balance",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.user_white_balance",
-                "tot": "msg"
+                "to": "user_white_balance",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -5957,7 +5931,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 320,
+        "x": 330,
         "y": 620,
         "wires": [
             [
@@ -5982,8 +5956,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_focus_speed",
-                "tot": "msg"
+                "to": "user_focus_speed",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -6016,8 +5990,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_focus_distance",
-                "tot": "msg"
+                "to": "user_focus_distance",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -6050,8 +6024,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_pump_manual_volume",
-                "tot": "msg"
+                "to": "user_pump_manual_volume",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -6084,8 +6058,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_pump_flowrate",
-                "tot": "msg"
+                "to": "user_pump_flowrate",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -6178,26 +6152,6 @@
             [
                 "99b11fe4.2795d",
                 "e18598223b99a72b"
-            ]
-        ]
-    },
-    {
-        "id": "fb887036.12429",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "name": "set global",
-        "func": "global.set(msg.topic, msg.payload);\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 940,
-        "y": 260,
-        "wires": [
-            [
-                "52ea7d01.711034",
-                "5b7343f86e64be38"
             ]
         ]
     },
@@ -6443,14 +6397,14 @@
         "id": "52ea7d01.711034",
         "type": "function",
         "z": "baa1e3d9.cb29d",
-        "name": "Encapsulate config",
+        "name": "Prepare settings message",
         "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_datetime\": \"Segmentation timestamp\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"acq_nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktoScope/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\n\nif ( msg.send == true){\n\treturn [msg, msg]\n}\nelse{\n\treturn [msg, null]\n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
+        "x": 950,
         "y": 380,
         "wires": [
             [
@@ -6519,15 +6473,16 @@
         "z": "baa1e3d9.cb29d",
         "name": "",
         "env": [],
-        "x": 120,
-        "y": 220,
+        "x": 100,
+        "y": 200,
         "wires": [
             [
                 "6cd7f5eb4747d03e",
                 "4e47c3dc695a218a",
                 "a4aedb01c7f15599",
                 "7fe30a9079514801",
-                "de06367fc82a46ed"
+                "de06367fc82a46ed",
+                "2f2cfdd4a2da9de3"
             ]
         ]
     },
@@ -6856,10 +6811,11 @@
         "height": 1,
         "name": "Total imaged volume",
         "label": "Total imaged volume",
-        "format": "{{msg.payload}}",
+        "format": "{{msg.payload}} mL",
         "layout": "col-center",
+        "className": "",
         "x": 1260,
-        "y": 140,
+        "y": 100,
         "wires": []
     },
     {
@@ -6867,18 +6823,18 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "imaged volume calc",
-        "func": "var camera = global.get(\"acq_camera\");\nvar cell = global.get(\"acq_celltype\");\nvar acq_nb_frame = global.get(\"acq_nb_frame\");\nvar process_pixel = global.get(\"process_pixel\");\n\nvar volume = 0\nif (camera == \"HQ Camera\"){\n    volume = acq_nb_frame * (process_pixel*4056*process_pixel*3040*cell/1000000000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = acq_nb_frame * (process_pixel*3280*process_pixel*2464*cell/1000000000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\nglobal.set(\"acq_imaged_volume\", volume.toFixed(4))\n\nmsg.payload = volume.toFixed(2) + \" mL\"\nreturn msg;",
+        "func": "var camera = global.get(\"acq_camera\");\nvar cell = global.get(\"acq_celltype\");\nvar acq_nb_frame = global.get(\"acq_nb_frame\");\nvar process_pixel = global.get(\"process_pixel\");\n\nvar volume = 0\nif (camera == \"HQ Camera\"){\n    volume = acq_nb_frame * (process_pixel*4056*process_pixel*3040*cell/1000000000) / 1000;\n}\nelse if (camera == \"Camera v2.1\"){\n    volume = acq_nb_frame * (process_pixel*3280*process_pixel*2464*cell/1000000000) / 1000;\n}\nelse{\n    msg.payload = \"The camera is not known to this system\";\n    return msg;\n}\n\n\nmsg.topic = \"acq_imaged_volume\"\nmsg.payload = volume.toFixed(4)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 980,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "9bd72495.a8a098",
-                "5b7343f86e64be38"
+                "5ca27fdf2a1fef80"
             ]
         ],
         "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktoScope/scripts/focus.py 650 up\n"
@@ -6895,6 +6851,7 @@
         "label": "Total pumped volume",
         "format": "{{msg.payload}} mL",
         "layout": "col-center",
+        "className": "",
         "x": 1260,
         "y": 200,
         "wires": []
@@ -6904,7 +6861,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "acq_volume calc",
-        "func": "var user_imaging_pump_volume = global.get(\"user_imaging_pump_volume\");\nvar acq_nb_frame = global.get(\"acq_nb_frame\");\nvar acq_volume = 0\n\nacq_volume = (Number(acq_nb_frame) * Number(user_imaging_pump_volume)).toFixed(2)\nglobal.set(\"acq_volume\", acq_volume)\n\nmsg.payload = acq_volume\nreturn msg;",
+        "func": "var user_imaging_pump_volume = global.get(\"user_imaging_pump_volume\");\nvar acq_nb_frame = global.get(\"acq_nb_frame\");\nvar acq_volume = 0\n\nacq_volume = (Number(acq_nb_frame) * Number(user_imaging_pump_volume)).toFixed(2)\n\nmsg.topic = \"acq_volume\"\nmsg.payload = acq_volume\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6915,7 +6872,7 @@
         "wires": [
             [
                 "8e16aa2f.e40398",
-                "5b7343f86e64be38"
+                "5ca27fdf2a1fef80"
             ]
         ],
         "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktoScope/scripts/focus.py 650 up\n"
@@ -6958,16 +6915,18 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "set camera name",
-        "func": "global.set(\"acq_camera\", msg.payload.camera_name);\n\nmsg.payload = msg.payload.camera_name;\n\nreturn msg;",
+        "func": "if (global.get(\"acq_camera\") !== msg.payload.camera_name) {\n    global.set(\"acq_camera\", msg.payload.camera_name)\n    msg.payload = msg.payload.camera_name;\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 810,
         "y": 780,
         "wires": [
             [
-                "559a8085.1d6b9"
+                "559a8085.1d6b9",
+                "7417a88f203e3420"
             ]
         ]
     },
@@ -6981,8 +6940,8 @@
             "572a6daa.6004c4",
             "cfc783d7.d6ceb"
         ],
-        "x": 945,
-        "y": 780,
+        "x": 995,
+        "y": 760,
         "wires": []
     },
     {
@@ -7022,7 +6981,7 @@
             "559a8085.1d6b9"
         ],
         "x": 765,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
                 "99b11fe4.2795d"
@@ -7201,8 +7160,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_celltype",
-                "tot": "msg"
+                "to": "acq_celltype",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -7228,8 +7187,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_nb_frame",
-                "tot": "msg"
+                "to": "acq_nb_frame",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -7255,8 +7214,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_sleep_before",
-                "tot": "msg"
+                "to": "user_sleep_before",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -7282,8 +7241,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_id",
-                "tot": "msg"
+                "to": "acq_id",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -7309,8 +7268,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.user_imaging_pump_volume",
-                "tot": "msg"
+                "to": "user_imaging_pump_volume",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -7325,6 +7284,62 @@
                 "df1ea904.cd261"
             ]
         ]
+    },
+    {
+        "id": "5ca27fdf2a1fef80",
+        "type": "function",
+        "z": "baa1e3d9.cb29d",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 260,
+        "wires": [
+            [
+                "5b7343f86e64be38",
+                "52ea7d01.711034"
+            ]
+        ]
+    },
+    {
+        "id": "2f2cfdd4a2da9de3",
+        "type": "change",
+        "z": "baa1e3d9.cb29d",
+        "name": "get acq_camera",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_camera",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "99b11fe4.2795d"
+            ]
+        ]
+    },
+    {
+        "id": "7417a88f203e3420",
+        "type": "subflow:4ed26b8b.253504",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "x": 1060,
+        "y": 800,
+        "wires": []
     },
     {
         "id": "9d6abe67.6bb3d",
@@ -7764,25 +7779,6 @@
         ]
     },
     {
-        "id": "c8749cbb.55254",
-        "type": "function",
-        "z": "cb95299c.2817c8",
-        "name": "set global",
-        "func": "global.set(msg.topic, msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 840,
-        "y": 380,
-        "wires": [
-            [
-                "1df09f8edc71d69c"
-            ]
-        ]
-    },
-    {
         "id": "d43c3ed9.e6cb1",
         "type": "ui_template",
         "z": "cb95299c.2817c8",
@@ -7851,25 +7847,7 @@
         "y": 380,
         "wires": [
             [
-                "3b72d11c.86e9e6"
-            ]
-        ]
-    },
-    {
-        "id": "3b72d11c.86e9e6",
-        "type": "function",
-        "z": "cb95299c.2817c8",
-        "name": "get process_id",
-        "func": "msg.payload = msg.payload.process_id;\nmsg.topic = \"process_id\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 480,
-        "y": 380,
-        "wires": [
-            [
-                "56971109c8be3b54"
+                "d56fc819c15da238"
             ]
         ]
     },
@@ -8548,7 +8526,7 @@
         "y": 380,
         "wires": [
             [
-                "c8749cbb.55254"
+                "77dbab814049aebb"
             ]
         ]
     },
@@ -8592,9 +8570,55 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "cb95299c.2817c8",
         "name": "",
-        "x": 1020,
+        "x": 1100,
         "y": 380,
         "wires": []
+    },
+    {
+        "id": "d56fc819c15da238",
+        "type": "change",
+        "z": "cb95299c.2817c8",
+        "name": "get process_id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "process_id",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 380,
+        "wires": [
+            [
+                "56971109c8be3b54"
+            ]
+        ]
+    },
+    {
+        "id": "77dbab814049aebb",
+        "type": "function",
+        "z": "cb95299c.2817c8",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 380,
+        "wires": [
+            [
+                "1df09f8edc71d69c"
+            ]
+        ]
     },
     {
         "id": "2911fbc6.d28c24",
@@ -8729,6 +8753,7 @@
         "id": "e564e9ad.7c312",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
+        "d": true,
         "name": "Update",
         "group": "1be83144.4fe4bf",
         "order": 10,
@@ -8739,6 +8764,7 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "mi-system_update",
         "payload": " ",
         "payloadType": "str",
@@ -8747,7 +8773,9 @@
         "x": 220,
         "y": 460,
         "wires": [
-            []
+            [
+                "2d2ef1fd.40e6e6"
+            ]
         ]
     },
     {
@@ -8982,7 +9010,7 @@
         "type": "function",
         "z": "9daf9e2b.019fc",
         "name": "save process_commit",
-        "func": "msg.payload = msg.payload.trim()\n\nglobal.set(\"process_commit\", msg.payload);\n\nreturn msg",
+        "func": "msg.payload = msg.payload.trim()\n\n\nif (global.get(\"process_commit\") !== msg.payload) {\n    global.set(\"process_commit\", msg.payload)\n    return msg\n}\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9833,13 +9861,14 @@
         "z": "1371dec5.76e671",
         "name": "",
         "env": [],
-        "x": 200,
-        "y": 500,
+        "x": 140,
+        "y": 520,
         "wires": [
             [
-                "bdc6718a.dd5d48",
-                "a400a97e.e333a8",
-                "f783aefd.c3bfd8"
+                "91c5d6c883eea11e",
+                "b68eca51c8326376",
+                "02d43ac9b271d803",
+                "3a4119c675911814"
             ]
         ]
     },
@@ -9848,7 +9877,7 @@
         "type": "function",
         "z": "1371dec5.76e671",
         "name": "store version",
-        "func": "msg.payload = \"PlanktoScope \"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
+        "func": "msg.payload = \"PlanktoScope \" + msg.payload.trim()\n\nif (global.get(\"acq_software\") !== msg.payload) {\n    global.set(\"acq_software\", msg.payload)\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9873,10 +9902,11 @@
         "height": 0,
         "name": "",
         "label": "Instrument Type",
-        "format": "{{msg.payload.acq_instrument}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
+        "className": "",
         "x": 600,
-        "y": 500,
+        "y": 560,
         "wires": []
     },
     {
@@ -9889,11 +9919,11 @@
         "height": 0,
         "name": "",
         "label": "Instrument Name",
-        "format": "{{msg.payload.acq_instrument_id}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
         "x": 610,
-        "y": 540,
+        "y": 600,
         "wires": []
     },
     {
@@ -9923,11 +9953,11 @@
         "height": 0,
         "name": "",
         "label": "Camera Name",
-        "format": "{{msg.payload.acq_camera}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
         "x": 600,
-        "y": 460,
+        "y": 500,
         "wires": []
     },
     {
@@ -9938,8 +9968,8 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 265,
-        "y": 460,
+        "x": 425,
+        "y": 480,
         "wires": [
             [
                 "f783aefd.c3bfd8"
@@ -10800,7 +10830,7 @@
         "links": [
             "6c20d6a7.869b6"
         ],
-        "x": 265,
+        "x": 205,
         "y": 400,
         "wires": [
             [
@@ -10816,6 +10846,114 @@
         "x": 600,
         "y": 380,
         "wires": []
+    },
+    {
+        "id": "91c5d6c883eea11e",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "get acq_camera",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_camera",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "f783aefd.c3bfd8"
+            ]
+        ]
+    },
+    {
+        "id": "b68eca51c8326376",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "get acq_instrument",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_instrument",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 560,
+        "wires": [
+            [
+                "bdc6718a.dd5d48"
+            ]
+        ]
+    },
+    {
+        "id": "02d43ac9b271d803",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "get acq_instrument_id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_instrument_id",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 600,
+        "wires": [
+            [
+                "a400a97e.e333a8"
+            ]
+        ]
+    },
+    {
+        "id": "3a4119c675911814",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "get acq_software",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_software",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 440,
+        "wires": [
+            [
+                "8343fa69.49339"
+            ]
+        ]
     },
     {
         "id": "b9bf06d6.26c518",
@@ -11846,8 +11984,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.hard_stepper_type",
-                "tot": "msg"
+                "to": "hard_stepper_type",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -11922,7 +12060,7 @@
             "90687eca9c539a55"
         ],
         "x": 1175,
-        "y": 320,
+        "y": 300,
         "wires": []
     },
     {
@@ -11943,7 +12081,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 980,
-        "y": 320,
+        "y": 300,
         "wires": [
             [
                 "e41870d7.300eb8"
@@ -11960,8 +12098,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.hard_stepper_reverse",
-                "tot": "msg"
+                "to": "hard_stepper_reverse",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12019,8 +12157,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.hard_pump_steps_per_ml",
-                "tot": "msg"
+                "to": "hard_pump_steps_per_ml",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12145,7 +12283,7 @@
         "y": 160,
         "wires": [
             [
-                "3e2c5c1c.4c57b4"
+                "8350a9b76b178ac3"
             ]
         ]
     },
@@ -12153,15 +12291,15 @@
         "id": "3e2c5c1c.4c57b4",
         "type": "function",
         "z": "1eaf21c8.f7a21e",
-        "name": "Set and update settings",
-        "func": "global.set(msg.topic, msg.payload)\n\nif (msg.payload.includes(\"2.1\")) {\n    msg.payload[\"hard_stepper_type\"] = \"adafruit\"\n    msg.payload[\"hard_pump_steps_per_ml\"] = 1600\n}\nelse if (msg.payload.includes(\"2.2\")) {\n    msg.payload[\"hard_stepper_type\"] = \"waveshare\"\n    msg.payload[\"hard_pump_steps_per_ml\"] = 2000\n}\nelse if (msg.payload.includes(\"2.3\")) {\n    msg.payload[\"hard_stepper_type\"] = \"pscope_hat\"\n    msg.payload[\"hard_pump_steps_per_ml\"] = 3200\n}\nreturn msg",
+        "name": "Update settings",
+        "func": "if (msg.payload.includes(\"2.1\")) {\n    global.set(\"hard_stepper_type\",\"adafruit\")\n    global.set(\"hard_pump_steps_per_ml\",1600)\n}\nelse if (msg.payload.includes(\"2.2\")) {\n    global.set(\"hard_stepper_type\",\"waveshare\")\n    global.set(\"hard_pump_steps_per_ml\",2000)\n}\nelse if (msg.payload.includes(\"2.3\")) {\n    global.set(\"hard_stepper_type\",\"pscope_hat\")\n    global.set(\"hard_pump_steps_per_ml\",3200)\n}\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 320,
+        "x": 660,
+        "y": 300,
         "wires": [
             [
                 "32a01567c2f95ebe",
@@ -12176,7 +12314,7 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 100,
+        "x": 80,
         "y": 160,
         "wires": [
             [
@@ -12195,8 +12333,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.process_pixel_fixed",
-                "tot": "msg"
+                "to": "process_pixel_fixed",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12241,13 +12379,13 @@
         "type": "function",
         "z": "1eaf21c8.f7a21e",
         "name": "Set or remove if null",
-        "func": "if (msg.payload == 0){\n    global.set(msg.topic,undefined)\n}\nelse {\n    global.set(msg.topic,msg.payload);\n}\n\nreturn msg",
+        "func": "if (msg.payload == 0){\n    global.set(msg.topic,undefined)\n}\nelse {\n    global.set(msg.topic, msg.payload);\n    return msg\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
+        "x": 1020,
         "y": 480,
         "wires": [
             [
@@ -12264,7 +12402,7 @@
         "links": [
             "cfc783d7.d6ceb"
         ],
-        "x": 1175,
+        "x": 1265,
         "y": 480,
         "wires": []
     },
@@ -12312,39 +12450,12 @@
         "payload": "",
         "topic": "acq_fnumber_objective",
         "topicType": "str",
+        "className": "",
         "x": 630,
         "y": 520,
         "wires": [
             [
-                "a6983d3232b570a7"
-            ]
-        ]
-    },
-    {
-        "id": "a6983d3232b570a7",
-        "type": "change",
-        "z": "1eaf21c8.f7a21e",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "acq_fnumber_objective",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
-        "y": 520,
-        "wires": [
-            [
-                "5d5ad36d2c50dcc2",
-                "285e3db1405b123b"
+                "42ee558fe44e97f9"
             ]
         ]
     },
@@ -12360,13 +12471,6 @@
                 "pt": "msg",
                 "to": "acq_fnumber_objective",
                 "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "acq_fnumber_objective",
-                "tot": "str"
             }
         ],
         "action": "",
@@ -12387,8 +12491,8 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "1eaf21c8.f7a21e",
         "name": "",
-        "x": 1240,
-        "y": 400,
+        "x": 1320,
+        "y": 420,
         "wires": []
     },
     {
@@ -12419,6 +12523,64 @@
         ]
     },
     {
+        "id": "a9acf23e7e93c730",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 400,
+        "wires": [
+            [
+                "285e3db1405b123b"
+            ]
+        ]
+    },
+    {
+        "id": "42ee558fe44e97f9",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 520,
+        "wires": [
+            [
+                "5d5ad36d2c50dcc2",
+                "285e3db1405b123b"
+            ]
+        ]
+    },
+    {
+        "id": "8350a9b76b178ac3",
+        "type": "function",
+        "z": "1eaf21c8.f7a21e",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 300,
+        "wires": [
+            [
+                "3e2c5c1c.4c57b4"
+            ]
+        ]
+    },
+    {
         "id": "ced8d8e4ac81c04f",
         "type": "ui_text_input",
         "z": "5195979a0d7a6b2a",
@@ -12440,7 +12602,7 @@
         "y": 220,
         "wires": [
             [
-                "268a696e5a548530"
+                "bd2bc16663a49bbb"
             ]
         ]
     },
@@ -12494,7 +12656,7 @@
         "y": 260,
         "wires": [
             [
-                "a694968c6f2366d3"
+                "bd2bc16663a49bbb"
             ]
         ]
     },
@@ -12520,7 +12682,7 @@
         "y": 180,
         "wires": [
             [
-                "984dab073f748cf3"
+                "bd2bc16663a49bbb"
             ]
         ]
     },
@@ -12546,7 +12708,7 @@
         "y": 300,
         "wires": [
             [
-                "88df85935399e67e"
+                "bd2bc16663a49bbb"
             ]
         ]
     },
@@ -12672,111 +12834,11 @@
         ]
     },
     {
-        "id": "984dab073f748cf3",
-        "type": "change",
-        "z": "5195979a0d7a6b2a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "acq_instrument",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 910,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "268a696e5a548530",
-        "type": "change",
-        "z": "5195979a0d7a6b2a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "inst_manufacturer",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a694968c6f2366d3",
-        "type": "change",
-        "z": "5195979a0d7a6b2a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "inst_serial_number",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "88df85935399e67e",
-        "type": "change",
-        "z": "5195979a0d7a6b2a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "inst_model",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "461243b16575af56",
         "type": "subflow:4ed26b8b.253504",
         "z": "5195979a0d7a6b2a",
         "name": "",
-        "x": 880,
+        "x": 1260,
         "y": 340,
         "wires": []
     },
@@ -12787,12 +12849,12 @@
         "name": "Get MachineName",
         "func": "import sys\nsys.path.append('/home/pi/PlanktoScope/scripts')\nimport planktoscope.uuidName\n\nmsg['payload'] = planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())\nmsg['topic'] = \"acq_instrument_id\";\nreturn msg",
         "outputs": 1,
-        "x": 390,
+        "x": 490,
         "y": 100,
         "wires": [
             [
                 "b2528f5d1a61f174",
-                "3378e3b7fbdd1222"
+                "bd2bc16663a49bbb"
             ]
         ]
     },
@@ -12852,31 +12914,6 @@
         ]
     },
     {
-        "id": "3378e3b7fbdd1222",
-        "type": "change",
-        "z": "5195979a0d7a6b2a",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "acq_instrument_id",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "b2528f5d1a61f174",
         "type": "ui_text",
         "z": "5195979a0d7a6b2a",
@@ -12892,6 +12929,25 @@
         "x": 690,
         "y": 140,
         "wires": []
+    },
+    {
+        "id": "bd2bc16663a49bbb",
+        "type": "function",
+        "z": "5195979a0d7a6b2a",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 220,
+        "wires": [
+            [
+                "461243b16575af56"
+            ]
+        ]
     },
     {
         "id": "27dcfdaad28d6ee3",
