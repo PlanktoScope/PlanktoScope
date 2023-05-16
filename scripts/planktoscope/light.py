@@ -77,7 +77,7 @@ class i2c_led:
         RPi.GPIO.setmode(RPi.GPIO.BCM)
         RPi.GPIO.setup(self.LED_selectPin, RPi.GPIO.OUT)
         self.output_to_led1()
-        self.on = False
+        self.turned_on = False
         try:
             self.force_reset()
             if self.get_flags():
@@ -109,7 +109,7 @@ class i2c_led:
         return led_id
 
     def get_state(self):
-        return self.on
+        return self.turned_on
 
     def activate_torch_ramp(self):
         logger.debug("Activating the torch ramp")
@@ -174,12 +174,12 @@ class i2c_led:
     def on(self):
         logger.debug("Activate torch")
         self._write_byte(self.Register.enable, 0b10)
-        self.on = True
+        self.turned_on = True
 
     def off(self):
         logger.debug("Deactivate torch")
         self._write_byte(self.Register.enable, 0b00)
-        self.off = False
+        self.turned_on = False
 
     def _write_byte(self, address, data):
         with smbus.SMBus(1) as bus:
@@ -195,7 +195,7 @@ class direct_led:
     led0Pin = 21
     led1Pin = 22
     led = 0
-    powered = False
+    turned_on = False
 
     def __init__(self):
         RPi.GPIO.setwarnings(False)
@@ -206,7 +206,7 @@ class direct_led:
         RPi.GPIO.output(self.led1Pin, RPi.GPIO.LOW)
 
     def off(self):
-        self.powered = False
+        self.turned_on = False
         if self.led == 0:
             logger.debug("Turning led 1 off")
             RPi.GPIO.output(self.led0Pin, RPi.GPIO.LOW)
@@ -215,7 +215,7 @@ class direct_led:
             RPi.GPIO.output(self.led1Pin, RPi.GPIO.LOW)
 
     def on(self):
-        self.powered = True
+        self.turned_on = True
         if self.led == 0:
             logger.debug("Turning led 1 on")
             RPi.GPIO.output(self.led0Pin, RPi.GPIO.HIGH)
@@ -224,11 +224,11 @@ class direct_led:
             RPi.GPIO.output(self.led1Pin, RPi.GPIO.HIGH)
 
     def get_state(self):
-        return self.on
+        return self.turned_on
 
     def output_to_led1(self):
         logger.debug("Switching output to LED 1")
-        if self.powered:
+        if self.turned_on:
             self.off()
             self.led = 0
             self.on()
@@ -237,7 +237,7 @@ class direct_led:
 
     def output_to_led2(self):
         logger.debug("Switching output to LED 2")
-        if self.powered:
+        if self.turned_on:
             self.off()
             self.led = 1
             self.on()
@@ -266,7 +266,7 @@ class LightProcess(multiprocessing.Process):
 
         self.stop_event = event
         self.light_client = None
-        if planktoscope.i2cscanner(0x64):
+        if planktoscope.i2cscanner.scan(0x64):
             try:
                 self.led = i2c_led()
                 self.led.activate_torch_ramp()
