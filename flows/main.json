@@ -13110,6 +13110,11 @@
                 "label": "Hardware",
                 "value": "hard",
                 "type": "str"
+            },
+            {
+                "label": "User",
+                "value": "user",
+                "type": "str"
             }
         ],
         "payload": "",
@@ -13213,7 +13218,7 @@
         "type": "function",
         "z": "073a18d556c8d083",
         "name": "Delete var",
-        "func": "// Extract the subkey value\nvar subkey = msg.payload.subkey;\n\n// Parse the subkey value to get the value attribute\nvar valueRegex = /value=\"(.*?)\"/;\nvar value = subkey.match(valueRegex)[1];\n\nglobal.set(value, undefined);\n\n// Set the value as the new payload\nmsg.payload = value;\nreturn msg;\n",
+        "func": "// Extract the subkey value\nvar key = msg.payload.key;\n\n// Parse the subkey value to get the value attribute\nvar value = key.match(/value=\"(.*?)\"/)[1]\n\nglobal.set(value, undefined);\n\n// Set the value as the new payload\nmsg.payload = value;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
