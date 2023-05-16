@@ -325,12 +325,11 @@
         "y": 720,
         "wires": [
             [
-                "a1b01adb2328d8f6",
-                "b511fa878d55b303",
-                "b772791e9e1fa86f",
-                "49265dd55a3d74a9",
-                "3ab96b29ad5330ea",
-                "e7a7bb9ad10a388b"
+                "06b5d855ad2bab37",
+                "e7f0efcdfb10f273",
+                "f5ae31185201c5a0",
+                "771d4eadcbcb38ba",
+                "3a3c0dca6ed72238"
             ]
         ]
     },
@@ -561,7 +560,7 @@
         "id": "cc8bc4eb.651868",
         "type": "ui_base",
         "theme": {
-            "name": "theme-dark",
+            "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#1a5fb4",
@@ -571,7 +570,7 @@
             },
             "darkTheme": {
                 "default": "#097479",
-                "baseColor": "#af1db9",
+                "baseColor": "#1a5fb4",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "edited": true,
                 "reset": false
@@ -584,16 +583,16 @@
             },
             "themeState": {
                 "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
+                    "default": "#0094CE",
+                    "value": "#1a5fb4",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#097479",
+                    "value": "#1a5fb4",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#111111",
+                    "value": "#fafafa",
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
@@ -601,27 +600,27 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#0eb8c0",
+                    "value": "#3884e2",
                     "edited": false
                 },
                 "group-borderColor": {
-                    "value": "#555555",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-backgroundColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "widget-textColor": {
-                    "value": "#eeeeee",
+                    "value": "#111111",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#097479",
+                    "value": "#1a5fb4",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "base-font": {
@@ -1570,7 +1569,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "",
+        "onceDelay": "0.1",
         "topic": "",
         "x": 170,
         "y": 40,
@@ -2067,7 +2066,7 @@
         "z": "eaae323a.31b3",
         "name": "Load",
         "group": "11cf057a75411666",
-        "order": 7,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -2094,16 +2093,16 @@
         "type": "ui_text",
         "z": "eaae323a.31b3",
         "group": "11cf057a75411666",
-        "order": 6,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "",
         "label": "Instrument ID",
-        "format": "{{msg.payload.acq_instrument_id}}",
-        "layout": "row-spread",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
         "className": "",
-        "x": 780,
-        "y": 820,
+        "x": 980,
+        "y": 640,
         "wires": []
     },
     {
@@ -2116,11 +2115,11 @@
         "height": 0,
         "name": "",
         "label": "Instrument type",
-        "format": "{{msg.payload.acq_instrument}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 780,
-        "y": 660,
+        "x": 980,
+        "y": 680,
         "wires": []
     },
     {
@@ -2133,11 +2132,11 @@
         "height": 0,
         "name": "",
         "label": "Manufacturer",
-        "format": "{{msg.payload.inst_manufacturer}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 770,
-        "y": 740,
+        "x": 990,
+        "y": 760,
         "wires": []
     },
     {
@@ -2150,11 +2149,11 @@
         "height": 0,
         "name": "",
         "label": "Serial Number",
-        "format": "{{msg.payload.inst_serial_number}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 780,
-        "y": 780,
+        "x": 980,
+        "y": 800,
         "wires": []
     },
     {
@@ -2167,11 +2166,11 @@
         "height": 0,
         "name": "",
         "label": "Model",
-        "format": "{{msg.payload.inst_model}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
-        "x": 750,
-        "y": 700,
+        "x": 1010,
+        "y": 720,
         "wires": []
     },
     {
@@ -2265,23 +2264,6 @@
         "wires": []
     },
     {
-        "id": "e7a7bb9ad10a388b",
-        "type": "ui_text",
-        "z": "eaae323a.31b3",
-        "group": "11cf057a75411666",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Instrument Name",
-        "format": "{{msg.payload.acq_instrument_id}}",
-        "layout": "row-spread",
-        "className": "",
-        "x": 790,
-        "y": 620,
-        "wires": []
-    },
-    {
         "id": "ab012c06222d5c99",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "eaae323a.31b3",
@@ -2306,6 +2288,141 @@
         "x": 635,
         "y": 500,
         "wires": []
+    },
+    {
+        "id": "e7f0efcdfb10f273",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "get acq_instrument",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_instrument",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 680,
+        "wires": [
+            [
+                "3ab96b29ad5330ea"
+            ]
+        ]
+    },
+    {
+        "id": "3a3c0dca6ed72238",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "get inst_manufacturer",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "inst_manufacturer",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 760,
+        "wires": [
+            [
+                "b772791e9e1fa86f"
+            ]
+        ]
+    },
+    {
+        "id": "771d4eadcbcb38ba",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "get inst_serial_number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "inst_serial_number",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 800,
+        "wires": [
+            [
+                "49265dd55a3d74a9"
+            ]
+        ]
+    },
+    {
+        "id": "f5ae31185201c5a0",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "get inst_model",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "inst_model",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 720,
+        "wires": [
+            [
+                "a1b01adb2328d8f6"
+            ]
+        ]
+    },
+    {
+        "id": "06b5d855ad2bab37",
+        "type": "change",
+        "z": "eaae323a.31b3",
+        "name": "get acq_instrument_id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "acq_instrument_id",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 640,
+        "wires": [
+            [
+                "b511fa878d55b303"
+            ]
+        ]
     },
     {
         "id": "4557d689.a4fa88",
@@ -12241,8 +12358,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_fnumber_objective",
-                "tot": "msg"
+                "to": "acq_fnumber_objective",
+                "tot": "global"
             },
             {
                 "t": "set",
@@ -12284,8 +12401,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_instrument",
-                "tot": "msg"
+                "to": "acq_instrument",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12456,8 +12573,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_instrument",
-                "tot": "msg"
+                "to": "acq_instrument",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12483,8 +12600,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.inst_manufacturer",
-                "tot": "msg"
+                "to": "inst_manufacturer",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12510,8 +12627,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.inst_serial_number",
-                "tot": "msg"
+                "to": "inst_serial_number",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12537,8 +12654,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.inst_model",
-                "tot": "msg"
+                "to": "inst_model",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -12717,8 +12834,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.acq_instrument_id",
-                "tot": "msg"
+                "to": "acq_instrument_id",
+                "tot": "global"
             }
         ],
         "action": "",
