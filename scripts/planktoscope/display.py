@@ -5,6 +5,7 @@ import datetime
 import os
 
 import Adafruit_SSD1306
+import planktoscope.i2cscanner
 
 import PIL.Image
 import PIL.ImageDraw
@@ -20,18 +21,21 @@ class Display(object):
 
     def __init__(self):
         # Raspberry Pi pin configuration:
-        RST = None  # on the PiOLED this pin isnt used
-        try:
-            # 128x32 display with hardware I2C:
-            self.__disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
+        if planktoscope.i2cscanner.scan(0x3C):
+            try:
+                # 128x32 display with hardware I2C:
+                self.__disp = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
-            # Initialize library.
-            self.__disp.begin()
-            self.display_machine_name()
-            logger.success("planktoscope.display is ready!")
-        except Exception as e:
-            logger.error("Could not detect the display")
-            logger.error(f"Exception was {e}")
+                # Initialize library.
+                self.__disp.begin()
+                self.display_machine_name()
+                logger.success("planktoscope.display is ready!")
+            except Exception as e:
+                logger.error("Could not initialise the display")
+                logger.error(f"Exception was {e}")
+                self.display_available = False
+        else:
+            logger.info("The i2c display was not detected")
             self.display_available = False
 
     def display_machine_name(self):
