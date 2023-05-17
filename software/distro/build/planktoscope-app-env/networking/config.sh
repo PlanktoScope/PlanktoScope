@@ -14,7 +14,7 @@ sudo sed -i "s/127\.0\.1\.1.*${current_hostname}/127.0.1.1\t${new_hostname}/g" /
 sudo sed -i "s/^ssid=.*$/ssid=PlanktoScope/g" /etc/hostapd/hostapd.conf
 
 # Download tool to generate machine names based on serial numbers
-curl -L https://github.com/PlanktoScope/machine-name/releases/download/v0.1.0/machine-name_0.1.0_linux.arm.tar.gz \
+curl -L https://github.com/PlanktoScope/machine-name/releases/download/v0.1.1/machine-name_0.1.1_linux_arm.tar.gz \
   | tar -xz -C /home/pi/.local/bin/ machine-name
 
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the RPi's serial number
