@@ -1,0 +1,11 @@
+[Unit]
+Description=Update dnsmasq hosts based on machine name generated from the Raspberry Pi's serial number
+Before=dnsmasq.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/update-hosts-machine-name.sh
+Restart=no
+
+[Install]
+WantedBy=dnsmasq.service

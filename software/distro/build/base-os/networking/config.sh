@@ -21,8 +21,7 @@ sudo rfkill unblock wifi
 # FIXME: set up the SSH server without using raspi-config
 sudo raspi-config nonint do_ssh 0
 sudo rm -f /etc/ssh/ssh_host_*
-# Note: the Raspberry Pi will automatically regenerate SSH host keys on the next reboot, so we don't
-# need our own configuration to do this.
+sudo systemctl enable regenerate_ssh_host_keys.service
 
 # TODO: add basic ufw settings
 

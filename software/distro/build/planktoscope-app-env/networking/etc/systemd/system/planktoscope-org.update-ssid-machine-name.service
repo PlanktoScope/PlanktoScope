@@ -1,0 +1,11 @@
+[Unit]
+Description=Update hostapd SSID based on machine name generated from the Raspberry Pi's serial number
+Before=hostapd.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/update-ssid-machine-name.sh
+Restart=no
+
+[Install]
+WantedBy=hostapd.service
