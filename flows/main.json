@@ -174,7 +174,6 @@
         "y": 300,
         "wires": [
             [
-                "3ac7b631f5d8ef90",
                 "60ad348594abdaa8"
             ]
         ]
@@ -184,7 +183,7 @@
         "type": "junction",
         "z": "b771c342.49603",
         "x": 200,
-        "y": 320,
+        "y": 520,
         "wires": [
             [
                 "f5013705b182c45c",
@@ -201,7 +200,15 @@
                 "788cf48399806f1d",
                 "85774a9e9891dcf2",
                 "30b8c584baf1c329",
-                "7dca776f02faa667"
+                "7dca776f02faa667",
+                "40a543fbb13d34f0",
+                "cbb06ae9f66bed18",
+                "ef945f29772236a5",
+                "0c03921f3c5c048d",
+                "81a4676aca1ad6ec",
+                "3269f38d41fa958d",
+                "aa462e1e9d917482",
+                "f4a2009ef65f6602"
             ]
         ]
     },
@@ -222,15 +229,16 @@
         "id": "8a3e288349643aae",
         "type": "junction",
         "z": "b771c342.49603",
-        "x": 340,
-        "y": 1400,
+        "x": 320,
+        "y": 1360,
         "wires": [
             [
                 "cc21ca16.b92928",
                 "4a4de52c.cf2884",
                 "54e37580.fdc31c",
                 "258b4562.9f778a",
-                "73c4a14a.9b93c8"
+                "73c4a14a.9b93c8",
+                "9a2b7c8d3751a5ee"
             ]
         ]
     },
@@ -773,10 +781,10 @@
     {
         "id": "cef1e703.bcf3c8",
         "type": "ui_group",
-        "name": "Single Location",
+        "name": "Sample Location(s)",
         "tab": "737ec584.2eea2c",
-        "order": 3,
-        "disp": false,
+        "order": 5,
+        "disp": true,
         "width": "10",
         "collapse": false,
         "className": ""
@@ -786,7 +794,7 @@
         "type": "ui_group",
         "name": "Validation",
         "tab": "737ec584.2eea2c",
-        "order": 6,
+        "order": 8,
         "disp": false,
         "width": 10,
         "collapse": false
@@ -937,12 +945,13 @@
     {
         "id": "cf5d9f0e.d57e7",
         "type": "ui_group",
-        "name": "Net Metadata",
+        "name": "Net Characteristics",
         "tab": "737ec584.2eea2c",
-        "order": 5,
-        "disp": false,
+        "order": 3,
+        "disp": true,
         "width": "10",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "ce9e278.781eed8",
@@ -1120,17 +1129,6 @@
         "order": 6,
         "width": 3,
         "height": 1
-    },
-    {
-        "id": "7bc0a4c416e4545c",
-        "type": "ui_group",
-        "name": "Culture Date and Time",
-        "tab": "737ec584.2eea2c",
-        "order": 2,
-        "disp": true,
-        "width": "10",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "bc08e94c999e8d27",
@@ -1334,7 +1332,7 @@
         "type": "ui_group",
         "name": "Net Throw and Retrieval Locations",
         "tab": "737ec584.2eea2c",
-        "order": 4,
+        "order": 6,
         "disp": true,
         "width": 10,
         "collapse": false,
@@ -1354,11 +1352,11 @@
     {
         "id": "9398d5fb9d55df14",
         "type": "ui_group",
-        "name": "Sample Collection",
+        "name": "Sample Collection Method",
         "tab": "737ec584.2eea2c",
-        "order": 8,
+        "order": 2,
         "disp": true,
-        "width": 10,
+        "width": "10",
         "collapse": false,
         "className": ""
     },
@@ -1493,7 +1491,27 @@
         "height": 1
     },
     {
-        "id": "99ec5a2e4c3e391b",
+        "id": "607c78b693fddd53",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "cef1e703.bcf3c8",
+        "order": 6,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "69044f46edc4026b",
+        "type": "ui_spacer",
+        "z": "b771c342.49603",
+        "name": "spacer",
+        "group": "cef1e703.bcf3c8",
+        "order": 12,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "79fab886fdc38e49",
         "type": "ui_spacer",
         "z": "b771c342.49603",
         "name": "spacer",
@@ -2649,8 +2667,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 230,
-        "y": 1400,
+        "x": 190,
+        "y": 1360,
         "wires": [
             [
                 "8a3e288349643aae"
@@ -2729,8 +2747,8 @@
         "z": "b771c342.49603",
         "name": "",
         "env": [],
-        "x": 100,
-        "y": 320,
+        "x": 80,
+        "y": 520,
         "wires": [
             [
                 "1729e84341dbb369"
@@ -2760,8 +2778,8 @@
         "name": "object_depth_max",
         "label": "Max sampling depth (m)",
         "tooltip": "in m",
-        "group": "9398d5fb9d55df14",
-        "order": 4,
+        "group": "cf5d9f0e.d57e7",
+        "order": 3,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2772,7 +2790,7 @@
         "className": "",
         "topicType": "str",
         "x": 790,
-        "y": 280,
+        "y": 600,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -2786,8 +2804,8 @@
         "name": "object_depth_min",
         "label": "Min sampling depth (m)",
         "tooltip": "in m",
-        "group": "9398d5fb9d55df14",
-        "order": 3,
+        "group": "cf5d9f0e.d57e7",
+        "order": 2,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -2798,7 +2816,7 @@
         "className": "",
         "topicType": "str",
         "x": 790,
-        "y": 320,
+        "y": 560,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -2821,10 +2839,11 @@
         "id": "cbb123ab.fd3428",
         "type": "ui_ui_control",
         "z": "b771c342.49603",
+        "d": true,
         "name": "show/hide net groups",
         "events": "change",
-        "x": 1320,
-        "y": 400,
+        "x": 1380,
+        "y": 380,
         "wires": [
             []
         ]
@@ -2837,7 +2856,7 @@
         "label": "Concentrated sample volume (mL)",
         "tooltip": "Volume extracted from the net codend (in mL)",
         "group": "9398d5fb9d55df14",
-        "order": 9,
+        "order": 7,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -2848,7 +2867,7 @@
         "className": "",
         "topicType": "str",
         "x": 730,
-        "y": 480,
+        "y": 400,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -2863,7 +2882,7 @@
         "label": "Net opening dimension (mm)",
         "tooltip": "Size of the net mouth opening (in mm)",
         "group": "cf5d9f0e.d57e7",
-        "order": 3,
+        "order": 4,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -2874,7 +2893,7 @@
         "className": "",
         "topicType": "str",
         "x": 760,
-        "y": 360,
+        "y": 280,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -2895,164 +2914,10 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1250,
-        "y": 920,
+        "x": 1850,
+        "y": 1300,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "c33f1124.af6688",
-        "type": "ui_form",
-        "z": "b771c342.49603",
-        "name": "single_location",
-        "label": "Single Location",
-        "group": "f48d09d4b6deee50",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Latitude (36.574439°N or 36°57.4439'N)",
-                "value": "object_lat",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Longitude (110.42100°W or 110°4.2100'W)",
-                "value": "object_lon",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Date (YYYY-MM-DD, UTC)",
-                "value": "object_date",
-                "type": "date",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Time (HH:MM(:SS), UTC 24h)",
-                "value": "object_time",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "object_lat": "",
-            "object_lon": "",
-            "object_date": "",
-            "object_time": ""
-        },
-        "payload": "",
-        "submit": "Validate",
-        "cancel": "Reset",
-        "topic": "single_location",
-        "topicType": "str",
-        "splitLayout": false,
-        "className": "",
-        "x": 500,
-        "y": 880,
-        "wires": [
-            [
-                "1d4dc8f8b427ac1d"
-            ]
-        ]
-    },
-    {
-        "id": "358908cd.416ab",
-        "type": "ui_form",
-        "z": "b771c342.49603",
-        "name": "net_throw_location",
-        "label": "Net Location",
-        "group": "cf5d9f0e.d57e7",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Latitude (36.9574°N or 36°57.4439'N)",
-                "value": "object_lat",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Longitude (110.0702°W or 110°4.2100'W)",
-                "value": "object_lon",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Date (YYYY-MM-DD UTC)",
-                "value": "object_date",
-                "type": "date",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Time (HH:MM, UTC 24h)",
-                "value": "object_time",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Starting Latitude (36.9574°N or 36°57.4439'N)",
-                "value": "object_lat_end",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Ending Longitude (110.0702°W or 110°4.2100'W)",
-                "value": "object_lon_end",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Date (YYYY-MM-DD UTC)",
-                "value": "object_date_end",
-                "type": "date",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Time (HH:MM, UTC 24h)",
-                "value": "object_time_end",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "object_lat": "",
-            "object_lon": "",
-            "object_date": "",
-            "object_time": "",
-            "object_lat_end": "",
-            "object_lon_end": "",
-            "object_date_end": "",
-            "object_time_end": ""
-        },
-        "payload": "",
-        "submit": "Validate",
-        "cancel": "",
-        "topic": "net_throw_location",
-        "topicType": "str",
-        "splitLayout": false,
-        "className": "",
-        "x": 490,
-        "y": 940,
-        "wires": [
-            [
-                "0f4d8caad27e928f"
-            ]
         ]
     },
     {
@@ -3066,8 +2931,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
-        "y": 920,
+        "x": 1610,
+        "y": 1300,
         "wires": [
             [
                 "c0ce5626.b6c5"
@@ -3093,8 +2958,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
-        "y": 1000,
+        "x": 1350,
+        "y": 1160,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -3111,8 +2976,9 @@
         "height": 1,
         "name": "Latitude",
         "label": "Latitude",
-        "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
+        "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.dir}}",
         "layout": "col-center",
+        "className": "",
         "x": 700,
         "y": 1280,
         "wires": []
@@ -3127,8 +2993,9 @@
         "height": 1,
         "name": "Longitude",
         "label": "Longitude",
-        "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
+        "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.dir}}",
         "layout": "col-center",
+        "className": "",
         "x": 700,
         "y": 1320,
         "wires": []
@@ -3137,13 +3004,14 @@
         "id": "258b4562.9f778a",
         "type": "function",
         "z": "b771c342.49603",
-        "name": "Convert DD to DMS",
-        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nmsg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n};\nreturn msg;",
+        "name": "Convert DD to DD+DIR",
+        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nfunction getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir: D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N',\n        deg: D\n    };\n}\n\nmsg.payload = {\n    \"lat\":getDirection(msg.payload.lat, false),\n    \"lon\":getDirection(msg.payload.lon, true)\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 500,
+        "libs": [],
+        "x": 510,
         "y": 1300,
         "wires": [
             [
@@ -3164,8 +3032,9 @@
         "label": "Speed",
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
+        "className": "",
         "x": 690,
-        "y": 1360,
+        "y": 1400,
         "wires": []
     },
     {
@@ -3181,7 +3050,7 @@
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
         "x": 700,
-        "y": 1400,
+        "y": 1360,
         "wires": []
     },
     {
@@ -3213,7 +3082,7 @@
         "initialize": "",
         "finalize": "",
         "x": 490,
-        "y": 1360,
+        "y": 1400,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -3232,6 +3101,7 @@
         "label": "Time",
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
+        "className": "",
         "x": 690,
         "y": 1440,
         "wires": []
@@ -3246,6 +3116,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 470,
         "y": 1440,
         "wires": [
@@ -3259,10 +3130,10 @@
         "type": "ui_text_input",
         "z": "b771c342.49603",
         "name": "sample_dilution_factor",
-        "label": "Dilution Factor",
+        "label": "Dilution Factor before imaging and after sampling",
         "tooltip": "0.5 if diluted by two; 2 if concentrated by a factor 2",
         "group": "9398d5fb9d55df14",
-        "order": 10,
+        "order": 8,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3273,7 +3144,7 @@
         "className": "",
         "topicType": "str",
         "x": 780,
-        "y": 520,
+        "y": 440,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -3285,10 +3156,10 @@
         "type": "ui_text_input",
         "z": "b771c342.49603",
         "name": "sample_total_volume",
-        "label": "Filtered volume (in L)",
+        "label": "Sample volume (in L)",
         "tooltip": "Calculated or hand filled",
         "group": "9398d5fb9d55df14",
-        "order": 6,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3298,8 +3169,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1140,
-        "y": 1000,
+        "x": 1660,
+        "y": 1160,
         "wires": [
             [
                 "e1f2f6eb.fe1dd"
@@ -3316,8 +3187,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1340,
-        "y": 1000,
+        "x": 1860,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -3330,7 +3201,7 @@
         "label": "Speed Through Water (kts)",
         "tooltip": "in knots",
         "group": "cf5d9f0e.d57e7",
-        "order": 2,
+        "order": 5,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3341,7 +3212,7 @@
         "className": "",
         "topicType": "str",
         "x": 750,
-        "y": 560,
+        "y": 480,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -3356,7 +3227,7 @@
         "label": "Minimal fraction size (μm)",
         "tooltip": "Net mesh pore size or minimal filtration mesh pore size",
         "group": "9398d5fb9d55df14",
-        "order": 7,
+        "order": 5,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -3367,7 +3238,7 @@
         "className": "",
         "topicType": "str",
         "x": 780,
-        "y": 400,
+        "y": 320,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -3382,7 +3253,7 @@
         "label": "Maximal fraction size (μm)",
         "tooltip": "Maximal filtration mesh pore size",
         "group": "9398d5fb9d55df14",
-        "order": 8,
+        "order": 6,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -3393,7 +3264,7 @@
         "className": "",
         "topicType": "str",
         "x": 780,
-        "y": 440,
+        "y": 360,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -3411,58 +3282,17 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1070,
-        "y": 400,
+        "x": 1370,
+        "y": 340,
         "wires": [
-            [],
             [
-                "5b88e33dbcf41f14",
-                "bfac95f2ee0f1478"
-            ]
+                "cbb123ab.fd3428"
+            ],
+            []
         ],
         "outputLabels": [
             "decknet activation",
             ""
-        ]
-    },
-    {
-        "id": "1d4dc8f8b427ac1d",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "return payload to sender",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 880,
-        "wires": [
-            [
-                "14658615.47c862",
-                "c33f1124.af6688"
-            ]
-        ]
-    },
-    {
-        "id": "0f4d8caad27e928f",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "return payload to sender",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 940,
-        "wires": [
-            [
-                "14658615.47c862",
-                "358908cd.416ab"
-            ]
         ]
     },
     {
@@ -3476,124 +3306,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 1020,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5b88e33dbcf41f14",
-        "type": "change",
-        "z": "b771c342.49603",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "object_date",
-                "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "object_date",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1120,
-        "y": 540,
-        "wires": [
-            [
-                "0126230a51e7ea9f"
-            ]
-        ]
-    },
-    {
-        "id": "71336564ebc2015d",
-        "type": "ui_text_input",
-        "z": "b771c342.49603",
-        "name": "",
-        "label": "Culture collection time",
-        "tooltip": "Time of culture collection (HH:MM(:SS) UTC)",
-        "group": "7bc0a4c416e4545c",
-        "order": 1,
-        "width": 10,
-        "height": 2,
-        "passthru": true,
-        "mode": "text",
-        "delay": "500",
-        "topic": "object_time",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 1320,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bfac95f2ee0f1478",
-        "type": "change",
-        "z": "b771c342.49603",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "object_time",
-                "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "object_time",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1120,
-        "y": 580,
-        "wires": [
-            [
-                "71336564ebc2015d"
-            ]
-        ]
-    },
-    {
-        "id": "0126230a51e7ea9f",
-        "type": "ui_text_input",
-        "z": "b771c342.49603",
-        "name": "",
-        "label": "Culture collection date",
-        "tooltip": "Date of culture collection (YYYY-MM-DD)",
-        "group": "7bc0a4c416e4545c",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "object_date",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 1320,
-        "y": 540,
+        "x": 1090,
+        "y": 1180,
         "wires": [
             []
         ]
@@ -3604,7 +3318,7 @@
         "z": "b771c342.49603",
         "name": "sample_sampling_direction",
         "label": "Sampling direction*",
-        "tooltip": "Choose if the sample was obtained moving vertically through the water column, horizontally or static.",
+        "tooltip": "The sample was obtained moving vertically through the water column, horizontally or if this is not applicable.",
         "place": "Choose from list",
         "group": "9398d5fb9d55df14",
         "order": 2,
@@ -3614,18 +3328,18 @@
         "multiple": false,
         "options": [
             {
-                "label": "",
+                "label": "Horizontal",
                 "value": "horizontal",
                 "type": "str"
             },
             {
-                "label": "",
+                "label": "Vertical",
                 "value": "vertical",
                 "type": "str"
             },
             {
-                "label": "",
-                "value": "static",
+                "label": "Not applicable",
+                "value": "na",
                 "type": "str"
             }
         ],
@@ -3649,7 +3363,7 @@
         "label": "Volume auto calculation",
         "tooltip": "",
         "group": "9398d5fb9d55df14",
-        "order": 5,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3668,7 +3382,7 @@
         "animate": false,
         "className": "",
         "x": 770,
-        "y": 600,
+        "y": 520,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
@@ -3679,11 +3393,11 @@
         "id": "ddf55be3c2b5f95f",
         "type": "ui_text_input",
         "z": "b771c342.49603",
-        "name": "",
+        "name": "object_time",
         "label": "Sampling time",
-        "tooltip": "Time of sampling (HH:MM(:SS) UTC)",
+        "tooltip": "HH:MM(:SS) UTC",
         "group": "cef1e703.bcf3c8",
-        "order": 2,
+        "order": 3,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3693,8 +3407,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 260,
-        "y": 820,
+        "x": 810,
+        "y": 780,
         "wires": [
             []
         ]
@@ -3703,11 +3417,11 @@
         "id": "a2d77b1a739782ae",
         "type": "ui_text_input",
         "z": "b771c342.49603",
-        "name": "",
+        "name": "object_date",
         "label": "Sampling date",
-        "tooltip": "Date of sampling (YYYY-MM-DD)",
+        "tooltip": "YYYY-MM-DD",
         "group": "cef1e703.bcf3c8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3717,21 +3431,23 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 260,
-        "y": 780,
+        "x": 810,
+        "y": 740,
         "wires": [
-            []
+            [
+                "de2cd9caa0e28a7c"
+            ]
         ]
     },
     {
         "id": "bf864cde6c5b2b5f",
         "type": "ui_text_input",
         "z": "b771c342.49603",
-        "name": "",
+        "name": "object_lat",
         "label": "Sampling Latitude",
-        "tooltip": "Latitude (36.574439N)",
+        "tooltip": "36.574439N",
         "group": "cef1e703.bcf3c8",
-        "order": 3,
+        "order": 4,
         "width": 10,
         "height": 1,
         "passthru": true,
@@ -3741,34 +3457,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 270,
-        "y": 740,
+        "x": 820,
+        "y": 660,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "97f47b9e87bf939b",
-        "type": "ui_text_input",
-        "z": "b771c342.49603",
-        "name": "",
-        "label": "Sampling Longitude",
-        "tooltip": "Longitude (110.42100W)",
-        "group": "cef1e703.bcf3c8",
-        "order": 4,
-        "width": 10,
-        "height": 1,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "object_lon",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 280,
-        "y": 700,
-        "wires": [
-            []
+            [
+                "de2cd9caa0e28a7c"
+            ]
         ]
     },
     {
@@ -3908,7 +3602,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 400,
+        "y": 320,
         "wires": [
             [
                 "1aad56b31b5647ce"
@@ -3935,7 +3629,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 440,
+        "y": 360,
         "wires": [
             [
                 "10eb31a2d7a6590c"
@@ -3962,7 +3656,7 @@
         "to": "",
         "reg": false,
         "x": 410,
-        "y": 480,
+        "y": 400,
         "wires": [
             [
                 "642ff403.1ed91c"
@@ -3989,7 +3683,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 520,
+        "y": 440,
         "wires": [
             [
                 "58de1340.3cc354"
@@ -4016,7 +3710,7 @@
         "to": "",
         "reg": false,
         "x": 390,
-        "y": 560,
+        "y": 480,
         "wires": [
             [
                 "cdd4181922eecf11"
@@ -4028,7 +3722,7 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "b771c342.49603",
         "name": "",
-        "x": 1340,
+        "x": 1380,
         "y": 300,
         "wires": []
     },
@@ -4052,7 +3746,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 600,
+        "y": 520,
         "wires": [
             [
                 "aeea671ef9b81d7c"
@@ -4133,7 +3827,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 280,
+        "y": 600,
         "wires": [
             [
                 "9c7f7fc9.c8d3a"
@@ -4160,7 +3854,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 320,
+        "y": 560,
         "wires": [
             [
                 "317eeeb7.8d3042"
@@ -4187,7 +3881,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 360,
+        "y": 280,
         "wires": [
             [
                 "e967b844.46aa48"
@@ -4209,8 +3903,876 @@
         "y": 300,
         "wires": [
             [
-                "326fb733cc56e902"
+                "326fb733cc56e902",
+                "21beeed36295bf6f",
+                "3ac7b631f5d8ef90"
             ]
+        ]
+    },
+    {
+        "id": "21beeed36295bf6f",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "sampling_gear activate or deactivate",
+        "func": "if (msg.topic === \"sample_sampling_gear\" && msg.payload === \"net\"){\n    return msg.enabled = false\n}\nif (msg.topic === \"sample_sampling_gear\" && msg.payload === \"raw\") {\n    return msg.enabled = true\n}\nif (msg.topic === \"sample_sampling_gear\" && msg.payload === \"culture\") {\n    return msg.enabled = true\n}\nif (msg.topic === \"sample_sampling_gear\" && msg.payload === \"test\") {\n    return msg.enabled = true\n}\n",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 560,
+        "wires": [
+            [],
+            [],
+            [],
+            []
+        ],
+        "outputLabels": [
+            "net activation",
+            "culture activation",
+            "raw activation",
+            "test activation"
+        ]
+    },
+    {
+        "id": "0f4d8caad27e928f",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "return payload to sender",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1310,
+        "y": 1320,
+        "wires": [
+            [
+                "14658615.47c862",
+                "358908cd.416ab"
+            ]
+        ]
+    },
+    {
+        "id": "1d4dc8f8b427ac1d",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "return payload to sender",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1310,
+        "y": 1260,
+        "wires": [
+            [
+                "14658615.47c862",
+                "c33f1124.af6688"
+            ]
+        ]
+    },
+    {
+        "id": "4477d47fb509decd",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "object_time_end",
+        "label": "Sampling time (end)",
+        "tooltip": "HH:MM(:SS) UTC",
+        "group": "cef1e703.bcf3c8",
+        "order": 9,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "500",
+        "topic": "object_time_end",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 800,
+        "y": 980,
+        "wires": [
+            [
+                "de2cd9caa0e28a7c"
+            ]
+        ]
+    },
+    {
+        "id": "1a77598c88654944",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "object_date_end",
+        "label": "Sampling date (end)",
+        "tooltip": "YYYY-MM-DD",
+        "group": "cef1e703.bcf3c8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "object_date_end",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 790,
+        "y": 940,
+        "wires": [
+            [
+                "de2cd9caa0e28a7c"
+            ]
+        ]
+    },
+    {
+        "id": "eae1267df3893054",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "object_lat_end",
+        "label": "Sampling Latitude (end)",
+        "tooltip": "36.574439N",
+        "group": "cef1e703.bcf3c8",
+        "order": 10,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "500",
+        "topic": "object_lat_end",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 800,
+        "y": 860,
+        "wires": [
+            [
+                "de2cd9caa0e28a7c"
+            ]
+        ]
+    },
+    {
+        "id": "331f10d381a0b4a9",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "object_lon_end",
+        "label": "Sampling Longitude (end)",
+        "tooltip": "110.42100W",
+        "group": "cef1e703.bcf3c8",
+        "order": 11,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "object_lon_end",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 800,
+        "y": 900,
+        "wires": [
+            [
+                "de2cd9caa0e28a7c"
+            ]
+        ]
+    },
+    {
+        "id": "358908cd.416ab",
+        "type": "ui_form",
+        "z": "b771c342.49603",
+        "d": true,
+        "name": "net_throw_location",
+        "label": "Net Location",
+        "group": "cf5d9f0e.d57e7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Latitude (36.9574°N or 36°57.4439'N)",
+                "value": "object_lat",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Longitude (110.0702°W or 110°4.2100'W)",
+                "value": "object_lon",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Date (YYYY-MM-DD UTC)",
+                "value": "object_date",
+                "type": "date",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Time (HH:MM, UTC 24h)",
+                "value": "object_time",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Starting Latitude (36.9574°N or 36°57.4439'N)",
+                "value": "object_lat_end",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Ending Longitude (110.0702°W or 110°4.2100'W)",
+                "value": "object_lon_end",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Date (YYYY-MM-DD UTC)",
+                "value": "object_date_end",
+                "type": "date",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Time (HH:MM, UTC 24h)",
+                "value": "object_time_end",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "object_lat": "",
+            "object_lon": "",
+            "object_date": "",
+            "object_time": "",
+            "object_lat_end": "",
+            "object_lon_end": "",
+            "object_date_end": "",
+            "object_time_end": ""
+        },
+        "payload": "",
+        "submit": "Validate",
+        "cancel": "",
+        "topic": "net_throw_location",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 1090,
+        "y": 1320,
+        "wires": [
+            [
+                "0f4d8caad27e928f"
+            ]
+        ]
+    },
+    {
+        "id": "c33f1124.af6688",
+        "type": "ui_form",
+        "z": "b771c342.49603",
+        "d": true,
+        "name": "single_location",
+        "label": "Single Location",
+        "group": "f48d09d4b6deee50",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Latitude (36.574439°N or 36°57.4439'N)",
+                "value": "object_lat",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Longitude (110.42100°W or 110°4.2100'W)",
+                "value": "object_lon",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Date (YYYY-MM-DD, UTC)",
+                "value": "object_date",
+                "type": "date",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Time (HH:MM(:SS), UTC 24h)",
+                "value": "object_time",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "object_lat": "",
+            "object_lon": "",
+            "object_date": "",
+            "object_time": ""
+        },
+        "payload": "",
+        "submit": "Validate",
+        "cancel": "Reset",
+        "topic": "single_location",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 1100,
+        "y": 1260,
+        "wires": [
+            [
+                "1d4dc8f8b427ac1d"
+            ]
+        ]
+    },
+    {
+        "id": "40a543fbb13d34f0",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_lat",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_lat",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_lat",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 660,
+        "wires": [
+            [
+                "c42fce53c259983d"
+            ]
+        ]
+    },
+    {
+        "id": "cbb06ae9f66bed18",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_lon",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_lon",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_lon",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 700,
+        "wires": [
+            [
+                "c42fce53c259983d"
+            ]
+        ]
+    },
+    {
+        "id": "ef945f29772236a5",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_date",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_date",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 740,
+        "wires": [
+            [
+                "a2d77b1a739782ae"
+            ]
+        ]
+    },
+    {
+        "id": "0c03921f3c5c048d",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_time",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_time",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 780,
+        "wires": [
+            [
+                "ddf55be3c2b5f95f"
+            ]
+        ]
+    },
+    {
+        "id": "81a4676aca1ad6ec",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_lat_end",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_lat_end",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_lat_end",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 860,
+        "wires": [
+            [
+                "1a6dc671d99681ba"
+            ]
+        ]
+    },
+    {
+        "id": "3269f38d41fa958d",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_lon_end",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_lon_end",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_lon_end",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 900,
+        "wires": [
+            [
+                "1a6dc671d99681ba"
+            ]
+        ]
+    },
+    {
+        "id": "aa462e1e9d917482",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_date_end",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_date_end",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 940,
+        "wires": [
+            [
+                "1a77598c88654944"
+            ]
+        ]
+    },
+    {
+        "id": "f4a2009ef65f6602",
+        "type": "change",
+        "z": "b771c342.49603",
+        "name": "object_time_end",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "object_time_end",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 980,
+        "wires": [
+            [
+                "4477d47fb509decd"
+            ]
+        ]
+    },
+    {
+        "id": "2346b1b1a2461528",
+        "type": "ui_text_input",
+        "z": "b771c342.49603",
+        "name": "object_lon",
+        "label": "Sample Longitude",
+        "tooltip": "110.42100W",
+        "group": "cef1e703.bcf3c8",
+        "order": 5,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "500",
+        "topic": "object_lon",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 810,
+        "y": 700,
+        "wires": [
+            [
+                "de2cd9caa0e28a7c"
+            ]
+        ]
+    },
+    {
+        "id": "9ff194bcc1c5e9c1",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Validate Location / Timestamp",
+        "func": "// Code added here will be run once\n// whenever the node is started.\nfunction ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (! input.match(/\\d+°\\d+\\.*\\d*\\'?[NSEW]/)){\n    \treturn \"parsing error 1\"\n    }\n    var parts = input.split(/[^\\d.]+/)\n    if (parts.length < 2){\n    \treturn \"parsing error 2\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + input.slice(-1)\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(/\\d°\\d/)){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \" + input\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\nmsg.valid = false\n\nif (msg.topic == \"culture_timestamp\"){\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    return [{topic: \"Date and time format valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n}\nelse if (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 960,
+        "wires": [
+            [],
+            []
+        ],
+        "inputLabels": [
+            "Location form data"
+        ],
+        "outputLabels": [
+            "Message",
+            "Location validated"
+        ]
+    },
+    {
+        "id": "46c54d2da71d8004",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Validate Date",
+        "func": "function ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /\\d{4}-\\d{2}-\\d{2}/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\n\nvar ret = ValidateDate(msg.payload)\nif (ret[1] !== null){\n    var error_msg = {}\n    error_msg.valid = false\n    error_msg.topic = ret[1].topic + \" of the sample\"\n    error_msg.payload = ret[1].payload\n    return [null, error_msg]\n}\n\nreturn [msg, {topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}]\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 840,
+        "wires": [
+            [
+                "ef484555928e1af6"
+            ],
+            [
+                "9882ebee11eb6fd0"
+            ]
+        ],
+        "inputLabels": [
+            "Location form data"
+        ],
+        "outputLabels": [
+            "Message",
+            "Location validated"
+        ]
+    },
+    {
+        "id": "ce685c487bb90734",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Validate Time",
+        "func": "function ValidateTime(input) {\n    // Input Format 12:34(:56)\n    var error = {}\n\n    if (! /\\d{2}:\\d{2}(:\\d{2})?/.test(input)) {\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM(:SS)\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n\n        if (!((0 <= time[0]) && (time[0] < 24))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n        else if (time.length == 3) {\n            if (!((0 <= time[2]) && (time[2] < 60))) {\n                error.topic = \"Error with the time\"\n                error.payload = \"The seconds should be between 0 and 59\"\n                return [null, error]\n            }\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\n\nvar ret = ValidateTime(msg.payload)\nif (ret[1] !== null) {\n    var error_msg = {}\n    error_msg.valid = false\n    error_msg.topic = ret[1].topic + \" of the sample\"\n    error_msg.payload = ret[1].payload\n    return [null, error_msg]\n}\n\nreturn [msg, { topic: \"Time format is valid!\", payload: \"All good!\", valid: true }]\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 880,
+        "wires": [
+            [
+                "ef484555928e1af6"
+            ],
+            [
+                "9882ebee11eb6fd0"
+            ]
+        ],
+        "inputLabels": [
+            "Location form data"
+        ],
+        "outputLabels": [
+            "Message",
+            "Location validated"
+        ]
+    },
+    {
+        "id": "ef484555928e1af6",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "set global if different",
+        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 740,
+        "wires": [
+            [
+                "ac475db16b414508"
+            ]
+        ]
+    },
+    {
+        "id": "ac475db16b414508",
+        "type": "subflow:4ed26b8b.253504",
+        "z": "b771c342.49603",
+        "name": "",
+        "x": 1480,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9882ebee11eb6fd0",
+        "type": "ui_toast",
+        "z": "b771c342.49603",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1490,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f0e8bf2e43e1b95",
+        "type": "ui_button",
+        "z": "b771c342.49603",
+        "name": "",
+        "group": "cef1e703.bcf3c8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Get location and time data from GPS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 570,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "471cdf333c4d11e4",
+        "type": "ui_button",
+        "z": "b771c342.49603",
+        "name": "",
+        "group": "cef1e703.bcf3c8",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Get location and time data from start point",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 580,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c42fce53c259983d",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Convert DD to DD+DIR",
+        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\n\nif (msg.topic.constains(\"lat\")) {\n    return [msg.payload = getDirection(msg.payload, false), null]\n}\nif (msg.topic.constains(\"lon\")) {\n    return [null, msg.payload = getDirection(msg.payload, true)]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 680,
+        "wires": [
+            [
+                "bf864cde6c5b2b5f"
+            ],
+            [
+                "2346b1b1a2461528"
+            ]
+        ]
+    },
+    {
+        "id": "1a6dc671d99681ba",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Convert DD to DD+DIR",
+        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\n\nif (msg.topic.constains(\"lat\")) {\n    return [msg.payload = getDirection(msg.payload, false), null]\n}\nif (msg.topic.constains(\"lon\")) {\n    return [null, msg.payload = getDirection(msg.payload, true)]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 880,
+        "wires": [
+            [
+                "eae1267df3893054"
+            ],
+            [
+                "331f10d381a0b4a9"
+            ]
+        ]
+    },
+    {
+        "id": "877ba60abeb634fd",
+        "type": "ui_button",
+        "z": "b771c342.49603",
+        "name": "",
+        "group": "cef1e703.bcf3c8",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Validate time and date location format",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 570,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a2b7c8d3751a5ee",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Save GPS coordinates in flow",
+        "func": "if (msg.payload.mode == 2 || msg.payload.mode == 3) { // mode 2 or 3 is 2D or 3D fix\n    flow.set(\"gps_lat\", msg.payload.lat)\n    flow.set(\"gps_lon\", msg.payload.lon)\n    flow.set(\"gps_date\", msg.payload.date.split('T')[0])\n    flow.set(\"gps_time\", msg.payload.date.split('T')[1])\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1480,
+        "wires": [
+            []
         ]
     },
     {
