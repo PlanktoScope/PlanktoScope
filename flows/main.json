@@ -167,14 +167,48 @@
         "icon": "node-red/file-out.svg"
     },
     {
+        "id": "c4e2b4ed08e5c5db",
+        "type": "subflow",
+        "name": "set metadata on change",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 140,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "e43a60359b0dee37"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 420,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "e43a60359b0dee37",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#D8BFD8",
+        "icon": "node-red/function.svg"
+    },
+    {
         "id": "de2cd9caa0e28a7c",
         "type": "junction",
         "z": "b771c342.49603",
-        "x": 960,
+        "x": 1020,
         "y": 300,
         "wires": [
             [
-                "60ad348594abdaa8"
+                "84db87423739b057"
             ]
         ]
     },
@@ -216,8 +250,8 @@
         "id": "16426cdfcadc3056",
         "type": "junction",
         "z": "b771c342.49603",
-        "x": 620,
-        "y": 1140,
+        "x": 640,
+        "y": 1300,
         "wires": [
             [
                 "726a7822.cd6298",
@@ -229,8 +263,8 @@
         "id": "8a3e288349643aae",
         "type": "junction",
         "z": "b771c342.49603",
-        "x": 320,
-        "y": 1360,
+        "x": 340,
+        "y": 1520,
         "wires": [
             [
                 "cc21ca16.b92928",
@@ -385,7 +419,7 @@
         "y": 260,
         "wires": [
             [
-                "5ca27fdf2a1fef80"
+                "61cf0b88ae96b88c"
             ]
         ]
     },
@@ -431,11 +465,11 @@
         "id": "13d04338daf07495",
         "type": "junction",
         "z": "1eaf21c8.f7a21e",
-        "x": 880,
+        "x": 840,
         "y": 400,
         "wires": [
             [
-                "a9acf23e7e93c730"
+                "d7a22bc5ee8cb050"
             ]
         ]
     },
@@ -471,11 +505,23 @@
         "id": "3d62eb9f488f0d77",
         "type": "junction",
         "z": "bccd1f23.87219",
-        "x": 920,
+        "x": 900,
         "y": 560,
         "wires": [
             [
-                "dc48dc42.98d18"
+                "21315e8394d749bd"
+            ]
+        ]
+    },
+    {
+        "id": "d9b4f8a345d81e76",
+        "type": "junction",
+        "z": "5195979a0d7a6b2a",
+        "x": 920,
+        "y": 220,
+        "wires": [
+            [
+                "4bc498d34a63d0a4"
             ]
         ]
     },
@@ -1328,17 +1374,6 @@
         "className": ""
     },
     {
-        "id": "f48d09d4b6deee50",
-        "type": "ui_group",
-        "name": "Net Throw and Retrieval Locations",
-        "tab": "737ec584.2eea2c",
-        "order": 6,
-        "disp": true,
-        "width": 10,
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "614405b228e411bf",
         "type": "ui_group",
         "name": "Wireless power control",
@@ -1648,7 +1683,7 @@
         "type": "function",
         "z": "4ed26b8b.253504",
         "name": "get config payload",
-        "func": "var payload = {}\n\nconst keys = global.keys()\n\nkeys.forEach(function (key, index, array) {\n  payload[key] = global.get(key);\n})\n\nreturn {\"payload\": payload};",
+        "func": "var payload = {}\n\nconst keys = global.keys()\n\nkeys.forEach(function (key, index, array) {\n  payload[key] = global.get(key);\n})\n\nreturn {\"topic\":\"metadata\", \"payload\": payload}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1661,6 +1696,34 @@
                 "1335a1041e8f6888"
             ]
         ]
+    },
+    {
+        "id": "e43a60359b0dee37",
+        "type": "function",
+        "z": "c4e2b4ed08e5c5db",
+        "name": "function 1",
+        "func": "if (global.keys().includes(msg.topic)) {\n    if (global.get(msg.topic) !== msg.payload) {\n        global.set(msg.topic, msg.payload)\n        return msg\n    }\n}\nelse {\n    global.set(msg.topic, msg.payload)\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 140,
+        "wires": [
+            [
+                "25bf3d3a5c9ab204"
+            ]
+        ]
+    },
+    {
+        "id": "25bf3d3a5c9ab204",
+        "type": "subflow:4ed26b8b.253504",
+        "z": "c4e2b4ed08e5c5db",
+        "name": "",
+        "x": 480,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "4e78af2d.90be7",
@@ -2477,7 +2540,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 810,
+        "x": 890,
         "y": 80,
         "wires": [
             [
@@ -2525,7 +2588,7 @@
         "topic": "sample_sampling_gear",
         "topicType": "str",
         "className": "",
-        "x": 770,
+        "x": 850,
         "y": 200,
         "wires": [
             [
@@ -2551,7 +2614,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 790,
+        "x": 870,
         "y": 160,
         "wires": [
             [
@@ -2578,7 +2641,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 800,
+        "x": 880,
         "y": 40,
         "wires": [
             [
@@ -2604,7 +2667,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 810,
+        "x": 890,
         "y": 120,
         "wires": [
             [
@@ -2618,8 +2681,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 320,
-        "y": 1120,
+        "x": 340,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -2638,8 +2701,8 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 710,
-        "y": 1200,
+        "x": 730,
+        "y": 1360,
         "wires": [
             []
         ]
@@ -2655,8 +2718,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1160,
+        "x": 490,
+        "y": 1320,
         "wires": [
             [
                 "16426cdfcadc3056"
@@ -2683,8 +2746,8 @@
         "device": false,
         "gst": false,
         "att": false,
-        "x": 190,
-        "y": 1360,
+        "x": 210,
+        "y": 1520,
         "wires": [
             [
                 "8a3e288349643aae"
@@ -2697,8 +2760,8 @@
         "z": "b771c342.49603",
         "name": "",
         "events": "change",
-        "x": 700,
-        "y": 1120,
+        "x": 720,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -2721,8 +2784,8 @@
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 160,
-        "y": 1120,
+        "x": 180,
+        "y": 1280,
         "wires": [
             [
                 "222c851d.5d0a3a"
@@ -2749,8 +2812,8 @@
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 160,
-        "y": 1160,
+        "x": 180,
+        "y": 1320,
         "wires": [
             [
                 "986d960a.c75908"
@@ -2783,8 +2846,8 @@
         "label": "GPS Status:",
         "format": "{{msg.payload}}",
         "layout": "row-center",
-        "x": 730,
-        "y": 1240,
+        "x": 750,
+        "y": 1400,
         "wires": []
     },
     {
@@ -2805,7 +2868,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 790,
+        "x": 870,
         "y": 600,
         "wires": [
             [
@@ -2831,7 +2894,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 790,
+        "x": 870,
         "y": 560,
         "wires": [
             [
@@ -2847,22 +2910,9 @@
         "links": [
             "35eb925e.5f8016"
         ],
-        "x": 995,
+        "x": 1055,
         "y": 160,
         "wires": []
-    },
-    {
-        "id": "cbb123ab.fd3428",
-        "type": "ui_ui_control",
-        "z": "b771c342.49603",
-        "d": true,
-        "name": "show/hide net groups",
-        "events": "change",
-        "x": 1380,
-        "y": 380,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "642ff403.1ed91c",
@@ -2882,7 +2932,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 730,
+        "x": 810,
         "y": 400,
         "wires": [
             [
@@ -2908,59 +2958,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 760,
+        "x": 840,
         "y": 280,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "bbce4c721dda135c"
             ]
-        ]
-    },
-    {
-        "id": "c0ce5626.b6c5",
-        "type": "ui_toast",
-        "z": "b771c342.49603",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 1850,
-        "y": 1300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "14658615.47c862",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Validate Location / Timestamp",
-        "func": "// Code added here will be run once\n// whenever the node is started.\nfunction ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (! input.match(/\\d+°\\d+\\.*\\d*\\'?[NSEW]/)){\n    \treturn \"parsing error 1\"\n    }\n    var parts = input.split(/[^\\d.]+/)\n    if (parts.length < 2){\n    \treturn \"parsing error 2\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + input.slice(-1)\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(/\\d°\\d/)){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \" + input\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\nmsg.valid = false\n\nif (msg.topic == \"culture_timestamp\"){\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    return [{topic: \"Date and time format valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n}\nelse if (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1610,
-        "y": 1300,
-        "wires": [
-            [
-                "c0ce5626.b6c5"
-            ],
-            []
-        ],
-        "inputLabels": [
-            "Location form data"
-        ],
-        "outputLabels": [
-            "Message",
-            "Location validated"
         ]
     },
     {
@@ -2968,14 +2971,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "calculate sample_total_volume",
-        "func": "\n/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\nvar decpl = 4  // Dec places of minutes output\n\nvar ellipse = { \"name\": \"WSG84\", \"a\": 6378.137 / 1.852, \"invf\": 298.257223563 }\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2) {\n    var d, crs12, crs21\n    var argacos\n    var a, invf\n\n    // lat and lon in radian\n    lat1 = (Math.PI / 180) * lat1\n    lat2 = (Math.PI / 180) * lat2\n    lon1 = (Math.PI / 180) * lon1\n    lon2 = (Math.PI / 180) * lon2\n\n    //alert(\"lat1=\" + lat1 + \"lon1=\" + lon1 +\"\\nlat2=\" +lat2+ \"lon2=\"+lon2)\n\n    /* get distance conversion factor */\n    var dc = 1.852 //km\n    //alert(\"dc=\" +dc)\n\n    //showProps(ellipse,\"ellipse\")\n\n    // elliptic code\n    d = crsdist_ell(lat1, -lon1, lat2, -lon2, ellipse)  // ellipse uses East negative\n    d = d * dc  // go to physical units\n\n    //alert(\"d=\"+d+\"  crs12=\"+crs12+\"   crs21=\"+crs21)\n    return d\n}\n\nfunction crsdist(lat1, lon1, lat2, lon2) { // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1 + lat2 === 0) && (Math.abs(lon1 - lon2) == Math.PI) &&\n        (Math.abs(lat1) != (Math.PI / 180) * 90)) {\n        console.log(\"Course between antipodal points is undefined\")\n    }\n\n    var d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2))\n    return d\n}\n\nfunction crsdist_ell(glat1, glon1, glat2, glon2, ellipse) {\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    var a = ellipse.a\n    var f = 1 / ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy, y, sa, c2a, cz, e, c, d\n    var EPS = 0.00000000005\n    var faz, baz, s\n    var iter = 1\n    var MAXITER = 100\n    if ((glat1 + glat2 === 0) && (Math.abs(glon1 - glon2) == Math.PI)) {\n        console.log(\"Course and distance between antipodal points is undefined\")\n        glat1 = glat1 + 0.00001 // allow algorithm to complete\n    }\n    if (glat1 == glat2 && (glon1 == glon2 || Math.abs(Math.abs(glon1 - glon2) - 2 * Math.PI) < EPS)) {\n        console.log(\"Points 1 and 2 are identical- course undefined\")\n        // @ts-ignore\n        var out = new MakeArray(0)\n        out.d = 0\n        out.crs12 = 0\n        out.crs21 = Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan(glat1)\n    tu2 = r * Math.tan(glat2)\n    cu1 = 1 / Math.sqrt(1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt(1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER)) {\n        iter = iter + 1\n        sx = Math.sin(x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos(x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2(sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0)\n            cz = cy - cz / c2a\n        e = cz * cz * 2 - 1\n        c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n        d = x\n        x = ((e * cy * c + cz) * sy * c + y) * sa\n        x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt((1 / (r * r) - 1) * c2a + 1)\n    x += 1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy * sy * 4 - 3) * (1 - e - e) * cz * d / 6 - x) * d / 4 + cz) * sy * d + y) * c * a * r\n    if (Math.abs(iter - MAXITER) < EPS) {\n        console.log(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y, x) {\n    var out\n    if (x < 0) { out = Math.atan(y / x) + Math.PI }\n    if ((x > 0) && (y >= 0)) { out = Math.atan(y / x) }\n    if ((x > 0) && (y < 0)) { out = Math.atan(y / x) + 2 * Math.PI }\n    if ((x === 0) && (y > 0)) { out = Math.PI / 2 }\n    if ((x === 0) && (y < 0)) { out = 3 * Math.PI / 2 }\n    if ((x === 0) && (y === 0)) {\n        console.log(\"atan2(0,0) undefined\")\n        out = 0\n    }\n    return out\n}\n\nfunction showProps(obj, objName) {\n    var result = \"\"\n    for (var i in obj) {\n        result += objName + \".\" + i + \" = \" + obj[i] + \"\\n\"\n    }\n    console.log(result)\n}\n\n\nif (msg.valid) {\n    msg.topic = \"sample_total_volume\"\n\n    var object_lat_end = global.get(\"object_lat_end\")\n    var object_lon_end = global.get(\"object_lon_end\")\n    var sample_sampling_gear = global.get(\"sample_sampling_gear\")\n\n    if (sample_sampling_gear.startsWith(\"net\") && sample_sampling_gear != \"net_decknet\") {\n        if (!(isNaN(object_lat_end) && isNaN(object_lon_end))) {\n            var object_lat = global.get(\"object_lat\")\n            var object_lon = global.get(\"object_lon\")\n            var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n            var distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n\n            var sample_total_volume = distance_km * (Math.PI * (sample_gear_net_opening / 2) * (sample_gear_net_opening / 2)) // liters\n            sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n            msg.payload = sample_total_volume\n            return msg\n        }\n    }\n}",
+        "func": "/*object_lat = 33.95 \nobject_lon = 118.4  \nobject_lat_end = 40.6333 \nobject_lon_end = 73.78333\nsample_gear_net_opening = 40*/\n\n// Copyright 1997 Ed Williams. All rights reserved\n// Adapted by Romain Bazile - Ocean Trotter - 01-2021\n\nconst decpl = 4  // Dec places of minutes output\n\nconst ellipse = { \"name\": \"WSG84\", \"a\": 6378.137 / 1.852, \"invf\": 298.257223563 }\n\nfunction ComputeDistance(lat1, lon1, lat2, lon2) {\n    var d, crs12, crs21\n    var a, invf\n\n    // lat and lon in radian\n    let lat_start = (Math.PI / 180) * lat1\n    let lat_end = (Math.PI / 180) * lat2\n    let lon_start = (Math.PI / 180) * lon1\n    let lon_end = (Math.PI / 180) * lon2\n\n    // distance conversion factor\n    const dc = 1.852 //km\n\n    // elliptic code\n    d = crsdist_ell(lat_start, -lon_start, lat_end, -lon_end, ellipse)  // ellipse uses East negative\n    d *= dc  // go to physical units\n\n    return d\n}\n\nfunction crsdist(lat1, lon1, lat2, lon2) { // radian args\n    /* compute course and distance (spherical) */\n    if ((lat1 + lat2 === 0) && (Math.abs(lon1 - lon2) == Math.PI) &&\n        (Math.abs(lat1) != (Math.PI / 180) * 90)) {\n        console.log(\"Course between antipodal points is undefined\")\n    }\n\n    return Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2));\n}\n\nfunction crsdist_ell(glat1, glon1, glat2, glon2, ellipse) {\n    // glat1 initial geodetic latitude in radians N positive \n    // glon1 initial geodetic longitude in radians E positive \n    // glat2 final geodetic latitude in radians N positive \n    // glon2 final geodetic longitude in radians E positive \n    const { a } = ellipse\n    const f = 1 / ellipse.invf\n    //alert(\"a=\"+a+\" f=\"+f)\n    var r, tu1, tu2, cu1, su1, cu2, s1, b1, f1\n    var x, sx, cx, sy, cy, y, sa, c2a, cz, e, c, d\n    const EPS = 0.00000000005\n    var faz, baz, s\n    let iter = 1\n    const MAXITER = 100\n    if ((glat1 + glat2 === 0) && (Math.abs(glon1 - glon2) == Math.PI)) {\n        console.log(\"Course and distance between antipodal points is undefined\")\n        glat1 += 0.00001 // allow algorithm to complete\n    }\n    if (glat1 == glat2 && (glon1 == glon2 || Math.abs(Math.abs(glon1 - glon2) - 2 * Math.PI) < EPS)) {\n        console.log(\"Points 1 and 2 are identical- course undefined\")\n        // @ts-ignore\n        let out = new MakeArray(0)\n        out.d = 0\n        out.crs12 = 0\n        out.crs21 = Math.PI\n        return out\n    }\n    r = 1 - f\n    tu1 = r * Math.tan(glat1)\n    tu2 = r * Math.tan(glat2)\n    cu1 = 1 / Math.sqrt(1 + tu1 * tu1)\n    su1 = cu1 * tu1\n    cu2 = 1 / Math.sqrt(1 + tu2 * tu2)\n    s1 = cu1 * cu2\n    b1 = s1 * tu2\n    f1 = b1 * tu1\n    x = glon2 - glon1\n    d = x + 1 // force one pass\n    while ((Math.abs(d - x) > EPS) && (iter < MAXITER)) {\n        iter += 1\n        sx = Math.sin(x)\n        //       alert(\"sx=\"+sx)\n        cx = Math.cos(x)\n        tu1 = cu2 * sx\n        tu2 = b1 - su1 * cu2 * cx\n        sy = Math.sqrt(tu1 * tu1 + tu2 * tu2)\n        cy = s1 * cx + f1\n        y = atan2(sy, cy)\n        sa = s1 * sx / sy\n        c2a = 1 - sa * sa\n        cz = f1 + f1\n        if (c2a > 0) {\n            cz = cy - cz / c2a\n        }\n        e = cz * cz * 2 - 1\n        c = ((-3 * c2a + 4) * f + 4) * c2a * f / 16\n        d = x\n        x = ((e * cy * c + cz) * sy * c + y) * sa\n        x = (1 - c) * x * f + glon2 - glon1\n    }\n    x = Math.sqrt((1 / (r * r) - 1) * c2a + 1)\n    x += 1\n    x = (x - 2) / x\n    c = 1 - x\n    c = (x * x / 4 + 1) / c\n    d = (0.375 * x * x - 1) * x\n    x = e * cy\n    d = ((((sy * sy * 4 - 3) * (1 - e - e) * cz * d / 6 - x) * d / 4 + cz) * sy * d + y) * c * a * r\n    if (Math.abs(iter - MAXITER) < EPS) {\n        console.log(\"Algorithm did not converge\")\n    }\n    return d\n}\n\n\n//***************Utility***************\nfunction atan2(y, x) {\n    let out\n    if (x < 0) { out = Math.atan(y / x) + Math.PI }\n    if ((x > 0) && (y >= 0)) { out = Math.atan(y / x) }\n    if ((x > 0) && (y < 0)) { out = Math.atan(y / x) + 2 * Math.PI }\n    if ((x === 0) && (y > 0)) { out = Math.PI / 2 }\n    if ((x === 0) && (y < 0)) { out = 3 * Math.PI / 2 }\n    if ((x === 0) && (y === 0)) {\n        console.log(\"atan2(0,0) undefined\")\n        out = 0\n    }\n    return out\n}\n\nlet autocalc = global.get(\"user_autovolumecalc\")\n\nif ( autocalc && ((msg.topic.includes(\"lat\") || msg.topic.includes(\"lon\") || msg.topic.includes(\"user_autovolumecalc\") || msg.topic.includes(\"sample_gear_net_opening\")))) {\n\n    let object_lat_end = Number(global.get(\"object_lat_end\"))\n    let object_lon_end = Number(global.get(\"object_lon_end\"))\n    let object_lat = Number(global.get(\"object_lat\"))\n    let object_lon = Number(global.get(\"object_lon\"))\n\n    if (!(isNaN(object_lat_end) && isNaN(object_lon_end) && isNaN(object_lat) && isNaN(object_lon))) {\n        let sample_gear_net_opening = global.get(\"sample_gear_net_opening\")\n\n        let distance_km = ComputeDistance(object_lat, object_lon, object_lat_end, object_lon_end)\n\n        let sample_total_volume = distance_km * (Math.PI * (sample_gear_net_opening / 2) * (sample_gear_net_opening / 2)) // liters\n        sample_total_volume = Math.round(sample_total_volume + Number.EPSILON)\n        msg.topic = \"sample_total_volume\"\n        msg.payload = sample_total_volume\n        return msg\n    }\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
-        "y": 1160,
+        "x": 550,
+        "y": 1100,
         "wires": [
             [
                 "4f6afc5a.81e454"
@@ -2995,8 +2998,8 @@
         "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 700,
-        "y": 1280,
+        "x": 720,
+        "y": 1440,
         "wires": []
     },
     {
@@ -3012,8 +3015,8 @@
         "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.dir}}",
         "layout": "col-center",
         "className": "",
-        "x": 700,
-        "y": 1320,
+        "x": 720,
+        "y": 1480,
         "wires": []
     },
     {
@@ -3027,8 +3030,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 1300,
+        "x": 530,
+        "y": 1460,
         "wires": [
             [
                 "4fb4e0ad.c417c",
@@ -3049,8 +3052,8 @@
         "format": "{{msg.payload}} kts",
         "layout": "col-center",
         "className": "",
-        "x": 690,
-        "y": 1400,
+        "x": 710,
+        "y": 1560,
         "wires": []
     },
     {
@@ -3065,8 +3068,8 @@
         "label": "Direction",
         "format": "{{msg.payload.track}} °",
         "layout": "col-center",
-        "x": 700,
-        "y": 1360,
+        "x": 720,
+        "y": 1520,
         "wires": []
     },
     {
@@ -3079,8 +3082,9 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
-        "y": 1240,
+        "libs": [],
+        "x": 490,
+        "y": 1400,
         "wires": [
             [
                 "7116e906.9f50f"
@@ -3097,8 +3101,9 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 490,
-        "y": 1400,
+        "libs": [],
+        "x": 510,
+        "y": 1560,
         "wires": [
             [
                 "7c4ce5f3.62dd5c"
@@ -3118,8 +3123,8 @@
         "format": "{{msg.payload.time}}",
         "layout": "col-center",
         "className": "",
-        "x": 690,
-        "y": 1440,
+        "x": 710,
+        "y": 1600,
         "wires": []
     },
     {
@@ -3133,8 +3138,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 1440,
+        "x": 490,
+        "y": 1600,
         "wires": [
             [
                 "35ad311f.344c76"
@@ -3159,7 +3164,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 780,
+        "x": 860,
         "y": 440,
         "wires": [
             [
@@ -3180,33 +3185,17 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": "300",
+        "delay": "1000",
         "topic": "sample_total_volume",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 1660,
-        "y": 1160,
+        "x": 860,
+        "y": 1100,
         "wires": [
             [
-                "e1f2f6eb.fe1dd"
+                "2828394efe24593b"
             ]
-        ]
-    },
-    {
-        "id": "e1f2f6eb.fe1dd",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "set global",
-        "func": "global.set(msg.topic,msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1860,
-        "y": 1160,
-        "wires": [
-            []
         ]
     },
     {
@@ -3227,7 +3216,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 750,
+        "x": 830,
         "y": 480,
         "wires": [
             [
@@ -3253,7 +3242,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 780,
+        "x": 860,
         "y": 320,
         "wires": [
             [
@@ -3279,53 +3268,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 780,
+        "x": 860,
         "y": 360,
         "wires": [
             [
                 "de2cd9caa0e28a7c"
             ]
-        ]
-    },
-    {
-        "id": "3ac7b631f5d8ef90",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Test check",
-        "func": "if (msg.topic.startsWith(\"sample_sampling_\")){\n    var sample_sampling_gear = global.get(\"sample_sampling_gear\")\n    var sample_sampling_direction = global.get(\"sample_sampling_gear\")\n    if (sample_sampling_gear === undefined || sample_sampling_gear === \"\" || sample_sampling_direction === undefined || sample_sampling_direction === \"\") {\n        return [null, null];\n    }\n\n    var activation_msg = {}\n    var date_msg = {}\n    var timestamp=new Date().toISOString();\n\n    if (sample_sampling_gear === \"net\") {\n        if (sample_sampling_direction === \"vertical\") {\n            activation_msg.payload = { \"group\": { \"show\": [\"Sample_Start_Location\"], \"hide\": [\"Sample_End_Location\", \"Sample_Culture_Date_and_Time\", \"Sample_Net_Metadata\"] } };\n        }\n        else if (sample_sampling_direction === \"horizontal\") {\n            activation_msg.payload = { \"group\": { \"show\": [\"Sample_End_Location\", \"Sample_Start_Location\"], \"hide\": [\"Sample_Culture_Date_and_Time\", \"Sample_Net_Metadata\"] } };\n        }\n        return [activation_msg, null]\n    }\n    else if (sample_sampling_gear === \"culture\") {\n        activation_msg.payload = { \"group\": { \"show\": [\"Sample_Culture_Date_and_Time\"], \"hide\": [\"Sample_End_Location\", \"Sample_Start_Location\", \"Sample_Net_Metadata\"] } };\n        global.set(\"object_lat\", \"-90.0000\")\n        global.set(\"object_lon\", \"0.0000\")\n        global.set(\"object_date\", timestamp.split('T')[0])\n        global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n        date_msg.payload = 1\n        return [activation_msg, date_msg]\n    }\n    else if (msg.payload === \"test\"){\n        activation_msg.payload = { \"group\": { \"hide\": [\"Sample_Culture_Date_and_Time\", \"Sample_End_Location\", \"Sample_Start_Location\", \"Sample_Net_Metadata\"]}};\n        global.set(\"object_lat\", \"-90.0000\")\n        global.set(\"object_lon\", \"0.0000\")\n        global.set(\"object_date\", timestamp.split('T')[0])\n        global.set(\"object_time\", timestamp.split('T')[1].split('.')[0])\n        return [activation_msg, null]\n    }\n}\nreturn [null, null]",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1370,
-        "y": 340,
-        "wires": [
-            [
-                "cbb123ab.fd3428"
-            ],
-            []
-        ],
-        "outputLabels": [
-            "decknet activation",
-            ""
-        ]
-    },
-    {
-        "id": "14737194ac3d940d",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Calculate volume",
-        "func": "if (msg.topic == \"sample_total_flowmeter_start\"){\n    context.set(\"sample_total_flowmeter_start\", msg.payload);\n}\nif (msg.topic == \"sample_total_flowmeter_end\"){\n    context.set(\"sample_total_flowmeter_end\", msg.payload);\n}\n\nif (context.keys().length == 2){\n    var sample_total_volume = context.get(\"sample_total_flowmeter_end\") - context.get(\"sample_total_flowmeter_start\");\n    msg.topic=\"sample_total_volume\"\n    msg.payload=sample_total_volume\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1090,
-        "y": 1180,
-        "wires": [
-            []
         ]
     },
     {
@@ -3363,7 +3311,7 @@
         "topic": "sample_sampling_direction",
         "topicType": "str",
         "className": "",
-        "x": 760,
+        "x": 840,
         "y": 240,
         "wires": [
             [
@@ -3397,11 +3345,11 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 770,
+        "x": 850,
         "y": 520,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "bbce4c721dda135c"
             ]
         ]
     },
@@ -3418,15 +3366,17 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": "500",
+        "delay": "0",
         "topic": "object_time",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 810,
-        "y": 780,
+        "x": 890,
+        "y": 720,
         "wires": [
-            []
+            [
+                "ce685c487bb90734"
+            ]
         ]
     },
     {
@@ -3442,16 +3392,16 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "0",
         "topic": "object_date",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 810,
-        "y": 740,
+        "x": 890,
+        "y": 680,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "46c54d2da71d8004"
             ]
         ]
     },
@@ -3468,16 +3418,16 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": "500",
+        "delay": "0",
         "topic": "object_lat",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 820,
-        "y": 660,
+        "x": 900,
+        "y": 760,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "1316546afecd3637"
             ]
         ]
     },
@@ -3486,8 +3436,8 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "b771c342.49603",
         "name": "",
-        "x": 720,
-        "y": 1160,
+        "x": 740,
+        "y": 1320,
         "wires": []
     },
     {
@@ -3502,6 +3452,13 @@
                 "pt": "msg",
                 "to": "sample_project",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_project",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3529,6 +3486,13 @@
                 "pt": "msg",
                 "to": "sample_ship",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_ship",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3556,6 +3520,13 @@
                 "pt": "msg",
                 "to": "sample_id",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_id",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3583,6 +3554,13 @@
                 "pt": "msg",
                 "to": "sample_operator",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_operator",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3610,6 +3588,13 @@
                 "pt": "msg",
                 "to": "acq_minimum_mesh",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_minimum_mesh",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3637,6 +3622,13 @@
                 "pt": "msg",
                 "to": "acq_maximum_mesh",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_maximum_mesh",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3664,6 +3656,13 @@
                 "pt": "msg",
                 "to": "sample_concentrated_sample_volume",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_concentrated_sample_volume",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3691,6 +3690,13 @@
                 "pt": "msg",
                 "to": "sample_dilution_factor",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_dilution_factor",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3718,6 +3724,13 @@
                 "pt": "msg",
                 "to": "sample_speed_through_water",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_speed_through_water",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3734,15 +3747,6 @@
         ]
     },
     {
-        "id": "326fb733cc56e902",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "b771c342.49603",
-        "name": "",
-        "x": 1380,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "8f2340504cec3332",
         "type": "change",
         "z": "b771c342.49603",
@@ -3754,6 +3758,13 @@
                 "pt": "msg",
                 "to": "user_autovolumecalc",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_autovolumecalc",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3781,6 +3792,13 @@
                 "pt": "msg",
                 "to": "sample_sampling_gear",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_sampling_gear",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3808,6 +3826,13 @@
                 "pt": "msg",
                 "to": "sample_sampling_direction",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_sampling_direction",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3835,6 +3860,13 @@
                 "pt": "msg",
                 "to": "object_depth_max",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_depth_max",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3862,6 +3894,13 @@
                 "pt": "msg",
                 "to": "object_depth_min",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_depth_min",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3889,6 +3928,13 @@
                 "pt": "msg",
                 "to": "sample_gear_net_opening",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sample_gear_net_opening",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3905,90 +3951,35 @@
         ]
     },
     {
-        "id": "60ad348594abdaa8",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1120,
-        "y": 300,
-        "wires": [
-            [
-                "326fb733cc56e902",
-                "21beeed36295bf6f",
-                "3ac7b631f5d8ef90"
-            ]
-        ]
-    },
-    {
         "id": "21beeed36295bf6f",
         "type": "function",
         "z": "b771c342.49603",
         "name": "sampling_gear activate or deactivate",
-        "func": "if (msg.topic === \"sample_sampling_gear\" && msg.payload === \"net\"){\n    return msg.enabled = false\n}\nif (msg.topic === \"sample_sampling_gear\" && msg.payload === \"raw\") {\n    return msg.enabled = true\n}\nif (msg.topic === \"sample_sampling_gear\" && msg.payload === \"culture\") {\n    return msg.enabled = true\n}\nif (msg.topic === \"sample_sampling_gear\" && msg.payload === \"test\") {\n    return msg.enabled = true\n}\n",
+        "func": "if (msg.topic === \"sample_sampling_gear\" || msg.topic === \"sample_sampling_direction\") {\n    const gear = global.get(\"sample_sampling_gear\")\n    if (gear === \"net\" || gear === \"raw\") {\n        const direction = global.get(\"sample_sampling_direction\")\n        if (direction === \"horizontal\") {\n            // net is used horizontally, we need both the start and end location\n            return [{ \"enabled\": true }, { \"enabled\": true }, { \"enabled\": true }, null]\n        }\n        else {\n            return [{ \"enabled\": true }, { \"enabled\": true }, { \"enabled\": false }, null]\n        }\n    }\n    else if (gear === \"culture\") {\n        global.set(\"object_lat\", \"90.0000\")\n        global.set(\"object_lon\", \"0.0000\")\n        return [{ \"enabled\": true }, { \"enabled\": false }, { \"enabled\": false }, msg]\n    }\n    else if (gear === \"test\") {\n        global.set(\"object_lat\", \"90.0000\")\n        global.set(\"object_lon\", \"0.0000\")\n        global.set(\"object_date\", \"20000101\")\n        global.set(\"object_time\", \"000000\")\n        return [{ \"enabled\": false }, { \"enabled\": false }, { \"enabled\": false }, msg]\n    }\n}",
         "outputs": 4,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1150,
-        "y": 560,
+        "x": 1450,
+        "y": 240,
         "wires": [
-            [],
-            [],
-            [],
+            [
+                "2ea04e16929529a6"
+            ],
+            [
+                "4d1f664018dd3c54"
+            ],
+            [
+                "b317889044aabb83"
+            ],
             []
         ],
         "outputLabels": [
-            "net activation",
-            "culture activation",
-            "raw activation",
-            "test activation"
-        ]
-    },
-    {
-        "id": "0f4d8caad27e928f",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "return payload to sender",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1310,
-        "y": 1320,
-        "wires": [
-            [
-                "14658615.47c862",
-                "358908cd.416ab"
-            ]
-        ]
-    },
-    {
-        "id": "1d4dc8f8b427ac1d",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "return payload to sender",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1310,
-        "y": 1260,
-        "wires": [
-            [
-                "14658615.47c862",
-                "c33f1124.af6688"
-            ]
+            "start date time",
+            "start location",
+            "end location",
+            "save metadata"
         ]
     },
     {
@@ -4004,16 +3995,16 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": "500",
+        "delay": "0",
         "topic": "object_time_end",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 800,
-        "y": 980,
+        "x": 880,
+        "y": 920,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "ce685c487bb90734"
             ]
         ]
     },
@@ -4030,16 +4021,16 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "0",
         "topic": "object_date_end",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 790,
-        "y": 940,
+        "x": 870,
+        "y": 880,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "46c54d2da71d8004"
             ]
         ]
     },
@@ -4056,16 +4047,16 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": "500",
+        "delay": "0",
         "topic": "object_lat_end",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 800,
-        "y": 860,
+        "x": 880,
+        "y": 960,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "1316546afecd3637"
             ]
         ]
     },
@@ -4082,172 +4073,16 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "0",
         "topic": "object_lon_end",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 800,
-        "y": 900,
+        "x": 880,
+        "y": 1000,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
-            ]
-        ]
-    },
-    {
-        "id": "358908cd.416ab",
-        "type": "ui_form",
-        "z": "b771c342.49603",
-        "d": true,
-        "name": "net_throw_location",
-        "label": "Net Location",
-        "group": "cf5d9f0e.d57e7",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Latitude (36.9574°N or 36°57.4439'N)",
-                "value": "object_lat",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Longitude (110.0702°W or 110°4.2100'W)",
-                "value": "object_lon",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Date (YYYY-MM-DD UTC)",
-                "value": "object_date",
-                "type": "date",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Time (HH:MM, UTC 24h)",
-                "value": "object_time",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Starting Latitude (36.9574°N or 36°57.4439'N)",
-                "value": "object_lat_end",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Ending Longitude (110.0702°W or 110°4.2100'W)",
-                "value": "object_lon_end",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Date (YYYY-MM-DD UTC)",
-                "value": "object_date_end",
-                "type": "date",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Time (HH:MM, UTC 24h)",
-                "value": "object_time_end",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "object_lat": "",
-            "object_lon": "",
-            "object_date": "",
-            "object_time": "",
-            "object_lat_end": "",
-            "object_lon_end": "",
-            "object_date_end": "",
-            "object_time_end": ""
-        },
-        "payload": "",
-        "submit": "Validate",
-        "cancel": "",
-        "topic": "net_throw_location",
-        "topicType": "str",
-        "splitLayout": false,
-        "className": "",
-        "x": 1090,
-        "y": 1320,
-        "wires": [
-            [
-                "0f4d8caad27e928f"
-            ]
-        ]
-    },
-    {
-        "id": "c33f1124.af6688",
-        "type": "ui_form",
-        "z": "b771c342.49603",
-        "d": true,
-        "name": "single_location",
-        "label": "Single Location",
-        "group": "f48d09d4b6deee50",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Latitude (36.574439°N or 36°57.4439'N)",
-                "value": "object_lat",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Longitude (110.42100°W or 110°4.2100'W)",
-                "value": "object_lon",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Date (YYYY-MM-DD, UTC)",
-                "value": "object_date",
-                "type": "date",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Time (HH:MM(:SS), UTC 24h)",
-                "value": "object_time",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "object_lat": "",
-            "object_lon": "",
-            "object_date": "",
-            "object_time": ""
-        },
-        "payload": "",
-        "submit": "Validate",
-        "cancel": "Reset",
-        "topic": "single_location",
-        "topicType": "str",
-        "splitLayout": false,
-        "className": "",
-        "x": 1100,
-        "y": 1260,
-        "wires": [
-            [
-                "1d4dc8f8b427ac1d"
+                "1316546afecd3637"
             ]
         ]
     },
@@ -4278,7 +4113,7 @@
         "to": "",
         "reg": false,
         "x": 320,
-        "y": 660,
+        "y": 760,
         "wires": [
             [
                 "c42fce53c259983d"
@@ -4312,7 +4147,7 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 700,
+        "y": 800,
         "wires": [
             [
                 "c42fce53c259983d"
@@ -4331,6 +4166,13 @@
                 "pt": "msg",
                 "to": "object_date",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_date",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -4339,10 +4181,10 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 740,
+        "y": 680,
         "wires": [
             [
-                "a2d77b1a739782ae"
+                "0f6733bc5d35331c"
             ]
         ]
     },
@@ -4358,6 +4200,13 @@
                 "pt": "msg",
                 "to": "object_time",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_time",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -4366,10 +4215,10 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 780,
+        "y": 720,
         "wires": [
             [
-                "ddf55be3c2b5f95f"
+                "0f6733bc5d35331c"
             ]
         ]
     },
@@ -4400,7 +4249,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 860,
+        "y": 960,
         "wires": [
             [
                 "1a6dc671d99681ba"
@@ -4434,7 +4283,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 900,
+        "y": 1000,
         "wires": [
             [
                 "1a6dc671d99681ba"
@@ -4453,6 +4302,13 @@
                 "pt": "msg",
                 "to": "object_date_end",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_date_end",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -4461,10 +4317,11 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 940,
+        "y": 880,
         "wires": [
             [
-                "1a77598c88654944"
+                "1a77598c88654944",
+                "9895313574268864"
             ]
         ]
     },
@@ -4480,6 +4337,13 @@
                 "pt": "msg",
                 "to": "object_time_end",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "object_time_end",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -4488,10 +4352,11 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 980,
+        "y": 920,
         "wires": [
             [
-                "4477d47fb509decd"
+                "4477d47fb509decd",
+                "9895313574268864"
             ]
         ]
     },
@@ -4508,60 +4373,35 @@
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": "500",
+        "delay": "0",
         "topic": "object_lon",
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 810,
-        "y": 700,
+        "x": 890,
+        "y": 800,
         "wires": [
             [
-                "de2cd9caa0e28a7c"
+                "1316546afecd3637"
             ]
-        ]
-    },
-    {
-        "id": "9ff194bcc1c5e9c1",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Validate Location / Timestamp",
-        "func": "// Code added here will be run once\n// whenever the node is started.\nfunction ConvertDDMMToDD(input) {\n    // Input Format 36°57.4439'N, 110°4.2100'W\n    // From https://stackoverflow.com/questions/1140189/converting-latitude-and-longitude-to-decimal-values\n    if (! input.match(/\\d+°\\d+\\.*\\d*\\'?[NSEW]/)){\n    \treturn \"parsing error 1\"\n    }\n    var parts = input.split(/[^\\d.]+/)\n    if (parts.length < 2){\n    \treturn \"parsing error 2\"\n    }\n    var dd = Number(parts[0]) + Number(parts[1])/60\n    return dd.toFixed(6) + input.slice(-1)\n}\n\nfunction ValidateCoordinates(input, lat){\n    // Input Format 36.574439°N, 110.42100°W\n    // Or 36°57.4439'N, 110°4.2100'W\n    if (input.match(/\\d°\\d/)){\n        input = ConvertDDMMToDD(input)\n    }\n    \n    var error = {}\n\n    if (input.startsWith(\"parsing error\")){\n        error.topic = \"Error with the \" + input\n        error.payload = \"You need to respect the format example, 36.574439°N or 36°57.4439'N\"\n        return [null, error]\n    }\n    \n    var direction = input.match(/[NSEW]/)\n    var position = input.match(/[\\+\\-\\d\\.]+/)\n    \n    if (direction === null){\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n    \n    // Test that position is only made of digits!\n    if(/^[\\+\\-]/.test(position)){\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n    \n    var dd = Number(position)\n    if (lat){\n        // Check latitude\n        if (direction == \"S\" || direction == \"N\") {\n            if (dd>90.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Latitude is more than 90°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else{\n        // Check longitude\n        if (direction == \"W\" || direction == \"E\") {\n            if (dd>180.0){\n                error.topic = \"Error with the \"\n                error.payload = \"Longitude is more than 180°\"\n                return [null, error]\n            }\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n    \n    if (direction == \"S\" || direction == \"W\") {\n        dd = dd * -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(4), null]\n    \n}\n\nfunction ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /20\\d{2}-[0-1]\\d-[0-3]\\d/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input){\n    // Input Format 12:00\n    var error = {}\n    \n    if (! /[0-2]?\\d:[0-5]\\d/.test(input)){\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n        \n        if (!((0 <= time[0]) && (time[0] < 24))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))){\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nvar ret\nvar payload_for_form = {payload:{}}\nmsg.valid = false\n\nif (msg.topic == \"culture_timestamp\"){\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    return [{topic: \"Date and time format valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n}\nelse if (msg.topic == \"net_retrieval_location\"){\n    ret = ValidateCoordinates(msg.payload.object_lat_end, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat_end\", ret[0])\n    ret = ValidateCoordinates(msg.payload.object_lon_end, false)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon_end\", ret[0]);\n    \n    ret = ValidateDate(msg.payload.object_date_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date_end\", ret[0])\n    \n    ret = ValidateTime(msg.payload.object_time_end)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample retrieval\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time_end\", ret[0])\n}\nelse{\n    ret = ValidateCoordinates(msg.payload.object_lat, true);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Latitude\";\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lat\", ret[0]);\n    payload_for_form.payload[\"object_lat_end\"] = msg.payload.object_lat;\n    \n    ret = ValidateCoordinates(msg.payload.object_lon, false);\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_lon\", ret[0])\n    payload_for_form.payload[\"object_lon_end\"] = msg.payload.object_lon;\n\n    ret = ValidateDate(msg.payload.object_date)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_date\", ret[0])\n    payload_for_form.payload[\"object_date_end\"] = msg.payload.object_date;\n    \n    ret = ValidateTime(msg.payload.object_time)\n    if (ret[1] !== null){\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return [msg, null]\n    }\n    global.set(\"object_time\", ret[0])\n    payload_for_form.payload[\"object_time_end\"] = msg.payload.object_time;\n}\nreturn [{topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}, payload_for_form]\n",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1190,
-        "y": 960,
-        "wires": [
-            [],
-            []
-        ],
-        "inputLabels": [
-            "Location form data"
-        ],
-        "outputLabels": [
-            "Message",
-            "Location validated"
         ]
     },
     {
         "id": "46c54d2da71d8004",
         "type": "function",
         "z": "b771c342.49603",
-        "name": "Validate Date",
-        "func": "function ValidateDate(input){\n    // Input Format 2020-12-25\n    var error = {};\n    \n    if (! /\\d{4}-\\d{2}-\\d{2}/.test(input)){\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        var date = input.match(/\\d+/g);\n        if (!((2000 < date[0]) && (date[0] < 2100))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((0 < date[1]) && (date[1] <= 12))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((0 < date[2]) && (date[2] <= 31))){\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\n\nvar ret = ValidateDate(msg.payload)\nif (ret[1] !== null){\n    var error_msg = {}\n    error_msg.valid = false\n    error_msg.topic = ret[1].topic + \" of the sample\"\n    error_msg.payload = ret[1].payload\n    return [null, error_msg]\n}\n\nreturn [msg, {topic: \"Coordinates valid!\", payload: \"All good!\", valid: true}]\n",
+        "name": "Validate date",
+        "func": "function ValidateDate(input) {\n    // Input Format 2020-12-25\n    let error = { \"topic\" : \"Error with the\"};\n\n    if (! /\\d{4}-?\\d{2}-?\\d{2}/.test(input)) {\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        let date = input.match(/(\\d{4})(?:\\D?)(\\d{2})(?:\\D?)(\\d{2})?/);\n        if (!((date[1] >= 2000) && (date[1] <= 2100))) {\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((date[2] > 0) && (date[2] <= 12))) {\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((date[3] > 0) && (date[3] <= 31))) {\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\n\nvar ret = ValidateDate(msg.payload)\nif (ret[1] !== null) {\n    if (msg.topic.includes(\"end\")) {\n        ret[1].topic += \" sampling end date\"\n    }\n    else {\n        ret[1].topic += \" sampling date\"\n    }\n    return [null, ret[1]]\n}\n\nmsg.payload = ret[0]\nreturn [msg, null]\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1050,
-        "y": 840,
+        "x": 1130,
+        "y": 800,
         "wires": [
             [
-                "ef484555928e1af6"
+                "bbce4c721dda135c"
             ],
             [
                 "9882ebee11eb6fd0"
@@ -4579,18 +4419,18 @@
         "id": "ce685c487bb90734",
         "type": "function",
         "z": "b771c342.49603",
-        "name": "Validate Time",
-        "func": "function ValidateTime(input) {\n    // Input Format 12:34(:56)\n    var error = {}\n\n    if (! /\\d{2}:\\d{2}(:\\d{2})?/.test(input)) {\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM(:SS)\"\n        return [null, error]\n    }\n    else {\n        var time = input.match(/\\d+/g)\n\n        if (!((0 <= time[0]) && (time[0] < 24))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((0 <= time[1]) && (time[1] < 60))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n        else if (time.length == 3) {\n            if (!((0 <= time[2]) && (time[2] < 60))) {\n                error.topic = \"Error with the time\"\n                error.payload = \"The seconds should be between 0 and 59\"\n                return [null, error]\n            }\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\n\nvar ret = ValidateTime(msg.payload)\nif (ret[1] !== null) {\n    var error_msg = {}\n    error_msg.valid = false\n    error_msg.topic = ret[1].topic + \" of the sample\"\n    error_msg.payload = ret[1].payload\n    return [null, error_msg]\n}\n\nreturn [msg, { topic: \"Time format is valid!\", payload: \"All good!\", valid: true }]\n",
+        "name": "Validate time",
+        "func": "function ValidateTime(input) {\n    // Input Format 12:00:00\n    let error = { \"topic\": \"Error with the\" }\n\n    if (! /\\d{2}:?\\d{2}:?\\d{0,2}/.test(input)) {\n        error.payload = \"The date should respect the ISO format HH:MM:SS\"\n        return [null, error]\n    }\n    else {\n        let time = input.match(/\\d{2}/g)\n\n        if (time.length < 3) {\n            time[2] = 0\n            input += \":00\"\n        }\n\n        if (!((time[0] >= 0) && (time[0] < 24))) {\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((time[1] >= 0) && (time[1] < 60))) {\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n        else if (!((time[2] >= 0) && (time[2] < 60))) {\n            error.payload = \"The seconds should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\n\n\nvar ret = ValidateTime(msg.payload)\nif (ret[1] !== null) {\n    if (msg.topic.includes(\"end\")) {\n        ret[1].topic += \" sampling end time\"\n    }\n    else {\n        ret[1].topic += \" sampling time\"\n    }\n    return [null, ret[1]]\n}\n\nmsg.payload = ret[0]\nreturn [msg, null]\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1060,
-        "y": 880,
+        "x": 1130,
+        "y": 840,
         "wires": [
             [
-                "ef484555928e1af6"
+                "bbce4c721dda135c"
             ],
             [
                 "9882ebee11eb6fd0"
@@ -4603,34 +4443,6 @@
             "Message",
             "Location validated"
         ]
-    },
-    {
-        "id": "ef484555928e1af6",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1280,
-        "y": 740,
-        "wires": [
-            [
-                "ac475db16b414508"
-            ]
-        ]
-    },
-    {
-        "id": "ac475db16b414508",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "b771c342.49603",
-        "name": "",
-        "x": 1480,
-        "y": 740,
-        "wires": []
     },
     {
         "id": "9882ebee11eb6fd0",
@@ -4646,7 +4458,7 @@
         "raw": false,
         "topic": "",
         "name": "",
-        "x": 1490,
+        "x": 1410,
         "y": 860,
         "wires": [
             []
@@ -4656,14 +4468,14 @@
         "id": "9f0e8bf2e43e1b95",
         "type": "ui_button",
         "z": "b771c342.49603",
-        "name": "",
+        "name": "Get data from GPS",
         "group": "cef1e703.bcf3c8",
         "order": 1,
         "width": 0,
         "height": 0,
         "passthru": false,
         "label": "Get location and time data from GPS",
-        "tooltip": "",
+        "tooltip": "Copy the location and time data from the GPS box",
         "color": "",
         "bgcolor": "",
         "className": "",
@@ -4672,24 +4484,26 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 570,
+        "x": 350,
         "y": 640,
         "wires": [
-            []
+            [
+                "2d7d5982a968985f"
+            ]
         ]
     },
     {
         "id": "471cdf333c4d11e4",
         "type": "ui_button",
         "z": "b771c342.49603",
-        "name": "",
+        "name": "Get data from start point",
         "group": "cef1e703.bcf3c8",
         "order": 7,
         "width": 0,
         "height": 0,
         "passthru": false,
         "label": "Get location and time data from start point",
-        "tooltip": "",
+        "tooltip": "Copy the location and time data entered for the start point",
         "color": "",
         "bgcolor": "",
         "className": "",
@@ -4698,10 +4512,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 580,
-        "y": 820,
+        "x": 370,
+        "y": 840,
         "wires": [
-            []
+            [
+                "a7e690462e3b635b"
+            ]
         ]
     },
     {
@@ -4709,14 +4525,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Convert DD to DD+DIR",
-        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\n\nif (msg.topic.constains(\"lat\")) {\n    return [msg.payload = getDirection(msg.payload, false), null]\n}\nif (msg.topic.constains(\"lon\")) {\n    return [null, msg.payload = getDirection(msg.payload, true)]\n}",
+        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\nif (!msg.payload.match(/[NSEW]+/)) {\n    if (msg.topic.includes(\"lat\")) {\n        msg.payload = getDirection(msg.payload, false)\n        return [msg, null]\n    }\n    if (msg.topic.includes(\"lon\")) {\n        msg.payload = getDirection(msg.payload, true)\n        return [null, msg]\n    }\n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 680,
+        "x": 610,
+        "y": 780,
         "wires": [
             [
                 "bf864cde6c5b2b5f"
@@ -4731,14 +4547,14 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Convert DD to DD+DIR",
-        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\n\nif (msg.topic.constains(\"lat\")) {\n    return [msg.payload = getDirection(msg.payload, false), null]\n}\nif (msg.topic.constains(\"lon\")) {\n    return [null, msg.payload = getDirection(msg.payload, true)]\n}",
+        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\nif (!msg.payload.match(/[NSEW]+/)) {\n    if (msg.topic.includes(\"lat\")) {\n        msg.payload = getDirection(msg.payload, false)\n        return [msg, null]\n    }\n    if (msg.topic.includes(\"lon\")) {\n        msg.payload = getDirection(msg.payload, true)\n        return [null, msg]\n    }\n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 880,
+        "x": 610,
+        "y": 980,
         "wires": [
             [
                 "eae1267df3893054"
@@ -4749,44 +4565,326 @@
         ]
     },
     {
-        "id": "877ba60abeb634fd",
-        "type": "ui_button",
-        "z": "b771c342.49603",
-        "name": "",
-        "group": "cef1e703.bcf3c8",
-        "order": 13,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Validate time and date location format",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 570,
-        "y": 1020,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "9a2b7c8d3751a5ee",
         "type": "function",
         "z": "b771c342.49603",
         "name": "Save GPS coordinates in flow",
-        "func": "if (msg.payload.mode == 2 || msg.payload.mode == 3) { // mode 2 or 3 is 2D or 3D fix\n    flow.set(\"gps_lat\", msg.payload.lat)\n    flow.set(\"gps_lon\", msg.payload.lon)\n    flow.set(\"gps_date\", msg.payload.date.split('T')[0])\n    flow.set(\"gps_time\", msg.payload.date.split('T')[1])\n}\nreturn msg;",
+        "func": "function getDirection(D, lng) {\n    // from https://stackoverflow.com/a/5786281/2108279\n    var dir = D < 0 ? lng ? 'W' : 'S' : lng ? 'E' : 'N'\n    return D + dir\n}\n\n\nif (msg.payload.mode == 2 || msg.payload.mode == 3) { // mode 2 or 3 is 2D or 3D fix\n    flow.set(\"gps_lat\", getDirection(msg.payload.lat, false))\n    flow.set(\"gps_lon\", getDirection(msg.payload.lon, true))\n    flow.set(\"gps_date\", msg.payload.time.split('T')[0])\n    flow.set(\"gps_time\", msg.payload.time.split('T')[1].match(/\\d{2}:\\d{2}:\\d{2}/)[0])\n}",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "2d7d5982a968985f",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "get GPS data from flow",
+        "func": "var date = { \"topic\": \"object_date\", \"payload\": flow.get(\"gps_date\") }\nvar time = { \"topic\": \"object_time\", \"payload\": flow.get(\"gps_time\") }\nvar lat = { \"topic\": \"object_lon\", \"payload\": flow.get(\"gps_lat\") }\nvar lon = { \"topic\": \"object_lat\", \"payload\": flow.get(\"gps_lon\") }\n\n\nreturn [date, time, lat, lon]\n",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 640,
+        "wires": [
+            [
+                "a2d77b1a739782ae"
+            ],
+            [
+                "ddf55be3c2b5f95f"
+            ],
+            [
+                "bf864cde6c5b2b5f"
+            ],
+            [
+                "2346b1b1a2461528"
+            ]
+        ]
+    },
+    {
+        "id": "a7e690462e3b635b",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "get sampling start data",
+        "func": "var date = { \"topic\": \"object_date_end\", \"payload\": global.get(\"object_date\") }\nvar time = { \"topic\": \"object_time_end\", \"payload\": global.get(\"object_time\") }\nvar lat = { \"topic\": \"object_lon_end\", \"payload\": global.get(\"object_lat\") }\nvar lon = { \"topic\": \"object_lat_end\", \"payload\": global.get(\"object_lon\") }\n\n\nreturn [date, time, lat, lon]\n",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 840,
+        "wires": [
+            [
+                "1a77598c88654944"
+            ],
+            [
+                "4477d47fb509decd"
+            ],
+            [
+                "eae1267df3893054"
+            ],
+            [
+                "331f10d381a0b4a9"
+            ]
+        ]
+    },
+    {
+        "id": "7e27230e1b46e9f2",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"mode\":3,\"lat\":\"22.0985\",\"lon\":\"35.9860\",\"speed\":\"1\",\"time\":\"2023-05-18T05:33:40UTC\"}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 1620,
+        "wires": [
+            [
+                "8a3e288349643aae"
+            ]
+        ]
+    },
+    {
+        "id": "0f6733bc5d35331c",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Convert date time",
+        "func": "if (msg.topic.includes(\"date\")) {\n    const date_string = msg.payload.replace(/(\\d{4}).?(\\d{2}).?(\\d{2})/, \"$1-$2-$3\")\n    msg.payload = date_string\n    return [msg , null]\n}\nif (msg.topic.includes(\"time\")) {\n    const time = msg.payload.match(/\\d{2}/g)\n\n    if (time.length < 3) {\n        time[2] = 0\n    }\n    \n    msg.payload = time[0] + \":\" + time[1] + \":\" + time[2]\n    return [null, msg]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 700,
+        "wires": [
+            [
+                "a2d77b1a739782ae"
+            ],
+            [
+                "ddf55be3c2b5f95f"
+            ]
+        ]
+    },
+    {
+        "id": "9895313574268864",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Convert date time",
+        "func": "if (msg.topic.includes(\"date\")) {\n    const date_string = msg.payload.replace(/(\\d{4}).?(\\d{2}).?(\\d{2})/, \"$1-$2-$3\")\n    msg.payload = date_string\n    return [msg , null]\n}\nif (msg.topic.includes(\"time\")) {\n    const time = msg.payload.match(/\\d{2}/g)\n\n    if (time.length < 3) {\n        time[2] = 0\n    }\n    \n    msg.payload = time[0] + \":\" + time[1] + \":\" + time[2]\n    return [null, msg]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 900,
+        "wires": [
+            [
+                "1a77598c88654944"
+            ],
+            [
+                "4477d47fb509decd"
+            ]
+        ],
+        "outputLabels": [
+            "date",
+            "time"
+        ]
+    },
+    {
+        "id": "1316546afecd3637",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Validate coordinates",
+        "func": "function ValidateCoordinates(input, lat) {\n    // Input Format 36.574439°N, 110.42100°W\n\n    let error = {\"topic\" : \"Error with the\"}\n\n    let direction = input.match(/[NSEW]/)\n    let position = input.match(/[\\+\\-\\d\\.]+/)\n\n    if (direction === null) {\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n\n    // Test that the position is only made of digits!\n    if (/^[\\+\\-]/.test(position)) {\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n\n    let dd = Number(position)\n    if (lat) {\n        // Check latitude\n        if ((direction == \"S\" || direction == \"N\") && dd > 90.0) {\n            error.payload = \"Latitude is more than 90°\"\n            return [null, error]\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else {\n        // Check longitude\n        if ((direction == \"W\" || direction == \"E\") && dd > 180.0) {\n            error.payload = \"Longitude is more than 180°\"\n            return [null, error]\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n\n    if (direction == \"S\" || direction == \"W\") {\n        dd *= -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(5), null]\n\n}\n\nlet ret = []\n\nif (msg.topic.includes(\"lat\")){\n    ret = ValidateCoordinates(msg.payload, true);\n    if (ret[1] !== null) {\n        if (msg.topic.includes(\"end\")) {\n            ret[1].topic += \" sampling end latitude\"\n        }\n        else {\n            ret[1].topic += \" sampling latitude\"\n        }\n        return [null, ret[1]]\n    }\n    msg.payload = ret[0]\n    return [msg, null]\n}\n\n\nif (msg.topic.includes(\"lon\")){\n    ret = ValidateCoordinates(msg.payload, false);\n    if (ret[1] !== null) {\n        if (msg.topic.includes(\"end\")) {\n        ret[1].topic += \" sampling end longitude\"\n        }\n        else{\n            ret[1].topic += \" sampling longitude\"\n        }\n        return [null, ret[1]]\n    }\n    msg.payload = ret[0]\n    return [msg, null]\n}\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 880,
+        "wires": [
+            [
+                "bbce4c721dda135c"
+            ],
+            [
+                "9882ebee11eb6fd0"
+            ]
+        ],
+        "inputLabels": [
+            "Location form data"
+        ],
+        "outputLabels": [
+            "Message",
+            ""
+        ]
+    },
+    {
+        "id": "9ff194bcc1c5e9c1",
+        "type": "function",
+        "z": "b771c342.49603",
+        "name": "Validate Location / Timestamp",
+        "func": "function ValidateCoordinates(input, lat) {\n    // Input Format 36.574439°N, 110.42100°W\n\n    let error = {}\n\n    let direction = input.match(/[NSEW]/)\n    let position = input.match(/[\\+\\-\\d\\.]+/)\n\n    if (direction === null) {\n        error.topic = \"Error with the \"\n        error.payload = \"You need to explicitely enter N/S/E/W\"\n        return [null, error]\n    }\n\n    // Test that the position is only made of digits!\n    if (/^[\\+\\-]/.test(position)) {\n        error.topic = \"Error with the \"\n        error.payload = \"Use of +/- sign is inconsistent with N/S/E/W letter! Please only use N/S/E/W!\"\n        return [null, error]\n    }\n\n    let dd = Number(position)\n    if (lat) {\n        // Check latitude\n        if ((direction == \"S\" || direction == \"N\") && dd > 90.0) {\n            error.topic = \"Error with the \"\n            error.payload = \"Latitude is more than 90°\"\n            return [null, error]\n        }\n        if (direction == \"W\" || direction == \"E\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Latitude!\"\n            return [null, error]\n        }\n    }\n    else {\n        // Check longitude\n        if ((direction == \"W\" || direction == \"E\") && dd > 180.0) {\n            error.topic = \"Error with the \"\n            error.payload = \"Longitude is more than 180°\"\n            return [null, error]\n        }\n        if (direction == \"N\" || direction == \"S\") {\n            error.topic = \"Error with the \"\n            error.payload = \"This is not a Longitude!\"\n            return [null, error]\n        }\n    }\n\n    if (direction == \"S\" || direction == \"W\") {\n        dd *= -1\n    } // Don't do anything for N or E\n    return [dd.toFixed(6), null]\n\n}\n\nfunction ValidateDate(input) {\n    // Input Format 2020-12-25\n    let error = {};\n\n    if (! /\\d{4}-?\\d{2}-?\\d{2}/.test(input)) {\n        error.topic = \"Error with the date\";\n        error.payload = \"The date should respect the ISO format YYYY-MM-DD\";\n        return [null, error];\n    }\n    else {\n        let date = input.match(/(\\d{4})(?:\\D?)(\\d{2})(?:\\D?)(\\d{2})?/);\n        if (!((date[1] >= 2000) && (date[1] <= 2100))) {\n            error.topic = \"Error with the date\"\n            error.payload = \"The year should be between 2000 and 2100\"\n            return [null, error]\n        }\n        else if (!((date[2] > 0) && (date[2] <= 12))) {\n            error.topic = \"Error with the date\"\n            error.payload = \"The month should be between 01 and 12\"\n            return [null, error]\n        }\n        else if (!((date[3] > 0) && (date[3] <= 31))) {\n            error.topic = \"Error with the date\"\n            error.payload = \"The day should be between 01 and 31\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/-/g, ''), null]\n}\n\nfunction ValidateTime(input) {\n    // Input Format 12:00:00\n    let error = {}\n\n    if (! /\\d{2}:?\\d{2}:?\\d{0,2}/.test(input)) {\n        error.topic = \"Error with the time\"\n        error.payload = \"The date should respect the ISO format HH:MM:SS\"\n        return [null, error]\n    }\n    else {\n        let time = input.match(/\\d{2}/g)\n\n        if (time.length < 3) {\n            time[2] = 0\n            input += \":00\"\n        }\n\n        if (!((time[0] >= 0) && (time[0] < 24))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The hours should be 0 and 23.\"\n            return [null, error]\n        }\n        else if (!((time[1] >= 0) && (time[1] < 60))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The minutes should be between 0 and 59\"\n            return [null, error]\n        }\n        else if (!((time[2] >= 0) && (time[2] < 60))) {\n            error.topic = \"Error with the time\"\n            error.payload = \"The seconds should be between 0 and 59\"\n            return [null, error]\n        }\n    }\n    return [input.replace(/:/g, ''), null]\n}\n\n\nlet ret = []\nmsg.valid = false\n\n// Validate object start data\nret = ValidateDate(global.get(\"object_date\"))\nif (ret[1] !== null) {\n    msg.topic = ret[1].topic + \" of the sample\"\n    msg.payload = ret[1].payload\n    return msg\n}\nglobal.set(\"object_date\", ret[0])\n\nret = ValidateTime(global.get(\"object_time\"))\nif (ret[1] !== null) {\n    msg.topic = ret[1].topic + \" of the sample\"\n    msg.payload = ret[1].payload\n    return msg\n}\nglobal.set(\"object_time\", ret[0])\n\nret = ValidateCoordinates(global.get(\"object_lat\"), true);\nif (ret[1] !== null) {\n    msg.topic = ret[1].topic + \" Latitude\"\n    msg.payload = ret[1].payload\n    return msg\n}\nglobal.set(\"object_lat\", ret[0])\n\nret = ValidateCoordinates(global.get(\"object_lon\"), false)\nif (ret[1] !== null) {\n    msg.topic = ret[1].topic + \" Longitude\"\n    msg.payload = ret[1].payload\n    return msg\n}\nglobal.set(\"object_lon\", ret[0]);\n\nif (global.get(\"sample_sampling_gear\") === \"net\") {\n\n    ret = ValidateDate(global.get(\"object_date_end\"))\n    if (ret[1] !== null) {\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return msg\n    }\n    global.set(\"object_date_end\", ret[0])\n\n    ret = ValidateTime(global.get(\"object_time_end\"))\n    if (ret[1] !== null) {\n        msg.topic = ret[1].topic + \" of the sample\"\n        msg.payload = ret[1].payload\n        return msg\n    }\n    global.set(\"object_time_end\", ret[0])\n\n    ret = ValidateCoordinates(global.get(\"object_lat_end\"), true);\n    if (ret[1] !== null) {\n        msg.topic = ret[1].topic + \" Latitude\"\n        msg.payload = ret[1].payload\n        return msg\n    }\n    global.set(\"object_lat_end\", ret[0])\n\n    ret = ValidateCoordinates(global.get(\"object_lon_end\"), false)\n    if (ret[1] !== null) {\n        msg.topic = ret[1].topic + \" Longitude\"\n        msg.payload = ret[1].payload\n        return msg\n    }\n    global.set(\"object_lon_end\", ret[0]);\n\n}\n\nreturn { topic: \"Date and time format valid!\", payload: \"All good!\", valid: true }",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 1480,
+        "x": 1110,
+        "y": 1400,
+        "wires": [
+            []
+        ],
+        "inputLabels": [
+            "Location form data"
+        ],
+        "outputLabels": [
+            "Message"
+        ]
+    },
+    {
+        "id": "4afbcb3c676f8277",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "sample datetime activation",
+        "links": [
+            "2ea04e16929529a6"
+        ],
+        "x": 745,
+        "y": 740,
+        "wires": [
+            [
+                "a2d77b1a739782ae",
+                "ddf55be3c2b5f95f"
+            ]
+        ]
+    },
+    {
+        "id": "712d473cada7f058",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "sample location start activation",
+        "links": [
+            "4d1f664018dd3c54"
+        ],
+        "x": 755,
+        "y": 820,
+        "wires": [
+            [
+                "bf864cde6c5b2b5f",
+                "2346b1b1a2461528"
+            ]
+        ]
+    },
+    {
+        "id": "097921b90b6e62ca",
+        "type": "link in",
+        "z": "b771c342.49603",
+        "name": "sampling end activation",
+        "links": [
+            "b317889044aabb83"
+        ],
+        "x": 685,
+        "y": 940,
+        "wires": [
+            [
+                "1a77598c88654944",
+                "4477d47fb509decd",
+                "eae1267df3893054",
+                "331f10d381a0b4a9"
+            ]
+        ]
+    },
+    {
+        "id": "2ea04e16929529a6",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "sample start date",
+        "mode": "link",
+        "links": [
+            "4afbcb3c676f8277"
+        ],
+        "x": 1675,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4d1f664018dd3c54",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "sample start location",
+        "mode": "link",
+        "links": [
+            "712d473cada7f058"
+        ],
+        "x": 1675,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b317889044aabb83",
+        "type": "link out",
+        "z": "b771c342.49603",
+        "name": "sample end location date",
+        "mode": "link",
+        "links": [
+            "097921b90b6e62ca"
+        ],
+        "x": 1675,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "84db87423739b057",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "b771c342.49603",
+        "name": "",
+        "x": 1160,
+        "y": 300,
+        "wires": [
+            [
+                "21beeed36295bf6f"
+            ]
+        ]
+    },
+    {
+        "id": "bbce4c721dda135c",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "b771c342.49603",
+        "name": "",
+        "x": 1440,
+        "y": 820,
+        "wires": [
+            [
+                "9a18a4b4.178448"
+            ]
+        ]
+    },
+    {
+        "id": "2828394efe24593b",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "b771c342.49603",
+        "name": "",
+        "x": 1100,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -4809,25 +4907,6 @@
         "y": 40,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "dc48dc42.98d18",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1140,
-        "y": 560,
-        "wires": [
-            [
-                "0449fb3f7205c9f1"
-            ]
         ]
     },
     {
@@ -5848,7 +5927,7 @@
         "id": "6be64480.7e7e24",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_red_gain",
+        "name": "user_red_gain",
         "rules": [
             {
                 "t": "set",
@@ -5856,6 +5935,13 @@
                 "pt": "msg",
                 "to": "user_red_gain",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_red_gain",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -5863,7 +5949,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 310,
+        "x": 300,
         "y": 740,
         "wires": [
             [
@@ -5875,7 +5961,7 @@
         "id": "6d49d161.13628",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_blue_gain",
+        "name": "user_blue_gain",
         "rules": [
             {
                 "t": "set",
@@ -5883,6 +5969,13 @@
                 "pt": "msg",
                 "to": "user_blue_gain",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_blue_gain",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -5890,7 +5983,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 310,
+        "x": 300,
         "y": 780,
         "wires": [
             [
@@ -5902,7 +5995,7 @@
         "id": "8ef294ba.12213",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_analog_gain",
+        "name": "user_analog_gain",
         "rules": [
             {
                 "t": "set",
@@ -5917,6 +6010,13 @@
                 "pt": "msg",
                 "to": "user_analog_gain",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_analog_gain",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -5924,7 +6024,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 320,
+        "x": 310,
         "y": 660,
         "wires": [
             [
@@ -5936,7 +6036,7 @@
         "id": "8e336e58.14722",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_digital_gain",
+        "name": "user_digital_gain",
         "rules": [
             {
                 "t": "set",
@@ -5951,6 +6051,13 @@
                 "pt": "msg",
                 "to": "user_digital_gain",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_digital_gain",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -5958,7 +6065,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 320,
+        "x": 310,
         "y": 700,
         "wires": [
             [
@@ -6439,19 +6546,10 @@
         "wires": []
     },
     {
-        "id": "0449fb3f7205c9f1",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "x": 1340,
-        "y": 560,
-        "wires": []
-    },
-    {
         "id": "15ddf0372daab1dc",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_iso",
+        "name": "user_iso",
         "rules": [
             {
                 "t": "set",
@@ -6459,6 +6557,13 @@
                 "pt": "msg",
                 "to": "user_iso",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_iso",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6466,7 +6571,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 290,
+        "x": 280,
         "y": 540,
         "wires": [
             [
@@ -6478,7 +6583,7 @@
         "id": "2f3cbb68aaad8710",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_shutter_speed",
+        "name": "user_shutter_speed",
         "rules": [
             {
                 "t": "set",
@@ -6486,6 +6591,13 @@
                 "pt": "msg",
                 "to": "user_shutter_speed",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_shutter_speed",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6493,7 +6605,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 320,
         "y": 580,
         "wires": [
             [
@@ -6505,7 +6617,7 @@
         "id": "2b3217c91c188c10",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_white_balance",
+        "name": "user_white_balance",
         "rules": [
             {
                 "t": "set",
@@ -6513,6 +6625,13 @@
                 "pt": "msg",
                 "to": "user_white_balance",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_white_balance",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6520,7 +6639,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 320,
         "y": 620,
         "wires": [
             [
@@ -6532,7 +6651,7 @@
         "id": "72ef9b9fcfdb5950",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_focus_speed",
+        "name": "user_focus_speed",
         "rules": [
             {
                 "t": "set",
@@ -6547,6 +6666,13 @@
                 "pt": "msg",
                 "to": "user_focus_speed",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_focus_speed",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6554,7 +6680,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 320,
+        "x": 310,
         "y": 500,
         "wires": [
             [
@@ -6566,7 +6692,7 @@
         "id": "56634eabb8a82142",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_focus_distance",
+        "name": "user_focus_distance",
         "rules": [
             {
                 "t": "set",
@@ -6581,6 +6707,13 @@
                 "pt": "msg",
                 "to": "user_focus_distance",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_focus_distance",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6588,7 +6721,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 320,
         "y": 460,
         "wires": [
             [
@@ -6600,7 +6733,7 @@
         "id": "0adc5c5766629ac4",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_pump_manual_volume",
+        "name": "user_pump_manual_volume",
         "rules": [
             {
                 "t": "set",
@@ -6615,6 +6748,13 @@
                 "pt": "msg",
                 "to": "user_pump_manual_volume",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_pump_manual_volume",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6622,7 +6762,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
+        "x": 340,
         "y": 420,
         "wires": [
             [
@@ -6634,7 +6774,7 @@
         "id": "982f7dbad4a6e35f",
         "type": "change",
         "z": "bccd1f23.87219",
-        "name": "Get user_pump_flowrate",
+        "name": "user_pump_flowrate",
         "rules": [
             {
                 "t": "set",
@@ -6649,6 +6789,13 @@
                 "pt": "msg",
                 "to": "user_pump_flowrate",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_pump_manual_volume",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6656,12 +6803,23 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 320,
         "y": 380,
         "wires": [
             [
                 "cb2d5174.cfe9f"
             ]
+        ]
+    },
+    {
+        "id": "21315e8394d749bd",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "x": 1120,
+        "y": 560,
+        "wires": [
+            []
         ]
     },
     {
@@ -7423,7 +7581,7 @@
         "wires": [
             [
                 "9bd72495.a8a098",
-                "5ca27fdf2a1fef80"
+                "61cf0b88ae96b88c"
             ]
         ],
         "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktoScope/scripts/focus.py 650 up\n"
@@ -7461,7 +7619,7 @@
         "wires": [
             [
                 "8e16aa2f.e40398",
-                "5ca27fdf2a1fef80"
+                "61cf0b88ae96b88c"
             ]
         ],
         "info": "### Focusing\n##### focus.py `nb_step` `orientation`\n\n- `nb_step` : **integer** (from 1 to 100000) - number of step to perform by the stage (about 31um/step)\n- `orientation` : **string** - orientation of the focus either `up` or `down`\n\nExample:\n\n    python3.7 $HOME/PlanktoScope/scripts/focus.py 650 up\n"
@@ -7731,15 +7889,6 @@
         "wires": []
     },
     {
-        "id": "5b7343f86e64be38",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "x": 1240,
-        "y": 260,
-        "wires": []
-    },
-    {
         "id": "6cd7f5eb4747d03e",
         "type": "change",
         "z": "baa1e3d9.cb29d",
@@ -7875,26 +8024,6 @@
         ]
     },
     {
-        "id": "5ca27fdf2a1fef80",
-        "type": "function",
-        "z": "baa1e3d9.cb29d",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 980,
-        "y": 260,
-        "wires": [
-            [
-                "5b7343f86e64be38",
-                "52ea7d01.711034"
-            ]
-        ]
-    },
-    {
         "id": "2f2cfdd4a2da9de3",
         "type": "change",
         "z": "baa1e3d9.cb29d",
@@ -7929,6 +8058,19 @@
         "x": 1060,
         "y": 800,
         "wires": []
+    },
+    {
+        "id": "61cf0b88ae96b88c",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "baa1e3d9.cb29d",
+        "name": "",
+        "x": 980,
+        "y": 260,
+        "wires": [
+            [
+                "52ea7d01.711034"
+            ]
+        ]
     },
     {
         "id": "9d6abe67.6bb3d",
@@ -9116,7 +9258,7 @@
         "y": 380,
         "wires": [
             [
-                "77dbab814049aebb"
+                "4d70f657b9e0cb81"
             ]
         ]
     },
@@ -9156,15 +9298,6 @@
         ]
     },
     {
-        "id": "1df09f8edc71d69c",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "cb95299c.2817c8",
-        "name": "",
-        "x": 1100,
-        "y": 380,
-        "wires": []
-    },
-    {
         "id": "d56fc819c15da238",
         "type": "change",
         "z": "cb95299c.2817c8",
@@ -9192,22 +9325,14 @@
         ]
     },
     {
-        "id": "77dbab814049aebb",
-        "type": "function",
+        "id": "4d70f657b9e0cb81",
+        "type": "subflow:c4e2b4ed08e5c5db",
         "z": "cb95299c.2817c8",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
+        "name": "",
         "x": 880,
         "y": 380,
         "wires": [
-            [
-                "1df09f8edc71d69c"
-            ]
+            []
         ]
     },
     {
@@ -9582,6 +9707,7 @@
         "id": "af2b8d95.195bb8",
         "type": "ui_text",
         "z": "9daf9e2b.019fc",
+        "d": true,
         "group": "1be83144.4fe4bf",
         "order": 2,
         "width": 12,
@@ -10680,6 +10806,7 @@
         "id": "f30bf784.90d58",
         "type": "ui_dropdown",
         "z": "1371dec5.76e671",
+        "d": true,
         "name": "",
         "label": "",
         "tooltip": "",
@@ -10699,6 +10826,8 @@
         ],
         "payload": "",
         "topic": "device_path",
+        "topicType": "str",
+        "className": "",
         "x": 840,
         "y": 740,
         "wires": [
@@ -12670,7 +12799,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 980,
+        "x": 1000,
         "y": 300,
         "wires": [
             [
@@ -12873,7 +13002,7 @@
         "y": 160,
         "wires": [
             [
-                "8350a9b76b178ac3"
+                "3e2c5c1c.4c57b4"
             ]
         ]
     },
@@ -12882,7 +13011,7 @@
         "type": "function",
         "z": "1eaf21c8.f7a21e",
         "name": "Update settings",
-        "func": "if (msg.payload.includes(\"2.1\")) {\n    global.set(\"hard_stepper_type\",\"adafruit\")\n    global.set(\"hard_pump_steps_per_ml\",1600)\n}\nelse if (msg.payload.includes(\"2.2\")) {\n    global.set(\"hard_stepper_type\",\"waveshare\")\n    global.set(\"hard_pump_steps_per_ml\",2000)\n}\nelse if (msg.payload.includes(\"2.3\")) {\n    global.set(\"hard_stepper_type\",\"pscope_hat\")\n    global.set(\"hard_pump_steps_per_ml\",3200)\n}\nreturn msg",
+        "func": "if (global.keys().includes(msg.topic)) {\n    if (global.get(msg.topic) === msg.payload) {\n        return null\n    }\n}\n\nif (msg.payload.includes(\"2.1\")) {\n    global.set(\"hard_stepper_type\", \"adafruit\")\n    global.set(\"hard_pump_steps_per_ml\", 1600)\n}\nelse if (msg.payload.includes(\"2.2\")) {\n    global.set(\"hard_stepper_type\", \"waveshare\")\n    global.set(\"hard_pump_steps_per_ml\", 2000)\n}\nelse if (msg.payload.includes(\"2.3\")) {\n    global.set(\"hard_stepper_type\", \"pscope_hat\")\n    global.set(\"hard_pump_steps_per_ml\", 3200)\n}\nreturn msg\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12980,7 +13109,7 @@
         "wires": [
             [
                 "5d5ad36d2c50dcc2",
-                "285e3db1405b123b"
+                "35f8a04630b74f21"
             ]
         ]
     },
@@ -12992,8 +13121,8 @@
         "links": [
             "cfc783d7.d6ceb"
         ],
-        "x": 1265,
-        "y": 480,
+        "x": 1255,
+        "y": 520,
         "wires": []
     },
     {
@@ -13045,7 +13174,7 @@
         "y": 520,
         "wires": [
             [
-                "42ee558fe44e97f9"
+                "2715e7601f5345ad"
             ]
         ]
     },
@@ -13077,15 +13206,6 @@
         ]
     },
     {
-        "id": "285e3db1405b123b",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "1eaf21c8.f7a21e",
-        "name": "",
-        "x": 1320,
-        "y": 420,
-        "wires": []
-    },
-    {
         "id": "8dad11c1f29007e8",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
@@ -13113,60 +13233,35 @@
         ]
     },
     {
-        "id": "a9acf23e7e93c730",
-        "type": "function",
+        "id": "35f8a04630b74f21",
+        "type": "subflow:4ed26b8b.253504",
         "z": "1eaf21c8.f7a21e",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
+        "name": "",
+        "x": 1320,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "d7a22bc5ee8cb050",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
         "x": 1020,
         "y": 400,
         "wires": [
-            [
-                "285e3db1405b123b"
-            ]
+            []
         ]
     },
     {
-        "id": "42ee558fe44e97f9",
-        "type": "function",
+        "id": "2715e7601f5345ad",
+        "type": "subflow:c4e2b4ed08e5c5db",
         "z": "1eaf21c8.f7a21e",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
+        "name": "",
         "x": 1020,
         "y": 520,
         "wires": [
             [
-                "5d5ad36d2c50dcc2",
-                "285e3db1405b123b"
-            ]
-        ]
-    },
-    {
-        "id": "8350a9b76b178ac3",
-        "type": "function",
-        "z": "1eaf21c8.f7a21e",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 300,
-        "wires": [
-            [
-                "3e2c5c1c.4c57b4"
+                "5d5ad36d2c50dcc2"
             ]
         ]
     },
@@ -13183,7 +13278,7 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "inst_manufacturer",
         "sendOnBlur": true,
         "className": "",
@@ -13192,7 +13287,7 @@
         "y": 220,
         "wires": [
             [
-                "bd2bc16663a49bbb"
+                "d9b4f8a345d81e76"
             ]
         ]
     },
@@ -13206,7 +13301,7 @@
         "width": 6,
         "height": 1,
         "passthru": false,
-        "label": "Save",
+        "label": "Save the metadata to the disk",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -13237,7 +13332,7 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "inst_serial_number",
         "sendOnBlur": true,
         "className": "",
@@ -13246,7 +13341,7 @@
         "y": 260,
         "wires": [
             [
-                "bd2bc16663a49bbb"
+                "d9b4f8a345d81e76"
             ]
         ]
     },
@@ -13263,7 +13358,7 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "acq_instrument",
         "sendOnBlur": true,
         "className": "",
@@ -13272,7 +13367,7 @@
         "y": 180,
         "wires": [
             [
-                "bd2bc16663a49bbb"
+                "d9b4f8a345d81e76"
             ]
         ]
     },
@@ -13289,7 +13384,7 @@
         "height": 0,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "1000",
         "topic": "inst_model",
         "sendOnBlur": true,
         "className": "",
@@ -13298,7 +13393,7 @@
         "y": 300,
         "wires": [
             [
-                "bd2bc16663a49bbb"
+                "d9b4f8a345d81e76"
             ]
         ]
     },
@@ -13428,7 +13523,7 @@
         "type": "subflow:4ed26b8b.253504",
         "z": "5195979a0d7a6b2a",
         "name": "",
-        "x": 1260,
+        "x": 1120,
         "y": 340,
         "wires": []
     },
@@ -13444,8 +13539,8 @@
         "wires": [
             [
                 "b2528f5d1a61f174",
-                "bd2bc16663a49bbb",
-                "9da084587d41c266"
+                "9da084587d41c266",
+                "d9b4f8a345d81e76"
             ]
         ]
     },
@@ -13459,7 +13554,7 @@
         "width": 4,
         "height": 1,
         "passthru": false,
-        "label": "Reload instrument name",
+        "label": "Load instrument name",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -13469,7 +13564,7 @@
         "payloadType": "str",
         "topic": "acq_instrument_id",
         "topicType": "str",
-        "x": 130,
+        "x": 120,
         "y": 80,
         "wires": [
             [
@@ -13522,25 +13617,6 @@
         "wires": []
     },
     {
-        "id": "bd2bc16663a49bbb",
-        "type": "function",
-        "z": "5195979a0d7a6b2a",
-        "name": "set global if different",
-        "func": "if (global.get(msg.topic) !== msg.payload){\n    global.set(msg.topic,msg.payload)\n    return msg\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1000,
-        "y": 220,
-        "wires": [
-            [
-                "461243b16575af56"
-            ]
-        ]
-    },
-    {
         "id": "9da084587d41c266",
         "type": "link out",
         "z": "5195979a0d7a6b2a",
@@ -13552,6 +13628,17 @@
         "x": 845,
         "y": 80,
         "wires": []
+    },
+    {
+        "id": "4bc498d34a63d0a4",
+        "type": "subflow:c4e2b4ed08e5c5db",
+        "z": "5195979a0d7a6b2a",
+        "name": "",
+        "x": 1100,
+        "y": 220,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "27dcfdaad28d6ee3",
