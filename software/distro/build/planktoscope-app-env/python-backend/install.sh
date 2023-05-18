@@ -4,14 +4,13 @@
 
 # Install dependencies
 sudo apt-get update -y
-# FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58,
-# libswscale5 libgtk-3-0
-# can we avoid the need to install them? Right now they're required because the Python backend is
-# doing an `import * from cv2`, which is wasteful and also pollutes the namespace - if we only
-# import the required subpackages from cv2, and if we could use opencv-contrib-python-headless,
-# maybe we can avoid the need to install unnecessary dependencies via apt-get?
+# FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
+# libswscale5, can we avoid the need to install them? Right now they're required because the Python
+# backend is doing an `import * from cv2`, which is wasteful and also pollutes the namespace - if we
+# only import the required subpackages from cv2, maybe we can avoid the need to install unnecessary
+# dependencies via apt-get?
 sudo apt-get install -y git python3-pip libatlas3-base \
-  libhdf5-dev libopenjp2-7-dev libopenexr25 libavcodec58 libavformat58 libswscale5 libgtk-3-0
+  libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
 
 # Install Fan HAT dependencies
 sudo apt install -y i2c-tools
