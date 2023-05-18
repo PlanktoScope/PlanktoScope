@@ -214,7 +214,7 @@ class ImagerProcess(multiprocessing.Process):
         if (
             "sleep" not in last_message
             or "volume" not in last_message
-            or "nb_frame" not in last_message
+            or "acq_nb_frame" not in last_message
             or "pump_direction" not in last_message
         ):
             logger.error(f"The received message has the wrong argument {last_message}")
@@ -232,7 +232,7 @@ class ImagerProcess(multiprocessing.Process):
         self.__pump_direction = last_message["pump_direction"]
 
         # Get the number of frames to image from the different received arguments
-        self.__img_goal = int(last_message["nb_frame"])
+        self.__img_goal = int(last_message["acq_nb_frame"])
 
         # Reset the counter to 0
         self.__img_done = 0
@@ -485,7 +485,7 @@ class ImagerProcess(multiprocessing.Process):
 
         # If the command is "image"
         if action == "image":
-            # {"action":"image","sleep":5,"volume":1,"nb_frame":200}
+            # {"action":"image","sleep":5,"volume":1,"acq_nb_frame":200}
             self.__message_image(last_message)
 
         elif action == "stop":

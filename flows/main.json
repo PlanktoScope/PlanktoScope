@@ -2686,18 +2686,6 @@
         ]
     },
     {
-        "id": "222c851d.5d0a3a",
-        "type": "ui_ui_control",
-        "z": "b771c342.49603",
-        "name": "",
-        "events": "change",
-        "x": 340,
-        "y": 1280,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "52f6b103.1efb6",
         "type": "ui_toast",
         "z": "b771c342.49603",
@@ -2709,6 +2697,7 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
         "x": 730,
@@ -2722,7 +2711,7 @@
         "type": "function",
         "z": "b771c342.49603",
         "name": "Check form",
-        "func": "var sample_project = global.get(\"sample_project\");\nvar sample_id = global.get(\"sample_id\");\nvar sample_operator = global.get(\"sample_operator\");\nvar sample_sampling_gear = global.get(\"sample_sampling_gear\");\nvar object_lat = global.get(\"object_lat\");\nvar object_lon = global.get(\"object_lon\");\nvar object_date = global.get(\"object_date\");\nvar object_time = global.get(\"object_time\");\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n    return [null, msg];\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n    return [null, msg];\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n    return [null, msg];\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n    return [null, msg];\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of sample\"\n    return [null, msg];\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of sample\"\n    return [null, msg];\n}\nelse if (sample_sampling_gear.startsWith(\"net\")) {\n    var object_lat_end = global.get(\"object_lat_end\");\n    var object_lon_end = global.get(\"object_lon_end\");\n    var object_date_end = global.get(\"object_date_end\");\n    var object_time_end = global.get(\"object_time_end\");\n    var sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n        return [null, msg];\n    }\n\n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n        return [null, msg];\n    }\n\n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n        return [null, msg];\n    }\n\n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n        return [null, msg];\n    }\n\n    else if (sample_gear_net_opening === undefined || sample_gear_net_opening === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Net opening dimension\"\n        return [null, msg];\n    }\n\n    if (sample_sampling_gear == \"net_decknet\") {\n        var sample_total_volume = global.get(\"sample_total_volume\");\n        if (sample_total_volume === undefined || sample_total_volume === \"\") {\n            msg.topic = \"Missing entry :\"\n            msg.payload = \"Decknet flowmeter readings\"\n            return [null, msg];\n        }\n    }\n}\nmsg.topic = \"config_save\"\nmsg.payload = { \"tab\": \"Optical Configuration\" };\n\nreturn [msg, null];",
+        "func": "const sample_project = global.get(\"sample_project\");\nconst sample_id = global.get(\"sample_id\");\nconst sample_operator = global.get(\"sample_operator\");\nconst sample_sampling_gear = global.get(\"sample_sampling_gear\");\nconst object_lat = global.get(\"object_lat\");\nconst object_lon = global.get(\"object_lon\");\nconst object_date = global.get(\"object_date\");\nconst object_time = global.get(\"object_time\");\nif (sample_project === undefined || sample_project === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample project\"\n    return [null, msg];\n}\n\nelse if (sample_id === undefined || sample_id === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample ID\"\n    return [null, msg];\n}\n\nelse if (sample_operator === undefined || sample_operator === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample operator\"\n    return [null, msg];\n}\n\nelse if (sample_sampling_gear === undefined || sample_sampling_gear === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Sample sampling gear\"\n    return [null, msg];\n}\n\nelse if (object_lat === undefined || object_lat === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Latitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_lon === undefined || object_lon === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Longitude of sample\"\n    return [null, msg];\n}\n\nelse if (object_date === undefined || object_date === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Date of sample\"\n    return [null, msg];\n}\n\nelse if (object_time === undefined || object_time === \"\") {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Time of sample\"\n    return [null, msg];\n}\nelse if (sample_sampling_gear.startsWith(\"net\")) {\n    const object_lat_end = global.get(\"object_lat_end\");\n    const object_lon_end = global.get(\"object_lon_end\");\n    const object_date_end = global.get(\"object_date_end\");\n    const object_time_end = global.get(\"object_time_end\");\n    const sample_gear_net_opening = global.get(\"sample_gear_net_opening\");\n\n    if (object_lat_end === undefined || object_lat_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Latitude of retrieval\"\n        return [null, msg];\n    }\n\n    else if (object_lon_end === undefined || object_lon_end === null) {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Longitude of retrieval\"\n        return [null, msg];\n    }\n\n    else if (object_date_end === undefined || object_date_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Date of retrieval\"\n        return [null, msg];\n    }\n\n    else if (object_time_end === undefined || object_time_end === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Time of retrieval\"\n        return [null, msg];\n    }\n\n    else if (sample_gear_net_opening === undefined || sample_gear_net_opening === \"\") {\n        msg.topic = \"Missing entry :\"\n        msg.payload = \"Net opening dimension\"\n        return [null, msg];\n    }\n}\nmsg.topic = \"config_save\"\nmsg.payload = { \"tab\": \"Optical Configuration\" };\n\nreturn [msg, null];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2786,19 +2775,21 @@
         "width": 5,
         "height": 1,
         "passthru": false,
-        "label": "Previous",
+        "label": "Home",
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
+        "className": "",
         "icon": "keyboard_return",
         "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
-        "x": 180,
+        "topicType": "str",
+        "x": 170,
         "y": 1280,
         "wires": [
             [
-                "222c851d.5d0a3a"
+                "726a7822.cd6298"
             ]
         ]
     },
@@ -2812,17 +2803,17 @@
         "width": 5,
         "height": 1,
         "passthru": false,
-        "label": "Continue",
+        "label": "Optical Configuration",
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
         "className": "",
         "icon": "keyboard_tab",
-        "payload": "{\"tab\":\"Home\"}",
+        "payload": "{\"tab\":\"Optical Configuration\"}",
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 180,
+        "x": 220,
         "y": 1320,
         "wires": [
             [
@@ -5038,13 +5029,13 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Check form",
-        "func": "var acq_fnumber_objective= global.get(\"acq_fnumber_objective\");\n\nif (acq_fnumber_objective === undefined || acq_fnumber_objective === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Focal Length of the objective\";\n    return [null, msg];\n}\n\nmsg.topic = \"Change Tab\";\nmsg.payload={\"tab\":\"Fluidic Acquisition\"};\nreturn [msg, null];",
+        "func": "const acq_fnumber_objective= global.get(\"acq_fnumber_objective\");\n\nif (acq_fnumber_objective === undefined || acq_fnumber_objective === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Focal Length of the objective\";\n    return [null, msg];\n}\n\nmsg.topic = \"Change Tab\";\nmsg.payload={\"tab\":\"Fluidic Acquisition\"};\nreturn [msg, null];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 430,
         "y": 1240,
         "wires": [
             [
@@ -5151,17 +5142,17 @@
         "width": 3,
         "height": 1,
         "passthru": false,
-        "label": "Previous",
+        "label": "Home",
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
         "className": "",
         "icon": "keyboard_return",
-        "payload": "{\"tab\":\"Sample\"}",
+        "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 200,
+        "x": 190,
         "y": 1200,
         "wires": [
             [
@@ -5179,17 +5170,17 @@
         "width": 3,
         "height": 1,
         "passthru": false,
-        "label": "Continue",
+        "label": "Fluidic Acquisition",
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
         "className": "",
         "icon": "keyboard_tab",
-        "payload": "{\"tab\":\"Home\"}",
+        "payload": "{\"tab\":\"Fluidic Acquisition\"}",
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 200,
+        "x": 230,
         "y": 1240,
         "wires": [
             [
@@ -5406,29 +5397,6 @@
         ]
     },
     {
-        "id": "71f55a58.d7eaf4",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 500µm",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "500",
-        "payloadType": "num",
-        "x": 80,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "9a1d0e7c.2d5a1",
         "type": "inject",
         "z": "bccd1f23.87219",
@@ -5451,52 +5419,6 @@
             [
                 "f0775525.cf806"
             ]
-        ]
-    },
-    {
-        "id": "f782a471.447748",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 2mL/min",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "2",
-        "payloadType": "num",
-        "x": 90,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "73b8252a.5ca754",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 2mL",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "2",
-        "payloadType": "num",
-        "x": 70,
-        "y": 420,
-        "wires": [
-            []
         ]
     },
     {
@@ -5540,29 +5462,6 @@
             [
                 "8038414a.34461"
             ]
-        ]
-    },
-    {
-        "id": "2d371e59.b0e50a",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 1000µm/s",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "1000",
-        "payloadType": "num",
-        "x": 90,
-        "y": 500,
-        "wires": [
-            []
         ]
     },
     {
@@ -5834,29 +5733,6 @@
         "wires": []
     },
     {
-        "id": "2350e507.d4e302",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 125µs",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "125",
-        "payloadType": "num",
-        "x": 80,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "5e147425.7666ec",
         "type": "function",
         "z": "bccd1f23.87219",
@@ -5873,29 +5749,6 @@
             [
                 "7094dee99bbbe6ca"
             ]
-        ]
-    },
-    {
-        "id": "82722a3c.846b3",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: OFF",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 90,
-        "y": 620,
-        "wires": [
-            []
         ]
     },
     {
@@ -6156,29 +6009,6 @@
             [
                 "7094dee99bbbe6ca"
             ]
-        ]
-    },
-    {
-        "id": "d8d006bf.2947f",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: ISO 100",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "100",
-        "payloadType": "num",
-        "x": 90,
-        "y": 540,
-        "wires": [
-            []
         ]
     },
     {
@@ -6955,17 +6785,17 @@
         "width": 5,
         "height": 1,
         "passthru": false,
-        "label": "Previous",
+        "label": "Home",
         "tooltip": "",
         "color": "#097479",
         "bgcolor": "white",
         "className": "",
         "icon": "keyboard_return",
-        "payload": "{\"tab\":\"Optical Configuration\"}",
+        "payload": "{\"tab\":\"Home\"}",
         "payloadType": "json",
         "topic": "",
         "topicType": "str",
-        "x": 180,
+        "x": 170,
         "y": 640,
         "wires": [
             [
@@ -7025,7 +6855,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Image control",
-        "func": "// Reset the number of images taken\nflow.set('img_counter', 0);\n\nvar pump_direction = flow.get(\"pump_direction\");\nvar user_sleep_before = flow.get(\"user_sleep_before\");\n\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar user_imaging_pump_volume = global.get(\"user_imaging_pump_volume\");\nvar acq_id = global.get(\"acq_id\");\nvar acq_nb_frame = global.get(\"acq_nb_frame\");\nvar object_date = global.get(\"object_date\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Type of the flowcell\";\n    return [null, msg];\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Lower fraction size\";\n    return [null, msg];\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Upper fraction size\";\n    return [null, msg];\n} else if (user_imaging_pump_volume === undefined || user_imaging_pump_volume === \"\" || user_imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Volume inbetween images\";\n    return [null, msg];\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Acquisition ID\";\n    return [null, msg];\n} else if (acq_nb_frame === undefined || acq_nb_frame === \"\" || acq_nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    return [null, msg];\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n    return [null, msg];\n} else if (user_sleep_before === undefined || user_sleep_before === \"\" || user_sleep_before === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n    return [null, msg];\n}else if (object_date === undefined || object_date === \"\" || object_date === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Object date\";\n    return [null, msg];\n}\n\nmsg.payload = {\n    \"action\": \"image\",\n    \"sleep\": user_sleep_before,\n    \"pump_direction\": pump_direction,\n    \"volume\": user_imaging_pump_volume,\n    \"acq_nb_frame\": acq_nb_frame,\n}\nmsg.send = true\n\nreturn [msg, null];",
+        "func": "// Reset the number of images taken\nflow.set('img_counter', 0);\n\nvar pump_direction = flow.get(\"pump_direction\");\nvar user_sleep_before = global.get(\"user_sleep_before\");\n\nvar acq_celltype = global.get(\"acq_celltype\");\nvar acq_minimum_mesh = global.get(\"acq_minimum_mesh\");\nvar acq_maximum_mesh = global.get(\"acq_maximum_mesh\");\nvar user_imaging_pump_volume = global.get(\"user_imaging_pump_volume\");\nvar acq_id = global.get(\"acq_id\");\nvar acq_nb_frame = global.get(\"acq_nb_frame\");\nvar object_date = global.get(\"object_date\");\n\nif (acq_celltype === undefined || acq_celltype === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Type of the flowcell\";\n    return [null, msg];\n} else if (acq_minimum_mesh === undefined || acq_minimum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Lower fraction size\";\n    return [null, msg];\n} else if (acq_maximum_mesh === undefined || acq_maximum_mesh === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Upper fraction size\";\n    return [null, msg];\n} else if (user_imaging_pump_volume === undefined || user_imaging_pump_volume === \"\" || user_imaging_pump_volume === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Volume inbetween images\";\n    return [null, msg];\n} else if (acq_id === undefined || acq_id === \"\") {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Acquisition ID\";\n    return [null, msg];\n} else if (acq_nb_frame === undefined || acq_nb_frame === \"\" || acq_nb_frame === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Number of image to save\";\n    return [null, msg];\n} else if (pump_direction === undefined || pump_direction === \"\" || pump_direction === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Pump direction\";\n    return [null, msg];\n} else if (user_sleep_before === undefined || user_sleep_before === \"\" || user_sleep_before === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Delay before image\";\n    return [null, msg];\n}else if (object_date === undefined || object_date === \"\" || object_date === null) {\n    msg.topic = \"Missing entry :\";\n    msg.payload = \"Object date\";\n    return [null, msg];\n}\n\nmsg.payload = {\n    \"action\": \"image\",\n    \"sleep\": user_sleep_before,\n    \"pump_direction\": pump_direction,\n    \"volume\": user_imaging_pump_volume,\n    \"acq_nb_frame\": acq_nb_frame,\n}\nmsg.send = true\n\nreturn [msg, null];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -7155,7 +6985,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "Prepare settings message",
-        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_datetime\": \"Segmentation timestamp\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"acq_nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktoScope/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.startsWith(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\n\nif ( msg.send == true){\n\treturn [msg, msg]\n}\nelse{\n\treturn [msg, null]\n}",
+        "func": "msg.payload = {\n\t\"action\": \"update_config\",\n\t\"config\": {\n    \t\"description\": {\n    \t\t\"sample_project\": \"Project's name\",\n    \t\t\"sample_id\": \"Sample ID\",\n    \t\t\"sample_uuid\": \"Sample UUID (Autogenerated)\",\n    \t\t\"sample_ship\": \"Ship's name\",\n    \t\t\"sample_operator\": \"Operator's name\",\n    \t\t\"sample_sampling_gear\": \"Sampling gear used\",\n    \t\t\"sample_concentrated_sample_volume\": \"Volume of concentrated sample, in mL\",\n    \t\t\"sample_total_volume\": \"Total volume filtered by the net used, in L\",\n    \t\t\"sample_dilution_factor\": \"Dilution factor of the sample, 0.5 if diluted by 2, 2 if concentrated by 2\",\n    \t\t\"sample_speed_through_water\": \"Speed of the boat through water when sampling, in kts\",\n    \t\t\"acq_id\": \"Acquisition ID\",\n    \t\t\"acq_uuid\": \"Acquisition UUID (Autogenerated)\",\n    \t\t\"acq_instrument\": \"Instrument type\",\n    \t\t\"acq_instrument_id\": \"Instrument ID\",\n    \t\t\"acq_celltype\": \"Flow cell dimension thickness, in µm\",\n    \t\t\"acq_minimum_mesh\": \"Minimum filtration mesh size, in µm\",\n    \t\t\"acq_maximum_mesh\": \"Maximum filtration mesh size, in µm\",\n    \t\t\"acq_min_esd\": \"\",\n    \t\t\"acq_max_esd\": \"\",\n    \t\t\"acq_volume\": \"Pumped volume, in mL\",\n\t\t    \"acq_imaged_volume\": \"Total imaged volume, in mL\",\n    \t\t\"acq_magnification\": \"Optical magnification\",\n    \t\t\"acq_fnumber_objective\": \"Focal length of the objective, in mm\",\n    \t\t\"acq_camera_name\": \"Name of the camera used\",\n    \t\t\"acq_nb_frame\": \"Number of picture taken\",\n            \"acq_local_datetime\": \"Instrument local datetime\",\n            \"acq_camera_resolution\": \"Resolution of the images\",\n            \"acq_camera_iso\": \"ISO Number of the images\",\n            \"acq_camera_shutter_speed\": \"Shutter speed of the images, in µs\",\n            \"acq_software\": \"Software version number\",\n    \t\t\"object_date\": \"Sample collection date (or beginning if using a net)\",\n    \t\t\"object_time\": \"Sample collection time (or beginning if using a net)\",\n    \t\t\"object_lat\": \"Sample collection latitude (or beginning if using a net)\",\n    \t\t\"object_lon\": \"Sample collection longitude (or beginning if using a net)\",\n    \t\t\"object_depth_min\": \"Sample collection minimal depth, in m\",\n    \t\t\"object_depth_max\": \"Sample collection maximum depth, in m\",\n    \t\t\"process_pixel\": \"Pixel imaging resolution, in µm/pixel\",\n    \t\t\"process_datetime\": \"Segmentation timestamp\",\n    \t\t\"process_id\": \"Segmentation ID\",\n    \t\t\"process_uuid\": \"Segmentation UUID (Autogenerated)\",\n    \t\t\"process_source\": \"Code source link of the executed code\",\n    \t\t\"process_commit\": \"Version reference of the executed code\",\n    \t\t\"sample_gear_net_opening\": \"Sample mouth opening dimension, in mm\",\n    \t\t\"object_date_end\": \"Sample end collection date when using a net\",\n    \t\t\"object_time_end\": \"Sample end collection time when using a net\",\n    \t\t\"object_lat_end\": \"Sample end collection latitude when using a net\",\n    \t\t\"object_lon_end\": \"Sample end collection longitude when using a net\",\n    \t},\n\t\t\"sample_project\": global.get(\"sample_project\"),\n\t\t\"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n\t\t\"sample_ship\": global.get(\"sample_ship\"),\n\t\t\"sample_operator\": global.get(\"sample_operator\"),\n\t\t\"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n\t\t\"sample_concentrated_sample_volume\": global.get(\"sample_concentrated_sample_volume\"),\n\t\t\"sample_dilution_factor\": global.get(\"sample_dilution_factor\"),\n\t\t\"sample_speed_through_water\": global.get(\"sample_speed_through_water\"),\n\n\t\t\"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\")+ \"_\" + global.get(\"acq_id\"),\n\t\t\"acq_instrument\": global.get(\"acq_instrument\"),\n\t\t\"acq_instrument_id\": global.get(\"acq_instrument_id\"),\n\t\t\"acq_celltype\": global.get(\"acq_celltype\"),\n\t\t\"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n\t\t\"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n\t\t\"acq_min_esd\": global.get(\"acq_min_esd\"),\n\t\t\"acq_max_esd\": global.get(\"acq_max_esd\"),\n\t\t\"acq_volume\": global.get(\"acq_volume\"),\n\t\t\"acq_imaged_volume\": global.get(\"acq_imaged_volume\"),\n\t\t\"acq_magnification\": global.get(\"acq_magnification\"),\n\t\t\"acq_fnumber_objective\": global.get(\"acq_fnumber_objective\"),\n\t\t\"acq_camera\": global.get(\"acq_camera\"),\n\t\t\"acq_nb_frame\": global.get(\"acq_nb_frame\"),\n\t\t\"acq_software\": global.get(\"acq_software\"),\n\n\t\t\"object_date\": global.get(\"object_date\"),\n\t\t\"object_time\": global.get(\"object_time\"),\n\t\t\"object_lat\": global.get(\"object_lat\"),\n\t\t\"object_lon\": global.get(\"object_lon\"),\n\t\t\"object_depth_min\": global.get(\"object_depth_min\"),\n\t\t\"object_depth_max\": global.get(\"object_depth_max\"),\n\n\t\t\"process_pixel\": global.get(\"process_pixel\"),\n\t\t\"process_source\": \"https://www.github.com/PlanktoScope/PlanktoScope\",\n\t\t\"process_commit\": global.get(\"process_commit\")\n\t}\n};\n\nif (msg.payload.config.sample_sampling_gear.includes(\"net\")) {\n\tmsg.payload.config[\"sample_gear_net_opening\"] = global.get(\"sample_gear_net_opening\")\n\tmsg.payload.config[\"object_date_end\"] = global.get(\"object_date_end\")\n\tmsg.payload.config[\"object_time_end\"] = global.get(\"object_time_end\")\n\tmsg.payload.config[\"object_lat_end\"] = global.get(\"object_lat_end\")\n\tmsg.payload.config[\"object_lon_end\"] = global.get(\"object_lon_end\")\n\tmsg.payload.config[\"sample_total_volume\"] = global.get(\"sample_total_volume\")\n}\n\nif ( msg.send == true){\n\treturn [msg, msg]\n}\nelse{\n\treturn [msg, null]\n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -7656,7 +7486,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 590,
+        "x": 610,
         "y": 760,
         "wires": [
             [
@@ -7902,7 +7732,7 @@
         "id": "6cd7f5eb4747d03e",
         "type": "change",
         "z": "baa1e3d9.cb29d",
-        "name": "get acq_celltype",
+        "name": "acq_celltype",
         "rules": [
             {
                 "t": "set",
@@ -7910,6 +7740,13 @@
                 "pt": "msg",
                 "to": "acq_celltype",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_celltype",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -7917,7 +7754,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 330,
         "y": 140,
         "wires": [
             [
@@ -7929,7 +7766,7 @@
         "id": "de06367fc82a46ed",
         "type": "change",
         "z": "baa1e3d9.cb29d",
-        "name": "get acq_nb_frame",
+        "name": "acq_nb_frame",
         "rules": [
             {
                 "t": "set",
@@ -7937,6 +7774,13 @@
                 "pt": "msg",
                 "to": "acq_nb_frame",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_nb_frame",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -7944,7 +7788,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
+        "x": 340,
         "y": 180,
         "wires": [
             [
@@ -7956,7 +7800,7 @@
         "id": "a4aedb01c7f15599",
         "type": "change",
         "z": "baa1e3d9.cb29d",
-        "name": "get user_sleep_before",
+        "name": "user_sleep_before",
         "rules": [
             {
                 "t": "set",
@@ -7964,6 +7808,13 @@
                 "pt": "msg",
                 "to": "user_sleep_before",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_sleep_before",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -7971,7 +7822,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 360,
+        "x": 350,
         "y": 260,
         "wires": [
             [
@@ -7983,7 +7834,7 @@
         "id": "4e47c3dc695a218a",
         "type": "change",
         "z": "baa1e3d9.cb29d",
-        "name": "get acq_id",
+        "name": "acq_id",
         "rules": [
             {
                 "t": "set",
@@ -7991,6 +7842,13 @@
                 "pt": "msg",
                 "to": "acq_id",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_id",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -7998,7 +7856,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 310,
         "y": 300,
         "wires": [
             [
@@ -8010,7 +7868,7 @@
         "id": "7fe30a9079514801",
         "type": "change",
         "z": "baa1e3d9.cb29d",
-        "name": "get user_imaging_pump_volume",
+        "name": "user_imaging_pump_volume",
         "rules": [
             {
                 "t": "set",
@@ -8018,6 +7876,13 @@
                 "pt": "msg",
                 "to": "user_imaging_pump_volume",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "user_imaging_pump_volume",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -8025,7 +7890,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
+        "x": 380,
         "y": 220,
         "wires": [
             [
@@ -8037,7 +7902,7 @@
         "id": "2f2cfdd4a2da9de3",
         "type": "change",
         "z": "baa1e3d9.cb29d",
-        "name": "get acq_camera",
+        "name": "acq_camera",
         "rules": [
             {
                 "t": "set",
@@ -8045,6 +7910,13 @@
                 "pt": "msg",
                 "to": "acq_camera",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_camera",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -8052,7 +7924,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 330,
         "y": 100,
         "wires": [
             [
