@@ -2299,7 +2299,7 @@
         "id": "f7855aef2c2e31b2",
         "type": "link out",
         "z": "eaae323a.31b3",
-        "name": "link out 1",
+        "name": "home reboot/shutdown buttons",
         "mode": "link",
         "links": [
             "6acdec87409926a1"
@@ -2312,7 +2312,7 @@
         "id": "e7f0efcdfb10f273",
         "type": "change",
         "z": "eaae323a.31b3",
-        "name": "get acq_instrument",
+        "name": "acq_instrument",
         "rules": [
             {
                 "t": "set",
@@ -2327,7 +2327,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 770,
+        "x": 760,
         "y": 680,
         "wires": [
             [
@@ -2339,7 +2339,7 @@
         "id": "3a3c0dca6ed72238",
         "type": "change",
         "z": "eaae323a.31b3",
-        "name": "get inst_manufacturer",
+        "name": "inst_manufacturer",
         "rules": [
             {
                 "t": "set",
@@ -2354,7 +2354,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
+        "x": 770,
         "y": 760,
         "wires": [
             [
@@ -2366,7 +2366,7 @@
         "id": "771d4eadcbcb38ba",
         "type": "change",
         "z": "eaae323a.31b3",
-        "name": "get inst_serial_number",
+        "name": "inst_serial_number",
         "rules": [
             {
                 "t": "set",
@@ -2381,7 +2381,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
+        "x": 770,
         "y": 800,
         "wires": [
             [
@@ -2393,7 +2393,7 @@
         "id": "f5ae31185201c5a0",
         "type": "change",
         "z": "eaae323a.31b3",
-        "name": "get inst_model",
+        "name": "inst_model",
         "rules": [
             {
                 "t": "set",
@@ -2408,7 +2408,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
+        "x": 750,
         "y": 720,
         "wires": [
             [
@@ -2420,7 +2420,7 @@
         "id": "06b5d855ad2bab37",
         "type": "change",
         "z": "eaae323a.31b3",
-        "name": "get acq_instrument_id",
+        "name": "acq_instrument_id",
         "rules": [
             {
                 "t": "set",
@@ -2435,11 +2435,27 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
+        "x": 770,
         "y": 640,
         "wires": [
             [
                 "b511fa878d55b303"
+            ]
+        ]
+    },
+    {
+        "id": "132488341a5bd62f",
+        "type": "link in",
+        "z": "eaae323a.31b3",
+        "name": "reload home metadata",
+        "links": [
+            "9da084587d41c266"
+        ],
+        "x": 545,
+        "y": 680,
+        "wires": [
+            [
+                "e4a8d854e7271119"
             ]
         ]
     },
@@ -7549,7 +7565,7 @@
         "id": "572a6daa.6004c4",
         "type": "link in",
         "z": "baa1e3d9.cb29d",
-        "name": "",
+        "name": "image_calc activation",
         "links": [
             "559a8085.1d6b9"
         ],
@@ -8842,7 +8858,7 @@
         "id": "6bce0f60.f48998",
         "type": "link in",
         "z": "cb95299c.2817c8",
-        "name": "",
+        "name": "segmentation counter initialisation",
         "links": [
             "596fc9d4.46c75"
         ],
@@ -8859,7 +8875,8 @@
         "id": "596fc9d4.46c75",
         "type": "link out",
         "z": "cb95299c.2817c8",
-        "name": "",
+        "name": "segmentation start",
+        "mode": "link",
         "links": [
             "6bce0f60.f48998"
         ],
@@ -13423,11 +13440,12 @@
         "func": "import sys\nsys.path.append('/home/pi/PlanktoScope/scripts')\nimport planktoscope.uuidName\n\nmsg['payload'] = planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())\nmsg['topic'] = \"acq_instrument_id\";\nreturn msg",
         "outputs": 1,
         "x": 490,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
                 "b2528f5d1a61f174",
-                "bd2bc16663a49bbb"
+                "bd2bc16663a49bbb",
+                "9da084587d41c266"
             ]
         ]
     },
@@ -13452,7 +13470,7 @@
         "topic": "acq_instrument_id",
         "topicType": "str",
         "x": 130,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
                 "452af41c.43940c"
@@ -13521,6 +13539,19 @@
                 "461243b16575af56"
             ]
         ]
+    },
+    {
+        "id": "9da084587d41c266",
+        "type": "link out",
+        "z": "5195979a0d7a6b2a",
+        "name": "machine name",
+        "mode": "link",
+        "links": [
+            "132488341a5bd62f"
+        ],
+        "x": 845,
+        "y": 80,
+        "wires": []
     },
     {
         "id": "27dcfdaad28d6ee3",
