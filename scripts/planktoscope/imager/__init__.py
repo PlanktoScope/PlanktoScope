@@ -761,5 +761,3 @@ class ImagerProcess(multiprocessing.Process):
 
 
 # TODO This should be a test suite for this library
-if __name__ == "__main__":
-    pass
