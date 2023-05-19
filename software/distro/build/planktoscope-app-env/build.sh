@@ -33,6 +33,14 @@ function panic {
 
 # Run sub-scripts
 
+description="enable CPU overclocking"
+report_starting "$description"
+if $build_scripts_root/overclocking/install.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="install MQTT broker"
 report_starting "$description"
 if $build_scripts_root/mqtt-broker/install.sh ; then

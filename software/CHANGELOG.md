@@ -38,7 +38,6 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Removed
 
 - (User-facing removal; System: administration) nginx is no longer installed, and the file browser on port 80 is removed. This functionality will be replaced with a different file browser before the next release.
-- (User-facing removal; System) The Raspberry Pi's CPU is no longer overclocked.
 
 ### Fixed
 
