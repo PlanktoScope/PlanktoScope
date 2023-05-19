@@ -4,6 +4,8 @@ This directory will eventually contain various units of software related to the 
 
 ## Usage
 
+### Setup
+
 First, flash your microSD card with the standard (32-bit) version of Raspberry Pi OS; we recommend using the Raspberry Pi OS Lite (32-bit) variant unless you plan to operate the PlanktoScope with an attached display, mouse, and keyboard. You can find further instructions at https://www.raspberrypi.com/software/
 
 Next, insert your microSD card into the Raspberry Pi, connect a display and keyboard for setup, and boot up the Raspberry Pi by plugging in the power cable (which should be a USB-C cable, assuming you have a Raspberry Pi 4 - which is strongly recommended). Eventually, the display will show prompts asking you to choose a keyboard layout; you should choose settings appropriate for you. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you should choose `pi` as the username, and you should choose a password you can remember. By default, we use `copepode` as the password - so you may want to choose a different password for better security.
@@ -38,3 +40,22 @@ Afterwards, your PlanktoScope's Raspberry Pi will either connect to a wifi netwo
 - http://planktoscope.local:1880/ps/node-red-v2/ui (if you're on a device which supports mDNS)
 - http://192.168.4.1:1880/ps/node-red-v2/ui (if you're connected over the PlanktoScope's isolated wifi network)
 - http://192.168.5.1:1880/ps/node-red-v2/ui (if you're connected over Ethernet)
+
+### SD card cloning
+
+If you would like to clone the Raspberry Pi's SD card to an image file which you can write to other SD cards, you should follow the instructions at https://github.com/mgomesborges/raspberry-pi/blob/master/setup/clone-sd-card.md or https://raspberrytips.com/create-image-sd-card/ . For example, if you are using a Linux computer and the SD card shows up as `/dev/mmcblk0`, you could run the following command (replacing file paths and names accordingly):
+
+```
+sudo dd bs=4M if=/dev/mmcblk0 of=/some/path/here/image-name-here.img
+```
+
+This will create a `.img` file as large as your SD card - make sure you have enough space on your hard drive for the file! You can then shrink and compress the file using the [PiShrink tool](https://github.com/Drewsif/PiShrink). For example, on Linux you could run the following set of commands (again replacing file paths and names accordingly):
+
+```
+cd /some/path/here
+wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+chmod +x pishrink.sh
+sudo ./pishrink.sh -za image-name-here.img
+```
+
+If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you should get a `image-name-here.img.gz` file which is approximately 1 GB in size.
