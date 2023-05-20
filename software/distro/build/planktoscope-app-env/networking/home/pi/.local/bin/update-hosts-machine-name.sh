@@ -11,6 +11,5 @@ sed "s/machine-name/$machine_name/g" /home/pi/.local/etc/hosts-machine-name.snip
 # Update /etc/hosts and the active system hostname
 current_hostname=$(hostnamectl status --static)
 new_hostname="planktoscope-$machine_name"
-sudo sed -i "s/127\.0\.1\.1.*${current_hostname}/127.0.1.1\t${new_hostname}/g" /etc/hosts
-sudo 
+sed -i "s/^127\.0\.1\.1.*$/127.0.1.1\t${new_hostname}/g" /etc/hosts
 hostnamectl set-hostname "planktoscope-$machine_name"

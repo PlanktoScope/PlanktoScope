@@ -11,7 +11,7 @@ sudo apt-get install -y avahi-utils
 current_hostname=$(hostnamectl status --static)
 new_hostname="planktoscope"
 sudo bash -c "echo \"$new_hostname\" > /etc/hostname"
-sudo sed -i "s/127\.0\.1\.1.*$current_hostname/127.0.1.1\t$new_hostname/g" /etc/hosts
+sudo sed -i "s/^127\.0\.1\.1.*$current_hostname$/127.0.1.1\t$new_hostname/g" /etc/hosts
 sudo hostnamectl set-hostname "$new_hostname"
 
 # Set the default SSID for the self-hosted wifi network, which will be updated with the machine name on boot
