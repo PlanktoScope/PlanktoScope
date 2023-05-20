@@ -1,0 +1,9 @@
+[Unit]
+Description=Publish ether-planktoscope.local as alias for 192.168.5.1 via mDNS
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "/usr/bin/avahi-publish -a -R ether-planktoscope.local 192.168.5.1"
+
+[Install]
+WantedBy=multi-user.target
