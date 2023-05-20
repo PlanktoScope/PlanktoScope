@@ -51,6 +51,3 @@ sudo systemctl enable planktoscope-org.update-hosts-machine-name.service
 file="/etc/systemd/system/planktoscope-org.avahi-alias-planktoscope.local.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.avahi-alias-planktoscope.local.service
-file="/etc/systemd/system/planktoscope-org.avahi-alias-ether-planktoscope.local.service"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable planktoscope-org.avahi-alias-ether-planktoscope.local.service

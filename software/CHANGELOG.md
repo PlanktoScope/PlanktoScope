@@ -12,9 +12,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (System: networking) Previously the PlanktoScope could be connected to from 192.168.4.1 (over wifi, when running in wireless AP mode), 192.168.5.1 (over ethernet), and `planktoscope.local` (over wifi or ethernet, from a client device with mDNS support); this meant that Android devices could only connect to the PlanktoScope at 192.168.4.1, as they lack mDNS support. Now, client devices - even those without mDNS support - can connect to the PlanktoScope at `home.planktoscope`, and/or URLs like `clear-field-33719.planktoscope` and `planktoscope-clear-field-33719.local` (where `clear-field-33719` is replaced with the PlanktoScope's Raspberry Pi's machine name, which is also part of the name of the PlanktoScope's wifi network).
-- (System: networking) Now `ether-planktoscope.local` can be used to connect to the PlanktoScope over a Ethernet cable.
 - (System: administration, troubleshooting, GUI) A [Cockpit](https://cockpit-project.org/) system administration dashboard is now installed and made accessible on port 9090 at URL path /admin/cockpit/ (so e.g. it's accessible at http://plankto.scope:9090/admin/cockpit/).
 - (System: administration) [Docker](https://www.docker.com/) is now installed. Upon the first boot-up of the SD card, Docker Swarm mode is initialized; for now, only a single-member swarm (consisting of the PlanktoScope's Raspberry Pi itself) is supported.
+- (System: networking) Traffic is now routed with Network Address Translation between the ethernet and wifi network interfaces. This means that if the PlanktoScope has internet access through an Ethernet connection, it will share that internet access to devices connected to its wifi hotspot; and if the PlanktoScope has internet access through a wifi connection, it will share that internet access to devices connected to its Ethernet port.
+- (System: networking) Now both `192.168.4.1` and `192.168.5.1` can be used to access your PlanktoScope when your computer is connected directly to it, regardless of whether you are connecting over an Ethernet cable or the PlanktoScope's wifi hotspot.
 - (System: networking) [ufw](https://en.wikipedia.org/wiki/Uncomplicated_Firewall) is now installed, though it is disabled by default.
 
 ### Changed
@@ -41,7 +42,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Removed
 
 - (User-facing removal; System: administration) nginx is no longer installed, and the file browser on port 80 is removed. This functionality will be replaced with a different file browser before the next release.
-- (User-facing removal; System: networking) Now `planktoscope.local` only works over wifi, when the PlanktoScope is running in wireless AP mode.
+- (User-facing removal; System: networking) Now `planktoscope.local` only works for devices connected directly to the PlanktoScope, either via an Ethernet cable or over wifi when the PlanktoScope is running in wireless AP mode. It no longer works on other networks, such as LANs or mesh VPNs, which the PlanktoScope might be connected to.
 
 ### Fixed
 
