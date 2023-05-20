@@ -42,8 +42,8 @@ sudo systemctl disable hostapd
 # devices which don't override DNS server settings).
 
 # Change dnsmasq settings
-file="/etc/dnsmasq.conf"
-sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
+file="/etc/dnsmasq.d/dhcp-and-dns.conf"
+sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable dnsmasq # we'll always run dnsmasq as a DNS & DHCP server
 
 # Change dhcpcd settings

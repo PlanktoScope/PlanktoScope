@@ -30,8 +30,8 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-ssid-machine-name.service
 
 # Change dnsmasq settings
-file="/etc/dnsmasq.conf"
-sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
+file="/etc/dnsmasq.d/planktoscope.conf"
+sudo cp "$config_files_root$file" "$file"
 mkdir -p /home/pi/.local/etc
 file="/home/pi/.local/etc/hosts"
 cp "$config_files_root$file" "$file"
