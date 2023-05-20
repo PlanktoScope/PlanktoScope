@@ -14,4 +14,5 @@ sudo systemctl enable regenerate_ssh_host_keys.service
 
 # Remove history files
 rm -f /home/pi/.bash_history
+history -c && history -w
 rm -f /home/pi/.python_history

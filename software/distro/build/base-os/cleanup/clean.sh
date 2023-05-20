@@ -7,3 +7,4 @@ sudo apt-get clean -y
 
 # Remove history files
 rm -f /home/pi/.bash_history
+history -c && history -w
