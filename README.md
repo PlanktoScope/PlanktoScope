@@ -39,7 +39,7 @@ Here are some key features of the PlanktoScope:
 
 ## How do I get one?
 
-You can access the complete [documentation](https://planktoscope.github.io/PlanktoScope/).
+You can access the complete documentation here: https://planktoscope.github.io/PlanktoScope/
 |Get the kit|Assemble your kit|Start your machine|
 |--|--|--|
 |![Get the kit](docs/images/readme/get_kit.png)|![Assemble your kit](docs/images/readme/assemble_kit.png)|![Start your machine](docs/images/readme/start_pscope.png)|
@@ -79,3 +79,16 @@ All other materials, including documentation and pictures, are released under th
 If you wish to use any of the materials in this repository for a project that cannot be open-sourced, please contact us using Slack so we can discuss potential solutions.
 
 We encourage you to fork this repository and publish any improvements you make. Doing so helps others and allows us to potentially integrate your changes into this repository.
+
+## Citing PlanktoScope
+If you use PlanktoScope in your research, please use the following BibTeX entry.
+
+```
+@article{Pollina2022PlanktoScope,
+  author={Pollina, Thibaut and Larson, Adam G. and Lombard, Fabien and Li, Hongquan and Le Guen, David and Colin, Sébastien and de Vargas, Colomban and Prakash, Manu},
+  title={PlanktoScope: Affordable Modular Quantitative Imaging Platform for Citizen Oceanography},
+  journal={Frontiers in Marine Science},
+  year={2022},
+  doi={10.3389/fmars.2022.949428}
+}
+```
