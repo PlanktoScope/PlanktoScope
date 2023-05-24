@@ -1,35 +1,114 @@
+---
 site_name: PlanktoScope
+site_description: An open and affordable imaging platform for \
+  citizen oceanography
+site_url: https://planktoscope.github.io/PlanktoScope/
+repo_name: PlanktoScope
+repo_url: https://github.com/PlanktoScope/PlanktoScope
+
 nav:
-    - Setup:
-        - Basic Install: easy_install.md
-        - Expert Setup: expert_setup.md
-        - Remote Access: remote_access.md
-    - Assembly:
-        - Assembly guide: assembly_guide.md
-    - Usage:
-        - Getting started: getting_started.md
-        - User Interface: ui_guide.md
-        - Collection devices: collection_devices.md
-    - Hardware:
-        - Planktoscope HAT: hat_hardware.md
-    - Under the hood:
-        - Software architecture: software_architecture.md
-        - MQTT Messages: mqtt_messages.md
-        - Create Master SD Card: create_sd.md
-        - Update the Device Tree: update_device-tree.md
-    - Changelog:
-        - Changelog: changelog.md
-    - Contribute:
-        - Edit this documentation: edit_this_doc.md
-        - Edit the code: edit_the_code.md
-    - About:
-        - License: license.md
+  - Home: index.md
+  - Research: research.md
+  - Hardware:
+      - Manufacturing Guide: hardware/manufacturing.md
+      - Assembly Guide: hardware/assembly_guide.md
+      - Maintenance and Repair Guide: hardware/maintenance_repair.md
+      - Planktoscope HAT: hardware/hat_hardware.md
+      - Accessories: hardware/accessories.md
+  - Software:
+      - Basic Install: software/easy_install.md
+      - Create the SD Card: software/create_sd.md
+      - Expert Setup: software/expert_setup.md
+      - Update Devicetree: software/update_devicetree.md
+  - Usage:
+      - Getting started: usage/getting_started.md
+      - User Interface: usage/ui_guide.md
+      - Remote Access: usage/remote_access.md
+      - MQTT Messages: usage/mqtt_messages.md
+  - Contribute:
+      - Github Workflow: contribute/github_workflow.md
+      - Hardware Development: contribute/hardware_development.md
+      - Software Development: contribute/software_development.md
+      - Writing Documentation: contribute/writing_documentation.md
+  - Community:
+      - Getting in touch: community/getting_in_touch.md
+      - User Groups: community/usergroups.md
+      - Trainings: community/trainings.md
+      - Code of Conduct: community/code_of_conduct.md
+  - FAQ: faq.md
+  - License: license.md
+  - Changelog: changelog.md
+
 theme:
-    name: readthedocs
+  logo: images/logos/planktoscope_white.png
+  language: en
+  name: material
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - content.code.annotate
+    - navigation.sections
+    - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.instant
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+plugins:
+  - glightbox
+  - minify:
+      minify_html: true
 
 markdown_extensions:
-    - smarty
-    - sane_lists
-    - admonition
-    - toc:
-        permalink: true
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  homepage: https://www.planktoscope.org/
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/PlanktoScope
+    - icon: fontawesome/brands/slack
+      link: https://planktoscope.slack.com
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ThibautPollina
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
+copyright: >
+  Copyright &copy; 2023
