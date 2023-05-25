@@ -1,0 +1,52 @@
+name: Build documentation
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - edge
+    tags:
+      - 'documentation/v**'
+  pull_request:
+  pull_request_review:
+  merge_group:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: 'Git ref (optional)'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry==1.5.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'poetry'
+          cache-dependency-path: |
+            documentation/poetry.lock
+
+      - name: Install build dependencies
+        run: |
+          poetry -C ./documentation/ install --with docs
+
+      - name: Check documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ check
+
+      - name: Build documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ check
+
+      - name: Upload website archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation-website
+          path: documentation/site
