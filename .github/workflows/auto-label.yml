@@ -14,7 +14,7 @@ jobs:
     name: Assign to projects based on label
     steps:
     - name: Assign issues and pull requests with `hardware` label to project `Hardware`
-      uses: srggrs/assign-one-project-github-action@1.2.0
+      uses: srggrs/assign-one-project-github-action@1.3.1
       if: |
         contains(github.event.issue.labels.*.name, 'hardware') ||
         contains(github.event.pull_request.labels.*.name, 'hardware')
@@ -23,7 +23,7 @@ jobs:
         column_name: 'Bugs'
 
     - name: Assign issues and pull requests with `software` label to project `Sofware`
-      uses: srggrs/assign-one-project-github-action@1.2.0
+      uses: srggrs/assign-one-project-github-action@1.3.1
       if: |
         contains(github.event.issue.labels.*.name, 'software') ||
         contains(github.event.pull_request.labels.*.name, 'software')
