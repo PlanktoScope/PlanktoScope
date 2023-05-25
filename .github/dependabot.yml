@@ -12,3 +12,9 @@ updates:
       # The documentation system doesn't need to change that often, so we don't need or want new
       # Dependabot PRs every week
       interval: "monthly"
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

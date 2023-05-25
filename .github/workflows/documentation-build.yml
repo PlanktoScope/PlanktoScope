@@ -3,14 +3,16 @@ name: Build documentation
 on:
   push:
     branches:
-      - master
+      - 'master'
+      - 'feature/**'
+      - 'hotfix/**'
     paths:
       - 'documentation/**'
-      - '.github/workflows/documentation.yml'
+      - '.github/workflows/documentation-**.yml'
     tags:
-      - documentation/v*
+      - 'documentation/v**'
   pull_request:
-    branches: [ master ]
+  pull_request_review:
   merge_group:
   workflow_dispatch:
     inputs:
