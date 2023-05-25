@@ -6,8 +6,6 @@ If you want to join us, have a look at the [currently opened issues](https://git
 
 For working on Node-Red, we recommend to install it directly on your development machine to allow for faster cycles of testing (and ease of use). But feel free to setup a Pi Zero as a portable and compact development environment! (One of us is using one configured as usb gadget to do so!)
 
-If you don't know how to code, [the documentation could use your help](edit_this_doc)!
-
 ## Node-Red
 
 [Node-Red](https://nodered.org/) is our main process. We use [the flow](https://nodered.org/docs/developing-flows/flow-structure) to manage our user interface through a dashboard instance.
@@ -37,6 +35,6 @@ The python code is separated in four main processes, each with a specific set of
 - The imager process controls the camera and the streaming server via a state machine.
 - The segmenter process manages the segmentation and its outputs.
 
-Those processes all communicates together using MQTT and json messages. Each message is adressed to one topic. The high level topic controls which process receives the message. The details of each topic is at the end of this commit message. You can learn more about the [MQTT Messages here](mqtt_messages).
+Those processes all communicates together using MQTT and json messages. Each message is adressed to one topic. The high level topic controls which process receives the message. The details of each topic is at the end of this commit message. You can learn more about the [MQTT Messages here](../usage/mqtt_messages.md).
 
 The code is architectured around 6 modules and about 10 classes. I encourage you to have a look at the files, they're pretty straightforward to understand.
