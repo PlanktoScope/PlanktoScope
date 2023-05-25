@@ -1,0 +1,11 @@
+[Unit]
+Description=Release GPIO stepper motors on startup
+DefaultDependencies=false
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/release-gpio-steppers.sh
+Restart=no
+
+[Install]
+WantedBy=sysinit.target

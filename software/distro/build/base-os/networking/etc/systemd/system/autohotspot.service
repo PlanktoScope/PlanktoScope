@@ -1,0 +1,8 @@
+[Unit]
+Description=Automatically generates a Hotspot when a valid SSID is not in range
+After=multi-user.target
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/autohotspot.sh
+[Install]
+WantedBy=multi-user.target

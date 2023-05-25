@@ -1,0 +1,15 @@
+[Unit]
+Description=Initializes Docker swarm mode
+After=docker.service
+[Service]
+Type=oneshot
+ExecStartPre=systemctl disable first-boot-docker-swarm.service
+# FIXME: We can only advertise on one interface and one IP address - which is currently eth0. This
+# is fine since we only care about single-node clusters for now; but it may be better to advertise
+# on a ZeroTier network which is unique to each machine, for access on an overlay network over
+# multiple network interfaces.
+ExecStart=docker swarm init --advertise-addr eth0
+ExecStartPost=systemctl restart dhcpcd.service
+ExecStartPost=systemctl restart dnsmasq.service
+[Install]
+WantedBy=docker.service

@@ -1,0 +1,13 @@
+
+noarp
+
+# Define static profile for eth0
+profile static_eth0
+static ip_address=192.168.5.1/24
+static routers=192.168.5.1
+static domain_name_servers=192.168.5.1
+nogateway # don't install any default routes
+
+# Fallback to static profile on eth0
+interface eth0
+fallback static_eth0
