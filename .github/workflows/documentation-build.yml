@@ -3,12 +3,9 @@ name: Build documentation
 on:
   push:
     branches:
-      - 'master'
-      - 'feature/**'
-      - 'hotfix/**'
-    paths:
-      - 'documentation/**'
-      - '.github/workflows/documentation-**.yml'
+      - master
+      - main
+      - edge
     tags:
       - 'documentation/v**'
   pull_request:

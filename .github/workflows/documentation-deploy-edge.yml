@@ -1,0 +1,37 @@
+name: Deploy documentation (edge release channel)
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - edge
+    paths:
+      - 'documentation/**'
+      - '.github/workflows/documentation.yml'
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: gh-pages
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry==1.5.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'poetry'
+          cache-dependency-path: |
+            documentation/poetry.lock
+
+      - name: Install build dependencies
+        run: |
+          poetry -C ./documentation/ install --with docs
+
+      - name: Deploy documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ deploy-gh
