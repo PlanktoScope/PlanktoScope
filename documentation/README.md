@@ -44,7 +44,7 @@ poetry run poe build
 
 If you really don't want to change your current working directory to `/some/path/here/PlanktoScope/documentation`, you can instead run the following command:
 ```
-poetry -C /some/path/here/PlanktoScope/documentation run poe --root /some/path/here/PlanktoScope/documentation build
+poetry -C /some/path/here/PlanktoScope/documentation/ run poe --root /some/path/here/PlanktoScope/documentation/ build
 ```
 
 (this also works for `preview`, `check`, and any other subcommands)
