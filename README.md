@@ -1,6 +1,6 @@
 # PlanktoScope: Open and Affordable Quantitative Imaging Platform
 
-![planktoscope_hero](docs/images/project_description/planktoscope_hero.png)
+![planktoscope_hero](documentation/docs/images/project_description/planktoscope_hero.png)
 
 ## What are Plankton?
 
@@ -10,7 +10,7 @@ Plankton are tiny organisms that drift in the oceans and play a crucial role in 
 
 ## What is a PlanktoScope?
 
-![The PlanktoScope at tfom23 Expo](docs/images/planktoscope-buildworkshops-tfom23-expo.jpg)
+![The PlanktoScope at tfom23 Expo](documentation/docs/images/planktoscope-buildworkshops-tfom23-expo.jpg)
 
 The PlanktoScope is a modular, open-source platform for high-throughput quantitative imaging of plankton samples. Its small size, ease of use, and low cost make it suitable for a variety of applications, including the monitoring of laboratory cultures or natural micro-plankton communities. It can be controlled from any WiFi-enabled device and can be easily reconfigured to meet the changing needs of the user.
 
@@ -24,7 +24,7 @@ DOI: [https://doi.org/10.3389/fmars.2022.949428](https://doi.org/10.3389/fmars.2
 
 ## Key Features
 
-![planktoscope_hero](docs/images/project_description/planktoscope_architecture.png)
+![planktoscope_hero](documentation/docs/images/project_description/planktoscope_architecture.png)
 
 Here are some key features of the PlanktoScope:
 
@@ -42,7 +42,7 @@ Here are some key features of the PlanktoScope:
 You can access the complete documentation here: https://planktoscope.github.io/PlanktoScope/
 |Get the kit|Assemble your kit|Start your machine|
 |--|--|--|
-|![Get the kit](docs/images/readme/get_kit.png)|![Assemble your kit](docs/images/readme/assemble_kit.png)|![Start your machine](docs/images/readme/start_pscope.png)|
+|![Get the kit](documentation/docs/images/readme/get_kit.png)|![Assemble your kit](documentation/docs/images/readme/assemble_kit.png)|![Start your machine](documentation/docs/images/readme/start_pscope.png)|
 
 ## Getting Involved
 
