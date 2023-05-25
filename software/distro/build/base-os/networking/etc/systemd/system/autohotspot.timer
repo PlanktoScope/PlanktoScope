@@ -1,0 +1,9 @@
+[Unit]
+Description=Run the autohotspot periodically in case a recognized wifi network comes in range
+
+[Timer]
+OnUnitActiveSec=2min
+OnUnitInactiveSec=1min
+
+[Install]
+WantedBy=timers.target
