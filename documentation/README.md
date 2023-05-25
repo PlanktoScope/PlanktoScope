@@ -30,7 +30,11 @@ cd /some/path/here/PlanktoScope/documentation
 poetry install --with docs
 ```
 
-#### Live development
+#### Making changes
+
+To make changes, directly edit the files in the `docs` subdirectory using a text editor such as [Kate](https://kate-editor.org/), a Markdown editor such as [MarkText](https://github.com/marktext/marktext), or an IDE such as [Visual Studio Code](https://code.visualstudio.com/). You should make changes while live-previewing their consequences (see the next section, "Live-previewing changes" for instructions).
+
+#### Live-previewing changes
 
 Usually, you should edit the documentation sources (in `/some/path/here/PlanktoScope/documentation/docs`) while running a live preview of the documentation site. You can start the live preview server in your terminal using the following commands:
 ```
@@ -40,7 +44,7 @@ poetry run poe preview
 
 Then you can open the documentation website in your web browser at http://localhost:8000/PlanktoScope/ . Whenever you change a documentation source file, save your changes, and return to the web browser tab with the locally hosted documentation site, your changes will automatically appear within a few seconds!
 
-#### Check for errors
+#### Checking for errors
 
 While changing the documentation source files, you should regularly check the documentation for errors. We provide some tools to help automate this process. You can run these tools in your terminal using the following commands:
 ```
@@ -48,7 +52,7 @@ cd /some/path/here/PlanktoScope/documentation
 poetry run poe check
 ```
 
-#### Locally build the documentation website
+#### Locally building the documentation website
 
 Usually you will not need to manually build a local copy of the documentation website, because we automate the process on GitHub as part of the process of deploying our documentation to a website on the internet. However, you can build a local copy of the documentation website using the following commands:
 ```
@@ -63,6 +67,6 @@ poetry -C /some/path/here/PlanktoScope/documentation/ run poe --root /some/path/
 
 (this also works for `preview`, `check`, and any other subcommands of `poe`)
 
-#### Publish your changes
+#### Publishing your changes
 
 To publish your changes, make a [pull request](https://github.com/PlanktoScope/PlanktoScope/pulls) on our GitHub repository with a branch titled `feature/docs-<description of your changes>` (e.g. `feature/docs-fix-broken-link` or `feature/docs-improve-assembly-instructions`), and configure the pull request to merge the branch into the `master` branch. Once we merge the pull request, your changes will be published to the "edge" version of our documentation website (see the above "View the documentation" section of this README for the URL of the "edge" version of our documentation website).
