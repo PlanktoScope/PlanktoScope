@@ -46,6 +46,10 @@ jobs:
       - name: Build documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
+  upload:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Upload website archive
         uses: actions/upload-artifact@v3
         with:
