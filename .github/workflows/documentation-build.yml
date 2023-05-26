@@ -3,11 +3,13 @@ name: Build documentation
 on:
   push:
     branches:
-      - master
-      - main
-      - edge
+      - 'master'
+      - 'main'
+      - 'edge'
+      - 'beta'
+      - 'stable'
     tags:
-      - 'documentation/v**'
+      - 'documentation/v*'
   pull_request:
   pull_request_review:
   merge_group:
@@ -20,7 +22,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -50,3 +51,46 @@ jobs:
         with:
           name: documentation-website
           path: documentation/site
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get Docker metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/planktoscope/forklift
+          tags: |
+            type=match,pattern=documentation/v(.*)
+            type=edge,branch=master
+            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
+            type=sha
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        if: github.event_name == 'push' || github.event_name == 'push tag'
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./documentation
+          pull: true
+          push: ${{ github.event_name == 'push' || github.event_name == 'push tag' }}
+          platforms:
+            - linux/amd64
+            - linux/arm64
+            - linux/arm/v7
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

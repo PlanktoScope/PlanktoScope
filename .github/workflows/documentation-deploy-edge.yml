@@ -3,9 +3,9 @@ name: Deploy documentation (edge release channel)
 on:
   push:
     branches:
-      - master
-      - main
-      - edge
+      - 'master'
+      - 'main'
+      - 'edge'
     paths:
       - 'documentation/**'
       - '.github/workflows/documentation-deploy-edge.yml'
