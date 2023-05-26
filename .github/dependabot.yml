@@ -13,6 +13,13 @@ updates:
       # Dependabot PRs every week
       interval: "monthly"
 
+  # Maintain dependencies for the Docker container to serve the documentation
+  - package-ecosystem: "docker"
+    # Look for a Dockerfile in the `documentation` diectory
+    directory: "/documentation"
+    schedule:
+      interval: "weekly"
+
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
