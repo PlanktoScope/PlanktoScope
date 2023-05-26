@@ -64,4 +64,3 @@ build = "mkdocs build --clean --strict"
 build-check = "mkdocs build --clean --strict --no-directory-urls"
 check-links = "linkchecker --config .linkcheckerrc site"
 check = ["build-check", "check-links"]
-deploy-gh = "mkdocs gh-deploy --force"
