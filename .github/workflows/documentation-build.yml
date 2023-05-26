@@ -46,20 +46,6 @@ jobs:
       - name: Build documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
-  upload:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Upload website archive
-        uses: actions/upload-artifact@v3
-        with:
-          name: documentation-website
-          path: documentation/site
-
-  docker:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Get Docker metadata
         id: meta
         uses: docker/metadata-action@v4
@@ -86,20 +72,18 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Print troubleshooting information
-        run: |
-          pwd
-          ls ./documentation
-          cd ./documentation
-          pwd
-          ls
-
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: './documentation'
+          context: ./documentation
           pull: true
           push: ${{ github.event_name == 'push' || github.event_name == 'push tag' }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Upload website archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation-website
+          path: documentation/site
