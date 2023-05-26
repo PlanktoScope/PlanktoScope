@@ -50,7 +50,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/planktoscope/forklift
+          images: ghcr.io/planktoscope/project-docs
           tags: |
             type=match,pattern=documentation/v(.*)
             type=edge,branch=master
