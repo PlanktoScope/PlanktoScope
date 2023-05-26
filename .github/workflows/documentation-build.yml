@@ -25,6 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # Build documentation website
       - name: Install poetry
         run: pipx install poetry==1.5.0
 
@@ -46,6 +47,7 @@ jobs:
       - name: Build documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
+      # Build and publish Docker container image
       - name: Get Docker metadata
         id: meta
         uses: docker/metadata-action@v4
@@ -82,6 +84,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      # Upload documentation website as archive
       - name: Upload website archive
         uses: actions/upload-artifact@v3
         with:
