@@ -82,10 +82,15 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Print troubleshooting information
+        run: |
+          pwd
+          ls
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./documentation
+          context: .
           pull: true
           push: ${{ github.event_name == 'push' || github.event_name == 'push tag' }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
