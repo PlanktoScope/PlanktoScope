@@ -43,7 +43,7 @@ jobs:
         run: poetry -C ./documentation/ run poe --root ./documentation/ check
 
       - name: Build documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ check
+        run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Upload website archive
         uses: actions/upload-artifact@v3
