@@ -89,6 +89,14 @@ else
   panic "$description"
 fi
 
+description="apply Forklift environment"
+report_starting "$description"
+if $build_scripts_root/forklift/install.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="remove unnecessary artifacts"
 report_starting "$description"
 if $build_scripts_root/cleanup/clean.sh ; then
