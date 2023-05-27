@@ -41,14 +41,6 @@ else
   panic "$description"
 fi
 
-description="install MQTT broker"
-report_starting "$description"
-if $build_scripts_root/mqtt-broker/install.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="set up Python backend"
 report_starting "$description"
 if $build_scripts_root/python-backend/install.sh ; then
