@@ -32,7 +32,7 @@ stop_isolated_wlan() {
   echo "Stopping isolated wifi network..."
   ip link set dev "$wifi_dev" down
   systemctl stop hostapd
-  ip addr flush dev "$wifi_dev"
+  ip address flush dev "$wifi_dev"
   ip link set dev "$wifi_dev" up
   dhcpcd --rebind "$wifi_dev"
 }

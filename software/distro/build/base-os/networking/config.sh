@@ -50,6 +50,15 @@ sudo systemctl enable dnsmasq # we'll always run dnsmasq as a DNS & DHCP server
 file="/etc/dhcpcd.conf"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 
+# Set up interface forwarding
+file="/etc/sysctl.d/routed-ap.conf"
+sudo cp "$config_files_root$file" "$file"
+file="/home/pi/.local/bin/enable-interface-forwarding.sh"
+cp "$config_files_root$file" "$file"
+file="/etc/systemd/system/enable-interface-forwarding.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable enable-interface-forwarding.service
+
 # Set up autohotspot service
 file="/etc/systemd/system/autohotspot.service"
 sudo cp "$config_files_root$file" "$file"

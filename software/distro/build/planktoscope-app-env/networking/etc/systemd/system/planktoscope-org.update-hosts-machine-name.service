@@ -1,6 +1,8 @@
 [Unit]
 Description=Update dnsmasq hosts based on machine name generated from the Raspberry Pi's serial number
 Before=dnsmasq.service
+Before=network-pre.service
+Wants=network-pre.target
 
 [Service]
 Type=oneshot
