@@ -16,3 +16,6 @@ sudo systemctl enable regenerate_ssh_host_keys.service
 rm -f /home/pi/.bash_history
 history -c && history -w
 rm -f /home/pi/.python_history
+
+# Delete images from the documentation directory, since they're huge and we aren't using them anyways
+rm -rf /home/pi/PlanktoScope/documentation/docs/images
