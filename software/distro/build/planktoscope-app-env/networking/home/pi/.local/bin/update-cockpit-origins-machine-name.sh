@@ -14,4 +14,4 @@ sed "s/machine-name/$machine_name/g" /home/pi/.local/etc/cockpit/origins-machine
 
 # Update /etc/cockpit/cockpit.conf
 origins="$(sed 's/#.*$//g' /home/pi/.local/etc/cockpit/origins | sed '/^$/d' | paste -s -d ' ')"
-sed -i "s/^Origins = .*$/Origins = ${origins}/g" /etc/cockpit/cockpit.conf
+sed -i "s|^Origins = .*$|Origins = ${origins}|g" /etc/cockpit/cockpit.conf

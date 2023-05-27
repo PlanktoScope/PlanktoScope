@@ -34,6 +34,13 @@ file="/etc/cockpit/cockpit.conf"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 
 # Automatically update the Cockpit origins upon boot with the machine name
+mkdir -p /home/pi/.local/etc/cockpit
+file="/home/pi/.local/etc/cockpit/origins"
+cp "$config_files_root$file" "$file"
+file="/home/pi/.local/etc/cockpit/origins-base.snippet"
+cp "$config_files_root$file" "$file"
+file="/home/pi/.local/etc/cockpit/origins-machine-name.snippet"
+cp "$config_files_root$file" "$file"
 mkdir -p /home/pi/.local/bin
 file="/home/pi/.local/bin/update-cockpit-origins-machine-name.sh"
 cp "$config_files_root$file" "$file"
