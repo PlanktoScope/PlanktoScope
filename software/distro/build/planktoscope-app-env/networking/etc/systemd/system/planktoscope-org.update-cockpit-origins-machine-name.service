@@ -1,0 +1,12 @@
+[Unit]
+Description=Update Cockpit origins based on machine name generated from the Raspberry Pi's serial number
+Before=network-pre.service
+Wants=network-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/update-cockpit-origins-machine-name.sh
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
