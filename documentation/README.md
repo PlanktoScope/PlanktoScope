@@ -42,7 +42,7 @@ cd /some/path/here/PlanktoScope/documentation
 poetry run poe preview
 ```
 
-Then you can open the documentation website in your web browser at http://localhost:8000/PlanktoScope/ . Whenever you change a documentation source file, save your changes, and return to the web browser tab with the locally hosted documentation site, your changes will automatically appear within a few seconds!
+Then you can open the documentation website in your web browser at http://localhost:8000/ . Whenever you change a documentation source file, save your changes, and return to the web browser tab with the locally hosted documentation site, your changes will automatically appear within a few seconds!
 
 #### Checking for errors
 

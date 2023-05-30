@@ -3,20 +3,39 @@ name: Deploy documentation (edge release channel)
 on:
   push:
     branches:
-      - master
-      - main
-      - edge
+      - 'master'
+      - 'main'
+      - 'edge'
     paths:
       - 'documentation/**'
       - '.github/workflows/documentation-deploy-edge.yml'
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
+# queued. But do not cancel in-progress runs - we want these deploymeents to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  deployment:
+  build:
     runs-on: ubuntu-latest
-    environment: documentation-edge
-
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set up Pages
+        id: pages
+        uses: actions/configure-pages@v3
 
       - name: Install poetry
         run: pipx install poetry==1.5.0
@@ -33,5 +52,21 @@ jobs:
         run: |
           poetry -C ./documentation/ install --with docs
 
-      - name: Deploy documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ deploy-gh
+      - name: Build documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./documentation/site
+
+  deploy:
+    environment:
+      name: documentation-edge
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
