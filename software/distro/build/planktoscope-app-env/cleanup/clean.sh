@@ -6,7 +6,7 @@ sudo apt-get autoremove -y
 sudo apt-get clean -y
 
 # Clean up any unnecessary pip & npm files
-pip3 cache purge
+pip3 cache purge || true
 
 # Remove SSH keys and make them be regenerated
 sudo rm -f /etc/ssh/ssh_host_*
