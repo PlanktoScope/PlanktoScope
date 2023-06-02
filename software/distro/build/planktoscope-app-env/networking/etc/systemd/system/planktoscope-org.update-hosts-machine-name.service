@@ -1,6 +1,9 @@
 [Unit]
 Description=Update dnsmasq hosts based on machine name generated from the Raspberry Pi's serial number
 Before=dnsmasq.service
+Before=network-pre.service
+Wants=network-pre.target
+Before=avahi-daemon.service
 
 [Service]
 Type=oneshot
@@ -9,3 +12,4 @@ Restart=no
 
 [Install]
 WantedBy=dnsmasq.service
+WantedBy=avahi-daemon.service
