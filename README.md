@@ -25,8 +25,8 @@ TBD
 
 Except where otherwise indicated, source code provided here is covered by the following information:
 
-Copyright Romain Bazile, Ethan Li, and PlanktoScope project contributors
+Copyright PlanktoScope project contributors
 
-SPDX-License-Identifier: GPL-3.0-only
+SPDX-License-Identifier: GPL-3.0-or-later
 
 You can use the source code provided here under the [GPL 3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
