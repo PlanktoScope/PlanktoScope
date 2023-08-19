@@ -33,6 +33,16 @@ classifiers = [
   "Topic :: Scientific/Engineering",
 ]
 
+[[tool.poetry.source]]
+name = "piwheels"
+url = "https://www.piwheels.org/simple/"
+priority = "primary"
+
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "supplemental"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -51,7 +61,7 @@ loguru = "~0.5.3"
 picamerax = "~21.9.8"
 matplotlib = "~3.5.0"
 morphocut = "~0.1.2"
-opencv-contrib-python-headless = "~4.5.3.56"
+opencv-contrib-python-headless = "4.5.5.62"
 scipy = "~1.7.2"
 smbus2 = "~0.4.1"
 scikit-image = "~0.18.3"
