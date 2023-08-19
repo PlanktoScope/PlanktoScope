@@ -21,6 +21,13 @@ However, the organization of the source code does not yet reflect the organizati
 
 TBD
 
+### Prerequisites
+
+To use this project, you'll need:
+
+- Python 3.9
+- Poetry 1.4.2
+
 ## Licensing
 
 Except where otherwise indicated, source code provided here is covered by the following information:
