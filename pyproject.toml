@@ -36,12 +36,6 @@ classifiers = [
 [[tool.poetry.source]]
 name = "piwheels"
 url = "https://www.piwheels.org/simple/"
-priority = "primary"
-
-
-[[tool.poetry.source]]
-name = "PyPI"
-priority = "supplemental"
 
 [build-system]
 requires = ["poetry-core"]
