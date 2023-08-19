@@ -16,7 +16,7 @@ sudo apt-get install -y git python3-pip python3-venv
 POETRY_VENV=/home/pi/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
-$POETRY_VENV/bin/pip install --upgrade pip==23.2.1 setuptools==68.1.0
+$POETRY_VENV/bin/pip install --upgrade pip==23.2.1 setuptools==68.1.2
 $POETRY_VENV/bin/pip install cryptography==39.0.1
 $POETRY_VENV/bin/pip install poetry==1.4.2
 
@@ -43,7 +43,7 @@ python3 -m pipx ensurepath
 # dependencies via apt-get?
 sudo apt-get install -y libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
-# TODO: pin this at a specific version (at least until we distribute it as a Docker image)
+# TODO: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
 wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/main.zip
 unzip main.zip
 rm main.zip
