@@ -2,8 +2,6 @@
 # The Python backend provides a network API abstraction over hardware devices, as well as domain
 # logic for operating the PlanktoScope hardware.
 
-config_files_root=$(dirname $(realpath $BASH_SOURCE))
-
 ## Install basic Python tooling
 sudo apt-get update -y
 sudo apt-get install -y git python3-pip python3-venv
@@ -21,9 +19,6 @@ python3 -m venv $POETRY_VENV
 $POETRY_VENV/bin/pip install --upgrade pip==23.2.1 setuptools==68.1.0
 $POETRY_VENV/bin/pip install cryptography==39.0.1
 $POETRY_VENV/bin/pip install poetry==1.4.2
-file="/home/pi/.local/bin/poetry"
-cp "$config_files_root$file" "$file"
-export PATH="/home/pi/.local/bin:$PATH"
 
 # Install pipx (not required, but useful)
 python3 -m pip install --user pipx==1.2.0
@@ -54,5 +49,5 @@ unzip main.zip
 rm main.zip
 mv device-backend-main /home/pi/device-backend
 cd /home/pi/device-backend
-poetry install
+$POETRY_VENV/bin/poetry install
 cd /home/pi
