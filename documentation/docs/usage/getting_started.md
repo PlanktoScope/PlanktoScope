@@ -30,3 +30,8 @@ You can then do an acquisition run. **This is the best way to learn about the ma
 After doing an acquisition, the machine should be cleaned, especially in the fluidic part. One good way to do this is to first flush the machine with clear water (distilled if possible). You can then push through a 5-10% bleach solution, or some alcohol.
 
 If needed you can also clean the outside of the objective lens with a soft cloth. You can do the same on the flow cell if there are traces of finger on it too.
+
+For quantitative imaging of water samples, refer to the following protocols published by members of the PlanktoScope community:
+
+- "[Planktoscope protocol for plankton imaging V.2](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v2)" for software v2.3+ and hardware v2.5. A [PDF copy](protocol-v2.pdf) of this protocol is also available for offline use.
+- "[Planktoscope protocol for plankton imaging V.1](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v2https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v1?version_warning=no)" for software v2.3 and hardware v2.1-2.3. A [PDF copy](protocol-v1.pdf) of this protocol is also available for offline use.
