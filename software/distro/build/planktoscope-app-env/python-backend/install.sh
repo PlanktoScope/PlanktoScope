@@ -24,17 +24,6 @@ $POETRY_VENV/bin/pip install poetry==1.4.2
 python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
-# Install Fan HAT dependencies
-# FIXME: delete this commented section if we don't actually need it
-# sudo apt install -y i2c-tools
-# mkdir -p /home/pi/libraries
-# FIXME: can we get a reproducible build of WiringPi? Or maybe just Python library support via pip?
-# git clone https://github.com/WiringPi/WiringPi /home/pi/libraries/WiringPi
-# cd into WiringPi's directory because WiringPi's build script only knows how to run from there
-# cd /home/pi/libraries/WiringPi
-# sudo /home/pi/libraries/WiringPi/build
-# cd /home/pi
-
 # Install Python dependencies
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
 # libswscale5, can we avoid the need to install them? Right now they're required because the Python
@@ -43,11 +32,9 @@ python3 -m pipx ensurepath
 # dependencies via apt-get?
 sudo apt-get install -y libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
-# TODO: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
+# FIXME: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
 wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/main.zip
 unzip main.zip
 rm main.zip
 mv device-backend-main /home/pi/device-backend
-cd /home/pi/device-backend
-$POETRY_VENV/bin/poetry install
-cd /home/pi
+$POETRY_VENV/bin/poetry --directory /home/pi/device-backend install
