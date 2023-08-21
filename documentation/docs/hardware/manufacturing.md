@@ -12,7 +12,7 @@
 
 | Files                                                         | Description                              |
 | ------------------------------------------------------------- | ---------------------------------------- |
-| [PlanktoScope-Case.dxf](/hardware/case/PlanktoScope-Case.dxf) | PlanktoScope Case export for CNC Milling |
+| [PlanktoScope-Case.dxf](case/PlanktoScope-Case.dxf) | PlanktoScope Case export for CNC Milling |
 
 ### Tools
 
@@ -336,7 +336,7 @@ To ensure the quality of the produced PCB, request data validation from the cust
 
 | Files                                                                              | Description                     |
 | ---------------------------------------------------------------------------------- | ------------------------------- |
-| [Planktoscope-Hat-throughhole.csv](/hardware/hat/Planktoscope-Hat-throughhole.csv) | The list of used SMD components |
+| [Planktoscope-Hat-throughhole.csv](hat/Planktoscope-Hat-throughhole.csv) | The list of used SMD components |
 
 !!! warning
 
