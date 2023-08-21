@@ -42,6 +42,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System) The chrony configuration has been simplified, but it may be broken.
 - (System) The default timezone is now officially set to UTC, and we will be using UTC as the standard system time zone for all PlanktoScopes. Previously, the pre-built SD card images provided by this project used UTC as the timezone, but the "Expert Setup" instructions for manually setting up the PlanktoScope software did not specify a time zone to use.
 - (System, Dependencies) The base OS is now the 2023-05-03 release of Raspberry Pi OS Bullseye.
+- (Application: Backend, Dependencies) The Python backend's indirect dependencies are now version-locked to improve the reproducibility of the OS setup script independently of when the script is run.
 
 ### Removed
 
