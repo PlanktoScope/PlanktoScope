@@ -1,4 +1,4 @@
-# How to create a new SD master card, or backup efficiently your existing card
+# How to create a new SD card image, or back up your existing card
 
 If you want to backup your machine, or prepare an image from the golden machine to share it to the world (or your students), you may want to follow those steps.
 

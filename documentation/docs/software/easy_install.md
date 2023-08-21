@@ -2,66 +2,34 @@
 
 ![easy install](../images/software/IMG_1532.jpg)
 
-## Download the image
+This page provides instructions for setting up the standard version of the PlanktoScope software distribution on a PlanktoScope.
 
-For ease of setup, a preconfigured image is provided. You can download it from [s3.bazile.io/planktoscope/images/planktoscope-v2.3-final.img.gz](https://s3.bazile.io/planktoscope/images/planktoscope-v2.3-final.img.gz).
+## Download the PlanktoScope software SD card image
 
-```sh
-wget s3.bazile.io/planktoscope/images/planktoscope-v2.3-final.img.gz
-```
+For ease of setup, we provide an SD card image file with the PlanktoScope software distribution. You can download it from the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases) for the PlanktoScope project on GitHub. Each released version of the PlanktoScope software distribution has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope uses an Adafruit Stepper HAT or the PlanktoScope HAT, you should download the corresponding `.img.gz` file.
 
-## Writing the image to the SD card
+## Write the image to the SD card
 
-### Using balenaEtcher
+To write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager. We provide instructions for using balenaEtcher:
 
 1. Download and install [balenaEtcher](https://www.balena.io/etcher/).
-2. Connect an SD card reader with the micro SD card inside.
-3. Open balenaEtcher and select from your hard drive the previously downloaded img file file you wish to write to the SD card.
-4. Select the SD card you wish to write your image to.
-5. Review your selections and click 'Flash!' to begin writing data to the SD card.
+2. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
+3. Open balenaEtcher
+4. Select the SD card image file which you had download in the previous section.
+5. Select the SD card you wish to write your image to.
+6. Review your selections and click 'Flash!' to begin writing data to the SD card.
 
-### Using ddrescue
+## Insert the SD card into the PlanktoScope
 
-If you prefer a command line tool, you can also use ddrescue instead of balenaEtcher.
+Once flashing is over, you can unmount the SD card from the computer. Then insert the microSD card into the Raspberry Pi computer installed in your PlanktoScope.
 
-#### Install ddrescue on apt based distributions
+## Connect to the PlanktoScope
 
-```sh
-sudo apt install -y gddrescue
-```
+Power on your PlanktoScope and the Raspberry Pi inside it, and wait for it to start up. Note that it may take a few minutes to start up on the first boot.
 
-#### Uncompress the image
+If you connect another device (e.g. a phone or computer) to the PlanktoScope's Raspberry Pi over its local isolated wifi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's dashboard at one of the following URLs (try them in the following order, and just use the first one which works):
 
-```sh
-gunzip planktoscope-v2.3-final.img.gz
-```
-
-#### Write the image to the SD-Card
-
-```sh
-sudo ddrescue planktoscope-v2.3-final.img /dev/mmcblk0 --force
-```
-
-!!! warning
-
-    Be extremely careful when choosing the storage medium and check if you really use the device path of the memory card. Once the image has been written, these data blocks cannot be recovered.
-
-## Inserting the SD card
-
-Once flashing is over, you can unmount the SD card from the computer (usually done by right clicking on the card icon in the taskbar).
-
-Insert now the card in the Raspberry installed in your PlanktoScope.
-
-## Install a mDNS client
-
-To access the PlanktoScope services through your browser, you need to install a mDNS client.
-
-If you are running a linux machine, you are in luck. Avahi-client is probably already installed on your machine. Check with your package manager.
-
-If you are running a Windows machine, you will need to install the Bonjour service. It's a client developped by Apple. However, if you already use iTunes, Skype or even Photoshop, you may already have a client installed. Try skipping to the next step. If you can't access the linked page, come back here!
-
-To install the client, download the installer [here](https://download.info.apple.com/Mac_OS_X/061-8098.20100603.gthyu/BonjourPSSetup.exe) and launch it.
-
-## Start playing
-
-Start up your PlanktoScope and connect to its WiFi network. You can now access the webpage at <http://planktoscope.local:1880/ui> to start using your machine!
+- <http://home.planktoscope> (this should work unless your web browser is configured to use a Private DNS provider)
+- <http://planktoscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, Google Chrome on Android does not have mDNS support)
+- <http://192.168.4.1> (this should always work)
+- <http://192.168.5.1> (this should always work)
