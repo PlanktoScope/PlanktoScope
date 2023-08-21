@@ -25,6 +25,7 @@ python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Install Python dependencies
+sudo apt-get install -y i2c-tools # needed by the hardware controller
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
 # libswscale5, can we avoid the need to install them? Right now they're required because the Python
 # backend is doing an `import * from cv2`, which is wasteful and also pollutes the namespace - if we
