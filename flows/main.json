@@ -1,15 +1,5 @@
 [
     {
-        "id": "2f30a6ee99587899",
-        "type": "comment",
-        "name": "LICENSE",
-        "info": "Copyright 2022 Thibaut Pollina and Romain Bazile\nLicensed under GPL v3.0",
-        "x": 140,
-        "y": 600,
-        "z": "eaae323a.31b3",
-        "wires": []
-    },
-    {
         "id": "eaae323a.31b3",
         "type": "tab",
         "label": "Home",
@@ -1247,6 +1237,16 @@
                 "bb0a8725.a1849"
             ]
         ]
+    },
+    {
+        "id": "2f30a6ee99587899",
+        "type": "comment",
+        "z": "eaae323a.31b3",
+        "name": "LICENSE",
+        "info": "Copyright 2022 Thibaut Pollina and Romain Bazile\nLicensed under GPL v3.0",
+        "x": 140,
+        "y": 600,
+        "wires": []
     },
     {
         "id": "4e78af2d.90be7",
@@ -7349,7 +7349,7 @@
         "id": "fa914867.0a0658",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "python3 -u /home/pi/PlanktoScope/scripts/main.py",
+        "command": "/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend run python -u /home/pi/device-backend/main.py",
         "addpay": false,
         "append": "",
         "useSpawn": "true",
@@ -7357,7 +7357,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1090,
+        "x": 1320,
         "y": 600,
         "wires": [
             [],
@@ -7472,7 +7472,7 @@
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 1580,
+        "x": 2060,
         "y": 640,
         "wires": [
             []
@@ -7489,7 +7489,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1880,
         "y": 560,
         "wires": [
             [
@@ -7516,7 +7516,7 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 1220,
+        "x": 1700,
         "y": 720,
         "wires": [
             [
@@ -7531,7 +7531,7 @@
         "name": "Catch Errors",
         "scope": null,
         "uncaught": false,
-        "x": 1050,
+        "x": 1530,
         "y": 660,
         "wires": [
             [
@@ -7549,7 +7549,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1220,
+        "x": 1700,
         "y": 660,
         "wires": [
             [
@@ -7568,7 +7568,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1400,
+        "x": 1880,
         "y": 720,
         "wires": [
             [
@@ -7877,7 +7877,7 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 1070,
+        "x": 1550,
         "y": 720,
         "wires": [
             [

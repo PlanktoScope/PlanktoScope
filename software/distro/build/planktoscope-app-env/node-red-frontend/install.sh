@@ -33,6 +33,8 @@ sudo systemctl daemon-reload
 sudo systemctl enable nodered.service
 
 # Move the PlanktoScope project into a Node-RED project
+# FIXME: github.com/PlanktoScope/PlanktoScope should provide a subfolder which is the Node-RED
+# project to move into /home/pi/.node-red/projects, instead of having to be moved wholesale.
 mkdir -p /home/pi/.node-red/projects
 mv /home/pi/PlanktoScope /home/pi/.node-red/projects/PlanktoScope
 ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope
