@@ -34,11 +34,6 @@ sudo apt-get update -y # get the list of packages from the docker repo
 # Refer to https://www.reddit.com/r/raspberry_pi/comments/zblky6/comment/iytpp4g/ for details.
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Set up Docker Swarm Mode
-file="/etc/systemd/system/first-boot-docker-swarm.service"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable first-boot-docker-swarm.service
-
 # Install cockpit
 sudo apt-get update -y
 sudo apt-get install -y cockpit
