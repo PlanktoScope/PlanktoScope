@@ -5,8 +5,19 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install some tools for a nicer command-line experience over ssh
+# Note: we don't want to do an apt-get upgrade because then we'd have no way to ensure the same set
+# of package versions for existing packages if we run the script at different times.
 sudo apt-get update -y
 sudo apt-get install -y vim byobu git
+
+# Install some tools for dealing with captive portals
+sudo apt-get install -y w3m
+# Browsh (which requires firefox-esr) can be used to ssh into a PlanktoScope and have it
+# authenticate to a captive portal on the wifi network in order to get internet access.
+sudo apt-get install -y firefox-esr
+mkdir -p /home/pi/.local/bin
+curl -L https://github.com/browsh-org/browsh/releases/download/v1.8.0/browsh_1.8.0_linux_armv7 \
+  -o /home/pi/.local/bin/browsh
 
 # Install Docker
 sudo install -m 0755 -d /etc/apt/keyrings
