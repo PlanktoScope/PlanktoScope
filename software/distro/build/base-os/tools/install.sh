@@ -12,12 +12,9 @@ sudo apt-get install -y vim byobu git
 
 # Install some tools for dealing with captive portals
 sudo apt-get install -y w3m
-# Browsh (which requires firefox-esr) can be used to ssh into a PlanktoScope and have it
-# authenticate to a captive portal on the wifi network in order to get internet access.
-sudo apt-get install -y firefox-esr
-mkdir -p /home/pi/.local/bin
-curl -L https://github.com/browsh-org/browsh/releases/download/v1.8.0/browsh_1.8.0_linux_armv7 \
-  -o /home/pi/.local/bin/browsh
+# Note: we don't install browsh (which requires firefox-esr) because it adds ~200-300 MB of
+# dependencies in the base image. Users who need browsh should instead use the Docker image from
+# https://hub.docker.com/r/browsh/browsh
 
 # Install Docker
 sudo install -m 0755 -d /etc/apt/keyrings
