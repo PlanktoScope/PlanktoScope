@@ -1,9 +1,10 @@
 #!/bin/bash -eux
-# The Forklift pallet provides the standard configuration of Forklift package deployments of
-# Docker containerized applications for the PlanktoScope software distribution
+# The Forklift pallet github.com/PlanktoScope/pallet-standard provides the standard configuration of
+# Forklift package deployments of Docker containerized applications for the PlanktoScope software
+# distribution
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
-forklift_version="0.3.0"
+forklift_version="0.3.1"
 pallet_version="b3cc8c3"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
