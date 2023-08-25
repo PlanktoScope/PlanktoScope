@@ -11,6 +11,7 @@ description = "Documentation for the PlanktoScope project"
 # Here, we only list the current maintainers of the PlanktoScope documentation project.
 maintainers = [
   "Thibaut Pollina <thibaut.pollina@gmail.com>",
+  "Ethan Li <lietk12@gmail.com>",
 ]
 # For simplicity, we follow the definition of "Author" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
@@ -57,8 +58,13 @@ Pygments = "^2.15.1"
 pymdown-extensions = "^10.0.1"
 LinkChecker = "^10.2.1"
 poethepoet = "^0.22.0"
+imgp = "^2.8"
+pillow = "9.5.0"
 
 [tool.poe.tasks]
+optimize-png-photos = "imgp --convert --optimize --quality 95 --recurse --overwrite docs/images/assembly_guide/*.png"
+optimize-widths = "imgp --res 1200x0 --optimize --quality 95 --recurse --overwrite docs/images"
+optimize-compression = "imgp --eraseexif --optimize --progressive --quality 85 --recurse --overwrite docs/images"
 preview = "mkdocs serve --dev-addr localhost:8000"
 build = "mkdocs build --clean --strict"
 build-check = "mkdocs build --clean --strict --no-directory-urls"
