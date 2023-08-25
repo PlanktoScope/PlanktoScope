@@ -1,11 +1,10 @@
 [Unit]
-Description=Deploys Forklift pallet
+Description=Starts Docker Compose applications specified by the local Forklift pallet
 Wants=docker.service
 After=docker.service
 
 [Service]
 Type=oneshot
-ExecStartPre=systemctl disable first-boot-forklift-deploy.service
 ExecStart=/home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt apply
 
 [Install]

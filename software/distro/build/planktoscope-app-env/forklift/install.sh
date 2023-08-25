@@ -18,6 +18,6 @@ sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-im
 # Apply pallet after Docker is initialized, because the system needs to be restarted after Docker is
 # installed before the Docker service will be able to start successfully.
 # Refer to https://www.reddit.com/r/raspberry_pi/comments/zblky6/comment/iytpp4g/ for details.
-file="/etc/systemd/system/first-boot-forklift-apply.service"
+file="/etc/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable first-boot-forklift-apply.service
+sudo systemctl enable forklift-apply.service
