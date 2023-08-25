@@ -81,7 +81,7 @@ else
   panic "$description"
 fi
 
-description="apply Forklift environment"
+description="download Forklift pallet"
 report_starting "$description"
 if $build_scripts_root/forklift/install.sh ; then
   report_finished "$description"

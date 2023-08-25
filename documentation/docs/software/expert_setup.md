@@ -14,7 +14,7 @@ Next, you will need to write your downloaded Raspberry Pi OS image file to your 
 
 To use a graphical application to write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager. Download the latest version of [balenaEtcher](https://www.balena.io/etcher/) or the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and install it. Then open balenaEtcher or the Raspberry Pi Imager. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the "Flash!" or "Write" button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
 
-If you'd instead prefer to write the image file to your microSD card, you could instead use ddrescue on a Debian-based system, e.g. as follows:
+If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use ddrescue on a Debian-based system, e.g. as follows:
 ```
 gunzip planktoscope-v2.3-final.img.gz
 sudo ddrescue planktoscope-v2.3-final.img /dev/mmcblk0 --force
@@ -24,13 +24,13 @@ Warning: be extremely careful when choosing the storage medium and ensure that y
 
 ### Configure your Raspberry Pi
 
-Insert the microSD card into your Raspberry Pi and connect your Pi to a screen, mouse and a keyboard. Double-check the connections before plugging in power.
+Insert the microSD card into your Raspberry Pi and connect your Pi to a screen, a mouse, and a keyboard. Double-check the connections before plugging in power.
 
 The first boot to the desktop may take up to 120 seconds. This is normal and is caused by the image expanding the filesystem to the whole SD card. DO NOT REBOOT before you reach the desktop.
 
-Eventually, the display will ask you to configure some settings for the Raspberry Pi. You will be asked to choose language settings and a keyboard layout; you should choose settings appropriate for you. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you *must* choose `pi` as the username, and you should choose a password you can remember. By default, we use `copepode` as the password - so you may want to choose a different password for better security. Refer to the official [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/) guide for details and instructions.
+Eventually, the display will ask you to configure some settings for the Raspberry Pi. You will be asked to choose language settings and a keyboard layout; you should choose settings appropriate for you. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you *must* choose `pi` as the username, and you should choose a password you can remember. By default, we use `copepode` as the password - so you may want to choose a different password for better security. Refer to the official [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/) guide for additional details and instructions on configuring settings for the Raspberry Pi.
 
-Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can find instructions for how to do so at https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking
+Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can find instructions for how to do so at <https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking>
 
 ## Install the PlanktoScope software distribution
 
@@ -44,7 +44,7 @@ rm stable.zip
 mv PlanktoScope-stable PlanktoScope
 ```
 
-This will prepare you to install the latest stable release of the PlanktoScope software distribution; if you need to install some other release such as `beta` or `edge`, you will need to change the URLs and names accordingly in the commands above. Then you will run the following command, which will take a long time (at least 20 minutes, depending on the speed of your internet connection) to finish:
+This will prepare you to install the latest stable release of the PlanktoScope software distribution; if you need to install some other release such as `beta` or `edge`, you will need to change the URLs and names accordingly in the commands above. Then you will run the following command, which will take a long time (at least 30 minutes, depending on the speed of your internet connection) to finish:
 
 ```
 /home/pi/PlanktoScope/software/distro/build/build.sh

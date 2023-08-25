@@ -14,7 +14,7 @@ wifi_dev="wlan0" # device name to use; by default wlan0 is the on-board wifi chi
 
 # Determine the SSIDs of the wifi networks the RPi is configured to use:
 # FIXME: can we simplify these commands?
-wpa_ssid=$(grep -e '^ *ssid="' /etc/wpa_supplicant/wpa_supplicant.conf | \
+wpa_ssid=$(grep -e '^[[:space:]]*ssid="' /etc/wpa_supplicant/wpa_supplicant.conf | \
   awk -F'ssid=' '{ print $2 }' | sed 's/\r//g' | \
   awk 'BEGIN{ORS=","} {print}' | sed 's/\"//g' | sed 's/,$//')
 IFS="," read -r -a ssids <<<"$wpa_ssid"

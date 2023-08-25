@@ -1,0 +1,11 @@
+[Unit]
+Description=Starts Docker Compose applications specified by the local Forklift pallet
+Wants=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt apply
+
+[Install]
+WantedBy=multi-user.target
