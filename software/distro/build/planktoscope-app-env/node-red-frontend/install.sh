@@ -36,8 +36,8 @@ sudo systemctl enable nodered.service
 # FIXME: github.com/PlanktoScope/PlanktoScope should provide a subfolder which is the Node-RED
 # project to move into /home/pi/.node-red/projects, instead of having to be moved wholesale.
 mkdir -p /home/pi/.node-red/projects
-mv /home/pi/PlanktoScope /home/pi/.node-red/projects/PlanktoScope
-ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope
+mv /home/pi/PlanktoScope/software/node-red-dashboard /home/pi/.node-red/projects/PlanktoScope
+ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope/software/node-red-dashboard
 
 # Install more dependencies
 # FIXME: copy-dependencies should be listed as a dev dependency somewhere in the PlanktoScope repository
@@ -48,5 +48,5 @@ npm --prefix /home/pi/.node-red install copy-dependencies
 # absolute or relative paths. So we're forced to provide relative paths.
 cd /home/pi
 node /home/pi/.node-red/node_modules/copy-dependencies/index.js \
-  .node-red/projects/PlanktoScope .node-red
+  /home/pi/.node-red/projects/PlanktoScope /home/pi/.node-red
 npm --prefix /home/pi/.node-red update
