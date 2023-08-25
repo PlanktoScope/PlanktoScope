@@ -7349,7 +7349,7 @@
         "id": "fa914867.0a0658",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend run python -u /home/pi/device-backend/main.py",
+        "command": "sudo -E /home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend run python -u /home/pi/device-backend/main.py",
         "addpay": false,
         "append": "",
         "useSpawn": "true",
