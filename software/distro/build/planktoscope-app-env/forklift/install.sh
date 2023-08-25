@@ -12,4 +12,12 @@ curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_v
 /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
 /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-repo
 sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-img
-sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt apply
+# Note: we don't apply the pallet immediately because the Docker service won't work properly until a
+# reboot. Forklift apply doesn't actually cause the containers to exist after a reboot.
+
+# Apply pallet after Docker is initialized, because the system needs to be restarted after Docker is
+# installed before the Docker service will be able to start successfully.
+# Refer to https://www.reddit.com/r/raspberry_pi/comments/zblky6/comment/iytpp4g/ for details.
+file="/etc/systemd/system/first-boot-forklift-apply.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable first-boot-forklift-apply.service
