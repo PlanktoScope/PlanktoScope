@@ -29,7 +29,7 @@ sudo apt-get update -y # get the list of packages from the docker repo
 # via apt upgrade but was not rebooted before installing docker-ce; however, even if this error
 # is reported, docker will work after reboot.
 # Refer to https://www.reddit.com/r/raspberry_pi/comments/zblky6/comment/iytpp4g/ for details.
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Install cockpit
 sudo apt-get update -y
