@@ -38,6 +38,9 @@ sudo apt-get remove -y docker-buildx-plugin
 # Install cockpit
 sudo apt-get update -y
 sudo apt-get install -y cockpit
+# We remove the NetworkManager integration because trying to use it will break the PlanktoScope's
+# current networking configuration.
+sudo apt-get remove -y cockpit-networkmanageer
 sudo mkdir -p /etc/cockpit/
 file="/etc/cockpit/cockpit.conf"
 sudo cp "$config_files_root$file" "$file"
