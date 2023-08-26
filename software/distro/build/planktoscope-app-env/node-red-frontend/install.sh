@@ -48,5 +48,5 @@ npm --prefix /home/pi/.node-red install copy-dependencies
 # absolute or relative paths. So we're forced to provide relative paths.
 cd /home/pi
 node /home/pi/.node-red/node_modules/copy-dependencies/index.js \
-  /home/pi/.node-red/projects/PlanktoScope /home/pi/.node-red
+  .node-red/projects/PlanktoScope .node-red
 npm --prefix /home/pi/.node-red update
