@@ -9,14 +9,13 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
   | bash -s - --confirm-install --confirm-pi --no-init
 
 # Create a settings file to run Node-RED in project mode
-# TODO: remove the need for project mode, because it adds a requirement for the user to enter their
-# name and email address the first time Node-RED is booted, and makes other manual actions required
-# before the frontend becomes accessible/usable.
 file="/home/pi/.node-red/settings.js"
 cp "$config_files_root$file" "$file"
 sudo chown 0:0 "$file"
 
-# Create default configs for the Node-RED editor
+# Create default configs for the Node-RED editor, so that the no manual actions (e.g. entry of name
+# and email address) are required the first time Node-RED is started in order for the frontend to
+# become usable.
 file="/home/pi/.node-red/.config.projects.json"
 cp "$config_files_root$file" "$file"
 file="/home/pi/.node-red/.config.users.json"
@@ -39,14 +38,5 @@ mkdir -p /home/pi/.node-red/projects
 mv /home/pi/PlanktoScope/software/node-red-dashboard /home/pi/.node-red/projects/PlanktoScope
 ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope/software/node-red-dashboard
 
-# Install more dependencies
-# FIXME: copy-dependencies should be listed as a dev dependency somewhere in the PlanktoScope repository
-# and version-locked. It would be even better if we didn't need to use copy-dependencies
-npm --prefix /home/pi/.node-red install copy-dependencies
-# For some reason, copy-dependencies seems to be unable to handle absolute paths in its args - instead,
-# it prepends (probably) the current working directory to the args, regardless of whether they're
-# absolute or relative paths. So we're forced to provide relative paths.
-cd /home/pi
-node /home/pi/.node-red/node_modules/copy-dependencies/index.js \
-  .node-red/projects/PlanktoScope .node-red
-npm --prefix /home/pi/.node-red update
+# Install dependencies
+npm --prefix /home/pi/.node-red/projects/PlanktoScope update
