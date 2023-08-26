@@ -1,10 +1,9 @@
-# Note: this project will eventually be split into two subprojects in the same repo.
 [tool.poetry]
-name = "planktoscope-device-backend"
+name = "planktoscope-controller"
 # Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
 # "2023.7.0-beta.0", which is different from the Semantic Versioning schema
 version = "2023.9.0b0"
-description = "Backend software for PlanktoScope devices"
+description = "Controller of PlanktoScope hardware"
 # For simplicity, we follow the definition of "Maintainer" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
 # "Maintainers: Contributors who are responsible for driving the vision and managing the
@@ -24,7 +23,7 @@ license = "GPL-3.0-or-later"
 readme = "README.md"
 homepage = "https://www.planktoscope.org"
 repository = "https://github.com/PlanktoScope/device-backend"
-# FIXME: once we have the docs up at docs.planktoscope.org, we should update this URL
+# FIXME: once we have the docs up at docs.fairscope.com, we should update this URL
 documentation = "https://planktoscope.github.io/PlanktoScope/"
 keywords = ["planktoscope"]
 classifiers = [
@@ -50,13 +49,7 @@ adafruit-circuitpython-motor = "~3.3.1"
 adafruit-ssd1306 = "~1.6.2"
 adafruit-platformdetect = "~3.45.2"
 paho-mqtt = "~1.6.1"
-numpy = "~1.22.4"
 loguru = "~0.5.3"
 picamerax = "~21.9.8"
-matplotlib = "~3.5.0"
-morphocut = "~0.1.2"
-opencv-contrib-python-headless = "4.5.5.62"
-scipy = "~1.7.2"
 smbus2 = "~0.4.1"
-scikit-image = "~0.18.3"
 picamera = "~1.13"
