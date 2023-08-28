@@ -4633,22 +4633,6 @@
         ]
     },
     {
-        "id": "142bc61a0bde1ba9",
-        "type": "link in",
-        "z": "bccd1f23.87219",
-        "name": "Cam Stream",
-        "links": [
-            "49111a72f4e32740"
-        ],
-        "x": 235,
-        "y": 40,
-        "wires": [
-            [
-                "3ca8be38ddb269e9"
-            ]
-        ]
-    },
-    {
         "id": "3ca8be38ddb269e9",
         "type": "template",
         "z": "bccd1f23.87219",
@@ -5830,22 +5814,6 @@
         "wires": [
             [
                 "49ea1123.ee1768"
-            ]
-        ]
-    },
-    {
-        "id": "c515edcd8681c244",
-        "type": "link in",
-        "z": "baa1e3d9.cb29d",
-        "name": "Cam Stream",
-        "links": [
-            "49111a72f4e32740"
-        ],
-        "x": 275,
-        "y": 20,
-        "wires": [
-            [
-                "a77625dc21c8a3cc"
             ]
         ]
     },
@@ -7129,22 +7097,6 @@
         ]
     },
     {
-        "id": "604659d148759b84",
-        "type": "link in",
-        "z": "cb95299c.2817c8",
-        "name": "Cam Stream",
-        "links": [
-            "49111a72f4e32740"
-        ],
-        "x": 975,
-        "y": 600,
-        "wires": [
-            [
-                "e077b83ad375cb95"
-            ]
-        ]
-    },
-    {
         "id": "e077b83ad375cb95",
         "type": "template",
         "z": "cb95299c.2817c8",
@@ -7170,33 +7122,18 @@
         "group": "c0ebfc57.42527",
         "name": "Image browser",
         "order": 1,
-        "width": 24,
-        "height": 24,
-        "format": "<center>\n<object data=\"http://{{msg.payload}}:80/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
+        "width": "0",
+        "height": "0",
+        "format": "<center>\n<object data=\"/ps/data/browse/files/\" width=\"1400px\" height=\"1100px\">\n</object>\n</center>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 400,
         "y": 100,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "3bb4970164f5e7b2",
-        "type": "link in",
-        "z": "c1660bc.e7ff7f8",
-        "name": "Cam Stream",
-        "links": [
-            "49111a72f4e32740"
-        ],
-        "x": 255,
-        "y": 100,
-        "wires": [
-            [
-                "2911fbc6.d28c24"
-            ]
         ]
     },
     {
@@ -9721,8 +9658,7 @@
                 "67d052ba.99ff24"
             ],
             [
-                "d71c8185.800fd",
-                "49111a72f4e32740"
+                "d71c8185.800fd"
             ],
             [
                 "dc305a26.b33fc"
@@ -10183,22 +10119,6 @@
                 "991d1df9.3ffb3"
             ]
         ]
-    },
-    {
-        "id": "49111a72f4e32740",
-        "type": "link out",
-        "z": "f21ba04.c26266",
-        "name": "IP",
-        "links": [
-            "142bc61a0bde1ba9",
-            "c515edcd8681c244",
-            "7fb91a7fd6d2518c",
-            "604659d148759b84",
-            "3bb4970164f5e7b2"
-        ],
-        "x": 1035,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "3db572cd.cf972e",
