@@ -24,8 +24,18 @@ $POETRY_VENV/bin/pip install poetry==1.4.2
 python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
-# Install Python dependencies
-sudo apt-get install -y i2c-tools # needed by the hardware controller
+# Download device-backend monorepo
+# FIXME: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
+wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/feature/split-segmenter-code.zip
+unzip split-segmenter-code.zip
+rm split-segmenter-code.zip
+mv device-backend-feature-split-segmenter-code /home/pi/device-backend
+
+# Set up the hardware controller
+sudo apt-get install -y i2c-tools
+$POETRY_VENV/bin/poetry --directory /home/pi/device-backend/control install
+
+# Set up the data processing segmenter
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
 # libswscale5, can we avoid the need to install them? Right now they're required because the Python
 # backend is doing an `import * from cv2`, which is wasteful and also pollutes the namespace - if we
@@ -33,9 +43,4 @@ sudo apt-get install -y i2c-tools # needed by the hardware controller
 # dependencies via apt-get?
 sudo apt-get install -y libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
-# FIXME: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
-wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/main.zip
-unzip main.zip
-rm main.zip
-mv device-backend-main /home/pi/device-backend
-$POETRY_VENV/bin/poetry --directory /home/pi/device-backend install
+$POETRY_VENV/bin/poetry --directory /home/pi/device-backend/processing/segmenter install
