@@ -528,12 +528,13 @@
     {
         "id": "1be83144.4fe4bf",
         "type": "ui_group",
-        "name": "Danger Zone (DO NOT TOUCH HERE UNLESS YOU KNOW WHAT YOU ARE DOING)",
+        "name": "Segmenter",
         "tab": "2489e51c.eed77a",
         "order": 2,
         "disp": true,
         "width": "12",
-        "collapse": true
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "3ca00bf9.e5cac4",
@@ -670,12 +671,13 @@
     {
         "id": "a7d64879.38298",
         "type": "ui_group",
-        "name": "Python Log",
+        "name": "Hardware Controller",
         "tab": "2489e51c.eed77a",
         "order": 1,
         "disp": true,
         "width": "12",
-        "collapse": true
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "9e409235.73cd7",
@@ -905,64 +907,15 @@
         "height": 1
     },
     {
-        "id": "9b6dc1eeb6aacf25",
-        "type": "ui_spacer",
-        "z": "9daf9e2b.019fc",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 5,
-        "width": 12,
-        "height": 1
-    },
-    {
-        "id": "39d7981eebaf1b17",
-        "type": "ui_spacer",
-        "z": "9daf9e2b.019fc",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 6,
-        "width": 12,
-        "height": 1
-    },
-    {
-        "id": "603f43d66f25966f",
-        "type": "ui_spacer",
-        "z": "9daf9e2b.019fc",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 7,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "02a0c4c401619cb8",
-        "type": "ui_spacer",
-        "z": "9daf9e2b.019fc",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 9,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "1b7e5b6e265fe27d",
-        "type": "ui_spacer",
-        "z": "9daf9e2b.019fc",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 11,
-        "width": 8,
-        "height": 1
-    },
-    {
-        "id": "d9622026ef2d9e0c",
-        "type": "ui_spacer",
-        "z": "9daf9e2b.019fc",
-        "name": "spacer",
-        "group": "1be83144.4fe4bf",
-        "order": 14,
-        "width": 8,
-        "height": 1
+        "id": "3828737d96a35f80",
+        "type": "ui_group",
+        "name": "System",
+        "tab": "2489e51c.eed77a",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "6465bdd5.15eb8c",
@@ -1804,8 +1757,7 @@
         "y": 160,
         "wires": [
             [
-                "9f501f49.45645",
-                "52af9ac0.60eb24"
+                "9f501f49.45645"
             ]
         ]
     },
@@ -2223,18 +2175,6 @@
                 "9f501f49.45645"
             ]
         ]
-    },
-    {
-        "id": "52af9ac0.60eb24",
-        "type": "link out",
-        "z": "b771c342.49603",
-        "name": "Sample Operator",
-        "links": [
-            "35eb925e.5f8016"
-        ],
-        "x": 815,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "cbb123ab.fd3428",
@@ -7264,21 +7204,23 @@
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
         "name": "",
-        "group": "1be83144.4fe4bf",
+        "group": "3828737d96a35f80",
         "order": 10,
-        "width": 2,
+        "width": "6",
         "height": 1,
         "passthru": false,
         "label": "Reboot",
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "fa-repeat fa-2x",
         "payload": "reboot",
         "payloadType": "str",
         "topic": "reboot",
-        "x": 420,
-        "y": 760,
+        "topicType": "str",
+        "x": 160,
+        "y": 240,
         "wires": [
             [
                 "4af9112d.87767"
@@ -7297,8 +7239,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "sudo cmd now",
-        "x": 740,
-        "y": 800,
+        "x": 480,
+        "y": 280,
         "wires": [
             [],
             [],
@@ -7310,21 +7252,23 @@
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
         "name": "",
-        "group": "1be83144.4fe4bf",
+        "group": "3828737d96a35f80",
         "order": 12,
-        "width": 2,
+        "width": "6",
         "height": 1,
         "passthru": false,
         "label": "Shutdown",
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "fa-power-off fa-2x",
         "payload": "shutdown",
         "payloadType": "str",
         "topic": "shutdown",
-        "x": 420,
-        "y": 840,
+        "topicType": "str",
+        "x": 160,
+        "y": 320,
         "wires": [
             [
                 "4af9112d.87767"
@@ -7338,8 +7282,8 @@
         "name": "action",
         "func": "#!/usr/bin/python3\nimport smbus2 as smbus\n\nbus = smbus.SMBus(1)\n#turn off LED\nbus.write_byte_data(0x0d, 0x07, 0x00)\n#turn off Fan\nbus.write_byte_data(0x0d, 0x08, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
         "outputs": 1,
-        "x": 590,
-        "y": 800,
+        "x": 330,
+        "y": 280,
         "wires": [
             [
                 "611a8b1c.a829b4"
@@ -7357,9 +7301,9 @@
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "Start Python Hardware Controller",
-        "x": 1120,
-        "y": 560,
+        "name": "Start Hardware Controller",
+        "x": 990,
+        "y": 460,
         "wires": [
             [],
             [
@@ -7384,12 +7328,11 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 720,
-        "y": 600,
+        "x": 740,
+        "y": 460,
         "wires": [
             [
-                "fa914867.0a0658",
-                "bbd295527b085647"
+                "fa914867.0a0658"
             ]
         ]
     },
@@ -7397,28 +7340,29 @@
         "id": "466eb611.4da048",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
-        "name": "Restart Python",
-        "group": "1be83144.4fe4bf",
+        "name": "Restart Hardware Controller",
+        "group": "a7d64879.38298",
         "order": 8,
-        "width": 4,
+        "width": "6",
         "height": 1,
         "passthru": true,
-        "label": "Restart Python",
+        "label": "Restart Hardware Controller",
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "fa-refresh fa-2x",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 400,
-        "y": 600,
+        "topicType": "str",
+        "x": 460,
+        "y": 460,
         "wires": [
             [
                 "1575db82.742854",
                 "bd5cceef.b17ad",
-                "ed7503f3.d95a48",
-                "38c05fcb891c82bf"
+                "ed7503f3.d95a48"
             ]
         ]
     },
@@ -7433,9 +7377,9 @@
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "Terminate Python Hardware Controller",
+        "name": "Terminate Hardware Controller",
         "x": 810,
-        "y": 680,
+        "y": 540,
         "wires": [
             [],
             [],
@@ -7454,8 +7398,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Terminate Raspimjpeg",
-        "x": 760,
-        "y": 520,
+        "x": 780,
+        "y": 380,
         "wires": [
             [],
             [],
@@ -7467,18 +7411,18 @@
         "type": "ui_template",
         "z": "9daf9e2b.019fc",
         "group": "a7d64879.38298",
-        "name": "Log table",
+        "name": "Controller Log table",
         "order": 1,
         "width": 12,
         "height": 10,
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"log_table\" style=\"font-family: mono;font-size: 5px;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('controller_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"controller_log_table\" style=\"font-family: mono;font-size: 5px;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1920,
-        "y": 660,
+        "x": 1450,
+        "y": 680,
         "wires": [
             []
         ]
@@ -7488,14 +7432,14 @@
         "type": "function",
         "z": "9daf9e2b.019fc",
         "name": "Log array",
-        "func": "var log = flow.get(\"python_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"python_log\", log);\n\nmsg.payload = log;\nreturn msg;",
+        "func": "var log = flow.get(\"controller_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"controller_log\", log);\n\nmsg.payload = log;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1740,
-        "y": 580,
+        "x": 1260,
+        "y": 640,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -7506,7 +7450,7 @@
         "id": "7a1dedf.1c63094",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
-        "name": "",
+        "name": "Clear Hardware Controller Log",
         "group": "a7d64879.38298",
         "order": 2,
         "width": 0,
@@ -7516,13 +7460,14 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "fa-eraser",
         "payload": "",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 1560,
-        "y": 740,
+        "x": 870,
+        "y": 720,
         "wires": [
             [
                 "73500be7.9ab7c4"
@@ -7536,8 +7481,8 @@
         "name": "Catch Errors",
         "scope": null,
         "uncaught": false,
-        "x": 1390,
-        "y": 680,
+        "x": 870,
+        "y": 640,
         "wires": [
             [
                 "f9a871d5.a73828"
@@ -7554,8 +7499,9 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1560,
-        "y": 680,
+        "libs": [],
+        "x": 1040,
+        "y": 640,
         "wires": [
             [
                 "8b511c2b.9c24c8"
@@ -7566,15 +7512,15 @@
         "id": "73500be7.9ab7c4",
         "type": "function",
         "z": "9daf9e2b.019fc",
-        "name": "Clear log",
-        "func": "flow.set(\"python_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
+        "name": "Clear Hardware Controller log",
+        "func": "flow.set(\"controller_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1740,
-        "y": 740,
+        "x": 1190,
+        "y": 720,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -7598,8 +7544,8 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 150,
-        "y": 600,
+        "x": 170,
+        "y": 460,
         "wires": [
             [
                 "466eb611.4da048"
@@ -7665,191 +7611,6 @@
         ]
     },
     {
-        "id": "8bd1f3dc.9affe8",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "1",
-        "oldrc": false,
-        "name": "git user.name",
-        "x": 1160,
-        "y": 60,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "b40d1f65.39e14",
-        "type": "template",
-        "z": "9daf9e2b.019fc",
-        "name": "git config",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "git config --global --replace-all user.name \"{{payload}}\"",
-        "output": "str",
-        "x": 960,
-        "y": 60,
-        "wires": [
-            [
-                "8bd1f3dc.9affe8"
-            ]
-        ]
-    },
-    {
-        "id": "35eb925e.5f8016",
-        "type": "link in",
-        "z": "9daf9e2b.019fc",
-        "name": "Git config",
-        "links": [
-            "52af9ac0.60eb24"
-        ],
-        "x": 795,
-        "y": 100,
-        "wires": [
-            [
-                "b40d1f65.39e14",
-                "6d7dd372.3b7814"
-            ]
-        ]
-    },
-    {
-        "id": "4e5183bd.e77bac",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "1",
-        "oldrc": false,
-        "name": "git user.email",
-        "x": 1150,
-        "y": 140,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "6d7dd372.3b7814",
-        "type": "template",
-        "z": "9daf9e2b.019fc",
-        "name": "git config",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "git config --global --replace-all user.email \"{{payload}}\"",
-        "output": "str",
-        "x": 960,
-        "y": 140,
-        "wires": [
-            [
-                "4e5183bd.e77bac"
-            ]
-        ]
-    },
-    {
-        "id": "e564e9ad.7c312",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "d": true,
-        "name": "Update",
-        "group": "1be83144.4fe4bf",
-        "order": 13,
-        "width": 4,
-        "height": 1,
-        "passthru": false,
-        "label": "System Update",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "mi-system_update",
-        "payload": " ",
-        "payloadType": "str",
-        "topic": "update",
-        "topicType": "str",
-        "x": 260,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2d2ef1fd.40e6e6",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "bash /home/pi/PlanktoScope/scripts/bash/start_update.sh",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "oldrc": false,
-        "name": "Update",
-        "x": 420,
-        "y": 460,
-        "wires": [
-            [
-                "64f61762.68c788",
-                "8b511c2b.9c24c8",
-                "83c5a708.a5715",
-                "d334d264.8a7728"
-            ],
-            [
-                "8b511c2b.9c24c8"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "8f08c4eb.db74b8",
-        "type": "ui_template",
-        "z": "9daf9e2b.019fc",
-        "group": "1be83144.4fe4bf",
-        "name": "Update message",
-        "order": 1,
-        "width": 12,
-        "height": 3,
-        "format": "<div><center>If you want to update to the latest code version of Node-Red and Python, please click here.\nWe are trying to save your configuration changes with git stash and restore them afterwards, but clearly, things may break!\nAlso, you can choose the branch you want to update to. BE CAREFUL, selecting a branch WILL update the code immediately.\nIf you have made changes to the flow, you will lose them. Please commit those changes from Node-Red interface, from the Project History tab.</center></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 150,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "64f61762.68c788",
-        "type": "ui_toast",
-        "z": "9daf9e2b.019fc",
-        "position": "dialog",
-        "displayTime": "10",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "Update notif",
-        "x": 730,
-        "y": 440,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "45a7b5aa.2ed20c",
         "type": "link in",
         "z": "9daf9e2b.019fc",
@@ -7857,8 +7618,8 @@
         "links": [
             "e41870d7.300eb8"
         ],
-        "x": 175,
-        "y": 560,
+        "x": 195,
+        "y": 420,
         "wires": [
             [
                 "466eb611.4da048"
@@ -7882,8 +7643,8 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 1410,
-        "y": 740,
+        "x": 650,
+        "y": 720,
         "wires": [
             [
                 "7a1dedf.1c63094"
@@ -7898,246 +7659,11 @@
         "links": [
             "e08cfcb8.2a67e8"
         ],
-        "x": 455,
-        "y": 800,
+        "x": 195,
+        "y": 280,
         "wires": [
             [
                 "4af9112d.87767"
-            ]
-        ]
-    },
-    {
-        "id": "83c5a708.a5715",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "git --git-dir=/home/pi/PlanktoScope/.git describe --long --tags",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "oldrc": false,
-        "name": "Get git revision",
-        "x": 660,
-        "y": 340,
-        "wires": [
-            [
-                "af2b8d95.195bb8",
-                "b6bc9b81.ff942"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "d334d264.8a7728",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "git --git-dir=/home/pi/PlanktoScope/.git branch --remotes --list | awk '/HEAD/{next;} split($1, a, \"/\") {print a[2]}'",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Get git branch",
-        "x": 660,
-        "y": 260,
-        "wires": [
-            [
-                "e5e8e66c.899588"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "e4342b66.72972",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "name": "get git branch",
-        "group": "1be83144.4fe4bf",
-        "order": 3,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Update branch list",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "mi-compare_arrows",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 420,
-        "y": 260,
-        "wires": [
-            [
-                "d334d264.8a7728"
-            ]
-        ]
-    },
-    {
-        "id": "3f13b9f8.bac94e",
-        "type": "ui_dropdown",
-        "z": "9daf9e2b.019fc",
-        "name": "Git branch list",
-        "label": "Switch branch to",
-        "tooltip": "If you choose something, the code WILL be updated to that branch, don't touch if you don't know what you are doing!",
-        "place": "branch",
-        "group": "1be83144.4fe4bf",
-        "order": 4,
-        "width": 7,
-        "height": 1,
-        "passthru": false,
-        "multiple": false,
-        "options": [],
-        "payload": "",
-        "topic": "branch",
-        "x": 1160,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e5e8e66c.899588",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "filter branch",
-        "func": "msg.options = msg.payload.trimEnd().split('\\n')\nmsg.payload = msg.options.find((str) => str.startsWith('*'));\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 870,
-        "y": 260,
-        "wires": [
-            [
-                "3f13b9f8.bac94e",
-                "ccc7d79b.a419f"
-            ]
-        ]
-    },
-    {
-        "id": "c1fb03f7.e675f8",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 430,
-        "y": 300,
-        "wires": [
-            [
-                "d334d264.8a7728",
-                "83c5a708.a5715"
-            ]
-        ]
-    },
-    {
-        "id": "af2b8d95.195bb8",
-        "type": "ui_text",
-        "z": "9daf9e2b.019fc",
-        "group": "1be83144.4fe4bf",
-        "order": 2,
-        "width": 12,
-        "height": 1,
-        "name": "",
-        "label": "Current code version",
-        "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "x": 900,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "b6bc9b81.ff942",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "save process_commit",
-        "func": "global.set(\"process_commit\", msg.payload);\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 900,
-        "y": 360,
-        "wires": [
-            [
-                "6c20d6a7.869b6"
-            ]
-        ]
-    },
-    {
-        "id": "6c20d6a7.869b6",
-        "type": "link out",
-        "z": "9daf9e2b.019fc",
-        "name": "Git revision",
-        "links": [
-            "9373b3f6.33a2b"
-        ],
-        "x": 1035,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "7de3a9b4.0ab108",
-        "type": "ui_toast",
-        "z": "9daf9e2b.019fc",
-        "position": "top right",
-        "displayTime": "10",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "Git branch update",
-        "x": 1290,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "ccc7d79b.a419f",
-        "type": "change",
-        "z": "9daf9e2b.019fc",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "List update successfull",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Branch list update",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1080,
-        "y": 260,
-        "wires": [
-            [
-                "7de3a9b4.0ab108"
             ]
         ]
     },
@@ -8183,8 +7709,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Terminate Python Segmenter",
-        "x": 780,
-        "y": 740,
+        "x": 800,
+        "y": 900,
         "wires": [
             [],
             [],
@@ -8203,12 +7729,238 @@
         "winHide": false,
         "oldrc": false,
         "name": "Start Python Segmenter",
-        "x": 1090,
-        "y": 640,
+        "x": 990,
+        "y": 820,
         "wires": [
             [],
-            [],
+            [
+                "18da9d94b15a699f"
+            ],
             []
+        ]
+    },
+    {
+        "id": "06c4c91eed5d7f37",
+        "type": "delay",
+        "z": "9daf9e2b.019fc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 820,
+        "wires": [
+            [
+                "bbd295527b085647"
+            ]
+        ]
+    },
+    {
+        "id": "631b8626185addfc",
+        "type": "ui_button",
+        "z": "9daf9e2b.019fc",
+        "name": "Restart Segmenter",
+        "group": "1be83144.4fe4bf",
+        "order": 8,
+        "width": "6",
+        "height": 1,
+        "passthru": true,
+        "label": "Restart Segmenter",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#AD1625",
+        "className": "",
+        "icon": "fa-refresh fa-2x",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 430,
+        "y": 820,
+        "wires": [
+            [
+                "06c4c91eed5d7f37",
+                "38c05fcb891c82bf"
+            ]
+        ]
+    },
+    {
+        "id": "642cb1af595d71de",
+        "type": "ui_template",
+        "z": "9daf9e2b.019fc",
+        "group": "1be83144.4fe4bf",
+        "name": "Segmenter Log table",
+        "order": 1,
+        "width": 12,
+        "height": 10,
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('segmenter_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"segmenter_log_table\" style=\"font-family: mono;font-size: 5px;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1460,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18da9d94b15a699f",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Log array",
+        "func": "var log = flow.get(\"segmenter_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"segmenter_log\", log);\n\nmsg.payload = log;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 1000,
+        "wires": [
+            [
+                "642cb1af595d71de"
+            ]
+        ]
+    },
+    {
+        "id": "15dc62a44ec22267",
+        "type": "ui_button",
+        "z": "9daf9e2b.019fc",
+        "name": "Clear Segmenter Log",
+        "group": "1be83144.4fe4bf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Clear Log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-eraser",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 900,
+        "y": 1080,
+        "wires": [
+            [
+                "a7983b0e6be244bb"
+            ]
+        ]
+    },
+    {
+        "id": "22e9cc0d2e947bbe",
+        "type": "catch",
+        "z": "9daf9e2b.019fc",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 870,
+        "y": 1000,
+        "wires": [
+            [
+                "4dfddedcc7ec899e"
+            ]
+        ]
+    },
+    {
+        "id": "4dfddedcc7ec899e",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Get error",
+        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 1000,
+        "wires": [
+            [
+                "18da9d94b15a699f"
+            ]
+        ]
+    },
+    {
+        "id": "a7983b0e6be244bb",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Clear Segmenter log",
+        "func": "flow.set(\"segmenter_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 1080,
+        "wires": [
+            [
+                "642cb1af595d71de"
+            ]
+        ]
+    },
+    {
+        "id": "6850f3c32b5ebd07",
+        "type": "inject",
+        "z": "9daf9e2b.019fc",
+        "name": "once",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 170,
+        "y": 820,
+        "wires": [
+            [
+                "631b8626185addfc"
+            ]
+        ]
+    },
+    {
+        "id": "84b57f5c69ace0de",
+        "type": "inject",
+        "z": "9daf9e2b.019fc",
+        "name": "once",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 650,
+        "y": 1080,
+        "wires": [
+            [
+                "15dc62a44ec22267"
+            ]
         ]
     },
     {
@@ -10711,7 +10463,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "Stepper config change",
         "links": [
-            "45a7b5aa.2ed20c"
+            "45a7b5aa.2ed20c",
+            "835916dcb5ddf246"
         ],
         "x": 1195,
         "y": 380,

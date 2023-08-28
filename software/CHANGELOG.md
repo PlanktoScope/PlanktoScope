@@ -15,7 +15,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: networking) Traffic is now routed with Network Address Translation between the ethernet and wifi network interfaces. This means that if the PlanktoScope has internet access through an Ethernet connection, it will share that internet access to devices connected to its wifi hotspot; and if the PlanktoScope has internet access through a wifi connection, it will share that internet access to devices connected to its Ethernet port.
 - (System: networking) Now both `192.168.4.1` and `192.168.5.1` can be used to access your PlanktoScope when your computer is connected directly to it, regardless of whether you are connecting over an Ethernet cable or the PlanktoScope's wifi hotspot.
 - (Application: Documentation) An offline copy of the PlanktoScope project documentation is now provided at URL path /ps/docs/ (so e.g. it's accessible at http://home.planktoscope/ps/docs/)
-- (System: administration) [Docker](https://www.docker.com/) is now installed.
+- (System: administration) [Docker](https://www.docker.com/) is now installed. We are using it to deliver various applications in a way that will eventually enable safe and easy upgrades.
 - (System: administration, troubleshooting, GUI) A [Cockpit](https://cockpit-project.org/) system administration dashboard is now installed and made accessible at URL path /admin/cockpit/ (so e.g. it's accessible at http://home.planktoscope/admin/cockpit/).
 - (System: administration, troubleshooting, GUI) A [filebrowser](https://github.com/filebrowser/filebrowser) instance, allowing you to manage and edit files anywhere in the Raspberry Pi's SD card, is now installed and made accessible at URL path /admin/fs/ (so e.g. it's accessible at http://home.planktoscope/admin/fs/)
 - (System: administration, troubleshooting, GUI) A [Portainer](https://www.portainer.io/) administration dashboard for Docker is now installed and made accessible at URL path /admin/portainer/ (so e.g. it's accessible at http://home.planktoscope/admin/portainer/).
@@ -49,6 +49,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Removed
 
 - (User-facing removal; System: networking) Now `planktoscope.local` only works for devices connected directly to the PlanktoScope, either via an Ethernet cable or over wifi when the PlanktoScope is running in wireless AP mode. It no longer works on other networks, such as LANs or mesh VPNs, which the PlanktoScope might be connected to. On such networks, the machine-specific mDNS name (of format `planktoscope-<machine-name>.local`) should be used instead.
+- (System: administration) The Git-based software update system (exposed in the Node-RED dashboard's "Adminisration" page) has been removed, since it was reported to behave problematically anyways. In the future, we will use a system based on Docker for safer and easier software updates.
 
 ### Fixed
 
