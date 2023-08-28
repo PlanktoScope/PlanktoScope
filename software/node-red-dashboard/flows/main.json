@@ -526,17 +526,6 @@
         "collapse": false
     },
     {
-        "id": "1be83144.4fe4bf",
-        "type": "ui_group",
-        "name": "Segmenter",
-        "tab": "2489e51c.eed77a",
-        "order": 2,
-        "disp": true,
-        "width": "12",
-        "collapse": true,
-        "className": ""
-    },
-    {
         "id": "3ca00bf9.e5cac4",
         "type": "ui_group",
         "name": "Navigation",
@@ -909,9 +898,31 @@
     {
         "id": "3828737d96a35f80",
         "type": "ui_group",
-        "name": "System",
+        "name": "Operating System",
+        "tab": "2489e51c.eed77a",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4ebfc7d4e1cdc24b",
+        "type": "ui_group",
+        "name": "Node-RED Dashboard",
         "tab": "2489e51c.eed77a",
         "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "38c8aa8154cc76e0",
+        "type": "ui_group",
+        "name": "Segmenter",
+        "tab": "2489e51c.eed77a",
+        "order": 2,
         "disp": true,
         "width": "12",
         "collapse": false,
@@ -7277,9 +7288,9 @@
         "id": "466eb611.4da048",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
-        "name": "Restart Hardware Controller",
+        "name": "",
         "group": "a7d64879.38298",
-        "order": 8,
+        "order": 3,
         "width": "6",
         "height": 1,
         "passthru": true,
@@ -7348,18 +7359,18 @@
         "type": "ui_template",
         "z": "9daf9e2b.019fc",
         "group": "a7d64879.38298",
-        "name": "Controller Log table",
+        "name": "Controller Log",
         "order": 1,
-        "width": 12,
-        "height": 10,
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('controller_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"controller_log_table\" style=\"font-family: mono;font-size: 5px;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "width": "12",
+        "height": "12",
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('controller_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"controller_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1450,
-        "y": 680,
+        "x": 1440,
+        "y": 560,
         "wires": [
             []
         ]
@@ -7375,8 +7386,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 640,
+        "x": 1240,
+        "y": 520,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -7387,7 +7398,7 @@
         "id": "7a1dedf.1c63094",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
-        "name": "Clear Hardware Controller Log",
+        "name": "",
         "group": "a7d64879.38298",
         "order": 2,
         "width": 0,
@@ -7403,8 +7414,8 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 870,
-        "y": 720,
+        "x": 400,
+        "y": 600,
         "wires": [
             [
                 "73500be7.9ab7c4"
@@ -7412,52 +7423,18 @@
         ]
     },
     {
-        "id": "9187bf97.9922b8",
-        "type": "catch",
-        "z": "9daf9e2b.019fc",
-        "name": "Catch Errors",
-        "scope": null,
-        "uncaught": false,
-        "x": 870,
-        "y": 640,
-        "wires": [
-            [
-                "f9a871d5.a73828"
-            ]
-        ]
-    },
-    {
-        "id": "f9a871d5.a73828",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Get error",
-        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1040,
-        "y": 640,
-        "wires": [
-            [
-                "8b511c2b.9c24c8"
-            ]
-        ]
-    },
-    {
         "id": "73500be7.9ab7c4",
         "type": "function",
         "z": "9daf9e2b.019fc",
-        "name": "Clear Hardware Controller log",
+        "name": "Clear Controller log",
         "func": "flow.set(\"controller_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1190,
-        "y": 720,
+        "x": 1210,
+        "y": 600,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -7580,8 +7557,8 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 650,
-        "y": 720,
+        "x": 170,
+        "y": 600,
         "wires": [
             [
                 "7a1dedf.1c63094"
@@ -7647,7 +7624,7 @@
         "oldrc": false,
         "name": "Terminate Python Segmenter",
         "x": 800,
-        "y": 900,
+        "y": 760,
         "wires": [
             [],
             [],
@@ -7667,11 +7644,11 @@
         "oldrc": false,
         "name": "Start Python Segmenter",
         "x": 990,
-        "y": 820,
+        "y": 680,
         "wires": [
             [],
             [
-                "18da9d94b15a699f"
+                "b9fe06cc9fa9035a"
             ],
             []
         ]
@@ -7693,7 +7670,7 @@
         "drop": false,
         "outputs": 1,
         "x": 740,
-        "y": 820,
+        "y": 680,
         "wires": [
             [
                 "bbd295527b085647"
@@ -7704,9 +7681,9 @@
         "id": "631b8626185addfc",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
-        "name": "Restart Segmenter",
-        "group": "1be83144.4fe4bf",
-        "order": 8,
+        "name": "",
+        "group": "38c8aa8154cc76e0",
+        "order": 3,
         "width": "6",
         "height": 1,
         "passthru": true,
@@ -7721,132 +7698,11 @@
         "topic": "",
         "topicType": "str",
         "x": 430,
-        "y": 820,
+        "y": 680,
         "wires": [
             [
                 "06c4c91eed5d7f37",
                 "38c05fcb891c82bf"
-            ]
-        ]
-    },
-    {
-        "id": "642cb1af595d71de",
-        "type": "ui_template",
-        "z": "9daf9e2b.019fc",
-        "group": "1be83144.4fe4bf",
-        "name": "Segmenter Log table",
-        "order": 1,
-        "width": 12,
-        "height": 10,
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('segmenter_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"segmenter_log_table\" style=\"font-family: mono;font-size: 5px;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 1460,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "18da9d94b15a699f",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Log array",
-        "func": "var log = flow.get(\"segmenter_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"segmenter_log\", log);\n\nmsg.payload = log;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 1000,
-        "wires": [
-            [
-                "642cb1af595d71de"
-            ]
-        ]
-    },
-    {
-        "id": "15dc62a44ec22267",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Segmenter Log",
-        "group": "1be83144.4fe4bf",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "Clear Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-eraser",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 900,
-        "y": 1080,
-        "wires": [
-            [
-                "a7983b0e6be244bb"
-            ]
-        ]
-    },
-    {
-        "id": "22e9cc0d2e947bbe",
-        "type": "catch",
-        "z": "9daf9e2b.019fc",
-        "name": "Catch Errors",
-        "scope": null,
-        "uncaught": false,
-        "x": 870,
-        "y": 1000,
-        "wires": [
-            [
-                "4dfddedcc7ec899e"
-            ]
-        ]
-    },
-    {
-        "id": "4dfddedcc7ec899e",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Get error",
-        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1040,
-        "y": 1000,
-        "wires": [
-            [
-                "18da9d94b15a699f"
-            ]
-        ]
-    },
-    {
-        "id": "a7983b0e6be244bb",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Segmenter log",
-        "func": "flow.set(\"segmenter_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1220,
-        "y": 1080,
-        "wires": [
-            [
-                "642cb1af595d71de"
             ]
         ]
     },
@@ -7868,7 +7724,7 @@
         "payload": "start",
         "payloadType": "str",
         "x": 170,
-        "y": 820,
+        "y": 680,
         "wires": [
             [
                 "631b8626185addfc"
@@ -7876,7 +7732,128 @@
         ]
     },
     {
-        "id": "84b57f5c69ace0de",
+        "id": "470e32fe94b0254f",
+        "type": "ui_template",
+        "z": "9daf9e2b.019fc",
+        "group": "4ebfc7d4e1cdc24b",
+        "name": "Node-RED Log table",
+        "order": 1,
+        "width": "12",
+        "height": "12",
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('nodered_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"nodered_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1460,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec2872cc698c47c5",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Log array",
+        "func": "var log = flow.get(\"nodered_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"nodered_log\", log);\n\nmsg.payload = log;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 900,
+        "wires": [
+            [
+                "470e32fe94b0254f"
+            ]
+        ]
+    },
+    {
+        "id": "a4f36a155b40d8fc",
+        "type": "ui_button",
+        "z": "9daf9e2b.019fc",
+        "name": "Clear Node-RED Log",
+        "group": "4ebfc7d4e1cdc24b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Clear Log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-eraser",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 440,
+        "y": 980,
+        "wires": [
+            [
+                "1f4bbcbdb5e76e9c"
+            ]
+        ]
+    },
+    {
+        "id": "bc536dd002d843fd",
+        "type": "catch",
+        "z": "9daf9e2b.019fc",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 150,
+        "y": 900,
+        "wires": [
+            [
+                "ad59246ff2dc72ea"
+            ]
+        ]
+    },
+    {
+        "id": "ad59246ff2dc72ea",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Get error",
+        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 900,
+        "wires": [
+            [
+                "ec2872cc698c47c5"
+            ]
+        ]
+    },
+    {
+        "id": "1f4bbcbdb5e76e9c",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Clear Node-RED log",
+        "func": "flow.set(\"nodered_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 980,
+        "wires": [
+            [
+                "470e32fe94b0254f"
+            ]
+        ]
+    },
+    {
+        "id": "d919104472b823c1",
         "type": "inject",
         "z": "9daf9e2b.019fc",
         "name": "once",
@@ -7892,12 +7869,145 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 650,
-        "y": 1080,
+        "x": 170,
+        "y": 980,
         "wires": [
             [
-                "15dc62a44ec22267"
+                "a4f36a155b40d8fc"
             ]
+        ]
+    },
+    {
+        "id": "2725bcee9d29a4a9",
+        "type": "ui_template",
+        "z": "9daf9e2b.019fc",
+        "group": "38c8aa8154cc76e0",
+        "name": "Segmenter Log",
+        "order": 1,
+        "width": "12",
+        "height": "12",
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('segmenter_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"segmenter_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1440,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "32ba6254873a01e8",
+        "type": "ui_button",
+        "z": "9daf9e2b.019fc",
+        "name": "",
+        "group": "38c8aa8154cc76e0",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Clear Log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-eraser",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 400,
+        "y": 820,
+        "wires": [
+            [
+                "b20f0b018171df60"
+            ]
+        ]
+    },
+    {
+        "id": "b20f0b018171df60",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Clear Segmenter log",
+        "func": "flow.set(\"segmenter_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 820,
+        "wires": [
+            [
+                "2725bcee9d29a4a9"
+            ]
+        ]
+    },
+    {
+        "id": "403963302cc48135",
+        "type": "inject",
+        "z": "9daf9e2b.019fc",
+        "name": "once",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 170,
+        "y": 820,
+        "wires": [
+            [
+                "32ba6254873a01e8"
+            ]
+        ]
+    },
+    {
+        "id": "b9fe06cc9fa9035a",
+        "type": "function",
+        "z": "9daf9e2b.019fc",
+        "name": "Log array",
+        "func": "var log = flow.get(\"segmenter_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"segmenter_log\", log);\n\nmsg.payload = log;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 740,
+        "wires": [
+            [
+                "2725bcee9d29a4a9"
+            ]
+        ]
+    },
+    {
+        "id": "72d47aa2343075b8",
+        "type": "ui_template",
+        "z": "9daf9e2b.019fc",
+        "group": "3828737d96a35f80",
+        "name": "OS Logs",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "format": "<center>\n<object data=\"http://home.planktoscope/admin/cockpit/cockpit+app/@localhost/system/logs.html\" width=\"690px\" height=\"690px\">\n</object>\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            []
         ]
     },
     {
