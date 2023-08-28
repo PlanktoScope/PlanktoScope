@@ -7278,7 +7278,7 @@
         "payloadType": "str",
         "topic": "reboot",
         "x": 420,
-        "y": 680,
+        "y": 760,
         "wires": [
             [
                 "4af9112d.87767"
@@ -7294,10 +7294,11 @@
         "append": "now",
         "useSpawn": "false",
         "timer": "2",
+        "winHide": false,
         "oldrc": false,
         "name": "sudo cmd now",
         "x": 740,
-        "y": 720,
+        "y": 800,
         "wires": [
             [],
             [],
@@ -7323,7 +7324,7 @@
         "payloadType": "str",
         "topic": "shutdown",
         "x": 420,
-        "y": 760,
+        "y": 840,
         "wires": [
             [
                 "4af9112d.87767"
@@ -7338,7 +7339,7 @@
         "func": "#!/usr/bin/python3\nimport smbus2 as smbus\n\nbus = smbus.SMBus(1)\n#turn off LED\nbus.write_byte_data(0x0d, 0x07, 0x00)\n#turn off Fan\nbus.write_byte_data(0x0d, 0x08, 0x00)\n\n#msg[\"payload\"] = str(msg[\"topic\"])+' now'\nreturn msg",
         "outputs": 1,
         "x": 590,
-        "y": 720,
+        "y": 800,
         "wires": [
             [
                 "611a8b1c.a829b4"
@@ -7349,16 +7350,16 @@
         "id": "fa914867.0a0658",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo -E /home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend run python -u /home/pi/device-backend/main.py",
+        "command": "sudo -E /home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/main.py",
         "addpay": false,
         "append": "",
         "useSpawn": "true",
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "",
-        "x": 1340,
-        "y": 600,
+        "name": "Start Python Hardware Controller",
+        "x": 1120,
+        "y": 560,
         "wires": [
             [],
             [
@@ -7387,7 +7388,8 @@
         "y": 600,
         "wires": [
             [
-                "fa914867.0a0658"
+                "fa914867.0a0658",
+                "bbd295527b085647"
             ]
         ]
     },
@@ -7415,7 +7417,8 @@
             [
                 "1575db82.742854",
                 "bd5cceef.b17ad",
-                "ed7503f3.d95a48"
+                "ed7503f3.d95a48",
+                "38c05fcb891c82bf"
             ]
         ]
     },
@@ -7423,16 +7426,16 @@
         "id": "ed7503f3.d95a48",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo kill -15 `cat /tmp/pscope_pid`",
+        "command": "sudo kill -15 `cat /tmp/planktoscope-controller_pid`",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "Python soft kill",
-        "x": 740,
-        "y": 660,
+        "name": "Terminate Python Hardware Controller",
+        "x": 810,
+        "y": 680,
         "wires": [
             [],
             [],
@@ -7448,10 +7451,11 @@
         "append": "",
         "useSpawn": "false",
         "timer": "",
+        "winHide": false,
         "oldrc": false,
-        "name": "Raspimjpeg soft kill",
-        "x": 750,
-        "y": 540,
+        "name": "Terminate Raspimjpeg",
+        "x": 760,
+        "y": 520,
         "wires": [
             [],
             [],
@@ -7472,8 +7476,9 @@
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 2060,
-        "y": 640,
+        "className": "",
+        "x": 1920,
+        "y": 660,
         "wires": [
             []
         ]
@@ -7489,8 +7494,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1880,
-        "y": 560,
+        "x": 1740,
+        "y": 580,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -7516,8 +7521,8 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 1700,
-        "y": 720,
+        "x": 1560,
+        "y": 740,
         "wires": [
             [
                 "73500be7.9ab7c4"
@@ -7531,8 +7536,8 @@
         "name": "Catch Errors",
         "scope": null,
         "uncaught": false,
-        "x": 1530,
-        "y": 660,
+        "x": 1390,
+        "y": 680,
         "wires": [
             [
                 "f9a871d5.a73828"
@@ -7549,8 +7554,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1700,
-        "y": 660,
+        "x": 1560,
+        "y": 680,
         "wires": [
             [
                 "8b511c2b.9c24c8"
@@ -7568,8 +7573,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1880,
-        "y": 720,
+        "x": 1740,
+        "y": 740,
         "wires": [
             [
                 "d12008a0.47be4"
@@ -7877,8 +7882,8 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 1550,
-        "y": 720,
+        "x": 1410,
+        "y": 740,
         "wires": [
             [
                 "7a1dedf.1c63094"
@@ -7894,7 +7899,7 @@
             "e08cfcb8.2a67e8"
         ],
         "x": 455,
-        "y": 720,
+        "y": 800,
         "wires": [
             [
                 "4af9112d.87767"
@@ -8165,6 +8170,46 @@
         "x": 430,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "38c05fcb891c82bf",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "sudo kill -15 `cat /tmp/planktoscope-processing-segmenter_pid`",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Terminate Python Segmenter",
+        "x": 780,
+        "y": 740,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bbd295527b085647",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "sudo -E /home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/processing/segmenter run python -u /home/pi/device-backend/processing/segmenter/main.py",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Start Python Segmenter",
+        "x": 1090,
+        "y": 640,
+        "wires": [
+            [],
+            [],
+            []
+        ]
     },
     {
         "id": "2c8c45ab.610c0a",
