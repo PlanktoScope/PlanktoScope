@@ -351,6 +351,26 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
+name = "pillow"
+version = "10.0.0"
+description = "Python Imaging Library (Fork)"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Pillow-10.0.0-cp39-cp39-linux_armv6l.whl", hash = "sha256:c3d151125cf7fad504c9d2b568f546846cb9481169e09c1092f58715d1209e48"},
+    {file = "Pillow-10.0.0-cp39-cp39-linux_armv7l.whl", hash = "sha256:c3d151125cf7fad504c9d2b568f546846cb9481169e09c1092f58715d1209e48"},
+]
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+
+[package.source]
+type = "legacy"
+url = "https://www.piwheels.org/simple"
+reference = "piwheels"
+
+[[package]]
 name = "pyftdi"
 version = "0.55.0"
 description = "FTDI device driver (pure Python)"
@@ -552,4 +572,4 @@ reference = "piwheels"
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.9.2"
-content-hash = "2e48f428127e8254e3373211e50a38840810ba72c936785292bc30eed7dcf4b3"
+content-hash = "a73aaa189c4c500090c9d68e16660ff04c32d2d23023cbea02475be01aabfdab"
