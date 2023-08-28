@@ -8,10 +8,12 @@ sudo apt-get clean -y
 # Clean up any unnecessary pip, poetry, and npm files
 pip3 cache purge || true
 POETRY_VENV=/home/pi/.local/share/pypoetry/venv
-DEVICE_BACKEND_VENV=$($POETRY_VENV/bin/poetry --directory /home/pi/device-backend env info --path)
-$DEVICE_BACKEND_VENV/bin/pip3 cache purge || true
-$POETRY_VENV/bin/poetry --no-interaction --directory /home/pi/device-backend cache clear _default_cache --all
-$POETRY_VENV/bin/poetry --no-interaction --directory /home/pi/device-backend cache clear piwheels --all
+BACKEND_CONTROLLER=/home/pi/device-backend/control
+$POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear _default_cache --all
+$POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear piwheels --all
+BACKEND_PROCESSING_SEGMENTER=/home/pi/device-backend/processing/segmenter
+$POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_PROCESSING_SEGMENTER cache clear _default_cache --all
+$POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_PROCESSING_SEGMENTER cache clear piwheels --all
 
 # Remove SSH keys and make them be regenerated
 sudo rm -f /etc/ssh/ssh_host_*
