@@ -2,6 +2,7 @@
 # The base OS tools enable basic operation of the OS, and provide generalized mechanisms for
 # bootstrapping further software (e.g. user applications) to be installed afterwards.
 
+# Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install some tools for a nicer command-line experience over ssh

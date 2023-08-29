@@ -9,6 +9,10 @@
 
 build_scripts_root=$(dirname $(realpath $BASH_SOURCE))
 
+# Get command-line args
+
+hardware_type="$1" # should be either adafruithat or pscopehat
+
 # Set up pretty error printing
 
 red_fg=31
@@ -43,7 +47,7 @@ fi
 
 description="set up Python backend"
 report_starting "$description"
-if $build_scripts_root/python-backend/install.sh ; then
+if $build_scripts_root/python-backend/install.sh "$hardware_type" ; then
   report_finished "$description"
 else
   panic "$description"
@@ -59,7 +63,7 @@ fi
 
 description="set up Node-RED frontend"
 report_starting "$description"
-if $build_scripts_root/node-red-frontend/install.sh ; then
+if $build_scripts_root/node-red-frontend/install.sh "$hardware_type" ; then
   report_finished "$description"
 else
   panic "$description"

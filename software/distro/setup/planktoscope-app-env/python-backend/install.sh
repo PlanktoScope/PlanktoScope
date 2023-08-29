@@ -2,7 +2,11 @@
 # The Python backend provides a network API abstraction over hardware devices, as well as domain
 # logic for operating the PlanktoScope hardware.
 
+# Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
+
+# Get command-line args
+hardware_type="$1" # should be either adafruithat or pscopehat
 
 ## Install basic Python tooling
 sudo apt-get update -y
@@ -33,14 +37,21 @@ unzip pscope-hat-support.zip
 rm pscope-hat-support.zip
 mv device-backend-feature-pscope-hat-support /home/pi/device-backend
 
-# Set up the hardware controller
+# Set up the hardware controllers
 sudo apt-get install -y i2c-tools
 $POETRY_VENV/bin/poetry --directory /home/pi/device-backend/control install
-file="/etc/systemd/system/planktoscope-org.device-backend.controller.service"
+file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable planktoscope-org.device-backend.controller.service
+# or for the PlanktoScope HAT
+file="/etc/systemd/system/planktoscope-org.device-backend.controller-pscopehat.service"
+sudo cp "$config_files_root$file" "$file"
 # FIXME: make this directory in the main.py file
 sudo mkdir -p /home/pi/PlanktoScope/device-backend-logs/control
+
+# Select the enabled hardware controller
+sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
+cp "/home/pi/PlanktoScope/device-backend/control/$hardware_type/default.hardware.json" \
+  /home/pi/PlanktoScope/hardware.json
 
 # Set up the data processing segmenter
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and

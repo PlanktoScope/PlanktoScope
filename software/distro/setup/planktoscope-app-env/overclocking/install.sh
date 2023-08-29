@@ -3,6 +3,7 @@
 # decrease in battery time (or decrease in battery life when segmentation is not running) has not
 # yet been rigorously measured and reported.
 
+# Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Overvoltage to 6 and set clock speed to 2 GHz, for a V_core of 1.0125, a maximum allowable

@@ -44,13 +44,19 @@ rm stable.zip
 mv PlanktoScope-stable PlanktoScope
 ```
 
-This will prepare you to install the latest stable release of the PlanktoScope software distribution; if you need to install some other release such as `beta` or `edge`, you will need to change the URLs and names accordingly in the commands above. Then you will run the following command, which will take a long time (at least 30 minutes, depending on the speed of your internet connection) to finish:
+This will prepare you to install the latest stable release of the PlanktoScope software distribution; if you need to install some other release such as `beta` or `edge`, you will need to change the names accordingly in the commands above. Then you will run one of the two following commands, depending on whether your PlanktoScope has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
 
 ```
-/home/pi/PlanktoScope/software/distro/build/build.sh
+/home/pi/PlanktoScope/software/distro/setup/setup.sh adafruithat
 ```
 
-If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the build script finished building the PlanktoScope application environment. Then you should restart the Raspberry Pi, e.g. with the following command:
+```
+/home/pi/PlanktoScope/software/distro/setup/setup.sh pscopehat
+```
+
+The setup script will take a long time (at least 30 minutes, depending on the speed of your internet connection) to complete.
+
+If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the setup script finished setting up the PlanktoScope application environment. Then you should restart the Raspberry Pi, e.g. with the following command:
 
 ```
 sudo reboot now

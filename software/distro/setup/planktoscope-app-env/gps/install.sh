@@ -2,6 +2,7 @@
 # The GPS driver provides support for a GPS device over serial, as well as system clock updating
 # from GPS.
 
+# Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies

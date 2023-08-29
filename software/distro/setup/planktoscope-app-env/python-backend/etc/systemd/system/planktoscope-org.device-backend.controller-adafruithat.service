@@ -1,5 +1,5 @@
 [Unit]
-Description=Run the PlanktoScope hardware controller
+Description=Run the PlanktoScope hardware controller for the Adafruit HAT
 # Wait for Forklift to bring up mosquitto, in case the controller needs to start after mosquitto
 Wants=planktoscope-org.forklift-apply.service
 After=planktoscope-org.forklift-apply.service
@@ -9,7 +9,7 @@ Before=nodered.service
 [Service]
 Type=simple
 Environment=HOME=/home/pi
-ExecStart=/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/main.py
+ExecStart=/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/adafruithat/main.py
 
 [Install]
 WantedBy=multi-user.target

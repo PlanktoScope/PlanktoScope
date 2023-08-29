@@ -1,6 +1,7 @@
 #!/bin/bash -eux
 # The networking configuration sets PlanktoScope-specific network settings.
 
+# Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies

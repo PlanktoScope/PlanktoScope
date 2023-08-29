@@ -8,7 +8,11 @@
 
 # Determine the base path for sub-scripts
 
-build_scripts_root=$(dirname $(realpath $BASH_SOURCE))
+setup_scripts_root=$(dirname $(realpath $BASH_SOURCE))
+
+# Get command-line args
+
+hardware_type="$1" # should be either adafruithat or pscopehat
 
 # Set up pretty error printing
 
@@ -36,22 +40,22 @@ function panic {
 
 # Run sub-scripts
 
-echo -e "${script_fmt}Building full operating system...${reset_fmt}"
+echo -e "${script_fmt}Setting up full operating system...${reset_fmt}"
 
-description="build base operating system"
+description="set up base operating system"
 report_starting "$description"
-if $build_scripts_root/base-os/build.sh ; then
+if $setup_scripts_root/base-os/setup.sh ; then
   report_finished "$description"
-  source $build_scripts_root/base-os/export-env.sh
+  source $setup_scripts_root/base-os/export-env.sh
 else
   panic "$description"
 fi
 
-description="build PlanktoScope application environment"
+description="set up PlanktoScope application environment"
 report_starting "$description"
-if $build_scripts_root/planktoscope-app-env/build.sh ; then
+if $setup_scripts_root/planktoscope-app-env/setup.sh "$hardware_type" ; then
   report_finished "$description"
-  source $build_scripts_root/planktoscope-app-env/export-env.sh
+  source $setup_scripts_root/planktoscope-app-env/export-env.sh
 else
   panic "$description"
 fi
