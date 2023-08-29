@@ -39,7 +39,8 @@ $POETRY_VENV/bin/poetry --directory /home/pi/device-backend/control install
 file="/etc/systemd/system/planktoscope-org.device-backend.controller.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.device-backend.controller.service
-mkdir -p /home/pi/PlanktoScope/device-backend-logs/control
+# FIXME: make this directory in the main.py file
+sudo mkdir -p /home/pi/PlanktoScope/device-backend-logs/control
 
 # Set up the data processing segmenter
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
@@ -53,4 +54,5 @@ $POETRY_VENV/bin/poetry --directory /home/pi/device-backend/processing/segmenter
 file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.device-backend.processing.segmenter.service
-mkdir -p /home/pi/PlanktoScope/device-backend-logs/processing/segmenter
+# FIXME: make this directory in the main.py file
+sudo mkdir -p /home/pi/PlanktoScope/device-backend-logs/processing/segmenter
