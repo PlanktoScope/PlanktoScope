@@ -47,6 +47,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System) The default timezone is now officially set to UTC, and we will be using UTC as the standard system time zone for all PlanktoScopes. Previously, the pre-built SD card images provided by this project used UTC as the timezone, but the "Expert Setup" instructions for manually setting up the PlanktoScope software did not specify a time zone to use.
 - (System, Dependencies) The base OS is now the 2023-05-03 release of Raspberry Pi OS Bullseye.
 - (Application: Backend, Dependencies) The Python backend and Node-RED frontend's indirect dependencies are now version-locked to improve the reproducibility of the OS setup script independently of when the script is run.
+- (Application: Backend) Log files from the Python backend are no longer saved to `/home/pi`, but instead to subdirectories for the backend components under `/home/pi/device-backend-logs`. Note: the locations of log files may be changed again in the future, and/or file logging may be changed to use a different systemd-based mechanism in the future.
 
 ### Removed
 

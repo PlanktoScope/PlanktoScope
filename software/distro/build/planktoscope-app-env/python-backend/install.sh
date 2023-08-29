@@ -2,6 +2,8 @@
 # The Python backend provides a network API abstraction over hardware devices, as well as domain
 # logic for operating the PlanktoScope hardware.
 
+config_files_root=$(dirname $(realpath $BASH_SOURCE))
+
 ## Install basic Python tooling
 sudo apt-get update -y
 sudo apt-get install -y git python3-pip python3-venv
@@ -26,14 +28,18 @@ python3 -m pipx ensurepath
 
 # Download device-backend monorepo
 # FIXME: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
-wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/feature/split-segmenter-code.zip
-unzip split-segmenter-code.zip
-rm split-segmenter-code.zip
-mv device-backend-feature-split-segmenter-code /home/pi/device-backend
+wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/feature/pscope-hat-support.zip
+unzip pscope-hat-support.zip
+rm pscope-hat-support.zip
+mv device-backend-feature-pscope-hat-support /home/pi/device-backend
 
 # Set up the hardware controller
 sudo apt-get install -y i2c-tools
 $POETRY_VENV/bin/poetry --directory /home/pi/device-backend/control install
+file="/etc/systemd/system/planktoscope-org.device-backend.controller.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable planktoscope-org.device-backend.controller.service
+mkdir -p /home/pi/PlanktoScope/device-backend-logs/control
 
 # Set up the data processing segmenter
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
@@ -44,3 +50,7 @@ $POETRY_VENV/bin/poetry --directory /home/pi/device-backend/control install
 sudo apt-get install -y libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
 $POETRY_VENV/bin/poetry --directory /home/pi/device-backend/processing/segmenter install
+file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable planktoscope-org.device-backend.processing.segmenter.service
+mkdir -p /home/pi/PlanktoScope/device-backend-logs/processing/segmenter

@@ -925,7 +925,7 @@
         "order": 2,
         "disp": true,
         "width": "12",
-        "collapse": false,
+        "collapse": true,
         "className": ""
     },
     {
@@ -7153,7 +7153,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "3828737d96a35f80",
-        "order": 10,
+        "order": 3,
         "width": "6",
         "height": 1,
         "passthru": false,
@@ -7201,7 +7201,7 @@
         "z": "9daf9e2b.019fc",
         "name": "",
         "group": "3828737d96a35f80",
-        "order": 12,
+        "order": 4,
         "width": "6",
         "height": 1,
         "passthru": false,
@@ -7239,52 +7239,6 @@
         ]
     },
     {
-        "id": "fa914867.0a0658",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "sudo -E /home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/main.py",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Start Hardware Controller",
-        "x": 990,
-        "y": 460,
-        "wires": [
-            [],
-            [
-                "8b511c2b.9c24c8"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "1575db82.742854",
-        "type": "delay",
-        "z": "9daf9e2b.019fc",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "3",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "outputs": 1,
-        "x": 740,
-        "y": 460,
-        "wires": [
-            [
-                "fa914867.0a0658"
-            ]
-        ]
-    },
-    {
         "id": "466eb611.4da048",
         "type": "ui_button",
         "z": "9daf9e2b.019fc",
@@ -7305,165 +7259,31 @@
         "topic": "",
         "topicType": "str",
         "x": 460,
-        "y": 460,
+        "y": 420,
         "wires": [
             [
-                "1575db82.742854",
-                "bd5cceef.b17ad",
-                "ed7503f3.d95a48"
+                "bd5cceef.b17ad"
             ]
-        ]
-    },
-    {
-        "id": "ed7503f3.d95a48",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "sudo kill -15 `cat /tmp/planktoscope-controller_pid`",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Terminate Hardware Controller",
-        "x": 810,
-        "y": 540,
-        "wires": [
-            [],
-            [],
-            []
         ]
     },
     {
         "id": "bd5cceef.b17ad",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo killall -15 raspimjpeg",
+        "command": "sudo systemctl restart planktoscope-org.device-backend.controller.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "Terminate Raspimjpeg",
-        "x": 780,
-        "y": 380,
+        "name": "Restart hardware controller",
+        "x": 800,
+        "y": 420,
         "wires": [
             [],
             [],
             []
-        ]
-    },
-    {
-        "id": "d12008a0.47be4",
-        "type": "ui_template",
-        "z": "9daf9e2b.019fc",
-        "group": "a7d64879.38298",
-        "name": "Controller Log",
-        "order": 1,
-        "width": "12",
-        "height": "12",
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('controller_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"controller_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 1440,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8b511c2b.9c24c8",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Log array",
-        "func": "var log = flow.get(\"controller_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"controller_log\", log);\n\nmsg.payload = log;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 520,
-        "wires": [
-            [
-                "d12008a0.47be4"
-            ]
-        ]
-    },
-    {
-        "id": "7a1dedf.1c63094",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "name": "",
-        "group": "a7d64879.38298",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "Clear Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-eraser",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 600,
-        "wires": [
-            [
-                "73500be7.9ab7c4"
-            ]
-        ]
-    },
-    {
-        "id": "73500be7.9ab7c4",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Controller log",
-        "func": "flow.set(\"controller_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1210,
-        "y": 600,
-        "wires": [
-            [
-                "d12008a0.47be4"
-            ]
-        ]
-    },
-    {
-        "id": "7372e83e.5fc0e8",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "2",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 170,
-        "y": 460,
-        "wires": [
-            [
-                "466eb611.4da048"
-            ]
         ]
     },
     {
@@ -7541,31 +7361,6 @@
         ]
     },
     {
-        "id": "f4f6e3fa.0234f",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 170,
-        "y": 600,
-        "wires": [
-            [
-                "7a1dedf.1c63094"
-            ]
-        ]
-    },
-    {
         "id": "b81b990a.d4dca",
         "type": "link in",
         "z": "9daf9e2b.019fc",
@@ -7615,66 +7410,20 @@
         "id": "38c05fcb891c82bf",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo kill -15 `cat /tmp/planktoscope-processing-segmenter_pid`",
+        "command": "sudo systemctl restart planktoscope-org.device-backend.processing.segmenter.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "Terminate Python Segmenter",
-        "x": 800,
-        "y": 760,
+        "name": "Restart segmenter",
+        "x": 770,
+        "y": 500,
         "wires": [
             [],
             [],
             []
-        ]
-    },
-    {
-        "id": "bbd295527b085647",
-        "type": "exec",
-        "z": "9daf9e2b.019fc",
-        "command": "sudo -E /home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/processing/segmenter run python -u /home/pi/device-backend/processing/segmenter/main.py",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Start Python Segmenter",
-        "x": 990,
-        "y": 680,
-        "wires": [
-            [],
-            [
-                "b9fe06cc9fa9035a"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "06c4c91eed5d7f37",
-        "type": "delay",
-        "z": "9daf9e2b.019fc",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "3",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "outputs": 1,
-        "x": 740,
-        "y": 680,
-        "wires": [
-            [
-                "bbd295527b085647"
-            ]
         ]
     },
     {
@@ -7698,36 +7447,10 @@
         "topic": "",
         "topicType": "str",
         "x": 430,
-        "y": 680,
+        "y": 500,
         "wires": [
             [
-                "06c4c91eed5d7f37",
                 "38c05fcb891c82bf"
-            ]
-        ]
-    },
-    {
-        "id": "6850f3c32b5ebd07",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "2",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 170,
-        "y": 680,
-        "wires": [
-            [
-                "631b8626185addfc"
             ]
         ]
     },
@@ -7739,15 +7462,15 @@
         "name": "Node-RED Log table",
         "order": 1,
         "width": "12",
-        "height": "12",
+        "height": "13",
         "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('nodered_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"nodered_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1460,
-        "y": 940,
+        "x": 840,
+        "y": 620,
         "wires": [
             []
         ]
@@ -7763,8 +7486,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 900,
+        "x": 640,
+        "y": 580,
         "wires": [
             [
                 "470e32fe94b0254f"
@@ -7791,8 +7514,8 @@
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
-        "x": 440,
-        "y": 980,
+        "x": 360,
+        "y": 660,
         "wires": [
             [
                 "1f4bbcbdb5e76e9c"
@@ -7807,7 +7530,7 @@
         "scope": null,
         "uncaught": false,
         "x": 150,
-        "y": 900,
+        "y": 580,
         "wires": [
             [
                 "ad59246ff2dc72ea"
@@ -7825,8 +7548,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1060,
-        "y": 900,
+        "x": 440,
+        "y": 580,
         "wires": [
             [
                 "ec2872cc698c47c5"
@@ -7844,8 +7567,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 980,
+        "x": 600,
+        "y": 660,
         "wires": [
             [
                 "470e32fe94b0254f"
@@ -7870,122 +7593,10 @@
         "payload": "start",
         "payloadType": "str",
         "x": 170,
-        "y": 980,
+        "y": 660,
         "wires": [
             [
                 "a4f36a155b40d8fc"
-            ]
-        ]
-    },
-    {
-        "id": "2725bcee9d29a4a9",
-        "type": "ui_template",
-        "z": "9daf9e2b.019fc",
-        "group": "38c8aa8154cc76e0",
-        "name": "Segmenter Log",
-        "order": 1,
-        "width": "12",
-        "height": "12",
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('segmenter_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"segmenter_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 1440,
-        "y": 780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "32ba6254873a01e8",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "name": "",
-        "group": "38c8aa8154cc76e0",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "Clear Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-eraser",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 400,
-        "y": 820,
-        "wires": [
-            [
-                "b20f0b018171df60"
-            ]
-        ]
-    },
-    {
-        "id": "b20f0b018171df60",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Segmenter log",
-        "func": "flow.set(\"segmenter_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1200,
-        "y": 820,
-        "wires": [
-            [
-                "2725bcee9d29a4a9"
-            ]
-        ]
-    },
-    {
-        "id": "403963302cc48135",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 170,
-        "y": 820,
-        "wires": [
-            [
-                "32ba6254873a01e8"
-            ]
-        ]
-    },
-    {
-        "id": "b9fe06cc9fa9035a",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Log array",
-        "func": "var log = flow.get(\"segmenter_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"segmenter_log\", log);\n\nmsg.payload = log;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 740,
-        "wires": [
-            [
-                "2725bcee9d29a4a9"
             ]
         ]
     },
@@ -7995,7 +7606,7 @@
         "z": "9daf9e2b.019fc",
         "group": "3828737d96a35f80",
         "name": "OS Logs",
-        "order": 1,
+        "order": 2,
         "width": "0",
         "height": "0",
         "format": "<center>\n<object data=\"http://home.planktoscope/admin/cockpit/cockpit+app/@localhost/system/logs.html\" width=\"690px\" height=\"690px\">\n</object>\n</center>",
@@ -8004,11 +7615,116 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 740,
-        "y": 280,
+        "x": 660,
+        "y": 300,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "dcb7f310269b8b30",
+        "type": "ui_text",
+        "z": "9daf9e2b.019fc",
+        "group": "3828737d96a35f80",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Log-viewing instructions",
+        "label": "",
+        "format": "To view the Operating System logs, you may need to log in below with username \"pi\" and the password for the \"pi\" account on the PlanktoScope's Raspberry Pi:",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 710,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4531027a6fd82f7d",
+        "type": "ui_template",
+        "z": "9daf9e2b.019fc",
+        "group": "a7d64879.38298",
+        "name": "Hardware Controller Logs",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "format": "<center>\n<object data=\"/admin/cockpit/cockpit+app/@localhost/system/logs.html#/?prio=info&service=planktoscope-org.device-backend.controller.service\" width=\"690px\" height=\"690px\">\n</object>\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1070,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc3b520f772aa66a",
+        "type": "ui_text",
+        "z": "9daf9e2b.019fc",
+        "group": "a7d64879.38298",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Log-viewing instructions",
+        "label": "",
+        "format": "To view the Hardware Controller's logs, you may need to log in below with username \"pi\" and the password for the \"pi\" account on the PlanktoScope's Raspberry Pi:",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1070,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "4a9599515bf87c1c",
+        "type": "ui_template",
+        "z": "9daf9e2b.019fc",
+        "group": "38c8aa8154cc76e0",
+        "name": "Segmenter Logs",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "format": "<center>\n<object data=\"/admin/cockpit/cockpit+app/@localhost/system/logs.html#/?prio=info&service=planktoscope-org.device-backend.processing.segmenter.service\" width=\"690px\" height=\"690px\">\n</object>\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1040,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c672e811fd3acd7f",
+        "type": "ui_text",
+        "z": "9daf9e2b.019fc",
+        "group": "38c8aa8154cc76e0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Log-viewing instructions",
+        "label": "",
+        "format": "To view the Segmenter's logs, you may need to log in below with username \"pi\" and the password for the \"pi\" account on the PlanktoScope's Raspberry Pi:",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1070,
+        "y": 480,
+        "wires": []
     },
     {
         "id": "2c8c45ab.610c0a",
