@@ -17,9 +17,8 @@
 sudo raspi-config nonint do_spi 0
 sudo raspi-config nonint do_i2c 0
 
-# The following command enables the serial port but disables the login shell over the serial port.
-# We use this because the serial report is reserved for a GPS device.
-sudo raspi-config nonint do_serial 2
+# The following command enables the serial port console.
+sudo raspi-config nonint do_serial 0
 
 # The following command enables the camera on the 32-bit Raspberry Pi OS (ARMv7):
 sudo raspi-config nonint do_camera 0

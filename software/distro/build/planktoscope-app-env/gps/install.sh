@@ -8,6 +8,11 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 sudo apt-get update -y
 sudo apt-get install -y gpsd pps-tools chrony
 
+# The following command enables the serial port but disables the login shell over the serial port.
+# We use this because the serial port is reserved for a GPS device.
+# Note that this overrides a setting in the base-os/platform-hardware/config.sh script.
+sudo raspi-config nonint do_serial 2
+
 # Configure gpsd
 file="/etc/default/gpsd"
 sudo cp "$config_files_root$file" "$file"
