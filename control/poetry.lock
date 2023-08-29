@@ -268,103 +268,6 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
-name = "cycler"
-version = "0.11.0"
-description = "Composable style cycles"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "cycler-0.11.0-py3-none-any.whl", hash = "sha256:cbaf3590e093c7281b1866e3fec2242f2430271ef235b1fd96bfb2dc89ac5fae"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "fonttools"
-version = "4.42.0"
-description = "Tools to manipulate font files"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "fonttools-4.42.0-py3-none-any.whl", hash = "sha256:98aa77a07ae37686b5ac432e0a921e008ef631ac31e207e1d6276c38e28657b6"},
-]
-
-[package.extras]
-all = ["brotli (>=1.0.1)", "brotlicffi (>=0.8.0)", "fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "lz4 (>=1.7.4.2)", "matplotlib", "munkres", "scipy", "skia-pathops (>=0.5.0)", "sympy", "uharfbuzz (>=0.23.0)", "unicodedata2 (>=15.0.0)", "xattr", "zopfli (>=0.1.4)"]
-graphite = ["lz4 (>=1.7.4.2)"]
-interpolatable = ["munkres", "scipy"]
-lxml = ["lxml (>=4.0,<5)"]
-pathops = ["skia-pathops (>=0.5.0)"]
-plot = ["matplotlib"]
-repacker = ["uharfbuzz (>=0.23.0)"]
-symfont = ["sympy"]
-type1 = ["xattr"]
-ufo = ["fs (>=2.2.0,<3)"]
-unicode = ["unicodedata2 (>=15.0.0)"]
-woff = ["brotli (>=1.0.1)", "brotlicffi (>=0.8.0)", "zopfli (>=0.1.4)"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "imageio"
-version = "2.31.1"
-description = "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats."
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "imageio-2.31.1-py3-none-any.whl", hash = "sha256:f0769a6b1c336e087e8975ca5bf28a496c7e759cac30c466c38b1d7689f79e16"},
-]
-
-[package.dependencies]
-numpy = "*"
-pillow = ">=8.3.2"
-
-[package.extras]
-all-plugins = ["astropy", "av", "imageio-ffmpeg", "psutil", "tifffile"]
-all-plugins-pypy = ["av", "imageio-ffmpeg", "psutil", "tifffile"]
-build = ["wheel"]
-dev = ["black", "flake8", "fsspec[github]", "pytest", "pytest-cov"]
-docs = ["numpydoc", "pydata-sphinx-theme", "sphinx (<6)"]
-ffmpeg = ["imageio-ffmpeg", "psutil"]
-fits = ["astropy"]
-full = ["astropy", "av", "black", "flake8", "fsspec[github]", "gdal", "imageio-ffmpeg", "itk", "numpydoc", "psutil", "pydata-sphinx-theme", "pytest", "pytest-cov", "sphinx (<6)", "tifffile", "wheel"]
-gdal = ["gdal"]
-itk = ["itk"]
-linting = ["black", "flake8"]
-pyav = ["av"]
-test = ["fsspec[github]", "pytest", "pytest-cov"]
-tifffile = ["tifffile"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "kiwisolver"
-version = "1.4.4"
-description = "A fast implementation of the Cassowary constraint solver"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "kiwisolver-1.4.4-cp37-cp37m-linux_armv6l.whl", hash = "sha256:9495371dc5ef80b5a018fac3682af76a0b244d24ae60936fad512244add38133"},
-    {file = "kiwisolver-1.4.4-cp37-cp37m-linux_armv7l.whl", hash = "sha256:9495371dc5ef80b5a018fac3682af76a0b244d24ae60936fad512244add38133"},
-    {file = "kiwisolver-1.4.4-cp39-cp39-linux_armv6l.whl", hash = "sha256:3f7c06520aca32ded0bde9ca3150931e72a098a02422bc6f9ed9a49ee52cc008"},
-    {file = "kiwisolver-1.4.4-cp39-cp39-linux_armv7l.whl", hash = "sha256:3f7c06520aca32ded0bde9ca3150931e72a098a02422bc6f9ed9a49ee52cc008"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "loguru"
 version = "0.5.3"
 description = "Python logging made (stupidly) simple"
@@ -387,139 +290,6 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
-name = "matplotlib"
-version = "3.5.3"
-description = "Python plotting package"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "matplotlib-3.5.3-cp37-cp37m-linux_armv6l.whl", hash = "sha256:5255fb08ff8b22f9f6556ac117fe50e9775c9e162c854b89179e44b492bfd550"},
-    {file = "matplotlib-3.5.3-cp37-cp37m-linux_armv7l.whl", hash = "sha256:5255fb08ff8b22f9f6556ac117fe50e9775c9e162c854b89179e44b492bfd550"},
-    {file = "matplotlib-3.5.3-cp39-cp39-linux_armv6l.whl", hash = "sha256:a88e9307dabc099d69587a17bdbe1f00b4b46f02263361d6114ed422cb2a7edb"},
-    {file = "matplotlib-3.5.3-cp39-cp39-linux_armv7l.whl", hash = "sha256:a88e9307dabc099d69587a17bdbe1f00b4b46f02263361d6114ed422cb2a7edb"},
-]
-
-[package.dependencies]
-cycler = ">=0.10"
-fonttools = ">=4.22.0"
-kiwisolver = ">=1.0.1"
-numpy = ">=1.17"
-packaging = ">=20.0"
-pillow = ">=6.2.0"
-pyparsing = ">=2.2.1"
-python-dateutil = ">=2.7"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "morphocut"
-version = "0.1.2"
-description = "Image processing pipeline"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "morphocut-0.1.2-py3-none-any.whl", hash = "sha256:0ed3274c4d9f068731c5e00ec7dc8061555b2203918f2ff999bd5bc4b2427859"},
-]
-
-[package.dependencies]
-numpy = "*"
-pandas = "*"
-scikit-image = ">=0.16.0"
-scipy = "*"
-tqdm = "*"
-
-[package.extras]
-docs = ["sphinx (>=2.2,<3.0)", "sphinx-autodoc-typehints (>=1.10.0)", "sphinx-rtd-theme", "sphinxcontrib-programoutput"]
-tests = ["parse", "pytest", "pytest-cov", "timer-cm"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "networkx"
-version = "3.1"
-description = "Python package for creating and manipulating graphs and networks"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "networkx-3.1-py3-none-any.whl", hash = "sha256:3da7d9ef99eae42a6e9f8fc3c7eca5733734728b8f8db3cfc6c3457a4d539dbc"},
-]
-
-[package.extras]
-default = ["matplotlib (>=3.4)", "numpy (>=1.20)", "pandas (>=1.3)", "scipy (>=1.8)"]
-developer = ["mypy (>=1.1)", "pre-commit (>=3.2)"]
-doc = ["nb2plots (>=0.6)", "numpydoc (>=1.5)", "pillow (>=9.4)", "pydata-sphinx-theme (>=0.13)", "sphinx (>=6.1)", "sphinx-gallery (>=0.12)", "texext (>=0.6.7)"]
-extra = ["lxml (>=4.6)", "pydot (>=1.4.2)", "pygraphviz (>=1.10)", "sympy (>=1.10)"]
-test = ["codecov (>=2.1)", "pytest (>=7.2)", "pytest-cov (>=4.0)"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "numpy"
-version = "1.22.4"
-description = "NumPy is the fundamental package for array computing with Python."
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "numpy-1.22.4-cp39-cp39-linux_armv6l.whl", hash = "sha256:98d1bb536e52326f18cc394ab677e8c438e860f0203607ff70d16857ca4172ba"},
-    {file = "numpy-1.22.4-cp39-cp39-linux_armv7l.whl", hash = "sha256:98d1bb536e52326f18cc394ab677e8c438e860f0203607ff70d16857ca4172ba"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "opencv-contrib-python-headless"
-version = "4.5.5.62"
-description = "Wrapper package for OpenCV python bindings."
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "opencv_contrib_python_headless-4.5.5.62-cp37-cp37m-linux_armv6l.whl", hash = "sha256:b321480b6bbadaa73286f5cd231e85d08a0a714086910a32a587626552507988"},
-    {file = "opencv_contrib_python_headless-4.5.5.62-cp37-cp37m-linux_armv7l.whl", hash = "sha256:b321480b6bbadaa73286f5cd231e85d08a0a714086910a32a587626552507988"},
-    {file = "opencv_contrib_python_headless-4.5.5.62-cp39-cp39-linux_armv6l.whl", hash = "sha256:69dfcbbb8931f1a7e3ca08449957c90b0d20991861f92ba03869ea35576973bd"},
-    {file = "opencv_contrib_python_headless-4.5.5.62-cp39-cp39-linux_armv7l.whl", hash = "sha256:69dfcbbb8931f1a7e3ca08449957c90b0d20991861f92ba03869ea35576973bd"},
-]
-
-[package.dependencies]
-numpy = [
-    {version = ">=1.21.2", markers = "python_version >= \"3.6\" and platform_system == \"Darwin\" and platform_machine == \"arm64\""},
-    {version = ">=1.19.3", markers = "python_version >= \"3.6\" and platform_system == \"Linux\" and platform_machine == \"aarch64\" or python_version >= \"3.9\""},
-    {version = ">=1.14.5", markers = "python_version >= \"3.7\""},
-    {version = ">=1.17.3", markers = "python_version >= \"3.8\""},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "packaging"
-version = "23.1"
-description = "Core utilities for Python packages"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "packaging-23.1-py3-none-any.whl", hash = "sha256:135a6a678ccdfa43bfe57118b60922c721550f6c27bec2e1b08f60ba3924fe3e"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "paho-mqtt"
 version = "1.6.1"
 description = "MQTT version 5.0/3.1.1 client class"
@@ -531,51 +301,6 @@ files = [
 
 [package.extras]
 proxy = ["PySocks"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "pandas"
-version = "2.0.3"
-description = "Powerful data structures for data analysis, time series, and statistics"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "pandas-2.0.3-cp39-cp39-linux_armv6l.whl", hash = "sha256:d22c01813141f31fbe9742e6bf9454b2018e2aab4085b743ae411ce93cbb34cb"},
-    {file = "pandas-2.0.3-cp39-cp39-linux_armv7l.whl", hash = "sha256:d22c01813141f31fbe9742e6bf9454b2018e2aab4085b743ae411ce93cbb34cb"},
-]
-
-[package.dependencies]
-numpy = {version = ">=1.20.3", markers = "python_version < \"3.10\""}
-python-dateutil = ">=2.8.2"
-pytz = ">=2020.1"
-tzdata = ">=2022.1"
-
-[package.extras]
-all = ["PyQt5 (>=5.15.1)", "SQLAlchemy (>=1.4.16)", "beautifulsoup4 (>=4.9.3)", "bottleneck (>=1.3.2)", "brotlipy (>=0.7.0)", "fastparquet (>=0.6.3)", "fsspec (>=2021.07.0)", "gcsfs (>=2021.07.0)", "html5lib (>=1.1)", "hypothesis (>=6.34.2)", "jinja2 (>=3.0.0)", "lxml (>=4.6.3)", "matplotlib (>=3.6.1)", "numba (>=0.53.1)", "numexpr (>=2.7.3)", "odfpy (>=1.4.1)", "openpyxl (>=3.0.7)", "pandas-gbq (>=0.15.0)", "psycopg2 (>=2.8.6)", "pyarrow (>=7.0.0)", "pymysql (>=1.0.2)", "pyreadstat (>=1.1.2)", "pytest (>=7.3.2)", "pytest-asyncio (>=0.17.0)", "pytest-xdist (>=2.2.0)", "python-snappy (>=0.6.0)", "pyxlsb (>=1.0.8)", "qtpy (>=2.2.0)", "s3fs (>=2021.08.0)", "scipy (>=1.7.1)", "tables (>=3.6.1)", "tabulate (>=0.8.9)", "xarray (>=0.21.0)", "xlrd (>=2.0.1)", "xlsxwriter (>=1.4.3)", "zstandard (>=0.15.2)"]
-aws = ["s3fs (>=2021.08.0)"]
-clipboard = ["PyQt5 (>=5.15.1)", "qtpy (>=2.2.0)"]
-compression = ["brotlipy (>=0.7.0)", "python-snappy (>=0.6.0)", "zstandard (>=0.15.2)"]
-computation = ["scipy (>=1.7.1)", "xarray (>=0.21.0)"]
-excel = ["odfpy (>=1.4.1)", "openpyxl (>=3.0.7)", "pyxlsb (>=1.0.8)", "xlrd (>=2.0.1)", "xlsxwriter (>=1.4.3)"]
-feather = ["pyarrow (>=7.0.0)"]
-fss = ["fsspec (>=2021.07.0)"]
-gcp = ["gcsfs (>=2021.07.0)", "pandas-gbq (>=0.15.0)"]
-hdf5 = ["tables (>=3.6.1)"]
-html = ["beautifulsoup4 (>=4.9.3)", "html5lib (>=1.1)", "lxml (>=4.6.3)"]
-mysql = ["SQLAlchemy (>=1.4.16)", "pymysql (>=1.0.2)"]
-output-formatting = ["jinja2 (>=3.0.0)", "tabulate (>=0.8.9)"]
-parquet = ["pyarrow (>=7.0.0)"]
-performance = ["bottleneck (>=1.3.2)", "numba (>=0.53.1)", "numexpr (>=2.7.1)"]
-plot = ["matplotlib (>=3.6.1)"]
-postgresql = ["SQLAlchemy (>=1.4.16)", "psycopg2 (>=2.8.6)"]
-spss = ["pyreadstat (>=1.1.2)"]
-sql-other = ["SQLAlchemy (>=1.4.16)"]
-test = ["hypothesis (>=6.34.2)", "pytest (>=7.3.2)", "pytest-asyncio (>=0.17.0)", "pytest-xdist (>=2.2.0)"]
-xml = ["lxml (>=4.6.3)"]
 
 [package.source]
 type = "legacy"
@@ -665,24 +390,6 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
-name = "pyparsing"
-version = "3.1.1"
-description = "pyparsing module - Classes and methods to define and execute parsing grammars"
-optional = false
-python-versions = ">=3.6.8"
-files = [
-    {file = "pyparsing-3.1.1-py3-none-any.whl", hash = "sha256:e63be00746f991dbf1d0ffdfed4c1861f8cf9c6ad53c2a48e46671c05c9c125b"},
-]
-
-[package.extras]
-diagrams = ["jinja2", "railroad-diagrams"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "pyserial"
 version = "3.5"
 description = "Python Serial Port Extension"
@@ -701,39 +408,6 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
-name = "python-dateutil"
-version = "2.8.2"
-description = "Extensions to the standard Python datetime module"
-optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
-files = [
-    {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
-]
-
-[package.dependencies]
-six = ">=1.5"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "pytz"
-version = "2023.3"
-description = "World timezone definitions, modern and historical"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pytz-2023.3-py3-none-any.whl", hash = "sha256:dcb23b3d3f96b1c61a06ccc55e8b19dbb430b7571dc8a112432909a14dd64063"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "pyusb"
 version = "1.2.1"
 description = "Python USB access module"
@@ -742,25 +416,6 @@ python-versions = ">=3.6.0"
 files = [
     {file = "pyusb-1.2.1-py3-none-any.whl", hash = "sha256:2b4c7cb86dbadf044dfb9d3a4ff69fd217013dbe78a792177a3feb172449ea36"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "pywavelets"
-version = "1.4.1"
-description = "PyWavelets, wavelet transform module"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "PyWavelets-1.4.1-cp39-cp39-linux_armv6l.whl", hash = "sha256:30b0c563ed6378ec821cbd26ee0d571700e311390542e60939a61f766fb92940"},
-    {file = "PyWavelets-1.4.1-cp39-cp39-linux_armv7l.whl", hash = "sha256:30b0c563ed6378ec821cbd26ee0d571700e311390542e60939a61f766fb92940"},
-]
-
-[package.dependencies]
-numpy = ">=1.17.3"
 
 [package.source]
 type = "legacy"
@@ -806,61 +461,6 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
-name = "scikit-image"
-version = "0.18.3"
-description = "Image processing in Python"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "scikit_image-0.18.3-cp37-cp37m-linux_armv6l.whl", hash = "sha256:25b61aa6f2ec1158b0a8901a64ac4466abcf2591749095aa21a3131a07bc5539"},
-    {file = "scikit_image-0.18.3-cp37-cp37m-linux_armv7l.whl", hash = "sha256:25b61aa6f2ec1158b0a8901a64ac4466abcf2591749095aa21a3131a07bc5539"},
-    {file = "scikit_image-0.18.3-cp39-cp39-linux_armv6l.whl", hash = "sha256:5e650d39f2c7c7d5e5b70d9f6a54f38ce1b6b2feeb13e4034009fa4567d0e894"},
-    {file = "scikit_image-0.18.3-cp39-cp39-linux_armv7l.whl", hash = "sha256:5e650d39f2c7c7d5e5b70d9f6a54f38ce1b6b2feeb13e4034009fa4567d0e894"},
-]
-
-[package.dependencies]
-imageio = ">=2.3.0"
-matplotlib = ">=2.0.0,<3.0.0 || >3.0.0"
-networkx = ">=2.0"
-numpy = ">=1.16.5"
-pillow = ">=4.3.0,<7.1.0 || >7.1.0,<7.1.1 || >7.1.1"
-PyWavelets = ">=1.1.1"
-scipy = ">=1.0.1"
-tifffile = ">=2019.7.26"
-
-[package.extras]
-data = ["pooch (>=1.3.0)"]
-docs = ["cloudpickle (>=0.2.1)", "dask[array] (>=0.15.0,!=2.17.0)", "ipywidgets", "matplotlib (>=3.0.1)", "myst-parser", "numpydoc (>=1.0)", "pandas (>=0.23.0)", "plotly (>=4.10.0)", "pooch (>=1.3.0)", "pytest-runner", "scikit-learn", "seaborn (>=0.7.1)", "sphinx (>=1.8,<=2.4.4)", "sphinx-copybutton", "sphinx-gallery (>=0.7.0,!=0.8.0)", "tifffile (>=2020.5.30)"]
-optional = ["SimpleITK", "astropy (>=3.1.2)", "cloudpickle (>=0.2.1)", "dask[array] (>=1.0.0,!=2.17.0)", "pooch (>=1.3.0)", "pyamg", "qtpy"]
-test = ["codecov", "flake8", "pooch (>=1.3.0)", "pytest (>=5.2.0)", "pytest-cov (>=2.7.0)", "pytest-faulthandler", "pytest-localserver"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "scipy"
-version = "1.7.3"
-description = "SciPy: Scientific Library for Python"
-optional = false
-python-versions = ">=3.7,<3.11"
-files = [
-    {file = "scipy-1.7.3-cp37-cp37m-linux_armv6l.whl", hash = "sha256:2fec5b97046d51212017a3246996fb3bc99fe3225949e3b6e1dbb1e1be0eb57c"},
-    {file = "scipy-1.7.3-cp37-cp37m-linux_armv7l.whl", hash = "sha256:2fec5b97046d51212017a3246996fb3bc99fe3225949e3b6e1dbb1e1be0eb57c"},
-    {file = "scipy-1.7.3-cp39-cp39-linux_armv6l.whl", hash = "sha256:a128bd9d674bb0565b200b906d20a452dfd2b52cac044b21103f580170525154"},
-    {file = "scipy-1.7.3-cp39-cp39-linux_armv7l.whl", hash = "sha256:a128bd9d674bb0565b200b906d20a452dfd2b52cac044b21103f580170525154"},
-]
-
-[package.dependencies]
-numpy = ">=1.16.5,<1.23.0"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "setuptools"
 version = "68.1.2"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
@@ -874,21 +474,6 @@ files = [
 docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5,<=7.1.2)", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-lint", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
 testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.develop (>=7.21)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pip (>=19.1)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-ruff", "pytest-timeout", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
 testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "six"
-version = "1.16.0"
-description = "Python 2 and 3 compatibility utilities"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
-files = [
-    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
-]
 
 [package.source]
 type = "legacy"
@@ -952,51 +537,6 @@ url = "https://www.piwheels.org/simple"
 reference = "piwheels"
 
 [[package]]
-name = "tifffile"
-version = "2023.8.12"
-description = "Read and write TIFF files"
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "tifffile-2023.8.12-py3-none-any.whl", hash = "sha256:24319be1f81b84b48c1a05dbc4bc9f54094ab466153d46e2d87a21409b54d0e9"},
-]
-
-[package.dependencies]
-numpy = "*"
-
-[package.extras]
-all = ["defusedxml", "fsspec", "imagecodecs (>=2023.8.12)", "lxml", "matplotlib", "zarr"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "tqdm"
-version = "4.66.1"
-description = "Fast, Extensible Progress Meter"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "tqdm-4.66.1-py3-none-any.whl", hash = "sha256:9a78995076d922437168167bde84171c306b9d698700917c2bdd8adff74b72f1"},
-]
-
-[package.dependencies]
-colorama = {version = "*", markers = "platform_system == \"Windows\""}
-
-[package.extras]
-dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-xdist"]
-notebook = ["ipywidgets (>=6)"]
-slack = ["slack-sdk"]
-telegram = ["requests"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "typing-extensions"
 version = "4.7.1"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -1004,21 +544,6 @@ optional = false
 python-versions = ">=3.7"
 files = [
     {file = "typing_extensions-4.7.1-py3-none-any.whl", hash = "sha256:cabd4dcc82c306fe7dc7f141b7b8b83999c16f80701079e8a2431d05070580b9"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "tzdata"
-version = "2023.3"
-description = "Provider of IANA time zone data"
-optional = false
-python-versions = ">=2"
-files = [
-    {file = "tzdata-2023.3-py2.py3-none-any.whl", hash = "sha256:f75913ae69ebb2bbc6852d816a2d6981d15c3fad9d5262f886404673cde610b7"},
 ]
 
 [package.source]
@@ -1047,4 +572,4 @@ reference = "piwheels"
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.9.2"
-content-hash = "1a1d3b8f1c78453c9de3922dc8550ed59c7cc839267221ba3e07637b4ebda2b5"
+content-hash = "a73aaa189c4c500090c9d68e16660ff04c32d2d23023cbea02475be01aabfdab"

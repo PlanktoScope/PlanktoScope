@@ -1,4 +1,4 @@
-# Copyright (C) 2021 Romain Bazile
+# Copyright Romain Bazile and other PlanktoScope project contributors
 # 
 # This file is part of the PlanktoScope software.
 # 
@@ -15,27 +15,26 @@
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
-# Logger library compatible with multiprocessing
-from loguru import logger
 import sys
-
-# multiprocessing module
 import multiprocessing
-
-# Time module so we can sleep
 import time
-
-# signal module is used to manage SINGINT/SIGTERM
-import signal
-
-# os module is used create paths
+import signal  # for handling SIGINT/SIGTERM
 import os
+
+from loguru import logger  # for logging with multiprocessing
+
+import planktoscope.mqtt
+import planktoscope.stepper
+import planktoscope.imager
+import planktoscope.light # Fan HAT LEDs
+import planktoscope.uuidName # TODO: replace this with the new system-level machinename
+import planktoscope.display # Fan HAT OLED screen
 
 # enqueue=True is necessary so we can log accross modules
 # rotation happens everyday at 01:00 if not restarted
 logger.add(
     # sys.stdout,
-    "PlanktoScope_{time}.log",
+    "PlanktoScope-controller_{time}.log",
     rotation="5 MB",
     retention="1 week",
     compression=".tar.gz",
@@ -53,34 +52,11 @@ logger.add(
 # ERROR 	    40       	logger.error()
 # CRITICAL 	    50      	logger.critical()
 
-logger.info("Starting the PlanktoScope python script!")
+logger.info("Starting the PlanktoScope hardware controller!")
 
-# Library for exchaning messages with Node-RED
-import planktoscope.mqtt
+run = True  # global variable to enable clean shutdown from stop signals
 
-# Import the planktoscope stepper module
-import planktoscope.stepper
-
-# Import the planktoscope imager module
-import planktoscope.imager
-
-# Import the planktoscope segmenter module
-import planktoscope.segmenter
-
-# Import the planktoscope LED module
-import planktoscope.light
-
-# Import the planktoscope uuidName module
-import planktoscope.uuidName
-
-# Import the planktoscope display module for the OLED screen
-import planktoscope.display
-
-# global variable that keeps the wheels spinning
-run = True
-
-
-def handler_stop_signals(signum, frame):
+def handler_stop_signals(signum, _):
     """This handler simply stop the forever running loop in __main__"""
     global run
     logger.info(f"Received a signal asking to stop {signum}")
@@ -89,14 +65,13 @@ def handler_stop_signals(signum, frame):
 
 if __name__ == "__main__":
     logger.info("Welcome!")
-    logger.info(
-        "Initialising signals handling and sanitizing the directories (step 1/4)"
-    )
+    logger.info( "Initialising signals handling and sanitizing the directories (step 1/3)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
     # Create script PID file, so it's easy to kill the main process without ravaging all python script in the OS
-    with open('/tmp/pscope_pid', 'w') as f:
+    # TODO: don't make a PID file - supervise with systemd or Docker instead
+    with open('/tmp/planktoscope-controller_pid', 'w') as f:
         f.write(str(os.getpid()))
     
     # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
@@ -115,34 +90,28 @@ if __name__ == "__main__":
                 sys.exit(1)
 
     # Let's make sure the used base path exists
-    img_path = "/home/pi/PlanktoScope/img"
+    img_path = "/home/pi/PlanktoScope/img"  # FIXME: this path is incorrect - why doesn't it cause side effects?
     # check if this path exists
     if not os.path.exists(img_path):
         # create the path!
         os.makedirs(img_path)
-
-    export_path = "/home/pi/PlanktoScope/export"
-    # check if this path exists
-    if not os.path.exists(export_path):
-        # create the path!
-        os.makedirs(export_path)
 
     logger.info(f"This PlanktoScope unique ID is {planktoscope.uuidName.getSerial()}")
     logger.info(
         f"This PlanktoScope unique name is {planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())}"
     )
 
-    # Prepare the event for a gracefull shutdown
+    # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
 
     # Starts the stepper process for actuators
-    logger.info("Starting the stepper control process (step 2/4)")
+    logger.info("Starting the stepper control process (step 2/3)")
     stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 3/4)")
+    logger.info("Starting the imager control process (step 3/3)")
     try:
         imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
     except:
@@ -151,28 +120,10 @@ if __name__ == "__main__":
     else:
         imager_thread.start()
 
-    # Starts the segmenter process
-    logger.info("Starting the segmenter control process (step 4/4)")
-    try:
-        segmenter_thread = planktoscope.segmenter.SegmenterProcess(
-            shutdown_event, "/home/pi/data"
-        )
-    except Exception as e:
-        logger.error("The segmenter control process could not be started")
-        segmenter_thread = None
-    else:
-        segmenter_thread.start()
-
-    # Starts the module process
-    # Uncomment here as needed
-    # logger.info("Starting the module process")
-    # module_thread = planktoscope.module.ModuleProcess(shutdown_event)
-    # module_thread.start()
-
     logger.info("Starting the display module")
     display = planktoscope.display.Display()
 
-    logger.success("Looks like everything is set up and running, have fun!")
+    logger.success("Looks like the controller is set up and running, have fun!")
     planktoscope.light.ready()
 
     while run:
@@ -184,35 +135,22 @@ if __name__ == "__main__":
         if not imager_thread or not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
-        if not segmenter_thread or not segmenter_thread.is_alive():
-            logger.error("The segmenter process died unexpectedly! Oh no!")
-            break
         time.sleep(1)
 
     display.display_text("Bye Bye!")
-    logger.info("Shutting down the shop")
+    logger.info("Shutting down...")
     shutdown_event.set()
     time.sleep(1)
 
     stepper_thread.join()
     if imager_thread:
         imager_thread.join()
-    if segmenter_thread:
-        segmenter_thread.join()
-    # Uncomment this for clean shutdown
-    # module_thread.join()
 
     stepper_thread.close()
     if imager_thread:
         imager_thread.close()
-    if segmenter_thread:
-        segmenter_thread.close()
-    # Uncomment this for clean shutdown
-    # module_thread.close()
 
     display.stop()
 
-    # Cleanup pid file
-    os.remove('/tmp/pscope_pid')
-    
-    logger.info("Bye")
+    os.remove('/tmp/planktoscope-controller_pid')
+    logger.info("Bye!")
