@@ -39,7 +39,7 @@ sudo systemctl enable nodered.service
 # Move the PlanktoScope project into a Node-RED project
 mkdir -p /home/pi/.node-red/projects
 mv /home/pi/PlanktoScope/software/node-red-dashboard /home/pi/.node-red/projects/PlanktoScope
-ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope/softwre/node-red-dashboard
+ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope/software/node-red-dashboard
 
 # Select the enabled dashboard
 cp -r "/home/pi/.node-red/projects/PlanktoScope/flows-$hardware_type" /home/pi/.node-red/projects/PlanktoScope/flows
