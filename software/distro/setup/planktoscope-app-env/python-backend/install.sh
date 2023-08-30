@@ -50,7 +50,7 @@ sudo mkdir -p /home/pi/PlanktoScope/device-backend-logs/control
 
 # Select the enabled hardware controller
 sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
-cp "/home/pi/PlanktoScope/device-backend/control/$hardware_type/default-latest.hardware.json" \
+cp "/home/pi/device-backend/control/$hardware_type/default-latest.hardware.json" \
   /home/pi/PlanktoScope/hardware.json
 
 # Set up the data processing segmenter
