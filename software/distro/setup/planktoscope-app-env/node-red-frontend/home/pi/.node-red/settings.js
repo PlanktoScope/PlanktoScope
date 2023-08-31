@@ -147,7 +147,7 @@ module.exports = {
      * The following property can be used to listen on a specific interface. For
      * example, the following would only allow connections from the local machine.
      */
-    uiHost: '::',
+    uiHost: process.env.HOST || '::',
 
     /** The maximum size of HTTP request that will be accepted by the runtime api.
      * Default: 5mb
