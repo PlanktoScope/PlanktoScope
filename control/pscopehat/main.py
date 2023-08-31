@@ -17,7 +17,7 @@ import planktoscope.display # Fan HAT OLED screen
 # rotation happens everyday at 01:00 if not restarted
 logger.add(
     # sys.stdout,
-    "PlanktoScope_{time}.log",
+    "/home/pi/device-backend-logs/control/{time}.log",
     rotation="5 MB",
     retention="1 week",
     compression=".tar.gz",
