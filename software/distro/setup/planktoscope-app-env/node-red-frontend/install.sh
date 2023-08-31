@@ -20,19 +20,10 @@ pip3 install smbus2==0.4.3
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered \
   | bash -s - --confirm-install --confirm-pi --no-init
 
-# Create a settings file to run Node-RED in project mode
+# Create a settings file to run Node-RED
 file="/home/pi/.node-red/settings.js"
 cp "$config_files_root$file" "$file"
 sudo chown 0:0 "$file"
-
-# Create default configs for the Node-RED editor, so that the no manual actions (e.g. entry of name
-# and email address) are required the first time Node-RED is started in order for the frontend to
-# become usable.
-# FIXME: don't use project mode for Node-RED.
-file="/home/pi/.node-red/.config.projects.json"
-cp "$config_files_root$file" "$file"
-file="/home/pi/.node-red/.config.users.json"
-cp "$config_files_root$file" "$file"
 
 # Add systemd service modification to make Node-RED wait until Mosquitto has started
 # FIXME: The Node-RED frontend should instead be fixed so that it does not need to wait until
@@ -44,15 +35,10 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl daemon-reload
 sudo systemctl enable nodered.service
 
-# Move the PlanktoScope project into a Node-RED project
-mkdir -p /home/pi/.node-red/projects
-mv /home/pi/PlanktoScope/software/node-red-dashboard /home/pi/.node-red/projects/PlanktoScope
-ln -s /home/pi/.node-red/projects/PlanktoScope /home/pi/PlanktoScope/software/node-red-dashboard
-
 # Select the enabled dashboard
-cp -r "/home/pi/.node-red/projects/PlanktoScope/flows-$hardware_type" /home/pi/.node-red/projects/PlanktoScope/flows
+cp "/home/pi/PlanktoScope/software/node-red-dashboard/flows-$hardware_type.json" /home/pi/.node-red/flows.json
 
 # Install dependencies in a way that makes them available to Node-RED
-cp /home/pi/.node-red/projects/PlanktoScope/package.json /home/pi/.node-red/
-cp /home/pi/.node-red/projects/PlanktoScope/package-lock.json /home/pi/.node-red/
+cp /home/pi/PlanktoScope/software/node-red-dashboard/package.json /home/pi/.node-red/
+cp /home/pi/PlanktoScope/software/node-red-dashboard/package-lock.json /home/pi/.node-red/
 npm --prefix /home/pi/.node-red update
