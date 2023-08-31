@@ -918,11 +918,12 @@
         "z": "1c24ad9c.bebec2",
         "name": "",
         "filename": "/home/pi/PlanktoScope/config.json",
+        "filenameType": "str",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
-        "x": 480,
+        "x": 560,
         "y": 60,
         "wires": [
             [
@@ -8115,27 +8116,11 @@
         "topic": "",
         "payload": "start",
         "payloadType": "str",
-        "x": 130,
+        "x": 170,
         "y": 620,
         "wires": [
             [
-                "452af41c.43940c"
-            ]
-        ]
-    },
-    {
-        "id": "452af41c.43940c",
-        "type": "python3-function",
-        "z": "1371dec5.76e671",
-        "name": "Get MachineName",
-        "func": "import sys\nsys.path.append('/home/pi/PlanktoScope/scripts')\nimport planktoscope.uuidName\n\nmsg['payload'] = planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())\nmsg['topic'] = \"acq_instrument_id\";\nreturn msg",
-        "outputs": 1,
-        "x": 350,
-        "y": 620,
-        "wires": [
-            [
-                "4828d2f4.7c712c",
-                "a400a97e.e333a8"
+                "46557b1bf6b5cf15"
             ]
         ]
     },
@@ -8144,11 +8129,12 @@
         "type": "function",
         "z": "1371dec5.76e671",
         "name": "set global",
-        "func": "global.set(msg.topic,msg.payload);\n",
+        "func": "global.set(\"acq_instrument_id\",msg.payload);\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 580,
         "y": 640,
         "wires": [
@@ -8161,7 +8147,7 @@
         "z": "1371dec5.76e671",
         "name": "",
         "env": [],
-        "x": 570,
+        "x": 170,
         "y": 560,
         "wires": [
             [
@@ -8173,18 +8159,17 @@
         "id": "3e64877a.9684b",
         "type": "function",
         "z": "1371dec5.76e671",
-        "name": "store version",
-        "func": "msg.payload = \"PlanktoScope v2.3-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
+        "name": "set global",
+        "func": "global.set(\"acq_software\",\"PlanktoScope \" + msg.payload);\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 590,
-        "y": 520,
+        "libs": [],
+        "x": 580,
+        "y": 480,
         "wires": [
-            [
-                "8343fa69.49339"
-            ]
+            []
         ]
     },
     {
@@ -8199,7 +8184,7 @@
         "label": "Instrument Type",
         "format": "{{msg.payload.acq_instrument}}",
         "layout": "row-spread",
-        "x": 840,
+        "x": 600,
         "y": 560,
         "wires": []
     },
@@ -8228,10 +8213,15 @@
         "width": 0,
         "height": 0,
         "name": "",
-        "label": "Software version",
+        "label": "Software Version",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 840,
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 610,
         "y": 520,
         "wires": []
     },
@@ -8247,8 +8237,8 @@
         "label": "Camera Name",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1020,
-        "y": 620,
+        "x": 600,
+        "y": 680,
         "wires": []
     },
     {
@@ -8259,8 +8249,8 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 875,
-        "y": 620,
+        "x": 205,
+        "y": 680,
         "wires": [
             [
                 "f783aefd.c3bfd8"
@@ -9124,22 +9114,6 @@
         ]
     },
     {
-        "id": "9373b3f6.33a2b",
-        "type": "link in",
-        "z": "1371dec5.76e671",
-        "name": "Git Rev",
-        "links": [
-            "6c20d6a7.869b6"
-        ],
-        "x": 375,
-        "y": 520,
-        "wires": [
-            [
-                "3e64877a.9684b"
-            ]
-        ]
-    },
-    {
         "id": "e640ebb5c397f424",
         "type": "delay",
         "z": "1371dec5.76e671",
@@ -9181,6 +9155,55 @@
         "wires": [
             [
                 "2549f778.4eb828"
+            ]
+        ]
+    },
+    {
+        "id": "46557b1bf6b5cf15",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "hostname | sed 's/^planktoscope-//'",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get machine name",
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "a400a97e.e333a8",
+                "4828d2f4.7c712c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "edaedce594127e3a",
+        "type": "inject",
+        "z": "1371dec5.76e671",
+        "name": "Set software version",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "v2023.9.0-beta.0",
+        "payloadType": "str",
+        "x": 120,
+        "y": 520,
+        "wires": [
+            [
+                "3e64877a.9684b",
+                "8343fa69.49339"
             ]
         ]
     },
