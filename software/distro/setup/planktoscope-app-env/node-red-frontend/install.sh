@@ -7,6 +7,14 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Get command-line args
 hardware_type="$1" # should be either adafruithat or pscopehat
 
+# Install dependencies
+# smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
+# Since the Node-RED systemd service runs as the pi user by default (and we don't override that
+# default, we do `pip3 install` as the pi user. This makes the smbus2 module available to Node-RED.
+# FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
+# the Python backend.
+pip3 install smbus2==0.4.3
+
 # Install Node-RED
 # TODO: run Node-RED in a Docker container instead
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered \
