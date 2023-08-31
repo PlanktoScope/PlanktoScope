@@ -5,7 +5,7 @@
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 forklift_version="0.3.1"
-pallet_version="5aa01a4abe0067cb95241a87d01ade75c8d65cc6"
+pallet_version="6d446bea0327b37522d5f330f59cc2c2ee9260dd"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
   | tar -C /home/pi/.local/bin -xz forklift
