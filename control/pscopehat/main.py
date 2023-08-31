@@ -1,27 +1,10 @@
-# Copyright Romain Bazile and other PlanktoScope project contributors
-# 
-# This file is part of the PlanktoScope software.
-# 
-# PlanktoScope is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# PlanktoScope is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
-
 import sys
 import multiprocessing
 import time
 import signal  # for handling SIGINT/SIGTERM
 import os
 
-from loguru import logger  # for logging with multiprocessing
+from loguru import logger
 
 import planktoscope.mqtt
 import planktoscope.stepper
@@ -34,7 +17,7 @@ import planktoscope.display # Fan HAT OLED screen
 # rotation happens everyday at 01:00 if not restarted
 logger.add(
     # sys.stdout,
-    "PlanktoScope-controller_{time}.log",
+    "PlanktoScope_{time}.log",
     rotation="5 MB",
     retention="1 week",
     compression=".tar.gz",
@@ -52,11 +35,11 @@ logger.add(
 # ERROR 	    40       	logger.error()
 # CRITICAL 	    50      	logger.critical()
 
-logger.info("Starting the PlanktoScope hardware controller!")
+logger.info("Starting the PlanktoScope python script!")
 
 run = True  # global variable to enable clean shutdown from stop signals
 
-def handler_stop_signals(signum, _):
+def handler_stop_signals(signum, frame):
     """This handler simply stop the forever running loop in __main__"""
     global run
     logger.info(f"Received a signal asking to stop {signum}")
@@ -65,15 +48,10 @@ def handler_stop_signals(signum, _):
 
 if __name__ == "__main__":
     logger.info("Welcome!")
-    logger.info( "Initialising signals handling and sanitizing the directories (step 1/3)")
+    logger.info("Initialising signals handling and sanitizing the directories (step 1/5)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
-    # Create script PID file, so it's easy to kill the main process without ravaging all python script in the OS
-    # TODO: don't make a PID file - supervise with systemd or Docker instead
-    with open('/tmp/planktoscope-controller_pid', 'w') as f:
-        f.write(str(os.getpid()))
-    
     # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
     with open("/boot/config.txt", "r") as config_file:
         for i, line in enumerate(config_file):
@@ -101,17 +79,17 @@ if __name__ == "__main__":
         f"This PlanktoScope unique name is {planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())}"
     )
 
-    # Prepare the event for a graceful shutdown
+    # Prepare the event for a gracefull shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
 
     # Starts the stepper process for actuators
-    logger.info("Starting the stepper control process (step 2/3)")
+    logger.info("Starting the stepper control process (step 2/5)")
     stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 3/3)")
+    logger.info("Starting the imager control process (step 3/5)")
     try:
         imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
     except:
@@ -120,11 +98,20 @@ if __name__ == "__main__":
     else:
         imager_thread.start()
 
-    logger.info("Starting the display module")
+    # Starts the light process
+    logger.info("Starting the light control process (step 4/5)")
+    try:
+        light_thread = planktoscope.light.LightProcess(shutdown_event)
+    except Exception as e:
+        logger.error("The light control process could not be started")
+        light_thread = None
+    else:
+        light_thread.start()
+
+    logger.info("Starting the display control (step 5/5)")
     display = planktoscope.display.Display()
 
-    logger.success("Looks like the controller is set up and running, have fun!")
-    planktoscope.light.ready()
+    logger.success("Looks like everything is set up and running, have fun!")
 
     while run:
         # TODO look into ways of restarting the dead threads
@@ -138,19 +125,22 @@ if __name__ == "__main__":
         time.sleep(1)
 
     display.display_text("Bye Bye!")
-    logger.info("Shutting down...")
+    logger.info("Shutting down the shop")
     shutdown_event.set()
     time.sleep(1)
 
     stepper_thread.join()
     if imager_thread:
         imager_thread.join()
+    if light_thread:
+        light_thread.join()
 
     stepper_thread.close()
     if imager_thread:
         imager_thread.close()
+    if light_thread:
+        light_thread.close()
 
     display.stop()
 
-    os.remove('/tmp/planktoscope-controller_pid')
-    logger.info("Bye!")
+    logger.info("Bye")
