@@ -32,10 +32,10 @@ python3 -m pipx ensurepath
 
 # Download device-backend monorepo
 # FIXME: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
-wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/feature/pscope-hat-support.zip
-unzip pscope-hat-support.zip
-rm pscope-hat-support.zip
-mv device-backend-feature-pscope-hat-support /home/pi/device-backend
+wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/main.zip
+unzip main.zip
+rm main.zip
+mv device-backend-main /home/pi/device-backend
 
 # Set up the hardware controllers
 sudo apt-get install -y i2c-tools

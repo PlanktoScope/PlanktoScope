@@ -41,7 +41,7 @@ cd /home/pi
 wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/stable.zip
 unzip stable.zip
 rm stable.zip
-mv PlanktoScope-stable PlanktoScope
+mv PlanktoScope-stable /home/pi/PlanktoScope
 ```
 
 This will prepare you to install the latest stable release of the PlanktoScope software distribution; if you need to install some other release such as `beta` or `edge`, you will need to change the names accordingly in the commands above. Then you will run one of the two following commands, depending on whether your PlanktoScope has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
