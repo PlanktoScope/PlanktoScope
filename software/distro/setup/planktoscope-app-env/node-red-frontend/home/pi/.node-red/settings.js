@@ -32,7 +32,7 @@ module.exports = {
  ******************************************************************************/
 
     /** The file containing the flows. If not set, defaults to flows_<hostname>.json **/
-    flowFile: 'flows.json',
+    flowFile: process.env.FLOW_FILE || 'flows.json',
 
     /** By default, credentials are encrypted in storage using a generated key. To
      * specify your own secret, set the following property.
@@ -53,12 +53,12 @@ module.exports = {
      * the user's home directory. To use a different location, the following
      * property can be used
      */
-    //userDir: '/home/nol/.node-red/',
+    userDir: process.env.USER_DIR || '/home/pi/.node-red',
 
     /** Node-RED scans the `nodes` directory in the userDir to find local node files.
      * The following property can be used to specify an additional directory to scan.
      */
-    //nodesDir: '/home/nol/.node-red/nodes',
+    nodesDir: process.env.NODES_DIR || '/home/pi/.node-red/nodes',
 
 /*******************************************************************************
  * Security
@@ -147,7 +147,7 @@ module.exports = {
      * The following property can be used to listen on a specific interface. For
      * example, the following would only allow connections from the local machine.
      */
-    //uiHost: "127.0.0.1",
+    uitHost: '::',
 
     /** The maximum size of HTTP request that will be accepted by the runtime api.
      * Default: 5mb
@@ -164,7 +164,7 @@ module.exports = {
      * The following property can be used to specify a different root path.
      * If set to false, this is disabled.
      */
-    httpAdminRoot: '/admin/ps/node-red-v2',
+    httpAdminRoot: process.env.HTTP_ADMIN_ROOT || '/admin/ps/node-red-v2',
 
     /** The following property can be used to add a custom middleware function
      * in front of all admin http routes. For example, to set custom http
@@ -183,7 +183,7 @@ module.exports = {
      * can be used to specifiy a different root path. If set to false, this is
      * disabled.
      */
-    httpNodeRoot: '/ps/node-red-v2',
+    httpNodeRoot: process.env.HTTP_NODE_ROOT || '/ps/node-red-v2',
 
     /** The following property can be used to configure cross-origin resource sharing
      * in the HTTP nodes.
@@ -219,7 +219,7 @@ module.exports = {
      * following property can be used to identify a directory of static content
      * that should be served at http://localhost:1880/.
      */
-    //httpStatic: '/home/nol/node-red-static/',
+    httpStatic: process.env.HTTP_STATIC,
 
 /*******************************************************************************
  * Runtime Settings
@@ -249,7 +249,7 @@ module.exports = {
               * trace - record very detailed logging + debug + info + warn + error + fatal errors
               * off - turn off all logging (doesn't affect metrics or audit)
               */
-             level: "info",
+             level: process.env.LOGGING_CONSOLE_LEVEL || 'info',
              /** Whether or not to include metric events in the log output */
              metrics: false,
              /** Whether or not to include audit events in the log output */
@@ -313,7 +313,7 @@ module.exports = {
      * is not affected by this option. To disable both the editor and the admin
      * API, use either the httpRoot or httpAdminRoot properties
      */
-    //disableEditor: false,
+    disableEditor: process.env.DISABLE_EDITOR,
 
     /** Customising the editor
      * See https://nodered.org/docs/user-guide/runtime/configuration#editor-themes
@@ -422,7 +422,9 @@ module.exports = {
      *  middleware:{function or array}, (req,res,next) - http middleware
      *  ioMiddleware:{function or array}, (socket,next) - socket.io middleware
      */
-    //ui: { path: "ui" },
+    ui: {
+        path: process.env.UI_PATH || 'ui',
+    },
 
     /** Colourise the console output of the debug node */
     //debugUseColors: true,
