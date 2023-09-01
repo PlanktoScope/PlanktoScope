@@ -3958,7 +3958,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 940,
+        "x": 1120,
         "y": 940,
         "wires": [
             [
@@ -4002,7 +4002,7 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1210,
+        "x": 1390,
         "y": 980,
         "wires": []
     },
@@ -4042,7 +4042,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1100,
         "y": 1060,
         "wires": [
             [
@@ -4169,7 +4169,7 @@
         "z": "bccd1f23.87219",
         "name": "",
         "env": [],
-        "x": 980,
+        "x": 1160,
         "y": 1020,
         "wires": []
     },
@@ -4303,7 +4303,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 910,
+        "x": 1090,
         "y": 980,
         "wires": [
             [
@@ -4330,7 +4330,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 790,
+        "x": 970,
         "y": 1020,
         "wires": [
             [
@@ -4561,8 +4561,7 @@
         "y": 1040,
         "wires": [
             [
-                "d361a2c4.0990f8",
-                "5e147425.7666ec"
+                "f7a7398fd6ce4a4f"
             ]
         ]
     },
@@ -4588,8 +4587,7 @@
         "y": 1080,
         "wires": [
             [
-                "d361a2c4.0990f8",
-                "5e147425.7666ec"
+                "df8a7667c9d133b1"
             ]
         ]
     },
@@ -4635,7 +4633,8 @@
         "z": "bccd1f23.87219",
         "name": "Load hardware config",
         "links": [
-            "e4ead350b3d07578"
+            "e4ead350b3d07578",
+            "4a1f303f0b6f7f42"
         ],
         "x": 25,
         "y": 1000,
@@ -4663,6 +4662,108 @@
                 "d91550e8b15ed3b8"
             ]
         ]
+    },
+    {
+        "id": "f7a7398fd6ce4a4f",
+        "type": "switch",
+        "z": "bccd1f23.87219",
+        "name": "Validate",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "1.0",
+                "vt": "num",
+                "v2": "8.0",
+                "v2t": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 740,
+        "y": 1040,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ],
+            [
+                "64b05eea4c5469be",
+                "4a1f303f0b6f7f42"
+            ]
+        ]
+    },
+    {
+        "id": "df8a7667c9d133b1",
+        "type": "switch",
+        "z": "bccd1f23.87219",
+        "name": "Validate",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "1.0",
+                "vt": "num",
+                "v2": "8.0",
+                "v2t": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 740,
+        "y": 1080,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ],
+            [
+                "64b05eea4c5469be",
+                "4a1f303f0b6f7f42"
+            ]
+        ]
+    },
+    {
+        "id": "64b05eea4c5469be",
+        "type": "ui_toast",
+        "z": "bccd1f23.87219",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Invalid white balance value",
+        "name": "",
+        "x": 990,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "4a1f303f0b6f7f42",
+        "type": "link out",
+        "z": "bccd1f23.87219",
+        "name": "Reload hardware config",
+        "mode": "link",
+        "links": [
+            "04920f50bbbf6a2a"
+        ],
+        "x": 915,
+        "y": 1140,
+        "wires": []
     },
     {
         "id": "f59a2f0d.5e9af",
