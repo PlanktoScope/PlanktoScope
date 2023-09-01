@@ -115,13 +115,13 @@
     {
         "id": "4ed26b8b.253504",
         "type": "subflow",
-        "name": "Hardware config",
+        "name": "Save hardware config",
         "info": "",
         "category": "",
         "in": [
             {
                 "x": 40,
-                "y": 200,
+                "y": 40,
                 "wires": [
                     {
                         "id": "53d163be.47cf24"
@@ -129,19 +129,42 @@
                 ]
             }
         ],
-        "out": [
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "e6665421f66ea4c8",
+        "type": "subflow",
+        "name": "Load hardware config",
+        "info": "",
+        "category": "",
+        "in": [
             {
-                "x": 1040,
-                "y": 80,
+                "x": 40,
+                "y": 40,
                 "wires": [
                     {
-                        "id": "ddb4b136.fc0b78",
+                        "id": "48ceeda454438cb7"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 900,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "2b1a67ac127f3fe7",
                         "port": 0
                     }
                 ]
             }
         ],
         "env": [],
+        "meta": {},
         "color": "#DDAA99"
     },
     {
@@ -1054,41 +1077,6 @@
         ]
     },
     {
-        "id": "1f63860d.5f5efa",
-        "type": "file in",
-        "z": "4ed26b8b.253504",
-        "name": "",
-        "filename": "/home/pi/PlanktoScope/hardware.json",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "x": 380,
-        "y": 80,
-        "wires": [
-            [
-                "8c1fda48.d7d828"
-            ]
-        ],
-        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
-    },
-    {
-        "id": "8c1fda48.d7d828",
-        "type": "json",
-        "z": "4ed26b8b.253504",
-        "name": "Parse JSON",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 650,
-        "y": 80,
-        "wires": [
-            [
-                "ddb4b136.fc0b78"
-            ]
-        ]
-    },
-    {
         "id": "82099021.9ceb08",
         "type": "file",
         "z": "4ed26b8b.253504",
@@ -1098,8 +1086,8 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 780,
-        "y": 200,
+        "x": 660,
+        "y": 40,
         "wires": [
             []
         ]
@@ -1112,8 +1100,8 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 500,
-        "y": 200,
+        "x": 490,
+        "y": 40,
         "wires": [
             [
                 "82099021.9ceb08"
@@ -1121,33 +1109,64 @@
         ]
     },
     {
-        "id": "f748d952.4b6bc8",
-        "type": "inject",
+        "id": "53d163be.47cf24",
+        "type": "function",
         "z": "4ed26b8b.253504",
-        "name": "Load config",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 80,
+        "name": "Update and retrieve hardware_conf",
+        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 40,
         "wires": [
             [
-                "1f63860d.5f5efa"
+                "bb0a8725.a1849"
             ]
         ]
     },
     {
-        "id": "ddb4b136.fc0b78",
+        "id": "48ceeda454438cb7",
+        "type": "file in",
+        "z": "e6665421f66ea4c8",
+        "name": "",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 250,
+        "y": 40,
+        "wires": [
+            [
+                "853c938a270fd85e"
+            ]
+        ],
+        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
+    },
+    {
+        "id": "853c938a270fd85e",
+        "type": "json",
+        "z": "e6665421f66ea4c8",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 40,
+        "wires": [
+            [
+                "2b1a67ac127f3fe7"
+            ]
+        ]
+    },
+    {
+        "id": "2b1a67ac127f3fe7",
         "type": "change",
-        "z": "4ed26b8b.253504",
+        "z": "e6665421f66ea4c8",
         "name": "",
         "rules": [
             {
@@ -1163,29 +1182,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 80,
+        "x": 730,
+        "y": 40,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "53d163be.47cf24",
-        "type": "function",
-        "z": "4ed26b8b.253504",
-        "name": "Update and retrieve hardware_conf",
-        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 200,
-        "wires": [
-            [
-                "bb0a8725.a1849"
-            ]
         ]
     },
     {
@@ -4110,23 +4110,6 @@
         ]
     },
     {
-        "id": "c3cdf9e.1d27308",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "env": [],
-        "x": 120,
-        "y": 1020,
-        "wires": [
-            [
-                "6be64480.7e7e24",
-                "6d49d161.13628",
-                "8ef294ba.12213",
-                "8e336e58.14722"
-            ]
-        ]
-    },
-    {
         "id": "6be64480.7e7e24",
         "type": "change",
         "z": "bccd1f23.87219",
@@ -4145,7 +4128,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 370,
         "y": 1040,
         "wires": [
             [
@@ -4172,7 +4155,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 380,
         "y": 1080,
         "wires": [
             [
@@ -4186,11 +4169,9 @@
         "z": "bccd1f23.87219",
         "name": "",
         "env": [],
-        "x": 960,
+        "x": 980,
         "y": 1020,
-        "wires": [
-            []
-        ]
+        "wires": []
     },
     {
         "id": "8ef294ba.12213",
@@ -4218,7 +4199,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 380,
         "y": 960,
         "wires": [
             [
@@ -4252,7 +4233,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 380,
         "y": 1000,
         "wires": [
             [
@@ -4630,6 +4611,57 @@
         "y": 40,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "d91550e8b15ed3b8",
+        "type": "subflow:e6665421f66ea4c8",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "x": 160,
+        "y": 1020,
+        "wires": [
+            [
+                "8ef294ba.12213",
+                "8e336e58.14722",
+                "6be64480.7e7e24",
+                "6d49d161.13628"
+            ]
+        ]
+    },
+    {
+        "id": "04920f50bbbf6a2a",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Load hardware config",
+        "links": [
+            "e4ead350b3d07578"
+        ],
+        "x": 25,
+        "y": 1000,
+        "wires": [
+            [
+                "d91550e8b15ed3b8"
+            ]
+        ]
+    },
+    {
+        "id": "7386eaf7ca9d8bfa",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Once",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 50,
+        "y": 1080,
+        "wires": [
+            [
+                "d91550e8b15ed3b8"
+            ]
         ]
     },
     {
@@ -10003,24 +10035,6 @@
         "wires": []
     },
     {
-        "id": "44efaeb3.59bf6",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "1eaf21c8.f7a21e",
-        "name": "",
-        "env": [],
-        "x": 120,
-        "y": 440,
-        "wires": [
-            [
-                "e10f5e55.00b828",
-                "c534fd26.13741",
-                "54ba7f16.709ad8",
-                "c67c305004f87e39",
-                "11955bbeefc29ab4"
-            ]
-        ]
-    },
-    {
         "id": "e10f5e55.00b828",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
@@ -10039,7 +10053,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
+        "x": 630,
         "y": 360,
         "wires": [
             [
@@ -10086,7 +10100,7 @@
         "payload": "",
         "topic": "stepper_type",
         "topicType": "str",
-        "x": 670,
+        "x": 950,
         "y": 360,
         "wires": [
             [
@@ -10104,7 +10118,7 @@
             "45a7b5aa.2ed20c",
             "835916dcb5ddf246"
         ],
-        "x": 1195,
+        "x": 1475,
         "y": 380,
         "wires": []
     },
@@ -10124,7 +10138,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 880,
+        "x": 1160,
         "y": 380,
         "wires": [
             [
@@ -10138,11 +10152,9 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 900,
+        "x": 1200,
         "y": 420,
-        "wires": [
-            []
-        ]
+        "wires": []
     },
     {
         "id": "c534fd26.13741",
@@ -10163,7 +10175,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 360,
+        "x": 640,
         "y": 440,
         "wires": [
             [
@@ -10194,7 +10206,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 660,
+        "x": 940,
         "y": 440,
         "wires": [
             [
@@ -10222,7 +10234,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
+        "x": 650,
         "y": 400,
         "wires": [
             [
@@ -10246,7 +10258,7 @@
         "delay": "2000",
         "topic": "pump_steps_per_ml",
         "topicType": "str",
-        "x": 640,
+        "x": 920,
         "y": 400,
         "wires": [
             [
@@ -10270,7 +10282,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 550,
+        "x": 530,
         "y": 100,
         "wires": [
             []
@@ -10291,7 +10303,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 610,
+        "x": 590,
         "y": 60,
         "wires": [
             []
@@ -10332,11 +10344,13 @@
         "topic": "acq_instrument",
         "topicType": "str",
         "className": "",
-        "x": 600,
+        "x": 580,
         "y": 160,
         "wires": [
             [
-                "3e2c5c1c.4c57b4"
+                "3e2c5c1c.4c57b4",
+                "932a1ef8c2e81979",
+                "025ad3cdaa557843"
             ]
         ]
     },
@@ -10346,8 +10360,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 690,
-        "y": 280,
+        "x": 970,
+        "y": 160,
         "wires": [
             []
         ]
@@ -10363,8 +10377,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 280,
+        "x": 810,
+        "y": 160,
         "wires": [
             [
                 "1cfadc66.3cde8c"
@@ -10377,7 +10391,7 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 150,
+        "x": 130,
         "y": 160,
         "wires": [
             [
@@ -10395,7 +10409,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 350,
+        "x": 330,
         "y": 160,
         "wires": [
             [
@@ -10422,7 +10436,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
+        "x": 650,
         "y": 480,
         "wires": [
             [
@@ -10446,7 +10460,7 @@
         "delay": "1000",
         "topic": "process_pixel_fixed",
         "topicType": "str",
-        "x": 650,
+        "x": 930,
         "y": 480,
         "wires": [
             [
@@ -10466,7 +10480,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1200,
         "y": 480,
         "wires": [
             [
@@ -10482,7 +10496,7 @@
         "links": [
             "cfc783d7.d6ceb"
         ],
-        "x": 1195,
+        "x": 1475,
         "y": 500,
         "wires": []
     },
@@ -10530,7 +10544,7 @@
         "payload": "",
         "topic": "acq_fnumber_objective",
         "topicType": "str",
-        "x": 630,
+        "x": 910,
         "y": 520,
         "wires": [
             [
@@ -10558,7 +10572,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 960,
+        "x": 1240,
         "y": 520,
         "wires": [
             [
@@ -10592,11 +10606,154 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 380,
+        "x": 660,
         "y": 520,
         "wires": [
             [
                 "6146ba22df928516"
+            ]
+        ]
+    },
+    {
+        "id": "da3d4a90384d62a8",
+        "type": "subflow:e6665421f66ea4c8",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "x": 360,
+        "y": 440,
+        "wires": [
+            [
+                "c534fd26.13741",
+                "54ba7f16.709ad8",
+                "e10f5e55.00b828",
+                "c67c305004f87e39",
+                "11955bbeefc29ab4"
+            ]
+        ]
+    },
+    {
+        "id": "f83560053c609914",
+        "type": "inject",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Once",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "da3d4a90384d62a8"
+            ]
+        ]
+    },
+    {
+        "id": "e4ead350b3d07578",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Reload hardware config",
+        "mode": "link",
+        "links": [
+            "04920f50bbbf6a2a"
+        ],
+        "x": 875,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "025ad3cdaa557843",
+        "type": "ui_toast",
+        "z": "1eaf21c8.f7a21e",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Resetting hardware configuration to version-specific default",
+        "name": "",
+        "x": 830,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "932a1ef8c2e81979",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choose default hardware config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join([\"/home/pi/device-backend/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "833dac7cbd693c53"
+            ]
+        ]
+    },
+    {
+        "id": "833dac7cbd693c53",
+        "type": "exec",
+        "z": "1eaf21c8.f7a21e",
+        "command": "cp",
+        "addpay": "payload",
+        "append": "/home/pi/PlanktoScope/hardware.json",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Copy default hardware config",
+        "x": 500,
+        "y": 240,
+        "wires": [
+            [
+                "0b67ccf37c034e90"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "0b67ccf37c034e90",
+        "type": "delay",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 240,
+        "wires": [
+            [
+                "da3d4a90384d62a8",
+                "e4ead350b3d07578"
             ]
         ]
     }
