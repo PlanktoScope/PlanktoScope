@@ -22,6 +22,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: administration, troubleshooting) [w3m](https://en.wikipedia.org/wiki/W3m) is now installed, enabling terminal-based interaction with some wifi network captive portals to obtain internet access on the PlanktoScope. For captive portals which require Javascript, we recommend instead using [browsh](https://www.brow.sh/) as a Docker container; we don't provide browsh in the default SD card image because it adds ~250 MB of dependencies to the image.
 - (System: networking) [ufw](https://en.wikipedia.org/wiki/Uncomplicated_Firewall) is now installed, though it is disabled by default. Note: in the future, ufw will probably be removed in favor of firewall management using [firewalld](https://packages.debian.org/buster/firewalld).
 - (System: administration) The Node-RED dashboard's "Administration" page now provides an embedded viewer for the operating system's logs, in a new "Operating System" section.
+- (Application: GUI) The Node-RED dashboard's "Hardware Settings" page now includes drop-down menu items to select "PlanktoScope v2.4", "PlanktoScope v2.5", and "PlanktoScope v2.6" as allowed hardware versions.
 
 ### Changed
 
@@ -51,10 +52,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Deprecated
 
-- (Application: GUI) In a future release (potentially as early as v2023.12.0), the Node-RED editor and Node-RED dashboard will not be accessible at all over port 1880. In this release, you can still access the Node-RED dashboard at path `/ps/node-red-v2/ui` on port 1880, but the embedded image streams and file gallery will not be properly displayed; and you can access the Node-RED editor at path `/admin/ps/node-red-v2` on port 1880.
+- (Application: GUI) In a future release (potentially as early as v2023.12.0), the Node-RED editor and Node-RED dashboard will not be accessible at all over port 1880. In this release, you can still access the Node-RED dashboard at path `/ps/node-red-v2/ui` on port 1880, but the embedded image streams and file gallery will not be properly displayed; and you can access the Node-RED editor at path `/admin/ps/node-red-v2` on port 1880. However, you should instead access the Node-RED editor and Node-RED dashboard via the links on the PlanktoScope's landing page.
+- (Application: GUI) In a future release (timeline not yet decided), the version of the Node-RED dashboard for the Adafruit HAT will stop receiving new features even as the version of the Node-RED dashboard for the custom PlanktoScope HAT continues receiving new features. However, we will continue to fix bugs in the Node-RED dashboard for the Adafruit HAT, and we will continue to build SD card images for the Adafruit HAT which will also include new features in other software components.
 
 ### Removed
 
+- (User-facing removal; Application: GUI) The Node-RED dashboard no longer allows selection of PlanktoScope v1.0 or PlanktoScope v2.2 (waveshare HAT) as the hardware version. Those hardware versions are no longer supported by the software.
 - (User-facing removal; System: networking) Now `planktoscope.local` only works for devices connected directly to the PlanktoScope, either via an Ethernet cable or over wifi when the PlanktoScope is running in wireless AP mode. It no longer works on other networks, such as LANs or mesh VPNs, which the PlanktoScope might be connected to. On such networks, the machine-specific mDNS name (of format `planktoscope-<machine-name>.local`) should be used instead.
 - (System: administration) The Git-based software update system (exposed in the Node-RED dashboard's "Adminisration" page) has been removed, since it was reported to behave problematically anyways. In the future, we will use a system based on Docker for safer and easier software updates.
 

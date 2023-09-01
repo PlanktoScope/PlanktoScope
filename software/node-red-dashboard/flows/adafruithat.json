@@ -727,8 +727,9 @@
         "tab": "b0fb559a.6966a8",
         "order": 1,
         "disp": false,
-        "width": "6",
-        "collapse": false
+        "width": "8",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "fc5e4e6f.5b1c8",
@@ -7187,7 +7188,7 @@
         "bgcolor": "#AD1625",
         "className": "",
         "icon": "fa-refresh fa-2x",
-        "payload": "",
+        "payload": "Restarting hardware controller...",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7195,7 +7196,8 @@
         "y": 420,
         "wires": [
             [
-                "bd5cceef.b17ad"
+                "bd5cceef.b17ad",
+                "414353cde6a62346"
             ]
         ]
     },
@@ -7281,7 +7283,7 @@
         "id": "45a7b5aa.2ed20c",
         "type": "link in",
         "z": "9daf9e2b.019fc",
-        "name": "Python restart",
+        "name": "Restart Hardware Controller",
         "links": [
             "e41870d7.300eb8"
         ],
@@ -7375,7 +7377,7 @@
         "bgcolor": "#AD1625",
         "className": "",
         "icon": "fa-refresh fa-2x",
-        "payload": "",
+        "payload": "Restarting segmenter...",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7383,7 +7385,8 @@
         "y": 500,
         "wires": [
             [
-                "38c05fcb891c82bf"
+                "38c05fcb891c82bf",
+                "e036d07cf78fde85"
             ]
         ]
     },
@@ -7553,6 +7556,44 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "414353cde6a62346",
+        "type": "ui_toast",
+        "z": "9daf9e2b.019fc",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 770,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e036d07cf78fde85",
+        "type": "ui_toast",
+        "z": "9daf9e2b.019fc",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 770,
+        "y": 460,
+        "wires": []
     },
     {
         "id": "2c8c45ab.610c0a",
@@ -10221,13 +10262,14 @@
         "group": "6be36295.0ab324",
         "name": "Stepper controller type header",
         "order": 3,
-        "width": 3,
+        "width": "5",
         "height": 1,
         "format": "<div>Stepper controller type</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 550,
         "y": 100,
         "wires": [
@@ -10240,14 +10282,15 @@
         "z": "1eaf21c8.f7a21e",
         "group": "6be36295.0ab324",
         "name": "Information",
-        "order": 2,
-        "width": 6,
+        "order": 1,
+        "width": "8",
         "height": 3,
-        "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will make the python back-end to restart.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
+        "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will cause the Python hardware controller to restart, to reload the new hardware configuration. Setting the hardware version will also overwrite all of your hardware settings.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 610,
         "y": 60,
         "wires": [
@@ -10258,12 +10301,12 @@
         "id": "a7e5c7f4.644678",
         "type": "ui_dropdown",
         "z": "1eaf21c8.f7a21e",
-        "name": "Machine Version",
-        "label": "Machine version",
+        "name": "",
+        "label": "Hardware version",
         "tooltip": "",
         "place": "Select option",
         "group": "6be36295.0ab324",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10271,28 +10314,24 @@
         "options": [
             {
                 "label": "",
-                "value": "PlanktoScope v1.0",
-                "type": "str"
-            },
-            {
-                "label": "PlanktoScope 2.1 (adafruit version)",
                 "value": "PlanktoScope v2.1",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.2 (waveshare hat)",
-                "value": "PlanktoScope v2.2",
+                "label": "",
+                "value": "PlanktoScope v2.3",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.3 (custom hat)",
-                "value": "PlanktoScope v2.3",
+                "label": "",
+                "value": "PlanktoScope v2.5",
                 "type": "str"
             }
         ],
         "payload": "",
         "topic": "acq_instrument",
         "topicType": "str",
+        "className": "",
         "x": 600,
         "y": 160,
         "wires": [
@@ -10317,27 +10356,18 @@
         "id": "3e2c5c1c.4c57b4",
         "type": "function",
         "z": "1eaf21c8.f7a21e",
-        "name": "Set and update settings",
-        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"2.1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1600};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"waveshare\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:2000};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"pscope_hat\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:3200};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
-        "outputs": 3,
+        "name": "Save global",
+        "func": "global.set(msg.topic,msg.payload);\nreturn msg;",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
+        "x": 330,
         "y": 280,
         "wires": [
             [
                 "1cfadc66.3cde8c"
-            ],
-            [
-                "dee52a36.2af72",
-                "8e3b3d3c.955148",
-                "2068e7f.f4efb18"
-            ],
-            [
-                "ee58b91c.396108",
-                "8e3b3d3c.955148"
             ]
         ]
     },
