@@ -31,11 +31,40 @@ python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Download device-backend monorepo
-# FIXME: pin this at a specific version (at least until we distribute it as a Docker image for forklift)
-wget https://github.com/PlanktoScope/device-backend/archive/refs/heads/main.zip
-unzip main.zip
-rm main.zip
-mv device-backend-main /home/pi/device-backend
+backend_version="v2023.9.0-beta.0" # this should be either a version tag, branch name, or commit hash
+backend_version_type="version-tag" # this should be either "version-tag", "branch", or "hash"
+case "$backend_version_type" in
+  "version-tag")
+    wget "https://github.com/PlanktoScope/device-backend/archive/refs/tags/$backend_version.zip"
+    ;;
+  "branch")
+    wget "https://github.com/PlanktoScope/device-backend/archive/refs/heads/$backend_version.zip"
+    ;;
+  "hash")
+    wget "https://github.com/PlanktoScope/device-backend/archive/$backend_version.zip"
+    ;;
+  *)
+    echo "Unknown backend version type $backend_version_type"
+    exit 1
+    ;;
+esac
+unzip "$backend_version.zip"
+rm "$backend_version.zip"
+case "$backend_version_type" in
+  "version-tag")
+    mv "device-backend-${backend_version#"v"}" /home/pi/device-backend
+    ;;
+  "branch")
+    mv "device-backend-$(sed 's/\//-/g' <<< $backend_version)" /home/pi/device-backend
+    ;;
+  "hash")
+    mv "device-backend-$backend_version" /home/pi/device-backend
+    ;;
+  *)
+    echo "Unknown backend version type $backend_version_type"
+    exit 1
+    ;;
+esac
 
 # Set up the hardware controllers
 sudo apt-get install -y i2c-tools
