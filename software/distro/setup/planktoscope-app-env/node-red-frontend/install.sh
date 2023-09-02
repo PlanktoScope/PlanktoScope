@@ -36,7 +36,10 @@ sudo systemctl daemon-reload
 sudo systemctl enable nodered.service
 
 # Select the enabled dashboard
-cp "/home/pi/PlanktoScope/software/node-red-dashboard/flows-$hardware_type.json" /home/pi/.node-red/flows.json
+cp "/home/pi/PlanktoScope/software/node-red-dashboard/flows/$hardware_type.json" \
+  /home/pi/.node-red/flows.json
+cp "/home/pi/PlanktoScope/software/node-red-dashboard/default-configs/$hardware_type-latest.config.json" \
+  /home/pi/PlanktoScope/config.json
 
 # Install dependencies in a way that makes them available to Node-RED
 cp /home/pi/PlanktoScope/software/node-red-dashboard/package.json /home/pi/.node-red/

@@ -115,13 +115,13 @@
     {
         "id": "4ed26b8b.253504",
         "type": "subflow",
-        "name": "Hardware config",
+        "name": "Save hardware config",
         "info": "",
         "category": "",
         "in": [
             {
                 "x": 40,
-                "y": 200,
+                "y": 40,
                 "wires": [
                     {
                         "id": "53d163be.47cf24"
@@ -129,19 +129,42 @@
                 ]
             }
         ],
-        "out": [
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "b7861ce703215a01",
+        "type": "subflow",
+        "name": "Load hardware config",
+        "info": "",
+        "category": "",
+        "in": [
             {
-                "x": 1040,
-                "y": 80,
+                "x": 40,
+                "y": 40,
                 "wires": [
                     {
-                        "id": "ddb4b136.fc0b78",
+                        "id": "0f16258953fae292"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 900,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "d0fbcd200cd09981",
                         "port": 0
                     }
                 ]
             }
         ],
         "env": [],
+        "meta": {},
         "color": "#DDAA99"
     },
     {
@@ -724,8 +747,9 @@
         "tab": "b0fb559a.6966a8",
         "order": 1,
         "disp": false,
-        "width": "6",
-        "collapse": false
+        "width": "8",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "fc5e4e6f.5b1c8",
@@ -1049,41 +1073,6 @@
         ]
     },
     {
-        "id": "1f63860d.5f5efa",
-        "type": "file in",
-        "z": "4ed26b8b.253504",
-        "name": "",
-        "filename": "/home/pi/PlanktoScope/hardware.json",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "x": 380,
-        "y": 80,
-        "wires": [
-            [
-                "8c1fda48.d7d828"
-            ]
-        ],
-        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
-    },
-    {
-        "id": "8c1fda48.d7d828",
-        "type": "json",
-        "z": "4ed26b8b.253504",
-        "name": "Parse JSON",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 650,
-        "y": 80,
-        "wires": [
-            [
-                "ddb4b136.fc0b78"
-            ]
-        ]
-    },
-    {
         "id": "82099021.9ceb08",
         "type": "file",
         "z": "4ed26b8b.253504",
@@ -1093,8 +1082,8 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 780,
-        "y": 200,
+        "x": 660,
+        "y": 40,
         "wires": [
             []
         ]
@@ -1107,8 +1096,8 @@
         "property": "payload",
         "action": "str",
         "pretty": true,
-        "x": 500,
-        "y": 200,
+        "x": 490,
+        "y": 40,
         "wires": [
             [
                 "82099021.9ceb08"
@@ -1116,33 +1105,65 @@
         ]
     },
     {
-        "id": "f748d952.4b6bc8",
-        "type": "inject",
+        "id": "53d163be.47cf24",
+        "type": "function",
         "z": "4ed26b8b.253504",
-        "name": "Load config",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 80,
+        "name": "Update and retrieve hardware_conf",
+        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 40,
         "wires": [
             [
-                "1f63860d.5f5efa"
+                "bb0a8725.a1849"
             ]
         ]
     },
     {
-        "id": "ddb4b136.fc0b78",
+        "id": "0f16258953fae292",
+        "type": "file in",
+        "z": "b7861ce703215a01",
+        "name": "",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 250,
+        "y": 40,
+        "wires": [
+            [
+                "81c516291ab19acd"
+            ]
+        ],
+        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
+    },
+    {
+        "id": "81c516291ab19acd",
+        "type": "json",
+        "z": "b7861ce703215a01",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 40,
+        "wires": [
+            [
+                "d0fbcd200cd09981"
+            ]
+        ]
+    },
+    {
+        "id": "d0fbcd200cd09981",
         "type": "change",
-        "z": "4ed26b8b.253504",
+        "z": "b7861ce703215a01",
         "name": "",
         "rules": [
             {
@@ -1158,29 +1179,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 80,
+        "x": 730,
+        "y": 40,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "53d163be.47cf24",
-        "type": "function",
-        "z": "4ed26b8b.253504",
-        "name": "Update and retrieve hardware_conf",
-        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 200,
-        "wires": [
-            [
-                "bb0a8725.a1849"
-            ]
         ]
     },
     {
@@ -4069,7 +4071,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 940,
+        "x": 1120,
         "y": 940,
         "wires": [
             [
@@ -4113,7 +4115,7 @@
         "qos": "",
         "retain": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1210,
+        "x": 1390,
         "y": 980,
         "wires": []
     },
@@ -4153,7 +4155,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1100,
         "y": 1060,
         "wires": [
             [
@@ -4221,23 +4223,6 @@
         ]
     },
     {
-        "id": "c3cdf9e.1d27308",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "env": [],
-        "x": 120,
-        "y": 1020,
-        "wires": [
-            [
-                "6be64480.7e7e24",
-                "6d49d161.13628",
-                "8ef294ba.12213",
-                "8e336e58.14722"
-            ]
-        ]
-    },
-    {
         "id": "6be64480.7e7e24",
         "type": "change",
         "z": "bccd1f23.87219",
@@ -4256,7 +4241,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 330,
+        "x": 370,
         "y": 1040,
         "wires": [
             [
@@ -4283,7 +4268,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 380,
         "y": 1080,
         "wires": [
             [
@@ -4297,11 +4282,9 @@
         "z": "bccd1f23.87219",
         "name": "",
         "env": [],
-        "x": 960,
+        "x": 1160,
         "y": 1020,
-        "wires": [
-            []
-        ]
+        "wires": []
     },
     {
         "id": "8ef294ba.12213",
@@ -4329,7 +4312,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
+        "x": 380,
         "y": 960,
         "wires": [
             [
@@ -4363,7 +4346,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 380,
         "y": 1000,
         "wires": [
             [
@@ -4433,7 +4416,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 910,
+        "x": 1090,
         "y": 980,
         "wires": [
             [
@@ -4460,7 +4443,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 790,
+        "x": 970,
         "y": 1020,
         "wires": [
             [
@@ -4670,33 +4653,6 @@
         ]
     },
     {
-        "id": "d5415af6.e06cc",
-        "type": "ui_text_input",
-        "z": "bccd1f23.87219",
-        "name": "WB Red input",
-        "label": "WB: Red",
-        "tooltip": "From 1.0 to 8.0",
-        "group": "8c38a81e.9897a8",
-        "order": 6,
-        "width": 4,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "red",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 580,
-        "y": 1040,
-        "wires": [
-            [
-                "d361a2c4.0990f8",
-                "5e147425.7666ec"
-            ]
-        ]
-    },
-    {
         "id": "dba68c1f.e3144",
         "type": "ui_text_input",
         "z": "bccd1f23.87219",
@@ -4718,8 +4674,7 @@
         "y": 1080,
         "wires": [
             [
-                "d361a2c4.0990f8",
-                "5e147425.7666ec"
+                "3ece53716a02e09e"
             ]
         ]
     },
@@ -4742,6 +4697,186 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "33ef60a6a80aa3a7",
+        "type": "subflow:b7861ce703215a01",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "x": 160,
+        "y": 1020,
+        "wires": [
+            [
+                "8ef294ba.12213",
+                "8e336e58.14722",
+                "6be64480.7e7e24",
+                "6d49d161.13628"
+            ]
+        ]
+    },
+    {
+        "id": "a3d034643b56796f",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Once",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 70,
+        "y": 1080,
+        "wires": [
+            [
+                "33ef60a6a80aa3a7"
+            ]
+        ]
+    },
+    {
+        "id": "5984b086eddc9311",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Load hardware config",
+        "links": [
+            "3973b999ee7b3b1d",
+            "5d3df1564b9af89c"
+        ],
+        "x": 25,
+        "y": 1000,
+        "wires": [
+            [
+                "33ef60a6a80aa3a7"
+            ]
+        ]
+    },
+    {
+        "id": "d5415af6.e06cc",
+        "type": "ui_text_input",
+        "z": "bccd1f23.87219",
+        "name": "WB Red input",
+        "label": "WB: Red",
+        "tooltip": "From 1.0 to 8.0",
+        "group": "8c38a81e.9897a8",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "red",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 580,
+        "y": 1040,
+        "wires": [
+            [
+                "01c2b633558b0b02"
+            ]
+        ]
+    },
+    {
+        "id": "01c2b633558b0b02",
+        "type": "switch",
+        "z": "bccd1f23.87219",
+        "name": "Validate",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "1.0",
+                "vt": "num",
+                "v2": "8.0",
+                "v2t": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 740,
+        "y": 1040,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ],
+            [
+                "cbfaf049d92be90e",
+                "5d3df1564b9af89c"
+            ]
+        ]
+    },
+    {
+        "id": "3ece53716a02e09e",
+        "type": "switch",
+        "z": "bccd1f23.87219",
+        "name": "Validate",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "1.0",
+                "vt": "num",
+                "v2": "8.0",
+                "v2t": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 740,
+        "y": 1080,
+        "wires": [
+            [
+                "d361a2c4.0990f8",
+                "5e147425.7666ec"
+            ],
+            [
+                "cbfaf049d92be90e",
+                "5d3df1564b9af89c"
+            ]
+        ]
+    },
+    {
+        "id": "cbfaf049d92be90e",
+        "type": "ui_toast",
+        "z": "bccd1f23.87219",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Invalid white balance value",
+        "name": "",
+        "x": 990,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "5d3df1564b9af89c",
+        "type": "link out",
+        "z": "bccd1f23.87219",
+        "name": "Reload hardware config",
+        "mode": "link",
+        "links": [
+            "5984b086eddc9311"
+        ],
+        "x": 915,
+        "y": 1140,
+        "wires": []
     },
     {
         "id": "6b34c456.83178c",
@@ -7455,7 +7590,7 @@
         "bgcolor": "#AD1625",
         "className": "",
         "icon": "fa-refresh fa-2x",
-        "payload": "",
+        "payload": "Restarting hardware controller...",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7463,7 +7598,8 @@
         "y": 420,
         "wires": [
             [
-                "c54d948575dbcff8"
+                "c54d948575dbcff8",
+                "d10f3ffd98055447"
             ]
         ]
     },
@@ -7471,7 +7607,7 @@
         "id": "438febd245a9f73c",
         "type": "link in",
         "z": "9daf9e2b.019fc",
-        "name": "Python restart",
+        "name": "Restart Hardware Controller",
         "links": [
             "e41870d7.300eb8"
         ],
@@ -7519,7 +7655,7 @@
         "bgcolor": "#AD1625",
         "className": "",
         "icon": "fa-refresh fa-2x",
-        "payload": "",
+        "payload": "Restarting segmenter...",
         "payloadType": "str",
         "topic": "",
         "topicType": "str",
@@ -7527,7 +7663,8 @@
         "y": 500,
         "wires": [
             [
-                "2cdbadb65d0e1b20"
+                "2cdbadb65d0e1b20",
+                "9c1629488b02fdba"
             ]
         ]
     },
@@ -7571,6 +7708,44 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "d10f3ffd98055447",
+        "type": "ui_toast",
+        "z": "9daf9e2b.019fc",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 750,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9c1629488b02fdba",
+        "type": "ui_toast",
+        "z": "9daf9e2b.019fc",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 750,
+        "y": 460,
+        "wires": []
     },
     {
         "id": "2c8c45ab.610c0a",
@@ -8100,27 +8275,10 @@
         "payload": "start",
         "payloadType": "str",
         "x": 130,
-        "y": 580,
-        "wires": [
-            [
-                "452af41c.43940c",
-                "b3c21aa9.8c06c"
-            ]
-        ]
-    },
-    {
-        "id": "452af41c.43940c",
-        "type": "python3-function",
-        "z": "1371dec5.76e671",
-        "name": "Get MachineName",
-        "func": "import sys\nsys.path.append('/home/pi/PlanktoScope/scripts')\nimport planktoscope.uuidName\n\nmsg['payload'] = planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())\nmsg['topic'] = \"acq_instrument_id\";\nreturn msg",
-        "outputs": 1,
-        "x": 350,
         "y": 620,
         "wires": [
             [
-                "4828d2f4.7c712c",
-                "a400a97e.e333a8"
+                "1aa03f38ba84fc13"
             ]
         ]
     },
@@ -8129,11 +8287,12 @@
         "type": "function",
         "z": "1371dec5.76e671",
         "name": "set global",
-        "func": "global.set(msg.topic,msg.payload);\n",
+        "func": "global.set(\"acq_instrument_id\",msg.payload);\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 580,
         "y": 640,
         "wires": [
@@ -8146,7 +8305,7 @@
         "z": "1371dec5.76e671",
         "name": "",
         "env": [],
-        "x": 570,
+        "x": 130,
         "y": 560,
         "wires": [
             [
@@ -8155,42 +8314,20 @@
         ]
     },
     {
-        "id": "b3c21aa9.8c06c",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "git --git-dir /home/pi/PlanktoScope/.git/ rev-parse --short master",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "git rev",
-        "x": 310,
-        "y": 540,
-        "wires": [
-            [
-                "3e64877a.9684b"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "3e64877a.9684b",
         "type": "function",
         "z": "1371dec5.76e671",
-        "name": "store version",
-        "func": "msg.payload = \"PlanktoScope v2.3-\"+msg.payload.trim()\n\nglobal.set(\"acq_software\",msg.payload);\n\nreturn msg\n",
+        "name": "set global",
+        "func": "global.set(\"acq_software\",\"PlanktoScope \" + msg.payload);\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 590,
-        "y": 520,
+        "libs": [],
+        "x": 580,
+        "y": 480,
         "wires": [
-            [
-                "8343fa69.49339"
-            ]
+            []
         ]
     },
     {
@@ -8205,7 +8342,7 @@
         "label": "Instrument Type",
         "format": "{{msg.payload.acq_instrument}}",
         "layout": "row-spread",
-        "x": 840,
+        "x": 600,
         "y": 560,
         "wires": []
     },
@@ -8234,10 +8371,15 @@
         "width": 0,
         "height": 0,
         "name": "",
-        "label": "Software version",
+        "label": "Software Version",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 840,
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 610,
         "y": 520,
         "wires": []
     },
@@ -8253,8 +8395,8 @@
         "label": "Camera Name",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1020,
-        "y": 620,
+        "x": 600,
+        "y": 680,
         "wires": []
     },
     {
@@ -8265,8 +8407,8 @@
         "links": [
             "559a8085.1d6b9"
         ],
-        "x": 875,
-        "y": 620,
+        "x": 155,
+        "y": 680,
         "wires": [
             [
                 "f783aefd.c3bfd8"
@@ -9117,22 +9259,6 @@
         ]
     },
     {
-        "id": "9373b3f6.33a2b",
-        "type": "link in",
-        "z": "1371dec5.76e671",
-        "name": "Git Rev",
-        "links": [
-            "6c20d6a7.869b6"
-        ],
-        "x": 335,
-        "y": 500,
-        "wires": [
-            [
-                "3e64877a.9684b"
-            ]
-        ]
-    },
-    {
         "id": "952db22920d7d5f1",
         "type": "rpi-gpio out",
         "z": "1371dec5.76e671",
@@ -9146,6 +9272,55 @@
         "x": 1110,
         "y": 40,
         "wires": []
+    },
+    {
+        "id": "1aa03f38ba84fc13",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "hostname | sed 's/^planktoscope-//'",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get machine name",
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "a400a97e.e333a8",
+                "4828d2f4.7c712c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c5449beeb23acded",
+        "type": "inject",
+        "z": "1371dec5.76e671",
+        "name": "Set software version",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "v2023.9.0-beta.0",
+        "payloadType": "str",
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "3e64877a.9684b",
+                "8343fa69.49339"
+            ]
+        ]
     },
     {
         "id": "b9bf06d6.26c518",
@@ -9901,24 +10076,6 @@
         "wires": []
     },
     {
-        "id": "44efaeb3.59bf6",
-        "type": "subflow:4ed26b8b.253504",
-        "z": "1eaf21c8.f7a21e",
-        "name": "",
-        "env": [],
-        "x": 120,
-        "y": 420,
-        "wires": [
-            [
-                "e10f5e55.00b828",
-                "c534fd26.13741",
-                "54ba7f16.709ad8",
-                "c67c305004f87e39",
-                "11955bbeefc29ab4"
-            ]
-        ]
-    },
-    {
         "id": "e10f5e55.00b828",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
@@ -9937,7 +10094,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
+        "x": 650,
         "y": 360,
         "wires": [
             [
@@ -9979,7 +10136,7 @@
         "payload": "",
         "topic": "stepper_type",
         "topicType": "str",
-        "x": 670,
+        "x": 970,
         "y": 360,
         "wires": [
             [
@@ -9993,11 +10150,11 @@
         "type": "link out",
         "z": "1eaf21c8.f7a21e",
         "name": "Stepper config change",
+        "mode": "link",
         "links": [
-            "45a7b5aa.2ed20c",
             "438febd245a9f73c"
         ],
-        "x": 1195,
+        "x": 1495,
         "y": 380,
         "wires": []
     },
@@ -10017,7 +10174,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 880,
+        "x": 1180,
         "y": 380,
         "wires": [
             [
@@ -10031,11 +10188,9 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 900,
+        "x": 1220,
         "y": 420,
-        "wires": [
-            []
-        ]
+        "wires": []
     },
     {
         "id": "c534fd26.13741",
@@ -10056,7 +10211,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 360,
+        "x": 660,
         "y": 440,
         "wires": [
             [
@@ -10087,7 +10242,7 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 660,
+        "x": 960,
         "y": 440,
         "wires": [
             [
@@ -10115,7 +10270,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
+        "x": 670,
         "y": 400,
         "wires": [
             [
@@ -10139,7 +10294,7 @@
         "delay": "2000",
         "topic": "pump_steps_per_ml",
         "topicType": "str",
-        "x": 640,
+        "x": 940,
         "y": 400,
         "wires": [
             [
@@ -10155,13 +10310,14 @@
         "group": "6be36295.0ab324",
         "name": "Stepper controller type header",
         "order": 3,
-        "width": 3,
+        "width": "5",
         "height": 1,
         "format": "<div>Stepper controller type</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 550,
         "y": 100,
         "wires": [
@@ -10174,14 +10330,15 @@
         "z": "1eaf21c8.f7a21e",
         "group": "6be36295.0ab324",
         "name": "Information",
-        "order": 2,
-        "width": 6,
-        "height": 3,
-        "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will make the python back-end to restart.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
+        "order": 1,
+        "width": "8",
+        "height": "3",
+        "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will cause the Python hardware controller to restart, to reload the new hardware configuration. Setting the hardware version will also overwrite all of your hardware settings.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 610,
         "y": 60,
         "wires": [
@@ -10192,12 +10349,12 @@
         "id": "a7e5c7f4.644678",
         "type": "ui_dropdown",
         "z": "1eaf21c8.f7a21e",
-        "name": "Machine Version",
-        "label": "Machine version",
+        "name": "",
+        "label": "Hardware version",
         "tooltip": "",
         "place": "Select option",
         "group": "6be36295.0ab324",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10205,33 +10362,31 @@
         "options": [
             {
                 "label": "",
-                "value": "PlanktoScope v1.0",
-                "type": "str"
-            },
-            {
-                "label": "PlanktoScope 2.1 (adafruit version)",
                 "value": "PlanktoScope v2.1",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.2 (waveshare hat)",
-                "value": "PlanktoScope v2.2",
+                "label": "",
+                "value": "PlanktoScope v2.3",
                 "type": "str"
             },
             {
-                "label": "PlanktoScope 2.3 (custom hat)",
-                "value": "PlanktoScope v2.3",
+                "label": "",
+                "value": "PlanktoScope v2.5",
                 "type": "str"
             }
         ],
         "payload": "",
         "topic": "acq_instrument",
         "topicType": "str",
+        "className": "",
         "x": 590,
         "y": 160,
         "wires": [
             [
-                "3e2c5c1c.4c57b4"
+                "3e2c5c1c.4c57b4",
+                "68703ef63da2f081",
+                "d276ce894f483bcf"
             ]
         ]
     },
@@ -10241,8 +10396,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 690,
-        "y": 280,
+        "x": 990,
+        "y": 160,
         "wires": [
             []
         ]
@@ -10251,27 +10406,18 @@
         "id": "3e2c5c1c.4c57b4",
         "type": "function",
         "z": "1eaf21c8.f7a21e",
-        "name": "Set and update settings",
-        "func": "global.set(msg.topic,msg.payload);\n\nif (msg.payload.includes(\"2.1\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"adafruit\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:1600};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.2\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"waveshare\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:2000};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse if (msg.payload.includes(\"2.3\")){\n    msg_stepper_type = {topic:\"stepper_type\", payload:\"pscope_hat\"};\n    msg_pump_steps = {topic:\"pump_steps_per_ml\", payload:3200};\n    return [msg, msg_stepper_type, msg_pump_steps];\n}\nelse{\n    return [msg, null, null];\n}",
-        "outputs": 3,
+        "name": "Save global",
+        "func": "global.set(msg.topic,msg.payload);\nreturn msg;",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 280,
+        "x": 830,
+        "y": 160,
         "wires": [
             [
                 "1cfadc66.3cde8c"
-            ],
-            [
-                "dee52a36.2af72",
-                "8e3b3d3c.955148",
-                "2068e7f.f4efb18"
-            ],
-            [
-                "ee58b91c.396108",
-                "8e3b3d3c.955148"
             ]
         ]
     },
@@ -10326,7 +10472,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
+        "x": 670,
         "y": 480,
         "wires": [
             [
@@ -10350,7 +10496,7 @@
         "delay": "1000",
         "topic": "process_pixel_fixed",
         "topicType": "str",
-        "x": 640,
+        "x": 940,
         "y": 480,
         "wires": [
             [
@@ -10370,7 +10516,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1220,
         "y": 480,
         "wires": [
             [
@@ -10386,7 +10532,7 @@
         "links": [
             "cfc783d7.d6ceb"
         ],
-        "x": 1195,
+        "x": 1495,
         "y": 500,
         "wires": []
     },
@@ -10434,7 +10580,7 @@
         "payload": "",
         "topic": "acq_fnumber_objective",
         "topicType": "str",
-        "x": 630,
+        "x": 930,
         "y": 520,
         "wires": [
             [
@@ -10462,7 +10608,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 960,
+        "x": 1260,
         "y": 520,
         "wires": [
             [
@@ -10496,11 +10642,154 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 380,
+        "x": 680,
         "y": 520,
         "wires": [
             [
                 "6146ba22df928516"
+            ]
+        ]
+    },
+    {
+        "id": "d276ce894f483bcf",
+        "type": "ui_toast",
+        "z": "1eaf21c8.f7a21e",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Resetting hardware configuration to version-specific default",
+        "name": "",
+        "x": 850,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "68703ef63da2f081",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choose default hardware config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join([\"/home/pi/device-backend/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "e3ba6ac89221b17b"
+            ]
+        ]
+    },
+    {
+        "id": "e3ba6ac89221b17b",
+        "type": "exec",
+        "z": "1eaf21c8.f7a21e",
+        "command": "cp",
+        "addpay": "payload",
+        "append": "/home/pi/PlanktoScope/hardware.json",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Copy default hardware config",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "97e582080deae888"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "97e582080deae888",
+        "type": "delay",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "3973b999ee7b3b1d",
+                "3bcaf757cbc77fbe"
+            ]
+        ]
+    },
+    {
+        "id": "3973b999ee7b3b1d",
+        "type": "link out",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Reload hardware config",
+        "mode": "link",
+        "links": [
+            "5984b086eddc9311"
+        ],
+        "x": 915,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3bcaf757cbc77fbe",
+        "type": "subflow:b7861ce703215a01",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "x": 380,
+        "y": 440,
+        "wires": [
+            [
+                "e10f5e55.00b828",
+                "54ba7f16.709ad8",
+                "c534fd26.13741",
+                "c67c305004f87e39",
+                "11955bbeefc29ab4"
+            ]
+        ]
+    },
+    {
+        "id": "862235d10aae5b83",
+        "type": "inject",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Once",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "3bcaf757cbc77fbe"
             ]
         ]
     }
