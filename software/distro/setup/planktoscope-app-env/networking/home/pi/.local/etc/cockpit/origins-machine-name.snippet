@@ -1,4 +1,8 @@
-http://machine-name.planktoscope
-http://machine-name.planktoscope:9090
-http://planktoscope-machine-name.local
-http://planktoscope-machine-name.local:9090
+# Edit /home/pi/.local/etc/cockpit/origins-machine-name.snippet to change the following lines.
+# Note: the string "machine-name", when wrapped in curly braces, will be automatically replaced with
+# the machine-specific name, which will look something like "metal-slope-23501".
+http://{machine-name}.pkscope
+http://{machine-name}.pkscope:9090
+http://pkscope-{machine-name}.local
+http://pkscope-{machine-name}.local:9090
+
