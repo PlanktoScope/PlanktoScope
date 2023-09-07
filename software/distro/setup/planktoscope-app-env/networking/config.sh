@@ -30,6 +30,7 @@ curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machin
 mkdir -p /home/pi/.local/bin
 file="/home/pi/.local/bin/update-ssid-machine-name.sh"
 cp "$config_files_root$file" "$file"
+mkdir -p /home/pi/.local/etc/hostapd
 file="/home/pi/.local/etc/hostapd/ssid.snippet"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-ssid-machine-name.service"
