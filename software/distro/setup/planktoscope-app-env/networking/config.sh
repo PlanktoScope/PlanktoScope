@@ -26,7 +26,18 @@ machinename_version="0.1.3"
 curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_arm.tar.gz" \
   | tar -xz -C /home/pi/.local/bin/ machine-name
 
-# Automatically update the SSID upon creation of the self-hosted wifi network based on the RPi's serial number
+# Automatically generate the machine name and write it to a file upon boot
+mkdir -p /home/pi/.local/etc
+file="/home/pi/.local/etc/machine-name"
+cp "$config_files_root$file" "$file"
+mkdir -p /home/pi/.local/bin
+file="/home/pi/.local/bin/update-machine-name.sh"
+cp "$config_files_root$file" "$file"
+file="/etc/systemd/system/planktoscope-org.update-machine-name.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable planktoscope-org.update-machine-name.service
+
+# Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
 mkdir -p /home/pi/.local/etc/hostapd
 file="/home/pi/.local/etc/hostapd/ssid.snippet"
 mkdir -p /home/pi/.local/bin
