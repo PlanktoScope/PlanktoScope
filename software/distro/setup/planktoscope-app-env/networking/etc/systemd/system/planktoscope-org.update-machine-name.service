@@ -1,0 +1,10 @@
+[Unit]
+Description=Update a file with the machine name generated from the Raspberry Pi's serial number
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/update-machine-name.sh
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
