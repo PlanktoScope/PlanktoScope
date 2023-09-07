@@ -12,7 +12,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (System: networking) The PlanktoScope can now also be accessed using the domain name `pkscope.local` from any web browser where `planktoscope.local` previously worked. We recommend using http://pkscope.local instead of http://planktoscope.local to access your PlanktoScope, for consistency with other domain name formats (see the "Changes" section for details).
-- (System: administration, ntworking) In operating system's networking configuration files which have lines which are automatically generated based on the PlanktoScope's machine name, those lines now have accompanying code comments which explain the correct files to edit in order to make changes which will persist across device reboots.
+- (System: administration, networking) In operating system's networking configuration files which have lines which are automatically generated based on the PlanktoScope's machine name, those lines now have accompanying code comments which explain the correct files to edit in order to make changes which will persist across device reboots.
+- (System: administration, networking) You can now check the machine name at `/home/pi/.local/etc/machine-name`. It's updated when the PlanktoScope boots.
 
 ### Changed
 
