@@ -8,7 +8,7 @@ cp /home/pi/.local/etc/hosts-autogen-warning.snippet \
   /home/pi/.local/etc/hosts
 cat /home/pi/.local/etc/hosts-base.snippet \
   >> /home/pi/.local/etc/hosts
-sed "s/\{machine-name\}/$machine_name/g" /home/pi/.local/etc/hosts-machine-name.snippet \
+sed "s/{machine-name}/$machine_name/g" /home/pi/.local/etc/hosts-machine-name.snippet \
   >> /home/pi/.local/etc/hosts
 
 # Update /etc/hosts and the active system hostname
