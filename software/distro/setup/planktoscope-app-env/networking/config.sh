@@ -17,8 +17,9 @@ sudo hostnamectl set-hostname "$new_hostname"
 
 # Set the default SSID for the self-hosted wifi network, which will be updated with the machine name on boot
 file="/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
-hostapd_autogen_warning=$(cat $config_files_root$file)
-sudo sed -i "s/^ssid=.*$/$hostapd_autogen_warning\nssid=pkscope/g" /etc/hostapd/hostapd.conf
+# This sed command uses `~` instead of `/` because the warning comments also include `/` characters.
+# The awk subcommand is needed to escape newlines for sed.
+sudo sed -i "s~^ssid=.*$~$(awk '{printf "%s\\n", $0}' $file)ssid=pkscope~g" /etc/hostapd/hostapd.conf
 
 # Download tool to generate machine names based on serial numbers
 machinename_version="0.1.3"
