@@ -52,6 +52,9 @@ jobs:
         run: |
           poetry -C ./documentation/ install --with docs
 
+      - name: Import external assets
+        run: poetry -C ./documentation/ run poe --root ./documentation/ import-hardware-assets
+
       - name: Build documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
