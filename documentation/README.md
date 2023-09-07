@@ -39,6 +39,7 @@ To make changes, directly edit the files in the `docs` subdirectory using a text
 Usually, you should edit the documentation sources (in `/some/path/here/PlanktoScope/documentation/docs`) while running a live preview of the documentation site. You can start the live preview server in your terminal using the following commands:
 ```
 cd /some/path/here/PlanktoScope/documentation
+poetry run poe import-external-assets
 poetry run poe preview
 ```
 
@@ -57,6 +58,7 @@ poetry run poe check
 Usually you will not need to manually build a local copy of the documentation website, because we automate the process on GitHub as part of the process of deploying our documentation to a website on the internet. However, you can build a local copy of the documentation website using the following commands:
 ```
 cd /some/path/here/PlanktoScope/documentation
+poetry run poe import-external-assets
 poetry run poe build
 ```
 
@@ -65,7 +67,7 @@ If you really don't want to change your current working directory to `/some/path
 poetry -C /some/path/here/PlanktoScope/documentation/ run poe --root /some/path/here/PlanktoScope/documentation/ build
 ```
 
-(this also works for `preview`, `check`, and any other subcommands of `poe`)
+(this also works for `import-external-assets`, `preview`, `check`, and any other subcommands of `poe`)
 
 #### Publishing your changes
 

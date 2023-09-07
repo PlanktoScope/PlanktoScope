@@ -10,9 +10,9 @@
 
 ### Manufacturing files
 
-| Files                                                         | Description                              |
-| ------------------------------------------------------------- | ---------------------------------------- |
-| PlanktoScope-Case.dxf                                         | PlanktoScope Case export for CNC Milling |
+| Files                                                               | Description                              |
+| ------------------------------------------------------------------- | ---------------------------------------- |
+| [PlanktoScope-Case.dxf](assets/hardware/case/PlanktoScope-Case.dxf) | PlanktoScope Case export for CNC Milling |
 
 ### Tools
 
@@ -181,11 +181,12 @@ There are two main types of electronic components that can be mounted onto a PCB
 
 ### Manufacturing files
 
-| Files                                                                                                                                           | Description                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [Planktoscope-Hat-bom.csv](https://github.com/PlanktoScope/PlanktoScope/blob/hardware/hat/Planktoscope-Hat-bom.csv)                             | The list of used SMD components                 |
-| [Planktoscope-Hat gerber files](https://github.com/PlanktoScope/PlanktoScope/blob/documentation/branch/din_spec_3105_1/hardware/hat/assembly)   | The exported CAD and CAM data of the PCB design |
-| [Planktoscope-Hat assembly files](https://github.com/PlanktoScope/PlanktoScope/blob/documentation/branch/din_spec_3105_1/hardware/hat/assembly) | The SMD assembly instructions                   |
+| Files                                                                                         | Description                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [Planktoscope-Hat-gerbers.zip](assets/hardware/hat/Planktoscope-Hat-gerbers.zip)              | The exported Gerber files for PCB fabrication |
+| [Planktoscope-Hat-bom.csv](assets/hardware/hat/assembly/Planktoscope-Hat-bom.csv)             | The list of used SMD components               |
+| [Planktoscope-Hat.pdf](assets/hardware/hat/assembly/Planktoscope-Hat.pdf)                     | The SMD assembly footprints                   |
+| [Planktoscope-Hat-PnP-front.txt](assets/hardware/hat/assembly/Planktoscope-Hat-PnP-front.txt) | Pick-and-place machine instructions           |
 
 ### PCB manufacturing process
 
@@ -334,9 +335,9 @@ To ensure the quality of the produced PCB, request data validation from the cust
 
 ##### Thru-Hole parts
 
-| Files                                                                              | Description                     |
-| ---------------------------------------------------------------------------------- | ------------------------------- |
-| Planktoscope-Hat-throughhole.csv                                                   | The list of used SMD components |
+| Files                                                                                                       | Description                     |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| [Planktoscope-Hat-bom-through-hole.csv](assets/hardware/hat/assembly/Planktoscope-Hat-bom-through-hole.csv) | The list of used SMD components |
 
 !!! warning
 
