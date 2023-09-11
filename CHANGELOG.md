@@ -8,6 +8,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Changed
+
+- The machine name has been switched to the new naming scheme provided by https://github.com/PlanktoScope/machine-name ; the machine name is loaded from a file (currently at `/home/pi/.local/etc/machine-name`, which must be automatically generaed by the host operating system) instead of being determined in Python.
+
+### Deprecated
+
+- The old "Baba"-based machine naming scheme should no longer be used. The `uuidName` module will be removed the next stable release (the stable release after v2023.9.0).
+
 ## v2023.9.0-beta.0 - 2023-09-02
 
 ### Changed

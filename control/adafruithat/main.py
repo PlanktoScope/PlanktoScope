@@ -27,7 +27,8 @@ import planktoscope.mqtt
 import planktoscope.stepper
 import planktoscope.imager
 import planktoscope.light # Fan HAT LEDs
-import planktoscope.uuidName # TODO: replace this with the new system-level machinename
+import planktoscope.identity
+import planktoscope.uuidName # Note: this is deprecated.
 import planktoscope.display # Fan HAT OLED screen
 
 # enqueue=True is necessary so we can log accross modules
@@ -92,9 +93,12 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(img_path)
 
-    logger.info(f"This PlanktoScope unique ID is {planktoscope.uuidName.getSerial()}")
+    logger.info(f"This PlanktoScope's Raspberry Pi's serial number is {planktoscope.uuidName.getSerial()}")
     logger.info(
-        f"This PlanktoScope unique name is {planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())}"
+        f"This PlanktoScope's machine name is {planktoscope.identity.load_machine_name()}"
+    )
+    logger.info(
+        f"This PlanktoScope's deprecated name is {planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())}"
     )
 
     # Prepare the event for a graceful shutdown

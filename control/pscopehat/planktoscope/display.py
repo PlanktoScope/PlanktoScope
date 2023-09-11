@@ -12,7 +12,7 @@ import PIL.ImageFont
 
 logger.info("planktoscope.display is loading")
 
-import planktoscope.uuidName
+import planktoscope.identity
 
 
 class Display(object):
@@ -37,9 +37,7 @@ class Display(object):
     def display_machine_name(self):
         if self.display_available:
             self.__clear()
-            machineName = planktoscope.uuidName.machineName(
-                machine=planktoscope.uuidName.getSerial()
-            )
+            machineName = planktoscope.identity.load_machine_name()
             self.display_text(machineName.replace(" ", "\n"))
 
     def display_text(self, message):

@@ -1,48 +1,20 @@
-################################################################################
-# Practical Libraries
-################################################################################
-
-# Logger library compatible with multiprocessing
-from loguru import logger
-
-# Library to get date and time for folder name and filename
-import datetime
-
-# Library to be able to sleep for a given duration
-import time
-
-# Libraries manipulate json format, execute bash commands
+import datetime # needed to get date and time for folder name and filename
+import time # needed to able to sleep for a given duration
 import json
-
-# Library for path and filesystem manipulations
 import os
 import shutil
-
-# Library for starting processes
 import multiprocessing
+import threading # needed for the streaming server
+import functools # needed for the streaming server
 
-# Basic planktoscope libraries
+from loguru import logger
+
 import planktoscope.mqtt
-
-# import planktoscope.streamer
 import planktoscope.imager.state_machine
-
-# import raspimjpeg module
 import planktoscope.imager.raspimjpeg
-
-# import streamer module
 import planktoscope.imager.streamer
-
-# Integrity verification module
 import planktoscope.integrity
-
-# Uuid module
-import planktoscope.uuidName
-
-
-# Libraries for the streaming server
-import threading
-import functools
+import planktoscope.identity
 
 
 logger.info("planktoscope.imager is loaded")
@@ -526,12 +498,8 @@ class ImagerProcess(multiprocessing.Process):
             "acq_camera_resolution": f"{self.__resolution[0]}x{self.__resolution[1]}",
             "acq_camera_iso": self.__iso,
             "acq_camera_shutter_speed": self.__shutter_speed,
-            "acq_uuid": planktoscope.uuidName.uuidMachine(
-                machine=planktoscope.uuidName.getSerial()
-            ),
-            "sample_uuid": planktoscope.uuidName.uuidMachine(
-                machine=planktoscope.uuidName.getSerial()
-            ),
+            "acq_uuid": planktoscope.identity.load_machine_name(),
+            "sample_uuid": planktoscope.identity.load_machine_name(),
         }
 
         # Concat the local metadata and the metadata from Node-RED
