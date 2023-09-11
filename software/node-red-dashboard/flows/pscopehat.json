@@ -8278,7 +8278,7 @@
         "y": 620,
         "wires": [
             [
-                "1aa03f38ba84fc13"
+                "5883e629f5d546ed"
             ]
         ]
     },
@@ -9274,29 +9274,6 @@
         "wires": []
     },
     {
-        "id": "1aa03f38ba84fc13",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "hostname | sed 's/^planktoscope-//'",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Get machine name",
-        "x": 350,
-        "y": 620,
-        "wires": [
-            [
-                "a400a97e.e333a8",
-                "4828d2f4.7c712c"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "c5449beeb23acded",
         "type": "inject",
         "z": "1371dec5.76e671",
@@ -9319,6 +9296,27 @@
             [
                 "3e64877a.9684b",
                 "8343fa69.49339"
+            ]
+        ]
+    },
+    {
+        "id": "5883e629f5d546ed",
+        "type": "file in",
+        "z": "1371dec5.76e671",
+        "name": "Get machine name",
+        "filename": "/home/pi/.local/etc/machine-name",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "a400a97e.e333a8",
+                "4828d2f4.7c712c"
             ]
         ]
     },
