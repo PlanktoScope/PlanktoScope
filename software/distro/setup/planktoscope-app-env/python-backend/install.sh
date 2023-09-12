@@ -31,7 +31,7 @@ python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Download device-backend monorepo
-backend_version="923f6b70a93c1180fda7b9b4972e4336eee94ce2" # this should be either a version tag, branch name, or commit hash
+backend_version="100f19612489d5c546518fb1e1e5e20f834070f7" # this should be either a version tag, branch name, or commit hash
 backend_version_type="hash" # this should be either "version-tag", "branch", or "hash"
 case "$backend_version_type" in
   "version-tag")
