@@ -10199,6 +10199,7 @@
         "payload": "",
         "topic": "stepper_type",
         "topicType": "str",
+        "className": "",
         "x": 950,
         "y": 360,
         "wires": [
@@ -10472,6 +10473,7 @@
         "name": "Save global",
         "func": "global.set(msg.topic,msg.payload);\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -10494,25 +10496,7 @@
         "y": 160,
         "wires": [
             [
-                "237809c1.2c64ce"
-            ]
-        ]
-    },
-    {
-        "id": "237809c1.2c64ce",
-        "type": "function",
-        "z": "1eaf21c8.f7a21e",
-        "name": "get acq_instrument",
-        "func": "msg.payload = msg.payload.acq_instrument;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 330,
-        "y": 160,
-        "wires": [
-            [
-                "a7e5c7f4.644678"
+                "2716aa5b3d027f95"
             ]
         ]
     },
@@ -10855,6 +10839,40 @@
             [
                 "da3d4a90384d62a8",
                 "e4ead350b3d07578"
+            ]
+        ]
+    },
+    {
+        "id": "2716aa5b3d027f95",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Get acq_instrument",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acq_instrument",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_intrument",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "a7e5c7f4.644678"
             ]
         ]
     }

@@ -10435,25 +10435,7 @@
         "y": 160,
         "wires": [
             [
-                "237809c1.2c64ce"
-            ]
-        ]
-    },
-    {
-        "id": "237809c1.2c64ce",
-        "type": "function",
-        "z": "1eaf21c8.f7a21e",
-        "name": "get acq_instrument",
-        "func": "msg.payload = msg.payload.acq_instrument;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 350,
-        "y": 160,
-        "wires": [
-            [
-                "a7e5c7f4.644678"
+                "c00c6732b9f36adb"
             ]
         ]
     },
@@ -10796,6 +10778,40 @@
         "wires": [
             [
                 "3bcaf757cbc77fbe"
+            ]
+        ]
+    },
+    {
+        "id": "c00c6732b9f36adb",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Get acq_instrument",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acq_instrument",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_instrument",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "a7e5c7f4.644678"
             ]
         ]
     }
