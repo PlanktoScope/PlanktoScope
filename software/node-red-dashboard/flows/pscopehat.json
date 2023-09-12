@@ -10337,7 +10337,7 @@
         "order": 1,
         "width": "8",
         "height": "3",
-        "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will cause the Python hardware controller to restart, to reload the new hardware configuration. Setting the hardware version will also overwrite all of your hardware settings.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
+        "format": "<div>\n    <p>\n        Changing one of these values will cause the Python hardware controller to restart, to reload the new hardware configuration.\n    </p>\n    <p>\n        <strong>Warning</strong>: selecting a hardware version from the dropdown menu below will also overwrite all of your hardware settings, <strong>including your camera white balance settings</strong>.\n    </p>\n    <p>\n        <strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong>\n    </p>\n</div>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
