@@ -42,6 +42,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: preset settings, GUI) The default setting for the pscopehat version of the Node-RED dashboard is now the 300 um capillary, since that version of the hardware is meant to be used with 300 um capillaries. Previously, the default was the 200 um ibidi slide.
 - (Application: preset settings) All default settings for all hardware versions now include a default pixel sizecalibration of 0.75 um/pixel. Previously, the default settings for v2.1 and v2.3 were missing this setting, which would cause the segmenter to crash when processing datasets generated on PlanktoScopes using the v2.1 or v2.3 hardware settings.
 - (Application: preset settings, GUI) The Node-RED dashboard now correctly lists the selected hardware version in the "Hardware Settings" page's "Hardware Version" dropdown menu upon startup.
+- (Application: GUI) The Node-RED dashboard now (hopefully) is able to determine the camera type from the Python backend.
 
 ## v2023.9.0-beta.0 - 2023-09-02
 
