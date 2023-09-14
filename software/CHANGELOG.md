@@ -9,6 +9,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+## v2023.9.0-beta.1 - 2023-09-14
+
 ### Added
 
 - (System: networking) The PlanktoScope can now also be accessed using the domain name `pkscope.local` from any web browser where `planktoscope.local` previously worked. We recommend using http://pkscope.local instead of http://planktoscope.local to access your PlanktoScope, for consistency with other domain name formats (see the "Changes" section for details).
@@ -40,7 +42,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: networking) The PlanktoScope no longer generates any machine names or SSIDs which are so long that they prevent the wifi hotspot network from being brought up.
 - (Application: backend) The segmenter no longer crashes and fails to respond immediately after attempting to start segmentation.
 - (Application: preset settings, GUI) The default setting for the pscopehat version of the Node-RED dashboard is now the 300 um capillary, since that version of the hardware is meant to be used with 300 um capillaries. Previously, the default was the 200 um ibidi slide.
-- (Application: preset settings) All default settings for all hardware versions now include a default pixel sizecalibration of 0.75 um/pixel. Previously, the default settings for v2.1 and v2.3 were missing this setting, which would cause the segmenter to crash when processing datasets generated on PlanktoScopes using the v2.1 or v2.3 hardware settings.
+- (Application: preset settings) All default settings for all hardware versions now include a default pixel size calibration of 0.75 um/pixel. Previously, the default settings for v2.1 and v2.3 were missing this setting, which would cause the segmenter to crash when processing datasets generated on PlanktoScopes using the v2.1 or v2.3 hardware settings.
 - (Application: preset settings, GUI) The Node-RED dashboard now correctly lists the selected hardware version in the "Hardware Settings" page's "Hardware Version" dropdown menu upon startup.
 - (Application: GUI) The Node-RED dashboard now (hopefully) is able to determine the camera type from the Python backend.
 
