@@ -5309,9 +5309,11 @@
         "name": "get acq_id",
         "func": "msg.payload = msg.payload.acq_id;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 330,
         "y": 180,
         "wires": [
@@ -5327,6 +5329,7 @@
         "name": "get acq_celltype",
         "func": "msg.payload = msg.payload.acq_celltype;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -5955,6 +5958,7 @@
         "name": "get sleep_before",
         "func": "msg.payload = msg.payload.sleep_before;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -7334,7 +7338,7 @@
         "order": 1,
         "width": 12,
         "height": 10,
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<md-button onclick=\"selectElementContents( document.getElementById('nodered_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"nodered_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
+        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<p>\n    Note: this panel only shows certain errors generated within the Node-RED dashboard. Actual logs should be instead accessed from the \"Logs\" panel on this page.\n</p>\n\n<md-button onclick=\"selectElementContents( document.getElementById('nodered_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"nodered_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -7697,7 +7701,7 @@
         "order": 1,
         "width": "0",
         "height": "0",
-        "format": "<ul>\n    <li>\n        Node-RED:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=nodered.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n    <li>\n        Hardware Controller:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.device-backend.controller-pscopehat.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/control/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Segmenter:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.device-backend.processing.segmenter.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/processing/segmenter/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Operating System:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=err\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n</ul>",
+        "format": "<p>\n    The PlanktoScope software application consists of three components: a Node-RED dashboard which provides the user interface you're using; a Hardware Controller\n    which executes commands sent from the Node-RED dashboard for hardware control and image acquisition; and a Segmenter which processes an acquired dataset of\n    images and isolates objects from those images. Each component has its own independent log of messages, managed separately from the logs for the other components.\n</p>\n<p>\n    All components have live-updating logs accessed via the Cockpit system administration dashboard provided with your PlanktoScope. Log messages in Cockpit are\n    displayed in reverse-chronological order (newest messages first), and they can also be filtered and searched.\n</p>\n<p>\n    Additionally, the Hardware Controller and the Segmenter also save all of their log messages to files which you can browse and download. Those software components\n    create a new log file each time they start, and the name of the log file includes the time in the PlanktoScope's clock when the software component started.\n    However, if your PlanktoScope's clock is usually wrong, which makes the log files difficult to navigate. This will be fixed in a future version of the software.\n</p>\n<p>\n    If you need to share your logs with other people (e.g. on Slack or GitHub), you should open the \"Downloadable Logs\" links, and then you can select one file or multiple\n    log files for downloading as a zip archive.\n</p>\n<ul>\n    <li>\n        Node-RED:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=nodered.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li>Certain errors generated in the dashboard: see the \"Dashboard errors\" panel on this page.</li>\n        </ul>\n    </li>\n    <li>\n        Hardware Controller:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.device-backend.controller-pscopehat.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/control/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Segmenter:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.device-backend.processing.segmenter.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/processing/segmenter/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Operating System:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=err\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n</ul>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -10291,6 +10295,8 @@
         "mode": "number",
         "delay": "2000",
         "topic": "pump_steps_per_ml",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 940,
         "y": 400,
@@ -10331,7 +10337,7 @@
         "order": 1,
         "width": "8",
         "height": "3",
-        "format": "<div style=\"text-align: center;\">\n    <p>Changing one of these values will cause the Python hardware controller to restart, to reload the new hardware configuration. Setting the hardware version will also overwrite all of your hardware settings.</p>\n    <p><strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong></p>\n</div>",
+        "format": "<div>\n    <p>\n        Changing one of these values will cause the Python hardware controller to restart, to reload the new hardware configuration.\n    </p>\n    <p>\n        <strong>Warning</strong>: selecting a hardware version from the dropdown menu below will also overwrite all of your hardware settings, <strong>including your camera white balance settings</strong>.\n    </p>\n    <p>\n        <strong style=\"font-size: large;\">If you are not sure, you probably should not be touching anything here!</strong>\n    </p>\n</div>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -10429,25 +10435,7 @@
         "y": 160,
         "wires": [
             [
-                "237809c1.2c64ce"
-            ]
-        ]
-    },
-    {
-        "id": "237809c1.2c64ce",
-        "type": "function",
-        "z": "1eaf21c8.f7a21e",
-        "name": "get acq_instrument",
-        "func": "msg.payload = msg.payload.acq_instrument;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 350,
-        "y": 160,
-        "wires": [
-            [
-                "a7e5c7f4.644678"
+                "c00c6732b9f36adb"
             ]
         ]
     },
@@ -10483,7 +10471,7 @@
         "type": "ui_text_input",
         "z": "1eaf21c8.f7a21e",
         "name": "process_pixel_fixed",
-        "label": "Pixel size calibration",
+        "label": "Pixel size calibration: um per pixel",
         "tooltip": "Object size in µm / pixel. 0 will remove this calibration.",
         "group": "6be36295.0ab324",
         "order": 8,
@@ -10493,6 +10481,8 @@
         "mode": "number",
         "delay": "1000",
         "topic": "process_pixel_fixed",
+        "sendOnBlur": true,
+        "className": "",
         "topicType": "str",
         "x": 940,
         "y": 480,
@@ -10788,6 +10778,40 @@
         "wires": [
             [
                 "3bcaf757cbc77fbe"
+            ]
+        ]
+    },
+    {
+        "id": "c00c6732b9f36adb",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Get acq_instrument",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acq_instrument",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_instrument",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "a7e5c7f4.644678"
             ]
         ]
     }
