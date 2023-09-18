@@ -53,7 +53,7 @@ jobs:
       # Build and publish Docker container image
       - name: Get Docker metadata
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ghcr.io/planktoscope/project-docs
           tags: |
