@@ -64,7 +64,8 @@ pillow = "10.0.0"
 [tool.poe.tasks]
 clean-hardware-assets = "rm -rf docs/hardware/assets/hardware"  # FIXME: this command probably won't work on Windows
 import-hardware-assets = "cp -r ../hardware docs/hardware/assets"  # FIXME: this command probably won't work on Windows
-import-external-assets = ["clean-hardware-assets", "import-hardware-assets"]
+import-repo-assets = "cp ../software/CHANGELOG.md docs/software/changelog.md"
+import-external-assets = ["clean-hardware-assets", "import-hardware-assets", "import-repo-assets"]
 optimize-png-photos = "imgp --convert --optimize --quality 95 --recurse --overwrite docs/images/assembly_guide/*.png"
 optimize-widths = "imgp --res 1200x0 --optimize --quality 95 --recurse --overwrite docs/images"
 optimize-compression = "imgp --eraseexif --optimize --progressive --quality 85 --recurse --overwrite docs/images"
