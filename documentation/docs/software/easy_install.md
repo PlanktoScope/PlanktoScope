@@ -30,6 +30,6 @@ Power on your PlanktoScope and the Raspberry Pi inside it, and wait for it to st
 If you connect another device (e.g. a phone or computer) to the PlanktoScope's Raspberry Pi over its local isolated wifi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's dashboard at one of the following URLs (try them in the following order, and just use the first one which works):
 
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
-- <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, Google Chrome on Android does not have mDNS support)
+- <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
