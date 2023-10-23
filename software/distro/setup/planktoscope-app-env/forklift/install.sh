@@ -12,8 +12,10 @@ curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_v
 /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
 /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-repo
 sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-img
-# Note: we don't apply the pallet immediately because the Docker service won't work properly until a
-# reboot. Forklift apply doesn't actually cause the containers to exist after a reboot.
+sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt apply
+# Note: we apply the pallet immediately so that the first boot of the image won't be excessively
+# slow (due to Docker Compose needing to create all the services from scratch rather than simply
+# starting them).
 
 # Apply pallet after Docker is initialized, because the system needs to be restarted after Docker is
 # installed before the Docker service will be able to start successfully.
