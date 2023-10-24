@@ -22,9 +22,9 @@ sudo apt-get install -y git python3-pip python3-venv
 POETRY_VENV=/home/pi/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
-$POETRY_VENV/bin/pip install --upgrade pip==23.3.1 setuptools==68.1.2
-$POETRY_VENV/bin/pip install cryptography==39.0.1
-$POETRY_VENV/bin/pip install poetry==1.4.2
+$POETRY_VENV/bin/pip install --upgrade pip==23.3.1 setuptools==68.2.2
+$POETRY_VENV/bin/pip install cryptography==40.0.5
+$POETRY_VENV/bin/pip install poetry==1.6.1
 
 # Install pipx (not required, but useful)
 python3 -m pip install --user pipx==1.2.0
