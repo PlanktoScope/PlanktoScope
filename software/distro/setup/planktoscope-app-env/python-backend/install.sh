@@ -23,7 +23,7 @@ POETRY_VENV=/home/pi/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
 $POETRY_VENV/bin/pip install --upgrade pip==23.3.1 setuptools==68.2.2
-$POETRY_VENV/bin/pip install cryptography==40.0.5
+$POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.6.1
 
 # Install pipx (not required, but useful)
