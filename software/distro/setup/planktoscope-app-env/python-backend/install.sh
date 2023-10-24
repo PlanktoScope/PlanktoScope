@@ -22,7 +22,7 @@ sudo apt-get install -y git python3-pip python3-venv
 POETRY_VENV=/home/pi/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
-$POETRY_VENV/bin/pip install --upgrade pip==23.2.1 setuptools==68.1.2
+$POETRY_VENV/bin/pip install --upgrade pip==23.3.1 setuptools==68.1.2
 $POETRY_VENV/bin/pip install cryptography==39.0.1
 $POETRY_VENV/bin/pip install poetry==1.4.2
 
@@ -31,8 +31,8 @@ python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Download device-backend monorepo
-backend_version="v2023.9.0-beta.1" # this should be either a version tag, branch name, or commit hash
-backend_version_type="version-tag" # this should be either "version-tag", "branch", or "hash"
+backend_version="31ae16dc7a39acf44302cf37ccabb48e4cf5b044" # this should be either a version tag, branch name, or commit hash
+backend_version_type="hash" # this should be either "version-tag", "branch", or "hash"
 case "$backend_version_type" in
   "version-tag")
     wget "https://github.com/PlanktoScope/device-backend/archive/refs/tags/$backend_version.zip"
