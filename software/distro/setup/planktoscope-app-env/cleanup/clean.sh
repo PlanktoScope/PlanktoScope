@@ -26,3 +26,7 @@ rm -f /home/pi/.python_history
 
 # Delete images from the documentation directory, since they're huge and we aren't using them anyways
 rm -rf /home/pi/PlanktoScope/documentation/
+
+# Delete auto-generated keys & certs from forklift apps, for security reasons
+rm -rf /var/lib/docker/volumes/apps_*/_data/*
+rm -rf /var/lib/docker/volumes/infra_*/_data/*
