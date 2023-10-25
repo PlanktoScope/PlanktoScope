@@ -26,7 +26,7 @@ $POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.6.1
 # Workaround for https://github.com/python-poetry/poetry/issues/3219, from
 # https://github.com/python-poetry/poetry/issues/3219#issuecomment-1540969935
-$POETRY_VENV/bin/poetry config installer.max-workers 2
+$POETRY_VENV/bin/poetry config installer.parallel false
 
 # Install pipx (not required, but useful)
 python3 -m pip install --user pipx==1.2.0
