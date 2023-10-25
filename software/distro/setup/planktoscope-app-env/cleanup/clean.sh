@@ -28,5 +28,5 @@ rm -f /home/pi/.python_history
 rm -rf /home/pi/PlanktoScope/documentation/
 
 # Delete auto-generated keys & certs from forklift apps, for security reasons
-rm -rf /var/lib/docker/volumes/apps_*/_data/*
-rm -rf /var/lib/docker/volumes/infra_*/_data/*
+sudo rm -rf /var/lib/docker/volumes/apps_*/_data/*
+sudo rm -rf /var/lib/docker/volumes/infra_*/_data/*
