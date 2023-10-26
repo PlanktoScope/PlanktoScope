@@ -6,13 +6,28 @@ This page provides instructions for setting up the standard version of the Plank
 
 ## Download the PlanktoScope software SD card image
 
-For ease of setup, we provide an SD card image file with the PlanktoScope software distribution. You can download it from the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases) for the PlanktoScope project on GitHub. Each released version of the PlanktoScope software distribution has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope uses an Adafruit Stepper HAT or the PlanktoScope HAT, you should download the corresponding `.img.gz` file.
+For ease of setup, we provide an SD card image file with the PlanktoScope software distribution. You can download it from the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases) for the PlanktoScope project on GitHub. We strongly recommend ignoring releases labeled with a yellow "Pre-release badge", as those releases may be broken in various ways; instead, look for the release labeled with a green "Latest" badge.
+
+Each released version of the PlanktoScope software distribution has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope uses an Adafruit Stepper HAT or the custom PlanktoScope HAT, you should download the corresponding `.img.gz` file. If you purchased a PlanktoScope or PlanktoScope kit from FairScope, it probably uses the custom PlanktoScope HAT.
 
 ## Write the image to the SD card
 
-To write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager. We provide instructions for using balenaEtcher:
+To write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager.
 
-1. Download and install [balenaEtcher](https://www.balena.io/etcher/).
+Here are instructions for using the Raspberry Pi Imager:
+
+1. Download, install, and start the latest version of the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
+2. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
+3. Press the "Choose Device" button. Select "No filtering" from the menu. It actually doesn't matter what you select here.
+4. Press the "Choose OS" button. Select "Use custom" from the menu (this is why it doesn't matter what you selected in the "Choose Device" menu). In the file dialog, open the PlanktoScope SD card image file you downloaded in the previous section of this setup guide.
+5. Press the "Choose Storage" button. Select your SD card from the menu.
+6. Press the "Next" button. A pop-up dialog should appear asking if you would like to customize the OS. You should probably press the "No" button unless you are already experienced with the PlanktoScope software, because most of the settings inside don't matter to typical users of the PlanktoScope software, and because it's possible to break the software with incorrect settings.
+7. A pop-up dialog should appear asking you to confirm whether you selected the correct SD card and want to wipe all data on the SD card in order to write the PlanktoScope SD card image to your SD card. If you are ready, press the "Yes" button.
+8. The Raspberry Pi Imager will begin overwriting your SD card with the PlanktoScope SD card image. This will take a while to finish.
+
+Here are instructions for using balenaEtcher:
+
+1. Download, install, and start [balenaEtcher](https://www.balena.io/etcher/).
 2. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
 3. Open balenaEtcher
 4. Select the SD card image file which you had download in the previous section.
