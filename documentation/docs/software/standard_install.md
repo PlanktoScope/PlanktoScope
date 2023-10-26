@@ -1,4 +1,4 @@
-# PlanktoScope Simple Setup Guide
+# Standard Software Installation Guide
 
 ![easy install](../images/software/IMG_1532.jpg)
 
