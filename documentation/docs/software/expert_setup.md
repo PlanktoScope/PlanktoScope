@@ -1,6 +1,6 @@
 # Expert Setup
 
-This page provides instructions for setting up non-standard versions of the PlanktoScope software distribution on a PlanktoScope.
+This page provides instructions for setting up non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used the [standard installation process](standard_install.md).
 
 ## Install and setup Raspberry Pi OS on your Raspberry Pi
 
@@ -30,11 +30,11 @@ Insert the microSD card into your Raspberry Pi and connect your Pi to a screen, 
 
 The first boot to the desktop may take up to 120 seconds. This is normal and is caused by the image expanding the filesystem to the whole SD card. DO NOT REBOOT before you reach the desktop.
 
-Eventually, the display will ask you to configure some settings for the Raspberry Pi. You will be asked to choose language settings and a keyboard layout; you should choose settings appropriate for you. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you *must* choose `pi` as the username, and you should choose a password you can remember. By default, we use `copepode` as the password - so you may want to choose a different password for better security. Refer to the official [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/) guide for additional details and instructions on configuring settings for the Raspberry Pi.
+Eventually, the display will ask you to configure some settings for the Raspberry Pi. You will be asked to choose language settings and a keyboard layout; you should choose settings appropriate for you. The standard PlanktoScope SD card images use the `en_US.UTF-8` locale and the "Generic 104-key PC, English (US)" keyboard layout. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you *must* choose `pi` as the username, and you should choose a password you can remember. By default, the standard PlanktoScope SD card images use `copepode` as the password - so you may want to choose a different password for better security. Refer to the official [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/) guide for additional details and instructions on configuring settings for the Raspberry Pi.
 
 Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can find instructions for how to do so at <https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking>
 
-## Install the PlanktoScope software distribution
+## Set up the PlanktoScope software distribution
 
 Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in each of the following commands:
 
@@ -46,7 +46,7 @@ rm beta.zip
 mv PlanktoScope-beta /home/pi/PlanktoScope
 ```
 
-This will prepare you to install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release); if you need to install some other most-recent release such as `stable` or `edge`, you will need to change the names accordingly in the commands above. You can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`.
+This will prepare you to install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release); if you need to install some other most-recent release such as `stable` or `edge`, you will need to change the names accordingly in the commands above. You can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`; the standard PlanktoScope SD card images are generated with specific tagged versions.
 
 Then you will run one of the two following commands, depending on whether your PlanktoScope hardware has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
 
@@ -60,13 +60,17 @@ Then you will run one of the two following commands, depending on whether your P
 
 The setup script will take a long time (at least 30 minutes, depending on the speed of your internet connection) to complete.
 
-If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the setup script finished setting up the PlanktoScope application environment. Then you should restart the Raspberry Pi, e.g. with the following command:
+If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the setup script finished setting up the PlanktoScope application environment.
+
+## Connect to the PlanktoScope
+
+Next, you will need to restart the Raspberry Pi, e.g. with the following command:
 
 ```
 sudo reboot now
 ```
 
-## Connect to the PlanktoScope
+This step is necessary to finish the PlanktoScope software setup process.
 
 Afterwards, your PlanktoScope's Raspberry Pi will either connect to a Wi-Fi network (if you had previously configured it to connect to a Wi-Fi network) or make a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope. If you connect another device (e.g. a phone or computer) directly to the PlanktoScope's Raspberry Pi over its isolated Wi-Fi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
 
