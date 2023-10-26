@@ -28,5 +28,7 @@ rm -f /home/pi/.python_history
 rm -rf /home/pi/PlanktoScope/documentation/
 
 # Delete auto-generated keys & certs from forklift apps, for security reasons
+# FIXME: we might need to stop all the containers first, because Portainer seems to automatically
+# regenerate some certs after this script finishes.
 sudo rm -rf /var/lib/docker/volumes/apps_*/_data/*
 sudo rm -rf /var/lib/docker/volumes/infra_*/_data/*
