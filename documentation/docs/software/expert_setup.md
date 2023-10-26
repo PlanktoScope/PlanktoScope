@@ -38,13 +38,15 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
 ```
 cd /home/pi
-wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/stable.zip
-unzip stable.zip
-rm stable.zip
-mv PlanktoScope-stable /home/pi/PlanktoScope
+wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/beta.zip
+unzip beta.zip
+rm beta.zip
+mv PlanktoScope-beta /home/pi/PlanktoScope
 ```
 
-This will prepare you to install the latest stable release of the PlanktoScope software distribution; if you need to install some other release such as `beta` or `edge`, you will need to change the names accordingly in the commands above. Then you will run one of the two following commands, depending on whether your PlanktoScope has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
+This will prepare you to install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release); if you need to install some other most-recent release such as `stable` or `edge`, you will need to change the names accordingly in the commands above. You can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`.
+
+Then you will run one of the two following commands, depending on whether your PlanktoScope hardware has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
 
 ```
 /home/pi/PlanktoScope/software/distro/setup/setup.sh adafruithat
