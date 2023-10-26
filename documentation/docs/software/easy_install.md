@@ -25,11 +25,13 @@ Once flashing is over, you can unmount the SD card from the computer. Then inser
 
 ## Connect to the PlanktoScope
 
-Power on your PlanktoScope and the Raspberry Pi inside it, and wait for it to start up. Note that it may take a few minutes to start up on the first boot.
+Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up. Once it has finished starting up, it should create a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope.
 
-If you connect another device (e.g. a phone or computer) to the PlanktoScope's Raspberry Pi over its local isolated wifi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's dashboard at one of the following URLs (try them in the following order, and just use the first one which works):
+If you connect another device (e.g. a phone or computer) directly to the PlanktoScope's Raspberry Pi over its isolated Wi-Fi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
 
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
+
+Note that you will not be able to access the PlanktoScope's graphical user interface by plugging in a monitor and keyboard and mouse to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently.
