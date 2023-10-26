@@ -13,26 +13,28 @@ sudo apt-get update -y
 sudo apt-get install -y git python3-pip python3-venv
 
 # Install Poetry
-# Note: poetry 1.5.0 and above requires cryptography==40.0.2, which isn't available on piwheels and
-# can't build properly on the Raspberry Pi OS's bullseye 2023-05-03 release. Poetry 1.4.2 only
-# requires cryptography==39.0.1, according to its poetry.lock file
-# (see https://github.com/python-poetry/poetry/blob/1.4.2/poetry.lock). Because the poetry
-# installation process (whether with pipx or the official installer) always selects the most recent
-# version of the cryptography dependency, we must instead do a manual poetry installation.
+# Note: Because the poetry installation process (whether with pipx or the official installer) always
+# selects the most recent version of the cryptography dependency, we must instead do a manual poetry
+# installation to ensure that a wheel is available from piwheels for the cryptography dependency.
+# We have had problems in the past with a version of that dependency not being available from
+# piwheels.
 POETRY_VENV=/home/pi/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
-$POETRY_VENV/bin/pip install --upgrade pip==23.2.1 setuptools==68.1.2
-$POETRY_VENV/bin/pip install cryptography==39.0.1
-$POETRY_VENV/bin/pip install poetry==1.4.2
+$POETRY_VENV/bin/pip install --upgrade pip==23.3.1 setuptools==68.2.2
+$POETRY_VENV/bin/pip install cryptography==41.0.5
+$POETRY_VENV/bin/pip install poetry==1.6.1
+# Workaround for https://github.com/python-poetry/poetry/issues/3219, from
+# https://github.com/python-poetry/poetry/issues/3219#issuecomment-1540969935
+$POETRY_VENV/bin/poetry config installer.parallel false
 
 # Install pipx (not required, but useful)
 python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Download device-backend monorepo
-backend_version="v2023.9.0-beta.1" # this should be either a version tag, branch name, or commit hash
-backend_version_type="version-tag" # this should be either "version-tag", "branch", or "hash"
+backend_version="31ae16dc7a39acf44302cf37ccabb48e4cf5b044" # this should be either a version tag, branch name, or commit hash
+backend_version_type="hash" # this should be either "version-tag", "branch", or "hash"
 case "$backend_version_type" in
   "version-tag")
     wget "https://github.com/PlanktoScope/device-backend/archive/refs/tags/$backend_version.zip"

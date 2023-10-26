@@ -9,9 +9,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Changed
+
+- (System: infrastructure) Forklift has been upgraded from v0.3.1 to v0.4.0, which includes breaking changes to the schema of Forklift repositories and pallets.
+
 ### Fixed
 
 - (Application: GUI) The white balance gains are now only validated and sent to the backend _after_ the user changes focus away from the input field, instead of being validated and sent 300 ms after the user pauses while editing the value in the input field. This prevents the input validation from being run while the user is still editing the value.
+- (System: infrastructure) The SD card setup scripts now apply the Forklift pallet in order to create the Docker Compose services and resources ahead-of-time (rather than waiting for the first boot to do that work), so that the first boot of the SD card image will be much faster.
 
 ## v2023.9.0-beta.1 - 2023-09-14
 
