@@ -11,7 +11,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Added
 
-- (Application) A hardware configuration file for PlanktoScope hardware v2.6, which was previously missing, has been added.
+- (Application) A hardware configuration file for PlanktoScope hardware v2.6, which was previously missing, has been added. It is now the default hardware configuration file for `pscopehat` builds of the PlanktoScope distro.
 
 ### Changed
 
