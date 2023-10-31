@@ -47,11 +47,11 @@ theme:
     code: Oxygen Mono
   features:
     - content.code.annotate
-    - navigation.sections
-    - navigation.expand
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.indexes
+    - toc.follow
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -69,6 +69,9 @@ theme:
         name: Switch to dark mode
 
 plugins:
+  # FIXME: enable the offline plugin for offline site builds
+  # FIXME: enable the social plugin for online site builds
+  - search
   - glightbox
   - minify:
       minify_html: true
