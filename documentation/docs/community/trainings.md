@@ -86,7 +86,7 @@ It's finally here! After all the planning, preparation, and anticipation, the bu
 7. **Provide an overview**: Provide details about the project, including the general mode of operation, the working materials such as the kit, the documentation and the git repository.
 8. **Provide the Kits and Tools**: Provide the Kit and Tools to each participant with a kit and the necessary tools.
 9. **Follow the build instructions**: Depending on the format you have chosen, start implementing by following the [Manufacturing guide](../hardware/assembly_guide.md) or [Assembly guide](../hardware/manufacturing.md)
-10. **Follow the usage instructions**: Now that you have successfully assembled the PlanktoScope, you can proceed to the usage by following the [Getting started](../usage/getting_started.md) and [User interface](../usage/ui_guide.md) instructions.
+10. **Follow the operation instructions**: Now that you have successfully assembled the PlanktoScope, you can proceed to operation of the PlanktoScope by following the [Getting started](../operation/getting_started.md) and [User interface](../operation/ui_guide.md) instructions.
 11. **Final Test**: For a final test you can use for example pure cultures or a sample taken with a [PlanktonNet](../hardware/accessories.md#plankton-net) from a surrounding waters.
 
 ### Field trip
@@ -273,7 +273,7 @@ Documenting a PlanktoScope workshop through photography is essential for several
 6. **Capturing candid moments**: In addition to capturing posed shots, make sure to capture candid moments that capture the atmosphere and emotions of the event.
 7. **Post-processing**: Once the event is over, review and edit your photos to make them look their best.
 8. **Data Privacy and Opt-Out**: Pay attention to the privacy policy and get participants' consent before taking photos of them. Offer an opt-out option for participants who do not want to have photos taken. Clearly communicate what the photos will be used for and by whom, for example, to enhance this documentation.
-9. **License**: If your participants have agreed to share and use the photos, choose an appropriate license under which to license the photos. We recommend the [Creative Commons license](https://creativecommons.org/). For more information, see the [project's license terms page](../license.md).
+9. **License**: If your participants have agreed to share and use the photos, choose an appropriate license under which to license the photos. We recommend the [Creative Commons license](https://creativecommons.org/). For more information, see the [project's license terms page](./license.md).
 10. **Sharing on Social Media**: Share the photos on social media platforms to create a visual memory of the event and increase the visibility of the event.
 
 By preparing and taking care of these things, you can ensure that you are able to document the event effectively and create a visual record of the event that can be shared and enjoyed for years to come.
@@ -302,4 +302,4 @@ Here are a few ways to improve this training program:
 1. **Use modern technologies**: Use modern technologies to enhance the learning experience, such as virtual reality, gamification, and AI-based learning.
 1. **Assess the impact**: Assess the impact of the program on the attendees and make changes as necessary to ensure that the program is achieving its intended goals.
 
-For more information on how to contribute to this document and improve this training program, please see the [contribute section on Writing Documentation](../contribute/writing_documentation.md).
+For more information on how to contribute to this document and improve this training program, please see the [contribute section on Writing Documentation](./contribute/writing_documentation.md).

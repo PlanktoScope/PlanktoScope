@@ -1,10 +1,10 @@
 # Hardware Development
 
-![planktoscope_hero](../images/project_description/planktoscope_versions_01.png)
+![planktoscope_hero](../../images/project_description/planktoscope_versions_01.png)
 
 ## PlanktoScope Case
 
-![autodesk_fusion_360](../images/logos/autodesk_fusion_360.png){ align=right width="200"}
+![autodesk_fusion_360](../../images/logos/autodesk_fusion_360.png){ align=right width="200"}
 
 As a hardware engineer working on the PlanktoScope Case, you will be using Autodesk Fusion 360 for the development of the case design. Fusion 360 is a comprehensive computer-aided design (CAD) software that allows you to create and analyze complex 3D models, perform simulations and stress tests, and collaborate with team members in real-time.
 
@@ -20,7 +20,7 @@ By following these steps, you will be able to successfully install a development
 
 ## PlanktoScope Hat
 
-![autodesk_eagle](../images/logos/autodesk_eagle.png){ align=right width="200"}
+![autodesk_eagle](../../images/logos/autodesk_eagle.png){ align=right width="200"}
 
 As a hardware engineer working on the PlanktoScope Hat, you will be using [Autodesk Eagle](http://eagle.autodesk.com/) to design and develop the electronic components of the hat. Autodesk Eagle is a powerful and widely used software platform for designing and laying out printed circuit boards (PCBs).
 

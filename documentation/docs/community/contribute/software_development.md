@@ -10,7 +10,7 @@ For working on Node-Red, we recommend to install it directly on your development
 
 [Node-Red](https://nodered.org/) is our main process. We use [the flow](https://nodered.org/docs/developing-flows/flow-structure) to manage our user interface through a dashboard instance.
 
-![node-red](../images/logos/node-red.svg){ align=right width="100" }
+![node-red](../../images/logos/node-red.svg){ align=right width="100" }
 
 As a software engineer, you may need to set up a Node-RED development environment on a Debian operating system. Node-RED is an open-source programming tool for wiring together hardware devices, APIs, and online services in new and interesting ways. It provides a visual, drag-and-drop interface for building applications, and can be used to develop a wide range of IoT, automation, and data processing projects.
 
@@ -26,7 +26,7 @@ By following these steps, you will be able to set up a Node-RED development envi
 
 ## Python
 
-![python](../images/logos/python.svg){ width="200" }
+![python](../../images/logos/python.svg){ width="200" }
 
 The python code is separated in four main processes, each with a specific set of responsibilities:
 
@@ -35,6 +35,6 @@ The python code is separated in four main processes, each with a specific set of
 - The imager process controls the camera and the streaming server via a state machine.
 - The segmenter process manages the segmentation and its outputs.
 
-Those processes all communicates together using MQTT and json messages. Each message is adressed to one topic. The high level topic controls which process receives the message. The details of each topic is at the end of this commit message. You can learn more about the [MQTT Messages here](../software/mqtt_messages.md).
+Those processes all communicates together using MQTT and json messages. Each message is adressed to one topic. The high level topic controls which process receives the message. The details of each topic is at the end of this commit message. You can learn more about the [MQTT Messages here](../../software/mqtt_messages.md).
 
 The code is architectured around 6 modules and about 10 classes. I encourage you to have a look at the files, they're pretty straightforward to understand.

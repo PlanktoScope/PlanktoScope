@@ -23,4 +23,4 @@ A PlanktoScope User Group is a place where you can go to hang out to learn about
 
 ## Add your place to this list
 
-To add your place to the user group directory, you will need to edit [this file](https://github.com/PlanktoScope/PlanktoScope/blob/documentation/docs/community/usergroups.md) by following a git pull request workflow outlined at [Github Workflow](../contribute/github_workflow.md).
+To add your place to the user group directory, you will need to edit [this file](https://github.com/PlanktoScope/PlanktoScope/blob/documentation/docs/community/usergroups.md) by following a git pull request workflow outlined at [Github Workflow](./contribute/github_workflow.md).
