@@ -90,6 +90,8 @@ theme:
 plugins:
   - git-revision-date-localized:
       fallback_to_build_date: true
+      exclude:
+        - reference/software/changelog.md
   - glightbox
   - minify:
       minify_html: true
