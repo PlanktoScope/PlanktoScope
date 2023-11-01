@@ -55,13 +55,15 @@ Insert the microSD card into the Raspberry Pi computer installed in your Plankto
 
 Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up. Once it has finished starting up, it should create a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope.
 
-If you connect another device (e.g. a phone or computer) directly to the PlanktoScope's Raspberry Pi over its isolated Wi-Fi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
+## Access the user interface
+
+Note that you will not be able to access the PlanktoScope's graphical user interface by plugging in a display to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently. Instead, you will need to connect another device (e.g. a phone or a computer) directly to the PlanktoScope's Raspberry Pi, either over its isolated Wi-Fi network or over an Ethernet cable.
+
+After you connect another device directly to the PlanktoScope's Raspberry Pi, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
 
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
 
-The web browser should show a landing page with some information about your PlanktoScope and a list of links; then you can proceed to our [guide for operating your PlanktoScope](../../operation/index.md).
-
-Note that you will not be able to access the PlanktoScope's graphical user interface by plugging in a monitor and keyboard and mouse to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently.
+The web browser should show a landing page with some information about your PlanktoScope and a list of links, including links to apps running on your PlanktoScope. Then you can proceed to our [guide for operating your PlanktoScope](../../operation/index.md).
