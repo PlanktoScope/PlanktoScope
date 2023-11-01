@@ -2,15 +2,26 @@
 
 ![easy install](../../images/software/IMG_1532.jpg)
 
-This page provides instructions for setting up the standard version of the PlanktoScope software distribution on a PlanktoScope.
+This page provides instructions for setting up the most recent standard version of the PlanktoScope software distribution on a PlanktoScope.
 
-## Download the PlanktoScope software SD card image
+## Set up the SD card
 
-For ease of setup, we provide an SD card image file with the PlanktoScope software distribution. You can download it from the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases) for the PlanktoScope project on GitHub. We strongly recommend ignoring releases labeled with a yellow "Pre-release badge", as those releases may be broken in various ways; instead, look for the release labeled with a green "Latest" badge.
+If you purchased a fully-assembled PlanktoScope or a DIY-assembly PlanktoScope kit from FairScope which includes a microSD card, then the SD card is already set up with the PlanktoScope software distribution, and you should skip to [the next step](#insert-the-sd-card-into-the-planktoscope).
+
+### Prerequisites
+
+In order to complete this step, you will need all of the following:
+
+1. A microSD card for your Raspberry Pi.
+2. A separate computer which can flash SD card images to your microSD card.
+
+### Download the PlanktoScope software SD card image
+
+For ease of setup, we provide an SD card image file with the PlanktoScope software distribution. You can download it from the latest software release on the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases?q=prerelease%3Afalse+draft%3Afalse&expanded=true) for the PlanktoScope project on GitHub.
 
 Each released version of the PlanktoScope software distribution has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope uses an Adafruit Stepper HAT or the custom PlanktoScope HAT, you should download the corresponding `.img.gz` file. If you purchased a PlanktoScope or PlanktoScope kit from FairScope, it probably uses the custom PlanktoScope HAT.
 
-## Write the image to the SD card
+### Write the image to the SD card
 
 To write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager.
 
@@ -34,9 +45,11 @@ Here are instructions for using balenaEtcher:
 5. Select the SD card you wish to write your image to.
 6. Review your selections and click 'Flash!' to begin writing data to the SD card.
 
+Once flashing is complete, unmount the SD card and remove it from the computer.
+
 ## Insert the SD card into the PlanktoScope
 
-Once flashing is over, you can unmount the SD card from the computer. Then insert the microSD card into the Raspberry Pi computer installed in your PlanktoScope.
+Insert the microSD card into the Raspberry Pi computer installed in your PlanktoScope.
 
 ## Connect to the PlanktoScope
 
@@ -48,5 +61,7 @@ If you connect another device (e.g. a phone or computer) directly to the Plankto
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
+
+The web browser should show a landing page with some information about your PlanktoScope and a list of links; then you can proceed to our [guide for operating your PlanktoScope](../../operation/index.md).
 
 Note that you will not be able to access the PlanktoScope's graphical user interface by plugging in a monitor and keyboard and mouse to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently.
