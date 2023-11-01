@@ -38,27 +38,59 @@ Next, configure your Raspberry Pi to get internet access - your Raspberry Pi wil
 
 ## Set up the PlanktoScope software distribution
 
-Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in each of the following commands:
+Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in each of the following commands, for either the latest beta prerelease of the PlanktoScope software distribution, the latest stable release, or the latest development version:
 
-```
-cd /home/pi
-wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/beta.zip
-unzip beta.zip
-rm beta.zip
-mv PlanktoScope-beta /home/pi/PlanktoScope
-```
+=== "latest beta"
 
-This will prepare you to install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release); if you need to install some other most-recent release such as `stable` or `edge`, you will need to change the names accordingly in the commands above. You can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`; the standard PlanktoScope SD card images are generated with specific tagged versions.
+    ```
+    cd /home/pi
+    wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/beta.zip
+    unzip beta.zip
+    rm beta.zip
+    mv PlanktoScope-beta /home/pi/PlanktoScope
+    ```
+
+    This will prepare you to install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
+
+=== "latest stable"
+
+    ```
+    cd /home/pi
+    wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/stable.zip
+    unzip stable.zip
+    rm stable.zip
+    mv PlanktoScope-stable /home/pi/PlanktoScope
+    ```
+
+    This will prepare you to install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
+
+=== "development"
+
+    ```
+    cd /home/pi
+    wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/heads/master.zip
+    unzip master.zip
+    rm master.zip
+    mv PlanktoScope-master /home/pi/PlanktoScope
+    ```
+
+    This will prepare you to install the current unstable development version of the PlanktoScope software distribution. This version is likely to be broken in various ways.
+
+Instead of installing the latest beta, stable, or development version, you can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`; the standard PlanktoScope SD card images are generated with specific tagged versions.
 
 Then you will run one of the two following commands, depending on whether your PlanktoScope hardware has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
 
-```
-/home/pi/PlanktoScope/software/distro/setup/setup.sh adafruithat
-```
+=== "Adafruit HAT"
 
-```
-/home/pi/PlanktoScope/software/distro/setup/setup.sh pscopehat
-```
+    ```
+    /home/pi/PlanktoScope/software/distro/setup/setup.sh adafruithat
+    ```
+
+=== "Custom PlanktoScope HAT"
+
+    ```
+    /home/pi/PlanktoScope/software/distro/setup/setup.sh pscopehat
+    ```
 
 The setup script will take a long time (at least 30 minutes, depending on the speed of your internet connection) to complete.
 
