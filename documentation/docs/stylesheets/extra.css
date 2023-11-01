@@ -1,11 +1,20 @@
 [data-md-color-primary=indigo] {
-    --md-accent-fg-color:  #674ea7;
-    --md-primary-fg-color--dark:  #674ea7;
-    --md-primary-fg-color--light: #674ea7;
-    --md-primary-fg-color: #674ea7;
-    --md-typeset-a-color: #674ea7;
+  --md-accent-fg-color:  #674ea7;
+  --md-primary-fg-color--dark:  #674ea7;
+  --md-primary-fg-color--light: #674ea7;
+  --md-primary-fg-color: #674ea7;
+  --md-typeset-a-color: #674ea7;
 }
 a.headerlink {
-    font-size: 0.75em;
-    vertical-align: middle;
+  font-size: 0.75em;
+  vertical-align: middle;
+}
+
+/* Hide the "latest release" tag in the header, since we have a monorepo for which it doesn't make
+ * sense and is confusing */
+.md-source__fact--version {
+  display: none;
+}
+.md-source__fact:nth-child(1n+2)::before {
+  margin-left: 0;
 }
