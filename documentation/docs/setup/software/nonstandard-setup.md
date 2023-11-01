@@ -1,8 +1,25 @@
-# Advanced Software Setup Guide
+# Non-Standard Software Setup Guide
 
 This guide provides instructions for setting up non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used the [standard software setup process](standard-setup.md).
 
-This guide assumes that you have previous experience with using the command-line terminal on the Raspberry Pi OS or another Linux distribution.
+## Prerequisites
+
+This guide assumes that:
+
+1. You have previous experience with using the command-line terminal on the Raspberry Pi OS or another Linux distribution.
+2. You have already confirmed that your PlanktoScope works without any problems with software installed by the standard PlanktoScope software setup process..
+3. You already know how to use the PlanktoScope software.
+
+If you have not used the PlanktoScope software before, you should first start with the standard software setup process in order to troubleshoot any problems with your PlanktoScope hardware; you can then try the non-standard setup process afterwards.
+
+In order to complete the non-standard setup process, you will need all of the following:
+
+1. A Raspberry Pi computer. We only test to ensure that the PlanktoScope software works on the Raspberry Pi 4; it may or may not work on the Raspberry Pi 3.
+2. A keyboard connected to your Raspberry Pi.
+3. A display connected to your Raspberry Pi.
+4. A micro-SD card for your Raspberry Pi.
+5. A way to provide internet access to your Raspberry Pi.
+6. A separate computer which can flash SD card images to your micro-SD card.
 
 ## Install and set up Raspberry Pi OS on your Raspberry Pi
 
@@ -37,6 +54,8 @@ Eventually, the display will ask you to configure some settings for the Raspberr
 Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can find instructions for how to do so at <https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking>
 
 ## Set up the PlanktoScope software distribution
+
+### Download the setup scripts
 
 Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in each of the following commands, for either the latest beta prerelease of the PlanktoScope software distribution, the latest stable release, or the latest development version:
 
@@ -76,7 +95,16 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     This will prepare you to install the current unstable development version of the PlanktoScope software distribution. This version is likely to be broken in various ways.
 
-Instead of installing the latest beta, stable, or development version, you can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`; the standard PlanktoScope SD card images are generated with specific tagged versions.
+Instead of installing the latest beta, stable, or development version, you can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`; the standard PlanktoScope SD card images are generated with specific tagged versions. For example, to install the v2023.9.0-beta.1 prerelease of the PlanktoScope software, you would run the following commands:
+```
+cd /home/pi
+wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/tags/software/v2023.9.0-beta.1.zip
+unzip v2023.9.0-beta.1.zip
+rm v2023.9.0-beta.1.zip
+mv Planktoscope-software-v2023.9.0-beta.1 /home/pi/PlanktoScope
+```
+
+### Run the setup scripts
 
 Then you will run one of the two following commands, depending on whether your PlanktoScope hardware has the Adafruit Stepper HAT or the custom PlanktoScope HAT:
 
@@ -113,6 +141,6 @@ Afterwards, your PlanktoScope's Raspberry Pi will either connect to a Wi-Fi netw
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
 
-If you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own isolated Wi-Fi network. On the Wi-Fi network it's connected to, it should be accessible at <http://pkscope.local> (if you're accessing it from a device and web browser with mDNS support, assuming the device is on the same network), assuming that no other PlanktoScope is connected to the same network. If multiple PlanktoScopes are connected to the same network, open <http://pkscope.local> and read the web page's "Wrong PlanktoScope?" section for instructions on what URL to use; you can determine your PlanktoScope's name by connecting a display to its Raspberry Pi, booting up the Raspberry Pi, and reading the name from the login prompt (e.g. if it says `pkscope-chain-list-27764 login:`, then the PlanktoScope is named `pkscope-chain-list-27764`).
+Note that if you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own isolated Wi-Fi network. On the Wi-Fi network it's connected to, it should be accessible at <http://pkscope.local> (if you're accessing it from a device and web browser with mDNS support, assuming the device is on the same network), assuming that no other PlanktoScope is connected to the same network. If multiple PlanktoScopes are connected to the same network, open <http://pkscope.local> and read the web page's "Wrong PlanktoScope?" section for instructions on what URL to use; you can determine your PlanktoScope's name by connecting a display to its Raspberry Pi, booting up the Raspberry Pi, and reading the name from the login prompt (e.g. if it says `pkscope-chain-list-27764 login:`, then the PlanktoScope is named `pkscope-chain-list-27764`).
 
 You will only be able to access the PlanktoScope's graphical user interface by plugging in a monitor and keyboard and mouse to the Raspberry Pi if you had previously used a "Raspberry Pi OS with desktop" or "Raspberry Pi OS with desktop and recommended software" SD card image as the base for the PlanktoScope software's setup script. In that case, you can open a web browser window on the Raspberry Pi and open <http://localhost> or any of the previously-listed URLs.
