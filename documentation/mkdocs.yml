@@ -89,6 +89,7 @@ theme:
 
 plugins:
   - git-revision-date-localized:
+      fallback_to_build_date: true
   - glightbox
   - minify:
       minify_html: true

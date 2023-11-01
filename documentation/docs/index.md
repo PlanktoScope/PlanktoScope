@@ -2,11 +2,11 @@
 
 ![planktoscope_hero](images/project_description/planktoscope_hero.png)
 
-Welcome to the documentation for the PlanktoScope project! Here are some quick links into various parts of the documentation:
+Welcome to the documentation for the PlanktoScope project! Here are some quick links to help you navigate the documentation depending on what you what you want to do:
 
-1. ["I want to get a PlanktoScope of my own!"](setup/index.md)
+1. ["I want to get a PlanktoScope!"](setup/index.md)
 2. ["I want to learn how to operate a PlanktoScope!"](operation/index.md)
-3. ["Something isn't working on my PlanktoScope!"](troubleshooting/index.md)
+3. ["I want to fix something which isn't working on my PlanktoScope!"](troubleshooting/index.md)
 4. ["I want to get involved in the PlanktoScope community!"](community/index.md)
 5. ["I want to study the design of the PlanktoScope!"](reference/index.md)
 
