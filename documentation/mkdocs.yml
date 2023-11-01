@@ -1,45 +1,63 @@
 ---
-site_name: PlanktoScope
+site_name: PlanktoScope Documentation
 site_description: An open and affordable imaging platform for \
   citizen oceanography
-repo_name: PlanktoScope
 repo_url: https://github.com/PlanktoScope/PlanktoScope
+edit_uri: edit/master/documentation/docs/
 
 nav:
-  - Home: index.md
-  - Hardware:
-    - Manufacturing Guide: hardware/manufacturing.md
-    - Assembly Guide: hardware/assembly_guide.md
-    - Maintenance and Repair Guide: hardware/maintenance_repair.md
-    - Planktoscope HAT: hardware/hat_hardware.md
-    - Accessories: hardware/accessories.md
-  - Software:
-    - Standard Install: software/standard_install.md
-    - Expert Setup: software/expert_setup.md
-    - Create an SD Card Image: software/create_sd.md
-    - Update Devicetree: software/update_devicetree.md
-    - MQTT Messages: software/mqtt_messages.md
-    - Changelog: software/changelog.md
+  - Home:
+    - index.md
+    - Frequently Asked Questions: faq.md
+  - Setup:
+    - setup/index.md
+    - Hardware:
+      - setup/hardware/index.md
+      - v2.5:
+        - setup/hardware/v2.5/index.md
+        - Kit Manufacturing: setup/hardware/v2.5/kit/index.md
+        - Device Assembly: setup/hardware/v2.5/device/index.md
+      - v2.1:
+        - setup/hardware/v2.1/index.md
+    - Software:
+      - setup/software/index.md
+      - Standard Setup: setup/software/standard-setup.md
+      - Non-Standard Setup: setup/software/nonstandard-setup.md
+      # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+      # - Create an SD Card Image: software/create-sd.md
   - Operation:
-    - Getting started: operation/getting_started.md
-    - User Interface: operation/ui_guide.md
+    - operation/index.md
+    # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+    # - Sample Collection: operation/sample-collection.md
+    - User Interface: operation/user-interface.md
+    - Maintenance: operation/maintenance.md
+  - Troubleshooting:
+    - troubleshooting/index.md
   - Community:
-    - Getting in touch: community/getting_in_touch.md
-    - User Groups: community/usergroups.md
-    - Research: community/research.md
-    - Trainings: community/trainings.md
-    - License: community/license.md
-    - Code of Conduct: community/code_of_conduct.md
+    - community/index.md
     - Contribute:
-      - Github Workflow: community/contribute/github_workflow.md
-      - Hardware Development: community/contribute/hardware_development.md
-      - Software Development: community/contribute/software_development.md
-      - Writing Documentation: community/contribute/writing_documentation.md
-  - FAQ: faq.md
+      - Github: community/contribute/github.md
+      - Hardware: community/contribute/hardware.md
+      - Software: community/contribute/software.md
+      - Documentation: community/contribute/documentation.md
+    # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+    # - Trainings: community/trainings.md
+    - Code of Conduct: community/code-of-conduct.md
+    - License: community/license.md
+  - Technical Reference:
+    - reference/index.md
+    - Hardware:
+      - Planktoscope HAT: reference/hardware/hat.md
+    - Software:
+      # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+      # - MQTT Messages: reference/software/mqtt-api.md
+      - Changelog: reference/software/changelog.md
 
 theme:
   logo: images/logos/planktoscope_white.png
   favicon: images/logos/planktoscope_lavender.png
+  icon:
+      repo: fontawesome/brands/github
   language: en
   name: material
   font:
@@ -49,9 +67,10 @@ theme:
     - content.code.annotate
     - navigation.instant
     - navigation.instant.progress
-    - navigation.sections
+    # - navigation.sections
     - navigation.indexes
     - toc.follow
+    - content.action.edit
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -69,12 +88,13 @@ theme:
         name: Switch to dark mode
 
 plugins:
-  # FIXME: enable the offline plugin for offline site builds
-  # FIXME: enable the social plugin for online site builds
-  - search
+  - git-revision-date-localized:
   - glightbox
   - minify:
       minify_html: true
+  # FIXME: enable the offline plugin for offline site builds
+  # FIXME: enable the social plugin for online site builds
+  - search
 
 markdown_extensions:
   - admonition
@@ -104,7 +124,6 @@ extra:
       link: https://github.com/PlanktoScope
     - icon: fontawesome/brands/slack
       link: https://planktoscope.slack.com
-  generator: false
 
 extra_css:
   - stylesheets/extra.css

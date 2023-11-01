@@ -1,81 +1,33 @@
-# PlanktoScope: Open and Affordable Quantitative Imaging Platform
+# PlanktoScope Documentation
 
 ![planktoscope_hero](images/project_description/planktoscope_hero.png)
 
-## What are Plankton?
+Welcome to the documentation for the PlanktoScope project! Here are some quick links into various parts of the documentation:
 
-_"Drifting endlessly, midway between the sea of air above and the depths of the abyss below, these strange creatures and the marine inflorescence that sustains them are called 'plankton' — the wanderers"_ - **[Rachel Carson](https://de.wikipedia.org/wiki/Rachel_Carson)**
+1. ["I want to get a PlanktoScope of my own!"](setup/index.md)
+2. ["I want to learn how to operate a PlanktoScope!"](operation/index.md)
+3. ["Something isn't working on my PlanktoScope!"](troubleshooting/index.md)
+4. ["I want to get involved in the PlanktoScope community!"](community/index.md)
+5. ["I want to study the design of the PlanktoScope!"](reference/index.md)
 
-Plankton are tiny organisms that drift in the oceans and play a crucial role in the global ecosystem. They are responsible for fixing 30-50% of the world's carbon dioxide and form the foundation of the global food chain. Despite their importance, studying plankton can be challenging due to the vast area of the oceans and the limited resources of research fleets and specialized equipment. The PlanktoScope is an open-source hardware and software platform that aims to make it easier to study plankton by providing high-throughput quantitative imaging capabilities at a low cost.
+## Why PlanktoScope?
 
-## What is a PlanktoScope?
+*Plankton* are living things which drift with the water currents in our world's oceans, rivers, and lakes. Lots of plankton are very small - so small that we need tools called *microscopes* in order for us to see them. One type of plankton is *phytoplankton*, which are plant-like plankton which take a huge amount of carbon dioxide from the air and become the food for all other life in the water - like the grasses of the sea. Because of this, plankton are very important to the health of our planet.
+
+But there’s still a lot we don’t know about what’s happening with groups of plankton and how they’re changing: most tools would be too hard and expensive for us to use to get much detail about how every group of plankton is changing across an entire ocean. If we can make tools which give detailed information and which everyone can use - everywhere, all the time - then we can learn more about how the oceans will change because of things people and companies are doing.
+
+The PlanktoScope is a low-cost microscope which can detailed photos of tiny plankton from lots of water, so that we can count the different kinds of plankton in the water.
 
 ![The PlanktoScope at tfom23 Expo](images/planktoscope-buildworkshops-tfom23-expo.jpg)
 
-The PlanktoScope is a modular, open-source platform for high-throughput quantitative imaging of plankton samples. Its small size, ease of use, and low cost make it suitable for a variety of applications, including the monitoring of laboratory cultures or natural micro-plankton communities. It can be controlled from any WiFi-enabled device and can be easily reconfigured to meet the changing needs of the user.
+## What is the PlanktoScope project?
 
-[Learn more about how it works](https://www.planktoscope.org/how-it-works)
+The PlanktoScope project is a community project to develop the PlanktoScope as a tool and to help people use it for a variety of purposes around the world.
 
-## Key Features
+## Who are PlanktoScopes for?
 
-Here are some key features of the PlanktoScope:
+We want the PlanktoScope to be a tool which is easy to use for anyone who's interested in the tiny things which live in our oceans, and for anyone who cares about the health of our oceans - not just scientists, but also sailors, marine farmers, makers, fishing communities, and students. However, we still need to make many improvements to the PlanktoScope in order to reach this goal. Most of the people who currently enjoy using PlanktoScopes have some experience with using microscopes, a tolerance for handling software problems, and a sense of adventure for trying out new technologies which aren't fully mature yet.
 
-1. **Low cost**: The PlanktoScope is designed to be affordable, with parts costing under $1000.
-2. **Modular**: The PlanktoScope is modular, meaning it can be easily reconfigured to meet the changing needs of users.
-3. **Open-source**: The PlanktoScope is based on open-source hardware and software, making it accessible to a wide community of engineers, researchers, and citizens.
-4. **Versatility**: The PlanktoScope is versatile, and can be used to study a variety of plankton types, including laboratory cultures and natural micro-plankton communities.
-5. **High-throughput**: The PlanktoScope is capable of high-throughput quantitative imaging, allowing users to analyze large numbers of samples quickly and efficiently.
-6. **WiFi-enabled**: The PlanktoScope can be controlled from any WiFi-enabled device, making it easy to use and deploy in a variety of settings.
-7. **Portable**: The PlanktoScope is small and portable, making it easy to transport and use in the field.
-8. **Ease of use**: The PlanktoScope is designed to be easy to use, with instructions for assembly and use available on the PlanktoScope website.
+We want PlanktoScopes to be easy to use for people around the world. Currently, the PlanktoScope software's user interface and documentation are all in English; we will need software and translation help to support other languages. The PlanktoScope community mainly works in English, though we also have active community members whose primary languages are French and Japanese.
 
-## Device specification
-
-![planktoscope_hero](images/project_description/planktoscope_architecture.png)
-
-### Size
-
-- height: 105 mm
-- wide: 275 mm
-- depth: 125 mm
-
-### Hardware
-
-- [4 Core ARM-Cortex-A72 Processor](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 1,50 GHz
-- 4 GB Arbeitsspeicher (depending on the purchased version)
-- 64 GB Flash memory (depending on the purchased version)
-- [Sony IMX477R](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/) Image sensor with 12.3MP
-- M12 mount optics with 16 and 25 mm lenses
-- Automatic focus via linear guide
-- automatic sampling via peristaltic pump
-- the case is made of wood fiberboard
-
-### Software
-
-- [Debian](https://www.raspberrypi.com/software/operating-systems/) based Embedded Linux operating
-- [Node-Red](https://nodered.org/) based user interface
-- [Python](https://www.python.org/) Image processing service and cloud connection
-
-### Characteristic
-
-- Focus stage control
-- Pump control
-- Automatic image capture
-- Automatic segmentation, optimization and object detection
-- 4,200 images, 41,000 objects, ~ 1 minute
-- Control via smartphone or tablet
-
-### License
-
-- Hardware: [CERN OHL-S 2.0 Open Hardware Licence](https://cern-ohl.web.cern.ch/home)
-- Software: [GNU General Public 3.0 License](https://www.gnu.org/licenses/gpl-3.0.html)
-- Dokumentation: [Creative Commons Attribution-ShareAlike 3.0 License](https://creativecommons.org/licenses/by-sa/4.0/)
-
-## Areas of Application
-
-- Plankton analysis of small animals and algae living in water
-- Mobile use via external power supply
-
-## System Requirements
-
-- a Web-Browser to control the device (like a Notebook, Smartphone or Tablet)
+If you want to help to improve the PlanktoScope or to build a PlanktoScope community in a non-English language, please [get involved](community/index.md) in our global community!
