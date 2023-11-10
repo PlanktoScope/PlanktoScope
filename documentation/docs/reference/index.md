@@ -48,7 +48,6 @@ Here are some key features of the PlanktoScope:
 - Pump control
 - Automatic image capture
 - Automatic segmentation, optimization and object detection
-- 4,200 images, 41,000 objects, ~ 1 minute
 - Control via smartphone or tablet
 
 ## Areas of Application
