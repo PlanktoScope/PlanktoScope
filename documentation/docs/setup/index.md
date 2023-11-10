@@ -11,29 +11,30 @@ This section of the PlanktoScope documentation will help you get to a working Pl
 
 You probably purchased either a fully-assembled PlanktoScope or a do-it-yourself assembly kit from FairScope. The various sections of this documentation will provide you with instructions for how to proceed:
 
-- If you purchased a fully-assembled PlanktoScope, you should go to the [operation guide](../operation/index.md) to learn how to operate your PlanktoScope.
-- If you purchased a do-it-yourself assembly kit from FairScope, you should go to the [hardware setup guide](hardware/index.md) to learn how to assemble your kit into a working PlanktoScope.
+- If you purchased a fully-assembled PlanktoScope, it is ready for you to use! You should go to our [operation guide](../operation/index.md) to learn how to operate your PlanktoScope.
+- If you purchased a do-it-yourself assembly kit from FairScope, you should go to our [hardware setup guide](hardware/index.md) to learn how to assemble your kit into a working PlanktoScope. The software will already have been set up for you, so after you finish setting up the hardware you can proceed to our [operation guide](../operation/index.md) to learn how to operate your PlanktoScope.
 
 ## Fully-assembled PlanktoScope
 
 If you have a fully-assembled PlanktoScope which was provided to you by FairScope, please refer instead to the [Fairscope product](#fairscope-product) section of this page. If someone else provided you with a PlanktoScope, you might need to do some additional hardware setup, software setup, calibration, and/or troubleshooting - please talk to them to figure out what might be needed. The various sections of this documentation site may be a useful resource for you:
 
-- Depending on what software is pre-installed on your PlanktoScope, and how old the software is, the [software setup](software/index.md) guide on this documentation site may be useful to help you update the software. You should always ensure that you are running the most recent available version of the PlanktoScope software.
-- Depending on what software is installed on your PlanktoScope, and how old it is, the [operation guide](../operation/index.md) in this documentation site may be useful to help you operate your PlanktoScope.
+- Depending on what software is pre-installed on your PlanktoScope, and how old the software is, our [software setup guide](software/index.md) may be useful to help you update the software. You should always ensure that you are running the most recent available version of the PlanktoScope software.
+- Depending on what software configuration your PlanktoScope is running, our [operation guide](../operation/index.md) may be useful to help you operate your PlanktoScope.
 
 ## DIY kit
 
 If you have a DIY assembly kit which was provided to you by FairScope, please refer instead to the [Fairscope product](#fairscope-product) section of this page. If someone else provided you with a DIY assembly kit, the process for assembling it into a PlanktoScope may be different from what is described in this documentation site - please talk to them to figure out what you should do. The various sections of this documentation site may be a useful resource for you:
 
-- Depending on what is included in your DIY kit, the [hardware setup guide](hardware/index.md) on this documentation site may be useful to assemble a PlanktoScope from your kit.
-- Depending on what is on the micro-SD card included with your DIY kit (if it includes a micro-SD card), the [software setup](software/index.md) guide on this documentation site may be useful to help you update the software. You should always ensure that you are running the most recent available version of the PlanktoScope software.
+- Depending on what is included in your DIY kit, our [hardware setup guide](hardware/index.md) may be useful to assemble a PlanktoScope from your kit.
+- Depending on what is on the micro-SD card included with your DIY kit (if it includes a micro-SD card), our [software setup](software/index.md) guide may be useful to help you update the software. You should always ensure that you are running the most recent available version of the PlanktoScope software.
+- Depending on what software configuration your PlanktoScope is running, our [operation guide](../operation/index.md) may be useful to help you operate your PlanktoScope.
 
 ## No hardware yet
 
 If you don't have any hardware for a PlanktoScope yet, you have a few options depending on how much work you want to do, what your budget is, and how much troubleshooting you are willing to do:
 
 1. Purchase a [fully pre-assembled PlanktoScope](#buy-a-pre-assembled-planktoscope).
-2. Purchase a [DIY kit](buy-a-diy-kit) of parts to assemble into a PlanktoScope.
+2. Purchase a [DIY kit](#buy-a-diy-kit) of parts to assemble into a PlanktoScope.
 3. Both [make your own kit of parts and assemble it](#make-a-kit-and-assemble-it) into a PlanktoScope.
 
 ### Buy a pre-assembled PlanktoScope
