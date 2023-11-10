@@ -4,15 +4,15 @@ This FAQ has been compiled to answer common questions about the PlanktoScope pro
 
 ## Can I purchase a PlanktoScope?
 
-You can purchase a PlanktoScope - either as a kit of parts to assemble yourself or as a fully preassembled device - from a small business called [FairScope](https://www.fairscope.com/), which was started by the inventor of the PlanktoScope in order to make PlanktoScopes easier to obtain.
+You can purchase a PlanktoScope - either as a kit of parts to assemble yourself or as a fully preassembled device - from a small business called [FairScope](https://www.fairscope.com/), which was started by the inventor of the PlanktoScope in order to make PlanktoScopes easier to obtain. For more information, please refer to our page on [how to obtain a PlanktoScope](setup/index.md).
 
 ## How much money does a PlanktoScope cost?
 
-For pricing of PlanktoScopes and PlanktoScope assembly kits from FairScope, refer to [the FairScope website](https://www.fairscope.com/). If you purchase all the parts to build a single PlanktoScope yourself, the cost of parts can be as low as $400 or $800 depending on the type of PlanktoScope you build.
+For pricing of PlanktoScopes and PlanktoScope assembly kits from FairScope, refer to [the FairScope website](https://www.fairscope.com/). If you purchase all the parts to build a single PlanktoScope yourself, the cost of parts can be as low as USD 400 or USD 800 depending on the type of PlanktoScope you build.
 
 ## I want to build a PlanktoScope, where should I start?
 
-If you have the technical know-how then you can build it yourself; the required information can be found here in the documentation. Let others know about your intention to do this and say hello in our [Slack Channel](https://planktoscope.slack.com/), so that you can ask for help when you encounter issues.
+Our page on [how to obtain a PlanktoScope](setup/index.md) provides information and guides for building a PlanktoScope yourself.
 
 ## Where do I get support or find the necessary tools to build PlanktoScope?
 

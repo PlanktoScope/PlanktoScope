@@ -12,17 +12,17 @@ Welcome to the documentation for the PlanktoScope project! Here are some quick l
 
 ## What is PlanktoScope?
 
-*Plankton* are living things which drift with the water currents in our world's oceans, rivers, and lakes. Lots of plankton are very small - so small that we need tools called *microscopes* in order for us to see them. One type of plankton is *phytoplankton*, which are plant-like plankton which take a huge amount of carbon dioxide from the air and become the food for all other life in the water - like the grasses of the sea. Because of this, plankton are very important to the health of our planet.
+*Plankton* are living things which drift with the water currents in our world's oceans, rivers, and lakes. Lots of plankton are very small - so small that we need tools called *microscopes* in order for us to see them. One type of plankton is *phytoplankton*: plant-like plankton which take a huge amount of carbon dioxide from the air and become the food for all other life in the water - like the grasses of the sea. Because of this, plankton are very important to the health of our planet.
 
 But there’s still a lot we don’t know about what’s happening with groups of plankton and how they’re changing: most tools would be too hard and expensive for us to use to get much detail about how every group of plankton is changing across an entire ocean. If we can make tools which give detailed information and which everyone can use - everywhere, all the time - then we can learn more about how the oceans will change because of things people and companies are doing.
 
-The PlanktoScope is a low-cost microscope which can detailed photos of tiny plankton from lots of water, so that we can count the different kinds of plankton in the water.
+The PlanktoScope is a low-cost, open-source, and portable microscope designed to take detailed photos of tiny plankton from lots of water, so that we can count the different kinds of plankton in the water.
 
 ![The PlanktoScope at tfom23 Expo](images/planktoscope-buildworkshops-tfom23-expo.jpg)
 
 ## What is the PlanktoScope project?
 
-The PlanktoScope project is a [community](community/index.md) project to develop the PlanktoScope as a tool and to help people use it for a variety of purposes around the world.
+The PlanktoScope project is a [community](community/index.md) project to develop the PlanktoScope as a tool and to help people use it for a variety of purposes around the world. It is part of a broader movement toward making scientific tools more accessible and affordable, while also empowering citizen scientists, educators, and researchers to study and monitor aquatic ecosystems.
 
 ## Who are PlanktoScopes for?
 

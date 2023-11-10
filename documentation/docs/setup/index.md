@@ -3,7 +3,7 @@
 This section of the PlanktoScope documentation will help you get to a working PlanktoScope. Every PlanktoScope has two aspects which have to work together: the hardware and the software. Depending on what hardware you already have, you should start at different places in the documentation:
 
 - "I have a product from FairScope": you probably received either a fully-assembled Planktoscope or a PlanktoScope do-it-yourself assembly kit. For more information, see the [FairScope product](#fairscope-product) section of this page.
-- "I have a fully assembled PlanktoScope, and it was not assembled by FairScope": you will need to ensure that you have the latest version of the PlanktoScope software installed on the PlanktoScope, and that the PlanktoScope hardware works. For more information, see the [Fully assembled PlanktoScope](#fully-assembled-planktoscope) section of this page.
+- "I have a fully assembled PlanktoScope, and it was not assembled by FairScope": you will need to ensure that you have the latest version of the PlanktoScope software installed on the PlanktoScope, and that the PlanktoScope hardware works. For more information, see the [Fully-assembled PlanktoScope](#fully-assembled-planktoscope) section of this page.
 - "I have a kit of hardware parts to assemble into a PlanktoScope, and it was not provided by FairScope": you will need to assemble your PlanktoScope hardware and then set up the software on it. For more information, see the [DIY kit](#diy-kit) section of this page.
 - "I don't have any of the hardware for the PlanktoScope": you have several options for getting the PlanktoScope hardware. For more information, see the [No hardware yet](#no-hardware-yet) section of this page.
 
