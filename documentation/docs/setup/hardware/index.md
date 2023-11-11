@@ -40,10 +40,10 @@ We recommend building a PlanktoScope of the latest available hardware version (c
 
 - You do not have access to manufacturing capabilities for assembling a custom printed circuit board, and you cannot buy a pre-assembled HAT from FairScope.
 
-If you received a PlanktoScope hardware assembly kit from someone, you should check with the person who provided you that kit to determine which hardware version the kit is for.
-
 ## Next steps
 
-- If you are building a PlanktoScope with the v2.1 hardware, please proceed to our page for [Hardware v2.1](./v2.1/index.md) to find instructions for making an assembly kit, as well as instructions for building a PlanktoScope from an assembly kit for v2.1 of the hardware.
+If you received a PlanktoScope hardware assembly kit from someone but you are not sure what hardware version the kit is for, you should check with the person who gave the kit to you.
 
 - If you are building a PlanktoScope with the v2.5 hardware, please proceed to our page for [Hardware v2.5](./v2.5/index.md) to find instructions for making an assembly kit, as well as instructions for building a PlanktoScope from an assembly kit for v2.5 of the hardware.
+
+- If you are building a PlanktoScope with the v2.1 hardware, please proceed to our page for [Hardware v2.1](./v2.1/index.md) to find instructions for making an assembly kit, as well as instructions for building a PlanktoScope from an assembly kit for v2.1 of the hardware.
