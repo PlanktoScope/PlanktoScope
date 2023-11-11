@@ -10,16 +10,10 @@ You can purchase a PlanktoScope - either as a kit of parts to assemble yourself 
 
 For pricing of PlanktoScopes and PlanktoScope assembly kits from FairScope, refer to [the FairScope website](https://www.fairscope.com/). If you purchase all the parts to build a single PlanktoScope yourself, the cost of parts can be as low as USD 400 or USD 800 depending on the type of PlanktoScope you build.
 
-## I want to build a PlanktoScope, where should I start?
-
-Our page on [how to obtain a PlanktoScope](setup/index.md) provides information and guides for building a PlanktoScope yourself.
+# 
 
 ## Where do I get support or find the necessary tools to build PlanktoScope?
 
 To find the necessary tools and knowledge to produce the PlanktoScope, consider visiting a [Fablab](https://fablabs.io/labs) or [Hackspaces](https://wiki.hackerspaces.org/List_of_Hacker_Spaces) in your region. These organizations often have a culture of openness and may be willing to support you with your project.
 
 And if you have specific questions or problems, you can always report them in the [Slack Channel](https://planktoscope.slack.com/) and in the best case you will find someone there who can support you.
-
-## I am looking for an older version of the PlanktoScope where the housing could still be manufactured with a laser cutter. Where can I find the corresponding design files?
-
-Even though the development is now focused on a more sustainable approach based on recycled wood, and which has better optics. You can find DIY purchasing information [from the PlanktoScope website](https://www.planktoscope.org/replicate/get-your-kit), and you can find DIY assembly information [also from the PlanktoScope website](https://www.planktoscope.org/replicate/assemble-your-kit).

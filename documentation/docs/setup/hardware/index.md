@@ -1,6 +1,6 @@
 # PlanktoScope Hardware
 
-This section of the PlanktoScope documentation will help you to build the hardware of a PlanktoScope. Our documentation splits this PlanktoScope manufacturing process into two phases: putting together a kit of parts, and assembling a PlanktoScope from that kit of parts.
+This section of the PlanktoScope documentation will help you to build the hardware of a PlanktoScope. Our documentation splits this PlanktoScope production process into two phases: making a kit of parts, and assembling a PlanktoScope from that kit of parts.
 
 If you do not already have a kit of parts, you will need to either purchase a kit or make a kit yourself. You will need to choose a PlanktoScope hardware version and obtain the hardware components necessary for that hardware version; your assembly kit will consist of those components. You can purchase a kit from [FairScope](https://www.fairscope.com), a small business started by the inventor of the PlanktoScope in order to make it easier for people to obtain PlanktoScopes. Once you have selected a hardware version, you can proceed to our instructions for making your kit.
 

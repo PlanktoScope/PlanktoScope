@@ -18,7 +18,7 @@ Organizing a build workshop can be a challenging but rewarding experience. It re
 
 Choosing the right production site for preparing and manufacturing the PlanktoScope Kits is an important step in the workshop planning process. The production site should have the necessary tools and equipment, as well as the knowledge and expertise to manufacture the PlanktoScope Kits. Here are a few things to consider when choosing a production site:
 
-1. **Check the Manufacturing and Assembly Guides**: Before choosing a production site, make sure to review the PlanktoScope [Kit Manufacturing Guide](../setup/hardware/v2.5/kit/index.md) and the [Device Assembly Guide](../setup/hardware/v2.5/device/index.md). These guides will provide detailed information on the necessary tools and equipment required for the production of the PlanktoScope Kits.
+1. **Check the Manufacturing and Assembly Guides**: Before choosing a production site, make sure to review the PlanktoScope [Kit Manufacturing Guide](../setup/hardware/v2.5/kit/index.md) and the [Device Assembly Guide](../setup/hardware/v2.5/assembly/index.md). These guides will provide detailed information on the necessary tools and equipment required for the production of the PlanktoScope Kits.
 1. **Visit [Fablab](https://fablabs.io/labs) and [Hackspaces](https://wiki.hackerspaces.org/List_of_Hacker_Spaces)**: Consider visiting Fablabs or Hackspaces in your region. These organizations often have a culture of openness and may be willing to support you with your project. They may have the necessary tools and equipment to produce the PlanktoScope Kits, as well as the knowledge and expertise to guide you through the production process.
 1. **Commercial Manufacturing**: Look for a facility that has the capability to handle small scale production runs, a good quality control process and a logistic plan to ship the product to the final destination. Many
 
@@ -58,11 +58,11 @@ By following this process, you can ensure that all materials are procured and or
 
 Kit preparation for the workshop is an important step in the preparation process. This ensures that participants have the materials and equipment they need to complete the workshop and build their own PlanktoScope. Here are a few things to keep in mind when preparing the kits:
 
-1. **Review the Bill of Materials (BOM)**: Review the Bill of Materials (BOM) for the PlanktoScope to ensure that you have all the necessary parts and materials for the workshop. The parts list can be found in the [Device Assembly Guide](../setup/hardware/v2.5/device/index.md) and lists all components and quantities needed to build a microscope.
+1. **Review the Bill of Materials (BOM)**: Review the Bill of Materials (BOM) for the PlanktoScope to ensure that you have all the necessary parts and materials for the workshop. The parts list can be found in the [Device Assembly Guide](../setup/hardware/v2.5/assembly/index.md) and lists all components and quantities needed to build a microscope.
 2. **Divide the kit components according to the BOM**: Once the materials have been received, divide the kit components from the orders according to the Bill of Materials (BOM) of the PlanktoScope. This will ensure that each participant receives the correct components and that there are no missing parts.
 3. **Have extra components**: Have extra components on hand in case of any missing or damaged parts during the workshop.
 4. **Package the kits**: Package the kits in a way that makes it easy for the participants to find and use the components during the workshop.
-5. **Label materials**: Label the packages as described in [Device Assembly Guide](../setup/hardware/v2.5/device/index.md) so that they are easy to find and distribute during the workshop.
+5. **Label materials**: Label the packages as described in [Device Assembly Guide](../setup/hardware/v2.5/assembly/index.md) so that they are easy to find and distribute during the workshop.
 6. **Preparation of the housing parts**: Prepare the housing parts by applying the surface sealant and insert the nuts to screw the housing as described in the [Kit Manufacturing Guide](../setup/hardware/v2.5/kit/index.md#finishing).
 7. **Cutting and soldering of electronic cables**: Cut and solder the electronic cables for the PlanktoScope. This will save time during the workshop and ensure that the participants have all the necessary cables to complete the assembly.
 8. **Setting up the embedded development environment**: Set up the embedded development environment and flash the eeprom of the PlanktoScope hat. This will ensure that the PlanktoScope hat is ready to be used during the workshop.
@@ -85,7 +85,7 @@ It's finally here! After all the planning, preparation, and anticipation, the bu
 6. **Introduction round**: Begin with a round of introductions and give everyone a chance to introduce themselves, their background, and their interest in the project.
 7. **Provide an overview**: Provide details about the project, including the general mode of operation, the working materials such as the kit, the documentation and the git repository.
 8. **Provide the Kits and Tools**: Provide the Kit and Tools to each participant with a kit and the necessary tools.
-9. **Follow the build instructions**: Depending on the format you have chosen, start implementing by following the [Kit Manufacturing guide](../setup/hardware/v2.5/kit/index.md) or [Device Assembly guide](../setup/hardware/v2.5/device/index.md)
+9. **Follow the build instructions**: Depending on the format you have chosen, start implementing by following the [Kit Manufacturing guide](../setup/hardware/v2.5/kit/index.md) or [Device Assembly guide](../setup/hardware/v2.5/assembly/index.md)
 10. **Follow the operation instructions**: Now that you have successfully assembled the PlanktoScope, you can proceed to operation of the PlanktoScope by following the [Getting started](../operation/index.md) and [User interface](../operation/user-interface.md) instructions.
 11. **Final Test**: For a final test you can use for example pure cultures or a sample taken with a [Plankton net](../operation/sample-collection.md#plankton-net) from a surrounding waters.
 
