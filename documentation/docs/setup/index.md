@@ -72,4 +72,4 @@ We recommend this approach for:
 
 ## Next steps
 
-After finishing any necessary [hardware setup](hardware/index.md) and all necessary [software setup](software/index.md) for your PlanktoScope, you can proceed to our guide on how to [operate your PlanktoScope](../../operation/index.md).
+After finishing any necessary [hardware setup](hardware/index.md) and all necessary [software setup](software/index.md) for your PlanktoScope, you can proceed to our guide on how to [operate your PlanktoScope](../operation/index.md).
