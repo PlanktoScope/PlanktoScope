@@ -22,15 +22,15 @@ This was a prototype version of the hardware which replaced the Adafruit Stepper
 
 This version was only an internal prototype for the PlanktoScope development team.
 
-## v2.1
-
-This is the first version of the PlanktoScope hardware which was publicly released, and it is one of the two hardware designs described in the [initial paper](https://www.frontiersin.org/articles/10.3389/fmars.2022.949428/full) introducing the PlanktoScope. It simplified the hardware's robustness and mechanical assembly by integrating most subsystems into a monolithic architecture whose structure uses laser-cut parts. The electronic hardware components of this design are all available off-the-shelf, using an Adafruit Stepper Motor HAT to control various actuators and a Yahboom RGB Cooling HAT to cool the PlanktoScope's embedded Raspberry Pi computer. The mechanical structure was designed for fabrication using a laser cutter. This hardware version included some design flaws, such as providing no way to replace the Raspberry Pi's micro-SD card without partially disassembling the PlanktoScope.
-
 ## v2.2
 
 This was a prototype version of the hardware which replaced the Adafruit Stepper Motor HAT with a Waveshare Stepper Motor HAT.
 
 This version was only an internal prototype for the PlanktoScope development team.
+
+## v2.1
+
+This is the first version of the PlanktoScope hardware which was publicly released, and it is one of the two hardware designs described in the [initial paper](https://www.frontiersin.org/articles/10.3389/fmars.2022.949428/full) introducing the PlanktoScope. It simplified the hardware's robustness and mechanical assembly by integrating most subsystems into a monolithic architecture whose structure uses laser-cut parts. The electronic hardware components of this design are all available off-the-shelf, using an Adafruit Stepper Motor HAT to control various actuators and a Yahboom RGB Cooling HAT to cool the PlanktoScope's embedded Raspberry Pi computer. The mechanical structure was designed for fabrication using a laser cutter. This hardware version included some design flaws, such as providing no way to replace the Raspberry Pi's micro-SD card without partially disassembling the PlanktoScope.
 
 ## v1.0
 
