@@ -1,8 +1,8 @@
-# Standard Software Setup Guide
+# Standard Installation
 
 ![easy install](../../images/software/IMG_1532.jpg)
 
-This page provides instructions for setting up the most recent standard version of the PlanktoScope software distribution on a PlanktoScope.
+This page provides instructions for installing the most recent standard version of the PlanktoScope software distribution on a PlanktoScope.
 
 ## Set up the SD card
 
@@ -55,8 +55,6 @@ Insert the microSD card into the Raspberry Pi computer installed in your Plankto
 
 Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up. Once it has finished starting up, it should create a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope.
 
-## Access the user interface
-
 Note that you will not be able to access the PlanktoScope's graphical user interface by plugging in a display to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently. Instead, you will need to connect another device (e.g. a phone or a computer) directly to the PlanktoScope's Raspberry Pi, either over its isolated Wi-Fi network or over an Ethernet cable.
 
 After you connect another device directly to the PlanktoScope's Raspberry Pi, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
@@ -66,4 +64,8 @@ After you connect another device directly to the PlanktoScope's Raspberry Pi, th
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
 
-The web browser should show a landing page with some information about your PlanktoScope and a list of links, including links to apps running on your PlanktoScope. Then you can proceed to our [guide for operating your PlanktoScope](../../operation/index.md).
+The web browser should show a landing page with some information about your PlanktoScope and a list of links, including links to apps running on your PlanktoScope.
+
+## Next steps
+
+Now that you have installed the software and accessed the PlanktoScope software's user interface from your web browser, you should proceed to our guide for [configuring your PlanktoScope](config.md).

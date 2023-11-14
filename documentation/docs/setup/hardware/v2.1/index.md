@@ -10,8 +10,8 @@ You should be aware that some of the parts required for the kit, especially the 
 
 ## Assemble a PlanktoScope from a kit
 
-Currently, you can find step-by-step instructions for assembling a PlanktoScope from a kit at [Assembly guide - PlanktoScope](https://planktoscope.readthedocs.io/en/latest/assembly_guide/).
+Currently, you can find step-by-step instructions for assembling a PlanktoScope from a kit at [the old documentation site for PlanktoScope](https://planktoscope.readthedocs.io/en/latest/assembly_guide/).
 
 ## Next steps
 
-After assembling your PlanktoScope hardware, you will need to [install the PlanktoScope software](../../software/index.md) to the micro-SD card of your PlanktoScope's Raspberry Pi. Then you can proceed to our [operation guide](http://localhost:8000/operation/) to learn how to operate your PlanktoScope.
+After assembling your PlanktoScope hardware, you will need to [set up the PlanktoScope software](../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi. Then you can proceed to our [operation guide](http://localhost:8000/operation/) to learn how to operate your PlanktoScope.

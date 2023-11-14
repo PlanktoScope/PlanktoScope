@@ -1,6 +1,6 @@
-# Non-Standard Software Setup Guide
+# Non-Standard Installation
 
-This guide provides instructions for setting up non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used the [standard software setup process](standard-setup.md).
+This page provides instructions for installing non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used the [standard software installation process](standard-install.md).
 
 ## Prerequisites
 
@@ -36,12 +36,13 @@ Next, you will need to write your downloaded Raspberry Pi OS image file to your 
 To use a graphical application to write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager. Download the latest version of [balenaEtcher](https://www.balena.io/etcher/) or the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and install it. Then open balenaEtcher or the Raspberry Pi Imager. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the "Flash!" or "Write" button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
 
 If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use ddrescue on a Debian-based system, e.g. as follows:
+
 ```
 gunzip planktoscope-v2.3-final.img.gz
 sudo ddrescue planktoscope-v2.3-final.img /dev/mmcblk0 --force
 ```
-Warning: be extremely careful when choosing the storage medium and ensure that you are writing the OS image file to the device which actually corresponds to the correct microSD card. Once the image has been written, data previously on the device will be lost and impossible to recover.
 
+Warning: be extremely careful when choosing the storage medium and ensure that you are writing the OS image file to the device which actually corresponds to the correct microSD card. Once the image has been written, data previously on the device will be lost and impossible to recover.
 
 ### Configure your Raspberry Pi
 
@@ -68,7 +69,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
     rm beta.zip
     mv PlanktoScope-beta /home/pi/PlanktoScope
     ```
-
+    
     This will prepare you to install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
 
 === "latest stable"
@@ -80,7 +81,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
     rm stable.zip
     mv PlanktoScope-stable /home/pi/PlanktoScope
     ```
-
+    
     This will prepare you to install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
 
 === "development"
@@ -92,10 +93,11 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
     rm master.zip
     mv PlanktoScope-master /home/pi/PlanktoScope
     ```
-
+    
     This will prepare you to install the current unstable development version of the PlanktoScope software distribution. This version is likely to be broken in various ways.
 
 Instead of installing the latest beta, stable, or development version, you can also use GitHub to find the URL of a specific tagged version of the PlanktoScope software, and then you can download that and move the extracted directory to `/home/pi/PlanktoScope`; the standard PlanktoScope SD card images are generated with specific tagged versions. For example, to install the v2023.9.0-beta.1 prerelease of the PlanktoScope software, you would run the following commands:
+
 ```
 cd /home/pi
 wget https://github.com/PlanktoScope/PlanktoScope/archive/refs/tags/software/v2023.9.0-beta.1.zip
@@ -144,3 +146,7 @@ Afterwards, your PlanktoScope's Raspberry Pi will either connect to a Wi-Fi netw
 Note that if you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own isolated Wi-Fi network. On the Wi-Fi network it's connected to, it should be accessible at <http://pkscope.local> (if you're accessing it from a device and web browser with mDNS support, assuming the device is on the same network), assuming that no other PlanktoScope is connected to the same network. If multiple PlanktoScopes are connected to the same network, open <http://pkscope.local> and read the web page's "Wrong PlanktoScope?" section for instructions on what URL to use; you can determine your PlanktoScope's name by connecting a display to its Raspberry Pi, booting up the Raspberry Pi, and reading the name from the login prompt (e.g. if it says `pkscope-chain-list-27764 login:`, then the PlanktoScope is named `pkscope-chain-list-27764`).
 
 You will only be able to access the PlanktoScope's graphical user interface by plugging in a display and keyboard and mouse to the Raspberry Pi if you had previously used a "Raspberry Pi OS with desktop" or "Raspberry Pi OS with desktop and recommended software" SD card image as the base for the PlanktoScope software's setup script. In that case, you can open a web browser window on the Raspberry Pi and open <http://localhost> or any of the previously-listed URLs.
+
+## Next steps
+
+Now that you have installed the software and accessed the PlanktoScope software's user interface from your web browser, you should proceed to our guide for [configuring your PlanktoScope](config.md).
