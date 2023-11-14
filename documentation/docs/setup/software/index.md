@@ -42,4 +42,4 @@ The first time you start the PlanktoScope after installing or updating the softw
 
 ## Next steps
 
-After you have ensured that the PlanktoScope software is installed in your PlanktoScope, and you have performed any necessary post-installation configuration, then you can proceed to our guide on how to [operate your PlanktoScope](../../operation/index.md).
+After [installing](standard-install.md) the PlanktoScope software (or ensuring that the PlanktoScope software is installed) and performing all necessary [post-installation configuration](config.md), then you can proceed to our guide on how to [operate your PlanktoScope](../../operation/index.md).

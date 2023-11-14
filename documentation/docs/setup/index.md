@@ -69,3 +69,7 @@ We recommend this approach for:
 - Makers who are already familiar with laser cutting or CNC milling, and with soldering or PCB assembly (the necessary skills will depend on the version of PlanktoScope hardware being built).
 - Hobbyists and students who are primarily interested in the PlanktoScope as an engineering project and want to figure out everything by themselves.
 - Anyone who wants to design and build an extremely non-standard PlanktoScope, whether for fun or to use it for unconventional purposes.
+
+## Next steps
+
+After finishing any necessary [hardware setup](hardware/index.md) and all necessary [software setup](software/index.md) for your PlanktoScope, you can proceed to our guide on how to [operate your PlanktoScope](../../operation/index.md).
