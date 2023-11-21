@@ -2,20 +2,16 @@
 
 This FAQ has been compiled to answer common questions about the PlanktoScope project and how you can get involved. We hope you find it useful and we look forward to working with you to advance our knowledge of the oceans!
 
-## I want order a PlantoScope, is there anyone who sells the kits?
+## Can I purchase a PlanktoScope?
 
-The best thing is to say hello in our [Slack Channel](https://planktoscope.slack.com/). Maybe someone is arranging an order or there are currently some available.
+You can purchase a PlanktoScope - either as a kit of parts to assemble yourself or as a fully preassembled device - from a small business called [FairScope](https://www.fairscope.com/), which was started by the inventor of the PlanktoScope in order to make PlanktoScopes easier to obtain. For more information, please refer to our page on [how to obtain a PlanktoScope](setup/index.md).
 
-## I want to build a PlantoScope, where should I start?
+## How much money does a PlanktoScope cost?
 
-If you have the technical know who then you can build it yourself, the required information can be found here in the documentation. Let others know about your intention to do this and say hello in our [Slack Channel](https://planktoscope.slack.com/), maybe someone is interested and would like to participate.
+For pricing of PlanktoScopes and PlanktoScope assembly kits from FairScope, refer to [the FairScope website](https://www.fairscope.com/). If you purchase all the parts to build a single PlanktoScope yourself, the cost of parts can be as low as USD 400 or USD 800 depending on the type of PlanktoScope you build.
 
-## Where do i get support or find the necessary tools to build PlantoScope?
+## Where do I get support or find the necessary tools to build PlanktoScope?
 
-To find the necessary tools and knowledge to produce the PlantoScope, consider visiting a [Fablab](https://fablabs.io/labs) or [Hackspaces](https://wiki.hackerspaces.org/List_of_Hacker_Spaces) in your region. These organizations often have a culture of openness and may be willing to support you with your project.
+To find the necessary tools and knowledge to produce the PlanktoScope, consider visiting a [Fablab](https://fablabs.io/labs) or [Hackspaces](https://wiki.hackerspaces.org/List_of_Hacker_Spaces) in your region. These organizations often have a culture of openness and may be willing to support you with your project.
 
 And if you have specific questions or problems, you can always report them in the [Slack Channel](https://planktoscope.slack.com/) and in the best case you will find someone there who can support you.
-
-## I am looking for an older version of the PlantoScope where the housing could still be manufactured with a laser cutter. Where can I find the corresponding design files?
-
-Even though the development is now focused on a more sustainable approach based on recycled wood, the design for the acrylic housing is still available on [Github](https://github.com/PlanktoScope/PlanktoScope/tree/acrylic_case).

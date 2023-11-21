@@ -60,11 +60,12 @@ LinkChecker = "^10.3.0"
 poethepoet = "^0.24.0"
 imgp = "^2.8"
 pillow = "10.0.1"
+mkdocs-git-revision-date-localized-plugin = "^1.2.1"
 
 [tool.poe.tasks]
-clean-hardware-assets = "rm -rf docs/hardware/assets/hardware"  # FIXME: this command probably won't work on Windows
-import-hardware-assets = "cp -r ../hardware docs/hardware/assets"  # FIXME: this command probably won't work on Windows
-import-repo-assets = "cp ../software/CHANGELOG.md docs/software/changelog.md"
+clean-hardware-assets = "rm -rf docs/assets/hardware"  # FIXME: this command probably won't work on Windows
+import-hardware-assets = "cp -r ../hardware docs/assets/hardware"  # FIXME: this command probably won't work on Windows
+import-repo-assets = "cp ../software/CHANGELOG.md docs/reference/software/changelog.md"
 import-external-assets = ["clean-hardware-assets", "import-hardware-assets", "import-repo-assets"]
 optimize-png-photos = "imgp --convert --optimize --quality 95 --recurse --overwrite docs/images/assembly_guide/*.png"
 optimize-widths = "imgp --res 1200x0 --optimize --quality 95 --recurse --overwrite docs/images"

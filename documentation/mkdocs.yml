@@ -1,57 +1,78 @@
 ---
-site_name: PlanktoScope
+site_name: PlanktoScope Documentation
 site_description: An open and affordable imaging platform for \
   citizen oceanography
-repo_name: PlanktoScope
 repo_url: https://github.com/PlanktoScope/PlanktoScope
+edit_uri: edit/master/documentation/docs/
 
 nav:
-  - Home: index.md
-  - Research: research.md
-  - Hardware:
-      - Manufacturing Guide: hardware/manufacturing.md
-      - Assembly Guide: hardware/assembly_guide.md
-      - Maintenance and Repair Guide: hardware/maintenance_repair.md
-      - Planktoscope HAT: hardware/hat_hardware.md
-      - Accessories: hardware/accessories.md
-  - Software:
-      - Standard Install: software/standard_install.md
-      - Expert Setup: software/expert_setup.md
-      - Create an SD Card Image: software/create_sd.md
-      - Update Devicetree: software/update_devicetree.md
-      - MQTT Messages: software/mqtt_messages.md
-      - Changelog: software/changelog.md
-  - Usage:
-      - Getting started: usage/getting_started.md
-      - User Interface: usage/ui_guide.md
-  - Contribute:
-      - Github Workflow: contribute/github_workflow.md
-      - Hardware Development: contribute/hardware_development.md
-      - Software Development: contribute/software_development.md
-      - Writing Documentation: contribute/writing_documentation.md
+  - Home:
+    - index.md
+    - Frequently Asked Questions: faq.md
+  - Setup:
+    - setup/index.md
+    - Hardware:
+      - setup/hardware/index.md
+      - v2.5:
+        - setup/hardware/v2.5/index.md
+        - Kit Production: setup/hardware/v2.5/kit/index.md
+        - Assembly: setup/hardware/v2.5/assembly/index.md
+      - v2.1:
+        - setup/hardware/v2.1/index.md
+    - Software:
+      - setup/software/index.md
+      - Standard Installation: setup/software/standard-install.md
+      - Non-Standard Installation: setup/software/nonstandard-install.md
+      - Post-Installation Configuration: setup/software/config.md
+      # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+      # - Create an SD Card Image: software/create-sd.md
+  - Operation:
+    - operation/index.md
+    # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+    # - Sample Collection: operation/sample-collection.md
+    - User Interface: operation/user-interface.md
+    - Maintenance: operation/maintenance.md
+  - Troubleshooting:
+    - troubleshooting/index.md
   - Community:
-      - Getting in touch: community/getting_in_touch.md
-      - User Groups: community/usergroups.md
-      - Trainings: community/trainings.md
-      - Code of Conduct: community/code_of_conduct.md
-  - FAQ: faq.md
-  - License: license.md
+    - community/index.md
+    - Contribute:
+      - Github: community/contribute/github.md
+      - Hardware: community/contribute/hardware.md
+      - Software: community/contribute/software.md
+      - Documentation: community/contribute/documentation.md
+    # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+    # - Trainings: community/trainings.md
+    - Code of Conduct: community/code-of-conduct.md
+    - License: community/license.md
+  - Technical Reference:
+    - reference/index.md
+    - Hardware:
+      - Planktoscope HAT: reference/hardware/hat.md
+      - Changelog: reference/hardware/changelog.md
+    - Software:
+      # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+      # - MQTT Messages: reference/software/mqtt-api.md
+      - Changelog: reference/software/changelog.md
 
 theme:
   logo: images/logos/planktoscope_white.png
   favicon: images/logos/planktoscope_lavender.png
+  icon:
+      repo: fontawesome/brands/github
   language: en
   name: material
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Atkinson Hyperlegible
+    code: Oxygen Mono
   features:
-    - content.code.annotate
-    - navigation.sections
-    - navigation.expand
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.instant
+    - navigation.instant.progress
+    - navigation.indexes
+    - toc.follow
+    - content.action.edit
+    - content.code.annotate
+    - content.code.copy
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -69,9 +90,15 @@ theme:
         name: Switch to dark mode
 
 plugins:
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      strict: false
   - glightbox
   - minify:
       minify_html: true
+  # FIXME: enable the offline plugin for offline site builds
+  # FIXME: enable the social plugin for online site builds
+  - search
 
 markdown_extensions:
   - admonition
@@ -79,13 +106,22 @@ markdown_extensions:
   - md_in_html
   - tables
   - toc:
-      permalink: true
+      permalink: "🔗"
+      toc_depth: 3
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -96,18 +132,14 @@ markdown_extensions:
       custom_checkbox: true
 
 extra:
-  homepage: https://www.planktoscope.org/
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/PlanktoScope
     - icon: fontawesome/brands/slack
       link: https://planktoscope.slack.com
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/ThibautPollina
-  generator: false
 
 extra_css:
   - stylesheets/extra.css
 
 copyright: >
-  Copyright &copy; 2023
+  Copyright PlanktoScope project contributors
