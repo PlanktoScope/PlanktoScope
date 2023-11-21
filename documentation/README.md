@@ -24,10 +24,11 @@ We use [Poetry](https://python-poetry.org/) to manage the installation and versi
 
 Once you have Python, we recommend installing Poetry [using pipx](https://python-poetry.org/docs/#installing-with-pipx), as that is the easiest way to install Poetry. Please follow the instructions at https://pypa.github.io/pipx/installation/ to install pipx. Then run `pipx install poetry` in your terminal to install Poetry.
 
-Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install --with docs`. For example (using our example path):
+Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install --no-root --with docs`. For example (using our example path):
+
 ```
 cd /some/path/here/PlanktoScope/documentation
-poetry install --with docs
+poetry install --no-root --with docs
 ```
 
 #### Making changes
@@ -37,6 +38,7 @@ To make changes, directly edit the files in the `docs` subdirectory using a text
 #### Live-previewing changes
 
 Usually, you should edit the documentation sources (in `/some/path/here/PlanktoScope/documentation/docs`) while running a live preview of the documentation site. You can start the live preview server in your terminal using the following commands:
+
 ```
 cd /some/path/here/PlanktoScope/documentation
 poetry run poe import-external-assets
@@ -48,6 +50,7 @@ Then you can open the documentation website in your web browser at http://localh
 #### Checking for errors
 
 While changing the documentation source files, you should regularly check the documentation for errors. We provide some tools to help automate this process. You can run these tools in your terminal using the following commands:
+
 ```
 cd /some/path/here/PlanktoScope/documentation
 poetry run poe check
@@ -56,6 +59,7 @@ poetry run poe check
 #### Locally building the documentation website
 
 Usually you will not need to manually build a local copy of the documentation website, because we automate the process on GitHub as part of the process of deploying our documentation to a website on the internet. However, you can build a local copy of the documentation website using the following commands:
+
 ```
 cd /some/path/here/PlanktoScope/documentation
 poetry run poe import-external-assets
@@ -63,6 +67,7 @@ poetry run poe build
 ```
 
 If you really don't want to change your current working directory to `/some/path/here/PlanktoScope/documentation`, you can instead run the following command:
+
 ```
 poetry -C /some/path/here/PlanktoScope/documentation/ run poe --root /some/path/here/PlanktoScope/documentation/ build
 ```
