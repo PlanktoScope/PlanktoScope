@@ -35,7 +35,7 @@ python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Download device-backend monorepo
-backend_version="0c43679de9c8709f66b554c62cc6094c865a4d37" # this should be either a version tag, branch name, or commit hash
+backend_version="767d369" # this should be either a version tag, branch name, or commit hash
 git clone https://github.com/PlanktoScope/device-backend $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
