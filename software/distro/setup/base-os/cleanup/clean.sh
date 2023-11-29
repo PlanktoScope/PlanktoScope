@@ -6,5 +6,5 @@ sudo apt-get autoremove -y
 sudo apt-get clean -y
 
 # Remove history files
-rm -f /home/pi/.bash_history
+rm -f $HOME/.bash_history
 history -c && history -w

@@ -54,8 +54,8 @@ sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 # Set up interface forwarding
 file="/etc/sysctl.d/routed-ap.conf"
 sudo cp "$config_files_root$file" "$file"
-mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/enable-interface-forwarding.sh"
+mkdir -p $HOME/.local/bin
+file="$HOME/.local/bin/enable-interface-forwarding.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/enable-interface-forwarding.service"
 sudo cp "$config_files_root$file" "$file"
@@ -68,5 +68,5 @@ sudo systemctl enable autohotspot.service
 file="/etc/systemd/system/autohotspot.timer"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable autohotspot.timer
-file="/home/pi/.local/bin/autohotspot.sh"
+file="$HOME/.local/bin/autohotspot.sh"
 cp "$config_files_root$file" "$file"

@@ -24,25 +24,25 @@ sudo sed -i "s~^ssid=.*$~$(awk '{printf "%s\\n", $0}' $file)ssid=pkscope~g" /etc
 # Download tool to generate machine names based on serial numbers
 machinename_version="0.1.3"
 curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_arm.tar.gz" \
-  | tar -xz -C /home/pi/.local/bin/ machine-name
+  | tar -xz -C $HOME/.local/bin/ machine-name
 
 # Automatically generate the machine name and write it to a file upon boot
-mkdir -p /home/pi/.local/etc
-file="/home/pi/.local/etc/machine-name"
+mkdir -p $HOME/.local/etc
+file="$HOME/.local/etc/machine-name"
 cp "$config_files_root$file" "$file"
-mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/update-machine-name.sh"
+mkdir -p $HOME/.local/bin
+file="$HOME/.local/bin/update-machine-name.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-machine-name.service
 
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
-mkdir -p /home/pi/.local/etc/hostapd
-file="/home/pi/.local/etc/hostapd/ssid.snippet"
+mkdir -p $HOME/.local/etc/hostapd
+file="$HOME/.local/etc/hostapd/ssid.snippet"
 cp "$config_files_root$file" "$file"
-mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/update-ssid-machine-name.sh"
+mkdir -p $HOME/.local/bin
+file="$HOME/.local/bin/update-ssid-machine-name.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-ssid-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
@@ -53,13 +53,13 @@ file="/etc/cockpit/cockpit.conf"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 
 # Automatically update the Cockpit origins upon boot with the machine name
-mkdir -p /home/pi/.local/etc/cockpit
-file="/home/pi/.local/etc/cockpit/origins-base.snippet"
+mkdir -p $HOME/.local/etc/cockpit
+file="$HOME/.local/etc/cockpit/origins-base.snippet"
 cp "$config_files_root$file" "$file"
-file="/home/pi/.local/etc/cockpit/origins-machine-name.snippet"
+file="$HOME/.local/etc/cockpit/origins-machine-name.snippet"
 cp "$config_files_root$file" "$file"
-mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/update-cockpit-origins-machine-name.sh"
+mkdir -p $HOME/.local/bin
+file="$HOME/.local/bin/update-cockpit-origins-machine-name.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-cockpit-origins-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
@@ -68,22 +68,22 @@ sudo systemctl enable planktoscope-org.update-cockpit-origins-machine-name.servi
 # Change dnsmasq settings
 file="/etc/dnsmasq.d/planktoscope.conf"
 sudo cp "$config_files_root$file" "$file"
-mkdir -p /home/pi/.local/etc
-file="/home/pi/.local/etc/hosts-autogen-warning.snippet"
+mkdir -p $HOME/.local/etc
+file="$HOME/.local/etc/hosts-autogen-warning.snippet"
 cp "$config_files_root$file" "$file"
-file="/home/pi/.local/etc/hosts-base.snippet"
+file="$HOME/.local/etc/hosts-base.snippet"
 cp "$config_files_root$file" "$file"
-cp "/home/pi/.local/etc/hosts-autogen-warning.snippet" \
-  "/home/pi/.local/etc/hosts"
-cat "/home/pi/.local/etc/hosts-base.snippet" \
-  >> "/home/pi/.local/etc/hosts"
+cp "$HOME/.local/etc/hosts-autogen-warning.snippet" \
+  "$HOME/.local/etc/hosts"
+cat "$HOME/.local/etc/hosts-base.snippet" \
+  >> "$HOME/.local/etc/hosts"
 
 # Automatically update hostnames upon boot with the machine name
-mkdir -p /home/pi/.local/etc
-file="/home/pi/.local/etc/hosts-machine-name.snippet"
+mkdir -p $HOME/.local/etc
+file="$HOME/.local/etc/hosts-machine-name.snippet"
 cp "$config_files_root$file" "$file"
-mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/update-hosts-machine-name.sh"
+mkdir -p $HOME/.local/bin
+file="$HOME/.local/bin/update-hosts-machine-name.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-hosts-machine-name.service"
 sudo cp "$config_files_root$file" "$file"

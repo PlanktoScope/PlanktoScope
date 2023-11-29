@@ -11,6 +11,6 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.init-gpio-steppers.service
 
 # Add shell script for initializing stepper motors
-mkdir -p /home/pi/.local/bin
-file="/home/pi/.local/bin/release-gpio-steppers.sh"
+mkdir -p $HOME/.local/bin
+file="$HOME/.local/bin/release-gpio-steppers.sh"
 cp "$config_files_root$file" "$file"

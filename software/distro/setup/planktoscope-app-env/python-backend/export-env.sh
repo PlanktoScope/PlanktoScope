@@ -1,2 +1,2 @@
 #!/bin/bash -eux
-export PATH="/home/pi/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

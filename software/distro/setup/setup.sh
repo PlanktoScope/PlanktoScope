@@ -2,9 +2,8 @@
 # The software distro is the complete, finished, fully-function operating system
 # for the PlanktoScope. The resulting image can be flashed to an SD card, inserted
 # into a PlanktoScope, and booted up to make the PlanktoScope fully operational.
-# This setup script assumes that the PlanktoScope Git repository has been
-# downloaded to /home/pi/Planktoscope.
-# TODO: don't assume that there is a PlanktoScope Git repo at /home/pi/PlanktoScope
+# Note: currently the setup script assumes that it will be installed to /home/pi
+# for the `pi` user.
 
 # Determine the base path for sub-scripts
 
