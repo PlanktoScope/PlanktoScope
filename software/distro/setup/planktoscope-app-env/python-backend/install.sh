@@ -48,7 +48,7 @@ sudo cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-pscopehat.service"
 sudo cp "$config_files_root$file" "$file"
 # FIXME: make this directory in the main.py file
-sudo mkdir -p $HOME/PlanktoScope/device-backend-logs/control
+mkdir -p $HOME/PlanktoScope/device-backend-logs/control
 
 # Select the enabled hardware controller
 sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
@@ -74,4 +74,4 @@ file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.s
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.device-backend.processing.segmenter.service
 # FIXME: make this directory in the main.py file
-sudo mkdir -p $HOME/PlanktoScope/device-backend-logs/processing/segmenter
+mkdir -p $HOME/PlanktoScope/device-backend-logs/processing/segmenter
