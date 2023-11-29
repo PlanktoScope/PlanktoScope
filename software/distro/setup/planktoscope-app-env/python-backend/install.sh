@@ -32,7 +32,7 @@ python3 -m pip install --user pipx==1.2.0
 python3 -m pipx ensurepath
 
 # Download device-backend monorepo
-backend_version="767d369" # this should be either a version tag, branch name, or commit hash
+backend_version="522eac5" # this should be either a version tag, branch name, or commit hash
 git clone https://github.com/PlanktoScope/device-backend $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
@@ -45,7 +45,7 @@ sudo cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-pscopehat.service"
 sudo cp "$config_files_root$file" "$file"
 # FIXME: make this directory in the main.py file
-mkdir -p $HOME/PlanktoScope/device-backend-logs/control
+mkdir -p $HOME/device-backend-logs/control
 
 # Select the enabled hardware controller
 sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
@@ -71,4 +71,4 @@ file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.s
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.device-backend.processing.segmenter.service
 # FIXME: make this directory in the main.py file
-mkdir -p $HOME/PlanktoScope/device-backend-logs/processing/segmenter
+mkdir -p $HOME/device-backend-logs/processing/segmenter
