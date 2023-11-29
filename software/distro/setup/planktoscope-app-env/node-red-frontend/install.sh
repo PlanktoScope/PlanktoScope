@@ -55,6 +55,6 @@ directory="software/node-red-dashboard/flows"
 cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 
 # Install dependencies in a way that makes them available to Node-RED
-cp $repo_root/PlanktoScope/software/node-red-dashboard/package.json $HOME/.node-red/
-cp $repo_root/PlanktoScope/software/node-red-dashboard/package-lock.json $HOME/.node-red/
+cp $repo_root/software/node-red-dashboard/package.json $HOME/.node-red/
+cp $repo_root/software/node-red-dashboard/package-lock.json $HOME/.node-red/
 npm --prefix $HOME/.node-red update
