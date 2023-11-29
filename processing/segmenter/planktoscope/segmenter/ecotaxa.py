@@ -19,8 +19,8 @@
 from loguru import logger
 
 
+import numpy
 import pandas
-import morphocut.contrib.ecotaxa
 import zipfile
 import os
 import io
@@ -202,6 +202,21 @@ The metadata and data for each image is organised in various levels (image, obje
 """
 
 
+def dtype_to_ecotaxa(dtype):
+    """Determines the EcoTaxa header field type annotation for the dtype"""
+    # Note: this code was copied from the MIT-licensed MorphoCut library at
+    # https://github.com/morphocut/morphocut/blob/0.1.2/src/morphocut/contrib/ecotaxa.py .
+    # The MorphoCut library is copyright 2019 Simon-Martin Schroeder and others.
+    try:
+        if numpy.issubdtype(dtype, numpy.number):
+            return "[f]"
+    except TypeError:  # pragma: no cover
+        print(type(dtype))
+        raise
+
+    return "[t]"
+
+
 def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False):
     """Generates the archive compatible with an export to ecotaxa
 
@@ -250,7 +265,7 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
         tsv_content = pandas.DataFrame(tsv_content)
 
         tsv_type_header = [
-            morphocut.contrib.ecotaxa.dtype_to_ecotaxa(dt) for dt in tsv_content.dtypes
+            dtype_to_ecotaxa(dt) for dt in tsv_content.dtypes
         ]
         tsv_content.columns = pandas.MultiIndex.from_tuples(
             list(zip(tsv_content.columns, tsv_type_header))

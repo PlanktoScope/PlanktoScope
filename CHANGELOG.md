@@ -8,6 +8,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Removed
+
+- Morphocut is no longer required by the segmenter as a Python package dependency.
+
 ## v2023.9.0-beta.1 - 2023-09-14
 
 ### Changed
