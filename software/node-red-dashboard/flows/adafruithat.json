@@ -8325,7 +8325,7 @@
         "y": 560,
         "wires": [
             [
-                "bdc6718a.dd5d48"
+                "950b773ad4c0fdfe"
             ]
         ]
     },
@@ -8356,8 +8356,13 @@
         "height": 0,
         "name": "",
         "label": "Instrument Type",
-        "format": "{{msg.payload.acq_instrument}}",
+        "format": "{{msg.payload}}",
         "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 600,
         "y": 560,
         "wires": []
@@ -8374,6 +8379,11 @@
         "label": "Instrument Name",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 610,
         "y": 600,
         "wires": []
@@ -9376,6 +9386,40 @@
             [
                 "a400a97e.e333a8",
                 "4828d2f4.7c712c"
+            ]
+        ]
+    },
+    {
+        "id": "950b773ad4c0fdfe",
+        "type": "change",
+        "z": "1371dec5.76e671",
+        "name": "Get acq_instrument",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.acq_instrument",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "acq_intrument",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 560,
+        "wires": [
+            [
+                "bdc6718a.dd5d48"
             ]
         ]
     },
