@@ -1,22 +1,53 @@
 # Operation
 
-Congratulations! You have a PlanktoScope, now is the time to test it and learn how to use it!
+This page provides basic instructions for operating your PlanktoScope.
 
 ![getting started](../images/getting_started/BWS01556.JPG)
 
-## How to connect to and control the machine
+## Connect directly to your PlanktoScope
 
-On powering up, your PlanktoScope will create its own isolated WiFi network. It should appear on the list of available wifi networks about two minutes after the first startup.
-![network list](../images/getting_started/wifi.webp)
+In order to operate your PlanktoScope, you will need to connect to your PlanktoScope from a separate device (a computer, tablet, or phone) with a web browser. If this is your first time setting up or connecting to your PlanktoScope, you will need to set up a direct network connection between your computer and your PlanktoScope.
 
-As you can see, its name will be similar to `PlanktoScope-Baba*****_*****`. This name is unique to your machine and is linked to the serial number of the Raspberry CPU. You can connect to this network now.
+### Connect with an Ethernet cable
 
-Once connected, you will not have acces to the Internet, only to the PlanktoScope interface. You can access the page at [http://planktoscope.local:1880/ui](http://planktoscope.local:1880/ui) from your favorite web browser.
+You can connect your computer to the PlanktoScope by plugging an Ethernet cable between your computer and your PlanktoScope's Raspberry Pi.
+
+### Connect with the PlanktoScope's isolated Wi-Fi network
+
+Unless you have already configured your PlanktoScope to connect to an existing Wi-Fi network, your PlanktoScope will create its own isolated Wi-Fi network (like a Wi-Fi hotspot, but without internet access). The Wi-Fi network created by your PlanktoScope should appear on your computer's list of available Wi-Fi networks a few minutes after you turn on power to your PlanktoScope.
+
+![wifi-network.png](images/wifi-network.png)
+
+As you can see, the name of your PlanktoScope's Wi-Fi network will be of the format `pkscope-{random word}-{random word}-{random number}`. This name corresponds exactly to the serial number of the Raspberry Pi computer in your PlanktoScope, so it is a unique Wi-Fi network name; and the unique name of your machine has format `{random-word}-{random-word}-{random number}`, which is just the name of the Wi-Fi network but without the `pkscope-` prefix (e.g. `chain-list-27764`). You should connect to the Wi-Fi network specific to your PlanktoScope.
+
+### Access your PlanktoScope's software
+
+Once you connect your computer to your PlanktoScope, you will need to access your PlanktoScope's software from a web browser on your computer. You should try opening the following URLs in your web browser (try opening them in the following order, and just use the first one which works):
+
+- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
+- <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
+- <http://192.168.4.1> (this should always work)
+- <http://192.168.5.1> (this should always work)
 
 !!! tip
-You are able to configure your machine to connect to another network if you want in the [Wifi settings page](user-interface.md#wifi). If you do this, your machine will be accessible to anybody connected to this network. Please keep in mind your organisation security policies before doing this.
 
-From there, you can have a look at the [UI guide](user-interface.md) to get a handle on how it works.
+    If you know the machine name of your PlanktoScope (which has format `{random-word}-{random-word}-{random number}`, e.g. `chain-list-27764`, you can also try the following URLs after replacing `{machine-name}` with the actual machine name of your PlanktoScope:
+    
+    `http://{machine-name}.pkscope` (this should work unless your web browser is configured to use a Private DNS provider)
+    
+    `http://pkscope-{machine-name}.local` (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
+    
+    You will need to use a URL with your PlanktoScope's machine name if your computer has network connections to multiple PlanktoScopes, e.g. via multiple Ethernet cables. In such a situation, using <http://home.pkscope> or <http://pkscope.local> may cause you to access the software for a different PlanktoScope connected to your computer than the one you had intended to access.
+
+!!! warning
+
+    You may encounter older documents which ask you to connect to <http://planktoscope.local:1880/ui>, which is the URL to use for software version 2.3 and even older versions. That link does not work on software versions newer than v2.3; instead, you should use the links listed above.
+
+One of the above URLs should work, and your web browser should show a landing page with a list of links:
+
+![landing-page.png](images/landing-page.png)
+
+You should click on the "Node-RED dashboard" link; this will open a new tab with the primary interface for operating your PlanktoScope. Once you have opened the Node-RED dashboard, you should proceed to our [User interface guide](user-interface.md) to understand how to use it.
 
 ## How to image plankton
 
