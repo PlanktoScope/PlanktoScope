@@ -10,8 +10,8 @@
 
 ### Manufacturing files
 
-| Files                                                               | Description                              |
-| ------------------------------------------------------------------- | ---------------------------------------- |
+| Files                                                                                | Description                              |
+| ------------------------------------------------------------------------------------ | ---------------------------------------- |
 | [PlanktoScope-Case.dxf](../../../../assets/hardware/v2.5/case/PlanktoScope-Case.dxf) | PlanktoScope Case export for CNC Milling |
 
 ### Tools
@@ -67,16 +67,16 @@ We use Rubio Monocoat Plus as a finishing product for Valchromat.
 Here is a step-by-step guide on how to configure the feed rate and the diameter of the end mill of a CNC milling machine for the production of a workpiece, using the specified tools and configuration:
 
 1. Select the appropriate end mill: The end mill should be selected based on the material and shape of the workpiece, as well as the desired level of precision. For this specific production, the following end mills will be used:
-
-   - 6mm end mill for straight flats
-   - 2mm end mill for inner contours
-   - 1mm end mill for small holes
+   
+    - 6mm end mill for straight flats
+    - 2mm end mill for inner contours
+    - 1mm end mill for small holes
 
 2. Determine the feed rate: The feed rate is the speed at which the end mill moves along the surface of the workpiece and is usually measured in millimeters per minute (mm/m). The appropriate feed rate will depend on the diameter of the end mill and the material and thickness of the workpiece. For this specific production, the following feed rates will be used:
-
-   - 1500mm/min for 1-2mm end mills
-   - 2500mm/min for 3mm end mills
-   - 3500mm/min for 6mm end mills
+   
+    - 1500mm/min for 1-2mm end mills
+    - 2500mm/min for 3mm end mills
+    - 3500mm/min for 6mm end mills
 
 3. Load the end mill: Once the appropriate end mill has been selected, it can be loaded onto the spindle of the CNC milling machine.
 
@@ -85,10 +85,10 @@ Here is a step-by-step guide on how to configure the feed rate and the diameter 
 5. Set the machine parameters: The feed rate and end mill diameter should be entered into the machine's control panel or included in the machining program.
 
 6. Begin machining: The machining process should be carried out in the following sequence:
-
-   - Mill the screw holes with a 2mm end mill and then with a 3mm end mill
-   - Mill the corners with a 2mm end mill
-   - Mill everything else with a 3mm end mill
+   
+    - Mill the screw holes with a 2mm end mill and then with a 3mm end mill
+    - Mill the corners with a 2mm end mill
+    - Mill everything else with a 3mm end mill
 
 By following these steps, you can properly configure the feed rate and the diameter of the end mill of a CNC milling machine for the production of a workpiece. It is important to follow the manufacturer's recommendations and guidelines for the specific CNC milling machine being used, as well as to use proper safety measures while operating the machine.
 
@@ -181,8 +181,8 @@ There are two main types of electronic components that can be mounted onto a PCB
 
 ### Manufacturing files
 
-| Files                                                                                         | Description                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| Files                                                                                                          | Description                                   |
+| -------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | [Planktoscope-Hat-gerbers.zip](../../../../assets/hardware/v2.5/hat/Planktoscope-Hat-gerbers.zip)              | The exported Gerber files for PCB fabrication |
 | [Planktoscope-Hat-bom.csv](../../../../assets/hardware/v2.5/hat/assembly/Planktoscope-Hat-bom.csv)             | The list of used SMD components               |
 | [Planktoscope-Hat.pdf](../../../../assets/hardware/v2.5/hat/assembly/Planktoscope-Hat.pdf)                     | The SMD assembly footprints                   |
@@ -335,8 +335,8 @@ To ensure the quality of the produced PCB, request data validation from the cust
 
 ##### Thru-Hole parts
 
-| Files                                                                                                       | Description                     |
-| ----------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| Files                                                                                                                        | Description                     |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | [Planktoscope-Hat-bom-through-hole.csv](../../../../assets/hardware/v2.5/hat/assembly/Planktoscope-Hat-bom-through-hole.csv) | The list of used SMD components |
 
 !!! warning
@@ -581,6 +581,4 @@ Now insert the foam edge in to the case and glue it to the outer wall.
 
 <!-- ![all kit parts](images/XXXXX.jpg) -->
 
-Now divide all the components for a kit and pack it in the hard case.
-
----
+Now divide all the components for the kit, and pack it in the hard case. You can find the full list of components for the kit in the v2.5 hardware [BOM (Bill of Materials)](../../../../assets/hardware/v2.5/bom.csv). However, this BOM does not include ordering links, since such links will need to be different for each country. If you've customized the v2.5 hardware BOM for your own v2.5 PlanktoScope kit (e.g. by finding and adding part ordering links from suppliers in your country for each component), please share your custom BOM to our GitHub Discussions thread for [v2.5 Localized Hardware BOMs](https://github.com/PlanktoScope/PlanktoScope/discussions/297), so that other members of our community can learn from your work!

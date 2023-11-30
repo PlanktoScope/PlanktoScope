@@ -29,7 +29,7 @@ It is important to ensure that you have all of the necessary components before b
 | **X4**  | Raspberry PI HQ Camera Modul       |
 | **X5**  | Sandpaper                          |
 
-If any bags are missing, please go back to the BOM (Bill of Materials) and reorder the required components.
+If any bags are missing, please go back to the [BOM (Bill of Materials)](../../../../assets/hardware/v2.5/bom.csv) and reorder the required components.
 
 ## About this document
 
