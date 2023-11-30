@@ -1,7 +1,7 @@
 ---
 name: Proposal
 about: A significant change to the project's software, hardware, processes, etc.
-title: ''
+title: 'proposal: [A short title for the proposal]'
 labels: proposal
 assignees: ''
 
