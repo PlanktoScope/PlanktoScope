@@ -58,6 +58,7 @@ jobs:
           images: ghcr.io/planktoscope/project-docs
           tags: |
             type=match,pattern=documentation/v(.*),group=1
+            type=ref,event=pr
             type=edge,branch=master
             type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
