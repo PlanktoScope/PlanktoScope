@@ -58,9 +58,9 @@ jobs:
           images: ghcr.io/planktoscope/project-docs
           tags: |
             type=match,pattern=documentation/v(.*),group=1
-            type=ref,event=pr
             type=edge,branch=master
             type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
+            type=ref,event=pr
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
             type=sha
 
@@ -83,7 +83,7 @@ jobs:
         with:
           context: ./documentation
           pull: true
-          push: ${{ github.event_name == 'push' || github.event_name == 'push tag' }}
+          push: ${{ github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag' }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -135,11 +135,12 @@ jobs:
         with:
           images: ghcr.io/planktoscope/project-docs
           flavor: |
-            prefix=minimal-
+            suffix=-minimal
           tags: |
             type=match,pattern=documentation/v(.*),group=1
             type=edge,branch=master
             type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
+            type=ref,event=pr
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
             type=sha
 
