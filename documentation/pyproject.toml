@@ -86,8 +86,7 @@ remove-nav-exclusions = "sed -i 's~^.* # poe(make-minimal): exclude$~~' mkdocs.y
 make-minimal = [
   "remove-hardware-setup-guides",
   "replace-hardware-setup-index",
-  "remove-hardware-setup-nav-headers",
-  "remove-hardware-setup-nav",
+  "remove-nav-exclusions",
 ]
 
 # Documentation checking
