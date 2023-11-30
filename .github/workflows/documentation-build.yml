@@ -8,15 +8,14 @@ on:
       - 'edge'
       - 'beta'
       - 'stable'
+    tags:
+      - 'documentation/v*'
+  pull_request:
     paths:
       - 'documentation/**'
       - 'hardware/**'
       - 'software/CHANGELOG.md'
       - '.github/workflows/documentation-build.yml'
-    tags:
-      - 'documentation/v*'
-  pull_request:
-  pull_request_review:
   merge_group:
   workflow_dispatch:
     inputs:
