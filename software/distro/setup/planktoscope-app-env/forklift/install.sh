@@ -8,16 +8,18 @@ forklift_version="0.4.0"
 pallet_version="3d864b"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
-  | tar -C /home/pi/.local/bin -xz forklift
-/home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
-/home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-repo
+  | tar -C $HOME/.local/bin -xz forklift
+forklift="$HOME/.local/bin/forklift"
+workspace="$HOME/.forklift"
+$forklift --workspace $workspace plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
+$forklift --workspace $workspace plt cache-repo
 # Note: cache-img downloads images even for disabled package deployments. We skip it to save disk
 # space (because the node-red container image used by a test package is >100 MB, even though we
 # don't need it yet), we don't yet have any packages in the pallet which someone might want to
 # enable, and because we're running plt apply anyways - that command will download images as needed
 # for each (enabled) package deployment.
-# sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt cache-img
-sudo -E /home/pi/.local/bin/forklift --workspace /home/pi/.forklift plt apply
+# sudo -E $forklift --workspace $workspace plt cache-img
+sudo -E $forklift --workspace $workspace plt apply
 # Note: we apply the pallet immediately so that the first boot of the image won't be excessively
 # slow (due to Docker Compose needing to create all the services from scratch rather than simply
 # starting them).

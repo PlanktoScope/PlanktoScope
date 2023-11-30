@@ -3,6 +3,8 @@
 
 # Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
+distro_setup_files_root=$(dirname $(dirname $config_files_root))
+repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 
 # Get command-line args
 hardware_type="$1" # should be either adafruithat or pscopehat
@@ -21,7 +23,7 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
   | bash -s - --confirm-install --confirm-pi --no-init
 
 # Create a settings file to run Node-RED
-file="/home/pi/.node-red/settings.js"
+file="$HOME/.node-red/settings.js"
 cp "$config_files_root$file" "$file"
 sudo chown 0:0 "$file"
 
@@ -36,12 +38,23 @@ sudo systemctl daemon-reload
 sudo systemctl enable nodered.service
 
 # Select the enabled dashboard
-cp "/home/pi/PlanktoScope/software/node-red-dashboard/flows/$hardware_type.json" \
-  /home/pi/.node-red/flows.json
-cp "/home/pi/PlanktoScope/software/node-red-dashboard/default-configs/$hardware_type-latest.config.json" \
-  /home/pi/PlanktoScope/config.json
+cp "$repo_root/software/node-red-dashboard/flows/$hardware_type.json" \
+  $HOME/.node-red/flows.json
+cp "$repo_root/software/node-red-dashboard/default-configs/$hardware_type-latest.config.json" \
+  $HOME/PlanktoScope/config.json
+
+# Copy required dependencies with hard-coded paths in the Node-RED dashboard
+# TODO: get rid of this when we move the Node-RED dashboard out to its own repository
+mkdir -p $HOME/PlanktoScope/scripts
+directory="scripts/bash"
+cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
+mkdir -p $HOME/PlanktoScope/software/node-red-dashboard
+directory="software/node-red-dashboard/default-configs"
+cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
+directory="software/node-red-dashboard/flows"
+cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 
 # Install dependencies in a way that makes them available to Node-RED
-cp /home/pi/PlanktoScope/software/node-red-dashboard/package.json /home/pi/.node-red/
-cp /home/pi/PlanktoScope/software/node-red-dashboard/package-lock.json /home/pi/.node-red/
-npm --prefix /home/pi/.node-red update
+cp $repo_root/software/node-red-dashboard/package.json $HOME/.node-red/
+cp $repo_root/software/node-red-dashboard/package-lock.json $HOME/.node-red/
+npm --prefix $HOME/.node-red update
