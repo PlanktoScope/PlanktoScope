@@ -80,9 +80,15 @@ build = "mkdocs build --clean --strict"
 # Minimal builds
 remove-hardware-setup-guides = "rm -rf docs/setup/hardware/v*"
 replace-hardware-setup-index = "mv docs/setup/hardware/index-noguides.md docs/setup/hardware/index.md"
+remove-nav-exclusions = "sed -i 's~^.* # poe(make-minimal): exclude$~~' mkdocs.yml"
 # Warning: this command should be run in GitHub Actions, but not on a developer computer! This is 
 # because it will delete files, and those deletions should never be committed to GitHub.
-make-minimal = ["remove-hardware-setup-guides", "replace-hardware-setup-index"]
+make-minimal = [
+  "remove-hardware-setup-guides",
+  "replace-hardware-setup-index",
+  "remove-hardware-setup-nav-headers",
+  "remove-hardware-setup-nav",
+]
 
 # Documentation checking
 build-check = "mkdocs build --clean --strict --no-directory-urls"
