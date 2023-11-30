@@ -8,6 +8,11 @@ on:
       - 'edge'
       - 'beta'
       - 'stable'
+    paths:
+      - 'documentation/**'
+      - 'hardware/**'
+      - 'software/CHANGELOG.md'
+      - '.github/workflows/documentation-build.yml'
     tags:
       - 'documentation/v*'
   pull_request:
