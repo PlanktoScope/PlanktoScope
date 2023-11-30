@@ -62,15 +62,29 @@ pillow = "10.0.1"
 mkdocs-git-revision-date-localized-plugin = "^1.2.1"
 
 [tool.poe.tasks]
+# Assets from outside the documentation directory
 clean-hardware-assets = "rm -rf docs/assets/hardware"  # FIXME: this command probably won't work on Windows
 import-hardware-assets = "cp -r ../hardware docs/assets/hardware"  # FIXME: this command probably won't work on Windows
 import-repo-assets = "cp ../software/CHANGELOG.md docs/reference/software/changelog.md"
 import-external-assets = ["clean-hardware-assets", "import-hardware-assets", "import-repo-assets"]
+
+# Image optimization
 optimize-png-photos = "imgp --convert --optimize --quality 95 --recurse --overwrite docs/images/assembly_guide/*.png"
 optimize-widths = "imgp --res 1200x0 --optimize --quality 95 --recurse --overwrite docs/images"
 optimize-compression = "imgp --eraseexif --optimize --progressive --quality 85 --recurse --overwrite docs/images"
+
+# Previews and standard builds
 preview = "mkdocs serve --dev-addr localhost:8000"
 build = "mkdocs build --clean --strict"
+
+# Minimal builds
+remove-hardware-setup-guides = "rm -rf docs/setup/hardware/v*"
+replace-hardware-setup-index = "mv docs/setup/hardware/index-noguides.md docs/setup/hardware/index.md"
+# Warning: this command should be run in GitHub Actions, but not on a developer computer! This is 
+# because it will delete files, and those deletions should never be committed to GitHub.
+make-minimal = ["remove-hardware-setup-guides", "replace-hardware-setup-index"]
+
+# Documentation checking
 build-check = "mkdocs build --clean --strict --no-directory-urls"
 check-links = "linkchecker --config .linkcheckerrc site"
 check = ["build-check", "check-links"]

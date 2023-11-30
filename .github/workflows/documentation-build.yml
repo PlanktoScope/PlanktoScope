@@ -93,3 +93,82 @@ jobs:
         with:
           name: documentation-website
           path: documentation/site
+
+  build-minimal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build minimal documentation website (without hardware setup guides, to save space)
+      - name: Install poetry
+        run: pipx install poetry==1.5.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'poetry'
+          cache-dependency-path: |
+            documentation/poetry.lock
+
+      - name: Install build dependencies
+        run: |
+          poetry -C ./documentation/ install --with docs
+
+      - name: Import external assets
+        run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
+
+      - name: Make documentation minimal
+        run: poetry -C ./documentation/ run poe --root ./documentation/ make-minimal
+
+      - name: Check documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ check
+
+      - name: Build documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+
+      # Build and publish Docker container image
+      - name: Get Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/planktoscope/project-docs
+          flavor: |
+            prefix=minimal-
+          tags: |
+            type=match,pattern=documentation/v(.*),group=1
+            type=edge,branch=master
+            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
+            type=sha
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        if: github.event_name == 'push' || github.event_name == 'push tag'
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./documentation
+          pull: true
+          push: ${{ github.event_name == 'push' || github.event_name == 'push tag' }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      # Upload documentation website as archive
+      - name: Upload website archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation-website-minimal
+          path: documentation/site
