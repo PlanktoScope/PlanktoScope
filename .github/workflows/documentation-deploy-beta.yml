@@ -5,7 +5,6 @@ on:
     branches:
       - 'beta'
       - 'documentation/beta'
-      - 'feature/docs-beta-deploy' # FIXME: remove this, it's only here for testing
   workflow_dispatch:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
