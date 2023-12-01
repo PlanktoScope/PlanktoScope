@@ -12,6 +12,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Morphocut is no longer required by the segmenter as a Python package dependency.
 
+### Fixed
+
+- The default brightness of the illumination LED for the pscopehat version of the backend (for the custom PlanktoScope HAT) has been reduced; this a temporary workaround to a bug with raspimjpeg where saved images are overexposed even on the default brightness settings with minimum shutter speed and ISO, despite the brightness of raspimjpeg's camera preview looking reasonable (see https://github.com/PlanktoScope/PlanktoScope/issues/259 for details).
+
 ## v2023.9.0-beta.1 - 2023-09-14
 
 ### Changed
