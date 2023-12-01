@@ -56,9 +56,9 @@ Next, configure your Raspberry Pi to get internet access - your Raspberry Pi wil
 
 ## Set up the PlanktoScope software distribution
 
-Depending on whether you're installing the software on a PlanktoScope with the custom PlanktoScope HAT (which is the standard HAT on v2.3 hardware and later) or with the Adafruit Stepper Motor HAT (which is the standard HAT on v2.1 hardware), you will need to replace, you will need to adjust the commands below. Specifically, if you're installing the software for a PlanktoScope with the Adafruit Stepper Motor HAT, you will need to replace the word `pscopehat` with the word `adafruithat` in any of the commands below.
-
 ### Run the installation script
+
+Depending on whether you're installing the software on a PlanktoScope with the custom PlanktoScope HAT (which is the standard HAT on v2.3 hardware and later) or with the Adafruit Stepper Motor HAT (which is the standard HAT on v2.1 hardware), you will need to adjust the commands below. Specifically, if you're installing the software for a PlanktoScope with the Adafruit Stepper Motor HAT, you will need to replace the word `pscopehat` with the word `adafruithat` in any of the commands below.
 
 Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in one of the following commands, for either the latest beta prerelease of the PlanktoScope software distribution, the latest stable release, or the latest development version:
 
@@ -102,8 +102,6 @@ Note that you can also choose to install the PlanktoScope software from some oth
 wget -qO - https://install.planktoscope.community/distro.sh \
   | sh -s -- --help
 ```
-
-
 
 ### Wait for installation to finish
 
