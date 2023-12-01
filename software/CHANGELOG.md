@@ -17,6 +17,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: infrastructure) Forklift has been upgraded from v0.3.1 to v0.4.0, which includes breaking changes to the schema of Forklift repositories and pallets.
 
+### Removed
+
+- (Application: documentation) The offline documentation included on the PlanktoScope now omits the hardware setup guides.
+
 ### Fixed
 
 - (Application: GUI) The white balance gains are now only validated and sent to the backend _after_ the user changes focus away from the input field, instead of being validated and sent 300 ms after the user pauses while editing the value in the input field. This prevents the input validation from being run while the user is still editing the value.
@@ -27,6 +31,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) The `process_source` metadata field is no longer hard-coded in the Node-RED dashboard, though now it depends on the new installer script provided by the [github.com/PlanktoScope/install.planktoscope.community] repo.
 - (System: infrastructure) The SD card setup scripts now apply the Forklift pallet in order to create the Docker Compose services and resources ahead-of-time (rather than waiting for the first boot to do that work), so that the first boot of the SD card image will be much faster.
 - (System: infrastructure) The distro setup scripts now work even if they are run from a repository downloaded to some place other than `/home/pi/PlanktoScope`.
+- (Application: GUI) The landing page now links to the new project documentation site for online documentation, instead of the old project documentation site.
 
 ## v2023.9.0-beta.1 - 2023-09-14
 
