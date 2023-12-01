@@ -1,0 +1,62 @@
+name: Deploy documentation (beta release channel)
+
+on:
+  push:
+    branches:
+      - 'beta'
+      - 'documentation/beta'
+      - 'feature/docs-beta-deploy' # FIXME: remove this, it's only here for testing
+  workflow_dispatch:
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
+# queued. But do not cancel in-progress runs - we want these deploymeents to complete.
+concurrency:
+  group: "docs-beta-deploy"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    environment:
+      name: documentation-beta
+      url: https://docs-beta.planktoscope.community
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry==1.5.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'poetry'
+          cache-dependency-path: |
+            documentation/poetry.lock
+
+      - name: Install build dependencies
+        run: |
+          poetry -C ./documentation/ install --with docs
+
+      - name: Import external assets
+        run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
+
+      - name: Build documentation
+        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+
+      - name: Push to ${{ vars.REPOSITORY_NAME }}
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.DOCS_BETA_SSH_DEPLOY_KEY }}
+        with:
+          source-directory: documentation/site/
+          destination-github-username: PlanktoScope
+          destination-repository-name: ${{ vars.REPOSITORY_NAME }}
+          user-email: github-actions[bot]@users.noreply.github.com
+          user-name: github-actions[bot]
+          commit-message: Deploy ORIGIN_COMMIT
+          target-directory: site
