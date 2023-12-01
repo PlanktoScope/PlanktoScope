@@ -25,7 +25,7 @@ readme = "README.md"
 homepage = "https://www.planktoscope.org"
 repository = "https://github.com/PlanktoScope/PlanktoScope"
 # FIXME: once we have the docs up at docs.planktoscope.org, we should update this URL
-documentation = "https://planktoscope.github.io/PlanktoScope/"
+documentation = "https://docs-edge.planktoscope.community"
 keywords = ["documentation", "planktoscope"]
 classifiers = [
   "Intended Audience :: Science/Research",
@@ -63,8 +63,8 @@ mkdocs-git-revision-date-localized-plugin = "^1.2.1"
 
 [tool.poe.tasks]
 # Assets from outside the documentation directory
-clean-hardware-assets = "rm -rf docs/assets/hardware"  # FIXME: this command probably won't work on Windows
-import-hardware-assets = "cp -r ../hardware docs/assets/hardware"  # FIXME: this command probably won't work on Windows
+clean-hardware-assets = "rm -rf docs/assets/hardware"
+import-hardware-assets = "cp -r ../hardware docs/assets/hardware"
 import-repo-assets = "cp ../software/CHANGELOG.md docs/reference/software/changelog.md"
 import-external-assets = ["clean-hardware-assets", "import-hardware-assets", "import-repo-assets"]
 
@@ -76,6 +76,12 @@ optimize-compression = "imgp --eraseexif --optimize --progressive --quality 85 -
 # Previews and standard builds
 preview = "mkdocs serve --dev-addr localhost:8000"
 build = "mkdocs build --clean --strict"
+
+# Release channels
+set-edge-release-channel-header = "sed -i 's~ # poe(release-channels): substitute~ (development preview)~' mkdocs.yml"
+set-edge-release-channel = ["set-edge-release-channel-header"]
+set-beta-release-channel-header = "sed -i 's~ # poe(release-channels): substitute~ (beta preview)~' mkdocs.yml"
+set-beta-release-channel = ["set-beta-release-channel-header"]
 
 # Minimal builds
 remove-hardware-setup-guides = "rm -rf docs/setup/hardware/v*"
