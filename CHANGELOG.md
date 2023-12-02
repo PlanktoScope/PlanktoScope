@@ -8,6 +8,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+## v2023.9.0-beta.2 - 2023-12-02
+
+### Added
+
+- A `hardware.json` file is now provided for the PlanktoScope v2.6 hardware.
+
 ### Removed
 
 - Morphocut is no longer required by the segmenter as a Python package dependency.
