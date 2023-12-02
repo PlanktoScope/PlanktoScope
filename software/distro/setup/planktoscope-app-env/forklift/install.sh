@@ -5,7 +5,7 @@
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 forklift_version="0.4.0"
-pallet_version="22a84f"
+pallet_version="v2023.9.0-beta.2"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
   | tar -C $HOME/.local/bin -xz forklift
@@ -17,7 +17,11 @@ $forklift --workspace $workspace plt cache-repo
 # space (because the node-red container image used by a test package is >100 MB, even though we
 # don't need it yet), we don't yet have any packages in the pallet which someone might want to
 # enable, and because we're running plt apply anyways - that command will download images as needed
-# for each (enabled) package deployment.
+# for each (enabled) package deployment. We will want to have a cache-img flag which controls
+# whether only enabled package deployments are cached or all package deployments are cached, so that
+# we can use the command here to only cache enabled package deployments. We may get a slight speedup
+# if we can download all the images in parallel, without having to start the services all in
+# parallel (which would add lots of runtime nondeterminism to the system)
 # sudo -E $forklift --workspace $workspace plt cache-img
 sudo -E $forklift --workspace $workspace plt apply
 # Note: we apply the pallet immediately so that the first boot of the image won't be excessively

@@ -9,6 +9,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+## v2023.9.0-beta.2 - 2023-12-02
+
 ### Added
 
 - (Application) A hardware configuration file for PlanktoScope hardware v2.6, which was previously missing, has been added. It is now the default hardware configuration file for `pscopehat` builds of the PlanktoScope distro.
@@ -24,13 +26,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - (Application: GUI) The white balance gains are now only validated and sent to the backend _after_ the user changes focus away from the input field, instead of being validated and sent 300 ms after the user pauses while editing the value in the input field. This prevents the input validation from being run while the user is still editing the value.
+- (Application) The default brightness of the illumination LED for the pscopehat version of the backend (for the custom PlanktoScope HAT) has been reduced; this a temporary workaround to a bug with raspimjpeg where saved images are overexposed even on the default brightness settings with minimum shutter speed and ISO, despite the brightness of raspimjpeg's camera preview looking reasonable (see https://github.com/PlanktoScope/PlanktoScope/issues/259 for details).
 - (Application: GUI) In the "Sample" page, when the minimal & maximal fraction size fields and min & max sampling depth fields are both displayed simultaneously, now the adafruithat version of the Node-RED dashboard shows the fraction size fields on one row and the sampling depth fields on another row, rather than showing them in adjacent columns. This way, the adafruithat version of the Node-RED dashboard now matches the layout in the pscopehat version of the Node-RED dashboard.
 - (Application: GUI) The "System Monitoring" page now correctly displays the PlanktoScope hardware version in the "Information" panel's "Instrument Type" field.
 - (Application: GUI) The "System Monitoring" and "Fluidic Acquisition" pages now display a software version string which is either a tagged version (e.g. `v2023.9.0-beta.1`) when the version is tagged, or else a pseudoversion (e.g. `v2023.9.0-beta.1-36-gf276e84`) which contains an abbreviated commit SHA and a list of the number of commits since the last tagged version. This version string is now also used for the `acq_software` metadata field.
-- (Application: GUI) The `process_commit` metadata field is now set once again, though it depends on the new installer script provided by the [github.com/PlanktoScope/install.planktoscope.community] repo.
-- (Application: GUI) The `process_source` metadata field is no longer hard-coded in the Node-RED dashboard, though now it depends on the new installer script provided by the [github.com/PlanktoScope/install.planktoscope.community] repo.
+- (Application: GUI) The `process_commit` metadata field is now set once again. Now it depends on the new installer script provided by the [github.com/PlanktoScope/install.planktoscope.community](https://github.com/PlanktoScope/install.planktoscope.community) repo.
+- (Application: GUI) The `process_source` metadata field is no longer hard-coded in the Node-RED dashboard. Now it depends on the new installer script provided by the [github.com/PlanktoScope/install.planktoscope.community](https://github.com/PlanktoScope/install.planktoscope.community) repo.
 - (System: infrastructure) The SD card setup scripts now apply the Forklift pallet in order to create the Docker Compose services and resources ahead-of-time (rather than waiting for the first boot to do that work), so that the first boot of the SD card image will be much faster.
-- (System: infrastructure) The distro setup scripts now work even if they are run from a repository downloaded to some place other than `/home/pi/PlanktoScope`.
+- (System: infrastructure) The distro setup scripts now work even if they are run from a repository downloaded to some path other than `/home/pi/PlanktoScope`.
 - (Application: GUI) The landing page now links to the new project documentation site for online documentation, instead of the old project documentation site.
 
 ## v2023.9.0-beta.1 - 2023-09-14
