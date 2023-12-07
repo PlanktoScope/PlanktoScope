@@ -33,10 +33,15 @@ jobs:
   deploy:
     environment:
       name: documentation-edge
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ vars.URL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install dependencies for mkdocs-material image-processing libraries
+        run: |
+          sudo apt-get -y install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+          sudo apt-get -y install pngquant
 
       - name: Install poetry
         run: pipx install poetry==1.5.0
@@ -51,7 +56,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install
+          poetry -C ./documentation/ install --with imaging
 
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
@@ -60,7 +65,10 @@ jobs:
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
 
       - name: Build documentation
-        run: DOCS_DEPLOY=true poetry -C ./documentation/ run poe --root ./documentation/ build
+        env:
+          DOCS_DEPLOY: true
+          DOCS_SITEURL: ${{ vars.URL }}
+        run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Set up Pages
         id: pages
