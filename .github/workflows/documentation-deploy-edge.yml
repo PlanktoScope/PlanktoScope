@@ -34,7 +34,7 @@ jobs:
   deploy:
     environment:
       name: documentation-edge
-      url: https://docs-edge.planktoscope.community
+      url: ${{ vars.URL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -68,7 +68,7 @@ jobs:
       - name: Build documentation
         run: |
           DOCS_DEPLOY=true |
-          DOCS_SITEURL=${{ vars.url }} |
+          DOCS_SITEURL=${{ vars.URL }} |
           poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Set up Pages
