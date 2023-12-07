@@ -34,7 +34,7 @@ jobs:
   deploy:
     environment:
       name: documentation-edge
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://docs-edge.planktoscope.community
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
