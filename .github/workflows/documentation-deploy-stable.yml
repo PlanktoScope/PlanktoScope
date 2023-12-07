@@ -52,6 +52,7 @@ jobs:
         run: |
           DOCS_DEPLOY=true |
           DOCS_SITEURL="${{ vars.URL }}" |
+          DOCS_FOO="bar" |
           poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Push to ${{ vars.REPOSITORY_NAME }}
