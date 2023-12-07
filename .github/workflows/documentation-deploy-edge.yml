@@ -6,7 +6,6 @@ on:
       - 'master'
       - 'main'
       - 'edge'
-      - 'hotfix/docs-social-preview-deps' # TODO: remove this before merging
     paths:
       - 'documentation/**'
       - 'hardware/**'
@@ -65,17 +64,10 @@ jobs:
       - name: Set release channel
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
 
-      - name: Troubleshoot env vars
-        env:
-          DOCS_FOO: bar
-        run: |
-          poetry -C ./documentation/ run poe --root ./documentation/ foo
-
       - name: Build documentation
         env:
           DOCS_DEPLOY: true
           DOCS_SITEURL: ${{ vars.URL }}
-          DOCS_FOO: bar
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Set up Pages
