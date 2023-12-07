@@ -68,7 +68,7 @@ jobs:
       - name: Troubleshoot env vars
         run: |
           DOCS_FOO="bar" |
-          poetry -C ./documentation/ run poe foo
+          poetry -C ./documentation/ run poe --root ./documentation/ foo
 
       - name: Build documentation
         run: |
