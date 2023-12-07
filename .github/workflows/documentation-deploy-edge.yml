@@ -65,10 +65,16 @@ jobs:
       - name: Set release channel
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
 
+      - name: Troubleshoot env vars
+        run: |
+          DOCS_FOO="bar" |
+          poetry -C ./documentation/ run poe foo
+
       - name: Build documentation
         run: |
           DOCS_DEPLOY=true |
           DOCS_SITEURL="${{ vars.URL }}" |
+          DOCS_FOO="bar" |
           poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Set up Pages
