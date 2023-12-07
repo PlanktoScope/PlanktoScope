@@ -52,7 +52,10 @@ jobs:
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-beta-release-channel
 
       - name: Build documentation
-        run: DOCS_DEPLOY=true poetry -C ./documentation/ run poe --root ./documentation/ build
+        run: |
+          DOCS_DEPLOY=true |
+          DOCS_SITEURL=${{ vars.url }} |
+          poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Push to ${{ vars.REPOSITORY_NAME }}
         uses: cpina/github-action-push-to-another-repository@main
