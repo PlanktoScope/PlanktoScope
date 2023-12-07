@@ -73,7 +73,7 @@ optimize-compression = "imgp --eraseexif --optimize --progressive --quality 85 -
 
 # Previews and standard builds
 preview = "mkdocs serve --dev-addr localhost:8000"
-build = "mkdocs build --clean --strict"
+build = "mkdocs build --clean --strict --verbose"
 
 # Release channels
 set-edge-release-channel-header = "sed -i 's~ # poe(release-channels): substitute~ (development preview)~' mkdocs.yml"

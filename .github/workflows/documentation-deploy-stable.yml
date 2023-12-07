@@ -51,7 +51,7 @@ jobs:
       - name: Build documentation
         run: |
           DOCS_DEPLOY=true |
-          DOCS_SITEURL=${{ vars.URL }} |
+          DOCS_SITEURL="${{ vars.URL }}" |
           poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Push to ${{ vars.REPOSITORY_NAME }}
