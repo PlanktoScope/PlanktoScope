@@ -6,6 +6,7 @@ on:
       - 'master'
       - 'main'
       - 'edge'
+      - 'hotfix/docs-social-preview-deps' # TODO: remove this before merging
     paths:
       - 'documentation/**'
       - 'hardware/**'
@@ -38,6 +39,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install dependencies for mkdocs-material image-processing libraries
+        run: |
+          sudo apt-get -y install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+          sudo apt-get -y install pngquant
+
       - name: Install poetry
         run: pipx install poetry==1.5.0
 
@@ -51,7 +57,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install
+          poetry -C ./documentation/ install --with imaging
 
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets

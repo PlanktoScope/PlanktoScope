@@ -54,8 +54,10 @@ pymdown-extensions = "^10.5"
 LinkChecker = "^10.3.0"
 poethepoet = "^0.24.4"
 imgp = "^2.8"
-pillow = "^10.1.0"
 mkdocs-git-revision-date-localized-plugin = "^1.2.1"
+
+[tool.poetry.group.imaging.dependencies]
+mkdocs-material = {extras = ["imaging"], version = "^9.5.0"}
 
 [tool.poe.tasks]
 # Assets from outside the documentation directory
