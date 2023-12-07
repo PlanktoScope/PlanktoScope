@@ -60,7 +60,7 @@ jobs:
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
 
       - name: Build documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        run: DOCS_DEPLOY=true poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Set up Pages
         id: pages

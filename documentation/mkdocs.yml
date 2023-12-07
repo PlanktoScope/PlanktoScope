@@ -96,8 +96,10 @@ plugins:
   - glightbox
   - minify:
       minify_html: true
-  # FIXME: enable the offline plugin for offline site builds
-  # FIXME: enable the social plugin for online site builds
+  # FIXME: enable the privacy plugin
+  #- privacy
+  - social:
+      enabled: !ENV [DOCS_DEPLOY, false]
   - search
 
 markdown_extensions:
