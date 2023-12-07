@@ -66,7 +66,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -qO - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -v beta -H pscopehat
+      | sh -s -- -v software/beta -H pscopehat
     ```
     
     This will install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
@@ -75,7 +75,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -qO - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -H pscopehat
+      | sh -s -- -v software/stable -H pscopehat
     ```
     
     This will install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
