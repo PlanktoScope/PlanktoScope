@@ -8,8 +8,10 @@ on:
       - 'edge'
       - 'beta'
       - 'documentation/beta'
+      - 'software/beta'
       - 'stable'
       - 'documentation/stable'
+      - 'software/stable'
     tags:
       - 'documentation/v*'
   pull_request:
@@ -45,7 +47,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install --with docs
+          poetry -C ./documentation/ install
 
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
@@ -120,7 +122,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install --with docs
+          poetry -C ./documentation/ install
 
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets

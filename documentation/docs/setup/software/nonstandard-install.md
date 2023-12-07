@@ -66,7 +66,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -qO - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -v beta -H pscopehat
+      | sh -s -- -v software/beta -H pscopehat
     ```
     
     This will install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
@@ -75,7 +75,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -qO - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -H pscopehat
+      | sh -s -- -v software/stable -H pscopehat
     ```
     
     This will install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
@@ -121,8 +121,8 @@ This step is necessary to finish the PlanktoScope software setup process.
 
 Afterwards, your PlanktoScope's Raspberry Pi will either connect to a Wi-Fi network (if you had previously configured it to connect to a Wi-Fi network) or make a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope. If you connect another device (e.g. a phone or computer) directly to the PlanktoScope's Raspberry Pi over its isolated Wi-Fi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
 
-- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
+- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
 

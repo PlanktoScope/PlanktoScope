@@ -24,8 +24,8 @@ As you can see, the name of your PlanktoScope's Wi-Fi network will be of the for
 
 Once you connect your computer to your PlanktoScope, you will need to access your PlanktoScope's software from a web browser on your computer. You should try opening the following URLs in your web browser (try opening them in the following order, and just use the first one which works):
 
-- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
+- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
 
@@ -33,9 +33,9 @@ Once you connect your computer to your PlanktoScope, you will need to access you
 
     If you know the machine name of your PlanktoScope (which has format `{random-word}-{random-word}-{random number}`, e.g. `chain-list-27764`, you can also try the following URLs after replacing `{machine-name}` with the actual machine name of your PlanktoScope:
     
-    `http://{machine-name}.pkscope` (this should work unless your web browser is configured to use a Private DNS provider)
-    
     `http://pkscope-{machine-name}.local` (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
+    
+    `http://{machine-name}.pkscope` (this should work unless your web browser is configured to use a Private DNS provider)
     
     You will need to use a URL with your PlanktoScope's machine name if your computer has network connections to multiple PlanktoScopes, e.g. via multiple Ethernet cables. In such a situation, using <http://home.pkscope> or <http://pkscope.local> may cause you to access the software for a different PlanktoScope connected to your computer than the one you had intended to access.
 

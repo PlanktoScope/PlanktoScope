@@ -51,7 +51,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install --with docs
+          poetry -C ./documentation/ install
 
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
@@ -60,7 +60,7 @@ jobs:
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
 
       - name: Build documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        run: DOCS_DEPLOY=true poetry -C ./documentation/ run poe --root ./documentation/ build
 
       - name: Set up Pages
         id: pages
