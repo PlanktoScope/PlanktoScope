@@ -73,6 +73,7 @@ optimize-compression = "imgp --eraseexif --optimize --progressive --quality 85 -
 
 # Previews and standard builds
 preview = "mkdocs serve --dev-addr localhost:8000"
+foo = "echo $DOCS_FOO"
 build = "mkdocs build --clean --strict --verbose"
 
 # Release channels

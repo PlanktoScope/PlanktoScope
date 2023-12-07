@@ -48,6 +48,11 @@ jobs:
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
 
+      - name: Troubleshoot env vars
+        run: |
+          DOCS_FOO="bar" |
+          poetry -C ./documentation/ run poe foo
+
       - name: Build documentation
         run: |
           DOCS_DEPLOY=true |
