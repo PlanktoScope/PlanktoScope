@@ -59,8 +59,8 @@ Note that you will not be able to access the PlanktoScope's graphical user inter
 
 After you connect another device directly to the PlanktoScope's Raspberry Pi, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
 
-- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
+- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://192.168.4.1> (this should always work)
 - <http://192.168.5.1> (this should always work)
 
