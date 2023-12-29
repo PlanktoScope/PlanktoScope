@@ -8,6 +8,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+## v2023.9.0 - 2023-12-29
+
+(this release involves no changes from v2023.9.0-beta.2; it's just a version bump)
+
 ## v2023.9.0-beta.2 - 2023-12-02
 
 ### Added
