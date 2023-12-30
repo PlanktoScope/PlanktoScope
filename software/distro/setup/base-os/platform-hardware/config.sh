@@ -34,6 +34,9 @@ sudo raspi-config nonint do_camera 0
 # The following command enables legacy camera support on the 64-bit Raspberry Pi OS (ARM64):
 sudo raspi-config nonint do_legacy 0
 
+# FIXME: remove this section entirely, to improve performance on bullseye.
+# Refer to https://www.raspberrypi.com/documentation/computers/legacy_config_txt.html#gpu_mem
+# for rationale. Note that we might need to first replace raspimjpeg with picamera2.
 # The following command sets the GPU memory to 256:
 if [ $DISTRO_VERSION_ID -ge 12 ]; then # Support Raspberry Pi OS 12 (bookworm)
   echo "GPU memory split cannot be changed on this platform."

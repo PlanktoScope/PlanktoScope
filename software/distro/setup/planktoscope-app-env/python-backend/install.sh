@@ -20,6 +20,7 @@ sudo apt-get install -y git python3-pip python3-venv
 # installation to ensure that a wheel is available from piwheels for the cryptography dependency.
 # We have had problems in the past with a version of that dependency not being available from
 # piwheels.
+# TODO: now that we're migrating to aarch64, use a more modern version of poetry
 POETRY_VENV=$HOME/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
@@ -28,7 +29,7 @@ $POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.6.1
 
 # Download device-backend monorepo
-backend_version="v2023.9.0" # this should be either a version tag, branch name, or commit hash
+backend_version="feature/rpios-bookworm" # this should be either a version tag, branch name, or commit hash
 git clone https://github.com/PlanktoScope/device-backend $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
