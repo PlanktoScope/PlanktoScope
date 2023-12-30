@@ -17,8 +17,11 @@
 sudo raspi-config nonint do_spi 0
 sudo raspi-config nonint do_i2c 0
 
-# The following command enables the serial port console.
-sudo raspi-config nonint do_serial 0
+# The following command enables the serial port and serial port console.
+# do_serial_cons and do_serial_hw are needed for Raspberry Pi OS 12 (bookworm) and above, while
+# do_serial is needed for Raspberry Pi OS (bullseye).
+sudo raspi-config do_serial_hw 0 || sudo raspi-config nonint do_serial 0
+sudo raspi-config do_serial_cons 0 || sudo raspi-config nonint do_serial 0
 
 # The following command enables the camera on the 32-bit Raspberry Pi OS (ARMv7):
 sudo raspi-config nonint do_camera 0
