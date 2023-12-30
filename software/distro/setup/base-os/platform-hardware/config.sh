@@ -29,4 +29,4 @@ sudo raspi-config nonint do_camera 0
 sudo raspi-config nonint do_legacy 0
 
 # The following command sets the GPU memory to 256:
-sudo raspi-config nonint do_memory_split 256
+sudo raspi-config nonint do_memory_split 256 || echo "GPU memory split cannot be changed on this platform."
