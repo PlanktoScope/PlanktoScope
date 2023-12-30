@@ -5,7 +5,6 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies
-sudo apt-get update -y
 sudo apt-get install -y avahi-utils
 
 # Set the default hostname, which will be updated with the machine name on boot

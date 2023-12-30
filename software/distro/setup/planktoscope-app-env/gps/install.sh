@@ -6,7 +6,6 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies
-sudo apt-get update -y
 sudo apt-get install -y gpsd pps-tools chrony
 
 # The following command enables the serial port but disables the login shell over the serial port.

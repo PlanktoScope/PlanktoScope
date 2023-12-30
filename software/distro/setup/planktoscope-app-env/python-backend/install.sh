@@ -11,7 +11,6 @@ repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 hardware_type="$1" # should be either adafruithat or pscopehat
 
 ## Install basic Python tooling
-sudo apt-get update -y
 sudo apt-get install -y git python3-pip python3-venv
 
 # Install Poetry

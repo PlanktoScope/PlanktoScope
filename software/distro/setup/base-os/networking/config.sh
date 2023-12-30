@@ -6,7 +6,6 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies
-sudo apt-get update -y
 sudo apt-get install -y firewalld dnsmasq hostapd
 
 # Force reinitialization of the machine ID
