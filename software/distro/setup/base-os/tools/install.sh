@@ -19,14 +19,14 @@ sudo apt-get install -y w3m
 
 # Install Docker
 sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/raspbian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/raspbian \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y # get the list of packages from the docker repo
-VERSION_STRING=5:24.0.7-1~raspbian."$(. /etc/os-release && echo "$VERSION_ID")"~$(. /etc/os-release && echo "$VERSION_CODENAME")
+VERSION_STRING=5:24.0.7-1~debian."$(. /etc/os-release && echo "$VERSION_ID")"~$(. /etc/os-release && echo "$VERSION_CODENAME")
 # The following command will fail with a post-install error if the system installed kernel updates
 # via apt upgrade but was not rebooted before installing docker-ce; however, even if this error
 # is reported, docker will work after reboot.
