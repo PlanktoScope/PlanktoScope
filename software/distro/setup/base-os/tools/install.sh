@@ -26,7 +26,7 @@ echo \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y # get the list of packages from the docker repo
-VERSION_STRING=5:24.0.7-1~raspbian."$(. /etc/os-release && echo "VERSION_ID")"~$(. /etc/os-release && echo "VERSION_CODENAME")
+VERSION_STRING=5:24.0.7-1~raspbian."$(. /etc/os-release && echo "$VERSION_ID")"~$(. /etc/os-release && echo "$VERSION_CODENAME")
 # The following command will fail with a post-install error if the system installed kernel updates
 # via apt upgrade but was not rebooted before installing docker-ce; however, even if this error
 # is reported, docker will work after reboot.
