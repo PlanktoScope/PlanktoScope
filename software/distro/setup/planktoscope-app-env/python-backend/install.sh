@@ -23,13 +23,9 @@ sudo apt-get install -y git python3-pip python3-venv
 POETRY_VENV=$HOME/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
-$POETRY_VENV/bin/pip install --upgrade pip==23.3.1 setuptools==68.2.2
+$POETRY_VENV/bin/pip install --upgrade pip==23.3.2 setuptools==68.2.2
 $POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.6.1
-
-# Install pipx (not required, but useful)
-python3 -m pip install --user pipx==1.2.0
-python3 -m pipx ensurepath
 
 # Download device-backend monorepo
 backend_version="v2023.9.0" # this should be either a version tag, branch name, or commit hash
