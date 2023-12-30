@@ -12,10 +12,7 @@ sudo apt-get update -y
 sudo apt-get install -y vim byobu git
 
 # Install some tools for dealing with captive portals
-sudo apt-get install -y w3m
-# Note: we don't install browsh (which requires firefox-esr) because it adds ~200-300 MB of
-# dependencies in the base image. Users who need browsh should instead use the Docker image from
-# https://hub.docker.com/r/browsh/browsh
+sudo apt-get install -y w3m lynx
 
 # Install Docker
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -26,14 +23,17 @@ echo \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y # get the list of packages from the docker repo
-VERSION_STRING=5:24.0.7-1~debian."$(. /etc/os-release && echo "$VERSION_ID")"~$(. /etc/os-release && echo "$VERSION_CODENAME")
+DOCKER_PLATFORM_STRING=debian."$(. /etc/os-release && echo "$VERSION_ID")"~$(. /etc/os-release && echo "$VERSION_CODENAME")
+DOCKER_VERSION_STRING=5:24.0.7-1~$DOCKER_PLATFORM_STRING
+CONTAINERD_VERSION_STRING=1.6.26-1
+COMPOSE_VERSION_STRING=2.21.0-1~$DOCKER_PLATFORM_STRING
 # The following command will fail with a post-install error if the system installed kernel updates
 # via apt upgrade but was not rebooted before installing docker-ce; however, even if this error
 # is reported, docker will work after reboot.
 # Refer to https://www.reddit.com/r/raspberry_pi/comments/zblky6/comment/iytpp4g/ for details.
 sudo apt-get install -y \
-  docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING \
-  containerd.io docker-compose-plugin
+  docker-ce=$DOCKER_VERSION_STRING docker-ce-cli=$DOCKER_VERSION_STRING \
+  containerd.io=$CONTAINERD_VERSION_STRING docker-compose-plugin=$COMPOSE_VERSION_STRING
 sudo apt-get remove -y docker-buildx-plugin
 
 # Install cockpit
