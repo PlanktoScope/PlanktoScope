@@ -14,7 +14,7 @@ sudo apt-get install -y gpsd pps-tools chrony
 # Note that this overrides a setting in the base-os/platform-hardware/config.sh script.
 # do_serial_cons is needed for Raspberry Pi OS 12 (bookworm) and above, while do_serial is needed
 # for Raspberry Pi OS (bullseye).
-sudo raspi-config do_serial_cons 1 || sudo raspi-config nonint do_serial 2
+sudo raspi-config nonint do_serial_cons 1 || sudo raspi-config nonint do_serial 2
 
 # Configure gpsd
 file="/etc/default/gpsd"
