@@ -14,17 +14,23 @@ sudo apt-get install -y vim byobu git
 sudo apt-get install -y w3m lynx
 
 # Install Docker
+if [ "$(uname -a)" -eq "aarch64" ]; then
+  DOCKER_REPOSITORY="debian"
+else
+  DOCKER_REPOSITORY="raspbian"
+fi
 sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+curl -fsSL "https://download.docker.com/linux/${DOCKER_REPOSITORY}/gpg" | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 DISTRO_VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
 DISTRO_VERSION_CODENAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
 echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${DOCKER_REPOSITORY} \
   "$DISTRO_VERSION_CODENAME" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y # get the list of packages from the docker repo
-DOCKER_PLATFORM_STRING="debian.${DISTRO_VERSION_ID}~${DISTRO_VERSION_CODENAME}"
+DOCKER_PLATFORM_STRING="${DOCKER_REPOSITORY}.${DISTRO_VERSION_ID}~${DISTRO_VERSION_CODENAME}"
 DOCKER_VERSION_STRING=5:24.0.7-1~$DOCKER_PLATFORM_STRING
 CONTAINERD_VERSION_STRING=1.6.26-1
 COMPOSE_VERSION_STRING=2.21.0-1~$DOCKER_PLATFORM_STRING
