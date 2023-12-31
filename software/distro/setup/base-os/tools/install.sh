@@ -42,10 +42,9 @@ sudo apt-get install -y \
 sudo apt-get remove -y docker-buildx-plugin
 
 # Allow Docker to start before the device is online on a network
-sudo mkdir -p "/etc/systemd/system/docker.service.d"
-file="/etc/systemd/system/docker.service.d/override.conf"
+file="/etc/systemd/system/docker.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl daemon-reload
+sudo systemctl enable docker.service
 
 # Install cockpit
 sudo apt-get update -y
