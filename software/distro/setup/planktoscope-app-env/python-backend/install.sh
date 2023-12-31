@@ -58,7 +58,7 @@ cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 # Set up the data processing segmenter
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
 # libswscale5, can we avoid the need to install them?
-sudo apt-get install -y libatlas3-base \
+sudo apt-get install -y libopenblas0 libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/processing/segmenter install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.service"
