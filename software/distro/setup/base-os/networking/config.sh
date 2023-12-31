@@ -8,6 +8,10 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Install dependencies
 sudo apt-get install -y firewalld dnsmasq hostapd
 
+# Disable firewalld for now
+# FIXME: enable firewalld and set up firewall rules
+sudo systemctl disable firewalld --now
+
 # Restart docker to integrate with firewalld
 sudo systemctl restart docker
 
