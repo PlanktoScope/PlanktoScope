@@ -57,10 +57,7 @@ cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 
 # Set up the data processing segmenter
 # FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
-# libswscale5, can we avoid the need to install them? Right now they're required because the Python
-# backend is doing an `import * from cv2`, which is wasteful and also pollutes the namespace - if we
-# only import the required subpackages from cv2, maybe we can avoid the need to install unnecessary
-# dependencies via apt-get?
+# libswscale5, can we avoid the need to install them?
 sudo apt-get install -y libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/processing/segmenter install --no-root --compile
