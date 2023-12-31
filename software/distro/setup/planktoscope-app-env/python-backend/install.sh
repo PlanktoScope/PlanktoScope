@@ -34,7 +34,7 @@ git -C $HOME/device-backend checkout --quiet $backend_version
 
 # Set up the hardware controllers
 sudo apt-get install -y i2c-tools
-$POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install
+$POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"
 # or for the PlanktoScope HAT
@@ -63,7 +63,7 @@ cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 # dependencies via apt-get?
 sudo apt-get install -y libatlas3-base \
   libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
-$POETRY_VENV/bin/poetry --directory $HOME/device-backend/processing/segmenter install
+$POETRY_VENV/bin/poetry --directory $HOME/device-backend/processing/segmenter install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.device-backend.processing.segmenter.service
