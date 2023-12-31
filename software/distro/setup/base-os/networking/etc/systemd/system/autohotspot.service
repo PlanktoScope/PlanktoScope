@@ -1,7 +1,6 @@
 [Unit]
 Description=Automatic generation of a wireless AP (wifi hotspot) when no known wifi networks are found
 Wants=enable-interface-forwarding.service
-Wants=enable-interface-forwarding.service
 After=docker.service
 
 [Service]
@@ -10,3 +9,4 @@ ExecStart=/home/pi/.local/bin/autohotspot.sh
 
 [Install]
 WantedBy=network-online.target
+WantedBy=multi-user.target
