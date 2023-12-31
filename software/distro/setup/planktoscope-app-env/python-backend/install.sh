@@ -28,7 +28,7 @@ $POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.6.1
 
 # Download device-backend monorepo
-backend_version="v2023.9.0" # this should be either a version tag, branch name, or commit hash
+backend_version="feature/rpios-bookworm" # this should be either a version tag, branch name, or commit hash
 git clone https://github.com/PlanktoScope/device-backend $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
