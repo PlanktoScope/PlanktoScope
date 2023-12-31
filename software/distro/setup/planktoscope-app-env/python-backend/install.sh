@@ -25,7 +25,7 @@ mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
 $POETRY_VENV/bin/pip install --upgrade pip==23.3.2 setuptools==68.2.2
 $POETRY_VENV/bin/pip install cryptography==41.0.5
-$POETRY_VENV/bin/pip install poetry==1.6.1
+$POETRY_VENV/bin/pip install poetry==1.7.1
 
 # Download device-backend monorepo
 backend_version="feature/rpios-bookworm" # this should be either a version tag, branch name, or commit hash

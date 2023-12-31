@@ -8,6 +8,9 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Install dependencies
 sudo apt-get install -y firewalld dnsmasq hostapd
 
+# Restart docker to integrate with firewalld
+sudo systemctl restart docker
+
 # Force reinitialization of the machine ID
 sudo bash -c "echo \"uninitialized\" > /etc/machine-id"
 
