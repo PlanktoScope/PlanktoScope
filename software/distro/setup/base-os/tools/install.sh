@@ -43,7 +43,8 @@ sudo apt-get remove -y docker-buildx-plugin
 
 # Install cockpit
 sudo apt-get update -y
-sudo apt-get install -y cockpit
+sudo apt-get install -y --no-install-recommends cockpit
+# TODO: after we switch to NetworkManager, add cockpit-networkmanager
 sudo mkdir -p /etc/cockpit/
 file="/etc/cockpit/cockpit.conf"
 sudo cp "$config_files_root$file" "$file"
