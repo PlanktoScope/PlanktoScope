@@ -9,6 +9,24 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
+
+### Changed
+
+- (System: security) `ufw` has been replaced with `firewalld`. However, firewalld has not yet been properly configured.
+
+### Removed
+
+- (System: administration) Removed `cockpit-storaged`, which was not useful anyways and had pulled in many unneeded dependencies.
+- (System: setup) Removed some unnecessary `apt-get update` commands for a very minor speed-up in the distro setup process.
+
+### Fixed
+
+- (System) Boot time has been made faster by 30 seconds.
+- (System) The base OS setup scripts now run without errors on both the 32-bit and 64-bit versions of Raspberry Pi OS 12 (bookworm). However, setup of the PlanktoScope applications still fails with errors on bookworm and on 64-bit versions of the Raspberry Pi OS.
+
 ## v2023.9.0 - 2023-12-30
 
 (this release involves no changes from v2023.9.0-beta.2; it's just a promotion of v2023.9.0-beta.2 to a stable release)
