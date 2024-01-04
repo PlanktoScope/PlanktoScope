@@ -15,11 +15,6 @@ on:
     tags:
       - 'documentation/v*'
   pull_request:
-    paths:
-      - 'documentation/**'
-      - 'hardware/**'
-      - 'software/CHANGELOG.md'
-      - '.github/workflows/documentation-build.yml'
   merge_group:
   workflow_dispatch:
     inputs:
