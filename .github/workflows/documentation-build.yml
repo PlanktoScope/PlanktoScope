@@ -101,7 +101,7 @@ jobs:
 
       # Upload documentation website as archive
       - name: Upload website archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation-website
           path: documentation/site
@@ -184,7 +184,7 @@ jobs:
 
       # Upload documentation website as archive
       - name: Upload website archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation-website-minimal
           path: documentation/site
