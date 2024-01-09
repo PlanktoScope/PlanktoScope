@@ -46,6 +46,9 @@ file="/etc/systemd/system/docker.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable docker.service
 
+# Allow running Docker commands without sudo
+sudo usermod -aG docker $USER
+
 # Install cockpit
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends cockpit
