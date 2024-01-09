@@ -15,11 +15,6 @@ on:
     tags:
       - 'documentation/v*'
   pull_request:
-    paths:
-      - 'documentation/**'
-      - 'hardware/**'
-      - 'software/CHANGELOG.md'
-      - '.github/workflows/documentation-build.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -30,6 +25,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -38,7 +36,7 @@ jobs:
         run: pipx install poetry==1.5.0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'poetry'
@@ -98,13 +96,16 @@ jobs:
 
       # Upload documentation website as archive
       - name: Upload website archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation-website
           path: documentation/site
 
   build-minimal:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -113,7 +114,7 @@ jobs:
         run: pipx install poetry==1.5.0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'poetry'
@@ -178,7 +179,7 @@ jobs:
 
       # Upload documentation website as archive
       - name: Upload website archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation-website-minimal
           path: documentation/site
