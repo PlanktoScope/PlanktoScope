@@ -35,17 +35,22 @@ classifiers = [
 [[tool.poetry.source]]
 name = "piwheels"
 url = "https://www.piwheels.org/simple/"
+priority = "primary"
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = "~3.9.2"
+python = ">=3.9.2"
 paho-mqtt = "~1.6.1"
-numpy = "~1.22.4"
-pandas = "~2.1.1"
+numpy = "~1.26.2"
+pandas = "~2.1.4"
 loguru = "~0.5.3"
 opencv-contrib-python-headless = "4.5.5.62"
-scipy = "~1.7.2"
+scipy = "1.11.4"
 scikit-image = "~0.19.3"

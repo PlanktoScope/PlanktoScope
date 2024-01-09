@@ -97,13 +97,15 @@ reference = "piwheels"
 
 [[package]]
 name = "numpy"
-version = "1.22.4"
-description = "NumPy is the fundamental package for array computing with Python."
+version = "1.26.2"
+description = "Fundamental package for array computing in Python"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "numpy-1.22.4-cp39-cp39-linux_armv6l.whl", hash = "sha256:98d1bb536e52326f18cc394ab677e8c438e860f0203607ff70d16857ca4172ba"},
-    {file = "numpy-1.22.4-cp39-cp39-linux_armv7l.whl", hash = "sha256:98d1bb536e52326f18cc394ab677e8c438e860f0203607ff70d16857ca4172ba"},
+    {file = "numpy-1.26.2-cp311-cp311-linux_armv6l.whl", hash = "sha256:784889ff2205b671e8283e37caa621a3aa1c8d0d4c03b44be4a857efde2edd72"},
+    {file = "numpy-1.26.2-cp311-cp311-linux_armv7l.whl", hash = "sha256:784889ff2205b671e8283e37caa621a3aa1c8d0d4c03b44be4a857efde2edd72"},
+    {file = "numpy-1.26.2-cp39-cp39-linux_armv6l.whl", hash = "sha256:795033f0e3b6a1ef31729906d68c88aab30f18cc625850729e95d0c8607a6ef6"},
+    {file = "numpy-1.26.2-cp39-cp39-linux_armv7l.whl", hash = "sha256:795033f0e3b6a1ef31729906d68c88aab30f18cc625850729e95d0c8607a6ef6"},
 ]
 
 [package.source]
@@ -126,8 +128,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.21.2", markers = "python_version >= \"3.9\" and platform_system == \"Darwin\" and platform_machine == \"arm64\""},
-    {version = ">=1.19.3", markers = "python_version >= \"3.8\" and platform_system == \"Linux\" and platform_machine == \"aarch64\" or python_version >= \"3.9\" and platform_system != \"Darwin\" or python_version >= \"3.9\" and platform_machine != \"arm64\""},
+    {version = ">=1.21.2", markers = "python_version >= \"3.10\" or python_version >= \"3.9\" and platform_system == \"Darwin\" and platform_machine == \"arm64\""},
+    {version = ">=1.19.3", markers = "python_version >= \"3.8\" and platform_system == \"Linux\" and platform_machine == \"aarch64\" and python_version < \"3.10\" or python_version >= \"3.9\" and python_version < \"3.10\" and platform_system != \"Darwin\" or python_version >= \"3.9\" and python_version < \"3.10\" and platform_machine != \"arm64\""},
 ]
 
 [package.source]
@@ -170,19 +172,23 @@ reference = "piwheels"
 
 [[package]]
 name = "pandas"
-version = "2.1.3"
+version = "2.1.4"
 description = "Powerful data structures for data analysis, time series, and statistics"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "pandas-2.1.3-cp311-cp311-linux_armv6l.whl", hash = "sha256:19f4635e0aa30fa79e826d838bab727f31709c2c199f18a35e0656687bdd03c3"},
-    {file = "pandas-2.1.3-cp311-cp311-linux_armv7l.whl", hash = "sha256:19f4635e0aa30fa79e826d838bab727f31709c2c199f18a35e0656687bdd03c3"},
-    {file = "pandas-2.1.3-cp39-cp39-linux_armv6l.whl", hash = "sha256:0d0d88f3988a5de8e45513caff668306504cdc74ed45b6d8c6ed7f327d058f9a"},
-    {file = "pandas-2.1.3-cp39-cp39-linux_armv7l.whl", hash = "sha256:0d0d88f3988a5de8e45513caff668306504cdc74ed45b6d8c6ed7f327d058f9a"},
+    {file = "pandas-2.1.4-cp311-cp311-linux_armv6l.whl", hash = "sha256:483489d3aa81588246d58e0b48c49315dfc81e24e69d77752dd99974c78e1120"},
+    {file = "pandas-2.1.4-cp311-cp311-linux_armv7l.whl", hash = "sha256:483489d3aa81588246d58e0b48c49315dfc81e24e69d77752dd99974c78e1120"},
+    {file = "pandas-2.1.4-cp39-cp39-linux_armv6l.whl", hash = "sha256:781e1417d58ba6c6726c92734f22130bd0e385a0c276daaf45475f982515adee"},
+    {file = "pandas-2.1.4-cp39-cp39-linux_armv7l.whl", hash = "sha256:781e1417d58ba6c6726c92734f22130bd0e385a0c276daaf45475f982515adee"},
 ]
 
 [package.dependencies]
-numpy = {version = ">=1.22.4,<2", markers = "python_version < \"3.11\""}
+numpy = [
+    {version = ">=1.22.4,<2", markers = "python_version < \"3.11\""},
+    {version = ">=1.23.2,<2", markers = "python_version == \"3.11\""},
+    {version = ">=1.26.0,<2", markers = "python_version >= \"3.12\""},
+]
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
 tzdata = ">=2022.1"
@@ -328,19 +334,24 @@ reference = "piwheels"
 
 [[package]]
 name = "scipy"
-version = "1.7.3"
-description = "SciPy: Scientific Library for Python"
+version = "1.11.4"
+description = "Fundamental algorithms for scientific computing in Python"
 optional = false
-python-versions = ">=3.7,<3.11"
+python-versions = ">=3.9"
 files = [
-    {file = "scipy-1.7.3-cp37-cp37m-linux_armv6l.whl", hash = "sha256:2fec5b97046d51212017a3246996fb3bc99fe3225949e3b6e1dbb1e1be0eb57c"},
-    {file = "scipy-1.7.3-cp37-cp37m-linux_armv7l.whl", hash = "sha256:2fec5b97046d51212017a3246996fb3bc99fe3225949e3b6e1dbb1e1be0eb57c"},
-    {file = "scipy-1.7.3-cp39-cp39-linux_armv6l.whl", hash = "sha256:a128bd9d674bb0565b200b906d20a452dfd2b52cac044b21103f580170525154"},
-    {file = "scipy-1.7.3-cp39-cp39-linux_armv7l.whl", hash = "sha256:a128bd9d674bb0565b200b906d20a452dfd2b52cac044b21103f580170525154"},
+    {file = "scipy-1.11.4-cp311-cp311-linux_armv6l.whl", hash = "sha256:bce882f2986d66a4b542f638a8e8c39a5af30abf76adccf0317db0c32c702ba7"},
+    {file = "scipy-1.11.4-cp311-cp311-linux_armv7l.whl", hash = "sha256:bce882f2986d66a4b542f638a8e8c39a5af30abf76adccf0317db0c32c702ba7"},
+    {file = "scipy-1.11.4-cp39-cp39-linux_armv6l.whl", hash = "sha256:f719eaac73021b7ae4848de9ab76160b264c8a2726a5141090c178d0db131739"},
+    {file = "scipy-1.11.4-cp39-cp39-linux_armv7l.whl", hash = "sha256:f719eaac73021b7ae4848de9ab76160b264c8a2726a5141090c178d0db131739"},
 ]
 
 [package.dependencies]
-numpy = ">=1.16.5,<1.23.0"
+numpy = ">=1.21.6,<1.28.0"
+
+[package.extras]
+dev = ["click", "cython-lint (>=0.12.2)", "doit (>=0.36.0)", "mypy", "pycodestyle", "pydevtool", "rich-click", "ruff", "types-psutil", "typing_extensions"]
+doc = ["jupytext", "matplotlib (>2)", "myst-nb", "numpydoc", "pooch", "pydata-sphinx-theme (==0.9.0)", "sphinx (!=4.1.0)", "sphinx-design (>=0.2.0)"]
+test = ["asv", "gmpy2", "mpmath", "pooch", "pytest", "pytest-cov", "pytest-timeout", "pytest-xdist", "scikit-umfpack", "threadpoolctl"]
 
 [package.source]
 type = "legacy"
@@ -418,5 +429,5 @@ reference = "piwheels"
 
 [metadata]
 lock-version = "2.0"
-python-versions = "~3.9.2"
-content-hash = "e4eedbd1021a78e983e2314e199ea797a463d8e811e4fde88dc279fa5c69f870"
+python-versions = ">=3.9.2"
+content-hash = "a4bab4d04e6eea503cb58885b85f9983621480b086819e6e3df597fb6d7737a9"
