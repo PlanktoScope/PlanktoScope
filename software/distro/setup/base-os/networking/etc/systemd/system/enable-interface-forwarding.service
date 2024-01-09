@@ -1,6 +1,5 @@
 [Unit]
 Description=Enable forwarding of packets between eth0 and wlan0
-Before=network.target
 
 [Service]
 Type=oneshot
@@ -8,4 +7,3 @@ ExecStart=/home/pi/.local/bin/enable-interface-forwarding.sh
 
 [Install]
 WantedBy=multi-user.target
-WantedBy=autohotspot.service

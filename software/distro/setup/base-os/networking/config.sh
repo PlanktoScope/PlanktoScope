@@ -6,8 +6,14 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies
-sudo apt-get update -y
-sudo apt-get install -y ufw dnsmasq hostapd
+sudo apt-get install -y firewalld dnsmasq hostapd
+
+# Disable firewalld for now
+# FIXME: enable firewalld and set up firewall rules
+sudo systemctl disable firewalld --now
+
+# Restart docker to integrate with firewalld
+sudo systemctl restart docker
 
 # Force reinitialization of the machine ID
 sudo bash -c "echo \"uninitialized\" > /etc/machine-id"
@@ -24,7 +30,7 @@ sudo raspi-config nonint do_ssh 0
 sudo rm -f /etc/ssh/ssh_host_*
 sudo systemctl enable regenerate_ssh_host_keys.service
 
-# TODO: add basic ufw settings
+# TODO: add basic firewalld settings
 
 # Change hostapd settings
 # FIXME: the config file sets a country code which needs to be updated for local countries (and
