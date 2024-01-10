@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.MM.patch` scheme
+and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
@@ -16,6 +16,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (System: security) `ufw` has been replaced with `firewalld`. However, firewalld has not yet been properly configured.
+- (System: administration) Docker commands can now be run without `sudo`.
 
 ### Removed
 
