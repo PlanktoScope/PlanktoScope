@@ -14,7 +14,6 @@ forklift="$HOME/.local/bin/forklift --workspace $workspace"
 if [ -d "$workspace" ]; then
   $forklift plt rm
 fi
-$forklift plt rm
 $forklift plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
 $forklift plt cache-repo
 
