@@ -87,6 +87,11 @@ cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-hosts-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hosts-machine-name.service
+file="$HOME/.local/bin/update-hostname-machine-name.sh"
+cp "$config_files_root$file" "$file"
+file="/etc/systemd/system/planktoscope-org.update-hostname-machine-name.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable planktoscope-org.update-hostname-machine-name.service
 
 # Publish planktoscope.local and pkscope.local mDNS aliases
 file="/etc/systemd/system/planktoscope-org.avahi-alias-planktoscope.local.service"

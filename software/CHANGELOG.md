@@ -28,6 +28,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System) Boot time has been made faster by 30 seconds.
 - (System) The base OS setup scripts now run without errors on both the 32-bit and 64-bit versions of Raspberry Pi OS 12 (bookworm). However, setup of the PlanktoScope applications still fails with errors on bookworm and on 64-bit versions of the Raspberry Pi OS.
+- (System) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
 
 ## v2023.9.0 - 2023-12-30
 

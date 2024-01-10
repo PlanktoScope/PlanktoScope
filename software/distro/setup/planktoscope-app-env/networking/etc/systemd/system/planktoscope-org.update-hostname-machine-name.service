@@ -1,0 +1,15 @@
+[Unit]
+Description=Update hostname based on machine name generated from the Raspberry Pi's serial number
+Before=dnsmasq.service
+Before=network-pre.service
+Wants=network-pre.target
+Before=avahi-daemon.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/.local/bin/update-hostname-machine-name.sh
+Restart=no
+
+[Install]
+WantedBy=dnsmasq.service
+WantedBy=avahi-daemon.service
