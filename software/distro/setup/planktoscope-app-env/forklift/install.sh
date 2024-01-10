@@ -9,8 +9,10 @@ pallet_version="v2023.9.0"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
   | tar -C $HOME/.local/bin -xz forklift
-alias forklift="$HOME/.local/bin/forklift"
 workspace="$HOME/.forklift"
+forklift() {
+  $HOME/.local/bin/forklift "$@"
+}
 forklift --workspace $workspace plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
 forklift --workspace $workspace plt cache-repo
 # Note: cache-img downloads images even for disabled package deployments. We skip it to save disk
