@@ -12,6 +12,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
+- (System: administration) Added Dozzle as a viewer for Docker container logs.
 
 ### Changed
 
