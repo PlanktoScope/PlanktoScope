@@ -255,12 +255,13 @@
     {
         "id": "3da7da8f.179606",
         "type": "ui_group",
-        "name": "Processor",
+        "name": "Metrics",
         "tab": "d9cd733b.ab73d",
         "order": 1,
         "disp": true,
-        "width": "6",
-        "collapse": false
+        "width": "24",
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "cc8bc4eb.651868",
@@ -558,36 +559,6 @@
         "order": 7,
         "disp": true,
         "width": 6,
-        "collapse": false
-    },
-    {
-        "id": "b5ba3f26.2e722",
-        "type": "ui_group",
-        "name": "CPU Temperature",
-        "tab": "d9cd733b.ab73d",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "806d69c8.67fc58",
-        "type": "ui_group",
-        "name": "Memory",
-        "tab": "d9cd733b.ab73d",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "405183bc.d8991c",
-        "type": "ui_group",
-        "name": "Disk Usage",
-        "tab": "d9cd733b.ab73d",
-        "order": 4,
-        "disp": true,
-        "width": "6",
         "collapse": false
     },
     {
@@ -7755,32 +7726,6 @@
         "wires": []
     },
     {
-        "id": "2c8c45ab.610c0a",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "b5ba3f26.2e722",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "CPU Temperature",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "30",
-        "max": "55",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 610,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "ddcbbfa5.cd158",
         "type": "exec",
         "z": "1371dec5.76e671",
@@ -7791,153 +7736,14 @@
         "timer": "",
         "name": "RPi Temp.",
         "x": 330,
-        "y": 120,
+        "y": 40,
         "wires": [
             [
-                "bc503fa5.f46dd",
-                "2c8c45ab.610c0a",
-                "cef370c7.1f7a"
+                "bc503fa5.f46dd"
             ],
             [],
             []
         ]
-    },
-    {
-        "id": "cef370c7.1f7a",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "b5ba3f26.2e722",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "30",
-        "ymax": "70",
-        "removeOlder": "20",
-        "removeOlderPoints": "200",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 570,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "55749fd8.3aca5",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "top -d 0.5 -b -n2 | grep \"Cpu(s)\"|tail -n 1 | awk '{print $2 + $4}' | tr -d \"\\n\"",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "",
-        "timer": "",
-        "name": "CPU Load",
-        "x": 330,
-        "y": 200,
-        "wires": [
-            [
-                "e046247c.c466e8",
-                "4b2b9a70.6a9af4"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "c2b8d8b.0d90328",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "free | grep Mem | awk '{print 100*($2-$7)/$2}' | awk '{print int($1+0.5)}' | tr -d \"\\n\"",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "",
-        "timer": "",
-        "name": "Free Memory",
-        "x": 340,
-        "y": 280,
-        "wires": [
-            [
-                "e84f6e08.5d147",
-                "c7c8d192.3df27"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "e046247c.c466e8",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "3da7da8f.179606",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Processor",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 580,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "e84f6e08.5d147",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "806d69c8.67fc58",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Memory",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 580,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "3910d662.fa1f7a",
@@ -7950,165 +7756,12 @@
         "timer": "",
         "name": "Disk Usage",
         "x": 330,
-        "y": 360,
+        "y": 120,
         "wires": [
             [
-                "45e1912a.36a23",
-                "84ac8611.1a6ac8",
                 "eaf74a43.fa27d"
             ],
             [],
-            []
-        ]
-    },
-    {
-        "id": "45e1912a.36a23",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "405183bc.d8991c",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Disk",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 570,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "4b2b9a70.6a9af4",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "3da7da8f.179606",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "20",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 570,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c7c8d192.3df27",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "806d69c8.67fc58",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": "20",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 570,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "84ac8611.1a6ac8",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "405183bc.d8991c",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": "4",
-        "removeOlderPoints": "200",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 570,
-        "y": 380,
-        "wires": [
             []
         ]
     },
@@ -8133,13 +7786,11 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 100,
-        "y": 240,
+        "x": 110,
+        "y": 80,
         "wires": [
             [
                 "3910d662.fa1f7a",
-                "c2b8d8b.0d90328",
-                "55749fd8.3aca5",
                 "ddcbbfa5.cd158"
             ]
         ]
@@ -8446,7 +8097,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 420,
+        "y": 120,
         "wires": [
             [
                 "6d09f428.930bcc"
@@ -8468,7 +8119,7 @@
         "topic": "",
         "name": "",
         "x": 1090,
-        "y": 420,
+        "y": 120,
         "wires": [
             []
         ]
@@ -8493,7 +8144,7 @@
         "to": "",
         "reg": false,
         "x": 930,
-        "y": 420,
+        "y": 120,
         "wires": [
             [
                 "46d5e78b.15f998"
@@ -8981,7 +8632,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 760,
-        "y": 420,
+        "y": 120,
         "wires": [
             [
                 "24df077a.cb252"
@@ -9517,6 +9168,27 @@
         "libs": [],
         "x": 820,
         "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "797675a937dc1629",
+        "type": "ui_template",
+        "z": "1371dec5.76e671",
+        "group": "3da7da8f.179606",
+        "name": "Metrics panel",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "format": "<center>\n<object data=\"/admin/grafana/d/host-summary/host-summary?orgId=1&refresh=5s&kiosk\" width=\"100%\" height=\"750px\">\n</object>\n</center>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 90,
+        "y": 180,
         "wires": [
             []
         ]
