@@ -13,20 +13,27 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
 - (System: administration) Added Dozzle as a viewer for Docker container logs.
+- (Application: GUI) The "System Monitoring" page now shows the current system time on the Raspberry Pi and the current time in the web browser of the client device.
+- (Application: GUI) The "System Monitoring" page now detects when the Raspberry Pi's system time is very different from the web browser's time, and shows a message and a buttom to change the Raspberry Pi's system time to match the web browser's time.
+- (Application: GUI) The "System Monitoring" page's system metrics panel is now collapsible, and it now includes an expandable "Detailed History" subsection to view additional information.
+- (System: administration) Added Prometheus as a metrics collection & storage system.
+- (System: administration) Added Grafana as a metrics visualization & alerting system.
 
 ### Changed
 
 - (System: security) `ufw` has been replaced with `firewalld`. However, firewalld has not yet been properly configured.
 - (System: administration) Docker commands can now be run without `sudo`.
+- (Application: GUI) The "System Monitoring" page now uses a Grafana dashboard to display metrics.
 
 ### Removed
 
 - (System: administration) Removed `cockpit-storaged`, which was not useful anyways and had pulled in many unneeded dependencies.
 - (System: setup) Removed some unnecessary `apt-get update` commands for a very minor speed-up in the distro setup process.
+- (Application: GUI) The "System Monitoring" page no longer displays a gauge for the CPU usage, since that information does not need to be monitored to ensure system stability & usability. Instead, CPU usage has been moved to the new "Detailed History" subsection.
 
 ### Fixed
 
-- (System) Boot time has been made faster by 30 seconds.
+- (System) Boot time has been made faster by approximately 30 seconds.
 - (System) The base OS setup scripts now run without errors on both the 32-bit and 64-bit versions of Raspberry Pi OS 12 (bookworm). However, setup of the PlanktoScope applications still fails with errors on bookworm and on 64-bit versions of the Raspberry Pi OS.
 - (System) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
 

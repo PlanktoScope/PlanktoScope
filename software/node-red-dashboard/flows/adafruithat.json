@@ -255,12 +255,13 @@
     {
         "id": "3da7da8f.179606",
         "type": "ui_group",
-        "name": "Processor",
+        "name": "Metrics",
         "tab": "d9cd733b.ab73d",
         "order": 1,
         "disp": true,
-        "width": "6",
-        "collapse": false
+        "width": "24",
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "cc8bc4eb.651868",
@@ -556,36 +557,6 @@
         "order": 7,
         "disp": true,
         "width": 6,
-        "collapse": false
-    },
-    {
-        "id": "b5ba3f26.2e722",
-        "type": "ui_group",
-        "name": "CPU Temperature",
-        "tab": "d9cd733b.ab73d",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "806d69c8.67fc58",
-        "type": "ui_group",
-        "name": "Memory",
-        "tab": "d9cd733b.ab73d",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "405183bc.d8991c",
-        "type": "ui_group",
-        "name": "Disk Usage",
-        "tab": "d9cd733b.ab73d",
-        "order": 4,
-        "disp": true,
-        "width": "6",
         "collapse": false
     },
     {
@@ -7729,32 +7700,6 @@
         "wires": []
     },
     {
-        "id": "2c8c45ab.610c0a",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "b5ba3f26.2e722",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "CPU Temperature",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "30",
-        "max": "55",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 610,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "ddcbbfa5.cd158",
         "type": "exec",
         "z": "1371dec5.76e671",
@@ -7765,153 +7710,14 @@
         "timer": "",
         "name": "RPi Temp.",
         "x": 330,
-        "y": 120,
+        "y": 40,
         "wires": [
             [
-                "bc503fa5.f46dd",
-                "2c8c45ab.610c0a",
-                "cef370c7.1f7a"
+                "bc503fa5.f46dd"
             ],
             [],
             []
         ]
-    },
-    {
-        "id": "cef370c7.1f7a",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "b5ba3f26.2e722",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "30",
-        "ymax": "70",
-        "removeOlder": "20",
-        "removeOlderPoints": "200",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 570,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "55749fd8.3aca5",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "top -d 0.5 -b -n2 | grep \"Cpu(s)\"|tail -n 1 | awk '{print $2 + $4}' | tr -d \"\\n\"",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "",
-        "timer": "",
-        "name": "CPU Load",
-        "x": 330,
-        "y": 200,
-        "wires": [
-            [
-                "e046247c.c466e8",
-                "4b2b9a70.6a9af4"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "c2b8d8b.0d90328",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "free | grep Mem | awk '{print 100*($2-$7)/$2}' | awk '{print int($1+0.5)}' | tr -d \"\\n\"",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "",
-        "timer": "",
-        "name": "Free Memory",
-        "x": 330,
-        "y": 280,
-        "wires": [
-            [
-                "e84f6e08.5d147",
-                "c7c8d192.3df27"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "e046247c.c466e8",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "3da7da8f.179606",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Processor",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 580,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "e84f6e08.5d147",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "806d69c8.67fc58",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Memory",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 580,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "3910d662.fa1f7a",
@@ -7924,11 +7730,9 @@
         "timer": "",
         "name": "Disk Usage",
         "x": 330,
-        "y": 360,
+        "y": 120,
         "wires": [
             [
-                "45e1912a.36a23",
-                "84ac8611.1a6ac8",
                 "eaf74a43.fa27d"
             ],
             [],
@@ -7936,161 +7740,10 @@
         ]
     },
     {
-        "id": "45e1912a.36a23",
-        "type": "ui_gauge",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "405183bc.d8991c",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Disk",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 570,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "4b2b9a70.6a9af4",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "3da7da8f.179606",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "20",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 570,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c7c8d192.3df27",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "806d69c8.67fc58",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": "20",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 570,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "84ac8611.1a6ac8",
-        "type": "ui_chart",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "405183bc.d8991c",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": "4",
-        "removeOlderPoints": "200",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 570,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "1cd5b4c0.46af9b",
         "type": "inject",
         "z": "1371dec5.76e671",
-        "name": "update: 15s",
+        "name": "update: 5s",
         "props": [
             {
                 "p": "payload"
@@ -8107,14 +7760,15 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 100,
-        "y": 240,
+        "x": 110,
+        "y": 160,
         "wires": [
             [
                 "3910d662.fa1f7a",
-                "c2b8d8b.0d90328",
-                "55749fd8.3aca5",
-                "ddcbbfa5.cd158"
+                "ddcbbfa5.cd158",
+                "23a84a3856fb68bd",
+                "4ed64bd91fa9fbdf",
+                "ed5f2d963d85478b"
             ]
         ]
     },
@@ -8474,7 +8128,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 420,
+        "y": 120,
         "wires": [
             [
                 "6d09f428.930bcc"
@@ -8493,10 +8147,11 @@
         "ok": "OK",
         "cancel": "",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
         "x": 1090,
-        "y": 420,
+        "y": 120,
         "wires": [
             []
         ]
@@ -8521,7 +8176,7 @@
         "to": "",
         "reg": false,
         "x": 930,
-        "y": 420,
+        "y": 120,
         "wires": [
             [
                 "46d5e78b.15f998"
@@ -9006,9 +8661,10 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
+        "allowrate": false,
         "outputs": 1,
         "x": 760,
-        "y": 420,
+        "y": 120,
         "wires": [
             [
                 "24df077a.cb252"
@@ -9276,6 +8932,11 @@
         "label": "Local UTC datetime",
         "format": "{{msg.payload}}",
         "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 660,
         "y": 1440,
         "wires": []
@@ -9287,9 +8948,11 @@
         "name": "",
         "func": "msg.payload = new Date()\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 380,
         "y": 1440,
         "wires": [
@@ -9574,6 +9237,185 @@
         "x": 820,
         "y": 580,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ed64bd91fa9fbdf",
+        "type": "ui_template",
+        "z": "1371dec5.76e671",
+        "group": "3da7da8f.179606",
+        "name": "Metrics panel",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "format": "<div ng-if=\"drifted && !settingTime\">\n    <p style=\"margin-bottom: 1em;\">\n        The instrument's system time is different from your web browser's time by {{drift}}.\n        As a result, timestamps in your datasets will be incorrect.\n        <span ng-if=\"severelyDrifted\">Additionally, system metrics will not be recorded or shown correctly.</span>\n        <span ng-if=\"!severelyDrifted\">Additionally, you will see incorrectly-aligned graphs in the metrics below.</span>\n    </p>\n    <p style=\"margin-bottom: 1em;\">Please change the instrument's system time or your web browser's time to accurate values.</p>\n    <p style=\"margin-bottom: 1em;\">\n        <button class=\"md-raised md-button\" type=\"button\" ng-click=\"setTime()\" style=\"z-index: 1; padding: 1em;\">\n            <span>Change Instrument's System Time to Match Web Browser's Time</span>\n        </button>\n    </p>\n</div>\n\n<div ng-if=\"!showMetrics && !severelyDrifted\" style=\"width: 100%; height: 750px;\">\n    <p>Loading system metrics, please wait...</p>\n</div>\n\n<center ng-if=\"showMetrics && !severelyDrifted\">\n    <object data=\"/admin/grafana/d/host-summary/host-summary?orgId=1&amp;refresh=5s&amp;kiosk\" width=\"100%\" height=\"750px\" style=\"text-align: left;\">\n        <p style=\"margin-bottom: 1em;\">\n            Metrics dashboard not available yet. Please wait a bit and then press the button below:\n        </p>\n        <p style=\"margin-bottom: 1em;\">\n            <button class=\"md-raised md-button\" type=\"button\" ng-click=\"reloadMetricsDashboard()\" style=\"z-index: 1; padding: 1em;\">\n                <span>Reload metrics dashboard</span>\n            </button>\n        </p>\n        <p>\n            If the dashboard never appears, the Grafana metrics dashboard server\n            may not be running or working correctly, in which case you will need to\n            troubleshoot the reason for that. If the Grafana server is running, you can\n            <a href=\"/admin/dozzle/show?name=apps_grafana-server-1\" target=\"_blank\">view its logs</a>.\n        </p>\n    </object>\n</center>\n\n<script>\n    (function(scope) {\n        function duration(ms) {\n            let seconds = (ms / 1000).toFixed(1);\n            let minutes = (ms / (1000 * 60)).toFixed(1);\n            let hours = (ms / (1000 * 60 * 60)).toFixed(1);\n            let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);\n            let months = (ms / (1000 * 60 * 60 * 24 * 30)).toFixed(1);\n            let years = (ms / (1000 * 60 * 60 * 24 * 365)).toFixed(1);\n            if (seconds < 60) return seconds + \" seconds\";\n            else if (minutes < 60) return minutes + \" minutes\";\n            else if (hours < 24) return hours + \" hours\";\n            else if (days < 30) return days + \" days\";\n            else if (months < 12) return months + \" months\";\n            else return years + \" years\";\n        }\n        \n        scope.drifted = undefined;\n        scope.severelyDrifted = undefined;\n        scope.drift = undefined;\n        function determineDrift(scope, systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            const severeThreshold = 1000 * 60 * 4.5; // 30 sec below the Grafana dashboard's visualization interval\n            scope.drifted = drift >= threshold;\n            scope.severelyDrifted = drift >= severeThreshold;\n            if (!scope.drifted) {\n                return;\n            }\n            scope.drift = duration(drift);\n        }\n        \n        scope.showMetrics = false;\n        scope.loadingMetrics = false;\n        var metricsDelayCounter = 0;\n        const metricsDelayThreshold = 2;\n        function showMetrics(scope) {\n            // Show the metrics immediately if we already determined that there's no time drift\n            if (scope.drifted === false) {\n                scope.showMetrics = true;\n                scope.loadingMetrics = false;\n                metricsDelayCounter = 0;\n            }\n            if (!scope.showMetrics && !scope.loadingMetrics && scope.severelyDrifted === false) { // this only happens on initial page load\n                scope.showMetrics = true;\n            }\n            // Show the metrics after a delay after changing system time,\n            // to ensure that there's data for Grafana to render\n            // (otherwise the page must be refreshed)\n            if (scope.loadingMetrics) {\n                metricsDelayCounter++;\n            }\n            if (metricsDelayCounter >= metricsDelayThreshold) {\n                scope.showMetrics = true;\n                scope.loadingMetrics = false;\n                metricsDelayCounter = 0;\n            }\n        }\n        \n        scope.settingTime = false;\n        scope.setTime = function() {\n            scope.settingTime = true;\n            if (scope.severelyDrifted) { // we only need to reload the Grafana dashboard if time drift is so bad that it has no data to show\n                scope.showMetrics = false;\n            }\n            scope.loadingMetrics = true;\n            fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json; charset=UTF-8'\n                },\n                body: JSON.stringify({\n                    timestamp: (new Date()).getTime()\n                })\n            });\n        }\n        \n        scope.reloadMetricsDashboard = function() {\n            scope.showMetrics = false;\n        }\n\n        scope.$watch('msg.payload', function(systemTime) {\n            if (systemTime !== undefined) {\n                determineDrift(scope, systemTime);\n                scope.settingTime = false;\n            }\n            showMetrics(scope);\n        });\n    })(scope);\n</script>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 330,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38bad1e220cd5d87",
+        "type": "ui_text",
+        "z": "1371dec5.76e671",
+        "group": "ce9e278.781eed8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "System Time",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ed5f2d963d85478b",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date();\ndate.setSeconds(0, 0);\nmsg.payload = (\n    date.toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC')\n);\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "38bad1e220cd5d87"
+            ]
+        ]
+    },
+    {
+        "id": "23a84a3856fb68bd",
+        "type": "ui_template",
+        "z": "1371dec5.76e671",
+        "group": "ce9e278.781eed8",
+        "name": "Browser time",
+        "order": 6,
+        "width": "6",
+        "height": "1",
+        "format": "<div style=\"top: 240px; width: 350px; height: 55px;\" class=\"nr-dashboard-text _md layout-row layout-align-space-between-center nr-dashboard-widget-System_Time visible\">\n    <p class=\"label\">Browser Time</p>\n    <p class=\"value\">{{time}}</p>\n</div>\n\n<script>\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            scope.time = (new Date()).toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC');\n        });\n    })(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19a45f972be2b0f1",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date(msg.payload.timestamp);\nmsg.payload = (\n    date.toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC')\n);\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "ee2c5e7c29eb4760"
+            ]
+        ]
+    },
+    {
+        "id": "8ba3e2774987fd58",
+        "type": "http in",
+        "z": "1371dec5.76e671",
+        "name": "POST /api/system-time",
+        "url": "/api/system-time",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "19a45f972be2b0f1",
+                "07bbdca8d6153210"
+            ]
+        ]
+    },
+    {
+        "id": "ee2c5e7c29eb4760",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Setting system time",
+        "name": "",
+        "x": 610,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "07bbdca8d6153210",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Prepare timestamp",
+        "func": "msg.payload = ('@' + msg.payload.timestamp).slice(0, -3);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "7558e8f302d5b944"
+            ]
+        ]
+    },
+    {
+        "id": "7558e8f302d5b944",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "sudo date -s",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "winHide": false,
+        "name": "Set system time",
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [],
+            [],
             []
         ]
     },
