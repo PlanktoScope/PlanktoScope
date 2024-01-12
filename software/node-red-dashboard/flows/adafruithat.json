@@ -7743,7 +7743,7 @@
         "id": "1cd5b4c0.46af9b",
         "type": "inject",
         "z": "1371dec5.76e671",
-        "name": "update: 15s",
+        "name": "update: 5s",
         "props": [
             {
                 "p": "payload"
@@ -7761,11 +7761,14 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 80,
+        "y": 160,
         "wires": [
             [
                 "3910d662.fa1f7a",
-                "ddcbbfa5.cd158"
+                "ddcbbfa5.cd158",
+                "23a84a3856fb68bd",
+                "4ed64bd91fa9fbdf",
+                "ed5f2d963d85478b"
             ]
         ]
     },
@@ -9246,14 +9249,14 @@
         "order": 1,
         "width": "0",
         "height": "0",
-        "format": "<center>\n<object data=\"/admin/grafana/d/host-summary/host-summary?orgId=1&refresh=5s&kiosk\" width=\"100%\" height=\"750px\">\n</object>\n</center>",
+        "format": "<div ng-show=\"drifted && !settingTime\">\n    <p>\n        The system time is different from your web browser's time by {{drift}}.\n        As a result, you may see incorrectly-aligned graphs or missing values in the metrics below,\n        and timestamps in your datasets will be incorrect.\n    </p>\n    <p>\n        <button class=\"md-raised md-button\" type=\"button\" ng-click=\"setTime()\" style=\"z-index: 1; padding: 1em;\">\n            <span>Change System Time to Match Browser Time</span>\n        </button>\n    </p>\n</div>\n\n<center>\n    <object data=\"/admin/grafana/d/host-summary/host-summary?orgId=1&amp;refresh=5s&amp;kiosk\" width=\"100%\" height=\"750px\">\n    </object>\n</center>\n\n<script>\n    (function(scope) {\n        function duration(ms) {\n            let seconds = (ms / 1000).toFixed(1);\n            let minutes = (ms / (1000 * 60)).toFixed(1);\n            let hours = (ms / (1000 * 60 * 60)).toFixed(1);\n            let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);\n            let months = (ms / (1000 * 60 * 60 * 24 * 30)).toFixed(1);\n            let years = (ms / (1000 * 60 * 60 * 24 * 365)).toFixed(1);\n            if (seconds < 60) return seconds + \" seconds\";\n            else if (minutes < 60) return minutes + \" minutes\";\n            else if (hours < 24) return hours + \" hours\";\n            else if (days < 30) return days + \" days\";\n            else if (months < 12) return months + \" months\";\n            else return years + \" years\";\n        }\n\n        scope.$watch('msg.payload', function(data) {\n            if (data === undefined) {\n                return;\n            }\n            const browserTime = (new Date()).getTime();\n            const systemTime = data;\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            scope.drifted = drift >= threshold;\n            if (!scope.drifted) {\n                return;\n            }\n            \n            scope.settingTime = false;\n            scope.drift = duration(drift);\n        });\n        scope.setTime = function() {\n            scope.settingTime = true;\n            fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json; charset=UTF-8'\n                },\n                body: JSON.stringify({\n                    timestamp: (new Date()).getTime()\n                })\n            });\n        }\n    })(scope);\n</script>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 90,
-        "y": 180,
+        "x": 330,
+        "y": 280,
         "wires": [
             []
         ]
@@ -9263,7 +9266,7 @@
         "type": "ui_text",
         "z": "1371dec5.76e671",
         "group": "ce9e278.781eed8",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "name": "",
@@ -9300,32 +9303,120 @@
         ]
     },
     {
-        "id": "aeeed42ea3dbd65c",
-        "type": "inject",
+        "id": "23a84a3856fb68bd",
+        "type": "ui_template",
         "z": "1371dec5.76e671",
-        "name": "update: 5s",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 110,
-        "y": 240,
+        "group": "ce9e278.781eed8",
+        "name": "Browser time",
+        "order": 6,
+        "width": "6",
+        "height": "1",
+        "format": "<div style=\"top: 240px; width: 350px; height: 55px;\" class=\"nr-dashboard-text _md layout-row layout-align-space-between-center nr-dashboard-widget-System_Time visible\">\n    <p class=\"label\">Browser Time</p>\n    <p class=\"value\">{{time}}</p>\n</div>\n\n<script>\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            scope.time = (new Date()).toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC');\n        });\n    })(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19a45f972be2b0f1",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date(msg.payload.timestamp);\nmsg.payload = (\n    date.toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC')\n);\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 340,
         "wires": [
             [
-                "ed5f2d963d85478b"
+                "ee2c5e7c29eb4760"
             ]
+        ]
+    },
+    {
+        "id": "8ba3e2774987fd58",
+        "type": "http in",
+        "z": "1371dec5.76e671",
+        "name": "POST /api/system-time",
+        "url": "/api/system-time",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "19a45f972be2b0f1",
+                "07bbdca8d6153210"
+            ]
+        ]
+    },
+    {
+        "id": "ee2c5e7c29eb4760",
+        "type": "ui_toast",
+        "z": "1371dec5.76e671",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Setting system time",
+        "name": "",
+        "x": 610,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "07bbdca8d6153210",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Prepare timestamp",
+        "func": "msg.payload = ('@' + msg.payload.timestamp).slice(0, -3);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "7558e8f302d5b944"
+            ]
+        ]
+    },
+    {
+        "id": "7558e8f302d5b944",
+        "type": "exec",
+        "z": "1371dec5.76e671",
+        "command": "sudo date -s",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "winHide": false,
+        "name": "Set system time",
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [],
+            [],
+            []
         ]
     },
     {
