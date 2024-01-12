@@ -13,16 +13,21 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
 - (System: administration) Added Dozzle as a viewer for Docker container logs.
+- (Application: GUI) The "System Monitoring" page now has an expandable "Detailed History" section to view additional information.
+- (System: administration) Added Prometheus as a metrics collection & storage system.
+- (System: administration) Added Grafana as a metrics visualization & alerting system.
 
 ### Changed
 
 - (System: security) `ufw` has been replaced with `firewalld`. However, firewalld has not yet been properly configured.
 - (System: administration) Docker commands can now be run without `sudo`.
+- (Application: GUI) The "System Monitoring" page now uses a Grafana dashboard to display metrics.
 
 ### Removed
 
 - (System: administration) Removed `cockpit-storaged`, which was not useful anyways and had pulled in many unneeded dependencies.
 - (System: setup) Removed some unnecessary `apt-get update` commands for a very minor speed-up in the distro setup process.
+- (Application: GUI) The "System Monitoring" page no longer displays a gauge for the CPU usage, since that information does not need to be monitored to ensure system stability & usability. Instead, CPU usage has been moved to the new "Detailed History" section.
 
 ### Fixed
 
