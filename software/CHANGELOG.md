@@ -14,6 +14,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
 - (System: administration) Added Dozzle as a viewer for Docker container logs.
 - (Application: GUI) The "System Monitoring" page now has an expandable "Detailed History" section to view additional information.
+- (Application: GUI) The "System Monitoring" page now reports the system time on the Raspberry Pi.
 - (System: administration) Added Prometheus as a metrics collection & storage system.
 - (System: administration) Added Grafana as a metrics visualization & alerting system.
 

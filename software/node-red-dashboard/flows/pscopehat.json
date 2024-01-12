@@ -9194,6 +9194,76 @@
         ]
     },
     {
+        "id": "e27abf42f136d2db",
+        "type": "inject",
+        "z": "1371dec5.76e671",
+        "name": "update: 5s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "aa2e4cd182dbc776"
+            ]
+        ]
+    },
+    {
+        "id": "aa2e4cd182dbc776",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date();\ndate.setSeconds(0, 0);\nmsg.payload = (\n    date.toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC')\n);\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "7c9ee522f6dbd3b0"
+            ]
+        ]
+    },
+    {
+        "id": "7c9ee522f6dbd3b0",
+        "type": "ui_text",
+        "z": "1371dec5.76e671",
+        "group": "ce9e278.781eed8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "System Time",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
         "id": "b9bf06d6.26c518",
         "type": "exec",
         "z": "f21ba04.c26266",

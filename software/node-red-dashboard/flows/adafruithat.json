@@ -8929,6 +8929,11 @@
         "label": "Local UTC datetime",
         "format": "{{msg.payload}}",
         "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 660,
         "y": 1440,
         "wires": []
@@ -8940,9 +8945,11 @@
         "name": "",
         "func": "msg.payload = new Date()\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 380,
         "y": 1440,
         "wires": [
@@ -9249,6 +9256,76 @@
         "y": 180,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "38bad1e220cd5d87",
+        "type": "ui_text",
+        "z": "1371dec5.76e671",
+        "group": "ce9e278.781eed8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "System Time",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ed5f2d963d85478b",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date();\ndate.setSeconds(0, 0);\nmsg.payload = (\n    date.toISOString().replace('T', ' ').replace(/:\\d+\\.\\d+Z/,' UTC')\n);\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "38bad1e220cd5d87"
+            ]
+        ]
+    },
+    {
+        "id": "aeeed42ea3dbd65c",
+        "type": "inject",
+        "z": "1371dec5.76e671",
+        "name": "update: 5s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "ed5f2d963d85478b"
+            ]
         ]
     },
     {
