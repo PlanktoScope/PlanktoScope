@@ -5,7 +5,7 @@ Wants=network-pre.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/.local/bin/update-cockpit-origins-machine-name.sh
+ExecStart="$(/home/pi/.local/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/machine-name)/update-cockpit-origins.sh"
 Restart=no
 
 [Install]

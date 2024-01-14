@@ -4,7 +4,7 @@ Before=hostapd.service
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/.local/bin/update-ssid-machine-name.sh
+ExecStart="$(/home/pi/.local/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/machine-name)/update-ssid.sh"
 Restart=no
 
 [Install]

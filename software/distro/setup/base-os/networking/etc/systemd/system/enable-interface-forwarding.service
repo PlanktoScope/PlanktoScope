@@ -3,7 +3,7 @@ Description=Enable forwarding of packets between eth0 and wlan0
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/.local/bin/enable-interface-forwarding.sh
+ExecStart="$(/home/pi/.local/bin/forklift --workspace /home/pi plt locate-depl-pkg host/networking/interface-forwarding)/enable-interface-forwarding.sh"
 
 [Install]
 WantedBy=multi-user.target
