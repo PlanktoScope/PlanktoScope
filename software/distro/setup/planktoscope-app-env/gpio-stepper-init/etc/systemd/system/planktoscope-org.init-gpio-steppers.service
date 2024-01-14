@@ -4,7 +4,8 @@ DefaultDependencies=false
 
 [Service]
 Type=oneshot
-ExecStart="$(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/gpio-init)/release-gpio-steppers.sh"
+# Note: `exec` is needed for `$(/usr/bin/forklift ...)` to be evaluated
+ExecStart=/bin/bash -c "exec $(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/gpio-init)/release-gpio-steppers.sh"
 Restart=no
 
 [Install]
