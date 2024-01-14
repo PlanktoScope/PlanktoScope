@@ -29,9 +29,6 @@ curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machin
 mkdir -p $HOME/.local/etc
 file="$HOME/.local/etc/machine-name"
 cp "$config_files_root$file" "$file"
-mkdir -p $HOME/.local/bin
-file="$HOME/.local/bin/update-machine-name.sh"
-cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-machine-name.service
@@ -39,9 +36,6 @@ sudo systemctl enable planktoscope-org.update-machine-name.service
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
 mkdir -p $HOME/.local/etc/hostapd
 file="$HOME/.local/etc/hostapd/ssid.snippet"
-cp "$config_files_root$file" "$file"
-mkdir -p $HOME/.local/bin
-file="$HOME/.local/bin/update-ssid-machine-name.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-ssid-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
@@ -56,9 +50,6 @@ mkdir -p $HOME/.local/etc/cockpit
 file="$HOME/.local/etc/cockpit/origins-base.snippet"
 cp "$config_files_root$file" "$file"
 file="$HOME/.local/etc/cockpit/origins-machine-name.snippet"
-cp "$config_files_root$file" "$file"
-mkdir -p $HOME/.local/bin
-file="$HOME/.local/bin/update-cockpit-origins-machine-name.sh"
 cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-cockpit-origins-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
@@ -81,14 +72,9 @@ cat "$HOME/.local/etc/hosts-base.snippet" \
 mkdir -p $HOME/.local/etc
 file="$HOME/.local/etc/hosts-machine-name.snippet"
 cp "$config_files_root$file" "$file"
-mkdir -p $HOME/.local/bin
-file="$HOME/.local/bin/update-hosts-machine-name.sh"
-cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-hosts-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hosts-machine-name.service
-file="$HOME/.local/bin/update-hostname-machine-name.sh"
-cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-hostname-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hostname-machine-name.service
