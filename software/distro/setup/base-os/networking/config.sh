@@ -60,7 +60,6 @@ sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 # Set up interface forwarding
 file="/etc/sysctl.d/routed-ap.conf"
 sudo cp "$config_files_root$file" "$file"
-cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/enable-interface-forwarding.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable enable-interface-forwarding.service
