@@ -21,9 +21,12 @@ file="/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
 sudo sed -i "s~^ssid=.*$~$(awk '{printf "%s\\n", $0}' $file)ssid=pkscope~g" /etc/hostapd/hostapd.conf
 
 # Download tool to generate machine names based on serial numbers
+mkdir -p $HOME/.local/bin/machine-name
 machinename_version="0.1.3"
 curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_arm.tar.gz" \
-  | tar -xz -C $HOME/.local/bin/ machine-name
+  | sudo tar -xz -C /usr/bin/ machine-name
+mv /usr/bin/machine-name "/usr/bin/machine-name.${machinename_version}"
+ln -s "/usr/bin/machine-name.${machinename_version}" /usr/bin/machine-name
 
 # Automatically generate the machine name and write it to a file upon boot
 mkdir -p $HOME/.local/etc
