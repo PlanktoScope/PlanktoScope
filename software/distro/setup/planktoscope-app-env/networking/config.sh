@@ -25,8 +25,8 @@ mkdir -p $HOME/.local/bin/machine-name
 machinename_version="0.1.3"
 curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_arm.tar.gz" \
   | sudo tar -xz -C /usr/bin/ machine-name
-mv /usr/bin/machine-name "/usr/bin/machine-name.${machinename_version}"
-ln -s "/usr/bin/machine-name.${machinename_version}" /usr/bin/machine-name
+sudo mv /usr/bin/machine-name "/usr/bin/machine-name.${machinename_version}"
+sudo ln -s "/usr/bin/machine-name.${machinename_version}" /usr/bin/machine-name
 
 # Automatically generate the machine name and write it to a file upon boot
 mkdir -p $HOME/.local/etc
