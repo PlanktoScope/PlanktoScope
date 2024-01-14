@@ -11,20 +11,13 @@ curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_v
   | tar -C $HOME/.local/bin -xz forklift
 workspace="$HOME"
 forklift="$HOME/.local/bin/forklift --workspace $workspace"
-if [ -d "$workspace" ]; then
-  $forklift plt rm
-fi
-$forklift plt clone github.com/PlanktoScope/pallet-standard@$pallet_version
+$forklift plt clone --force github.com/PlanktoScope/pallet-standard@$pallet_version
 $forklift plt cache-repo
 
-# Note: the below commands must run with sudo even though the pi user has been added to the docker
+# Note: this command must run with sudo even though the pi user has been added to the docker
 # usergroup, because that change only works after starting a new login shell; and `newgrp docker`
 # doesn't work either.
-sudo -E $forklift plt cache-img --parallel # to save disk space, don't cache images used by disabled package deployments
-# Note: we apply the pallet immediately so that the first boot of the image won't be excessively
-# slow (due to Docker Compose needing to create all the services from scratch rather than simply
-# starting them).
-#sudo -E $forklift plt apply --parallel
+sudo -E $forklift plt cache-img --parallel # to save disk space, we don't cache images used by disabled package deployments
 
 # The pallet must be applied during each startup because we're using Docker Compose, not Swarm Mode.
 file="/etc/systemd/system/planktoscope-org.forklift-apply.service"
