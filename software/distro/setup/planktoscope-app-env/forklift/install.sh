@@ -9,7 +9,7 @@ pallet_version="c84c827"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
   | tar -C $HOME/.local/bin -xz forklift
-workspace="$HOME/.forklift"
+workspace="$HOME"
 forklift="$HOME/.local/bin/forklift --workspace $workspace"
 if [ -d "$workspace" ]; then
   $forklift plt rm
@@ -24,7 +24,7 @@ sudo -E $forklift plt cache-img --parallel # to save disk space, don't cache ima
 # Note: we apply the pallet immediately so that the first boot of the image won't be excessively
 # slow (due to Docker Compose needing to create all the services from scratch rather than simply
 # starting them).
-sudo -E $forklift plt apply --parallel
+#sudo -E $forklift plt apply --parallel
 
 # The pallet must be applied during each startup because we're using Docker Compose, not Swarm Mode.
 file="/etc/systemd/system/planktoscope-org.forklift-apply.service"
