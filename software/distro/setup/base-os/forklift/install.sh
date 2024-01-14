@@ -9,7 +9,7 @@ pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="fbf442db"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
-  | tar -C /usr/bin -xz forklift
+  | sudo tar -C /usr/bin -xz forklift
 workspace="$HOME"
 forklift --workspace $HOME plt clone --force $pallet_path@$pallet_version
 forklift --workspace $HOME plt cache-repo
