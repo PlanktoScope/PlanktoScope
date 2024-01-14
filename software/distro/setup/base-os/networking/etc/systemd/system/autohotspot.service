@@ -8,7 +8,7 @@ After=docker.service
 
 [Service]
 Type=oneshot
-ExecStart="$(/home/pi/.local/bin/forklift --workspace /home/pi plt locate-depl-pkg host/networking/autohotspot)/autohotspot.sh"
+ExecStart="$(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/networking/autohotspot)/autohotspot.sh"
 
 [Install]
 WantedBy=network-online.target

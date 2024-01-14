@@ -7,7 +7,7 @@ Before=autohotspot.service
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/.local/bin/forklift --workspace /home/pi plt apply --parallel || /home/pi/.local/bin/forklift --workspace /home/pi plt apply
+ExecStart=/usr/bin/forklift --workspace /home/pi plt apply --parallel || /usr/bin/forklift --workspace /home/pi plt apply
 
 [Install]
 WantedBy=multi-user.target
