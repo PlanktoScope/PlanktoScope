@@ -7,7 +7,7 @@ Wants=network-pre.target
 [Service]
 Type=oneshot
 # Note: `exec` is needed for `$(/usr/bin/forklift ...)` to be evaluated
-ExecStart=/bin/bash -c "exec $(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/machine-name)/update-hosts.sh"
+ExecStart=/usr/bin/bash -c "exec $(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/machine-name)/update-hosts.sh"
 Restart=no
 
 [Install]

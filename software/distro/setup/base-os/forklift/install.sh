@@ -10,8 +10,8 @@ pallet_version="2334f2a8"
 
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
   | sudo tar -C /usr/bin -xz forklift
-sudo mv /usr/bin/forklift "/usr/bin/forklift.${forklift_version}"
-sudo ln -s "/usr/bin/forklift.${forklift_version}" /usr/bin/forklift
+sudo mv /usr/bin/forklift "/usr/bin/forklift-${forklift_version}"
+sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 
 workspace="$HOME"
 forklift --workspace $HOME plt clone --force $pallet_path@$pallet_version

@@ -3,7 +3,8 @@ Description=Enable forwarding of packets between eth0 and wlan0
 
 [Service]
 Type=oneshot
-ExecStart="$(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/networking/interface-forwarding)/enable-interface-forwarding.sh"
+# Note: `exec` is needed for `$(/usr/bin/forklift ...)` to be evaluated
+ExecStart=/usr/bin/bash -c "exec $(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/networking/interface-forwarding)/enable-interface-forwarding.sh"
 
 [Install]
 WantedBy=multi-user.target
