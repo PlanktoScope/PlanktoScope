@@ -74,11 +74,3 @@ if $build_scripts_root/networking/config.sh ; then
 else
   panic "$description"
 fi
-
-description="remove unnecessary artifacts"
-report_starting "$description"
-if $build_scripts_root/cleanup/clean.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
