@@ -24,6 +24,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: security) `ufw` has been replaced with `firewalld`. However, firewalld has not yet been properly configured.
 - (System: administration) Docker commands can now be run without `sudo`.
 - (Application: GUI) The "System Monitoring" page now uses a Grafana dashboard to display metrics.
+- (System) The PlanktoScope's machine name is now saved to `/var/lib/planktoscope/machine-name` instead of `/home/pi/.local/etc/machine-name`, and it's now saved without a trailing newline.
 
 ### Removed
 

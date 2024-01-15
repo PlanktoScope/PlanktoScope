@@ -1,0 +1,12 @@
+[Unit]
+Description=Update hostapd SSID based on machine name generated from the Raspberry Pi's serial number
+Before=hostapd.service
+
+[Service]
+Type=oneshot
+# Note: `exec` is needed for `$(/usr/bin/forklift ...)` to be evaluated
+ExecStart=/usr/bin/bash -c "exec $(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/planktoscope/machine-name)/hostapd-ssid/update.sh"
+Restart=no
+
+[Install]
+WantedBy=hostapd.service

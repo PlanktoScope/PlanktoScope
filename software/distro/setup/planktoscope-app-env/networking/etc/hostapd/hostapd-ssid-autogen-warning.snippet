@@ -1,3 +1,8 @@
 # The ssid line is automatically generated. Any changes you make to it will be lost with the next
-# boot/reboot. If you want your changes to persist across reboots, edit the
-# /home/pi/.local/etc/hostapd/hostapd-ssid.snippet file instead!
+# boot/reboot. If you want to change the format of the SSID and you want your changes to persist
+# across reboots, create and edit a new file at /etc/planktoscope/hostapd-ssid with the desired
+# ssid, and then restart the planktoscope-org.update-hostapd-ssid-machine-name system service,
+# and then restart the hostapd system service.
+# In that file, the string "{machine-name}" will be automatically replaced with the machine-specific
+# name, which will look something like "metal-slope-23501".
+# Warning: the Wi-FI hotspot SSID is not allowed to be longer than 32 bytes.

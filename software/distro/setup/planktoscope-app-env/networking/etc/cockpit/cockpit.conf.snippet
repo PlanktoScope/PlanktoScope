@@ -1,6 +1,10 @@
 UrlRoot = /admin/cockpit/
 # The Origins line is automatically generated. Any changes you make to it will be lost with the next
-# boot/reboot. If you want your changes to persist across reboots, edit the
-# /home/pi/.local/etc/cockpit/origins-base.snippet
-# and /home/pi/.local/etc/cockpit/origins-machine-name.snippet files instead!
+# boot/reboot. If you want to add more origins which persist across reboots,
+# create and edit a new file at /etc/planktoscope/cockpit-origins.
+# In that file, the string "{machine-name}" will be automatically replaced with the machine-specific
+# name, which will look something like "metal-slope-23501".
+# To apply your changes immediately without rebooting, restart the
+# planktoscope-org.update-cockpit-origins-machine-name system service,
+# and then restart the cockpit system service.
 Origins = http://192.168.4.1 http://192.168.4.1:9090 http://192.168.5.1 http://192.168.5.1:9090 http://localhost http://localhost:9090 http://home.pkscope http://home.pkscope:9090 http://pkscope.local http://pkscope.local:9090 http://planktoscope.local http://planktoscope.local:9090

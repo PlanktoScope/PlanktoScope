@@ -28,8 +28,9 @@ $POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.7.1
 
 # Download device-backend monorepo
-backend_version="2872828" # this should be either a version tag, branch name, or commit hash
-git clone https://github.com/PlanktoScope/device-backend $HOME/device-backend --no-checkout --filter=blob:none
+backend_repo="github.com/PlanktoScope/device-backend"
+backend_version="e5e4cf4" # this should be either a version tag, branch name, or commit hash
+git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
 # Set up the hardware controllers

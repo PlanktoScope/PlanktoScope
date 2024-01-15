@@ -1,10 +1,13 @@
 [Unit]
 Description=Run the PlanktoScope data-processing segmenter
 # Wait for Forklift to bring up mosquitto, in case the segmenter needs to start after mosquitto
-Wants=planktoscope-org.forklift-apply.service
-After=planktoscope-org.forklift-apply.service
+Wants=forklift-apply.service
+After=forklift-apply.service
 # Start after Node-RED so that Node-RED can catch all MQTT messages emitted at startup
 After=nodered.service
+# Only start after the machine name has been updated
+Wants=planktoscope-org.update-machine-name.service
+After=planktoscope-org.update-machine-name.service
 
 [Service]
 Type=simple
