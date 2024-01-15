@@ -37,9 +37,9 @@ function panic {
 
 # Run sub-scripts
 
-description="enable CPU overclocking"
+description="configure networking"
 report_starting "$description"
-if $build_scripts_root/overclocking/install.sh ; then
+if $build_scripts_root/networking/config.sh ; then
   report_finished "$description"
 else
   panic "$description"
@@ -85,9 +85,9 @@ else
   panic "$description"
 fi
 
-description="configure networking"
+description="enable CPU overclocking"
 report_starting "$description"
-if $build_scripts_root/networking/config.sh ; then
+if $build_scripts_root/overclocking/install.sh ; then
   report_finished "$description"
 else
   panic "$description"
