@@ -27,7 +27,7 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-machine-name.service
 
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
-file="/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
+file="$config_files_root/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
 # This sed command uses `~` instead of `/` because the warning comments also include `/` characters.
 # The awk subcommand is needed to escape newlines for sed.
 sudo sed -i "s~^ssid=\(.*\)$~$(awk '{printf "%s\\n", $0}' $file)ssid=\\1~g" /etc/hostapd/hostapd.conf

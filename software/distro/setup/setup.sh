@@ -63,7 +63,7 @@ fi
 
 description="remove unnecessary artifacts from the PlanktoScope application environment"
 report_starting "$description"
-if $build_scripts_root/base-os/cleanup.sh ; then
+if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
   report_finished "$description"
 else
   panic "$description"
@@ -71,7 +71,7 @@ fi
 
 description="remove unnecessary artifacts from the base operating system"
 report_starting "$description"
-if $build_scripts_root/base-os/cleanup.sh ; then
+if $setup_scripts_root/base-os/cleanup.sh ; then
   report_finished "$description"
 else
   panic "$description"
