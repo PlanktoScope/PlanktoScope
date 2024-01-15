@@ -14,12 +14,6 @@ sudo bash -c "echo \"$new_hostname\" > /etc/hostname"
 sudo sed -i "s/^127\.0\.1\.1.*$current_hostname$/127.0.1.1\t$new_hostname/g" /etc/hosts
 sudo hostnamectl set-hostname "$new_hostname"
 
-# Set the default SSID for the self-hosted wifi network, which will be updated with the machine name on boot
-file="/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
-# This sed command uses `~` instead of `/` because the warning comments also include `/` characters.
-# The awk subcommand is needed to escape newlines for sed.
-sudo sed -i "s~^ssid=.*$~$(awk '{printf "%s\\n", $0}' $file)ssid=pkscope~g" /etc/hostapd/hostapd.conf
-
 # Download tool to generate machine names based on serial numbers
 machinename_version="0.1.3"
 curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_arm.tar.gz" \
@@ -33,6 +27,10 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-machine-name.service
 
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
+file="/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
+# This sed command uses `~` instead of `/` because the warning comments also include `/` characters.
+# The awk subcommand is needed to escape newlines for sed.
+sudo sed -i "s~^ssid=\(.*\)$~$(awk '{printf "%s\\n", $0}' $file)ssid=\\1~g" /etc/hostapd/hostapd.conf
 file="/etc/systemd/system/planktoscope-org.update-hostapd-ssid-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hostapd-ssid-machine-name.service
