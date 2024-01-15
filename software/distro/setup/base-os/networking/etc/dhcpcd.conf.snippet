@@ -1,13 +1,74 @@
 
 noarp
 
-# Define static profile for eth0
 profile static_eth0
 static ip_address=192.168.5.1/24
 static routers=192.168.5.1
 static domain_name_servers=192.168.5.1
 nogateway # don't install any default routes
-
-# Fallback to static profile on eth0
 interface eth0
 fallback static_eth0
+
+profile static_usb0
+static ip_address=192.168.6.1/24
+static routers=192.168.6.1
+static domain_name_servers=192.168.6.1
+nogateway # don't install any default routes
+interface usb0
+fallback static_usb0
+
+profile static_eth1
+static ip_address=192.168.7.1/24
+static routers=192.168.7.1
+static domain_name_servers=192.168.7.1
+nogateway # don't install any default routes
+interface eth1
+fallback static_eth1
+
+profile static_usb1
+static ip_address=192.168.8.1/24
+static routers=192.168.8.1
+static domain_name_servers=192.168.8.1
+nogateway # don't install any default routes
+interface usb1
+fallback static_usb1
+
+profile static_eth2
+static ip_address=192.168.9.1/24
+static routers=192.168.9.1
+static domain_name_servers=192.168.9.1
+nogateway # don't install any default routes
+interface eth2
+fallback static_eth2
+
+profile static_usb2
+static ip_address=192.168.10.1/24
+static routers=192.168.10.1
+static domain_name_servers=192.168.10.1
+nogateway # don't install any default routes
+interface usb2
+fallback static_usb2
+
+profile static_eth3
+static ip_address=192.168.11.1/24
+static routers=192.168.11.1
+static domain_name_servers=192.168.11.1
+nogateway # don't install any default routes
+interface eth3
+fallback static_eth3
+
+profile static_usb3
+static ip_address=192.168.12.1/24
+static routers=192.168.12.1
+static domain_name_servers=192.168.12.1
+nogateway # don't install any default routes
+interface usb3
+fallback static_usb3
+
+profile static_eth4
+static ip_address=192.168.13.1/24
+static routers=192.168.13.1
+static domain_name_servers=192.168.13.1
+nogateway # don't install any default routes
+interface eth4
+fallback static_eth4

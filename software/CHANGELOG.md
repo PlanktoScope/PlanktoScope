@@ -11,6 +11,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Added
 
+- (System: networking) Added support to share internet access and browser application access over additional network interfaces: a second Wi-Fi module, up to 4 additional Ethernet adapters, and up to 4 USB networking interfaces.
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
 - (System: administration) Added Dozzle as a viewer for Docker container logs.
 - (Application: GUI) The "System Monitoring" page now shows the current system time on the Raspberry Pi and the current time in the web browser of the client device.
