@@ -33,9 +33,9 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-machine-name.service
 
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
-file="/etc/systemd/system/planktoscope-org.update-ssid-machine-name.service"
+file="/etc/systemd/system/planktoscope-org.update-hostapd-ssid-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable planktoscope-org.update-ssid-machine-name.service
+sudo systemctl enable planktoscope-org.update-hostapd-ssid-machine-name.service
 
 # Change Cockpit settings
 file="/etc/cockpit/cockpit.conf"
@@ -49,20 +49,11 @@ sudo systemctl enable planktoscope-org.update-cockpit-origins-machine-name.servi
 # Change dnsmasq settings
 file="/etc/dnsmasq.d/planktoscope.conf"
 sudo cp "$config_files_root$file" "$file"
-mkdir -p $HOME/.local/etc
-file="$HOME/.local/etc/hosts-autogen-warning.snippet"
-cp "$config_files_root$file" "$file"
-file="$HOME/.local/etc/hosts-base.snippet"
-cp "$config_files_root$file" "$file"
-cp "$HOME/.local/etc/hosts-autogen-warning.snippet" \
-  "$HOME/.local/etc/hosts"
-cat "$HOME/.local/etc/hosts-base.snippet" \
-  >> "$HOME/.local/etc/hosts"
-
-# Automatically update system hostname upon boot with the machine name
 file="/etc/systemd/system/planktoscope-org.update-hosts-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hosts-machine-name.service
+
+# Automatically update system hostname upon boot with the machine name
 file="/etc/systemd/system/planktoscope-org.update-hostname-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hostname-machine-name.service
