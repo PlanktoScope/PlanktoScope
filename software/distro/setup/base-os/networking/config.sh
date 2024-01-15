@@ -55,7 +55,7 @@ sudo systemctl enable dnsmasq # we'll always run dnsmasq as a DNS & DHCP server
 
 # Change dhcpcd settings
 sudo mkdir -p /etc/systemd/system/dhcpcd.service.d
-file="/etc/systemd/system/dhcpcd.service.d/override.conf"
+file="/etc/systemd/system/dhcpcd.service.d/z-override.conf"
 sudo cp "$config_files_root$file" "$file"
 
 # Set up interface forwarding
