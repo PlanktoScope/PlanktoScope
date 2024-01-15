@@ -36,7 +36,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - (System) Boot time has been made faster by approximately 1 minute.
-- (System) The base OS setup scripts now run without errors on both the 32-bit and 64-bit versions of Raspberry Pi OS 12 (bookworm). However, setup of the PlanktoScope applications still fails with errors on bookworm and on 64-bit versions of the Raspberry Pi OS.
+- (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
 - (System) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
 
 ## v2023.9.0 - 2023-12-30
