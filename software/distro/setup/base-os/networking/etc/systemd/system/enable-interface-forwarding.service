@@ -7,4 +7,4 @@ Type=oneshot
 ExecStart=/usr/bin/bash -c "exec $(/usr/bin/forklift --workspace /home/pi plt locate-depl-pkg host/networking/interface-forwarding)/enable-interface-forwarding.sh"
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=network-online.target
