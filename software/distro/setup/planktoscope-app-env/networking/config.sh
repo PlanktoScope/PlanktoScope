@@ -50,10 +50,6 @@ sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 
 # Automatically update the Cockpit origins upon boot with the machine name
 mkdir -p $HOME/.local/etc/cockpit
-file="$HOME/.local/etc/cockpit/origins-base.snippet"
-cp "$config_files_root$file" "$file"
-file="$HOME/.local/etc/cockpit/origins-machine-name.snippet"
-cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-cockpit-origins-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-cockpit-origins-machine-name.service
@@ -73,8 +69,6 @@ cat "$HOME/.local/etc/hosts-base.snippet" \
 
 # Automatically update hostnames upon boot with the machine name
 mkdir -p $HOME/.local/etc
-file="$HOME/.local/etc/hosts-machine-name.snippet"
-cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-hosts-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hosts-machine-name.service
