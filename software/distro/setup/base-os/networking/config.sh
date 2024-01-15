@@ -54,8 +54,9 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable dnsmasq # we'll always run dnsmasq as a DNS & DHCP server
 
 # Change dhcpcd settings
-file="/etc/dhcpcd.conf"
-sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
+sudo mkdir -p /etc/systemd/system/dhcpcd.service.d
+file="/etc/systemd/system/dhcpcd.service.d/z-override.conf"
+sudo cp "$config_files_root$file" "$file"
 
 # Set up interface forwarding
 file="/etc/sysctl.d/routed-ap.conf"

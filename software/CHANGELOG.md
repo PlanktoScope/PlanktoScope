@@ -11,6 +11,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Added
 
+- (System: networking) Added support to share internet access and browser application access over additional network interfaces: a second Wi-Fi module, an additional Ethernet adapter, and a USB networking interface (made by plugging a phone to the Raspberry Pi in USB tethering mode).
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
 - (System: administration) Added Dozzle as a viewer for Docker container logs.
 - (Application: GUI) The "System Monitoring" page now shows the current system time on the Raspberry Pi and the current time in the web browser of the client device.
@@ -35,7 +36,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - (System) Boot time has been made faster by approximately 1 minute.
-- (System) The base OS setup scripts now run without errors on both the 32-bit and 64-bit versions of Raspberry Pi OS 12 (bookworm). However, setup of the PlanktoScope applications still fails with errors on bookworm and on 64-bit versions of the Raspberry Pi OS.
+- (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
 - (System) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
 
 ## v2023.9.0 - 2023-12-30
