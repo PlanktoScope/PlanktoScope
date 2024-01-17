@@ -33,7 +33,7 @@ git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=bl
 git -C $HOME/device-backend checkout --quiet $backend_version
 
 # Set up the hardware controllers
-sudo apt-get install -y --no-install-recommends i2c-tools
+sudo apt-get install -y --no-install-recommends i2c-tools libopenjp2-7
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"
