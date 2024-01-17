@@ -19,7 +19,6 @@ sudo apt-get install -y git python3-pip python3-venv
 # installation to ensure that a wheel is available from piwheels for the cryptography dependency.
 # We have had problems in the past with a version of that dependency not being available from
 # piwheels.
-# TODO: for aarch64, use a more modern version of poetry
 POETRY_VENV=$HOME/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
@@ -55,15 +54,3 @@ cp "$HOME/device-backend/default-configs/$hardware_type-latest.hardware.json" \
 mkdir -p $HOME/PlanktoScope/scripts
 directory="scripts/raspimjpeg"
 cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
-
-# Set up the data processing segmenter
-# FIXME: if we're not using libhdf5, libopenjp2-7, libopenexr25, libavcodec58, libavformat58, and
-# libswscale5, can we avoid the need to install them?
-sudo apt-get install -y libopenblas0 libatlas3-base \
-  libhdf5-103-1 libopenjp2-7 libopenexr25 libavcodec58 libavformat58 libswscale5
-$POETRY_VENV/bin/poetry --directory $HOME/device-backend/processing/segmenter install --no-root --compile
-file="/etc/systemd/system/planktoscope-org.device-backend.processing.segmenter.service"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable planktoscope-org.device-backend.processing.segmenter.service
-# FIXME: make this directory in the main.py file
-mkdir -p $HOME/device-backend-logs/processing/segmenter
