@@ -54,3 +54,7 @@ cp "$HOME/device-backend/default-configs/$hardware_type-latest.hardware.json" \
 mkdir -p $HOME/PlanktoScope/scripts
 directory="scripts/raspimjpeg"
 cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
+
+# Set up the segmenter
+mkdir -p $HOME/PlanktoScope/device-backend-logs/processing/segmenter
+mkdir -p $HOME/PlanktoScope/data/export
