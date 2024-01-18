@@ -56,5 +56,5 @@ directory="scripts/raspimjpeg"
 cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 
 # Set up the segmenter
-mkdir -p $HOME/PlanktoScope/device-backend-logs/processing/segmenter
-mkdir -p $HOME/PlanktoScope/data/export
+mkdir -p $HOME/device-backend-logs/processing/segmenter
+mkdir -p $HOME/data/export
