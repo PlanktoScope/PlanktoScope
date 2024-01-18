@@ -20,7 +20,7 @@ from loguru import logger
 
 
 import numpy
-import pandas
+import pandas  # FIXME: just use python's csv library, to shave off pandas's 60 MB of unnecessary disk space usage
 import zipfile
 import os
 import io

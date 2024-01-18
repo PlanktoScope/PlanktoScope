@@ -8,6 +8,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- (Segmenter) A Docker container image is now built for the segmenter, for amd64, arm64, and armv7.
+
+### Fixed
+
+- (Segmenter) An extraneous `export` directory should no longer be created by the segmenter under `/home/pi/PlanktoScope`. The correct directory is `/home/pi/data/export`.
+
 ### Changed
 
 - (Breaking change) The machine name is now loaded from `/var/lib/planktoscope/machine-name`, rather than the previous location of `/home/pi/.local/etc/machine-name`.

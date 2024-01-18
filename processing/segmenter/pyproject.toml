@@ -32,13 +32,14 @@ classifiers = [
   "Topic :: Scientific/Engineering",
 ]
 
+
+[[tool.poetry.source]]
+name = "pypi"
+priority = "supplemental"
+
 [[tool.poetry.source]]
 name = "piwheels"
 url = "https://www.piwheels.org/simple/"
-priority = "primary"
-
-[[tool.poetry.source]]
-name = "PyPI"
 priority = "primary"
 
 [build-system]
@@ -46,11 +47,42 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.9.2"
-paho-mqtt = "~1.6.1"
-numpy = "~1.26.2"
-pandas = "~2.1.4"
-loguru = "~0.5.3"
-opencv-contrib-python-headless = "4.5.5.62"
-scipy = "1.11.4"
-scikit-image = "~0.19.3"
+python = "~3.9.2"
+paho-mqtt = [
+  { version = "==1.6.1", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==1.6.1", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+numpy = [
+  { version = "==1.22.4", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==1.22.4", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+pandas = [
+  { version = "==2.1.4", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==2.1.4", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+loguru = [
+  { version = "==0.5.3", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==0.5.3", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+opencv-python-headless = [
+  { version = "==4.6.0.66", source = "pypi", markers = "platform_machine != 'armv7l'"},
+  { version = "==4.6.0.66", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+scikit-image = [
+  { version = "==0.19.3", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==0.19.3", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+# note: the following packages are only indirect dependencies, but we need to download wheels from
+# the appropriate sources, so we must explicitly select them here
+scipy = [
+  { version = "==1.11.4", source = "pypi", markers = "platform_machine != 'armv7l'"},
+  { version = "==1.11.4", source = "piwheels", markers = "platform_machine == 'armv7l'"},
+]
+pillow = [
+  { version = "==10.1.0", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==10.1.0", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]
+pywavelets = [
+  { version = "==1.5.0", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==1.5.0", source = "piwheels", markers = "platform_machine == 'armv7l'" },
+]

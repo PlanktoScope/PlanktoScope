@@ -21,14 +21,17 @@ import os
 
 from loguru import logger  # for logging with multiprocessing
 
-import planktoscope.mqtt
 import planktoscope.segmenter
+
+logs_path = "/home/pi/device-backend-logs/processing/segmenter"
+if not os.path.exists(logs_path):
+    os.makedirs(logs_path)
 
 # enqueue=True is necessary so we can log accross modules
 # rotation happens everyday at 01:00 if not restarted
 # TODO: ensure the log directory exists
 logger.add(
-    "/home/pi/device-backend-logs/processing/segmenter/{time}.log",
+    logs_path + "/{time}.log",
     rotation="5 MB",
     retention="1 week",
     compression=".tar.gz",
@@ -63,7 +66,7 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
-    export_path = "/home/pi/PlanktoScope/export"  # FIXME: this path is incorrect - why doesn't it cause side effects?
+    export_path = "/home/pi/data/export"
     # check if this path exists
     if not os.path.exists(export_path):
         # create the path!
@@ -86,8 +89,6 @@ if __name__ == "__main__":
     logger.success("Looks like the segmenter is set up and running, have fun!")
 
     while run:
-        # TODO look into ways of restarting the dead threads
-        logger.trace("Running around in circles while waiting for someone to die!")
         if not segmenter_thread or not segmenter_thread.is_alive():
             logger.error("The segmenter process died unexpectedly! Oh no!")
             break

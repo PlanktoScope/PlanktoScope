@@ -84,7 +84,7 @@ class MQTT_Client:
     when creating this object
     """
 
-    def __init__(self, topic, server="127.0.0.1", port=1883, name="client"):
+    def __init__(self, topic, server="host.docker.internal", port=1883, name="client"):
         # Declare the global variables command and args
         self.command = ""
         self.args = ""

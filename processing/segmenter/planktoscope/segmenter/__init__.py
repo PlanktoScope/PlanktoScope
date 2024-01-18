@@ -42,7 +42,6 @@ import select
 
 # Basic planktoscope libraries
 import planktoscope.identity
-import planktoscope.uuidName
 import planktoscope.mqtt
 import planktoscope.segmenter.operations
 import planktoscope.segmenter.encoder
@@ -755,15 +754,11 @@ class SegmenterProcess(multiprocessing.Process):
         logger.debug(f"Those are {path_list}")
 
         self.__process_uuid = planktoscope.identity.load_machine_name()
-        self.__deprecated_process_uuid = planktoscope.uuidName.uuidMachine(
-            machine=planktoscope.uuidName.getSerial()
-        )
 
         if self.__process_id == "":
             self.__process_id = self.__process_uuid
 
         logger.info(f"The process_uuid of this run is {self.__process_uuid}")
-        logger.info(f"The deprecated process_uuid is {self.__deprecated_process_uuid}")
         logger.info(f"The process_id of this run is {self.__process_id}")
         exception = None
 
