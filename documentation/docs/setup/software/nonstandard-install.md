@@ -65,7 +65,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 === "latest beta"
 
     ```
-    wget -qO - https://install.planktoscope.community/distro.sh \
+    wget -O - https://install.planktoscope.community/distro.sh \
       | sh -s -- -v software/beta -H pscopehat
     ```
     
@@ -74,7 +74,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 === "latest stable"
 
     ```
-    wget -qO - https://install.planktoscope.community/distro.sh \
+    wget -O - https://install.planktoscope.community/distro.sh \
       | sh -s -- -v software/stable -H pscopehat
     ```
     
@@ -83,7 +83,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 === "development"
 
     ```
-    wget -qO - https://install.planktoscope.community/distro.sh \
+    wget -O - https://install.planktoscope.community/distro.sh \
       | sh -s -- -v master -H pscopehat
     ```
     
@@ -92,14 +92,14 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 Instead of installing the latest beta, stable, or development version, you can also install a specific tagged release or pre-release of the PlanktoScope software. For example, to install the v2023.9.0-beta.1 prerelease of the PlanktoScope software, you would run the following command:
 
 ```
-wget -qO - https://install.planktoscope.community/distro.sh \
+wget -O - https://install.planktoscope.community/distro.sh \
   | sh -s -- -t tag -v v2023.9.0-beta.1 -H pscopehat
 ```
 
 Note that you can also choose to install the PlanktoScope software from some other repository on GitHub instead of github.com/PlanktoScope/PlanktoScope, by using the `-r` command-line option; for more information, you can get usage instructions by running the following command:
 
 ```
-wget -qO - https://install.planktoscope.community/distro.sh \
+wget -O - https://install.planktoscope.community/distro.sh \
   | sh -s -- --help
 ```
 
