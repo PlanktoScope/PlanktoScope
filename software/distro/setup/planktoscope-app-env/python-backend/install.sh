@@ -41,6 +41,7 @@ sudo cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-pscopehat.service"
 sudo cp "$config_files_root$file" "$file"
 # FIXME: make this directory in the main.py file
+mkdir -p $HOME/data/img
 mkdir -p $HOME/device-backend-logs/control
 
 # Select the enabled hardware controller
@@ -58,4 +59,5 @@ cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 # Set up the segmenter
 # TODO: give forklift some way to make these directories ahead-of-time!
 mkdir -p $HOME/device-backend-logs/processing/segmenter
+mkdir -p $HOME/data/img
 mkdir -p $HOME/data/export
