@@ -37,6 +37,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System) Boot time has been made faster by approximately 1 minute.
 - (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
+- (Application: GUI) On Mozilla Firefox, the embedded file browser in the Node-RED dashboard's "Gallery" page should now consistently load with the correct height, instead of sometimes loading with an absurdly small height.
 - (System) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
 
 ## v2023.9.0 - 2023-12-30
