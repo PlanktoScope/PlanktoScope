@@ -36,6 +36,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Fixed
 
+- (Application: GUI) The "Filtered volume" field (on the "Sample" page) is now saved as the `sample_total_volume` metadata field for all sample types, not just horizontal Plankton tows (corresponding to the "Plankton net", "High Speed Net", and "Tara decknet" sample types).
 - (System) Boot time has been made faster by approximately 1 minute.
 - (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
 - (Application: GUI) On Mozilla Firefox, the embedded file browser in the Node-RED dashboard's "Gallery" page should now consistently load with the correct height, instead of sometimes loading with an absurdly small height.
