@@ -26,6 +26,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: administration) Docker commands can now be run without `sudo`.
 - (Application: GUI) The "System Monitoring" page now uses a Grafana dashboard to display metrics.
 - (Application: GUI) The "Fluidic Acquisition" page now uses a numeric text input instead of a slider for adjusting the "Pumped volume" setting, to make it easier to change the setting to a different exact value.
+- (Application: GUI) On the "Sample" page, the input fields of the "Sample Location"/"Net Throw Location"/"Net Retrieval Location"/"Culture Date and Time" panels no longer get cleared when pressing the "Validate" button.
 - (System) The PlanktoScope's machine name is now saved to `/var/lib/planktoscope/machine-name` instead of `/home/pi/.local/etc/machine-name`, and it's now saved without a trailing newline.
 
 ### Removed
