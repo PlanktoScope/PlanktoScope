@@ -5848,34 +5848,6 @@
         ]
     },
     {
-        "id": "df1ea904.cd261",
-        "type": "ui_slider",
-        "z": "baa1e3d9.cb29d",
-        "name": "imaging_pump_volume",
-        "label": "Pumped volume (mL)",
-        "tooltip": "inbetween frames",
-        "group": "4322c187.e73e5",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "imaging_pump_volume",
-        "topicType": "str",
-        "min": "0.001",
-        "max": "0.5",
-        "step": "0.001",
-        "className": "",
-        "x": 630,
-        "y": 260,
-        "wires": [
-            [
-                "fb887036.12429",
-                "67091ac0.8f9f6c"
-            ]
-        ]
-    },
-    {
         "id": "a4abb1ae.2ae418",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "baa1e3d9.cb29d",
@@ -5921,7 +5893,7 @@
         "y": 260,
         "wires": [
             [
-                "df1ea904.cd261"
+                "0df8d1d86af6455a"
             ]
         ]
     },
@@ -5979,6 +5951,33 @@
         ],
         "outputLabels": [
             "interface"
+        ]
+    },
+    {
+        "id": "0df8d1d86af6455a",
+        "type": "ui_text_input",
+        "z": "baa1e3d9.cb29d",
+        "name": "imaging_pump_volume",
+        "label": "Pumped volume (mL)",
+        "tooltip": "between frames",
+        "group": "4322c187.e73e5",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "imaging_pump_volume",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 630,
+        "y": 260,
+        "wires": [
+            [
+                "fb887036.12429",
+                "67091ac0.8f9f6c"
+            ]
         ]
     },
     {
