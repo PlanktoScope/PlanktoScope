@@ -352,20 +352,24 @@ reference = "piwheels"
 
 [[package]]
 name = "pillow"
-version = "10.0.0"
+version = "10.2.0"
 description = "Python Imaging Library (Fork)"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "Pillow-10.0.0-cp311-cp311-linux_armv6l.whl", hash = "sha256:eac2ecec163154f6c38a4f4dfafbcd69127daba98f04bb10da3241eae61ed0a8"},
-    {file = "Pillow-10.0.0-cp311-cp311-linux_armv7l.whl", hash = "sha256:eac2ecec163154f6c38a4f4dfafbcd69127daba98f04bb10da3241eae61ed0a8"},
-    {file = "Pillow-10.0.0-cp39-cp39-linux_armv6l.whl", hash = "sha256:c3d151125cf7fad504c9d2b568f546846cb9481169e09c1092f58715d1209e48"},
-    {file = "Pillow-10.0.0-cp39-cp39-linux_armv7l.whl", hash = "sha256:c3d151125cf7fad504c9d2b568f546846cb9481169e09c1092f58715d1209e48"},
+    {file = "pillow-10.2.0-cp311-cp311-linux_armv6l.whl", hash = "sha256:586020c04c8c433a46706bfbb4354a00d17a3d54527787fd2863e2fbbea5f612"},
+    {file = "pillow-10.2.0-cp311-cp311-linux_armv7l.whl", hash = "sha256:586020c04c8c433a46706bfbb4354a00d17a3d54527787fd2863e2fbbea5f612"},
+    {file = "pillow-10.2.0-cp39-cp39-linux_armv6l.whl", hash = "sha256:4c06e95b60744ed68a118865328d02b7760e57e072d07fff8ed761ec65898ea4"},
+    {file = "pillow-10.2.0-cp39-cp39-linux_armv7l.whl", hash = "sha256:4c06e95b60744ed68a118865328d02b7760e57e072d07fff8ed761ec65898ea4"},
 ]
 
 [package.extras]
 docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-removed-in", "sphinxext-opengraph"]
+fpx = ["olefile"]
+mic = ["olefile"]
 tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+typing = ["typing-extensions"]
+xmp = ["defusedxml"]
 
 [package.source]
 type = "legacy"
@@ -580,4 +584,4 @@ reference = "piwheels"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9.2"
-content-hash = "e5ccba19fb3f8f5dcfad6bb703f3c6c689017138e448630ebef43bac3cf292e7"
+content-hash = "2d1b6ee4d9d56f71f129c209d9451d9e3d90a46a9bbae5ce64548fc545b6a100"
