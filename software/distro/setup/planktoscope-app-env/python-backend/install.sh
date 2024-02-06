@@ -13,6 +13,10 @@ hardware_type="$1" # should be either adafruithat or pscopehat
 ## Install basic Python tooling
 sudo apt-get install -y git python3-pip python3-venv
 
+# Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
+# (see https://github.com/pypa/pip/issues/7883)
+PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
 # Install Poetry
 # Note: Because the poetry installation process (whether with pipx or the official installer) always
 # selects the most recent version of the cryptography dependency, we must instead do a manual poetry
