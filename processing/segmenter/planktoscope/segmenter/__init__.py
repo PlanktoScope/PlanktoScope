@@ -817,6 +817,7 @@ class SegmenterProcess(multiprocessing.Process):
 
         project = self.__global_metadata["sample_project"].replace(" ", "_")
         sample = self.__global_metadata["sample_id"].replace(" ", "_")
+        acquisition = self.__global_metadata["acq_id"].replace(" ", "_")
         date = datetime.datetime.utcnow().isoformat()
 
         self.__global_metadata["process_datetime"] = date
@@ -857,7 +858,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__archive_fn = os.path.join(
             self.__ecotaxa_path,
             # filename includes project name, timestamp and sample id
-            f"ecotaxa_{project}_{date}_{sample}.zip",
+            f"ecotaxa_{acquisition}.zip",
         # TODO #102 sanitize the filename to remove potential problems with spaces and special characters
         )
 

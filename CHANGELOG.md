@@ -8,17 +8,27 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Changed
+
+- (Breaking change; segmenter) EcoTaxa export archive filenames are now saved as `ecotaxa_{acquisition id}.zip` instead of `ecotaxa_{project id}_{date}_{sample id}.zip`, which was long and redundant and (because many devices have incorrect system times) inappropriate for viewing files in a logically sorted order.
+
+### Fixed
+
+- (Hardware controller) The pixel calibration values have been switched between the default v2.5 hardware config file and the default v2.6 hardware config file, so that each file has the correct pixel calibration. The default pscopehat hardware config file has also been updated to include the changes made to the default v2.6 hardware config file.
+
+## v2024.0.0-alpha.0 - 2024-02-06
+
 ### Added
 
 - (Segmenter) A Docker container image is now built for the segmenter, for amd64, arm64, and armv7.
 
-### Fixed
-
-- (Segmenter) An extraneous `export` directory should no longer be created by the segmenter under `/home/pi/PlanktoScope`. The correct directory is `/home/pi/data/export`.
-
 ### Changed
 
 - (Breaking change) The machine name is now loaded from `/var/lib/planktoscope/machine-name`, rather than the previous location of `/home/pi/.local/etc/machine-name`.
+
+### Fixed
+
+- (Segmenter) An extraneous `export` directory should no longer be created by the segmenter under `/home/pi/PlanktoScope`. The correct directory is `/home/pi/data/export`.
 
 ## v2023.9.0 - 2023-12-29
 
