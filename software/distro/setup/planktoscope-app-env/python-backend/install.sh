@@ -59,9 +59,3 @@ cp "$HOME/device-backend/default-configs/$hardware_type-latest.hardware.json" \
 mkdir -p $HOME/PlanktoScope/scripts
 directory="scripts/raspimjpeg"
 cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
-
-# Set up the segmenter
-# TODO: give forklift some way to make these directories ahead-of-time!
-mkdir -p $HOME/device-backend-logs/processing/segmenter
-mkdir -p $HOME/data/img
-mkdir -p $HOME/data/export

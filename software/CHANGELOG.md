@@ -9,6 +9,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Fixed
+
+- (Application: backend) The segmenter should no longer have file permissions errors when trying to read or write files in directories created by Docker or by the Python hardware controller.
+
 ## v2024.0.0-alpha.0 - 2024-02-06
 
 ### Added
