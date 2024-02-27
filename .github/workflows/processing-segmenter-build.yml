@@ -134,5 +134,6 @@ jobs:
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)     
 
       - name: Inspect image
+        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag'
         run: |
           docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}

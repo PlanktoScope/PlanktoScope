@@ -15,6 +15,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - (Hardware controller) The pixel calibration values have been switched between the default v2.5 hardware config file and the default v2.6 hardware config file, so that each file has the correct pixel calibration. The default pscopehat hardware config file has also been updated to include the changes made to the default v2.6 hardware config file.
+- (Breaking change; segmenter) The segmenter now runs as `root` (instead of `pi`) in the Docker container for it, so that it doesn't break on various actual & potential edge cases of files/directories being created with `root` ownership (rather than `pi` ownership) before being bind mounted into the container.
 
 ## v2024.0.0-alpha.0 - 2024-02-06
 

@@ -11,10 +11,9 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm /tmp/apt-packages
 
-# Drop root user
-
 RUN useradd --create-home pi
-USER pi:pi
+# For now, we don't drop root because dirs are made as root by the hardware controller:
+# USER pi:pi
 RUN mkdir -p /home/pi/device-backend/processing/segmenter
 WORKDIR /home/pi/device-backend/processing/segmenter
 
@@ -31,16 +30,18 @@ RUN \
   poetry --no-interaction cache list && \
   poetry --no-interaction cache clear pypi --all && \
   poetry --no-interaction cache clear piwheels --all && \
-  rm -rf /home/pi/.cache/pypoetry/artifacts && \
-  rm -rf /home/pi/.cache/pypoetry/cache && \
+  rm -rf /root/.cache/pypoetry/artifacts && \
+  rm -rf /root/.cache/pypoetry/cache && \
   pip cache purge && \
-  rm -rf /home/pi/.cache/pip
+  rm -rf /root/.cache/pip
 
 # Set up application
 
-# Note: we must explicitly set chown here, or else filfes will be copied with root permissions
+# Note: we must explicitly set chown if we drop root, or else files will be copied with root
+# permissions.
 COPY --chown=pi:pi main.py .
 COPY --chown=pi:pi planktoscope/ ./planktoscope
-ENTRYPOINT ["/home/pi/.local/bin/poetry", "run", "python", "main.py"]
+# ENTRYPOINT ["/home/pi/.local/bin/poetry", "run", "python", "main.py"]
+ENTRYPOINT ["/usr/local/bin/poetry", "run", "python", "main.py"]
 EXPOSE 8001
 RUN mkdir -p /home/pi/device-backend-logs/processing/segmenter
