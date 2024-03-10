@@ -7,7 +7,7 @@ on:
       - 'beta'
       - 'stable'
     tags:
-      - 'documentation/v*'
+      - 'processing/segmenter/v*'
   pull_request:
   merge_group:
   workflow_dispatch:
@@ -129,9 +129,10 @@ jobs:
 
       - name: Create manifest list and push
         working-directory: /tmp/digests
+        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag'
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)     
+            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
 
       - name: Inspect image
         if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag'
