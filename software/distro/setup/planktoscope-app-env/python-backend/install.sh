@@ -25,19 +25,19 @@ PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 # piwheels.
 POETRY_VENV=$HOME/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
-python3 -m venv $POETRY_VENV
+python3 -m venv $POETRY_VENV --system-site-packages
 $POETRY_VENV/bin/pip install --upgrade pip==23.3.2 setuptools==68.2.2
 $POETRY_VENV/bin/pip install cryptography==41.0.5
 $POETRY_VENV/bin/pip install poetry==1.7.1
 
 # Download device-backend monorepo
 backend_repo="github.com/PlanktoScope/device-backend"
-backend_version="e5e4cf4" # this should be either a version tag, branch name, or commit hash
+backend_version="4646c8aa" # this should be either a version tag, branch name, or commit hash
 git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
 # Set up the hardware controllers
-sudo apt-get install -y --no-install-recommends i2c-tools libopenjp2-7
+sudo apt-get install -y --no-install-recommends i2c-tools libopenjp2-7 libcap-dev python3-libcamera
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"
