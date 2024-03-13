@@ -36,20 +36,6 @@ Here are some key features of the PlanktoScope:
 - automatic sampling via peristaltic pump
 - the case is made of wood fiberboard
 
-### Software
-
-- [Debian](https://www.raspberrypi.com/software/operating-systems/) based Embedded Linux operating
-- [Node-Red](https://nodered.org/) based user interface
-- [Python](https://www.python.org/) Image processing service and cloud connection
-
-### Characteristic
-
-- Focus stage control
-- Pump control
-- Automatic image capture
-- Automatic segmentation, optimization and object detection
-- Control via smartphone or tablet
-
 ## Areas of Application
 
 - Plankton analysis of small animals and algae living in water
