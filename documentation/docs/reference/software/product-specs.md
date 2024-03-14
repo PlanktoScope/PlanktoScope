@@ -8,9 +8,10 @@ Product specifications for the PlanktoScope software are listed below for ranges
 
 Regular operation:
 
-- Image acquisition: stop-flow imaging
+- Image acquisition: stop-flow imaging, JPEG image output
 - On-board image processing: detection and segmentation of objects (batch-processing only)
 - User interfacing: graphical interface accessible through web browser of a connected phone, tablet, or computer
+- Export of data for uploading to EcoTaxa
 
 Advanced operations:
 
@@ -60,9 +61,10 @@ With minimum supported hardware for full functionality:
 
 Regular operation:
 
-- Image acquisition: stop-flow imaging
+- Image acquisition: stop-flow imaging, JPEG image output
 - On-board image processing: detection and segmentation of objects (batch-processing only)
 - User interfacing: graphical interface accessible through web browser of a connected phone, tablet, or computer
+- Export of data for uploading to EcoTaxa
 
 Advanced operations:
 

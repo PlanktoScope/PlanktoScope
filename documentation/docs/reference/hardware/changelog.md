@@ -4,7 +4,7 @@ The design of the PlanktoScope's hardware has been evolving to fix usability iss
 
 ## v2.6
 
-This is the latest version of the PlanktoScope hardware, and it is the version currently sold by FairScope. It replaced the optical components so that the PlanktoScope produces higher-quality images.
+This is the latest version of the PlanktoScope hardware, and it is the version currently sold by FairScope. It replaced the optical components so that the PlanktoScope produces higher-quality images, and with slightly higher magnification.
 
 ## v2.5
 
