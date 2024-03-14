@@ -9,38 +9,44 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Fixed
+
+- (Application: backend) The segmenter should no longer have file permissions errors when trying to read or write files in directories created by Docker or by the Python hardware controller.
+
+## v2024.0.0-alpha.0 - 2024-02-06
+
 ### Added
 
 - (System: networking) Added support to share internet access and browser application access over additional network interfaces: a second Wi-Fi module, an additional Ethernet adapter, and a USB networking interface (made by plugging a phone to the Raspberry Pi in USB tethering mode).
-- (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
-- (System: administration) Added Dozzle as a viewer for Docker container logs.
 - (Application: GUI) The "System Monitoring" page now shows the current system time on the Raspberry Pi and the current time in the web browser of the client device.
 - (Application: GUI) The "System Monitoring" page now detects when the Raspberry Pi's system time is very different from the web browser's time, and shows a message and a buttom to change the Raspberry Pi's system time to match the web browser's time.
 - (Application: GUI) The "System Monitoring" page's system metrics panel is now collapsible, and it now includes an expandable "Detailed History" subsection to view additional information.
+- (System: administration) Added Dozzle as a viewer for Docker container logs.
+- (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.
 - (System: administration) Added Prometheus as a metrics collection & storage system.
 - (System: administration) Added Grafana as a metrics visualization & alerting system.
 
 ### Changed
 
-- (System: security) `ufw` has been replaced with `firewalld`. However, firewalld has not yet been properly configured.
-- (System: administration) Docker commands can now be run without `sudo`.
 - (Application: GUI) The "System Monitoring" page now uses a Grafana dashboard to display metrics.
 - (Application: GUI) The "Fluidic Acquisition" page now uses a numeric text input instead of a slider for adjusting the "Pumped volume" setting, to make it easier to change the setting to a different exact value.
 - (Application: GUI) On the "Sample" page, the input fields of the "Sample Location"/"Net Throw Location"/"Net Retrieval Location"/"Culture Date and Time" panels no longer get cleared when pressing the "Validate" button.
+- (System: administration) Docker commands can now be run without `sudo`.
+- (System: security) `ufw` has been replaced with `firewalld`. However, `firewalld` has not yet been properly configured.
 - (System) The PlanktoScope's machine name is now saved to `/var/lib/planktoscope/machine-name` instead of `/home/pi/.local/etc/machine-name`, and it's now saved without a trailing newline.
 
 ### Removed
 
-- (System: administration) Removed `cockpit-storaged`, which was not useful anyways and had pulled in many unneeded dependencies.
+- (Application: GUI) The "System Monitoring" page no longer displays a gauge for the CPU usage, since that information does not need to be monitored to ensure system stability & usability. Instead, a CPU usage history graph can be found in the new "Detailed History" subsection.
+- (System: administration) Removed `cockpit-storaged`, which was not useful enough to justify the number (and size of) unneeded dependencies it pulled in for the PlanktoScope software SD card image.
 - (System: setup) Removed some unnecessary `apt-get update` commands for a very minor speed-up in the distro setup process.
-- (Application: GUI) The "System Monitoring" page no longer displays a gauge for the CPU usage, since that information does not need to be monitored to ensure system stability & usability. Instead, CPU usage has been moved to the new "Detailed History" subsection.
 
 ### Fixed
 
 - (Application: GUI) The "Filtered volume" field (on the "Sample" page) is now saved as the `sample_total_volume` metadata field for all sample types, not just horizontal Plankton tows (corresponding to the "Plankton net", "High Speed Net", and "Tara decknet" sample types).
 - (System) Boot time has been made faster by approximately 1 minute.
-- (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
 - (Application: GUI) On Mozilla Firefox, the embedded file browser in the Node-RED dashboard's "Gallery" page should now consistently load with the correct height, instead of sometimes loading with an absurdly small height.
+- (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
 - (System) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
 
 ## v2023.9.0 - 2023-12-30
