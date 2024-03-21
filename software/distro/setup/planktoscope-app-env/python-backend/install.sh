@@ -32,13 +32,15 @@ $POETRY_VENV/bin/pip install poetry==1.7.1
 
 # Download device-backend monorepo
 backend_repo="github.com/PlanktoScope/device-backend"
-backend_version="7d268ee" # this should be either a version tag, branch name, or commit hash
+backend_version="4098a7c" # this should be either a version tag, branch name, or commit hash
 git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
 # Set up the hardware controllers
-# Note: libopenblas-dev is needed by numpy when the virtualenv uses system-site-packages
-sudo apt-get install -y --no-install-recommends i2c-tools libopenjp2-7 libcap-dev python3-libcamera libopenblas-dev
+# Note(ethanjli): we use picamera2 from the system for compatibility, and because dependencies are
+# annoying to manage on armv7. Once we migrate to RPi OS 12 (bookworm), let's try again to just
+# install it via poetry.
+sudo apt-get install -y --no-install-recommends i2c-tools libopenjp2-7 python3-picamera2
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control config virtualenvs.options.system-site-packages true --local
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
