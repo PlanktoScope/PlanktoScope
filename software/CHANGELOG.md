@@ -28,12 +28,17 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; Application: hardware controller) The hardware controller now uses `picamera2` instead of `raspimjpeg` for camera control. This may require different ISO and white balance gains to be used. It also no longer limits the framerate of the camera preview, so the preview stream should adapt to the bandwidth available on your network connection and the system resources available to your web browser; this may increase resource usage on your web browser.
 - (Application: GUI) The "System Monitoring" page now uses a Grafana dashboard to display metrics.
 - (Application: GUI) The "Fluidic Acquisition" page now uses a numeric text input instead of a slider for adjusting the "Pumped volume" setting, to make it easier to change the setting to a different exact value.
 - (Application: GUI) On the "Sample" page, the input fields of the "Sample Location"/"Net Throw Location"/"Net Retrieval Location"/"Culture Date and Time" panels no longer get cleared when pressing the "Validate" button.
 - (System: administration) Docker commands can now be run without `sudo`.
 - (System: security) `ufw` has been replaced with `firewalld`. However, `firewalld` has not yet been properly configured.
 - (System) The PlanktoScope's machine name is now saved to `/var/lib/planktoscope/machine-name` instead of `/home/pi/.local/etc/machine-name`, and it's now saved without a trailing newline.
+
+### Deprecated
+
+- (Application: GUI) The current Node-RED dashboard (both the version for the Adafruit HAT and the version for the PlanktoScope HAT) is transitioning to maintenance mode: no new features will be added, and any bugs will be only be fixed if someone volunteers to fix them. The current Node-RED dashboard will be completely replaced by a fully-rewritten Node-RED dashboard, though there is no timeline for completion of that new dashboard. Currently, our plan for deprecating and eventually removing the current Node-RED dashboard is as follows: maintenance mode (no new features, only some bugfixes), then deprecation (no maintenance; not enabled by default, but still installed), then removal (not installed by default, but anyone is free to install it and see if it still works); deprecation will not occur before the rewritten Node-RED dashboard is stable for general-purpose usage. If you have concerns, please share your feedback on GitHub, in an email, or on the PlanktoScope Slack.
 
 ### Removed
 
@@ -43,6 +48,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Fixed
 
+- (Application: hardware controller) The camera no longer overexposes captured images compared to the camera preview stream, and it no longer produces camera timeout errors.
 - (Application: GUI) The "Filtered volume" field (on the "Sample" page) is now saved as the `sample_total_volume` metadata field for all sample types, not just horizontal Plankton tows (corresponding to the "Plankton net", "High Speed Net", and "Tara decknet" sample types).
 - (System) Boot time has been made faster by approximately 1 minute.
 - (Application: GUI) On Mozilla Firefox, the embedded file browser in the Node-RED dashboard's "Gallery" page should now consistently load with the correct height, instead of sometimes loading with an absurdly small height.
