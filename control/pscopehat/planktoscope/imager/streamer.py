@@ -5,6 +5,17 @@ import time
 import socketserver
 import http.server
 
+PAGE = """\
+<html>
+    <head>
+        <title>raspimjpeg streaming demo</title>
+    </head>
+    <body>
+        <h1>Raspimjpeg Streaming Demo</h1>
+        <img src="stream.mjpg" width="800" height="600" />
+    </body>
+</html>
+"""
 
 ################################################################################
 # Classes for the PiCamera Streaming
@@ -18,8 +29,15 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.send_response(301)
-            self.send_header("Location", "/stream.mjpg")
+            self.send_header("Location", "/index.html") #stream.mjpg
             self.end_headers()
+        elif self.path == '/index.html':
+            content = PAGE.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
         elif self.path == "/stream.mjpg":
             self.send_response(200)
             self.send_header("Age", 0)
@@ -28,6 +46,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
             self.send_header(
                 "Content-Type", "multipart/x-mixed-replace; boundary=FRAME"
             )
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             try:
                 while True:

@@ -8,12 +8,20 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- (Hardware controller) A new picamera2-based camera-management module (`camera`) is now available as an alternative to the camera-management part of the previous raspimjpeg-based image-acquisition-and-camera-management module.
+- (Hardware controller) A new image-acquisition module (`imagernew`) is now available for use with the new picamera2-based `camera` module, as an alternative to the image-acquisition part of the previous raspimjpeg-based image-acquisition-and-camera-management module.
+
 ### Changed
 
+- (Hardware controller) The new picamera2-based image-acquisition module (`imagernew`) is now used by default, instead of the previous raspimjpeg-based `imager` module.
 - (Breaking change; segmenter) EcoTaxa export archive filenames are now saved as `ecotaxa_{acquisition id}.zip` instead of `ecotaxa_{project id}_{date}_{sample id}.zip`, which was long and redundant and (because many devices have incorrect system times) inappropriate for viewing files in a logically sorted order.
 
 ### Fixed
 
+- (Breaking change; hardware controller) Images acquired by the hardware controller using the newly-default `imagernew` image-acquisition module now have more unique filenames (which include an incrementing index and the date of image capture, rather than just the time of the image capture).
+- (Hardware controller) The hardware controller using the newly-default `imagernew` image-acquisition module no longer crashes when invalid values are given for camera settings (e.g. null or non-numeric white balance gains).
 - (Hardware controller) The pixel calibration values have been switched between the default v2.5 hardware config file and the default v2.6 hardware config file, so that each file has the correct pixel calibration. The default pscopehat hardware config file has also been updated to include the changes made to the default v2.6 hardware config file.
 - (Breaking change; segmenter) The segmenter now runs as `root` (instead of `pi`) in the Docker container for it, so that it doesn't break on various actual & potential edge cases of files/directories being created with `root` ownership (rather than `pi` ownership) before being bind mounted into the container.
 

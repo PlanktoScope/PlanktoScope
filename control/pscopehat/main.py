@@ -8,11 +8,11 @@ from loguru import logger
 
 import planktoscope.mqtt
 import planktoscope.stepper
-import planktoscope.imager
 import planktoscope.light # Fan HAT LEDs
 import planktoscope.identity
 import planktoscope.uuidName # Note: this is deprecated.
 import planktoscope.display # Fan HAT OLED screen
+from planktoscope.imagernew import mqtt as imagernew
 
 # enqueue=True is necessary so we can log accross modules
 # rotation happens everyday at 01:00 if not restarted
@@ -92,12 +92,13 @@ if __name__ == "__main__":
     stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
+    # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
     logger.info("Starting the imager control process (step 3/5)")
     try:
-        imager_thread = planktoscope.imager.ImagerProcess(shutdown_event)
-    except:
-        logger.error("The imager control process could not be started")
+        imager_thread = imagernew.Worker(shutdown_event)
+    except Exception as e:
+        logger.error(f"The imager control process could not be started: {e}")
         imager_thread = None
     else:
         imager_thread.start()

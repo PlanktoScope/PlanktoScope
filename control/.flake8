@@ -1,0 +1,29 @@
+[flake8]
+max-line-length = 100
+imr220_include = *
+# We really want IMR241, but the implementation is buggy (false positives everywhere).
+imr241_include = ''
+exclude =
+  adafruithat/main.py,
+  adafruithat/planktoscope/__init__.py,
+  adafruithat/planktoscope/display.py,
+  adafruithat/planktoscope/identity.py,
+  adafruithat/planktoscope/integrity.py,
+  adafruithat/planktoscope/light.py,
+  adafruithat/planktoscope/mqtt.py,
+  adafruithat/planktoscope/stepper.py,
+  adafruithat/planktoscope/uuidName.py,
+  adafruithat/planktoscope/imager,
+  pscopehat/main.py,
+  pscopehat/main_thread.py,
+  pscopehat/shush,
+  pscopehat/planktoscope/__init__.py,
+  pscopehat/planktoscope/display.py,
+  pscopehat/planktoscope/identity.py,
+  pscopehat/planktoscope/integrity.py,
+  pscopehat/planktoscope/light.py,
+  pscopehat/planktoscope/module.py,
+  pscopehat/planktoscope/mqtt.py,
+  pscopehat/planktoscope/stepper.py,
+  pscopehat/planktoscope/uuidName.py,
+  pscopehat/planktoscope/imager,
