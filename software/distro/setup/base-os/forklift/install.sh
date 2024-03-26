@@ -4,7 +4,7 @@
 # distribution
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
-forklift_version="0.5.3"
+forklift_version="0.6.0"
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="b1dd05d"
 
