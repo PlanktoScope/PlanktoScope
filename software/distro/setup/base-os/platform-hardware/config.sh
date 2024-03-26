@@ -31,8 +31,9 @@ fi
 
 # The following command enables the camera on the 32-bit Raspberry Pi OS (ARMv7):
 sudo raspi-config nonint do_camera 0
-# The following command enables legacy camera support on the 64-bit Raspberry Pi OS (ARM64):
-sudo raspi-config nonint do_legacy 0
+# The following command disables legacy camera support on the 64-bit Raspberry Pi OS (ARM64), so that
+# we can use libcamera:
+sudo raspi-config nonint do_legacy 1
 
 # FIXME: remove this section entirely, to improve performance on bullseye.
 # Refer to https://www.raspberrypi.com/documentation/computers/legacy_config_txt.html#gpu_mem

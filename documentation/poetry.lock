@@ -629,13 +629,13 @@ pymdown-extensions = ">=9.2"
 
 [[package]]
 name = "mkdocs-git-revision-date-localized-plugin"
-version = "1.2.2"
+version = "1.2.4"
 description = "Mkdocs plugin that enables displaying the localized date of the last git modification of a markdown file."
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.8"
 files = [
-    {file = "mkdocs-git-revision-date-localized-plugin-1.2.2.tar.gz", hash = "sha256:0c43a9aac1fa69df99a823f833cc223bac9967b60d5261a857761c7c6e3b30de"},
-    {file = "mkdocs_git_revision_date_localized_plugin-1.2.2-py3-none-any.whl", hash = "sha256:85c7fe9ab06e7a63c4e522c26fee8b51d357cb8cbe605064501ad80f4f31cb94"},
+    {file = "mkdocs-git-revision-date-localized-plugin-1.2.4.tar.gz", hash = "sha256:08fd0c6f33c8da9e00daf40f7865943113b3879a1c621b2bbf0fa794ffe997d3"},
+    {file = "mkdocs_git_revision_date_localized_plugin-1.2.4-py3-none-any.whl", hash = "sha256:1f94eb510862ef94e982a2910404fa17a1657ecf29f45a07b0f438c00767fc85"},
 ]
 
 [package.dependencies]
@@ -692,13 +692,13 @@ pyyaml = "*"
 
 [[package]]
 name = "mkdocs-material"
-version = "9.5.6"
+version = "9.5.12"
 description = "Documentation that simply works"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocs_material-9.5.6-py3-none-any.whl", hash = "sha256:e115b90fccf5cd7f5d15b0c2f8e6246b21041628b8f590630e7fca66ed7fcf6c"},
-    {file = "mkdocs_material-9.5.6.tar.gz", hash = "sha256:5b24df36d8ac6cecd611241ce6f6423ccde3e1ad89f8360c3f76d5565fc2d82a"},
+    {file = "mkdocs_material-9.5.12-py3-none-any.whl", hash = "sha256:d6f0c269f015e48c76291cdc79efb70f7b33bbbf42d649cfe475522ebee61b1f"},
+    {file = "mkdocs_material-9.5.12.tar.gz", hash = "sha256:5f69cef6a8aaa4050b812f72b1094fda3d079b9a51cf27a247244c03ec455e97"},
 ]
 
 [package.dependencies]
@@ -717,7 +717,7 @@ regex = ">=2022.4"
 requests = ">=2.26,<3.0"
 
 [package.extras]
-git = ["mkdocs-git-committers-plugin-2 (>=1.1,<2.0)", "mkdocs-git-revision-date-localized-plugin (>=1.2,<2.0)"]
+git = ["mkdocs-git-committers-plugin-2 (>=1.1,<2.0)", "mkdocs-git-revision-date-localized-plugin (>=1.2.4,<2.0)"]
 imaging = ["cairosvg (>=2.6,<3.0)", "pillow (>=10.2,<11.0)"]
 recommended = ["mkdocs-minify-plugin (>=0.7,<1.0)", "mkdocs-redirects (>=1.2,<2.0)", "mkdocs-rss-plugin (>=1.6,<2.0)"]
 
@@ -922,13 +922,13 @@ test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.4)", "pytest-co
 
 [[package]]
 name = "poethepoet"
-version = "0.24.4"
+version = "0.25.0"
 description = "A task runner that works well with poetry."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "poethepoet-0.24.4-py3-none-any.whl", hash = "sha256:fb4ea35d7f40fe2081ea917d2e4102e2310fda2cde78974050ca83896e229075"},
-    {file = "poethepoet-0.24.4.tar.gz", hash = "sha256:ff4220843a87c888cbcb5312c8905214701d0af60ac7271795baa8369b428fef"},
+    {file = "poethepoet-0.25.0-py3-none-any.whl", hash = "sha256:42c0fd654f23e1b7c67aa8aa395c72e15eb275034bd5105171003daf679c1470"},
+    {file = "poethepoet-0.25.0.tar.gz", hash = "sha256:ca8f1d8475aa10d2ceeb26331d2626fc4a6b51df1e7e70d3d0d6481a984faab6"},
 ]
 
 [package.dependencies]
@@ -1375,4 +1375,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "b83b984b88c6cfac2a9785c51889faab05ab54fc240b3cbc039e46b507ec142b"
+content-hash = "3574ab4a28b0fb182a14dd1fd3fcd243725043ba689c44cb9029f8e15b7a9365"
