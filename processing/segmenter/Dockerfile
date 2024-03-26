@@ -1,4 +1,4 @@
-FROM python:3.9.18-slim-bullseye
+FROM docker.io/library/python:3.9.18-slim-bullseye
 
 # Install OS dependencies
 
