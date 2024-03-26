@@ -17,6 +17,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Hardware controller) The new picamera2-based image-acquisition module (`imagernew`) is now used by default, instead of the previous raspimjpeg-based `imager` module.
 - (Breaking change; segmenter) EcoTaxa export archive filenames are now saved as `ecotaxa_{acquisition id}.zip` instead of `ecotaxa_{project id}_{date}_{sample id}.zip`, which was long and redundant and (because many devices have incorrect system times) inappropriate for viewing files in a logically sorted order.
+- (Breaking change; hardware controller) The version of the hardware controller for the PlanktoScope HAT has been moved from `control/pscopehat` to `control/planktoscopehat`.
 
 ### Fixed
 
