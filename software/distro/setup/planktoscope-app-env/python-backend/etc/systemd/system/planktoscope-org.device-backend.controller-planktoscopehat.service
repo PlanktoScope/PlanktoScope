@@ -12,7 +12,7 @@ After=planktoscope-org.update-machine-name.service
 [Service]
 Type=simple
 Environment=HOME=/home/pi
-ExecStart=/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/pscopehat/main.py
+ExecStart=/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/planktoscopehat/main.py
 
 [Install]
 WantedBy=multi-user.target

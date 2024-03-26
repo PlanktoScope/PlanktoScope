@@ -8,7 +8,7 @@ distro_setup_files_root=$(dirname $(dirname $config_files_root))
 repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 
 # Get command-line args
-hardware_type="$1" # should be either adafruithat or pscopehat
+hardware_type="$1" # should be either adafruithat or planktoscopehat
 
 ## Install basic Python tooling
 sudo apt-get install -y git python3-pip python3-venv
@@ -32,7 +32,7 @@ $POETRY_VENV/bin/pip install poetry==1.7.1
 
 # Download device-backend monorepo
 backend_repo="github.com/PlanktoScope/device-backend"
-backend_version="0c27b88" # this should be either a version tag, branch name, or commit hash
+backend_version="4ee99a1" # this should be either a version tag, branch name, or commit hash
 git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
@@ -46,7 +46,7 @@ $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-ro
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"
 # or for the PlanktoScope HAT
-file="/etc/systemd/system/planktoscope-org.device-backend.controller-pscopehat.service"
+file="/etc/systemd/system/planktoscope-org.device-backend.controller-planktoscopehat.service"
 sudo cp "$config_files_root$file" "$file"
 # FIXME: make this directory in the main.py file
 mkdir -p $HOME/data/img

@@ -11,6 +11,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; System: setup) The word `pscopehat` has been replaced with `planktoscopehat` everywhere. This means that any distro setup scripts/commands you previously used with `pscopehat` should be changed.
 - (Breaking change; Application: hardware controller) The hardware controller now uses `picamera2` instead of `raspimjpeg` for camera control. This may require different ISO and white balance gains to be used. It also no longer limits the framerate of the camera preview, so the preview stream should adapt to the bandwidth available on your network connection and the system resources available to your web browser; this may increase resource usage on your web browser.
 
 ### Deprecated

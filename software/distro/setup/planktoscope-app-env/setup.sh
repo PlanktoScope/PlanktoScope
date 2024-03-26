@@ -11,7 +11,7 @@ build_scripts_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Get command-line args
 
-hardware_type="$1" # should be either adafruithat or pscopehat
+hardware_type="$1" # should be either adafruithat or planktoscopehat
 
 # Set up pretty error printing
 
