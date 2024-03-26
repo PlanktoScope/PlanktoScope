@@ -10,7 +10,7 @@ In order to install the PlanktoScope software, you will first need to choose an 
 
 ## Choosing an SD card image
 
-PlanktoScope SD card image files are identified with a version number as well as a hardware configuration tag - for example, the SD card image file named `planktoscope-v2023.9.0+pscopehat.img.gz` is for v2023.9.0 of the PlanktoScope distro, configured to work with versions of the PlanktoScope hardware based on the custom PlanktoScope HAT (rather than the Adafruit Stepper Motor HAT). Thus, you will need to choose both a version number (e.g. v2023.9.0) and a hardware configuration (e.g. `pscopehat`).
+PlanktoScope SD card image files are identified with a version number as well as a hardware configuration tag - for example, the SD card image file named `planktoscope-v2024.0.0+planktoscopehat.img.gz` is for v2020.0.0 of the PlanktoScope distro, configured to work with versions of the PlanktoScope hardware based on the custom PlanktoScope HAT (rather than the Adafruit Stepper Motor HAT). Thus, you will need to choose both a version number (e.g. v2023.9.0) and a hardware configuration (e.g. `planktoscopehat`).
 
 ### Distro versions
 
@@ -30,9 +30,9 @@ Currently, each version of the PlanktoScope distro is provided as two SD card im
 
 - `adafruithat`: this configuration of the PlanktoScope distro is compatible with v2.1 of the PlanktoScope hardware, which uses the Adafruit Stepper Motor HAT.
 
-- `pscopehat`: this configuration of the PlanktoScope distro is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use a custom HAT.
+- `planktoscopehat`: this configuration of the PlanktoScope distro is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use a custom HAT. Note that in software versions v2.3 and v2023.9.0, the word `pscopehat` was used instead of `planktoscopehat`.
 
-If you have a v2.1 PlanktoScope, you should probably use an `adafruithat` SD card image; if you have a PlanktoScope from FairScope or any hardware version after v2.3, you should probably use the `pscopehat` SD card image.
+If you have a v2.1 PlanktoScope, you should probably use an `adafruithat` SD card image; if you have a PlanktoScope from FairScope or any hardware version after v2.3, you should probably use the `planktoscopehat` SD card image.
 
 ## Installation
 

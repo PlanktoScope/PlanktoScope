@@ -7,7 +7,7 @@ distro_setup_files_root=$(dirname $(dirname $config_files_root))
 repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 
 # Get command-line args
-hardware_type="$1" # should be either adafruithat or pscopehat
+hardware_type="$1" # should be either adafruithat or planktoscopehat
 
 # Install dependencies
 # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.

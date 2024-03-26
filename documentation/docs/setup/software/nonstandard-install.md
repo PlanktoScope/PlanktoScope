@@ -58,7 +58,7 @@ Next, configure your Raspberry Pi to get internet access - your Raspberry Pi wil
 
 ### Run the installation script
 
-Depending on whether you're installing the software on a PlanktoScope with the custom PlanktoScope HAT (which is the standard HAT on v2.3 hardware and later) or with the Adafruit Stepper Motor HAT (which is the standard HAT on v2.1 hardware), you will need to adjust the commands below. Specifically, if you're installing the software for a PlanktoScope with the Adafruit Stepper Motor HAT, you will need to replace the word `pscopehat` with the word `adafruithat` in any of the commands below.
+Depending on whether you're installing the software on a PlanktoScope with the custom PlanktoScope HAT (which is the standard HAT on v2.3 hardware and later) or with the Adafruit Stepper Motor HAT (which is the standard HAT on v2.1 hardware), you will need to adjust the commands below. Specifically, if you're installing the software for a PlanktoScope with the Adafruit Stepper Motor HAT, you will need to replace the word `planktoscopehat` with the word `adafruithat` in any of the commands below.
 
 Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in one of the following commands, for either the latest beta prerelease of the PlanktoScope software distribution, the latest stable release, or the latest development version:
 
@@ -66,7 +66,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -O - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -v software/beta -H pscopehat
+      | sh -s -- -v software/beta -H planktoscopehat
     ```
     
     This will install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
@@ -75,7 +75,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -O - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -v software/stable -H pscopehat
+      | sh -s -- -v software/stable -H planktoscopehat
     ```
     
     This will install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
@@ -84,7 +84,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
 
     ```
     wget -O - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -v master -H pscopehat
+      | sh -s -- -v master -H planktoscopehat
     ```
     
     This will install the current unstable development version of the PlanktoScope software distribution. This version is likely to be broken in various ways.
@@ -93,7 +93,7 @@ Instead of installing the latest beta, stable, or development version, you can a
 
 ```
 wget -O - https://install.planktoscope.community/distro.sh \
-  | sh -s -- -t tag -v v2023.9.0-beta.1 -H pscopehat
+  | sh -s -- -t tag -v v2023.9.0-beta.1 -H planktoscopehat
 ```
 
 Note that you can also choose to install the PlanktoScope software from some other repository on GitHub instead of github.com/PlanktoScope/PlanktoScope, by using the `-r` command-line option; for more information, you can get usage instructions by running the following command:
