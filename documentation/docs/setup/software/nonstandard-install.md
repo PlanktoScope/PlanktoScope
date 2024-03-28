@@ -14,7 +14,7 @@ If you have not used the PlanktoScope software before, you should first start wi
 
 In order to complete the non-standard setup process, you will need all of the following:
 
-1. A Raspberry Pi computer. We only test to ensure that the PlanktoScope software works on the Raspberry Pi 4; it may or may not work on the Raspberry Pi 3.
+1. A Raspberry Pi computer. We only test to ensure that the PlanktoScope software works on the Raspberry Pi 4; it may or may not work on the Raspberry Pi 3, and it does not yet work on the Raspberry Pi 5.
 2. A keyboard connected to your Raspberry Pi.
 3. A display connected to your Raspberry Pi.
 4. A micro-SD card for your Raspberry Pi.
@@ -25,17 +25,25 @@ In order to complete the non-standard setup process, you will need all of the fo
 
 ### Download a Raspberry Pi OS SD card image
 
-The setup scripts for the PlanktoScope software distribution assume that you will be setting up the PlanktoScope software on a 32-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-05-03. The latest version of Raspberry Pi OS, with Debian version 12 (bookworm), can be downloaded from [the Raspberry Pi Operating system images page](https://www.raspberrypi.com/software/operating-systems/), but the setup scripts do not yet work on Debian version 12; that page also has links named "Archive" under the download buttons where you can find older versions with Debian version 11. You should choose between the ["Raspberry Pi OS with desktop"](https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz), ["Raspberry Pi OS with desktop and recommended software"](https://downloads.raspberrypi.com/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz), or ["Raspberry Pi OS Lite"](https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-lite.img.xz) options, depending on your needs.
+The setup scripts for the PlanktoScope software distribution assume that you will be setting up the PlanktoScope software on a 32-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-05-03. You can choose any of the following three variants of that version of the Raspberry Pi OS, depending on your needs:
+
+- ["Raspberry Pi OS with desktop"](https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz)
+- ["Raspberry Pi OS with desktop and recommended software"](https://downloads.raspberrypi.com/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz)
+- ["Raspberry Pi OS Lite"](https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-lite.img.xz)
 
 The standard PlanktoScope software SD card images are built on the Raspberry Pi OS Lite image, which only provides a command-line interface, without a graphical desktop environment or web browser; because the PlanktoScope's graphical user interface must be accessed from a web browser, you might prefer to use the "Raspberry Pi OS with desktop" image in order to have a graphical desktop environment with a web browser. This would allow you to operate the PlanktoScope by plugging in a display, keyboard, and mouse to your Raspberry Pi; otherwise, you will have to connect to the PlanktoScope from another device over Ethernet or Wi-Fi in order access the PlanktoScope's graphical user interface.
+
+!!! warning
+
+    The latest version of Raspberry Pi OS, with Debian version 12 (bookworm), can be downloaded from [the Raspberry Pi Operating system images page](https://www.raspberrypi.com/software/operating-systems/), but the PlanktoScope software setup scripts do not yet work on Debian version 12; that page also has links named "Archive" under the download buttons where you can find older versions with Debian version 11 (bullseye) under the "Raspberry Pi OS (Legacy)" section; those links are the same as the links we listed above. You should make sure you download a 32-bit version of Raspberry Pi OS Bullseye, as the PlanktoScope software setup scripts do not yet work with 64-bit versions of the Raspberry Pi OS!
 
 ### Write the OS image to an SD card
 
 Next, you will need to write your downloaded Raspberry Pi OS image file to your microSD card. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
 
-To use a graphical application to write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager. Download the latest version of [balenaEtcher](https://www.balena.io/etcher/) or the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and install it. Then open balenaEtcher or the Raspberry Pi Imager. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the "Flash!" or "Write" button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
+To use a graphical application to write the image file to your microSD card, you can install the Raspberry Pi imager. Download the latest version of the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), install it, and start it. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the appropriate button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
 
-If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use ddrescue on a Debian-based system, e.g. as follows:
+If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use a tool like `ddrescue` on a Debian-based system, e.g. as follows:
 
 ```
 gunzip planktoscope-v2.3-final.img.gz
