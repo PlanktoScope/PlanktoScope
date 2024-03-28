@@ -14,7 +14,7 @@ If you have not used the PlanktoScope software before, you should first start wi
 
 In order to complete the non-standard setup process, you will need all of the following:
 
-1. A Raspberry Pi computer. We only test to ensure that the PlanktoScope software works on the Raspberry Pi 4; it may or may not work on the Raspberry Pi 3.
+1. A Raspberry Pi computer. We only test to ensure that the PlanktoScope software works on the Raspberry Pi 4; it may or may not work on the Raspberry Pi 3, and it does not yet work on the Raspberry Pi 5.
 2. A keyboard connected to your Raspberry Pi.
 3. A display connected to your Raspberry Pi.
 4. A micro-SD card for your Raspberry Pi.
