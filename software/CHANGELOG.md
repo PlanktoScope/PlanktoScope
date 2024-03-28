@@ -7,6 +7,16 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Changed
+
+- (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
+
+### Fixed
+
+- (Application: GUI) The white balance input validation, which previously only allowed gains between 1.0 and 8.0, now allows gains in the full range allowed by the camera (i.e. between 0.0 and 32.0).
+
 ## v2024.0.0-alpha.1 - 2024-03-26
 
 ### Changed
@@ -20,6 +30,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Fixed
 
+- (Breaking change; Application: backend) The default hardware configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was (incorrectly) a mixture of v2.5 and v2.6 optical settings.
 - (Application: hardware controller) The camera no longer overexposes captured images compared to the camera preview stream, and it no longer produces camera timeout errors.
 - (Application: backend) The segmenter should no longer have file permissions errors when trying to read or write files in directories created by Docker or by the Python hardware controller.
 
