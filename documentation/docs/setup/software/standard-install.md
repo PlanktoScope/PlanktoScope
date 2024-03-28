@@ -23,9 +23,7 @@ Each released version of the PlanktoScope software distribution has downloadable
 
 ### Write the image to the SD card
 
-To write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager.
-
-Here are instructions for using the Raspberry Pi Imager:
+To write the image file to your microSD card:
 
 1. Download, install, and start the latest version of the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 2. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
@@ -35,15 +33,6 @@ Here are instructions for using the Raspberry Pi Imager:
 6. Press the "Next" button. A pop-up dialog should appear asking if you would like to customize the OS. You should probably press the "No" button unless you are already experienced with the PlanktoScope software, because most of the settings inside don't matter to typical users of the PlanktoScope software, and because it's possible to break the software with incorrect settings.
 7. A pop-up dialog should appear asking you to confirm whether you selected the correct SD card and want to wipe all data on the SD card in order to write the PlanktoScope SD card image to your SD card. If you are ready, press the "Yes" button.
 8. The Raspberry Pi Imager will begin overwriting your SD card with the PlanktoScope SD card image. This will take a while to finish.
-
-Here are instructions for using balenaEtcher:
-
-1. Download, install, and start [balenaEtcher](https://www.balena.io/etcher/).
-2. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
-3. Open balenaEtcher
-4. Select the SD card image file which you had download in the previous section.
-5. Select the SD card you wish to write your image to.
-6. Review your selections and click 'Flash!' to begin writing data to the SD card.
 
 Once flashing is complete, unmount the SD card and remove it from the computer.
 

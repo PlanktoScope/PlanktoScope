@@ -33,9 +33,9 @@ The standard PlanktoScope software SD card images are built on the Raspberry Pi 
 
 Next, you will need to write your downloaded Raspberry Pi OS image file to your microSD card. Plug your microSD card into your computer; you may need to use a microSD-to-SD-card adapter, and/or an SD-card-to-USB adapter.
 
-To use a graphical application to write the image file to your microSD card, you can install balenaEtcher or the Raspberry Pi imager. Download the latest version of [balenaEtcher](https://www.balena.io/etcher/) or the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and install it. Then open balenaEtcher or the Raspberry Pi Imager. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the "Flash!" or "Write" button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
+To use a graphical application to write the image file to your microSD card, you can install the Raspberry Pi imager. Download the latest version of the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), install it, and start it. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the appropriate button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
 
-If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use ddrescue on a Debian-based system, e.g. as follows:
+If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use a tool like `ddrescue` on a Debian-based system, e.g. as follows:
 
 ```
 gunzip planktoscope-v2.3-final.img.gz
