@@ -1,6 +1,6 @@
 # Camera Settings
 
-This document describes how the PlanktoScope software uses the camera settings exposed by the PlanktoScope's Node-RED dashboard to control the PlanktoScope's camera. The following camera settings can be adjusted via the Node-RED dashboard:
+This document describes how the PlanktoScope software controls the PlanktoScope's camera using the camera settings exposed by the "Optic Configuration" page of the PlanktoScope's Node-RED dashboard. The following camera settings can be adjusted via the Node-RED dashboard:
 
 - "ISO" & "Shutter Speed" control the brightness of images captured by the camera.
 
