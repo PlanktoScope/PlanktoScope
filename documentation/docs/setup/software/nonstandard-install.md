@@ -1,13 +1,13 @@
 # Non-Standard Installation
 
-This page provides instructions for installing non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used the [standard software installation process](standard-install.md).
+This page provides instructions for installing non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used in the [standard software installation process](standard-install.md).
 
 ## Prerequisites
 
 This guide assumes that:
 
 1. You have previous experience with using the command-line terminal on the Raspberry Pi OS or another Linux distribution.
-2. You have already confirmed that your PlanktoScope works without any problems with software installed by the standard PlanktoScope software setup process..
+2. You have already confirmed that your PlanktoScope works without any problems with software installed by the standard PlanktoScope software setup process.
 3. You already know how to use the PlanktoScope software.
 
 If you have not used the PlanktoScope software before, you should first start with the standard software setup process in order to troubleshoot any problems with your PlanktoScope hardware; you can then try the non-standard setup process afterwards.
@@ -60,26 +60,17 @@ The first boot to the desktop may take up to 120 seconds. This is normal and is 
 
 Eventually, the display will ask you to configure some settings for the Raspberry Pi. You will be asked to choose language settings and a keyboard layout; you should choose settings appropriate for you. The standard PlanktoScope SD card images use the `en_US.UTF-8` locale and the "Generic 104-key PC, English (US)" keyboard layout. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you *must* choose `pi` as the username, and you should choose a password you can remember. By default, the standard PlanktoScope SD card images use `copepode` as the password - so you may want to choose a different password for better security. Refer to the official [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/) guide for additional details and instructions on configuring settings for the Raspberry Pi.
 
-Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can find instructions for how to do so at <https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking>
+Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can refer to the Raspberry Pi project's [network configuration guide](https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking).
 
 ## Set up the PlanktoScope software distribution
 
 ### Run the installation script
 
-Depending on whether you're installing the software on a PlanktoScope with the custom PlanktoScope HAT (which is the standard HAT on v2.3 hardware and later) or with the Adafruit Stepper Motor HAT (which is the standard HAT on v2.1 hardware), you will need to adjust the commands below. Specifically, if you're installing the software for a PlanktoScope with the Adafruit Stepper Motor HAT, you will need to replace the word `planktoscopehat` with the word `adafruithat` in any of the commands below.
+Depending on whether you're installing the software on a PlanktoScope with the PlanktoScope HAT (which is the standard HAT on v2.3 hardware and later) or with the Adafruit Stepper Motor HAT (which is the standard HAT on v2.1 hardware), you will need to adjust the commands below. Specifically, if you're installing the software for a PlanktoScope with the Adafruit Stepper Motor HAT, you will need to replace the word `planktoscopehat` with the word `adafruithat` in any of the commands below.
 
-Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in one of the following commands, for either the latest beta prerelease of the PlanktoScope software distribution, the latest stable release, or the latest development version:
+Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS with a graphical desktop) open a terminal. Then type in one of the following commands, depending on which release channel you want to use for installation (refer to our [technical reference document on release channels](../../reference/software/release-process.md#release-channels) to understand which release channel to use):
 
-=== "latest beta"
-
-    ```
-    wget -O - https://install.planktoscope.community/distro.sh \
-      | sh -s -- -v software/beta -H planktoscopehat
-    ```
-    
-    This will install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
-
-=== "latest stable"
+=== "Stable"
 
     ```
     wget -O - https://install.planktoscope.community/distro.sh \
@@ -88,7 +79,16 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
     
     This will install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
 
-=== "development"
+=== "Beta"
+
+    ```
+    wget -O - https://install.planktoscope.community/distro.sh \
+      | sh -s -- -v software/beta -H planktoscopehat
+    ```
+    
+    This will install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
+
+=== "Edge"
 
     ```
     wget -O - https://install.planktoscope.community/distro.sh \
@@ -97,14 +97,14 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
     
     This will install the current unstable development version of the PlanktoScope software distribution. This version is likely to be broken in various ways.
 
-Instead of installing the latest beta, stable, or development version, you can also install a specific tagged release or pre-release of the PlanktoScope software. For example, to install the v2023.9.0-beta.1 prerelease of the PlanktoScope software, you would run the following command:
+Instead of installing the latest version on the "stable", "beta", or "edge" release channel, you can also install a specific tagged release or pre-release of the PlanktoScope software. For example, to install the *v2024.0.0-alpha.1* pre-release of the PlanktoScope software, you would run the following command:
 
 ```
 wget -O - https://install.planktoscope.community/distro.sh \
-  | sh -s -- -t tag -v v2023.9.0-beta.1 -H planktoscopehat
+  | sh -s -- -t tag -v v2024.0.0-alpha.1 -H planktoscopehat
 ```
 
-Note that you can also choose to install the PlanktoScope software from some other repository on GitHub instead of github.com/PlanktoScope/PlanktoScope, by using the `-r` command-line option; for more information, you can get usage instructions by running the following command:
+You can also choose to install the PlanktoScope software from some other repository on GitHub instead of [github.com/PlanktoScope/PlanktoScope](https://github.com/PlanktoScope/PlanktoScope), by using the `-r` command-line option; for more information, you can get usage instructions by running the following command:
 
 ```
 wget -O - https://install.planktoscope.community/distro.sh \
@@ -113,7 +113,7 @@ wget -O - https://install.planktoscope.community/distro.sh \
 
 ### Wait for installation to finish
 
-The installation process will take a long time (at least 30 minutes, if you have a fast internet connection) to finish.
+The installation process will take a long time (around 15 - 30 minutes, depending on the speed of your internet connection and your microSD card) to finish.
 
 If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the setup script finished setting up the PlanktoScope application environment.
 
