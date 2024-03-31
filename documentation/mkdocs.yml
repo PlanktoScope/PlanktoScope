@@ -110,10 +110,7 @@ plugins:
       minify_html: true
   - privacy
   - social:
-      # Currently social previews are broken due to Google Fonts (for details, refer to
-      # https://github.com/squidfunk/mkdocs-material/issues/6983):
-      # enabled: !ENV [DOCS_DEPLOY, false]
-      enabled: false
+      enabled: !ENV [DOCS_DEPLOY, false]
   - search
 
 markdown_extensions:
