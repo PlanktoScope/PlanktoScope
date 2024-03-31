@@ -1,6 +1,6 @@
 # Image Segmentation
 
-This document explains how the PlanktoScope software's *segmenter* program processes raw images (captured by the PlanktoScope's [sample-imaging functionality](./sample-imaging.md)) in order to detect objects - such as plankton, microplastics, and other particles - and to extract each object into its own [segmented image](https://en.wikipedia.org/wiki/Image_segmentation) for downstream use, such as for uploading to EcoTaxa. This document also explains the metadata fields added by the PlanktoScope segmenter for uploading to EcoTaxa.
+This document explains how the PlanktoScope software's *segmenter* program processes raw images (captured by the PlanktoScope's [sample-imaging functionality](./sample-imaging.md)) in order to detect objects - such as plankton, microplastics, and other particles - and to extract each object into its own [segmented image](https://en.wikipedia.org/wiki/Image_segmentation) for downstream use, such as for uploading to EcoTaxa. This document also lists and explains the metadata fields added by the PlanktoScope segmenter for uploading to EcoTaxa.
 
 Currently, the segmenter only operates in batch-processing mode: the segmenter takes as input a complete raw image dataset, and it produces as output a complete segmented object dataset as well as an export archive of segmented objects which can be uploaded to EcoTaxa.
 

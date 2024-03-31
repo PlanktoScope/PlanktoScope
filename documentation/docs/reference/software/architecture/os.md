@@ -1,0 +1,245 @@
+# Operating System
+
+This document describes the architecture of the PlanktoScope software distribution as an [*operating system*](https://en.wikipedia.org/wiki/Operating_system), in order to explain:
+
+- How the PlanktoScope software abstracts over the PlanktoScope hardware.
+
+- How the PlanktoScope manages the execution of software programs intended to run on the PlanktoScope.
+
+This information is intended to help you understand:
+
+- The overall design of the PlanktoScope SD card images, including what functionalities they provide and what software they include, and why we made certain design decisions.
+
+- How the PlanktoScope's various functionalities and responsibilities are divided among the various programs running on the PlanktoScope.
+
+- How various programs running on the PlanktoScope support other programs which provide the PlanktoScope's high-level/end-user functionalities.
+
+- What tools you can use to perform troubleshooting and [system administration](https://en.wikipedia.org/wiki/System_administrator) tasks with the PlanktoScope software.
+
+- What kinds of new software you can develop and deploy to run on a PlanktoScope.
+
+Each PlanktoScope SD card image provides an *operating system* for the PlanktoScope; the definition of the term "operating system" can be tricky to demarcate, but for practical purposes this document follows [Bryan Cantrill's characterization of the operating system](https://www.infoq.com/presentations/os-rust/) as the special program that:
+
+- "Abstracts hardware to allow execution of other programs."
+- "Defines the liveness of the machine: without it, no program can run."
+- Provides some important components including the operating system kernel, libraries, commands, daemons, and other facilities.
+
+This definition is a reasonable description of the PlanktoScope's operating system (which we will abbreviate as "the PlanktoScope OS" in this document), because the PlanktoScope OS is a program which abstracts the following hardware subsystems in a way that enables you to run other programs on the PlanktoScope which need to control or otherwise interact with the PlanktoScope's hardware:
+
+- A Raspberry Pi computer.
+
+- Various input/output devices such as actuators (e.g. the pump, the sample focus-adjustment actuators, and the illumination LED), sensors (e.g. the camera and the GPS module), and information storage devices (e.g. the real-time clock and the EEPROM).
+
+## Software deployment & execution
+
+In order to abstract the Raspberry Pi computer hardware to enable execution of other programs, the PlanktoScope OS merely uses software provided by other open-source projects:
+
+- The PlanktoScope OS is based on - and includes everything from the "Lite" image of - the [Raspberry Pi OS](https://www.raspberrypi.com/documentation/computers/os.html) (which in turn is based on [Debian Linux](https://www.debian.org/)), which provides abstractions for the Raspberry Pi's computer hardware via its [custom Linux kernel](https://www.raspberrypi.com/documentation/computers/linux_kernel.html) and its included libraries. We use the Raspberry Pi OS because it provides Raspberry Pi-specific hardware support which we need and which is not easy to achieve with other [Linux distros](https://en.wikipedia.org/wiki/Linux_distribution); and because it is the Linux distro with the best combination of familiarity, optimization, and maturity for the Raspberry Pi.
+
+- Lower-level system services - including services which we've added on top of the default Raspberry Pi OS - are launched and supervised by [systemd](https://systemd.io/), which provides a system and service manager. We use systemd because the Raspberry Pi OS provides it and relies on it.
+
+- Most of the PlanktoScope's software is (or eventually will be) executed as [Docker](https://www.docker.com/) containers by the [`dockerd`](https://docs.docker.com/get-started/overview/#the-docker-daemon) daemon (which in turn is run by the `docker.service` systemd service). In the PlanktoScope OS, all Docker containers are declaratively specified, configured, and integrated together as [Docker Compose](https://docs.docker.com/compose/) applications. We use Docker because it enables us to isolate programs from each other so that they interact only in specifically-defined ways; this makes it easier for us to configure, integrate, distribute, and deploy the various programs running on the PlanktoScope.
+
+Currently, the PlanktoScope OS is a 32-bit operating system which runs on 64-bit Raspberry Pi CPUs; this is because the PlanktoScope hardware controller (a program described below in the [PlanktoScope-specific hardware abstraction](#planktoscope-specific-hardware-abstraction) section) currently relies on a library which is only available in the 32-bit Raspberry Pi OS. We are in the process of migrating the PlanktoScope OS to run as a 64-bit operating system.
+
+### Boot sequence
+
+Because the PlanktoScope OS is a systemd-based Linux system running on the Raspberry Pi, the PlanktoScope's initial boot sequence is described by external documentation of:
+
+- The [Raspberry Pi 4/5's boot flow](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-and-raspberry-pi-5-boot-flow), which consists of two bootloader stages to load the Raspberry Pi's firmware from the Raspberry Pi's SD card; in turn, the firmware loads the Linux kernel from the Raspberry Pi's SD card.
+
+- [Debian's system initialization](https://www.debian.org/doc/manuals/debian-reference/ch03.en.html), which consists of an [initramfs](https://wiki.debian.org/initramfs) stage after the Linux kernel is loaded, followed by a stage for mounting the full filesystem from the Raspberry Pi's SD card and transferring control to the [systemd init process](https://www.debian.org/doc/manuals/debian-reference/ch03.en.html#_systemd_init) as the root user-space process.
+
+- The [systemd system manager's boot behavior](https://www.freedesktop.org/software/systemd/man/latest/bootup.html), which initializes all necessary filesystems, drivers, and system services.
+
+The systemd system manager starts a variety of services added by the PlanktoScope OS which do not exist in the default installation of the Raspberry Pi OS, such as `docker.service`. The startup ordering relationships between those services are listedBoot in our reference document about [services in the startup process](../subsystems/startup.md#services).
+
+### System upgrades
+
+Traditional Linux distros such as the Raspberry Pi OS are designed to run software directly on the host OS using a shared collection of programs and system libraries provided by the Linux distro, and with programs and libraries installed and upgraded directly on the host OS via the package managers provided by the distro, such as [APT](https://en.wikipedia.org/wiki/APT_(software)) and [`pip`](https://pip.pypa.io/en/stable/). This causes the following challenges for system administration on the PlanktoScope:
+
+- These packages are not *atomic* in how they perform system upgrades of installed libraries and programs, so they can fail during the upgrade process (e.g. due to loss of power) in a way that leaves the system in an unknown and un-reproducible state. Such a state can be hard to revert or recover from, short of wiping and re-flashing the Raspberry Pi's SD card with a new OS installation; this would cause the loss of any OS customizations (e.g. installation of additional software) made by the user.
+
+- If an upgrade of all installed programs and libraries results in a system with problems (e.g. bugs in the new version of an installed program), it is hard to completely revert the system to the previous state. Thus, software upgrades involve a trade-off between extra work (e.g. to backup the SD card image before any upgrade) and extra risk (e.g. of software breakage which is hard to revert due to lack of backups).
+
+- Making certain customizations to the OS, such as adding additional programs/libraries or modifying system configuration files, increases the risk of *configuration drift* in which the system's actual state increasingly diverges over time from the state expected by the PlanktoScope's software maintainers, and thus becomes harder to understand, troubleshoot, or replace.
+
+- Some Python packages required by PlanktoScope-specific programs (namely the PlanktoScope hardware controller and the PlanktoScope segmenter, which are both described in later sections of this document), such as [picamera2](https://github.com/raspberrypi/picamera2) and [opencv-python-headless](https://github.com/opencv/opencv-python), can only be installed as [pre-built wheels](https://pythonwheels.com/) from [piwheels](https://www.piwheels.org/) (which is used instead of PyPi because the PlanktoScope OS is not yet able to run as a 64-bit operating system) when certain versions of system libraries are installed, or else they must be re-compiled from source (which is prohitively slow on the Raspberry Pi for the affected Python packages). This makes dependencies more complicated to manage in maintenance of the PlanktoScope OS for creating and releasing new SD card images with updated software. The reliance on system libraries also increases the risk that a user-initiated upgrade or removal of some of the system's installed APT packages could cause breakage of some `pip`-managed Python packages which had been installed before the change.
+
+All of the factors listed above increase the perceived risk (and/or the required effort for sufficient mitigation of that risk) of accidentally degrading system integrity by keeping all software on the OS up-to-date, which makes it harder for users to receive bugfixes, security patches, and new features in a timely manner. Indeed, outside of systems like phones and Chromebooks (whose operating systems [automatically update themselves](https://chromium.googlesource.com/aosp/platform/system/update_engine/+/HEAD/README.md)), it is common for users of operating systems to avoid installing security updates or OS upgrades out of a fear of breaking their installed software; this is especially common for users who rely on software to operate other scientific instruments, and for good reasons! But the PlanktoScope project currently does not have enough resources to be able to support users stuck on old versions of the PlanktoScope OS; instead, we want to make it easy and safe for all users to always keep their PlanktoScopes - even with customizations to the OS - automatically updated to the latest version of the PlanktoScope OS. We intend to achieve this by:
+
+- Running all PlanktoScope-specific programs which require system libraries (e.g. the PlanktoScope's Python-based programs) in Docker containers - with the required versions of the required system libraries bundled inside those containers - to isolate them from the host OS's libraries installed via APT. This way, APT packages will always be safe to add, upgrade, and remove on the host OS with negligible risk of interfering with PlanktoScope-specific software.
+
+- Enabling (almost) all software not provided by the default installation of the Raspberry Pi OS to be upgraded and downgraded in-place - either as container images or as replacements of files on the filesystem - with just a reboot. This way, software upgrades can be reverted in-place in case new bugs are introduced, and SD cards will only need to be re-flashed with new images once every few years (i.e. after a new major version of the Raspberry Pi OS is released).
+
+- Enabling most types of user-initiated OS customizations to be version-controlled (in a Git repository) and applied (as a system upgrade/downgrade) together with most of the default configurations added by the PlanktoScope OS over what is already present from the default installation of the Raspberry Pi OS. This way, user-initiated OS customizations can be easy to re-apply automatically even after an SD card is re-flashed with a fresh SD card image of the PlanktoScope OS.
+
+We have partially implemented the systems necessary for these goals. Much of the PlanktoScope's software is not installed or upgraded directly on the host OS via APT or `pip`; instead, we use a (partially-implemented) tool called [`forklift`](https://github.com/PlanktoScope/forklift) which we're developing specifically to support the goals listed above, and which provides a robust way for us to fully manage deployment, configuration, and upgrading of:
+
+- All software which we run using Docker.
+- PlanktoScope-specific systemd services (note: only partial management has been implemented so far).
+- PlanktoScope-specific OS configuration files (note: only partial management has been implemented so far).
+
+Everything managed by `forklift` is version-controlled in a [Git](https://git-scm.com/) repository, enabling easy backup and restoration of `forklift`-managed configurations even if the PlanktoScope's SD card is wiped and re-flashed.
+
+### Package management with `forklift`
+
+When you're just experimenting and you can tolerate the challenges mentioned above, it's fine to customize the PlanktoScope OS by installing software packages using APT or `pip` directly on the OS and/or by making extensive changes to OS configuration files. However, once you actually care about keeping your customizations around - and especially if/when you want to share your customizations with other people - we recommend migrating those customizations into Forklift packages, which are just files and configuration files stored in a specially-structured Git repository which is also published online (e.g. on GitHub, GitLab, Gitea, etc.). `forklift` provides an easy way to [package, publish](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-packaging-and-distribution), [combine, and apply](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-deployment-configuration) customizations via YAML configuration files in Git repositories; this enables easy sharing, configuration, (re-)composition, and downloading of Docker Compose applications and (in the future) systemd services and OS configuration files. Configurations of all deployments of Forklift packages on a computer running the PlanktoScope OS are specified and integrated in a single Git repository, a *Forklift pallet*. At any given time, each PlanktoScope has exactly one Forklift pallet deployed; switching between Forklift pallets (whether to try out a different set of customizations or to upgrade/downgrade all programs and OS configurations managed by Forklift) is easy and can be done by running just one command (`forklift plt switch`, described below in the [Applying published customizations](#applying-published-customizations) subsection).
+
+`forklift` is used very differently compared to traditional Linux system package managers like APT, for which you must run step-by-step commands in order to modify the state of your system (e.g. to install some package or install some other package). When using `forklift`, you instead edit configuration files which declare the desired state of your system (though some step-by-step commands are also provided by `forklift` to make editing of files easier), and then you ask `forklift` to try to reconcile the actual state of your system with the desired state. If you've worked with [Hashicorp Terraform](https://www.terraform.io/)/[OpenTofu](https://opentofu.org/) before, this may sound very familiar to you - in fact, several aspects of `forklift`'s design were inspired by Terraform.
+
+#### Dependency management
+
+`forklift` is simpler than traditional package managers in some notable ways, including in the concept of dependencies between packages. For example, Forklift packages cannot specify dependencies on other Forklift packages; instead, they may specify that they depend on certain resources - which then must be provided by a deployment of some other package. And although `forklift` checks whether resource dependencies between package deployments are satisfied, it does not attempt to solve unmet dependencies. If you've worked with the [Go programming language](https://go.dev/) before, dependency relationships among Forklift repositories and pallets are somewhat analogous to dependency relationships among Go Modules; and resource dependency relationships among Forklift packages are analogous to the relationships between functions which require arguments with particular [interfaces](https://www.alexedwards.net/blog/interfaces-explained) and the types which implement those interfaces, with Forklift resources being analogous to Go interfaces.
+
+This design is intended to facilitate replacement of particular programs with modified or customized versions of those programs. For example, a Forklift package could be declared as providing the same API on the same network port as some other package, so that one package can be substituted for the other while still maintaining compatibility with some other program which relies on the existence of that API. `forklift` also checks these resource declarations to ensure that any two packages which would conflict with each other (e.g. by trying to listen on the same network port) will be prevented from being deployed together.
+
+#### Making & publishing customizations
+
+The workflow with `forklift` for developing/testing OS customizations, such as new package deployments or non-standard configurations of existing package deployments or substitutions of existing package deployments, is as follows:
+
+- Initialize a custom pallet based on (i.e. layered over) an existing pallet, using the `forklift dev pallet init` command (e.g. `forklift dev pallet init ~/custom-pallet --from github.com/PlanktoScope/pallet-standard@stable --as github.com/ethanjli/custom-pallet` to make a new directory `custom-pallet` which will be a customization of the latest stable version of the [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard) pallet, and which can be published to `github.com/ethanjli/custom-pallet`). (Note: the `forklift dev pallet init` command is not yet implemented, and pallet layering is not yet implemented; currently, pallets can only be created from scratch or as forks of existing pallets.)
+
+- Optionally, create new Forklift packages with definitions of Docker Compose applications (and/or, in the future, systemd services and OS configuration files) and configure their deployment, by creating particular files in the pallet (e.g. in particular subdirectories of the `~/custom-pallet` directory).
+
+- Optionally, add published Forklift repositories to the pallet with the `forklift dev pallet add-repo` command (e.g. `forklift dev pallet add-repo github.com/ethanjli/pallet-example-minimal@main`), so that one or more packages provided by those repositories can be deployed with the pallet by creating one or more package deployment configuration files for each package. The `forklift dev pallet add-repo` command is also used to upgrade or downgrade the version of the Forklift repository used by the pallet.
+
+- Optionally, add one or more files which override files from the existing pallet, in order to override the configurations specified by those files.
+
+- Test out the pallet with the `forklift dev pallet apply` command, which updates the OS to match the configuration of Forklift package deployments specified by the pallet. (Note: currently, you may first need to run the `forklift dev pallet cache-all` command, to download Forklift repositories and pallets required by your customized pallet. In the future, by default this step will be included as part of the `forklift dev pallet apply` command.)
+
+- Use `git` to commit changes and (ideally) push them to GitHub, in order to publish your customizations for other people to try out.
+
+(TODO: create a "tutorial"-style page elsewhere in this docs site, and link to it from here; it could be as simple as creating a new pallet which adds a new helloworld-style Node-RED dashboard)
+
+#### Applying published customizations
+
+The envisioned workflow for applying published customizations (which you or someone else already developed and pushed to a Git repository served by an online host such as GitHub) is only partially implemented so far, but it already works well for basic use-cases - and it is already used as part of the PlanktoScope OS's [installation process](../subsystems/installation.md) for setting up the PlanktoScope OS over a Raspberry Pi OS image:
+
+- Stage the customized pallet for deployment, using the `forklift pallet switch` command (e.g. `forklift pallet switch github.com/PlanktoScope/pallet-segmenter@edge` to use the latest development/unstable version of the [github.com/PlanktoScope/pallet-segmenter](https://github.com/PlanktoScope/pallet-segmenter) pallet). (Note: currently, the `forklift pallet switch` command immediately applies the pallet, instead of staging it to be applied on the next reboot; the default behavior of the `forklift pallet switch` command will be changed, though the previous behavior can still be used with a `--immediate` flag)
+
+- Reboot the Raspberry Pi computer to apply the staged deployment. (Note: currently, a reboot is not needed if the custom pallet only changes the deployed Docker Compose apps and does not affect the existing OS configuration files or systemd services.) If the deployment cannot be successfully applied during boot, `forklift` will instead apply the last staged deployment which was successfully applied. (Note: currently `forklift` does not revert to the last staged deployment which was successfully booted.)
+
+(TODO: create a "tutorial"-style page elsewhere in this docs site, and link to it from here; it could just be a pallet which reconfigures the docs-site deployment to serve the full site with hardware instructions, and which includes https://hub.docker.com/r/linuxserver/firefox or https://github.com/linuxserver/docker-chromium and/or https://github.com/linuxserver/docker-webtop and/or ZeroTier and/or an ML classifier GUI and/or Jupyter Tensorflow)
+
+Note: currently all of `forklift`'s functionality is only exposed through a command-line interface, but after the `forklift` tool stabilizes we plan to add a web browser-based graphical interface for use by a general audience.
+
+## PlanktoScope-specific hardware abstraction
+
+PlanktoScope-specific hardware modules are abstracted by PlanktoScope-specific programs which expose high-level network APIs (typically using [MQTT](https://mqtt.org/) and/or [HTTP](https://en.wikipedia.org/wiki/HTTP)); other programs should use these APIs in order to interact with the PlanktoScope-specific hardware modules. To provide these APIs, the PlanktoScope OS adds the following services (beyond what is already provided by the default installation of the Raspberry Pi OS):
+
+- [`gpsd`](https://gpsd.gitlab.io/gpsd/): for providing an abstraction for the PlanktoScope's GPS receiver.
+
+- [`chronyd`](https://chrony-project.org/): for managing synchronization of the Raspberry Pi's system clock with the PlanktoScope's GPS receiver and with any time sources available over the Internet.
+
+- The [PlanktoScope hardware controller](https://github.com/PlanktoScope/device-backend/tree/main/control): for controlling PlanktoScope-specific hardware modules and abstracting them into high-level network APIs for other programs to interact with.
+
+## User interface
+
+Traditional operating systems provide a desktop environment with a graphical user interface for operating the computer. By contrast, the PlanktoScope OS provides a set of web browser-based graphical user interfaces for operating the PlanktoScope. This approach was chosen for the following reasons:
+
+- Most people already have a personal computing device (e.g. a phone or laptop). By relying on the user's personal computing device as the graphical interface for the PlanktoScope's software, the PlanktoScope project can reduce hardware costs by omitting a display from the PlanktoScope hardware.
+
+- The PlanktoScope's computational resources are limited and may often need to be fully used for [data processing](#data-processing) tasks. By offloading real-time interaction (such as rendering of the graphical display, and handling of mouse and keyboard events) to a separate device, we can ensure a smooth user experience even when the PlanktoScope's Raspberry Pi computer is busy with other work.
+
+- When the PlanktoScope is connected to the internet, its web browser-based graphical interfaces can be accessed remotely over the internet from other web browsers. This can be easier to set up - and have lower bandwidth requirements and higher responsiveness - compared to a remote-desktop system for remotely accessing a Raspberry Pi's graphical desktop. This is especially relevant when the PlanktoScope is deployed in a setting where it only has a relatively low-bandwidth internet connection.
+
+The PlanktoScope OS adds the following network services which provide web browser-based graphical user interfaces to help users operate the PlanktoScope:
+
+- A [Node-RED](https://nodered.org/) server which serves over HTTP the PlanktoScope Node-RED dashboard, a graphical interface for end-users to operate the PlanktoScope for image acquisition and image processing.
+
+- A datasets [file browser](https://filebrowser.org/) for viewing, managing, uploading, and downloading image dataset files on the PlanktoScope. These files are generated and used by the PlanktoScope hardware controller and the PlanktoScope segmenter.
+
+- [device-portal](https://github.com/PlanktoScope/device-portal): a landing page with links for end-users to quickly access the various web browser-based interfaces mentioned above.
+
+Note: we will probably simplify things by consolidating some of these components together into the PlanktoScope's Node-RED dashboard.
+
+The PlanktoScope OS also provides various tools with web browser-based interfaces to aid with system administration and troubleshooting:
+
+- [Cockpit](https://cockpit-project.org/): for performing system-administration tasks such as monitoring system resources, managing system services, viewing system logs, and executing commands in a terminal.
+
+- A system [file browser](https://filebrowser.org/) for viewing, managing, editing, uploading, and downloading any file on the PlanktoScope.
+
+- A log [file browser](https://filebrowser.org/) for viewing, downloading, and deleting log files files generated by the PlanktoScope hardware controller.
+
+- [Dozzle](https://dozzle.dev/): for viewing and monitoring logs of Docker containers.
+
+- [Portainer](https://www.portainer.io/): for advanced troubleshooting of Docker containers.
+
+- [Grafana](https://grafana.com/): for monitoring and exploring metrics stored in Prometheus.
+
+Finally, the PlanktoScope OS adds some command-line tools (beyond what is already provided by the default installation of the Raspberry Pi OS) for administrative tasks which system administrators, software developers, and advanced users may need to use:
+
+- [`vim`](https://www.vim.org/): for editing text files.
+
+- [`byobu`](https://www.byobu.org/): for running processes persistently across ephemeral terminal sessions.
+
+- [`git`](https://git-scm.com/): for interacting with Git repositories.
+
+- [`w3m`](https://tracker.debian.org/pkg/w3m) and [`lynx`](https://lynx.invisible-island.net/): for interacting with web pages (such as Wi-Fi network captive portals) from the PlanktoScope.
+
+- [`docker`](https://docs.docker.com/reference/cli/docker/): for managing and inspecting Docker containers.
+
+## Networking
+
+The PlanktoScope is often deployed in settings with limited or unstable internet access, and also in settings with no internet access at all. The PlanktoScope also needs to be deployable in remote settings where the user needs to control the PlanktoScope without being physically present. In both types of situations, the PlanktoScope's web browser-based interfaces need to remain accessible.
+
+We solve this problem by allowing the PlanktoScope to connect to the internet over a known Wi-Fi network, and/or over Ethernet, so that the PlanktoScope's web browser-based interfaces can be accessed over the internet; and by making the PlanktoScope bring up a Wi-Fi hotspot (more formally, a [wireless access point](https://en.wikipedia.org/wiki/Wireless_access_point)) using the Raspberry Pi's integrated Wi-Fi module in the absence of any known Wi-Fi network, so that the web browser-based interfaces can be accessed over the Wi-Fi hotspot.
+
+When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), the PlanktoScope acts as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a DNS server to assign itself certain domain names (e.g. `home.pkscope`), so that user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. The PlanktoScope also announces itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `pkscope.local`) which may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network).
+
+When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with network configurations for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access.
+
+The PlanktoScope OS adds the following services (beyond what is already provided by the default installation of the Raspberry Pi OS) for managing the PlanktoScope's network connectivity:
+
+- `autohotspot.service` (which in turn launches `hostapd`): a PlanktoScope-specific daemon for automatically checking the presence of known Wi-Fi networks, automatically connecting to any known Wi-Fi networks, and falling back to creating a Wi-Fi hotspot when no known Wi-Fi networks are present.
+
+- `dnsmasq`: for allowing computers connected to the PlanktoScope over a network to access the PlanktoScope using domain names defined on the PlanktoScope.
+
+- `firewalld`: a network firewall (currently disabled by default).
+
+The PlanktoScope OS also adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
+
+- [Mosquitto](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
+
+- [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
+
+## Observability & telemetry
+
+Although it is not a high priority yet, we would like to enable operators of large (>10) collections of PlanktoScopes to easily log and monitor the health and utilization of each PlanktoScope and to investigate issues with their PlanktoScopes, regardless of whether each PlanktoScope is deployed locally or remotely. The PlanktoScope OS currently includes the following common services to support system observability and telemetry both for the PlanktoScope OS as a system and for programs running on the PlanktoScope OS:
+
+- [Prometheus](https://prometheus.io/): a server for collecting and storing metrics and for exposing metrics over an HTTP API.
+
+- [Prometheus node exporter](https://github.com/prometheus/node_exporter): for measuring computer hardware and OS monitoring metrics and exposing them over a Prometheus-compatible HTTP API.
+
+In the future, we will instrument other PlanktoScope-specific programs (especially the PlanktoScope hardware controller) to export various metrics for Prometheus to collect and expose.
+
+## Data processing
+
+Because the PlanktoScope collects raw image datasets which are often too large to transfer efficiently over low-bandwidth or intermittent internet connections, the PlanktoScope needs to be able to process raw image data into lower-bandwidth data (e.g. cropped and segmented images of particles in the raw images, or even just counts of different classes of particles) without internet access. In other words, the PlanktoScope must support on-board data processing at the edge. The PlanktoScope OS adds the following services for on-board processing of data generated by the PlanktoScope:
+
+- The [PlanktoScope segmenter](https://github.com/PlanktoScope/device-backend/tree/main/processing/segmenter): for processing raw image datasets acquired by the PlanktoScope hardware controller to detect and extract particles from raw images.
+
+Note: in the future, the PlanktoScope OS will add more on-board services for processing the outputs of the PlanktoScope segmenter, and the PlanktoScope OS may also provide hardware abstractions (such as for [AI accelerator modules](https://en.wikipedia.org/wiki/AI_accelerator)) to support the deployment of neural-network models for data processing.
+
+## Security
+
+Currently, the PlanktoScope OS lacks basic security measures to make it safe for them to be connected to the internet; currently it is the responsibility of system administrators to add extremely basic risk mitigations, for example by:
+
+- Changing the password of the `pi` user away from the default of `copepode`.
+
+- Password-protecting the Node-RED dashboard editor, which can be used to execute arbitrary commands with root permissions.
+
+- Setting firewall rules.
+
+- Changing the password of the Wi-Fi hotspot away from the default of `copepode`, or disabling Wi-Fi hotspot functionality.
+
+Other risk mitigations will require deeper changes to the PlanktoScope OS, such as:
+
+- Limiting the permissions and capabilities made available to various system services which currently run with root permissions
+
+- Password-protecting web browser-based user interfaces
+
+- Password-protecting network [APIs](https://en.wikipedia.org/wiki/API).
+
+We would like to start taking even just the very basic steps listed above to improve security, but security is not yet a high-enough priority for us to work on it with the limited resources available to us 🙃 - if you're interested in computer/network security and you'd like to help us as a volunteer on this project, please contact us!

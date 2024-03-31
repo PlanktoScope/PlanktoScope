@@ -104,7 +104,7 @@ wget -O - https://install.planktoscope.community/distro.sh \
   | sh -s -- -t tag -v v2024.0.0-alpha.1 -H planktoscopehat
 ```
 
-You can also choose to install the PlanktoScope software from some other repository on GitHub instead of [github.com/PlanktoScope/PlanktoScope](https://github.com/PlanktoScope/PlanktoScope), by using the `-r` command-line option; for more information, you can get usage instructions by running the following command:
+You can also choose to install the PlanktoScope software from some other repository on GitHub instead of [github.com/PlanktoScope/PlanktoScope](https://github.com/PlanktoScope/PlanktoScope), by using the `-r` command-line option; for more information including usage examples, you can refer to the reference page for [the installation script's command-line parameters](../../reference/software/subsystems/installation.md#script-parameters), and/or you can get usage instructions by running the following command:
 
 ```
 wget -O - https://install.planktoscope.community/distro.sh \
