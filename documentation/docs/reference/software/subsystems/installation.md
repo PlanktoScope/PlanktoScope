@@ -2,7 +2,7 @@
 
 This document explains how the [PlanktoScope OS](../architecture/os.md)'s installation process works, as a companion to our [non-standard installation guide](../../../setup/software/nonstandard-install.md) which carries out the process explained below.
 
-The installation process is initiated by booting into an [appropriate](../../../setup/software/nonstandard-install/#download-a-raspberry-pi-os-sd-card-image) installation of the Raspberry Pi OS and then downloading and [running the *installation bootstrap script*](../../../setup/software/nonstandard-install.md#run-the-installation-script), which in turn downloads and runs the appropriate *distro setup scripts* according to the installation parameters provided to the installation bootstrap script.
+The installation process is initiated by booting into an [appropriate](../../../setup/software/nonstandard-install.md#download-a-raspberry-pi-os-sd-card-image) installation of the Raspberry Pi OS and then downloading and [running the *installation bootstrap script*](../../../setup/software/nonstandard-install.md#run-the-installation-script), which in turn downloads and runs the appropriate *distro setup scripts* according to the installation parameters provided to the installation bootstrap script.
 
 ## Installation bootstrap script
 
