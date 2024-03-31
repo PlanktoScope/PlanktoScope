@@ -52,7 +52,7 @@ Because the PlanktoScope OS is a systemd-based Linux system running on the Raspb
 
 - The [systemd system manager's boot behavior](https://www.freedesktop.org/software/systemd/man/latest/bootup.html), which initializes all necessary filesystems, drivers, and system services.
 
-The systemd system manager starts a variety of services added by the PlanktoScope OS which do not exist in the default installation of the Raspberry Pi OS, such as `docker.service`. The startup ordering relationships between those services are listedBoot in our reference document about [services in the startup process](../subsystems/service-startup.md#services).
+The systemd system manager starts a variety of services added by the PlanktoScope OS which do not exist in the default installation of the Raspberry Pi OS, such as `docker.service`. The startup ordering relationships between those services are listedBoot in our reference document about [services in the startup process](../subsystems/startup.md#services).
 
 ### System upgrades
 

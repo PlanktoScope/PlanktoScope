@@ -1,6 +1,6 @@
 # Startup
 
-This reference document is a companion to our explanation about the [PlanktoScope software as an operating system](../reference/architecture/os.md), particularly its discussion of the operating system's [boot sequence](../reference/architecture/os.md#boot-sequence) and its explanation of the various system services provided with the operating system. Specifically, this document lists information about what happens when the PlanktoScope is powered on.
+This reference document is a companion to our explanation about the [PlanktoScope software as an operating system](../architecture/os.md), particularly its discussion of the operating system's [boot sequence](../architecture/os.md#boot-sequence) and its explanation of the various system services provided with the operating system. Specifically, this document lists information about what happens when the PlanktoScope is powered on.
 
 ## Services
 
