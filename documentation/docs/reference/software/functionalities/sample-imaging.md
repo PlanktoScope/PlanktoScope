@@ -1,6 +1,8 @@
 # Sample Imaging
 
-This document describes how the PlanktoScope software captures images of samples and how it uses the image-acquisition settings exposed by the "Fluidic Acquisition" page of the PlanktoScope's Node-RED dashboard. Currently, the PlanktoScope software only has one sample-imaging mode, which we call "stop-flow imaging":
+This document explains how the PlanktoScope software captures images of samples and how it uses the image-acquisition settings exposed by the "Fluidic Acquisition" page of the PlanktoScope's Node-RED dashboard.
+
+Currently, the PlanktoScope software only has one sample-imaging mode, which we call "stop-flow imaging":
 
 ## Stop-flow imaging
 

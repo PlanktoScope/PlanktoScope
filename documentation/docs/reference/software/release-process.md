@@ -1,6 +1,9 @@
 # Release Process
 
-The PlanktoScope's software is released independently of the PlanktoScope's hardware; this document explains how we manage releases of the PlanktoScope software distribution (which you can download as an SD card image), to help you understand what you should do when we publish a new release of the PlanktoScope software distribution.
+The PlanktoScope's software is released independently of the PlanktoScope's hardware; this document explains how we manage releases of the PlanktoScope software distribution (which you can download as an SD card image), to help you to:
+
+- Understand what you should do when we publish a new release of the PlanktoScope software distribution.
+- Interpret the [software product specifications](./product-specs.md) and the [software changelog](./changelog.md).
 
 ## Version numbering
 
