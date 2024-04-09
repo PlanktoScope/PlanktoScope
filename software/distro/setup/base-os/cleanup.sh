@@ -7,7 +7,7 @@ sudo apt-get clean -y
 
 # Clear machine-id so that it will be regenerated on the next boot
 sudo bash -c 'printf "" > /var/lib/dbus/machine-id'
-sudo bash -c 'printf "" > /etc/machine-id'
+sudo bash -c 'printf "uninitialized" > /etc/machine-id'
 
 # Remove SSH keys so that they'll be regenerated on the next boot
 sudo rm -f /etc/ssh/ssh_host_*
