@@ -1,7 +1,10 @@
 [Unit]
 Description=Create a read-write overlay for /etc with a Forklift-managed etc tree as an intermediate layer
+Requires=-.service
+After=-.service
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
 Before=local-fs.target
-Before=sysinit.target
 
 [Mount]
 What=overlay

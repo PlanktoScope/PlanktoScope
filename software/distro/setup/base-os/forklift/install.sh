@@ -34,13 +34,15 @@ file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable forklift-apply.service
 
-# Move /etc to /usr/etc for a filesystem overlay at /etc, and set up a symlink so we still have
-# a valid /etc/sudoers file for the remainder of the install process
+# Copy /etc to /usr/etc for a filesystem overlay at /etc, but leave some files in-place so that we
+# still have a valid /etc/sudoers for the rest of the install process and so that we still have a
+# valid /etc/fstab at the start of every boot
 sudo mkdir /usr/etc
 # Note: /etc/machine-id must exist at boot even before /etc is mounted to /usr/etc!
 sudo sh -c "\
   mv /etc/* /usr/etc/ && \
   printf '' > /etc/machine-id && \
+  cp /usr/etc/fstab /etc/fstab && \
   mount --bind /usr/etc /etc"
 
 # Set up overlay for /etc
