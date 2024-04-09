@@ -37,7 +37,11 @@ sudo systemctl enable forklift-apply.service
 # Move /etc to /usr/etc for a filesystem overlay at /etc, and set up a symlink so we still have
 # a valid /etc/sudoers file for the remainder of the install process
 sudo mkdir /usr/etc
-sudo sh -c "mv /etc/* /usr/etc/ && mount --bind /usr/etc /etc"
+# Note: /etc/machine-id must exist at boot even before /etc is mounted to /usr/etc!
+sudo sh -c "\
+  mv /etc/* /usr/etc/ && \
+  printf '' > /etc/machine-id && \
+  mount --bind /usr/etc /etc"
 
 # Set up overlay for /etc
 file="/usr/lib/systemd/system/etc.mount"
