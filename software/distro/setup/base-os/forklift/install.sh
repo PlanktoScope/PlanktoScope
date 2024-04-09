@@ -43,7 +43,8 @@ sudo sh -c "\
   mkdir /etc && \
   printf 'uninitialized\n' > /etc/machine-id && \
   cp /usr/etc/fstab /etc/fstab && \
-  cp -r /usr/etc/systemd/system/*.wants /etc/systemd && \
+  mkdir -p /etc/systemd/system && \
+  cp -r /usr/etc/systemd/system/*.wants /etc/systemd/system && \
   mount --bind /usr/etc /etc"
 sudo systemctl daemon-reload
 
