@@ -34,8 +34,9 @@ file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable forklift-apply.service
 
-# Move /etc to /usr/etc for a filesystem overlay at /etc
-sudo mv /etc /usr/etc
+# Move /etc to /usr/etc for a filesystem overlay at /etc, and set up a symlink so we still have
+# a valid /etc/sudoers file for the remainder of the install process
+sudo mv /etc /usr/etc && ln -s /usr/etc /etc
 
 # Set up overlay for /etc
 file="/usr/lib/systemd/system/etc.mount"
