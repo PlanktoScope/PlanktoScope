@@ -10,12 +10,7 @@ Before=local-fs.target
 What=overlay
 Where=/etc
 Type=overlay
-Options=\
-  upperdir=/var/lib/overlays/overrides/etc,\
-  lowerdir=\
-    /usr/etc:\
-    /home/pi/.local/share/forklift/export/next/overlays/etc,\
-  workdir=/var/lib/overlays/workdirs/etc
+Options=upperdir=/var/lib/overlays/overrides/etc,lowerdir=/usr/etc:/var/lib/forklift/exports/next/overlays/etc,workdir=/var/lib/overlays/workdirs/etc
 
 [Install]
 WantedBy=local-fs.target

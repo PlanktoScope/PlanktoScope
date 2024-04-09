@@ -50,7 +50,6 @@ sudo cp "$config_files_root$file" "$file"
 # which we've bind-mounted to `/usr/etc` (so it won't show up at boot in `/etc` before the mount is
 # started - and the purpose of the mount is to use `/usr/etc` for `/etc`):
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
+sudo mkdir -p /var/lib/forklift/exports/next/overlays/etc
 sudo mkdir -p /var/lib/overlays/overrides/etc
 sudo mkdir -p /var/lib/overlays/workdirs/etc
-# TODO: remove this placeholder once we automatically generate it:
-mkdir -p /home/pi/.local/share/forklift/export/next/overlays/etc
