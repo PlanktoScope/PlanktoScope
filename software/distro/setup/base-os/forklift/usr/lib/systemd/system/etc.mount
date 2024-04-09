@@ -5,6 +5,9 @@ After=-.service
 Requires=systemd-remount-fs.service
 After=systemd-remount-fs.service
 Before=local-fs.target
+# Mount the /etc overlay before allowing machine-id to be committed to disk
+# (refer to https://www.freedesktop.org/software/systemd/man/latest/machine-id.html)
+Before=first-boot-complete.target
 
 [Mount]
 What=overlay
