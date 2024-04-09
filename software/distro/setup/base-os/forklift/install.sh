@@ -41,7 +41,7 @@ sudo systemctl enable forklift-apply.service
 sudo sh -c "\
   mv /etc /usr/etc && \
   mkdir /etc && \
-  cp printf 'uninitialized' > /etc/machine-id && \
+  printf 'uninitialized\n' > /etc/machine-id && \
   cp /usr/etc/fstab /etc/fstab && \
   mount --bind /usr/etc /etc"
 sudo systemctl daemon-reload
