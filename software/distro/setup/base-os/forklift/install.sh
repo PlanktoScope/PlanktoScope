@@ -39,7 +39,7 @@ sudo systemctl enable forklift-apply.service
 # before our overlay-mount for `/etc` is ready:
 # machine-id is used in early boot, so we initialize it before bind-mounting to /usr/etc:
 # (see https://www.freedesktop.org/software/systemd/man/latest/machine-id.html):
-sudo printf "uninitialized" > /etc/machine-id
+sudo bash -c 'printf "uninitialized" > /etc/machine-id'
 sudo cp -r /etc /usr/etc
 sudo mount --bind /usr/etc /etc
 
