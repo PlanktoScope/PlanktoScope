@@ -35,9 +35,9 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable forklift-apply.service
 
 # Set up overlay for /etc
-file="/usr/lib/systemd/system/run-mount-overlays-etc.mount"
+file="/usr/lib/systemd/system/usr-etc.mount"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable run-mount-overlays-etc.mount
+sudo systemctl enable usr-etc.mount
 file="/usr/lib/systemd/system/etc.mount"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable etc.mount
