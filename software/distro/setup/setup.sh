@@ -52,22 +52,22 @@ else
   panic "$description"
 fi
 
-description="set up PlanktoScope application environment"
-report_starting "$description"
-if $setup_scripts_root/planktoscope-app-env/setup.sh "$hardware_type" ; then
-  report_finished "$description"
-  source $setup_scripts_root/planktoscope-app-env/export-env.sh
-else
-  panic "$description"
-fi
+#description="set up PlanktoScope application environment"
+#report_starting "$description"
+#if $setup_scripts_root/planktoscope-app-env/setup.sh "$hardware_type" ; then
+#  report_finished "$description"
+#  source $setup_scripts_root/planktoscope-app-env/export-env.sh
+#else
+#  panic "$description"
+#fi
 
-description="remove unnecessary artifacts from the PlanktoScope application environment"
-report_starting "$description"
-if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
+#description="remove unnecessary artifacts from the PlanktoScope application environment"
+#report_starting "$description"
+#if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
+#  report_finished "$description"
+#else
+#  panic "$description"
+#fi
 
 description="remove unnecessary artifacts from the base operating system"
 report_starting "$description"

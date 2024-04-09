@@ -11,4 +11,4 @@ sudo bash -c 'printf "" > /etc/machine-id'
 
 # Remove SSH keys so that they'll be regenerated on the next boot
 sudo rm -f /etc/ssh/ssh_host_*
-sudo systemctl enable regenerate_ssh_host_keys.service
+#sudo systemctl enable regenerate_ssh_host_keys.service

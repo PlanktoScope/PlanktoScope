@@ -67,10 +67,10 @@ else
   panic "$description"
 fi
 
-description="configure Raspberry Pi-specific hardware"
-report_starting "$description"
-if $build_scripts_root/platform-hardware/config.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
+#description="configure Raspberry Pi-specific hardware"
+#report_starting "$description"
+#if $build_scripts_root/platform-hardware/config.sh ; then
+#  report_finished "$description"
+#else
+#  panic "$description"
+#fi

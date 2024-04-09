@@ -21,14 +21,14 @@ sudo bash -c "echo \"uninitialized\" > /etc/machine-id"
 # Set the wifi country
 # FIXME: instead have the user set the wifi country via a first-launch setup wizard, and do it
 # without using raspi-config. It should also be updated if the user changes the wifi country.
-sudo raspi-config nonint do_wifi_country US
+#sudo raspi-config nonint do_wifi_country US
 # FIXME: remove this if we don't actually need it:
 #sudo rfkill unblock wifi
 
 # Set up ssh with host keys unique to each machine
 sudo systemctl enable ssh
 sudo rm -f /etc/ssh/ssh_host_*
-sudo systemctl enable regenerate_ssh_host_keys.service
+#sudo systemctl enable regenerate_ssh_host_keys.service
 
 # TODO: add basic firewalld settings
 
