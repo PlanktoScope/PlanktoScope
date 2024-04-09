@@ -46,7 +46,10 @@ sudo mount --bind /usr/etc /etc
 # Set up overlay for /etc
 file="/usr/lib/systemd/system/etc.mount"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable etc.mount
+# We enable the mount directly via symlink because `systemctl enable` makes the symlink in `/etc`,
+# which we've bind-mounted to `/usr/etc` (so it won't show up at boot in `/etc` before the mount is
+# started - and the purpose of the mount is to use `/usr/etc` for `/etc`):
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
 sudo mkdir -p /var/lib/overlays/overrides/etc
 sudo mkdir -p /var/lib/overlays/workdirs/etc
 # TODO: remove this placeholder once we automatically generate it:
