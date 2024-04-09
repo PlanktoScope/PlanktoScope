@@ -1,0 +1,19 @@
+[Unit]
+Description=Create a read-write overlay for /etc with a Forklift-managed etc tree as an intermediate layer
+Requires=run-mount-overlays-etc.mount
+After=run-mount-overlays-etc.mount
+Before=local-fs.target
+
+[Mount]
+What=overlay
+Where=/etc
+Type=overlay
+Options=\
+  upperdir=/var/lib/overlays/overrides/etc,\
+  lowerdir=\
+    /run/mount/overlays/etc:\
+    /home/pi/.local/share/forklift/export/next/overlays/etc,\
+  workdir=/var/lib/overlays/workdirs/etc
+
+[Install]
+WantedBy=local-fs.target
