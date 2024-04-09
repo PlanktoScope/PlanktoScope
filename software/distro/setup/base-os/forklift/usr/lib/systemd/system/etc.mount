@@ -1,5 +1,7 @@
 [Unit]
 Description=Create a read-write overlay for /etc with a Forklift-managed etc tree as an intermediate layer
+Before=local-fs.target
+Before=sysinit.target
 
 [Mount]
 What=overlay
