@@ -11,7 +11,8 @@ forklift_version="0.6.0"
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="v2024.0.0-alpha.1"
 
-curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_arm.tar.gz" \
+arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
+curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
   | sudo tar -C /usr/bin -xz forklift
 sudo mv /usr/bin/forklift "/usr/bin/forklift-${forklift_version}"
 sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift

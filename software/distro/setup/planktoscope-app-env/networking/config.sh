@@ -16,7 +16,8 @@ sudo hostnamectl set-hostname "$new_hostname"
 
 # Download tool to generate machine names based on serial numbers
 machinename_version="0.1.3"
-curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_arm.tar.gz" \
+arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
+curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_${arch}.tar.gz" \
   | sudo tar -xz -C /usr/bin/ machine-name
 sudo mv /usr/bin/machine-name "/usr/bin/machine-name-${machinename_version}"
 sudo ln -s "/usr/bin/machine-name-${machinename_version}" /usr/bin/machine-name
