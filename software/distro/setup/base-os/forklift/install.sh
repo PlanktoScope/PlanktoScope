@@ -34,14 +34,17 @@ file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable forklift-apply.service
 
-# Copy /etc to /usr/etc for a filesystem overlay at /etc, but don't delete `/etc` because various
-# things (e.g. avahi-daemon.service, -.mount, systemd-remount-fs.service) need it in early boot even
-# before our overlay-mount for `/etc` is ready:
-# machine-id is used in early boot, so we initialize it before bind-mounting to /usr/etc:
-# (see https://www.freedesktop.org/software/systemd/man/latest/machine-id.html):
-sudo bash -c 'printf "uninitialized" > /etc/machine-id'
-sudo cp -r /etc /usr/etc
-sudo mount --bind /usr/etc /etc
+# Move /etc to /usr/etc for a filesystem overlay at /etc, but keep around certain files in `/etc`
+# needed in early boot even before our overlay-mount for `/etc` is ready; we need to run everything
+# in a single `sudo` command until we bind-mount /usr/etc to /etc because /etc/sudoers will be
+# gone in between:
+sudo sh -c "\
+  mv /etc /usr/etc && \
+  mkdir /etc && \
+  cp printf 'uninitialized' > /etc/machine-id && \
+  cp /usr/etc/fstab /etc/fstab && \
+  mount --bind /usr/etc /etc"
+sudo systemctl daemon-reload
 
 # Set up overlay for /etc
 file="/usr/lib/systemd/system/etc.mount"
