@@ -1,8 +1,0 @@
-[Unit]
-Description=Bind-mount /etc into /run as the lower layer for an overlay at /etc
-
-[Mount]
-What=/etc
-Where=/usr/etc
-Type=none
-Options=bind
