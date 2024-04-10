@@ -1,5 +1,6 @@
 [Unit]
 Description=Reload systemd units after the /etc overlay has been mounted
+DefaultDependencies=no
 Wants=etc.mount
 After=etc.mount
 Before=basic.target

@@ -9,8 +9,8 @@ Requires=-.mount
 After=-.mount
 Requires=systemd-remount-fs.service
 After=systemd-remount-fs.service
-#Wants=first-boot-complete.target
-#After=first-boot-complete.target
+Wants=first-boot-complete.target
+After=first-boot-complete.target
 Conflicts=umount.target
 Before=umount.target
 

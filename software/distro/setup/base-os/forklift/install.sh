@@ -45,6 +45,8 @@ sudo sh -c "\
   cp /usr/etc/fstab /etc/fstab && \
   mkdir -p /etc/systemd/system && \
   cp -r /usr/etc/systemd/system/*.wants /etc/systemd/system && \
+  mkdir -p /tmp/mnt/etc && \
+  mount --bind /etc /tmp/mnt/etc && \
   mount --bind /usr/etc /etc"
 sudo systemctl daemon-reload
 
@@ -54,6 +56,9 @@ sudo systemctl daemon-reload
 # mount is started - and the purpose of these units is to use the overlay for `/etc`):
 file="/usr/lib/systemd/system/bind-etc-machine-id.service"
 sudo cp "$config_files_root$file" "$file"
+file="/usr/lib/systemd/system/bind-etc-run.service"
+sudo cp "$config_files_root$file" "$file"
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bind-etc-run.service
 file="/usr/lib/systemd/system/etc.mount"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
