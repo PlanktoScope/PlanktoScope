@@ -17,12 +17,13 @@ Before=umount.target
 # of operations clearer.
 Type=oneshot
 RemainAfterExit=true
-ExecStart=mkdir -p /var/lib/overlays/workdirs/etc
-ExecStart=mkdir -p /var/lib/overlays/overrides/etc
-ExecStart=mkdir -p /var/lib/overlays/generated/etc
-ExecStart=mkdir -p /var/lib/forklift/exports/next/overlays/etc
-ExecStart=mkdir -p /usr/etc
+ExecStartPre=mkdir -p /var/lib/overlays/workdirs/etc
+ExecStartPre=mkdir -p /var/lib/overlays/overrides/etc
+ExecStartPre=mkdir -p /var/lib/overlays/generated/etc
+ExecStartPre=mkdir -p /var/lib/forklift/exports/next/overlays/etc
+ExecStartPre=mkdir -p /usr/etc
 ExecStart=mount --bind /etc /usr/etc
+ExecStart=/usr/bin/sh -c "if ([ -s /run/machine-id ] && grep -v -q 'uninitialized' /run/machine-id) && (![ -s /etc/machine-id ] || grep -q 'uninitialized' /etc/machine-id); then cat /run/machine-id > /etc/machine-id; fi"
 ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/etc,upperdir=/var/lib/overlays/overrides/etc,lowerdir=/var/lib/overlays/generated/etc:/var/lib/forklift/exports/next/overlays/etc:/usr/etc /etc
 ExecStart=systemctl daemon-reload
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
