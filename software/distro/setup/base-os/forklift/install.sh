@@ -32,33 +32,11 @@ forklift --workspace $workspace plt cache-repo
 # than Swarm Mode:
 file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable forklift-apply.service
-
-# Move /etc to /usr/etc for a filesystem overlay at /etc, but keep around certain files in `/etc`
-# needed in early boot even before our overlay-mount for `/etc` is ready; we need to run everything
-# in a single `sudo` command until we bind-mount /usr/etc to /etc because /etc/sudoers will be
-# gone in between:
-sudo sh -c "\
-  mv /etc /usr/etc && \
-  mkdir /etc && \
-  printf 'uninitialized\n' > /etc/machine-id && \
-  cp /usr/etc/fstab /etc/fstab && \
-  mkdir -p /etc/systemd/system && \
-  cp -r /usr/etc/systemd/system/*.wants /etc/systemd/system && \
-  mkdir -p /tmp/mnt/etc && \
-  mount --bind /etc /tmp/mnt/etc && \
-  mount --bind /usr/etc /etc"
-sudo systemctl daemon-reload
+sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
 # Set up overlay for /etc
-# We enable these systemd units directly via symlink because `systemctl enable` makes the symlink in
-# `/etc`, which we've bind-mounted to `/usr/etc` (so it won't show up at boot in `/etc` before the
-# mount is started - and the purpose of these units is to use the overlay for `/etc`):
-file="/usr/lib/systemd/system/bind-etc-machine-id.service"
+file="/usr/lib/systemd/system/mount-usr-etc.service"
 sudo cp "$config_files_root$file" "$file"
-file="/usr/lib/systemd/system/bind-etc-run.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bind-etc-run.service
 file="/usr/lib/systemd/system/etc.mount"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
@@ -66,6 +44,7 @@ file="/usr/lib/systemd/system/etc-mounted-daemon-reload.service"
 sudo cp "$config_files_root$file" "$file"
 sudo mkdir -p /usr/lib/systemd/system/basic.target.wants
 sudo ln -s "$file" /usr/lib/systemd/system/basic.target.wants/etc-mounted-daemon-reload.service
+sudo mkdir -p /usr/etc
 sudo mkdir -p /var/lib/forklift/exports/next/overlays/etc
 sudo mkdir -p /var/lib/planktoscope/generated/etc
 sudo mkdir -p /var/lib/overlays/overrides/etc
