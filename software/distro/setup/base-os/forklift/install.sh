@@ -57,9 +57,9 @@ sudo cp "$config_files_root$file" "$file"
 file="/usr/lib/systemd/system/etc.mount"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
-file="/usr/lib/systemd/system/etc-mounted-daemon-reload.mount"
+file="/usr/lib/systemd/system/etc-mounted-daemon-reload.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/basic.target.wants/etc-mounted-daemon-reload.mount
+sudo ln -s "$file" /usr/lib/systemd/system/basic.target.wants/etc-mounted-daemon-reload.service
 sudo mkdir -p /var/lib/forklift/exports/next/overlays/etc
 sudo mkdir -p /var/lib/planktoscope/generated/etc
 sudo mkdir -p /var/lib/overlays/overrides/etc
