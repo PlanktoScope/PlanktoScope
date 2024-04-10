@@ -16,3 +16,6 @@ Before=umount.target
 Type=oneshot
 ExecStart=mount --bind /etc /usr/etc
 ExecStop=umount /usr/etc
+
+[Install]
+WantedBy=local-fs.target

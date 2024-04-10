@@ -37,18 +37,14 @@ sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-appl
 # Set up overlay for /etc
 file="/usr/lib/systemd/system/mount-usr-etc.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable mount-usr-etc.service
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-usr-etc.service
 file="/usr/lib/systemd/system/etc.mount"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable etc.mount
-#sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
 file="/usr/lib/systemd/system/etc-mounted-daemon-reload.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable etc-mounted-daemon-reload.service
-#sudo mkdir -p /usr/lib/systemd/system/basic.target.wants
-#sudo ln -s "$file" /usr/lib/systemd/system/basic.target.wants/etc-mounted-daemon-reload.service
-printf "Press enter to continue: "
-read answer
+sudo mkdir -p /usr/lib/systemd/system/basic.target.wants
+sudo ln -s "$file" /usr/lib/systemd/system/basic.target.wants/etc-mounted-daemon-reload.service
 sudo mkdir -p /usr/etc
 sudo mkdir -p /var/lib/forklift/exports/next/overlays/etc
 sudo mkdir -p /var/lib/planktoscope/generated/etc
