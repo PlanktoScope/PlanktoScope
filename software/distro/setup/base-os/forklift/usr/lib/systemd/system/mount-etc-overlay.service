@@ -5,6 +5,8 @@ Requires=-.mount
 After=-.mount
 Requires=systemd-remount-fs.service
 After=systemd-remount-fs.service
+# Wait until systemd has written changes to /etc/machine-id before swapping /etc for an overlay
+After=first-boot-complete.target
 Conflicts=umount.target
 Before=umount.target
 
