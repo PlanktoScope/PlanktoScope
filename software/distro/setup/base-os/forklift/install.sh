@@ -34,11 +34,19 @@ file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable forklift-apply.service
 
-# Copy files from /etc to /usr/etc for a filesystem overlay at /etc, but keep a copy of everything
-# in `/etc` because it seems to be needed for journald to work properly:
-sudo sh -c " printf 'uninitialized\n' > /etc/machine-id"
-sudo cp -r /etc /usr/etc
-sudo mount --bind /usr/etc /etc
+# Move /etc to /usr/etc for a filesystem overlay at /etc, but keep around certain files in `/etc`
+# needed in early boot even before our overlay-mount for `/etc` is ready; we need to run everything
+# in a single `sudo` command until we bind-mount /usr/etc to /etc because /etc/sudoers will be
+# gone in between:
+sudo sh -c "\
+  mv /etc /usr/etc && \
+  mkdir /etc && \
+  printf 'uninitialized\n' > /etc/machine-id && \
+  cp /usr/etc/fstab /etc/fstab && \
+  mkdir -p /etc/systemd/system && \
+  cp -r /usr/etc/systemd/system/*.wants /etc/systemd/system && \
+  mount --bind /usr/etc /etc"
+sudo systemctl daemon-reload
 
 # Set up overlay for /etc
 file="/usr/lib/systemd/system/etc.mount"
