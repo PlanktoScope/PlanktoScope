@@ -1,0 +1,20 @@
+# This is implemented as a service rather than a mount because we're mounting from
+# /etc/machine-name, and systemd's implicit dependencies with mounts would cause a circular
+# requirement dependency between this service and `etc.mount` (which relies on this service to
+# bind-mount /etc/machine-name into the overlay).
+[Unit]
+Description=Reload systemd units after the /etc overlay has been mounted
+DefaultDependencies=no
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+Wants=first-boot-complete.target
+After=first-boot-complete.target
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+Type=oneshot
+ExecStart=mount --bind /etc/machine-name /var/lib/overlays/overrides/etc/machine-name
+ExecStop=umount /var/lib/overlays/overrides/etc/machine-name

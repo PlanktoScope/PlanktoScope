@@ -1,19 +1,20 @@
 [Unit]
-Description=Create a read-write overlay for /etc with a Forklift-managed etc tree as an intermediate layer
-Requires=-.service
-After=-.service
+Description=Mount a read-write overlay at /etc with a Forklift-managed etc tree as an intermediate layer
+Requires=-.mount
+After=-.mount
 Requires=systemd-remount-fs.service
 After=systemd-remount-fs.service
+# Mount the /etc overlay after /etc/machine-name is bind-mounted into the overlay
+# (refer to https://www.freedesktop.org/software/systemd/man/latest/machine-id.html).
+Wants=bind-etc-machine-id.service
+After=bind-etc-machine-id.service
 Before=local-fs.target
-# Mount the /etc overlay before allowing machine-id to be committed to disk
-# (refer to https://www.freedesktop.org/software/systemd/man/latest/machine-id.html)
-Before=first-boot-complete.target
 
 [Mount]
 What=overlay
 Where=/etc
 Type=overlay
-Options=upperdir=/var/lib/overlays/overrides/etc,lowerdir=/usr/etc:/var/lib/forklift/exports/next/overlays/etc,workdir=/var/lib/overlays/workdirs/etc
+Options=upperdir=/var/lib/overlays/overrides/etc,lowerdir=/usr/etc:/var/lib/forklift/exports/next/overlays/etc:/var/lib/planktoscope/generated/etc,workdir=/var/lib/overlays/workdirs/etc
 
 [Install]
 WantedBy=local-fs.target
