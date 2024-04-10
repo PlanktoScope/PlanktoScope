@@ -14,15 +14,21 @@ Before=umount.target
 # would cause a circular requirement dependency; and keeping everything in one unit makes the order
 # of operations clearer.
 Type=oneshot
-ExecStart=mkdir -p /usr/etc
-ExecStart=mount --bind /etc /usr/etc
+RemainAfterExit=true
+ExecStart=mkdir -p /var/lib/overlays/workdirs/etc
 ExecStart=mkdir -p /var/lib/overlays/overrides/etc
 ExecStart=mkdir -p /var/lib/overlays/generated/etc
 ExecStart=mkdir -p /var/lib/forklift/exports/next/overlays/etc
-ExecStart=mkdir -p /var/lib/overlays/workdirs/etc
-ExecStart=mount -t overlay overlay -oupperdir=/var/lib/overlays/overrides/etc,lowerdir=/var/lib/overlays/generated/etc:/var/lib/forklift/exports/next/overlays/etc:/usr/etc,workdir=/var/lib/overlays/workdirs/etc
+ExecStart=mkdir -p /usr/etc
+ExecStart=mount --bind /etc /usr/etc
+ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/etc,upperdir=/var/lib/overlays/overrides/etc,lowerdir=/var/lib/overlays/generated/etc:/var/lib/forklift/exports/next/overlays/etc:/usr/etc /etc
 ExecStart=systemctl daemon-reload
-ExecStop=umount /usr/etc
+# Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
+# because it just removes the mounts from the namespace while writes to open files can continue;
+# however, this is probably acceptable behavior for the overlay at shutdown, because any writes
+# will be in our upperdir anyways.
+ExecStopPost=umount -l /etc
+ExecStopPost=umount /usr/etc
 
 [Install]
 WantedBy=local-fs.target
