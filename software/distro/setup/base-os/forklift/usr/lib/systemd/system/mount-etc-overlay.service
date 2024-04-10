@@ -1,0 +1,28 @@
+[Unit]
+Description=Remount /etc as a writable overlay with a Forklift-managed intermediate layer
+DefaultDependencies=no
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+# This is implemented as a service rather than a mount because we're bind-mounting from /etc to
+# /usr/etc and then mounting /etc as an overlay, and systemd's implicit dependencies with mounts
+# would cause a circular requirement dependency; and keeping everything in one unit makes the order
+# of operations clearer.
+Type=oneshot
+ExecStart=mkdir -p /usr/etc
+ExecStart=mount --bind /etc /usr/etc
+ExecStart=mkdir -p /var/lib/overlays/overrides/etc
+ExecStart=mkdir -p /var/lib/overlays/generated/etc
+ExecStart=mkdir -p /var/lib/forklift/exports/next/overlays/etc
+ExecStart=mkdir -p /var/lib/overlays/workdirs/etc
+ExecStart=mount -t overlay overlay -oupperdir=/var/lib/overlays/overrides/etc,lowerdir=/var/lib/overlays/generated/etc:/var/lib/forklift/exports/next/overlays/etc:/usr/etc,workdir=/var/lib/overlays/workdirs/etc
+ExecStart=systemctl daemon-reload
+ExecStop=umount /usr/etc
+
+[Install]
+WantedBy=local-fs.target

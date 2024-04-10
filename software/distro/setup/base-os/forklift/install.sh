@@ -35,18 +35,6 @@ sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
 # Set up overlay for /etc
-file="/usr/lib/systemd/system/mount-usr-etc.service"
+file="/usr/lib/systemd/system/mount-etc-overlay.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-usr-etc.service
-file="/usr/lib/systemd/system/etc.mount"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/etc.mount
-file="/usr/lib/systemd/system/etc-mounted-daemon-reload.service"
-sudo cp "$config_files_root$file" "$file"
-sudo mkdir -p /usr/lib/systemd/system/basic.target.wants
-sudo ln -s "$file" /usr/lib/systemd/system/basic.target.wants/etc-mounted-daemon-reload.service
-sudo mkdir -p /usr/etc
-sudo mkdir -p /var/lib/forklift/exports/next/overlays/etc
-sudo mkdir -p /var/lib/planktoscope/generated/etc
-sudo mkdir -p /var/lib/overlays/overrides/etc
-sudo mkdir -p /var/lib/overlays/workdirs/etc
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-etc-overlay.service
