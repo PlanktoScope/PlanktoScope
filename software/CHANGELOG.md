@@ -12,6 +12,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
+- (System: administration) Forklift has been upgraded to v0.7.0, so that pallets are staged before being applied (and with automatic fallback to the last successfully-applied staged pallet), and so that systemd services and `/etc` config files are now managed by Forklift.
+- (System: administration) `/etc` is now a overlay filesystem with all manually-edited files saved at `/var/lib/overlays/overrides/etc`.
 
 ### Fixed
 

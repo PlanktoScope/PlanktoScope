@@ -7,7 +7,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.6.0"
+forklift_version="0.7.0-alpha.0"
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="v2024.0.0-alpha.1"
 
@@ -22,11 +22,13 @@ sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 workspace="$HOME"
 forklift --workspace $workspace plt clone --force $pallet_path@$pallet_version
 forklift --workspace $workspace plt cache-repo
+forklift --workspace $workspace plt stage
+forklift --workspace $workspace stage plan
 
 # Note: this command must run with sudo even though the pi user has been added to the docker
 # usergroup, because that change only works after starting a new login shell; and `newgrp docker`
 # doesn't work either:
-sudo -E forklift --workspace $workspace plt cache-img --parallel # to save disk space, we don't cache images used by disabled package deployments
+sudo -E forklift --workspace $workspace stage cache-img --parallel
 
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
 # than Swarm Mode:
@@ -35,11 +37,11 @@ sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
 # Set up overlay for /etc
-# Note: we don't move /etc to /usr because that makes it more complicated/difficult to allow systemd
-# to correctly initialize /etc/machine-id on first boot (which is needed to make journald work, e.g.
-# for viewing service logs), and because we need some /etc files anyways (notably, /etc/fstab and
-# maybe also /etc/systemd/system/*.target.wants) before we can bring up the overlay mount; instead,
-# we just bind-mount /etc to /usr/etc as the base layer for an overlay at /etc
+# Note: we don't move /etc into /usr because that makes it more complicated/difficult to ensure
+# that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
+# work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
+# /etc/fstab and maybe also /etc/systemd/system/*.target.wants) before we can bring up the overlay
+# mount; instead, we just bind-mount /etc to /usr/etc as the base layer for an overlay at /etc
 # (see also: https://www.spinics.net/lists/systemd-devel/msg03771.html,
 # https://bootlin.com/blog/systemd-read-only-rootfs-and-overlay-file-system-over-etc/, and
 # https://community.toradex.com/t/automount-overlay-for-etc/15529/8):
