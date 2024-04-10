@@ -21,12 +21,12 @@ sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 
 workspace="$HOME"
 forklift --workspace $workspace plt clone --force $pallet_path@$pallet_version
-#forklift --workspace $workspace plt cache-repo
+forklift --workspace $workspace plt cache-repo
 
 # Note: this command must run with sudo even though the pi user has been added to the docker
 # usergroup, because that change only works after starting a new login shell; and `newgrp docker`
 # doesn't work either:
-sudo -E forklift --workspace $workspace plt cache-img --parallel # to save disk space, we don't cache images used by disabled package deployments
+#sudo -E forklift --workspace $workspace plt cache-img --parallel # to save disk space, we don't cache images used by disabled package deployments
 
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
 # than Swarm Mode:
