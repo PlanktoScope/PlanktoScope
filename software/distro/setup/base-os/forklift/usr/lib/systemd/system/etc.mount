@@ -1,7 +1,7 @@
 [Unit]
 Description=Mount a read-write overlay at /etc with a Forklift-managed etc tree as an intermediate layer
 Requires=mount-usr-etc.service
-After=mount-user-etc.service
+After=mount-usr-etc.service
 Before=local-fs.target
 
 [Mount]
