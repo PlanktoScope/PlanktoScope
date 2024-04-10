@@ -7,7 +7,6 @@ Before=autohotspot.service
 
 [Service]
 Type=oneshot
-User="pi"
 Environment="HOME=/home/pi"
 ExecStart=/usr/bin/forklift --workspace /home/pi stage apply --parallel
 
