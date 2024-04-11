@@ -9,16 +9,17 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Note: we don't want to do an apt-get upgrade because then we'd have no way to ensure the same set
 # of package versions for existing packages if we run the script at different times. Also, it causes
 # some weirdness with the Docker installation (see note below in the "Install Docker" section).
-sudo apt-get install -y vim byobu git
+sudo apt-get install -y vim byobu git curl
 
 # Install some tools for dealing with captive portals
 sudo apt-get install -y w3m lynx
 
 # Install Docker
 sudo install -m 0755 -d /etc/apt/keyrings
-sudo apt-get install -y curl
-curl -fsSL "https://download.docker.com/linux/debian/gpg" | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
+  curl -fsSL "https://download.docker.com/linux/debian/gpg" | \
+    sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+fi
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 DISTRO_VERSION_CODENAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
 echo \
