@@ -55,6 +55,9 @@ LinkChecker = "^10.3.0"
 poethepoet = "^0.25.0"
 mkdocs-git-revision-date-localized-plugin = "^1.2.4"
 
+[tool.poetry.group.imaging]
+optional = true
+
 [tool.poetry.group.imaging.dependencies]
 mkdocs-material = {extras = ["imaging"], version = "^9.5.12"}
 imgp = "^2.8"
