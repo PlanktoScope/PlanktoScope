@@ -2,8 +2,6 @@
 Description=Mount the Forklift application data into the user's default Forklift workspace
 Requires=-.mount
 After=-.mount
-Requires=systemd-remount-fs.service
-After=systemd-remount-fs.service
 Wants=home.mount
 After=home.mount
 Conflicts=umount.target
@@ -14,14 +12,13 @@ Before=umount.target
 # bound to the home directory of a specific user.
 Type=oneshot
 RemainAfterExit=true
-ExecStartPre=mkdir -p /var/lib/forklift
-ExecStartPre=mkdir -p %h/.local/share/forklift
-ExecStart=mount --bind / /sysroot
-ExecStart=mount -o bind,uid=%U,gid=%G /var/lib/forklift %h/.local/share/forklift
+ExecStartPre=mkdir -p /var/lib/forklift/stages
+ExecStartPre=mkdir -p %h/.local/share/forklift/stages
+ExecStart=mount -o bind,uid=%U,gid=%G /var/lib/forklift/stages %h/.local/share/forklift/stages
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, we have a read-only mount so it doesn't matter
-ExecStopPost=umount -l %h/.local/share/forklift
+ExecStopPost=umount -l %h/.local/share/forklift/stages
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

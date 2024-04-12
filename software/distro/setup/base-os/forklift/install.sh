@@ -61,7 +61,7 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr.ser
 # Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
 sudo mkdir -p /var/lib/forklift
 sudo mv $workspace/.local/share/forklift/stages /var/lib/forklift/stages
-file="/usr/lib/systemd/user/mount-forklift-data.service"
+file="/usr/lib/systemd/user/mount-forklift-stage-store.service"
 sudo cp "$config_files_root$file" "$file"
-sudo systemctl --global enable mount-forklift-data.service
-systemctl start mount-forklift-data.service
+sudo systemctl --global enable mount-forklift-stage-store.service
+systemctl start mount-forklift-stage-store.service
