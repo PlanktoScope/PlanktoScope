@@ -12,6 +12,7 @@ Before=umount.target
 # commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
+ExecStartPre=mkdir -p /sysroot
 ExecStart=mount --bind / /sysroot
 ExecStart=mount -o bind,remount,ro /sysroot
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)

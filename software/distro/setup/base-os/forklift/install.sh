@@ -40,9 +40,9 @@ sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-appl
 file="/usr/lib/systemd/system/mount-sysroot.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-sysroot.service
-file="/usr/lib/systemd/system/mount-run-forklift-stages-current.service"
+file="/usr/lib/systemd/system/run-forklift-stages-current.mount"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-run-forklift-stages-current.service
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/run-forklift-stages-current.mount
 # Note: we don't move /etc into /usr because that makes it more complicated/difficult to ensure
 # that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
 # work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
