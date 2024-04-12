@@ -1,0 +1,23 @@
+[Unit]
+Description=Make a read-only mount of the system root to /sysroot
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+# This is implemented as a service rather than a mount because keeping all the related ExecStart
+# commands in one unit makes the sequence of steps clearer.
+Type=oneshot
+RemainAfterExit=true
+ExecStart=mount --bind / /sysroot
+ExecStart=mount -o bind,remount,ro /sysroot
+# Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
+# because it just removes the mounts from the namespace while writes to open files can continue;
+# however, we have a read-only mount so it doesn't matter
+ExecStopPost=umount -l /sysroot
+
+[Install]
+WantedBy=local-fs.target

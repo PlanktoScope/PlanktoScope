@@ -1,5 +1,5 @@
 [Unit]
-Description=Make a read-only mount of the Forklift stage to be applied next as the current stage in /run
+Description=Remount /usr/local as a writable overlay with a Forklift-managed intermediate layer
 Requires=sysroot.mount
 After=sysroot.mount
 Requires=run-forklift-stages-current.mount
