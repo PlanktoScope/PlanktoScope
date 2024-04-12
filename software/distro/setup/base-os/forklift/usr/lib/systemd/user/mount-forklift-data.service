@@ -1,0 +1,27 @@
+[Unit]
+Description=Mount the Forklift application data into the user's default Forklift workspace
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+Wants=home.mount
+After=home.mount
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+# This is implemented as a service rather than a mount so that we can have a unit name which isn't
+# bound to the home directory of a specific user.
+Type=oneshot
+RemainAfterExit=true
+ExecStartPre=mkdir -p /var/lib/forklift
+ExecStartPre=mkdir -p %h/.local/share/forklift
+ExecStart=mount --bind / /sysroot
+ExecStart=mount -o bind,uid=%U,gid=%G /var/lib/forklift %h/.local/share/forklift
+# Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
+# because it just removes the mounts from the namespace while writes to open files can continue;
+# however, we have a read-only mount so it doesn't matter
+ExecStopPost=umount -l %h/.local/share/forklift
+
+[Install]
+WantedBy=multi-user.target
