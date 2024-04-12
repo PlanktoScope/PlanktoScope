@@ -1,5 +1,5 @@
 [Unit]
-Description=Mount the Forklift application data into the user's default Forklift workspace
+Description=Mount the Forklift stage store into the default path for the Forklift workspace at %I
 Requires=-.mount
 After=-.mount
 Wants=home.mount
@@ -13,12 +13,12 @@ Before=umount.target
 Type=oneshot
 RemainAfterExit=true
 ExecStartPre=mkdir -p /var/lib/forklift/stages
-ExecStartPre=mkdir -p %h/.local/share/forklift/stages
+ExecStartPre=mkdir -p %I/.local/share/forklift/stages
 ExecStart=mount -o bind,uid=%U,gid=%G /var/lib/forklift/stages %h/.local/share/forklift/stages
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, we have a read-only mount so it doesn't matter
-ExecStopPost=umount -l %h/.local/share/forklift/stages
+ExecStopPost=umount -l %I/.local/share/forklift/stages
 
 [Install]
 WantedBy=default.target
