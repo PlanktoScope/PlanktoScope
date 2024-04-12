@@ -1,5 +1,5 @@
 [Unit]
-Description=Mount the Forklift stage store into the `pi` user's default Forklift workspace
+Description=Mount the Forklift stage store into the `pi` user's default Forklift workspace, during early boot
 Requires=-.mount
 After=-.mount
 Requires=systemd-remount-fs.service

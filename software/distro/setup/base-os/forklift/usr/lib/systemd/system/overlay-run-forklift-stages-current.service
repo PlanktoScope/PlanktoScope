@@ -1,5 +1,5 @@
 [Unit]
-Description=Mount the Forklift stage to be applied next as the current stage in /run
+Description=Mount the Forklift stage to be applied next as the current stage in /run, during early boot
 Requires=-.mount
 After=-.mount
 Requires=systemd-remount-fs.service

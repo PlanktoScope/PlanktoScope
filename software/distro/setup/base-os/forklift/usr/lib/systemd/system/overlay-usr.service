@@ -1,5 +1,5 @@
 [Unit]
-Description=Remount /usr/local as a writable overlay with a Forklift-managed intermediate layer
+Description=Remount /usr as a writable overlay with a Forklift-managed intermediate layer, during early boot
 DefaultDependencies=no
 Requires=sysroot.mount
 After=sysroot.mount
@@ -13,15 +13,15 @@ Before=umount.target
 # commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
-ExecStartPre=mkdir -p /var/lib/overlays/workdirs/usr/local
-ExecStartPre=mkdir -p /var/lib/overlays/overrides/usr/local
-ExecStartPre=mkdir -p /run/forklift/stages/current/exports/overlays/usr/local
-ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/usr/local,upperdir=/var/lib/overlays/overrides/usr/local,lowerdir=/run/forklift/stages/current/exports/overlays/usr/local:/sysroot/usr/local /usr/local
+ExecStartPre=mkdir -p /var/lib/overlays/workdirs/usr
+ExecStartPre=mkdir -p /var/lib/overlays/overrides/usr
+ExecStartPre=mkdir -p /run/forklift/stages/current/exports/overlays/usr
+ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/usr,upperdir=/var/lib/overlays/overrides/usr,lowerdir=/run/forklift/stages/current/exports/overlays/usr:/sysroot/usr /usr
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
 # will be in our upperdir anyways.
-ExecStopPost=umount -l /usr/local
+ExecStopPost=umount -l /usr
 
 [Install]
 WantedBy=local-fs.target

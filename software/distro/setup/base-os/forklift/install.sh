@@ -36,7 +36,7 @@ file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
-# Set up overlays for /etc and /usr/local
+# Set up overlays for /etc and /usr
 file="/usr/lib/systemd/system/bindro-sysroot.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bindro-sysroot.service
@@ -54,9 +54,9 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-run-for
 file="/usr/lib/systemd/system/overlay-etc.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-etc.service
-file="/usr/lib/systemd/system/overlay-usr-local.service"
+file="/usr/lib/systemd/system/overlay-usr.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr-local.service
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr.service
 
 # Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
 sudo mkdir -p /var/lib/forklift
