@@ -1,38 +1,33 @@
 [Unit]
 Description=Remount /etc as a writable overlay with a Forklift-managed intermediate layer
 DefaultDependencies=no
-Requires=-.mount
-After=-.mount
-Requires=systemd-remount-fs.service
-After=systemd-remount-fs.service
+Requires=sysroot.mount
+After=sysroot.mount
+Requires=run-forklift-stages-current.mount
+After=run-forklift-stages-current.mount
 Conflicts=umount.target
 Before=umount.target
 
 [Service]
-# This is implemented as a service rather than a mount because we're bind-mounting from /etc to
-# /usr/etc and then mounting /etc as an overlay, and systemd's implicit dependencies with mounts
-# would cause a circular requirement dependency; and keeping everything in one unit makes the order
-# of operations clearer.
+# This is implemented as a service rather than a mount because keeping all the various ExecStart
+# commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
 ExecStartPre=mkdir -p /var/lib/overlays/workdirs/etc
 ExecStartPre=mkdir -p /var/lib/overlays/overrides/etc
-ExecStartPre=mkdir -p /var/lib/overlays/generated/etc
-ExecStartPre=mkdir -p /var/lib/forklift/exports/next/overlays/etc
-ExecStartPre=mkdir -p /usr/etc
+ExecStartPre=mkdir -p /run/overlays/generated/etc
+ExecStartPre=mkdir -p /run/forklift/stages/current/exports/overlays/etc
 # Changes to /etc/machine-id should be committed directly to the underlay;
 # systemd-machine-id-commit.service waits until after local-fs.target, so we can't rely on it, and
 # instead we just short-circuit it:
 ExecStart=systemd-machine-id-setup --commit
-ExecStart=mount --bind /etc /usr/etc
-ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/etc,upperdir=/var/lib/overlays/overrides/etc,lowerdir=/var/lib/overlays/generated/etc:/var/lib/forklift/exports/next/overlays/etc:/usr/etc /etc
+ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/etc,upperdir=/var/lib/overlays/overrides/etc,lowerdir=/run/overlays/generated/etc:/run/forklift/stages/current/exports/overlays/etc:/sysroot/etc /etc
 ExecStart=systemctl daemon-reload
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
 # will be in our upperdir anyways.
 ExecStopPost=umount -l /etc
-ExecStopPost=umount /usr/etc
 
 [Install]
 WantedBy=local-fs.target

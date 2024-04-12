@@ -36,7 +36,13 @@ file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
-# Set up overlay for /etc
+# Set up overlays for /etc and /usr/local
+file="/usr/lib/systemd/system/sysroot.mount"
+sudo cp "$config_files_root$file" "$file"
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/sysroot.mount
+file="/usr/lib/systemd/system/run-forklift-stages-current.mount"
+sudo cp "$config_files_root$file" "$file"
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/run-forklift-stages-current.mount
 # Note: we don't move /etc into /usr because that makes it more complicated/difficult to ensure
 # that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
 # work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
@@ -48,3 +54,14 @@ sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-appl
 file="/usr/lib/systemd/system/mount-etc-overlay.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-etc-overlay.service
+file="/usr/lib/systemd/system/usr-local.mount"
+sudo cp "$config_files_root$file" "$file"
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/usr-local.mount
+
+# Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
+sudo mkdir -p /var/lib/forklift
+sudo mv -r $workspace/.local/share/forklift/stages /var/lib/forklift/stages
+file="/usr/lib/systemd/system/home-pi-.local-share-forklift-stages.mount"
+sudo cp "$config_files_root$file" "$file"
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/home-pi-.local-share-forklift-stages.mount
+sudo systemctl start home-pi-.local-share-forklift-stages.mount

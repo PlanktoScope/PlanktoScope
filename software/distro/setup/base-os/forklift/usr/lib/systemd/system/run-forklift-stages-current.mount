@@ -1,0 +1,15 @@
+[Unit]
+Description=Make a read-only mount of the Forklift stage to be applied next as the current stage in /run
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+
+[Mount]
+Type=overlay
+What=overlay
+Options=lowerdir=/var/lib/forklift/stages/next
+Where=/run/forklift/stages/current
+
+[Install]
+WantedBy=local-fs.target

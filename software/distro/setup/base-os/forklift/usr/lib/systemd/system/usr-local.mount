@@ -1,0 +1,15 @@
+[Unit]
+Description=Make a read-only mount of the Forklift stage to be applied next as the current stage in /run
+Requires=sysroot.mount
+After=sysroot.mount
+Requires=run-forklift-stages-current.mount
+After=run-forklift-stages-current.mount
+
+[Mount]
+Type=overlay
+What=overlay
+Options=workdir=/var/lib/overlays/workdirs/usr/local,upperdir=/var/lib/overlays/overrides/usr/local,lowerdir=/run/forklift/stages/current/exports/overlays/usr/local:/sysroot/usr/local
+Where=/usr/local
+
+[Install]
+WantedBy=local-fs.target
