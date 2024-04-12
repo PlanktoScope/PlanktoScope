@@ -60,7 +60,7 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/usr-local.mount
 
 # Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
 sudo mkdir -p /var/lib/forklift
-sudo mv -r $workspace/.local/share/forklift/stages /var/lib/forklift/stages
+sudo mv $workspace/.local/share/forklift/stages /var/lib/forklift/stages
 file="/usr/lib/systemd/system/home-pi-.local-share-forklift-stages.mount"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/home-pi-.local-share-forklift-stages.mount
