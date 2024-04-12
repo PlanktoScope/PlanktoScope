@@ -37,9 +37,9 @@ sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
 # Set up overlays for /etc and /usr/local
-file="/usr/lib/systemd/system/mount-sysroot.service"
+file="/usr/lib/systemd/system/bindro-sysroot.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-sysroot.service
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bindro-sysroot.service
 file="/usr/lib/systemd/system/run-forklift-stages-current.mount"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/run-forklift-stages-current.mount
@@ -51,12 +51,12 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/run-forklift-st
 # (see also: https://www.spinics.net/lists/systemd-devel/msg03771.html,
 # https://bootlin.com/blog/systemd-read-only-rootfs-and-overlay-file-system-over-etc/, and
 # https://community.toradex.com/t/automount-overlay-for-etc/15529/8):
-file="/usr/lib/systemd/system/mount-etc-overlay.service"
+file="/usr/lib/systemd/system/overlay-etc.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-etc-overlay.service
-file="/usr/lib/systemd/system/usr-local.mount"
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-etc.service
+file="/usr/lib/systemd/system/overlay-usr-local.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/usr-local.mount
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr-local.service
 
 # Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
 sudo mkdir -p /var/lib/forklift
