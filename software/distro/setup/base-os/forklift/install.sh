@@ -39,7 +39,7 @@ sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-appl
 # Set up overlays for /etc and /usr/local
 file="/usr/lib/systemd/system/mount-sysroot.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/mount-local-fs.target.wants/mount-sysroot.service
+sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-sysroot.service
 file="/usr/lib/systemd/system/mount-run-forklift-stages-current.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/mount-run-forklift-stages-current.service
