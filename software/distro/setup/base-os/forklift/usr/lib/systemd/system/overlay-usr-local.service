@@ -8,12 +8,6 @@ After=run-forklift-stages-current.mount
 Conflicts=umount.target
 Before=umount.target
 
-[Mount]
-Type=overlay
-What=overlay
-Options=workdir=/var/lib/overlays/workdirs/usr/local,upperdir=/var/lib/overlays/overrides/usr/local,lowerdir=/run/forklift/stages/current/exports/overlays/usr/local:/sysroot/usr/local
-Where=/usr/local
-
 [Service]
 # This is implemented as a service rather than a mount because keeping all the related ExecStart
 # commands in one unit makes the sequence of steps clearer.
