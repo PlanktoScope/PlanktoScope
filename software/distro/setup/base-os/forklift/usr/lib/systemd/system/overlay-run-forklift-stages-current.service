@@ -1,9 +1,12 @@
 [Unit]
 Description=Mount the Forklift stage to be applied next as the current stage in /run, during early boot
+DefaultDependencies=no
 Requires=-.mount
 After=-.mount
 Requires=systemd-remount-fs.service
 After=systemd-remount-fs.service
+Conflicts=umount.target
+Before=umount.target
 
 [Service]
 # This is implemented as a service rather than a mount because keeping all the related ExecStart

@@ -1,10 +1,10 @@
 [Unit]
 Description=Remount /etc as a writable overlay with a Forklift-managed intermediate layer, during early boot
 DefaultDependencies=no
-Requires=sysroot.mount
-After=sysroot.mount
-Requires=run-forklift-stages-current.mount
-After=run-forklift-stages-current.mount
+Requires=bindro-sysroot.service
+After=bindro-sysroot.service
+Requires=overlay-run-forklift-stages-current.service
+After=overlay-run-forklift-stages-current.service
 Conflicts=umount.target
 Before=umount.target
 
