@@ -34,11 +34,6 @@ sudo apt-get update -y # get the list of packages from the docker repo
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo apt-get remove -y docker-buildx-plugin
 
-# Allow Docker to start before the device is online on a network
-file="/etc/systemd/system/docker.service"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable docker.service
-
 # Allow running Docker commands without sudo. Before the next reboot, subsequent setup scripts will
 # each need to call `newgrp docker` to take advantage of this
 # (see https://docs.docker.com/engine/install/linux-postinstall/):
@@ -48,6 +43,3 @@ sudo usermod -aG docker $USER
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends cockpit
 # TODO: after we switch to NetworkManager, add cockpit-networkmanager
-sudo mkdir -p /etc/cockpit/
-file="/etc/cockpit/cockpit.conf"
-sudo cp "$config_files_root$file" "$file"

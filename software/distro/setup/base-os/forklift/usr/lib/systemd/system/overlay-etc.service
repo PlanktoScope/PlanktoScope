@@ -5,6 +5,9 @@ Requires=bindro-sysroot.service
 After=bindro-sysroot.service
 Requires=overlay-run-forklift-stages-current.service
 After=overlay-run-forklift-stages-current.service
+# If forklift (or the upperdir) provides kernel parameters via `/etc/sysctl.d`, we must make those
+# files available in the /etc overlay before systemd starts systemd-sysctl.service!
+Before=systemd-sysctl.service
 Conflicts=umount.target
 Before=umount.target
 

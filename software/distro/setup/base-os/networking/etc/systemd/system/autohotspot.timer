@@ -1,9 +1,0 @@
-[Unit]
-Description=Run the autohotspot service periodically in case a known wifi network becomes available
-
-[Timer]
-OnUnitActiveSec=2min
-OnUnitInactiveSec=1min
-
-[Install]
-WantedBy=timers.target

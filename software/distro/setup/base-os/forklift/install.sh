@@ -2,7 +2,8 @@
 # The Forklift pallet github.com/PlanktoScope/pallet-standard provides the standard configuration of
 # Forklift package deployments of Docker containerized applications, OS config files, and systemd
 # system services for the PlanktoScope software distribution. This script integrates that pallet
-# into the PlanktoScope OS's filesystem.
+# into the PlanktoScope OS's filesystem by installing Forklift and providing some systemd units
+# which set up bind mounts and overlay filesystems to bootstrap the configs managed by Forklift.
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
@@ -10,7 +11,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 forklift_version="0.7.0-alpha.3"
 pallet_path="github.com/PlanktoScope/pallet-standard"
-pallet_version="v2024.0.0-alpha.1"
+pallet_version="feature/file-exports"
 
 arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
