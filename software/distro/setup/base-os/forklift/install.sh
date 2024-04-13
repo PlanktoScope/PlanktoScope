@@ -22,7 +22,11 @@ sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 
 FORKLIFT_WORKSPACE="$HOME"
 forklift plt switch --no-cache-img $pallet_path@$pallet_version
-forklift stage plan --parallel
+# Note: the pi user will only be able to run `forklift stage plan` and `forklift stage cache-img`
+# without root permissions after a reboot, so we need `sudo -E` here; I tried running
+# `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
+# script here (even though it works after the script finishes, before rebooting):
+sudo -E forklift stage plan --parallel
 sudo -E forklift stage cache-img --parallel
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
 # than Swarm Mode:
