@@ -37,7 +37,7 @@ sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-appl
 # Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
 # current (i.e. default) user's default Forklift workspace:
 sudo mkdir -p /var/lib/forklift
-sudo mv $workspace/.local/share/forklift/stages /var/lib/forklift/stages
+sudo mv $FORKLIFT_WORKSPACE/.local/share/forklift/stages /var/lib/forklift/stages
 file="/usr/lib/systemd/system/bind-.local-share-forklift-stages@.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-$USER.service
