@@ -33,7 +33,7 @@ sudo -E forklift stage cache-img --parallel
 # than Swarm Mode:
 unit="forklift-apply.service"
 sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/multi-user.target.wants/$unit.service"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/multi-user.target.wants/$unit"
 
 # Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
 # current (i.e. default) user's default Forklift workspace:
@@ -48,10 +48,10 @@ sudo systemctl start bind-.local-share-forklift-stages@-home-$USER.service
 # (see https://docs.kernel.org/filesystems/overlayfs.html):
 unit="bindro-sysroot.service"
 sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
 unit="overlay-run-forklift-stages-current.service"
 sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
 # Note: we don't move /etc to /usr/etc because that makes it more complicated/difficult to ensure
 # that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
 # work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
@@ -62,9 +62,9 @@ sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.servi
 # https://community.toradex.com/t/automount-overlay-for-etc/15529/8):
 unit="overlay-etc.service"
 sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
-unit="overlay-etc.service"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
+unit="overlay-usr.service"
 sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
 # Note: we don't activate these overlays right now because we want to let subsequent setup scripts
 # make changes directly to the base layers of /etc and /usr for the OS image.
