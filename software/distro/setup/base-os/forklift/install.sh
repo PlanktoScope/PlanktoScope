@@ -1,13 +1,14 @@
 #!/bin/bash -eux
 # The Forklift pallet github.com/PlanktoScope/pallet-standard provides the standard configuration of
 # Forklift package deployments of Docker containerized applications, OS config files, and systemd
-# system services for the PlanktoScope software distribution.
+# system services for the PlanktoScope software distribution. This script integrates that pallet
+# into the PlanktoScope OS's filesystem.
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.7.0-alpha.1"
+forklift_version="0.7.0-alpha.2"
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="v2024.0.0-alpha.1"
 
@@ -20,21 +21,26 @@ sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 # Set up & stage local pallet
 
 FORKLIFT_WORKSPACE="$HOME"
-forklift plt clone --force $pallet_path@$pallet_version
-forklift plt cache-repo
-# We must run `newgrp docker` so that we can run the subsequent forklift commands without `sudo -E`:
-newgrp docker
-# FIXME: upgrade forklift to 0.7.0-alpha.2 to be able to use `--parallel`:
-forklift plt stage #--parallel
-forklift stage plan
-
+forklift plt switch --no-cache-img $pallet_path@$pallet_version
+forklift stage plan --parallel
+sudo -E forklift stage cache-img --parallel
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
 # than Swarm Mode:
 file="/usr/lib/systemd/system/forklift-apply.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
 
-# Set up overlays for /etc and /usr
+# Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
+# current (i.e. default) user's default Forklift workspace:
+sudo mkdir -p /var/lib/forklift
+sudo mv $workspace/.local/share/forklift/stages /var/lib/forklift/stages
+file="/usr/lib/systemd/system/bind-.local-share-forklift-stages@.service"
+sudo cp "$config_files_root$file" "$file"
+sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-$USER.service
+sudo systemctl start bind-.local-share-forklift-stages@-home-$USER.service
+
+# Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
+# (see https://docs.kernel.org/filesystems/overlayfs.html):
 file="/usr/lib/systemd/system/bindro-sysroot.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bindro-sysroot.service
@@ -55,11 +61,5 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-etc.ser
 file="/usr/lib/systemd/system/overlay-usr.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr.service
-
-# Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
-sudo mkdir -p /var/lib/forklift
-sudo mv $workspace/.local/share/forklift/stages /var/lib/forklift/stages
-file="/usr/lib/systemd/system/bind-.local-share-forklift-stages@.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-pi.service
-sudo systemctl start bind-.local-share-forklift-stages@-home-pi.service
+# Note: we don't activate these overlays right now because we want to let subsequent setup scripts
+# make changes directly to the base layers of /etc and /usr for the OS image.
