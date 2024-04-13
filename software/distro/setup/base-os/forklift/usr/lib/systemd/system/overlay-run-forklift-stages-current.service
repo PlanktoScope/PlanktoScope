@@ -18,6 +18,7 @@ ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/tmp/overlays/overrides/run/forklift/stages/current
 ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/run/forklift/stages/current
+ExecStartPre=mkdir -p $TARGET
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 ExecStart=bash -c '\
   export LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next) && \
