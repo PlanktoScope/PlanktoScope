@@ -13,13 +13,15 @@ Before=umount.target
 # commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
-ExecStartPre=mkdir -p /sysroot
-ExecStart=mount --bind / /sysroot
-ExecStart=mount -o bind,remount,ro /sysroot
+Environment=SOURCE=/
+Environment=TARGET=/sysroot
+ExecStartPre=mkdir -p $TARGET
+ExecStart=mount --bind $SOURCE $TARGET
+ExecStart=mount -o bind,remount,ro $TARGET
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, we have a read-only mount so it doesn't matter
-ExecStopPost=umount -l /sysroot
+ExecStopPost=umount -l $TARGET
 
 [Install]
 WantedBy=local-fs.target

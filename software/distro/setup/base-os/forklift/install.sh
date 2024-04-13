@@ -7,7 +7,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.7.0-alpha.0"
+forklift_version="0.7.0-alpha.1"
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="v2024.0.0-alpha.1"
 
@@ -61,7 +61,7 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr.ser
 # Bind-mount /var/lib/forklift/stages into the pi user's default Forklift workspace
 sudo mkdir -p /var/lib/forklift
 sudo mv $workspace/.local/share/forklift/stages /var/lib/forklift/stages
-file="/usr/lib/systemd/system/mount-forklift-stage-store@.service"
+file="/usr/lib/systemd/system/bind-.local-share-forklift-stages@.service"
 sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/mount-forklift-stage-store@-home-pi.service
-sudo systemctl start mount-forklift-stage-store@-home-pi.service
+sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-pi.service
+sudo systemctl start bind-.local-share-forklift-stages@-home-pi.service

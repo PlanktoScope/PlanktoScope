@@ -10,17 +10,23 @@ After=systemd-remount-fs.service
 # commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
-ExecStartPre=mkdir -p /tmp/overlays/workdirs/run/forklift/stages/current
-ExecStartPre=mkdir -p /tmp/overlays/overrides/run/forklift/stages/current
-ExecStartPre=mkdir -p /var/lib/forklift/stages/next
-ExecStart=mount -t overlay overlay \
-  -o workdir=/tmp/overlays/workdirs/run/forklift/stages/current,upperdir=/tmp/overlays/overrides/run/forklift/stages/current,lowerdir=/var/lib/forklift/stages/next \
-  /run/forklift/stages/current
+Environment=WORKDIR=/tmp/overlays/workdirs/run/forklift/stages/current
+ExecStartPre=mkdir -p $WORKDIR
+Environment=UPPERDIR=/tmp/overlays/overrides/run/forklift/stages/current
+ExecStartPre=mkdir -p $UPPERDIR
+Environment=TARGET=/run/forklift/stages/current
+Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+ExecStart=bash -c '\
+  LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next) \
+  mount -t overlay overlay \
+    -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT \
+    $TARGET \
+  '
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
 # will be in our upperdir anyways.
-ExecStopPost=umount -l /run/forklift/stages/current
+ExecStopPost=umount -l $TARGET
 
 
 [Install]

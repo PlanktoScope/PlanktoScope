@@ -7,8 +7,8 @@ Before=autohotspot.service
 
 [Service]
 Type=oneshot
-Environment="HOME=/home/pi"
-ExecStart=/usr/bin/forklift --workspace /home/pi stage apply --parallel
+Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+ExecStart=forklift stage apply --parallel
 
 [Install]
 WantedBy=multi-user.target
