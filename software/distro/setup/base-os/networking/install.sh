@@ -10,10 +10,10 @@ sudo apt-get install -y firewalld dnsmasq hostapd
 
 # By default hostapd.service is masked and enabled (which causes two symlinks to exist), which
 # prevents Forklift from being able to disable hostapd via a filesystem overlay. We override this by
-# manually disabling and unmasking hostapd.service by default, so that the Forklift pallet can
-# enable or mask it via a filesystem overlay:
-sudo systemctl unmask hostapd.service
-sudo systemctl disable hostapd.service
+# manually removing those symlinks by default, so that the Forklift pallet can add overlay to enable
+# or mask the service via a filesystem overlay:
+sudo rm /etc/systemd/system/hostapd.service
+sudo rm /etc/systemd/system/multi-user.target.wants/hostapd.service
 
 # Set the wifi country
 # FIXME: instead have the user set the wifi country via a first-launch setup wizard, and do it

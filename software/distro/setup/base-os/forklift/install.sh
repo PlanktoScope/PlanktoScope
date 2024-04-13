@@ -17,7 +17,7 @@ arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
   | sudo tar -C /usr/bin -xz forklift
 sudo mv /usr/bin/forklift "/usr/bin/forklift-${forklift_version}"
-sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
+sudo ln -s "forklift-${forklift_version}" /usr/bin/forklift
 
 # Set up & stage local pallet
 
@@ -31,27 +31,27 @@ sudo -E forklift stage plan --parallel
 sudo -E forklift stage cache-img --parallel
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
 # than Swarm Mode:
-file="/usr/lib/systemd/system/forklift-apply.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/forklift-apply.service
+unit="forklift-apply.service"
+sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/multi-user.target.wants/$unit.service"
 
 # Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
 # current (i.e. default) user's default Forklift workspace:
 sudo mkdir -p /var/lib/forklift
 sudo mv $FORKLIFT_WORKSPACE/.local/share/forklift/stages /var/lib/forklift/stages
-file="/usr/lib/systemd/system/bind-.local-share-forklift-stages@.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-$USER.service
+unit="bind-.local-share-forklift-stages@.service"
+sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-$USER.service"
 sudo systemctl start bind-.local-share-forklift-stages@-home-$USER.service
 
 # Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
 # (see https://docs.kernel.org/filesystems/overlayfs.html):
-file="/usr/lib/systemd/system/bindro-sysroot.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bindro-sysroot.service
-file="/usr/lib/systemd/system/overlay-run-forklift-stages-current.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-run-forklift-stages-current.service
+unit="bindro-sysroot.service"
+sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
+unit="overlay-run-forklift-stages-current.service"
+sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
 # Note: we don't move /etc to /usr/etc because that makes it more complicated/difficult to ensure
 # that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
 # work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
@@ -60,11 +60,11 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-run-for
 # (see also: https://www.spinics.net/lists/systemd-devel/msg03771.html,
 # https://bootlin.com/blog/systemd-read-only-rootfs-and-overlay-file-system-over-etc/, and
 # https://community.toradex.com/t/automount-overlay-for-etc/15529/8):
-file="/usr/lib/systemd/system/overlay-etc.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-etc.service
-file="/usr/lib/systemd/system/overlay-usr.service"
-sudo cp "$config_files_root$file" "$file"
-sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-usr.service
+unit="overlay-etc.service"
+sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
+unit="overlay-etc.service"
+sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
+sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit.service"
 # Note: we don't activate these overlays right now because we want to let subsequent setup scripts
 # make changes directly to the base layers of /etc and /usr for the OS image.
