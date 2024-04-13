@@ -21,7 +21,9 @@ ExecStartPre=mkdir -p /run/forklift/stages/current/exports/overlays/etc
 # systemd-machine-id-commit.service waits until after local-fs.target, so we can't rely on it, and
 # instead we just short-circuit it:
 ExecStart=systemd-machine-id-setup --commit
-ExecStart=mount -t overlay overlay -oworkdir=/var/lib/overlays/workdirs/etc,upperdir=/var/lib/overlays/overrides/etc,lowerdir=/run/overlays/generated/etc:/run/forklift/stages/current/exports/overlays/etc:/sysroot/etc /etc
+ExecStart=mount -t overlay overlay \
+  -o workdir=/var/lib/overlays/workdirs/etc,upperdir=/var/lib/overlays/overrides/etc,lowerdir=/run/overlays/generated/etc:/run/forklift/stages/current/exports/overlays/etc:/sysroot/etc \
+  /etc
 ExecStart=systemctl daemon-reload
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;

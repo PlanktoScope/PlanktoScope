@@ -13,7 +13,9 @@ RemainAfterExit=true
 ExecStartPre=mkdir -p /tmp/overlays/workdirs/run/forklift/stages/current
 ExecStartPre=mkdir -p /tmp/overlays/overrides/run/forklift/stages/current
 ExecStartPre=mkdir -p /var/lib/forklift/stages/next
-ExecStart=mount -t overlay overlay -oworkdir=/tmp/overlays/workdirs/run/forklift/stages/current,upperdir=/tmp/overlays/overrides/run/forklift/stages/current,lowerdir=/var/lib/forklift/stages/next /run/forklift/stages/current
+ExecStart=mount -t overlay overlay \
+  -o workdir=/tmp/overlays/workdirs/run/forklift/stages/current,upperdir=/tmp/overlays/overrides/run/forklift/stages/current,lowerdir=/var/lib/forklift/stages/next \
+  /run/forklift/stages/current
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes

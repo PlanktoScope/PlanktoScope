@@ -43,7 +43,7 @@ sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/bindro-sysroot.
 file="/usr/lib/systemd/system/overlay-run-forklift-stages-current.service"
 sudo cp "$config_files_root$file" "$file"
 sudo ln -s "$file" /usr/lib/systemd/system/local-fs.target.wants/overlay-run-forklift-stages-current.service
-# Note: we don't move /etc into /usr because that makes it more complicated/difficult to ensure
+# Note: we don't move /etc to /usr/etc because that makes it more complicated/difficult to ensure
 # that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
 # work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
 # /etc/fstab and maybe also /etc/systemd/system/*.target.wants) before we can bring up the overlay
