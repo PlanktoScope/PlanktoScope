@@ -41,6 +41,7 @@ sudo systemctl enable docker.service
 
 # Allow running Docker commands without sudo
 sudo usermod -aG docker $USER
+newgrp docker
 
 # Install cockpit
 sudo apt-get update -y

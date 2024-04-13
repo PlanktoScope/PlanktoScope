@@ -17,18 +17,15 @@ curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_v
 sudo mv /usr/bin/forklift "/usr/bin/forklift-${forklift_version}"
 sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 
-# Set up local pallet
+# Set up & stage local pallet
 
-workspace="$HOME"
-forklift --workspace $workspace plt clone --force $pallet_path@$pallet_version
-forklift --workspace $workspace plt cache-repo
-forklift --workspace $workspace plt stage
-
-# Note: these command must run with sudo even though the pi user has been added to the docker
-# usergroup, because that change only works after starting a new login shell; and `newgrp docker`
-# doesn't work either:
-sudo -E forklift --workspace $workspace stage plan
-sudo -E forklift --workspace $workspace stage cache-img --parallel
+FORKLIFT_WORKSPACE="$HOME"
+forklift plt clone --force $pallet_path@$pallet_version
+forklift plt cache-repo
+# We must run `newgrp docker` so that we can run the subsequent forklift commands without `sudo -E`
+# newgrp docker
+forklift plt stage --parallel
+forklift stage plan
 
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
 # than Swarm Mode:
