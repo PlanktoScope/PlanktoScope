@@ -39,9 +39,10 @@ file="/etc/systemd/system/docker.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable docker.service
 
-# Allow running Docker commands without sudo
+# Allow running Docker commands without sudo. Before the next reboot, subsequent setup scripts will
+# each need to call `newgrp docker` to take advantage of this
+# (see https://docs.docker.com/engine/install/linux-postinstall/):
 sudo usermod -aG docker $USER
-newgrp docker
 
 # Install cockpit
 sudo apt-get update -y

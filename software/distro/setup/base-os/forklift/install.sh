@@ -22,9 +22,10 @@ sudo ln -s "/usr/bin/forklift-${forklift_version}" /usr/bin/forklift
 FORKLIFT_WORKSPACE="$HOME"
 forklift plt clone --force $pallet_path@$pallet_version
 forklift plt cache-repo
-# We must run `newgrp docker` so that we can run the subsequent forklift commands without `sudo -E`
-# newgrp docker
-forklift plt stage --parallel
+# We must run `newgrp docker` so that we can run the subsequent forklift commands without `sudo -E`:
+newgrp docker
+# FIXME: upgrade forklift to 0.7.0-alpha.2 to be able to use `--parallel`:
+forklift plt stage #--parallel
 forklift stage plan
 
 # Note: the pallet must be applied during each startup because we're using Docker Compose rather
