@@ -20,7 +20,6 @@ ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/run/forklift/stages/current
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 ExecStart=bash -c '\
-  echo "Forklift stage store: $FORKLIFT_STAGE_STORE" && \
   export LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next) && \
   echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT" && \
   mount -t overlay overlay \

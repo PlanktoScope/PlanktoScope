@@ -8,7 +8,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.7.0-alpha.2"
+forklift_version="0.7.0-alpha.3"
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="v2024.0.0-alpha.1"
 
