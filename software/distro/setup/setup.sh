@@ -11,7 +11,7 @@ setup_scripts_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Get command-line args
 
-hardware_type="$1" # should be either adafruithat or planktoscopehat
+hardware_type="$1" # should be either none, adafruithat, or planktoscopehat
 
 # Set up pretty error printing
 
@@ -52,22 +52,27 @@ else
   panic "$description"
 fi
 
-#description="set up PlanktoScope application environment"
-#report_starting "$description"
-#if $setup_scripts_root/planktoscope-app-env/setup.sh "$hardware_type" ; then
-#  report_finished "$description"
-#  source $setup_scripts_root/planktoscope-app-env/export-env.sh
-#else
-#  panic "$description"
-#fi
+if [ $hardware_type = "none" ]; then
+  echo "Warning: skipping PlanktoScope-specific setup because hardware type was specified as: $hardware_type"
+else
+  description="set up PlanktoScope application environment"
+  report_starting "$description"
+  if $setup_scripts_root/planktoscope-app-env/setup.sh "$hardware_type" ; then
+    report_finished "$description"
+    source $setup_scripts_root/planktoscope-app-env/export-env.sh
+  else
+    panic "$description"
+  fi
 
-#description="remove unnecessary artifacts from the PlanktoScope application environment"
-#report_starting "$description"
-#if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
-#  report_finished "$description"
-#else
-#  panic "$description"
-#fi
+  description="remove unnecessary artifacts from the PlanktoScope application environment"
+  report_starting "$description"
+  if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
+    report_finished "$description"
+  else
+    panic "$description"
+  fi
+fi
+
 
 description="remove unnecessary artifacts from the base operating system"
 report_starting "$description"

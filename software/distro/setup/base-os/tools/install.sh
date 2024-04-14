@@ -40,6 +40,5 @@ sudo apt-get remove -y docker-buildx-plugin
 sudo usermod -aG docker $USER
 
 # Install cockpit
-sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends cockpit
 # TODO: after we switch to NetworkManager, add cockpit-networkmanager
