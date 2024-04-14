@@ -35,11 +35,6 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hostapd-ssid-machine-name.service
 
 # TODO: provide this functionality from pallet-standard instead:
-# Change Cockpit settings
-file="/etc/cockpit/cockpit.conf"
-sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
-
-# TODO: provide this functionality from pallet-standard instead:
 # Automatically update the Cockpit origins upon boot with the machine name
 file="/etc/systemd/system/planktoscope-org.update-cockpit-origins-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
