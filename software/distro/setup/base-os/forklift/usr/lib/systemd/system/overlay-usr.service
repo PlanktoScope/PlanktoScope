@@ -5,6 +5,7 @@ Requires=bindro-sysroot.service
 After=bindro-sysroot.service
 Requires=overlay-run-forklift-stages-current.service
 After=overlay-run-forklift-stages-current.service
+Before=local-fs.target
 Conflicts=umount.target
 Before=umount.target
 
@@ -25,6 +26,8 @@ ExecStart=bash -c '\
     -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \
     /usr \
   '
+# Immediately update any systemd units added by the overlay:
+ExecStart=systemctl daemon-reload
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
