@@ -39,8 +39,8 @@ sudo systemctl preset forklift-apply.service
 sudo systemctl preset \
   bindro-sysroot.service \
   overlay-run-forklift-stages-current.service \
-  overlay-usr.service.service \
-  overlay-etc.service.service \
+  overlay-usr.service \
+  overlay-etc.service \
 
 # Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
 # current (i.e. default) user's default Forklift workspace:
