@@ -30,10 +30,6 @@ sudo ln -s /run/machine-name /var/lib/planktoscope/machine-name
 
 # TODO: provide this functionality from pallet-standard instead:
 # Automatically update the SSID upon creation of the self-hosted wifi network based on the machine name
-file="$config_files_root/etc/hostapd/hostapd-ssid-autogen-warning.snippet"
-# This sed command uses `~` instead of `/` because the warning comments also include `/` characters.
-# The awk subcommand is needed to escape newlines for sed.
-sudo sed -i "s~^ssid=\(.*\)$~$(awk '{printf "%s\\n", $0}' $file)ssid=\\1~g" /etc/hostapd/hostapd.conf
 file="/etc/systemd/system/planktoscope-org.update-hostapd-ssid-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hostapd-ssid-machine-name.service
