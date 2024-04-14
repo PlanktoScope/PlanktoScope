@@ -13,5 +13,5 @@ ExecStart=systemctl isolate default.target
 
 [Install]
 WantedBy=sysinit.target
-WantedBy=overlay-etc.target
-WantedBy=overlay-usr.target
+WantedBy=overlay-etc.service
+WantedBy=overlay-usr.service
