@@ -41,6 +41,7 @@ sudo systemctl preset \
   overlay-run-forklift-stages-current.service \
   overlay-usr.service \
   overlay-etc.service \
+  start-overlaid-units.service
 
 # Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
 # current (i.e. default) user's default Forklift workspace:
