@@ -35,8 +35,8 @@ ExecStart=bash -c '\
     -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_GENERATED:$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \
     $TARGET \
   '
-# Reload systemd units (and restart systemd) in case our overlay added anything in /usr/lib/systemd/system:
-ExecStart=systemctl daemon-reexec
+# Reload systemd units in case our overlay added anything in /etc/systemd/system:
+ExecStart=systemctl daemon-reload
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes

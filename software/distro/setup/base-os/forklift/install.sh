@@ -29,42 +29,21 @@ forklift plt switch --no-cache-img $pallet_path@$pallet_version
 # script here (even though it works after the script finishes, before rebooting):
 sudo -E forklift stage plan --parallel
 sudo -E forklift stage cache-img --parallel
-# Note: the pallet must be applied during each startup because we're using Docker Compose rather
-# than Swarm Mode:
-unit="forklift-apply.service"
-sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/multi-user.target.wants/$unit"
+
+# Prepare most of the necessary systemd units:
+sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
+sudo cp $config_files_root/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
+sudo systemctl preset forklift-apply.service
+# Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
+# (see https://docs.kernel.org/filesystems/overlayfs.html):
+sudo systemctl preset \
+  bindro-sysroot.service.service \
+  overlay-run-forklift-stages-current.service \
+  overlay-usr.service.service \
+  overlay-etc.service.service \
 
 # Move the stage store to /var/lib/forklift/stages, but keep it available for non-root access in the
 # current (i.e. default) user's default Forklift workspace:
 sudo mkdir -p /var/lib/forklift
 sudo mv $FORKLIFT_WORKSPACE/.local/share/forklift/stages /var/lib/forklift/stages
-unit="bind-.local-share-forklift-stages@.service"
-sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/multi-user.target.wants/bind-.local-share-forklift-stages@-home-$USER.service"
-sudo systemctl start bind-.local-share-forklift-stages@-home-$USER.service
-
-# Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
-# (see https://docs.kernel.org/filesystems/overlayfs.html):
-unit="bindro-sysroot.service"
-sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
-unit="overlay-run-forklift-stages-current.service"
-sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
-# Note: we don't move /etc to /usr/etc because that makes it more complicated/difficult to ensure
-# that systemd correctly initializes /etc/machine-id on first boot (which is needed to make journald
-# work, e.g. for viewing service logs), and because we need some /etc files anyways (notably,
-# /etc/fstab and maybe also /etc/systemd/system/*.target.wants) before we can bring up the overlay
-# mount; instead, we just bind-mount /etc to /usr/etc as the base layer for an overlay at /etc
-# (see also: https://www.spinics.net/lists/systemd-devel/msg03771.html,
-# https://bootlin.com/blog/systemd-read-only-rootfs-and-overlay-file-system-over-etc/, and
-# https://community.toradex.com/t/automount-overlay-for-etc/15529/8):
-unit="overlay-etc.service"
-sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
-unit="overlay-usr.service"
-sudo cp "$config_files_root/usr/lib/systemd/system/$unit" "/usr/lib/systemd/system/$unit"
-sudo ln -s "../$unit" "/usr/lib/systemd/system/local-fs.target.wants/$unit"
-# Note: we don't activate these overlays right now because we want to let subsequent setup scripts
-# make changes directly to the base layers of /etc and /usr for the OS image.
+sudo systemctl enable "bind-.local-share-forklift-stages@-home-$USER.service" --now
