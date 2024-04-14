@@ -35,24 +35,12 @@ sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hostapd-ssid-machine-name.service
 
 # TODO: provide this functionality from pallet-standard instead:
-# Automatically update the Cockpit origins upon boot with the machine name
-file="/etc/systemd/system/planktoscope-org.update-cockpit-origins-machine-name.service"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable planktoscope-org.update-cockpit-origins-machine-name.service
-
-# TODO: provide this functionality from pallet-standard instead:
 # Change dnsmasq settings
 file="/etc/dnsmasq.d/planktoscope.conf"
 sudo cp "$config_files_root$file" "$file"
 file="/etc/systemd/system/planktoscope-org.update-hosts-machine-name.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable planktoscope-org.update-hosts-machine-name.service
-
-# TODO: provide this functionality from pallet-standard instead:
-# Automatically update system hostname upon boot with the machine name
-file="/etc/systemd/system/planktoscope-org.update-hostname-machine-name.service"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl enable planktoscope-org.update-hostname-machine-name.service
 
 # TODO: provide this functionality from pallet-standard instead:
 # Publish planktoscope.local and pkscope.local mDNS aliases
