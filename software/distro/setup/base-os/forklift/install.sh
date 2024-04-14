@@ -28,7 +28,8 @@ forklift plt switch --no-cache-img $pallet_path@$pallet_version
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
 # script here (even though it works after the script finishes, before rebooting):
 sudo -E forklift stage plan --parallel
-sudo -E forklift stage cache-img --parallel
+# FIXME: re-enable this
+#sudo -E forklift stage cache-img --parallel
 
 # Prepare most of the necessary systemd units:
 sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
