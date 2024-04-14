@@ -5,7 +5,7 @@ After=overlay-usr.service
 
 [Service]
 Type=exec
-ExecStart=systemctl daemon-reload
+ExecStartPre=systemctl daemon-reload
 # Warning: this immediately stops any units not upstream of default.target!
 ExecStart=systemctl isolate default.target
 
