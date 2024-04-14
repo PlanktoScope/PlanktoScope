@@ -4,7 +4,7 @@ After=overlay-etc.service
 After=overlay-usr.service
 
 [Service]
-Type=oneshot
+Type=exec
 ExecStart=systemctl daemon-reload
 # Warning: this immediately stops any units not upstream of default.target!
 ExecStart=systemctl isolate default.target
