@@ -27,8 +27,10 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
   | bash -s - --confirm-install --confirm-pi --no-init
 
 # Select the enabled dashboard
+mkdir -p $HOME/.node-red
 cp "$repo_root/software/node-red-dashboard/flows/$hardware_type.json" \
   $HOME/.node-red/flows.json
+mkdir -p $HOME/PlanktoScope
 cp "$repo_root/software/node-red-dashboard/default-configs/$hardware_type-latest.config.json" \
   $HOME/PlanktoScope/config.json
 
