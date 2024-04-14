@@ -25,6 +25,7 @@ sudo sed -i "s/^127\.0\.1\.1.*$current_hostname$/127.0.1.1\t$new_hostname/g" /et
 # TODO: remove this by updating the Node-RED frontend and Python backend:
 # Add a symlink at /var/lib/planktoscope/machine-name for compatibility with the Node-RED frontend
 # and Python backend, which are not yet updated to check /run/machine-name instead:
+sudo mkdir -p /var/lib/planktoscope
 sudo ln -s /run/machine-name /var/lib/planktoscope/machine-name
 
 # TODO: provide this functionality from pallet-standard instead:
