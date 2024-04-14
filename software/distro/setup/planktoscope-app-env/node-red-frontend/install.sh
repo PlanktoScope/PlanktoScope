@@ -8,6 +8,10 @@ repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 
 # Get command-line args
 hardware_type="$1" # should be either adafruithat or planktoscopehat
+if [ $hardware_type = "segmenter-only" ]; then
+  echo "Warning: setting up adafruithat version of Node-RED dashboard for hardware type: $hardware_type"
+  hardware_type=adafruithat
+fi
 
 # Install dependencies
 # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
@@ -22,16 +26,6 @@ pip3 install smbus2==0.4.3
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered \
   | bash -s - --confirm-install --confirm-pi --no-init
 
-# Add systemd service modification to make Node-RED wait until Mosquitto has started
-# FIXME: The Node-RED frontend should instead be fixed so that it does not need to wait until
-# Mosquitto has started in order to work - until Mosquitto is up, the frontend should display a
-# message to the user and ask them to wait.
-sudo mkdir -p /etc/systemd/system/nodered.service.d
-file="/etc/systemd/system/nodered.service.d/override.conf"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl daemon-reload
-sudo systemctl enable nodered.service
-
 # Select the enabled dashboard
 cp "$repo_root/software/node-red-dashboard/flows/$hardware_type.json" \
   $HOME/.node-red/flows.json
@@ -39,9 +33,10 @@ cp "$repo_root/software/node-red-dashboard/default-configs/$hardware_type-latest
   $HOME/PlanktoScope/config.json
 
 # Copy required dependencies with hard-coded paths in the Node-RED dashboard
-# TODO: get rid of this when we move the Node-RED dashboard out to its own repository
+# TODO: get rid of this when we remove usb_backup.sh
 mkdir -p $HOME/PlanktoScope/scripts
 directory="scripts/bash"
+# TODO: get rid of this when we move the Node-RED dashboard out to its own repository
 cp -r "$repo_root/$directory" $HOME/PlanktoScope/$directory
 mkdir -p $HOME/PlanktoScope/software/node-red-dashboard
 directory="software/node-red-dashboard/default-configs"

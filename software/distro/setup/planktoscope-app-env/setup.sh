@@ -11,7 +11,7 @@ build_scripts_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Get command-line args
 
-hardware_type="$1" # should be either adafruithat or planktoscopehat
+hardware_type="$1" # should be either adafruithat, planktoscopehat, or segmenter-only
 
 # Set up pretty error printing
 
@@ -45,22 +45,6 @@ else
   panic "$description"
 fi
 
-description="set up Python backend"
-report_starting "$description"
-if $build_scripts_root/python-backend/install.sh "$hardware_type" ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="configure GPIO stepper initialization"
-report_starting "$description"
-if $build_scripts_root/gpio-stepper-init/config.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="set up Node-RED frontend"
 report_starting "$description"
 if $build_scripts_root/node-red-frontend/install.sh "$hardware_type" ; then
@@ -69,9 +53,22 @@ else
   panic "$description"
 fi
 
+if [ $hardware_type = "segmenter-only" ]; then
+  echo "Warning: skipping PlanktoScope hardware-specific setup because hardware type was specified as: $hardware_type"
+  exit 0
+fi
+
+description="set up Python hardware controller"
+report_starting "$description"
+if $build_scripts_root/python-hardware-controller/install.sh "$hardware_type" ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="configure kernel hardware drivers"
 report_starting "$description"
-if $build_scripts_root/platform-hardware/install.sh ; then
+if $build_scripts_root/platform-hardware/config.sh ; then
   report_finished "$description"
 else
   panic "$description"
@@ -87,7 +84,7 @@ fi
 
 description="enable CPU overclocking"
 report_starting "$description"
-if $build_scripts_root/overclocking/install.sh ; then
+if $build_scripts_root/overclocking/config.sh ; then
   report_finished "$description"
 else
   panic "$description"
