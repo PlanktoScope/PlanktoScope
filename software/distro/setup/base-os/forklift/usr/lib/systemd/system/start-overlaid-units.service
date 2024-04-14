@@ -1,17 +1,14 @@
 [Unit]
 Description=Start any enabled systemd units added by the /etc and /usr overlays
-DefaultDependencies=no
 After=overlay-etc.service
 After=overlay-usr.service
-Before=sysinit.target
 
 [Service]
 Type=oneshot
 ExecStart=systemctl daemon-reload
-# Warning: this immediately stops any units not in default.target!
+# Warning: this immediately stops any units not upstream of default.target!
 ExecStart=systemctl isolate default.target
 
 [Install]
-WantedBy=sysinit.target
 WantedBy=overlay-etc.service
 WantedBy=overlay-usr.service
