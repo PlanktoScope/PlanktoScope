@@ -9,6 +9,8 @@ After=overlay-run-forklift-stages-current.service
 # files available in the /etc overlay before systemd starts systemd-sysctl.service!
 Before=systemd-sysctl.service
 Before=local-fs.target
+Wants=start-overlaid-units.service
+Before=start-overlaid-units.service
 Conflicts=umount.target
 Before=umount.target
 

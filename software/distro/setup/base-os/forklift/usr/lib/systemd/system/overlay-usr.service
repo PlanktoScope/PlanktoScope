@@ -6,6 +6,8 @@ After=bindro-sysroot.service
 Requires=overlay-run-forklift-stages-current.service
 After=overlay-run-forklift-stages-current.service
 Before=local-fs.target
+Wants=start-overlaid-units.service
+Before=start-overlaid-units.service
 Conflicts=umount.target
 Before=umount.target
 

@@ -1,7 +1,7 @@
 [Unit]
 Description=Start any enabled systemd units added by the /etc and /usr overlays
-After=overlay-etc.service
-After=overlay-usr.service
+Requires=dbus.service
+After=dbus.service
 
 [Service]
 Type=exec
@@ -10,5 +10,4 @@ ExecStartPre=systemctl daemon-reload
 ExecStart=systemctl isolate default.target
 
 [Install]
-WantedBy=overlay-etc.service
-WantedBy=overlay-usr.service
+WantedBy=default.target
