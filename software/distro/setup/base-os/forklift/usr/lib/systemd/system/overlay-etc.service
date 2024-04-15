@@ -21,8 +21,6 @@ Environment=WORKDIR=/var/lib/overlays/workdirs/etc
 ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/etc
 ExecStartPre=mkdir -p $UPPERDIR
-Environment=LOWERDIR_GENERATED=/run/overlays/generated/etc
-ExecStartPre=mkdir -p $LOWERDIR_GENERATED
 Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/etc
 ExecStartPre=mkdir -p $LOWERDIR_FORKLIFT
 Environment=LOWERDIR_BASE=/sysroot/etc
@@ -33,7 +31,7 @@ Environment=TARGET=/etc
 ExecStart=systemd-machine-id-setup --commit
 ExecStart=bash -c '\
   mount -t overlay overlay \
-    -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_GENERATED:$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \
+    -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \
     $TARGET \
   '
 # Immediately update any systemd units added by the overlay:
