@@ -10,14 +10,19 @@ Before=umount.target
 
 [Service]
 # This is implemented as a service rather than a mount because keeping all the related ExecStart
-# commands in one unit makes the sequence of steps clearer.
+# commands in one unit makes the sequence of steps clearer. We use an overlay mount instead of a
+# bind mount because bind-mounting / to /sysroot makes changes on overlaid /etc and /usr appear
+# to also exist in /sysroot, even though those changes aren't actually made in the base layer.
 Type=oneshot
 RemainAfterExit=true
 Environment=SOURCE=/
+Environment=EMPTY=/run/overlays/empty
+ExecStartPre=mkdir -p $EMPTY
 Environment=TARGET=/sysroot
 ExecStartPre=mkdir -p $TARGET
-ExecStart=mount --bind $SOURCE $TARGET
-ExecStart=mount -o bind,remount,ro $TARGET
+ExecStart=bash -c '\
+  mount -t overlay overlay -o lowerdir=$SOURCE:$EMPTY $TARGET \
+  '
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, we have a read-only mount so it doesn't matter
