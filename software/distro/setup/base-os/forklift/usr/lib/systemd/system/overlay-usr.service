@@ -23,6 +23,9 @@ ExecStartPre=mkdir -p $UPPERDIR
 Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/usr
 ExecStartPre=mkdir -p $LOWERDIR_FORKLIFT
 Environment=LOWERDIR_BASE=/sysroot/usr
+# Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
+# mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
+# (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
   mount -t overlay overlay \
     -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \

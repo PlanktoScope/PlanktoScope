@@ -11,8 +11,9 @@ Before=umount.target
 [Service]
 # This is implemented as a service rather than a mount because keeping all the related ExecStart
 # commands in one unit makes the sequence of steps clearer. We use an overlay mount instead of a
-# bind mount because bind-mounting / to /sysroot makes changes on overlaid /etc and /usr appear
-# to also exist in /sysroot, even though those changes aren't actually made in the base layer.
+# bind mount because bind-mounting / to /sysroot seems to make changes on overlaid /etc and /usr
+# appear to also exist in /sysroot, even though those changes aren't actually written to the base
+# layer.
 Type=oneshot
 RemainAfterExit=true
 Environment=SOURCE=/
@@ -20,6 +21,9 @@ Environment=EMPTY=/run/overlays/empty
 ExecStartPre=mkdir -p $EMPTY
 Environment=TARGET=/sysroot
 ExecStartPre=mkdir -p $TARGET
+# Warning: the lower dirs are not allowed to be modified directly while the overlay is
+# mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
+# (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
   mount -t overlay overlay -o lowerdir=$SOURCE:$EMPTY $TARGET \
   '

@@ -31,6 +31,9 @@ Environment=TARGET=/etc
 # systemd-machine-id-commit.service waits until after local-fs.target, so we can't rely on it, and
 # instead we just short-circuit it:
 ExecStart=systemd-machine-id-setup --commit
+# Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
+# mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
+# (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
   mount -t overlay overlay \
     -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \

@@ -1,9 +1,0 @@
-[Unit]
-Description=Publish pkscope.local as alias for 192.168.4.1 via mDNS
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/bash -c "/usr/bin/avahi-publish -a -R pkscope.local 192.168.4.1"
-
-[Install]
-WantedBy=multi-user.target

@@ -20,6 +20,9 @@ ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/run/forklift/stages/current
 ExecStartPre=mkdir -p $TARGET
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+# Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
+# mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
+# (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
   export LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next) && \
   echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT" && \
