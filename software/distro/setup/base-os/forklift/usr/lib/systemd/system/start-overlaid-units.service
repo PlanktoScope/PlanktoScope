@@ -1,7 +1,5 @@
 [Unit]
 Description=Start any enabled systemd units added by the /etc and /usr overlays
-Requires=dbus.service
-After=dbus.service
 
 [Service]
 Type=exec

@@ -3,8 +3,6 @@ Description=Remount /etc as a writable overlay with a Forklift-managed intermedi
 DefaultDependencies=no
 Requires=bindro-sysroot.service
 After=bindro-sysroot.service
-Requires=overlay-run-forklift-stages-current.service
-After=overlay-run-forklift-stages-current.service
 # If forklift (or the upperdir) provides kernel parameters via `/etc/sysctl.d`, we must make those
 # files available in the /etc overlay before systemd starts systemd-sysctl.service!
 Before=systemd-sysctl.service
@@ -24,7 +22,6 @@ ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/etc
 ExecStartPre=mkdir -p $UPPERDIR
 Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/etc
-ExecStartPre=mkdir -p $LOWERDIR_FORKLIFT
 Environment=LOWERDIR_BASE=/sysroot/etc
 Environment=TARGET=/etc
 # Changes to /etc/machine-id should be committed directly to the underlay;
@@ -35,9 +32,8 @@ ExecStart=systemd-machine-id-setup --commit
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
-  mount -t overlay overlay \
-    -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \
-    $TARGET \
+  LOWERDIRS=$([ -d $LOWERDIR_FORKLIFT ] ? LOWERDIR_FORKLIFT:$LOWERDIR_BASE : $LOWERDIR_BASE) && \
+  mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
   '
 # Immediately update any systemd units added by the overlay:
 ExecStart=systemctl daemon-reload

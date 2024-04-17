@@ -3,8 +3,6 @@ Description=Remount /usr as a writable overlay with a Forklift-managed intermedi
 DefaultDependencies=no
 Requires=bindro-sysroot.service
 After=bindro-sysroot.service
-Requires=overlay-run-forklift-stages-current.service
-After=overlay-run-forklift-stages-current.service
 Before=local-fs.target
 Wants=start-overlaid-units.service
 Before=start-overlaid-units.service
@@ -21,15 +19,14 @@ ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/usr
 ExecStartPre=mkdir -p $UPPERDIR
 Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/usr
-ExecStartPre=mkdir -p $LOWERDIR_FORKLIFT
 Environment=LOWERDIR_BASE=/sysroot/usr
+Environment=TARGET=/usr
 # Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
-  mount -t overlay overlay \
-    -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT:$LOWERDIR_BASE \
-    /usr \
+  LOWERDIRS=$([ -d $LOWERDIR_FORKLIFT ] ? LOWERDIR_FORKLIFT:$LOWERDIR_BASE : $LOWERDIR_BASE) && \
+  mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
   '
 # Immediately update any systemd units added by the overlay:
 ExecStart=systemctl daemon-reload
