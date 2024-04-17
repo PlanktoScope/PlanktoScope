@@ -19,7 +19,8 @@ fi
 # default, we do `pip3 install` as the pi user. This makes the smbus2 module available to Node-RED.
 # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
 # the Python backend.
-sudo apt-get install -y python3-smbus2
+# Note: for bookworm we need to install the apt package; for bullseye there is no apt package
+sudo apt-get install -y python3-smbus2 || pip3 install smbus2==0.4.3
 
 # Install Node-RED
 # TODO: run Node-RED in a Docker container instead
