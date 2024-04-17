@@ -34,7 +34,8 @@ next_pallet="$(basename $(forklift stage locate-bun next))"
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
 if ! sudo -E forklift stage apply --parallel; then
   echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
-  forklift stage set-next "$next_pallet"
+  # Reset the "apply-failed" status of the staged pallet to apply:
+  forklift stage set-next --no-cache-img "$next_pallet"
 fi
 
 # Prepare most of the necessary systemd units:
