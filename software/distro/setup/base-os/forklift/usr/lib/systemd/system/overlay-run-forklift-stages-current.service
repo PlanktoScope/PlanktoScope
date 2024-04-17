@@ -13,9 +13,9 @@ Before=umount.target
 # commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
-Environment=WORKDIR=/tmp/overlays/workdirs/run/forklift/stages/current
+Environment=WORKDIR=/run/overlays/workdirs/run/forklift/stages/current
 ExecStartPre=mkdir -p $WORKDIR
-Environment=UPPERDIR=/tmp/overlays/overrides/run/forklift/stages/current
+Environment=UPPERDIR=/run/overlays/overrides/run/forklift/stages/current
 ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/run/forklift/stages/current
 ExecStartPre=mkdir -p $TARGET
