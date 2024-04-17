@@ -3,8 +3,6 @@ Description=Remount /etc as a writable overlay with a Forklift-managed intermedi
 DefaultDependencies=no
 Requires=overlay-sysroot.service
 After=overlay-sysroot.service
-Wants=local-fs.target
-After=local-fs.target
 Wants=systemd-machine-id-commit.service
 After=systemd-machine-id-commit.service
 # If forklift (or the upperdir) provides kernel parameters via `/etc/sysctl.d`, we must make those
