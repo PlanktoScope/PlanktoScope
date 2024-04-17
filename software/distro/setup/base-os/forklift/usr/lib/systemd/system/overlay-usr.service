@@ -19,7 +19,6 @@ Environment=WORKDIR=/var/lib/overlays/workdirs/usr
 ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/usr
 ExecStartPre=mkdir -p $UPPERDIR
-Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/usr
 Environment=LOWERDIR_BASE=/sysroot/usr
 Environment=TARGET=/usr
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
@@ -31,6 +30,7 @@ ExecStart=bash -c -e '\
   echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT"; \
   LOWERDIRS="$LOWERDIR_BASE"; \
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
+  echo "Overlay lower directories: $LOWERDIRS"; \
   mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
   '
 # Immediately update any systemd units added by the overlay:
