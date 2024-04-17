@@ -17,10 +17,10 @@ ExecStartPre=mkdir -p /var/lib/forklift/stages
 Environment=TARGET=%I/.local/share/forklift/stages
 ExecStartPre=mkdir -p $TARGET
 ExecStart=bash -c '\
-    export MOUNT_UID=$(stat -c "%%u" %I) && \
-    export MOUNT_GID=$(stat -c "%%g" %I) && \
-    mount -o bind,uid=$MOUNT_UID,gid=$MOUNT_GID $SOURCE $TARGET \
-  '
+  export MOUNT_UID=$(stat -c "%%u" %I) && \
+  export MOUNT_GID=$(stat -c "%%g" %I) && \
+  mount -o bind,uid=$MOUNT_UID,gid=$MOUNT_GID $SOURCE $TARGET \
+'
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, we have a read-only mount so it doesn't matter

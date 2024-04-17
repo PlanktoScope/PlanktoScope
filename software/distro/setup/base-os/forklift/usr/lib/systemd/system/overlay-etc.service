@@ -34,7 +34,7 @@ ExecStart=bash -c -e '\
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
   echo "Overlay lower directories: $LOWERDIRS"; \
   mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
-  '
+'
 # Immediately update any systemd units added by the overlay:
 ExecStart=systemctl daemon-reload
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)

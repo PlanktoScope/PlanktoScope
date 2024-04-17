@@ -26,7 +26,7 @@ ExecStartPre=mkdir -p $TARGET
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
   mount -t overlay overlay -o lowerdir=$SOURCE:$EMPTY $TARGET \
-  '
+'
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, we have a read-only mount so it doesn't matter

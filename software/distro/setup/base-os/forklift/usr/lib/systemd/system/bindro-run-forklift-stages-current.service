@@ -15,10 +15,6 @@ Before=umount.target
 # commands in one unit makes the sequence of steps clearer.
 Type=oneshot
 RemainAfterExit=true
-Environment=WORKDIR=/run/overlays/workdirs/run/forklift/stages/current
-ExecStartPre=mkdir -p $WORKDIR
-Environment=UPPERDIR=/run/overlays/overrides/run/forklift/stages/current
-ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/run/forklift/stages/current
 ExecStartPre=mkdir -p $TARGET
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
@@ -28,10 +24,9 @@ Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 ExecStart=bash -c -e '\
   LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next); \
   echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT"; \
-  mount -t overlay overlay \
-    -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIR_FORKLIFT \
-    $TARGET \
-  '
+  mount --bind $(forklift stage locate-bundle next) $TARGET && \
+  mount -o bind,remount,ro $TARGET \
+'
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
