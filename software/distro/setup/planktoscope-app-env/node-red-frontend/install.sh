@@ -20,7 +20,10 @@ fi
 # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
 # the Python backend.
 # Note: for bookworm we need to install the apt package; for bullseye there is no apt package
-sudo apt-get install -y python3-smbus2 || pip3 install smbus2==0.4.3
+if ! sudo apt-get install -y python3-smbus2 ; then
+  sudo apt-get install -y python3-pip
+  pip3 install smbus2==0.4.3
+fi
 
 # Install Node-RED
 # TODO: run Node-RED in a Docker container instead
