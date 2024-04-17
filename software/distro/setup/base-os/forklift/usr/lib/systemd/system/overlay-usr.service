@@ -26,8 +26,7 @@ Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c -e '\
-  LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next); \
-  echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT"; \
+  LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next)/exports/overlays/usr; \
   LOWERDIRS="$LOWERDIR_BASE"; \
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
   echo "Overlay lower directories: $LOWERDIRS"; \
