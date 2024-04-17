@@ -25,7 +25,7 @@ Environment=TARGET=/usr
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
-  LOWERDIRS=$([ -d $LOWERDIR_FORKLIFT ] ? LOWERDIR_FORKLIFT:$LOWERDIR_BASE : $LOWERDIR_BASE) && \
+  LOWERDIRS="$([ -d $LOWERDIR_FORKLIFT ] ? "$LOWERDIR_FORKLIFT:$LOWERDIR_BASE" : "$LOWERDIR_BASE")" && \
   mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
   '
 # Immediately update any systemd units added by the overlay:
