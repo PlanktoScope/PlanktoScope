@@ -25,13 +25,13 @@ Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/etc
 Environment=LOWERDIR_BASE=/sysroot/etc
 Environment=TARGET=/etc
 # Changes to /etc/machine-id should be committed directly to the underlay;
+# instead we just short-circuit it by committing to /etc/machine-id here.
 # systemd-machine-id-commit.service waits until after local-fs.target, so we can't rely on it, and
-# instead we just short-circuit it:
-ExecStart=systemd-machine-id-setup --commit
 # Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
+  systemd-machine-id-setup --commit || echo "Warning: couldn't commit to /etc/machine-id!"; \
   LOWERDIRS="$LOWERDIR_BASE"; \
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
   mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
