@@ -1,8 +1,8 @@
 [Unit]
 Description=Remount /usr as a writable overlay with a Forklift-managed intermediate layer, during early boot
 DefaultDependencies=no
-Requires=bindro-sysroot.service
-After=bindro-sysroot.service
+Requires=overlay-sysroot.service
+After=overlay-sysroot.service
 Before=local-fs.target
 Wants=start-overlaid-units.service
 Before=start-overlaid-units.service
