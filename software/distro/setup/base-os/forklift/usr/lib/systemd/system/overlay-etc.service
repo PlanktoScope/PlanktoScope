@@ -31,7 +31,7 @@ Environment=TARGET=/etc
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c '\
-  systemd-machine-id-setup --commit || echo "Warning: couldn't commit to /etc/machine-id!"; \
+  systemd-machine-id-setup --commit || echo "Warning: could not commit to /etc/machine-id!"; \
   LOWERDIRS="$LOWERDIR_BASE"; \
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
   mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
