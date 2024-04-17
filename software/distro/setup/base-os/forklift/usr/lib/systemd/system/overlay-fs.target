@@ -1,0 +1,7 @@
+[Unit]
+Description=Local File Systems with Overlays
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=local-fs.target
+OnFailure=emergency.target
+OnFailureMode=replace-irreversibly

@@ -3,12 +3,15 @@ Description=Remount /etc as a writable overlay with a Forklift-managed intermedi
 DefaultDependencies=no
 Requires=overlay-sysroot.service
 After=overlay-sysroot.service
+Wants=local-fs.target
+After=local-fs.target
+Wants=systemd-machine-id-commit.service
+After=systemd-machine-id-commit.service
 # If forklift (or the upperdir) provides kernel parameters via `/etc/sysctl.d`, we must make those
 # files available in the /etc overlay before systemd starts systemd-sysctl.service!
 Before=systemd-sysctl.service
-Before=local-fs.target
-Wants=start-overlaid-units.service
-Before=start-overlaid-units.service
+Wants=overlay-fs.target
+Before=overlay-fs.target
 Conflicts=umount.target
 Before=umount.target
 
@@ -25,14 +28,10 @@ Environment=LOWERDIR_FORKLIFT=/run/forklift/stages/current/exports/overlays/etc
 Environment=LOWERDIR_BASE=/sysroot/etc
 Environment=TARGET=/etc
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
-# Changes to /etc/machine-id should be committed directly to the underlay;
-# instead we just short-circuit it by committing to /etc/machine-id here.
-# systemd-machine-id-commit.service waits until after local-fs.target, so we can't rely on it, and
 # Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c -e '\
-  systemd-machine-id-setup --commit || echo "Warning: could not commit to /etc/machine-id!"; \
   LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next); \
   echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT"; \
   LOWERDIRS="$LOWERDIR_BASE"; \

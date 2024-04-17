@@ -5,6 +5,8 @@ Requires=-.mount
 After=-.mount
 Requires=systemd-remount-fs.service
 After=systemd-remount-fs.service
+Wants=overlay-fs.target
+Before=overlay-fs.target
 Conflicts=umount.target
 Before=umount.target
 

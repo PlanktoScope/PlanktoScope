@@ -3,9 +3,10 @@ Description=Remount /usr as a writable overlay with a Forklift-managed intermedi
 DefaultDependencies=no
 Requires=overlay-sysroot.service
 After=overlay-sysroot.service
-Before=local-fs.target
-Wants=start-overlaid-units.service
-Before=start-overlaid-units.service
+Wants=local-fs.target
+After=local-fs.target
+Wants=overlay-fs.target
+Before=overlay-fs.target
 Conflicts=umount.target
 Before=umount.target
 
