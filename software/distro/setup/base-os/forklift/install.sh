@@ -29,6 +29,9 @@ forklift plt switch --no-cache-img $pallet_path@$pallet_version
 # script here (even though it works after the script finishes, before rebooting):
 sudo -E forklift stage plan --parallel
 sudo -E forklift stage cache-img --parallel
+# Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
+# decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard:
+sudo -E forklift stage apply --parallel
 
 # Prepare most of the necessary systemd units:
 sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
