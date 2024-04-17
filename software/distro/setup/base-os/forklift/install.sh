@@ -38,7 +38,7 @@ sudo systemctl preset forklift-apply.service
 # (see https://docs.kernel.org/filesystems/overlayfs.html):
 sudo systemctl preset \
   overlay-sysroot.service \
-  overlay-run-forklift-stages-current.service \
+  bindro-run-forklift-stages-current.service \
   overlay-usr.service \
   overlay-etc.service \
   start-overlaid-units.service
