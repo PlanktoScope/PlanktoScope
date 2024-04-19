@@ -68,7 +68,7 @@ jobs:
         with:
           context: ./processing/segmenter
           pull: true
-          push: ${{ github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag' }}
+          push: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
           platforms: ${{ matrix.platform }}
           tags: ${{ env.REGISTRY_IMAGE }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -121,7 +121,7 @@ jobs:
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
-        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag'
+        if: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -129,12 +129,12 @@ jobs:
 
       - name: Create manifest list and push
         working-directory: /tmp/digests
-        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag'
+        if: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
 
       - name: Inspect image
-        if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag'
+        if: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
         run: |
           docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}
