@@ -11,7 +11,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 forklift_version="0.7.0-alpha.3"
 pallet_path="github.com/PlanktoScope/pallet-standard"
-pallet_version="feature/file-exports"
+pallet_version="494ab86"
 
 arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
