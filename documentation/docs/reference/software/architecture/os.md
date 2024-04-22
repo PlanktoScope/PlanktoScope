@@ -1,6 +1,6 @@
 # Operating System
 
-When you flash an SD card image with the PlanktoScope software as part of PlanktoScope's [software setup process](../../../setup/software/standard-install), that SD card image consists of the PlanktoScope OS. This document describes the architecture of the PlanktoScope OS as an [*operating system*](https://en.wikipedia.org/wiki/Operating_system), in order to explain:
+When you flash an SD card image with the PlanktoScope software as part of PlanktoScope's [software setup process](../../../../setup/software/standard-install), that SD card image consists of the PlanktoScope OS. This document describes the architecture of the PlanktoScope OS as an [*operating system*](https://en.wikipedia.org/wiki/Operating_system), in order to explain:
 
 - How the PlanktoScope software abstracts over the PlanktoScope hardware.
 
