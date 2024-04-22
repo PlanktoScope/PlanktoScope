@@ -35,6 +35,6 @@ The python code is separated in four main processes, each with a specific set of
 - The imager process controls the camera and the streaming server via a state machine.
 - The segmenter process manages the segmentation and its outputs.
 
-Those processes all communicates together using MQTT and json messages. Each message is adressed to one topic. The high level topic controls which process receives the message. The details of each topic is at the end of this commit message. You can learn more about the [MQTT Messages here](../../reference/software/mqtt-api.md).
+Those processes all communicates together using MQTT and json messages. Each message is adressed to one topic. The high level topic controls which process receives the message. The details of each topic is at the end of this commit message. You can learn more about the [MQTT Messages here](../../reference/software/interfaces/mqtt.md).
 
 The code is architectured around 6 modules and about 10 classes. I encourage you to have a look at the files, they're pretty straightforward to understand.

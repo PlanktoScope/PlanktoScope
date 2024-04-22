@@ -1,6 +1,6 @@
 # Product Specifications
 
-Product specifications for the PlanktoScope software distribution are listed below for ranges of software version numbers. To see software versions listed individually in chronological order, refer to the [project release notes](https://github.com/PlanktoScope/PlanktoScope/releases) or the [software changelog](./changelog.md). To understand how to interpret software version numbers, refer to our description of the PlanktoScope software distribution's [version numbering system](./release-process.md#version-numbering).
+The PlanktoScope OS includes all software which needs to run on the PlanktoScope's hardware to provide the [overall functionality of a PlanktoScope](../). Product specifications for the PlanktoScope OS are listed below for ranges of software version numbers. To see software versions listed individually in chronological order, refer to the [project release notes](https://github.com/PlanktoScope/PlanktoScope/releases) or the [software changelog](./changelog.md). To understand how to interpret software version numbers, refer to our description of the PlanktoScope OS's [version numbering system](./release-process.md#version-numbering).
 
 ## v2023.9.0 - v2024.0.0
 

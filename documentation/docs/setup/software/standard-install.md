@@ -2,11 +2,11 @@
 
 ![easy install](../../images/software/IMG_1532.jpg)
 
-This page provides instructions for installing the most recent standard version of the PlanktoScope software distribution on a PlanktoScope.
+This page provides instructions for installing the most recent standard version of the PlanktoScope OS on a PlanktoScope.
 
 ## Set up the SD card
 
-If you purchased a fully-assembled PlanktoScope or a DIY-assembly PlanktoScope kit from FairScope which includes a microSD card, then the SD card is already set up with the PlanktoScope software distribution, and you should skip to [the next step](#insert-the-sd-card-into-the-planktoscope).
+If you purchased a fully-assembled PlanktoScope or a DIY-assembly PlanktoScope kit from FairScope which includes a microSD card, then the SD card is already set up with the PlanktoScope OS, and you should skip to [the next step](#insert-the-sd-card-into-the-planktoscope).
 
 ### Prerequisites
 
@@ -17,9 +17,9 @@ In order to complete this step, you will need all of the following:
 
 ### Download the PlanktoScope software SD card image
 
-For ease of setup, we provide an SD card image file with the PlanktoScope software distribution. You can download it from the latest software release on the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases?q=prerelease%3Afalse+draft%3Afalse&expanded=true) for the PlanktoScope project on GitHub.
+For ease of setup, we provide an SD card image file with the PlanktoScope OS. You can download it from the latest software release on the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases?q=prerelease%3Afalse+draft%3Afalse&expanded=true) for the PlanktoScope project on GitHub.
 
-Each released version of the PlanktoScope software distribution has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope uses an Adafruit Stepper HAT or the PlanktoScope HAT, you should download the corresponding `.img.gz` file. If you purchased a PlanktoScope or PlanktoScope kit from FairScope, it probably uses the PlanktoScope HAT.
+Each released version of the PlanktoScope OS has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope uses an Adafruit Stepper HAT or the PlanktoScope HAT, you should download the corresponding `.img.gz` file. If you purchased a PlanktoScope or PlanktoScope kit from FairScope, it probably uses the PlanktoScope HAT.
 
 ### Write the image to the SD card
 

@@ -8,34 +8,58 @@ The PlanktoScope OS's daemons and system services (beyond what is already provid
 
 ### Software deployment & execution
 
-- `dockerd` (described above and managed by `docker.service`) can start before network connectivity has been established; this is not the default behavior for `dockerd`.
+In general:
+
+- `dockerd` (managed by `docker.service`) can start before network connectivity has been established; this is not the default behavior for `dockerd`.
+
+- All daemons & background processes not described in the rest of this page are sequenced by systemd according to the systemd unit dependency relationships specified by the default systemd service files installed with the APT packages which provide those programs.
+
+The PlanktoScope OS's setup scripts provide some system services which are not managed by Forklift, because they are used to integrate Forklift into the OS in order to bootstrap the system services and config files provided by Forklift:
+
+- `overlay-sysroot.service` runs after `-.mount` and `systemd-remount-fs.service`.
+
+- `bindro-run-forklift-stages-current.service` runs after `-mount` and `systemd-remount-fs.service` and before `overlay-fs.target`.
+
+- `overlay-usr.service` runs after `overlay-sysroot.service` and before `overlay-fs.target`.
+
+- `overlay-etc.service` runs after `overlay-sysroot.service` and  `systemd-machine-id-commit.service` , and before `systemd-sysctl.service` and `overlay-fs.target`.
+
+- `start-overlaid-units.service` runs after `overlay-fs.target` and `basic.target`.
+
+- `bind-.local-share-forklift-stages@home-pi.service` runs after `-.mount`, `home.mount`, and `basic.target`.
 
 - `forklift-apply.service`, which uses the `forklift` tool to start all Docker Compose applications, runs after `docker.service` has started. Docker Compose applications managed with `forklift` are sequenced by `forklift-apply.service` according to the resource dependency relationships declared by the Forklift packages which provide those applications.
 
-- All daemons & background processes not described in the rest of this section are sequenced by systemd according to the systemd unit dependency relationships specified by the default systemd service files installed with the APT packages which provide those programs.
-
 ### Networking
 
-- `enable-interface-forwarding.service`, which configures the Linux kernel firewall's IP packet filter rules to forward packets between the Raspberry Pi's network interfaces (to allow the Raspberry Pi to act as a network router), runs before network connectivity is considered to have been established.
+For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.target`) referred to below, see [systemd's bootup process](https://www.freedesktop.org/software/systemd/man/latest/bootup.html) and [systemd's special targets](https://www.freedesktop.org/software/systemd/man/latest/systemd.special.html):
 
-- `autohotspot` (described above) runs after `forklift-apply.service` and `enable-interface-forwarding.service` have started (so that the PlanktoScope's web browser-based user interfaces are ready for connections before the PlanktoScope's Wi-Fi hotspot is started) and before network connectivity is considered to have been established.
+- `generate-machine-name.service` and `generate-hostname-templated.service` runs before `sysinit.target`.
 
-- `planktoscope-org.update-machine-name.service` updates a file with a PlanktoScope machine name generated from the Raspberry Pi's randomly-generated, persistent serial number.
+- `update-hostname.service` runs after `generate-hostname-templated.service` and `systemd-hostnamed.service` but before `network-pre.target`.
 
-- `planktoscope-org.update-hostname-machine-name.service` updates the OS's hostname with the PlanktoScope's machine name and runs before `dnsmasq` starts, before `avahi-daemon.service` starts, and before any network interfaces start to be configured.
+- `assemble-dnsmasq-config-templated.service` runs after `generate-machine-name.service` and `generate-hostname-templated.service` but before `dnsmasq.service`.
 
-- `planktoscope-org.update-hosts-machine-name.service` updates `dnsmasq`'s hosts file with the PlanktoScope's machine name and runs before `dnsmasq` starts and before any network interfaces start to be configured.
+- `assemble-hosts-templated.service` and `assemble-hosts.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `dnsmasq.service` and `network-pre.target`.
 
-- `planktoscope-org.update-hostapd-ssid-machine-name.service` updates `hostapd`'s configured Wi-Fi hotspot SSID with the PlanktoScope's machine name and runs before `hostapd` starts.
+- `enable-interface-forwarding.service` runs before `network-online.target`.
 
-- `planktoscope-org.avahi-alias-pkscope.local.service` and `planktoscope-org.avahi-alias-planktoscope.local.service` configure the Avahi daemon (provided by the Raspberry Pi OS) to also resolve mDNS names `pkscope.local` and `planktoscope.local`, respectively, to IP addresses which are usable by devices connected to the PlanktoScope by a direct connection between their respective network interfaces.
+- `assemble-hostapd-config-templated.service` and `assemble-hostapd-config.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `hostapd.service`.
+
+- The `hostapd` daemon is manually started and stopped by `autohotspot.service`.
+
+- `autohotspot.service` runs after `forklift-apply.service` and `enable-interface-forwarding.service` have started (so that the PlanktoScope's web browser-based user interfaces are ready for connections before the PlanktoScope's Wi-Fi hotspot is started) and before network connectivity is considered to have been established. It is re-run every one or two minutes by `autohotspot.timer`.
+
+- `planktoscope-mdns-alias@pkscope.service` and `planktoscopemdns-alias@planktoscope.service` configure the Avahi daemon (provided by the Raspberry Pi OS) to also resolve mDNS names `pkscope.local` and `planktoscope.local`, respectively, to an IP address (192.168.4.1) which is usable by devices connected to the PlanktoScope by a direct connection between their respective network interfaces.
 
 ### User interface
 
-- `planktoscope-org.update-cockpit-origins-machine-name.service` updates Cockpit's configuration file with the PlanktoScope's machine name and runs before any network interfaces start to be configured.
+- `assemble-cockpit-config.service`, `assemble-cockpit-origins.service`, and `assemble-cockpit-origins-templated.service` update Cockpit's configuration file  from drop-in config file fragments in `/etc/cockpit/cockpit.conf.d`, `/etc/cockpit/origins.d`, and `/etc/cockpit/origins-templates.d`, respectively. They run after `generate-machine-name.service` and `generate-hostname-templated.service` and before `cockpit.service`.
+
+- `ensure-ssh-host-keys.service` regenerates the SSH server's host keys if the keys are missing, and runs before `ssh.service`.
 
 - The PlanktoScope Node-RED dashboard (managed by `nodered.service`) starts after `planktoscope-org.update-machine-name.service` has started, to ensure that the Node-RED dashboard has the correct machine name. (In the future the PlanktoScope Node-RED dashboard will instead be run as a Docker container and will be managed by `forklift`.)
 
 ### PlanktoScope-specific hardware abstraction
 
-- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquitto, described above) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
+- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquitto) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
