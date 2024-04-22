@@ -1,15 +1,15 @@
 # Release Process
 
-The PlanktoScope's software is released independently of the PlanktoScope's hardware; this document explains how we manage releases of the PlanktoScope software distribution (which you can download as an SD card image), to help you to:
+The PlanktoScope's software is released independently of the PlanktoScope's hardware; this document explains how we manage releases of the PlanktoScope OS (which contains the software which runs on a PlanktoScope, and which you can download as an SD card image), to help you to:
 
-- Understand what you should do when we publish a new release of the PlanktoScope software distribution.
+- Understand what you should do when we publish a new release of the PlanktoScope OS.
 - Interpret the [software product specifications](./product-specs.md) and the [software changelog](./changelog.md).
 
 ## Version numbering
 
-The PlanktoScope software distribution is a combination of many individual software components; some components (such as most parts of the PlanktoScope's graphical user interface, and some of its hardware drivers) are written, maintained, and distributed by the PlanktoScope project, while other components (such as the Cockpit administration dashboard and the file browser) are written, maintained, and distributed by other open-source software projects. Each component has its own release schedule and version numbering system; the specific combination of releases and versions of all these components will change over time as these components change, and we represent each total combination of all software components by a version number assigned to a particular release of the PlanktoScope software distribution. For example, the *v2023.9.0* release of the PlanktoScope software distribution included various software programs at one specific combination of versions, while the *v2024.0.0* release upgraded some of those programs to newer versions.
+The PlanktoScope OS is a combination of many individual software components; some components (such as most parts of the PlanktoScope's graphical user interface, and some of its hardware drivers) are written, maintained, and distributed by the PlanktoScope project, while other components (such as the Cockpit administration dashboard and the file browser) are written, maintained, and distributed by other open-source software projects. Each component has its own release schedule and version numbering system; the specific combination of releases and versions of all these components will change over time as these components change, and we represent each total combination of all software components by a version number assigned to a particular release of the PlanktoScope OS. For example, the *v2023.9.0* release of the PlanktoScope OS included various software programs at one specific combination of versions, while the *v2024.0.0* release upgraded some of those programs to newer versions.
 
-We use a [calendar-based version numbering system](https://calver.org/) for the PlanktoScope software distribution, where each version number has the format `v(year).(minor).(patch)` for stable releases of the software or `v(year).(minor).(patch)-(modifier)` for testing pre-releases of the software:
+We use a [calendar-based version numbering system](https://calver.org/) for the PlanktoScope OS, where each version number has the format `v(year).(minor).(patch)` for stable releases of the software or `v(year).(minor).(patch)-(modifier)` for testing pre-releases of the software:
 
 - `year` is a 4-digit number representing the year (in the [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)) in which the stable release is (or will be) published. For example, version *v2024.0.0* was published in 2024, while version *v2025.0.0* will be published in 2025.
 
@@ -21,9 +21,9 @@ We use a [calendar-based version numbering system](https://calver.org/) for the 
 
 ## Release channels
 
-The PlanktoScope project uses a concept called "release channels" to structure our process for stabilizing and testing our software before we publish a new release of the PlanktoScope software distribution for everyone to use. There are three channels for PlanktoScope software releases and pre-releases, each corresponding to a particular branch of the [PlanktoScope repository on GitHub](https://github.com/PlanktoScope/PlanktoScope):
+The PlanktoScope project uses a concept called "release channels" to structure our process for stabilizing and testing our software before we publish a new release of the PlanktoScope OS for everyone to use. There are three channels for PlanktoScope software releases and pre-releases, each corresponding to a particular branch of the [PlanktoScope repository on GitHub](https://github.com/PlanktoScope/PlanktoScope):
 
-- Edge: On the "Edge" channel, the PlanktoScope software distribution is built from the setup scripts on the latest commit of the `master` branch of the PlanktoScope repository on GitHub - so the "Edge" channel is essentially the current unstable development version of the PlanktoScope software distribution, and is often likely to be broken or buggy in various ways. Occasionally, specific commits on the `master` branch are tagged as "alpha" pre-releases; "alpha" pre-releases should be treated as snapshots of PlanktoScope software development for testing by PlanktoScope software developers and advanced users.
+- Edge: On the "Edge" channel, the PlanktoScope OS is built from the setup scripts on the latest commit of the `master` branch of the PlanktoScope repository on GitHub - so the "Edge" channel is essentially the current unstable development version of the PlanktoScope OS, and is often likely to be broken or buggy in various ways. Occasionally, specific commits on the `master` branch are tagged as "alpha" pre-releases; "alpha" pre-releases should be treated as snapshots of PlanktoScope software development for testing by PlanktoScope software developers and advanced users.
 - Beta: Once an "alpha" pre-release has received sufficient testing for the PlanktoScope software developers to consider it stable enough for all PlanktoScope users to test it out, it will be promoted to a "beta" pre-release, and the `software/beta` branch of the PlanktoScope repository on GitHub will be advanced to the Git commit of the "beta" pre-release. At that point, the `software/beta` branch will only receive patches to fix serious errors. As bugs are fixed on the `software/beta` branch, more "beta" pre-releases may be created on that branch for users to test.
 - Stable: After the latest "beta" pre-release has received sufficient testing for the PlanktoScope software developers to consider it stable enough for most (or, ideally, all) PlanktoScope users to rely on it for production use and scientific operations, that "beta" pre-release will be promoted to a "stable" release, and the `software/stable` branch of the PlanktoScope repository on GitHub will be advanced to the git commit of the "stable" release.
 
@@ -41,10 +41,10 @@ However, we encourage all PlanktoScope users who use the stable release channel 
 
 ## Upgrading to a new release or pre-release
 
-In order to use a new release or pre-release of the PlanktoScope software distribution, you will need to do one of the following:
+In order to use a new release or pre-release of the PlanktoScope OS, you will need to do one of the following:
 
 - Download the new SD card image for that release/pre-release, following the [standard installation process](../../setup/software/standard-install.md).
 
 - Create a new custom SD card image for that release/pre-release, following the [non-standard installation process](../../setup/software/nonstandard-install.md).
 
-Then you will need to re-flash your PlanktoScope's SD card (or flash a new SD card for your PlanktoScope) with the resulting SD card image for the new release/pre-release of the PlanktoScope software distribution.
+Then you will need to re-flash your PlanktoScope's SD card (or flash a new SD card for your PlanktoScope) with the resulting SD card image for the new release/pre-release of the PlanktoScope OS.

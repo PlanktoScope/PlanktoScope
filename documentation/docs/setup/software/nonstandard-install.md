@@ -1,6 +1,6 @@
 # Non-Standard Installation
 
-This page provides instructions for installing non-standard versions of the PlanktoScope software distribution on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used in the [standard software installation process](standard-install.md).
+This page provides instructions for setting up non-standard versions of the PlanktoScope OS on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used in the [standard software installation process](standard-install.md).
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ In order to complete the non-standard setup process, you will need all of the fo
 
 ### Download a Raspberry Pi OS SD card image
 
-The setup scripts for the PlanktoScope software distribution assume that you will be setting up the PlanktoScope software on a 32-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-05-03. You can choose any of the following three variants of that version of the Raspberry Pi OS, depending on your needs:
+The setup scripts for the PlanktoScope OS assume that you will be setting up the PlanktoScope software on a 32-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-05-03. You can choose any of the following three variants of that version of the Raspberry Pi OS, depending on your needs:
 
 - ["Raspberry Pi OS with desktop"](https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz)
 - ["Raspberry Pi OS with desktop and recommended software"](https://downloads.raspberrypi.com/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz)
@@ -60,9 +60,9 @@ The first boot to the desktop may take up to 120 seconds. This is normal and is 
 
 Eventually, the display will ask you to configure some settings for the Raspberry Pi. You will be asked to choose language settings and a keyboard layout; you should choose settings appropriate for you. The standard PlanktoScope SD card images use the `en_US.UTF-8` locale and the "Generic 104-key PC, English (US)" keyboard layout. The display will also ask you to set a username and password for the default user account on the Raspberry Pi; you *must* choose `pi` as the username, and you should choose a password you can remember. By default, the standard PlanktoScope SD card images use `copepode` as the password - so you may want to choose a different password for better security. Refer to the official [Getting Started with your Raspberry Pi](https://projects.raspberrypi.org/en/projects/raspberry-pi-getting-started/) guide for additional details and instructions on configuring settings for the Raspberry Pi.
 
-Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope software distribution. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope software distribution, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can refer to the Raspberry Pi project's [network configuration guide](https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking).
+Next, configure your Raspberry Pi to get internet access - your Raspberry Pi will need to download software packages from the internet as part of the installation process for the PlanktoScope OS. If you have an Ethernet cable you can plug into your Raspberry Pi, that will be the simplest option for setup, because it won't require you to edit any files or run any commands on your Raspberry Pi; when we make our official SD card images with the PlanktoScope OS, we use an Ethernet cable. Otherwise, you will need to connect your Raspberry Pi to a wifi network with internet access; you can refer to the Raspberry Pi project's [network configuration guide](https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-networking).
 
-## Set up the PlanktoScope software distribution
+## Set up the PlanktoScope OS
 
 ### Run the installation script
 
@@ -77,7 +77,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
       | sh -s -- -v software/stable -H planktoscopehat
     ```
     
-    This will install the most recent stable release of the PlanktoScope software distribution (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
+    This will install the most recent stable release of the PlanktoScope OS (or, if the most recent release of the PlanktoScope software is a stable release, to install that stable release). This is recommended for most users.
 
 === "Beta"
 
@@ -86,7 +86,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
       | sh -s -- -v software/beta -H planktoscopehat
     ```
     
-    This will install the most recent beta prerelease of the PlanktoScope software distribution (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
+    This will install the most recent beta prerelease of the PlanktoScope OS (or, if the most recent prerelease/release of the PlanktoScope software is a stable release, to install that stable release). The beta prerelease probably contains bugs which will be fixed before the next stable release.
 
 === "Edge"
 
@@ -95,7 +95,7 @@ Log in to your Raspberry Pi and (if you installed a version of Raspberry Pi OS w
       | sh -s -- -v master -H planktoscopehat
     ```
     
-    This will install the current unstable development version of the PlanktoScope software distribution. This version is likely to be broken in various ways.
+    This will install the current unstable development version of the PlanktoScope OS. This version is likely to be broken in various ways.
 
 Instead of installing the latest version on the "stable", "beta", or "edge" release channel, you can also install a specific tagged release or pre-release of the PlanktoScope software. For example, to install the *v2024.0.0-alpha.1* pre-release of the PlanktoScope software, you would run the following command:
 

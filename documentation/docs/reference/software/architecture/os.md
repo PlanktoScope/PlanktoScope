@@ -1,6 +1,6 @@
 # Operating System
 
-This document describes the architecture of the PlanktoScope software distribution as an [*operating system*](https://en.wikipedia.org/wiki/Operating_system), in order to explain:
+When you flash an SD card image with the PlanktoScope software as part of PlanktoScope's [software setup process](../../../setup/software/standard-install), that SD card image consists of the PlanktoScope OS. This document describes the architecture of the PlanktoScope OS as an [*operating system*](https://en.wikipedia.org/wiki/Operating_system), in order to explain:
 
 - How the PlanktoScope software abstracts over the PlanktoScope hardware.
 
@@ -8,23 +8,23 @@ This document describes the architecture of the PlanktoScope software distributi
 
 This information is intended to help you understand:
 
-- The overall design of the PlanktoScope SD card images, including what functionalities they provide and what software they include, and why we made certain design decisions.
+- The overall design of the PlanktoScope OS, including what functionalities it provides and what software it includes, and why we made certain design decisions.
 
-- How the PlanktoScope's various functionalities and responsibilities are divided among the various programs running on the PlanktoScope.
+- How various [software functionalities and responsibilities](../product-specs.md) in the PlanktoScope are divided among the various programs in the PlanktoScope OS.
 
-- How various programs running on the PlanktoScope support other programs which provide the PlanktoScope's high-level/end-user functionalities.
+- How various programs in the PlanktoScope OS support other programs which provide the PlanktoScope's high-level/end-user functionalities.
 
-- What tools you can use to perform troubleshooting and [system administration](https://en.wikipedia.org/wiki/System_administrator) tasks with the PlanktoScope software.
+- What tools you can use to perform software troubleshooting and [system administration](https://en.wikipedia.org/wiki/System_administrator) tasks with the PlanktoScope.
 
 - What kinds of new software you can develop and deploy to run on a PlanktoScope.
 
-Each PlanktoScope SD card image provides an *operating system* for the PlanktoScope; the definition of the term "operating system" can be tricky to demarcate, but for practical purposes this document follows [Bryan Cantrill's characterization of the operating system](https://www.infoq.com/presentations/os-rust/) as the special program that:
+Each SD card image of the PlanktoScope's software consists of an *operating system* for the PlanktoScope; the definition of the term "operating system" can be tricky to demarcate, but for practical purposes this document follows [Bryan Cantrill's characterization of the operating system](https://www.infoq.com/presentations/os-rust/) as the special program that:
 
 - "Abstracts hardware to allow execution of other programs."
 - "Defines the liveness of the machine: without it, no program can run."
 - Provides some important components including the operating system kernel, libraries, commands, daemons, and other facilities.
 
-This definition is a reasonable description of the PlanktoScope's operating system (which we will abbreviate as "the PlanktoScope OS" in this document), because the PlanktoScope OS is a program which abstracts the following hardware subsystems in a way that enables you to run other programs on the PlanktoScope which need to control or otherwise interact with the PlanktoScope's hardware:
+This definition is a reasonable description of the PlanktoScope OS, because it's a program which abstracts the following hardware subsystems in a way that enables you to run other programs on the PlanktoScope which need to control or otherwise interact with the PlanktoScope's hardware:
 
 - A Raspberry Pi computer.
 
@@ -52,17 +52,17 @@ Because the PlanktoScope OS is a systemd-based Linux system running on the Raspb
 
 - The [systemd system manager's boot behavior](https://www.freedesktop.org/software/systemd/man/latest/bootup.html), which initializes all necessary filesystems, drivers, and system services.
 
-The systemd system manager starts a variety of services added by the PlanktoScope OS which do not exist in the default installation of the Raspberry Pi OS, such as `docker.service`. The startup ordering relationships between those services are listedBoot in our reference document about [services in the startup process](../subsystems/startup.md#services).
+The systemd system manager starts a variety of services added by the PlanktoScope OS which do not exist in the default installation of the Raspberry Pi OS, such as `docker.service`. The startup ordering relationships between those services are listed in our reference document about [services in the startup process](../subsystems/startup.md#services).
 
 ### System upgrades
 
-Traditional Linux distros such as the Raspberry Pi OS are designed to run software directly on the host OS using a shared collection of programs and system libraries provided by the Linux distro, and with programs and libraries installed and upgraded directly on the host OS via the package managers provided by the distro, such as [APT](https://en.wikipedia.org/wiki/APT_(software)) and [`pip`](https://pip.pypa.io/en/stable/). This causes the following challenges for system administration on the PlanktoScope:
+Traditional Linux distros such as the Raspberry Pi OS are designed to run software directly on the host OS using a shared collection of programs and system libraries provided by the Linux distro, and with programs and libraries installed and upgraded in-place directly on the host OS via the package managers provided by the distro, such as [APT](https://en.wikipedia.org/wiki/APT_(software)) and [`pip`](https://pip.pypa.io/en/stable/). This causes the following challenges for system administration on the PlanktoScope:
 
 - These packages are not *atomic* in how they perform system upgrades of installed libraries and programs, so they can fail during the upgrade process (e.g. due to loss of power) in a way that leaves the system in an unknown and un-reproducible state. Such a state can be hard to revert or recover from, short of wiping and re-flashing the Raspberry Pi's SD card with a new OS installation; this would cause the loss of any OS customizations (e.g. installation of additional software) made by the user.
 
 - If an upgrade of all installed programs and libraries results in a system with problems (e.g. bugs in the new version of an installed program), it is hard to completely revert the system to the previous state. Thus, software upgrades involve a trade-off between extra work (e.g. to backup the SD card image before any upgrade) and extra risk (e.g. of software breakage which is hard to revert due to lack of backups).
 
-- Making certain customizations to the OS, such as adding additional programs/libraries or modifying system configuration files, increases the risk of *configuration drift* in which the system's actual state increasingly diverges over time from the state expected by the PlanktoScope's software maintainers, and thus becomes harder to understand, troubleshoot, or replace.
+- Making certain customizations to the OS, such as adding additional programs/libraries or modifying system configuration files, increases the risk of *configuration drift* in which the system's actual state increasingly diverges over time from the state expected by the PlanktoScope's software maintainers, and thus becomes harder to understand, troubleshoot, or replace. User customizations to the OS cannot be easily separated from the default configuration of the OS, so it is complicated to copy only those customizations in order to drop them onto a fresh installation of the OS from a newer release - especially if the updated OS includes changes to default configurations which conflict with the user customizations.
 
 - Some Python packages required by PlanktoScope-specific programs (namely the PlanktoScope hardware controller and the PlanktoScope segmenter, which are both described in later sections of this document), such as [picamera2](https://github.com/raspberrypi/picamera2) and [opencv-python-headless](https://github.com/opencv/opencv-python), can only be installed as [pre-built wheels](https://pythonwheels.com/) from [piwheels](https://www.piwheels.org/) (which is used instead of PyPi because the PlanktoScope OS is not yet able to run as a 64-bit operating system) when certain versions of system libraries are installed, or else they must be re-compiled from source (which is prohitively slow on the Raspberry Pi for the affected Python packages). This makes dependencies more complicated to manage in maintenance of the PlanktoScope OS for creating and releasing new SD card images with updated software. The reliance on system libraries also increases the risk that a user-initiated upgrade or removal of some of the system's installed APT packages could cause breakage of some `pip`-managed Python packages which had been installed before the change.
 
@@ -74,23 +74,23 @@ All of the factors listed above increase the perceived risk (and/or the required
 
 - Enabling most types of user-initiated OS customizations to be version-controlled (in a Git repository) and applied (as a system upgrade/downgrade) together with most of the default configurations added by the PlanktoScope OS over what is already present from the default installation of the Raspberry Pi OS. This way, user-initiated OS customizations can be easy to re-apply automatically even after an SD card is re-flashed with a fresh SD card image of the PlanktoScope OS.
 
-We have partially implemented the systems necessary for these goals. Much of the PlanktoScope's software is not installed or upgraded directly on the host OS via APT or `pip`; instead, we use a (partially-implemented) tool called [`forklift`](https://github.com/PlanktoScope/forklift) which we're developing specifically to support the goals listed above, and which provides a robust way for us to fully manage deployment, configuration, and upgrading of:
+Currently, we have partially implemented the systems necessary for these goals. Much of the PlanktoScope's software is not installed or upgraded directly on the host OS via APT or `pip`; instead, we use a (partially-implemented) tool called [`forklift`](https://github.com/PlanktoScope/forklift) which we're developing specifically to support the goals listed above, and which provides a robust way for us to fully manage deployment, configuration, and upgrading of:
 
 - All software which we run using Docker.
-- PlanktoScope-specific systemd services (note: only partial management has been implemented so far).
-- PlanktoScope-specific OS configuration files (note: only partial management has been implemented so far).
+- PlanktoScope-specific systemd services.
+- PlanktoScope-specific OS configuration files.
 
 Everything managed by `forklift` is version-controlled in a [Git](https://git-scm.com/) repository, enabling easy backup and restoration of `forklift`-managed configurations even if the PlanktoScope's SD card is wiped and re-flashed.
 
 ### Package management with `forklift`
 
-When you're just experimenting and you can tolerate the challenges mentioned above, it's fine to customize the PlanktoScope OS by installing software packages using APT or `pip` directly on the OS and/or by making extensive changes to OS configuration files. However, once you actually care about keeping your customizations around - and especially if/when you want to share your customizations with other people - we recommend migrating those customizations into Forklift packages, which are just files and configuration files stored in a specially-structured Git repository which is also published online (e.g. on GitHub, GitLab, Gitea, etc.). `forklift` provides an easy way to [package, publish](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-packaging-and-distribution), [combine, and apply](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-deployment-configuration) customizations via YAML configuration files in Git repositories; this enables easy sharing, configuration, (re-)composition, and downloading of Docker Compose applications and (in the future) systemd services and OS configuration files. Configurations of all deployments of Forklift packages on a computer running the PlanktoScope OS are specified and integrated in a single Git repository, a *Forklift pallet*. At any given time, each PlanktoScope has exactly one Forklift pallet deployed; switching between Forklift pallets (whether to try out a different set of customizations or to upgrade/downgrade all programs and OS configurations managed by Forklift) is easy and can be done by running just one command (`forklift plt switch`, described below in the [Applying published customizations](#applying-published-customizations) subsection).
+When you're just experimenting and you can tolerate the challenges mentioned above, it's fine to customize the PlanktoScope OS by installing software packages using `pip` directly on the OS and/or by making extensive changes to OS configuration files. However, once you actually care about keeping your customizations around - and especially if/when you want to share your customizations with other people - we recommend migrating those customizations into Forklift packages, which are just files and configuration files stored in a specially-structured Git repository which is also published online (e.g. on GitHub, GitLab, Gitea, etc.). `forklift` provides an easy way to [package, publish](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-packaging-and-distribution), [combine, and apply](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-deployment-configuration) customizations via YAML configuration files in Git repositories; this enables easy sharing, configuration, (re-)composition, and downloading of Docker Compose applications, systemd services, and OS configuration files. Configurations of all deployments of Forklift packages on a computer running the PlanktoScope OS are specified and integrated in a single Git repository, a *Forklift pallet*. At any given time, each PlanktoScope has exactly one Forklift pallet deployed; switching between Forklift pallets (whether to try out a different set of customizations or to upgrade/downgrade all programs and OS configurations managed by Forklift) is easy and can be done by running just one command (`forklift pallet switch`, described below in the [Applying published customizations](#applying-published-customizations) subsection).
 
 `forklift` is used very differently compared to traditional Linux system package managers like APT, for which you must run step-by-step commands in order to modify the state of your system (e.g. to install some package or install some other package). When using `forklift`, you instead edit configuration files which declare the desired state of your system (though some step-by-step commands are also provided by `forklift` to make editing of files easier), and then you ask `forklift` to try to reconcile the actual state of your system with the desired state. If you've worked with [Hashicorp Terraform](https://www.terraform.io/)/[OpenTofu](https://opentofu.org/) before, this may sound very familiar to you - in fact, several aspects of `forklift`'s design were inspired by Terraform.
 
 #### Dependency management
 
-`forklift` is simpler than traditional package managers in some notable ways, including in the concept of dependencies between packages. For example, Forklift packages cannot specify dependencies on other Forklift packages; instead, they may specify that they depend on certain resources - which then must be provided by a deployment of some other package. And although `forklift` checks whether resource dependencies between package deployments are satisfied, it does not attempt to solve unmet dependencies. If you've worked with the [Go programming language](https://go.dev/) before, dependency relationships among Forklift repositories and pallets are somewhat analogous to dependency relationships among Go Modules; and resource dependency relationships among Forklift packages are analogous to the relationships between functions which require arguments with particular [interfaces](https://www.alexedwards.net/blog/interfaces-explained) and the types which implement those interfaces, with Forklift resources being analogous to Go interfaces.
+`forklift` is simpler than traditional package managers in some notable ways, including in the concept of dependencies between packages. For example, Forklift packages cannot specify dependencies on other Forklift packages; instead, they may declare that they depend on certain resources - and you must declare a deployment of some other package which provides those resources. And although `forklift` checks whether resource dependencies between package deployments are satisfied, it does not attempt to solve unmet dependencies. If you've worked with the [Go programming language](https://go.dev/) before,  resource dependency relationships among Forklift packages are analogous to the relationships between functions which require arguments with particular [interfaces](https://www.alexedwards.net/blog/interfaces-explained) and the types which implement those interfaces, with Forklift resources being analogous to Go interfaces.
 
 This design is intended to facilitate replacement of particular programs with modified or customized versions of those programs. For example, a Forklift package could be declared as providing the same API on the same network port as some other package, so that one package can be substituted for the other while still maintaining compatibility with some other program which relies on the existence of that API. `forklift` also checks these resource declarations to ensure that any two packages which would conflict with each other (e.g. by trying to listen on the same network port) will be prevented from being deployed together.
 
@@ -98,15 +98,15 @@ This design is intended to facilitate replacement of particular programs with mo
 
 The workflow with `forklift` for developing/testing OS customizations, such as new package deployments or non-standard configurations of existing package deployments or substitutions of existing package deployments, is as follows:
 
-- Initialize a custom pallet based on (i.e. layered over) an existing pallet, using the `forklift dev pallet init` command (e.g. `forklift dev pallet init ~/custom-pallet --from github.com/PlanktoScope/pallet-standard@stable --as github.com/ethanjli/custom-pallet` to make a new directory `custom-pallet` which will be a customization of the latest stable version of the [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard) pallet, and which can be published to `github.com/ethanjli/custom-pallet`). (Note: the `forklift dev pallet init` command is not yet implemented, and pallet layering is not yet implemented; currently, pallets can only be created from scratch or as forks of existing pallets.)
+- Initialize a custom pallet based on (i.e. layered over) an existing pallet, using the `forklift pallet init` command (e.g. `forklift pallet init --from github.com/PlanktoScope/pallet-standard@stable --as github.com/ethanjli/custom-pallet` to make a starter which will be a customization of the latest stable version of the [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard) pallet, and which can be published to `github.com/ethanjli/custom-pallet`). (Note: the `forklift pallet init` command is not yet implemented, and pallet layering is not yet implemented; currently, pallets can only be created manually via the filesystem by cloning from an existing Git repository.)
 
-- Optionally, create new Forklift packages with definitions of Docker Compose applications (and/or, in the future, systemd services and OS configuration files) and configure their deployment, by creating particular files in the pallet (e.g. in particular subdirectories of the `~/custom-pallet` directory).
+- Optionally, create new Forklift packages with definitions of Docker Compose applications and/or systemd services and/or OS configuration files, and configure the deployment of those packages by creating particular files in the pallet.
 
-- Optionally, add published Forklift repositories to the pallet with the `forklift dev pallet add-repo` command (e.g. `forklift dev pallet add-repo github.com/ethanjli/pallet-example-minimal@main`), so that one or more packages provided by those repositories can be deployed with the pallet by creating one or more package deployment configuration files for each package. The `forklift dev pallet add-repo` command is also used to upgrade or downgrade the version of the Forklift repository used by the pallet.
+- Optionally, add published Forklift repositories to the pallet with the `forklift pallet add-repo` command (e.g. `forklift pallet add-repo github.com/ethanjli/pallet-example-minimal@main`), so that one or more packages provided by those repositories can be deployed with the pallet by creating one or more package deployment configuration files for each package. The `forklift pallet add-repo` command is also used to upgrade or downgrade the version of the Forklift repository used by the pallet.
 
-- Optionally, add one or more files which override files from the existing pallet, in order to override the configurations specified by those files.
+- Optionally, add one or more files which override files from the existing pallet, in order to override the configurations specified by those files. (Note: file overrides are not yet implemented, because they are part of pallet layering functionality which is not yet implemented.)
 
-- Test out the pallet with the `forklift dev pallet apply` command, which updates the OS to match the configuration of Forklift package deployments specified by the pallet. (Note: currently, you may first need to run the `forklift dev pallet cache-all` command, to download Forklift repositories and pallets required by your customized pallet. In the future, by default this step will be included as part of the `forklift dev pallet apply` command.)
+- Stage the pallet to be applied on the next boot of the PlanktoScope OS, with the `forklift pallet stage` command; when Forklift applies a pallet, it makes the PlanktoScope OS match the configuration of Forklift package deployments specified by the pallet.
 
 - Use `git` to commit changes and (ideally) push them to GitHub, in order to publish your customizations for other people to try out.
 
@@ -116,9 +116,9 @@ The workflow with `forklift` for developing/testing OS customizations, such as n
 
 The envisioned workflow for applying published customizations (which you or someone else already developed and pushed to a Git repository served by an online host such as GitHub) is only partially implemented so far, but it already works well for basic use-cases - and it is already used as part of the PlanktoScope OS's [installation process](../subsystems/installation.md) for setting up the PlanktoScope OS over a Raspberry Pi OS image:
 
-- Stage the customized pallet for deployment, using the `forklift pallet switch` command (e.g. `forklift pallet switch github.com/PlanktoScope/pallet-segmenter@edge` to use the latest development/unstable version of the [github.com/PlanktoScope/pallet-segmenter](https://github.com/PlanktoScope/pallet-segmenter) pallet). (Note: currently, the `forklift pallet switch` command immediately applies the pallet, instead of staging it to be applied on the next reboot; the default behavior of the `forklift pallet switch` command will be changed, though the previous behavior can still be used with a `--immediate` flag)
+- Stage the customized pallet to be applied on the next boot of the PlanktoScope OS, using the `forklift pallet switch` command (e.g. `forklift pallet switch github.com/PlanktoScope/pallet-segmenter@edge` to use the latest development/unstable version of the [github.com/PlanktoScope/pallet-segmenter](https://github.com/PlanktoScope/pallet-segmenter) pallet). 
 
-- Reboot the Raspberry Pi computer to apply the staged deployment. (Note: currently, a reboot is not needed if the custom pallet only changes the deployed Docker Compose apps and does not affect the existing OS configuration files or systemd services.) If the deployment cannot be successfully applied during boot, `forklift` will instead apply the last staged deployment which was successfully applied. (Note: currently `forklift` does not revert to the last staged deployment which was successfully booted.)
+- Reboot the Raspberry Pi computer to apply the staged pallet. If the staged pallet cannot be successfully applied during boot, on subsequent boots `forklift` will instead apply the last staged pallet which was successfully applied. (Note: only a failure to update the Docker containers running on the OS is detected as a failed attempt to apply the staged pallet; if you cause problems with the systemd services or other OS configurations provided by your pallet but the Docker containers are all correctly updated, the pallet will still be considered to have been successfully applied.)
 
 (TODO: create a "tutorial"-style page elsewhere in this docs site, and link to it from here; it could just be a pallet which reconfigures the docs-site deployment to serve the full site with hardware instructions, and which includes https://hub.docker.com/r/linuxserver/firefox or https://github.com/linuxserver/docker-chromium and/or https://github.com/linuxserver/docker-webtop and/or ZeroTier and/or an ML classifier GUI and/or Jupyter Tensorflow)
 
@@ -190,19 +190,63 @@ When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's
 
 When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with network configurations for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access.
 
-The PlanktoScope OS adds the following services (beyond what is already provided by the default installation of the Raspberry Pi OS) for managing the PlanktoScope's network connectivity:
+The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of the Raspberry Pi OS) for managing the PlanktoScope's network connectivity:
 
-- `autohotspot.service` (which in turn launches `hostapd`): a PlanktoScope-specific daemon for automatically checking the presence of known Wi-Fi networks, automatically connecting to any known Wi-Fi networks, and falling back to creating a Wi-Fi hotspot when no known Wi-Fi networks are present.
+- `autohotspot` (which in turn launches `hostapd`): a PlanktoScope-specific daemon for automatically checking the presence of known Wi-Fi networks, automatically connecting to any known Wi-Fi networks, and falling back to creating a Wi-Fi hotspot when no known Wi-Fi networks are present.
+
+- `enable-interface-forwarding`: configures the Linux kernel firewall's IP packet filter rules to forward packets between the Raspberry Pi's network interfaces, to allow the Raspberry Pi to act as a network router.
 
 - `dnsmasq`: for allowing computers connected to the PlanktoScope over a network to access the PlanktoScope using domain names defined on the PlanktoScope.
 
 - `firewalld`: a network firewall (currently disabled by default).
+
+The standard PlanktoScope OS also adds the following systemd services for dynamically updating the system's network configuration during boot:
+
+- `generate-machine-name`: generates a human-readable machine name  at `/run/machine-name` from the Raspberry Pi's serial number (or, if that's missing, from `/etc/machine-d`).
+
+- `generate-hostname-templated`: generates a temporary hostname file (which is used by a symlink at `/etc/hostname`) from `/etc/hostname-template`, which can include the machine name from `/run/machine-name`.
+
+- `update-hostname`: updates `systemd-hostnamed` so that the hostname matches what is specified by `/etc/hostname`.
+
+- `assemble-dnsmasq-config-templated`: generates a temporary dnsmasq drop-in config file (which is used by a symlink at `/etc/dnsmasq.d/40-generated-templated-config`) from drop-in config file templates at `/etc/dnsmasq-templates.d`. 
+
+- `assemble-hostapd-config-templated`: generates a temporary hostapd drop-in config file (which is used by a symlink at `/etc/hostapd/hostapd.conf.d/60-generated-templated.conf`) from drop-in config file templates at `/etc/hostapd/hostapd.conf-templates.d`.
+
+- `assemble-hostapd-config`: generates a temporary hostapd config file (which is used by a symlink at `/etc/hostapd/hostapd.conf`) from drop-in config files at `/etc/hostapd/hostapd.conf.d`.
+
+- `assemble-hosts-templated`: generates a temporary hosts drop-in snippet (which is used by a symlink at `/etc/hosts.d/50-generated-templated`) from drop-in hosts snippet templates at `/etc/hosts-templates.d`.
+
+- `assemble-hosts` generates a temporary hosts file (which is used by a symlink at `/etc/hosts`) from drop-in snippets at `/etc/hosts-templates.d`.
 
 The PlanktoScope OS also adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
 
 - [Mosquitto](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
 
 - [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
+
+## Filesystem
+
+The PlanktoScope OS's filesystem makes some changes from the default Debian/Raspberry Pi OS filesystem structure so that `/etc` and `/usr` can be managed by Forklift while still being directly customizable by the system administrator. Specifically, a number of systemd services in the PlanktoScope OS run during early boot to:
+
+- Make a read-only mount (via the `overlay-sysroot` systemd service) of the initial root filesystem, at `/sysroot`.
+
+- Make a read-only mount of the next Forklift pallet to be applied (via the `bindro-run-forklift-stages-current.service`) from a subdirectory within `/var/lib/forklift/stages` to `/run/forklift/stages/current`.
+
+- Remount `/usr` (via the `overlay-usr` systemd service) as a writable overlay with a Forklift-managed intermediate layer (in a subdirectory within `/var/lib/forklift/stages` which can also be accessed at `/run/forklift/stages/current/exports/overlays/usr`) and `/sysroot/usr` as a base layer; any changes made by the system administrator to files in `/usr` will be transparently stored by the overlay in `/var/lib/overlays/overrides/usr`. This allows Forklift to provide extra files in `/usr` in an atomic way, while overrides made by the system administrator are stored separately.
+
+- Remount `/etc` (via the `overlay-etc` systemd service) as a writable overlay with a Forklift-managed intermediate layer (in a subdirectory within `/var/lib/forklift/stages` which can also be accessed at `/run/forklift/stages/current/exports/overlays/etc`) and `/sysroot/etc` as a base layer; any changes made by the system administrator to files in `/etc` will be transparently stored by the overlay in `/var/lib/overlays/overrides/etc`. This allows Forklift to provide extra files in `/etc` in an atomic way, while overrides made by the system administrator are stored separately.
+
+- Make a writable mount of `/var/lib/forklift/stages` to `/home/pi/.local/share/forklift/stages` (via the `bind-.local-share-forklift-stages@home-pi` systemd service) so that, when the `pi` user runs `forklift` commands like `forklift pallet switch`, those commands will update `/var/lib/forklift/stages` - and without requiring the use of `sudo`.
+
+- Update systemd (via the `start-overlaid-units` systemd service) with any new systemd units provided via Forklift, so that they will run during boot.
+
+Beyond what is required by the Linux [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html), the PlanktoScope OS sets the following conventions related to filesystem paths:
+
+- Scripts which are provided by Forklift and only used as part of systemd services should be provided in `/usr/libexec`, Forklift packages should export those scripts to `overlays/usr/libexec` (so, for example, they will be accessible in `/run/forklift/stages/current/exports/overlays/usr/libexec`).
+
+- Systemd units provided by Forklift should be provided in `/usr/lib/systemd/system`, and Forklift packages should export those units to `overlays/usr/lib/systemd/system`. Symlinks to enable those units should be provided in `/etc/systemd/system`, and Forklift packages should export those scripts to `overlays/etc/systemd/system`.
+
+- Forklift-provided systemd services which dynamically generate temporary files meant to be used in `/etc` should generate those temporary files at stable paths in `/run/overlays/generated/etc`. Forklift packages which provide such systemd services should also provide relative symlinks into those temporary files in `/run/overlays/generated/etc` to be exported into `overlays/etc` as overlays for the corresponding paths in `/etc`. For example, if a package provides a service to dynamically generate a hosts file meant to be used as `/etc/hosts`, that service should generate the file in `/run/overlays/generated/etc/hosts` and the package should export a symlink at `overlays/etc/hosts` which points to `../../run/overlays/generated/etc/hosts`, so that `/etc/hosts` will be a symlink pointing to `/run/overlays/generated/etc/hosts`.
 
 ## Observability & telemetry
 

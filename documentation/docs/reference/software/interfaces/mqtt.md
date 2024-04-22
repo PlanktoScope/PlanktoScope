@@ -1,4 +1,4 @@
-# Details about used MQTT messages
+# MQTT API
 
 ## Topic lists
 
