@@ -12,9 +12,6 @@ if [ -f $POETRY_VENV/bin/poetry ]; then
   BACKEND_CONTROLLER=$HOME/device-backend/control
   $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear _default_cache --all
   $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear piwheels --all
-  BACKEND_PROCESSING_SEGMENTER=$HOME/device-backend/processing/segmenter
-  $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_PROCESSING_SEGMENTER cache clear _default_cache --all
-  $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_PROCESSING_SEGMENTER cache clear piwheels --all
 fi
 
 # Remove history files
