@@ -19,18 +19,21 @@ loguru.logger.info("planktoscope.imager is loaded")
 
 # TODO(ethanjli): convert this from a process into a thread
 class Worker(multiprocessing.Process):
-    """An MQTT+MJPEG API for the PlanktoScope's camera and image acquisition modules."""
+    """An MQTT+MJPEG API for the PlanktoScope's camera and image acquisition modules.
+
+    This launches the camera with an MQTT API for settings adjustments and an MJPEG server with a
+    live camera preview stream, and this also launches stop-flow acquisition routines in response to
+    commands received over the MQTT API.
+    """
 
     # TODO(ethanjli): instead of passing in a stop_event, just expose a `close()` method! This
     # way, we don't give any process the ability to stop all other processes watching the same
     # stop_event!
-    def __init__(self, stop_event):
-        """Initialize the Imager class
+    def __init__(self, stop_event: threading.Event) -> None:
+        """Initialize the worker's internal state, but don't start anything yet.
 
         Args:
-            stop_event (multiprocessing.Event): shutdown event
-            iso (int, optional): ISO sensitivity. Defaults to 100.
-            exposure_time (int, optional): Shutter speed of the camera, default to 10000.
+            stop_event: shutdown signal
         """
         super().__init__(name="imager")
 
@@ -53,7 +56,12 @@ class Worker(multiprocessing.Process):
 
     @loguru.logger.catch
     def run(self) -> None:
-        """Run the main event loop."""
+        """Run the main event loop.
+
+        It will quit when the `stop_event` (passed into the constructor) event is set. If a camera
+        couldn't be started (e.g. because the camera is missing), it will clean up and then wait
+        until the `stop_event` event is set before quitting.
+        """
         loguru.logger.info(f"The imager control thread has been started in process {os.getpid()}")
         self._mqtt = mqtt.MQTT_Client(topic="imager/#", name="imager_client")
         self._mqtt.client.publish("status/imager", '{"status":"Starting up"}')
@@ -66,18 +74,17 @@ class Worker(multiprocessing.Process):
         loguru.logger.info("Starting the camera...")
         self._camera = camera.Worker()
         self._camera.start()
-        self._camera.camera_checked.wait()
         if self._camera.camera is None:
             loguru.logger.error("Missing camera - maybe it's disconnected or it never started?")
             # TODO(ethanjli): officially add this error status to the MQTT API!
             self._mqtt.client.publish("status/imager", '{"status": "Error: missing camera"}')
             loguru.logger.success("Preemptively preparing to shut down since there's no camera...")
             self._cleanup()
-            # Note(ethanjli): we just wait and do nothing until we receive the shutdown signal,
-            # because if we return early then the hardware controller will either shut down
+            # TODO(ethanjli): currently we just wait and do nothing until we receive the shutdown
+            # signal, because if we return early then the hardware controller will either shut down
             # everything (current behavior) or try to restart the imager (planned behavior
-            # according to a TODO left by @gromain). If there's a third option to quit without
-            # being restarted or causing everything else to quit, then we could just clean up
+            # according to a TODO left by @gromain). Once we make it possible to quit without
+            # being restarted or causing everything else to quit, then we should just clean up
             # and return early here.
             loguru.logger.success("Waiting for a shutdown signal...")
             self._stop_event_loop.wait()
@@ -366,7 +373,9 @@ class ImageAcquisitionRoutine(threading.Thread):
 
 # TODO(ethanjli): rearchitect the hardware controller so that the imager can directly call pump
 # methods (by running all modules in the same process), so that we can just delete this entire class
-# and simplify function calls between the imager and the pump!
+# and simplify function calls between the imager and the pump! This will require launching the
+# pump and the imager as threads in the same process, rather than launching them as separate
+# processes.
 class _PumpClient:
     """Thread-safe RPC stub for remotely controlling the pump over MQTT."""
 

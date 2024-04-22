@@ -141,7 +141,10 @@ class SettingsValues(typing.NamedTuple):
         return any(value is not None for value in self._asdict().values())
 
     def overlay(self, updates: "SettingsValues") -> "SettingsValues":
-        """Create a new instance where provided non-`None` values overwrite existing values."""
+        """Create a new instance where provided non-`None` values overwrite existing values.
+
+        This is intended to make it easy to combine existing settings with new settings.
+        """
         # pylint complains that this namedtuple has no `_asdict()` method even though mypy is fine;
         # this is a false positive:
         # pylint: disable-next=no-member
@@ -219,11 +222,11 @@ class PiCamera:
         stream_config: StreamConfig = StreamConfig(preview_size=(640, 480), buffer_count=3),
         initial_settings: SettingsValues = SettingsValues(),
     ) -> None:
-        """Set up state needed to initialize the camera, but don't actually start the camera.
+        """Set up state needed to initialize the camera, but don't actually start the camera yet.
 
         Args:
             preview_output: an image stream which this `PiCamera` instance will write camera preview
-              images to.
+              images to once the camera is started.
             stream_config: configuration of camera output streams.
             initial_settings: any camera settings to initialize the camera with.
         """
@@ -293,7 +296,7 @@ class PiCamera:
 
     @property
     def settings(self) -> SettingsValues:
-        """An immutable copy of the camera settings values."""
+        """Adjustable camera settings values."""
         with self._settings_lock.gen_rlock():
             return self._cached_settings
 
@@ -301,7 +304,8 @@ class PiCamera:
     def settings(self, updates: SettingsValues) -> None:
         """Update adjustable camera settings from all provided non-`None` values.
 
-        Fields provided with `None` values are ignored.
+        Fields provided with `None` values are ignored. If any of the provided non-`None` values is
+        invalid (e.g. out-of-range), none of the settinsg will be changed.
 
         Raises:
             RuntimeError: the method was called before the camera was started, or after it was
@@ -395,7 +399,9 @@ class PiCamera:
     def close(self) -> None:
         """Stop and close the camera.
 
-        The camera can be restarted after being closed by `start()` method again.
+        No more frames will be written to the preview output stream.
+
+        The camera can be restarted after being closed by calling the `start()` method again.
         """
         if self._camera is None:
             return
@@ -427,7 +433,7 @@ class PreviewStream(io.BufferedIOBase):
     the buffer once they have access to it.
 
     This stream can be used by anything which requires a [io.BufferedIOBase], assuming it never
-    splits buffers.
+    splits any buffer across multiple calls of the `write()` method.
     """
 
     def __init__(self) -> None:

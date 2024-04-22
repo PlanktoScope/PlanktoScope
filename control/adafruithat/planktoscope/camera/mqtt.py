@@ -1,4 +1,4 @@
-"""mqtt provides an MJPEG+MQTT API for camera interaction."""
+"""mqtt provides an MJPEG+MQTT API for camera supervision and interaction."""
 
 import json
 import os
@@ -15,27 +15,21 @@ loguru.logger.info("planktoscope.camera is loaded")
 
 
 class Worker(threading.Thread):
-    """Runs a camera with live MJPEG preview and an MQTT API for adjusting camera settings.
-
-    Attribs:
-        camera: the underlying camera exposed by this MQTT API. Don't access it until the
-          camera_checked event has been set!
-        camera_checked: when this event is set, either the camera is connected or has been
-          determined to be missing.
-    """
+    """Runs a camera with live MJPEG preview and an MQTT API for adjusting camera settings."""
 
     def __init__(self, mjpeg_server_address: tuple[str, int] = ("", 8000)) -> None:
         """Initialize the backend.
 
         Args:
-            mqtt_client: an MQTT client.
-            exposure_time: the default value for initializing the camera's exposure time.
+            mjpeg_server_address: the host and port for the MJPEG camera preview server to listen
+              on.
 
         Raises:
             ValueError: one or more values in the hardware config file are of the wrong type.
         """
         super().__init__(name="camera")
 
+        # Settings
         settings = hardware.SettingsValues(
             auto_exposure=False,
             exposure_time=125,  # the default (minimum) exposure time in the PlanktoScope GUI
@@ -49,9 +43,8 @@ class Worker(threading.Thread):
                 blue=1.35,
             ),
             sharpness=0,  # disable the default "normal" sharpening level
-            jpeg_quality=95,  # trade off between image file size and quality
+            jpeg_quality=95,  # maximize image quality
         )
-        # Settings
         if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
             # load hardware.json
             with open("/home/pi/PlanktoScope/hardware.json", "r", encoding="utf-8") as config_file:
@@ -69,26 +62,26 @@ class Worker(threading.Thread):
         # I/O
         self._preview_stream: hardware.PreviewStream = hardware.PreviewStream()
         self._mjpeg_server_address = mjpeg_server_address
-        self.camera: typing.Optional[hardware.PiCamera] = hardware.PiCamera(
+        self._camera: typing.Optional[hardware.PiCamera] = hardware.PiCamera(
             self._preview_stream, initial_settings=settings
         )
-        self.camera_checked = threading.Event()
+        self._camera_checked = threading.Event()
         self._stop_event_loop = threading.Event()
 
     @loguru.logger.catch
     def run(self) -> None:
         """Start the camera and run the main event loop."""
-        assert self.camera is not None
+        assert self._camera is not None
 
         loguru.logger.info("Initializing the camera with default settings...")
         try:
-            self.camera.open()
+            self._camera.open()
         except RuntimeError:
             loguru.logger.exception("Couldn't open the camera - maybe it's disconnected?")
-            self.camera = None
-            self.camera_checked.set()
+            self._camera = None
+            self._camera_checked.set()
             return
-        self.camera_checked.set()
+        self._camera_checked.set()
 
         loguru.logger.info("Starting the MJPEG streaming server...")
         streaming_server = mjpeg.StreamingServer(self._preview_stream, self._mjpeg_server_address)
@@ -103,7 +96,7 @@ class Worker(threading.Thread):
         # TODO(ethanjli): allow an MQTT client to trigger this broadcast with an MQTT command. This
         # requires modifying the MQTT API (by adding a new route), and we'll want to make the
         # Node-RED dashboard query that route at startup, so we'll do this later.
-        mqtt.client.publish("status/imager", json.dumps({"camera_name": self.camera.camera_name}))
+        mqtt.client.publish("status/imager", json.dumps({"camera_name": self._camera.camera_name}))
 
         try:
             while not self._stop_event_loop.is_set():
@@ -126,8 +119,8 @@ class Worker(threading.Thread):
             streaming_thread.join()
 
             loguru.logger.info("Stopping the camera...")
-            self.camera.close()
-            self.camera = None
+            self._camera.close()
+            self._camera = None
 
             loguru.logger.success("Done shutting down!")
 
@@ -137,7 +130,7 @@ class Worker(threading.Thread):
 
         Returns a status update to broadcast.
         """
-        assert self.camera is not None
+        assert self._camera is not None
 
         if message["topic"] != "imager/image" or message["payload"].get("action", "") != "settings":
             return None
@@ -149,7 +142,7 @@ class Worker(threading.Thread):
         settings = message["payload"]["settings"]
         try:
             converted_settings = _convert_settings(
-                settings, self.camera.settings.white_balance_gains
+                settings, self._camera.settings.white_balance_gains
             )
             _validate_settings(converted_settings)
         except (TypeError, ValueError) as e:
@@ -158,9 +151,23 @@ class Worker(threading.Thread):
             )
             return json.dumps({"status": f"Error: {str(e)}"})
 
-        self.camera.settings = converted_settings
+        self._camera.settings = converted_settings
         loguru.logger.success("Updated camera settings!")
         return '{"status":"Camera settings updated"}'
+
+    @property
+    def camera(self) -> typing.Optional[hardware.PiCamera]:
+        """Return the camera wrapper managed by this worker.
+
+        Blocks until this worker has attempted to start the camera (so this property will wait until
+        this worker has been started as a thread).
+
+        Returns:
+            The camera wrapper if it started successfully, or None if the camera wrapper could not
+            be started (e.g. because the camera does not exists).
+        """
+        self._camera_checked.wait()
+        return self._camera
 
     def shutdown(self):
         """Stop processing new MQTT messages and gracefully stop working."""
@@ -175,8 +182,11 @@ def _convert_settings(
 
     Args:
         command_settings: the settings to convert.
-        default_white_balance_gains: white-balance gains to substitute for missing values if exactly
-          one gain is provided.
+        default_white_balance_gains: white-balance gains to substitute for missing values, if
+          exactly one gain was provided in `command_settings`.
+
+    Returns:
+        All settings extracted from the MQTT command.
 
     Raises:
         ValueError: at least one of the MQTT command settings is invalid.
@@ -211,6 +221,9 @@ def _convert_image_gain_settings(
 
     Args:
         command_settings: the settings to convert.
+
+    Returns:
+        Any image gain-related settings extracted from the MQTT command, but no other settings.
 
     Raises:
         ValueError: at least one of the MQTT command settings is invalid.
@@ -253,6 +266,10 @@ def _convert_white_balance_gain_settings(
         command_settings: the settings to convert.
         default_white_balance_gains: white-balance gains to substitute for missing values if exactly
           one gain is provided.
+
+    Returns:
+        Any white balance gain-related settings extracted from the MQTT command, but no other
+        settings.
 
     Raises:
         ValueError: at least one of the MQTT command settings is invalid.

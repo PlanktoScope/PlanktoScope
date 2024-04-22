@@ -1,7 +1,9 @@
-"""strategies provides ways of coordinating the hardware for image acquisition.
+"""stopflow provides the domain logic for stop-flow imaging.
 
-This basically contains the domain logic of the imager module. No actual I/O (hardware control,
-filesystem interaction, or MQTT messaging) should be added to this module.
+No actual I/O (hardware control, filesystem interaction, or MQTT messaging) should be added to this
+module; instead, I/O drivers should be defined elsewhere and passed into functions/methods in this
+module. This will allow us to write automated tests for the domain logic for stop-flow imaging
+which we can run without a PlanktoScope.
 """
 
 import datetime as dt
@@ -132,7 +134,8 @@ class Routine:
             )
             self._camera.capture_file(capture_path)
             os.sync()
-            # TODO: update the integrity file
+            # Note(ethanjli): updating the integrity file is the responsibility of the code which
+            # calls this `run_step()` method.
 
             acquired_index = self._progress
             self._progress += 1
@@ -150,5 +153,5 @@ class Routine:
 
     @property
     def interrupted(self) -> bool:
-        """Return whether the routine was manually interrupted."""
+        """Check whether the routine was manually interrupted."""
         return self._interrupted.is_set()
