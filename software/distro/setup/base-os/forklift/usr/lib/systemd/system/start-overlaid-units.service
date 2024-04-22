@@ -5,8 +5,7 @@ After=overlay-fs.target
 [Service]
 Type=exec
 ExecStartPre=systemctl daemon-reload
-# Warning: this immediately stops any units not upstream of default.target!
-ExecStart=systemctl isolate default.target
+ExecStart=systemctl restart --no-block sockets.target timers.target multi-user.target
 
 [Install]
 WantedBy=overlay-fs.target
