@@ -9,9 +9,20 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- (System: administration) The hostname can now be customized by modifying the hostname template (with string interpolation for the machine name) in `/etc/hostname-template`.
+- (System: administration) The Cockpit configuration can now be customized by adding configuration snippets as drop-in files in `/etc/cockpit/cockpit.conf.d`, and adding origins to allow in `/etc/cockpit/origins.d`, and adding templated origins (with string interpolation for the machine name, the hostname, and the custom domain) to allow in `/etc/cockpit/origins-templates.d`.
+- (System: administration) The dnsmasq configuration can now be customized by adding templated drop-in configuration files (with string interpolation for the machine name, the hostname, and the custom domain) in `/etc/dnsmasq-templates.d`, and by modifying the custom domain (which defaults to `pkscope`) in `/etc/custom-domain`.
+- (System: administration) The hostapd configuration can now be customized by adding configuration snippets as drop-in files in `/etc/hostapd/hostapd.conf.d`, and adding templated drop-in files (with string interpolation for the machine name, the hostname, and the custom domain) in `/etc/hostapd/hostapd.conf-templates.d`.
+- (System: administration) The hosts file can now be customized can now be customized by adding snippets as drop-in files at `/etc/hosts.d`, and and adding templated snippets (with string interpolation for the machine name, the hostname, and the custom domain) in `/etc/hosts-templates.d`.
+
 ### Changed
 
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
+- (System: administration) Forklift has been upgraded to v0.7.0, so that pallets are staged before being applied (and with automatic fallback to the last successfully-applied staged pallet), and so that systemd services, `/etc` config files, and some scripts in `/usr` are now managed by Forklift.
+- (System: administration) `/etc` is now a overlay filesystem with all manually-edited files saved at `/var/lib/overlays/overrides/etc`.
+- (System: administration) `/usr` is now a overlay filesystem with all manually-edited files saved at `/var/lib/overlays/overrides/usr`.
 
 ### Fixed
 

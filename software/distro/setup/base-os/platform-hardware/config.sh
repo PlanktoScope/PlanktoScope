@@ -14,6 +14,11 @@
 # it harder for our project to enable running the PlanktoScope software on computers besides the
 # Raspberry Pi. So we should avoid adding more raspi-config commands.
 
+if ! command -v raspi-config &> /dev/null; then
+  echo "Warning: raspi-config is unavailable, so no RPi-specific hardware configuration will be applied!"
+  exit 0
+fi
+
 # The following commands enable the SPI and I2C hardware interfaces:
 sudo raspi-config nonint do_spi 0
 sudo raspi-config nonint do_i2c 0
@@ -31,8 +36,7 @@ fi
 
 # The following command enables the camera on the 32-bit Raspberry Pi OS (ARMv7):
 sudo raspi-config nonint do_camera 0
-# The following command disables legacy camera support on the 64-bit Raspberry Pi OS (ARM64), so that
-# we can use libcamera:
+# The following command disables legacy camera support so that we can use libcamera:
 sudo raspi-config nonint do_legacy 1
 
 # FIXME: remove this section entirely, to improve performance on bullseye.

@@ -18,17 +18,10 @@ else # Support Raspberry Pi OS 11 (bullseye)
   sudo raspi-config nonint do_serial 2
 fi
 
-# Configure gpsd
-file="/etc/default/gpsd"
-sudo cp "$config_files_root$file" "$file"
-sudo systemctl restart gpsd.service
-
 # Enable automatic time update from GPSD
 file="/boot/config.txt"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 
-# Add systemd service modification to make Node-RED wait until Mosquitto has started
-file="/etc/chrony/conf.d/pps-gpio.conf"
-sudo cp "$config_files_root$file" "$file"
+# Use chrony instead of systemd-timesyncd (but do we really actually want to do this??):
 sudo systemctl stop systemd-timesyncd.service
 sudo systemctl disable systemd-timesyncd.service

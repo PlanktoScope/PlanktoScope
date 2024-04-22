@@ -42,22 +42,6 @@ else
   panic "$description"
 fi
 
-description="download Forklift & Forklift pallet"
-report_starting "$description"
-if $build_scripts_root/forklift/install.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="configure Raspberry Pi-specific hardware"
-report_starting "$description"
-if $build_scripts_root/platform-hardware/config.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="configure system locales"
 report_starting "$description"
 if $build_scripts_root/localization/config.sh ; then
@@ -67,9 +51,25 @@ else
   panic "$description"
 fi
 
+description="set up OS configuration with Forklift"
+report_starting "$description"
+if $build_scripts_root/forklift/install.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="configure networking"
 report_starting "$description"
-if $build_scripts_root/networking/config.sh ; then
+if $build_scripts_root/networking/install.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
+description="configure Raspberry Pi-specific hardware"
+report_starting "$description"
+if $build_scripts_root/platform-hardware/config.sh ; then
   report_finished "$description"
 else
   panic "$description"

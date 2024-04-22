@@ -1,0 +1,12 @@
+[Unit]
+Description=Start any enabled systemd units added by the /etc and /usr overlays
+After=overlay-fs.target
+
+[Service]
+Type=exec
+ExecStartPre=systemctl daemon-reload
+# Warning: this immediately stops any units not upstream of default.target!
+ExecStart=systemctl isolate default.target
+
+[Install]
+WantedBy=overlay-fs.target

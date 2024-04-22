@@ -1,0 +1,14 @@
+[Unit]
+Description=Docker Compose applications specified by the local Forklift pallet
+Wants=docker.service
+After=docker.service
+# Delay the autohotspot until the Forklift pallet's network services are up:
+Before=autohotspot.service
+
+[Service]
+Type=oneshot
+Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+ExecStart=forklift stage apply --parallel
+
+[Install]
+WantedBy=multi-user.target

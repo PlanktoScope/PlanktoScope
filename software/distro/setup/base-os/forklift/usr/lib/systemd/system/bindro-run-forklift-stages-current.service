@@ -1,0 +1,38 @@
+[Unit]
+Description=Mount the Forklift stage to be applied next as the current stage in /run, during early boot
+DefaultDependencies=no
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+Wants=overlay-fs.target
+Before=overlay-fs.target
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+# This is implemented as a service rather than a mount because keeping all the related ExecStart
+# commands in one unit makes the sequence of steps clearer.
+Type=oneshot
+RemainAfterExit=true
+Environment=TARGET=/run/forklift/stages/current
+ExecStartPre=mkdir -p $TARGET
+Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+# Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
+# mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
+# (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
+ExecStart=bash -c -e '\
+  LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next); \
+  echo "Next staged pallet bundle: $LOWERDIR_FORKLIFT"; \
+  mount --bind $(forklift stage locate-bundle next) $TARGET && \
+  mount -o bind,remount,ro $TARGET \
+'
+# Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
+# because it just removes the mounts from the namespace while writes to open files can continue;
+# however, this is probably acceptable behavior for the overlay at shutdown, because any writes
+# will be in our upperdir anyways.
+ExecStopPost=umount -l $TARGET
+
+
+[Install]
+WantedBy=local-fs.target
