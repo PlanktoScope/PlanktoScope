@@ -5,7 +5,7 @@ After=overlay-fs.target
 [Service]
 Type=exec
 ExecStartPre=systemctl daemon-reload
-ExecStart=systemctl restart --no-block sockets.target timers.target multi-user.target
+ExecStart=systemctl restart --no-block sockets.target timers.target multi-user.target default.target
 
 [Install]
 WantedBy=overlay-fs.target
