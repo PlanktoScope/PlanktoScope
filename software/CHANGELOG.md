@@ -19,6 +19,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; Application: backend) Previously, the segmenter's default behavior was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should enable the `pipeline-subtract-consecutive-masks` feature flag in the `apps/ps/backend/proc-segmenter` package deployment of the local Forklift pallet and re-apply the pallet.
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
 - (System: administration) Forklift has been upgraded to v0.7.0, so that pallets are staged before being applied (and with automatic fallback to the last successfully-applied staged pallet), and so that systemd services, `/etc` config files, and some scripts in `/usr` are now managed by Forklift.
 - (System: administration) `/etc` is now a overlay filesystem with all manually-edited files saved at `/var/lib/overlays/overrides/etc`.

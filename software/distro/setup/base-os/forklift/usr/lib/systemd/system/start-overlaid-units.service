@@ -1,6 +1,8 @@
 [Unit]
 Description=Start any enabled systemd units added by the /etc and /usr overlays
+DefaultDependencies=no
 After=overlay-fs.target
+Before=basic.target
 
 [Service]
 Type=exec
