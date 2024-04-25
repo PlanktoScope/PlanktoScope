@@ -197,6 +197,15 @@ def remove_previous_mask(mask):
         return __mask_to_remove
 
 
+def no_op(mask):
+    """Return the mask without modifying it.
+
+    This is provided as a quick-and-dirty hack to disable certain steps in the pipeline such as
+    remove_previous_mask, by allowing those steps to be substituted with this no-op step.
+    """
+    return mask
+
+
 def reset_previous_mask():
     """Remove the mask from the previous pass from the given mask
     The given mask is then saved to be applied to the next pass

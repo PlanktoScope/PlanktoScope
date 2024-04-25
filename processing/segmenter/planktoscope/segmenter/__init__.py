@@ -35,6 +35,7 @@ import json, shutil, os
 import multiprocessing
 
 import io
+import os
 
 import threading
 import functools
@@ -61,6 +62,18 @@ import math
 
 
 logger.info("planktoscope.segmenter is loaded")
+
+
+# Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
+# package from PyPI for more structured parsing of env vars:
+SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
+    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS",
+    "False"
+).lower() in ('true', '1', 't')
+if SUBTRACT_CONSECUTIVE_MASKS:
+    logger.info("The segmentation pipeline will subtract masks between consecutive raw frames!")
+else:
+    logger.info("The segmentation pipeline will NOT subtract masks between consecutive raw frames!")
 
 
 ################################################################################
@@ -237,7 +250,7 @@ class SegmenterProcess(multiprocessing.Process):
         pipeline = [
             # "adaptative_threshold",
             "simple_threshold",
-            "remove_previous_mask",
+            "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
             "erode",
             "dilate",
             "close",
@@ -834,7 +847,7 @@ class SegmenterProcess(multiprocessing.Process):
             "parameters": {"algorithm": "THRESH_TRIANGLE"},
         }
         self.__global_metadata["process_3rd_operation"] = {
-            "type": "remove_previous_mask",
+            "type": "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
             "parameters": {},
         }
         self.__global_metadata["process_4th_operation"] = {
