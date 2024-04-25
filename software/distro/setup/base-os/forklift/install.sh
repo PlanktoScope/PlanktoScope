@@ -9,9 +9,9 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.7.0-alpha.3"
+forklift_version="0.7.0"
 pallet_path="github.com/PlanktoScope/pallet-standard"
-pallet_version="494ab86"
+pallet_version="0f7dcad"
 
 arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
@@ -27,12 +27,12 @@ forklift plt switch --no-cache-img $pallet_path@$pallet_version
 # without root permissions after a reboot, so we need `sudo -E` here; I tried running
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
 # script here (even though it works after the script finishes, before rebooting):
-sudo -E forklift stage plan --parallel
-sudo -E forklift stage cache-img --parallel
+sudo -E forklift stage plan
+sudo -E forklift stage cache-img
 next_pallet="$(basename $(forklift stage locate-bun next))"
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
-if ! sudo -E forklift stage apply --parallel; then
+if ! sudo -E forklift stage apply; then
   echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
   # Reset the "apply-failed" status of the staged pallet to apply:
   forklift stage set-next --no-cache-img "$next_pallet"
