@@ -353,3 +353,4 @@ lint-pylint-planktoscopehat = "pylint planktoscopehat"
 lint-pylint = ["lint-pylint-adafruithat", "lint-pylint-planktoscopehat"]
 lint = ["lint-mypy", "lint-pylama", "lint-flake8", "lint-pylint"]
 check = ["check-black", "check-isort", "lint"]
+scp = "scp -r . pi@${HOST}:/home/pi/device-backend/control"

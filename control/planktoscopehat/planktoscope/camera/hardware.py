@@ -219,7 +219,13 @@ class PiCamera:
     def __init__(
         self,
         preview_output: io.BufferedIOBase,
-        stream_config: StreamConfig = StreamConfig(preview_size=(640, 480), buffer_count=3),
+        stream_config: StreamConfig = StreamConfig(
+            preview_size=(960, 720),
+            # We'll never reach 80 Mbps of bandwidth usage because the RPi's network links don't
+            # have enough bandwidth; instead, we'll have higher-quality frames at lower framerates:
+            preview_bitrate=80 * 1000000,
+            buffer_count=3,
+        ),
         initial_settings: SettingsValues = SettingsValues(),
     ) -> None:
         """Set up state needed to initialize the camera, but don't actually start the camera yet.
@@ -284,7 +290,10 @@ class PiCamera:
             # `MJPEGEncoder` instead:
             encoders.MJPEGEncoder(bitrate=self._stream_config.preview_bitrate),
             outputs.FileOutput(self._preview_output),
-            quality=encoders.Quality.HIGH,
+            # If we specify quality, it overrides the bitrate, contrary to what the picamera2 docs
+            # say (refer to
+            # github.com/raspberrypi/picamera2/blob/main/picamera2/encoders/mjpeg_encoder.py#L23):
+            # quality=encoders.Quality.VERY_HIGH,
             name="lores",
         )
 

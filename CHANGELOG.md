@@ -11,6 +11,15 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (Breaking change; segmenter) Previously, the segmenter's default behavior was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should set the environment variable `SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS=true` when launching the segmenter.
+- (Hardware controller) The image quality of frames in the camera preview stream for the picamera2-based imager is increased, and frames also have greater width and height.
+
+### Deprecated
+
+- (Hardware controller) The old raspimjpeg-based imager is deprecated and will be fully deleted in a subsequent release (potentially as early as v2024.1.0).
+
+### Fixed
+
+- (Hardware controller) The incorrect scaling factor for converting between ISO settings (in the MQTT API) and image gains is fixed.
 
 ## v2024.0.0-alpha.1 - 2024-03-26
 

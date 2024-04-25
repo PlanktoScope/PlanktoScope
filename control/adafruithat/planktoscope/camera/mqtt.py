@@ -142,7 +142,7 @@ class Worker(threading.Thread):
         settings = message["payload"]["settings"]
         try:
             converted_settings = _convert_settings(
-                settings, self._camera.settings.white_balance_gains
+                settings, self._camera.settings.white_balance_gains, self._camera.sensor_name
             )
             _validate_settings(converted_settings)
         except (TypeError, ValueError) as e:
@@ -177,6 +177,7 @@ class Worker(threading.Thread):
 def _convert_settings(
     command_settings: dict[str, typing.Any],
     default_white_balance_gains: typing.Optional[hardware.WhiteBalanceGains],
+    camera_sensor_name: str,
 ) -> hardware.SettingsValues:
     """Convert MQTT command settings to camera hardware settings.
 
@@ -202,7 +203,12 @@ def _convert_settings(
         except (TypeError, ValueError) as e:
             raise ValueError("Shutter speed not valid") from e
         converted = converted._replace(exposure_time=exposure_time)
-    converted = converted.overlay(_convert_image_gain_settings(command_settings))
+    converted = converted.overlay(
+        _convert_image_gain_settings(
+            command_settings,
+            camera_sensor_name,
+        )
+    )
     if "white_balance" in command_settings:
         if (awb := command_settings["white_balance"]) not in {"auto", "off"}:
             raise ValueError("White balance mode {awb} not valid")
@@ -216,6 +222,7 @@ def _convert_settings(
 
 def _convert_image_gain_settings(
     command_settings: dict[str, typing.Any],
+    camera_sensor_name: str,
 ) -> hardware.SettingsValues:
     """Convert image gains in MQTT command settings to camera hardware settings.
 
@@ -246,7 +253,18 @@ def _convert_image_gain_settings(
             iso = float(command_settings["iso"])
         except (TypeError, ValueError) as e:
             raise ValueError("Iso number not valid") from e
-        converted = converted._replace(image_gain=iso / 100)
+        # Refer to https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-gain for
+        # details on how ISO values correspond to image gains with the Pi Camera v2 Module,
+        # and refer to https://forums.raspberrypi.com/viewtopic.php?t=282760 for details on ISO
+        # vs. image gain calibration for the Pi HQ Camera Module:
+        iso_calibrations = {  # this is ISO / image-gain
+            "IMX219": 100 / 1.84,  # Pi Camera v2 Module
+            "IMX477": 100 / 2.3125,  # Pi HQ Camera Module
+        }
+        # 100 is the default calibration because that's what's used in the Pi Camera v1 Module, and
+        # it's a round number:
+        calibration = iso_calibrations.get(camera_sensor_name, 100)
+        converted = converted._replace(image_gain=iso / calibration)
 
     return converted
 
