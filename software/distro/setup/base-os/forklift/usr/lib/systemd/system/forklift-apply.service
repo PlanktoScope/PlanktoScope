@@ -8,7 +8,7 @@ Before=autohotspot.service
 [Service]
 Type=oneshot
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
-ExecStart=forklift stage apply --parallel
+ExecStart=forklift stage apply
 
 [Install]
 WantedBy=multi-user.target
