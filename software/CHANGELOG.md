@@ -21,6 +21,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (Breaking change; Application: backend) Previously, the segmenter's default behavior was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should enable the `pipeline-subtract-consecutive-masks` feature flag in the `apps/ps/backend/proc-segmenter` package deployment of the local Forklift pallet and re-apply the pallet.
+- (Application: backend, GUI) The image quality of frames in the camera preview stream is increased, and frames also have greater width and height.
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
 - (Breaking change; System: administration) The minimum supported Forklift version for Forklift pallets has increased from v0.4.0 to v0.7.0, due to new integration between Forklift and the filesystem.
 - (System: administration) Forklift has been upgraded to v0.7.0, so that pallets are staged before being applied (and with automatic fallback to the last successfully-applied staged pallet), and so that systemd services, `/etc` config files, and some scripts in `/usr` are now managed by Forklift.
@@ -36,6 +37,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - (Application: GUI) The white balance input validation, which previously only allowed gains between 1.0 and 8.0, now allows gains in the full range allowed by the camera (i.e. between 0.0 and 32.0).
+- (Application: backend, GUI) The incorrect scaling factor for converting between ISO settings (in the Node-RED dashboard) and image gains in the new picamera2-based imager is fixed.
 - (System: networking) Some uncommon edge cases for packet forwarding (e.g. accessing a one of the PlanktoScope's static IP addresses on a network interface not associated with that static IP address) should work now.
 
 ## v2024.0.0-alpha.1 - 2024-03-26
