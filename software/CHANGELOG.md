@@ -16,18 +16,25 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: administration) The dnsmasq configuration can now be customized by adding templated drop-in configuration files (with string interpolation for the machine name, the hostname, and the custom domain) in `/etc/dnsmasq-templates.d`, and by modifying the custom domain (which defaults to `pkscope`) in `/etc/custom-domain`.
 - (System: administration) The hostapd configuration can now be customized by adding configuration snippets as drop-in files in `/etc/hostapd/hostapd.conf.d`, and adding templated drop-in files (with string interpolation for the machine name, the hostname, and the custom domain) in `/etc/hostapd/hostapd.conf-templates.d`.
 - (System: administration) The hosts file can now be customized can now be customized by adding snippets as drop-in files at `/etc/hosts.d`, and and adding templated snippets (with string interpolation for the machine name, the hostname, and the custom domain) in `/etc/hosts-templates.d`.
+- (System: administration) SSH host keys for the SSH server are now automatically generated (if deleted or otherwise missing) during every boot, not just during the first boot.
 
 ### Changed
 
 - (Breaking change; Application: backend) Previously, the segmenter's default behavior was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should enable the `pipeline-subtract-consecutive-masks` feature flag in the `apps/ps/backend/proc-segmenter` package deployment of the local Forklift pallet and re-apply the pallet.
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
+- (Breaking change; System: administration) The minimum supported Forklift version for Forklift pallets has increased from v0.4.0 to v0.7.0, due to new integration between Forklift and the filesystem.
 - (System: administration) Forklift has been upgraded to v0.7.0, so that pallets are staged before being applied (and with automatic fallback to the last successfully-applied staged pallet), and so that systemd services, `/etc` config files, and some scripts in `/usr` are now managed by Forklift.
 - (System: administration) `/etc` is now a overlay filesystem with all manually-edited files saved at `/var/lib/overlays/overrides/etc`.
 - (System: administration) `/usr` is now a overlay filesystem with all manually-edited files saved at `/var/lib/overlays/overrides/usr`.
 
+### Deprecated
+
+- (System: administration, troubleshooting; GUI) Portainer will no longer be installed/provided by default after v2024.0.0. This is because it requires inclusion of a relatively large Docker container image in the PlanktoScope OS's SD card image (which is constrained to be up to 2 GB in size so that it can be attached as an upload to GitHub Releases), and because it has an annoying first-time user experience (i.e. that a password must be set within a few minutes of boot, or else the Portainer container must be restarted), and because Dozzle already provides all the basic functionalities needed by most users, and because Portainer has never actually been used for troubleshooting within the past year of the project.
+
 ### Fixed
 
 - (Application: GUI) The white balance input validation, which previously only allowed gains between 1.0 and 8.0, now allows gains in the full range allowed by the camera (i.e. between 0.0 and 32.0).
+- (System: networking) Some uncommon edge cases for packet forwarding (e.g. accessing a one of the PlanktoScope's static IP addresses on a network interface not associated with that static IP address) should work now.
 
 ## v2024.0.0-alpha.1 - 2024-03-26
 
