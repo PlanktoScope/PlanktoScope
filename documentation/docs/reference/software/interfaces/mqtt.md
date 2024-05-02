@@ -1,30 +1,46 @@
 # MQTT API
 
-## Topic lists
+Welcome to the MQTT API documentation for Planktoscope. This guide is designed to help you understand the messaging protocol for controlling the Planktoscope device and handling various functionalities effectively.
 
-- [Details about used MQTT messages](#details-about-used-mqtt-messages)
-  - [Topic lists](#topic-lists)
-  - [Topic details](#topic-details)
-    - [`actuator`](#actuator)
-      - [`actuator/pump`](#actuatorpump)
-      - [`actuator/focus`](#actuatorfocus)
-    - [`imager/image`](#imagerimage)
-    - [`segmenter/segment`](#segmentersegment)
-    - [`status`](#status)
-      - [`status/pump`](#statuspump)
-      - [`status/focus`](#statusfocus)
-      - [`status/imager`](#statusimager)
-      - [`status/segmenter`](#statussegmenter)
-      - [`status/segmenter/object_id`](#statussegmenterobject_id)
-      - [`status/segmenter/metric`](#statussegmentermetric)
+## MQTT architecture communication
+```mermaid
+flowchart TD
+    User[User Application] -->|Publish Command| Topic[MQTT Topic]
+    Topic -->|Command as JSON message| System[Planktoscope System]
+    System -->|Perform Action| Actuator[Hardware Actuator]
+    Actuator -->|Action Result| System
+    System -->|Publish Status| StatusTopic[MQTT Status Topic]
+    StatusTopic -->|Status Update| User
+```
+
+### Explanation
+- **User Application**: Initiates the interaction by publishing a command to a specific MQTT topic.
+- **MQTT Topic**: Receives the command which is structured as a JSON message. This is the main communication channel where commands are sent.
+- **Planktoscope System**: Interprets the JSON command and converts it into an action that will be performed by the hardware (like moving a pump or adjusting focus).
+- **Hardware Actuator**: The component that actually performs the physical action as commanded by the system.
+- **MQTT Status Topic**: After the action is executed, the system publishes the result or status update to a separate MQTT topic dedicated to status updates.
+- **User or Client Application**: Receives the status update from the status topic, completing the feedback loop.
+
+
+## MQTT Topics Overview
+
+In Planktoscope, MQTT topics are categorized to control and monitor different components of the system:
+
+- **Actuator Topics**: Manage movements of mechanical parts (pump, focus and light). Receive only.
+- **Imager Topics**: Control imaging operations related to the camera.
+- **Segmenter Topics**: Handle image segmentation processes.
+- **Status Topics**: Provide updates on the status of various components and mqtt commands. Publish only.
+
 
 ## Topic details
 
-### `actuator`
+In this section, we explore the different use cases associated with each MQTT topic. You'll find a detailed description of how JSON messages are filled in by the user and published by the MQTT server. This includes the specific scenarios in which data is sent or received, providing an in-depth understanding of the interactions between system components and the timing of communications.
 
+### `Actuator Topics`
+Control and manage actuator components such as pumps and focus mechanisms.
 #### `actuator/pump`
-
-Control the movement of the pump. The message is a JSON object:
+- **Function**: Controls the pump to move fluid within the device.
+- **JSON message to move the pump**:
 
 ```json
 {
@@ -34,10 +50,9 @@ Control the movement of the pump. The message is a JSON object:
   "flowrate": 1
 }
 ```
-
 This messages make the pump move 10mL forward at 1mL/min.
 
-Another supported message is:
+- **JSON message to stop the pump**:
 
 ```json
 {
@@ -45,11 +60,12 @@ Another supported message is:
 }
 ```
 
-- Receive only
+
 
 #### `actuator/focus`
 
-Control of the focus stage. The message is a JSON object, speed is optional:
+- **Function**: Control of the focus stage.
+- **JSON message to move the focus**:
 
 ```json
 {
@@ -59,10 +75,10 @@ Control of the focus stage. The message is a JSON object, speed is optional:
   "speed": 1
 }
 ```
-
+Speed is optional.
 This message makes the stage move up by 10mm.
 
-Another supported message is:
+- **JSON message to stop the focus**:
 
 ```json
 {
@@ -70,12 +86,38 @@ Another supported message is:
 }
 ```
 
-- Receive only
+#### `actuator/light`
+
+- **Function**: Control the intensity and state of the LED lighting system through the `i2c_led` and `pwm_led` controllers.
+
+- **JSON message to set the light**:
+
+```json
+{
+  "action": "set",
+  "led": "1",
+  "current": "300mA",
+}
+```
+led is required. Specify which LED (1 or 2).
+current is optional, max is 376mA.
+
+- **JSON message to on/off the light**:
+
+```json
+{
+  "action": "on",
+  "led": "1",
+}
+```
+action can be on or off.
+led is required. Specify which LED (1 or 2).
+
 
 ### `imager/image`
 
-This topic controls the camera and capture. The message allowed is a JSON message:
-
+- **Function**: This topic controls the camera and capture.
+- **JSON message to image**:
 ```json
 {
   "action": "image",
@@ -87,7 +129,8 @@ This topic controls the camera and capture. The message allowed is a JSON messag
 
 Volume is in mL.
 
-This topic can also receive a config update message:
+- **JSON configuration update message**: 
+This topic can also receive a config update message
 
 ```json
 {
@@ -95,7 +138,7 @@ This topic can also receive a config update message:
   "config": {...}
 }
 ```
-
+- **JSON settings message**: 
 A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain`, `white_balance` and `image_gain` are optionals:
 
 ```json
@@ -110,8 +153,6 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
   }
 }
 ```
-
-- Receive only
 
 ### `segmenter/segment`
 
@@ -145,7 +186,7 @@ The `action` element is the only element required. If no `path` is supplied, the
 
 ### `status`
 
-This high-level topic is used to send information to the Node-Red process. There is no publication or receive at this level.
+This topic is used to send information to the Node-Red process. There is no publication or receive at this level.
 
 #### `status/pump`
 
@@ -180,6 +221,21 @@ Duration is a best guess estimate. It should not be used to control the other ev
 Status is one of `Started`, `Ready`, `Done`, `Interrupted`, `Error`, `Dead`.
 
 - Publish only
+
+#### `status/light`
+
+ Status of the light provides updates on the current state of the lighting system. Status can be updated in response to changes made via commands or reflect errors or system warnings.
+
+ It's a JSON object with:
+
+```json
+{
+  "status": "Ready"
+}
+``` 
+
+`status` is one of `Ready`, `Updated`, `Error`  or `Dead`.
+
 
 #### `status/imager`
 
@@ -227,3 +283,45 @@ Status of the segmentation. It's a JSON object with:
       "label": 0, "width": 29, "height": 80, ....
 }
 ```
+## Common Log Errors
+
+### MQTT Connection Errors
+- **Error Log**: 
+
+`"Error : Connection to the MQTT server is unexpectedly lost"`
+
+- **Description**: This error occurs when the MQTT client cannot establish a connection with the broker within the expected timeframe.
+- **Possible Causes**:
+  - Network issues.
+  - Incorrect broker address.
+  - Broker unavailable.
+- **Resolution Steps**:
+  - Check network connectivity.
+  - Verify broker address and availability.
+
+### MQTT Publishing Errors
+- **Error Log**: 
+
+`"Failed to Publish Message: Broker Unresponsive"`
+
+- **Description**: Indicates a failure in sending a message to the MQTT broker, typically due to broker issues.
+- **Possible Causes**:
+  - Broker overload.
+  - Connectivity issues affecting the broker.
+- **Resolution Steps**:
+  - Retry publishing the message after a brief interval.
+
+### Parameter Missing or Invalid
+- **Error Log**: 
+
+`"Error: The received message has the wrong argument"`
+
+`"Error: Error, the message is missing an argument"`
+
+- **Description**: This log entry is created when an expected parameter is missing from the JSON message or a parameter value is invalid.
+- **Possible Causes**:
+  - Omission of required data fields in the JSON message.
+  - Incorrect data values that do not meet validation rules.
+- **Resolution Steps**:
+  - Review the JSON message to ensure all required fields are included.
+  - Validate data values against the expected input requirements.
