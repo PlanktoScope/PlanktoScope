@@ -80,7 +80,7 @@ jobs:
           string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Abbreviate git SHA
-        run: echo 'ABBREVIATED_SHA=${GITHUB_SHA::7}' >> $GITHUB_ENV
+        run: echo 'ABBREVIATED_SHA=${${{ github.sha }}::7}' >> $GITHUB_ENV
 
       - name: Set documentation variant suffix
         run: |
