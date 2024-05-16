@@ -4,13 +4,9 @@ on:
   push:
     branches:
       - 'master'
-      - 'main'
-      - 'edge'
-      - 'beta'
       - 'documentation/beta'
-      - 'software/beta'
-      - 'stable'
       - 'documentation/stable'
+      - 'software/beta'
       - 'software/stable'
     tags:
       - 'documentation/v*'
@@ -23,14 +19,13 @@ on:
         required: false
 
 env:
-    IMAGE_REGISTRY: ghcr.io
-    IMAGE_OWNER: ${{ github.repository_owner }}
-    IMAGE_NAME: project-docs
-    # Note: the image will be published to IMAGE_REGISTRY/IMAGE_OWNER/IMAGE_NAME,
-    # which defaults to ghcr.io/PlanktoScope/project-docs. But in PRs from external forks by other
-    # people we will try to publish the image under that person instead, because we can't publish
-    # to ghcr.io/PlanktoScope in GitHub Actions workflow runs triggered by PRs from external forks
-    # (see https://github.com/PlanktoScope/device-backend/pull/30 for details).
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_NAME: 'project-docs'
+  MAIN_BRANCH: 'master' # pushing to the main branch will update the "edge" tag on the image
+  BETA_BRANCH: 'documentation/beta' # pushing to this branch will update the "beta" tag on the image
+  STABLE_BRANCH: 'documentation/stable' # pushing to this branch will update the "stable" tag on the image
+  TAG_PREFIX: 'documentation/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
+  PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:
   build:
@@ -38,99 +33,16 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - default
+          - minimal # (without hardware setup guides, to save space)
     steps:
       - uses: actions/checkout@v4
 
       # Build documentation website
-      - name: Install poetry
-        run: pipx install poetry==1.7.1
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          cache: 'poetry'
-          cache-dependency-path: |
-            documentation/poetry.lock
-
-      - name: Install build dependencies
-        run: |
-          poetry -C ./documentation/ install
-
-      - name: Import external assets
-        run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
-
-      - name: Check documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ check
-
-      - name: Build documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
-
-      - name: Change image owner on pull requests from external forks
-        if: ${{ github.event_name == 'pull_request' }}
-        run: echo "IMAGE_OWNER=${{ github.event.pull_request.head.repo.owner.login }}" >> $GITHUB_ENV
-
-      # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
-      # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
-      - name: Lowercase image registry and owner
-        id: registry_owner_case
-        uses: ASzc/change-string-case-action@v6
-        with:
-          string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_OWNER }}
-
-      # Build and publish Docker container image
-      - name: Get Docker metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ steps.registry_owner_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=match,pattern=documentation/v(.*),group=1
-            type=edge,branch=master
-            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
-            type=ref,event=pr
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
-            type=sha
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: ./documentation
-          pull: true
-          push: ${{ github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag' }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      # Upload documentation website as archive
-      - name: Upload website archive
-        uses: actions/upload-artifact@v4
-        with:
-          name: documentation-website
-          path: documentation/site
-
-  build-minimal:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v4
-
-      # Build minimal documentation website (without hardware setup guides, to save space)
       - name: Install poetry
         run: pipx install poetry==1.7.1
 
@@ -149,8 +61,9 @@ jobs:
       - name: Import external assets
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
 
-      - name: Make documentation minimal
-        run: poetry -C ./documentation/ run poe --root ./documentation/ make-minimal
+      - name: Make documentation ${{ matrix.variant }}
+        if: ${{ matrix.variant != 'default' }}
+        run: poetry -C ./documentation/ run poe --root ./documentation/ make-${{ matrix.variant }}
 
       - name: Check documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ check
@@ -158,29 +71,44 @@ jobs:
       - name: Build documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
-      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
-      # https://github.com/macbre/push-to-ghcr/issues/12
-      - name: Lowercase Registry
-        id: registry_owner_case
+      # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
+      # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase image registry and owner
+        id: image_registry_case
         uses: ASzc/change-string-case-action@v6
         with:
-          string: ${{ env.IMAGE_REGISTRY }}
+          string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Abbreviate git SHA
+        run: echo 'ABBREVIATED_SHA=${GITHUB_SHA::7}' >> $GITHUB_ENV
+
+      - name: Set documentation variant suffix
+        run: |
+          if [[ '${{ matrix.variant }}' != 'default' ]]; then
+            echo 'VARIANT_SUFFIX'='-${{ matrix.variant}}' >> $GITHUB_ENV
+          fi
 
       # Build and publish Docker container image
       - name: Get Docker metadata
         id: meta
         uses: docker/metadata-action@v5
+        env:
+          IS_MAIN_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.MAIN_BRANCH) }}
+          IS_BETA_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.BETA_BRANCH) }}
+          IS_STABLE_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.STABLE_BRANCH) }}
         with:
-          images: ${{ steps.registry_owner_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
+          images: ${{ steps.image_registry_case.outputs.lowercase }}
           flavor: |
-            suffix=-minimal
+            suffix=${{ env.VARIANT_SUFFIX }}
           tags: |
-            type=match,pattern=documentation/v(.*),group=1
-            type=edge,branch=master
-            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'master') && github.ref != format('refs/heads/{0}', 'main') }}
+            type=match,pattern=${{ env.TAG_PREFIX }}(.*),group=1 # this implicitly updates latest
+            type=raw,value=stable,enable=${{ env.IS_STABLE_BRANCH }},priority=702
+            type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
+            type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
-            type=sha
+            type=ref,event=pr,suffix=-git-${{ env.ABBREVIATED_SHA }},priority=599
+            type=raw,value=git-${{ env.ABBREVIATED_SHA }}
+            type=sha # this sha doesn't appear to correspond to the git sha
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -189,6 +117,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
+        if: ${{ env.PUSH_IMAGE }}
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -200,14 +129,14 @@ jobs:
         with:
           context: ./documentation
           pull: true
-          push: ${{ github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'push tag' }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          push: ${{ env.PUSH_IMAGE }}
 
       # Upload documentation website as archive
       - name: Upload website archive
         uses: actions/upload-artifact@v4
         with:
-          name: documentation-website-minimal
+          name: documentation-website${{ env.VARIANT_SUFFIX }}
           path: documentation/site
