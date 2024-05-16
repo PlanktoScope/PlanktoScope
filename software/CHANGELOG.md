@@ -7,6 +7,12 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Changed
+
+- (System: administration) The `machine-name` binary is no longer provided by the OS setup scripts, but instead is provided by Forklift for upgradeability (by upgrading the pallet applied to the Raspberry Pi) & removeability/replaceability (by switching to a different pallet which provides a different version of - or does not provide - the `machine-name`).
+
 ## v2024.0.0-alpha.2 - 2024-04-25
 
 ### Added
