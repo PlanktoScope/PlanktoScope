@@ -9,9 +9,9 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.7.0"
+forklift_version="0.7.2-alpha.5"
 pallet_path="github.com/PlanktoScope/pallet-standard"
-pallet_version="v2024.0.0-alpha.2"
+pallet_version="feature/machine-name-binary"
 
 arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
