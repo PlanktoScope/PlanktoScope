@@ -59,6 +59,14 @@ This messages make the pump move 10mL forward at 1mL/min.
   "action": "stop"
 }
 ```
+- **Authorized values for pump json messages**:
+
+| Champ      | Type   | Accepted Values                                     |
+|------------|--------|-----------------------------------------------------|
+| `action`   | string | "move", "stop"                                      |
+| `direction`| string | "FORWARD", "BACKWARD"                               |
+| `volume`   | int    |  1 to 25 ml                                         |
+| `flowrate` | int    |  1 to 50 ml/min                                     |
 
 
 
@@ -85,6 +93,15 @@ This message makes the stage move up by 10mm.
   "action": "stop"
 }
 ```
+- **Authorized values for pump json messages**:
+
+| Champ      | Type   | Accepted Values                                     |
+|------------|--------|-----------------------------------------------------|
+| `action`   | string | "move", "stop"                                      |
+| `direction`| string | "UP", "DOWN"                                        |
+| `volume`   | int    |  1 to 80000 μm                                      |
+| `flowrate` | int    |  1 to 5000 μm/s                                     |
+
 
 #### `actuator/light`
 
@@ -96,11 +113,10 @@ This message makes the stage move up by 10mm.
 {
   "action": "set",
   "led": "1",
-  "current": "300mA",
+  "current": "20mA",
 }
 ```
-led is required. Specify which LED (1 or 2).
-current is optional, max is 376mA.
+This json message sets the led 1 to 20mA
 
 - **JSON message to on/off the light**:
 
@@ -110,11 +126,18 @@ current is optional, max is 376mA.
   "led": "1",
 }
 ```
-action can be on or off.
-led is required. Specify which LED (1 or 2).
+ This json message turns on the led 1.
+
+- **Authorized values for led json messages**:
+
+| Champ          | Type   | Accepted values                                        |
+|----------------|--------|--------------------------------------------------------|
+| `action`       | string | "on" , "off" , "set"                                   |
+| `led`          | int    | 1 , 2                                                  |
+| `current`      | int    | 1 to 20 (mA)                                           |
 
 
-### `imager/image`
+### `Imager Topic`
 
 - **Function**: This topic controls the camera and capture.
 - **JSON message to image**:
@@ -126,8 +149,7 @@ led is required. Specify which LED (1 or 2).
   "nb_frame": 200
 }
 ```
-
-Volume is in mL.
+This message allows 200 captures for 1 mL.
 
 - **JSON configuration update message**: 
 This topic can also receive a config update message
@@ -138,6 +160,7 @@ This topic can also receive a config update message
   "config": {...}
 }
 ```
+
 - **JSON settings message**: 
 A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain`, `white_balance` and `image_gain` are optionals:
 
@@ -154,7 +177,15 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
 }
 ```
 
-### `segmenter/segment`
+| Champ      | Type   | Accepted Values                                     |
+|------------|--------|-----------------------------------------------------|
+| `action`   | string | "image", "config"                                      |
+| `pump_direction`| string | "FORWARD", "BACKWARD"                               |
+| `volume`   | int    |  1 to 25 ml                                         |
+| `nb_frame` | int    |                                    |
+
+
+### `segmenter Topic`
 
 This topic controls the segmentation process. The message is a JSON object:
 
@@ -182,11 +213,24 @@ The `action` element is the only element required. If no `path` is supplied, the
 
 `keep` allows to remove or keep the roi (when you do an ecotaxa export, no effects otherwise, the roi are kept).
 
+| Champ      | Type   | Accepted Values                                     |
+|------------|--------|-----------------------------------------------------|
+| `action`   | string | "segment", "stop"                                      |
+| `path`     | string | "path/to/segment"                               |
+| `force`    | bool    |  "true" or "false"                                         |
+| `recursive` | bool   |  "true" or "false"                                  |
+| `ecotaxa`    | bool    |  "true" or "false"                                         |
+| `keep` | bool   |  "true" or "false"                                  |
+
+
+
+
 - Receive only
 
-### `status`
+### `Status Topics`
 
 This topic is used to send information to the Node-Red process. There is no publication or receive at this level.
+
 
 #### `status/pump`
 
@@ -201,7 +245,13 @@ State of the pump. It's a JSON object with:
 
 Duration is a best guess estimate. It should not be used to control the other events. If you want to wait for a movement to finish, the best thing to do is to wait for the message `Done`.
 
-Status can be `Started`, `Ready`, `Done`, `Interrupted`, `Error`, `Dead`.
+| Status Message                           | Description                                                                                           |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `"Started"`                              | Indicates that the pump has started moving.                                                           |
+| `"Interrupted"`                          | Shows that the pump's movement was stopped prematurely, typically due to a stop command.              |
+| `"Ready"`                  | indicates that the pump is ready to receive a command.                        |
+| `"Done"`                                 | Indicates that the pump has completed its action, such as fully pumping the specified volume.         |
+
 
 - Publish only
 
@@ -218,7 +268,14 @@ State of the focus stage. It's a JSON object with:
 
 Duration is a best guess estimate. It should not be used to control the other events. If you want to wait for a movement to finish, the best thing to do is to wait for the message `Done`.
 
-Status is one of `Started`, `Ready`, `Done`, `Interrupted`, `Error`, `Dead`.
+
+| Status Message | Description                                                                                       |
+|----------------|---------------------------------------------------------------------------------------------------|
+| `"Started"`    | Indicates that the focusing motors have begun moving.                                             |
+| `"Interrupted"`| Shows that the movement of the focusing motors was stopped before completion.                     |
+| `"Ready"`      | Indicates that the focus is ready to receive a command.                                           |
+| `"Done"`       | Indicates that the focusing motors have completed their movement as specified.                    |
+
 
 - Publish only
 
@@ -234,8 +291,12 @@ Status is one of `Started`, `Ready`, `Done`, `Interrupted`, `Error`, `Dead`.
 }
 ``` 
 
-`status` is one of `Ready`, `Updated`, `Error`  or `Dead`.
-
+| Status Message | Description                                                                  |
+|----------------|------------------------------------------------------------------------------|
+| `"Ready"`      | The light system is operational and awaiting commands.                       |
+| `"Updated"`    | Successful application of settings such as LED current or power state.       |
+| `"Interrupted"`      | Issues detected with the command, including invalid inputs or failures.      |
+| `"Dead"`       | The light system is shutting down, usually due to a commanded stop.          |
 
 #### `status/imager`
 
@@ -248,7 +309,15 @@ State of the imager. It's a JSON object with:
 }
 ```
 
-Status is one of `Started`, `Ready`, `Completed` or `12_11_15_0.1.jpg has been imaged`.
+Started, Ready, Completed or 12_11_15_0.1.jpg has been imaged.
+
+| Status Message           | Description                                                                |
+|--------------------------|----------------------------------------------------------------------------|
+| "Started"                | Image capture or dataset acquisition has begun.                            |
+| "Ready"                  | Ready to receive a command.                                                |
+| "Completed"              | Imager task, such as image capture, is complete.                           |
+| "Image_id.jpg has been imaged"  | Image_id.jpg captured in the moment.                               |
+
 
 - Publish only
 
@@ -274,6 +343,8 @@ Status of the segmentation. It's a JSON object with:
 }
 ```
 
+Object number object_id has been detected.
+
 #### `status/segmenter/metric`
 
 ```json
@@ -283,6 +354,18 @@ Status of the segmentation. It's a JSON object with:
       "label": 0, "width": 29, "height": 80, ....
 }
 ```
+
+Descriptive data for object number id_object.
+
+| Status Message | Description                                                                  |
+|----------------|------------------------------------------------------------------------------|
+| `"Started"`    | Segmentation process has initiated.                                          |
+| `"Done"`       | Segmentation has successfully completed all tasks.                           |
+| `"Busy"`       | Segmenter is active and unable to take on new tasks.                         |
+| `"Interrupted"`| Segmentation was prematurely halted.                                         |
+| `"Error"`      | An error occurred during segmentation, such as file access or input issues.  |
+
+
 ## Common Log Errors
 
 ### MQTT Connection Errors
