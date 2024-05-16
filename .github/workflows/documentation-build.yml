@@ -80,7 +80,7 @@ jobs:
           string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Get SHA of commit on PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: github.event_name == 'pull_request'
         # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
         # (refer to https://stackoverflow.com/a/68068674/23202949):
         run: |
