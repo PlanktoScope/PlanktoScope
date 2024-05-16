@@ -23,8 +23,14 @@ on:
         required: false
 
 env:
-    IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+    IMAGE_REGISTRY: ghcr.io
+    IMAGE_OWNER: ${{ github.repository_owner }}
     IMAGE_NAME: project-docs
+    # Note: the image will be published to IMAGE_REGISTRY/IMAGE_OWNER/IMAGE_NAME,
+    # which defaults to ghcr.io/PlanktoScope/project-docs. But in PRs from external forks by other
+    # people we will try to publish the image under that person instead, because we can't publish
+    # to ghcr.io/PlanktoScope in GitHub Actions workflow runs triggered by PRs from external forks
+    # (see https://github.com/PlanktoScope/device-backend/pull/30 for details).
 
 jobs:
   build:
@@ -60,20 +66,24 @@ jobs:
       - name: Build documentation
         run: poetry -C ./documentation/ run poe --root ./documentation/ build
 
-      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
-      # https://github.com/macbre/push-to-ghcr/issues/12
-      - name: Lowercase Registry
-        id: registry_case
+      - name: Change image owner on pull requests from external forks
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "IMAGE_OWNER=${{ github.event.pull_request.head.repo.owner.login }}" >> $GITHUB_ENV
+
+      # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
+      # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase image registry and owner
+        id: registry_owner_case
         uses: ASzc/change-string-case-action@v6
         with:
-          string: ${{ env.IMAGE_REGISTRY }}
+          string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_OWNER }}
 
       # Build and publish Docker container image
       - name: Get Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
+          images: ${{ steps.registry_owner_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
           tags: |
             type=match,pattern=documentation/v(.*),group=1
             type=edge,branch=master
@@ -151,7 +161,7 @@ jobs:
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
-        id: registry_case
+        id: registry_owner_case
         uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ env.IMAGE_REGISTRY }}
@@ -161,7 +171,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
+          images: ${{ steps.registry_owner_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
           flavor: |
             suffix=-minimal
           tags: |
