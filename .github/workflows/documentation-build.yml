@@ -79,8 +79,12 @@ jobs:
         with:
           string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Abbreviate git SHA
-        run: printf "ABBREVIATED_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
+      - name: Get SHA of commit on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
+        # (refer to https://stackoverflow.com/a/68068674/23202949):
+        run: |
+          printf "PR_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
 
       - name: Set documentation variant suffix
         run: |
@@ -106,9 +110,8 @@ jobs:
             type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
             type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=ref,event=pr,suffix=-git-${{ env.ABBREVIATED_SHA }},priority=599
-            type=raw,value=git-${{ env.ABBREVIATED_SHA }}
-            type=sha # this sha doesn't appear to correspond to the git sha
+            type=ref,event=pr,suffix=-git-${{ env.PR_SHA }},enable=${{ env.PR_SHA != "" }},priority=599
+            type=sha
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
