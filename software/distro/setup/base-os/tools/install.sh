@@ -43,13 +43,8 @@ sudo usermod -aG docker $USER
 sudo apt-get install -y --no-install-recommends cockpit
 # TODO: after we switch to NetworkManager, add cockpit-networkmanager
 
-# Install tool to generate machine names based on serial numbers
-machinename_version="0.1.3"
-arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
-curl -L "https://github.com/PlanktoScope/machine-name/releases/download/v$machinename_version/machine-name_${machinename_version}_linux_${arch}.tar.gz" \
-  | sudo tar -xz -C /usr/bin/ machine-name
-sudo mv /usr/bin/machine-name "/usr/bin/machine-name-${machinename_version}"
-sudo ln -s "machine-name-${machinename_version}" /usr/bin/machine-name
+# Prepare tool to generate machine names based on serial numbers
+# Note: the tool itself is deployed/managed by Forklift.
 # TODO: remove this by updating the Node-RED frontend and Python backend:
 # Add a symlink at /var/lib/planktoscope/machine-name for backwards-compatibility with the Node-RED
 # frontend and Python backend, which are not yet updated to check /run/machine-name instead:
