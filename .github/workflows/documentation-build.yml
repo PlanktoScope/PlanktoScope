@@ -110,7 +110,7 @@ jobs:
             type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
             type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=ref,event=pr,suffix=-git-${{ env.PR_SHA }},enable=${{ github.event.pull_request }},priority=599
+            type=ref,event=pr,suffix=-git-${{ env.PR_SHA }},enable=${{ env.PR_SHA != "" }},priority=599
             type=sha
 
       - name: Set up QEMU
