@@ -79,11 +79,15 @@ jobs:
         with:
           string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Get SHA of commit on PR
-        if: github.event.pull_request.head.sha
+      - name: Get actual commit SHA
         # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
         # (refer to https://stackoverflow.com/a/68068674/23202949):
-        run: printf "PR_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+        run: |
+          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+            printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+          elif [[ ${{ env.PUSH_IMAGE }} = "true" ]]; then
+            printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
+          fi
 
       - name: Set documentation variant suffix
         run: |
@@ -99,7 +103,6 @@ jobs:
           IS_MAIN_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.MAIN_BRANCH) }}
           IS_BETA_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.BETA_BRANCH) }}
           IS_STABLE_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.STABLE_BRANCH) }}
-          HAS_PR_SHA: ${{ github.event.pull_request.head.sha != '' }}
         with:
           images: ${{ steps.image_registry_case.outputs.lowercase }}
           flavor: |
@@ -110,8 +113,7 @@ jobs:
             type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
             type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=raw,value=sha-${{ env.PR_SHA }},enable=${{ env.HAS_PR_SHA }},priority=100
-            type=sha,enable=${{ !env.HAS_PR_SHA }}
+            type=raw,value=sha-${{ env.ACTUAL_SHA }},enable=${{ env.ACTUAL_SHA != '' }},priority=100
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -120,7 +122,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
-        if: env.PUSH_IMAGE
+        if: env.PUSH_IMAGE == 'true'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
