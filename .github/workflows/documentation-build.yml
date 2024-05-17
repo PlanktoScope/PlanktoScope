@@ -99,6 +99,7 @@ jobs:
           IS_MAIN_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.MAIN_BRANCH) }}
           IS_BETA_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.BETA_BRANCH) }}
           IS_STABLE_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.STABLE_BRANCH) }}
+          HAS_PR_SHA: ${{ github.event.pull_request.head.sha != '' }}
         with:
           images: ${{ steps.image_registry_case.outputs.lowercase }}
           flavor: |
@@ -109,8 +110,9 @@ jobs:
             type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
             type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=ref,event=pr,suffix=-sha-${{ env.PR_SHA }},enable=${{ github.event.pull_request.head.sha != '' }},priority=599
-            type=sha
+            type=ref,event=pr,suffix=-sha-${{ env.PR_SHA }},enable=${{ env.HAS_PR_SHA }},priority=599
+            type=raw,value=sha-${{ env.PR_SHA }},enable=${{ env.HAS_PR_SHA }},priority=100
+            type=sha,enable=${{ !env.HAS_PR_SHA }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
