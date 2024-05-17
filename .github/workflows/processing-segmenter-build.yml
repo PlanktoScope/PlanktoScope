@@ -17,11 +17,20 @@ on:
         required: false
 
 env:
-  REGISTRY_IMAGE: ghcr.io/planktoscope/device-backend-processing-segmenter
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_NAME: 'device-backend-processing-segmenter'
+  MAIN_BRANCH: 'main' # pushing to this branch will update the "edge" tag on the image
+  BETA_BRANCH: 'beta' # pushing to this branch will update the "beta" tag on the image
+  STABLE_BRANCH: 'stable' # pushing to this branch will update the "stable" tag on the image
+  TAG_PREFIX: 'v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
+  PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       fail-fast: false
       matrix:
@@ -29,25 +38,25 @@ jobs:
           - linux/amd64
           - linux/arm64
           - linux/arm/v7
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare environment variables
-        run: |
-          platform=${{ matrix.platform }}
-          echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+      # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
+      # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase image registry and owner
+        id: image_registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
 
       # Build and publish Docker container image
       - name: Get Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY_IMAGE }}
+          images: ${{ steps.image_registry_case.outputs.lowercase }}
           tags: |
-            type=sha
+            type=sha # this sha doesn't appear to correspond to the git sha
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -56,6 +65,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
+        if: env.PUSH_IMAGE == 'true'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -68,19 +78,22 @@ jobs:
         with:
           context: ./processing/segmenter
           pull: true
-          push: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
           platforms: ${{ matrix.platform }}
-          tags: ${{ env.REGISTRY_IMAGE }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=build-${{ matrix.platform }}
-          cache-to: type=gha,mode=max,scope=build-${{ matrix.platform }}
-          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=${{ !github.event.pull_request.head.repo.fork }}
+          cache-from: type=gha,scope=processing-segmenter-build-${{ matrix.platform }}
+          cache-to: type=gha,mode=max,scope=processing-segmenter-build-${{ matrix.platform }}
+          outputs: type=image,name=${{ steps.image_registry_case.outputs.lowercase }},push-by-digest=true,name-canonical=true,push=${{ env.PUSH_IMAGE }}
 
       - name: Export digest
         run: |
           mkdir -p /tmp/digests
           digest="${{ steps.build.outputs.digest }}"
           touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Determine digest name
+        run: |
+          platform=${{ matrix.platform }}
+          echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
 
       - name: Upload digest
         uses: actions/upload-artifact@v4
@@ -102,39 +115,63 @@ jobs:
           pattern: digests-*
           merge-multiple: true
 
+      # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
+      # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase image registry and owner
+        id: image_registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Get actual commit SHA
+        # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
+        # (refer to https://stackoverflow.com/a/68068674/23202949):
+        run: |
+          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+            printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+          elif [[ ${{ env.PUSH_IMAGE }} = "true" ]]; then
+            printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
+          fi
+
       # Build and publish Docker container image
       - name: Get Docker metadata
         id: meta
         uses: docker/metadata-action@v5
+        env:
+          IS_MAIN_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.MAIN_BRANCH) }}
+          IS_BETA_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.BETA_BRANCH) }}
+          IS_STABLE_BRANCH: ${{ github.ref == format('refs/heads/{0}', env.STABLE_BRANCH) }}
         with:
-          images: ${{ env.REGISTRY_IMAGE }}
+          images: ${{ steps.image_registry_case.outputs.lowercase }}
           tags: |
-            type=match,pattern=v(.*),group=1
-            type=edge,branch=main
-            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'main') && github.ref != format('refs/heads/{0}', 'main') }}
+            type=match,pattern=${{ env.TAG_PREFIX }}(.*),group=1 # this implicitly updates latest
+            type=raw,value=stable,enable=${{ env.IS_STABLE_BRANCH }},priority=702
+            type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
+            type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'stable') }}
-            type=sha
+            type=raw,value=sha-${{ env.ACTUAL_SHA }},enable=${{ env.ACTUAL_SHA != '' }},priority=100
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
+        if: env.PUSH_IMAGE == 'true'
         uses: docker/login-action@v3
-        if: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create manifest list and push
+        if: env.PUSH_IMAGE == 'true'
         working-directory: /tmp/digests
-        if: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
         run: |
-          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
+          docker buildx imagetools create \
+            $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
+            $(printf '${{ steps.image_registry_case.outputs.lowercase }}@sha256:%s ' *)
 
       - name: Inspect image
-        if: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
+        if: env.PUSH_IMAGE == 'true'
         run: |
-          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}
+          docker buildx imagetools inspect \
+            ${{ steps.image_registry_case.outputs.lowercase }}:${{ steps.meta.outputs.version }}

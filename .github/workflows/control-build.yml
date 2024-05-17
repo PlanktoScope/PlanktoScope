@@ -17,7 +17,8 @@ on:
         required: false
 
 env:
-  REGISTRY_IMAGE: ghcr.io/planktoscope/device-backend-control
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_NAME: device-backend-control
 
 jobs:
   ci:
