@@ -12,6 +12,9 @@ concurrency:
   group: "docs-beta-deploy"
   cancel-in-progress: false
 
+env:
+    DESTINATION_OWNER: ${{ github.repository_owner }}
+
 defaults:
   run:
     shell: bash
@@ -63,7 +66,7 @@ jobs:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: documentation/site/
-          destination-github-username: PlanktoScope
+          destination-github-username: ${{ env.DESTINATION_OWNER }}
           destination-repository-name: ${{ vars.REPOSITORY_NAME }}
           user-email: github-actions[bot]@users.noreply.github.com
           user-name: github-actions[bot]
