@@ -62,7 +62,7 @@ jobs:
         run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
 
       - name: Make documentation ${{ matrix.variant }}
-        if: ${{ matrix.variant != 'default' }}
+        if: matrix.variant != 'default'
         run: poetry -C ./documentation/ run poe --root ./documentation/ make-${{ matrix.variant }}
 
       - name: Check documentation
@@ -80,7 +80,7 @@ jobs:
           string: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Get SHA of commit on PR
-        if: github.event_name == 'pull_request'
+        if: github.event.pull_request
         # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
         # (refer to https://stackoverflow.com/a/68068674/23202949):
         run: |
@@ -110,7 +110,7 @@ jobs:
             type=raw,value=beta,enable=${{ env.IS_BETA_BRANCH }},priority=701
             type=edge,branch=${{ env.MAIN_BRANCH }}
             type=ref,event=pr
-            type=ref,event=pr,suffix=-git-${{ env.PR_SHA }},enable=${{ env.PR_SHA != "" }},priority=599
+            type=ref,event=pr,suffix=-git-${{ env.PR_SHA }},enable=${{ github.event.pull_request }},priority=599
             type=sha
 
       - name: Set up QEMU
@@ -120,7 +120,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub Container Registry
-        if: ${{ env.PUSH_IMAGE }}
+        if: env.PUSH_IMAGE
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
