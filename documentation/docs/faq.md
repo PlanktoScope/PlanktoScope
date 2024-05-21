@@ -25,7 +25,7 @@ Because these factors depend heavily on your particular situation, we cannot pro
 
 - had a final BOM cost (excluding shipping costs) of USD ~$400-500 per unit; this BOM cost excludes the prices of parts which were initially ordered and then had to be substituted with other parts for the final BOM due to problems discovered in their interactions with other parts which had been substituted in the initial BOM; however, this cost also includes the inflated price of Raspberry Pi 4 computers during the 2021-2023 Raspberry Pi shortage.
 - took a full working day to fabricate and assemble each unit
-- required a total of a few working days of initial setup and troubleshooting across all ten units
+- required a total of approximately one week of work for initial setup and troubleshooting across all ten units
 
 Compared to the above example, you should expect a higher total cost for you to procure your own PlanktoScope assembly kit and assemble it into a fully-functionality PlanktoScope - especially if this will be your first attempt with the process. If you aim to make your own kit of PlanktoScope parts to assemble into a machine on your own, you can prevent frustration and disappointment by managing your expectations about the PlanktoScope project: think of the it as a rough recipe for you to spend significant amounts of time tinkering with and learning from, rather than a finished product.
 
