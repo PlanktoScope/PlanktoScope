@@ -33,7 +33,7 @@ Compared to the above example, you should expect a higher total cost for you to 
 
 Alternatively, if you purchase PlanktoScopes from FairScope, it will arrive as a finished product. To get a price estimate for purchasing PlanktoScopes from FairScope, you will need to [request a quote](https://www.fairscope.com/get-a-quote) from their website; the price will be higher than USD $500, because:
 
-1. FairScope handles all the factors listed above (in the "As a procure-it-yourself and build-it-yourself kit" section), including: selection of suppliers for BOM components; human labor and accumulated expertise for procurement, assembly, and bring-up of new machines; and maintenance of fabrication/assembly equipment.
+1. It includes the value provided by FairScope in handling all complexities of PlanktoScope manufacturing, assembly, and bring-up for you - including: selection of suppliers for BOM components; human labor and accumulated expertise for procurement, assembly, and bring-up of new machines; and maintenance of fabrication/assembly equipment.
 2. It includes the value provided by FairScope in delivering PlanktoScopes which consist of a well-controlled set of parts and which are tested, validated, and calibrated both for machine performance and for comparability of collected data.
 3. It includes a fraction of the value which FairScope will continue to provide to you over the lifetime of each PlanktoScope, in the form of ongoing open-source maintenance of the PlanktoScope's software - with bug fixes and new features delivered as software updates which you can easily install on your PlanktoScope.
 4. It includes the cost of labor provided by FairScope to develop open-source design improvements to the PlanktoScope's hardware.
