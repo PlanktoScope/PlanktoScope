@@ -11,7 +11,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; System) The official SD card images of PlanktoScope OS are now based on the 64-bit (arm64) version of the 2024-03-12 build of Raspberry Pi OS 11 (bullseye), instead of the 32-bit (armhf) version of the 2023-05-03 build of Raspberry Pi OS 11 (bullseye). This increases the performance of the Python segmenter, potentially by a factor of TBD. This is expected to break compatibility with the raspimjpeg-based imaging module. If you need a 32-bit version of PlanktoScope OS, you will need to run the OS setup scripts following the PlanktoScope project's documentation's "Non-standard installation" guide for software setup.
 - (System: administration) The `machine-name` binary is no longer provided by the OS setup scripts, but instead is provided by Forklift for upgradeability (by upgrading the pallet applied to the Raspberry Pi) & removeability/replaceability (by switching to a different pallet which provides a different version of - or does not provide - the `machine-name`).
+
+### Deprecated
+
+- (System) 32-bit versions of PlanktoScope OS (which can be set up on a 32-bit version of Raspberry Pi OS using the OS setup scripts) are no longer officially supported by the project, but they will continue to work for v2024.0.0 of PlanktoScope OS.
 
 ## v2024.0.0-alpha.2 - 2024-04-25
 
