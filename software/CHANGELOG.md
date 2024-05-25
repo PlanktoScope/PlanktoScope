@@ -18,6 +18,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System) 32-bit versions of PlanktoScope OS (which can be set up on a 32-bit version of Raspberry Pi OS using the OS setup scripts) are no longer officially supported by the project, but they will continue to work for v2024.0.0 of PlanktoScope OS.
 
+### Removed
+
+- (Application: GUI) The landing page's links to Portainer have been removed, as part of the deprecation in v2024.0.0-alpha.2 of the inclusion of Portainer by default in the PlanktoScope OS's SD card images.
+
+### Fixed
+
+- (Application: GUI) The landing page's links to offline PDF copies of the protocols.io protocols for PlanktoScope operation are no longer broken.
+
 ## v2024.0.0-alpha.2 - 2024-04-25
 
 ### Added
