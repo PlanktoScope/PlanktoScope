@@ -35,7 +35,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 sudo apt-get remove -y docker-buildx-plugin
 
 # Allow running Docker commands without sudo. Before the next reboot, subsequent setup scripts will
-# each need to call `newgrp docker` to take advantage of this
+# still need to use sudo to run commands which interact with the Docker daemon
 # (see https://docs.docker.com/engine/install/linux-postinstall/):
 sudo usermod -aG docker $USER
 
