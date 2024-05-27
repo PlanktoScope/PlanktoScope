@@ -183,7 +183,7 @@ This json message sets the led 1 to 20mA
 
 | Status/Error       | Cause                                |
 |--------------------|--------------------------------------|
-| `success`          | LED intensity set successfully       |
+| `Done`          | LED intensity set successfully       |
 | `invalid_current`  | The specified current value is invalid|
 | `invalid_led`      | The specified LED ID is invalid      |
 | `system_error`     | General system error during operation|
@@ -209,7 +209,7 @@ This json message sets the led 1 to 20mA
 
 | Status/Error       | Cause                                |
 |--------------------|--------------------------------------|
-| `success`          | LED turned on successfully           |
+| `Done`          | LED turned on successfully           |
 | `invalid_led`      | The specified LED ID is invalid      |
 | `system_error`     | General system error during operation|
 
@@ -233,7 +233,7 @@ This JSON message turns off LED 1.
 
 | Status/Error       | Cause                                |
 |--------------------|--------------------------------------|
-| `success`          | LED turned off successfully          |
+| `Interrepted`          | LED turned off successfully          |
 | `invalid_led`      | The specified LED ID is invalid      |
 | `system_error`     | General system error during operation|
 
@@ -260,6 +260,22 @@ This JSON message initiates image capture with the pump moving 1mL forward and c
 | `volume`         | int    | 1 to 25              | Volume in mL for the capture.                  |
 | `nb_frame`       | int    |          as much as the sd card can contain            | Number of frames to capture.                   |
 
+
+**Status/Error Messages for `image` action:**
+
+| Status/Error                                      | Cause                                                                                                     |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `"Started"`                         | The image capture process has started successfully.                                                       |
+| `"Configuration update error: object_data is missing!"` | The required `object_date` parameter is missing in the dataset metadata.                                  |
+| `"Configuration update error: chosen id are already in use!"` | The specified `(object_date, sample_id, acq_id)` tuple is already in use.                                  |
+| `"Image %d/%d been imaged to %s"`   | An image has been successfully captured and saved.                                                        |
+| `"Image %d/%d was not captured due to this error:timeout during capture! Retrying once!"` | A timeout occurred during image capture; retrying the capture.                                             |
+| `"Image %d/%d was not captured due to this error:%d was not found! Retrying once!"` | A data integrity file was not found during image capture; retrying the capture.                            |
+| `"Image %d/%d WAS NOT CAPTURED! STOPPING THE PROCESS!"` | An error occurred during image capture after a retry, causing the process to stop.                         |
+| `"Interrupted"`                     | The image capture process was stopped before completion.                                                  |
+| `"Done"`                            | The image capture process completed successfully.                                                         |
+| `"Busy"`                            | The camera is currently busy with another operation.                                                      |
+
 - **JSON configuration update message**: 
 This topic can also receive a config update message
 
@@ -276,6 +292,15 @@ This topic can also receive a config update message
 | `action`         | string | "config"             | Specifies the action to update configuration.  |
 | `config`         | object |                      | Configuration settings in JSON format.         |
 
+**Status/Error Messages for `config` action:**
+
+| Status/Error                                      | Cause                                                                                                     |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `"Config updated"`                  | The configuration has been successfully updated.                                                          |
+| `"Configuration message error"`     | The config message is missing required parameters.                                                        |
+| `"Busy"`                            | The camera is currently busy and cannot update the configuration.                                         |
+
+
 - **JSON settings message**: 
 A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain`, `white_balance` and `image_gain` are optionals:
 
@@ -291,27 +316,53 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
   }
 }
 ```
-**Authorized values for `config` action:**
+**Authorized values for `seting` action:**
 
 | Parameter             | Type   | Accepted Values      | Description                                    |
 |-----------------------|--------|----------------------|------------------------------------------------|
 | `action`              | string | "settings"           | Specifies the action to update camera settings.|
-| `iso`                 | int    |            100 to 800          | ISO sensitivity value.                         |
-| `shutter_speed`       | int    |          125 to ..            | Shutter speed value.                           |
+| `iso`                 | int    |  100 to 800          | ISO sensitivity value.                         |
+| `shutter_speed`       | int    |  125 to ..  (in μs)           | Shutter speed value.                           |
 | `white_balance_gain`  | object |                      | White balance gain values for red and blue.    |
-| `white_balance`       | string | on or off            | White balance mode.                            |
+| `white_balance`       | string | "auto", "off"            | White balance mode.                            |
 | `image_gain`          | object |                      | Image gain values for analog and digital.      |
 
+**Status/Error Messages for `settings` action:**
 
-**Possible status/error messages related to the imager:**
+| Status/Error                                      | Cause                                                                                                     |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `"Camera settings updated"`         | The camera settings have been successfully updated.                                                       |
+| `"Camera settings error"`           | The settings command is missing required parameters.                                                      |
+| `"Error: Resolution not valid"`     | The provided resolution parameter is invalid.                                                             |
+| `"Error: Iso number not valid"`     | The provided ISO parameter is invalid.                                                                    |
+| `"Error: Shutter speed not valid"`  | The provided shutter speed parameter is invalid.                                                          |
+| `"Error: White balance gain not valid"` | The provided white balance gain parameters are invalid.                                                   |
+| `"Error: White balance mode %s not valid"` | The provided white balance mode parameter is invalid.                                                      |
+| `"Error: Image gain not valid"`     | The provided image gain parameters are invalid.                                                           |
+| `"Busy"`                            | The camera is currently busy and cannot update settings.                                                  |
+
+- **JSON message to stop the imager**:
+
+```json
+{
+  "action": "stop"
+}
+```
+
+**Authorized values for `stop` action:**
+
+| Field    | Type   | Accepted Values |
+|----------|--------|-----------------|
+| `action` | string | "stop"          |
 
 
-| Status/Error Code | Description                                    |
-|-------------------|------------------------------------------------|
-| `Succes`       | Action was successful.                         |
-| `ERROR_INVALID_ACTION` | The specified action is invalid.              |
-| `ERROR_INVALID_PARAM`  | One or more parameters are invalid.           |
-| `ERROR_CAMERA_FAILURE` | The camera failed to execute the action.      |
+**Status/Error Messages for `stop` action:**
+
+| Status/Error                                      | Cause                                                                                                     |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `"Interrupted"`                     | The image capture process was stopped successfully.                                                       |
+| `"Busy"`                            | The camera is currently busy and cannot stop the operation.                                               |
+
 
 
 ### `segmenter`
