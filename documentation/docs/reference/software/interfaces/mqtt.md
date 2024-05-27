@@ -36,10 +36,9 @@ In Planktoscope, MQTT topics are categorized to control and monitor different co
 
 In this section, we explore the different use cases associated with each MQTT topic. You'll find a detailed description of how JSON messages are filled in by the user and published by the MQTT server. This includes the specific scenarios in which data is sent or received, providing an in-depth understanding of the interactions between system components and the timing of communications.
 
-### `Actuator Topics`
-Control and manage actuator components such as pumps and focus mechanisms.
-#### `actuator/pump`
+### `Pump`
 - **Function**: Controls the pump to move fluid within the device.
+
 - **JSON message to move the pump**:
 
 ```json
@@ -52,6 +51,28 @@ Control and manage actuator components such as pumps and focus mechanisms.
 ```
 This messages make the pump move 10mL forward at 1mL/min.
 
+**Authorized values for `move` action:**
+
+| Field       | Type   | Accepted Values                                     |
+|-------------|--------|-----------------------------------------------------|
+| `direction` | string | "FORWARD", "BACKWARD"                               |
+| `volume`    | int    | 1 to 25 mL                                          |
+| `flowrate`  | int    | 1 to 50 mL/min                                      |
+
+**Possible status/error messages for `move` action:**
+
+| Status/Error                             | Cause                                                                                              |
+|------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `"Started"`                  | The pump has started moving in response to a valid `move` command.                                 |
+| `"Error, the message is missing an argument"` | One or more required parameters (`direction`, `volume`, `flowrate`) are missing in the `move` command. |
+| `Error, invalid_direction` | Direction is not "FORWARD" or "BACKWARD"            |
+| `Error, invalid_volume`    | Volume is out of the 1 to 25 mL range               |
+| `Error, invalid_flowrate`  | Flowrate is out of the 1 to 50 mL/min range         |
+| `"Interrupted"`              | The pump has stopped moving before the specified volume of sample was fully pumped due to an external interruption. |
+| `"Done"`                     | The pump has successfully stopped after fully pumping the specified volume of sample.              |
+| `"Ready"`                    | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands. |
+| `"Dead"`                     | Indicates that the backend’s StepperProcess module is shutting down.                                |
+
 - **JSON message to stop the pump**:
 
 ```json
@@ -59,18 +80,23 @@ This messages make the pump move 10mL forward at 1mL/min.
   "action": "stop"
 }
 ```
-- **Authorized values for pump json messages**:
 
-| Champ      | Type   | Accepted Values                                     |
-|------------|--------|-----------------------------------------------------|
-| `action`   | string | "move", "stop"                                      |
-| `direction`| string | "FORWARD", "BACKWARD"                               |
-| `volume`   | int    |  1 to 25 ml                                         |
-| `flowrate` | int    |  1 to 50 ml/min                                     |
+**Authorized values for `stop` action:**
+
+| Field    | Type   | Accepted Values |
+|----------|--------|-----------------|
+| `action` | string | "stop"          |
+
+**Possible status/error messages for `stop` action:**
+
+| Status/Error                 | Cause                                                                                          |
+|------------------------------|------------------------------------------------------------------------------------------------|
+| `"Interrupted"`  | The pump has stopped moving in response to a valid `stop` command, before the specified volume was fully pumped. |
+| `"Ready"`        | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands. |
+| `"Dead"`         | Indicates that the backend’s StepperProcess module is shutting down.                             |
 
 
-
-#### `actuator/focus`
+### `Focus`
 
 - **Function**: Control of the focus stage.
 - **JSON message to move the focus**:
@@ -84,7 +110,29 @@ This messages make the pump move 10mL forward at 1mL/min.
 }
 ```
 Speed is optional.
-This message makes the stage move up by 10mm.
+This message makes the stage move up by 0.26 mm.
+
+**Authorized values for `move` action:**
+
+| Field       | Type    | Accepted Values              |
+|-------------|---------|------------------------------|
+| `direction` | string  | "UP", "DOWN"                 |
+| `distance`  | float   | 0.001 to 80.0 mm             |
+| `speed`     | float   | 0.001 to 5.0 mm/s (optional) |
+
+**Possible status/error messages for `move` action:**
+
+| Status/Error                                      | Cause                                                                                                     |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `"Started"`                          | The focusing motors have started moving in response to a valid `move` command.                             |
+| `"Error, the message is missing an argument"` | One or more required parameters (`direction`, `distance`, `speed`) are missing in the `move` command.         |
+| `"Error, invalid_direction"`         | The direction parameter is not "UP" or "DOWN".                                                             |
+| `"Error, invalid_distance"`          | The distance parameter is out of the allowable range (0.001 to 45 mm).                                     |
+| `"Error, invalid_speed"`             | The speed parameter is out of the allowable range (0.001 to 5.0 mm/s).                                     |
+| `"Interrupted"`                      | The focusing motors have stopped moving before the specified displacement was completed due to an interruption. |
+| `"Done"`                             | The focusing motors have successfully stopped after moving the specified distance.                         |
+| `"Ready"`                            | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands.   |
+| `"Dead"`                             | Indicates that the backend’s StepperProcess module is shutting down. |
 
 - **JSON message to stop the focus**:
 
@@ -93,21 +141,27 @@ This message makes the stage move up by 10mm.
   "action": "stop"
 }
 ```
-- **Authorized values for pump json messages**:
 
-| Champ      | Type   | Accepted Values                                     |
-|------------|--------|-----------------------------------------------------|
-| `action`   | string | "move", "stop"                                      |
-| `direction`| string | "UP", "DOWN"                                        |
-| `volume`   | int    |  1 to 80000 μm                                      |
-| `flowrate` | int    |  1 to 5000 μm/s                                     |
+**Authorized values for `stop` action:**
+
+| Field    | Type   | Accepted Values |
+|----------|--------|-----------------|
+| `action` | string | "stop"          |
+
+**Possible status/error messages for `stop` action:**
+
+| Status/Error                     | Cause                                                                                                     |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `"Interrupted"`     | The focusing motors have stopped moving in response to a valid `stop` command, before the specified distance was completed. |
+| `"Ready"`           | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands.   |
+| `"Dead"`            | Indicates that the backend’s StepperProcess module is shutting down.                                       |
 
 
-#### `actuator/light`
+### `Light`
 
 - **Function**: Control the intensity and state of the LED lighting system through the `i2c_led` and `pwm_led` controllers.
 
-- **JSON message to set the light**:
+- **JSON message to set the LED intensity**:
 
 ```json
 {
@@ -118,7 +172,24 @@ This message makes the stage move up by 10mm.
 ```
 This json message sets the led 1 to 20mA
 
-- **JSON message to on/off the light**:
+**Authorized values for `set` action:**
+
+| Field     | Type   | Accepted Values           |
+|-----------|--------|---------------------------|
+| `led`     | int    | 1, 2                      |
+| `current` | string | "1mA" to "20mA"           |
+
+**Possible status/error messages for `set` action:**
+
+| Status/Error       | Cause                                |
+|--------------------|--------------------------------------|
+| `success`          | LED intensity set successfully       |
+| `invalid_current`  | The specified current value is invalid|
+| `invalid_led`      | The specified LED ID is invalid      |
+| `system_error`     | General system error during operation|
+
+
+- **JSON message to turn on the light**:
 
 ```json
 {
@@ -128,16 +199,46 @@ This json message sets the led 1 to 20mA
 ```
  This json message turns on the led 1.
 
-- **Authorized values for led json messages**:
+ **Authorized values for `on` action:**
 
-| Champ          | Type   | Accepted values                                        |
-|----------------|--------|--------------------------------------------------------|
-| `action`       | string | "on" , "off" , "set"                                   |
-| `led`          | int    | 1 , 2                                                  |
-| `current`      | int    | 1 to 20 (mA)                                           |
+| Field     | Type   | Accepted Values           |
+|-----------|--------|---------------------------|
+| `led`     | int    | 1, 2                      |
+
+**Possible status/error messages for `on` action:**
+
+| Status/Error       | Cause                                |
+|--------------------|--------------------------------------|
+| `success`          | LED turned on successfully           |
+| `invalid_led`      | The specified LED ID is invalid      |
+| `system_error`     | General system error during operation|
+
+- **JSON message to turn off the LED**
+
+```json
+{
+  "action": "off",
+  "led": 1
+}
+```
+This JSON message turns off LED 1.
+
+**Authorized values for `off` action:**
+
+| Field     | Type   | Accepted Values           |
+|-----------|--------|---------------------------|
+| `led`     | int    | 1, 2                      |
+
+**Possible status/error messages for `off` action:**
+
+| Status/Error       | Cause                                |
+|--------------------|--------------------------------------|
+| `success`          | LED turned off successfully          |
+| `invalid_led`      | The specified LED ID is invalid      |
+| `system_error`     | General system error during operation|
 
 
-### `Imager Topic`
+### `Imager`
 
 - **Function**: This topic controls the camera and capture.
 - **JSON message to image**:
@@ -149,7 +250,15 @@ This json message sets the led 1 to 20mA
   "nb_frame": 200
 }
 ```
-This message allows 200 captures for 1 mL.
+This JSON message initiates image capture with the pump moving 1mL forward and captures 200 frames.
+
+**Authorized values for `image` action:**
+
+| Parameter        | Type   | Accepted Values      | Description                                    |
+|------------------|--------|----------------------|------------------------------------------------|
+| `pump_direction` | string | "FORWARD", "BACKWARD"| Direction of the pump during capture.          |
+| `volume`         | int    | 1 to 25              | Volume in mL for the capture.                  |
+| `nb_frame`       | int    |          as much as the sd card can contain            | Number of frames to capture.                   |
 
 - **JSON configuration update message**: 
 This topic can also receive a config update message
@@ -160,6 +269,12 @@ This topic can also receive a config update message
   "config": {...}
 }
 ```
+**Authorized values for `config` action:**
+
+| Parameter        | Type   | Accepted Values      | Description                                    |
+|------------------|--------|----------------------|------------------------------------------------|
+| `action`         | string | "config"             | Specifies the action to update configuration.  |
+| `config`         | object |                      | Configuration settings in JSON format.         |
 
 - **JSON settings message**: 
 A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain`, `white_balance` and `image_gain` are optionals:
@@ -176,18 +291,33 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
   }
 }
 ```
+**Authorized values for `config` action:**
 
-| Champ      | Type   | Accepted Values                                     |
-|------------|--------|-----------------------------------------------------|
-| `action`   | string | "image", "config"                                      |
-| `pump_direction`| string | "FORWARD", "BACKWARD"                               |
-| `volume`   | int    |  1 to 25 ml                                         |
-| `nb_frame` | int    |                                    |
+| Parameter             | Type   | Accepted Values      | Description                                    |
+|-----------------------|--------|----------------------|------------------------------------------------|
+| `action`              | string | "settings"           | Specifies the action to update camera settings.|
+| `iso`                 | int    |            100 to 800          | ISO sensitivity value.                         |
+| `shutter_speed`       | int    |          125 to ..            | Shutter speed value.                           |
+| `white_balance_gain`  | object |                      | White balance gain values for red and blue.    |
+| `white_balance`       | string | on or off            | White balance mode.                            |
+| `image_gain`          | object |                      | Image gain values for analog and digital.      |
 
 
-### `segmenter Topic`
+**Possible status/error messages related to the imager:**
 
-This topic controls the segmentation process. The message is a JSON object:
+
+| Status/Error Code | Description                                    |
+|-------------------|------------------------------------------------|
+| `Succes`       | Action was successful.                         |
+| `ERROR_INVALID_ACTION` | The specified action is invalid.              |
+| `ERROR_INVALID_PARAM`  | One or more parameters are invalid.           |
+| `ERROR_CAMERA_FAILURE` | The camera failed to execute the action.      |
+
+
+### `segmenter`
+
+This topic controls the segmentation process. 
+- **JSON message to start 'segmentation'**:
 
 ```json
 {
@@ -201,8 +331,6 @@ This topic controls the segmentation process. The message is a JSON object:
   }
 }
 ```
-
-`action` can also be `stop`.
 The `action` element is the only element required. If no `path` is supplied, the whole images repository is segmented recursively (this is very long!).
 
 `force` is going to overcome the presence of the file `done` that is here to prevent for resegmenting a folder already segmented.
@@ -213,158 +341,44 @@ The `action` element is the only element required. If no `path` is supplied, the
 
 `keep` allows to remove or keep the roi (when you do an ecotaxa export, no effects otherwise, the roi are kept).
 
-| Champ      | Type   | Accepted Values                                     |
-|------------|--------|-----------------------------------------------------|
-| `action`   | string | "segment", "stop"                                      |
-| `path`     | string | "path/to/segment"                               |
-| `force`    | bool    |  "true" or "false"                                         |
-| `recursive` | bool   |  "true" or "false"                                  |
-| `ecotaxa`    | bool    |  "true" or "false"                                         |
-| `keep` | bool   |  "true" or "false"                                  |
+**Authorized values for `segment` action:**
+
+| Parameter     | Type   | Accepted Values      | Description                                            |
+|---------------|--------|----------------------|-----------------------------------
+| `path`        | string |     path/to/directory                 | Path to the directory to segment.                      |
+| `force`       | bool   | true, false          | Force re-segmentation even if previously done.         |
+| `recursive`   | bool   | true, false          | Process directories recursively.                       |
+| `ecotaxa`     | bool   | true, false          | Export an ecotaxa compatible archive.                  |
+| `keep`        | bool   | true, false          | Keep ROI files during ecotaxa export.                  |
 
 
+- **JSON message to `stop` segmentation**
+        ```json
+        {
+          "action": "stop"
+        }
+        ```
+**Required Parameters to `stop` segmentation**:
 
+| Parameter     | Type   | Accepted Values      | Description                                            |
+|---------------|--------|----------------------|--------------------------------------------------------|
+| `action`      | string | "stop"               | Specifies the action to stop segmentation.             |
+        
 
-- Receive only
+ **Status/Error Messages related to the segmentation**
 
-### `Status Topics`
+| Status/Error Code | Description                                    |
+|-------------------|------------------------------------------------|
+| `succes`       | Action was successful.                         |
+| `ERROR_INVALID_ACTION` | The specified action is invalid.              |
+| `ERROR_INVALID_PATH`   | The specified path is invalid or not found.    |
+| `ERROR_SEGMENTATION_FAILURE` | The segmentation process failed. 
 
-This topic is used to send information to the Node-Red process. There is no publication or receive at this level.
+## Additional Explanations
 
-
-#### `status/pump`
-
-State of the pump. It's a JSON object with:
-
-```json
-{
-  "status": "Started",
-  "duration": 25
-}
-```
-
-Duration is a best guess estimate. It should not be used to control the other events. If you want to wait for a movement to finish, the best thing to do is to wait for the message `Done`.
-
-| Status Message                           | Description                                                                                           |
-|------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| `"Started"`                              | Indicates that the pump has started moving.                                                           |
-| `"Interrupted"`                          | Shows that the pump's movement was stopped prematurely, typically due to a stop command.              |
-| `"Ready"`                  | indicates that the pump is ready to receive a command.                        |
-| `"Done"`                                 | Indicates that the pump has completed its action, such as fully pumping the specified volume.         |
-
-
-- Publish only
-
-#### `status/focus`
-
-State of the focus stage. It's a JSON object with:
-
-```json
-{
-  "status": "Started",
-  "duration": 25
-}
-```
-
-Duration is a best guess estimate. It should not be used to control the other events. If you want to wait for a movement to finish, the best thing to do is to wait for the message `Done`.
-
-
-| Status Message | Description                                                                                       |
-|----------------|---------------------------------------------------------------------------------------------------|
-| `"Started"`    | Indicates that the focusing motors have begun moving.                                             |
-| `"Interrupted"`| Shows that the movement of the focusing motors was stopped before completion.                     |
-| `"Ready"`      | Indicates that the focus is ready to receive a command.                                           |
-| `"Done"`       | Indicates that the focusing motors have completed their movement as specified.                    |
-
-
-- Publish only
-
-#### `status/light`
-
- Status of the light provides updates on the current state of the lighting system. Status can be updated in response to changes made via commands or reflect errors or system warnings.
-
- It's a JSON object with:
-
-```json
-{
-  "status": "Ready"
-}
-``` 
-
-| Status Message | Description                                                                  |
-|----------------|------------------------------------------------------------------------------|
-| `"Ready"`      | The light system is operational and awaiting commands.                       |
-| `"Updated"`    | Successful application of settings such as LED current or power state.       |
-| `"Interrupted"`      | Issues detected with the command, including invalid inputs or failures.      |
-| `"Dead"`       | The light system is shutting down, usually due to a commanded stop.          |
-
-#### `status/imager`
-
-State of the imager. It's a JSON object with:
-
-```json
-{
-  "status": "Started",
-  "time_left": 25
-}
-```
-
-Started, Ready, Completed or 12_11_15_0.1.jpg has been imaged.
-
-| Status Message           | Description                                                                |
-|--------------------------|----------------------------------------------------------------------------|
-| "Started"                | Image capture or dataset acquisition has begun.                            |
-| "Ready"                  | Ready to receive a command.                                                |
-| "Completed"              | Imager task, such as image capture, is complete.                           |
-| "Image_id.jpg has been imaged"  | Image_id.jpg captured in the moment.                               |
-
-
-- Publish only
-
-#### `status/segmenter`
-
-Status of the segmentation. It's a JSON object with:
-
-```json
-{
-  "status": "Started"
-}
-```
-
-`status` is one of `Started`, `Done`, `Interrupted`, `Busy`, `Ready` or `Dead`.
-
-- Publish only
-
-#### `status/segmenter/object_id`
-
-```json
-{
-  "object_id": "13449"
-}
-```
-
-Object number object_id has been detected.
-
-#### `status/segmenter/metric`
-
-```json
-{
-  "name": "01_13_28_232066_0",
-  "metadata": {
-      "label": 0, "width": 29, "height": 80, ....
-}
-```
-
-Descriptive data for object number id_object.
-
-| Status Message | Description                                                                  |
-|----------------|------------------------------------------------------------------------------|
-| `"Started"`    | Segmentation process has initiated.                                          |
-| `"Done"`       | Segmentation has successfully completed all tasks.                           |
-| `"Busy"`       | Segmenter is active and unable to take on new tasks.                         |
-| `"Interrupted"`| Segmentation was prematurely halted.                                         |
-| `"Error"`      | An error occurred during segmentation, such as file access or input issues.  |
-
+- **Image Capture**: When capturing images, the system uses the specified volume and number of frames to manage the capture process, adjusting the pump's direction as required.
+- **Configuration and Settings Updates**: Configuration updates allow for comprehensive changes to the system setup, whereas settings updates are focused on camera-specific parameters such as ISO, shutter speed, and white balance.
+- **Segmentation Process**: The segmentation process analyzes the images stored in the specified path, optionally exporting the results in an ecotaxa-compatible format. The `force`, `recursive`, `ecotaxa`, and `keep` options provide control over how segmentation is performed and managed. 
 
 ## Common Log Errors
 
