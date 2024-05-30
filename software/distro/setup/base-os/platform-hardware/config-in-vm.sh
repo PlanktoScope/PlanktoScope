@@ -1,5 +1,7 @@
 #!/bin/bash -eux
 
+DISTRO_VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
+
 # FIXME: remove this section entirely, to improve performance on bullseye.
 # Refer to https://www.raspberrypi.com/documentation/computers/legacy_config_txt.html#gpu_mem
 # for rationale. Note that we might need to first replace raspimjpeg with picamera2.
