@@ -22,13 +22,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        variant:
+          - segmenter-only
+        arch:
+          - arm64
         base_variant_name:
           - lite
           - desktop
-        arch:
-          - arm64
-        variant:
-          - segmenter-only
     permissions:
       contents: read
       packages: write

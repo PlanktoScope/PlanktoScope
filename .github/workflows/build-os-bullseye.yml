@@ -22,14 +22,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_variant_name:
-          - lite
-          - desktop
-        arch:
-          - arm64
         variant:
           - adafruithat
           - planktoscopehat
+        arch:
+          - arm64
+        base_variant_name:
+          - lite
+          - desktop
     permissions:
       contents: read
       packages: write
