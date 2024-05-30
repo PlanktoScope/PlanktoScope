@@ -34,6 +34,14 @@ function panic {
 
 # Run sub-scripts
 
+description="set up OS configuration with Forklift"
+report_starting "$description"
+if $build_scripts_root/forklift/setup-in-vm.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="set up network configuration"
 report_starting "$description"
 if $build_scripts_root/networking/configure-in-vm.sh ; then
@@ -42,9 +50,9 @@ else
   panic "$description"
 fi
 
-description="set up OS configuration with Forklift"
+description="configure Raspberry Pi-specific hardware"
 report_starting "$description"
-if $build_scripts_root/forklift/setup-in-vm.sh ; then
+if $build_scripts_root/platform-hardware/config-in-vm.sh ; then
   report_finished "$description"
 else
   panic "$description"
