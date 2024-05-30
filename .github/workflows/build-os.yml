@@ -167,7 +167,7 @@ jobs:
       - name: Determine output image name
         env:
           TAG_PREFIX: "software/v"
-        run:
+        run: |
           # Determine the version for the image name
           # FIXME: if we're in a PR, use the format "pr-number"; if we're in a "software/" tag, use
           # the tag without the "software/" prefix
