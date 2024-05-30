@@ -22,17 +22,14 @@ on:
         description: 'The CPU architecture of the OS (armhf, arm64)'
         required: true
         type: string
+      variant:
+        description: 'The name of the RPi OS base image variant (none, segmenter-only, adafruithat, planktoscopehat)'
+        required: true
+        type: string
 
 jobs:
-  build:
+  build-os-image:
     name: Build image
-    strategy:
-      fail-fast: false
-      matrix:
-        variant:
-          - segmenter-only
-          - adafruithat
-          - planktoscopehat
     runs-on: ubuntu-latest
     env:
       KERNEL_VERSION: 6.1.21
@@ -103,7 +100,7 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/setup/setup-in-container.sh ${{ matrix.variant }}
+            /run/os-setup/setup/setup-in-container.sh ${{ inputs.variant }}
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
         uses: ethanjli/pinspawn-action@v0.1.2
@@ -125,7 +122,7 @@ jobs:
           image: ${{ steps.expand-image.outputs.destination }}
           machine: rpi-3b+
           user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/ci-setup-in-vm.sh ${{ matrix.variant }}
+          shell: /usr/lib/os-setup/ci-setup-in-vm.sh ${{ inputs.variant }}
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
         uses: ethanjli/pinspawn-action@v0.1.2
@@ -135,7 +132,7 @@ jobs:
           args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
           run: |
             sudo rm -rf /usr/lib/os-setup
-            /run/os-setup/ci-cleanup.sh ${{ matrix.variant }}
+            /run/os-setup/ci-cleanup.sh ${{ inputs.variant }}
 
       - name: Prepare for a headless first boot on bare metal
         uses: ethanjli/pinspawn-action@v0.1.1
@@ -166,3 +163,46 @@ jobs:
             # userconfig.service. See
             # https://forums.raspberrypi.com/viewtopic.php?p=2032694#p2032694
             systemctl enable getty@tty1
+
+      - name: Determine output image name
+        env:
+          TAG_PREFIX: "software/v"
+        run:
+          # Determine the version for the image name
+          # FIXME: if we're in a PR, use the format "pr-number"; if we're in a "software/" tag, use
+          # the tag without the "software/" prefix
+          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+            # We're in a pull request
+            version="$(\
+              printf "pr-%s-%.7s" \
+                "${{ github.event.pull_request.number }}" \
+                "${{ github.event.pull_request.head.sha }}" \
+            )"
+          elif [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref }}" == refs/tags/$TAG_PREFIX* ]]; then
+            version="${{ github.ref }}"
+            version="v${version%"refs/tags/$TAG_PREFIX"}"
+          else
+            version="$(printf "%.7s" "${{ github.sha }}")"
+          fi
+
+          # Assemble the image name
+          output_name="${{ inputs.name }}-$version+${{ inputs.variant }}"
+          echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
+
+      - name: Shrink the OS image
+        uses: ethanjli/pishrink-action@v0.1.2
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
+          compress: gzip
+          compress-parallel: true
+
+      - name: Upload image to Job Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_IMAGE_NAME }}
+          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.gz
+          if-no-files-found: error
+          retention-days: 0
+          compression-level: 0
+          overwrite: true
