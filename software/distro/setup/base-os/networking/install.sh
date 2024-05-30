@@ -21,7 +21,6 @@ sudo systemctl disable hostapd.service
 # This should also update the hostapd config (maybe via a new template variable)
 if command -v raspi-config &> /dev/null; then
   sudo raspi-config nonint do_wifi_country US
-  sudo rfkill unblock wifi
 else
   echo "Warning: raspi-config is not available, so we can't set the wifi country!"
 fi
