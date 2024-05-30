@@ -87,7 +87,7 @@ jobs:
         with:
           image: ${{ steps.download-base.outputs.destination }}
           mode: to
-          size: 8G
+          size: 16G
 
       # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
       # is much faster than a QEMU VM for downloading files.
