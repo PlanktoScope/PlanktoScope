@@ -57,7 +57,7 @@ if [ $hardware_type = "none" ]; then
 else
   description="set up PlanktoScope application environment"
   report_starting "$description"
-  if $setup_scripts_root/planktoscope-app-env/setup-in-container.sh "$hardware_type" ; then
+  if $setup_scripts_root/planktoscope-app-env/setup.sh "$hardware_type" ; then
     report_finished "$description"
     source $setup_scripts_root/planktoscope-app-env/export-env.sh
   else
