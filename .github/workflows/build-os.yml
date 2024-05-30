@@ -124,7 +124,7 @@ jobs:
           user: ${{ env.SETUP_USER }}
           shell: /usr/lib/os-setup/software/distro/setup/ci-setup-in-vm.sh ${{ inputs.variant }}
 
-      - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
+      - name: Clean up after running setup
         uses: ethanjli/pinspawn-action@v0.1.2
         with:
           image: ${{ steps.expand-image.outputs.destination }}
