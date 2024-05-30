@@ -15,19 +15,12 @@ sudo apt-get install -y firewalld dnsmasq hostapd avahi-utils
 sudo systemctl unmask hostapd.service
 sudo systemctl disable hostapd.service
 
-# Set the wifi country
-# FIXME: instead have the user set the wifi country via a first-launch setup wizard, and do it
-# without using raspi-config. It should also be updated if the user changes the wifi country.
-# This should also update the hostapd config (maybe via a new template variable)
-if command -v raspi-config &> /dev/null; then
-  sudo raspi-config nonint do_wifi_country US
-else
-  echo "Warning: raspi-config is not available, so we can't set the wifi country!"
-fi
-
 # Disable firewalld for now
 # FIXME: enable firewalld and set up firewall rules
-sudo systemctl disable firewalld.service --now
+if ! sudo systemctl disable firewalld.service --now 2>/dev/null; then
+  # We can't stop it because we're not booted, so we don't need to stop it anyways:
+  sudo systemctl disable firewalld.service
+fi
 
 # Restart docker to integrate with firewalld
 sudo systemctl restart docker
