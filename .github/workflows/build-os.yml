@@ -96,17 +96,17 @@ jobs:
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
+          args: --bind "$(pwd)":/run/os-setup
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/ci-setup-in-container.sh ${{ inputs.variant }}
+            /run/os-setup/software/distro/setup/ci-setup-in-container.sh ${{ inputs.variant }}
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
         uses: ethanjli/pinspawn-action@v0.1.2
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
+          args: --bind "$(pwd)":/run/os-setup
           run: |
             sudo cp -r /run/os-setup /usr/lib/os-setup
 
@@ -122,17 +122,17 @@ jobs:
           image: ${{ steps.expand-image.outputs.destination }}
           machine: rpi-3b+
           user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/ci-setup-in-vm.sh ${{ inputs.variant }}
+          shell: /usr/lib/os-setup/software/distro/setup/ci-setup-in-vm.sh ${{ inputs.variant }}
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
         uses: ethanjli/pinspawn-action@v0.1.2
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
+          args: --bind "$(pwd)":/run/os-setup
           run: |
             sudo rm -rf /usr/lib/os-setup
-            /run/os-setup/ci-cleanup.sh ${{ inputs.variant }}
+            /run/os-setup/software/distro/setup/ci-cleanup.sh ${{ inputs.variant }}
 
       - name: Prepare for a headless first boot on bare metal
         uses: ethanjli/pinspawn-action@v0.1.1
