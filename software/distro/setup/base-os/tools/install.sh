@@ -9,7 +9,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Note: we don't want to do an apt-get upgrade because then we'd have no way to ensure the same set
 # of package versions for existing packages if we run the script at different times. Also, it causes
 # some weirdness with the Docker installation (see note below in the "Install Docker" section).
-sudo apt-get install -y vim byobu git curl
+sudo apt-get install -y -o DPkg::Lock::Timeout=60 vim byobu git curl
 
 # Install some tools for dealing with captive portals
 sudo apt-get install -y w3m lynx

@@ -1,0 +1,213 @@
+name: build-os
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: 'The name of the OS image to build'
+        required: true
+        type: string
+      base_release_name:
+        description: 'The release name of the RPi OS base image (bullseye, bookworm)'
+        required: true
+        type: string
+      base_image_variant:
+        description: 'The name of the RPi OS base image variant (lite, desktop, or full)'
+        required: true
+        type: string
+      base_release_date:
+        description: 'The release date of the RPi OS base image'
+        required: true
+        type: string
+      arch:
+        description: 'The CPU architecture of the OS (armhf, arm64)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build image
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - segmenter-only
+          - adafruithat
+          - planktoscopehat
+    runs-on: ubuntu-latest
+    env:
+      KERNEL_VERSION: 6.1.21
+      SETUP_USER: pi
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      # Checkout push-to-registry action GitHub repository
+      - name: Checkout Push to Registry action
+        uses: actions/checkout@v4
+
+      - name: Determine Raspberry Pi OS base image URL
+        id: rpi-os-image
+        run: |
+          case '${{ inputs.base_release_name }}' in
+            'bookworm')
+              IMAGE_RELEASE_CHANNEL='raspios'
+              ;;
+            'bullseye')
+              IMAGE_RELEASE_CHANNEL='raspios_oldstable'
+              ;;
+            *)
+              echo "Unknown release name: ${{ inputs.base_release_name }}"
+              exit 1
+              ;;
+          esac
+          IMAGE_REPO_GROUP="$IMAGE_RELEASE_CHANNEL"
+          if [[ "${{ inputs.base_image_variant }}" != "desktop" ]]; then
+            IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.base_image_variant }}"
+          fi
+          IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.arch }}"
+          IMAGE_FILENAME="${{ inputs.base_release_date }}-raspios-${{ inputs.base_release_name }}-${{ inputs.arch }}"
+          if [[ "${{ inputs.base_image_variant }}" != "desktop" ]]; then
+            IMAGE_FILENAME="${IMAGE_FILENAME}-${{ inputs.base_image_variant }}"
+          fi
+          IMAGE_FILENAME="${IMAGE_FILENAME}.img.xz"
+          IMAGE_URL="https://downloads.raspberrypi.com/$IMAGE_REPO_GROUP/images/$IMAGE_REPO_GROUP-${{ inputs.base_release_date }}/$IMAGE_FILENAME"
+          echo "RPi OS image filename: $IMAGE_FILENAME"
+          echo "image_filename=$IMAGE_FILENAME" >> $GITHUB_OUTPUT
+          echo "RPi OS image URL: $IMAGE_URL"
+          echo "image_url=$IMAGE_URL" >> $GITHUB_OUTPUT
+
+      - name: Download and cache base image
+        id: download-base
+        uses: ethanjli/cached-download-action@v0.1.1
+        with:
+          url: ${{ steps.rpi-os-image.outputs.image_url }}
+          destination: /tmp/${{ steps.rpi-os-image.outputs.image_filename }}
+
+      - name: Decompress & grow base image
+        id: expand-image
+        uses: ethanjli/pigrow-action@v0.1.1
+        with:
+          image: ${{ steps.download-base.outputs.destination }}
+          mode: to
+          size: 8G
+
+      # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
+      # is much faster than a QEMU VM for downloading files.
+      - name: Run OS build scripts in an unbooted container
+        uses: ethanjli/pinspawn-action@v0.1.1
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
+          run: |
+            export DEBIAN_FRONTEND=noninteractive
+            echo "Running setup scripts..."
+            /run/os-setup/setup/setup-in-container.sh ${{ matrix.variant }}
+
+      - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
+        uses: ethanjli/pinspawn-action@v0.1.2
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
+          run: |
+            sudo cp -r /run/os-setup /usr/lib/os-setup
+
+      # Note: we need to boot the OS in a VM rather than a systemd-nspawn container because
+      # `docker.service` can't start properly in the container due to its interaction with
+      # the kernel and with systemd-nspawn (in bullseye Docker's use of iptables/nftables results in
+      # error "Failed to initialize nft: Protocol not supported"; in bookworm Docker's use of
+      # cgroups results in error "failed to start daemon: Devices cgroup isn't mounted", probably
+      # because systemd-nspawn makes cgroups read-only while Docker needs to manipulate cgroups).
+      - name: Run OS build scripts in a booted VM
+        uses: ethanjli/piqemu-action@v0.1.0
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          machine: rpi-3b+
+          user: ${{ env.SETUP_USER }}
+          shell: /usr/lib/os-setup/ci-setup-in-vm.sh ${{ matrix.variant }}
+
+      - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
+        uses: ethanjli/pinspawn-action@v0.1.2
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind "$(pwd)"/software/distro/setup:/run/os-setup
+          run: |
+            sudo rm -rf /usr/lib/os-setup
+            /run/os-setup/ci-cleanup.sh ${{ matrix.variant }}
+
+      - name: Prepare for a headless first boot on bare metal
+        uses: ethanjli/pinspawn-action@v0.1.1
+        env:
+          DEFAULT_PASSWORD: copepode
+          DEFAULT_KEYBOARD_LAYOUT: us
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          run: |
+            # Change default settings for the SD card to enable headless & keyboardless first boot
+            # Note: we could change the username by making a `/boot/userconf.txt` file with the new
+            # username and an encrypted representation of the password (and un-disabling and
+            # unmasking `userconfig.service`), but we don't need to do that for now.
+            # See https://github.com/RPi-Distro/userconf-pi/blob/bookworm/userconf-service and
+            # https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user
+            # and the "firstrun"-related and "cloudinit"-related lines of
+            # https://github.com/raspberrypi/rpi-imager/blob/qml/src/OptionsPopup.qml and
+            # the RPi SD card image's `/usr/lib/raspberrypi-sys-mods/firstboot` and
+            # `/usr/lib/raspberrypi-sys-mods/imager_custom` scripts
+            echo "pi:${{ env.DEFAULT_PASSWORD }}" | chpasswd
+            sed -i \
+              -e "s~^XKBLAYOUT=.*~XKBLAYOUT=\"${{ env.DEFAULT_KEYBOARD_LAYOUT }}\"~" \
+              /etc/default/keyboard
+            systemctl disable userconfig.service
+
+            # This is needed to have the login prompt on tty1 (so that a user with a keyboard can
+            # log in without switching away from the default tty), because we disabled
+            # userconfig.service. See
+            # https://forums.raspberrypi.com/viewtopic.php?p=2032694#p2032694
+            systemctl enable getty@tty1
+
+      - name: Determine output image name
+        env:
+          TAG_PREFIX: software/v
+        run:
+          # Determine the version for the image name
+          # FIXME: if we're in a PR, use the format "pr-number"; if we're in a "software/" tag, use
+          # the tag without the "software/" prefix
+          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+            # We're in a pull request
+            version="$(\
+              printf "pr-%s-%.7s" \
+                "${{ github.event.pull_request.number }}" \
+                "${{ github.event.pull_request.head.sha }}" \
+            )"
+          elif [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref }}" == refs/tags/$TAG_PREFIX* ]]; then
+            version="${{ github.ref }}"
+            version="v${version%"refs/tags/$TAG_PREFIX"}"
+          else
+            version="$(printf "%.7s" "${{ github.sha }}")"
+          fi
+
+          # Assemble the image name
+          output_name="${{ inputs.name }}"
+          output_name="$output_name-$version"
+          output_name="$output_name+${{ inputs.variant }}"
+          echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
+
+      - name: Shrink the OS image
+        uses: ethanjli/pishrink-action@v0.1.2
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
+          compress: gzip
+          compress-parallel: true
+
+      - name: Upload image to Job Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_IMAGE_NAME }}
+          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.gz
+          if-no-files-found: error
+          retention-days: 0
+          compression-level: 0
+          overwrite: true
