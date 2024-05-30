@@ -251,6 +251,7 @@ This JSON message turns off LED 1.
 }
 ```
 This JSON message initiates image capture with the pump moving 1mL forward and captures 200 frames.
+When capturing images, the system uses the specified volume and number of frames to manage the capture process, adjusting the pump's direction as required.
 
 **Authorized values for `image` action:**
 
@@ -263,21 +264,19 @@ This JSON message initiates image capture with the pump moving 1mL forward and c
 
 **Status/Error Messages for `image` action:**
 
-| Status/Error                                      | Cause                                                                                                     |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `"Started"`                         | The image capture process has started successfully.                                                       |
-| `"Configuration update error: object_data is missing!"` | The required `object_date` parameter is missing in the dataset metadata.                                  |
-| `"Configuration update error: chosen id are already in use!"` | The specified `(object_date, sample_id, acq_id)` tuple is already in use.                                  |
-| `"Image %d/%d been imaged to %s"`   | An image has been successfully captured and saved.                                                        |
-| `"Image %d/%d was not captured due to this error:timeout during capture! Retrying once!"` | A timeout occurred during image capture; retrying the capture.                                             |
-| `"Image %d/%d was not captured due to this error:%d was not found! Retrying once!"` | A data integrity file was not found during image capture; retrying the capture.                            |
-| `"Image %d/%d WAS NOT CAPTURED! STOPPING THE PROCESS!"` | An error occurred during image capture after a retry, causing the process to stop.                         |
-| `"Interrupted"`                     | The image capture process was stopped before completion.                                                  |
-| `"Done"`                            | The image capture process completed successfully.                                                         |
-| `"Busy"`                            | The camera is currently busy with another operation.                                                      |
+| Status/Error                                      | Description                                                                                                 |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `"Started"`                         | The image capture process has started successfully.                                                         |
+| `"Image %d/%d been imaged to %s"`   | An image has been successfully captured and saved.                                                          |
+| `"Image %d/%d was not captured due to this error:timeout during capture! Retrying once!"` | A timeout occurred during image capture; retrying the capture.                                                |
+| `"Image %d/%d was not captured due to this error:%d was not found! Retrying once!"` | A data integrity file was not found during image capture; retrying the capture.                               |
+| `"Image %d/%d WAS NOT CAPTURED! STOPPING THE PROCESS!"` | An error occurred during image capture after a retry, causing the process to stop.                           |
+| `"Interrupted"`                     | The image capture process was stopped before completion.                                                    |
+| `"Done"`                            | The image capture process completed successfully.                                                           |
+| `"Busy"`                            | The camera is currently busy with another operation.                                                        |
 
 - **JSON configuration update message**: 
-This topic can also receive a config update message
+This topic updates metadata associated with the dataset.
 
 ```json
 {
@@ -287,21 +286,56 @@ This topic can also receive a config update message
 ```
 **Authorized values for `config` action:**
 
-| Parameter        | Type   | Accepted Values      | Description                                    |
-|------------------|--------|----------------------|------------------------------------------------|
-| `action`         | string | "config"             | Specifies the action to update configuration.  |
-| `config`         | object |                      | Configuration settings in JSON format.         |
+**Metadata Configuration Fields for `config` action:**
+
+| Field                         | Type   | Description                                    |
+|-------------------------------|--------|------------------------------------------------|
+| `sample_project`              | string | Project name.                                  |
+| `sample_id`                   | string | Sample identifier.                             |
+| `sample_uuid`                 | string | Sample UUID.                                   |
+| `sample_ship`                 | string | Ship name.                                     |
+| `sample_operator`             | string | Operator name.                                 |
+| `sample_sampling_gear`        | string | Sampling gear description.                     |
+| `sample_concentrated_sample_volume` | string | Concentrated sample volume.                    |
+| `sample_total_volume`         | string | Total volume.                                  |
+| `sample_dilution_factor`      | string | Dilution factor.                               |
+| `sample_speed_through_water`  |string | Speed through water.                           |
+| `sample_instrument`           | string | Instrument name.                               |
+| `sample_bottom_depth`         | string | Bottom depth.                                  |
+| `sample_depth_min`            | string | Minimum depth.                                 |
+| `sample_depth_max`            | string | Maximum depth.                                 |
+| `sample_temperature`          | string | Temperature.                                   |
+| `sample_salinity`             | string | Salinity.                                      |
+| `sample_date`                 | string | Date of sampling.                              |
+| `acq_id`                      | string | Acquisition identifier.                        |
+| `acq_instrument`              | string | Acquisition instrument.                        |
+| `acq_magnification`           | string | Magnification level.                           |
+| `acq_camera_id`               | string | Camera identifier.                             |
+| `acq_camera_lens`             | string | Camera lens.                                   |
+| `acq_software`                | string | Acquisition software.                          |
+| `acq_atlas_id`                | string | Atlas identifier.                              |
+| `acq_resolution`              | string | Resolution.                                    |
+| `acq_stacks_count`            | string | Number of stacks.                              |
+| `acq_time_between_frames`     | string | Time between frames.                           |
+| `acq_brightness`              | string | Brightness level.                              |
+| `acq_contrast`                | string | Contrast level.                                |
+| `acq_sharpness`               | string | Sharpness level.                               |
+| `acq_saturation`              | string | Saturation level.                              |
+| `acq_gamma`                   | string | Gamma level.                                   |
+
 
 **Status/Error Messages for `config` action:**
 
-| Status/Error                                      | Cause                                                                                                     |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `"Config updated"`                  | The configuration has been successfully updated.                                                          |
-| `"Configuration message error"`     | The config message is missing required parameters.                                                        |
-| `"Busy"`                            | The camera is currently busy and cannot update the configuration.                                         |
+| Status/Error                                      | Description                                                                                                 |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `"Config updated"`                  | The configuration has been successfully updated.                                                            |
+| `"Configuration update error: object_data is missing!"` | The required `object_date` parameter is missing in the dataset metadata.                                      |
+| `"Configuration update error: chosen id are already in use!"` | The specified `(object_date, sample_id, acq_id)` tuple is already in use.                                      |
+| `"Configuration message error"`     | The config message is missing required parameters.                                                          |
+| `"Busy"`                            | The camera is currently busy and cannot update the configuration.                                           |
 
 
-- **JSON settings message**: 
+- **JSON camera settings message**: 
 A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain`, `white_balance` and `image_gain` are optionals:
 
 ```json
@@ -316,14 +350,18 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
   }
 }
 ```
-**Authorized values for `seting` action:**
+
+- **Configuration and Settings Updates**: Configuration updates allow for comprehensive changes to the system setup, whereas settings updates are focused on camera-specific parameters such as ISO, shutter speed, and white balance.
+
+**Authorized values for `setting` camera parameters action:**
 
 | Parameter             | Type   | Accepted Values      | Description                                    |
 |-----------------------|--------|----------------------|------------------------------------------------|
 | `action`              | string | "settings"           | Specifies the action to update camera settings.|
 | `iso`                 | int    |  100 to 800          | ISO sensitivity value.                         |
-| `shutter_speed`       | int    |  125 to ..  (in μs)           | Shutter speed value.                           |
-| `white_balance_gain`  | object |                      | White balance gain values for red and blue.    |
+| `shutter_speed`       | int    |  125 to 1000  (in μs)           | Shutter speed value.                           |
+| `WB:red`  | object |      0.0 to 32.0    | White balance gain values for red.    |
+| `WB:blue`  | object |       0.0 to 64.0     | White balance gain values for blue.    |
 | `white_balance`       | string | "auto", "off"            | White balance mode.                            |
 | `image_gain`          | object |                      | Image gain values for analog and digital.      |
 
@@ -358,7 +396,7 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
 
 **Status/Error Messages for `stop` action:**
 
-| Status/Error                                      | Cause                                                                                                     |
+| Status/Error message                                 | Description                                                                                                  |
 |---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | `"Interrupted"`                     | The image capture process was stopped successfully.                                                       |
 | `"Busy"`                            | The camera is currently busy and cannot stop the operation.                                               |
@@ -368,7 +406,10 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
 ### `segmenter`
 
 This topic controls the segmentation process. 
-- **JSON message to start 'segmentation'**:
+
+- **JSON message to start `segmentation`**:
+
+The segmentation process analyzes the images stored in the specified path, optionally exporting the results in an ecotaxa-compatible format. The `force`, `recursive`, `ecotaxa`, and `keep` options provide control over how segmentation is performed and managed. 
 
 ```json
 {
@@ -384,23 +425,27 @@ This topic controls the segmentation process.
 ```
 The `action` element is the only element required. If no `path` is supplied, the whole images repository is segmented recursively (this is very long!).
 
-`force` is going to overcome the presence of the file `done` that is here to prevent for resegmenting a folder already segmented.
-
-`recursive` will force parsing all folders below `path`.
-
-`ecotaxa` activates the export of an ecotaxa compatible archive.
-
-`keep` allows to remove or keep the roi (when you do an ecotaxa export, no effects otherwise, the roi are kept).
-
-**Authorized values for `segment` action:**
-
 | Parameter     | Type   | Accepted Values      | Description                                            |
-|---------------|--------|----------------------|-----------------------------------
-| `path`        | string |     path/to/directory                 | Path to the directory to segment.                      |
-| `force`       | bool   | true, false          | Force re-segmentation even if previously done.         |
-| `recursive`   | bool   | true, false          | Process directories recursively.                       |
+|---------------|--------|----------------------|--------------------------------------------------------|
+| `path`        | string | path/to/directory    | Path to the directory to segment.                      |
+| `force`       | bool   | true, false          | Force re-segmentation even if previously done. It will overcome the presence of the file `done` that prevents resegmenting a folder already segmented. |
+| `recursive`   | bool   | true, false          | Process directories recursively, forcing parsing all folders below `path`. |
 | `ecotaxa`     | bool   | true, false          | Export an ecotaxa compatible archive.                  |
-| `keep`        | bool   | true, false          | Keep ROI files during ecotaxa export.                  |
+| `keep`        | bool   | true, false          | Keep ROI files during ecotaxa export. It has no effect if not exporting to ecotaxa; the ROI files are kept by default. |
+
+ **Status/Error Messages related to the segment action**
+
+| Status/Error message | Description                                    |
+|-------------------|------------------------------------------------|
+| `Ready`              | The segmenter process has started and is ready. |
+| `Started`            | The segmentation process has begun. |
+| `Calculating flat`   | The frame background is being calculated. |
+| `Segmenting image %s, image %d/%d` | Segmentation of a specific image is in progress. |
+| `An exception was raised during the segmentation: %s.` | An error occurred during segmentation. |
+| `Done`               | The segmentation process is complete. |
+| `ERROR_INVALID_ACTION` | The specified action is invalid.              |
+| `ERROR_INVALID_PATH`   | The specified path is invalid or not found.    |
+| `ERROR_SEGMENTATION_FAILURE` | The segmentation process failed. 
 
 
 - **JSON message to `stop` segmentation**
@@ -415,21 +460,13 @@ The `action` element is the only element required. If no `path` is supplied, the
 |---------------|--------|----------------------|--------------------------------------------------------|
 | `action`      | string | "stop"               | Specifies the action to stop segmentation.             |
         
+ **Status/Error Messages related to the segment action**
 
- **Status/Error Messages related to the segmentation**
-
-| Status/Error Code | Description                                    |
+| Status/Error message | Description                                    |
 |-------------------|------------------------------------------------|
-| `succes`       | Action was successful.                         |
-| `ERROR_INVALID_ACTION` | The specified action is invalid.              |
-| `ERROR_INVALID_PATH`   | The specified path is invalid or not found.    |
-| `ERROR_SEGMENTATION_FAILURE` | The segmentation process failed. 
+| `Interrupted`        | The segmentation process was interrupted. |
+| `Busy`               | The segmenter is currently running and cannot update configurations. |
 
-## Additional Explanations
-
-- **Image Capture**: When capturing images, the system uses the specified volume and number of frames to manage the capture process, adjusting the pump's direction as required.
-- **Configuration and Settings Updates**: Configuration updates allow for comprehensive changes to the system setup, whereas settings updates are focused on camera-specific parameters such as ISO, shutter speed, and white balance.
-- **Segmentation Process**: The segmentation process analyzes the images stored in the specified path, optionally exporting the results in an ecotaxa-compatible format. The `force`, `recursive`, `ecotaxa`, and `keep` options provide control over how segmentation is performed and managed. 
 
 ## Common Log Errors
 
@@ -459,17 +496,3 @@ The `action` element is the only element required. If no `path` is supplied, the
 - **Resolution Steps**:
   - Retry publishing the message after a brief interval.
 
-### Parameter Missing or Invalid
-- **Error Log**: 
-
-`"Error: The received message has the wrong argument"`
-
-`"Error: Error, the message is missing an argument"`
-
-- **Description**: This log entry is created when an expected parameter is missing from the JSON message or a parameter value is invalid.
-- **Possible Causes**:
-  - Omission of required data fields in the JSON message.
-  - Incorrect data values that do not meet validation rules.
-- **Resolution Steps**:
-  - Review the JSON message to ensure all required fields are included.
-  - Validate data values against the expected input requirements.
