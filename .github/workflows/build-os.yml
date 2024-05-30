@@ -100,7 +100,7 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/setup/setup-in-container.sh ${{ inputs.variant }}
+            /run/os-setup/setup-in-container.sh ${{ inputs.variant }}
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
         uses: ethanjli/pinspawn-action@v0.1.2
