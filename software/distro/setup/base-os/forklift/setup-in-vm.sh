@@ -11,7 +11,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 forklift plt ls-img |
   while IFS='' read -r image; do
     precached_image="$HOME/.cache/containers/$(echo "$image" | sed "s~:~;~").tar"
-    docker image load < "$precached_image"
+    docker image load --quiet < "$precached_image"
     rm "$precached_image"
   done
 

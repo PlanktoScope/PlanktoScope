@@ -60,3 +60,7 @@ forklift plt ls-img |
     skopeo copy --override-arch "$docker_arch" --quiet \
       "docker://$image" "docker-archive:$precached_image:$image"
   done
+# Warning: this will overwrite any previous stage store in the system:
+sudo mv "$local_stage_store" /var/lib/forklift/stages
+sudo chown $USER /var/lib/forklift/stages
+mkdir -p "$local_stage_store"
