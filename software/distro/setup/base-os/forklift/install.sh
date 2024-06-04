@@ -44,7 +44,7 @@ if ! sudo systemctl start "bind-.local-share-forklift-stages@-home-$USER.service
   echo "As long as you don't touch the Forklift stage store before the next boot, this is fine."
 fi
 
-# Prepare to stage the local pallet
+# Clone a local pallet
 
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="bc32ad9"
@@ -52,6 +52,7 @@ forklift plt switch --no-cache-img $pallet_path@$pallet_version
 
 # Pre-cache container images without Docker
 sudo apt-get -y install skopeo
+mkdir -p $HOME/.local/share/containers/storage
 forklift plt ls-img |
   while IFS='' read -r image; do
     skopeo copy "docker://$image" "containers-storage:$image"
