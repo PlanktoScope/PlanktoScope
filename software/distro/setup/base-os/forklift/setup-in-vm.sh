@@ -8,17 +8,7 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Cache container images used by the local pallet from the pre-cache
-transfer_image() {
-  local image
-  image="$1"
-
-  local precached_image
-  precached_image="$HOME/.cache/containers/$(echo "$image" | sed "s~:~;~").tar"
-  docker image load --quiet < "$precached_image"
-  rm "$precached_image"
-}
-export -f transfer_image
-forklift plt ls-img | parallel transfer_image
+forklift plt ls-img | parallel ./transfer-precached-image.sh
 
 # Apply the local pallet
 
