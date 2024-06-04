@@ -55,5 +55,7 @@ docker_arch="$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch6
 sudo apt-get -y install skopeo
 forklift plt ls-img |
   while IFS='' read -r image; do
-    sudo skopeo copy --override-arch "$docker_arch" "docker://$image" "containers-storage:$image"
+    precached_image="$HOME/.cache/containers/$image"
+    mkdir -p "$precached_image"
+    skopeo copy --override-arch "$docker_arch" "docker://$image" "oci:$precached_image"
   done
