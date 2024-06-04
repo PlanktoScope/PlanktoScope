@@ -11,10 +11,6 @@ sudo apt-get install -y -o DPkg::Lock::Timeout=60 vim byobu git curl
 # Install some tools for dealing with captive portals
 sudo apt-get install -y w3m lynx
 
-# Install cockpit
-sudo apt-get install -y --no-install-recommends cockpit
-# TODO: after we switch to NetworkManager, add cockpit-networkmanager
-
 # Prepare tool to generate machine names based on serial numbers
 # Note: the tool itself is deployed/managed by Forklift.
 # TODO: remove this by updating the Node-RED frontend and Python backend:

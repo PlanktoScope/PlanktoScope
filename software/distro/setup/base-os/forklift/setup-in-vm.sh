@@ -17,7 +17,7 @@ forklift plt ls-img |
     skopeo delete "containers-storage:$image"
   done
 
-# Stage the local pallet
+# Apply the local pallet
 
 # Note: the pi user will only be able to run `forklift stage plan` and `forklift stage cache-img`
 # without root permissions after a reboot, so we may need `sudo -E` here; I had tried running
