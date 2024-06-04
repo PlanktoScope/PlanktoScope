@@ -57,5 +57,6 @@ forklift plt ls-img |
   while IFS='' read -r image; do
     precached_image="$HOME/.cache/containers/$image"
     mkdir -p "$precached_image"
-    skopeo copy --override-arch "$docker_arch" "docker://$image" "oci:$precached_image"
+    skopeo copy --override-arch "$docker_arch" --quiet \
+      "docker://$image" "oci:$precached_image"
   done

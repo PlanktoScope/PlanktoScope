@@ -11,11 +11,11 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 forklift plt ls-img |
   while IFS='' read -r image; do
     precached_image="$HOME/.cache/containers/$image"
-    sudo skopeo copy "oci:$precached_image" "docker-daemon:$image"
-  done
-forklift plt ls-img |
-  while IFS='' read -r image; do
-    precached_image="$HOME/.cache/containers/$image"
+    # We must run skopeo from a container because the version of skopeo installed in Debian 11
+    # (bullseye) is too ancient for Docker:
+    docker run --rm docker://quay.io/skopeo/stable:latest copy --quiet \
+      -v "$precached_image:$precached_image"
+      "oci:$precached_image" "docker-daemon:$image"
     rm -rf "$precached_image"
   done
 
