@@ -18,6 +18,13 @@ forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precac
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift"
 if [ -S /var/run/docker.sock ] && ! sudo -E docker ps 2&>1 > /dev/null; then
+  if ! sudo findmnt -lo source,target,fstype,options -t cgroup,cgroup2 | grep 'cgroup2' > /dev/null; then
+    # This is a workaround for RPi OS bookworm, which appears to mount cgroups v1 in a
+    # systemd-nspawn container instead of mounting cgroups v2; bullseye doesn't have this problem.
+    # We need cgroups v2 for Docker to start properly.
+    echo "Warning: for some reason, cgroups v1 is mounted instead of v2! Mounting v2 controllers..."
+    sudo mount -t cgroup2 none /sys/fs/cgroup
+  fi
   sudo systemctl start docker.service
 fi
 if ! docker ps; then
