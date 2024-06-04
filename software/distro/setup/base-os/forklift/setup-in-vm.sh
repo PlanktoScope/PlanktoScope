@@ -7,11 +7,17 @@
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
-# Set up & stage local pallet
+# Cache container images used by the local pallet from the pre-cache
+forklift plt ls-img |
+  while IFS='' read -r image; do
+    skopeo copy "containers-storage:$image" "docker-daemon:$image"
+  done
+forklift plt ls-img |
+  while IFS='' read -r image; do
+    skopeo delete "containers-storage:$image"
+  done
 
-pallet_path="github.com/PlanktoScope/pallet-standard"
-pallet_version="bc32ad9"
-forklift plt switch --no-cache-img $pallet_path@$pallet_version
+# Stage the local pallet
 
 # Note: the pi user will only be able to run `forklift stage plan` and `forklift stage cache-img`
 # without root permissions after a reboot, so we may need `sudo -E` here; I had tried running
@@ -26,7 +32,7 @@ if ! docker ps; then
 fi
 
 $FORKLIFT stage plan
-$FORKLIFT stage cache-img
+
 next_pallet="$(basename $(forklift stage locate-bun next))"
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
