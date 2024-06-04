@@ -51,6 +51,6 @@ pallet_version="bc32ad9"
 forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
 
 # Pre-cache container images without Docker
-sudo apt-get -y install skopeo
+sudo apt-get -y install -o Dpkg::Progress-Fancy=0 skopeo
 forklift plt ls-img | parallel "$config_files_root/precache-image.sh"
 mkdir -p "$local_stage_store"

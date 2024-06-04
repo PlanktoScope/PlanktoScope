@@ -11,7 +11,8 @@ repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 hardware_type="$1" # should be either adafruithat or planktoscopehat
 
 ## Install basic Python tooling
-sudo apt-get install -y git python3-pip python3-venv
+sudo apt-get install -y -o Dpkg::Progress-Fancy=0 \
+  git python3-pip python3-venv
 
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
 # (see https://github.com/pypa/pip/issues/7883)
@@ -40,7 +41,8 @@ git -C $HOME/device-backend checkout --quiet $backend_version
 # Note(ethanjli): we use picamera2 from the system for compatibility, and because dependencies are
 # annoying to manage on armv7. Once we migrate to RPi OS 12 (bookworm), let's try again to just
 # install it via poetry.
-sudo apt-get install -y --no-install-recommends i2c-tools libopenjp2-7 python3-picamera2
+sudo apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
+  i2c-tools libopenjp2-7 python3-picamera2
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control config virtualenvs.options.system-site-packages true --local
 $POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"

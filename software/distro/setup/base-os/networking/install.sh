@@ -6,7 +6,8 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install dependencies
-sudo apt-get install -y firewalld dnsmasq hostapd avahi-utils
+sudo apt-get install -y -o Dpkg::Progress-Fancy=0 \
+  firewalld dnsmasq hostapd avahi-utils
 
 # By default hostapd.service is masked and enabled (which causes two symlinks to exist), which
 # prevents Forklift from being able to disable hostapd via a filesystem overlay. We override this by
