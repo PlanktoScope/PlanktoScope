@@ -11,7 +11,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 forklift_version="0.7.3"
 
-arch="$(dpkg --print-architecture | sed -e 's/armhf/arm/' -e 's/aarch64/arm64/')"
+arch="$(dpkg --print-architecture | sed -e 's~armhf~arm~' -e 's~aarch64~arm64~')"
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
   | sudo tar -C /usr/bin -xz forklift
 sudo mv /usr/bin/forklift "/usr/bin/forklift-${forklift_version}"
@@ -51,9 +51,9 @@ pallet_version="bc32ad9"
 forklift plt switch --no-cache-img $pallet_path@$pallet_version
 
 # Pre-cache container images without Docker
+docker_arch="$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')"
 sudo apt-get -y install skopeo
-mkdir -p $HOME/.local/share/containers/storage
 forklift plt ls-img |
   while IFS='' read -r image; do
-    skopeo copy "docker://$image" "containers-storage:$image"
+    skopeo --override-arch "$docker_arch" copy "docker://$image" "containers-storage:$image"
   done
