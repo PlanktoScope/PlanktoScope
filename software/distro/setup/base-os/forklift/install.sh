@@ -49,8 +49,8 @@ fi
 pallet_path="github.com/PlanktoScope/pallet-standard"
 pallet_version="bc32ad9"
 forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
+sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
 
 # Pre-cache container images without Docker
-sudo apt-get -y install -o Dpkg::Progress-Fancy=0 skopeo
-forklift plt ls-img | parallel --line-buffer "$config_files_root/precache-image.sh"
-sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
+#sudo apt-get -y install -o Dpkg::Progress-Fancy=0 skopeo parallel
+#forklift plt ls-img | parallel --line-buffer "$config_files_root/precache-image.sh"

@@ -15,4 +15,4 @@ hardware_type="$1" # should be either none, adafruithat, planktoscopehat, or seg
 
 # Run sub-scripts
 
-$setup_scripts_root/base-os/setup-in-vm.sh "$hardware_type"
+$setup_scripts_root/base-os/setup-booted.sh "$hardware_type"

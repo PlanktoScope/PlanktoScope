@@ -99,7 +99,7 @@ jobs:
       # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
       # is much faster than a QEMU VM for downloading files.
       - name: Run OS build scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@v0.1.3
+        uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -107,32 +107,36 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/ci-setup-in-container.sh ${{ inputs.variant }}
+            /run/os-setup/software/distro/setup/ci-setup-unbooted.sh ${{ inputs.variant }}
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
-        uses: ethanjli/pinspawn-action@v0.1.2
+        uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           args: --bind "$(pwd)":/run/os-setup
           run: |
             sudo cp -r /run/os-setup /usr/lib/os-setup
 
-      # Note: we need to boot the OS in a VM rather than a systemd-nspawn container because
-      # `docker.service` can't start properly in the container due to its interaction with
-      # the kernel and with systemd-nspawn (in bullseye Docker's use of iptables/nftables results in
-      # error "Failed to initialize nft: Protocol not supported"; in bookworm Docker's use of
-      # cgroups results in error "failed to start daemon: Devices cgroup isn't mounted", probably
-      # because systemd-nspawn makes cgroups read-only while Docker needs to manipulate cgroups).
+      # Note: for now, we need to boot the OS in a QEMU VM rather than a systemd-nspawn container 
+      # (even though the VM is much much slower) because `docker.socket`/`docker.service` can't
+      # start properly in the container due to its use of iptables-nft: Docker's use of
+      # iptables/nftables results in error "Failed to initialize nft: Protocol not supported".
+      # iptables/nftables which won't work if run using qemu-aarch64-static (see
+      # https://github.com/multiarch/qemu-user-static/issues/191 for details).
+      # Once GitHub makes arm64 runners available to open-source projects, then we can get rid of
+      # QEMU and we may be able to successfully start Docker in a systemd-nspawn container.
       - name: Run OS build scripts in a booted VM
         uses: ethanjli/piqemu-action@v0.1.1
+        #uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           machine: rpi-3b+
+          #boot: true
           user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/software/distro/setup/ci-setup-in-vm.sh ${{ inputs.variant }}
+          shell: /usr/lib/os-setup/software/distro/setup/ci-setup-booted.sh ${{ inputs.variant }}
 
       - name: Clean up after running setup
-        uses: ethanjli/pinspawn-action@v0.1.2
+        uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -142,7 +146,7 @@ jobs:
             /run/os-setup/software/distro/setup/ci-cleanup.sh ${{ inputs.variant }}
 
       - name: Prepare for a headless first boot on bare metal
-        uses: ethanjli/pinspawn-action@v0.1.1
+        uses: ethanjli/pinspawn-action@v0.1.4
         env:
           DEFAULT_PASSWORD: copepode
           DEFAULT_KEYBOARD_LAYOUT: us

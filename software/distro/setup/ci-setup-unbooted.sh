@@ -45,7 +45,7 @@ sudo apt-get update -y -o Dpkg::Progress-Fancy=0
 
 description="set up base operating system"
 report_starting "$description"
-if $setup_scripts_root/base-os/setup-in-container.sh ; then
+if $setup_scripts_root/base-os/setup-unbooted.sh ; then
   report_finished "$description"
   source $setup_scripts_root/base-os/export-env.sh
 else
