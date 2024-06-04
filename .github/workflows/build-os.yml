@@ -30,7 +30,7 @@ on:
 jobs:
   build-os-image:
     name: Build image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       KERNEL_VERSION: 6.1.21
       SETUP_USER: pi
