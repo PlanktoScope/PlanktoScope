@@ -43,6 +43,13 @@ jobs:
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
 
+      # This is needed so that the QEMU VM build step doesn't run out of disk space:
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          docker-images: false
+          swap-storage: false
+
       - name: Determine Raspberry Pi OS base image URL
         id: rpi-os-image
         run: |
