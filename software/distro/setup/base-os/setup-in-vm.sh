@@ -42,8 +42,6 @@ else
   panic "$description"
 fi
 
-# Note: we are only running this at the end because it's a really slow step, and we want to
-# troubleshoot the previous steps first
 description="set up OS configuration with Forklift"
 report_starting "$description"
 if $build_scripts_root/forklift/setup-in-vm.sh ; then
