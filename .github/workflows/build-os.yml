@@ -92,7 +92,7 @@ jobs:
       # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
       # is much faster than a QEMU VM for downloading files.
       - name: Run OS build scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@v0.1.1
+        uses: ethanjli/pinspawn-action@v0.1.3
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -117,7 +117,7 @@ jobs:
       # cgroups results in error "failed to start daemon: Devices cgroup isn't mounted", probably
       # because systemd-nspawn makes cgroups read-only while Docker needs to manipulate cgroups).
       - name: Run OS build scripts in a booted VM
-        uses: ethanjli/piqemu-action@v0.1.0
+        uses: ethanjli/piqemu-action@v0.1.1
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           machine: rpi-3b+

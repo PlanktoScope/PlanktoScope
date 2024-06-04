@@ -27,9 +27,10 @@ PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 POETRY_VENV=$HOME/.local/share/pypoetry/venv
 mkdir -p $POETRY_VENV
 python3 -m venv $POETRY_VENV
-$POETRY_VENV/bin/pip install --upgrade pip==23.3.2 setuptools==68.2.2
-$POETRY_VENV/bin/pip install cryptography==41.0.5
-$POETRY_VENV/bin/pip install poetry==1.7.1
+$POETRY_VENV/bin/pip install --upgrade --progress-bar off \
+  pip==23.3.2 setuptools==68.2.2
+$POETRY_VENV/bin/pip install --progress-bar off cryptography==41.0.5
+$POETRY_VENV/bin/pip install --progress-bar off poetry==1.7.1
 
 # Download device-backend monorepo
 backend_repo="github.com/PlanktoScope/device-backend"
@@ -43,8 +44,10 @@ git -C $HOME/device-backend checkout --quiet $backend_version
 # install it via poetry.
 sudo apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
-$POETRY_VENV/bin/poetry --directory $HOME/device-backend/control config virtualenvs.options.system-site-packages true --local
-$POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install --no-root --compile
+$POETRY_VENV/bin/poetry --directory $HOME/device-backend/control config \
+  virtualenvs.options.system-site-packages true --local
+$POETRY_VENV/bin/poetry --directory $HOME/device-backend/control install \
+  --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"
 # or for the PlanktoScope HAT

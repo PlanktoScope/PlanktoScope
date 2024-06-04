@@ -36,4 +36,4 @@ if ! $FORKLIFT stage apply; then
 fi
 
 # Prepare to apply the pallet on future boots, too
-sudo systemctl preset forklift-apply.service
+sudo systemctl unmask forklift-apply.service
