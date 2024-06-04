@@ -34,3 +34,6 @@ if ! $FORKLIFT stage apply; then
   # Reset the "apply-failed" status of the staged pallet to apply:
   forklift stage set-next --no-cache-img "$next_pallet"
 fi
+
+# Prepare to apply the pallet on future boots, too
+sudo systemctl preset forklift-apply.service

@@ -20,7 +20,6 @@ sudo ln -s "forklift-${forklift_version}" /usr/bin/forklift
 # Prepare most of the necessary systemd units:
 sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
 sudo cp $config_files_root/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
-sudo systemctl preset forklift-apply.service
 # Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
 # (see https://docs.kernel.org/filesystems/overlayfs.html):
 sudo systemctl preset \
@@ -53,4 +52,4 @@ forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $palle
 # Pre-cache container images without Docker
 sudo apt-get -y install -o Dpkg::Progress-Fancy=0 skopeo
 forklift plt ls-img | parallel "$config_files_root/precache-image.sh"
-mkdir -p "$local_stage_store"
+sudo systemctl disable forklift-apply.service # we'll re-enable it after finishing setup in the VM
