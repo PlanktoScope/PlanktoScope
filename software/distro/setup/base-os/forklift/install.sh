@@ -55,5 +55,5 @@ docker_arch="$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch6
 sudo apt-get -y install skopeo
 forklift plt ls-img |
   while IFS='' read -r image; do
-    skopeo copy --override-variant "linux/$docker_arch" "docker://$image" "containers-storage:$image"
+    sudo skopeo copy --override-variant "linux/$docker_arch" "docker://$image" "containers-storage:$image"
   done

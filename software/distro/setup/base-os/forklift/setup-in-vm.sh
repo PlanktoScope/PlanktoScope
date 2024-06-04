@@ -10,11 +10,11 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Cache container images used by the local pallet from the pre-cache
 forklift plt ls-img |
   while IFS='' read -r image; do
-    skopeo copy "containers-storage:$image" "docker-daemon:$image"
+    sudo skopeo copy "containers-storage:$image" "docker-daemon:$image"
   done
 forklift plt ls-img |
   while IFS='' read -r image; do
-    skopeo delete "containers-storage:$image"
+    sudo skopeo delete "containers-storage:$image"
   done
 
 # Apply the local pallet
