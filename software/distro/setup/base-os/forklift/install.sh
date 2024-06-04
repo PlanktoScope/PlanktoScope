@@ -56,5 +56,6 @@ sudo apt-get -y install skopeo
 forklift plt ls-img |
   while IFS='' read -r image; do
     skopeo --help
-    skopeo inspect --override-arch "$docker_arch" "docker://$image"
+    skopeo inspect --override-platform "linux/$docker_arch" -n "docker://$image"
+    skopeo copy --override-platform "linux/$docker_arch" "docker://$image" "containers-storage:$image"
   done
