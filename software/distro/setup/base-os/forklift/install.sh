@@ -51,15 +51,22 @@ pallet_version="bc32ad9"
 forklift plt switch --no-cache-img $pallet_path@$pallet_version
 
 # Pre-cache container images without Docker
-docker_arch="$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')"
 sudo apt-get -y install skopeo
-forklift plt ls-img |
-  while IFS='' read -r image; do
-    precached_image="$HOME/.cache/containers/$(echo "$image" | sed "s~:~;~").tar"
-    mkdir -p "$(dirname "$precached_image")"
-    skopeo copy --override-arch "$docker_arch" --quiet \
-      "docker://$image" "docker-archive:$precached_image:$image"
-  done
+precache_image() {
+  local image
+  image="$1"
+
+  local precached_image
+  precached_image="$HOME/.cache/containers/$(echo "$image" | sed "s~:~;~").tar"
+  mkdir -p "$(dirname "$precached_image")"
+
+  local docker_arch
+  skopeo copy --quiet \
+    --override-arch "$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')" \
+    "docker://$image" "docker-archive:$precached_image:$image"
+}
+export -f precache_image
+forklift plt ls-img | parallel precache_image
 # Warning: this will overwrite any previous stage store in the system:
 sudo mv "$local_stage_store" /var/lib/forklift/stages
 sudo chown $USER /var/lib/forklift/stages

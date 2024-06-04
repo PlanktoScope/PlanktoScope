@@ -6,7 +6,7 @@
 # Note: we don't want to do an apt-get upgrade because then we'd have no way to ensure the same set
 # of package versions for existing packages if we run the script at different times. Also, it causes
 # some weirdness with the Docker installation.
-sudo apt-get install -y -o DPkg::Lock::Timeout=60 vim byobu git curl
+sudo apt-get install -y -o DPkg::Lock::Timeout=60 vim byobu git curl parallel
 
 # Install some tools for dealing with captive portals
 sudo apt-get install -y w3m lynx
