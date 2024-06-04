@@ -8,7 +8,7 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Cache container images used by the local pallet from the pre-cache
-forklift plt ls-img | parallel "$config_files_root/transfer-precached-image.sh"
+forklift plt ls-img | parallel -j4 "$config_files_root/transfer-precached-image.sh"
 
 # Apply the local pallet
 
