@@ -213,16 +213,19 @@ jobs:
             --bind "$(pwd)":/run/os-setup
             --bind ${{ steps.setup-precache.outputs.path }}:/run/container-images
           run: |
+            set -x
             echo "Installing skopeo & GNU parallel..."
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 skopeo parallel
             echo "Pre-caching container images..."
+            sudo cp -r /run/container-images/* $HOME/.cache/containers/
+            sudo chown $USER -R $HOME/.cache/containers/
             # Note: we download images on the OS image in a container so that we select the correct
             # architecture for the OS image, instead of downloading images matching the GitHub
             # Actions runner's architecture:
             parallel --line-buffer \
               /run/os-setup/software/distro/setup/base-os/forklift/precache-image.sh \
               < /run/container-images/images-list
-            cp -r $HOME/.cache/containers/* /run/container-images/
+            sudo cp -r $HOME/.cache/containers/* /run/container-images/
 
       # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
