@@ -286,7 +286,7 @@ jobs:
       # background system services which may slow down the QEMU VM setup by ~20 minutes.
       - name: Run PlanktoScope application environment setup scripts in an unbooted container
         uses: ethanjli/pinspawn-action@v0.1.4
-        if: inputs.variant != "none"
+        if: inputs.variant != 'none'
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
