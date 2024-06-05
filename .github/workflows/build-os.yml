@@ -100,7 +100,7 @@ jobs:
         # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
         # (refer to https://stackoverflow.com/a/68068674/23202949):
         run: |
-          if [-n "${{ github.event.pull_request.head.sha }}" ]; then
+          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
             printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
           elif [ ${{ env.PUSH_IMAGE }} == "true" ]; then
             printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
@@ -116,15 +116,17 @@ jobs:
             export DEBIAN_FRONTEND=noninteractive
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
+            cd /run/os-setup
             export REPO="$(git remote get-url origin)"
             echo "REPO: $REPO"
             export VERSION_QUERY="${{ env.ACTUAL_SHA }}"
             echo "VERSION_QUERY: $VERSION_QUERY"
             export QUERY_TYPE="hash"
             echo "QUERY_TYPE: $QUERY_TYPE"
-            export HARDWARE="${{ inputs.image_variant }}"
+            export HARDWARE="${{ inputs.variant }}"
             echo "HARDWARE: $HARDWARE"
             export VERBOSE=1
+            export mirror_dir="/run/os-setup"
             /run/os-setup/software/distro/setup/ci-record-version.sh
             echo "installer-config.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
