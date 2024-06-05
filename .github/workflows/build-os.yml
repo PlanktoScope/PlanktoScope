@@ -135,8 +135,8 @@ jobs:
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
             # actual commit (and fetch all tags so we can determine a pseudoversion string):
-            git -C /run/os-setup config extensions.partialClone "https://$REPO.git"
-            git -C /run/os-setup fetch --all --tags --filter=blob:none
+            git -C /run/os-setup config extensions.partialClone "$(git config --get remote.origin.url)"
+            git -C /run/os-setup fetch --tags --filter=blob:none
             git -C /run/os-setup checkout "$VERSION_QUERY"
             QUERY_TYPE="hash"
             HARDWARE="${{ inputs.variant }}"
