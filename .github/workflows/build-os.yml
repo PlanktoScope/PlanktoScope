@@ -100,9 +100,9 @@ jobs:
         # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
         # (refer to https://stackoverflow.com/a/68068674/23202949):
         run: |
-          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+          if [-n "${{ github.event.pull_request.head.sha }}" ]; then
             printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
-          elif [[ ${{ env.PUSH_IMAGE }} = "true" ]]; then
+          elif [ ${{ env.PUSH_IMAGE }} == "true" ]; then
             printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
           fi
 
