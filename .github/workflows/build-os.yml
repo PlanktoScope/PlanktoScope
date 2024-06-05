@@ -134,8 +134,9 @@ jobs:
             VERSION_QUERY="${{ env.ACTUAL_SHA }}"
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
-            # actual commit:
-            git -C /run/os-setup fetch --all --tags # fetch tags so we can determine pseudoversions
+            # actual commit (and fetch all tags so we can determine a pseudoversion string):
+            git -C /run/os-setup fetch \
+              --all --tags --refetch --filter=blob:none
             git -C /run/os-setup checkout "$VERSION_QUERY"
             QUERY_TYPE="hash"
             HARDWARE="${{ inputs.variant }}"
@@ -162,21 +163,21 @@ jobs:
           forklift_version="$(cat software/distro/setup/base-os/forklift/forklift-version)"
           echo "forklift_version=$forklift_version" >> $GITHUB_OUTPUT
           pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
-          echo "PALLET=$forklift_pallet" >> $GITHUB_ENV
+          echo "pallet=$forklift_pallet" >> $GITHUB_OUTPUT
           pallet_version="$(cat software/distro/setup/base-os/forklift/forklift-pallet-version)"
-          echo "PALLET_VERSION=$forklift_pallet" >> $GITHUB_ENV
+          echo "pallet_version=$forklift_pallet" >> $GITHUB_OUTPUT
 
-      - name: Setup Forklift
+      - name: Set up Forklift
         uses: PlanktoScope/setup-forklift@v1
         with:
           version: ${{ steps.forklift-versions.outputs.forklift_version }}
 
-      - name: Setup container image pre-cache
+      - name: Set up container image pre-cache
         id: setup-precache
         run: |
           mkdir -p /tmp/forklift/container-image-precache
           echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
-          forklift plt switch "${{ env.PALLET }}@${{ env.PALLET_VERSION }}"
+          forklift plt switch "${{ steps.forklift-versions.outputs.pallet }}@${{ steps.forklift-versions.outputs.pallet_version }}"
           commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
           echo "commit=$commit" >> $GITHUB_OUTPUT
           exit 1
@@ -185,7 +186,7 @@ jobs:
         id: restore-precache
         uses: actions/cache/restore@v4
         with:
-          key: "container-images-pallet-${{ env.PALLET }}@${{ env.PALLET_VERSION }}"
+          key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
           path: ${{ steps.setup-precache.outputs.path }}
 
       - name: Prepare to pre-cache container images
@@ -221,7 +222,7 @@ jobs:
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
       # fixed, we can simplify this job a bit.
       - name: Save container image pre-cache to GitHub Actions cache
-        if: always() && !steps.restore-precache.outputs.cache-hit
+        if: ! (cancelled() || steps.restore-precache.outputs.cache-hit)
         uses: actions/cache/save@v4
         with:
           key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
