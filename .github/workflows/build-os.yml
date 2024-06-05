@@ -140,8 +140,6 @@ jobs:
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
             echo "installer-versioning.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
-            # FIXME: remove this testing line:
-            exit 1
 
       # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
       # is much faster than a QEMU VM for downloading files.
