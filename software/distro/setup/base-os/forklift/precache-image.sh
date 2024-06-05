@@ -2,6 +2,12 @@
 image="$1"
 
 precached_image="$HOME/.cache/containers/$(echo "$image" | sed "s~:~;~").tar"
+
+if [ -f "$precached_image" ]; then
+  echo "Skipping $image, which was already downloaded to $precached_image!"
+  exit 0
+fi
+
 mkdir -p "$(dirname "$precached_image")"
 
 echo "Downloading $image to $precached_image..."

@@ -9,8 +9,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
 
-forklift_version="0.7.3"
-
+forklift_version="$(cat "$config_files_root/forklift-version")"
 arch="$(dpkg --print-architecture | sed -e 's~armhf~arm~' -e 's~aarch64~arm64~')"
 curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
   | sudo tar -C /usr/bin -xz forklift
@@ -46,8 +45,8 @@ fi
 
 # Clone & stage a local pallet
 
-pallet_path="github.com/PlanktoScope/pallet-standard"
-pallet_version="bc32ad9"
+pallet_path="$(cat "$config_files_root/forklift-pallet")"
+pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
 forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
 sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
 

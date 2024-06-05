@@ -50,6 +50,8 @@ jobs:
           docker-images: false
           swap-storage: false
 
+      # GET BASE IMAGE
+
       - name: Determine Raspberry Pi OS base image URL
         id: rpi-os-image
         run: |
@@ -96,6 +98,11 @@ jobs:
           mode: to
           size: 16G
 
+      # RECORD INSTALLER VERSIONING INFORMATION
+      # The user-driven setup script (install.planktoscope.community/distro.sh) records version info
+      # which is read by the PlanktoScope's Python backend and Node-RED dashboard, so we must
+      # record the same information here.
+
       - name: Get actual commit SHA
         # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
         # (refer to https://stackoverflow.com/a/68068674/23202949):
@@ -141,6 +148,85 @@ jobs:
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
             echo "installer-versioning.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
+
+      # PRE-CACHE CONTAINER IMAGES
+      # Because Docker Hub rate-limits container image pulls and we want to pull the same set of
+      # images many times for building a matrix of OS images, we pre-cache container images so that
+      # they can be reused across workflow runs.
+      # TODO: move some of this into a separate GitHub Action and/or Forklift command, to keep
+      # this workflow simpler
+
+      - name: Determine Forklift & Pallet versions
+        id: forklift-versions
+        run: |
+          forklift_version="$(cat software/distro/setup/base-os/forklift/forklift-version)"
+          echo "forklift_version=$forklift_version" >> $GITHUB_OUTPUT
+          pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
+          echo "pallet=$forklift_pallet" >> $GITHUB_OUTPUT
+          pallet_version="$(cat software/distro/setup/base-os/forklift/forklift-pallet-version)"
+          echo "pallet_version=$forklift_pallet" >> $GITHUB_OUTPUT
+
+      - name: Setup Forklift
+        uses: PlanktoScope/setup-forklift@v1
+        with:
+          version: ${{ steps.forklift-versions.outputs.forklift_version }}
+
+      - name: Setup container image pre-cache
+        id: setup-precache
+        run: |
+          mkdir -p /tmp/forklift/container-image-precache
+          echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
+          forklift plt switch "${{ steps.forklift-versions.outputs.pallet }}@${{ steps.forklift-versions.outputs.pallet_version }}"
+          commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
+          echo "Commit: $commit"
+          echo "commit=$commit" >> $GITHUB_OUTPUT
+          exit 1
+
+      - name: Try to load container image pre-cache from GitHub Actions cache
+        id: restore-precache
+        uses: actions/cache/restore@v4
+        with:
+          key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
+          path: ${{ steps.setup-precache.outputs.path }}
+
+      - name: Pre-cache container images
+        run: |
+          image_list=/tmp/forklift/container-image-precache/images-list
+          if [ -f "$image_list" ]; then
+            echo "Container image pre-cache can be loaded from the GitHub Actions cache!"
+            exit 0
+          fi
+          echo "Installing skopeo..."
+          sudo apt-get install -y -o Dpkg::Progress-Fancy=0 skopeo
+          echo "Pre-caching container images..."
+          forklift plt ls-images > image_list
+          parallel --line-buffer \
+            software/distro/setup/base-os/forklift/precache-image.sh < image_list
+
+      - name: Copy container image pre-cache into OS image
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind ${{ steps.setup-precache.outputs.path }}:/run/container-images
+          run: |
+            precache_path="$HOME/.cache/containers"
+            mkdir -p "$HOME/.cache"
+            cp -r /run/container-images $precache_path
+            chown $USER -R "$precache_path"
+            rm "$precache_path/image_list"
+
+      # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
+      # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
+      # fixed, we can simplify this job a bit.
+      - name: Save container image pre-cache to GitHub Actions cache
+        if: always() && steps.restore-precache.outputs.cache-hit != "true"
+        uses: actions/cache/save@v4
+        with:
+          key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
+          path: ${{ steps.setup-precache.outputs.path }}
+
+      # RUN OS SETUP SCRIPTS
 
       # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
       # is much faster than a QEMU VM for downloading files.
@@ -220,6 +306,8 @@ jobs:
             # userconfig.service. See
             # https://forums.raspberrypi.com/viewtopic.php?p=2032694#p2032694
             systemctl enable getty@tty1
+
+      # UPLOAD OS IMAGE
 
       - name: Determine output image name
         env:
