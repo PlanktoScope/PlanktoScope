@@ -1,5 +1,5 @@
 ---
-name: build-os-bookworm
+name: build-os-bullseye-dx
 on:
   push:
     branches:
@@ -31,13 +31,11 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - none
-          - segmenter-only
+          - adafruithat
+          - planktoscopehat
         arch:
           - arm64
         base_variant_name:
-          # We haven't set up networking on bookworm, so the lite image is useless and hard to make
-          # usable; so we just build the desktop image:
           - desktop
     permissions:
       contents: read
@@ -46,9 +44,9 @@ jobs:
     uses: ./.github/workflows/build-os.yml
     secrets: inherit
     with:
-      name: rpi-forklift-demo
-      base_release_name: bookworm
+      name: planktoscope
+      base_release_name: bullseye
       base_image_variant: ${{ matrix.base_variant_name }}
-      base_release_date: 2024-03-15
+      base_release_date: 2024-03-12
       arch: ${{ matrix.arch }}
       variant: ${{ matrix.variant }}
