@@ -39,8 +39,6 @@ function panic {
 
 echo -e "${script_fmt}Setting up full operating system...${reset_fmt}"
 
-sudo apt-get update -y -o Dpkg::Progress-Fancy=0
-
 description="set up base operating system"
 report_starting "$description"
 if $setup_scripts_root/base-os/setup-unbooted.sh ; then

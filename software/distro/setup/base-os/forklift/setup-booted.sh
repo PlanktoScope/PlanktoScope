@@ -36,6 +36,7 @@ if ! docker ps; then
 fi
 
 # Move container images used by the local pallet from the pre-cache to the Docker daemon
+echo "Loading container images from pre-cache..."
 forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precached-image.sh"
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly

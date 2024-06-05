@@ -51,5 +51,6 @@ forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $palle
 sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
 
 # Pre-cache container images without Docker
+echo "Pre-caching container images..."
 sudo apt-get -y install -o Dpkg::Progress-Fancy=0 skopeo parallel
 forklift plt ls-img | parallel --line-buffer "$config_files_root/precache-image.sh"

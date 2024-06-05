@@ -34,6 +34,8 @@ function panic {
 
 # Run sub-scripts
 
+sudo apt-get update -y -o Dpkg::Progress-Fancy=0 -o DPkg::Lock::Timeout=60 
+
 description="install base tools"
 report_starting "$description"
 if $build_scripts_root/tools/install.sh ; then
