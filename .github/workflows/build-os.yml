@@ -182,7 +182,6 @@ jobs:
           echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
           forklift plt clone "${{ env.PALLET_QUERY }}"
           forklift plt cache-repo
-          ls ~/.local/share/forklift/pallet
           commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
           echo "commit=$commit" >> $GITHUB_OUTPUT
           echo "Resolved ${{ env.PALLET_QUERY }} as commit $commit!"
@@ -203,7 +202,7 @@ jobs:
             echo "Container image pre-cache can be loaded from the GitHub Actions cache!"
             exit 0
           fi
-          forklift plt ls-images > "$image_list"
+          forklift plt ls-img > "$image_list"
 
       - name: Pre-cache container images
         uses: ethanjli/pinspawn-action@v0.1.4
