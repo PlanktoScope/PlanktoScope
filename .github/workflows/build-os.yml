@@ -162,9 +162,9 @@ jobs:
           forklift_version="$(cat software/distro/setup/base-os/forklift/forklift-version)"
           echo "forklift_version=$forklift_version" >> $GITHUB_OUTPUT
           pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
-          echo "pallet=$forklift_pallet" >> $GITHUB_OUTPUT
+          echo "PALLET=$forklift_pallet" >> $GITHUB_ENV
           pallet_version="$(cat software/distro/setup/base-os/forklift/forklift-pallet-version)"
-          echo "pallet_version=$forklift_pallet" >> $GITHUB_OUTPUT
+          echo "PALLET_VERSION=$forklift_pallet" >> $GITHUB_ENV
 
       - name: Setup Forklift
         uses: PlanktoScope/setup-forklift@v1
@@ -176,9 +176,8 @@ jobs:
         run: |
           mkdir -p /tmp/forklift/container-image-precache
           echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
-          forklift plt switch "${{ steps.forklift-versions.outputs.pallet }}@${{ steps.forklift-versions.outputs.pallet_version }}"
+          forklift plt switch "${{ env.PALLET }}@${{ env.PALLET_VERSION }}"
           commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
-          echo "Commit: $commit"
           echo "commit=$commit" >> $GITHUB_OUTPUT
           exit 1
 
@@ -186,41 +185,43 @@ jobs:
         id: restore-precache
         uses: actions/cache/restore@v4
         with:
-          key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
+          key: "container-images-pallet-${{ env.PALLET }}@${{ env.PALLET_VERSION }}"
           path: ${{ steps.setup-precache.outputs.path }}
 
-      - name: Pre-cache container images
+      - name: Prepare to pre-cache container images
         run: |
-          image_list=/tmp/forklift/container-image-precache/images-list
+          image_list="${{ steps.setup-precache.outputs.path }}/images-list"
           if [ -f "$image_list" ]; then
             echo "Container image pre-cache can be loaded from the GitHub Actions cache!"
             exit 0
           fi
-          echo "Installing skopeo..."
-          sudo apt-get install -y -o Dpkg::Progress-Fancy=0 skopeo
-          echo "Pre-caching container images..."
-          forklift plt ls-images > image_list
-          parallel --line-buffer \
-            software/distro/setup/base-os/forklift/precache-image.sh < image_list
+          forklift plt ls-images > "$image_list"
 
-      - name: Copy container image pre-cache into OS image
+      - name: Pre-cache container images
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
-          args: --bind ${{ steps.setup-precache.outputs.path }}:/run/container-images
+          args: >-
+            --bind "$(pwd)":/run/os-setup
+            --bind ${{ steps.setup-precache.outputs.path }}:/run/container-images
           run: |
-            precache_path="$HOME/.cache/containers"
-            mkdir -p "$HOME/.cache"
-            cp -r /run/container-images $precache_path
-            chown $USER -R "$precache_path"
-            rm "$precache_path/image_list"
+            echo "Installing skopeo & GNU parallel..."
+            sudo apt-get install -y -o Dpkg::Progress-Fancy=0 skopeo parallel
+            echo "Pre-caching container images..."
+            # Note: we download images on the OS image in a container so that we select the correct
+            # architecture for the OS image, instead of downloading images matching the GitHub
+            # Actions runner's architecture:
+            parallel --line-buffer \
+              /run/os-setup/software/distro/setup/base-os/forklift/precache-image.sh \
+              < /run/container-images/images-list
+            cp $HOME/.cache/containers/* /run/container-images/
 
       # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
       # fixed, we can simplify this job a bit.
       - name: Save container image pre-cache to GitHub Actions cache
-        if: always() && steps.restore-precache.outputs.cache-hit != "true"
+        if: always() && (steps.restore-precache.outputs.cache-hit != "true")
         uses: actions/cache/save@v4
         with:
           key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
