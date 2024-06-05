@@ -134,35 +134,38 @@ main() {
 
   # Record versioning information
 
-  local_etc_dir="${HOME}/.local/etc/pkscope-distro"
-  info "Recording versioning information to ${local_etc_dir}..."
-  if [ -d "${local_etc_dir}" ]; then
-    warn "The ${local_etc_dir} directory already exists, so it will be erased."
-    confirm "Are you sure you want to continue?"
-    rm -rf "${local_etc_dir}"
-  fi
-  mkdir -p "${local_etc_dir}"
+  for versioning_dir in "${HOME}/.local/etc/pkscope-distro" "/usr/share/planktoscope"; do
+    versioning_dir="${HOME}/.local/etc/pkscope-distro"
+    info "Recording versioning information to ${versioning_dir}..."
+    if [ -d "${versioning_dir}" ]; then
+      warn "The ${versioning_dir} directory already exists, so it will be erased."
+      confirm "Are you sure you want to continue?"
+      sudo rm -rf "${versioning_dir}"
+    fi
+    sudo mkdir -p "${versioning_dir}"
+    sudo chown $USER "${versioning_dir}"
 
-  installer_file_header="# This file was auto-generated!"
-  installer_config_file="${local_etc_dir}/installer-config.yml"
-  printf "%s\n" "${installer_file_header}" > "${installer_config_file}"
-  printf "%s: \"%s\"\n" \
-    "repo" "${pretty_repo}" \
-    "version-query" "${VERSION_QUERY}" \
-    "query-type" "${QUERY_TYPE}" \
-    "hardware" "${HARDWARE}" \
-    "tag-prefix" "${TAG_PREFIX}" \
-    "setup-entrypoint" "${SETUP_ENTRYPOINT}" \
-    >> "${installer_config_file}"
+    installer_file_header="# This file was auto-generated!"
+    installer_config_file="${versioning_dir}/installer-config.yml"
+    printf "%s\n" "${installer_file_header}" > "${installer_config_file}"
+    printf "%s: \"%s\"\n" \
+      "repo" "${pretty_repo}" \
+      "version-query" "${VERSION_QUERY}" \
+      "query-type" "${QUERY_TYPE}" \
+      "hardware" "${HARDWARE}" \
+      "tag-prefix" "${TAG_PREFIX}" \
+      "setup-entrypoint" "${SETUP_ENTRYPOINT}" \
+      >> "${installer_config_file}"
 
-  installer_versioning_file="${local_etc_dir}/installer-versioning.yml"
-  printf "%s\n" "${installer_file_header}" > "${installer_versioning_file}"
-  printf "%s: \"%s\"\n" \
-    "repo" "${pretty_repo}" \
-    "commit" "${commit_hash}" \
-    "tag" "${tag}" \
-    "version" "${version_string}" \
-    >> "${installer_versioning_file}"
+    installer_versioning_file="${versioning_dir}/installer-versioning.yml"
+    printf "%s\n" "${installer_file_header}" > "${installer_versioning_file}"
+    printf "%s: \"%s\"\n" \
+      "repo" "${pretty_repo}" \
+      "commit" "${commit_hash}" \
+      "tag" "${tag}" \
+      "version" "${version_string}" \
+      >> "${installer_versioning_file}"
+  done
 }
 
 
