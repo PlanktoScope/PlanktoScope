@@ -124,14 +124,11 @@ jobs:
             else
               export REPO="github.com/${{ github.repository }}"
             fi
-            echo "REPO: $REPO"
             export VERSION_QUERY="$(git -C /run/os-setup show -s --format=%h)"
-            echo "VERSION_QUERY: $VERSION_QUERY"
             export QUERY_TYPE="hash"
-            echo "QUERY_TYPE: $QUERY_TYPE"
             export HARDWARE="${{ inputs.variant }}"
-            echo "HARDWARE: $HARDWARE"
-            export VERBOSE=1
+            # We need to fetch all remote tags for pseudoversion determination:
+            git -C /run/os-setup fetch --all --tags
             # mirror_dir is an internal variable used by the installer script as the path of a git
             # repo for version queries; we repurpose it by just providing the repo we already have:
             export mirror_dir="/run/os-setup"
