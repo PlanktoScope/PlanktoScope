@@ -217,6 +217,7 @@ jobs:
             echo "Installing skopeo & GNU parallel..."
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 skopeo parallel
             echo "Pre-caching container images..."
+            mkdir -p $HOME/.cache/containers
             sudo cp -r /run/container-images/* $HOME/.cache/containers/
             sudo chown $USER -R $HOME/.cache/containers/
             # Note: we download images on the OS image in a container so that we select the correct
