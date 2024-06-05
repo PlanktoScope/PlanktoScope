@@ -178,6 +178,12 @@ main() {
 
 # Imperative section
 
+REPO="$1"
+VERSION_QUERY="$2"
+QUERY_TYPE="$3"
+HARDWARE="$4"
+VERSION_QUERY_DIR="$5"
+
 # Set default values for the command-line arguments
 if [ -z "${REPO-}" ]; then
   exit 1

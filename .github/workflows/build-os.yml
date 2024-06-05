@@ -120,22 +120,23 @@ jobs:
             sudo chown -R $USER "/run/os-setup"
 
             if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
-              export REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
+              REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
             else
-              export REPO="github.com/${{ github.repository }}"
+              REPO="github.com/${{ github.repository }}"
             fi
-            export VERSION_QUERY="${{ env.ACTUAL_SHA }}"
+            VERSION_QUERY="${{ env.ACTUAL_SHA }}"
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
             # actual commit:
             git -C /run/os-setup fetch --all --tags # fetch tags so we can determine pseudoversions
             git -C /run/os-setup checkout "$VERSION_QUERY"
-            export QUERY_TYPE="hash"
-            export HARDWARE="${{ inputs.variant }}"
-            # mirror_dir is an internal variable used by the installer script as the path of a git
-            # repo for version queries; we repurpose it by just providing the repo we already have:
-            export mirror_dir="/run/os-setup"
-            /run/os-setup/software/distro/setup/ci-record-version.sh
+            QUERY_TYPE="hash"
+            HARDWARE="${{ inputs.variant }}"
+            # VERSION_QUERY_DIR is a variable used by the installer script as the path of a git repo
+            # for version queries; we repurpose it by just providing the repo we already have:
+            VERSION_QUERY_DIR="/run/os-setup"
+            /run/os-setup/software/distro/setup/ci-record-version.sh \
+              "$REPO" "$VERSION_QUERY" "$QUERY_TYPE" "$HARDWARE" "$VERSION_QUERY_DIR"
             echo "installer-config.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
             echo "installer-versioning.yml:"
