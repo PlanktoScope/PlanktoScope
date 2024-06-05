@@ -141,12 +141,13 @@ main() {
       warn "The ${versioning_dir} directory already exists, so it will be erased."
       sudo rm -rf "${versioning_dir}"
     fi
-    sudo mkdir -p "${versioning_dir}"
-    sudo chown $USER "${versioning_dir}"
+    if ! mkdir -p "${versioning_dir}"; then
+      sudo mkdir -p "${versioning_dir}"
+    fi
 
     installer_file_header="# This file was auto-generated!"
     installer_config_file="${versioning_dir}/installer-config.yml"
-    printf "%s\n" "${installer_file_header}" > "${installer_config_file}"
+    printf "%s\n" "${installer_file_header}" | sudo tee  "${installer_config_file}" > /dev/null
     printf "%s: \"%s\"\n" \
       "repo" "${pretty_repo}" \
       "version-query" "${VERSION_QUERY}" \
@@ -154,16 +155,16 @@ main() {
       "hardware" "${HARDWARE}" \
       "tag-prefix" "${TAG_PREFIX}" \
       "setup-entrypoint" "${SETUP_ENTRYPOINT}" \
-      >> "${installer_config_file}"
+      | sudo tee --append "${installer_config_file}" > /dev/null
 
     installer_versioning_file="${versioning_dir}/installer-versioning.yml"
-    printf "%s\n" "${installer_file_header}" > "${installer_versioning_file}"
+    printf "%s\n" "${installer_file_header}" | sudo tee "${installer_versioning_file}" > /dev/null
     printf "%s: \"%s\"\n" \
       "repo" "${pretty_repo}" \
       "commit" "${commit_hash}" \
       "tag" "${tag}" \
       "version" "${version_string}" \
-      >> "${installer_versioning_file}"
+      | sudo tee --append "${installer_versioning_file}" > /dev/null
   done
 }
 
