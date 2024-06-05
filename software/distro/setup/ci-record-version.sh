@@ -143,7 +143,7 @@ main() {
   fi
   mkdir -p "${local_etc_dir}"
 
-  installer_file_header="# This file was auto-generated!
+  installer_file_header="# This file was auto-generated!"
   installer_config_file="${local_etc_dir}/installer-config.yml"
   printf "%s\n" "${installer_file_header}" > "${installer_config_file}"
   printf "%s: \"%s\"\n" \
@@ -171,7 +171,6 @@ main() {
 
 # Set default values for the command-line arguments
 if [ -z "${REPO-}" ]; then
-  error "REPO environment variable was not set!"
   exit 1
 fi
 DEFAULT_VERSION_QUERY="software/stable"
