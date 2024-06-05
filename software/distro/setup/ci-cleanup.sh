@@ -1,9 +1,5 @@
 #!/bin/bash -eu
-# The software distro is the complete, finished, fully-function operating system
-# for the PlanktoScope. The resulting image can be flashed to an SD card, inserted
-# into a PlanktoScope, and booted up to make the PlanktoScope fully operational.
-# Note: currently the setup script assumes that it will be installed to /home/pi
-# for the `pi` user.
+# This script performs cleanup which must happen after all other setup work has finished.
 
 # Determine the base path for sub-scripts
 

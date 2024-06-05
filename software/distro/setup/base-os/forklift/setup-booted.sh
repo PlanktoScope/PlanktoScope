@@ -41,12 +41,12 @@ forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precac
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
 if ! $FORKLIFT stage apply; then
-  echo "Checking the plan for applying the staged pallet..."
-  $FORKLIFT stage plan
-  echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
   # Reset the "apply-failed" status of the staged pallet to apply:
   next_pallet="$(basename $(forklift stage locate-bun next))"
   forklift stage set-next --no-cache-img "$next_pallet"
+  echo "Checking the plan for applying the staged pallet..."
+  $FORKLIFT stage plan
+  echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
   echo "Caching any images needed on next boot..."
   $FORKLIFT stage cache-img
 fi
