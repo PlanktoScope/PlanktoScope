@@ -117,7 +117,11 @@ jobs:
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
             cd /run/os-setup
-            export REPO="$(git remote get-url origin)"
+            if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
+              export REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
+            else
+              export REPO="github.com/${{ github.repository }}"
+            fi
             echo "REPO: $REPO"
             export VERSION_QUERY="${{ env.ACTUAL_SHA }}"
             echo "VERSION_QUERY: $VERSION_QUERY"
@@ -126,7 +130,10 @@ jobs:
             export HARDWARE="${{ inputs.variant }}"
             echo "HARDWARE: $HARDWARE"
             export VERBOSE=1
+            # mirror_dir is an internal variable used by the installer script as the path of a git
+            # repo for version queries; we repurpose it by just providing the repo we already have:
             export mirror_dir="/run/os-setup"
+            sudo chown -R $USER "$mirror_dir"
             /run/os-setup/software/distro/setup/ci-record-version.sh
             echo "installer-config.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
