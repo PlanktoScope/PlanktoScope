@@ -205,6 +205,7 @@ jobs:
           forklift plt ls-img > "$image_list"
 
       - name: Pre-cache container images
+        id: precache
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
@@ -227,12 +228,13 @@ jobs:
               /run/os-setup/software/distro/setup/base-os/forklift/precache-image.sh \
               < /run/container-images/images-list
             sudo cp -r $HOME/.cache/containers/* /run/container-images/
+            echo "finished=true" >> $GITHUB_OUTPUT
 
       # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
       # fixed, we can simplify this job a bit.
       - name: Save container image pre-cache to GitHub Actions cache
-        if: "!(cancelled() || steps.restore-precache.outputs.cache-hit)"
+        if: "!cancelled() && !steps.restore-precache.outputs.cache-hit && steps.precache.outputs.finished"
         uses: actions/cache/save@v4
         env:
           PALLET: ${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}
