@@ -178,7 +178,6 @@ jobs:
         env:
           PALLET_QUERY: ${{ steps.forklift-versions.outputs.pallet }}@${{ steps.forklift-versions.outputs.pallet_version }}
         run: |
-          set -x
           mkdir -p /tmp/forklift/container-image-precache
           echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
           forklift plt clone "${{ env.PALLET_QUERY }}"
@@ -186,7 +185,7 @@ jobs:
           ls ~/.local/share/forklift/pallet
           commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
           echo "commit=$commit" >> $GITHUB_OUTPUT
-          exit 1
+          echo "Resolved ${{ env.PALLET_QUERY }} as commit $commit!"
 
       - name: Try to load container image pre-cache from GitHub Actions cache
         id: restore-precache
