@@ -163,10 +163,10 @@ jobs:
           forklift_version="$(cat software/distro/setup/base-os/forklift/forklift-version)"
           echo "forklift_version=$forklift_version" >> $GITHUB_OUTPUT
           pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
-          echo "pallet=$forklift_pallet" >> $GITHUB_OUTPUT
+          echo "pallet=$pallet" >> $GITHUB_OUTPUT
           pallet_version="$(cat software/distro/setup/base-os/forklift/forklift-pallet-version)"
-          echo "pallet_version=$forklift_pallet" >> $GITHUB_OUTPUT
-          echo "Pallet query: ${forklift_pallet}@${pallet_version}"
+          echo "pallet_version=$pallet_version" >> $GITHUB_OUTPUT
+          echo "Pallet query: ${pallet}@${pallet_version}"
 
       - name: Set up Forklift
         uses: PlanktoScope/setup-forklift@v1
