@@ -134,12 +134,11 @@ main() {
 
   # Record versioning information
 
+  # Note: "${HOME}/.local/etc/pkscope-distro" is deprecated
   for versioning_dir in "${HOME}/.local/etc/pkscope-distro" "/usr/share/planktoscope"; do
-    versioning_dir="${HOME}/.local/etc/pkscope-distro"
     info "Recording versioning information to ${versioning_dir}..."
     if [ -d "${versioning_dir}" ]; then
       warn "The ${versioning_dir} directory already exists, so it will be erased."
-      confirm "Are you sure you want to continue?"
       sudo rm -rf "${versioning_dir}"
     fi
     sudo mkdir -p "${versioning_dir}"
