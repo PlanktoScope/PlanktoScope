@@ -128,11 +128,10 @@ jobs:
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
             # actual commit:
+            git -C /run/os-setup fetch --all --tags # fetch tags so we can determine pseudoversions
             git -C /run/os-setup checkout "$VERSION_QUERY"
             export QUERY_TYPE="hash"
             export HARDWARE="${{ inputs.variant }}"
-            # We need to fetch all remote tags for pseudoversion determination:
-            git -C /run/os-setup fetch --all --tags
             # mirror_dir is an internal variable used by the installer script as the path of a git
             # repo for version queries; we repurpose it by just providing the repo we already have:
             export mirror_dir="/run/os-setup"
