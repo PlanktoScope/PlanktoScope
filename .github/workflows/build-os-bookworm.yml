@@ -32,7 +32,8 @@ jobs:
         arch:
           - arm64
         base_variant_name:
-          - lite
+          # We haven't set up networking on bookworm, so the lite image is useless and hard to make
+          # usable; so we just build the desktop image:
           - desktop
     permissions:
       contents: read
