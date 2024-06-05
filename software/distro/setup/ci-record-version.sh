@@ -1,6 +1,12 @@
 #!/bin/bash -eu
 # This script records OS installation versioning information in the same way as the
-# install.planktoscope.community/distro.sh script does.
+# install.planktoscope.community/distro.sh script does. To invnoke it, you must set the following
+# environment variables:
+# REPO (the repo used for setup, e.g. github.com/PlanktoScope/PlanktoScope)
+# VERSION_QUERY (the version query, e.g. a commit hash)
+# QUERY_TYPE (eitiher branch, tag, or hash)
+# HARDWARE (either none, segmenter-only, adafruithat, or planktoscopehat)
+# VERSION_QUERY_DIR (the filesystem path of the git repo used for getting version info)
 
 # Utilities for user interaction
 # Note: the code in this section was copied and adapted from
@@ -117,10 +123,10 @@ main() {
     normalized_repo="https://${REPO}"
   fi
 
-  commit_hash="$(resolve_commit "${mirror_dir}" "${QUERY_TYPE}" "${TAG_PREFIX}" "${VERSION_QUERY}")"
+  commit_hash="$(resolve_commit "${VERSION_QUERY_DIR}" "${QUERY_TYPE}" "${TAG_PREFIX}" "${VERSION_QUERY}")"
   short_commit_hash="$(printf "%s" "${commit_hash}" | cut -c 1-7)"
-  tag="$(resolve_tag "${mirror_dir}" "${TAG_PREFIX}" "${commit_hash}")"
-  version_string="$(resolve_pseudoversion "${mirror_dir}" "${TAG_PREFIX}" "${commit_hash}" \
+  tag="$(resolve_tag "${VERSION_QUERY_DIR}" "${TAG_PREFIX}" "${commit_hash}")"
+  version_string="$(resolve_pseudoversion "${VERSION_QUERY_DIR}" "${TAG_PREFIX}" "${commit_hash}" \
     | sed "s~^${TAG_PREFIX}~~")"
   if [ -n "${VERBOSE-}" ]; then
     printf "\n"
