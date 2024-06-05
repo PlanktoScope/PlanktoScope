@@ -135,8 +135,7 @@ jobs:
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
             # actual commit (and fetch all tags so we can determine a pseudoversion string):
-            git -C /run/os-setup fetch \
-              --all --tags --refetch --filter=blob:none
+            git -C /run/os-setup fetch --all --tags --filter=blob:none
             git -C /run/os-setup checkout "$VERSION_QUERY"
             QUERY_TYPE="hash"
             HARDWARE="${{ inputs.variant }}"
