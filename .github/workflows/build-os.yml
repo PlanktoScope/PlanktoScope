@@ -221,7 +221,7 @@ jobs:
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
       # fixed, we can simplify this job a bit.
       - name: Save container image pre-cache to GitHub Actions cache
-        if: always() && (steps.restore-precache.outputs.cache-hit != "true")
+        if: always() && !steps.restore-precache.outputs.cache-hit
         uses: actions/cache/save@v4
         with:
           key: "container-images-pallet-${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}"
