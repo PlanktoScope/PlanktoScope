@@ -222,7 +222,7 @@ jobs:
             parallel --line-buffer \
               /run/os-setup/software/distro/setup/base-os/forklift/precache-image.sh \
               < /run/container-images/images-list
-            cp $HOME/.cache/containers/* /run/container-images/
+            cp -r $HOME/.cache/containers/* /run/container-images/
 
       # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
