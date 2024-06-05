@@ -124,7 +124,11 @@ jobs:
             else
               export REPO="github.com/${{ github.repository }}"
             fi
-            export VERSION_QUERY="$(git -C /run/os-setup show -s --format=%h)"
+            export VERSION_QUERY="${{ env.ACTUAL_SHA }}"
+            # PR-triggered workflow runs have a merge commit which is detached from existing
+            # branches and messes up pseudoversion determination, so instead we check out the
+            # actual commit:
+            git -C /run/os-setup checkout "$VERSION_QUERY"
             export QUERY_TYPE="hash"
             export HARDWARE="${{ inputs.variant }}"
             # We need to fetch all remote tags for pseudoversion determination:
@@ -137,6 +141,8 @@ jobs:
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
             echo "installer-versioning.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
+            # FIXME: remove this testing line:
+            exit 1
 
       # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
       # is much faster than a QEMU VM for downloading files.
