@@ -120,10 +120,12 @@ jobs:
           user: ${{ env.SETUP_USER }}
           args: --bind "$(pwd)":/run/os-setup
           run: |
+            echo "Installing git..."
             export DEBIAN_FRONTEND=noninteractive
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
             # chown is needed to suppress a git error about dubious repo ownership:
+            echo "Installed git!"
             sudo chown -R $USER "/run/os-setup"
 
             if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
