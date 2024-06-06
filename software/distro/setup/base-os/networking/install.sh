@@ -19,8 +19,10 @@ sudo systemctl disable hostapd.service
 # Disable firewalld for now
 # FIXME: enable firewalld and set up firewall rules
 if sudo systemctl disable firewalld.service --now 2>/dev/null; then
-  # Restart docker to integrate with firewalld
-  sudo systemctl restart docker
+  if systemctl list-units --full -all | grep -Fq "docker.service"; then
+    # Restart docker to integrate with firewalld
+    sudo systemctl restart docker
+  fi
 else
   # We can't stop it because we're not booted, so we don't need to stop it or restart Docker:
   sudo systemctl disable firewalld.service
