@@ -154,7 +154,7 @@ jobs:
       # warning:
       - name: Reset owner of Git repo
         run: |
-          sudo chown -R $USER /run/os-setup
+          sudo chown -R $USER .
 
       # PRE-CACHE CONTAINER IMAGES
       # Because Docker Hub rate-limits container image pulls and we want to pull the same set of
