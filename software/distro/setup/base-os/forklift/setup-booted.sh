@@ -15,7 +15,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift"
 if [ -S /var/run/docker.sock ] && \
-  ! sudo -E docker ps 2&>1 > /dev/null && \
+  ! sudo -E docker ps 2>&1 > /dev/null && \
   ! sudo systemctl start docker.socket docker.service
 then
   echo "Error: couldn't start docker!"
@@ -31,7 +31,7 @@ then
   sudo iptables -L || sudo lsmod
   exit 1
 fi
-if ! docker ps; then
+if ! docker ps 2>&1 > /dev/null; then
   FORKLIFT="sudo -E forklift"
 fi
 
