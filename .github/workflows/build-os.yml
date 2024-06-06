@@ -150,6 +150,12 @@ jobs:
             echo "installer-versioning.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
 
+      # If we don't do this, then the post-job cleanup for the actions/checkout step will emit a
+      # warning:
+      - name: Reset owner of Git repo
+        run: |
+          sudo chown -R $USER /run/os-setup
+
       # PRE-CACHE CONTAINER IMAGES
       # Because Docker Hub rate-limits container image pulls and we want to pull the same set of
       # images many times for building a matrix of OS images, we pre-cache container images so that
