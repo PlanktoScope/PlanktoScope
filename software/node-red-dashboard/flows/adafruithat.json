@@ -4333,7 +4333,7 @@
         "label": "Analog Gain",
         "tooltip": "From 1.0 to 12.0",
         "group": "8c38a81e.9897a8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4359,7 +4359,7 @@
         "label": "Digital Gain",
         "tooltip": "From 1.0 to 64.0. Overexpose starting at 4.0",
         "group": "8c38a81e.9897a8",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4442,80 +4442,7 @@
         "y": 840,
         "wires": [
             [
-                "9feb06fb.43b558"
-            ]
-        ]
-    },
-    {
-        "id": "9feb06fb.43b558",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "ISO selector",
-        "group": "8c38a81e.9897a8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "ISO",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "never",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "100",
-                "value": "100",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "200",
-                "value": "200",
-                "valueType": "num",
-                "color": "#999999"
-            },
-            {
-                "label": "320",
-                "value": "320",
-                "valueType": "num",
-                "color": "#ff6666"
-            },
-            {
-                "label": "400",
-                "value": "400",
-                "valueType": "num",
-                "color": "#009999"
-            },
-            {
-                "label": "500",
-                "value": "500",
-                "valueType": "num",
-                "color": "#cccc00"
-            },
-            {
-                "label": "640",
-                "value": "640",
-                "valueType": "num",
-                "color": "#ff33cc"
-            },
-            {
-                "label": "800",
-                "value": "800",
-                "valueType": "num",
-                "color": "#cc6600"
-            }
-        ],
-        "x": 570,
-        "y": 840,
-        "wires": [
-            [
-                "eb9966de.cf13c8"
+                "37f412d1454deb64"
             ]
         ]
     },
@@ -4847,6 +4774,33 @@
         "x": 915,
         "y": 1140,
         "wires": []
+    },
+    {
+        "id": "37f412d1454deb64",
+        "type": "ui_slider",
+        "z": "bccd1f23.87219",
+        "name": "ISO selector",
+        "label": "ISO",
+        "tooltip": "",
+        "group": "8c38a81e.9897a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "50",
+        "max": "800",
+        "step": "50",
+        "className": "",
+        "x": 570,
+        "y": 840,
+        "wires": [
+            [
+                "eb9966de.cf13c8"
+            ]
+        ]
     },
     {
         "id": "f59a2f0d.5e9af",
@@ -9204,7 +9158,7 @@
         "type": "file in",
         "z": "1371dec5.76e671",
         "name": "Versioning File",
-        "filename": "/home/pi/.local/etc/pkscope-distro/installer-versioning.yml",
+        "filename": "/usr/share/planktoscope/installer-versioning.yml",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
