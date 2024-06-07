@@ -109,7 +109,9 @@ jobs:
         run: |
           if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
             printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
-          elif [ ${{ env.PUSH_IMAGE }} == "true" ]; then
+          else
+            # Note: we want to have a SHA to check out even in merge queues, so we always fall back
+            # to a SHA even if it's a fictional SHA detached from any branches:
             printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
           fi
 
