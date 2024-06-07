@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## v2024.0.0-beta.0 - 2024-06-07
+
+(this release involves no changes from v2024.0.0-alpha.2; it's just a promotion of v204.0.0-alpha.2 to a beta pre-release)
+
 ## v2024.0.0-alpha.2 - 2024-04-25
 
 ### Changed
