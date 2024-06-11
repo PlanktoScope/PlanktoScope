@@ -1,0 +1,48 @@
+---
+name: build-os-bullseye
+on:
+  push:
+    branches:
+      - 'master'
+      - 'software/beta'
+      - 'software/stable'
+    tags:
+      - 'software/v*'
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: 'Git ref (optional)'
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - adafruithat
+          - planktoscopehat
+        arch:
+          - arm64
+        base_variant_name:
+          - lite
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    uses: ./.github/workflows/build-os.yml
+    secrets: inherit
+    with:
+      name: planktoscope
+      base_release_name: bullseye
+      base_image_variant: ${{ matrix.base_variant_name }}
+      base_release_date: 2024-03-12
+      arch: ${{ matrix.arch }}
+      variant: ${{ matrix.variant }}

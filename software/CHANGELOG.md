@@ -7,11 +7,26 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
-## Unreleased
+## v2024.0.0-beta.0 - 2024-06-07
 
 ### Changed
 
+- (Application: GUI) The ISO selector in the "Optic Configuration" page has been changed from a button group to a slider (with an increment of 50), to enable somewhat finer adjustment of the ISO setting.
+- (Breaking change; System) The official SD card images of PlanktoScope OS are now based on the 64-bit (arm64) version of the 2024-03-12 build of Raspberry Pi OS 11 (bullseye), instead of the 32-bit (armhf) version of the 2023-05-03 build of Raspberry Pi OS 11 (bullseye). This increases the performance of the Python segmenter, potentially by a factor of 2. This is expected to break compatibility with the raspimjpeg-based imaging module. If you need a 32-bit version of PlanktoScope OS, you will need to run the OS setup scripts following the PlanktoScope project's documentation's "Non-standard installation" guide for software setup.
 - (System: administration) The `machine-name` binary is no longer provided by the OS setup scripts, but instead is provided by Forklift for upgradeability (by upgrading the pallet applied to the Raspberry Pi) & removeability/replaceability (by switching to a different pallet which provides a different version of - or does not provide - the `machine-name`).
+
+### Deprecated
+
+- (System) 32-bit versions of PlanktoScope OS (which can be set up on a 32-bit version of Raspberry Pi OS using the OS setup scripts) are no longer officially supported by the project, but they will continue to work for v2024.0.0 of PlanktoScope OS.
+
+### Removed
+
+- (Application: GUI) The landing page's links to Portainer have been removed, as part of the deprecation in v2024.0.0-alpha.2 of the inclusion of Portainer by default in the PlanktoScope OS's SD card images.
+
+### Fixed
+
+- (Application: GUI) The landing page's links to offline PDF copies of the protocols.io protocols for PlanktoScope operation are no longer broken.
+- (Application: GUI) The maximum allowed value in the ISO selector in the "Optic Configuration" page has been reduced from 800 to 650, but only for the planktoscopehat version of the Node-RED dashboard; maximum allowed value is still 800 in the adafruithat version of the Node-RED dashboard. This change is because v2024.0.0-alpha.2's change to the scaling factor for converting between ISO settings and camera gains in the picamera2 library has meant that ISO values above 650 were converted to image gain values which were silently rejected for the Raspberry Pi HQ Camera used PlanktoScopes with hardware version at or above v2.3; this, this change prevents users from setting ISO values which would be silently rejected by the Python hardware controller.
 
 ## v2024.0.0-alpha.2 - 2024-04-25
 
@@ -36,7 +51,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Deprecated
 
-- (System: administration, troubleshooting; Application: GUI) Portainer will no longer be installed/provided by default after v2024.0.0. This is because it requires inclusion of a relatively large Docker container image in the PlanktoScope OS's SD card image (which is constrained to be up to 2 GB in size so that it can be attached as an upload to GitHub Releases), and because it has an annoying first-time user experience (i.e. that a password must be set within a few minutes of boot, or else the Portainer container must be restarted), and because Dozzle already provides all the basic functionalities needed by most users, and because Portainer has never actually been used for troubleshooting within the past year of the project.
+- (System: administration, troubleshooting; Application: GUI) Portainer will no longer be installed/provided by default after v2024.0.0. This is because it requires inclusion of a relatively large Docker container image in the PlanktoScope OS's SD card image (which is constrained to be up to 2 GB in size so that it can be attached as an upload to GitHub Releases), and because it has an annoying first-time user experience (i.e. that a password must be set within a few minutes of boot, or else the Portainer container must be restarted), and because Dozzle already provides all the basic functionalities needed by most users, and because Portainer has never actually been used for troubleshooting within the past year of the project, and because Portainer has a nontrivial impact on the sizes of the PlanktoScope OS SD card images (which are limited to 2 GB).
 - (System: administration; Application: GUI) The "USB backup" functionality of the Node-RED dashboard will be removed in v2024.1.0 (the next release after v2024.0.0). Instead, you should use the datasets file browser for backing up and deleting dataset files on your PlanktoScope.
 - (Application: backend) The raspimjpeg-based imaging module in the Python hardware controller has not yet been deleted so that you can change the Python hardware controller code to switch back from the new picamera2-based imaging module if picamera2 ends up causing big problems for you. However, we are deprecating the raspimjpeg-based imaging module, and we will fully delete it in a future release (perhaps v2024.1.0, or perhaps later).
 

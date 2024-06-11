@@ -40,7 +40,7 @@ In order to abstract the Raspberry Pi computer hardware to enable execution of o
 
 - Most of the PlanktoScope's software is (or eventually will be) executed as [Docker](https://www.docker.com/) containers by the [`dockerd`](https://docs.docker.com/get-started/overview/#the-docker-daemon) daemon (which in turn is run by the `docker.service` systemd service). In the PlanktoScope OS, all Docker containers are declaratively specified, configured, and integrated together as [Docker Compose](https://docs.docker.com/compose/) applications. We use Docker because it enables us to isolate programs from each other so that they interact only in specifically-defined ways; this makes it easier for us to configure, integrate, distribute, and deploy the various programs running on the PlanktoScope.
 
-Currently, the PlanktoScope OS is a 32-bit operating system which runs on 64-bit Raspberry Pi CPUs; this is because the PlanktoScope hardware controller (a program described below in the [PlanktoScope-specific hardware abstraction](#planktoscope-specific-hardware-abstraction) section) currently relies on a library which is only available in the 32-bit Raspberry Pi OS. We are in the process of migrating the PlanktoScope OS to run as a 64-bit operating system.
+The PlanktoScope OS is a 64-bit operating system.
 
 ### Boot sequence
 

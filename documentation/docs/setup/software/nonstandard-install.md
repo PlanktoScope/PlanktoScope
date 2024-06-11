@@ -25,17 +25,17 @@ In order to complete the non-standard setup process, you will need all of the fo
 
 ### Download a Raspberry Pi OS SD card image
 
-The setup scripts for the PlanktoScope OS assume that you will be setting up the PlanktoScope software on a 32-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-05-03. You can choose any of the following three variants of that version of the Raspberry Pi OS, depending on your needs:
+The setup scripts for the PlanktoScope OS assume that you will be setting up the PlanktoScope software on a 64-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-03-12. You can choose any of the following three variants of that version of the Raspberry Pi OS, depending on your needs:
 
-- ["Raspberry Pi OS with desktop"](https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz)
-- ["Raspberry Pi OS with desktop and recommended software"](https://downloads.raspberrypi.com/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz)
-- ["Raspberry Pi OS Lite"](https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-lite.img.xz)
+- ["Raspberry Pi OS with desktop"](https://downloads.raspberrypi.com/raspios_oldstable_arm64/images/raspios_oldstable_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64.img.xz)
+- ["Raspberry Pi OS with desktop and recommended software"](https://downloads.raspberrypi.com/raspios_oldstable_full_arm64/images/raspios_oldstable_full_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-full.img.xz)
+- ["Raspberry Pi OS Lite"](https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz)
 
 The standard PlanktoScope software SD card images are built on the Raspberry Pi OS Lite image, which only provides a command-line interface, without a graphical desktop environment or web browser; because the PlanktoScope's graphical user interface must be accessed from a web browser, you might prefer to use the "Raspberry Pi OS with desktop" image in order to have a graphical desktop environment with a web browser. This would allow you to operate the PlanktoScope by plugging in a display, keyboard, and mouse to your Raspberry Pi; otherwise, you will have to connect to the PlanktoScope from another device over Ethernet or Wi-Fi in order access the PlanktoScope's graphical user interface.
 
 !!! warning
 
-    The latest version of Raspberry Pi OS, with Debian version 12 (bookworm), can be downloaded from [the Raspberry Pi Operating system images page](https://www.raspberrypi.com/software/operating-systems/), but the PlanktoScope software setup scripts do not yet work on Debian version 12; that page also has links named "Archive" under the download buttons where you can find older versions with Debian version 11 (bullseye) under the "Raspberry Pi OS (Legacy)" section; those links are the same as the links we listed above. You should make sure you download a 32-bit version of Raspberry Pi OS Bullseye, as the PlanktoScope software setup scripts do not yet work with 64-bit versions of the Raspberry Pi OS!
+    The latest version of Raspberry Pi OS, with Debian version 12 (bookworm), can be downloaded from [the Raspberry Pi Operating system images page](https://www.raspberrypi.com/software/operating-systems/), but the PlanktoScope software setup scripts do not yet work on Debian version 12; that page also has links named "Archive" under the download buttons where you can find older versions with Debian version 11 (bullseye) under the "Raspberry Pi OS (Legacy)" section; those links are the same as the links we listed above.
 
 ### Write the OS image to an SD card
 
