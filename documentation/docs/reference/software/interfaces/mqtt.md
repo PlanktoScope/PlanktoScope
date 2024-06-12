@@ -6,7 +6,7 @@ Welcome to the MQTT API documentation for Planktoscope. This guide is designed t
 ```mermaid
 flowchart TD
     User[User Application] -->|Publish Command| Topic[MQTT Topic]
-    Topic -->|Command as JSON message| System[Planktoscope System]
+    Topic -->|Command as JSON message| System[Python Backend]
     System -->|Perform Action| Actuator[Hardware Actuator]
     Actuator -->|Action Result| System
     System -->|Publish Status| StatusTopic[MQTT Status Topic]
