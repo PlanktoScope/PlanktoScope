@@ -49,7 +49,7 @@ In this section, we explore the different use cases associated with each MQTT to
   "flowrate": 1
 }
 ```
-This messages make the pump move 10mL forward at 1mL/min.
+This message makes the pump move 10mL forward at 1mL/min.
 
 **Authorized values for `move` action:**
 
