@@ -386,6 +386,7 @@ A camera settings message can also be received here. The fields `iso`, `shutter_
   "action": "stop"
 }
 ```
+Stops any in-progress stop-flow sample dataset acquisition routine.
 
 **Authorized values for `stop` action:**
 
@@ -428,10 +429,10 @@ The `action` element is the only element required. If no `path` is supplied, the
 | Parameter     | Type   | Accepted Values      | Description                                            |
 |---------------|--------|----------------------|--------------------------------------------------------|
 | `path`        | string | path/to/directory    | Path to the directory to segment.                      |
-| `force`       | bool   | true, false          | Force re-segmentation even if previously done. It will overcome the presence of the file `done` that prevents resegmenting a folder already segmented. |
-| `recursive`   | bool   | true, false          | Process directories recursively, forcing parsing all folders below `path`. |
-| `ecotaxa`     | bool   | true, false          | Export an ecotaxa compatible archive.                  |
-| `keep`        | bool   | true, false          | Keep ROI files during ecotaxa export. It has no effect if not exporting to ecotaxa; the ROI files are kept by default. |
+| `settings.force`       | bool   | true, false          | Force re-segmentation even if previously done. It will overcome the presence of the file `done` that prevents resegmenting a folder already segmented. |
+| `settings.recursive`   | bool   | true, false          | Process directories recursively, forcing parsing all folders below `path`. |
+| `settings.ecotaxa`     | bool   | true, false          | Export an ecotaxa compatible archive.                  |
+| `settings.keep`        | bool   | true, false          | Keep ROI files during ecotaxa export. It has no effect if not exporting to ecotaxa; the ROI files are kept by default. |
 
  **Status/Error Messages related to the segment action**
 
