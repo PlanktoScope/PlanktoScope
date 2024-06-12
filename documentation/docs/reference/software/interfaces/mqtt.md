@@ -469,31 +469,3 @@ The `action` element is the only element required. If no `path` is supplied, the
 | `Busy`               | The segmenter is currently running and cannot update configurations. |
 
 
-## Common Log Errors
-
-### MQTT Connection Errors
-- **Error Log**: 
-
-`"Error : Connection to the MQTT server is unexpectedly lost"`
-
-- **Description**: This error occurs when the MQTT client cannot establish a connection with the broker within the expected timeframe.
-- **Possible Causes**:
-  - Network issues.
-  - Incorrect broker address.
-  - Broker unavailable.
-- **Resolution Steps**:
-  - Check network connectivity.
-  - Verify broker address and availability.
-
-### MQTT Publishing Errors
-- **Error Log**: 
-
-`"Failed to Publish Message: Broker Unresponsive"`
-
-- **Description**: Indicates a failure in sending a message to the MQTT broker, typically due to broker issues.
-- **Possible Causes**:
-  - Broker overload.
-  - Connectivity issues affecting the broker.
-- **Resolution Steps**:
-  - Retry publishing the message after a brief interval.
-
