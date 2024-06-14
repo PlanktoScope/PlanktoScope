@@ -1,5 +1,5 @@
 #!/bin/bash -eu
-parent="$2"
+parent="$1"
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 version="$(cat "$config_files_root/rush-version")"
