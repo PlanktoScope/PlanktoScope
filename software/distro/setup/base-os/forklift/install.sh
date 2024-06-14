@@ -61,6 +61,7 @@ forklift plt ls-img | \
   rush "$config_files_root/precache-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
+echo "Preparing to load pre-downloaded container images..."
 loader="docker"
 if ! sudo "$loader" ps 2>&1 > /dev/null; then
   echo "Couldn't use Docker; will try to fall back to nerdctl and containerd..."
@@ -77,7 +78,7 @@ if ! sudo "$loader" ps 2>&1 > /dev/null; then
   fi
 fi
 
-echo "Loading pre-downloaded container images into containerd..."
+echo "Loading pre-downloaded container images..."
 forklift plt ls-img | \
   rush "$config_files_root/load-precached-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$loader"
