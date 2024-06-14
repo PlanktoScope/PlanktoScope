@@ -47,7 +47,7 @@ sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing 
 # Pre-download container images without Docker
 
 echo "Downloading temporary tools to pre-download container images..."
-tmp_bin="$(mktemp --directory bin.XXXXXXX)"
+tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 "$config_files_root/download-crane.sh" "$tmp_bin"
 "$config_files_root/download-rush.sh" "$tmp_bin"
 

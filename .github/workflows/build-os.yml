@@ -180,7 +180,6 @@ jobs:
           mkdir -p /tmp/forklift/container-image-precache
           echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
           forklift plt clone "$pallet@$pallet_version"
-          forklift plt cache-repo
           commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
           echo "commit=$commit" >> $GITHUB_OUTPUT
           echo "Resolved $pallet@$pallet_version as commit $commit!"
@@ -208,7 +207,7 @@ jobs:
           forklift_setup_root="./software/distro/setup/base-os/forklift"
 
           echo "Downloading temporary tools to pre-download container images..."
-          tmp_bin="$(mktemp --directory bin.XXXXXXX)"
+          tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
           "$forklift_setup_root/download-crane.sh" "$tmp_bin"
           "$forklift_setup_root/download-rush.sh" "$tmp_bin"
 

@@ -38,7 +38,7 @@ fi
 # Move container images used by the local pallet from the pre-cache to the Docker daemon
 
 echo "Downloading temporary tools to load pre-downloaded container images into Docker..."
-tmp_bin="$(mktemp --directory bin.XXXXXXX)"
+tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 "$config_files_root/download-rush.sh" "$tmp_bin"
 
 echo "Loading pre-downloaded container images into Docker..."
