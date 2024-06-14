@@ -70,7 +70,7 @@ if ! sudo "$loader" ps 2>&1 > /dev/null; then
     echo "Couldn't start containerd.service; will instead try to start the containerd manually..."
     sudo /usr/bin/containerd &
   fi
-  if ! "$loader" ps > /dev/null; then
+  if ! $loader ps > /dev/null; then
     echo "Error: couldn't use nerdctl to talk to containerd!"
     exit 1
   fi
