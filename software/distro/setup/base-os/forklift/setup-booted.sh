@@ -2,8 +2,6 @@
 
 # Prepare to apply the local pallet
 
-# FIXME: restart docker and ensure it's using containerd image storage
-
 # Note: the pi user will only be able to run `forklift stage plan` and `forklift stage cache-img`
 # without root permissions after a reboot, so we may need `sudo -E` here; I had tried running
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
@@ -29,6 +27,9 @@ fi
 if ! docker ps 2>&1 > /dev/null; then
   FORKLIFT="sudo -E forklift"
 fi
+
+sudo docker info -f '{{ .DriverStatus }}'
+sudo docker images
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
