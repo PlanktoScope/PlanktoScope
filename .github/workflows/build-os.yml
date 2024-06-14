@@ -281,7 +281,7 @@ jobs:
           machine: rpi-3b+
           #boot: true
           user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted-vm.sh
+          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted.sh
 
       # Set up PlanktoScope application environment
       # Note: we only perform this setup work after QEMU VM setup steps, because this sets up some

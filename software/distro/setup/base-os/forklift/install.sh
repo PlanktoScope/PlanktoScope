@@ -69,7 +69,7 @@ if ! sudo "$loader" ps 2>&1 > /dev/null; then
   loader="$tmp_bin/nerdctl"
   if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
     echo "Couldn't start containerd.service; will instead try to start the containerd manually..."
-    sudo /usr/bin/containerd 1>/dev/null &
+    sudo /usr/bin/containerd 2>&1 > /dev/null &
   fi
   sleep 1 # give containerd time to start
   if ! sudo $loader ps > /dev/null; then
