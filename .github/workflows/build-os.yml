@@ -168,7 +168,8 @@ jobs:
       - name: Set up container image pre-caching
         id: setup-precaching
         run: |
-          "$config_files_root/download-forklift.sh" "/usr/bin"
+          forklift_setup_root="./software/distro/setup/base-os/forklift"
+          "$forklift_setup_root/download-forklift.sh" "/usr/bin"
 
           pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
           echo "pallet=$pallet" >> $GITHUB_OUTPUT
