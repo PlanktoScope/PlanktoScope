@@ -200,8 +200,8 @@ jobs:
         env:
           PALLET: ${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}
         with:
-          key: "container-images-pallet-${{ env.PALLET }}"
           path: ${{ steps.setup-precache.outputs.path }}
+          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
 
       - name: Prepare to pre-cache container images
         run: |
