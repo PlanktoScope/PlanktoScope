@@ -50,6 +50,7 @@ echo "Downloading temporary tools to pre-download container images..."
 tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 "$config_files_root/download-crane.sh" "$tmp_bin"
 "$config_files_root/download-rush.sh" "$tmp_bin"
+export PATH="$tmp_bin:$PATH"
 
 echo "Pre-downloading container images..."
 container_platform="linux/$( \
@@ -59,3 +60,23 @@ export PATH="$tmp_bin:$PATH"
 forklift plt ls-img | rush \
   "$config_files_root/precache-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
+
+loader="docker"
+if ! sudo "$loader" ps 2>&1 > /dev/null; then
+  echo "Couldn't use Docker; will try to fall back to nerdctl and containerd..."
+  "$config_files_root/download-nerdctl.sh" "$tmp_bin"
+  loader="nerdctl"
+  if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
+    echo "Couldn't start containerd.service; will try to start the containerd daemon manually..."
+    sudo containerd &
+  fi
+  if ! sudo nerdctl ps > /dev/null; then
+    echo "Error: couldn't use nerdctl to talk to containerd!"
+    exit 1
+  fi
+fi
+
+echo "Loading pre-downloaded container images into containerd..."
+forklift plt ls-img | rush \
+  "$config_files_root/load-precached-image.sh" \
+    {} "$HOME/.cache/forklift/containers/docker-archives" "$loader"
