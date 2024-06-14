@@ -57,26 +57,26 @@ container_platform="linux/$( \
   dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~' \
 )"
 export PATH="$tmp_bin:$PATH"
-forklift plt ls-img | rush \
-  "$config_files_root/precache-image.sh" \
+forklift plt ls-img | \
+  rush "$config_files_root/precache-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
-loader="docker"
+loader="sudo docker"
 if ! sudo "$loader" ps 2>&1 > /dev/null; then
   echo "Couldn't use Docker; will try to fall back to nerdctl and containerd..."
   "$config_files_root/download-nerdctl.sh" "$tmp_bin"
-  loader="nerdctl"
+  loader="sudo $tmp_bin/nerdctl"
   if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
-    echo "Couldn't start containerd.service; will try to start the containerd daemon manually..."
-    sudo containerd &
+    echo "Couldn't start containerd.service; will instead try to start the containerd manually..."
+    sudo /usr/bin/containerd &
   fi
-  if ! sudo nerdctl ps > /dev/null; then
+  if ! "$loader" ps > /dev/null; then
     echo "Error: couldn't use nerdctl to talk to containerd!"
     exit 1
   fi
 fi
 
 echo "Loading pre-downloaded container images into containerd..."
-forklift plt ls-img | rush \
-  "$config_files_root/load-precached-image.sh" \
+forklift plt ls-img | \
+  rush "$config_files_root/load-precached-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$loader"
