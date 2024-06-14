@@ -11,8 +11,8 @@ if [ -f "$precached_image" ]; then
 fi
 
 crane="crane"
-if ! mkdir -p "$(dirname "$cache_path")"; then
-  sudo mkdir -p "$(dirname "$cache_path")"
+if ! mkdir -p "$(dirname "$precached_image")"; then
+  sudo mkdir -p "$(dirname "$precached_image")"
   crane="$sudo crane"
 fi
 
