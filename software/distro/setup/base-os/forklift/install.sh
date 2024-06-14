@@ -58,4 +58,4 @@ container_platform="linux/$( \
 export PATH="$tmp_bin:$PATH"
 forklift plt ls-img | rush \
   "$config_files_root/precache-image.sh" \
-    {} "$HOME/.cache/forklift/containers/oci-archives" "$container_platform"
+    {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"

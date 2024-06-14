@@ -43,7 +43,7 @@ tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 
 echo "Loading pre-downloaded container images into Docker..."
 forklift plt ls-img | "$tmp_bin/rush" \
-  "$config_files_root/transfer-precached-image.sh" {} "$HOME/.cache/forklift/containers/oci-archives"
+  "$config_files_root/transfer-precached-image.sh" {} "$HOME/.cache/forklift/containers/docker-archives"
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.

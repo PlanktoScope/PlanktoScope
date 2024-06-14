@@ -215,7 +215,7 @@ jobs:
           export PATH="$tmp_bin:$PATH"
           container_platform="linux/$(echo "$ARCH" | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')"
           rush "$forklift_setup_root/precache-image.sh" {} "$PRECACHE_PATH" "$container_platform" \
-            < /run/container-images/images-list
+            < "$PRECACHE_PATH/images-list"
 
       # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
@@ -237,7 +237,7 @@ jobs:
           args: >-
             --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
           run: |
-            local_cache="$HOME/.cache/forklift/containers/oci-archives"
+            local_cache="$HOME/.cache/forklift/containers/docker-archives"
             mkdir -p "$local_cache"
             sudo cp -r /run/container-images/* "$local_cache"
             sudo chown $USER -R "$local_cache"
