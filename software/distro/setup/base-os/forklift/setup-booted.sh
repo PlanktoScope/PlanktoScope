@@ -36,8 +36,14 @@ if ! docker ps 2>&1 > /dev/null; then
 fi
 
 # Move container images used by the local pallet from the pre-cache to the Docker daemon
-echo "Loading container images from pre-cache..."
-forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precached-image.sh"
+
+echo "Downloading temporary tools to load pre-downloaded container images into Docker..."
+tmp_bin="$(mktemp --directory bin.XXXXXXX)"
+"$config_files_root/download-rush.sh" "$tmp_bin"
+
+echo "Loading pre-downloaded container images into Docker..."
+forklift plt ls-img | "$tmp_bin/rush" \
+  "$config_files_root/transfer-precached-image.sh" {} "$HOME/.cache/forklift/containers/oci-archives"
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.

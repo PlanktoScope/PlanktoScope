@@ -1,24 +1,26 @@
 #!/bin/bash -eu
 image="$1"
+cache_path="$2" # e.g. ~/.cache/containers
+platform="$3" # e.g. `linux/arm64`
 
-precached_image="$HOME/.cache/containers/$(echo "$image" | sed "s~:~;~").tar"
+precached_image="$cache_path/$image.tar"
 
 if [ -f "$precached_image" ]; then
   echo "Skipping $image, which was already downloaded to $precached_image!"
   exit 0
 fi
 
-mkdir -p "$(dirname "$precached_image")"
+crane="crane"
+if ! mkdir -p "$cache_path"; then
+  sudo mkdir -p "$cache_path"
+  crane="$sudo crane"
+fi
 
 echo "Downloading $image to $precached_image..."
-if ! skopeo copy --quiet \
-  --override-arch "$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')" \
-  "docker://$image" "docker-archive:$precached_image:$image"
+if ! $crane --platform "$platform" pull --format=oci "$image" "$precached_image"
 then
   echo "Encountered error, trying one more time to download $image..."
-  rm "$precached_image"
-  skopeo copy --quiet \
-    --override-arch "$(dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')" \
-    "docker://$image" "docker-archive:$precached_image:$image"
+  rm -f "$precache_image" || sudo rm -f "$precached_image"
+  $crane --platform "$platform" pull --format=oci "$image" "$precached_image"
 fi
 echo "Finished downloading $image!"
