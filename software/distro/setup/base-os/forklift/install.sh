@@ -81,6 +81,6 @@ fi
 echo "Loading pre-downloaded container images..."
 forklift plt ls-img | \
   rush "$config_files_root/load-precached-image.sh" \
-    {} "$HOME/.cache/forklift/containers/docker-archives" "$loader"
+    {} "$HOME/.cache/forklift/containers/docker-archives" "\"$loader\""
 
-sudo $loader images
+sudo nerdctl --namespace moby images

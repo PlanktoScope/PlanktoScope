@@ -28,7 +28,6 @@ if ! docker ps 2>&1 > /dev/null; then
   FORKLIFT="sudo -E forklift"
 fi
 
-tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 sudo /usr/bin/nerdctl --namespace moby images
 sudo docker images
 
