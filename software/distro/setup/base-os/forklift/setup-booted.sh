@@ -44,13 +44,11 @@ forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precac
 if ! $FORKLIFT stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
-  next_pallet="$(basename $(forklift stage locate-bun next))"
-  forklift stage set-next --no-cache-img "$next_pallet"
+  forklift stage set-next --no-cache-img next
   if ! $FORKLIFT stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
-    next_pallet="$(basename $(forklift stage locate-bun next))"
-    forklift stage set-next --no-cache-img "$next_pallet"
+    forklift stage set-next --no-cache-img next
     echo "Checking the plan for applying the staged pallet..."
     $FORKLIFT stage plan
     # Note: we don't run forklift stage cache-img because we had already loaded all necessary images
