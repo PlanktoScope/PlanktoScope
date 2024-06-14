@@ -61,17 +61,17 @@ forklift plt ls-img | \
   rush "$config_files_root/precache-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
-loader="sudo docker"
+loader="docker"
 if ! sudo "$loader" ps 2>&1 > /dev/null; then
   echo "Couldn't use Docker; will try to fall back to nerdctl and containerd..."
   "$config_files_root/download-nerdctl.sh" "$tmp_bin"
-  loader="sudo $tmp_bin/nerdctl"
+  loader="$tmp_bin/nerdctl"
   if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
     echo "Couldn't start containerd.service; will instead try to start the containerd manually..."
-    sudo /usr/bin/containerd > /dev/null &
+    sudo /usr/bin/containerd 1>/dev/null &
   fi
-  sleep 1 # reduce the risk of concurrent interleaving of stderr messages
-  if ! $loader ps > /dev/null; then
+  sleep 1 # give containerd time to start
+  if ! sudo $loader ps > /dev/null; then
     echo "Error: couldn't use nerdctl to talk to containerd!"
     exit 1
   fi
