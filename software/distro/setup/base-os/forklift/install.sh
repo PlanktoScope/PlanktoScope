@@ -62,11 +62,11 @@ forklift plt ls-img | \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
 echo "Preparing to load pre-downloaded container images..."
+"$config_files_root/download-nerdctl.sh" "/usr/bin"
 loader="docker"
 if ! sudo "$loader" ps 2>&1 > /dev/null; then
   echo "Couldn't use Docker; will try to fall back to nerdctl and containerd..."
-  "$config_files_root/download-nerdctl.sh" "$tmp_bin"
-  loader="$tmp_bin/nerdctl --namespace moby"
+  loader="/usr/bin/nerdctl --namespace moby"
   if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
     echo "Couldn't start containerd.service; will instead try to start the containerd manually..."
     sudo /usr/bin/containerd &

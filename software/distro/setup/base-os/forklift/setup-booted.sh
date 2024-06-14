@@ -29,8 +29,7 @@ if ! docker ps 2>&1 > /dev/null; then
 fi
 
 tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
-"$config_files_root/download-nerdctl.sh" "$tmp_bin"
-sudo $tmp_bin/nerdctl --namespace moby images
+sudo /usr/bin/nerdctl --namespace moby images
 sudo docker images
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
