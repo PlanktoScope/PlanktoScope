@@ -8,13 +8,7 @@
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Install Forklift
-
-forklift_version="$(cat "$config_files_root/forklift-version")"
-arch="$(dpkg --print-architecture | sed -e 's~armhf~arm~' -e 's~aarch64~arm64~')"
-curl -L "https://github.com/PlanktoScope/forklift/releases/download/v$forklift_version/forklift_${forklift_version}_linux_${arch}.tar.gz" \
-  | sudo tar -C /usr/bin -xz forklift
-sudo mv /usr/bin/forklift "/usr/bin/forklift-${forklift_version}"
-sudo ln -s "forklift-${forklift_version}" /usr/bin/forklift
+"$config_files_root/download-forklift.sh" "/usr/bin"
 
 # Prepare most of the necessary systemd units:
 sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
@@ -50,7 +44,18 @@ pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
 forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
 sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
 
-# Pre-cache container images without Docker
-echo "Pre-caching container images..."
-sudo apt-get -y install -o Dpkg::Progress-Fancy=0 skopeo parallel
-forklift plt ls-img | parallel --line-buffer "$config_files_root/precache-image.sh"
+# Pre-download container images without Docker
+
+echo "Downloading temporary tools to pre-download container images..."
+tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
+"$config_files_root/download-crane.sh" "$tmp_bin"
+"$config_files_root/download-rush.sh" "$tmp_bin"
+
+echo "Pre-downloading container images..."
+container_platform="linux/$( \
+  dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~' \
+)"
+export PATH="$tmp_bin:$PATH"
+forklift plt ls-img | rush \
+  "$config_files_root/precache-image.sh" \
+    {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"

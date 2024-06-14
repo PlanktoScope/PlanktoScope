@@ -36,21 +36,25 @@ if ! docker ps 2>&1 > /dev/null; then
 fi
 
 # Move container images used by the local pallet from the pre-cache to the Docker daemon
-echo "Loading container images from pre-cache..."
-forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precached-image.sh"
+
+echo "Downloading temporary tools to load pre-downloaded container images into Docker..."
+tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
+"$config_files_root/download-rush.sh" "$tmp_bin"
+
+echo "Loading pre-downloaded container images into Docker..."
+forklift plt ls-img | "$tmp_bin/rush" \
+  "$config_files_root/transfer-precached-image.sh" {} "$HOME/.cache/forklift/containers/docker-archives"
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
 if ! $FORKLIFT stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
-  next_pallet="$(basename $(forklift stage locate-bun next))"
-  forklift stage set-next --no-cache-img "$next_pallet"
+  forklift stage set-next --no-cache-img next
   if ! $FORKLIFT stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
-    next_pallet="$(basename $(forklift stage locate-bun next))"
-    forklift stage set-next --no-cache-img "$next_pallet"
+    forklift stage set-next --no-cache-img next
     echo "Checking the plan for applying the staged pallet..."
     $FORKLIFT stage plan
     # Note: we don't run forklift stage cache-img because we had already loaded all necessary images
