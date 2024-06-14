@@ -265,6 +265,14 @@ jobs:
           run: |
             sudo cp -r /run/os-setup /usr/lib/os-setup
 
+      - name: Run base OS setup scripts in a booted systemd-nspawn container
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          boot: true
+          user: ${{ env.SETUP_USER }}
+          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted.sh
+
       # Note: for now, we need to boot the OS in a QEMU VM rather than a systemd-nspawn container 
       # (even though the VM is much much slower) because `docker.socket`/`docker.service` can't
       # start properly in the container due to its use of iptables-nft: Docker's use of
@@ -281,7 +289,7 @@ jobs:
           machine: rpi-3b+
           #boot: true
           user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted.sh
+          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted-vm.sh
 
       # Set up PlanktoScope application environment
       # Note: we only perform this setup work after QEMU VM setup steps, because this sets up some
