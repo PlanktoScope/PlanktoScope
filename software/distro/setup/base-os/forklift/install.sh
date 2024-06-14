@@ -68,8 +68,9 @@ if ! sudo "$loader" ps 2>&1 > /dev/null; then
   loader="sudo $tmp_bin/nerdctl"
   if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
     echo "Couldn't start containerd.service; will instead try to start the containerd manually..."
-    sudo /usr/bin/containerd &
+    sudo /usr/bin/containerd > /dev/null &
   fi
+  sleep 1 # reduce the risk of concurrent interleaving of stderr messages
   if ! $loader ps > /dev/null; then
     echo "Error: couldn't use nerdctl to talk to containerd!"
     exit 1
