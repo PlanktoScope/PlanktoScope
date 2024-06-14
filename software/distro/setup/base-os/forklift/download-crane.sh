@@ -6,7 +6,7 @@ version="$(cat "$config_files_root/crane-version")"
 arch="$(uname -m | sed -e 's~amd64~x86_64~' -e 's~aarch64~arm64~')"
 tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 
-echo "Downloading crane v$crane_version ($arch) to $tmp_bin/crane..."
+echo "Downloading crane v$version ($arch) to $tmp_bin/crane..."
 curl -L "https://github.com/google/go-containerregistry/releases/download/v$version/go-containerregistry_Linux_${arch}.tar.gz" \
   | tar -C "$tmp_bin" -xz crane
 
