@@ -17,10 +17,10 @@ if ! mkdir -p "$cache_path"; then
 fi
 
 echo "Downloading $image to $precached_image..."
-if ! $crane --platform "$platform" pull --format=oci "$image" "$precached_image"
+if ! $crane --platform "$platform" pull "$image" "$precached_image"
 then
   echo "Encountered error, trying one more time to download $image..."
   rm -f "$precache_image" || sudo rm -f "$precached_image"
-  $crane --platform "$platform" pull --format=oci "$image" "$precached_image"
+  $crane --platform "$platform" pull "$image" "$precached_image"
 fi
 echo "Finished downloading $image!"
