@@ -385,7 +385,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT_IMAGE_NAME }}
-          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.gz
+          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.xz
           if-no-files-found: error
           retention-days: 0
           compression-level: 0
