@@ -375,6 +375,10 @@ jobs:
 
       - name: Shrink the OS image
         uses: ethanjli/pishrink-action@v0.1.2
+        env:
+          # With xz the default compression level (6), pishrink takes ~10 min to run; for
+          # comparison, with gzip at the max compression level (9), pishrink takes ~5 min to run.
+          PISHRINK_XZ: -T0 -4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
