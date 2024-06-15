@@ -378,7 +378,7 @@ jobs:
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
-          compress: gzip
+          compress: xz
           compress-parallel: true
 
       - name: Upload image to Job Artifacts
