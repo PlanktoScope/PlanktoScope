@@ -2,7 +2,9 @@
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
 # Remove unnecessary packages:
-sudo apt-get remove -y gcc ^gcc-
+sudo apt-get remove -y gcc
+sudo apt-get remove -y gcc-10 || true
+sudo apt-get remove -y gcc-12 || true
 
 # Clean up any unnecessary apt files:
 sudo apt-get autoremove -y
