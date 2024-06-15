@@ -7,6 +7,12 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Removed
+
+- (System) `gcc` has been removed from the SD card image, to help reduce SD card image size.
+
 ## v2024.0.0-beta.0 - 2024-06-07
 
 ### Changed
