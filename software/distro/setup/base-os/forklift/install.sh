@@ -67,6 +67,7 @@ echo "Preparing to load pre-downloaded container images..."
 # we delete blobs once we unpack them into the snapshotter storage (so that we don't double the
 # space needed to store each container image); so we must download a more recent version of `ctr`:
 "$config_files_root/download-ctr.sh" "$tmp_bin"
+sudo -E ctr --version
 # We load images with containerd instead of Docker so that we can do it without booting into a QEMU
 # VM (warning: Docker needs to be configured to use containerd for image storage!):
 if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
