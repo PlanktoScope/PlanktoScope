@@ -10,5 +10,5 @@ echo "Downloading ctr v$version ($arch) to $tmp_bin/ctr..."
 curl -L "https://github.com/containerd/containerd/releases/download/v$version/containerd-static-$version-linux-${arch}.tar.gz" \
   | sudo tar -C "$tmp_bin" -xz bin/ctr
 
-echo "Moving $tmp_bin/ctr to $parent/ctr..."
-mv "$tmp_bin/ctr" "$parent/ctr" 2>/dev/null || sudo mv "$tmp_bin/ctr" "$parent/ctr"
+echo "Moving $tmp_bin/bin/ctr to $parent/ctr..."
+mv "$tmp_bin/bin/ctr" "$parent/ctr" 2>/dev/null || sudo mv "$tmp_bin/bin/ctr" "$parent/ctr"
