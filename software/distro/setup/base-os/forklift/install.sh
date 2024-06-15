@@ -85,4 +85,5 @@ forklift plt ls-img | \
   rush "$config_files_root/load-precached-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives"
 
+sudo -E ctr --namespace moby content ls
 sudo -E ctr --namespace moby images ls
