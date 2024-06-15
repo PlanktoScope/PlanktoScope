@@ -26,9 +26,8 @@ then
 fi
 if ! docker info 2>&1 > /dev/null; then
   FORKLIFT="sudo -E forklift"
-else
-  sudo docker info
 fi
+sudo docker info
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
