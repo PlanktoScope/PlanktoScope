@@ -15,8 +15,6 @@ if [ -f $POETRY_VENV/bin/poetry ]; then
   $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear piwheels --all
   sudo rm -rf $HOME/.cache/pypoetry
 fi
-npm cache clean
-sudo npm cache clean
 
 # Remove history files
 rm -f $HOME/.python_history
