@@ -8,7 +8,7 @@
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift"
 if [ -S /var/run/docker.sock ] && \
-  ! sudo -E docker images 2>&1 > /dev/null && \
+  ! sudo -E docker info && \
   ! sudo systemctl start docker.socket docker.service
 then
   echo "Error: couldn't start docker!"
@@ -24,11 +24,11 @@ then
   sudo iptables -L || sudo lsmod
   exit 1
 fi
-if ! docker images 2>&1 > /dev/null; then
+if ! docker info 2>&1 > /dev/null; then
   FORKLIFT="sudo -E forklift"
+else
+  sudo docker info
 fi
-
-sudo docker images
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
