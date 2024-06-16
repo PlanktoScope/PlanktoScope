@@ -374,11 +374,18 @@ jobs:
           echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
 
       - name: Shrink the OS image
-        uses: ethanjli/pishrink-action@bc646492d3c695ea899079be410a43435b95b3f9
+        uses: ethanjli/pishrink-action@v0.1.3
         env:
-          # With xz the default compression level (6), pishrink takes ~10 min to run; for
-          # comparison, with gzip at the max compression level (9), pishrink takes ~5 min to run.
-          PISHRINK_XZ: -T0 -1
+          # pishrink run time vs. compression level:
+          # bullseye adafruithat lite:
+          # - xz level 6: ~10 min -> 1.4 GB
+          # - xz level 1: ~3 min -> 1.6 GB
+          # - pigz level 9: ~4 min -> 2.1 GB
+          # bullseye adafruithat desktop:
+          # - xz level 6: ~14 min -> 1.9 GB
+          # - xz level 1: ~4 min -> 2.6 GB
+          # - pigz level 9: ~4 min -> 2.5 GB
+          PISHRINK_XZ: -T0 ${{ inputs.base_image_variant == 'lite' && '-1' || '-9' }}
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
