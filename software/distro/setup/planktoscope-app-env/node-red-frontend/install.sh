@@ -7,11 +7,19 @@ distro_setup_files_root=$(dirname $(dirname $config_files_root))
 repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 
 # Get command-line args
-hardware_type="$1" # should be either adafruithat or planktoscopehat
-if [ $hardware_type = "segmenter-only" ]; then
-  echo "Warning: setting up adafruithat version of Node-RED dashboard for hardware type: $hardware_type"
-  hardware_type=adafruithat
-fi
+hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
+default_config="$hardware_type-latest"
+case "$hardware_type" in
+  "fairscope-latest")
+    hardware_type="planktoscopehat"
+    default_config="fairscope-latest"
+    ;;
+  "segmenter-only")
+    # FIXME: instead set up the segmenter-only version of the Node-RED dashboard!
+    echo "Warning: setting up adafruithat version of Node-RED dashboard for hardware type: $hardware_type"
+    hardware_type=adafruithat
+    ;;
+esac
 
 # Install dependencies
 # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
@@ -35,7 +43,7 @@ mkdir -p $HOME/.node-red
 cp "$repo_root/software/node-red-dashboard/flows/$hardware_type.json" \
   $HOME/.node-red/flows.json
 mkdir -p $HOME/PlanktoScope
-cp "$repo_root/software/node-red-dashboard/default-configs/$hardware_type-latest.config.json" \
+cp "$repo_root/software/node-red-dashboard/default-configs/$default_config.config.json" \
   $HOME/PlanktoScope/config.json
 
 # Copy required dependencies with hard-coded paths in the Node-RED dashboard
