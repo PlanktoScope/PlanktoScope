@@ -50,12 +50,41 @@ echo "Downloading temporary tools to pre-download container images..."
 tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 "$config_files_root/download-crane.sh" "$tmp_bin"
 "$config_files_root/download-rush.sh" "$tmp_bin"
+export PATH="$tmp_bin:$PATH"
 
 echo "Pre-downloading container images..."
 container_platform="linux/$( \
   dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~' \
 )"
 export PATH="$tmp_bin:$PATH"
-forklift plt ls-img | rush \
-  "$config_files_root/precache-image.sh" \
+forklift plt ls-img | \
+  rush "$config_files_root/precache-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
+
+echo "Preparing to load pre-downloaded container images..."
+# Note: by default on bullseye `ctr` is v1.6.33, but we need release from v1.7 to have the
+# `--discard-unpacked-layers` flag on the `ctr images import` command; and we need that flag so that
+# we delete blobs once we unpack them into the snapshotter storage (so that we don't double the
+# space needed to store each container image); so we must download a more recent version of `ctr`:
+"$config_files_root/download-ctr.sh" "$tmp_bin"
+sudo $tmp_bin/ctr --version
+# We load images with containerd instead of Docker so that we can do it without booting into a QEMU
+# VM (warning: Docker needs to be configured to use containerd for image storage!):
+if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
+  # We should only reach this if we're running setup in an unbooted container:
+  echo "containerd.service couldn't be started; will try to start containerd directly..."
+  sudo /usr/bin/containerd &
+  sleep 1 # give containerd time to start
+fi
+if ! sudo $tmp_bin/ctr --namespace moby images ls > /dev/null; then
+  echo "Error: couldn't use ctr to talk to containerd!"
+  exit 1
+fi
+
+echo "Loading pre-downloaded container images..."
+forklift plt ls-img | \
+  rush "$config_files_root/load-precached-image.sh" \
+    {} "$HOME/.cache/forklift/containers/docker-archives" "$tmp_bin/ctr"
+
+sudo $tmp_bin/ctr --namespace moby content ls
+sudo $tmp_bin/ctr --namespace moby images ls
