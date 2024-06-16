@@ -374,7 +374,7 @@ jobs:
           echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
 
       - name: Shrink the OS image
-        uses: ethanjli/pishrink-action@bc64649
+        uses: ethanjli/pishrink-action@bc646492d3c695ea899079be410a43435b95b3f9
         env:
           # With xz the default compression level (6), pishrink takes ~10 min to run; for
           # comparison, with gzip at the max compression level (9), pishrink takes ~5 min to run.
