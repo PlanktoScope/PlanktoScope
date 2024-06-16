@@ -9,6 +9,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- (System: administration) The Forklift pallet provided by default as the SD card image is now named (and pinned as) the `factory-reset` staged pallet bundle.
+
 ### Changed
 
 - (Release) SD card images are now released with xz compression (as `.img.xz` files) rather than gzip compression (as `.img.gz` files).

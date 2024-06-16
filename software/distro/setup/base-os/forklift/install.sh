@@ -42,6 +42,7 @@ fi
 pallet_path="$(cat "$config_files_root/forklift-pallet")"
 pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
 forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
+forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-reset next
 sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
 
 # Pre-download container images without Docker
