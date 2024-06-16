@@ -9,6 +9,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Changed
+
+- (Release) SD card images are now released with xz compression (as `.img.xz` files) rather than gzip compression (as `.img.gz` files).
+
 ### Removed
 
 - (System) `gcc` has been removed from the SD card image, to help reduce SD card image size.
