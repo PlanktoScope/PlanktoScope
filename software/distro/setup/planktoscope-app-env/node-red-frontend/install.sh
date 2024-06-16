@@ -18,6 +18,7 @@ case "$hardware_type" in
     # FIXME: instead set up the segmenter-only version of the Node-RED dashboard!
     echo "Warning: setting up adafruithat version of Node-RED dashboard for hardware type: $hardware_type"
     hardware_type=adafruithat
+    default_config="adafruithat-latest"
     ;;
 esac
 
