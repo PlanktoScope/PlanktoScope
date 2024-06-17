@@ -13,7 +13,6 @@ if [ -f $POETRY_VENV/bin/poetry ]; then
   BACKEND_CONTROLLER=$HOME/device-backend/control
   $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear _default_cache --all
   $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear piwheels --all
-  sudo rm -rf $HOME/.cache/pypoetry
 fi
 
 # Remove history files
