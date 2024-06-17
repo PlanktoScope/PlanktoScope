@@ -164,8 +164,6 @@ The PlanktoScope OS also provides various tools with web browser-based interface
 
 - [Dozzle](https://dozzle.dev/): for viewing and monitoring logs of Docker containers.
 
-- [Portainer](https://www.portainer.io/): for advanced troubleshooting of Docker containers.
-
 - [Grafana](https://grafana.com/): for monitoring and exploring metrics stored in Prometheus.
 
 Finally, the PlanktoScope OS adds some command-line tools (beyond what is already provided by the default installation of the Raspberry Pi OS) for administrative tasks which system administrators, software developers, and advanced users may need to use:
