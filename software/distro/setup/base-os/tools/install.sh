@@ -19,5 +19,5 @@ sudo apt-get install -y -o Dpkg::Progress-Fancy=0 \
 # Add a symlink at /var/lib/planktoscope/machine-name for backwards-compatibility with the Node-RED
 # frontend and Python backend, which are not yet updated to check /run/machine-name instead:
 sudo mkdir -p /var/lib/planktoscope
-sudo rm /var/lib/planktoscope/machine-name
+sudo rm -f /var/lib/planktoscope/machine-name
 sudo ln -s /run/machine-name /var/lib/planktoscope/machine-name

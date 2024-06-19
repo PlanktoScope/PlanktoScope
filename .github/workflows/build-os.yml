@@ -135,7 +135,6 @@ jobs:
               REPO="github.com/${{ github.repository }}"
             fi
             VERSION_QUERY="${{ env.ACTUAL_SHA }}"
-            cat /run/os-setup/.git/config
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
             # actual commit (and fetch all tags so we can determine a pseudoversion string):
