@@ -1,6 +1,8 @@
-# MQTT API
+# Planktoscope MQTT API Reference
 
-Welcome to the MQTT API documentation for Planktoscope. This guide is designed to help you understand the messaging protocol for controlling the Planktoscope device and handling various functionalities effectively.
+## Overview
+
+This document provides a comprehensive reference for the Planktoscope MQTT API, detailing the topics, message formats, and possible status and error messages for controlling various actuators and receiving their statuses.
 
 ## MQTT architecture communication
 ```mermaid
@@ -42,8 +44,11 @@ In this section, we explore the different use cases associated with each MQTT to
 - **MQTT Topic for Status/Errors**: `status/pump`
 - **Function**: Controls the pump to move fluid within the device.
 
+#### Move Command
 
-- **JSON message to move the pump**:
+**Description**: Moves the pump to control fluid within the device.
+
+**JSON message to move the pump**:
 
 ```json
 {
@@ -78,7 +83,10 @@ This message makes the pump move 10mL forward at 1mL/min.
 | `"Done"`                     | The pump has successfully stopped after fully pumping the specified volume of sample.              |
 
 
-- **JSON message to stop the pump**:
+#### Stop Command
+
+**Description**: Stops the pump and cuts off power to the pump’s stepper motor.
+**JSON message to stop the pump**:
 
 ```json
 {
@@ -111,7 +119,12 @@ This message updates the pump to stop moving, and cuts off power to the pump’s
 - **MQTT Topic for Commands**: `actuator/focus`
 - **MQTT Topic for Status/Errors**: `status/focus`
 - **Function**: Updates the sample stage focusing motors to move a specified displacement at a specified speed.
-- **JSON message to move the focus**:
+
+#### Move Command
+
+**Description**: Moves the focusing stage by a specified displacement.
+
+**JSON message to move the focus**:
 
 ```json
 {
@@ -144,7 +157,11 @@ This message makes the stage move up by 0.26 mm. Speed is optional.
 | `"Error, invalid_speed"`             | The speed parameter is out of the allowable range (0.001 to 5.0 mm/s).                                     |
 | `"Done"`                             | The focusing motors have successfully stopped after moving the specified distance.                         |
 
-- **JSON message to stop the focus**:
+
+#### Stop Command
+
+**Description**: Stops the focusing stage.
+**JSON message to stop the focus**:
 
 ```json
 {
