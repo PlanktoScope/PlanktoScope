@@ -13,6 +13,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Prepare most of the necessary systemd units:
 sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
 sudo cp $config_files_root/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
+sudo systemctl unmask forklift-apply.service # if it was masked, we must unmask it to apply preset
 sudo systemctl preset forklift-apply.service
 # Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
 # (see https://docs.kernel.org/filesystems/overlayfs.html):
@@ -71,7 +72,7 @@ echo "Preparing to load pre-downloaded container images..."
 sudo $tmp_bin/ctr --version
 # We load images with containerd instead of Docker so that we can do it without booting into a QEMU
 # VM (warning: Docker needs to be configured to use containerd for image storage!):
-if ! systemctl status containerd.service && ! sudo systemctl start containerd.service; then
+if ! systemctl --no-pager status containerd.service && ! sudo systemctl start containerd.service; then
   # We should only reach this if we're running setup in an unbooted container:
   echo "containerd.service couldn't be started; will try to start containerd directly..."
   sudo /usr/bin/containerd &
