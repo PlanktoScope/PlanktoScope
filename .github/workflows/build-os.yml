@@ -128,6 +128,9 @@ jobs:
             # chown is needed to suppress a git error about dubious repo ownership:
             sudo chown -R $USER "/run/os-setup"
 
+            # TODO: remove this troubleshooting code:
+            set -x
+
             if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
               REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
             else
