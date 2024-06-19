@@ -34,6 +34,8 @@ function panic {
 
 # Run sub-scripts
 
+sudo apt-get update -y -o Dpkg::Progress-Fancy=0 -o DPkg::Lock::Timeout=60 
+
 description="install base tools"
 report_starting "$description"
 if $build_scripts_root/tools/install.sh ; then
@@ -51,14 +53,6 @@ else
   panic "$description"
 fi
 
-description="set up OS configuration with Forklift"
-report_starting "$description"
-if $build_scripts_root/forklift/install.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="configure networking"
 report_starting "$description"
 if $build_scripts_root/networking/install.sh ; then
@@ -70,6 +64,32 @@ fi
 description="configure Raspberry Pi-specific hardware"
 report_starting "$description"
 if $build_scripts_root/platform-hardware/config.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
+# Note: we must install Docker before we perform Forklift container image loading (which requires
+# either Docker or containerd, which is installed by Docker).
+description="install Docker"
+report_starting "$description"
+if $build_scripts_root/docker/install.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
+description="set up Forklift"
+report_starting "$description"
+if $build_scripts_root/forklift/install.sh ; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
+description="install Cockpit"
+report_starting "$description"
+if $build_scripts_root/cockpit/install.sh ; then
   report_finished "$description"
 else
   panic "$description"

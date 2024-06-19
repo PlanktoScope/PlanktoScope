@@ -1,0 +1,406 @@
+name: build-os
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: 'The name of the OS image to build'
+        required: true
+        type: string
+      base_release_name:
+        description: 'The release name of the RPi OS base image (bullseye, bookworm)'
+        required: true
+        type: string
+      base_image_variant:
+        description: 'The name of the RPi OS base image variant (lite, desktop, or full)'
+        required: true
+        type: string
+      base_release_date:
+        description: 'The release date of the RPi OS base image'
+        required: true
+        type: string
+      arch:
+        description: 'The CPU architecture of the OS (armhf, arm64)'
+        required: true
+        type: string
+      variant:
+        description: 'The name of the RPi OS base image variant (none, segmenter-only, adafruithat, planktoscopehat)'
+        required: true
+        type: string
+
+jobs:
+  build-os-image:
+    name: Build image
+    runs-on: ubuntu-latest
+    env:
+      KERNEL_VERSION: 6.1.21
+      SETUP_USER: pi
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      # Checkout push-to-registry action GitHub repository
+      - name: Checkout Push to Registry action
+        uses: actions/checkout@v4
+
+      # This is needed so that the QEMU VM build step doesn't run out of disk space:
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          docker-images: false
+          swap-storage: false
+
+      # GET BASE IMAGE
+
+      - name: Determine Raspberry Pi OS base image URL
+        id: rpi-os-image
+        run: |
+          case '${{ inputs.base_release_name }}' in
+            'bookworm')
+              IMAGE_RELEASE_CHANNEL='raspios'
+              ;;
+            'bullseye')
+              IMAGE_RELEASE_CHANNEL='raspios_oldstable'
+              ;;
+            *)
+              echo "Unknown release name: ${{ inputs.base_release_name }}"
+              exit 1
+              ;;
+          esac
+          IMAGE_REPO_GROUP="$IMAGE_RELEASE_CHANNEL"
+          if [[ "${{ inputs.base_image_variant }}" != "desktop" ]]; then
+            IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.base_image_variant }}"
+          fi
+          IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.arch }}"
+          IMAGE_FILENAME="${{ inputs.base_release_date }}-raspios-${{ inputs.base_release_name }}-${{ inputs.arch }}"
+          if [[ "${{ inputs.base_image_variant }}" != "desktop" ]]; then
+            IMAGE_FILENAME="${IMAGE_FILENAME}-${{ inputs.base_image_variant }}"
+          fi
+          IMAGE_FILENAME="${IMAGE_FILENAME}.img.xz"
+          IMAGE_URL="https://downloads.raspberrypi.com/$IMAGE_REPO_GROUP/images/$IMAGE_REPO_GROUP-${{ inputs.base_release_date }}/$IMAGE_FILENAME"
+          echo "RPi OS image filename: $IMAGE_FILENAME"
+          echo "image_filename=$IMAGE_FILENAME" >> $GITHUB_OUTPUT
+          echo "RPi OS image URL: $IMAGE_URL"
+          echo "image_url=$IMAGE_URL" >> $GITHUB_OUTPUT
+
+      - name: Download and cache base image
+        id: download-base
+        uses: ethanjli/cached-download-action@v0.1.1
+        with:
+          url: ${{ steps.rpi-os-image.outputs.image_url }}
+          destination: /tmp/${{ steps.rpi-os-image.outputs.image_filename }}
+
+      - name: Decompress & grow base image
+        id: expand-image
+        uses: ethanjli/pigrow-action@v0.1.1
+        with:
+          image: ${{ steps.download-base.outputs.destination }}
+          mode: to
+          size: 16G
+
+      # RECORD INSTALLER VERSIONING INFORMATION
+      # The user-driven setup script (install.planktoscope.community/distro.sh) records version info
+      # which is read by the PlanktoScope's Python backend and Node-RED dashboard, so we must
+      # record the same information here.
+
+      - name: Get actual commit SHA
+        # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
+        # (refer to https://stackoverflow.com/a/68068674/23202949):
+        run: |
+          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
+            printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+          else
+            # Note: we want to have a SHA to check out even in merge queues, so we always fall back
+            # to a SHA even if it's a fictional SHA detached from any branches:
+            printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
+          fi
+
+      - name: Record OS installation versioning information
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind "$(pwd)":/run/os-setup
+          run: |
+            export DEBIAN_FRONTEND=noninteractive
+            sudo apt-get update -y -o Dpkg::Progress-Fancy=0
+            sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
+            # chown is needed to suppress a git error about dubious repo ownership:
+            sudo chown -R $USER "/run/os-setup"
+
+            set -x
+            if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
+              REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
+            else
+              REPO="github.com/${{ github.repository }}"
+            fi
+            VERSION_QUERY="${{ env.ACTUAL_SHA }}"
+            # PR-triggered workflow runs have a merge commit which is detached from existing
+            # branches and messes up pseudoversion determination, so instead we check out the
+            # actual commit (and fetch all tags so we can determine a pseudoversion string):
+            git -C /run/os-setup config remote.origin.url "https://$REPO"
+            git -C /run/os-setup config extensions.partialClone "$(git config --get remote.origin.url)"
+            git -C /run/os-setup fetch --tags --filter=blob:none
+            git -C /run/os-setup checkout "$VERSION_QUERY"
+            QUERY_TYPE="hash"
+            HARDWARE="${{ inputs.variant }}"
+            # VERSION_QUERY_DIR is a variable used by the installer script as the path of a git repo
+            # for version queries; we repurpose it by just providing the repo we already have:
+            VERSION_QUERY_DIR="/run/os-setup"
+            /run/os-setup/software/distro/setup/ci-record-version.sh \
+              "$REPO" "$VERSION_QUERY" "$QUERY_TYPE" "$HARDWARE" "$VERSION_QUERY_DIR"
+            echo "installer-config.yml:"
+            cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
+            echo "installer-versioning.yml:"
+            cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
+
+      # If we don't do this, then the post-job cleanup for the actions/checkout step will emit a
+      # warning:
+      - name: Reset owner of Git repo
+        run: |
+          sudo chown -R $USER .
+
+      # PRE-CACHE CONTAINER IMAGES
+      # Because Docker Hub rate-limits container image pulls and we want to pull the same set of
+      # images many times for building a matrix of OS images, we pre-cache container images so that
+      # they can be reused across workflow runs.
+      # TODO: move some of this into a separate GitHub Action and/or Forklift command, to keep
+      # this workflow simpler
+
+      - name: Set up container image pre-caching
+        id: setup-precaching
+        run: |
+          forklift_setup_root="./software/distro/setup/base-os/forklift"
+          "$forklift_setup_root/download-forklift.sh" "/usr/bin"
+
+          pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
+          echo "pallet=$pallet" >> $GITHUB_OUTPUT
+          pallet_version="$(cat software/distro/setup/base-os/forklift/forklift-pallet-version)"
+          echo "pallet_version=$pallet_version" >> $GITHUB_OUTPUT
+          echo "Pallet query: ${pallet}@${pallet_version}"
+
+          mkdir -p /tmp/forklift/container-image-precache
+          echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
+          forklift plt clone "$pallet@$pallet_version"
+          commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
+          echo "commit=$commit" >> $GITHUB_OUTPUT
+          echo "Resolved $pallet@$pallet_version as commit $commit!"
+
+      - name: Try to load container image pre-cache from GitHub Actions cache
+        id: restore-precache
+        uses: actions/cache/restore@v4
+        env:
+          PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
+        with:
+          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
+          path: ${{ steps.setup-precaching.outputs.path }}
+
+      - name: Pre-download container images
+        env:
+          ARCH: ${{ inputs.arch }}
+          PRECACHE_PATH: ${{ steps.setup-precaching.outputs.path }}
+        run: |
+          set -x
+          if [ -f "$PRECACHE_PATH/images-list" ]; then
+            echo "Pre-downloaded container images can be loaded from the GitHub Actions cache!"
+            exit 0
+          fi
+          forklift plt ls-img > "$PRECACHE_PATH/images-list"
+          forklift_setup_root="./software/distro/setup/base-os/forklift"
+
+          echo "Downloading temporary tools to pre-download container images..."
+          tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
+          "$forklift_setup_root/download-crane.sh" "$tmp_bin"
+          "$forklift_setup_root/download-rush.sh" "$tmp_bin"
+
+          echo "Pre-downloading container images..."
+          export PATH="$tmp_bin:$PATH"
+          container_platform="linux/$(echo "$ARCH" | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')"
+          rush "$forklift_setup_root/precache-image.sh" {} "$PRECACHE_PATH" "$container_platform" \
+            < "$PRECACHE_PATH/images-list"
+
+      # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
+      # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
+      # fixed, we can simplify this job a bit.
+      - name: Save container image pre-cache to GitHub Actions cache
+        if: "!steps.restore-precache.outputs.cache-hit"
+        uses: actions/cache/save@v4
+        env:
+          PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
+        with:
+          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
+          path: ${{ steps.setup-precaching.outputs.path }}
+
+      - name: Copy pre-downloaded container images into image
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: >-
+            --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
+          run: |
+            local_cache="$HOME/.cache/forklift/containers/docker-archives"
+            mkdir -p "$local_cache"
+            sudo cp -r /run/container-images/* "$local_cache"
+            sudo chown $USER -R "$local_cache"
+
+      # RUN OS SETUP SCRIPTS
+
+      # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
+      # is much faster than a QEMU VM for downloading files.
+      - name: Run base OS setup scripts in an unbooted container
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind "$(pwd)":/run/os-setup
+          run: |
+            export DEBIAN_FRONTEND=noninteractive
+            echo "Running setup scripts..."
+            /run/os-setup/software/distro/setup/base-os/setup-unbooted.sh
+
+      - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          args: --bind "$(pwd)":/run/os-setup
+          run: |
+            sudo cp -r /run/os-setup /usr/lib/os-setup
+
+      # Note: for now, we need to boot the OS in a QEMU VM rather than a systemd-nspawn container 
+      # (even though the VM is much much slower) because `docker.socket`/`docker.service` can't
+      # start properly in the container due to its use of iptables-nft: Docker's use of
+      # iptables/nftables results in error "Failed to initialize nft: Protocol not supported".
+      # iptables/nftables which won't work if run using qemu-aarch64-static (see
+      # https://github.com/multiarch/qemu-user-static/issues/191 for details).
+      # Once GitHub makes arm64 runners available to open-source projects, then we can get rid of
+      # QEMU and we may be able to successfully start Docker in a systemd-nspawn container.
+      - name: Run base OS setup scripts in a booted VM
+        uses: ethanjli/piqemu-action@v0.1.1
+        #uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          machine: rpi-3b+
+          #boot: true
+          user: ${{ env.SETUP_USER }}
+          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted.sh
+
+      # Set up PlanktoScope application environment
+      # Note: we only perform this setup work after QEMU VM setup steps, because this sets up some
+      # background system services which may slow down the QEMU VM setup by ~20 minutes.
+      - name: Run PlanktoScope application environment setup scripts in an unbooted container
+        uses: ethanjli/pinspawn-action@v0.1.4
+        if: inputs.variant != 'none'
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind "$(pwd)":/run/os-setup
+          run: |
+            export DEBIAN_FRONTEND=noninteractive
+            echo "Running setup scripts..."
+            /run/os-setup/software/distro/setup/planktoscope-app-env/setup.sh ${{ inputs.variant }}
+
+      - name: Clean up after running setup
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: --bind "$(pwd)":/run/os-setup
+          run: |
+            sudo rm -rf /usr/lib/os-setup
+            /run/os-setup/software/distro/setup/cleanup.sh ${{ inputs.variant }}
+
+      - name: Prepare for a headless first boot on bare metal
+        uses: ethanjli/pinspawn-action@v0.1.4
+        env:
+          DEFAULT_PASSWORD: copepode
+          DEFAULT_KEYBOARD_LAYOUT: us
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          run: |
+            # Change default settings for the SD card to enable headless & keyboardless first boot
+            # Note: we could change the username by making a `/boot/userconf.txt` file with the new
+            # username and an encrypted representation of the password (and un-disabling and
+            # unmasking `userconfig.service`), but we don't need to do that for now.
+            # See https://github.com/RPi-Distro/userconf-pi/blob/bookworm/userconf-service and
+            # https://www.raspberrypi.com/documentation/computers/configuration.html#configuring-a-user
+            # and the "firstrun"-related and "cloudinit"-related lines of
+            # https://github.com/raspberrypi/rpi-imager/blob/qml/src/OptionsPopup.qml and
+            # the RPi SD card image's `/usr/lib/raspberrypi-sys-mods/firstboot` and
+            # `/usr/lib/raspberrypi-sys-mods/imager_custom` scripts
+            echo "pi:${{ env.DEFAULT_PASSWORD }}" | chpasswd
+            sed -i \
+              -e "s~^XKBLAYOUT=.*~XKBLAYOUT=\"${{ env.DEFAULT_KEYBOARD_LAYOUT }}\"~" \
+              /etc/default/keyboard
+            systemctl disable userconfig.service
+
+            # This is needed to have the login prompt on tty1 (so that a user with a keyboard can
+            # log in without switching away from the default tty), because we disabled
+            # userconfig.service. See
+            # https://forums.raspberrypi.com/viewtopic.php?p=2032694#p2032694
+            systemctl enable getty@tty1
+
+      # UPLOAD OS IMAGE
+
+      - name: Determine output image name
+        env:
+          TAG_PREFIX: "software/v"
+        run: |
+          # Determine the version for the image name
+          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+            # We're in a pull request
+            version="$(\
+              printf "pr-%s-%.7s" \
+                "${{ github.event.pull_request.number }}" \
+                "${{ github.event.pull_request.head.sha }}" \
+            )"
+          elif [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref }}" == refs/tags/$TAG_PREFIX* ]]; then
+            version="${{ github.ref }}"
+            version="v${version%"refs/tags/$TAG_PREFIX"}"
+          else
+            version="$(printf "%.7s" "${{ github.sha }}")"
+          fi
+          variant="${{ inputs.variant }}"
+          if [[ "${{ inputs.base_release_name }}" != "bullseye" ]]; then
+            variant="$variant.${{ inputs.base_release_name }}"
+          fi
+          if [[ "${{ inputs.arch }}" != "arm64" ]]; then
+            variant="$variant.${{ inputs.arch }}"
+          fi
+          if [[ "${{ inputs.base_image_variant }}" != "lite" ]]; then
+            variant="$variant.${{ inputs.base_image_variant }}"
+          fi
+
+          # Assemble the image name
+          output_name="${{ inputs.name }}-$version+$variant"
+          echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
+
+      - name: Shrink the OS image
+        uses: ethanjli/pishrink-action@v0.1.3
+        env:
+          # pishrink run time vs. compression level (measured in PR 428):
+          # bullseye adafruithat lite:
+          # - xz level 6: ~10 min -> 1.4 GB
+          # - xz level 1: ~3 min -> 1.6 GB
+          # - pigz level 9: ~4 min -> 2.1 GB
+          # bullseye adafruithat desktop:
+          # - xz level 9: ~16 min -> 1.8 GB
+          # - xz level 6: ~14 min -> 1.9 GB
+          # - xz level 1: ~4 min -> 2.6 GB
+          # - pigz level 9: ~4 min -> 2.5 GB
+          PISHRINK_XZ: -T0 ${{ inputs.base_image_variant == 'lite' && '-1' || '-6' }}
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
+          compress: xz
+          compress-parallel: true
+
+      - name: Upload image to Job Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_IMAGE_NAME }}
+          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.xz
+          if-no-files-found: error
+          retention-days: 0
+          compression-level: 0
+          overwrite: true

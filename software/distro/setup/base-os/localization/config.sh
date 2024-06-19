@@ -10,7 +10,7 @@ en_DK.UTF-8 UTF-8
 EOT
 sudo dpkg-reconfigure --frontend=noninteractive locales
 
-# Update the default locales so that the base-locale is en_US.UTF-8, while the date format is yyyy-mm-dd,
+# Change the default locales so that the base-locale is en_US.UTF-8, while the date format is yyyy-mm-dd,
 # units are metric, and paper sizes are international.
 # FIXME: https://wiki.debian.org/Locale#Standard recommends that instead we should actually set the
 # default locale to "None" - so that users who access the system over SSH can set their own locale
@@ -26,5 +26,10 @@ export LC_MEASUREMENT="en_DK.UTF-8"
 export LC_PAPER="en_DK.UTF-8"
 sudo update-locale LANG="$LANG" LC_TIME="$LC_TIME" LC_MEASUREMENT="$LC_MEASUREMENT" LC_PAPER="$LC_PAPER"
 
-# Set the timezone to UTC
-sudo timedatectl set-timezone UTC
+# Change the timezone to UTC
+# If systemd is not running (e.g. when setup scripts are run in an unbooted chroot or container),
+# we can't use `timedatectl`:
+if ! sudo timedatectl set-timezone UTC 2>/dev/null; then
+  sudo rm /etc/localtime
+  sudo ln -s /usr/share/zoneinfo/UTC /etc/localtime
+fi
