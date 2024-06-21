@@ -13,6 +13,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Release) A `fairscope-latest` SD card image is now provided which is identical to the `planktoscopehat` SD card image, except that its default settings configuration file is for the v2.6 PlanktoScope hardware rather than the v2.5 PlanktoScope hardware.
 - (System: administration) The Forklift pallet provided by default as the SD card image is now named (and pinned as) the `factory-reset` staged pallet bundle.
+- (System: networking) The `planktoscope.local` mDNS name was deprecated in v2023.9.0-beta.1, but now it's un-deprecated (i.e. official support for this name is added back to the project). As before, you can still use `pkscope.local` or the machine-specific mDNS name (of format `pkscope-{machine-name}.local`) instead of `planktoscope.local`.
 
 ### Changed
 
@@ -33,6 +34,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Deprecated
 
+- (System: networking)
 - (System) 32-bit versions of PlanktoScope OS (which can be set up on a 32-bit version of Raspberry Pi OS using the OS setup scripts) are no longer officially supported by the project, but they will continue to work for v2024.0.0 of PlanktoScope OS.
 
 ### Removed
