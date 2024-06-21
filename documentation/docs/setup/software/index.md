@@ -30,11 +30,13 @@ PlanktoScope OS versions are independent of hardware versions, and (starting in 
 
 Currently, each version of the PlanktoScope OS is provided as two SD card images, corresponding to the two different hardware configurations supported by the PlanktoScope software:
 
-- `adafruithat`: this configuration of the PlanktoScope OS is compatible with v2.1 of the PlanktoScope hardware, which uses the Adafruit Stepper Motor HAT.
+- `adafruithat`: this configuration of the PlanktoScope OS is compatible with v2.1 of the PlanktoScope hardware, which uses the Adafruit Stepper Motor HAT. The default configuration files are for hardware v2.1, but you can select other hardware versions in the [post-installation configuration](config.md) process.
 
-- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use a custom HAT. Note that in software versions v2.3 and v2023.9.0, the word `pscopehat` was used instead of `planktoscopehat`.
+- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use a custom HAT. Note that in software versions v2.3 and v2023.9.0, the word `pscopehat` was used instead of `planktoscopehat`. The default configuration files are for hardware v2.5, but you can select other hardware versions in the [post-installation configuration](config.md) process.
 
-If you have a v2.1 PlanktoScope, you should probably use an `adafruithat` SD card image; if you have a PlanktoScope from FairScope or any hardware version after v2.3, you should probably use the `planktoscopehat` SD card image.
+- `fairscope-latest`: this configuration of the PlanktoScope OS is identical to the `planktoscopehat`, but it also changes the default configuration files to be for hardware version v2.6 instead of hardware version 2.5.
+
+If you have a PlanktoScope from FairScope, you should probably use the `fairscope-latest` SD card image; otherwise, if you have a non-FairScope PlanktoScope with hardware version v2.3 or later, you should probably use the `planktoscopehat` SD card image; otherwise, if you have a v2.1 PlanktoScope, you should probably use an `adafruithat` SD card image.
 
 ## Installation
 
