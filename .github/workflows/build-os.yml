@@ -128,6 +128,7 @@ jobs:
             # chown is needed to suppress a git error about dubious repo ownership:
             sudo chown -R $USER "/run/os-setup"
 
+            set -x
             if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
               REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
             else
@@ -137,6 +138,7 @@ jobs:
             # PR-triggered workflow runs have a merge commit which is detached from existing
             # branches and messes up pseudoversion determination, so instead we check out the
             # actual commit (and fetch all tags so we can determine a pseudoversion string):
+            git -C /run/os-setup config remote.origin.url "https://$REPO"
             git -C /run/os-setup config extensions.partialClone "$(git config --get remote.origin.url)"
             git -C /run/os-setup fetch --tags --filter=blob:none
             git -C /run/os-setup checkout "$VERSION_QUERY"

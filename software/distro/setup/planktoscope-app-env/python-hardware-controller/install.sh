@@ -8,7 +8,14 @@ distro_setup_files_root=$(dirname $(dirname $config_files_root))
 repo_root=$(dirname $(dirname $(dirname $distro_setup_files_root)))
 
 # Get command-line args
-hardware_type="$1" # should be either adafruithat or planktoscopehat
+hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope-latest
+default_config="$hardware_type-latest"
+case "$hardware_type" in
+  "fairscope-latest")
+    hardware_type="planktoscopehat"
+    default_config="fairscope-latest"
+    ;;
+esac
 
 ## Install basic Python tooling
 sudo apt-get install -y -o Dpkg::Progress-Fancy=0 \
@@ -34,7 +41,7 @@ $POETRY_VENV/bin/pip install --progress-bar off poetry==1.7.1
 
 # Download device-backend monorepo
 backend_repo="github.com/PlanktoScope/device-backend"
-backend_version="v2024.0.0-beta.0" # this should be either a version tag, branch name, or commit hash
+backend_version="fix/revert-default-planktoscopehat-config" # this should be either a version tag, branch name, or commit hash
 git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
@@ -60,7 +67,7 @@ sudo -E mkdir -p $HOME/device-backend-logs/control
 # Select the enabled hardware controller
 mkdir -p $HOME/PlanktoScope
 sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
-cp "$HOME/device-backend/default-configs/$hardware_type-latest.hardware.json" \
+cp "$HOME/device-backend/default-configs/$default_config.hardware.json" \
   $HOME/PlanktoScope/hardware.json
 
 # Copy required dependencies with hard-coded paths in the hardware controller

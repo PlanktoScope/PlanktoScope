@@ -1,5 +1,5 @@
 ---
-name: build-os-bookworm-dx
+name: build-os-bullseye-fairscope
 on:
   push:
     branches:
@@ -8,14 +8,8 @@ on:
       - 'software/stable'
     tags:
       - 'software/v*'
-    paths:
-      - 'software/**'
-      - '.github/workflows/build-os*.yml'
   pull_request:
-    paths:
-      - 'software/**'
-      - '.github/workflows/build-os*.yml'
-  #merge_group:
+  merge_group:
   workflow_dispatch:
     inputs:
       git-ref:
@@ -33,14 +27,11 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - none
-          - segmenter-only
+          - fairscope-latest
         arch:
           - arm64
         base_variant_name:
-          # We haven't set up networking on bookworm, so the lite image is useless and hard to make
-          # usable; so we just build the desktop image:
-          - desktop
+          - lite
     permissions:
       contents: read
       packages: write
@@ -48,9 +39,9 @@ jobs:
     uses: ./.github/workflows/build-os.yml
     secrets: inherit
     with:
-      name: rpi-forklift-demo
-      base_release_name: bookworm
+      name: planktoscope
+      base_release_name: bullseye
       base_image_variant: ${{ matrix.base_variant_name }}
-      base_release_date: 2024-03-15
+      base_release_date: 2024-03-12
       arch: ${{ matrix.arch }}
       variant: ${{ matrix.variant }}

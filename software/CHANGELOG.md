@@ -12,10 +12,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (Application: GUI) On the `planktoscopehat` SD card image, the Node-RED dashboard's homepage now asks the user to set the hardware version (choosing between v2.3, v2.5, and v2.6) as a first-boot setup step; this dialog replaces the navigation buttons on the homepage until a hardware version is set.
+- (Release) A `fairscope-latest` SD card image is now provided which is identical to the `planktoscopehat` SD card image, except that its default settings configuration file is for the v2.6 PlanktoScope hardware (so that the homepage does not ask the user to choose a hardware version).
 - (System: administration) The Forklift pallet provided by default as the SD card image is now named (and pinned as) the `factory-reset` staged pallet bundle.
 
 ### Changed
 
+- (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image has been reverted to be for the v2.5 PlanktoScope hardware (reverting a change made for v2024.0.0-alpha.2); in v2024.0.0-alpha.2, it was for the v2.6 hardware, while in previous versions it was still for the v2.5 hardware.
 - (Release) SD card images are now released with xz compression (as `.img.xz` files) rather than gzip compression (as `.img.gz` files).
 
 ### Removed

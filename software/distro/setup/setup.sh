@@ -11,7 +11,7 @@ setup_scripts_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Get command-line args
 
-hardware_type="$1" # should be either none, adafruithat, planktoscopehat, or segmenter-only
+hardware_type="$1" # should be either none, adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
 
 # Run sub-scripts
 
