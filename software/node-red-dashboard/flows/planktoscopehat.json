@@ -542,17 +542,6 @@
         "collapse": false
     },
     {
-        "id": "1be83144.4fe4bf",
-        "type": "ui_group",
-        "name": "Dashboard Errors",
-        "tab": "2489e51c.eed77a",
-        "order": 2,
-        "disp": true,
-        "width": "12",
-        "collapse": true,
-        "className": ""
-    },
-    {
         "id": "3ca00bf9.e5cac4",
         "type": "ui_group",
         "name": "Navigation",
@@ -5576,7 +5565,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "get acq_celltype",
-        "func": "msg.payload = msg.payload.acq_celltype;\nreturn msg;",
+        "func": "msg.topic = 'acq_celltype';\nmsg.payload = msg.payload.acq_celltype;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -7578,126 +7567,6 @@
         ]
     },
     {
-        "id": "d12008a0.47be4",
-        "type": "ui_template",
-        "z": "9daf9e2b.019fc",
-        "group": "1be83144.4fe4bf",
-        "name": "Node-RED Log table",
-        "order": 1,
-        "width": 12,
-        "height": 10,
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<p>\n    Note: this panel only shows certain errors generated within the Node-RED dashboard. Actual logs should be instead accessed from the \"Logs\" panel on this page.\n</p>\n\n<md-button onclick=\"selectElementContents( document.getElementById('nodered_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"nodered_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 820,
-        "y": 620,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8b511c2b.9c24c8",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Log array",
-        "func": "var log = flow.get(\"nodered_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"nodered_log\", log);\n\nmsg.payload = log;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 620,
-        "y": 580,
-        "wires": [
-            [
-                "d12008a0.47be4"
-            ]
-        ]
-    },
-    {
-        "id": "7a1dedf.1c63094",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Node-RED Log",
-        "group": "1be83144.4fe4bf",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "Clear Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-eraser",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 340,
-        "y": 660,
-        "wires": [
-            [
-                "73500be7.9ab7c4"
-            ]
-        ]
-    },
-    {
-        "id": "9187bf97.9922b8",
-        "type": "catch",
-        "z": "9daf9e2b.019fc",
-        "name": "Catch Errors",
-        "scope": null,
-        "uncaught": false,
-        "x": 150,
-        "y": 580,
-        "wires": [
-            [
-                "f9a871d5.a73828"
-            ]
-        ]
-    },
-    {
-        "id": "f9a871d5.a73828",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Get error",
-        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 420,
-        "y": 580,
-        "wires": [
-            [
-                "8b511c2b.9c24c8"
-            ]
-        ]
-    },
-    {
-        "id": "73500be7.9ab7c4",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Node-RED log",
-        "func": "flow.set(\"nodered_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 660,
-        "wires": [
-            [
-                "d12008a0.47be4"
-            ]
-        ]
-    },
-    {
         "id": "50f9b5b.a84bccc",
         "type": "inject",
         "z": "9daf9e2b.019fc",
@@ -7722,31 +7591,6 @@
                 "81b84006deb8bda6",
                 "f6d2cd9f04d5b7ba",
                 "312003ed9b9014ab"
-            ]
-        ]
-    },
-    {
-        "id": "f4f6e3fa.0234f",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 170,
-        "y": 660,
-        "wires": [
-            [
-                "7a1dedf.1c63094"
             ]
         ]
     },

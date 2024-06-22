@@ -23,8 +23,13 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Removed
 
-- (Application) On the `planktoscopehat` SD card image, a hardware version is no longer set in the default `config.json` file provided on the image. Instead, the user must select their hardware version when they open the Node-RED dashboard's homepage for the first time.
+- (Application: GUI) On the `planktoscopehat` SD card image, a hardware version is no longer set in the default `config.json` file provided on the image. Instead, the user must select their hardware version when they open the Node-RED dashboard's homepage for the first time.
+- (Application: GUI) The Node-RED dashboard's Administration page's "Dashboard Errors" panel has been removed, because it doesn't show any useful messages.
 - (System) `gcc` has been removed from the SD card image, to help reduce SD card image size.
+
+### Fixed
+
+- (Application: GUI) The flowcell setting from the `config.json` file should now be properly displayed as the default selection on the Node-RED dashboard's "Fluidic Acquisition" page.
 
 ## v2024.0.0-beta.0 - 2024-06-07
 
