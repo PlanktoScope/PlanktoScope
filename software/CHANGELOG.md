@@ -11,7 +11,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Added
 
-- (Release) A `fairscope-latest` SD card image is now provided which is identical to the `planktoscopehat` SD card image, except that its default settings configuration file is for the v2.6 PlanktoScope hardware rather than the v2.5 PlanktoScope hardware.
+- (Application: GUI) On the `planktoscopehat` SD card image, the Node-RED dashboard's homepage now asks the user to set the hardware version (choosing between v2.3, v2.5, and v2.6) as a first-boot setup step; this dialog replaces the navigation buttons on the homepage until a hardware version is set.
+- (Release) A `fairscope-latest` SD card image is now provided which is identical to the `planktoscopehat` SD card image, except that its default settings configuration file is for the v2.6 PlanktoScope hardware (so that the homepage does not ask the user to choose a hardware version).
 - (System: administration) The Forklift pallet provided by default as the SD card image is now named (and pinned as) the `factory-reset` staged pallet bundle.
 - (System: networking) The `planktoscope.local` mDNS name was deprecated in v2023.9.0-beta.1, but now it's un-deprecated (i.e. official support for this name is added back to the project). As before, you can still use `pkscope.local` or the machine-specific mDNS name (of format `pkscope-{machine-name}.local`) instead of `planktoscope.local`.
 
@@ -22,6 +23,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Removed
 
+- (Application) On the `planktoscopehat` SD card image, a hardware version is no longer set in the default `config.json` file provided on the image. Instead, the user must select their hardware version when they open the Node-RED dashboard's homepage for the first time.
 - (System) `gcc` has been removed from the SD card image, to help reduce SD card image size.
 
 ## v2024.0.0-beta.0 - 2024-06-07
