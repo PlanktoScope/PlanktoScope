@@ -5305,7 +5305,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "get acq_celltype",
-        "func": "msg.payload = msg.payload.acq_celltype;\nreturn msg;",
+        "func": "msg.topic = 'acq_celltype';\nmsg.payload = msg.payload.acq_celltype;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
