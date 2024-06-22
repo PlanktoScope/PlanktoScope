@@ -38,6 +38,7 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    timeout-minutes: 90
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
@@ -250,6 +251,7 @@ jobs:
       # is much faster than a QEMU VM for downloading files.
       - name: Run base OS setup scripts in an unbooted container
         uses: ethanjli/pinspawn-action@v0.1.4
+        timeout-minutes: 30
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
