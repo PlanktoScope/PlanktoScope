@@ -64,8 +64,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           # PR-triggered workflow runs have a merge commit which is detached from existing
-          # branches and messes up pseudoversion determination, so instead we check out the
-          # actual commit (and fetch all tags so we can determine a pseudoversion string):
+          # branches and messes up pseudoversion determination when we record installer versioning
+          # information, so instead we check out the actual commit (and fetch all tags so we can
+          # determine a pseudoversion string):
           repository: ${{ env.REPO }}
           ref: ${{ env.ACTUAL_SHA }}
           fetch-depth: 0
