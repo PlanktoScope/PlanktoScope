@@ -154,9 +154,9 @@ jobs:
               "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
               "${{ inputs.variant }}" "/run/os-setup"
             echo "installer-config.yml:"
-            cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
+            cat /usr/share/planktoscope/installer-config.yml
             echo "installer-versioning.yml:"
-            cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
+            cat /usr/share/planktoscope/installer-versioning.yml
 
       # If we don't do this, then the post-job cleanup for the actions/checkout step will emit a
       # warning:
