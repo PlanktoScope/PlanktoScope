@@ -44,11 +44,10 @@ jobs:
         run: |
           # Get the actual repo name on PRs from external forks of the repo:
           if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
-            REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
+            echo "REPO=${{ github.event.pull_request.head.repo.full_name }}" >> $GITHUB_ENV
           else
-            REPO="github.com/${{ github.repository }}"
+            echo "REPO=${{ github.repository }}" >> $GITHUB_ENV
           fi
-          echo "REPO=$REPO" >> $GITHUB_ENV
 
           # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
           # (refer to https://stackoverflow.com/a/68068674/23202949):
@@ -148,7 +147,8 @@ jobs:
 
             set -x
             /run/os-setup/software/distro/setup/ci-record-version.sh \
-              "${{ env.REPO }}" "${{ env.ACTUAL_SHA }}" "hash" "${{ inputs.variant }}" "/run/os-setup"
+              "github.com/${{ env.REPO }}" "${{ env.ACTUAL_SHA }}" "hash" \
+              "${{ inputs.variant }}" "/run/os-setup"
             echo "installer-config.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
             echo "installer-versioning.yml:"
