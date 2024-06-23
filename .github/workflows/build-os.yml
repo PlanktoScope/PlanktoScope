@@ -38,10 +38,39 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    timeout-minutes: 90
     steps:
-      # Checkout push-to-registry action GitHub repository
-      - name: Checkout Push to Registry action
+      - name: Get actual repo & commit SHA
+        run: |
+          # Get the actual repo name on PRs from external forks of the repo:
+          if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
+            echo "REPO=${{ github.event.pull_request.head.repo.full_name }}" >> $GITHUB_ENV
+          else
+            echo "REPO=${{ github.repository }}" >> $GITHUB_ENV
+          fi
+
+          # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
+          # (refer to https://stackoverflow.com/a/68068674/23202949):
+          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
+            echo "ACTUAL_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+          else
+            # Note: we want to have a SHA to check out even in merge queues, so we always fall back
+            # to a SHA even if it's a fictional SHA detached from any branches:
+            echo "ACTUAL_SHA=${{ github.sha }}" >> $GITHUB_ENV
+          fi
+
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # PR-triggered workflow runs have a merge commit which is detached from existing
+          # branches and messes up pseudoversion determination when we record installer versioning
+          # information, so instead we check out the actual commit (and fetch all tags so we can
+          # determine a pseudoversion string):
+          repository: ${{ env.REPO }}
+          ref: ${{ env.ACTUAL_SHA }}
+          fetch-depth: 0
+          fetch-tags: true
+          filter: 'blob:none'
 
       # This is needed so that the QEMU VM build step doesn't run out of disk space:
       - name: Free up disk space
@@ -103,18 +132,6 @@ jobs:
       # which is read by the PlanktoScope's Python backend and Node-RED dashboard, so we must
       # record the same information here.
 
-      - name: Get actual commit SHA
-        # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
-        # (refer to https://stackoverflow.com/a/68068674/23202949):
-        run: |
-          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
-            printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
-          else
-            # Note: we want to have a SHA to check out even in merge queues, so we always fall back
-            # to a SHA even if it's a fictional SHA detached from any branches:
-            printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
-          fi
-
       - name: Record OS installation versioning information
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
@@ -129,26 +146,10 @@ jobs:
             sudo chown -R $USER "/run/os-setup"
 
             set -x
-            if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
-              REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
-            else
-              REPO="github.com/${{ github.repository }}"
-            fi
-            VERSION_QUERY="${{ env.ACTUAL_SHA }}"
-            # PR-triggered workflow runs have a merge commit which is detached from existing
-            # branches and messes up pseudoversion determination, so instead we check out the
-            # actual commit (and fetch all tags so we can determine a pseudoversion string):
-            git -C /run/os-setup config remote.origin.url "https://$REPO"
-            git -C /run/os-setup config extensions.partialClone "$(git config --get remote.origin.url)"
-            git -C /run/os-setup fetch --tags --filter=blob:none
-            git -C /run/os-setup checkout "$VERSION_QUERY"
-            QUERY_TYPE="hash"
-            HARDWARE="${{ inputs.variant }}"
-            # VERSION_QUERY_DIR is a variable used by the installer script as the path of a git repo
-            # for version queries; we repurpose it by just providing the repo we already have:
-            VERSION_QUERY_DIR="/run/os-setup"
+            ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
             /run/os-setup/software/distro/setup/ci-record-version.sh \
-              "$REPO" "$VERSION_QUERY" "$QUERY_TYPE" "$HARDWARE" "$VERSION_QUERY_DIR"
+              "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
+              "${{ inputs.variant }}" "/run/os-setup"
             echo "installer-config.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
             echo "installer-versioning.yml:"
@@ -250,6 +251,7 @@ jobs:
       # is much faster than a QEMU VM for downloading files.
       - name: Run base OS setup scripts in an unbooted container
         uses: ethanjli/pinspawn-action@v0.1.4
+        timeout-minutes: 30
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -388,7 +390,7 @@ jobs:
           # - xz level 6: ~14 min -> 1.9 GB
           # - xz level 1: ~4 min -> 2.6 GB
           # - pigz level 9: ~4 min -> 2.5 GB
-          PISHRINK_XZ: -T0 ${{ inputs.base_image_variant == 'lite' && '-1' || '-6' }}
+          PISHRINK_XZ: -T0 ${{ inputs.base_image_variant == 'lite' && '-3' || '-6' }}
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
