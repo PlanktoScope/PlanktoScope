@@ -52,11 +52,11 @@ jobs:
           # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
           # (refer to https://stackoverflow.com/a/68068674/23202949):
           if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
-            printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+            echo "ACTUAL_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
           else
             # Note: we want to have a SHA to check out even in merge queues, so we always fall back
             # to a SHA even if it's a fictional SHA detached from any branches:
-            printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
+            echo "ACTUAL_SHA=${{ github.sha }}" >> $GITHUB_ENV
           fi
 
       - name: Checkout repository
@@ -146,8 +146,9 @@ jobs:
             sudo chown -R $USER "/run/os-setup"
 
             set -x
+            ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
             /run/os-setup/software/distro/setup/ci-record-version.sh \
-              "github.com/${{ env.REPO }}" "${{ env.ACTUAL_SHA }}" "hash" \
+              "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
               "${{ inputs.variant }}" "/run/os-setup"
             echo "installer-config.yml:"
             cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
