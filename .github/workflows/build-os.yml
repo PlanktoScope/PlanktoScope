@@ -82,6 +82,41 @@ jobs:
           dotnet: false
           large-packages: false
 
+      # TODO: delete this troubleshooting code
+      - name: Determine output image name
+        env:
+          TAG_PREFIX: "software/v"
+        run: |
+          set -x
+          # Determine the version for the image name
+          if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then
+            # We're in a pull request
+            version="$(\
+              printf "pr-%s-%.7s" \
+                "${{ github.event.pull_request.number }}" \
+                "${{ github.event.pull_request.head.sha }}" \
+            )"
+          elif [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref }}" == refs/tags/$TAG_PREFIX* ]]; then
+            version="${{ github.ref }}"
+            version="v${version%"refs/tags/$TAG_PREFIX"}"
+          else
+            version="$(printf "%.7s" "${{ github.sha }}")"
+          fi
+          variant="${{ inputs.variant }}"
+          if [[ "${{ inputs.base_release_name }}" != "bullseye" ]]; then
+            variant="$variant.${{ inputs.base_release_name }}"
+          fi
+          if [[ "${{ inputs.arch }}" != "arm64" ]]; then
+            variant="$variant.${{ inputs.arch }}"
+          fi
+          if [[ "${{ inputs.base_image_variant }}" != "lite" ]]; then
+            variant="$variant.${{ inputs.base_image_variant }}"
+          fi
+
+          # Assemble the image name
+          output_name="${{ inputs.name }}-$version+$variant"
+          echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
+
       # GET BASE IMAGE
 
       - name: Determine Raspberry Pi OS base image URL
@@ -146,7 +181,7 @@ jobs:
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
             # chown is needed to suppress a git error about dubious repo ownership:
-            sudo chown -R $USER "/run/os-setup"
+            #sudo chown -R $USER "/run/os-setup"
 
             set -x
             ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
@@ -160,9 +195,9 @@ jobs:
 
       # If we don't do this, then the post-job cleanup for the actions/checkout step will emit a
       # warning:
-      - name: Reset owner of Git repo
-        run: |
-          sudo chown -R $USER .
+      #- name: Reset owner of Git repo
+      #  run: |
+      #    sudo chown -R $USER .
 
       # PRE-CACHE CONTAINER IMAGES
       # Because Docker Hub rate-limits container image pulls and we want to pull the same set of
