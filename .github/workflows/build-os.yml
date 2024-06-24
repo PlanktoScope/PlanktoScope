@@ -361,7 +361,7 @@ jobs:
             )"
           elif [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref }}" == refs/tags/$TAG_PREFIX* ]]; then
             version="${{ github.ref }}"
-            version="v${version%"refs/tags/$TAG_PREFIX"}"
+            version="v${version#"refs/tags/$TAG_PREFIX"}"
           else
             version="$(printf "%.7s" "${{ github.sha }}")"
           fi
