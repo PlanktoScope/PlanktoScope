@@ -41,7 +41,7 @@ $POETRY_VENV/bin/pip install --progress-bar off poetry==1.7.1
 
 # Download device-backend monorepo
 backend_repo="github.com/PlanktoScope/device-backend"
-backend_version="d842740" # this should be either a version tag, branch name, or commit hash
+backend_version="v2024.0.0-beta.1" # this should be either a version tag, branch name, or commit hash
 git clone "https://$backend_repo" $HOME/device-backend --no-checkout --filter=blob:none
 git -C $HOME/device-backend checkout --quiet $backend_version
 
