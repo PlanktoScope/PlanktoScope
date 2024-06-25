@@ -38,7 +38,7 @@ jobs:
       contents: read
       packages: write
       id-token: write
-    timeout-minutes: 90
+    timeout-minutes: 60
     steps:
       - name: Get actual repo & commit SHA
         run: |
@@ -254,7 +254,7 @@ jobs:
       # is much faster than a QEMU VM for downloading files.
       - name: Run base OS setup scripts in an unbooted container
         uses: ethanjli/pinspawn-action@v0.1.4
-        timeout-minutes: 30
+        timeout-minutes: 15
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -262,7 +262,7 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/base-os/setup-unbooted.sh
+            timeout --foreground 15m /run/os-setup/software/distro/setup/base-os/setup-unbooted.sh
 
       - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
         uses: ethanjli/pinspawn-action@v0.1.4
