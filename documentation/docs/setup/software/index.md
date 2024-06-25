@@ -32,7 +32,7 @@ Currently, each version of the PlanktoScope OS is provided as three SD card imag
 
 - `adafruithat`: this configuration of the PlanktoScope OS is compatible with v2.1 of the PlanktoScope hardware, which uses the [Adafruit Stepper Motor HAT](https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/overview).
 
-- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use the [PlanktoScope HAT](../../reference/hardware/hat) instead of the Adafruit Stepper Motor HAT. This configuration requires you to select the hardware version of your PlanktoScope in the [post-installation configuration](config.md) process.
+- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use the [PlanktoScope HAT](../../reference/hardware/hat.md) instead of the Adafruit Stepper Motor HAT. This configuration requires you to select the hardware version of your PlanktoScope in the [post-installation configuration](config.md) process.
 
 - `fairscope-latest`: this configuration of the PlanktoScope OS is identical to the `planktoscopehat` configuration, except that this one sets the default settings to be for hardware version v2.6 so that you won't need to select the hardware version of your PlanktoScope in the post-installation configuration process.
 
