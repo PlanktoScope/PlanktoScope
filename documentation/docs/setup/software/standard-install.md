@@ -17,9 +17,7 @@ In order to complete this step, you will need all of the following:
 
 ### Download the PlanktoScope software SD card image
 
-For ease of setup, we provide an SD card image file with the PlanktoScope OS. You can download it from the latest software release on the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases?q=prerelease%3Afalse+draft%3Afalse&expanded=true) for the PlanktoScope project on GitHub.
-
-Each released version of the PlanktoScope OS has downloadable SD card images under the "Assets" dropdown. Depending on whether your PlanktoScope is from FairScope and on whether it uses an Adafruit Stepper HAT or the PlanktoScope HAT, you should download the corresponding `.img.xz` file.
+For ease of setup, we distribute the PlanktoScope OS as SD card image files. You can download the latest release from the [releases page](https://github.com/PlanktoScope/PlanktoScope/releases?q=prerelease%3Afalse+draft%3Afalse&expanded=true) for the PlanktoScope project on GitHub. Each released version of the PlanktoScope OS has downloadable SD card images under the "Assets" dropdown, which has multiple SD card image files corresponding to different types of PlanktoScope hardware; for information about how to select the appropriate SD card image for your PlanktoScope hardware, refer to the ["Hardware configurations"](../#hardware-configurations) section of the software setup overview.
 
 ### Write the image to the SD card
 

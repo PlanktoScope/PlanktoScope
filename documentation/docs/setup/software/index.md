@@ -28,13 +28,13 @@ PlanktoScope OS versions are independent of hardware versions, and (starting in 
 
 ### Hardware configurations
 
-Currently, each version of the PlanktoScope OS is provided as two SD card images, corresponding to the two different hardware configurations supported by the PlanktoScope software:
+Currently, each version of the PlanktoScope OS is provided as three SD card images which support the two different types of hardware configurations supported by the PlanktoScope software:
 
-- `adafruithat`: this configuration of the PlanktoScope OS is compatible with v2.1 of the PlanktoScope hardware, which uses the Adafruit Stepper Motor HAT. The default configuration files are for hardware v2.1, but you can select other hardware versions in the [post-installation configuration](config.md) process.
+- `adafruithat`: this configuration of the PlanktoScope OS is compatible with v2.1 of the PlanktoScope hardware, which uses the [Adafruit Stepper Motor HAT](https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/overview).
 
-- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use a custom HAT. Note that in software versions v2.3 and v2023.9.0, the word `pscopehat` was used instead of `planktoscopehat`. The default configuration files are for hardware v2.5, but you can select other hardware versions in the [post-installation configuration](config.md) process.
+- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use the [PlanktoScope HAT](../../reference/hardware/hat) instead of the Adafruit Stepper Motor HAT. This configuration requires you to select the hardware version of your PlanktoScope in the [post-installation configuration](config.md) process.
 
-- `fairscope-latest`: this configuration of the PlanktoScope OS is identical to the `planktoscopehat`, but it also changes the default configuration files to be for hardware version v2.6 instead of hardware version 2.5.
+- `fairscope-latest`: this configuration of the PlanktoScope OS is identical to the `planktoscopehat` configuration, except that this one sets the default settings to be for hardware version v2.6 so that you won't need to select the hardware version of your PlanktoScope in the post-installation configuration process.
 
 If you have a PlanktoScope from FairScope, you should probably use the `fairscope-latest` SD card image; otherwise, if you have a non-FairScope PlanktoScope with hardware version v2.3 or later, you should probably use the `planktoscopehat` SD card image; otherwise, if you have a v2.1 PlanktoScope, you should probably use an `adafruithat` SD card image.
 
