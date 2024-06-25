@@ -1,0 +1,45 @@
+---
+name: release-channel-software-stable
+on:
+  push:
+    tags:
+      - 'software/v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  ff-branch-software-beta:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - run: |
+          git checkout software/beta
+          git merge --ff-only ${{ github.ref_name }}
+
+      - uses: ad-m/github-push-action@v0.8.0
+        with:
+          branch: software/beta
+
+  ff-branch-software-stable:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - run: |
+          git checkout software/stable
+          git merge --ff-only ${{ github.ref_name }}
+
+      - uses: ad-m/github-push-action@v0.8.0
+        with:
+          branch: software/stable
