@@ -59,6 +59,7 @@ However, if you have access to a body of water (even a tiny lake or river is eno
 You can then do an acquisition run. **This is the best way to learn about the machine and this process!**
 
 !!! warning
+
     After doing an acquisition, the machine should be cleaned, especially in the fluidic part. One good way to do this is to first flush the machine with clear water (distilled if possible). You can then push through a 5-10% bleach solution, or some alcohol.
 
 If needed you can also clean the outside of the objective lens with a soft cloth. You can do the same on the flow cell if there are traces of finger on it too.
