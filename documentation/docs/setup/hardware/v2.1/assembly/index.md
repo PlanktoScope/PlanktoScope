@@ -1,7 +1,14 @@
 # Assembly guide of the PlanktoScope
 ![Complete](images/pictures/complete.webp)
 
-## Step 0: Gather everything you need
+You can also use CAD renders and photos from the following links as a supplementary material for this assembly guide:
+
+- [CAD renders for the assembly guide](https://docs.google.com/presentation/d/13zDOGUVqgMvG0O11IOMVPIQBnWrfpkxs6CpLTylAv8o/present?slide=id.g8352987986_0_674)
+- [Photos for the assembly guide](https://docs.google.com/presentation/d/1JmmHwUz2F7l3kgRt4qVyNRQew6Ls7BI28o6T2OHM_GE/present?slide=id.g87b4a2be3a_2_106)
+
+## Step 1: Gather everything you need
+
+TODO: insert a link to the BOM
 
 - Laser cut structure
 - M12 lenses
@@ -21,14 +28,6 @@ Make sure you have your screwdriver kit, soldering iron, and components ready. A
 If you are not familiar with any process, such as soldering, tapping, or wiring, try and familiarize yourself with the topics first.
 
 Soldering deals with high heat and potentially toxic materials, so make sure to use the proper precautions.
-
-## Step 1: Laser cutting
-![step-1](images/pictures/step-1.webp)
-
-Laser cut all components using the .ai file ensuring all cuts are complete. The current design should have a 5mm material thickness. Start by placing laser cut base A on a flat workspace. Make sure all holes are complete, and negative space is clear.
-
-!!! warning
-    If you are doing the laser cutting yourself, please take the time to check the calibration of the machine and its power output for the material you are using. A tight fit is needed between the different plates to avoid unwanted play between critical parts.
 
 ## Step 2: Standoff installation
 ![step-2](images/pictures/step-2.webp)
@@ -153,10 +152,7 @@ You will now want to wire the steppers and pump to the terminals on the motor dr
 ## Step 14: Raspberry Pi setup and installation
 ![step-24](images/pictures/step-24.webp)
 
-At this point, you can insert your flashed SD card into your Raspberry Pi. [Consult the guide for flashing your SD card](https://www.planktoscope.org/replicate/assemble-your-kit) before you do this. The heat sink can also be added to the processor.
-
-!!! note
-    If you choose the Expert path, you still need to flash your sd card, either with the [lite version](https://downloads.raspberrypi.org/raspios_lite_armhf_latest) of Raspberry OS or with the [desktop version](https://downloads.raspberrypi.org/raspios_armhf_latest).
+At this point, you can insert your flashed SD card into your Raspberry Pi. If you did not already flash your SD card with the PlanktoScope OS, [refer to our guide for doing so](../../../software/standard-install.md). The heat sink can also be added to the processor.
 
 ![step-16](images/render/step-16.webp)
 
@@ -183,6 +179,10 @@ The power wires can be wired into place on the motor driver board.
     Make sure the wires are properly connected by pulling on them a little. They should not come loose.
 
 ## Step 18: Prepare the GPS HAT
+
+!!! tip
+    If you don't have a GPS HAT, you can just skip the assembly steps related to the GPS HAT - the PlanktoScope software will still work without GPS.
+
 ![step-18-1](images/render/step-18-1.webp)
 
 Insert the battery to power the GPS HAT and solder the terminal mounts in place.
@@ -302,7 +302,9 @@ Congratulations on a job well done. You can have some rest, get a tea and some b
 
 ![step-35](images/render/step-35.webp)
 
-You can now plug the machine in and test it. If you have choose the Expert's path, now is a good time to [finish setting up your machine](expert_setup.md).
+!!! warning
+    If this was your first time assembling a PlanktoScope, you will probably need to do some troubleshooting of problems with the hardware assembly before your PlanktoScope will fully work. Refer to our [troubleshooting documentation](../../../../troubleshooting/index.md) for assistance.
 
-## Step 34: Read the getting started guide
-[A guide to get started with your machine use is available!](getting_started.md)
+## Next steps
+
+Once your PlanktoScope fully works, you can proceed to our [operation guide](../../../../operation/index.md) to learn how to operate your PlanktoScope.
