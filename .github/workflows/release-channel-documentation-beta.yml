@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - 'documentation/v[0-9]+.[0-9]+.[0-9]+-beta.*'
-      # We want to advance the beta to the latest stable release, too:
+      # We want to advance the documentation/beta branch to the latest stable release, too:
       - 'documentation/v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
