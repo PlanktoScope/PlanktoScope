@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'documentation/stable'
+  workflow_call:
   workflow_dispatch:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
