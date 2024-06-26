@@ -1,11 +1,4 @@
 #!/bin/bash -eux
-# The Forklift pallet github.com/PlanktoScope/pallet-standard provides the standard configuration of
-# Forklift package deployments of Docker containerized applications, OS config files, and systemd
-# system services for the PlanktoScope software distribution. This script integrates that pallet
-# into the PlanktoScope OS's filesystem by installing Forklift and providing some systemd units
-# which set up bind mounts and overlay filesystems to bootstrap the configs managed by Forklift.
-
-config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Prepare to apply the local pallet
 
@@ -15,7 +8,7 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift"
 if [ -S /var/run/docker.sock ] && \
-  ! sudo -E docker ps 2>&1 > /dev/null && \
+  ! sudo -E docker info && \
   ! sudo systemctl start docker.socket docker.service
 then
   echo "Error: couldn't start docker!"
@@ -31,26 +24,20 @@ then
   sudo iptables -L || sudo lsmod
   exit 1
 fi
-if ! docker ps 2>&1 > /dev/null; then
+if ! docker info 2>&1 > /dev/null; then
   FORKLIFT="sudo -E forklift"
 fi
-
-# Move container images used by the local pallet from the pre-cache to the Docker daemon
-echo "Loading container images from pre-cache..."
-forklift plt ls-img | parallel --line-buffer "$config_files_root/transfer-precached-image.sh"
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
 if ! $FORKLIFT stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
-  next_pallet="$(basename $(forklift stage locate-bun next))"
-  forklift stage set-next --no-cache-img "$next_pallet"
+  forklift stage set-next --no-cache-img next
   if ! $FORKLIFT stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
-    next_pallet="$(basename $(forklift stage locate-bun next))"
-    forklift stage set-next --no-cache-img "$next_pallet"
+    forklift stage set-next --no-cache-img next
     echo "Checking the plan for applying the staged pallet..."
     $FORKLIFT stage plan
     # Note: we don't run forklift stage cache-img because we had already loaded all necessary images

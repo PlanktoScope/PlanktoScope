@@ -1,5 +1,5 @@
 ---
-name: build-os-bullseye-dx
+name: build-os-bullseye-fairscope
 on:
   push:
     branches:
@@ -8,14 +8,8 @@ on:
       - 'software/stable'
     tags:
       - 'software/v*'
-    paths:
-      - 'software/**'
-      - '.github/workflows/build-os*.yml'
   pull_request:
-    paths:
-      - 'software/**'
-      - '.github/workflows/build-os*.yml'
-  #merge_group:
+  merge_group:
   workflow_dispatch:
     inputs:
       git-ref:
@@ -33,12 +27,11 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - adafruithat
-          - planktoscopehat
+          - fairscope-latest
         arch:
           - arm64
         base_variant_name:
-          - desktop
+          - lite
     permissions:
       contents: read
       packages: write

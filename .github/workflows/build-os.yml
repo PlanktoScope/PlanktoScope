@@ -38,10 +38,39 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    timeout-minutes: 90
     steps:
-      # Checkout push-to-registry action GitHub repository
-      - name: Checkout Push to Registry action
+      - name: Get actual repo & commit SHA
+        run: |
+          # Get the actual repo name on PRs from external forks of the repo:
+          if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
+            echo "REPO=${{ github.event.pull_request.head.repo.full_name }}" >> $GITHUB_ENV
+          else
+            echo "REPO=${{ github.repository }}" >> $GITHUB_ENV
+          fi
+
+          # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
+          # (refer to https://stackoverflow.com/a/68068674/23202949):
+          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
+            echo "ACTUAL_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+          else
+            # Note: we want to have a SHA to check out even in merge queues, so we always fall back
+            # to a SHA even if it's a fictional SHA detached from any branches:
+            echo "ACTUAL_SHA=${{ github.sha }}" >> $GITHUB_ENV
+          fi
+
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # PR-triggered workflow runs have a merge commit which is detached from existing
+          # branches and messes up pseudoversion determination when we record installer versioning
+          # information, so instead we check out the actual commit (and fetch all tags so we can
+          # determine a pseudoversion string):
+          repository: ${{ env.REPO }}
+          ref: ${{ env.ACTUAL_SHA }}
+          fetch-depth: 0
+          fetch-tags: true
+          filter: 'blob:none'
 
       # This is needed so that the QEMU VM build step doesn't run out of disk space:
       - name: Free up disk space
@@ -49,6 +78,9 @@ jobs:
         with:
           docker-images: false
           swap-storage: false
+          # removing these packages involves running `apt`, which is relatively slow:
+          dotnet: false
+          large-packages: false
 
       # GET BASE IMAGE
 
@@ -103,18 +135,6 @@ jobs:
       # which is read by the PlanktoScope's Python backend and Node-RED dashboard, so we must
       # record the same information here.
 
-      - name: Get actual commit SHA
-        # Get the SHA of the actual commit (not the fake merge commit) on PR-triggered runs
-        # (refer to https://stackoverflow.com/a/68068674/23202949):
-        run: |
-          if [ -n "${{ github.event.pull_request.head.sha }}" ]; then
-            printf "ACTUAL_SHA=%.7s" "${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
-          else
-            # Note: we want to have a SHA to check out even in merge queues, so we always fall back
-            # to a SHA even if it's a fictional SHA detached from any branches:
-            printf "ACTUAL_SHA=%.7s" "${{ github.sha }}" >> $GITHUB_ENV
-          fi
-
       - name: Record OS installation versioning information
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
@@ -128,29 +148,15 @@ jobs:
             # chown is needed to suppress a git error about dubious repo ownership:
             sudo chown -R $USER "/run/os-setup"
 
-            if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ]; then
-              REPO="github.com/${{ github.event.pull_request.head.repo.full_name }}"
-            else
-              REPO="github.com/${{ github.repository }}"
-            fi
-            VERSION_QUERY="${{ env.ACTUAL_SHA }}"
-            # PR-triggered workflow runs have a merge commit which is detached from existing
-            # branches and messes up pseudoversion determination, so instead we check out the
-            # actual commit (and fetch all tags so we can determine a pseudoversion string):
-            git -C /run/os-setup config extensions.partialClone "$(git config --get remote.origin.url)"
-            git -C /run/os-setup fetch --tags --filter=blob:none
-            git -C /run/os-setup checkout "$VERSION_QUERY"
-            QUERY_TYPE="hash"
-            HARDWARE="${{ inputs.variant }}"
-            # VERSION_QUERY_DIR is a variable used by the installer script as the path of a git repo
-            # for version queries; we repurpose it by just providing the repo we already have:
-            VERSION_QUERY_DIR="/run/os-setup"
+            set -x
+            ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
             /run/os-setup/software/distro/setup/ci-record-version.sh \
-              "$REPO" "$VERSION_QUERY" "$QUERY_TYPE" "$HARDWARE" "$VERSION_QUERY_DIR"
+              "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
+              "${{ inputs.variant }}" "/run/os-setup"
             echo "installer-config.yml:"
-            cat /home/pi/.local/etc/pkscope-distro/installer-config.yml
+            cat /usr/share/planktoscope/installer-config.yml
             echo "installer-versioning.yml:"
-            cat /home/pi/.local/etc/pkscope-distro/installer-versioning.yml
+            cat /usr/share/planktoscope/installer-versioning.yml
 
       # If we don't do this, then the post-job cleanup for the actions/checkout step will emit a
       # warning:
@@ -165,77 +171,57 @@ jobs:
       # TODO: move some of this into a separate GitHub Action and/or Forklift command, to keep
       # this workflow simpler
 
-      - name: Determine Forklift & Pallet versions
-        id: forklift-versions
+      - name: Set up container image pre-caching
+        id: setup-precaching
         run: |
-          forklift_version="$(cat software/distro/setup/base-os/forklift/forklift-version)"
-          echo "forklift_version=$forklift_version" >> $GITHUB_OUTPUT
+          forklift_setup_root="./software/distro/setup/base-os/forklift"
+          "$forklift_setup_root/download-forklift.sh" "/usr/bin"
+
           pallet="$(cat software/distro/setup/base-os/forklift/forklift-pallet)"
           echo "pallet=$pallet" >> $GITHUB_OUTPUT
           pallet_version="$(cat software/distro/setup/base-os/forklift/forklift-pallet-version)"
           echo "pallet_version=$pallet_version" >> $GITHUB_OUTPUT
           echo "Pallet query: ${pallet}@${pallet_version}"
 
-      - name: Set up Forklift
-        uses: PlanktoScope/setup-forklift@v1
-        with:
-          version: ${{ steps.forklift-versions.outputs.forklift_version }}
-
-      - name: Set up container image pre-cache
-        id: setup-precache
-        env:
-          PALLET_QUERY: ${{ steps.forklift-versions.outputs.pallet }}@${{ steps.forklift-versions.outputs.pallet_version }}
-        run: |
           mkdir -p /tmp/forklift/container-image-precache
           echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
-          forklift plt clone "${{ env.PALLET_QUERY }}"
-          forklift plt cache-repo
+          forklift plt clone "$pallet@$pallet_version"
           commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
           echo "commit=$commit" >> $GITHUB_OUTPUT
-          echo "Resolved ${{ env.PALLET_QUERY }} as commit $commit!"
+          echo "Resolved $pallet@$pallet_version as commit $commit!"
 
       - name: Try to load container image pre-cache from GitHub Actions cache
         id: restore-precache
         uses: actions/cache/restore@v4
         env:
-          PALLET: ${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}
+          PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
         with:
-          key: "container-images-pallet-${{ env.PALLET }}"
-          path: ${{ steps.setup-precache.outputs.path }}
+          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
+          path: ${{ steps.setup-precaching.outputs.path }}
 
-      - name: Prepare to pre-cache container images
+      - name: Pre-download container images
+        env:
+          ARCH: ${{ inputs.arch }}
+          PRECACHE_PATH: ${{ steps.setup-precaching.outputs.path }}
         run: |
-          image_list="${{ steps.setup-precache.outputs.path }}/images-list"
-          if [ -f "$image_list" ]; then
-            echo "Container image pre-cache can be loaded from the GitHub Actions cache!"
+          set -x
+          if [ -f "$PRECACHE_PATH/images-list" ]; then
+            echo "Pre-downloaded container images can be loaded from the GitHub Actions cache!"
             exit 0
           fi
-          forklift plt ls-img > "$image_list"
+          forklift plt ls-img > "$PRECACHE_PATH/images-list"
+          forklift_setup_root="./software/distro/setup/base-os/forklift"
 
-      - name: Pre-cache container images
-        id: precache
-        uses: ethanjli/pinspawn-action@v0.1.4
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: >-
-            --bind "$(pwd)":/run/os-setup
-            --bind ${{ steps.setup-precache.outputs.path }}:/run/container-images
-          run: |
-            set -x
-            echo "Installing skopeo & GNU parallel..."
-            sudo apt-get install -y -o Dpkg::Progress-Fancy=0 skopeo parallel
-            echo "Pre-caching container images..."
-            mkdir -p $HOME/.cache/containers
-            sudo cp -r /run/container-images/* $HOME/.cache/containers/
-            sudo chown $USER -R $HOME/.cache/containers/
-            # Note: we download images on the OS image in a container so that we select the correct
-            # architecture for the OS image, instead of downloading images matching the GitHub
-            # Actions runner's architecture:
-            parallel --line-buffer \
-              /run/os-setup/software/distro/setup/base-os/forklift/precache-image.sh \
-              < /run/container-images/images-list
-            sudo cp -r $HOME/.cache/containers/* /run/container-images/
+          echo "Downloading temporary tools to pre-download container images..."
+          tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
+          "$forklift_setup_root/download-crane.sh" "$tmp_bin"
+          "$forklift_setup_root/download-rush.sh" "$tmp_bin"
+
+          echo "Pre-downloading container images..."
+          export PATH="$tmp_bin:$PATH"
+          container_platform="linux/$(echo "$ARCH" | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')"
+          rush "$forklift_setup_root/precache-image.sh" {} "$PRECACHE_PATH" "$container_platform" \
+            < "$PRECACHE_PATH/images-list"
 
       # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
@@ -244,10 +230,23 @@ jobs:
         if: "!steps.restore-precache.outputs.cache-hit"
         uses: actions/cache/save@v4
         env:
-          PALLET: ${{ steps.forklift-versions.outputs.pallet }}@${{ steps.setup-precache.outputs.commit }}
+          PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
         with:
-          key: "container-images-pallet-${{ env.PALLET }}"
-          path: ${{ steps.setup-precache.outputs.path }}
+          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
+          path: ${{ steps.setup-precaching.outputs.path }}
+
+      - name: Copy pre-downloaded container images into image
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: ${{ env.SETUP_USER }}
+          args: >-
+            --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
+          run: |
+            local_cache="$HOME/.cache/forklift/containers/docker-archives"
+            mkdir -p "$local_cache"
+            sudo cp -r /run/container-images/* "$local_cache"
+            sudo chown $USER -R "$local_cache"
 
       # RUN OS SETUP SCRIPTS
 
@@ -255,6 +254,7 @@ jobs:
       # is much faster than a QEMU VM for downloading files.
       - name: Run base OS setup scripts in an unbooted container
         uses: ethanjli/pinspawn-action@v0.1.4
+        timeout-minutes: 30
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -361,7 +361,7 @@ jobs:
             )"
           elif [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref }}" == refs/tags/$TAG_PREFIX* ]]; then
             version="${{ github.ref }}"
-            version="v${version%"refs/tags/$TAG_PREFIX"}"
+            version="v${version#"refs/tags/$TAG_PREFIX"}"
           else
             version="$(printf "%.7s" "${{ github.sha }}")"
           fi
@@ -381,18 +381,20 @@ jobs:
           echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
 
       - name: Shrink the OS image
-        uses: ethanjli/pishrink-action@v0.1.2
+        uses: ethanjli/pishrink-action@v0.1.3
+        env:
+          PISHRINK_XZ: -T0 ${{ github.ref_type == 'tag' && '-9' || '-1' }}
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           destination: ${{ env.OUTPUT_IMAGE_NAME }}.img
-          compress: gzip
+          compress: xz
           compress-parallel: true
 
       - name: Upload image to Job Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT_IMAGE_NAME }}
-          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.gz
+          path: ${{ env.OUTPUT_IMAGE_NAME }}.img.xz
           if-no-files-found: error
           retention-days: 0
           compression-level: 0

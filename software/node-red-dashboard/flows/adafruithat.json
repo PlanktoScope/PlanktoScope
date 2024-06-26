@@ -101,10 +101,6 @@
                     {
                         "id": "ad541674.4791c8",
                         "port": 0
-                    },
-                    {
-                        "id": "f439663c.8abd3",
-                        "port": 0
                     }
                 ]
             }
@@ -897,17 +893,6 @@
         "height": 1
     },
     {
-        "id": "4ebfc7d4e1cdc24b",
-        "type": "ui_group",
-        "name": "Dashboard Errors",
-        "tab": "2489e51c.eed77a",
-        "order": 3,
-        "disp": true,
-        "width": "12",
-        "collapse": true,
-        "className": ""
-    },
-    {
         "id": "6465bdd5.15eb8c",
         "type": "file in",
         "z": "1c24ad9c.bebec2",
@@ -1041,10 +1026,12 @@
         "z": "1c24ad9c.bebec2",
         "name": "Connect Event",
         "events": "connect",
-        "x": 900,
+        "x": 220,
         "y": 100,
         "wires": [
-            []
+            [
+                "6465bdd5.15eb8c"
+            ]
         ]
     },
     {
@@ -5305,7 +5292,7 @@
         "type": "function",
         "z": "baa1e3d9.cb29d",
         "name": "get acq_celltype",
-        "func": "msg.payload = msg.payload.acq_celltype;\nreturn msg;",
+        "func": "msg.topic = 'acq_celltype';\nmsg.payload = msg.payload.acq_celltype;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7456,7 +7443,8 @@
         "z": "9daf9e2b.019fc",
         "name": "Restart Hardware Controller",
         "links": [
-            "e41870d7.300eb8"
+            "e41870d7.300eb8",
+            "e4ead350b3d07578"
         ],
         "x": 195,
         "y": 420,
@@ -7558,152 +7546,6 @@
             [
                 "38c05fcb891c82bf",
                 "e036d07cf78fde85"
-            ]
-        ]
-    },
-    {
-        "id": "470e32fe94b0254f",
-        "type": "ui_template",
-        "z": "9daf9e2b.019fc",
-        "group": "4ebfc7d4e1cdc24b",
-        "name": "Node-RED Log table",
-        "order": 1,
-        "width": 12,
-        "height": "5",
-        "format": "<script type=\"text/javascript\">\n    function selectElementContents(el) {\n        var body = document.body, range, sel;\n        if (document.createRange && window.getSelection) {\n            range = document.createRange();\n            sel = window.getSelection();\n            sel.removeAllRanges();\n            try {\n                range.selectNodeContents(el);\n                sel.addRange(range);\n            } catch (e) {\n                range.selectNode(el);\n                sel.addRange(range);\n            }\n            document.execCommand(\"copy\");\n            sel.removeAllRanges();\n\n        } else if (body.createTextRange) {\n            range = body.createTextRange();\n            range.moveToElementText(el);\n            range.select();\n            range.execCommand(\"Copy\");\n        }\n    }\n</script>\n\n<p>\n    Note: this panel only shows certain errors generated within the Node-RED dashboard. Actual logs should be instead accessed from the \"Logs\" panel on this page.\n</p>\n\n<md-button onclick=\"selectElementContents( document.getElementById('nodered_log_table') );\">\n    <i class=\"fa fa-copy fa-1x\"></i> Copy Log\n</md-button>\n\n<table id=\"nodered_log_table\" style=\"font-family: mono;font-size: 0.75rem;\">\n    <tr ng-repeat=\"row in msg.payload\">\n        <td>{{row}}</td>\n    </tr>\n</table>\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "className": "",
-        "x": 840,
-        "y": 620,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ec2872cc698c47c5",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Log array",
-        "func": "var log = flow.get(\"nodered_log\")||[];\n\nlog = log.concat(msg.payload.trim().split('\\n'));\n\nwhile (log.length > 500){\n    log.shift();\n}\n\nflow.set(\"nodered_log\", log);\n\nmsg.payload = log;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 580,
-        "wires": [
-            [
-                "470e32fe94b0254f"
-            ]
-        ]
-    },
-    {
-        "id": "a4f36a155b40d8fc",
-        "type": "ui_button",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Node-RED Log",
-        "group": "4ebfc7d4e1cdc24b",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "Clear Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-eraser",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 360,
-        "y": 660,
-        "wires": [
-            [
-                "1f4bbcbdb5e76e9c"
-            ]
-        ]
-    },
-    {
-        "id": "bc536dd002d843fd",
-        "type": "catch",
-        "z": "9daf9e2b.019fc",
-        "name": "Catch Errors",
-        "scope": null,
-        "uncaught": false,
-        "x": 150,
-        "y": 580,
-        "wires": [
-            [
-                "ad59246ff2dc72ea"
-            ]
-        ]
-    },
-    {
-        "id": "ad59246ff2dc72ea",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Get error",
-        "func": "msg.payload = \"Node Red Error: \" + msg.error + \" created by the message \" + msg.payload;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 580,
-        "wires": [
-            [
-                "ec2872cc698c47c5"
-            ]
-        ]
-    },
-    {
-        "id": "1f4bbcbdb5e76e9c",
-        "type": "function",
-        "z": "9daf9e2b.019fc",
-        "name": "Clear Node-RED log",
-        "func": "flow.set(\"nodered_log\", [\"Log cleared!\"]);\n\nmsg.payload = [\"Log cleared!\"];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 600,
-        "y": 660,
-        "wires": [
-            [
-                "470e32fe94b0254f"
-            ]
-        ]
-    },
-    {
-        "id": "d919104472b823c1",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 170,
-        "y": 660,
-        "wires": [
-            [
-                "a4f36a155b40d8fc"
             ]
         ]
     },
@@ -10854,7 +10696,8 @@
         "name": "Reload hardware config",
         "mode": "link",
         "links": [
-            "04920f50bbbf6a2a"
+            "04920f50bbbf6a2a",
+            "45a7b5aa.2ed20c"
         ],
         "x": 875,
         "y": 240,

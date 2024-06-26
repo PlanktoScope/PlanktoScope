@@ -1,5 +1,5 @@
 ---
-name: build-os-bookworm
+name: build-os-bookworm-dx
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ on:
     paths:
       - 'software/**'
       - '.github/workflows/build-os*.yml'
-  merge_group:
+  #merge_group:
   workflow_dispatch:
     inputs:
       git-ref:
