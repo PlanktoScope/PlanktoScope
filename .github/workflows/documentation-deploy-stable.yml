@@ -1,4 +1,4 @@
-name: Deploy documentation (stable release channel)
+name: deploy-documentation/stable
 
 on:
   push:
@@ -27,6 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: documentation/stable
 
       - name: Install dependencies for mkdocs-material image-processing libraries
         run: |

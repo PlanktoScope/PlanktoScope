@@ -1,4 +1,4 @@
-name: Deploy documentation (beta release channel)
+name: deploy-documentation/beta
 
 on:
   push:
@@ -27,6 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: documentation/beta
 
       - name: Install dependencies for mkdocs-material image-processing libraries
         run: |

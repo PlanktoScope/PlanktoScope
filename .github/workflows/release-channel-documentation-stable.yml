@@ -1,31 +1,12 @@
 ---
-name: release-channel-documentation-stable
+name: release-channel-documentation/stable
 on:
   push:
     tags:
       - 'documentation/v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  ff-branch-documentation-beta:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - run: |
-          git checkout documentation/beta
-          git merge --ff-only ${{ github.ref_name }}
-
-      - uses: ad-m/github-push-action@v0.8.0
-        with:
-          branch: documentation/beta
-
-  ff-branch-documentation-stable:
+  ff-branch:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -43,3 +24,10 @@ jobs:
       - uses: ad-m/github-push-action@v0.8.0
         with:
           branch: documentation/stable
+
+  deploy-docs-site:
+    # We call this workflow manually because it doesn't appear to be triggered automatically by a
+    # push of the documentation/stable branch from the ff-branch job:
+    uses: ./.github/workflows/documentation-deploy-stable.yml
+    needs: ff-branch
+    secrets: inherit
