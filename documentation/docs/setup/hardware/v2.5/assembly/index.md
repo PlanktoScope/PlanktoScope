@@ -1825,4 +1825,4 @@ The result should look the same as the pictures.
 
 ## Next steps
 
-Next, you will need to [set up the PlanktoScope software](../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi.
+Next, you will need to [set up the PlanktoScope software](../../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi.
