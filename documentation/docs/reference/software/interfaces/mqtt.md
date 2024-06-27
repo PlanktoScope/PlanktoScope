@@ -1,54 +1,41 @@
 # Planktoscope MQTT API Reference
 
-## Overview
+The MQTT API is the primary programming interface for controlling the PlanktoScope. The API is served by the PlanktoScope's Python backend, and data is sent across the API with the following architecture:
 
-This document provides a comprehensive reference for the Planktoscope MQTT API, detailing the topics, message formats, and possible status and error messages for controlling various actuators and receiving their statuses.
-
-## MQTT architecture communication
 ```mermaid
 flowchart TD
-    API[API Client] -->|Publish Command| Broker[MQTT Broker]
-    Broker -->|Command as JSON message| Backend[Python Backend]
-    Backend -->|Perform Action| Actuator[Hardware Actuator]
-    Actuator -->|Action Result| Backend
-    Backend -->|Publish Status Update| Broker[MQTT Broker]
+    API[API Client] -->|Command| Broker[MQTT Broker]
+    Broker -->|Command| Backend[Python Backend]
+    Backend -->|Status Update| Broker[MQTT Broker]
     Broker -->|Status Update| API
 
 ```
 
-### Explanation
-- **API Client**: Initiates the interaction by publishing a command to a specific MQTT topic.
-- **MQTT Broker**: Receives the command structured as a JSON message. This is the main communication channel where commands are sent.
-- **Python Backend**: Interprets the JSON command and converts it into an action to be performed by the hardware (e.g., moving a pump or adjusting focus).
-- **Hardware Actuator**: The component that performs the physical action as commanded by the Python backend.
-- **MQTT Broker**: After the action is executed, the Python backend publishes the result or status update to a separate MQTT topic dedicated to status updates.
-- **API Client**: Receives the status update from the status topic, completing the feedback loop.
+Most messages in the MQTT API are organized according to a request-response pattern in which the API client sends a *command* as a request to take some action, and then the Python backend sends one or more responses as *status updates* about how the Python backend's state has changed as a result of the command:
+
+- **API clients** send commands to the Python backend (via the MQTT broker), and receive status updates from the Python backend (also via the MQTT broker). The PlanktoScope's Node-RED dashboard is an API client, but other programs are also allowed to act as API clients.
+- The **MQTT broker** passes commands and status updates between the API client(s) and the Python backend. The MQTT broker runs on the PlanktoScope and accepts connections from API clients on port 1883.
+- The **Python backend** handles commands, takes actions (e.g. changing the state of hardware actuators), and publishes status updates both in response to commands and in response to changes in internal state. Currently, parts of the Python backend also act as MQTT API clients to other parts of the Python backend.
+
+Every MQTT message in the PlanktoScope's MQTT API is published on a specific *topic*, which is a slash-delimited path of strings (e.g. `actuator/pump`). Every MQTT message in the PlanktoScope's MQTT API carries a *payload*, which is a JSON object serialized as a string:
+
+- Messages which are commands usually specify the type of command in an `action` field of the payload object; other fields of the payload object are parameters of the command.
+- Messages which are status updates have a single field in the payload object, `status`, which is a string containing a status or error message.
+
+In the rest of this reference document, we organize our description of the MQTT API into sections corresponding to distinct functionalities of the Python backend:
 
 
-## MQTT Topics Overview
+## Pump
 
-In Planktoscope, MQTT topics are categorized to control and monitor different components of the system:
+The Pump API controls the movement of fluid through the PlanktoScope:
 
-- **Actuator Topics**: Manage movements of mechanical parts (pump, focus and light). Receive only.
-- **Imager Topics**: Control imaging operations related to the camera.
-- **Segmenter Topics**: Handle image segmentation processes.
-- **Status Topics**: Provide updates on the status of various components and mqtt commands. Publish only.
+- **MQTT topic for commands**: `actuator/pump`
+- **MQTT topics for status updates**: `status/pump`
+- **Commands**: `move`, `stop`
 
+### `move` command
 
-## Topic details
-
-In this section, we explore the different use cases associated with each MQTT topic. You'll find a detailed description of how JSON messages are filled in by the user and published by the MQTT server. This includes the specific scenarios in which data is sent or received, providing an in-depth understanding of the interactions between system components and the timing of communications.
-
-### `Pump`
-- **MQTT Topic for Commands**: `actuator/pump`
-- **MQTT Topic for Status/Errors**: `status/pump`
-- **Function**: Controls the pump to move fluid within the device.
-
-#### Move Command
-
-**Description**: Moves the pump to control fluid within the device.
-
-**JSON message to move the pump**:
+The `move` command initiates movement of fluid through the PlanktoScope by driving the PlanktoScope pump's stepper motor. For example, this command makes the pump move 10 mL of fluid forwards through the PlanktoScope's fluidic path, at a rate of 1 mL/min:
 
 ```json
 {
@@ -58,69 +45,68 @@ In this section, we explore the different use cases associated with each MQTT to
   "flowrate": 1
 }
 ```
-This message makes the pump move 10mL forward at 1mL/min.
 
-**Authorized values for `move` action (on `actuator/pump` topic):**
+The `move` command has the following parameters:
 
-| Field       | Description                                                                                     | Type   | Accepted Values                          |
-|-------------|-------------------------------------------------------------------------------------------------|--------|------------------------------------------|
-| `action`    | Must be `"move"`.                                                                               | string | `"move"`                                 |
-| `direction` | Direction to run the pump.                                                                      | string | `"FORWARD"`, `"BACKWARD"`                |
-| `volume`    | Total volume of sample to pump before stopping automatically (mL)| float  | From 1 to 25 mL |
-| `flowrate`  | Speed of pumping (mL/min). Must be nonzero | float  |  From 1 to 50 mL/min   |
+| Field       | Description                                                        | Type   | Accepted Values            |
+|-------------|--------------------------------------------------------------------|--------|----------------------------|
+| `action`    | Specifies the `move` command.                                      | string | `move`                     |
+| `direction` | Direction to run the pump.                                         | string | `FORWARD`, `BACKWARD`      |
+| `volume`    | Total volume of sample to pump before stopping automatically (mL). | float  | 0 < `volume`               |
+| `flowrate`  | Speed of pumping (mL/min).                                         | float  | 0 < `flowrate` ≤ 45 mL/min |
 
-                       
+The Python backend can send status updates on the `status/pump` topic, in response to the `move` command. The `status` field of such status updates can have any of the following values:
 
-**Possible status/error messages for `move` action (on `status/pump` topic):**
+| Status/Error                                | Cause                                                                                                  |
+|---------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `Started`                                   | The pump has started moving in response to a valid `move` command.                                     |
+| `Error, the message is missing an argument` | One or more required parameters (`direction`, `volume`, `flowrate`) are missing in the `move` command. |
+| `Error, The flowrate should not be == 0`    | An invalid value (0) was provided for the `flowrate` field.                                            |
+| `Done`                                      | The pump has successfully stopped after fully pumping the specified volume of sample.                  |
 
-| Status/Error                             | Cause                                                                                              |
-|------------------------------------------|----------------------------------------------------------------------------------------------------|
-| `"Started"`                  | The pump has started moving in response to a valid `move` command.                                 |
-| `"Error, the message is missing an argument"` | One or more required parameters (`direction`, `volume`, `flowrate`) are missing in the `move` command. |
-| `"Error, invalid_direction"`               | Direction is not "FORWARD" or "BACKWARD".                                                                    |
-| `"Error, invalid_volume"`                  | Volume is out of the valid range                                                           |
-| `"Error, invalid_flowrate"`                | Flowrate is out of the valid range               |
-| `"Done"`                     | The pump has successfully stopped after fully pumping the specified volume of sample.              |
+Note: the MQTT API does not yet completely specify error messages in response to invalid values for the `direction`, `volume`, and `flowrate` parameters.
 
+### `stop` command
 
-#### Stop Command
-
-**Description**: Stops the pump and cuts off power to the pump’s stepper motor.
-**JSON message to stop the pump**:
+The `stop` command interrupts any ongoing movement of fluid through the PlanktoScope and cuts off power to the PlanktoScope pump's stepper motor:
 
 ```json
 {
   "action": "stop"
 }
 ```
-This message updates the pump to stop moving, and cuts off power to the pump’s stepper motor.
 
-**Authorized values for `stop` action (on `actuator/pump` topic):**
+The `stop` command has the following parameters:
 
-| Field    | Description                 | Type   | Accepted Values |
-|----------|-----------------------------|--------|-----------------|
-| `action` | Must be `"stop"`.           | string | `"stop"`        |
+| Field    | Description                   | Type   | Accepted Values |
+|----------|-------------------------------|--------|-----------------|
+| `action` | Specifies the `stop` command. | string | `stop`        |
 
-**Possible status/error messages for `stop` action (on `status/pump` topic):**
+#### `stop` command responses
 
-| Status/Error                 | Cause                                                                                          |
-|------------------------------|------------------------------------------------------------------------------------------------|
-| `"Interrupted"`  | The pump has stopped moving in response to a valid `stop` command, before the specified volume was fully pumped. Sent in response to any actuator/pump “stop” command, and any imager/image “stop” command. |
-                             
-#### General Status Messages (on `status/pump` topic):
+The Python backend can send status updates on the `status/pump` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error | Description                                                                                                  |
-|--------------|--------------------------------------------------------------------------------------------------------------|
-| `"Ready"`      | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands. Sent in response to the backend starting.   |
-| `"Dead"`       | Indicates that the backend’s StepperProcess module is shutting down. Sent in response to the backend being stopped.                                     |
+| Status/Error                 | Cause                                                                                                                                                                                        |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `"Interrupted"`              | The pump has stopped moving in response to a valid `stop` command, interrupting any ongoing `move` command.<br />Sent in response to any Pump `stop` command, and any Imager `stop` command. |
+
+### Non-response status updates
+
+The Python backend can send status updates on the `status/pump` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error | Cause                                                     |
+|--------------|-----------------------------------------------------------|
+| `Ready`      | The backend has become ready to respond to Pump commands. |
+| `Dead`       | The backend will no longer respond to Pump commands.      |
 
 
-### `Focus`
+## Focus
+
 - **MQTT Topic for Commands**: `actuator/focus`
 - **MQTT Topic for Status/Errors**: `status/focus`
 - **Function**: Updates the sample stage focusing motors to move a specified displacement at a specified speed.
 
-#### Move Command
+### `move` command
 
 **Description**: Moves the focusing stage by a specified displacement.
 
@@ -135,7 +121,7 @@ This message updates the pump to stop moving, and cuts off power to the pump’s
 }
 ```
 
-This message makes the stage move up by 0.26 mm. Speed is optional.
+This message makes the stage move up by 0.26 mm.
 
 **Authorized values for `move` action (on `actuator/focus` topic):**
 
@@ -144,7 +130,7 @@ This message makes the stage move up by 0.26 mm. Speed is optional.
 | `action`    | Must be `"move"`.                    | string | `"move"`                          |
 | `direction` | Direction to move the sample stage | string enum  | "UP", "DOWN"                 |
 | `distance`  | Total distance to try to move the stage before the stepper motors automatically stop | float   | 0.001 to 45.0 mm             |
-| `speed`     | mooving speed | float   | 0.001 to 5.0 mm/s (optional) |
+| `speed`     | mooving speed.<br />Defaults to TODO | float   | 0.001 to 5.0 mm/s (optional) |
 
 **Possible status/error messages for `move` action (on `status/focus` topic):**
 
@@ -158,7 +144,7 @@ This message makes the stage move up by 0.26 mm. Speed is optional.
 | `"Done"`                             | The focusing motors have successfully stopped after moving the specified distance.                         |
 
 
-#### Stop Command
+### `stop` command
 
 **Description**: Stops the focusing stage.
 **JSON message to stop the focus**:
@@ -181,20 +167,20 @@ This message makes the stage move up by 0.26 mm. Speed is optional.
 |----------------------------------|-----------------------------------------------------------------------------------------------------------|
 | `"Interrupted"`     | The focusing motors have stopped moving in response to a valid `stop` command, before the specified distance was completed. |
 
-#### General Status Messages (on `status/focus` topic):
+### Non-response status updates
 
 | Status/Error | Description                                                                                                  |
 |--------------|--------------------------------------------------------------------------------------------------------------|
 | `"Ready"`      | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands. Sent in response to the backend starting.   |
 | `"Dead"`       | Indicates that the backend’s StepperProcess module is shutting down. Sent in response to the backend being stopped.                                     |
 
-### `Light`
+## Light
 
 - **MQTT Topic for Commands**: `actuator/light`
 - **MQTT Topic for Status/Errors**: `status/light`
 - **Function**: Controls the state of the LED lighting system through the `i2c_led`.
 
-#### JSON Message to Turn On the Light
+### `on` command
 
 ```json
 {
@@ -215,7 +201,7 @@ This JSON message turns on the LED.
 |--------------|-------------------------------------|
 | `"Done"`     | LED turned on successfully.         |
 
-#### JSON Message to Turn Off the LED
+### `off` command
 
 ```json
 {
@@ -236,22 +222,25 @@ This JSON message turns off the LED.
 |--------------------|---------------------------------------|
 | `"Interrupted"`    | LED turned off successfully.          |
 
-### `Imager`
+## Imager
 
-- **MQTT Topic for Commands**: `imager/image`
-- **MQTT Topic for Status/Errors**: `status/imager`
-- **Function**: This topic controls the camera and capture.
+The Imager API controls image acquisition with the PlanktoScope's hardware, as well as the PlanktoScope's camera:
 
-#### Command Sequence Requirements
+- **MQTT topic for commands**: `imager/image`
+- **MQTT topic for status updates**: `status/imager`
+- **Commands**: `settings`, `update_config`, `image`, `stop`
 
-1. **Settings**: Configure the camera settings using the `settings` command.
-2. **Update Configuration**: Update the dataset metadata using the `update_config` command.
-3. **Image**: Initiate image capture using the `image` command.
-4. **Stop**: Stop any in-progress image capture using the `stop` command.
+For details on how images are acquired, refer to our technical reference on [sample imaging](../functionalities/sample-imaging.md) in the PlanktoScope.
 
-If the `update_config` command is not called before the `image` command, the `image` command will report a status of `"Started"` and then do nothing.
+Generally, commands should be sent in the following order:
 
-1. **JSON camera settings message**: 
+1. `settings` command: Configure the camera settings.
+2. `update_config` command: Update the dataset metadata for the next image acquisition.
+3. `image` command: Initiate image acquisition.
+4. `stop` command: Stop any in-progress image acquisition.
+
+### `settings` command
+
 A camera settings message can also be received here. The fields `iso`, `shutter_speed`, `white_balance_gain` and `white_balance` are optionals:
 
 ```json
@@ -294,7 +283,7 @@ This message updates camera settings
 | `"Error: White balance mode %s not valid"` | The provided white balance mode parameter is invalid.                                                      |
 | `"Busy"`                            | The camera is currently busy and cannot update settings.                                         |
 
-2. **JSON configuration update message**: 
+### `update_config` command
 
 ```json
 {
@@ -366,12 +355,9 @@ This message updates camera settings
 
 ```
 
-The provided JSON message is used to update the metadata associated with a specific dataset. It contains comprehensive information about the sample, acquisition process, object details, and processing parameters to ensure accurate tracking and reproducibility of the dataset.
+The provided JSON message is used to update the metadata associated with a specific dataset. It contains comprehensive information about the sample, acquisition process, object details, and processing parameters to ensure accurate tracking and reproducibility of the dataset. The following tables describe the various fields in the `config` struct:
 
-**Metadata Configuration Fields for `config` action (on `imager\image` topic):**
-
-#### Sample Information
-This table includes details about the sample being processed, such as project name, sample identifier, and sampling conditions.
+Sample information:
 
 | Field                            | Type    | Description                             |
 |----------------------------------|---------|-----------------------------------------|
@@ -386,8 +372,7 @@ This table includes details about the sample being processed, such as project na
 | `sample_dilution_factor`         | float   | Dilution factor.                        |
 | `sample_speed_through_water`     | float   | Speed through water.                    |
 
-#### Acquisition Information
-This table contains information about the acquisition process, including the instruments used, imaging parameters, and acquisition settings.
+Acquisition information:
 
 | Field                            | Type    | Description                             |
 |----------------------------------|---------|-----------------------------------------|
@@ -410,8 +395,7 @@ This table contains information about the acquisition process, including the ins
 | `acq_camera_iso`                 | float   | Camera ISO setting.                     |
 | `acq_camera_shutter_speed`       | float   | Camera shutter speed.                   |
 
-#### Object Information
-This table provides specific details about the object of study, including geographic location, depth, and timing of the recording.
+Object information:
 
 | Field                            | Type    | Description                             |
 |----------------------------------|---------|-----------------------------------------|
@@ -426,8 +410,7 @@ This table provides specific details about the object of study, including geogra
 | `object_lat_end`                 | float   | End latitude of the sample location.    |
 | `object_lon_end`                 | float   | End longitude of the sample location.   |
 
-#### Processing Information
-This table lists the details regarding the data processing steps, including processing method, timing, and software used.
+Processing information:
 
 | Field                            | Type    | Description                             |
 |----------------------------------|---------|-----------------------------------------|
@@ -449,7 +432,7 @@ This table lists the details regarding the data processing steps, including proc
 | `"Configuration message error"`     | The config message is missing required parameters.                                                          |
 | `"Busy"`                            | The camera is currently busy and cannot update the configuration.                                           |
 
-3. **JSON message to image**:
+### `image` command
 ```json
 {
   "action": "image",
@@ -460,7 +443,8 @@ This table lists the details regarding the data processing steps, including proc
 ```
 This  JSON message initiates image capture with the pump moving 1mL forward and captures 200 frames.
 When capturing images, the system uses the specified volume and number of frames to manage the capture process, adjusting the pump's direction as required.
-If the imager/image update_config command is not called beforehand, this command will report a status/imager “Started” status and then do nothing.
+
+Currently, if a `update_config` command is sent before the `image` command, the `image` command will report a status/imager “Started” status and then do nothing (this is a software bug).
 
 
 **Authorized values for `image` action(on `imager/image` topic):**
@@ -512,7 +496,7 @@ This message stops any in-progress stop-flow sample dataset acquisition routine.
 | `"Busy"`                            | The camera is currently busy and cannot stop the operation.                                               |
 
 
- #### General Status Messages (on `status/imager` topic)
+### Other status updates
 
 | Status/Error                     | Description                                                                                                  |
 |----------------------------------|--------------------------------------------------------------------------------------------------------------|
@@ -520,39 +504,44 @@ This message stops any in-progress stop-flow sample dataset acquisition routine.
 | `"Ready"`                        | Indicates that the camera image streaming server has been started. Sent in response to the streaming server thread being started. |
 | `"Dead"`                         | Indicates that the backend’s ImagerProcess module is shutting down. Sent in response to the backend being stopped. |
 
-### `segmenter`
+## Segmenter
 
-This topic controls the segmentation process. 
+The Segmenter API controls the processing of acquired images:
 
-- **JSON message to start `segmentation`**:
+- **MQTT topic for commands**: `segmenter/segment`
+- **MQTT topics for status updates**: `status/segmenter`, `status/segmenter/object_id`, `status/segmenter/metric`
+- **Commands**: `segment`
 
-The segmentation process analyzes the images stored in the specified path, optionally exporting the results in an ecotaxa-compatible format. The `force`, `recursive`, `ecotaxa`, and `keep` options provide control over how segmentation is performed and managed. 
+For details on how images are processed, refer to our technical reference on [image segmentation](../functionalities/segmentation.md) in the PlanktoScope.
+
+### `segment` command
+
+The `segment` command initiates processing of images stored in the specified path, optionally exporting the results to an EcoTaxa-compatible archive. The various `settings` parameters of this command provide control over the behavior of image processing. For example, this command initiates processing of all images in the `/path/to/segment` directory:
 
 ```json
 {
   "action": "segment",
   "path": "/path/to/segment",
   "settings": {
-    "force": False,
-    "recursive": True,
-    "ecotaxa": True,
-    "keep": True
+    "force": false,
+    "recursive": true,
+    "ecotaxa": true,
+    "keep": true
   }
 }
 ```
-The `action` element is the only element required. If no `path` is supplied, the whole images repository is segmented recursively (this is very long!).
 
-**Required Parameters to `segment` action (on `segmenter/segment` topic)**:
+The `segment` command has the following parameters:
 
 | Parameter     | Type   | Accepted Values      | Description                                            |
 |---------------|--------|----------------------|--------------------------------------------------------|
-| `path`        | string | path/to/directory    | Path to the directory to segment.                      |
-| `settings.force`       | bool   | true, false          | Force re-segmentation even if previously done. It will overcome the presence of the file `done` that prevents resegmenting a folder already segmented. |
-| `settings.recursive`   | bool   | true, false          | Process directories recursively, forcing parsing all folders below `path`. |
-| `settings.ecotaxa`     | bool   | true, false          | Export an ecotaxa compatible archive.                  |
-| `settings.keep`        | bool   | true, false          | Keep ROI files during ecotaxa export. It has no effect if not exporting to ecotaxa; the ROI files are kept by default. |
+| `path`        | file path (string) | any directory within `/home/pi/data/img` (optional) | Path to the directory of images to process.<br />Defaults to `/home/pi/data/img`. |
+| `settings`.`force`       | boolean   | `true`, `false` (optional)          | Force re-segmentation even if previously done. It will overcome the presence of the file `done` that prevents resegmenting a folder already segmented.<br />Defaults to TODO. |
+| `settings`.`recursive`   | boolean   | `true`, `false` (optional)          | Process directories recursively, forcing parsing all folders below `path`.<br />Defaults to TODO. |
+| `settings`.`ecotaxa`     | boolean   | `true`, `false` (optional)          | Export an ecotaxa compatible archive.<br />Defaults to TODO.                  |
+| `settings.keep`        | boolean   | `true`, `false` (optional)          | Keep ROI files during ecotaxa export. It has no effect if not exporting to ecotaxa.<br />Defaults to `true`. |
 
- **Status/Error Messages related to the segment action (on `status/segmenter` topic)**
+The Python backend can send status updates on the `status/pump` topic, in response to the `segment` command. The `status` field of such status updates can have any of the following values:
 
 | Status/Error message | Description                                    |
 |-------------------|------------------------------------------------|
@@ -564,56 +553,21 @@ The `action` element is the only element required. If no `path` is supplied, the
 | `An exception was raised during the segmentation: %s.` | An error occurred during segmentation. |
 | `Done`               | Indicates that all specified datasets have been successfully segmented.|
 
-
-- **JSON message to `stop` segmentation**
-        ```json
-        {
-          "action": "stop"
-        }
-        ```
-**Required Parameters to `stop` segmentation (on `segmenter/segment` topic)**:
-
-| Parameter     | Type   | Accepted Values      | Description                                            |
-|---------------|--------|----------------------|--------------------------------------------------------|
-| `action`      | string | "stop"               | Specifies the action to stop segmentation.             |
-        
- **Status/Error Messages related to the segment action**
-
-| Status/Error message | Description                                    |
-|-------------------|------------------------------------------------|
-| `Interrupted`        | The segmentation process was interrupted. |
-
-
-
-#### General Status Messages (on `status/segmeter` topic):
-
-| Status/Error | Description                                                                                                  |
-|--------------|--------------------------------------------------------------------------------------------------------------|
-| `"Ready"`      | Indicates that the backend’s SegmenterProcess module has started running and is ready to receive commands. Sent in response to the backend starting.   |
-| `"Dead"`       | Indicates that the backend’s Segmenter module is shutting down. Sent in response to the backend being stopped.                                     |
-
-#### `status/segmenter/object_id` topic
-
-Sent repeatedly as part of the segmentation routine triggered by the `segmenter/segment` command, one for each object isolated by the segmenter.
-
-**Payload:**
+As the Python backend performs segmentation, it will repeatedly send additional status updates on the `status/segmenter/object_id` topic, once for each object isolated by the segmenter. Each status update is a JSON object with the following fields:
 
 | Field      | Type    | Description                           |
 |------------|---------|---------------------------------------|
 | `object_id`| integer | A scikit-image region label.          |
 
-#### `status/segmenter/metric` topic
+As the Python backend performs segmentation, it will repeatedly send additional status updates on the `status/segmenter/metric` topic, once for each object isolated by the segmenter. Each status update is a JSON object with the following fields:
 
-Sent repeatedly as part of the segmentation routine triggered by the `segmenter/segment` command, one for each `status/segmenter/object_id` message (corresponding to the object specified by that message).
-
-**Payload:**
 
 | Field      | Type    | Description                                                                 |
 |------------|---------|-----------------------------------------------------------------------------|
 | `name`     | string  | An object ID, which might or might not correspond to the object ID reported by `status/segmenter/object_id`.  |
 | `metadata` | struct  | Metadata for the object.                                                     |
 
-**Metadata fields:**
+The `metadata` field of status updates sent on the `status/segmenter/metric` topic has the following schema:
 
 | Field                   | Type    | Description                                                                                       |
 |-------------------------|---------|---------------------------------------------------------------------------------------------------|
@@ -652,3 +606,36 @@ Sent repeatedly as part of the segmentation routine triggered by the `segmenter/
 | `StdSaturation`         | float   | Standard deviation of the saturation value of the object.                                          |
 | `StdValue`              | float   | Standard deviation of the value (brightness) of the object.                                        |
 
+
+### `stop` command
+
+The `stop` command interrupts any ongoing image processing:
+
+```json
+{
+  "action": "stop"
+}
+```
+
+The `stop` command has the following parameters:
+
+| Parameter     | Type   | Accepted Values      | Description                                            |
+|---------------|--------|----------------------|--------------------------------------------------------|
+| `action`      | string | "stop"               | Specifies the action to stop segmentation.             |
+
+The Python backend can send status updates on the `segmenter/segment` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error message | Description                                    |
+|-------------------|------------------------------------------------|
+| `Interrupted`        | The segmentation process was interrupted. |
+
+
+
+### Non-response status updates
+
+The Python backend can send status updates on the `status/segmenter` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error | Description                                                                                                  |
+|--------------|--------------------------------------------------------------------------------------------------------------|
+| `"Ready"`      | Indicates that the backend’s SegmenterProcess module has started running and is ready to receive commands. Sent in response to the backend starting.   |
+| `"Dead"`       | Indicates that the backend’s Segmenter module is shutting down. Sent in response to the backend being stopped.                                     |
