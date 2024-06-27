@@ -1,4 +1,4 @@
-# Kit Manufacturing
+# Kit Production
 
 ![manufacturing guide](images/IMG_1516.jpg)
 

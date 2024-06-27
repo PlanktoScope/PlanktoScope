@@ -1,4 +1,4 @@
-# Kit Manufacturing
+# Kit Production
 
 ## Required Tools
 
@@ -93,6 +93,7 @@ To complete your PlanktoScope kit, you'll need to fabricate the structure. This 
 
 ### Get the Plan and Machine It
 
-You can download the necessary plans for the structure here:
-- [5mm SVG File](https://drive.google.com/file/d/1XTiOieKWLs8_2MAHgi3EBJxuxNQe_QqK/view?usp=sharing)
-- [1/4" DXF File](https://drive.google.com/file/d/1li0p2XgkPHDnx2Gy-VHGgtav7KK-erWe/view?usp=sharing)
+You can download the necessary fabrication patterns for the structure here; two versions are available, one for material with 5 mm thickness, and the other for material with 1/4 inch thickness:
+
+- [5 mm thickness](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-5mm.svg) (SVG file)
+- [1/4 inch thickness](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-0.25in.dxf) (DXF file)
