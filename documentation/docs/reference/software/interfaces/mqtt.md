@@ -102,15 +102,15 @@ The Python backend can send status updates on the `status/pump` topic which are 
 
 ## Focus
 
+The Focus API controls the movement of the sample stage focusing motors in the PlanktoScope:
+
 - **MQTT Topic for Commands**: `actuator/focus`
 - **MQTT Topic for Status/Errors**: `status/focus`
-- **Function**: Updates the sample stage focusing motors to move a specified displacement at a specified speed.
+- **Commands**: `move`, `stop`
 
 ### `move` command
 
-**Description**: Moves the focusing stage by a specified displacement.
-
-**JSON message to move the focus**:
+The `move` command initiates movement of the focusing stage by a specified displacement. For example, this command makes the stage move up by 0.26 mm at a speed of 1 mm/s:
 
 ```json
 {
@@ -121,33 +121,28 @@ The Python backend can send status updates on the `status/pump` topic which are 
 }
 ```
 
-This message makes the stage move up by 0.26 mm.
+The `move` command has the following parameters:
 
-**Authorized values for `move` action (on `actuator/focus` topic):**
+| Field       | Description                                                                 | Type   | Accepted Values     |
+|-------------|-----------------------------------------------------------------------------|--------|---------------------|
+| `action`    | Specifies the `move` command.                                               | string | `move`              |
+| `direction` | Direction to move the sample stage.                                         | string | `UP`, `DOWN`        |
+| `distance`  | Total distance to move the stage before stopping automatically (in mm).     | float  | 0.001 ≤ `distance` ≤ 45.0 |
+| `speed`     | Speed of movement (in mm/s).                                                | float  | 0.001 ≤ `speed` ≤ 5.0    |
 
-| Field       | Description                        | Type         | Accepted Values              |
-|-------------|------------------------------------|--------------|------------------------------|
-| `action`    | Must be `"move"`.                    | string | `"move"`                          |
-| `direction` | Direction to move the sample stage | string enum  | "UP", "DOWN"                 |
-| `distance`  | Total distance to try to move the stage before the stepper motors automatically stop | float   | 0.001 to 45.0 mm             |
-| `speed`     | mooving speed.<br />Defaults to TODO | float   | 0.001 to 5.0 mm/s (optional) |
-
-**Possible status/error messages for `move` action (on `status/focus` topic):**
+The Python backend can send status updates on the `status/focus` topic in response to the `move` command. The `status` field of such status updates can have any of the following values:
 
 | Status/Error                                      | Cause                                                                                                     |
 |---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | `"Started"`                          | The focusing motors have started moving in response to a valid `move` command.                             |
 | `"Error, the message is missing an argument"` | One or more required parameters (`direction`, `distance`, `speed`) are missing in the `move` command.         |
-| `"Error, invalid_direction"`         | The direction parameter is not "UP" or "DOWN".                                                             |
-| `"Error, invalid_distance"`          | The distance parameter is out of the allowable range (0.001 to 45 mm).                                     |
-| `"Error, invalid_speed"`             | The speed parameter is out of the allowable range (0.001 to 5.0 mm/s).                                     |
 | `"Done"`                             | The focusing motors have successfully stopped after moving the specified distance.                         |
 
+Note: the MQTT API does not yet completely specify error messages in response to invalid values for the `direction`, `distance`, and `speed` parameters.
 
 ### `stop` command
 
-**Description**: Stops the focusing stage.
-**JSON message to stop the focus**:
+The `stop` command interrupts any ongoing movement of the focusing stage and cuts off power to the focusing motors:
 
 ```json
 {
@@ -155,13 +150,15 @@ This message makes the stage move up by 0.26 mm.
 }
 ```
 
-**Authorized values for `stop` action (on `actuator/focus` topic) :**
+The `stop` command has the following parameters:
 
 | Field    | Description | Type   | Accepted Values |
 |----------|-------------|--------|-----------------|
 | `action` | must be `stop`| string | "stop"          |
 
-**Possible status/error messages for `stop` action (on `status/focus` topic):**
+#### `stop` command responses
+
+The Python backend can send status updates on the `status/focus` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
 
 | Status/Error                     | Cause                                                                                                     |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------|
@@ -169,33 +166,37 @@ This message makes the stage move up by 0.26 mm.
 
 ### Non-response status updates
 
+The Python backend can send status updates on the `status/focus` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
+
 | Status/Error | Description                                                                                                  |
 |--------------|--------------------------------------------------------------------------------------------------------------|
-| `"Ready"`      | Indicates that the backend’s StepperProcess module has started running and is ready to receive commands. Sent in response to the backend starting.   |
-| `"Dead"`       | Indicates that the backend’s StepperProcess module is shutting down. Sent in response to the backend being stopped.                                     |
+| `Ready`      | The backend’s StepperProcess module has started running and is ready to receive commands.                    |
+| `Dead`       | The backend’s StepperProcess module is shutting down and will no longer respond to commands.                 |
 
 ## Light
 
+The Light API controls the state of the LED lighting system in the PlanktoScope:
+
 - **MQTT Topic for Commands**: `actuator/light`
 - **MQTT Topic for Status/Errors**: `status/light`
-- **Function**: Controls the state of the LED lighting system through the `i2c_led`.
+- **Commands**: `on`, `off`
 
 ### `on` command
+
+The `on` command turns on the LED lighting system. For example, this command turns on the LED:
 
 ```json
 {
   "action": "on"
 }
 ```
-This JSON message turns on the LED.
-
-**Authorized values for `on` action (on `actuator/light` topic):**
+The `on` command has the following parameters:
 
 | Field     | Description       | Type   | Accepted Values |
 |-----------|-------------------|--------|-----------------|
 | `action`  | Must be `"on"`.   | string | `"on"`          |
 
-**Possible status/error messages for `on` action (on `status/light` topic):**
+The Python backend can send status updates on the `status/light` topic in response to the `on` command. The `status` field of such status updates can have any of the following values:
 
 | Status/Error | Cause                               |
 |--------------|-------------------------------------|
@@ -203,24 +204,35 @@ This JSON message turns on the LED.
 
 ### `off` command
 
+The `off` command turns off the LED lighting system. For example, this command turns off the LED:
+
 ```json
 {
   "action": "off"
 }
 ```
-This JSON message turns off the LED.
 
-**Authorized values for `off` action (on `actuator/light` topic):**
+The `off` command has the following parameters:
 
 | Field     | Description       | Type   | Accepted Values |
 |-----------|-------------------|--------|-----------------|
 | `action`  | Must be `"off"`.  | string | `"off"`         |
 
-**Possible status/error messages for `off` action (on `status/light` topic):**
+The Python backend can send status updates on the `status/light` topic in response to the `off` command. The `status` field of such status updates can have any of the following values:
+
 
 | Status/Error       | Cause                                 |
 |--------------------|---------------------------------------|
 | `"Interrupted"`    | LED turned off successfully.          |
+
+### Non-response status updates
+
+The Python backend can send status updates on the `status/light` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error | Description                                                                                                  |
+|--------------|--------------------------------------------------------------------------------------------------------------|
+| `Ready`      | The backend has become ready to respond to Light commands.                                                   |
+| `Dead`       | The backend will no longer respond to Light commands.                                                        |
 
 ## Imager
 
