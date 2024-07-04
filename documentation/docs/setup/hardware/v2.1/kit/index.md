@@ -95,5 +95,11 @@ To complete your PlanktoScope kit, you'll need to fabricate the structure. This 
 
 You can download the necessary fabrication patterns for the structure here; two versions are available, one for material with 5 mm thickness, and the other for material with 1/4 inch thickness:
 
-- [5 mm thickness](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-5mm.svg) (SVG file)
-- [1/4 inch thickness](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-0.25in.dxf) (DXF file)
+- 5 mm thickness: [SVG file](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-5mm.svg) (recommended), [DXF file](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-5mm.dxf)
+- 1/4 inch thickness: [DXF file](../../../../assets/hardware/v2.1/case/PlanktoScope-Case-0.25in.dxf)
+
+Since DXF files don't include unit information, when you open or import one of these DXF files you may need to rescale all dimensions to achieve the correct sizes. You can check whether dimensions are correct by checking the length and width of part M against the actual dimensions shown below:
+
+![scale reference](images/scale.jpg)
+
+You can also compare the approximate dimensions of parts in the SVG file (for 5 mm thickness material) with the sizes of parts in your imported DXF file to check whether the rescaling result looks approximately correct.

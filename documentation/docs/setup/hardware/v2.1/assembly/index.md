@@ -6,6 +6,10 @@ You can also use CAD renders and photos from the following links as a supplement
 - [CAD renders for the assembly guide](https://docs.google.com/presentation/d/13zDOGUVqgMvG0O11IOMVPIQBnWrfpkxs6CpLTylAv8o/present?slide=id.g8352987986_0_674)
 - [Photos for the assembly guide](https://docs.google.com/presentation/d/1JmmHwUz2F7l3kgRt4qVyNRQew6Ls7BI28o6T2OHM_GE/present?slide=id.g87b4a2be3a_2_106)
 
+For the assembly guide below, the pieces of the laser-cut structure are referred to by single-letter labels (A, J, L, K, H, F, E, C, B, N, M, D, G, I) according to the following assignments:
+
+![laser-cut part labels](images/laser-cut-part-labels.jpg)
+
 ## Step 1: Gather everything you need
 
 TODO: insert a link to the BOM
