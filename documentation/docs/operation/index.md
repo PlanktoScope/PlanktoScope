@@ -20,6 +20,8 @@ Unless you have already configured your PlanktoScope to connect to an existing W
 
 As you can see, the name of your PlanktoScope's Wi-Fi network will be of the format `pkscope-{random word}-{random word}-{random number}`. This name corresponds exactly to the serial number of the Raspberry Pi computer in your PlanktoScope, so it is a unique Wi-Fi network name; and the unique name of your machine has format `{random-word}-{random-word}-{random number}`, which is just the name of the Wi-Fi network but without the `pkscope-` prefix (e.g. `chain-list-27764`). You should connect to the Wi-Fi network specific to your PlanktoScope.
 
+Unless you have changed the password of your PlanktoScope's Wi-Fi network, the password should be `copepode`.
+
 ### Access your PlanktoScope's software
 
 Once you connect your computer to your PlanktoScope, you will need to access your PlanktoScope's software from a web browser on your computer. You should try opening the following URLs in your web browser (try opening them in the following order, and just use the first one which works):
