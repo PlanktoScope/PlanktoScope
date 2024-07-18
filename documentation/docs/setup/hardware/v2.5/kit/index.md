@@ -1,4 +1,4 @@
-# Kit Manufacturing
+# Kit Production
 
 ![manufacturing guide](images/IMG_1516.jpg)
 
@@ -68,15 +68,15 @@ Here is a step-by-step guide on how to configure the feed rate and the diameter 
 
 1. Select the appropriate end mill: The end mill should be selected based on the material and shape of the workpiece, as well as the desired level of precision. For this specific production, the following end mills will be used:
    
-    - 6mm end mill for straight flats
-    - 2mm end mill for inner contours
-    - 1mm end mill for small holes
+   - 6mm end mill for straight flats
+   - 2mm end mill for inner contours
+   - 1mm end mill for small holes
 
 2. Determine the feed rate: The feed rate is the speed at which the end mill moves along the surface of the workpiece and is usually measured in millimeters per minute (mm/m). The appropriate feed rate will depend on the diameter of the end mill and the material and thickness of the workpiece. For this specific production, the following feed rates will be used:
    
-    - 1500mm/min for 1-2mm end mills
-    - 2500mm/min for 3mm end mills
-    - 3500mm/min for 6mm end mills
+   - 1500mm/min for 1-2mm end mills
+   - 2500mm/min for 3mm end mills
+   - 3500mm/min for 6mm end mills
 
 3. Load the end mill: Once the appropriate end mill has been selected, it can be loaded onto the spindle of the CNC milling machine.
 
@@ -86,9 +86,9 @@ Here is a step-by-step guide on how to configure the feed rate and the diameter 
 
 6. Begin machining: The machining process should be carried out in the following sequence:
    
-    - Mill the screw holes with a 2mm end mill and then with a 3mm end mill
-    - Mill the corners with a 2mm end mill
-    - Mill everything else with a 3mm end mill
+   - Mill the screw holes with a 2mm end mill and then with a 3mm end mill
+   - Mill the corners with a 2mm end mill
+   - Mill everything else with a 3mm end mill
 
 By following these steps, you can properly configure the feed rate and the diameter of the end mill of a CNC milling machine for the production of a workpiece. It is important to follow the manufacturer's recommendations and guidelines for the specific CNC milling machine being used, as well as to use proper safety measures while operating the machine.
 

@@ -40,7 +40,7 @@ Insert the microSD card into the Raspberry Pi computer installed in your Plankto
 
 ## Connect to the PlanktoScope
 
-Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up. Once it has finished starting up, it should create a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope.
+Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up. Once it has finished starting up, it should create a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope. The password of this Wi-Fi network is `copepode`.
 
 Note that you will not be able to access the PlanktoScope's graphical user interface by plugging in a display to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently. Instead, you will need to connect another device (e.g. a phone or a computer) directly to the PlanktoScope's Raspberry Pi, either over its isolated Wi-Fi network or over an Ethernet cable.
 

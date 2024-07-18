@@ -8,9 +8,9 @@ This directory contains the PlanktoScope's documentation system. Documentation s
 
 You can view the published documentation at the following URLs:
 
-- https://planktoscope.github.io/PlanktoScope/ : this shows the "edge" (i.e. development) version of documentation on the `master` branch of the main PlanktoScope repository at https://github.com/PlanktoScope/PlanktoScope . Note that this version probably contains errors and broken content, and it is not an official release of the documentation. This version of the documentation is hosted as a way for documentation maintainers to preview changes while working together across pull requests.
-- TBD : this shows the "beta" version of documentation on the `beta` branch of the main PlanktoScope repository. This version is shown to beta testers; it probably has problems, but it is more reliable than the "edge" version
-- https://docs.planktoscope.org : this shows the "stable" version of documentation on the `stable` branch of the main PlanktoScope repository. This is the up-to-date version of PlanktoScope documentation which all PlanktoScope users should refer to as the official documentation website.
+- <https://docs-edge.planktoscope.community/>: this shows the "edge" (i.e. development) version of documentation on the `master` branch of the main PlanktoScope repository at https://github.com/PlanktoScope/PlanktoScope . Note that this version probably contains errors and broken content, and it is not an official release of the documentation. This version of the documentation is hosted as a way for documentation maintainers to preview changes while working together across pull requests.
+- <https://docs-beta.planktoscope.community/>: this shows the "beta" version of documentation on the `beta` branch of the main PlanktoScope repository. This version is shown to beta testers; it probably has problems, but it is more reliable than the "edge" version
+- <https://docs.planktoscope.community>: this shows the "stable" version of documentation on the `stable` branch of the main PlanktoScope repository. This is the up-to-date version of PlanktoScope documentation which all PlanktoScope users should refer to as the official documentation website.
 
 ### Develop the documentation
 
@@ -18,9 +18,9 @@ First, use your favorite Git client (such as [Github Desktop](https://desktop.gi
 
 #### Installing development tools
 
-We use [MkDocs](https://www.mkdocs.org/) to build documentation sources into a documentation website. We recommend running MkDocs on your computer while changing documentation sources so that you can preview the consequences of your changes. Because MkDocs is a Python tool, you will need to install it; and you will also need to install various MkDocs plugins.
+Explanation: We use [MkDocs](https://www.mkdocs.org/) to build documentation sources into a documentation website. We recommend running MkDocs on your computer while changing documentation sources so that you can preview the consequences of your changes. Because MkDocs is a Python tool, you will need to install it; and you will also need to install various MkDocs plugins used by our documentation site. We use [Poetry](https://python-poetry.org/) to manage the installation and versioning of MkDocs and MkDocs plugins so that everyone installs the exact same versions of all Python packages needed to build the documentation. We also use [Poe the Poet](https://poethepoet.natn.io/) to provide easy-to-run commands for developing the documentation.
 
-We use [Poetry](https://python-poetry.org/) to manage the installation and versioning of MkDocs and MkDocs plugins so that everyone installs the exact same versions of all Python packages needed to build the documentation. We also use [Poe the Poet](https://poethepoet.natn.io/) to provide easy-to-run commands for developing the documentation. You will need to install Python 3.8 or a more recent version of Python on your computer. If you don't have an appropriate version of Python installed on your computer, you can follow these instructions to install Python: <https://realpython.com/installing-python/>
+You will need to install Python 3.8 or a more recent version of Python on your computer. If you don't have an appropriate version of Python installed on your computer, you can follow these instructions to install Python: <https://realpython.com/installing-python/>
 
 Once you have Python, we recommend installing Poetry [using pipx](https://python-poetry.org/docs/#installing-with-pipx), as that is the easiest way to install Poetry. Please follow the instructions at https://pypa.github.io/pipx/installation/ to install pipx. Then run `pipx install poetry` in your terminal to install Poetry.
 

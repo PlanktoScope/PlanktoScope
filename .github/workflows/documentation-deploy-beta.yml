@@ -1,9 +1,10 @@
-name: Deploy documentation (beta release channel)
+name: deploy-documentation/beta
 
 on:
   push:
     branches:
       - 'documentation/beta'
+  workflow_call:
   workflow_dispatch:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
@@ -27,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: documentation/beta
 
       - name: Install dependencies for mkdocs-material image-processing libraries
         run: |

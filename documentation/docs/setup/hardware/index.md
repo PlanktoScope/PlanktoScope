@@ -18,15 +18,17 @@ This version of the PlanktoScope hardware is the only version which has been wid
 
 ### Hardware v2.5
 
-This was the first version of the PlanktoScope hardware made commercially available by FairScope. It has made various design changes to solve various problems with the v2.1 hardware design, including:
-
-- Replacing the Adafruit Stepper Motor HAT with a custom-designed HAT.
+This version includes many design improvements to solve various problems with the v2.1 hardware design, including:
 
 - Replacing the ibidi flowcell with a simpler glass capillary flowcell.
+
+- Replacing the Adafruit Stepper Motor HAT with a HAT designed specifically for the PlanktoScope (the [PlanktoScope HAT](../../reference/hardware/hat.md)).
 
 - Replacing the linear actuators for sample focusing with a more mechanically robust pair of linear actuators.
 
 - Replacing the peristaltic pump with a more accurate pump which is commercially available.
+
+- Making the Raspberry Pi's micro-SD card accessible without requiring disassembly of the PlanktoScope.
 
 The mechanical structure of this design uses CNC-milled parts rather than laser-cut parts.
 

@@ -1,9 +1,10 @@
-name: Deploy documentation (stable release channel)
+name: deploy-documentation/stable
 
 on:
   push:
     branches:
       - 'documentation/stable'
+  workflow_call:
   workflow_dispatch:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
@@ -27,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: documentation/stable
 
       - name: Install dependencies for mkdocs-material image-processing libraries
         run: |
