@@ -17,15 +17,15 @@ From here, you can quickly access any of the available tabs. The buttons are onl
 ![Tab List](../images/ui_guide/tab_list.webp)
 
 !!! tip
-This list is also available from any other tab and allows you to quickly navigate between tabs.
+    This list is also available from any other tab and allows you to quickly navigate between tabs.
 
 ## Machine shutdown
 
 From this page, you can also shutdown the machine when you are done.
 
 !!! warning
-It's **very very very important** to **always** shutdown the machine and wait a minute for it to completely shutdown before unplugging the power supply!
-**You risk data corruption is you savagely shutdown your machine!**
+    It's **very very very important** to **always** shutdown the machine and wait a minute for it to completely shutdown before unplugging the power supply!
+    **You risk data corruption if you turn off power without shutting down the machine through the software!**
 
 To shutdown the machine, first unlock the shutdown button by clicking on "Unlock Button".
 
@@ -64,7 +64,7 @@ This page allows you to control the optical setup of the acquisition.
 In the Optic Characterization block, you can control to turn the light on or not. You also have to choose the optics in use in the machine.
 
 !!! warning
-For now, the characteristics shown here are not true values (except if you use the 25mm/16mm lens couple).
+    For now, the characteristics shown here are not true values (except if you use the 25mm/16mm lens couple).
 
 The Camera Settings block allows you to change the shutter speed, the ISO number and the camera white balance settings. You can set it to automatic, but it's better if you control it by hand to make sure the setting doesn't change when the acquisition is started.
 
@@ -83,7 +83,7 @@ Finally, this is where the magic happens! You will be able to chose the final pa
 First of all, change the Fraction Size of your sample. You can then choose a unique ID for your acquisition, the number of pictures you want to take, the pumped volume (in between images), the delay to stabilize the image and the Flowcell thickness. All those settings will influence the Total imaged volume (the total volume captured during the acquisition) and the Total pumped volume.
 
 !!! warning
-Make sure the Total pumped volume is lower than the volume of your sample.
+    Make sure the Total pumped volume is lower than the volume of your sample.
 
 ## Gallery
 
@@ -99,22 +99,6 @@ This tab allows you to monitor the physical characteristics of the machine and f
 
 You also can find information about the software version you are using, the machine name and its camera.
 
-### USB Backup of the data
-
-Using the USB Backup block, you can backup the data from the machine to a connected USB device.
-
-!!! info
-Use one of the center USB ports on the machine, since those are USB3.0. They can be recognized by the blue insert in the middle of the connector. Those ports are faster.
-
-After you connected your drive, click on "Detect Drive" to make it appear in the list. You can then choose "Backup to USB" to launch the copy. Wait until a completion message is displayed.
-
-Before purging the local data, make sure your data has been backed up at least twice!
-
-!!! warning
-It's very warmly recommended to use the 3-2-1 backup strategy. 3 copies on 2 devices with at least 1 offsite.
-For this machine, this means creating two copies on two different USB drives of the data before purging it from the device.
-Also, you should backup your device after each acquisition.
-
 ## Wifi
 
 ![Administration](../images/ui_guide/wifi.webp)
@@ -128,10 +112,10 @@ Finally, if you are not located in the US, please update the Country code in the
 Clicking on the button `Reset wifi networks` will erase ALL networks saved previously by the machine. If you do this, it will disconnect immediately from any network it's connected to, and will put up its own network.
 
 !!! info
-For now, only WPA/WPA2 Personnal security system is supported. If you need another security system supported, get in touch with us.
+    For now, only WPA/WPA2 Personal security is supported; Wi-Fi networks without passwords are not supported.
 
 !!! warning
-Please be mindful about the security policies of your organisation before connecting your device to a network (either through Wifi or with an Ethernet cable). A lot of research institutions don't allow devices not controlled by them to be connected to their network without first going on an approved list with a least a basic security checkup.
+    Please be mindful about the security policies of your organisation before connecting your device to a network (either through Wifi or with an Ethernet cable). A lot of research institutions don't allow devices not controlled by them to be connected to their network without first going on an approved list with a least a basic security checkup.
 
 ## Administration
 

@@ -20,10 +20,13 @@ Unless you have already configured your PlanktoScope to connect to an existing W
 
 As you can see, the name of your PlanktoScope's Wi-Fi network will be of the format `pkscope-{random word}-{random word}-{random number}`. This name corresponds exactly to the serial number of the Raspberry Pi computer in your PlanktoScope, so it is a unique Wi-Fi network name; and the unique name of your machine has format `{random-word}-{random-word}-{random number}`, which is just the name of the Wi-Fi network but without the `pkscope-` prefix (e.g. `chain-list-27764`). You should connect to the Wi-Fi network specific to your PlanktoScope.
 
+Unless you have changed the password of your PlanktoScope's Wi-Fi network, the password should be `copepode`.
+
 ### Access your PlanktoScope's software
 
 Once you connect your computer to your PlanktoScope, you will need to access your PlanktoScope's software from a web browser on your computer. You should try opening the following URLs in your web browser (try opening them in the following order, and just use the first one which works):
 
+- <http://planktoscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
 - <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://192.168.4.1> (this should always work)
@@ -58,7 +61,8 @@ However, if you have access to a body of water (even a tiny lake or river is eno
 You can then do an acquisition run. **This is the best way to learn about the machine and this process!**
 
 !!! warning
-After doing an acquisition, the machine should be cleaned, especially in the fluidic part. One good way to do this is to first flush the machine with clear water (distilled if possible). You can then push through a 5-10% bleach solution, or some alcohol.
+
+    After doing an acquisition, the machine should be cleaned, especially in the fluidic part. One good way to do this is to first flush the machine with clear water (distilled if possible). You can then push through a 5-10% bleach solution, or some alcohol.
 
 If needed you can also clean the outside of the objective lens with a soft cloth. You can do the same on the flow cell if there are traces of finger on it too.
 

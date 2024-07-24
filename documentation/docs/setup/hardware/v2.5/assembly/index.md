@@ -1823,4 +1823,6 @@ The result should look the same as the pictures.
 
 ![planktoscope-assembly-251-01.jpg](images/BWS01569.JPG)
 
-The next stage is to plug in our PlanktoScope and connect it to the computer.
+## Next steps
+
+Next, you will need to [set up the PlanktoScope software](../../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi.

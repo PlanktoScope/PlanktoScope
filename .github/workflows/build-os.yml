@@ -117,7 +117,7 @@ jobs:
 
       - name: Download and cache base image
         id: download-base
-        uses: ethanjli/cached-download-action@v0.1.1
+        uses: ethanjli/cached-download-action@v0.1.2
         with:
           url: ${{ steps.rpi-os-image.outputs.image_url }}
           destination: /tmp/${{ steps.rpi-os-image.outputs.image_filename }}

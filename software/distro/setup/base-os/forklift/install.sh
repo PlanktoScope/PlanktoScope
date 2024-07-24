@@ -10,19 +10,9 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 # Install Forklift
 "$config_files_root/download-forklift.sh" "/usr/bin"
 
-# Prepare most of the necessary systemd units:
+# Add the necessary systemd units (but we don't enable them until booted setup):
 sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
 sudo cp $config_files_root/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
-sudo systemctl unmask forklift-apply.service # if it was masked, we must unmask it to apply preset
-sudo systemctl preset forklift-apply.service
-# Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
-# (see https://docs.kernel.org/filesystems/overlayfs.html):
-sudo systemctl preset \
-  overlay-sysroot.service \
-  bindro-run-forklift-stages-current.service \
-  overlay-usr.service \
-  overlay-etc.service \
-  start-overlaid-units.service
 
 # Make the stage store at /var/lib/forklift/stages available for non-root access in the current
 # (i.e. default) user's default Forklift workspace, both in the current boot and subsequent boots:
@@ -44,7 +34,6 @@ pallet_path="$(cat "$config_files_root/forklift-pallet")"
 pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
 forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
 forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-reset next
-sudo systemctl mask forklift-apply.service # we'll re-enable it after finishing setup in the VM
 
 # Pre-download container images without Docker
 
