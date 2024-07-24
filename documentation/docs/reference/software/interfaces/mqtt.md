@@ -8,7 +8,6 @@ flowchart TD
     Broker -->|Command| Backend[Python Backend]
     Backend -->|Status Update| Broker[MQTT Broker]
     Broker -->|Status Update| API
-
 ```
 
 Most messages in the MQTT API are organized according to a request-response pattern in which the API client sends a *command* as a request to take some action, and then the Python backend sends one or more responses as *status updates* about how the Python backend's state has changed as a result of the command:
@@ -24,12 +23,11 @@ Every MQTT message in the PlanktoScope's MQTT API is published on a specific *to
 
 In the rest of this reference document, we organize our description of the MQTT API into sections corresponding to distinct functionalities of the Python backend:
 
-
 ## Pump
 
 The Pump API controls the movement of fluid through the PlanktoScope:
 
-- **MQTT topic for commands**: `actuator/pump`
+- **MQTT topics for commands**: `actuator/pump`
 - **MQTT topics for status updates**: `status/pump`
 - **Commands**: `move`, `stop`
 
@@ -49,16 +47,18 @@ The `move` command initiates movement of fluid through the PlanktoScope by drivi
 The `move` command has the following parameters:
 
 | Field       | Description                                                        | Type   | Accepted Values            |
-|-------------|--------------------------------------------------------------------|--------|----------------------------|
+| ----------- | ------------------------------------------------------------------ | ------ | -------------------------- |
 | `action`    | Specifies the `move` command.                                      | string | `move`                     |
 | `direction` | Direction to run the pump.                                         | string | `FORWARD`, `BACKWARD`      |
 | `volume`    | Total volume of sample to pump before stopping automatically (mL). | float  | 0 < `volume`               |
 | `flowrate`  | Speed of pumping (mL/min).                                         | float  | 0 < `flowrate` ≤ 45 mL/min |
 
+#### `move` command responses
+
 The Python backend can send status updates on the `status/pump` topic, in response to the `move` command. The `status` field of such status updates can have any of the following values:
 
 | Status/Error                                | Cause                                                                                                  |
-|---------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `Started`                                   | The pump has started moving in response to a valid `move` command.                                     |
 | `Error, the message is missing an argument` | One or more required parameters (`direction`, `volume`, `flowrate`) are missing in the `move` command. |
 | `Error, The flowrate should not be == 0`    | An invalid value (0) was provided for the `flowrate` field.                                            |
@@ -79,33 +79,32 @@ The `stop` command interrupts any ongoing movement of fluid through the PlanktoS
 The `stop` command has the following parameters:
 
 | Field    | Description                   | Type   | Accepted Values |
-|----------|-------------------------------|--------|-----------------|
-| `action` | Specifies the `stop` command. | string | `stop`        |
+| -------- | ----------------------------- | ------ | --------------- |
+| `action` | Specifies the `stop` command. | string | `stop`          |
 
 #### `stop` command responses
 
 The Python backend can send status updates on the `status/pump` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error                 | Cause                                                                                                                                                                                        |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `"Interrupted"`              | The pump has stopped moving in response to a valid `stop` command, interrupting any ongoing `move` command.<br />Sent in response to any Pump `stop` command, and any Imager `stop` command. |
+| Status/Error  | Cause                                                                                                                                                                                        |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Interrupted` | The pump has stopped moving in response to a valid `stop` command, interrupting any ongoing `move` command.<br />Sent in response to any Pump `stop` command, and any Imager `stop` command. |
 
 ### Non-response status updates
 
 The Python backend can send status updates on the `status/pump` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
 
 | Status/Error | Cause                                                     |
-|--------------|-----------------------------------------------------------|
+| ------------ | --------------------------------------------------------- |
 | `Ready`      | The backend has become ready to respond to Pump commands. |
 | `Dead`       | The backend will no longer respond to Pump commands.      |
-
 
 ## Focus
 
 The Focus API controls the movement of the sample stage focusing motors in the PlanktoScope:
 
-- **MQTT Topic for Commands**: `actuator/focus`
-- **MQTT Topic for Status/Errors**: `status/focus`
+- **MQTT topics for commands**: `actuator/focus`
+- **MQTT topics for status updates**: `status/focus`
 - **Commands**: `move`, `stop`
 
 ### `move` command
@@ -123,23 +122,22 @@ The `move` command initiates movement of the focusing stage by a specified displ
 
 The `move` command has the following parameters:
 
-| Field       | Description                                                                 | Type   | Accepted Values     |
-|-------------|-----------------------------------------------------------------------------|--------|---------------------|
-| `action`    | Specifies the `move` command.                                               | string | `move`              |
-| `direction` | Direction to move the sample stage.                                         | string | `UP`, `DOWN`        |
-| `distance`  | Total distance to move the stage before stopping automatically (in mm).     | float  | 0.001 ≤ `distance` ≤ 45.0 |
-| `speed`     | Speed of movement (in mm/s).                                                | float  | 0.001 ≤ `speed` ≤ 5.0    |
+| Field       | Description                                                             | Type   | Accepted Values              |
+| ----------- | ----------------------------------------------------------------------- | ------ | ---------------------------- |
+| `action`    | Specifies the `move` command.                                           | string | `move`                       |
+| `direction` | Direction to move the sample stage.                                     | string | `UP`, `DOWN`                 |
+| `distance`  | Total distance to move the stage before stopping automatically (in mm). | float  | 0 < `distance` ≤ 45.0        |
+| `speed`     | Speed of movement (in mm/s).<br />Defaults to 5.                        | float  | 0 < `speed` ≤ 5.0 (optional) |
+
+#### `move` command responses
 
 The Python backend can send status updates on the `status/focus` topic in response to the `move` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error                                      | Cause                                                                                                     |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `"Started"`                          | The focusing motors have started moving in response to a valid `move` command.                             |
-| `"Missing entry: Distance"` | `distance` is missing in the `move` command.         |
-| `"Missing entry: Speed"` | `speed` is missing in the `move` command.         |
-| `"Done"`                             | The focusing motors have successfully stopped after moving the specified distance.                         |
-
-Note: Currently, the system does not display an error message if more than one parameter (`distance` , `speed` , `direction`) is missing, but the command is still not executed.
+| Status/Error | Cause                                                                              |
+| ------------ | ---------------------------------------------------------------------------------- |
+| `Started`    | The focusing motors have started moving in response to a valid `move` command.     |
+| `Error`      | The `move` command is missing the `distance` and/or `direction` fields.            |
+| `Done`       | The focusing motors have successfully stopped after moving the specified distance. |
 
 ### `stop` command
 
@@ -153,38 +151,38 @@ The `stop` command interrupts any ongoing movement of the focusing stage and cut
 
 The `stop` command has the following parameters:
 
-| Field    | Description | Type   | Accepted Values |
-|----------|-------------|--------|-----------------|
-| `action` | must be `stop`| string | "stop"          |
+| Field    | Description                   | Type   | Accepted Values |
+| -------- | ----------------------------- | ------ | --------------- |
+| `action` | Specifies the `stop` command. | string | `stop`          |
 
 #### `stop` command responses
 
 The Python backend can send status updates on the `status/focus` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error                     | Cause                                                                                                     |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `"Interrupted"`     | The focusing motors have stopped moving in response to a valid `stop` command, before the specified distance was completed. |
+| Status/Error  | Cause                                                                                                                   |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `Interrupted` | The focusing motors have stopped moving in response to a valid `stop` command, interrupting any ongoing `stop` command. |
 
 ### Non-response status updates
 
 The Python backend can send status updates on the `status/focus` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error | Description                                                                                                  |
-|--------------|--------------------------------------------------------------------------------------------------------------|
-| `Ready`      | The backend’s StepperProcess module has started running and is ready to receive commands.                    |
-| `Dead`       | The backend’s StepperProcess module is shutting down and will no longer respond to commands.                 |
+| Status/Error | Description                                                |
+| ------------ | ---------------------------------------------------------- |
+| `Ready`      | The backend has become ready to respond to Focus commands. |
+| `Dead`       | The backend will no longer respond to Focus commands.      |
 
 ## Light
 
 The Light API controls the state of the LED lighting system in the PlanktoScope:
 
-- **MQTT Topic for Commands**: `actuator/light`
-- **MQTT Topic for Status/Errors**: `status/light`
+- **MQTT topics for commands**: `actuator/light`
+- **MQTT topics for status updates**: `status/light`
 - **Commands**: `on`, `off`
 
 ### `on` command
 
-The `on` command turns on the LED lighting system. For example, this command turns on the LED:
+The `on` command turns on the sample illumination LED. For example:
 
 ```json
 {
@@ -192,23 +190,26 @@ The `on` command turns on the LED lighting system. For example, this command tur
   "led": "1"
 }
 ```
+
 The `on` command has the following parameters:
 
-| Field     | Description       | Type   | Accepted Values |
-|-----------|-------------------|--------|-----------------|
-| `action`  | Must be `"on"`   | string | `"on"`          |
-| `led`  | Must be `"1"`   | integer | `"1"`          |
+| Field    | Description                                        | Type    | Accepted Values |
+| -------- | -------------------------------------------------- | ------- | --------------- |
+| `action` | Specifies the `on` command.                        | string  | `on`            |
+| `led`    | Specifies the LED to turn on.<br/>Defaults to `1`. | integer | `1` (optional)  |
+
+#### `on` command responses
 
 The Python backend can send status updates on the `status/light` topic in response to the `on` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error | Cause                               |
-|--------------|-------------------------------------|
-| `"The light is Led 1: On"`     | The LED turned on successfully.         |
-| `"Invalid action or LED number"`     | The `on` command is invalid.         |
+| Status/Error            | Cause                                                             |
+| ----------------------- | ----------------------------------------------------------------- |
+| `Led 1: On`             | The LED turned on successfully.                                   |
+| `Error with LED number` | An invalid value was provided for the `led` field of the command. |
 
 ### `off` command
 
-The `off` command turns off the LED lighting system. For example, this command turns off the LED:
+The `off` command turns off the sample illumination LED. For example:
 
 ```json
 {
@@ -218,33 +219,35 @@ The `off` command turns off the LED lighting system. For example, this command t
 
 The `off` command has the following parameters:
 
-| Field     | Description       | Type   | Accepted Values |
-|-----------|-------------------|--------|-----------------|
-| `action`  | Must be `"off"`.  | string | `"off"`         |
+| Field    | Description                                       | Type    | Accepted Values |
+| -------- | ------------------------------------------------- | ------- | --------------- |
+| `action` | Specifies the `off` command.                      | string  | `off`           |
+| `led`    | Specifies the LED to turn on.<br/>Defaults to `1` | integer | `1`             |
+
+#### `off` command responses
 
 The Python backend can send status updates on the `status/light` topic in response to the `off` command. The `status` field of such status updates can have any of the following values:
 
-
-| Status/Error       | Cause                                 |
-|--------------------|---------------------------------------|
-| `"The light is Led 1: Off"`    | The LED turned off successfully.          |
-| `"Invalid action or LED number"`     | The `off` command is invalid.         |
+| Status/Error            | Cause                                                             |
+| ----------------------- | ----------------------------------------------------------------- |
+| `Led 1: Off`            | The LED turned off successfully.                                  |
+| `Error with LED number` | An invalid value was provided for the `led` field of the command. |
 
 ### Non-response status updates
 
 The Python backend can send status updates on the `status/light` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error | Description                                                                                                  |
-|--------------|--------------------------------------------------------------------------------------------------------------|
-| `Ready`      | The backend has become ready to respond to Light commands.                                                   |
-| `Dead`       | The backend will no longer respond to Light commands.                                                        |
+| Status/Error | Description                                                |
+| ------------ | ---------------------------------------------------------- |
+| `Ready`      | The backend has become ready to respond to Light commands. |
+| `Dead`       | The backend will no longer respond to Light commands.      |
 
 ## Imager
 
 The Imager API controls image acquisition with the PlanktoScope's hardware, as well as the PlanktoScope's camera:
 
-- **MQTT topic for commands**: `imager/image`
-- **MQTT topic for status updates**: `status/imager`
+- **MQTT topics for commands**: `imager/image`
+- **MQTT topics for status updates**: `status/imager`
 - **Commands**: `settings`, `update_config`, `image`, `stop`
 
 For details on how images are acquired, refer to our technical reference on [sample imaging](../functionalities/sample-imaging.md) in the PlanktoScope.
@@ -258,7 +261,7 @@ Generally, commands should be sent in the following order:
 
 ### `settings` command
 
-The `settings` command updates the camera settings. The fields `iso`, `shutter_speed`, `white_balance_gain` and `white_balance` are optionals:
+The `settings` command changes the camera settings. The fields `iso`, `shutter_speed`, `white_balance_gain` and `white_balance` are optional - if a field is omitted, its setting will not be changed. Here's an example of a command with values specified for all fields:
 
 ```json
 {
@@ -268,36 +271,37 @@ The `settings` command updates the camera settings. The fields `iso`, `shutter_s
     "shutter_speed": 40,
     "white_balance_gain": { "red": 100, "blue": 100 },
     "white_balance": "auto",
-      }
+  }
 }
 ```
 
 The `settings` command has the following parameters:
 
-| Parameter             | Description                                     |  Type   | Accepted Values        |
-|-----------------------|--------|----------------------|------------------------------------------------|
-| `action`              | Specifies the `settings` command.               | string | `settings`               |
-| `iso`                 | ISO sensitivity value.                          | int    | 100 < `iso` < 800               |
-| `shutter_speed`       | Shutter speed value (in μs).               | int    | 125 < `shutter_speed` < 1000              |
-| `white_balance_gain.red`  | White balance gain value for red.   | float  | 0.0 < `white_balance_gain.red` < 32.0    |
-| `white_balance_gain.blue` | White balance gain value for blue.     | float  | 0.0 < `white_balance_gain.blue` < 64.0  |
-| `white_balance`       | White balance mode.                             | string | `auto`, `off`            |
+| Parameter                 | Description                                                                 | Type   | Accepted Values                                                                |
+| ------------------------- | --------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------ |
+| `action`                  | Specifies the `settings` command.                                           | string | `settings`                                                                     |
+| `iso`                     | Simulated ISO image sensitivity.                                            | int    | 0 < `iso` ≤ 650 (higher values may be accepted for certain cameras) (optional) |
+| `shutter_speed`           | Exposure time (in μs).                                                      | int    | 125 ≤ `shutter_speed` (optional)                                               |
+| `white_balance_gain.red`  | White balance red gain.                                                     | float  | 0.0 ≤ `white_balance_gain.red` ≤ 32.0 (optional)                               |
+| `white_balance_gain.blue` | White balance blue gain.                                                    | float  | 0.0 ≤ `white_balance_gain.blue` ≤ 32.0 (optional)                              |
+| `white_balance`           | White balance mode. (`off` specifies the use of manual white balance gains) | string | `auto`, `off` (optional)                                                       |
+
+#### `settings` command responses
 
 The Python backend can send status updates on the `status/imager` topic in response to the `settings` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error                                      | Cause                                                                                                     |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `"Camera settings updated"`         | The camera settings have been successfully updated.                                                       |
-| `"Camera settings error"`           | The settings command is missing required parameters.                                                      |
-| `"Error: Invalid White balance value"` | The provided white balance gain parameters are invalid.                                                   |
-| `"Busy"`                            | The camera is currently busy and cannot update settings.                                         |
-
-Note:the MQTT API does not yet completely specify error messages in response to invalid values for the `resolution`, `ISO` and `shutter speed`parameters.
-
+| Status/Error                                   | Cause                                                                          |
+| ---------------------------------------------- | ------------------------------------------------------------------------------ |
+| `Camera settings updated`                      | The camera settings have been successfully updated.                            |
+| `Camera settings error`                        | The settings command is missing required parameters.                           |
+| `Iso number not valid`                         | The provided `iso` value is not allowed.                                       |
+| `Shutter speed not valid`                      | The provided `shutter_speed` value is not allowed.                             |
+| `White balance gain not valid`                 | The provided `white_balance_gain` object is not valid or has an invalid value. |
+| `White balance mode {white_balance} not valid` | The provided `white_balance` value is not allowed.                             |
 
 ### `update_config` command
 
-The `update_config` command updates the metadata associated with a specific dataset:
+The `update_config` command sets/changes the metadata which will be saved with the dataset which to be acquired by the next `image` command. For example:
 
 ```json
 {
@@ -366,130 +370,127 @@ The `update_config` command updates the metadata associated with a specific data
     "object_lon_end": -3.9815
   }
 }
-
 ```
 
-The provided JSON message is used to update the metadata associated with a specific dataset. It contains comprehensive information about the sample, acquisition process, object details, and processing parameters to ensure accurate tracking and reproducibility of the dataset. The `update_config` command has the following parameters:
+The metadata should contain comprehensive information about the sample, acquisition process, object details, and processing parameters to ensure accurate tracking and reproducibility of the dataset. The `update_config` command has the following parameters:
 
 Sample information:
 
-| Field                            | Type    | Description                             |
-|----------------------------------|---------|-----------------------------------------|
-| `sample_project`                 | string  | Project name.                           |
-| `sample_id`                      | integer | Sample identifier.                      |
-| `sample_uuid`                    | string  | Sample UUID.                            |
-| `sample_ship`                    | string  | Ship name.                              |
-| `sample_operator`                | string  | Operator name.                          |
-| `sample_sampling_gear`           | string  | Sampling gear description.              |
-| `sample_concentrated_sample_volume` | float | Concentrated sample volume.             |
-| `sample_total_volume`            | float   | Total volume.                           |
-| `sample_dilution_factor`         | float   | Dilution factor.                        |
-| `sample_speed_through_water`     | float   | Speed through water.                    |
+| Field                               | Description                 | Type    |
+| ----------------------------------- | --------------------------- | ------- |
+| `sample_project`                    | Project name.               | string  |
+| `sample_id`                         | Sample identifier.          | integer |
+| `sample_uuid`                       | Sample UUID.                | string  |
+| `sample_ship`                       | Ship name.                  | string  |
+| `sample_operator`                   | Operator name.              | string  |
+| `sample_sampling_gear`              | Sampling gear description.  | string  |
+| `sample_concentrated_sample_volume` | Concentrated sample volume. | float   |
+| `sample_total_volume`               | Total volume.               | float   |
+| `sample_dilution_factor`            | Dilution factor.            | float   |
+| `sample_speed_through_water`        | Speed through water.        | float   |
 
 Acquisition information:
 
-| Field                            | Type    | Description                             |
-|----------------------------------|---------|-----------------------------------------|
-| `acq_id`                         | integer | Acquisition identifier.                 |
-| `acq_instrument`                 | string  | Acquisition instrument.                 |
-| `acq_magnification`              | string  | Magnification level.                    |
-| `acq_camera_id`                  | integer | Camera identifier.                      |
-| `acq_camera_lens`                | string  | Camera lens.                            |
-| `acq_software`                   | string  | Acquisition software.                   |
-| `acq_volume`                     | float   | Acquisition volume.                     |
-| `acq_imaged_volume`              | float   | Imaged volume.                          |
-| `acq_minimum_mesh`               | float   | Minimum mesh size.                      |
-| `acq_maximum_mesh`               | float   | Maximum mesh size.                      |
-| `acq_min_esd`                    | float   | Minimum equivalent spherical diameter.  |
-| `acq_max_esd`                    | float   | Maximum equivalent spherical diameter.  |
-| `acq_camera_name`                | string  | Camera name.                            |
-| `acq_nb_frame`                   | integer | Number of frames captured.              |
-| `acq_local_datetime`             | string  | Local date and time of acquisition.     |
-| `acq_camera_resolution`          | string  | Camera resolution.                      |
-| `acq_camera_iso`                 | float   | Camera ISO setting.                     |
-| `acq_camera_shutter_speed`       | float   | Camera shutter speed.                   |
+| Field                      | Description                            | Type    |
+| -------------------------- | -------------------------------------- | ------- |
+| `acq_id`                   | Acquisition identifier.                | integer |
+| `acq_instrument`           | Acquisition instrument.                | string  |
+| `acq_magnification`        | Magnification level.                   | string  |
+| `acq_camera_id`            | Camera identifier.                     | integer |
+| `acq_camera_lens`          | Camera lens.                           | string  |
+| `acq_software`             | Acquisition software.                  | string  |
+| `acq_volume`               | Acquisition volume.                    | float   |
+| `acq_imaged_volume`        | Imaged volume.                         | float   |
+| `acq_minimum_mesh`         | Minimum mesh size.                     | float   |
+| `acq_maximum_mesh`         | Maximum mesh size.                     | float   |
+| `acq_min_esd`              | Minimum equivalent spherical diameter. | float   |
+| `acq_max_esd`              | Maximum equivalent spherical diameter. | float   |
+| `acq_camera_name`          | Camera name.                           | string  |
+| `acq_nb_frame`             | Number of frames captured.             | integer |
+| `acq_local_datetime`       | Local date and time of acquisition.    | string  |
+| `acq_camera_resolution`    | Camera resolution.                     | string  |
+| `acq_camera_iso`           | Camera ISO setting.                    | float   |
+| `acq_camera_shutter_speed` | Camera shutter speed.                  | float   |
 
 Object information:
 
-| Field                            | Type    | Description                             |
-|----------------------------------|---------|-----------------------------------------|
-| `object_date`                    | string  | Date of the object recording.           |
-| `object_time`                    | string  | Time of the object recording.           |
-| `object_lat`                     | float   | Latitude of the sample location.        |
-| `object_lon`                     | float   | Longitude of the sample location.       |
-| `object_depth_min`               | float   | Minimum depth of the sample location.   |
-| `object_depth_max`               | float   | Maximum depth of the sample location.   |
-| `object_date_end`                | string  | End date of the object recording.       |
-| `object_time_end`                | string  | End time of the object recording.       |
-| `object_lat_end`                 | float   | End latitude of the sample location.    |
-| `object_lon_end`                 | float   | End longitude of the sample location.   |
+| Field              | Description                           | Type   |
+| ------------------ | ------------------------------------- | ------ |
+| `object_date`      | Date of the object recording.         | string |
+| `object_time`      | Time of the object recording.         | string |
+| `object_lat`       | Latitude of the sample location.      | float  |
+| `object_lon`       | Longitude of the sample location.     | float  |
+| `object_depth_min` | Minimum depth of the sample location. | float  |
+| `object_depth_max` | Maximum depth of the sample location. | float  |
+| `object_date_end`  | End date of the object recording.     | string |
+| `object_time_end`  | End time of the object recording.     | string |
+| `object_lat_end`   | End latitude of the sample location.  | float  |
+| `object_lon_end`   | End longitude of the sample location. | float  |
 
 Processing information:
 
-| Field                            | Type    | Description                             |
-|----------------------------------|---------|-----------------------------------------|
-| `process_pixel`                  | string  | Pixel processing method.                |
-| `process_datetime`               | string  | Date and time of processing.            |
-| `process_id`                     | integer | Processing identifier.                  |
-| `process_uuid`                   | string  | Processing UUID.                        |
-| `process_source`                 | string  | Source of processing software or method.|
-| `process_commit`                 | string  | Commit hash of the software used.       |
+| Field              | Description                              | Type    |
+| ------------------ | ---------------------------------------- | ------- |
+| `process_pixel`    | Pixel processing method.                 | string  |
+| `process_datetime` | Date and time of processing.             | string  |
+| `process_id`       | Processing identifier.                   | integer |
+| `process_uuid`     | Processing UUID.                         | string  |
+| `process_source`   | Source of processing software or method. | string  |
+| `process_commit`   | Commit hash of the software used.        | string  |
 
+#### `update_config` command responses
 
 The Python backend can send status updates on the `status/imager` topic in response to the `update_config` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error                                      | Description                                                                                                 |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| `"Config updated"`                  | The configuration has been successfully updated.                                                            |
-| `"Configuration update error: object_data is missing!"` | The required `object_date` parameter is missing in the dataset metadata.                                      |
-| `"Error: missing camera"` | The camera is missing. |
-| `"Configuration update error: chosen id are already in use!"` | The specified `(object_date, sample_id, acq_id)` tuple is already in use.                                      |
-| `"Configuration message error"`     | The config message is missing required parameters.                                                          |
-| `"Can't update configuration during image acquisition!"` | Cannot update configuration during image acquisition. |
-| `"Received message is missing field 'config': {latest_message}"` | The received message does not contain the expected config field. |
-| `"The metadata did not contain object_date!"` | The metadata did not contain the object date. |
-| `"Acquisition directory {acq_dir_path} already exists!"` | The acquisition directory already exists. |
-| `"Busy"`                            | The camera is currently busy and cannot update the configuration.                                           |
+| Status/Error                  | Description                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| `Config updated`              | The metadata has been successfully updated.                                      |
+| `Configuration message error` | The command is missing the required `config` field.                              |
+| `Busy`                        | Image acquisition is already in progress, so dataset metadata cannot be changed. |
 
 ### `image` command
+
+The `image` command initiates acquisition of one raw image dataset consisting of a specified number of images, via [stop-flow imaging](../functionalities/sample-imaging.md). For example, this command initiates acquisition of 200 images, with 1 mL of sample pumped between each image and an image stabilization period of 0.1 seconds between the end of pumping and the triggering of the image capture for each acquired image:
 
 ```json
 {
   "action": "image",
   "pump_direction": "FORWARD",
   "volume": 1,
-  "nb_frame": 200
+  "nb_frame": 200,
+  "sleep": 0.1
 }
 ```
-This  JSON message initiates image capture with the pump moving 1mL forward and captures 200 frames.
-When capturing images, the system uses the specified volume and number of frames to manage the capture process, adjusting the pump's direction as required.
 
-Currently, if a `update_config` command is sent before the `image` command, the `image` command will report a status/imager “Started” status and then do nothing (this is a software bug).
+A valid `update_config` command with a unique `(object_date, sample_id, acq_id)` combination must be sent some time before each `image` command. If an `update_config` command has not been sent before the `image` command, the `image` command will trigger a “Started” response status and then do nothing (this is a software bug which needs to be fixed so that an error status is reported instead).
 
 The `image` command has the following parameters:
 
-| Parameter        | Type   | Accepted Values                               | Description                                    |
-|------------------|--------|-----------------------------------------------|------------------------------------------------|
-| `pump_direction` | string | "FORWARD", "BACKWARD"                         | Direction of the pump during capture.          |
-| `volume`         | integer    | 1 to 25                                       | Volume in mL for the capture.                  |
-| `nb_frame`       | integer    | as much as the sd card can contain            | Number of frames to capture.                   |
+| Parameter        | Description                                                                                                                      | Type    | Accepted Values        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------------- |
+| `pump_direction` | Direction of sample pumping.                                                                                                     | string  | `FORWARD`, `BACKWARD`. |
+| `volume`         | Volume (in mL) of sample to pump between each captured image.                                                                    | float   | 0 < `volume`           |
+| `nb_frame`       | Number of frames to capture.                                                                                                     | integer | 0 < `nb_frame`         |
+| `sleep`          | Duration (in s) to wait after pumping has stopped before saving an image, to allow the sample objects to stabilize in the image. | float   | 0 < `sleep`            |
 
+#### `image` command responses
 
 The Python backend can send status updates on the `status/imager` topic, in response to the `image` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error                                              | Description                                                                                                 |
-|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| `"Started"`                                               | The image capture process has started successfully.                                                         |
-| `"Image %d/%d been imaged to %s"`                         | An image has been successfully captured and saved.                                                          |
-| `"Image %d/%d was not captured due to this error: timeout during capture! Retrying once!"` | A timeout occurred during image capture; retrying the capture.                                                |
-| `"Image %d/%d was not captured due to this error: %d was not found! Retrying once!"`   | A data integrity file was not found during image capture; retrying the capture.                               |
-| `"Image %d/%d WAS NOT CAPTURED! STOPPING THE PROCESS!"`   | An error occurred during image capture after a retry, causing the process to stop.                           |
-| `"Done"`                                                  | The image capture process completed successfully.                                                           |
-| `"Busy"`                                                  | The camera is currently busy with another operation.                                                        |
-
+| Status/Error                                                       | Description                                                                                                                                         |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Started`                                                          | The image capture process has started successfully.                                                                                                 |
+| `Error`                                                            | At least one field of the `image` command is missing or has an invalid value.                                                                       |
+| `Error: missing camera`                                            | No camera is available to use for image acquisition.                                                                                                |
+| `Configuration update error: object_date is missing!`              | The last time the `update_config` command was sent, it did not have an `object_date` parameter.                                                     |
+| `Configuration update error: Chosen id are already in use!`        | The `(object_date, sample_id, acq_id)` combination for the dataset (set by the last `update_config` command) is already used by a previous dataset. |
+| `Image {index}/{nb_frame} saved to {filename}`                     | An image has been successfully captured and saved.                                                                                                  |
+| `Image {index}/{nb_frame} WAS NOT CAPTURED! STOPPING THE PROCESS!` | An error occurred during image capture; the ongoing image acquisition has finished with failure, resulting in an incomplete dataset.                |
+| `Done`                                                             | The image acquisition finished successfully, resulting in a complete dataset.                                                                       |
 
 ### `stop` command
-This message stops any in-progress stop-flow sample dataset acquisition routine.
+
+This message interrupts any in-progress image acquisition routine and stops any ongoing sample pumping.
 
 ```json
 {
@@ -499,31 +500,34 @@ This message stops any in-progress stop-flow sample dataset acquisition routine.
 
 The `stop` command has the following parameters:
 
-| Field    | Type   | Accepted Values |
-|----------|--------|-----------------|
-| `action` | string | "stop"          |
+| Field    | **Description**               | Type   | Accepted Values |
+| -------- | ----------------------------- | ------ | --------------- |
+| `action` | Specifies the `stop` command. | string | `stop`          |
+
+#### `stop` command responses
 
 The Python backend can send status updates on the `status/imager` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error message                                 | Description                                                                                                  |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `"Interrupted"`                     | The image capture process was stopped successfully.                                                       |
-| `"Busy"`                            | The camera is currently busy and cannot stop the operation.                                               |
-
+| Status/Error message | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| `Interrupted`        | The image capture process was stopped successfully. |
 
 ### Non-response status updates
 
-| Status/Error                     | Description                                                                                                  |
-|----------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `"Starting up"`                  | Indicates that the backend’s ImagerProcess module has started running. Sent in response to the backend starting. |
-| `"Ready"`                        | Indicates that the camera image streaming server has been started. Sent in response to the streaming server thread being started. |
-| `"Dead"`                         | Indicates that the backend’s ImagerProcess module is shutting down. Sent in response to the backend being stopped. |
+The Python backend can send status updates on the `status/imager` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error            | Description                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| `Starting up`           | The backend will soon attempt to initialize the camera.                                        |
+| `Error: missing camera` | A camera was not detected.                                                                     |
+| `Ready`                 | The camera is now operational, and the backend has become ready to respond to Imager commands. |
+| `Dead`                  | The backend will no longer respond to Imager commands.                                         |
 
 ## Segmenter
 
 The Segmenter API controls the processing of acquired images:
 
-- **MQTT topic for commands**: `segmenter/segment`
+- **MQTT topics for commands**: `segmenter/segment`
 - **MQTT topics for status updates**: `status/segmenter`, `status/segmenter/object_id`, `status/segmenter/metric`
 - **Commands**: `segment`
 
@@ -548,82 +552,82 @@ The `segment` command initiates processing of images stored in the specified pat
 
 The `segment` command has the following parameters:
 
-| Parameter     | Type   | Accepted Values      | Description                                            |
-|---------------|--------|----------------------|--------------------------------------------------------|
-| `path`        | file path (string) | any directory within `/home/pi/data/img` (optional) | Path to the directory of images to process.<br />Defaults to `/home/pi/data/img`. |
-| `settings`.`force`       | boolean   | `true`, `false` (optional)          | Force re-segmentation even if previously done. It will overcome the presence of the file `done` that prevents resegmenting a folder already segmented.<br />Defaults to TODO. |
-| `settings`.`recursive`   | boolean   | `true`, `false` (optional)          | Process directories recursively, forcing parsing all folders below `path`.<br />Defaults to TODO. |
-| `settings`.`ecotaxa`     | boolean   | `true`, `false` (optional)          | Export an ecotaxa compatible archive.<br />Defaults to TODO.                  |
-| `settings.keep`        | boolean   | `true`, `false` (optional)          | Keep ROI files during ecotaxa export. It has no effect if not exporting to ecotaxa.<br />Defaults to `true`. |
+| Parameter              | Description                                                                                                                                                                                                | Type               | **Accepted Values**                                |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------------------------------------- |
+| `path`                 | Path to the directory of images to process.<br />Defaults to `/home/pi/data/img`.                                                                                                                          | file path (string) | any subdirectory of `/home/pi/data/img` (optional) |
+| `settings`.`force`     | Force re-segmentation of already-processed directories, ignoring the existence of `done` files which otherwise prevent already-segmented directories from being processed again.<br />Defaults to `false`. | boolean            | `true`, `false` (optional)                         |
+| `settings`.`recursive` | Process datasets in all subdirectories of `path`.<br />Defaults to `true`.                                                                                                                                 | boolean            | `true`, `false` (optional)                         |
+| `settings`.`ecotaxa`   | Export an EcoTaxa-compatible archive.<br />Defaults to `true`.                                                                                                                                             | boolean            | `true`, `false` (optional)                         |
+| `settings.keep`        | Keep ROI files generated when exporting an EcoTaxa-compatible archive. It has no effect if `settings.ecotaxa` is `false`.<br />Defaults to `true`.                                                         | boolean            | `true`, `false` (optional)                         |
 
-The Python backend can send status updates on the `status/pump` topic, in response to the `segment` command. The `status` field of such status updates can have any of the following values:
+#### `segment` command responses
 
-| Status/Error message | Description                                    |
-|-------------------|------------------------------------------------|
-| `Started`            | The segmentation process has begun. |
-| `Busy`               | The segmenter is currently running and cannot update configurations. |
-| `Calculating flat`   | The frame background is being calculated. |
-| `Segmenting image %s, image %d/%d` | Segmentation of a specific image is in progress. |
-| `An exception was raised during the segmentation: %s.` | An error occurred during segmentation. |
-| `Done`               | Indicates that all specified datasets have been successfully segmented.|
+The Python backend can send status updates on the `status/segmenter` topic, in response to the `segment` command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error message                                   | Description                                                          |
+| ------------------------------------------------------ | -------------------------------------------------------------------- |
+| `Started`                                              | The segmentation process has begun.                                  |
+| `Busy`                                                 | The segmenter is currently running and cannot update configurations. |
+| `Calculating flat`                                     | The frame background is being calculated.                            |
+| `Segmenting image %s, image %d/%d`                     | Segmentation of a specific image is in progress.                     |
+| `An exception was raised during the segmentation: %s.` | An error occurred during segmentation.                               |
+| `Done`                                                 | Processing has finished for the specified datasets.                  |
 
 As the Python backend performs segmentation, it will repeatedly send additional status updates on the `status/segmenter/object_id` topic, once for each object isolated by the segmenter. Each status update is a JSON object with the following fields:
 
-| Field      | Type    | Description                           |
-|------------|---------|---------------------------------------|
-| `object_id`| integer | A scikit-image region label.          |
+| Field       | Description                  | **Type** |
+| ----------- | ---------------------------- | -------- |
+| `object_id` | A scikit-image region label. | integer  |
 
 As the Python backend performs segmentation, it will repeatedly send additional status updates on the `status/segmenter/metric` topic, once for each object isolated by the segmenter. Each status update is a JSON object with the following fields:
 
+| Field      | Description                                                                                                                                                               | **Type** |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `name`     | An object ID, which is a undersctore-delimited concatenation of the name of the raw image which was processed and the object ID reported by `status/segmenter/object_id`. | string   |
+| `metadata` | Metadata for the object.                                                                                                                                                  | struct   |
 
-| Field      | Type    | Description                                                                 |
-|------------|---------|-----------------------------------------------------------------------------|
-| `name`     | string  | An object ID, which might or might not correspond to the object ID reported by `status/segmenter/object_id`.  |
-| `metadata` | struct  | Metadata for the object.                                                     |
+The `metadata` field of status updates sent on the `status/segmenter/metric` topic is an object with the following fields:
 
-The `metadata` field of status updates sent on the `status/segmenter/metric` topic has the following schema:
-
-| Field                   | Type    | Description                                                                                       |
-|-------------------------|---------|---------------------------------------------------------------------------------------------------|
-| `label`                 | integer     | Label of the object.                                                                              |
-| `width`                 | integer     | Width of the smallest rectangle enclosing the object.                                             |
-| `height`                | integer     | Height of the smallest rectangle enclosing the object.                                            |
-| `bx`                    | integer     | X coordinate of the top left point of the smallest rectangle enclosing the object.                 |
-| `by`                    | integer     | Y coordinate of the top left point of the smallest rectangle enclosing the object.                 |
-| `circ`                  | float   | Circularity: (4 ∗ π ∗ Area) / Perimeter^2. A value of 1 indicates a perfect circle, approaching 0 indicates an elongated polygon. |
-| `area_exc`              | integer     | Surface area of the object excluding holes, in square pixels.                                      |
-| `area`                  | integer     | Surface area of the object in square pixels.                                                       |
-| `%area`                 | float   | Percentage of object’s surface area that is comprised of holes.                                    |
-| `major`                 | float   | Primary axis of the best fitting ellipse for the object.                                           |
-| `minor`                 | float   | Secondary axis of the best fitting ellipse for the object.                                         |
-| `y`                     | float   | Y position of the center of gravity of the object.                                                 |
-| `x`                     | float   | X position of the center of gravity of the object.                                                 |
-| `convex_area`           | integer     | The area of the smallest polygon within which all points in the object fit.                        |
-| `perim`                 | float   | The length of the outside boundary of the object.                                                  |
-| `elongation`            | float   | The result of dividing the `major` parameter by the `minor` parameter.                             |
-| `perimareaexc`          | float   | The result of dividing the `perim` parameter by the `area_exc` parameter.                          |
-| `perimmajor`            | float   | The result of dividing the `perim` parameter by the `major` parameter.                             |
-| `circex`                | float   | (4 ∗ π ∗ area_exc) / perim^2.                                                                      |
-| `angle`                 | float   | Angle between the primary axis and a line parallel to the x-axis of the image.                     |
-| `bounding_box_area`     | integer     | Area of the bounding box enclosing the object.                                                     |
-| `eccentricity`          | float   | Eccentricity of the object.                                                                        |
-| `equivalent_diameter`   | float   | Diameter of a circle with the same area as the object.                                             |
-| `euler_number`          | integer     | Euler number of the object.                                                                        |
-| `extent`                | float   | Ratio of object area to bounding box area.                                                         |
-| `local_centroid_col`    | float   | Column position of the local centroid.                                                             |
-| `local_centroid_row`    | float   | Row position of the local centroid.                                                                |
-| `solidity`              | float   | Ratio of object area to convex area.                                                               |
-| `MeanHue`               | float   | Mean hue value of the object.                                                                      |
-| `MeanSaturation`        | float   | Mean saturation value of the object.                                                               |
-| `MeanValue`             | float   | Mean value (brightness) of the object.                                                             |
-| `StdHue`                | float   | Standard deviation of the hue value of the object.                                                 |
-| `StdSaturation`         | float   | Standard deviation of the saturation value of the object.                                          |
-| `StdValue`              | float   | Standard deviation of the value (brightness) of the object.                                        |
-
+| Field                 | Description                                                                                                                       | Type    |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `label`               | Label of the object.                                                                                                              | integer |
+| `width`               | Width of the smallest rectangle enclosing the object.                                                                             | integer |
+| `height`              | Height of the smallest rectangle enclosing the object.                                                                            | integer |
+| `bx`                  | X coordinate of the top left point of the smallest rectangle enclosing the object.                                                | integer |
+| `by`                  | Y coordinate of the top left point of the smallest rectangle enclosing the object.                                                | integer |
+| `circ`                | Circularity: (4 ∗ π ∗ Area) / Perimeter^2. A value of 1 indicates a perfect circle, approaching 0 indicates an elongated polygon. | float   |
+| `area_exc`            | Surface area of the object excluding holes, in square pixels.                                                                     | integer |
+| `area`                | Surface area of the object in square pixels.                                                                                      | integer |
+| `%area`               | Percentage of object’s surface area that is comprised of holes.                                                                   | float   |
+| `major`               | Primary axis of the best fitting ellipse for the object.                                                                          | float   |
+| `minor`               | Secondary axis of the best fitting ellipse for the object.                                                                        | float   |
+| `y`                   | Y position of the center of gravity of the object.                                                                                | float   |
+| `x`                   | X position of the center of gravity of the object.                                                                                | float   |
+| `convex_area`         | The area of the smallest polygon within which all points in the object fit.                                                       | integer |
+| `perim`               | The length of the outside boundary of the object.                                                                                 | float   |
+| `elongation`          | The result of dividing the `major` parameter by the `minor` parameter.                                                            | float   |
+| `perimareaexc`        | The result of dividing the `perim` parameter by the `area_exc` parameter.                                                         | float   |
+| `perimmajor`          | The result of dividing the `perim` parameter by the `major` parameter.                                                            | float   |
+| `circex`              | (4 ∗ π ∗ area_exc) / perim^2.                                                                                                     | float   |
+| `angle`               | Angle between the primary axis and a line parallel to the x-axis of the image.                                                    | float   |
+| `bounding_box_area`   | Area of the bounding box enclosing the object.                                                                                    | integer |
+| `eccentricity`        | Eccentricity of the object.                                                                                                       | float   |
+| `equivalent_diameter` | Diameter of a circle with the same area as the object.                                                                            | float   |
+| `euler_number`        | Euler number of the object.                                                                                                       | integer |
+| `extent`              | Ratio of object area to bounding box area.                                                                                        | float   |
+| `local_centroid_col`  | Column position of the local centroid.                                                                                            | float   |
+| `local_centroid_row`  | Row position of the local centroid.                                                                                               | float   |
+| `solidity`            | Ratio of object area to convex area.                                                                                              | float   |
+| `MeanHue`             | Mean hue value of the object.                                                                                                     | float   |
+| `MeanSaturation`      | Mean saturation value of the object.                                                                                              | float   |
+| `MeanValue`           | Mean value (brightness) of the object.                                                                                            | float   |
+| `StdHue`              | Standard deviation of the hue value of the object.                                                                                | float   |
+| `StdSaturation`       | Standard deviation of the saturation value of the object.                                                                         | float   |
+| `StdValue`            | Standard deviation of the value (brightness) of the object.                                                                       | float   |
 
 ### `stop` command
 
-The `stop` command interrupts any ongoing image processing:
+The `stop` command interrupts any ongoing image processing. For example:
 
 ```json
 {
@@ -633,22 +637,26 @@ The `stop` command interrupts any ongoing image processing:
 
 The `stop` command has the following parameters:
 
-| Parameter     | Type   | Accepted Values      | Description                                            |
-|---------------|--------|----------------------|--------------------------------------------------------|
-| `action`      | string | "stop"               | Specifies the action to stop segmentation.             |
+| Parameter | Type   | Accepted Values | Description                                |
+| --------- | ------ | --------------- | ------------------------------------------ |
+| `action`  | string | "stop"          | Specifies the action to stop segmentation. |
+
+!!! warning
+    The functionality for this command has not yet been implemented. Currently an `Interrupted` status is sent as a response on the `segmenter/segment` topic even though no interruption will actual happen.
+
+#### `stop` command responses
 
 The Python backend can send status updates on the `segmenter/segment` topic, in response to the `stop` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error message | Description                                    |
-|----------------------|------------------------------------------------|
-| `Interrupted`        | The segmentation process was interrupted.      |
-
+| Status/Error message | Description                               |
+| -------------------- | ----------------------------------------- |
+| `Interrupted`        | The segmentation process was interrupted. |
 
 ### Non-response status updates
 
 The Python backend can send status updates on the `status/segmenter` topic which are not triggered by any command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error | Description                                                                                                  |
-|--------------|--------------------------------------------------------------------------------------------------------------|
-| `"Ready"`      | Indicates that the backend’s SegmenterProcess module has started running and is ready to receive commands. Sent in response to the backend starting.   |
-| `"Dead"`       | Indicates that the backend’s Segmenter module is shutting down. Sent in response to the backend being stopped.                                     |
+| Status/Error | Description                                                    |
+| ------------ | -------------------------------------------------------------- |
+| `Ready`      | The backend has become ready to respond to Segmenter commands. |
+| `Dead`       | The backend will no longer respond to Segmenter commands.      |
