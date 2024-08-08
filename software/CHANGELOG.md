@@ -7,6 +7,12 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Added
+
+- (System: administration) Added a Forklift-deployed script `/usr/libexec/prepare-custom-image` (which must be invoked with `sudo`) to reset machine-specific files and re-enable partition resizing and shut down the Raspberry Pi, in order to automate common tasks needed for making a custom SD card image from a booted Raspberry Pi running the PlanktoScope OS. Support for this script should be considered experimental - this was mainly added as a workaround to a developer-experience regression introduced after v2023.9.0, in which an additional step is now needed after making an SD card image from a previously-booted SD card, or else the image will result in an error message loop ("Partition #2 contains a ext4 signature") during boot and will be unable to resize the image above 8 GB. That step is now included by the added script. Creation of custom SD card images from booted PlanktoScope OS images should still be considered an experimental workflow which may experience breaking changes to the developer experience at any time.
+
 ## v2024.0.0-beta.1 - 2024-06-24
 
 ### Added
