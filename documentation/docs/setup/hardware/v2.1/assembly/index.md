@@ -12,7 +12,7 @@ For the assembly guide below, the pieces of the laser-cut structure are referred
 
 ## Step 1: Gather everything you need
 
-TODO: insert a link to the BOM
+For the full list of all required tools and parts, please refer to the [v2.1 hardware kit production guide](../kit/index.md).
 
 - Laser cut structure
 - M12 lenses
