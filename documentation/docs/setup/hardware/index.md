@@ -14,19 +14,21 @@ The design of the PlanktoScope's hardware has been evolving to fix usability iss
 
 This was the first publicly released version of the PlanktoScope hardware. The electronic components of this design are all available from commercial off-the-shelf sources, using an Adafruit Stepper Motor HAT to control various actuators and a Yahboom RGB Cooling HAT to cool the PlanktoScope's embedded Raspberry Pi 4 computer. The mechanical structure was designed for fabrication using a laser cutter. This hardware version has some design flaws, such as providing no way to replace the Raspberry Pi's micro-SD card without partially disassembling the PlanktoScope; these problems have been fixed in later versions of the PlanktoScope hardware.
 
-This version of the PlanktoScope hardware is the only version which has been widely replicated by independent makers so far. Currently, its manufacturing documentation is provided by [an older documentation site](https://planktoscope.readthedocs.io) which is no longer maintained, and it has not yet been migrated into our current documentation site. Additionally, this hardware design uses a peristaltic pump which is no longer commercially available, so anyone making an assembly kit for this version will have to identify a different pump to use as a substitute.
+This version of the PlanktoScope hardware is the only version which has been widely replicated by independent makers so far. Note that this hardware design specifies a peristaltic pump which is no longer commercially available, so anyone making an assembly kit for this version will have to identify a different pump to use as a substitute.
 
 ### Hardware v2.5
 
-This was the first version of the PlanktoScope hardware made commercially available by FairScope. It has made various design changes to solve various problems with the v2.1 hardware design, including:
-
-- Replacing the Adafruit Stepper Motor HAT with a custom-designed HAT.
+This version includes many design improvements to solve various problems with the v2.1 hardware design, including:
 
 - Replacing the ibidi flowcell with a simpler glass capillary flowcell.
+
+- Replacing the Adafruit Stepper Motor HAT with a HAT designed specifically for the PlanktoScope (the [PlanktoScope HAT](../../reference/hardware/hat.md)).
 
 - Replacing the linear actuators for sample focusing with a more mechanically robust pair of linear actuators.
 
 - Replacing the peristaltic pump with a more accurate pump which is commercially available.
+
+- Making the Raspberry Pi's micro-SD card accessible without requiring disassembly of the PlanktoScope.
 
 The mechanical structure of this design uses CNC-milled parts rather than laser-cut parts.
 
