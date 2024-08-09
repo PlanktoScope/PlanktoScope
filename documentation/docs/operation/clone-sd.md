@@ -1,10 +1,10 @@
-# Clone your SD card
 
 If you want to create an SD card image from your PlanktoScope to use on other PlanktoScopes, you can follow the following steps.
 
 ## Prepare the SD card for cloning
 
 Depending on whether you want to make an SD card image to reuse across multiple machines or whether you only want to make an exact backup of your SD card image, you will need to perform different steps to prepare your SD card for cloning.
+# Clone your SD card
 
 ### Prepare for cloning to reuse in other machines
 
@@ -39,6 +39,9 @@ console=tty1 root=PARTUUID=someuniqueidhere rootfstype=ext4 fsck.repair=yes root
 ```
 
 Next, you should remove the SD card from your PlanktoScope and plug it into another computer, so that you can clone the SD card into an SD card image; this guide assumes that your other computer runs Linux. Then proceed to the [Make an SD card image](#make-an-sd-card-image) section of this guide.
+
+!!! warning
+    After you have finished cloning the SD card to an SD card image, you should edit the `/boot/cmdline.txt` file to remove the ` init=/usr/lib/raspberrypi-sys-mods/firstboot` string, before booting up the Raspberry Pi with your SD card again. This will prevent the first-boot script from deleting the SSH server keys already on your SD card.
 
 ## Make an SD card image
 
