@@ -33,7 +33,7 @@ class Worker(threading.Thread):
         settings = hardware.SettingsValues(
             auto_exposure=False,
             exposure_time=125,  # the default (minimum) exposure time in the PlanktoScope GUI
-            image_gain=1.0,  # the default ISO of 100 in the PlanktoScope GUI
+            image_gain=1.0,  # image gain is reinitialized after the image sensor is determined
             brightness=0.0,  # the default "normal" brightness
             contrast=1.0,  # the default "normal" contrast
             auto_white_balance=False,  # the default setting in the PlanktoScope GUI
@@ -82,6 +82,21 @@ class Worker(threading.Thread):
             self._camera_checked.set()
             return
         self._camera_checked.set()
+
+        default_iso = 150
+        loguru.logger.debug(f"Setting camera image gain for default ISO value of {default_iso}...")
+        # 100 is the default calibration because that's what's used in the Pi Camera v1 Module, and
+        # it's a round number:
+        calibration = ISO_CALIBRATIONS.get(self._camera.sensor_name, 100)
+        changes = hardware.SettingsValues(image_gain=default_iso / calibration)
+        try:
+            _validate_settings(changes)
+        except (TypeError, ValueError) as e:
+            raise ValueError("Invalid default ISO") from e
+        self._camera.settings = changes
+        loguru.logger.debug(
+            f"Set image gain to {changes.image_gain} for sensor {self._camera.sensor_name}!",
+        )
 
         loguru.logger.info("Starting the MJPEG streaming server...")
         streaming_server = mjpeg.StreamingServer(self._preview_stream, self._mjpeg_server_address)
@@ -220,6 +235,16 @@ def _convert_settings(
     return converted
 
 
+# Refer to https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-gain for
+# details on how ISO values correspond to image gains with the Pi Camera v2 Module,
+# and refer to https://forums.raspberrypi.com/viewtopic.php?t=282760 for details on ISO
+# vs. image gain calibration for the Pi HQ Camera Module:
+ISO_CALIBRATIONS = {  # this is ISO / image-gain
+    "IMX219": 100 / 1.84,  # Pi Camera v2 Module
+    "IMX477": 100 / 2.3125,  # Pi HQ Camera Module
+}
+
+
 def _convert_image_gain_settings(
     command_settings: dict[str, typing.Any],
     camera_sensor_name: str,
@@ -253,17 +278,9 @@ def _convert_image_gain_settings(
             iso = float(command_settings["iso"])
         except (TypeError, ValueError) as e:
             raise ValueError("Iso number not valid") from e
-        # Refer to https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-gain for
-        # details on how ISO values correspond to image gains with the Pi Camera v2 Module,
-        # and refer to https://forums.raspberrypi.com/viewtopic.php?t=282760 for details on ISO
-        # vs. image gain calibration for the Pi HQ Camera Module:
-        iso_calibrations = {  # this is ISO / image-gain
-            "IMX219": 100 / 1.84,  # Pi Camera v2 Module
-            "IMX477": 100 / 2.3125,  # Pi HQ Camera Module
-        }
         # 100 is the default calibration because that's what's used in the Pi Camera v1 Module, and
         # it's a round number:
-        calibration = iso_calibrations.get(camera_sensor_name, 100)
+        calibration = ISO_CALIBRATIONS.get(camera_sensor_name, 100)
         converted = converted._replace(image_gain=iso / calibration)
 
     return converted

@@ -314,7 +314,7 @@ class PiCamera:
         """Update adjustable camera settings from all provided non-`None` values.
 
         Fields provided with `None` values are ignored. If any of the provided non-`None` values is
-        invalid (e.g. out-of-range), none of the settinsg will be changed.
+        invalid (e.g. out-of-range), none of the settings will be changed.
 
         Raises:
             RuntimeError: the method was called before the camera was started, or after it was
