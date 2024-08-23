@@ -13,6 +13,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: administration) Added a Forklift-deployed script `/usr/libexec/prepare-custom-image` (which must be invoked with `sudo`) to reset machine-specific files and re-enable partition resizing and shut down the Raspberry Pi, in order to automate common tasks needed for making a custom SD card image from a booted Raspberry Pi running the PlanktoScope OS. Support for this script should be considered experimental - this was mainly added as a workaround to a developer-experience regression introduced after v2023.9.0, in which an additional step is now needed after making an SD card image from a previously-booted SD card, or else the image will result in an error message loop ("Partition #2 contains a ext4 signature") during boot and will be unable to resize the image above 8 GB. That step is now included by the added script. Creation of custom SD card images from booted PlanktoScope OS images should still be considered an experimental workflow which may experience breaking changes to the developer experience at any time.
 
+### Changed
+
+- (Application: GUI) Changed the default ISO value from 100 to 150.
+
+### Fixed
+
+- (Application: backend) Changed the hardware controller's libcamera-based camera controller to initialize its default image gain based on camera sensor type in order to match the GUI's default ISO value of 150, instead of initializing default image gain to 1.0 regardless of camera sensor type.
+
 ## v2024.0.0-beta.1 - 2024-06-24
 
 ### Added
