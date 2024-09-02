@@ -682,13 +682,13 @@ test = ["mkdocs-include-markdown-plugin", "mkdocs-macros-test", "mkdocs-material
 
 [[package]]
 name = "mkdocs-markdownextradata-plugin"
-version = "0.2.5"
+version = "0.2.6"
 description = "A MkDocs plugin that injects the mkdocs.yml extra variables into the markdown template"
 optional = false
-python-versions = ">=2.7.9,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
+python-versions = ">=3.6"
 files = [
-    {file = "mkdocs-markdownextradata-plugin-0.2.5.tar.gz", hash = "sha256:9c562e8fe375647d5692d11dfe369a7bdd50302174d35995fce2aeca58036ec6"},
-    {file = "mkdocs_markdownextradata_plugin-0.2.5-py3-none-any.whl", hash = "sha256:5ad40822b1755646bf17c95fd4a719f53d25634470978dc6a5529365caf73227"},
+    {file = "mkdocs_markdownextradata_plugin-0.2.6-py3-none-any.whl", hash = "sha256:34dd40870781784c75809596b2d8d879da783815b075336d541de1f150c94242"},
+    {file = "mkdocs_markdownextradata_plugin-0.2.6.tar.gz", hash = "sha256:4aed9b43b8bec65b02598387426ca4809099ea5f5aa78bf114f3296fd46686b5"},
 ]
 
 [package.dependencies]
@@ -1373,4 +1373,4 @@ test = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more-it
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "70a843a1c51e6977e3bd36c32f6f3a65331345d8b785f25fb2d025f4d3d2bf56"
+content-hash = "621488478eabbc312f2e598f059d528d3f2aa772584b3770177897adb96be733"
