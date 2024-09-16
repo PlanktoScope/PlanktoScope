@@ -271,15 +271,20 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
             list(zip(tsv_content.columns, tsv_type_header))
         )
 
+        # create the filename with the acquisition ID
+        acquisition_id = metadata.get("acq_id")
+        acquisition_id = acquisition_id.replace(" ","_")
+        tsv_filename = f"ecotaxa_{acquisition_id}.tsv"
+
         # add the tsv to the archive
         archive.writestr(
-            "ecotaxa_export.tsv",
+            tsv_filename,
             io.BytesIO(
                 tsv_content.to_csv(sep="\t", encoding="utf-8", index=False).encode()
             ).read(),
         )
         if keep_files:
-            tsv_file = os.path.join(image_base_path, "ecotaxa_export.tsv")
+            tsv_file = os.path.join(image_base_path, tsv_filename)
             tsv_content.to_csv(
                 path_or_buf=tsv_file, sep="\t", encoding="utf-8", index=False
             )
