@@ -7,7 +7,7 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
-## Unreleased
+## v2024.0.0-beta.2 - 2024-09-19
 
 ### Added
 
@@ -21,6 +21,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Application: backend) Changed the hardware controller's libcamera-based camera controller to initialize its default image gain based on camera sensor type in order to match the GUI's default ISO value of 150, instead of initializing default image gain to 1.0 regardless of camera sensor type.
 - (Breaking change; Application: backend) Changed the segmenter to include the acquisition ID in the filename of the metadata TSV file included with the EcoTaxa export ZIP archive; this is necessary to allow efficient bulk importing of such ZIP archives into EcoTaxa, which was previously prevented by the use of the same `ecotaxa_export.tsv` filename for all metadata TSV files.
+- (Application: GUI) The Grafana server's CPU allowance should now be limited to one core, in an attempt to prevent it from starving other programs of CPU time shortly after booting up under certain situations.
 
 ## v2024.0.0-beta.1 - 2024-06-24
 

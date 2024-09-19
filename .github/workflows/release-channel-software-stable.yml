@@ -8,8 +8,6 @@ on:
 jobs:
   ff-branch:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     permissions:
       contents: write
     steps:
