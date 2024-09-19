@@ -20,7 +20,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - (Application: backend) Changed the hardware controller's libcamera-based camera controller to initialize its default image gain based on camera sensor type in order to match the GUI's default ISO value of 150, instead of initializing default image gain to 1.0 regardless of camera sensor type.
-- (Breaking change; Application: backend) Changed the segmenter to include the acquisition ID in the filename of the metadata TSV file included with the EcoTaxa export ZIP archive; this is necessary to allow efficient bulk importing of such ZIP archives into EcoTaxa, which was previously prevented by the use of the same `metadata.tsv` filename for all metadata TSV files.
+- (Breaking change; Application: backend) Changed the segmenter to include the acquisition ID in the filename of the metadata TSV file included with the EcoTaxa export ZIP archive; this is necessary to allow efficient bulk importing of such ZIP archives into EcoTaxa, which was previously prevented by the use of the same `ecotaxa_export.tsv` filename for all metadata TSV files.
 
 ## v2024.0.0-beta.1 - 2024-06-24
 
