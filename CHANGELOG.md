@@ -6,11 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
-## Unreleased
+## v2024.0.0-beta.2 - 2024-08-19
 
 ### Changed
 
 - (Hardware controller) The default image gain used to initialize the camera module is now set to match a default equivalent ISO value of 150 across all camera sensor types, instead of being hard-coded to 1.0 (which corresponds to an ISO of around 40 or 50 depending on the camera sensor type).
+- (Segmenter) Now the segmenter generates EcoTaxa export ZIP archives whose metadata files are not named `ecotaxa_export.tsv`, but instead are named `ecotaxa_{acquisition id}.tsv`, to enable more efficient bulk importing of those ZIP archives into EcoTaxa.
 
 ## v2024.0.0-beta.1 - 2024-06-24
 
