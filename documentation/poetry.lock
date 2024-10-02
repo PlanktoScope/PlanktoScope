@@ -633,13 +633,13 @@ pymdown-extensions = ">=9.2"
 
 [[package]]
 name = "mkdocs-git-revision-date-localized-plugin"
-version = "1.2.7"
+version = "1.2.9"
 description = "Mkdocs plugin that enables displaying the localized date of the last git modification of a markdown file."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocs_git_revision_date_localized_plugin-1.2.7-py3-none-any.whl", hash = "sha256:d2b30ccb74ec8e118298758d75ae4b4f02c620daf776a6c92fcbb58f2b78f19f"},
-    {file = "mkdocs_git_revision_date_localized_plugin-1.2.7.tar.gz", hash = "sha256:2f83b52b4dad642751a79465f80394672cbad022129286f40d36b03aebee490f"},
+    {file = "mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl", hash = "sha256:dea5c8067c23df30275702a1708885500fadf0abfb595b60e698bffc79c7a423"},
+    {file = "mkdocs_git_revision_date_localized_plugin-1.2.9.tar.gz", hash = "sha256:df9a50873fba3a42ce9123885f8c53d589e90ef6c2443fe3280ef1e8d33c8f65"},
 ]
 
 [package.dependencies]
@@ -647,6 +647,11 @@ babel = ">=2.7.0"
 GitPython = "*"
 mkdocs = ">=1.0"
 pytz = "*"
+
+[package.extras]
+all = ["GitPython", "babel (>=2.7.0)", "click", "codecov", "mkdocs (>=1.0)", "mkdocs-gen-files", "mkdocs-git-authors-plugin", "mkdocs-material", "mkdocs-static-i18n", "pytest", "pytest-cov", "pytz"]
+base = ["GitPython", "babel (>=2.7.0)", "mkdocs (>=1.0)", "pytz"]
+dev = ["click", "codecov", "mkdocs-gen-files", "mkdocs-git-authors-plugin", "mkdocs-material", "mkdocs-static-i18n", "pytest", "pytest-cov"]
 
 [[package]]
 name = "mkdocs-glightbox"
@@ -661,18 +666,19 @@ files = [
 
 [[package]]
 name = "mkdocs-macros-plugin"
-version = "1.0.5"
+version = "1.2.0"
 description = "Unleash the power of MkDocs with macros and variables"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocs-macros-plugin-1.0.5.tar.gz", hash = "sha256:fe348d75f01c911f362b6d998c57b3d85b505876dde69db924f2c512c395c328"},
-    {file = "mkdocs_macros_plugin-1.0.5-py3-none-any.whl", hash = "sha256:f60e26f711f5a830ddf1e7980865bf5c0f1180db56109803cdd280073c1a050a"},
+    {file = "mkdocs-macros-plugin-1.2.0.tar.gz", hash = "sha256:7603b85cb336d669e29a8a9cc3af8b90767ffdf6021b3e023d5ec2e0a1f927a7"},
+    {file = "mkdocs_macros_plugin-1.2.0-py3-none-any.whl", hash = "sha256:3e442f8f37aa69710a69b5389e6b6cd0f54f4fcaee354aa57a61735ba8f97d27"},
 ]
 
 [package.dependencies]
 jinja2 = "*"
 mkdocs = ">=0.17"
+packaging = "*"
 python-dateutil = "*"
 pyyaml = "*"
 termcolor = "*"
@@ -972,13 +978,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pymdown-extensions"
-version = "10.9"
+version = "10.11.2"
 description = "Extension pack for Python Markdown."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pymdown_extensions-10.9-py3-none-any.whl", hash = "sha256:d323f7e90d83c86113ee78f3fe62fc9dee5f56b54d912660703ea1816fed5626"},
-    {file = "pymdown_extensions-10.9.tar.gz", hash = "sha256:6ff740bcd99ec4172a938970d42b96128bdc9d4b9bcad72494f29921dc69b753"},
+    {file = "pymdown_extensions-10.11.2-py3-none-any.whl", hash = "sha256:41cdde0a77290e480cf53892f5c5e50921a7ee3e5cd60ba91bf19837b33badcf"},
+    {file = "pymdown_extensions-10.11.2.tar.gz", hash = "sha256:bc8847ecc9e784a098efd35e20cba772bc5a1b529dfcef9dc1972db9021a1049"},
 ]
 
 [package.dependencies]
@@ -1373,4 +1379,4 @@ test = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more-it
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "977f9f198cb35bd350596349b31312d7ef8c5ef149bab4b79f9fb2af5cab62d1"
+content-hash = "1788c08893c6f5f327fcf05c2cabebbfbbf3ed7e015e1f1072e5f6d9dfe91121"
