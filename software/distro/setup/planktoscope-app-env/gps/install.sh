@@ -26,5 +26,5 @@ sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
 # Use chrony instead of systemd-timesyncd (but do we really actually want to do this??):
 if ! sudo systemctl disable systemd-timesyncd.service --now; then
   # If we're in an unbooted container, the service isn't running - so we don't need to stop it now:
-  sudo systemctl disable systemd-timesyncd.servkce
+  sudo systemctl disable systemd-timesyncd.service
 fi
