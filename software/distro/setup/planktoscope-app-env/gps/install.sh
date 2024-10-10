@@ -5,12 +5,6 @@
 # Determine the base path for copied files
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
-# Use chrony instead of systemd-timesyncd (but do we really actually want to do this??):
-# if ! sudo systemctl disable systemd-timesyncd.service --now; then
-#   # If we're in an unbooted container, the service isn't running - so we don't need to stop it now:
-#   sudo systemctl disable systemd-timesyncd.service
-# fi
-
 # Install dependencies
 sudo apt-get install -y -o Dpkg::Progress-Fancy=0 \
   gpsd pps-tools chrony
