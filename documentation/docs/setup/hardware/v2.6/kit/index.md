@@ -10,6 +10,7 @@ You can find a list of the components needed in the [Planktoscope V2.6 BOM](../.
 We tried to have the most easy-to-supply components, you still may have to adapt and research for new suppliers according to product availability and your location.
 If you find some local alternative please share your custom BOM to our GitHub Discussions thread for [v2.6 Localized Hardware BOMs](https://github.com/PlanktoScope/PlanktoScope/discussions/297), so that other members of our community can learn from your work!
 
+
 In the following sections we will go more in detail:
 
 - on the possibility to machined on your own the Mechanical Structure
@@ -52,6 +53,16 @@ For a different thickness you’ll need to adapt it.
 
 Photo d’usinage
 
+#### Reference Plate
+
+In order to calibrate correctly your CNC machine you'll find here the .dxf file and the expected dimensions of a reference plate. If your parameters allowed you to reach these dimensions, you can report the adaptation on the [PlanktoScope_CaseV2.6.dxf] and launch the milling with more insurance.
+
+| Files           | Description                    |
+|-----------------|--------------------------------|
+| Plate_F_Ref.dxf | Plate F export for CNC milling |
+
+Drawing with quotation
+
 
 ### Material
 A great variety of material can be used to create the PlanktoScope case. You need to be sure that it can be machined easily and has great durability in harsh conditions. Here you can find 2 examples of used material: Bamboo Plywood & Valchromat.
@@ -86,9 +97,6 @@ Welcome to the PCB production manual for the PlanktoScope Hat 1.3!
 
 Photo du Hat recto verso
 
-\
-\
-
 
 A **Printed Circuit Board (PCB)** is a vital component of electronic devices, providing physical support and electrical connections for components. The PCB production process involves three main stages:
 
@@ -107,7 +115,9 @@ You will find on the following files the full documentation to ask for a quotati
     Depending on stock availability, FairScope can also be considered as a supplier)
 
 
-### Manufacturing files
+### Manufacturing Information
+
+#### Manufacturing Files
 
 | Files                                                               | Description                                   |
 |---------------------------------------------------------------------|-----------------------------------------------|
@@ -121,7 +131,75 @@ Some components are missing from the Pick and Place file. Please refer to the do
 
 We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, be really cautious and sure of the correct solderings.
 
-Anyway, if you want to do some soldering, the Drivers TMC 5160 (to control the Peristaltic Pump and the Linear Stepper Motors) and the Axial Fan will still need some attention! This will be the purpose of the following steps.
+#### Configuration
+
+The following configuration parameters can be used for the production of the PCB.
+
+!!! info
+
+    Please note that the naming may vary depanding on the manufacturing company you used and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
+
+##### Board dimensions
+
+65 mm x 100 mm
+
+##### Circuit specifications
+
+| Property                               | Value      |
+| -------------------------------------- | ---------- |
+| Material                               | FR4        |
+| Thickness                              | 1.6 mm     |
+| Finish                                 | Chem. gold |
+| Number of layers                       | 2          |
+| Specific stackup                       | sans       |
+| SMD sides                              | top        |
+| Finished external copper thickness (µ) | 35 µm      |
+| Internal copper thickness (µ)          | without    |
+| IPC Class                              | Class 2    |
+
+##### Solder mask
+
+| Property      | Value     |
+| ------------- | --------- |
+| Solder mask   | TOP + BOT |
+| Mask colour   | green     |
+| Peelable mask | without   |
+
+##### Marking
+
+| Property         | Value     |
+| ---------------- | --------- |
+| Silkscreen (ink) | TOP + BOT |
+| Ink colour       | white     |
+| ROHS marking     | without   |
+| UL marking       | without   |
+| Date marking     | without   |
+
+##### Specific options
+
+| Property                   | Value     |
+| -------------------------- | --------- |
+| Space between tracks       | > 0.15 mm |
+| Min. drill hole size       | > 0.20 mm |
+| Blind via                  | with out  |
+| Cross blind                | no        |
+| Burried via                | na        |
+| Impedance control          | no        |
+| Edge plating               | no        |
+| Press-fit                  | no        |
+| Carbon                     | without   |
+| Via Fill                   | without   |
+| Beveled edge               | without   |
+| Contersunk holes           | without   |
+| Contersunk holes (qty/PCB) | without   |
+| Metallographic section     | without   |
+| Gold fingers (thickness)   | without   |
+| Gold fingers (qty/PCB)     | without   |
+
+#### Thrue Hole Components
+We recommend you to make the prototypist assemble all the 
+Through Hole components except the Drivers TMC 5160 (to control the Peristaltic Pump and the Linear Stepper Motors) and the Axial Fan! 
+For them, a bit of soldering and preparation will be necessary. This will be the purpose of the following steps.
 
 ### Assembly of the Drivers TMC 5160
 
@@ -160,7 +238,6 @@ Unpack the Drivers TMC 5160 and the Connector Header strips of 8 pins (x2) and 2
 
 Bridge Cut: use a razor blade or a utility knife to unable conductivity between 2 of the 4 slots as shown in the following visual:
 
-\
 
 
 1 photo carte non coupée 1 photo carte coupée.
@@ -186,7 +263,7 @@ photo position drvier sur connector
 
 	Make sure that the larger chip labeled trimatik is positioned on the bottom of the board and the four smaller chips are positioned on the top of the board as shown in the picture.
 
-photo de pret d'un driver non soudé
+photo de pres d'un driver non soudé
 
 
 
@@ -206,9 +283,6 @@ photo en traind e souder
 Re do the operation for the second Driver TMC 5160. 
 
 Install it on your PlanktoScope Hat 1.3 on the designated connectors.
-
-\
-
 
 Photo montage driver sur HAT
 
@@ -253,7 +327,6 @@ _Equipment: use the wire stripper pliers_
 Photo des fils dénudés
 
 3. Solder the wires
-
 
 Engage the wire through the hole in the PlanktoScope HAT 1.3 PCB to reach the bottom of the board.
 Solder the fan cables according to the marking and color codes ⚫ GND, 🔴 VCC.
