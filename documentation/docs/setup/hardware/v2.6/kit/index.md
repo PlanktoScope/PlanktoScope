@@ -10,11 +10,10 @@ You can find a list of the components needed in the [Planktoscope V2.6 BOM](../.
 We tried to have the most easy-to-supply components, you still may have to adapt and research for new suppliers according to product availability and your location.
 If you find some local alternative please share your custom BOM to our GitHub Discussions thread for [v2.6 Localized Hardware BOMs](https://github.com/PlanktoScope/PlanktoScope/discussions/297), so that other members of our community can learn from your work!
 
-
 In the following sections we will go more in detail:
 
 - on the possibility to machined on your own the Mechanical Structure
-- on the documentations and assembly steps to manufacture the PlanktoScope HAT V1.3 and its drivers boards
+- on the documentations and assembly steps to manufacture the PlanktoScope HAT V1.3
 
 
 ## Mechanical Structure
@@ -29,10 +28,10 @@ And don't forget safety, use your nicest protective glasses! :-)
 
 Here you can find the .dxf file to create the program on a CNC milling machine. If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
 
-!!! note
-
-    Depending on stock availability, FairScope can also be considered as a supplier.
-    
+```
+[!NOTE]
+   Depending on stock availability, FairScope can also be considered as a supplier.
+```    
 
 | Files                     | Description                              |
 |---------------------------|------------------------------------------|
@@ -70,7 +69,7 @@ A great variety of material can be used to create the PlanktoScope case. You nee
 1. Bamboo Plywood
 
 Bamboo plywood is a renewable, eco-friendly material made from layers of bamboo strips pressed together. It is known for its strength, durability, and resistance to warping, making it ideal for furniture. Bamboo plywood is lightweight, versatile, and more sustainable than traditional hardwoods, as bamboo grows quickly and requires fewer resources to cultivate.
-FairScope is using Bamboo Plywood.
+FairScope is using Bamboo Plywood for V2.6.
 
 2. Valchromat
 
@@ -79,7 +78,7 @@ Valchromat is a wood-based composite material made from recycled wood fibers and
 
 ### Finnish of the plates
 
-Remove all dust and remain of the milling and machining process.
+After your wonderful milling process, remove all dust and remain of the milling and machining.
 
 Here you can use your favorite finishing according to the selected material. Be sure that it remains as environmentally friendly as possible.
 
@@ -112,7 +111,7 @@ You will find on the following files the full documentation to ask for a quotati
 
 !!! note
 	
-    Depending on stock availability, FairScope can also be considered as a supplier)
+    Depending on stock availability, FairScope can also be considered as a supplier.
 
 
 ### Manufacturing Information
@@ -129,7 +128,10 @@ You will find on the following files the full documentation to ask for a quotati
 
 Some components are missing from the Pick and Place file. Please refer to the document titled "[PlanktoscopeHat-v1.3-fab\_thru-hole component (missing from PnP).jpg](https://drive.google.com/file/d/1_4COxhZdL6mLXmLuc3Mpb77Xwj2Vl10f/view?usp=drive_link)" for further details.
 
-We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, be really cautious and sure of the correct solderings.
+We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, be really cautious of the correct solderings.
+
+The assembly of the Drivers TMC 5160 and the Axial Fan assembly are here proposed in parallel and DIY. No worries, everything is explain in [Assembly of the Drivers TMC 5160](Assembly of the Drivers TMC 5160) & [Assembly of the Axial Fan](Assembly of the Axial Fan)[](). 
+They are not included as Thru-Hole components list for the prototypiste.
 
 #### Configuration
 
@@ -137,7 +139,7 @@ The following configuration parameters can be used for the production of the PCB
 
 !!! info
 
-    Please note that the naming may vary depanding on the manufacturing company you used and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
+    Please note that the naming may vary depending on the manufacturing company you used and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
 
 ##### Board dimensions
 
@@ -196,10 +198,11 @@ The following configuration parameters can be used for the production of the PCB
 | Gold fingers (thickness)   | without   |
 | Gold fingers (qty/PCB)     | without   |
 
-#### Thrue Hole Components
-We recommend you to make the prototypist assemble all the 
-Through Hole components except the Drivers TMC 5160 (to control the Peristaltic Pump and the Linear Stepper Motors) and the Axial Fan! 
-For them, a bit of soldering and preparation will be necessary. This will be the purpose of the following steps.
+#### Thru-Hole Components
+We recommend you to ask the prototypist to assemble all the 
+Thru-Hole components.
+
+As explain earlier on and in order to let you dive into a fun DIY project or pick up a new skill, why not try some soldering? In the following steps, we’ll guide you through assembling the Drivers TMC 5160 (used to control the peristaltic pump and the linear stepper motors) and the Axial Fan. Let’s get started!
 
 ### Assembly of the Drivers TMC 5160
 
@@ -225,12 +228,11 @@ photo du materiel nécessaire
 | Driver TMC 5160 SilentStepStick      | 700-TMC5160SILENTSTE | 2   |
 | Connector Header Vertical 2POS .54MM | 732-5315-ND          | 2   |
 
-
 photo des drivers, connector
 
 !!! note
 
-	For the Connector Header you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
+	Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
 
 Unpack the Drivers TMC 5160 and the Connector Header strips of 8 pins (x2) and 2 pins(x1), take the breadboard and warm your soldering iron.
 
@@ -243,6 +245,10 @@ Bridge Cut: use a razor blade or a utility knife to unable conductivity between 
 1 photo carte non coupée 1 photo carte coupée.
 
 Check if the two slots are correctly isolated from one another with a multimeter in conductivity mode.
+
+!!! warning
+
+	This step might not follow traditional methods, but be careful to cut this bridge only to keep the PCB integrity.
 
 3.  Set in position the Connector Header strips
 
