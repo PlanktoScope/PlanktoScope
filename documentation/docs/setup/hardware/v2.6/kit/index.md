@@ -30,8 +30,8 @@ And don't forget safety, use your nicest protective glasses! :-)
 Here you can find the .dxf file to create the program on a CNC milling machine. If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
 
 
-[!NOTE]
-   Depending on stock availability, FairScope can also be considered as a supplier.
+>[!NOTE]
+> Depending on stock availability, FairScope can also be considered as a supplier.
     
 
 | Files                     | Description                              |
@@ -43,9 +43,9 @@ This .dxf file has been designed for a **thickness of the material at 7.6mm (3 i
 
 For a different thickness you’ll need to adapt it.
 
-!!! warning
+>[!TIP]
+>For a better assembly and if your software does not add it automaticaly use "dog bone" filet on every corner. :bone:
 
-	For a better assembly and if your software does not add it automaticaly use "dog bone" filet on every corner. 
 ![Dogbone example.png](image/Dogbone example.png)
 
 
@@ -83,9 +83,8 @@ After your wonderful milling process, remove all dust and remain of the milling 
 
 Here you can use your favorite finishing according to the selected material. Be sure that it remains as environmentally friendly as possible.
 
-!!! note:
-
-	For example, FairScope uses Rubio Monocoat Plus. It is a wood finishing product that is designed to provide a durable, natural-looking finish to wood surfaces. It is made from plant-based oils and pigments, which give it a transparent finish that enhances the natural beauty of the wood.
+>[!NOTE]
+> For example, FairScope uses Rubio Monocoat Plus. It is a wood finishing product that is designed to provide a durable, natural-looking finish to wood surfaces. It is made from plant-based oils and pigments, which give it a transparent finish that enhances the natural beauty of the wood.
 
 Dry all parts and store them for the assembly process.
 
@@ -110,9 +109,8 @@ Components used on PCBs are either **Thru-Hole** (leads pass through the board, 
 
 You will find on the following files the full documentation to ask for a quotation to your electronic prototypist.
 
-!!! note
-	
-    Depending on stock availability, FairScope can also be considered as a supplier.
+>[!NOTE]
+> Depending on stock availability, FairScope can also be considered as a supplier.
 
 
 ### Manufacturing Information
@@ -138,9 +136,9 @@ They are not included as Thru-Hole components list for the prototypiste.
 
 The following configuration parameters can be used for the production of the PCB.
 
-!!! info
 
-    Please note that the naming may vary depending on the manufacturing company you used and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
+>[!CAUTION]
+> Please note that the naming may vary depending on the manufacturing company you used and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
 
 ##### Board dimensions
 
@@ -207,7 +205,7 @@ As explain earlier on and in order to let you dive into a fun DIY project or pic
 
 ### Assembly of the Drivers TMC 5160
 
-#### Equipment
+#### Equipment :hammer_and_wrench:
 photo du materiel nécessaire
 
 - Professional Soldering Iron
@@ -216,9 +214,9 @@ photo du materiel nécessaire
 - Utility knife
 - Mutlimeter
 
-!!! warning 
-	
-    When you solder this for the first time, take special care not to damage the board.
+
+>[!WARNING] 
+> When you solder this for the first time, take special care not to damage the board.
 
 #### Assembly Steps
 
@@ -231,13 +229,15 @@ photo du materiel nécessaire
 
 photo des drivers, connector
 
-!!! note
-
-	Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
+>[!NOTE]
+> Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
 
 Unpack the Drivers TMC 5160 and the Connector Header strips of 8 pins (x2) and 2 pins(x1), take the breadboard and warm your soldering iron.
 
 2. Cut the via bridge
+
+>:hammer_and_wrench:
+>_Equipment: Utility knif and multimeter_
 
 Bridge Cut: use a razor blade or a utility knife to unable conductivity between 2 of the 4 slots as shown in the following visual:
 
@@ -247,9 +247,9 @@ Bridge Cut: use a razor blade or a utility knife to unable conductivity between 
 
 Check if the two slots are correctly isolated from one another with a multimeter in conductivity mode.
 
-!!! warning
 
-	This step might not follow traditional methods, but be careful to cut this bridge only to keep the PCB integrity.
+>[!WARNING]
+> This step might not follow traditional methods, but be careful to cut this bridge only to keep the PCB integrity.
 
 3.  Set in position the Connector Header strips
 
@@ -266,9 +266,9 @@ Positioned the Drivers TMC 5160 PCB on the connectors set on the breadboard.
 
 photo position drvier sur connector
 
-!!! warning
 
-	Make sure that the larger chip labeled trimatik is positioned on the bottom of the board and the four smaller chips are positioned on the top of the board as shown in the picture.
+>[!WARNING]
+> Make sure that the larger chip labeled trimatik is positioned on the bottom of the board and the four smaller chips are positioned on the top of the board as shown in the picture.
 
 photo de pres d'un driver non soudé
 
@@ -280,9 +280,8 @@ Now solder all pins of the connectors strip.
 
 photo en traind e souder
 
-!!! note
-
-	You can also solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally.
+>[!TIP]
+> You can also solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally.
 
 
 #### Finalisation & Installation
@@ -297,7 +296,7 @@ Photo montage driver sur HAT
 
 These steps will show you how to install the axial fan on the PlanktoScope Hat 1.3 and how to create soldering bridges at the bottom of the board.
 
-#### Equipment
+#### Equipment :hammer_and_wrench:
 
 - Professional Soldering Iron
 - Solder
@@ -320,16 +319,22 @@ Photo des composants
 
 2. Install the Axial Fan
 
+>:hammer_and_wrench:
+>_Equipment: use the Scredriver Hex2 and the Pliers._
+
 Install the fan with the four screws and nuts on the top side of the PlanktoScope HAT 1.3 PCB. 
-_Equipment: use the Scredriver Hex2 and the Pliers._
+
 
 Pay attention to the **running direction** with the arrow marking on the side of the Axial Fan. The Axial Fan should **blow on the cooler** of the Raspberry Pi (from Top to Bottom of the PlanktoScope HAT 1.3 PCB).
 
 Photo du positionnement du hat
 
+>:hammer_and_wrench:
+>_Equipment: use the wire stripper pliers_
+
 Cut off the wires of the Axial Fan in order to leave about 6 cm.
 Strip the wires on 5mm.
-_Equipment: use the wire stripper pliers_
+
 
 Photo des fils dénudés
 
