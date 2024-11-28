@@ -24,8 +24,6 @@ And don't forget safety, use your nicest protective glasses! :-)
 
 ![Bamboo Structure V2.6 dxf view](image/Bamboo Structure V2.6 dxf view.png "Bamboo Structure V2.6 dxf view")
 
-<img src="Bamboo Structure V2.6 dxf view.png" width="200" height="100">
-
 
 ### Manufacturing file
 
