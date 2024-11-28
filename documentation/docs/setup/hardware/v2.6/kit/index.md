@@ -24,14 +24,17 @@ And don't forget safety, use your nicest protective glasses! :-)
 
 ![Bamboo Structure V2.6 dxf view](image/Bamboo Structure V2.6 dxf view.png "Bamboo Structure V2.6 dxf view")
 
+<img src="Bamboo Structure V2.6 dxf view.png" width="200" height="100">
+
+
 ### Manufacturing file
 
 Here you can find the .dxf file to create the program on a CNC milling machine. If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
 
-```
+
 [!NOTE]
    Depending on stock availability, FairScope can also be considered as a supplier.
-```    
+    
 
 | Files                     | Description                              |
 |---------------------------|------------------------------------------|
@@ -130,7 +133,7 @@ Some components are missing from the Pick and Place file. Please refer to the do
 
 We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, be really cautious of the correct solderings.
 
-The assembly of the Drivers TMC 5160 and the Axial Fan assembly are here proposed in parallel and DIY. No worries, everything is explain in [Assembly of the Drivers TMC 5160](Assembly of the Drivers TMC 5160) & [Assembly of the Axial Fan](Assembly of the Axial Fan)[](). 
+The assembly of the Drivers TMC 5160 and the Axial Fan assembly are here proposed in parallel and DIY. No worries, everything is explain in [Assembly of the Drivers TMC 5160](#assembly-of-the-drivers-tmc-5160) & [Assembly of the Axial Fan](#assembly-of-the-axial-fan). 
 They are not included as Thru-Hole components list for the prototypiste.
 
 #### Configuration
