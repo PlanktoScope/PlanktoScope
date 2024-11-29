@@ -46,13 +46,13 @@ The object-extraction step takes the following inputs:
 
 - The following sample metadata fields:
   
-   - `acq_minimum_mesh`: the diameter of the smallest spherical object which is expected to be in the sample, usually 20 µm. This value is set on the "Fluidic Acquisition" page of the PlanktoScope's Node-RED dashboard as the "Min fraction size".
+   - `acq_minimum_mesh`: the diameter of the smallest spherical object which is expected to be in the sample, usually 20 µm. This value is set on the "Fluidic Acquisition" page of the PlanktoScope's Node-RED dashboard as the "Min fraction size" field.
   
-   - `process_pixel`: the pixel size calibration of the PlanktoScope, in units of µm per pixel; then the area (in units of µm<sup>2</sup>) per pixel is `process_pixel * process_pixel`. This value is set on the "Hardware Settings" page of the PlanktoScope's Node-RED dashboard as the "Pixel size calibration: um per pixel".
+   - `process_pixel`: the pixel size calibration of the PlanktoScope, in units of µm per pixel; then the area (in units of µm<sup>2</sup>) per pixel is `process_pixel * process_pixel`. This value is set on the "Hardware Settings" page of the PlanktoScope's Node-RED dashboard as the "Pixel size calibration: um per pixel" field.
 
-First, the object-extraction step calculates a *minimum-area threshold* for objects to extract using the input segmentation mask: the threshold (in units of pixel<sup>2</sup>) is calculated as `(2 * acq_minimum_mesh / process_pixel) ^ 2`.
+First, the object-extraction step calculates a *minimum-area threshold* for objects to extract using the input segmentation mask: the threshold (in units of pixel<sup>2</sup>) is calculated as `pi * (acq_minimum_mesh / 2 / process_pixel) ^ 2`.
 
-Next, the object-extraction step [identifies all connected regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.label) of the input segmentation mask and [measures properties of those regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.regionprops). The object-extraction step then discards any region whose bounding-box area (`area_bbox` in scikit-image) is less than the minimum-area threshold.
+Next, the object-extraction step [identifies all connected regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.label) of the input segmentation mask and [measures properties of those regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.regionprops). The object-extraction step then discards any region whose filled area (`area_filled` in scikit-image) is less than the minimum-area threshold.
 
 ### Metadata calculation
 
