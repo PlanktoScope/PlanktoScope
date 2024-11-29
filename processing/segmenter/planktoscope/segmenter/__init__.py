@@ -474,17 +474,16 @@ class SegmenterProcess(multiprocessing.Process):
             dim_slice = tuple(dim_slice)
             return dim_slice
 
-        minMesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
-        minESD = minMesh * 2
-        minArea = math.pi * (minESD / 2) * (minESD / 2)
-        pixel_size = self.__global_metadata.get("process_pixel", 1.0)
-        # minsizepix = minArea / pixel_size / pixel_size
-        minsizepix = (minESD / pixel_size) ** 2
+        min_mesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
+        min_esd = min_mesh # or process_min_ESD in the future (microns)
+        pixel_size = self.__global_metadata["process_pixel"]
+        min_radius = min_esd / 2 / pixel_size # (pixels)
+        min_area = math.pi * min_radius * min_radius
 
         labels, nlabels = skimage.measure.label(mask, return_num=True)
         regionprops = skimage.measure.regionprops(labels)
         regionprops_filtered = [
-            region for region in regionprops if region.bbox_area >= minsizepix
+            region for region in regionprops if region.filled_area >= min_area
         ]
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")

@@ -14,6 +14,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Hardware controller) The bitrate of the camera preview stream has been reduced slightly from ~8 Mbps to ~7 Mbps.
 - (Hardware controller) The framerate of the camera preview stream is now explicitly limited to 25 fps.
 
+### Fixed
+
+- (Breaking change; segmenter) The previously incorrect method for filtering segmented objects by size has now been corrected to filter object sizes by filled area rather than bounding box area, and directly using the mesh size as the threshold for equivalent spherical diameter (ESD) instead of calculating a fictional ESD.
+
 ## v2024.0.0-beta.2 - 2024-08-19
 
 ### Changed
