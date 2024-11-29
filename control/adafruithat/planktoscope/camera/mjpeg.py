@@ -3,6 +3,7 @@
 import functools
 import socket
 import socketserver
+import time
 import typing
 from http import server
 
@@ -29,6 +30,7 @@ class _StreamingHandler(server.BaseHTTPRequestHandler):
         server_: socketserver.BaseServer,
     ) -> None:
         self.latest_frame = latest_frame
+        self._max_framerate = 25  # fps
         super().__init__(request, client_address, server_)
 
     @loguru.logger.catch
@@ -50,19 +52,40 @@ class _StreamingHandler(server.BaseHTTPRequestHandler):
             # TODO(ethanjli): allow specifying a max framerate via HTTP GET query param? Currently
             # we have no way to reduce bandwidth usage below the maximum supported by the network
             # connection to the client.
-            self._send_mjpeg_header()
+            # Note(ethanjli): there's definitely a better way to ensure unique client IDs, but
+            # unix timestamp is the simplest idea I had at the time:
+            client_id = time.time()
+            loguru.logger.info(f"Added streaming client {client_id}.")
             try:
-                while True:
-                    self.latest_frame.wait_next()
-                    if (frame := self.latest_frame.get()) is None:
-                        continue
-                    self._send_mjpeg_frame(frame)
+                self._send_frames()
             except BrokenPipeError:
-                loguru.logger.info("Removed streaming client")
+                loguru.logger.info(f"Removed streaming client {client_id}.")
             return
 
         self.send_error(404)
         self.end_headers()
+
+    def _send_frames(self) -> None:
+        """Send frames as they become available."""
+        min_interval = 0.0
+        if self._max_framerate is not None:
+            min_interval = 1.0 / self._max_framerate  # s
+        # TODO: manually make a histogram as a collection of counters with durations corresponding
+        # to >30 fps, 30 fps, 25 fps, 20 fps, 15 fps, 10 fps, 5 fps, 2 fps, 1 fps, <1 fps. Clear
+        # the histogram after each scheduled report.
+        # TODO: measure histograms of frame wait duration and frame send duration. Log any
+        # anomalies (i.e. unexpectedly high durations)
+        self._send_mjpeg_header()
+        last_frame_time = time.perf_counter()
+        while True:
+            waited = False
+            while not waited or time.perf_counter() - last_frame_time < min_interval:
+                self.latest_frame.wait_next()
+                waited = True
+            if (frame := self.latest_frame.get()) is None:
+                continue
+            last_frame_time = time.perf_counter()
+            self._send_mjpeg_frame(frame)
 
     def _send_mjpeg_header(self) -> None:
         """Send the headers to start an MJPEG stream."""

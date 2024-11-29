@@ -25,7 +25,8 @@ WORKDIR /home/pi/device-backend/processing/segmenter
 COPY --chown=pi:pi pyproject.toml poetry.lock .
 RUN \
   export PATH="/home/pi/.local/bin:$PATH" && \
-  pip install --no-cache-dir poetry==1.7.1 --extra-index-url https://www.piwheels.org/simple && \
+  pip install --no-cache-dir cryptography==43.0.3 poetry==1.7.1 \
+    --extra-index-url https://www.piwheels.org/simple && \
   poetry install --no-root --only main --compile && \
   poetry --no-interaction cache list && \
   poetry --no-interaction cache clear pypi --all && \

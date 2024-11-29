@@ -33,6 +33,11 @@ class Worker(threading.Thread):
         settings = hardware.SettingsValues(
             auto_exposure=False,
             exposure_time=125,  # the default (minimum) exposure time in the PlanktoScope GUI
+            # Note(ethanjli): an error will occur if exposure time is outside any provided frame
+            # duration limits (set by explicitly defining a `frame_duration_limits` param here. In
+            # practice, this means we cannot reduce the max allowed framerate below
+            # 1/(125 us) = 8000 fps, for exposure time of 125 us. So we have to limit the framerate
+            # some other way.
             image_gain=1.0,  # image gain is reinitialized after the image sensor is determined
             brightness=0.0,  # the default "normal" brightness
             contrast=1.0,  # the default "normal" contrast

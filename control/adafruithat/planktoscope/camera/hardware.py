@@ -220,12 +220,16 @@ class PiCamera:
         self,
         preview_output: io.BufferedIOBase,
         stream_config: StreamConfig = StreamConfig(
-            preview_size=(960, 720),
-            # We'll never reach 80 Mbps of bandwidth usage because the RPi's network links don't
-            # have enough bandwidth; instead, we'll have higher-quality frames at lower framerates:
-            preview_bitrate=80 * 1000000,
+            preview_size=(800, 600),
+            # Note(ethanjli): a bitrate of 80 Mbps in practice results in ~8 Mbps of bandwidth per
+            # stream, both for Ethernet and for the Wi-Fi hotspot. A bitrate of 20 Mbps results in
+            # ~7 Mbps of bandwidth per stream. A bitrate of 15 Mbps results in noticeable JPEG
+            # compression artifacts, and ~5 Mbps of bandwidth per stream.
+            preview_bitrate=25 * 1000000,
             buffer_count=3,
         ),
+        # Note(ethanjli): mqtt.Worker's constructor explicitly overrides any defaults we set here -
+        # to set default initial settings, modify mqtt.Worker's constructor instead!
         initial_settings: SettingsValues = SettingsValues(),
     ) -> None:
         """Set up state needed to initialize the camera, but don't actually start the camera yet.
@@ -433,13 +437,10 @@ class PreviewStream(io.BufferedIOBase):
     """A thread-safe stream of discrete byte buffers for use in live previews.
 
     This stream is designed to support at-most-once delivery, so no guarantees are made about
-    delivery of every buffer to the consumers: a consumer will skip buffers when it's too busy
-    overloaded/blocked. This is a design feature to prevent backpressure on certain consumers
-    (e.g. from downstream clients sending the buffer across a network, when the buffer is a large
-    image) from degrading stream quality for everyone.
-
-    Note that no thread synchronization is managed for any buffer; consumers must avoid modifying
-    the buffer once they have access to it.
+    delivery of every buffer to the consumers: a consumer is allowed to skip buffers when it's too
+    busy. This is a design feature to prevent backpressure on certain consumers (e.g. from
+    downstream clients sending the buffer across a network, when the buffer is a large image) from
+    degrading stream quality for everyone.
 
     This stream can be used by anything which requires a [io.BufferedIOBase], assuming it never
     splits any buffer across multiple calls of the `write()` method.
@@ -479,6 +480,9 @@ class PreviewStream(io.BufferedIOBase):
             self._available.wait()
 
     def get(self) -> typing.Optional[bytes]:
-        """Return the latest buffer in the stream."""
+        """Return a copy of the latest buffer in the stream."""
+        if self._latest_buffer is None:
+            return None
         with self._latest_buffer_lock.gen_rlock():
-            return self._latest_buffer
+            b = self._latest_buffer[:]
+        return b
