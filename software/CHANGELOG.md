@@ -7,6 +7,24 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## v2024.0.0-beta.3 - 2024-11-30
+
+### Added
+
+- (Application: Documentation) The embedded documentation site now includes [v3 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v3)
+- (Application: GUI) The landing page now links to v3 of the protocols.io protocol for PlanktoScope operation.
+- (Application: GUI) The landing page now shows a warning/info message for users accessing the landing page using any domain name other than `pkscope-{machine-name}.local`, that such a hostname will not work for accessing the PlanktoScope via Wi-Fi router or Ethernet router, and that `pkscope-{machine-name}.local` must be used in such situations.
+
+### Removed
+
+- (Application: Documentation) The embedded documentation site no longer includes [v1 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v1)
+- (Application: GUI) The landing page no longer links to v1 of the protocols.io protocol for PlanktoScope operation.
+
+### Fixed
+
+- (Breaking change; Application: backend) The segmenter's previously incorrect method for filtering segmented objects by size has now been corrected to filter object sizes by filled area rather than bounding box area, and directly using the mesh size as the threshold for equivalent spherical diameter (ESD) instead of calculating a fictional ESD.
+- (System: networking) A regression in handling of the mDNS domain name `pkscope-{machine-name}.local` (likely introduced by v2024.0.0-beta.0) has been fixed, so that now that domain name is resolved again.
+
 ## v2024.0.0-beta.2 - 2024-09-19
 
 ### Added
