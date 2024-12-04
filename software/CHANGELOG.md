@@ -7,6 +7,12 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Fixed
+
+- (Application: backend) The segmenter now correctly sets the `img_rank` metadata field of the EcoTaxa export to `1`, instead of setting it to an incrementing index which makes exports un-importable by EcoTaxa for datasets with more than ~32,000 objects.
+
 ## v2024.0.0-beta.3 - 2024-11-30
 
 ### Added
