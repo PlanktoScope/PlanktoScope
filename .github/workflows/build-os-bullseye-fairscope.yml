@@ -9,6 +9,9 @@ on:
     tags:
       - 'software/v*'
   pull_request:
+    paths:
+      - 'software/**'
+      - '.github/workflows/build-os*.yml'
   merge_group:
   workflow_dispatch:
     inputs:
