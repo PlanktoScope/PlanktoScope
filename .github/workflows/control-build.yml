@@ -9,6 +9,9 @@ on:
     tags:
       - 'v*'
   pull_request:
+    paths:
+      - 'control/**'
+      - '.github/workflows/control-*.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -21,10 +24,8 @@ env:
   IMAGE_NAME: device-backend-control
 
 jobs:
-  ci:
+  ci-checks:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     steps:
       - uses: actions/checkout@v4
 

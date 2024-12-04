@@ -9,6 +9,9 @@ on:
     tags:
       - 'v*'
   pull_request:
+    paths:
+      - 'processing/segmenter/**'
+      - '.github/workflows/processing-segmenter-*.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -26,7 +29,7 @@ env:
   PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:
-  build:
+  build-container-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -103,10 +106,10 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  merge:
+  merge-container-images:
     runs-on: ubuntu-latest
     needs:
-      - build
+      - build-container-image
     steps:
       - name: Download digests
         uses: actions/download-artifact@v4
