@@ -8,6 +8,9 @@ on:
       - 'software/stable'
     tags:
       - 'software/v*'
+    paths:
+      - 'software/**'
+      - '.github/workflows/build-os*.yml'
   pull_request:
     paths:
       - 'software/**'
