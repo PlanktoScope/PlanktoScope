@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Fixed
+
+- (Segmenter) The segmenter now correctly sets the `img_rank` metadata field of the EcoTaxa export to `1`, instead of setting it to an incrementing index which makes exports un-importable by EcoTaxa for datasets with more than ~32,000 objects.
+
 ## v2024.0.0-beta.3 - 2024-11-30
 
 ### Changed

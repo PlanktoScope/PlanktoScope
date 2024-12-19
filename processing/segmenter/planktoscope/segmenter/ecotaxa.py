@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -238,10 +238,10 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
             return 0
 
         # sometimes the camera resolution is not exported as string
-        if type(metadata["acq_camera_resolution"]) != str:
-            metadata[
-                "acq_camera_resolution"
-            ] = f'{metadata["acq_camera_resolution"][0]}x{metadata["acq_camera_resolution"][1]}'
+        if not isinstance(metadata["acq_camera_resolution"], str):
+            metadata["acq_camera_resolution"] = (
+                f'{metadata["acq_camera_resolution"][0]}x{metadata["acq_camera_resolution"][1]}'
+            )
 
         # let's go!
         for rank, roi in enumerate(object_list, start=1):
@@ -252,7 +252,7 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
 
             filename = roi["name"] + ".jpg"
 
-            tsv_line.update({"img_file_name": filename, "img_rank": rank})
+            tsv_line.update({"img_file_name": filename, "img_rank": 1})
             tsv_content.append(tsv_line)
 
             image_path = os.path.join(image_base_path, filename)
@@ -264,16 +264,14 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
 
         tsv_content = pandas.DataFrame(tsv_content)
 
-        tsv_type_header = [
-            dtype_to_ecotaxa(dt) for dt in tsv_content.dtypes
-        ]
+        tsv_type_header = [dtype_to_ecotaxa(dt) for dt in tsv_content.dtypes]
         tsv_content.columns = pandas.MultiIndex.from_tuples(
             list(zip(tsv_content.columns, tsv_type_header))
         )
 
         # create the filename with the acquisition ID
         acquisition_id = metadata.get("acq_id")
-        acquisition_id = acquisition_id.replace(" ","_")
+        acquisition_id = acquisition_id.replace(" ", "_")
         tsv_filename = f"ecotaxa_{acquisition_id}.tsv"
 
         # add the tsv to the archive
