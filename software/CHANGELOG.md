@@ -9,6 +9,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- (Application: Documentation) The embedded documentation site now includes a PDF of a draft of v4 of the [protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe).
+
+### Removed
+
+- (Application: Documentation) The embedded documentation site no longer includes links or PDFs for [v2 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v1) and [v3 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v3).
+
 ### Deprecated
 
 - (Application: GUI) The following elements of the Node-RED dashboard's "Optic Configuration" tab will be removed in a future release (probably the next major release): "objective lens aperture", "magnification", "pixel resolution", "smallest cells to explore", "biggest cells to explore". This is because these fields are currently not very useful/reliable.
