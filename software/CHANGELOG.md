@@ -24,6 +24,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) The following elements of the Node-RED dashboard's "System Monitoring" tab will be removed in a future release (probably the next major release): "GPS status", "navigation", "USB backup". Note that v2024.0.0-alpha.2 already deprecated "USB backup" panel for removal in the next major release. The other deprecations are because most users don't have a working GPS module, and because the navigation panel is not very useful.
 - (Application: GUI) The Node-RED dashboard's "WiFi" tab will be removed in a future release (probably the next major release). This is because its left panel is never accurate, and its right panel only partially works, and the actions which can be performed in this tab can take the PlanktoScope into a state which can only be recovered by advanced users or by re-flashing the PlanktoScope's SD card. After removal of this tab, connections to existing Wi-Fi networks should instead be configured by editing `/etc/wpa_supplicant/wpa_supplicant.conf`, or (in the future) by some other command-line interface and/or graphical user interface.
 
+### Fixed
+
+- (Application: backend) The segmenter now correctly sets the `img_rank` metadata field of the EcoTaxa export to `1`, instead of setting it to an incrementing index which makes exports un-importable by EcoTaxa for datasets with more than ~32,000 objects.
+
 ## v2024.0.0-beta.3 - 2024-11-30
 
 ### Added
