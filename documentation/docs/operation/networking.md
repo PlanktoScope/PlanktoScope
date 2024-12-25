@@ -12,7 +12,7 @@ By default, the PlanktoScope makes its Wi-Fi hotspot network on [WLAN channel](h
 
 To change the regional settings of the PlanktoScope's Wi-Fi hotspot away from the defaults, edit the file at `/etc/hostapd/hostapd.conf.d/50-localization-us.conf`. For example, you can do this by opening the file editor at <http://planktoscope.local/admin/fs/files/etc/hostapd/hostapd.conf.d/50-localization-us.conf> . To apply your changes, restart the PlanktoScope.
 
-To revert your changes back to the default regional settings, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/50-localization-us.conf`. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/> .
+To revert your changes back to the default regional settings, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/50-localization-us.conf`. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/> . Then restart the PlanktoScope immediately.
 
 ## Connect your PlanktoScope to the internet
 
@@ -25,7 +25,7 @@ Once your PlanktoScope is connected to the internet, by default it will attempt 
 
 ### Connect your PlanktoScope to an existing Wi-Fi network
 
-It's also possible to connect the PlanktoScope to an existing Wi-Fi network with internet access, but the PlanktoScope will be unable to make its Wi-Fi hotspot network while it is connected to an existing Wi-Fi network. Then, as long as the PlanktoScope is within range of that Wi-Fi network, the PlanktoScope software is only accessible either if 1) the existing Wi-Fi network is configured to allow you to access the PlanktoScope via mDNS or if 2) you connect your device to the PlanktoScope via an Ethernet cable.
+It's also possible to connect the PlanktoScope to an existing Wi-Fi network with internet access, but the PlanktoScope will be unable to make its Wi-Fi hotspot network while it is connected to an existing Wi-Fi network. Then, as long as the PlanktoScope is within range of that Wi-Fi network, the PlanktoScope software is only accessible either if 1) the existing Wi-Fi network (including its firewall settings) is configured to allow you to access the PlanktoScope via mDNS and your device and web browser support mDNS URLs (i.e. URLs ending in `.local`, like <http://planktoscope.local>) or if 2) you connect your device to the PlanktoScope via an Ethernet cable.
 
 !!! info
 
@@ -37,11 +37,32 @@ Once you take the PlanktoScope out of range of the existing Wi-Fi network, withi
 
     Because you can only undo this configuration change by accessing the PlanktoScope's software (or by running a Linux computer which can open and edit the `/etc/wpa_supplicant/wpa_supplicant.conf` configuration file for Wi-Fi network connections in your PlanktoScope's SD card), we only recommend configuring your PlanktoScope to connect to an existing Wi-Fi network if 1) you also have a way to connect your device to the PlanktoScope via an Ethernet cable or if 2) you are also able to run your PlanktoScope in a location beyond the range of the existing Wi-Fi network (as that the PlanktoScope will revert to making a Wi-Fi hotspot when it cannot detect the existing Wi-Fi network) or if 3) you have a Linux computer which is able to edit files on your PlanktoScope's SD card.
 
-For now, the only way we recommend for connecting your PlanktoScope to an existing Wi-Fi network is by editing the `/etc/wpa_supplicant/wpa_supplicant.conf` file; the PlanktoScope's Node-RED dashboard has a "Wifi" page which is partially broken (including writing an error message into the `/etc/wpa_supplicant/wpa_supplicant.conf` file if you attempt to add a Wi-Fi network without a password) and will be removed in a future release of the PlanktoScope's software.
+!!! warning
 
-!!! info
+    Before you make any changes, you should first write down your PlanktoScope's machine name (which is listed in your PlanktoScope's landing page), and you should also check whether your web browser allows you to use the machine-specific URL of format `http://pkscope-{machine-name}.local` for accessing your PlanktoScope's landing page. This is because other URLs from our [standard software setup guide](../setup/software/standard-install.md#connect-to-the-planktoscope) and our [basic operation guide](./index.md#access-your-planktoscopes-software) which you may be more familiar with, such as <http://planktoscope.local> or <http://home.pkscope> or <http://192.168.4.1>, will not work for accessing your PlanktoScope through the existing Wi-Fi network! Only a machine-specific URL of format `http://pkscope-{machine-name}.local` may work.
 
-    When you edit the `/etc/wpa_supplicant/wpa_supplicant.conf` file, you should also set the appropriate Wi-Fi regulatory region for Wi-Fi connections. For example, if you are operating in the US, you should add `country=US` to the file; while if you are operating in France, you should add `country=FR` to the file.
+For now, the only way we recommend for connecting your PlanktoScope to an existing Wi-Fi network is by editing the `/etc/wpa_supplicant/wpa_supplicant.conf` file; the PlanktoScope's Node-RED dashboard has a "Wifi" page which is partially broken (including writing an error message into the `/etc/wpa_supplicant/wpa_supplicant.conf` file if you attempt to add a Wi-Fi network without a password) and will be removed in a future release of the PlanktoScope's software. For example, you can edit the `wpa_supplicant.conf` file by opening the file editor at <http://planktoscope.local/admin/fs/files/etc/wpa_supplicant/wpa_supplicant.conf> . After saving your changes to that file, you can apply them by either 1) using Cockpit's service manager to start the `autohotspot` service (e.g. at <http://planktoscope.local/admin/cockpit/system/services#/autohotspot.service> ), 2) waiting a few minutes for the `autohotspot` service to automatically run again, or 3) rebooting your PlanktoScope.
+
+You can find more information on how to edit the `wpa_supplicant.conf` file in [this guide](https://fleetstack.io/blog/raspberry-pi-etc-wpa-supplicant-wpa-supplicant-conf-file). For quick reference, here are some network configuration snippets from that link:
+
+```
+# For password-protected networks:
+network={
+  ssid="YourNetworkSSID"
+  psk="YourNetworkPassword"
+  key_mgmt=WPA-PSK
+}
+
+# For passwordless networks:
+network={
+  ssid="YourNetworkSSID"
+  key_mgmt=NONE
+}
+```
+
+
+
+Once your PlanktoScope is connected to an existing Wi-Fi network, you should try to access it via your PlanktoScope's machine-specific mDNS URL, which has format `http://pkscope-{machine-name}.local`. Note that this may fail if your Wi-Fi network has restrictive firewall settings, in which case you will only be able to connect to your PlanktoScope directly via Ethernet cable. Note also that this URL only works if your device and web browser both support mDNS.
 
 ## Connect your client device to the internet while your PlanktoScope is not connected to the internet
 
@@ -80,7 +101,7 @@ This section provides instructions on various things you may want to do to impro
 
 To change the password of the PlanktoScope's Wi-Fi hotspot away from the default of `copepode`, edit the file at `/etc/hostapd/hostapd.conf.d/30-auth-30-planktoscope-passphrase.conf`. For example, you can do this by opening the file editor at <http://planktoscope.local/admin/fs/files/etc/hostapd/hostapd.conf.d/30-auth-30-planktoscope-passphrase.conf> . To apply your changes, restart the PlanktoScope.
 
-To revert your changes back to the default password, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/30-auth-30-planktoscope-passphrase.conf`. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/> .
+To revert your changes back to the default password, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/30-auth-30-planktoscope-passphrase.conf`. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/hostapd/hostapd.conf.d/> . Then restart the PlanktoScope immediately.
 
 ### Disable the Wi-Fi hotspot
 
@@ -108,7 +129,7 @@ For security reasons, [Cockpit](http://planktoscope.local/admin/cockpit/) only a
 
 To add additional known domain names or IP addresses where Cockpit should be accessible, create and edit a file at `/etc/cockpit/origins.d/`, following the instructions/notes at `/etc/cockpit/origins.d/10-README` and referring to `/etc/cockpit/origins.d/20-localhost` as a reference example. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/etc/cockpit/origins.d/>, and you can view the instructions/notes at <http://home.pkscope/admin/fs/files/etc/cockpit/origins.d/10-README>, and you can view the reference example at <http://home.pkscope/admin/fs/files/etc/cockpit/origins.d/20-localhost> . To apply your changes, restart the PlanktoScope.
 
-To revert your changes back to the default list of known domain names and IP addresses where Cockpit can be accessed, we recommend deleting the files in `/var/lib/overlays/overrides/etc/cockpit/origins.d/` and then restarting the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/cockpit/origins.d/> .
+To revert your changes back to the default list of known domain names and IP addresses where Cockpit can be accessed, we recommend deleting the files in `/var/lib/overlays/overrides/etc/cockpit/origins.d/` and then restarting the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/cockpit/origins.d/> . Then restart the PlanktoScope immediately.
 
 ## Change your PlanktoScope's name
 
@@ -118,16 +139,16 @@ Your PlanktoScope has a semi-unique machine name which by default is stably and 
 
 To change your PlanktoScope's machine name, create and edit a file at `/etc/machine-name`. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/etc/> . To apply your changes, restart the PlanktoScope.
 
-To revert your changes back to the default auto-generated machine name based on the Raspberry Pi's serial number, delete the file at `/var/lib/overlays/overrides/etc/machine-name` and then restart the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/> .
+To revert your changes back to the default auto-generated machine name based on the Raspberry Pi's serial number, delete the file at `/var/lib/overlays/overrides/etc/machine-name` and then restart the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/> . Then restart the PlanktoScope immediately.
 
 ### Change the hostname
 
 To change your PlanktoScope's hostname away from the format `{adjective}-{noun}-{number up to five digits long}` without also changing the machine name, edit the file at `/etc/hostname-template`. For example, you can do this by opening the file editor at <http://planktoscope.local/admin/fs/files/etc/hostname-template> . To apply your changes, restart the PlanktoScope.
 
-To revert your changes back to the default hostname based on the machine name, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostname-template` and then restarting the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/> .
+To revert your changes back to the default hostname based on the machine name, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostname-template` and then restarting the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/> . Then restart the PlanktoScope immediately.
 
 ### Change the Wi-Fi hotspot name
 
 To change your PlanktoScope's Wi-Fi hotspot name away from the format `{the first 32 characters of the hostname}` without also changing the hostname, edit the file at `/etc/hostapd/hostapd.conf-templates.d/20-ssid.conf`, following the instructions/notes at `/etc/hostapd/hostapd.conf-templates.d/10-README.conf`. For example, you can do this by opening the file editor at <http://planktoscope.local/admin/fs/files/etc/hostapd/hostapd.conf-templates.d/20-ssid.conf>, and you can view the instructions/notes at <http://home.pkscope/admin/fs/files/etc/hostapd/hostapd.conf-templates.d/10-README.conf> . To apply your changes, restart the PlanktoScope.
 
-To revert your changes back to the default Wi-Fi hotspot name based on the hostname, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostapd/hostapd.conf-templates.d/20-ssid.conf` and then restarting the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/hostapd/hostapd.conf-templates.d/> .
+To revert your changes back to the default Wi-Fi hotspot name based on the hostname, we recommend deleting the file at `/var/lib/overlays/overrides/etc/hostapd/hostapd.conf-templates.d/20-ssid.conf` and then restarting the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/hostapd/hostapd.conf-templates.d/> . Then restart the PlanktoScope immediately.
