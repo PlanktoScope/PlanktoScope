@@ -30,12 +30,12 @@ Unless you have [changed the password](./networking.md#change-the-wi-fi-hotspots
 
 Once you connect your computer (or phone/tablet/etc.) to your PlanktoScope, you will need to access your PlanktoScope's software from a web browser on your computer.
 
-If you know the machine name of your PlanktoScope (which you can determine from the name of your PlanktoScope's Wi-Fi hotspot, as described above), you can try using your web browser to open a URL of format `http://pkscope-{machine-name}.local`, where `{machine-name}` should be substituted with your PlanktoScope's machine name. This URL should work unless you're on a device and web browser without mDNS support; notably, older versions of Android did not support mDNS, and web browsers installed on Linux computers via Flatpak [do not yet support mDNS](https://github.com/flatpak/xdg-desktop-portal/discussions/1365).
+If you know the machine name of your PlanktoScope (which you can determine from the name of your PlanktoScope's Wi-Fi hotspot, as described above), you can try using your web browser to open a URL of format `http://pkscope-{machine-name}.local`, where `{machine-name}` should be substituted with your PlanktoScope's machine name. This URL should work unless you're on a device or web browser without mDNS support; notably, older versions of Android did not support mDNS, and web browsers installed on Linux computers via Flatpak [do not yet support mDNS](https://github.com/flatpak/xdg-desktop-portal/discussions/1365).
 
 If you are connecting your computer directly to your PlanktoScope (i.e. via your PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable from your computer to your PlanktoScope's Ethernet port) but you don't know (or you don't want to type out) your PlanktoScope's machine name, then you can try opening the following URLs in your web browser instead (try opening them in the following order, and just use the first one which works):
 
-- [http://planktoscope.local](http://planktoscope.local) (this should work unless you're on a device and web browser without mDNS support)
-- [http://pkscope.local](http://pkscope.local) (this should work unless you're on a device and web browser without mDNS support)
+- [http://planktoscope.local](http://planktoscope.local) (this should work unless you're on a device or web browser without mDNS support)
+- [http://pkscope.local](http://pkscope.local) (this should work unless you're on a device or web browser without mDNS support)
 - [http://home.pkscope](http://home.pkscope) (this should work unless your web browser is configured to use a Private DNS provider)
 - [http://192.168.4.1](http://192.168.4.1) (this should always work on devices connected directly to the PlanktoScope, especially for devices connected directly to the PlanktoScope's Wi-Fi hotspot)
 - [http://192.168.5.1](http://192.168.5.1) (this should always work on devices connected directly to the PlanktoScope, especially for devices connected directly to the PlanktoScope's Ethernet port)
@@ -58,7 +58,7 @@ One of the above URLs should work, and your web browser should show a landing pa
 
 !!! tip
 
-    If you access the landing page using any URL not of the format `http://pkscope-{machine-name}.local`, then the landing page will suggest its own machine-specific URL for you to try opening; you can see that in the above screenshot, which shows a yellow information box with the URL for the PlanktoScope used to make that screenshot. You should try opening it to see if it works in your web browser, and you may want to bookmark it for future reference for the reasons discussed in the warnings listed earlier in this section of the documentation.
+    If you access the landing page using any URL not of the format `http://pkscope-{machine-name}.local`, then the landing page will suggest its own machine-specific URL for you to try opening; you can see that in the above screenshot, which shows a yellow information box with the URL for the PlanktoScope used to make that screenshot. You should try opening your PlanktoScope's machine-specific URL to see if it works in your web browser, and you may want to bookmark it for future reference for the reasons discussed in the warnings listed earlier in this section of the documentation.
 
 You should click on the "Node-RED dashboard" link; this will open a new tab with the primary interface for operating your PlanktoScope. Once you have opened the Node-RED dashboard, you should proceed to our [User interface guide](user-interface.md) to understand how to use it.
 

@@ -8,7 +8,7 @@ This guide will help you understand how to use the Node-RED dashboard, which is 
 
 When you open the "Node-RED dashboard link" from the [PlanktoScope's landing page](index.md#access-your-planktoscopes-software), you will reach a page like what is shown in the screenshot above.
 
-From here, you can quickly access any of the available tabs. The buttons are only the most used functionnalities of the machine. Three others tabs are accessible only through the hamburger menu on the top left of the screen (the three horizontal lines):
+From here, you can quickly access any of the available tabs. The buttons are only the most used functionalities of the machine. Three others tabs are accessible only through the hamburger menu on the top left of the screen (the three horizontal lines):
 
 - Wifi
 - Administration
@@ -97,17 +97,17 @@ This simple page will allow you to preview and download the captured data.
 
 ## System Monitoring
 
-This tab allows you to view more detailed information about your PlanktoScope. The Metrics panel has graphs for monitoring your the CPU temperature, memory usage, and SD card usage of your PlanktoScope's embedded Raspberry Pi computer, as well as an expandable (collapsed-by-default) panel with  more detailed information about CPU usage, system load, network bandwidth usage, and disk reads/writes.
+This tab allows you to view more detailed information about your PlanktoScope. The Metrics panel has graphs for monitoring the CPU temperature, memory usage, and SD card usage of your PlanktoScope's embedded Raspberry Pi computer, as well as an expandable (collapsed-by-default) panel with more detailed information about CPU usage, system load, network traffic volumes, and disk read/write volumes.
 
 ![System Monitoring](../images/ui_guide/system-monitoring-dashboard.png)
 
-The Information panel shows your PlanktoScope's machine name, its hardware version, its PlanktoScope's software version, its camera model, the system time on the PlanktoScope, and .
+The Information panel shows your PlanktoScope's machine name, its hardware version, its PlanktoScope's software version, its camera model, the system time on the PlanktoScope, and the system time on the device running your web browser.
 
 Note: if your PlanktoScope's system time is different from your web browser's time by more than 1 minute, the Metrics graphs will be replaced with a prompt for you to change your PlanktoScope's system time to match your web browser's time:
 
 ![System Monitoring time-adjustment prompt](../images/ui_guide/system-monitoring-time-prompt.png)
 
-You will need to do change the PlanktoScope's system time in order for the Metrics panel to work. The system time will be accurate until your PlanktoScope shuts down; the next time you turn on your PlanktoScope, you will need to change the PlanktoScope's system time again. This is a known problem, and we will improve the usability of this situation in future versions of the PlanktoScope software.
+You will need to change the PlanktoScope's system time (for example by pressing the button displayed in the prompt) in order for the Metrics panel to work, and in order for your PlanktoScope to record accurate timestamps with its image acquisition datasets. The system time will be accurate until your PlanktoScope shuts down; the next time you turn on your PlanktoScope, you will need to change the PlanktoScope's system time again. This is a known problem, and we will improve the usability of this situation in future versions of the PlanktoScope software.
 
 !!! warning
 
