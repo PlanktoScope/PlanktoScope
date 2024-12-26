@@ -2,7 +2,7 @@
 
 Your PlanktoScope's embedded Raspberry Pi computer has a PlanktoScope-specific operating system (the *[PlanktoScope OS](../reference/software/architecture/os.md)*) with software for operating your PlanktoScope. If you purchased a PlanktoScope, then the SD card you received with your PlanktoScope already includes a particular release of the PlanktoScope OS; if you assembled your own PlanktoScope, then you installed some release of the PlanktoScope OS following the [standard software installation guide](../setup/software/standard-install.md) (or maybe the [non-standard software installation guide](../setup/software/nonstandard-install.md)). This guide provides information to help you either reset the software installed on your PlanktoScope or change to a different (newer or older) release of the PlanktoScope OS.
 
-The PlanktoScope project aims to keep improving the PlanktoScope software by fixing problems and making the software simpler and easier to use, releasing a new version of the software at least once each year. At the same time, we aim to keep the software compatible with all previous officially-released versions of the PlanktoScope hardware. For this reason, we strongly recommend everyone to keep their PlanktoScopes updated to run the latest stable release of the PlanktoScope software; and the PlanktoScope documentation will only support the latest stable release. You can always find the latest stable release at <https://github.com/PlanktoScope/PlanktoScope/releases/latest>, which will redirect you to a web page for the latest stable release.
+The PlanktoScope project aims to keep improving the PlanktoScope software by fixing problems and making the software simpler and easier to use, releasing a new version of the software at least once each year. At the same time, we aim to keep the software compatible with all previous officially-released versions of the PlanktoScope hardware. For this reason, we strongly recommend everyone to keep their PlanktoScopes updated to run the latest stable release of the PlanktoScope software; and the PlanktoScope documentation will only support the latest stable release. You can always find the latest stable release at <https://github.com/PlanktoScope/PlanktoScope/releases/latest>, which will redirect you to a web page for a specific release.
 
 All URLs in this guide are written assuming you access your PlanktoScope using [planktoscope.local](http://planktoscope.local) as the domain name; if you need to use a [different domain name](./index.md#access-your-planktoscopes-software) such as [home.pkscope](http://home.pkscope), you should substitute that domain name into the links on this page.
 
@@ -63,7 +63,9 @@ forklift pallet upgrade @{version-query}
 forklift pallet upgrade
 ```
 
-Eventually (i.e. if/when it becomes feasible and safe), we may make it possible for you to turn on automatic upgrade checks, automatic background downloads of available upgrades, or even automatic installation of upgrades. However, even in that scenario some releases (once every few years) will still require re-flashing your PlanktoScope's SD card image due to the major release cadence of the Raspberry Pi OS, which is used for building PlanktoScope OS SD card images.
+and then rebooting after that command finishes successfully.
+
+Eventually (i.e. if/when it becomes feasible and safe), we may make it possible for you to turn on automatic upgrade checks, automatic background downloads of available upgrades, or even automatic installation of upgrades; those features will only have any effects on PlanktoScopes connected to the internet. However, even in that scenario some releases (once every few years) will still require you to re-flash your PlanktoScope's SD card with a new SD card image; this is because of the major release cadence of the Raspberry Pi OS, which is used for building PlanktoScope OS SD card images, and which itself is not safe to upgrade in-place.
 
 !!! info
 
@@ -71,21 +73,23 @@ Eventually (i.e. if/when it becomes feasible and safe), we may make it possible 
 
     Thus, if you find that you attempted to upgrade the PlanktoScope OS using `forklift` but your PlanktoScope automatically returned to the previous installed version of the OS after a reboot, then that means that your PlanktoScope couldn't run the newer version for some reason. Information about this will be reported if you run the command `forklift stage show`.
 
-### Avoid touching `apt`/`apt-get`
+### Avoid touching `apt`/`apt-get`!
 
 !!! info
 
-    If you don't know what `apt` or `apt-get` refer to, then please skip this section and avoid running `apt` or `apt-get` commands in the future!
+    If you don't know what `apt` or `apt-get` refer to, then please skip this section and just remember to avoid running `apt` or `apt-get` commands on your PlanktoScope!
 
-Most of the "interesting" software in the PlanktoScope OS (with Cockpit being a notable exception) is not managed using Raspberry Pi OS's APT package-management system, [for various reasons](../reference/software/architecture/os.md#system-upgrades). It's *probably* safe to run APT commands to upgrade the most packages installed in the PlanktoScope OS (at least for software which doesn't run during [early boot](../reference/software/architecture/os.md#boot-sequence), because of when the PlanktoScope OS's [filesystem overlay](../reference/software/architecture/os.md#filesystem) for `/usr` is initialized), but we cannot make any guarantees or provide any support if you choose to do that. This is an issue of practicality: APT does not make it easy for us to exactly reproduce the changes to installed versions of packages caused by running `apt`/`apt-get`'s install/upgrade commands, when those commands are run at very different times; so it is not necessarily feasible for us to troubleshoot any resulting problems. If you want to undo the changes caused by running any APT commands, you should try to delete everything in `/var/lib/overlays/overrides/usr` and reboot immediately afterwards.
+Most of the "interesting" software in the PlanktoScope OS (with Cockpit being a notable exception) is not managed using Raspberry Pi OS's APT package-management system, [for various reasons](../reference/software/architecture/os.md#system-upgrades). It's *probably* safe to run APT commands to upgrade most packages installed in the PlanktoScope OS (at least for software which doesn't run during [early boot](../reference/software/architecture/os.md#boot-sequence), because of when the PlanktoScope OS's [filesystem overlay](../reference/software/architecture/os.md#filesystem) for `/usr` is initialized), but we cannot make any guarantees or provide any support if you choose to do that. This is an issue of practicality: APT does not make it easy for us to exactly reproduce the changes to installed versions of packages caused by running `apt`/`apt-get`'s install/upgrade commands, when those commands are run at very different times; so it is not necessarily feasible for us to troubleshoot any resulting problems. If you want to undo the changes caused by running any APT commands, you should try to delete everything in `/var/lib/overlays/overrides/usr` and reboot immediately afterwards.
 
 ## Restore your data & settings
 
 If you reset/upgraded/downgraded the PlanktoScope OS by re-flashing your SD card, then:
 
 - You can restore your [backed-up data & settings](#back-up-your-data-settings) by re-uploading your backup files to their respective locations and then rebooting your PlanktoScope.
-- (Only relevant for advanced users) If you were running a non-standard Forklift pallet (i.e. anything other than [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard)), then you can run a Forklift command to switch back to that pallet (assuming that your PlanktoScope [has an internet connection](./networking.md#connect-your-planktoscope-to-the-internet) so that it can download the pallet), for example in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> :
+- (Only relevant for advanced users) If you were running a non-standard Forklift pallet (i.e. anything other than [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard)) which you had pushed to a GitHub repository host (such as GitHub), then you can run a Forklift command to switch back to that pallet (assuming that your PlanktoScope [has an internet connection](./networking.md#connect-your-planktoscope-to-the-internet) so that it can download the pallet), for example in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> :
 
     ```sh
     forklift pallet switch github.com/name-of/your-pallet@version-query
     ```
+
+    Afterwards, you should reboot your PlanktoScope; it will try to boot using the pallet you had specified.
