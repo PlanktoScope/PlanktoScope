@@ -46,7 +46,7 @@ Starting with the [v2024.0.0 release](https://github.com/PlanktoScope/PlanktoSco
 
 !!! warning
 
-    In-place upgrade/downgrade functionality is still a work in progress. If you are unsure, then you should perform upgrades/downgrades by (re-)flashing your SD card, not by running a `forklift` command.
+    The PlanktoScope OS's support for in-place upgrade/downgrade functionality is still a work in progress. If you are unsure, then you should perform upgrades/downgrades by (re-)flashing your SD card, not by running a `forklift` command.
 
 When an in-place upgrade to a new release is possible, specific instructions and backwards-compatibility information will be mentioned in the GitHub release notes for that release. However, the general pattern will look something like running the following command (from v2024.0.0 of the PlanktoScope OS), where `{version-query}` would be replaced by a Git branch name (e.g. `beta`), tagged version (e.g. `v2024.0.0`), or (potentially-abbreviated) Git commit SHA:
 
@@ -75,9 +75,9 @@ Eventually (i.e. if/when it becomes feasible and safe), we may make it possible 
 
 !!! info
 
-    If you don't know what `apt` or `apt-get` refer to, then please skip this section!
+    If you don't know what `apt` or `apt-get` refer to, then please skip this section and avoid running `apt` or `apt-get` commands in the future!
 
-Most of the "interesting" software in the PlanktoScope OS (with Cockpit being a notable exception) is not managed using Raspberry Pi OS's APT package-management system, [for various reasons](../reference/software/architecture/os.md#system-upgrades). It's *probably* safe to run APT commands to upgrade the packages installed in the PlanktoScope OS, but we cannot make any guarantees or provide any support if you choose to do that. This is an issue of practicality: APT does not make it easy for us to exactly reproduce the changes to installed versions of packages caused by running `apt`/`apt-get`'s install/upgrade commands, when those commands are run at very different times; so it is not necessarily feasible for us to troubleshoot any resulting problems. If you want to undo the changes caused by running any APT commands, your only option will be to re-flash your SD card.
+Most of the "interesting" software in the PlanktoScope OS (with Cockpit being a notable exception) is not managed using Raspberry Pi OS's APT package-management system, [for various reasons](../reference/software/architecture/os.md#system-upgrades). It's *probably* safe to run APT commands to upgrade the most packages installed in the PlanktoScope OS (at least for software which doesn't run during [early boot](../reference/software/architecture/os.md#boot-sequence), because of when the PlanktoScope OS's [filesystem overlay](../reference/software/architecture/os.md#filesystem) for `/usr` is initialized), but we cannot make any guarantees or provide any support if you choose to do that. This is an issue of practicality: APT does not make it easy for us to exactly reproduce the changes to installed versions of packages caused by running `apt`/`apt-get`'s install/upgrade commands, when those commands are run at very different times; so it is not necessarily feasible for us to troubleshoot any resulting problems. If you want to undo the changes caused by running any APT commands, you should try to delete everything in `/var/lib/overlays/overrides/usr` and reboot immediately afterwards.
 
 ## Restore your data & settings
 
