@@ -69,9 +69,3 @@ mkdir -p "$HOME/PlanktoScope"
 sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
 cp "$HOME/device-backend/default-configs/$default_config.hardware.json" \
   "$HOME/PlanktoScope/hardware.json"
-
-# Copy required dependencies with hard-coded paths in the hardware controller
-# TODO: get rid of this when we remove raspimjpeg
-mkdir -p "$HOME/PlanktoScope/scripts"
-directory="scripts/raspimjpeg"
-cp -r "$repo_root/$directory" "$HOME/PlanktoScope/$directory"

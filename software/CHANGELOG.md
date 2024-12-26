@@ -7,6 +7,12 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Removed
+
+- (Application: backend) The old raspimjpeg-based imager has now been completely removed, following a deprecation in v2024.0.0-alpha.2.
+
 ## v2024.0.0 - 2024-12-25
 
 ### Added
