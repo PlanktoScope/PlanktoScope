@@ -8,7 +8,14 @@ on:
       - 'software/stable'
     tags:
       - 'software/v*'
+    paths:
+      - 'software/**'
+      - '!software/CHANGELOG.md'
+      - '.github/workflows/build-os*.yml'
   pull_request:
+    paths:
+      - 'software/**'
+      - '.github/workflows/build-os*.yml'
   merge_group:
   workflow_dispatch:
     inputs:

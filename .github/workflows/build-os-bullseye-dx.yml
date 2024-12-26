@@ -10,6 +10,7 @@ on:
       - 'software/v*'
     paths:
       - 'software/**'
+      - '!software/CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
   pull_request:
     paths:

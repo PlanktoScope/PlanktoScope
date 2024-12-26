@@ -24,15 +24,13 @@ The mask-calculation step takes as input a median-corrected image and the result
 
 1. "Simple threshold": this operation applies a [global threshold](https://docs.opencv.org/4.x/d7/d1b/group__imgproc__misc.html#gae8a4a146d1ca78c626a53577199e9c57) to the input corrected image, using the [triangle algorithm](https://bioimagebook.github.io/chapters/2-processing/3-thresholding/thresholding.html#triangle-method) to calculate an optimal threshold value for the image; the output is a mask in which each pixel is set to 0 if the corresponding pixel of the input image is greater than the threshold, and to 255 otherwise. The resulting mask should select for objects which appear darker than the background of the image.
 
-2. "Remove previous mask": this operation combines the result of the previous mask-calculation step with the mask created by the previous "simple threshold" operation, by subtracting the intersection of the two masks from the mask created by the previous "simple threshold" operation. This operation is probably intended to remove objects which had been stuck to the PlanktoScope's flowcell during imaging and thus might appear in many consecutive input corrected images. However, this operation is not robust in dense samples where two different objects might appear in overlapping locations across two consecutive raw images.
+2. "Erode": this operation [erodes](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#gaeb1e0c1033e3f6b891a25d0511362aeb) the mask with a 2-pixel-by-2-pixel square kernel. In the resulting mask, small regions (such as thresholded noise) are eliminated.
 
-3. "Erode": this operation [erodes](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#gaeb1e0c1033e3f6b891a25d0511362aeb) the mask with a 2-pixel-by-2-pixel square kernel. In the resulting mask, small regions (such as thresholded noise) are eliminated.
+3. "Dilate": this operation [dilates](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#ga4ff0f3318642c4f469d0e11f242f3b6c) the mask with an 8-pixel-diameter circular kernel. In the resulting mask, regions remaining after the previous "erode" operation are padded with a margin.
 
-4. "Dilate": this operation [dilates](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#ga4ff0f3318642c4f469d0e11f242f3b6c) the mask with an 8-pixel-diameter circular kernel. In the resulting mask, regions remaining after the previous "erode" operation are padded with a margin.
+4. "Close": this operation [dilates and then erodes](https://docs.opencv.org/4.x/d4/d86/group__imgproc__filter.html#ga67493776e3ad1a3df63883829375201f) the mask with an 8-pixel-diameter circular kernel. In the resulting mask, small holes in regions remaining after the previous "dilate" operation are eliminated.
 
-5. "Close": this operation [dilates and then erodes](https://docs.opencv.org/4.x/d4/d86/group__imgproc__filter.html#ga67493776e3ad1a3df63883829375201f) the mask with an 8-pixel-diameter circular kernel. In the resulting mask, small holes in regions remaining after the previous "dilate" operation are eliminated.
-
-6. "Erode2": this operation [erodes](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#gaeb1e0c1033e3f6b891a25d0511362aeb) the mask with an 8-pixel-diameter circular kernel, inverting the effect of the previous "dilate" operation.
+5. "Erode2": this operation [erodes](https://docs.opencv.org/3.4/d4/d86/group__imgproc__filter.html#gaeb1e0c1033e3f6b891a25d0511362aeb) the mask with an 8-pixel-diameter circular kernel, inverting the effect of the previous "dilate" operation.
 
 The final result these operations is a spatially-filtered *segmentation mask* where the value of each pixel represents whether that pixel is part of an object or part of the background of the input corrected image.
 
@@ -44,15 +42,13 @@ The object-extraction step takes the following inputs:
 
 - A segmentation mask
 
-- The following sample metadata fields:
-  
-   - `acq_minimum_mesh`: the diameter of the smallest spherical object which is expected to be in the sample, usually 20 µm. This value is set on the "Fluidic Acquisition" page of the PlanktoScope's Node-RED dashboard as the "Min fraction size".
-  
-   - `process_pixel`: the pixel size calibration of the PlanktoScope, in units of µm per pixel; then the area (in units of µm<sup>2</sup>) per pixel is `process_pixel * process_pixel`. This value is set on the "Hardware Settings" page of the PlanktoScope's Node-RED dashboard as the "Pixel size calibration: um per pixel".
+- The sample metadata field `acq_minimum_mesh`: the diameter of the smallest spherical object which is expected to be in the sample, usually 20 µm. This value is set on the "Fluidic Acquisition" page of the PlanktoScope's Node-RED dashboard as the "Min fraction size" field.
 
-First, the object-extraction step calculates a *minimum-area threshold* for objects to extract using the input segmentation mask: the threshold (in units of pixel<sup>2</sup>) is calculated as `(2 * acq_minimum_mesh / process_pixel) ^ 2`.
+- The sample metadata field `process_pixel`: the pixel size calibration of the PlanktoScope, in units of µm per pixel; then the area (in units of µm<sup>2</sup>) per pixel is `process_pixel * process_pixel`. This value is set on the "Hardware Settings" page of the PlanktoScope's Node-RED dashboard as the "Pixel size calibration: um per pixel" field.
 
-Next, the object-extraction step [identifies all connected regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.label) of the input segmentation mask and [measures properties of those regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.regionprops). The object-extraction step then discards any region whose bounding-box area (`area_bbox` in scikit-image) is less than the minimum-area threshold.
+First, the object-extraction step calculates a *minimum-area threshold* for objects to extract using the input segmentation mask: the threshold (in units of pixel<sup>2</sup>) is calculated as `pi * (acq_minimum_mesh / 2 / process_pixel) ^ 2`.
+
+Next, the object-extraction step [identifies all connected regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.label) of the input segmentation mask and [measures properties of those regions](https://scikit-image.org/docs/0.19.x/api/skimage.measure.html#skimage.measure.regionprops). The object-extraction step then discards any region whose filled area (`area_filled` in scikit-image) is less than the minimum-area threshold.
 
 ### Metadata calculation
 
@@ -74,73 +70,79 @@ Additionally, some metadata for the object is calculated from the [region proper
 
 - `label`: The identifier of the object's region, as assigned by scikit-image. This corresponds to the `label` region property in scikit-image.
 
-- Basic area properties:
-  
-   - `area_exc`: Number of pixels in the region (excluding pixels in any holes). This corresponds to the `area` region property in scikit-image.
-  
-   - `area`: Number of pixels of the region with all holes filled in (i.e. including pixels in any holes). This corresponds to the `area_filled` region property in scikit-image. Yes, it's somewhat confusing that the PlanktoScope segmenter renames scikit-image's `area` region property to `area_exc` and renames scikit-image's `area_filled` region property to `area`.
-  
-   - `%area`: Ratio between the number of pixels in any holes in the region and the total number of pixels of the region with all holes filled in; calculated as `1 - area_exc / area`. In other words, this represents the proportion of the region which consists of holes. Yes, `%area` is a misleading name both because of the `%` in the name and because of the `area` in the name.
+#### Basic area properties
 
-- Equivalent-circle properties:
-  
-   - `equivalent_diameter`: The diameter (in pixels) of a circle with the same number of pixels in its area as the number of pixels in the region (excluding pixels in any holes). This corresponds to the `equivalent_diameter_area` property in scikit-image.
-- Equivalent-ellipse properties:
-   - `eccentricity`: Eccentricity of the ellipse that has the same second-moments as the region; eccentricity is the ratio of the focal distance (distance between focal points) over the major axis length. The value is in the interval [0, 1), where a value of 0 represents a circle. This corresponds to the `eccentricity` property in scikit-image.
-  
-   - `major`: The length (in pixels) of the major axis of region's equivalent ellipse. This corresponds to the `axis_major_length` property in scikit-image.
-  
-   - `minor`: The length (in pixels) of the minor axis of the region's equivalent ellipse. This corresponds to the `axis_minor_length` property in scikit-image.
-  
-   - `elongation`: The ratio between `major` and `minor`.
-  
-   - `angle`: Angle (in degrees) between the x-axis of the input median-corrected image and the major axis of the region's equivalent ellipse. Values range from 0 deg to 180 deg counter-clockwise. This is calculated from the `orientation` property in scikit-image.
+- `area_exc`: Number of pixels in the region (excluding pixels in any holes). This corresponds to the `area` region property in scikit-image.
 
-- Equivalent-object perimeter properties:
-  
-   - `perim.`: Perimeter (in pixels) of an object which approximates the region's contour as a line through the centers of border pixels using a 4-connectivity. This corresponds to the `perimeter` property in scikit-image.
-  
-   - `perimareaexc`: Ratio between the perimeter and the number of pixels in the region (excluding pixels in any holes). Calculated as `perim. / area_exc`.
-  
-   - `perimmajor`: Ratio between the perimeter and the length of the major axis of the region's equivalent ellipse. Calculated as `perim. / major`.
-  
-   - `circ.`: The [roundness](https://en.wikipedia.org/wiki/Roundness#Roundness_error_definitions) of the region's equivalent object, including pixels in any holes. Calculated as `4 * π * area / (perim. * perim.)`. Ranges from 1 for a perfect circle to 0 for highly non-circular shapes.
-  
-   - `circex`: The roundness of the region's equivalent object, excluding pixels in any holes. Calculated as `4 * π * area_exc / (perim. * perim.)`. Ranges from 1 for a perfect circle to 0 for highly non-circular shapes or shapes with many large holes.
+- `area`: Number of pixels of the region with all holes filled in (i.e. including pixels in any holes). This corresponds to the `area_filled` region property in scikit-image. Yes, it's somewhat confusing that the PlanktoScope segmenter renames scikit-image's `area` region property to `area_exc` and renames scikit-image's `area_filled` region property to `area`.
 
-- Bounding box (the smallest rectangle which includes all pixels of the region, under the constraint that the edges of the box are parallel to the x- and y-axes of the input median-corrected image) properties:
-  
-   - `bx`: x-position (in pixels) of the top-left corner of the region's bounding box, relative to the top-left corner of the input median-corrected image. This corresponds to the second element of the `bbox` property in scikit-image.
-  
-   - `by`: y-position (in pixels) of the top-left corner of the region's bounding box, relative to the top-left corner of the input median-corrected image. This corresponds to the first element of the `bbox` property in scikit-image.
-  
-   - `width`: Width (in number of pixels) of the region's bounding box. This is calculated from the elements of the `bbox` property in scikit-image.
-  
-   - `height`: Height (in number of pixels) of the region's bounding box. This is calculated from the elements of the `bbox` property in scikit-image.
-  
-   - `bounding_box_area`: Number of pixels in the region's bounding box; equivalent to `width * height`. This corresponds to the `area_bbox` region property in scikit-image.
-  
-   - `extent`: Ratio between the number of pixels in the region (excluding pixels in any holes) and the number of pixels in the region's bounding box; equivalent to `area_exc / bounding_box_area`. This corresponds to the `extent` region property in scikit-image.
+- `%area`: Ratio between the number of pixels in any holes in the region and the total number of pixels of the region with all holes filled in; calculated as `1 - area_exc / area`. In other words, this represents the proportion of the region which consists of holes. Yes, `%area` is a misleading name both because of the `%` in the name and because of the `area` in the name.
 
-- Convex hull (the smallest convex polygon which encloses the region) properties:
-  
-   - `convex_area`: Number of pixels in the convex hull of the region. This corresponds to the `area_convex` region property in scikit-image.
-  
-   - `solidity`: Ratio between the number of pixels in the region (excluding pixels in any holes) and the number of pixels in the convex hull of the region. Equivalent to `area_exc / convex_area`. This corresponds to the `solidity` region property in scikit-image.
+#### Equivalent-circle properties
 
-- Unweighted centroid properties:
-  
-   - `x`: x-position (in pixels) of the centroid of the object, relative to the top-left corner of the input median-corrected image. This corresponds to the second element of the `centroid` region property in scikit-image.
-  
-   - `y`: y-position (in pixels) of the centroid of the object, relative to the top-left corner of the input median-corrected image. This corresponds to the first element of the `centroid` region property in scikit-image.
-  
-   - `local_centroid_col`: x-position (in pixels) of the centroid of the object, relative to the top-left corner of the region's bounding box; equivalent to `x - bx`. This corresponds to the second element of the `centroid_local` region property in scikit-image.
-  
-   - `local_centroid_row`: y-position (in pixels) of the centroid of the object, relative to the top-left corner of the region's bounding box; equivalent to `y - by`. This corresponds to the first element of the `centroid_local` region property in scikit-image.
+- `equivalent_diameter`: The diameter (in pixels) of a circle with the same number of pixels in its area as the number of pixels in the region (excluding pixels in any holes). This corresponds to the `equivalent_diameter_area` property in scikit-image.
 
-- Topological properties:
-  
-   - `euler_number`: The [Euler characteristic](https://en.wikipedia.org/wiki/Euler_characteristic) of the set of non-zero pixels. Computed as the number of connected components subtracted by the number of holes (with 2-connectivity). This corresponds to the `euler_number` property in scikit-image.
+#### Equivalent-ellipse properties
+
+- `eccentricity`: Eccentricity of the ellipse that has the same second-moments as the region; eccentricity is the ratio of the focal distance (distance between focal points) over the major axis length. The value is in the interval [0, 1), where a value of 0 represents a circle. This corresponds to the `eccentricity` property in scikit-image.
+
+- `major`: The length (in pixels) of the major axis of region's equivalent ellipse. This corresponds to the `axis_major_length` property in scikit-image.
+
+- `minor`: The length (in pixels) of the minor axis of the region's equivalent ellipse. This corresponds to the `axis_minor_length` property in scikit-image.
+
+- `elongation`: The ratio between `major` and `minor`.
+
+- `angle`: Angle (in degrees) between the x-axis of the input median-corrected image and the major axis of the region's equivalent ellipse. Values range from 0 deg to 180 deg counter-clockwise. This is calculated from the `orientation` property in scikit-image.
+
+#### Equivalent-object perimeter properties
+
+- `perim.`: Perimeter (in pixels) of an object which approximates the region's contour as a line through the centers of border pixels using a 4-connectivity. This corresponds to the `perimeter` property in scikit-image.
+
+- `perimareaexc`: Ratio between the perimeter and the number of pixels in the region (excluding pixels in any holes). Calculated as `perim. / area_exc`.
+
+- `perimmajor`: Ratio between the perimeter and the length of the major axis of the region's equivalent ellipse. Calculated as `perim. / major`.
+
+- `circ.`: The [roundness](https://en.wikipedia.org/wiki/Roundness#Roundness_error_definitions) of the region's equivalent object, including pixels in any holes. Calculated as `4 * π * area / (perim. * perim.)`. Ranges from 1 for a perfect circle to 0 for highly non-circular shapes.
+
+- `circex`: The roundness of the region's equivalent object, excluding pixels in any holes. Calculated as `4 * π * area_exc / (perim. * perim.)`. Ranges from 1 for a perfect circle to 0 for highly non-circular shapes or shapes with many large holes.
+
+#### Bounding box properties
+
+The bounding box is the smallest rectangle which includes all pixels of the region, under the constraint that the edges of the box are parallel to the x- and y-axes of the input median-corrected image.
+
+- `bx`: x-position (in pixels) of the top-left corner of the region's bounding box, relative to the top-left corner of the input median-corrected image. This corresponds to the second element of the `bbox` property in scikit-image.
+
+- `by`: y-position (in pixels) of the top-left corner of the region's bounding box, relative to the top-left corner of the input median-corrected image. This corresponds to the first element of the `bbox` property in scikit-image.
+
+- `width`: Width (in number of pixels) of the region's bounding box. This is calculated from the elements of the `bbox` property in scikit-image.
+
+- `height`: Height (in number of pixels) of the region's bounding box. This is calculated from the elements of the `bbox` property in scikit-image.
+
+- `bounding_box_area`: Number of pixels in the region's bounding box; equivalent to `width * height`. This corresponds to the `area_bbox` region property in scikit-image.
+
+- `extent`: Ratio between the number of pixels in the region (excluding pixels in any holes) and the number of pixels in the region's bounding box; equivalent to `area_exc / bounding_box_area`. This corresponds to the `extent` region property in scikit-image.
+
+#### Convex hull properties
+
+The convex hull is the smallest convex polygon which encloses the region.
+
+- `convex_area`: Number of pixels in the convex hull of the region. This corresponds to the `area_convex` region property in scikit-image.
+
+- `solidity`: Ratio between the number of pixels in the region (excluding pixels in any holes) and the number of pixels in the convex hull of the region. Equivalent to `area_exc / convex_area`. This corresponds to the `solidity` region property in scikit-image.
+
+#### Unweighted centroid properties
+
+- `x`: x-position (in pixels) of the centroid of the object, relative to the top-left corner of the input median-corrected image. This corresponds to the second element of the `centroid` region property in scikit-image.
+
+- `y`: y-position (in pixels) of the centroid of the object, relative to the top-left corner of the input median-corrected image. This corresponds to the first element of the `centroid` region property in scikit-image.
+
+- `local_centroid_col`: x-position (in pixels) of the centroid of the object, relative to the top-left corner of the region's bounding box; equivalent to `x - bx`. This corresponds to the second element of the `centroid_local` region property in scikit-image.
+
+- `local_centroid_row`: y-position (in pixels) of the centroid of the object, relative to the top-left corner of the region's bounding box; equivalent to `y - by`. This corresponds to the first element of the `centroid_local` region property in scikit-image.
+
+#### Topological properties
+
+- `euler_number`: The [Euler characteristic](https://en.wikipedia.org/wiki/Euler_characteristic) of the set of non-zero pixels. Computed as the number of connected components subtracted by the number of holes (with 2-connectivity). This corresponds to the `euler_number` property in scikit-image.
 
 ### Output image cropping
 
