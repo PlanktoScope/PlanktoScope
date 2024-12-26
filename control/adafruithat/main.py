@@ -1,17 +1,17 @@
 # Copyright Romain Bazile and other PlanktoScope project contributors
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -25,13 +25,13 @@ from loguru import logger  # for logging with multiprocessing
 
 import planktoscope.mqtt
 import planktoscope.stepper
-import planktoscope.light # Fan HAT LEDs
+import planktoscope.light  # Fan HAT LEDs
 import planktoscope.identity
-import planktoscope.uuidName # Note: this is deprecated.
-import planktoscope.display # Fan HAT OLED screen
-from planktoscope.imagernew import mqtt as imagernew
+import planktoscope.uuidName  # Note: this is deprecated.
+import planktoscope.display  # Fan HAT OLED screen
+from planktoscope.imager import mqtt as imager
 
-# enqueue=True is necessary so we can log accross modules
+# enqueue=True is necessary so we can log across modules
 # rotation happens everyday at 01:00 if not restarted
 # TODO: ensure the log directory exists
 logger.add(
@@ -58,6 +58,7 @@ logger.info("Starting the PlanktoScope hardware controller!")
 
 run = True  # global variable to enable clean shutdown from stop signals
 
+
 def handler_stop_signals(signum, _):
     """This handler simply stop the forever running loop in __main__"""
     global run
@@ -67,7 +68,9 @@ def handler_stop_signals(signum, _):
 
 if __name__ == "__main__":
     logger.info("Welcome!")
-    logger.info( "Initialising signals handling and sanitizing the directories (step 1/4)")
+    logger.info(
+        "Initialising signals handling and sanitizing the directories (step 1/4)"
+    )
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
@@ -93,7 +96,9 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(img_path)
 
-    logger.info(f"This PlanktoScope's Raspberry Pi's serial number is {planktoscope.uuidName.getSerial()}")
+    logger.info(
+        f"This PlanktoScope's Raspberry Pi's serial number is {planktoscope.uuidName.getSerial()}"
+    )
     logger.info(
         f"This PlanktoScope's machine name is {planktoscope.identity.load_machine_name()}"
     )
@@ -113,7 +118,7 @@ if __name__ == "__main__":
     # Starts the imager control process
     logger.info("Starting the imager control process (step 3/4)")
     try:
-        imager_thread = imagernew.Worker(shutdown_event)
+        imager_thread = imager.Worker(shutdown_event)
     except Exception as e:
         logger.error(f"The imager control process could not be started: {e}")
         imager_thread = None
