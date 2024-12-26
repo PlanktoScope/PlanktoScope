@@ -29,7 +29,7 @@ fi
 
 # Make a temporary file which may be required by some Docker Compose apps in the pallet, just so
 # that those Compose apps can be successfully created (this is a rather dirty hack/workaround):
-echo "setup" >/run/machine-name
+echo "setup" | sudo tee /run/machine-name
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
