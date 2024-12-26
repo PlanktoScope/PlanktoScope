@@ -11,10 +11,10 @@ repo_root="$(dirname "$(dirname "$(dirname "$distro_setup_files_root")")")"
 hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope-latest
 default_config="$hardware_type-latest"
 case "$hardware_type" in
-  "fairscope-latest")
-    hardware_type="planktoscopehat"
-    default_config="fairscope-latest"
-    ;;
+"fairscope-latest")
+  hardware_type="planktoscopehat"
+  default_config="fairscope-latest"
+  ;;
 esac
 
 ## Install basic Python tooling
@@ -40,10 +40,10 @@ python3 -m venv "$POETRY_VENV"
 "$POETRY_VENV/bin/pip" install --progress-bar off poetry==1.7.1
 
 # Download device-backend monorepo
-backend_repo="github.com/PlanktoScope/device-backend"
-backend_version="v2024.0.0-beta.2" # this should be either a version tag, branch name, or commit hash
+backend_repo="$(cat "$config_files_root/backend-repo")"
+backend_version="$(cat "$config_files_root/backend-version")"
 git clone "https://$backend_repo" "$HOME/device-backend" --no-checkout --filter=blob:none
-git -C "$HOME/device-backend" checkout --quiet $backend_version
+git -C "$HOME/device-backend" checkout --quiet "$backend_version"
 
 # Set up the hardware controllers
 # Note(ethanjli): we use picamera2 from the system for compatibility, and because dependencies are
@@ -69,9 +69,3 @@ mkdir -p "$HOME/PlanktoScope"
 sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
 cp "$HOME/device-backend/default-configs/$default_config.hardware.json" \
   "$HOME/PlanktoScope/hardware.json"
-
-# Copy required dependencies with hard-coded paths in the hardware controller
-# TODO: get rid of this when we remove raspimjpeg
-mkdir -p "$HOME/PlanktoScope/scripts"
-directory="scripts/raspimjpeg"
-cp -r "$repo_root/$directory" "$HOME/PlanktoScope/$directory"

@@ -115,11 +115,7 @@ wget -O - https://install.planktoscope.community/distro.sh \
 
 The installation process will take a long time (around 15 - 30 minutes, depending on the speed of your internet connection and your microSD card) to finish.
 
-If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the setup script finished setting up the PlanktoScope application environment.
-
-## Connect to the PlanktoScope
-
-Next, you will need to restart the Raspberry Pi, e.g. with the following command:
+If an error occurs during this setup process, you will need to wipe the Raspberry Pi's microSD card, flash the Raspberry Pi OS image onto it again, and try running the setup steps again. Otherwise, you will eventually see a message reporting that the setup script finished setting up the PlanktoScope application environment. Afterwards, you will need to restart the Raspberry Pi, e.g. with the following command:
 
 ```
 sudo reboot now
@@ -127,19 +123,25 @@ sudo reboot now
 
 This step is necessary to finish the PlanktoScope software setup process.
 
-Afterwards, your PlanktoScope's Raspberry Pi will either connect to a Wi-Fi network (if you had previously configured it to connect to a Wi-Fi network) or make a new isolated Wi-Fi network whose name starts with the word `pkscope` followed by the unique randomly-generated name of your PlanktoScope, and whose password is `copepode`.
+After your PlanktoScope reboots, the display connected to your PlanktoScope should show a login prompt with the format `pkscope-{machine-name} login:` , where `{machine-name}` is substituted with your PlanktoScope's machine name. For example, if the login prompt says `pkscope-chain-list-27764 login:`, then the PlanktoScope's machine name is `chain-list-27764`. You should write a note somewhere with this machine name, for future reference.
 
-If you connect another device (e.g. a phone or computer) directly to the PlanktoScope's Raspberry Pi over its isolated Wi-Fi network or over an Ethernet cable, then you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
+!!! info
 
-- <http://planktoscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
-- <http://pkscope.local> (this should work unless you're on a device and web browser without mDNS support; notably, older versions of Android do not have mDNS support)
-- <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
-- <http://192.168.4.1> (this should always work)
-- <http://192.168.5.1> (this should always work)
+    Recording the PlanktoScope's machine name in a note (or on your PlanktoScope) will be especially important if you might have multiple PlanktoScopes in the future or if you might need to access the PlanktoScope via an indirect connection (e.g. from a device connected to the same network router as the PlanktoScope). This is because the machine name is used for naming the Wi-Fi hotspot made by your PlanktoScope and for generating a machine-specific URL for accessing your PlanktoScope.
 
-Note that if you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own isolated Wi-Fi network. On the Wi-Fi network it's connected to, it should be accessible at <http://pkscope.local> (if you're accessing it from a device and web browser with mDNS support, assuming the device is on the same network), assuming that no other PlanktoScope is connected to the same network. If multiple PlanktoScopes are connected to the same network, open <http://pkscope.local> and read the web page's "Wrong PlanktoScope?" section for instructions on what URL to use; you can determine your PlanktoScope's name by connecting a display to its Raspberry Pi, booting up the Raspberry Pi, and reading the name from the login prompt (e.g. if it says `pkscope-chain-list-27764 login:`, then the PlanktoScope is named `pkscope-chain-list-27764`).
+!!! tip
 
-You will only be able to access the PlanktoScope's graphical user interface by plugging in a display and keyboard and mouse to the Raspberry Pi if you had previously used a "Raspberry Pi OS with desktop" or "Raspberry Pi OS with desktop and recommended software" SD card image as the base for the PlanktoScope software's setup script. In that case, you can open a web browser window on the Raspberry Pi and open <http://localhost> or any of the previously-listed URLs.
+    If you are unhappy with the auto-generated machine name, you can override it with a custom name. Refer to our instructions for [changing the machine name](../../operation/networking.md#change-the-machine-name) in our networking operations guide, but first see the notes at the top of that guide.
+
+## Connect to the PlanktoScope
+
+Afterwards, your PlanktoScope's Raspberry Pi will either connect to a Wi-Fi network (if you had previously configured it to connect to a Wi-Fi network) or make its own Wi-Fi hotspot, whose name has format `pkscope-{machine-name}` (where `{machine-name}` should be substituted with your PlanktoScope's specific machine name, which you should have recorded in a note in the previous step), and whose password is `copepode`.
+
+You will only be able to access the PlanktoScope's graphical user interface by plugging in a display and keyboard and mouse to the Raspberry Pi if you had previously used a "Raspberry Pi OS with desktop" or "Raspberry Pi OS with desktop and recommended software" SD card image as the base for the PlanktoScope software's setup script. In that case, you can open a web browser window on the Raspberry Pi and open <http://localhost> or any of the URLs listed in the [standard installation guide](./standard-install.md#connect-to-the-planktoscope). Otherwise:
+
+- If you plan to connect another device directly to your PlanktoScope via its Wi-Fi hotspot or via an Ethernet cable, follow the same instructions for connecting to your PlanktoScope as in the [standard installation guide](./standard-install.md#connect-to-the-planktoscope).
+
+- If you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own Wi-Fi hotspot. On the Wi-Fi network it's connected to, it will only be accessible by its machine-specific mDNS URL,  which has the format `http://pkscope-{machine-name}.local`, where `{machine-name}` should be replaced by your PlanktoScope's specific machine name (which you should have recorded in the previous step).
 
 ## Next steps
 

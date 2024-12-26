@@ -1,4 +1,4 @@
-# Assembly
+# Assembly of the PlanktoScope kit
 
 ![planktoscope-assembly-workshop.jpg](images/BWS01548.JPG)
 

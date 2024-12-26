@@ -8,7 +8,7 @@ This guide will help you understand how to use the Node-RED dashboard, which is 
 
 When you open the "Node-RED dashboard link" from the [PlanktoScope's landing page](index.md#access-your-planktoscopes-software), you will reach a page like what is shown in the screenshot above.
 
-From here, you can quickly access any of the available tabs. The buttons are only the most used functionnalities of the machine. Three others tabs are accessible only through the hamburger menu on the top left of the screen (the three horizontal lines):
+From here, you can quickly access any of the available tabs. The buttons are only the most used functionalities of the machine. Three others tabs are accessible only through the hamburger menu on the top left of the screen (the three horizontal lines):
 
 - Wifi
 - Administration
@@ -64,6 +64,10 @@ This page allows you to control the optical setup of the acquisition.
 In the Optic Characterization block, you can control to turn the light on or not. You also have to choose the optics in use in the machine.
 
 !!! warning
+
+    Only the "Light" setting in the Optic Characterization panel works; everything else in that panel does not work and instead will be removed in a future version of the PlanktoScope software.
+
+!!! warning
     For now, the characteristics shown here are not true values (except if you use the 25mm/16mm lens couple).
 
 The Camera Settings block allows you to change the shutter speed, the ISO number and the camera white balance settings. You can set it to automatic, but it's better if you control it by hand to make sure the setting doesn't change when the acquisition is started.
@@ -93,13 +97,35 @@ This simple page will allow you to preview and download the captured data.
 
 ## System Monitoring
 
-This tab allows you to monitor the physical characteristics of the machine and follow the processor load, CPU temperature, memory use and disk usage.
+This tab allows you to view more detailed information about your PlanktoScope. The Metrics panel has graphs for monitoring the CPU temperature, memory usage, and SD card usage of your PlanktoScope's embedded Raspberry Pi computer, as well as an expandable (collapsed-by-default) panel with more detailed information about CPU usage, system load, network traffic volumes, and disk read/write volumes.
 
-![System Monitoring](../images/ui_guide/system_monitoring.webp)
+![System Monitoring](../images/ui_guide/system-monitoring-dashboard.png)
 
-You also can find information about the software version you are using, the machine name and its camera.
+The Information panel shows your PlanktoScope's machine name, its hardware version, its PlanktoScope's software version, its camera model, the system time on the PlanktoScope, and the system time on the device running your web browser.
+
+Note: if your PlanktoScope's system time is different from your web browser's time by more than 1 minute, the Metrics graphs will be replaced with a prompt for you to change your PlanktoScope's system time to match your web browser's time:
+
+![System Monitoring time-adjustment prompt](../images/ui_guide/system-monitoring-time-prompt.png)
+
+You will need to change the PlanktoScope's system time (for example by pressing the button displayed in the prompt) in order for the Metrics panel to work, and in order for your PlanktoScope to record accurate timestamps with its image acquisition datasets. The system time will be accurate until your PlanktoScope shuts down; the next time you turn on your PlanktoScope, you will need to change the PlanktoScope's system time again. This is a known problem, and we will improve the usability of this situation in future versions of the PlanktoScope software.
+
+!!! warning
+
+    The USB Backup panel doesn't always work; it will be removed in a future version of the PlanktoScope software; you should instead download files using the [Gallery tab](#gallery).
+
+!!! warning
+
+    The GPS Status panel will be removed in a future version of the PlanktoScope software.
+
+!!! warning
+
+    The Navigation panel, including its fan toggle (which doesn't work correctly) will be removed in a future version of the PlanktoScope software.
 
 ## Wifi
+
+!!! warning
+
+    This page will be removed in a future version of the PlanktoScope software, because it doesn't always work. You should instead refer to the network operations guide's section for [connecting your PlanktoScope to an existing Wi-Fi network](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network).
 
 ![Administration](../images/ui_guide/wifi.webp)
 
