@@ -1,10 +1,10 @@
+# SD Card Cloning
 
 If you want to create an SD card image from your PlanktoScope to use on other PlanktoScopes, you can follow the following steps.
 
 ## Prepare the SD card for cloning
 
 Depending on whether you want to make an SD card image to reuse across multiple machines or whether you only want to make an exact backup of your SD card image, you will need to perform different steps to prepare your SD card for cloning.
-# Clone your SD card
 
 ### Prepare for cloning to reuse in other machines
 
@@ -18,12 +18,12 @@ Once this script finishes running, it will shut down your PlanktoScope's Raspber
 
 Next, you should remove the SD card from your PlanktoScope and plug it into another computer, so that you can clone the SD card into an SD card image; this guide assumes that your other computer runs Linux. With your SD card plugged into your other computer, you can mount the SD card's `rootfs` partition to delete any other sensitive files which were not removed by the `/usr/libexec/prepare-custom-image` script. For example, you may also want to delete or edit some or all of the following files from the `rootfs` partition in order to remove any sensitive or machine-specific information:
 
-- `etc/wpa_supplicant/wpa_supplicant.conf`: Wi-Fi configuration and network secrets.
-- `home/pi/.ssh/authorized_keys`: SSH public keys of devices authorized to remotely connect to the PlanktoScope.
-- `home/pi/data/`: all images acquired before by the PlanktoScope - this directory may be large, and you probably don't want to copy those datasets across all your other PlanktoScopes.
-- `home/pi/.bash_history`: Bash command history.
-- `home/pi/.python_history`: Python command history.
-- `home/pi/.gitconfig`: Git configuration, which may contain user-specific details.
+- `/var/lib/overlays/overrides/etc/wpa_supplicant/wpa_supplicant.conf`: Wi-Fi configuration and network secrets.
+- `/home/pi/.ssh/authorized_keys`: SSH public keys of devices authorized to remotely connect to the PlanktoScope.
+- `/home/pi/data/`: all images acquired before by the PlanktoScope - this directory may be large, and you probably don't want to copy those datasets across all your other PlanktoScopes.
+- `/home/pi/.bash_history`: Bash command history.
+- `/home/pi/.python_history`: Python command history.
+- `/home/pi/.gitconfig`: Git configuration, which may contain user-specific details.
 
 !!! info
     You can also delete the files listed above before running the `/usr/libexec/prepare-custom-image` script; the effect is the same. Either way, those files will be permanently deleted on your SD card. However, if you want to keep those files on your SD card, you should make backup copies of those files, and then you can copy those files back onto your SD card after you finish cloning the SD card to an image.
@@ -112,4 +112,4 @@ If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you
 
 ## Use the SD card image
 
-You can now use this SD card image with the [non-standard installation guide](../setup/software/nonstandard-install.md) for installing the PlanktoScope OS on an SD card for one or more PlanktoScopes.
+You can now use this SD card image with the [standard installation guide](../setup/software/standard-install.md) for installing the PlanktoScope OS on an SD card for one or more PlanktoScopes.

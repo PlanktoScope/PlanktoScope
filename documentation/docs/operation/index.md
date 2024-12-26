@@ -62,7 +62,7 @@ One of the above URLs should work, and your web browser should show a landing pa
 
 You should click on the "Node-RED dashboard" link; this will open a new tab with the primary interface for operating your PlanktoScope. Once you have opened the Node-RED dashboard, you should proceed to our [User interface guide](user-interface.md) to understand how to use it.
 
-## How to image plankton
+## Acquire data on plankton samples
 
 Before doing an acquisition, you will need to collect targets. There are several ways to do this, and you probably already have a source nearby (in a culture if you are working in a lab).
 
@@ -79,3 +79,11 @@ If needed you can also clean the outside of the objective lens with a soft cloth
 For quantitative imaging of water samples, refer to the following protocols published by members of the PlanktoScope community:
 
 - "[Planktoscope protocol for plankton imaging](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe)". A [PDF copy](protocol-v4.pdf) of a draft of version 4 of this protocol is also available for offline use.
+
+## Manage your PlanktoScope's embedded computer
+
+Your PlanktoScope has a Raspberry Pi computer embedded inside it which runs the PlanktoScope's software. You may need to perform various system administration/operations tasks on it, such as:
+
+- [Resetting or upgrading/downgrading the software on it](./software-upgrades.md), such as for resetting your PlanktoScope's settings back to its factory defaults, testing out new software updates, or switching back to an older software version after testing out a newer version.
+- [Changing its network configuration](./networking.md), such as for connecting your PlanktoScope to the internet, maintaining internet access on a computer connected simultaneously to both your PlanktoScope (e.g. by Ethernet) and an external network (e.g. by Wi-Fi), making your PlanktoScope more secure, or customizing your PlanktoScope's machine name.
+- [Cloning its SD card](./clone-sd.md) to back up its settings and data, or to replicate its exact settings and data across multiple PlanktoScopes
