@@ -7,10 +7,9 @@
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift"
-if [ -S /var/run/docker.sock ] && \
-  ! sudo -E docker info && \
-  ! sudo systemctl start docker.socket docker.service
-then
+if [ -S /var/run/docker.sock ] &&
+  ! sudo -E docker info &&
+  ! sudo systemctl start docker.socket docker.service; then
   echo "Error: couldn't start docker!"
   journalctl --no-pager -u docker.socket
   journalctl --no-pager -u docker.service
@@ -24,22 +23,26 @@ then
   sudo iptables -L || sudo lsmod
   exit 1
 fi
-if ! docker info 2>&1 > /dev/null; then
+if ! docker info 2>&1 >/dev/null; then
   FORKLIFT="sudo -E forklift"
 fi
 
+# Make a temporary file which may be required by some Docker Compose apps in the pallet, just so
+# that those Compose apps can be successfully created (this is a rather dirty hack/workaround):
+echo "setup" >/run/machine-name
+
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
-if ! $FORKLIFT stage apply; then
+if ! "$FORKLIFT" stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
   forklift stage set-next --no-cache-img next
-  if ! $FORKLIFT stage apply; then
+  if ! "$FORKLIFT" stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
     forklift stage set-next --no-cache-img next
     echo "Checking the plan for applying the staged pallet..."
-    $FORKLIFT stage plan
+    "$FORKLIFT" stage plan
     # Note: we don't run forklift stage cache-img because we had already loaded all necessary images
     # from the pre-cache, and we want to avoid talking to the network if we're in a QEMU VM (since
     # that often causes failure with a network TLS handshake timeout).
