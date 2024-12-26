@@ -141,7 +141,7 @@ You will only be able to access the PlanktoScope's graphical user interface by p
 
 - If you plan to connect another device directly to your PlanktoScope via its Wi-Fi hotspot or via an Ethernet cable, follow the same instructions for connecting to your PlanktoScope as in the [standard installation guide](./standard-install.md#connect-to-the-planktoscope).
 
-- If you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own Wi-Fi hotspot. On the Wi-Fi network it's connected to, it will only be accessible by its machine-specific mDNS URL,  which has the format `pkscope-{machine-name}.local`, where `{machine-name}` should be replaced by your PlanktoScope's specific machine name (which you should have recorded in the previous step).
+- If you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own Wi-Fi hotspot. On the Wi-Fi network it's connected to, it will only be accessible by its machine-specific mDNS URL,  which has the format `http://pkscope-{machine-name}.local`, where `{machine-name}` should be replaced by your PlanktoScope's specific machine name (which you should have recorded in the previous step).
 
 ## Next steps
 
