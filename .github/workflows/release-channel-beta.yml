@@ -16,14 +16,14 @@ jobs:
       - uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
-          check-name: 'ci'
+          check-name: 'ci-checks'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
       - uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
-          check-name: 'merge'
+          check-name: 'merge-container-images'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
