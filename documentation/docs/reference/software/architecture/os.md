@@ -58,7 +58,7 @@ Notably as part of basic boot-up (systemd's `basic.target`), systemd will run [a
 
 - OS files provided by the standard Raspberry Pi OS (or PlanktoScope OS-specific files added added by the process of building PlanktoScope OS SD card images). Before boot these files are stored at `/etc` and `/usr`, but during boot they are instead found at `/sysroot/etc` and `/usr/etc` .
 - OS files (including some overrides of files provided by the standard Raspberry Pi OS) managed by Forklift (introduced in the next section) in `/var/lib/forklift/stages`. More information about these files can be found [below](#filesystem).
-- User customizations/overrides to any of those OS files in `/var/lib/overlays/overrides/etc` and `/var/lib/overlays/overrides/var`.
+- User-applied customizations and overrides to any of those OS files in `/var/lib/overlays/overrides/etc` and `/var/lib/overlays/overrides/usr`.
 
 ### System upgrades
 
@@ -90,7 +90,7 @@ Everything managed by `forklift` is version-controlled in a [Git](https://git-sc
 
 !!! info
 
-    Forklift was created mostly because the PlanktoScope OS really needs to be built around the Raspberry Pi OS, and because the Raspberry Pi OS is not yet compatible with [bootc](https://containers.github.io/bootc/) (and not even [OSTree](https://ostreedev.github.io/ostree/introduction/)), and because the Raspberry Pi OS also does not yet have mature support for [systemd-sysext](https://www.freedesktop.org/software/systemd/man/latest/systemd-sysext.html) - so we don't yet have a sufficiently simple (and free-and-easy-for-project-maintainers-to-operate) alternative to facilitate system upgrades+downgrades and system customization for the PlanktoScope OS. In a perfect world, we would not need to use/maintain Forklift for achieving the goals which originally motivated the creation of Forklift.
+    Forklift was created mostly because the PlanktoScope OS really needs to be built around the Raspberry Pi OS, and because the Raspberry Pi OS is not yet compatible with [bootc](https://containers.github.io/bootc/) (and not even [OSTree](https://ostreedev.github.io/ostree/introduction/)), and because the Raspberry Pi OS also does not yet have mature support for [systemd-sysext](https://www.freedesktop.org/software/systemd/man/latest/systemd-sysext.html), and those systems also don't meet the PlanktoScope OS's full set of requirements - so we don't yet have a sufficiently simple (and free-and-easy-for-project-maintainers-to-operate) alternative to facilitate system upgrades+downgrades and system customization for the PlanktoScope OS. In an ideal world, we would not need to use/maintain Forklift in the PlanktoScope OS for achieving the goals which originally motivated the creation of Forklift, or at least Forklift could outsource so much functionality to externally-maintained systems that Forklift could be reduced to a UI wrapper.
 
 ### Package management with `forklift`
 
@@ -190,7 +190,7 @@ The PlanktoScope is often deployed in settings with limited or unstable internet
 
 We solve this problem by allowing the PlanktoScope to connect to the internet over a known Wi-Fi network, and/or over Ethernet, so that the PlanktoScope's web browser-based interfaces can be accessed over the internet; and by making the PlanktoScope bring up a Wi-Fi hotspot (more formally, a [wireless access point](https://en.wikipedia.org/wiki/Wireless_access_point)) using the Raspberry Pi's integrated Wi-Fi module in the absence of any known Wi-Fi network, so that the web browser-based interfaces can be accessed over the Wi-Fi hotspot.
 
-When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), the PlanktoScope acts as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a DNS server to assign itself certain domain names (e.g. `home.pkscope`), so that user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. The PlanktoScope also announces itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `pkscope.local`) which may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network).
+When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), the PlanktoScope acts as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a DNS server to assign itself certain domain names (e.g. `home.pkscope`), so that user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. The PlanktoScope also announces itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `planktoscope.local`) which may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network).
 
 When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with network configurations for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access.
 
@@ -224,13 +224,13 @@ The standard PlanktoScope OS also adds the following systemd services for dynami
 
 The PlanktoScope OS also adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
 
-- [Mosquito](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
+- [Mosquitto](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
 
 - [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
 
 ## Filesystem
 
-The PlanktoScope OS's filesystem makes some changes from the default Debian/Raspberry Pi OS filesystem structure so that `/etc` and `/usr` can be managed by Forklift while still being directly customizable by the system administrator. Specifically, a number of systemd services in the PlanktoScope OS run during early boot to:
+The PlanktoScope OS's filesystem makes some changes from the default Debian/Raspberry Pi OS filesystem structure so that various sets of files in `/etc` and `/usr` can be atomically upgraded/downgraded/replaced together (using Forklift) while still being directly customizable by the system administrator. Specifically, a number of systemd services in the PlanktoScope OS run during early boot to:
 
 - Make a read-only mount (via the `overlay-sysroot` systemd service) of the initial root filesystem, at `/sysroot` (this layout is loosely inspired by [OSTree's filesystem layout](https://ostreedev.github.io/ostree/adapting-existing/)).
 
