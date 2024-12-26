@@ -2,23 +2,19 @@
 name = "planktoscope-controller"
 # Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
 # "2023.7.0-beta.0", which is different from the Semantic Versioning schema
-version = "2024.0.0b3"
+version = "2024.0.0"
 description = "Controller of PlanktoScope hardware"
 # For simplicity, we follow the definition of "Maintainer" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
 # "Maintainers: Contributors who are responsible for driving the vision and managing the
 # organizational aspects of the project".
 # Here, we only list the current maintainers of the PlanktoScope backend software.
-maintainers = [
-  "Ethan Li <lietk12@gmail.com>",
-]
+maintainers = ["Ethan Li <lietk12@gmail.com>"]
 # For simplicity, we follow the definition of "Author" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
 # "Author: The person/s or organization that created the project".
 # Here, we only list the authors of the PlanktoScope backend software.
-authors = [
-  "Romain Bazile <romain@oceantrotter.org>",
-]
+authors = ["Romain Bazile <romain@oceantrotter.org>"]
 license = "GPL-3.0-or-later"
 readme = "README.md"
 homepage = "https://www.planktoscope.org"
@@ -123,7 +119,7 @@ poethepoet = "^0.25.0"
 black = "^24.2.0"
 isort = "^5.13.2"
 mypy = "^1.9.0"
-pylama = {extras = ["all", "toml"], version = "^8.4.1"}
+pylama = { extras = ["all", "toml"], version = "^8.4.1" }
 flake8 = "^7.0.0"
 flake8-import-restrictions = "^2.0.1"
 pylint = "^3.1.0"
@@ -243,7 +239,7 @@ exclude = [
 [tool.pylama]
 # We are gradually introducing linting as we rewrite each module; we haven't rewritten the following
 # files yet:
-skip='''
+skip = '''
 adafruithat/main.py,\
 adafruithat/planktoscope/__init__.py,\
 adafruithat/planktoscope/display.py,\

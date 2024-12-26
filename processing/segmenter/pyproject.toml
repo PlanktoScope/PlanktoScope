@@ -2,23 +2,19 @@
 name = "planktoscope-processing-segmenter"
 # Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
 # "2023.7.0-beta.0", which is different from the Semantic Versioning schema
-version = "2024.0.0b3"
+version = "2024.0.0"
 description = "Data processor to segment objects from raw PlanktoScope data"
 # For simplicity, we follow the definition of "Maintainer" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
 # "Maintainers: Contributors who are responsible for driving the vision and managing the
 # organizational aspects of the project".
 # Here, we only list the current maintainers of the PlanktoScope backend software.
-maintainers = [
-  "Ethan Li <lietk12@gmail.com>",
-]
+maintainers = ["Ethan Li <lietk12@gmail.com>"]
 # For simplicity, we follow the definition of "Author" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
 # "Author: The person/s or organization that created the project".
 # Here, we only list the authors of the PlanktoScope backend software.
-authors = [
-  "Romain Bazile <romain@oceantrotter.org>",
-]
+authors = ["Romain Bazile <romain@oceantrotter.org>"]
 license = "GPL-3.0-or-later"
 readme = "README.md"
 homepage = "https://www.planktoscope.org"
@@ -65,7 +61,7 @@ loguru = [
   { version = "==0.5.3", source = "piwheels", markers = "platform_machine == 'armv7l'" },
 ]
 opencv-python-headless = [
-  { version = "==4.6.0.66", source = "pypi", markers = "platform_machine != 'armv7l'"},
+  { version = "==4.6.0.66", source = "pypi", markers = "platform_machine != 'armv7l'" },
   { version = "==4.6.0.66", source = "piwheels", markers = "platform_machine == 'armv7l'" },
 ]
 scikit-image = [
@@ -75,8 +71,8 @@ scikit-image = [
 # note: the following packages are only indirect dependencies, but we need to download wheels from
 # the appropriate sources, so we must explicitly select them here
 scipy = [
-  { version = "==1.11.4", source = "pypi", markers = "platform_machine != 'armv7l'"},
-  { version = "==1.11.4", source = "piwheels", markers = "platform_machine == 'armv7l'"},
+  { version = "==1.11.4", source = "pypi", markers = "platform_machine != 'armv7l'" },
+  { version = "==1.11.4", source = "piwheels", markers = "platform_machine == 'armv7l'" },
 ]
 pillow = [
   { version = "==10.2.0", source = "pypi", markers = "platform_machine != 'armv7l'" },
