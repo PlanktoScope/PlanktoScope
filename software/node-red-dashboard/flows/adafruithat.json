@@ -3070,6 +3070,31 @@
         ]
     },
     {
+        "id": "577be9c22c739ca0",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "58de1340.3cc354"
+            ]
+        ]
+    },
+    {
         "id": "6a84252a.d52a0c",
         "type": "ui_template",
         "z": "bccd1f23.87219",
@@ -5568,8 +5593,7 @@
         "name": "Camera Name",
         "links": [
             "30067f35.532f2",
-            "572a6daa.6004c4",
-            "cfc783d7.d6ceb"
+            "572a6daa.6004c4"
         ],
         "x": 965,
         "y": 780,
@@ -8757,9 +8781,7 @@
         "type": "link out",
         "z": "1eaf21c8.f7a21e",
         "name": "Process_pixel calibration",
-        "links": [
-            "cfc783d7.d6ceb"
-        ],
+        "links": [],
         "x": 1475,
         "y": 500,
         "wires": []
