@@ -79,7 +79,7 @@ jobs:
           docker-images: false
           swap-storage: false
           # removing these packages involves running `apt`, which is relatively slow:
-          dotnet: false
+          # dotnet: false
           large-packages: false
 
       # GET BASE IMAGE
