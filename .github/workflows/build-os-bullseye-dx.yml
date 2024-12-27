@@ -50,6 +50,7 @@ jobs:
       name: planktoscope
       base_release_name: bullseye
       base_image_variant: ${{ matrix.base_variant_name }}
-      base_release_date: 2024-11-19
+      base_release_date: 2024-10-28
+      base_file_release_date: 2024-10-22
       arch: ${{ matrix.arch }}
       variant: ${{ matrix.variant }}

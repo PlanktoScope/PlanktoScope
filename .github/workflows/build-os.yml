@@ -18,6 +18,10 @@ on:
         description: 'The release date of the RPi OS base image'
         required: true
         type: string
+      base_file_release_date:
+        description: 'The release date of the RPi OS base image file, if different from the group release date'
+        required: false
+        type: string
       arch:
         description: 'The CPU architecture of the OS (armhf, arm64)'
         required: true
@@ -104,7 +108,12 @@ jobs:
             IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.base_image_variant }}"
           fi
           IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.arch }}"
-          IMAGE_FILENAME="${{ inputs.base_release_date }}-raspios-${{ inputs.base_release_name }}-${{ inputs.arch }}"
+          if [[ -z "${{ inputs.base_file_release_date }}" ]]; then
+            BASE_FILE_RELEASE_DATE="${{ inputs.base_release_date }}"
+          else
+            BASE_FILE_RELEASE_DATE="${{ inputs.base_file_release_date }}"
+          fi
+          IMAGE_FILENAME="$BASE_FILE_RELEASE_DATE-raspios-${{ inputs.base_release_name }}-${{ inputs.arch }}"
           if [[ "${{ inputs.base_image_variant }}" != "desktop" ]]; then
             IMAGE_FILENAME="${IMAGE_FILENAME}-${{ inputs.base_image_variant }}"
           fi
