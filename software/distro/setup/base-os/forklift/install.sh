@@ -36,7 +36,7 @@ forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-re
 
 # Set up Forklift upgrade checks
 pallet_upgrade_version_query="$(cat "$config_files_root/forklift-pallet-upgrade-version-query")"
-"$FORKLIFT" pallet set-upgrade-query "@$pallet_upgrade_version_query"
+forklift pallet set-upgrade-query "@$pallet_upgrade_version_query"
 
 # Pre-download container images without Docker
 
