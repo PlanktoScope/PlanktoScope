@@ -49,7 +49,6 @@ cp "$repo_root/software/node-red-dashboard/default-configs/$default_config.confi
 
 # Copy required dependencies with hard-coded paths in the Node-RED dashboard
 # TODO: get rid of this when we move the Node-RED dashboard out to its own repository
-cp -r "$repo_root/$directory" "$HOME/PlanktoScope/$directory"
 mkdir -p "$HOME"/PlanktoScope/software/node-red-dashboard
 directory="software/node-red-dashboard/default-configs"
 cp -r "$repo_root/$directory" "$HOME/PlanktoScope/$directory"
