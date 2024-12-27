@@ -5,14 +5,14 @@
 # into the PlanktoScope OS's filesystem by installing Forklift and providing some systemd units
 # which set up bind mounts and overlay filesystems to bootstrap the configs managed by Forklift.
 
-config_files_root=$(dirname $(realpath $BASH_SOURCE))
+config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Install Forklift
 "$config_files_root/download-forklift.sh" "/usr/bin"
 
 # Add the necessary systemd units (but we don't enable them until booted setup):
-sudo cp $config_files_root/usr/lib/systemd/system/* /usr/lib/systemd/system/
-sudo cp $config_files_root/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
+sudo cp "$config_files_root"/usr/lib/systemd/system/* /usr/lib/systemd/system/
+sudo cp "$config_files_root"/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
 
 # Make the stage store at /var/lib/forklift/stages available for non-root access in the current
 # (i.e. default) user's default Forklift workspace, both in the current boot and subsequent boots:
@@ -21,7 +21,7 @@ mkdir -p "$local_stage_store"
 sudo mkdir -p /var/lib/forklift/stages
 # TODO: maybe we should instead make a new "forklift" group which owns everything in
 # /var/lib/forklift?
-sudo chown $USER /var/lib/forklift/stages
+sudo chown "$USER" /var/lib/forklift/stages
 sudo systemctl enable "bind-.local-share-forklift-stages@-home-$USER.service"
 if ! sudo systemctl start "bind-.local-share-forklift-stages@-home-$USER.service" 2>/dev/null; then
   echo "Warning: the system's Forklift stage store is not mounted to $USER's Forklift stage store."
@@ -29,11 +29,14 @@ if ! sudo systemctl start "bind-.local-share-forklift-stages@-home-$USER.service
 fi
 
 # Clone & stage a local pallet
-
 pallet_path="$(cat "$config_files_root/forklift-pallet")"
 pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
-forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img $pallet_path@$pallet_version
+forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img "$pallet_path@$pallet_version"
 forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-reset next
+
+# Set up Forklift upgrade checks
+pallet_upgrade_version_query="$(cat "$config_files_root/forklift-pallet-upgrade-version-query")"
+"$FORKLIFT" pallet set-upgrade-query "@$pallet_upgrade_version_query"
 
 # Pre-download container images without Docker
 
@@ -44,11 +47,11 @@ tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
 export PATH="$tmp_bin:$PATH"
 
 echo "Pre-downloading container images..."
-container_platform="linux/$( \
-  dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~' \
+container_platform="linux/$(
+  dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~'
 )"
 export PATH="$tmp_bin:$PATH"
-forklift plt ls-img | \
+forklift plt ls-img |
   rush "$config_files_root/precache-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
@@ -58,7 +61,7 @@ echo "Preparing to load pre-downloaded container images..."
 # we delete blobs once we unpack them into the snapshotter storage (so that we don't double the
 # space needed to store each container image); so we must download a more recent version of `ctr`:
 "$config_files_root/download-ctr.sh" "$tmp_bin"
-sudo $tmp_bin/ctr --version
+sudo "$tmp_bin/ctr" --version
 # We load images with containerd instead of Docker so that we can do it without booting into a QEMU
 # VM (warning: Docker needs to be configured to use containerd for image storage!):
 if ! systemctl --no-pager status containerd.service && ! sudo systemctl start containerd.service; then
@@ -67,15 +70,15 @@ if ! systemctl --no-pager status containerd.service && ! sudo systemctl start co
   sudo /usr/bin/containerd &
   sleep 1 # give containerd time to start
 fi
-if ! sudo $tmp_bin/ctr --namespace moby images ls > /dev/null; then
+if ! sudo "$tmp_bin/ctr" --namespace moby images ls >/dev/null; then
   echo "Error: couldn't use ctr to talk to containerd!"
   exit 1
 fi
 
 echo "Loading pre-downloaded container images..."
-forklift plt ls-img | \
+forklift plt ls-img |
   rush "$config_files_root/load-precached-image.sh" \
     {} "$HOME/.cache/forklift/containers/docker-archives" "$tmp_bin/ctr"
 
-sudo $tmp_bin/ctr --namespace moby content ls
-sudo $tmp_bin/ctr --namespace moby images ls
+sudo "$tmp_bin/ctr" --namespace moby content ls
+sudo "$tmp_bin/ctr" --namespace moby images ls
