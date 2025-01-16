@@ -34,7 +34,7 @@ on:
 jobs:
   build-os-image:
     name: Build image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # NOTE(ethanjli): as of Jan 2024, ubuntu-24.04 seems to cause QEMU to segfault in the systemd-nspawn step
     env:
       KERNEL_VERSION: 6.1.21
       SETUP_USER: pi
