@@ -258,8 +258,8 @@ jobs:
           args: --bind "$(pwd)":/run/os-setup
           run: |
             echo "Running setup scripts..."
-            DEBIAN_FRONTEND=noninteractive \
-              /run/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
+            export DEBIAN_FRONTEND=noninteractive
+            /run/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal

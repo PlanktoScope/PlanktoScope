@@ -18,7 +18,7 @@ case "$hardware_type" in
 esac
 
 ## Install basic Python tooling
-sudo apt-get install -y -o Dpkg::Progress-Fancy=0 \
+sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   git python3-pip python3-venv
 
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
@@ -49,7 +49,7 @@ git -C "$HOME/device-backend" checkout --quiet "$backend_version"
 # Note(ethanjli): we use picamera2 from the system for compatibility, and because dependencies are
 # annoying to manage on armv7. Once we migrate to RPi OS 12 (bookworm), let's try again to just
 # install it via poetry.
-sudo apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
+sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
 "$POETRY_VENV/bin/poetry" --directory "$HOME/device-backend/control" config \
   virtualenvs.options.system-site-packages true --local
