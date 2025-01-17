@@ -253,7 +253,7 @@ jobs:
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          boot: true
+          #boot: true
           user: ${{ env.SETUP_USER }}
           args: --bind "$(pwd)":/run/os-setup
           run: |
