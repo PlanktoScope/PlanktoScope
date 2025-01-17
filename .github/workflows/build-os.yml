@@ -257,9 +257,10 @@ jobs:
           user: ${{ env.SETUP_USER }}
           args: --bind "$(pwd)":/run/os-setup
           run: |
-            export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
+            DEBIAN_FRONTEND=noninteractive \
+              /run/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
+            echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal
         uses: ethanjli/pinspawn-action@v0.1.4
