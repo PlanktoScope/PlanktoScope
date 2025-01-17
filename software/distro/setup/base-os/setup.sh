@@ -8,7 +8,7 @@
 
 # Determine the base path for sub-scripts
 
-build_scripts_root=$(dirname $(realpath $BASH_SOURCE))
+build_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Set up pretty error printing
 
@@ -34,11 +34,11 @@ function panic {
 
 # Run sub-scripts
 
-sudo apt-get update -y -o Dpkg::Progress-Fancy=0 -o DPkg::Lock::Timeout=60 
+sudo apt-get update -y -o Dpkg::Progress-Fancy=0 -o DPkg::Lock::Timeout=60
 
 description="install base tools"
 report_starting "$description"
-if $build_scripts_root/tools/install.sh ; then
+if "$build_scripts_root"/tools/install.sh; then
   report_finished "$description"
 else
   panic "$description"
@@ -46,8 +46,8 @@ fi
 
 description="configure system locales"
 report_starting "$description"
-if $build_scripts_root/localization/config.sh ; then
-  source $build_scripts_root/localization/export-env.sh
+if "$build_scripts_root"/localization/config.sh; then
+  source "$build_scripts_root"/localization/export-env.sh
   report_finished "$description"
 else
   panic "$description"
@@ -55,7 +55,7 @@ fi
 
 description="configure networking"
 report_starting "$description"
-if $build_scripts_root/networking/install.sh ; then
+if "$build_scripts_root"/networking/install.sh; then
   report_finished "$description"
 else
   panic "$description"
@@ -63,7 +63,7 @@ fi
 
 description="configure Raspberry Pi-specific hardware"
 report_starting "$description"
-if $build_scripts_root/platform-hardware/config.sh ; then
+if "$build_scripts_root"/platform-hardware/config.sh; then
   report_finished "$description"
 else
   panic "$description"
@@ -73,7 +73,7 @@ fi
 # either Docker or containerd, which is installed by Docker).
 description="install Docker"
 report_starting "$description"
-if $build_scripts_root/docker/install.sh ; then
+if "$build_scripts_root"/docker/install.sh; then
   report_finished "$description"
 else
   panic "$description"
@@ -81,7 +81,7 @@ fi
 
 description="set up Forklift"
 report_starting "$description"
-if $build_scripts_root/forklift/install.sh ; then
+if "$build_scripts_root"/forklift/install.sh; then
   report_finished "$description"
 else
   panic "$description"
@@ -89,7 +89,7 @@ fi
 
 description="install Cockpit"
 report_starting "$description"
-if $build_scripts_root/cockpit/install.sh ; then
+if "$build_scripts_root"/cockpit/install.sh; then
   report_finished "$description"
 else
   panic "$description"

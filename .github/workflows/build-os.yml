@@ -76,15 +76,6 @@ jobs:
           fetch-tags: true
           filter: 'blob:none'
 
-      # This is needed so that the QEMU VM build step doesn't run out of disk space:
-      - name: Free up disk space
-        uses: jlumbroso/free-disk-space@v1.3.1
-        with:
-          docker-images: false
-          swap-storage: false
-          # removing these packages involves running `apt`, which is relatively slow:
-          large-packages: false
-
       # GET BASE IMAGE
 
       - name: Determine Raspberry Pi OS base image URL
@@ -258,70 +249,17 @@ jobs:
 
       # RUN OS SETUP SCRIPTS
 
-      # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
-      # is much faster than a QEMU VM for downloading files.
-      - name: Run base OS setup scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@v0.1.4
-        timeout-minutes: 30
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
-          run: |
-            export DEBIAN_FRONTEND=noninteractive
-            echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/base-os/setup-unbooted.sh
-
-      - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
+      - name: Run OS setup scripts in a booted container
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          args: --bind "$(pwd)":/run/os-setup
-          run: |
-            sudo cp -r /run/os-setup /usr/lib/os-setup
-
-      # Note: for now, we need to boot the OS in a QEMU VM rather than a systemd-nspawn container 
-      # (even though the VM is much much slower) because `docker.socket`/`docker.service` can't
-      # start properly in the container due to its use of iptables-nft: Docker's use of
-      # iptables/nftables results in error "Failed to initialize nft: Protocol not supported".
-      # iptables/nftables which won't work if run using qemu-aarch64-static (see
-      # https://github.com/multiarch/qemu-user-static/issues/191 for details).
-      # Once GitHub makes arm64 runners available to open-source projects, then we can get rid of
-      # QEMU and we may be able to successfully start Docker in a systemd-nspawn container.
-      - name: Run base OS setup scripts in a booted container
-        #uses: ethanjli/piqemu-action@v0.1.1
-        uses: ethanjli/pinspawn-action@v0.1.4
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          machine: rpi-3b+
           boot: true
           user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted.sh
-
-      # Set up PlanktoScope application environment
-      # Note: we only perform this setup work after QEMU VM setup steps, because this sets up some
-      # background system services which may slow down the QEMU VM setup by ~20 minutes.
-      - name: Run PlanktoScope application environment setup scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@v0.1.4
-        if: inputs.variant != 'none'
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
           args: --bind "$(pwd)":/run/os-setup
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/planktoscope-app-env/setup.sh ${{ inputs.variant }}
-
-      - name: Clean up after running setup
-        uses: ethanjli/pinspawn-action@v0.1.4
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
-          run: |
-            sudo rm -rf /usr/lib/os-setup
-            /run/os-setup/software/distro/setup/cleanup.sh ${{ inputs.variant }}
+            /usr/lib/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
 
       - name: Prepare for a headless first boot on bare metal
         uses: ethanjli/pinspawn-action@v0.1.4
