@@ -259,7 +259,7 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /usr/lib/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
+            /run/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
 
       - name: Prepare for a headless first boot on bare metal
         uses: ethanjli/pinspawn-action@v0.1.4
