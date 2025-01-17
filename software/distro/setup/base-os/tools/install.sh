@@ -7,7 +7,8 @@
 # of package versions for existing packages if we run the script at different times. Also, it causes
 # some weirdness with the Docker installation.
 sudo -E apt-get install -y -o DPkg::Lock::Timeout=60 -o Dpkg::Progress-Fancy=0 \
-  vim byobu git curl
+  git curl
+# vim byobu git curl
 
 echo "hello?"
 
