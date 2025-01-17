@@ -7,11 +7,11 @@
 # of package versions for existing packages if we run the script at different times. Also, it causes
 # some weirdness with the Docker installation.
 sudo -E apt-get install -y -o DPkg::Lock::Timeout=60 -o Dpkg::Progress-Fancy=0 \
-  git curl
+  vim git curl
 # vim byobu git curl
 
 echo "hello?"
 
 # Install some tools for dealing with captive portals
-sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-  w3m lynx
+# sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
+#   w3m lynx
