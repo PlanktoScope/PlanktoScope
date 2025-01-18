@@ -56,6 +56,22 @@ forklift plt ls-img |
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
 echo "Preparing to load pre-downloaded container images..."
+if [ -S /var/run/docker.sock ] &&
+  ! sudo -E docker info &&
+  ! sudo systemctl start docker.socket docker.service; then
+  echo "Error: couldn't start docker!"
+  journalctl --no-pager -u docker.socket
+  journalctl --no-pager -u docker.service
+  sudo findmnt -lo source,target,fstype,options -t cgroup,cgroup2
+  # Note: iptables/iptables-nft won't work if run using qemu-aarch64-static
+  # (see https://github.com/multiarch/qemu-user-static/issues/191 for details), e.g. via a
+  # systemd-nspawn container. But if we run the systemd-nspawn container on an aarch64 host, it
+  # should probably work - so once GitHub rolls out arm64 runner for open-source projects, we may
+  # be able to run booted setup (i.e. with Docker) in a systemd-nspawn container rather than a
+  # QEMU VM; that will probably make the booted setup step much faster.
+  sudo iptables -L || sudo lsmod
+  exit 1
+fi
 if ! sudo docker image ls >/dev/null; then
   echo "Error: couldn't use docker client!"
   exit 1
@@ -73,22 +89,6 @@ forklift plt ls-img |
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift"
-# if [ -S /var/run/docker.sock ] &&
-#   ! sudo -E docker info &&
-#   ! sudo systemctl start docker.socket docker.service; then
-#   echo "Error: couldn't start docker!"
-#   journalctl --no-pager -u docker.socket
-#   journalctl --no-pager -u docker.service
-#   sudo findmnt -lo source,target,fstype,options -t cgroup,cgroup2
-#   # Note: iptables/iptables-nft won't work if run using qemu-aarch64-static
-#   # (see https://github.com/multiarch/qemu-user-static/issues/191 for details), e.g. via a
-#   # systemd-nspawn container. But if we run the systemd-nspawn container on an aarch64 host, it
-#   # should probably work - so once GitHub rolls out arm64 runner for open-source projects, we may
-#   # be able to run booted setup (i.e. with Docker) in a systemd-nspawn container rather than a
-#   # QEMU VM; that will probably make the booted setup step much faster.
-#   sudo iptables -L || sudo lsmod
-#   exit 1
-# fi
 if ! docker info 2>&1 >/dev/null; then
   FORKLIFT="sudo -E forklift"
 fi
