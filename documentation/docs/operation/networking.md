@@ -23,6 +23,8 @@ To connect your PlanktoScope to the internet, we recommend one of the following 
 
 Once your PlanktoScope is connected to the internet, by default it will attempt to share its internet access with any devices connected to the PlanktoScope by Wi-Fi or Ethernet.
 
+If you need to connect to a network which requires you to register your PlanktoScope's MAC address (also known as the "hardware address" of your PlanktoScope's network adapter(s)), please refer to [a subsection below](#check-your-planktoscopes-mac-addresses).
+
 ### Connect your PlanktoScope to an existing Wi-Fi network
 
 It's also possible to connect the PlanktoScope to an existing Wi-Fi network with internet access, but the PlanktoScope will be unable to make its Wi-Fi hotspot network while it is connected to an existing Wi-Fi network. Then, as long as the PlanktoScope is within range of that Wi-Fi network, the PlanktoScope software is only accessible either if 1) the existing Wi-Fi network (including its firewall settings) is configured to allow you to access the PlanktoScope via mDNS and your device and web browser support mDNS URLs (i.e. URLs ending in `.local`, like <http://planktoscope.local>) or if 2) you connect your device to the PlanktoScope via an Ethernet cable.
@@ -63,6 +65,14 @@ network={
 
 
 Once your PlanktoScope is connected to an existing Wi-Fi network, you should try to access it via your PlanktoScope's machine-specific mDNS URL, which has format `http://pkscope-{machine-name}.local`. Note that this may fail if your Wi-Fi network has restrictive firewall settings, in which case you will only be able to connect to your PlanktoScope directly via Ethernet cable. Note also that this URL only works if your device and web browser both support mDNS.
+
+### Check your PlanktoScope's MAC addresses
+
+If you need to check the MAC addresses of your PlanktoScope's network interfaces, you can open an auto-generated report of MAC addresses at `/run/mac-address.yml`, for example by opening the file viewer at <http://planktoscope.local/admin/fs/files/run/mac-addresses.yml>. That file viewer is also linked to from your PlanktoScope's landing page, in a link named "MAC address viewer" in the "For advanced users" section of the landing page.
+
+Usually you will only care about the MAC addresses for `wlan0` or `eth0`, which are the built-in Wi-Fi module and Ethernet port of the PlanktoScope's embedded Raspberry Pi computer, respectively. If you connect additional network adapters (such as a USB Wi-Fi dongle, an Ethernet-to-USB adapter, or a phone in USB tethering mode), then you may also see additional network interfaces named something like `wlan1`, `eth1`, or `usb0` around two minutes later.
+
+Every two minutes, your PlanktoScope will refresh the list of MAC addresses, in case you connect any new network adapters to your PlanktoScope or disconnect any network adapters.
 
 ## Connect your client device to the internet while your PlanktoScope is not connected to the internet
 

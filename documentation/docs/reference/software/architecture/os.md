@@ -208,6 +208,8 @@ The standard PlanktoScope OS adds the following systemd services (beyond what is
 
 - `firewalld`: a network firewall (currently disabled by default).
 
+- `planktoscope-mdns-alias@pkscope.service` and `planktoscopemdns-alias@planktoscope.service` configure the Avahi daemon (provided by the Raspberry Pi OS) to also resolve mDNS names `pkscope.local` and `planktoscope.local`, respectively, to an IP address (192.168.4.1) which is usable by devices connected to the PlanktoScope by a direct connection between their respective network interfaces.
+
 The standard PlanktoScope OS also adds the following systemd services for dynamically updating the system's network configuration during boot:
 
 - `generate-machine-name`: generates a human-readable machine name  at `/run/machine-name` from the Raspberry Pi's serial number (or, if that's missing, from `/etc/machine-d`).
@@ -226,11 +228,15 @@ The standard PlanktoScope OS also adds the following systemd services for dynami
 
 - `assemble-hosts` generates a temporary hosts file (which is used by a symlink at `/etc/hosts`) from drop-in snippets at `/etc/hosts-templates.d`.
 
-The PlanktoScope OS also adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
+The standard PlanktoScope OS also adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
 
 - [Mosquito](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
 
 - [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
+
+The standard PlanktoScope OS also adds the following systemd services for reporting information about the system for easy access:
+
+- `report-mac-addresses`: generates a temporary file at `/run/mac-addresses.yml` which enumerates the system's network interfaces and their respective MAC addresses
 
 ## Filesystem
 
