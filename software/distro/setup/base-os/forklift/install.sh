@@ -63,8 +63,8 @@ if ! [ -S /var/run/docker.sock ] &&
   journalctl --no-pager -u docker.socket
   journalctl --no-pager -u docker.service
   echo "Starting docker daemon directly..."
-  sudo /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock &
-  sleep 1 # maybe this isn't needed?
+  sudo /usr/bin/dockerd --containerd=/run/containerd/containerd.sock &
+  sleep 5 # maybe this isn't needed?
 fi
 if ! sudo docker image ls >/dev/null; then
   echo "Error: couldn't use docker client!"
