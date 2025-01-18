@@ -256,7 +256,6 @@ jobs:
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          #boot: true
           user: ${{ env.SETUP_USER }}
           # Note: CAP_NET_ADMIN is needed for iptables, which is needed for Docker (at least in an
           # unbooted container). Setting the machine ID (and therefore hostname) to `raspberrypi`

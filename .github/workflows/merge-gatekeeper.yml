@@ -17,8 +17,8 @@ jobs:
         uses: upsidr/merge-gatekeeper@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          timeout: 3600 # 60-minute timeout, since OS build workflows may take ~40 minutes to run
-          interval: 60
+          timeout: 1800 # 30-minute timeout, since OS build workflows may take ~10 minutes to run
+          interval: 10
 
       - name: Run Merge Gatekeeper in Merge Queue
         if: github.event_name == 'merge_group'
@@ -26,5 +26,5 @@ jobs:
         with:
           ref: ${{github.ref}}
           token: ${{ secrets.GITHUB_TOKEN }}
-          timeout: 3600 # 60-minute timeout, since OS build workflows may take ~40 minutes to run
-          interval: 60
+          timeout: 1800 # 30-minute timeout, since OS build workflows may take ~10 minutes to run
+          interval: 10
