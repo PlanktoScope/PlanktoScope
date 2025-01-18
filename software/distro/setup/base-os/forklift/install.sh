@@ -56,7 +56,7 @@ forklift plt ls-img |
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
 echo "Preparing to load pre-downloaded container images..."
-if [ -S /var/run/docker.sock ] &&
+if ! [ -S /var/run/docker.sock ] &&
   ! sudo -E docker info &&
   ! sudo systemctl start docker.socket docker.service; then
   echo "Error: couldn't start docker!"
