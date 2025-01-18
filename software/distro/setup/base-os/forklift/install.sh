@@ -56,26 +56,7 @@ forklift plt ls-img |
     {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
 
 echo "Preparing to load pre-downloaded container images..."
-if ! [ -S /var/run/docker.sock ] &&
-  ! sudo -E docker info &&
-  ! sudo systemctl start docker.socket docker.service; then
-  echo "Error: couldn't start docker!"
-  journalctl --no-pager -u docker.socket
-  journalctl --no-pager -u docker.service
-  echo "Starting containerd daemon directly..."
-  sudo /usr/bin/containerd &
-  echo "Starting docker daemon directly..."
-  sudo /usr/bin/dockerd &
-  sleep 5
-fi
-if ! sudo docker image ls >/dev/null; then
-  echo "Error: couldn't use docker client! Trying again in a few seconds..."
-  sleep 5 # maybe this isn't needed?
-  if ! sudo docker image ls >/dev/null; then
-    echo "Error: couldn't use docker client!"
-    exit 1
-  fi
-fi
+"$config_files_root/ensure-docker.sh"
 
 echo "Loading pre-downloaded container images..."
 forklift plt ls-img |
@@ -88,9 +69,9 @@ forklift plt ls-img |
 # without root permissions after a reboot, so we may need `sudo -E` here; I had tried running
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
 # script here (even though it works after the script finishes, before rebooting):
-FORKLIFT="forklift"
+FORKLIFT="forklift --stage-store /var/lib/forklift/stages"
 if ! docker info 2>&1 >/dev/null; then
-  FORKLIFT="sudo -E forklift"
+  FORKLIFT="sudo -E forklift --stage-store /var/lib/forklift/stages"
 fi
 
 # Make a temporary file which may be required by some Docker Compose apps in the pallet, just so

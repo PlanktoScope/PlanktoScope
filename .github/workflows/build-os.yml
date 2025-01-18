@@ -139,7 +139,9 @@ jobs:
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
+          args: >-
+            --bind "$(pwd)":/run/os-setup
+            --machine=raspberrypi
           run: |
             export DEBIAN_FRONTEND=noninteractive
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
@@ -241,6 +243,7 @@ jobs:
           user: ${{ env.SETUP_USER }}
           args: >-
             --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
+            --machine=raspberrypi
           run: |
             local_cache="$HOME/.cache/forklift/containers/docker-archives"
             mkdir -p "$local_cache"
@@ -258,7 +261,10 @@ jobs:
           # Note: CAP_NET_ADMIN is needed for iptables, which is needed for Docker (at least in an
           # unbooted container). Setting the machine ID (and therefore hostname) to `raspberrypi`
           # resolves noisy (but harmless) error messages from sudo.
-          args: --bind "$(pwd)":/run/os-setup --capability=CAP_NET_ADMIN --machine=raspberrypi
+          args: >-
+            --bind "$(pwd)":/run/os-setup
+            --capability=CAP_NET_ADMIN
+            --machine=raspberrypi
           run: |
             echo "Running setup scripts..."
             export DEBIAN_FRONTEND=noninteractive
@@ -272,6 +278,7 @@ jobs:
           DEFAULT_KEYBOARD_LAYOUT: us
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          args: --machine=raspberrypi
           run: |
             # Change default settings for the SD card to enable headless & keyboardless first boot
             # Note: we could change the username by making a `/boot/userconf.txt` file with the new
