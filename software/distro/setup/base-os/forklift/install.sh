@@ -65,8 +65,9 @@ if ! [ -S /var/run/docker.sock ] &&
   echo "Starting containerd daemon directly..."
   sudo /usr/bin/containerd &
   echo "Starting docker daemon directly..."
-  sudo /usr/bin/dockerd --containerd=/run/containerd/containerd.sock &
+  sudo /usr/bin/dockerd &
   sleep 5 # maybe this isn't needed?
+  sudo iptables-nft -L || sudo iptables -L || sudo lsmod
 fi
 if ! sudo docker image ls >/dev/null; then
   echo "Error: couldn't use docker client!"
