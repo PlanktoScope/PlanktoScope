@@ -255,7 +255,10 @@ jobs:
           image: ${{ steps.expand-image.outputs.destination }}
           #boot: true
           user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup --capability=CAP_NET_ADMIN
+          # Note: CAP_NET_ADMIN is needed for iptables, which is needed for Docker (at least in an
+          # unbooted container). Setting the machine ID (and therefore hostname) to `raspberrypi`
+          # resolves noisy (but harmless) error messages from sudo.
+          args: --bind "$(pwd)":/run/os-setup --capability=CAP_NET_ADMIN --machine=raspberrypi
           run: |
             echo "Running setup scripts..."
             export DEBIAN_FRONTEND=noninteractive
