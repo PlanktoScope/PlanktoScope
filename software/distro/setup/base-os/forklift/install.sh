@@ -62,6 +62,8 @@ if ! [ -S /var/run/docker.sock ] &&
   echo "Error: couldn't start docker!"
   journalctl --no-pager -u docker.socket
   journalctl --no-pager -u docker.service
+  echo "Starting containerd daemon directly..."
+  sudo /usr/bin/containerd &
   echo "Starting docker daemon directly..."
   sudo /usr/bin/dockerd --containerd=/run/containerd/containerd.sock &
   sleep 5 # maybe this isn't needed?
