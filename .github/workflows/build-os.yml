@@ -248,6 +248,10 @@ jobs:
             sudo chown $USER -R "$local_cache"
 
       # RUN OS SETUP SCRIPTS
+      
+      - name: Load kernel modules for Docker commands in OS setup scripts in unbooted container
+        run: |
+          sudo modprobe -a ip_tables iptable_filter iptable_nat
 
       - name: Run OS setup scripts in a booted container
         uses: ethanjli/pinspawn-action@v0.1.4
