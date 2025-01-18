@@ -35,8 +35,6 @@ jobs:
       matrix:
         variant:
           - fairscope-latest
-        arch:
-          - arm64
         base_variant_name:
           - lite
     permissions:
@@ -51,5 +49,5 @@ jobs:
       base_image_variant: ${{ matrix.base_variant_name }}
       base_release_date: 2024-10-28
       base_file_release_date: 2024-10-22
-      arch: ${{ matrix.arch }}
+      arch: arm64
       variant: ${{ matrix.variant }}
