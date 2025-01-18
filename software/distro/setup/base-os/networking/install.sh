@@ -34,7 +34,10 @@ fi
 # This should also update the hostapd config (maybe via a new template variable)
 if command -v raspi-config &>/dev/null; then
   sudo raspi-config nonint do_wifi_country US
-  sudo rfkill unblock wifi
+  if ! sudo rfkill unblock wifi; then
+    # FIXME: add a systemd service to run rfkill unblock wifi upon boot?
+    echo "Warning: rfkill command failed, so Wi-Fi might not work on first boot!"
+  fi
 else
   echo "Warning: raspi-config is not available, so we can't set the wifi country!"
 fi
