@@ -200,7 +200,9 @@ The standard PlanktoScope OS adds the following systemd services (beyond what is
 
 - `autohotspot` (which in turn launches `hostapd`): a PlanktoScope-specific daemon for automatically checking the presence of known Wi-Fi networks, automatically connecting to any known Wi-Fi networks, and falling back to creating a Wi-Fi hotspot when no known Wi-Fi networks are present.
 
-- `enable-interface-forwarding`: configures the Linux kernel firewall's IP packet filter rules to forward packets between the Raspberry Pi's network interfaces, to allow the Raspberry Pi to act as a network router.
+- `enable-interface-forwarding-between`: configures the Linux kernel firewall's IP packet filter rules to forward packets between the Raspberry Pi's network interfaces, to allow the Raspberry Pi to act as a network router.
+
+- `enable-interface-forwarding-inbound`: configures the Linux kernel firewall's IP packet filter rules to forward packets targeted at `192.168.4.1`, `192.168.5.1`, etc., all to `localhost`, so that the PlanktoScope can be accessed from a client device's web browser at any such static IP address regardless of which network interface the client device is actually connected to.
 
 - `dnsmasq`: for allowing computers connected to the PlanktoScope over a network to access the PlanktoScope using domain names defined on the PlanktoScope.
 
