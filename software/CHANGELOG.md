@@ -22,6 +22,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: backend) The old raspimjpeg-based imager has now been completely removed, following a deprecation in v2024.0.0-alpha.2.
 - (Application: GUI) Various elements of the Node-RED dashboard which were deprecated in v2024.0.0 and in v2024.0.0-alpha.2 have now been removed, including the old USB backup functionality.
 
+### Fixed
+
+- (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
+
 ## v2024.0.0 - 2024-12-25
 
 ### Added
