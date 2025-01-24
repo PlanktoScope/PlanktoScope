@@ -16,7 +16,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
-- (System: networking) Network management is now based on NetworkManager, in preparation for an upgrade to Raspberry Pi OS 12 (bookworm)
+- (System: networking) Autohotspot network management is now based on NetworkManager, in preparation for an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images.
 
 ### Removed
 

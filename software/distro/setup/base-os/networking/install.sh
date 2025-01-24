@@ -7,12 +7,19 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Install dependencies
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-  firewalld dnsmasq hostapd avahi-utils
+  network-manager firewalld dnsmasq hostapd avahi-utils
+
+# Uninstall dhcpcd if we're on bullseye
+DISTRO_VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
+if [ "$DISTRO_VERSION_ID" -le 11 ]; then # Support Raspberry Pi OS 11 (bullseye)
+  sudo -E apt-get purge -y -o Dpkg::Progress-Fancy=0 \
+    dhcpcd5
+fi
 
 # By default hostapd.service is masked and enabled (which causes two symlinks to exist), which
 # prevents Forklift from being able to disable hostapd via a filesystem overlay. We override this by
 # manually removing those symlinks by default, since our autohotspot relies on hostapd being
-# unmaske and disabled.
+# unmasked and disabled.
 sudo systemctl unmask hostapd.service
 sudo systemctl disable hostapd.service
 
@@ -24,7 +31,7 @@ if sudo systemctl disable firewalld.service --now 2>/dev/null; then
     sudo systemctl restart docker
   fi
 else
-  # We can't stop it because we're not booted, so we don't need to stop it or restart Docker:
+  # We can't stop firewalld because we're not booted, so we don't need to stop it or restart Docker:
   sudo systemctl disable firewalld.service
 fi
 
