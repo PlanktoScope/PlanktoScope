@@ -8,6 +8,7 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 # Install dependencies
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   network-manager firewalld dnsmasq hostapd avahi-utils
+sudo systemctl enable NetworkManager.service
 
 # Uninstall dhcpcd if we're on bullseye
 DISTRO_VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
