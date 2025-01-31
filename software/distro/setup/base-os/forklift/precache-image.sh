@@ -13,7 +13,7 @@ fi
 crane="crane"
 if ! mkdir -p "$(dirname "$precached_image")" &>/dev/null; then
   sudo mkdir -p "$(dirname "$precached_image")"
-  crane="sudo crane"
+  crane="sudo -E crane"
 fi
 
 echo "Downloading $image to $precached_image..."
