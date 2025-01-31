@@ -14,29 +14,28 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 sudo cp "$config_files_root"/usr/lib/systemd/system/* /usr/lib/systemd/system/
 sudo cp "$config_files_root"/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
 
-# Make the stage store at /var/lib/forklift/stages available for non-root access in the current
-# (i.e. default) user's default Forklift workspace, both in the current boot and subsequent boots:
-local_stage_store="$HOME/.local/share/forklift/stages"
-mkdir -p "$local_stage_store"
+# Make the stage store at /var/lib/forklift/stages available for easy access in the root user's
+# default Forklift workspace, both in the current boot and subsequent boots (staged pallet bundles
+# must be created with root user ownership because NetworkManager requires its network connection
+# files to have root ownership; and because forklift's system administration operations belong in
+# the superuser security domain):
+sudo mkdir -p "/root/.local/share/forklift/stages"
 sudo mkdir -p /var/lib/forklift/stages
-# TODO: maybe we should instead make a new "forklift" group which owns everything in
-# /var/lib/forklift?
-sudo chown "$USER" /var/lib/forklift/stages
-sudo systemctl enable "bind-.local-share-forklift-stages@-home-$USER.service"
-if ! sudo systemctl start "bind-.local-share-forklift-stages@-home-$USER.service" 2>/dev/null; then
-  echo "Warning: the system's Forklift stage store is not mounted to $USER's Forklift stage store."
+sudo systemctl enable "bind-.local-share-forklift-stages@-root.service"
+if ! sudo systemctl start "bind-.local-share-forklift-stages@-root.service" 2>/dev/null; then
+  echo "Warning: the system's Forklift stage store is not mounted to the root user's Forklift stage store."
   echo "As long as you don't touch the Forklift stage store before the next boot, this is fine."
 fi
 
 # Clone & stage a local pallet
 pallet_path="$(cat "$config_files_root/forklift-pallet")"
 pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
-forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img "$pallet_path@$pallet_version"
-forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-reset next
+sudo forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img "$pallet_path@$pallet_version"
+sudo forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-reset next
 
 # Set up Forklift upgrade checks
 pallet_upgrade_version_query="$(cat "$config_files_root/forklift-pallet-upgrade-version-query")"
-forklift pallet set-upgrade-query "@$pallet_upgrade_version_query"
+sudo forklift pallet set-upgrade-query "@$pallet_upgrade_version_query"
 
 # Pre-download container images without Docker
 
@@ -51,28 +50,21 @@ container_platform="linux/$(
   dpkg --print-architecture | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~'
 )"
 export PATH="$tmp_bin:$PATH"
-forklift plt ls-img |
+sudo forklift plt ls-img |
   rush "$config_files_root/precache-image.sh" \
-    {} "$HOME/.cache/forklift/containers/docker-archives" "$container_platform"
+    {} "/root/.cache/forklift/containers/docker-archives" "$container_platform"
 
 echo "Preparing to load pre-downloaded container images..."
 "$config_files_root/ensure-docker.sh"
 
 echo "Loading pre-downloaded container images..."
-forklift plt ls-img |
+sudo forklift plt ls-img |
   rush "$config_files_root/load-precached-image.sh" \
-    {} "$HOME/.cache/forklift/containers/docker-archives"
+    {} "/root/.cache/forklift/containers/docker-archives"
 
 # Prepare to apply the local pallet
 
-# Note: the pi user will only be able to run `forklift stage plan` and `forklift stage cache-img`
-# without root permissions after a reboot, so we may need `sudo -E` here; I had tried running
-# `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
-# script here (even though it works after the script finishes, before rebooting):
-FORKLIFT="forklift --stage-store /var/lib/forklift/stages"
-if ! docker info 2>&1 >/dev/null; then
-  FORKLIFT="sudo -E forklift --stage-store /var/lib/forklift/stages"
-fi
+FORKLIFT="sudo forklift --stage-store /var/lib/forklift/stages"
 
 # Make a temporary file which may be required by some Docker Compose apps in the pallet, just so
 # that those Compose apps can be successfully created (this is a rather dirty hack/workaround):
@@ -80,16 +72,16 @@ echo "setup" | sudo tee /run/machine-name
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
-if ! $FORKLIFT stage apply; then
+if ! "$FORKLIFT" stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
-  $FORKLIFT stage set-next --no-cache-img next
-  if ! $FORKLIFT stage apply; then
+  "$FORKLIFT" stage set-next --no-cache-img next
+  if ! "$FORKLIFT" stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
-    $FORKLIFT stage set-next --no-cache-img next
+    "$FORKLIFT" stage set-next --no-cache-img next
     echo "Checking the plan for applying the staged pallet..."
-    $FORKLIFT stage plan
+    "$FORKLIFT" stage plan
   fi
 fi
 

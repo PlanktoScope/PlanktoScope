@@ -17,6 +17,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
 - (System: networking) Autohotspot network management is now based on NetworkManager, in preparation for an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images.
+- (Breaking change; System: administration) Forklift now must be run as the root user (i.e. `sudo forklift` rather than `forklift`), and by default Docker also must be run as the root user (i.e. `sudo docker` rather than `docker`). This is for security reasons, and because Forklift-managed files are required by NetworkManager to have root ownership.
 
 ### Removed
 

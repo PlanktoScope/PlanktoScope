@@ -29,8 +29,7 @@ ExecStart=bash -c -e '\
 '
 # Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
 # because it just removes the mounts from the namespace while writes to open files can continue;
-# however, this is probably acceptable behavior for the overlay at shutdown, because any writes
-# will be in our upperdir anyways.
+# however, we have a read-only mount so it doesn't matter
 ExecStopPost=umount -l $TARGET
 
 

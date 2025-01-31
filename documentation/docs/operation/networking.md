@@ -92,15 +92,15 @@ Because by default your PlanktoScope is configured to act as a router so that it
 You can work around this unfortunate behavior of your computer's operating system by disabling a setting in the PlanktoScope's networking configuration so that the PlanktoScope no longer advertises itself as a router with internet access; note that doing so will prevent the PlanktoScope from being able to share its own internet access with connected devices as long as this setting is disabled. To disable this setting, run the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default) and then restart the PlanktoScope:
 
 ```
-forklift pallet disable-deployment-feature host/networking/interface-forwarding planktoscope-dhcp-default-route
-forklift pallet stage --no-cache-img
+sudo forklift pallet disable-deployment-feature host/networking/interface-forwarding planktoscope-dhcp-default-route
+sudo forklift pallet stage --no-cache-img
 ```
 
 To revert this setting back to the default behavior (which is for the PlanktoScope to advertise itself as a router with internet access, so that the PlanktoScope can share its internet access with all connected devices), run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
-forklift pallet enable-deployment-feature host/networking/interface-forwarding planktoscope-dhcp-default-route
-forklift pallet stage --no-cache-img
+sudo forklift pallet enable-deployment-feature host/networking/interface-forwarding planktoscope-dhcp-default-route
+sudo forklift pallet stage --no-cache-img
 ```
 
 ## Secure your PlanktoScope
@@ -118,15 +118,15 @@ To revert your changes back to the default password, we recommend deleting the f
 To disable the PlanktoScope's Wi-Fi hotspot, run the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default) and then restart the PlanktoScope:
 
 ```
-forklift pallet disable-deployment host/networking/autohotspot
-forklift pallet stage --no-cache-img
+sudo forklift pallet disable-deployment host/networking/autohotspot
+sudo forklift pallet stage --no-cache-img
 ```
 
 To revert your changes back to the default behavior (which is for the PlanktoScope to make its own Wi-Fi hotspot when it doesn't detect any known existing Wi-Fi networks to connect to), run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
-forklift pallet enable-deployment host/networking/autohotspot
-forklift pallet stage --no-cache-img
+sudo forklift pallet enable-deployment host/networking/autohotspot
+sudo forklift pallet stage --no-cache-img
 ```
 
 !!! warning
