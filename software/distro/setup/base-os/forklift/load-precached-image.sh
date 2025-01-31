@@ -6,4 +6,4 @@ precached_image="$cache_path/$image.tar"
 
 echo "Loading $image from $precached_image..."
 sudo docker image load --quiet --input "$precached_image"
-rm "$precached_image"
+sudo rm "$precached_image"
