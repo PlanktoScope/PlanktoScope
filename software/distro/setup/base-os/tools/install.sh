@@ -15,4 +15,4 @@ sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
 
 # Install some tools for troubleshooting networking stuff
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-  net-tools bind9-dnsutils netcat nmap
+  net-tools bind9-dnsutils netcat-openbsd nmap
