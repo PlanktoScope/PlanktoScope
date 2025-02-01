@@ -12,6 +12,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
+- (System: networking) Firewalld is now enabled, and default firewall policies are provided (via Forklift) for the public and nm-shared firewall zones.
 
 ### Changed
 
