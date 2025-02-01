@@ -17,13 +17,6 @@ if [ "$DISTRO_VERSION_ID" -le 11 ]; then # Support Raspberry Pi OS 11 (bullseye)
     dhcpcd5
 fi
 
-# By default hostapd.service is masked and enabled (which causes two symlinks to exist), which
-# prevents Forklift from being able to disable hostapd via a filesystem overlay. We override this by
-# manually removing those symlinks by default, since our autohotspot relies on hostapd being
-# unmasked and disabled.
-sudo systemctl unmask hostapd.service
-sudo systemctl disable hostapd.service
-
 # Set the wifi country
 # FIXME: instead have the user set the wifi country via a first-launch setup wizard, and do it
 # without using raspi-config. It should also be updated if the user changes the wifi country.
