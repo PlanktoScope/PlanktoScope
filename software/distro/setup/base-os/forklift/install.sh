@@ -21,8 +21,8 @@ sudo cp "$config_files_root"/usr/lib/systemd/system-preset/* /usr/lib/systemd/sy
 # the superuser security domain):
 sudo mkdir -p "/root/.local/share/forklift/stages"
 sudo mkdir -p /var/lib/forklift/stages
-sudo systemctl enable "bind-.local-share-forklift-stages@-root.service"
-if ! sudo systemctl start "bind-.local-share-forklift-stages@-root.service" 2>/dev/null; then
+sudo systemctl enable "bind-.local-share-forklift-stages@root.service"
+if ! sudo systemctl start "bind-.local-share-forklift-stages@root.service" 2>/dev/null; then
   echo "Warning: the system's Forklift stage store is not mounted to the root user's Forklift stage store."
   echo "As long as you don't touch the Forklift stage store before the next boot, this is fine."
 fi
