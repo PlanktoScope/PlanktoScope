@@ -7,7 +7,7 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Install dependencies
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-  network-manager firewalld dnsmasq hostapd avahi-utils
+  network-manager firewalld dnsmasq-base hostapd avahi-utils
 sudo systemctl enable NetworkManager.service
 
 # Uninstall dhcpcd if we're on bullseye
