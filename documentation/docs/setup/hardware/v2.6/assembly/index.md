@@ -77,6 +77,21 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * Put this assembly on the side.
 
+## Step 3: Assemble the magnets
+
+:hammer_and_wrench:
+[Tooling](#toolings-hammerandwrench): 
+- [ ] Small manual press or mallet
+
+
+
+
+## Step 4: Assemble inserts
+
+:hammer_and_wrench:
+[Tooling](#toolings-hammerandwrench): 
+- [ ] Small manual press or mallet
+
 ## Step 3: Assemble the pump module
 
 :hammer_and_wrench:

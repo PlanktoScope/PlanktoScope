@@ -51,7 +51,7 @@ For a different thickness you’ll need to adapt it.
 ![Dogbone example.png](images/Dogbone_example.png)
 
 
-#### Reference Plate
+### Reference Plate
 
 In order to calibrate correctly your CNC machine you'll find here the .dxf file and the expected dimensions of a reference plate. If your parameters allowed you to reach these dimensions, you can report the adaptation on the [PlanktoScope_CaseV2.6.dxf] and launch the milling with more insurance.
 
@@ -108,9 +108,9 @@ We will also guide you through the assembly of side components to complete the P
 >[!NOTE]
 > Depending on stock availability, FairScope can also be considered as a supplier for the fully assembled PlanktoScope HAT 1.3.
 
-### Manufacturing Information
+### PCB Manufacturing Information
 
-#### Manufacturing Files
+#### PCB Manufacturing Files
 
 | Files                                                                                                                | Description                                                                                                                   |
 |----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
