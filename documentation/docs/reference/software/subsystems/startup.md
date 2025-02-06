@@ -42,15 +42,19 @@ For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.tar
 
 - `assemble-hosts-templated.service` and `assemble-hosts.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `dnsmasq.service` and `network-pre.target`.
 
-- `enable-interface-forwarding.service` runs before `network-online.target`.
+- `enable-interface-forwarding-between.service` runs before `network-online.target`.
+
+- `enable-interface-forwarding-inbound.service` runs before `network-online.target`.
+
+- `report-mac-addresses.service` runs before `network-online.target`. It is re-run every two minutes by `report-mac-addresses.timer`.
 
 - `assemble-hostapd-config-templated.service` and `assemble-hostapd-config.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `hostapd.service`.
 
 - The `hostapd` daemon is manually started and stopped by `autohotspot.service`.
 
-- `autohotspot.service` runs after `forklift-apply.service` and `enable-interface-forwarding.service` have started (so that the PlanktoScope's web browser-based user interfaces are ready for connections before the PlanktoScope's Wi-Fi hotspot is started) and before network connectivity is considered to have been established. It is re-run every one or two minutes by `autohotspot.timer`.
+- `autohotspot.service` runs after `forklift-apply.service` and `enable-interface-forwarding-between.service` and ``enable-interface-forwarding-inbound.service`` have started (so that the PlanktoScope's web browser-based user interfaces are ready for connections before the PlanktoScope's Wi-Fi hotspot is started) and before network connectivity is considered to have been established. It is re-run every two minutes by `autohotspot.timer`.
 
-- `planktoscope-mdns-alias@pkscope.service` and `planktoscopemdns-alias@planktoscope.service` configure the Avahi daemon (provided by the Raspberry Pi OS) to also resolve mDNS names `pkscope.local` and `planktoscope.local`, respectively, to an IP address (192.168.4.1) which is usable by devices connected to the PlanktoScope by a direct connection between their respective network interfaces.
+- `planktoscope-mdns-alias@pkscope.service` and `planktoscopemdns-alias@planktoscope.service` run after `avahi-daemon.service`.
 
 ### User interface
 
@@ -62,4 +66,4 @@ For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.tar
 
 ### PlanktoScope-specific hardware abstraction
 
-- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquitto) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
+- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquito) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)

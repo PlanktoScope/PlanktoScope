@@ -14,7 +14,7 @@ The design of the PlanktoScope's hardware has been evolving to fix usability iss
 
 This was the first publicly released version of the PlanktoScope hardware. The electronic components of this design are all available from commercial off-the-shelf sources, using an Adafruit Stepper Motor HAT to control various actuators and a Yahboom RGB Cooling HAT to cool the PlanktoScope's embedded Raspberry Pi 4 computer. The mechanical structure was designed for fabrication using a laser cutter. This hardware version has some design flaws, such as providing no way to replace the Raspberry Pi's micro-SD card without partially disassembling the PlanktoScope; these problems have been fixed in later versions of the PlanktoScope hardware.
 
-This version of the PlanktoScope hardware is the only version which has been widely replicated by independent makers so far. Currently, its manufacturing documentation is provided by [an older documentation site](https://planktoscope.readthedocs.io) which is no longer maintained, and it has not yet been migrated into our current documentation site. Additionally, this hardware design uses a peristaltic pump which is no longer commercially available, so anyone making an assembly kit for this version will have to identify a different pump to use as a substitute.
+This version of the PlanktoScope hardware is the only version which has been widely replicated by independent makers so far. Note that this hardware design specifies a peristaltic pump which is no longer commercially available, so anyone making an assembly kit for this version will have to identify a different pump to use as a substitute.
 
 ### Hardware v2.5
 

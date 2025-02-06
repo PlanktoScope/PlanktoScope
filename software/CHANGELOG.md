@@ -7,6 +7,80 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Added
+
+- (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
+
+### Changed
+
+- (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
+
+### Removed
+
+- (Application: backend) The old raspimjpeg-based imager has now been completely removed, following a deprecation in v2024.0.0-alpha.2.
+- (Application: GUI) Various elements of the Node-RED dashboard which were deprecated in v2024.0.0 and in v2024.0.0-alpha.2 have now been removed, including the old USB backup functionality.
+
+### Fixed
+
+- (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
+
+## v2024.0.0 - 2024-12-25
+
+### Added
+
+- (Application: Documentation) The embedded documentation site now includes a PDF of a draft of v4 of the [protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe).
+
+### Removed
+
+- (Application: Documentation) The embedded documentation site no longer includes links or PDFs for [v2 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v1) and [v3 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v3).
+
+### Deprecated
+
+- (Application: GUI) The following elements of the Node-RED dashboard's "Optic Configuration" tab will be removed in a future release (probably the next major release): "objective lens aperture", "magnification", "pixel resolution", "smallest cells to explore", "biggest cells to explore". This is because these fields are currently not very useful/reliable.
+- (Application: GUI) The following elements of the Node-RED dashboard's "Segmentation" tab will be removed in a future release (probably the next major release): "area chart". This is because the area chart is often buggy and is not very informative.
+- (Application: GUI) The following elements of the Node-RED dashboard's "System Monitoring" tab will be removed in a future release (probably the next major release): "GPS status", "navigation", "USB backup". Note that v2024.0.0-alpha.2 already deprecated "USB backup" panel for removal in the next major release. The other deprecations are because most users don't have a working GPS module, and because the navigation panel is not very useful.
+- (Application: GUI) The Node-RED dashboard's "WiFi" tab will be removed in a future release (probably the next major release). This is because its left panel is never accurate, and its right panel only partially works, and the actions which can be performed in this tab can take the PlanktoScope into a state which can only be recovered by advanced users or by re-flashing the PlanktoScope's SD card. After removal of this tab, connections to existing Wi-Fi networks should instead be configured by editing `/etc/wpa_supplicant/wpa_supplicant.conf`, or (in the future) by some other command-line interface and/or graphical user interface.
+
+### Fixed
+
+- (Application: backend) The segmenter now correctly sets the `img_rank` metadata field of the EcoTaxa export to `1`, instead of setting it to an incrementing index which makes exports un-importable by EcoTaxa for datasets with more than ~32,000 objects.
+
+## v2024.0.0-beta.3 - 2024-11-30
+
+### Added
+
+- (Application: Documentation) The embedded documentation site now includes [v3 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v3)
+- (Application: GUI) The landing page now links to v3 of the protocols.io protocol for PlanktoScope operation.
+- (Application: GUI) The landing page now shows a warning/info message for users accessing the landing page using any domain name other than `pkscope-{machine-name}.local`, that such a hostname will not work for accessing the PlanktoScope via Wi-Fi router or Ethernet router, and that `pkscope-{machine-name}.local` must be used in such situations.
+
+### Removed
+
+- (Application: Documentation) The embedded documentation site no longer includes [v1 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v1)
+- (Application: GUI) The landing page no longer links to v1 of the protocols.io protocol for PlanktoScope operation.
+
+### Fixed
+
+- (Breaking change; Application: backend) The segmenter's previously incorrect method for filtering segmented objects by size has now been corrected to filter object sizes by filled area rather than bounding box area, and directly using the mesh size as the threshold for equivalent spherical diameter (ESD) instead of calculating a fictional ESD.
+- (System: networking) A regression in handling of the mDNS domain name `pkscope-{machine-name}.local` (likely introduced by v2024.0.0-beta.0) has been fixed, so that now that domain name is resolved again.
+
+## v2024.0.0-beta.2 - 2024-09-19
+
+### Added
+
+- (System: administration) Added a Forklift-deployed script `/usr/libexec/prepare-custom-image` (which must be invoked with `sudo`) to reset machine-specific files and re-enable partition resizing and shut down the Raspberry Pi, in order to automate common tasks needed for making a custom SD card image from a booted Raspberry Pi running the PlanktoScope OS. Support for this script should be considered experimental - this was mainly added as a workaround to a developer-experience regression introduced after v2023.9.0, in which an additional step is now needed after making an SD card image from a previously-booted SD card, or else the image will result in an error message loop ("Partition #2 contains a ext4 signature") during boot and will be unable to resize the image above 8 GB. That step is now included by the added script. Creation of custom SD card images from booted PlanktoScope OS images should still be considered an experimental workflow which may experience breaking changes to the developer experience at any time.
+
+### Changed
+
+- (Application: GUI) Changed the default ISO value from 100 to 150.
+
+### Fixed
+
+- (Application: backend) Changed the hardware controller's libcamera-based camera controller to initialize its default image gain based on camera sensor type in order to match the GUI's default ISO value of 150, instead of initializing default image gain to 1.0 regardless of camera sensor type.
+- (Breaking change; Application: backend) Changed the segmenter to include the acquisition ID in the filename of the metadata TSV file included with the EcoTaxa export ZIP archive; this is necessary to allow efficient bulk importing of such ZIP archives into EcoTaxa, which was previously prevented by the use of the same `ecotaxa_export.tsv` filename for all metadata TSV files.
+- (Application: GUI) The Grafana server's CPU allowance should now be limited to one core, in an attempt to prevent it from starving other programs of CPU time shortly after booting up under certain situations.
+
 ## v2024.0.0-beta.1 - 2024-06-24
 
 ### Added
@@ -41,7 +115,6 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Deprecated
 
-- (System: networking)
 - (System) 32-bit versions of PlanktoScope OS (which can be set up on a 32-bit version of Raspberry Pi OS using the OS setup scripts) are no longer officially supported by the project, but they will continue to work for v2024.0.0 of PlanktoScope OS.
 
 ### Removed
@@ -109,7 +182,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: networking) Added support to share internet access and browser application access over additional network interfaces: a second Wi-Fi module, an additional Ethernet adapter, and a USB networking interface (made by plugging a phone to the Raspberry Pi in USB tethering mode).
 - (Application: GUI) The "System Monitoring" page now shows the current system time on the Raspberry Pi and the current time in the web browser of the client device.
-- (Application: GUI) The "System Monitoring" page now detects when the Raspberry Pi's system time is very different from the web browser's time, and shows a message and a buttom to change the Raspberry Pi's system time to match the web browser's time.
+- (Application: GUI) The "System Monitoring" page now detects when the Raspberry Pi's system time is very different from the web browser's time, and shows a message and a button to change the Raspberry Pi's system time to match the web browser's time.
 - (Application: GUI) The "System Monitoring" page's system metrics panel is now collapsible, and it now includes an expandable "Detailed History" subsection to view additional information.
 - (System: administration) Added Dozzle as a viewer for Docker container logs.
 - (System: networking) Added `lynx` as an alternative terminal web browser to `w3m` for trying to work through captive portals on the Cockpit terminal.

@@ -186,7 +186,7 @@ The `on` command turns on the sample illumination LED. For example:
 
 ```json
 {
-  "action": "on"
+  "action": "on",
   "led": "1"
 }
 ```

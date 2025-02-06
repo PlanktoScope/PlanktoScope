@@ -56,13 +56,6 @@
         "info": ""
     },
     {
-        "id": "f21ba04.c26266",
-        "type": "tab",
-        "label": "WIFI Management",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "9a22e67a.378818",
         "type": "tab",
         "label": "MQTT Receive",
@@ -162,16 +155,6 @@
         "env": [],
         "meta": {},
         "color": "#DDAA99"
-    },
-    {
-        "id": "833bc5bb.217ba8",
-        "type": "ui_group",
-        "name": "Preview",
-        "tab": "181bb236.1e94be",
-        "order": 1,
-        "disp": true,
-        "width": 18,
-        "collapse": false
     },
     {
         "id": "3a6bb13f.c9703e",
@@ -546,16 +529,6 @@
         "collapse": false
     },
     {
-        "id": "3ca00bf9.e5cac4",
-        "type": "ui_group",
-        "name": "Navigation",
-        "tab": "d9cd733b.ab73d",
-        "order": 7,
-        "disp": true,
-        "width": 6,
-        "collapse": false
-    },
-    {
         "id": "8dc3722c.06efa8",
         "type": "mqtt-broker",
         "name": "",
@@ -644,56 +617,6 @@
         "collapse": false
     },
     {
-        "id": "52d1b77.28369c8",
-        "type": "ui_group",
-        "name": "USB Backup",
-        "tab": "d9cd733b.ab73d",
-        "order": 6,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "a7d64879.38298",
-        "type": "ui_group",
-        "name": "Logs",
-        "tab": "2489e51c.eed77a",
-        "order": 1,
-        "disp": true,
-        "width": "12",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "9e409235.73cd7",
-        "type": "ui_group",
-        "name": "Add a new network",
-        "tab": "1b49ae0f.602d6a",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "919923a3.d10868",
-        "type": "ui_group",
-        "name": "Current Connection",
-        "tab": "1b49ae0f.602d6a",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "1b49ae0f.602d6a",
-        "type": "ui_tab",
-        "name": "Wifi",
-        "icon": "wifi",
-        "order": 8,
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "2489e51c.eed77a",
         "type": "ui_tab",
         "name": "Administration",
@@ -749,16 +672,6 @@
         "order": 5,
         "width": 10,
         "height": 1
-    },
-    {
-        "id": "cfe2288f.a8862",
-        "type": "ui_group",
-        "name": "GPS Status",
-        "tab": "d9cd733b.ab73d",
-        "order": 8,
-        "disp": true,
-        "width": "6",
-        "collapse": false
     },
     {
         "id": "72a9216.2ff48e",
@@ -891,6 +804,27 @@
         "order": 2,
         "width": 1,
         "height": 1
+    },
+    {
+        "id": "833bc5bb.217ba8",
+        "type": "ui_group",
+        "name": "Preview",
+        "tab": "181bb236.1e94be",
+        "order": 1,
+        "disp": true,
+        "width": 18,
+        "collapse": false
+    },
+    {
+        "id": "a7d64879.38298",
+        "type": "ui_group",
+        "name": "Logs",
+        "tab": "2489e51c.eed77a",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "6465bdd5.15eb8c",
@@ -2800,7 +2734,7 @@
         "type": "ui_text_input",
         "z": "b771c342.49603",
         "name": "sample_dilution_factor",
-        "label": "Dilution Factor",
+        "label": "Concentration Factor",
         "tooltip": "0.5 if diluted by two; 2 if concentrated by a factor 2",
         "group": "3e1ba03d.f01d8",
         "order": 13,
@@ -3136,6 +3070,31 @@
         ]
     },
     {
+        "id": "577be9c22c739ca0",
+        "type": "inject",
+        "z": "b771c342.49603",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "58de1340.3cc354"
+            ]
+        ]
+    },
+    {
         "id": "6a84252a.d52a0c",
         "type": "ui_template",
         "z": "bccd1f23.87219",
@@ -3358,125 +3317,6 @@
             [
                 "3cb96380.e575ec"
             ]
-        ]
-    },
-    {
-        "id": "9b515beb.4aea48",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "Magnification",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Magnification : X\n    <span id=\"obj_magnification\" ng-bind-html=\"msg.payload\">\n    </span>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1330,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8038414a.34461",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "Calculate optics",
-        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\n\nreturn [{payload: acq_fnumber_objective}, {payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}];",
-        "outputs": 5,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 120,
-        "wires": [
-            [
-                "335a730b9a3830ff"
-            ],
-            [
-                "9b515beb.4aea48"
-            ],
-            [
-                "3d2360ad.e41e7"
-            ],
-            [
-                "8e66977b.9166a8"
-            ],
-            [
-                "26b32f2c.c64fc"
-            ]
-        ],
-        "inputLabels": [
-            "acq_fnumber_objective"
-        ],
-        "outputLabels": [
-            "acq_magnification",
-            "process_pixel",
-            "sug_min",
-            "sug_max",
-            ""
-        ]
-    },
-    {
-        "id": "3d2360ad.e41e7",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "process_pixel",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Pixel resolution :\n    <span id=\"process_pixel\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1340,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8e66977b.9166a8",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "min_size",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Smallest cells to explore :\n    <span id=\"min_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1320,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "26b32f2c.c64fc",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "max_size",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Biggest cells to explore :\n    <span id=\"max_size\" ng-bind-html=\"msg.payload\"></span>\n    μm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1320,
-        "y": 200,
-        "wires": [
-            []
         ]
     },
     {
@@ -3871,23 +3711,6 @@
         "wires": [
             [
                 "bdc8ce57.de1f08"
-            ]
-        ]
-    },
-    {
-        "id": "cfc783d7.d6ceb",
-        "type": "link in",
-        "z": "bccd1f23.87219",
-        "name": "Optics recalculation",
-        "links": [
-            "559a8085.1d6b9",
-            "5d5ad36d2c50dcc2"
-        ],
-        "x": 915,
-        "y": 120,
-        "wires": [
-            [
-                "8038414a.34461"
             ]
         ]
     },
@@ -4412,7 +4235,7 @@
         "id": "d8d006bf.2947f",
         "type": "inject",
         "z": "bccd1f23.87219",
-        "name": "Default: ISO 100",
+        "name": "Default: ISO 150",
         "props": [
             {
                 "p": "payload"
@@ -4423,7 +4246,7 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "100",
+        "payload": "150",
         "payloadType": "num",
         "x": 130,
         "y": 840,
@@ -4586,26 +4409,6 @@
             [
                 "df8a7667c9d133b1"
             ]
-        ]
-    },
-    {
-        "id": "335a730b9a3830ff",
-        "type": "ui_template",
-        "z": "bccd1f23.87219",
-        "group": "4248342d.e55fac",
-        "name": "Lens",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "format": "<div>\n    Objective lens aperture: \n    <span id=\"obj_aperture\" ng-bind-html=\"msg.payload\">\n    </span>mm\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 1310,
-        "y": 40,
-        "wires": [
-            []
         ]
     },
     {
@@ -5790,8 +5593,7 @@
         "name": "Camera Name",
         "links": [
             "30067f35.532f2",
-            "572a6daa.6004c4",
-            "cfc783d7.d6ceb"
+            "572a6daa.6004c4"
         ],
         "x": 965,
         "y": 780,
@@ -6162,9 +5964,7 @@
             [
                 "8f3788f6.ddcf98"
             ],
-            [
-                "50ce901f.b5034"
-            ]
+            []
         ]
     },
     {
@@ -6210,24 +6010,6 @@
         ]
     },
     {
-        "id": "50ce901f.b5034",
-        "type": "function",
-        "z": "cb95299c.2817c8",
-        "name": "ex : area",
-        "func": "// Payload looks like this:\n// {'name': '01_13_28_232066_0',\n//  'metadata': {\n//      'label': 0, 'width': 29, 'height': 80, ....\n\nmsg.payload=msg.payload.metadata.area_exc\nmsg.topic=\"area\"\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 800,
-        "y": 920,
-        "wires": [
-            [
-                "458cd82e.03d258"
-            ]
-        ]
-    },
-    {
         "id": "a4f0f0d1.3aca88",
         "type": "ui_toast",
         "z": "cb95299c.2817c8",
@@ -6244,48 +6026,6 @@
         "x": 1340,
         "y": 680,
         "wires": []
-    },
-    {
-        "id": "458cd82e.03d258",
-        "type": "ui_chart",
-        "z": "cb95299c.2817c8",
-        "name": "Area chart",
-        "group": "46be9c86.dea684",
-        "order": 9,
-        "width": 10,
-        "height": 6,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "Objects area will be shown here once the segmentation is started",
-        "dot": true,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "1000",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": true,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 1330,
-        "y": 920,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "49af3d24.1799e4",
@@ -6409,7 +6149,6 @@
         "y": 880,
         "wires": [
             [
-                "ac439738.28bc18",
                 "4f3f7c4a.cb21c4"
             ]
         ]
@@ -6461,28 +6200,9 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 1340,
         "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "857e90c1.cd25b",
-        "type": "ui_template",
-        "z": "cb95299c.2817c8",
-        "group": "46be9c86.dea684",
-        "name": "Area chart",
-        "order": 8,
-        "width": 0,
-        "height": 0,
-        "format": "<div><center><h2>Area chart</h2></center></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 1330,
-        "y": 880,
         "wires": [
             []
         ]
@@ -6908,24 +6628,6 @@
         ]
     },
     {
-        "id": "ac439738.28bc18",
-        "type": "function",
-        "z": "cb95299c.2817c8",
-        "name": "chart init",
-        "func": "obj=[{\"series\": [],\"data\": [],\"labels\": []}]\nmsg.payload = obj\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 980,
-        "y": 880,
-        "wires": [
-            [
-                "458cd82e.03d258"
-            ]
-        ]
-    },
-    {
         "id": "4f3f7c4a.cb21c4",
         "type": "change",
         "z": "cb95299c.2817c8",
@@ -6965,8 +6667,7 @@
         "y": 840,
         "wires": [
             [
-                "4f3f7c4a.cb21c4",
-                "ac439738.28bc18"
+                "4f3f7c4a.cb21c4"
             ]
         ]
     },
@@ -7682,39 +7383,6 @@
         ]
     },
     {
-        "id": "8485d05.444903",
-        "type": "ui_switch",
-        "z": "1371dec5.76e671",
-        "name": "fan_state",
-        "label": "Fan",
-        "tooltip": "",
-        "group": "3ca00bf9.e5cac4",
-        "order": 2,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "",
-        "topicType": "str",
-        "style": "",
-        "onvalue": "on",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "off",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "animate": true,
-        "x": 880,
-        "y": 40,
-        "wires": [
-            [
-                "7fb13a4a53b612a0"
-            ]
-        ]
-    },
-    {
         "id": "2549f778.4eb828",
         "type": "python3-function",
         "z": "1371dec5.76e671",
@@ -7805,7 +7473,7 @@
         "y": 60,
         "wires": [
             [
-                "8485d05.444903"
+                "7fb13a4a53b612a0"
             ]
         ]
     },
@@ -7832,7 +7500,7 @@
         "y": 20,
         "wires": [
             [
-                "8485d05.444903"
+                "7fb13a4a53b612a0"
             ]
         ]
     },
@@ -8093,469 +7761,6 @@
         ]
     },
     {
-        "id": "f344dc9e.3c9278",
-        "type": "ui_button",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "3ca00bf9.e5cac4",
-        "order": 1,
-        "width": 4,
-        "height": 1,
-        "passthru": false,
-        "label": "Home",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "home",
-        "payload": "{\"tab\":\"Home\"}",
-        "payloadType": "json",
-        "topic": "",
-        "x": 430,
-        "y": 780,
-        "wires": [
-            [
-                "5f94b366.e4d3a4"
-            ]
-        ]
-    },
-    {
-        "id": "5f94b366.e4d3a4",
-        "type": "ui_ui_control",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "events": "change",
-        "x": 580,
-        "y": 780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f30bf784.90d58",
-        "type": "ui_dropdown",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "label": "",
-        "tooltip": "",
-        "place": "Choose USB device",
-        "group": "52d1b77.28369c8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "multiple": false,
-        "options": [
-            {
-                "label": "",
-                "value": "No Drive Detected",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "device_path",
-        "x": 840,
-        "y": 840,
-        "wires": [
-            [
-                "d1b9fed3.f3ead8"
-            ]
-        ]
-    },
-    {
-        "id": "fe29acc2.c25d18",
-        "type": "ui_button",
-        "z": "1371dec5.76e671",
-        "name": "Detect drive",
-        "group": "52d1b77.28369c8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Detect drive",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "fa-usb fa-2x",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 150,
-        "y": 840,
-        "wires": [
-            [
-                "4c00cd96.6b2f6c"
-            ]
-        ]
-    },
-    {
-        "id": "4c00cd96.6b2f6c",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "lsblk --bytes --json --paths --output-all",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "detect drive",
-        "x": 330,
-        "y": 840,
-        "wires": [
-            [
-                "2dc1e43d.cd3d64"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "2dc1e43d.cd3d64",
-        "type": "json",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 490,
-        "y": 840,
-        "wires": [
-            [
-                "6b730649.09351"
-            ]
-        ]
-    },
-    {
-        "id": "6b730649.09351",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "options",
-                "pt": "msg",
-                "to": "[payload.blockdevices.children[mountpoint=null].name]",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 660,
-        "y": 840,
-        "wires": [
-            [
-                "f30bf784.90d58"
-            ]
-        ]
-    },
-    {
-        "id": "1ece8d8e.1008e2",
-        "type": "ui_button",
-        "z": "1371dec5.76e671",
-        "name": "Backup to USB",
-        "group": "52d1b77.28369c8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Backup to USB",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "archive",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "USB Backup",
-        "x": 160,
-        "y": 900,
-        "wires": [
-            [
-                "6b2fed77.883c0c"
-            ]
-        ]
-    },
-    {
-        "id": "d1b9fed3.f3ead8",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "set local",
-        "func": "flow.set(msg.topic,msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1000,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6b2fed77.883c0c",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "get device_path",
-        "func": "msg.payload = flow.get(\"device_path\");\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 340,
-        "y": 900,
-        "wires": [
-            [
-                "df4d4d6a.24787"
-            ]
-        ]
-    },
-    {
-        "id": "c74fe76.bcba718",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "sudo /home/pi/PlanktoScope/scripts/bash/usb_backup.sh",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "true",
-        "timer": "",
-        "oldrc": false,
-        "name": "usb_backup.sh",
-        "x": 720,
-        "y": 920,
-        "wires": [
-            [
-                "72f5e8d4.40fcb8"
-            ],
-            [],
-            [
-                "a2c36500.6d376"
-            ]
-        ]
-    },
-    {
-        "id": "df4d4d6a.24787",
-        "type": "switch",
-        "z": "1371dec5.76e671",
-        "name": "No Drive",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "No Drive Detected",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 520,
-        "y": 900,
-        "wires": [
-            [
-                "9a577caa.1535a"
-            ],
-            [
-                "c74fe76.bcba718",
-                "4997446.5176d3c"
-            ]
-        ]
-    },
-    {
-        "id": "9a577caa.1535a",
-        "type": "ui_toast",
-        "z": "1371dec5.76e671",
-        "position": "dialog",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 710,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "72f5e8d4.40fcb8",
-        "type": "ui_toast",
-        "z": "1371dec5.76e671",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 930,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "81a48376.27a66",
-        "type": "ui_toast",
-        "z": "1371dec5.76e671",
-        "position": "dialog",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 1110,
-        "y": 980,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a2c36500.6d376",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "return code",
-        "func": "switch (msg.payload.code){\ncase 0:\n    msg.payload = \"All files successfully copied, you can remove your usb drive!\";\n    break;\ncase 1:\n    msg.payload = \"There was an error!\";\n    break;\ncase 2:\n    msg.payload = \"Error: your device is already mounted\"\n    break;\ncase 3:\n    msg.payload = \"Error while mounting the device\"\n    break;\ncase 4:\n    msg.payload = \"Error: some files were corrupted during the copy!\"\n    break;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 940,
-        "wires": [
-            [
-                "81a48376.27a66"
-            ]
-        ]
-    },
-    {
-        "id": "dde0025c.3df9f",
-        "type": "ui_button",
-        "z": "1371dec5.76e671",
-        "name": "Purge local",
-        "group": "52d1b77.28369c8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Purge local data",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "#AD1625",
-        "icon": "delete_forever",
-        "payload": "THIS IS GOING TO WIPE ALL THE LOCAL DATA. MAKE SURE YOU DID A BACKUP TO AN USB DRIVE BEFOREHAND.",
-        "payloadType": "str",
-        "topic": "BE EXTRA CAREFUL",
-        "x": 150,
-        "y": 1020,
-        "wires": [
-            [
-                "ba72704a.8a38a"
-            ]
-        ]
-    },
-    {
-        "id": "ba72704a.8a38a",
-        "type": "ui_toast",
-        "z": "1371dec5.76e671",
-        "position": "dialog",
-        "displayTime": "5",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "GO BACK",
-        "cancel": "YES I'M SURE, I WANT TO PURGE THE DATA",
-        "raw": false,
-        "topic": "Data purge",
-        "name": "",
-        "x": 330,
-        "y": 1020,
-        "wires": [
-            [
-                "d80e6307.3aaf8"
-            ]
-        ]
-    },
-    {
-        "id": "d80e6307.3aaf8",
-        "type": "switch",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "YES I'M SURE",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 1020,
-        "wires": [
-            [
-                "4a8cb5d4.52e4bc"
-            ]
-        ]
-    },
-    {
-        "id": "4a8cb5d4.52e4bc",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "rm -rf /home/pi/data/img /home/pi/data/objects /home/pi/data/export",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "rm data",
-        "x": 700,
-        "y": 1020,
-        "wires": [
-            [
-                "c5b1e763.d1bba8"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "c5b1e763.d1bba8",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "error message",
-        "func": "// TODO revoir cette partie\n\nswitch (msg.rc.code){\ncase 0:\n    msg.payload = \"/home/pi/data was purged successfully!\";\n    break;\ndefault:\n    msg.payload = \"There was an error! The error is \" + msg.rc.message;\n    break;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 900,
-        "y": 1020,
-        "wires": [
-            [
-                "81a48376.27a66"
-            ]
-        ]
-    },
-    {
         "id": "6d09f428.930bcc",
         "type": "delay",
         "z": "1371dec5.76e671",
@@ -8577,296 +7782,6 @@
         "wires": [
             [
                 "24df077a.cb252"
-            ]
-        ]
-    },
-    {
-        "id": "4997446.5176d3c",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Backup starting message",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "\"The backup is starting now, please wait for the complete message before removing the drive\"",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 750,
-        "y": 980,
-        "wires": [
-            [
-                "81a48376.27a66"
-            ]
-        ]
-    },
-    {
-        "id": "6c7f0cc5.ea30d4",
-        "type": "gpsd",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "hostname": "localhost",
-        "port": "2947",
-        "tpv": true,
-        "sky": false,
-        "info": false,
-        "device": false,
-        "gst": false,
-        "att": false,
-        "x": 170,
-        "y": 1360,
-        "wires": [
-            [
-                "906072b1.42c7c8",
-                "cd3b05d6.5a3e2",
-                "9b29e0e2.475e08",
-                "96fefa8b.b7d538",
-                "49a98fe9.9450d8",
-                "f2a62d0.f5e135"
-            ]
-        ]
-    },
-    {
-        "id": "96bc0179.5c37",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 1,
-        "width": 6,
-        "height": 1,
-        "name": "GPS Status Display",
-        "label": "GPS Status:",
-        "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "x": 660,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "8c731f52.2b5f3",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 5,
-        "width": 3,
-        "height": 1,
-        "name": "Latitude",
-        "label": "Latitude",
-        "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
-        "layout": "col-center",
-        "x": 620,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "34e4b5ea.27b4a2",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 6,
-        "width": 3,
-        "height": 1,
-        "name": "Longitude",
-        "label": "Longitude",
-        "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
-        "layout": "col-center",
-        "x": 620,
-        "y": 1280,
-        "wires": []
-    },
-    {
-        "id": "906072b1.42c7c8",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "Convert DD to DMS",
-        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nmsg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 420,
-        "y": 1260,
-        "wires": [
-            [
-                "8c731f52.2b5f3",
-                "34e4b5ea.27b4a2"
-            ]
-        ]
-    },
-    {
-        "id": "4584c817.0be238",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "name": "Speed",
-        "label": "Speed",
-        "format": "{{msg.payload}} kts",
-        "layout": "col-center",
-        "x": 610,
-        "y": 1320,
-        "wires": []
-    },
-    {
-        "id": "cd3b05d6.5a3e2",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "name": "Direction",
-        "label": "Direction",
-        "format": "{{msg.payload.track}} °",
-        "layout": "col-center",
-        "x": 620,
-        "y": 1360,
-        "wires": []
-    },
-    {
-        "id": "9b29e0e2.475e08",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "GPS Mode",
-        "func": "switch (msg.payload.mode){\n case 1:msg.payload = \"No Fix\"; break\n case 2:msg.payload = \"2D Fix\"; break\n case 3:msg.payload = \"3D Fix\"; break\n default: msg.payload = \"No info\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 1200,
-        "wires": [
-            [
-                "96bc0179.5c37"
-            ]
-        ]
-    },
-    {
-        "id": "96fefa8b.b7d538",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "Speed conversion",
-        "func": "msg.payload = (0|msg.payload.speed) * 1.9438\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1320,
-        "wires": [
-            [
-                "4584c817.0be238"
-            ]
-        ]
-    },
-    {
-        "id": "49a98fe9.9450d8",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 2,
-        "width": 6,
-        "height": 1,
-        "name": "GPS UTC datetime",
-        "label": "GPS UTC datetime",
-        "format": "{{msg.payload.time}}",
-        "layout": "col-center",
-        "x": 650,
-        "y": 1400,
-        "wires": []
-    },
-    {
-        "id": "3c3f334e.d691ac",
-        "type": "ui_button",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "group": "cfe2288f.a8862",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Force local clock update",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "x": 670,
-        "y": 1480,
-        "wires": [
-            [
-                "c60030d4.317418"
-            ]
-        ]
-    },
-    {
-        "id": "c60030d4.317418",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "sudo hwclock -w",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 920,
-        "y": 1480,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "6d144078.508d9",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "cfe2288f.a8862",
-        "order": 2,
-        "width": 6,
-        "height": 1,
-        "name": "Local UTC datetime",
-        "label": "Local UTC datetime",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": "",
-        "color": "#000000",
-        "x": 660,
-        "y": 1440,
-        "wires": []
-    },
-    {
-        "id": "f2a62d0.f5e135",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "func": "msg.payload = new Date()\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 1440,
-        "wires": [
-            [
-                "6d144078.508d9"
             ]
         ]
     },
@@ -9158,7 +8073,7 @@
         "order": 1,
         "width": "0",
         "height": "0",
-        "format": "<div ng-if=\"drifted && !settingTime\">\n    <p style=\"margin-bottom: 1em;\">\n        The instrument's system time is different from your web browser's time by {{drift}}.\n        As a result, timestamps in your datasets will be incorrect.\n        <span ng-if=\"severelyDrifted\">Additionally, system metrics will not be recorded or shown correctly.</span>\n        <span ng-if=\"!severelyDrifted\">Additionally, you will see incorrectly-aligned graphs in the metrics below.</span>\n    </p>\n    <p style=\"margin-bottom: 1em;\">Please change the instrument's system time or your web browser's time to accurate values.</p>\n    <p style=\"margin-bottom: 1em;\">\n        <button class=\"md-raised md-button\" type=\"button\" ng-click=\"setTime()\" style=\"z-index: 1; padding: 1em;\">\n            <span>Change Instrument's System Time to Match Web Browser's Time</span>\n        </button>\n    </p>\n</div>\n\n<div ng-if=\"!showMetrics && !severelyDrifted\" style=\"width: 100%; height: 750px;\">\n    <p>Loading system metrics, please wait...</p>\n</div>\n\n<center ng-if=\"showMetrics && !severelyDrifted\">\n    <iframe src=\"/admin/grafana/d/host-summary/host-summary?orgId=1&amp;refresh=5s&amp;kiosk\" width=\"100%\" height=\"750px\" style=\"text-align: left;\">\n        <p style=\"margin-bottom: 1em;\">\n            Metrics dashboard not available yet. Please wait a bit and then press the button below:\n        </p>\n        <p style=\"margin-bottom: 1em;\">\n            <button class=\"md-raised md-button\" type=\"button\" ng-click=\"reloadMetricsDashboard()\" style=\"z-index: 1; padding: 1em;\">\n                <span>Reload metrics dashboard</span>\n            </button>\n        </p>\n        <p>\n            If the dashboard never appears, the Grafana metrics dashboard server\n            may not be running or working correctly, in which case you will need to\n            troubleshoot the reason for that. If the Grafana server is running, you can\n            <a href=\"/admin/dozzle/show?name=apps_grafana-server-1\" target=\"_blank\">view its logs</a>.\n        </p>\n    </iframe>\n</center>\n\n<script>\n    (function(scope) {\n        function duration(ms) {\n            let seconds = (ms / 1000).toFixed(1);\n            let minutes = (ms / (1000 * 60)).toFixed(1);\n            let hours = (ms / (1000 * 60 * 60)).toFixed(1);\n            let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);\n            let months = (ms / (1000 * 60 * 60 * 24 * 30)).toFixed(1);\n            let years = (ms / (1000 * 60 * 60 * 24 * 365)).toFixed(1);\n            if (seconds < 60) return seconds + \" seconds\";\n            else if (minutes < 60) return minutes + \" minutes\";\n            else if (hours < 24) return hours + \" hours\";\n            else if (days < 30) return days + \" days\";\n            else if (months < 12) return months + \" months\";\n            else return years + \" years\";\n        }\n        \n        scope.drifted = undefined;\n        scope.severelyDrifted = undefined;\n        scope.drift = undefined;\n        function determineDrift(scope, systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            const severeThreshold = 1000 * 60 * 4.5; // 30 sec below the Grafana dashboard's visualization interval\n            scope.drifted = drift >= threshold;\n            scope.severelyDrifted = drift >= severeThreshold;\n            if (!scope.drifted) {\n                return;\n            }\n            scope.drift = duration(drift);\n        }\n        \n        scope.showMetrics = false;\n        scope.loadingMetrics = false;\n        var metricsDelayCounter = 0;\n        const metricsDelayThreshold = 2;\n        function showMetrics(scope) {\n            // Show the metrics immediately if we already determined that there's no time drift\n            if (scope.drifted === false) {\n                scope.showMetrics = true;\n                scope.loadingMetrics = false;\n                metricsDelayCounter = 0;\n            }\n            if (!scope.showMetrics && !scope.loadingMetrics && scope.severelyDrifted === false) { // this only happens on initial page load\n                scope.showMetrics = true;\n            }\n            // Show the metrics after a delay after changing system time,\n            // to ensure that there's data for Grafana to render\n            // (otherwise the page must be refreshed)\n            if (scope.loadingMetrics) {\n                metricsDelayCounter++;\n            }\n            if (metricsDelayCounter >= metricsDelayThreshold) {\n                scope.showMetrics = true;\n                scope.loadingMetrics = false;\n                metricsDelayCounter = 0;\n            }\n        }\n        \n        scope.settingTime = false;\n        scope.setTime = function() {\n            scope.settingTime = true;\n            if (scope.severelyDrifted) { // we only need to reload the Grafana dashboard if time drift is so bad that it has no data to show\n                scope.showMetrics = false;\n            }\n            scope.loadingMetrics = true;\n            fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json; charset=UTF-8'\n                },\n                body: JSON.stringify({\n                    timestamp: (new Date()).getTime()\n                })\n            });\n        }\n        \n        scope.reloadMetricsDashboard = function() {\n            scope.showMetrics = false;\n        }\n\n        scope.$watch('msg.payload', function(systemTime) {\n            if (systemTime !== undefined) {\n                determineDrift(scope, systemTime);\n                scope.settingTime = false;\n            }\n            showMetrics(scope);\n        });\n    })(scope);\n</script>\n",
+        "format": "<div ng-if=\"drifted && !settingTime\">\n    <p style=\"margin-bottom: 1em;\">\n        The instrument's system time is different from your web browser's time by {{drift}}.\n        As a result, timestamps in your datasets will be incorrect.\n        <span ng-if=\"severelyDrifted\">Additionally, system metrics will not be recorded or shown correctly.</span>\n        <span ng-if=\"!severelyDrifted\">Additionally, you will see incorrectly-aligned graphs in the metrics below.</span>\n    </p>\n    <p style=\"margin-bottom: 1em;\">Please change the instrument's system time or your web browser's time to accurate values.</p>\n    <p style=\"margin-bottom: 1em;\">\n        <button class=\"md-raised md-button\" type=\"button\" ng-click=\"setTime()\" style=\"z-index: 1; padding: 1em;\">\n            <span>Change Instrument's System Time to Match Web Browser's Time</span>\n        </button>\n    </p>\n</div>\n\n<div ng-if=\"!showMetrics && !severelyDrifted\" style=\"width: 100%; height: 830px;\">\n    <p>Loading system metrics, please wait...</p>\n</div>\n\n<center ng-if=\"showMetrics && !severelyDrifted\">\n    <iframe src=\"/admin/grafana/d/host-summary/host-summary?orgId=1&amp;refresh=5s&amp;timezone=utc&amp;kiosk\" width=\"100%\" height=\"810px\" style=\"text-align: left;\">\n        <p style=\"margin-bottom: 1em;\">\n            Metrics dashboard not available yet. Please wait a bit and then press the button below:\n        </p>\n        <p style=\"margin-bottom: 1em;\">\n            <button class=\"md-raised md-button\" type=\"button\" ng-click=\"reloadMetricsDashboard()\" style=\"z-index: 1; padding: 1em;\">\n                <span>Reload metrics dashboard</span>\n            </button>\n        </p>\n        <p>\n            If the dashboard never appears, the Grafana metrics dashboard server\n            may not be running or working correctly, in which case you will need to\n            troubleshoot the reason for that. If the Grafana server is running, you can\n            <a href=\"/admin/dozzle/show?name=apps_grafana-server-1\" target=\"_blank\">view its logs</a>.\n        </p>\n    </iframe>\n</center>\n\n<script>\n    (function(scope) {\n        function duration(ms) {\n            let seconds = (ms / 1000).toFixed(1);\n            let minutes = (ms / (1000 * 60)).toFixed(1);\n            let hours = (ms / (1000 * 60 * 60)).toFixed(1);\n            let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);\n            let months = (ms / (1000 * 60 * 60 * 24 * 30)).toFixed(1);\n            let years = (ms / (1000 * 60 * 60 * 24 * 365)).toFixed(1);\n            if (seconds < 60) return seconds + \" seconds\";\n            else if (minutes < 60) return minutes + \" minutes\";\n            else if (hours < 24) return hours + \" hours\";\n            else if (days < 30) return days + \" days\";\n            else if (months < 12) return months + \" months\";\n            else return years + \" years\";\n        }\n        \n        scope.drifted = undefined;\n        scope.severelyDrifted = undefined;\n        scope.drift = undefined;\n        function determineDrift(scope, systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            const severeThreshold = 1000 * 60 * 4.5; // 30 sec below the Grafana dashboard's visualization interval\n            scope.drifted = drift >= threshold;\n            scope.severelyDrifted = drift >= severeThreshold;\n            if (!scope.drifted) {\n                return;\n            }\n            scope.drift = duration(drift);\n        }\n        \n        scope.showMetrics = false;\n        scope.loadingMetrics = false;\n        var metricsDelayCounter = 0;\n        const metricsDelayThreshold = 2;\n        function showMetrics(scope) {\n            // Show the metrics immediately if we already determined that there's no time drift\n            if (scope.drifted === false) {\n                scope.showMetrics = true;\n                scope.loadingMetrics = false;\n                metricsDelayCounter = 0;\n            }\n            if (!scope.showMetrics && !scope.loadingMetrics && scope.severelyDrifted === false) { // this only happens on initial page load\n                scope.showMetrics = true;\n            }\n            // Show the metrics after a delay after changing system time,\n            // to ensure that there's data for Grafana to render\n            // (otherwise the page must be refreshed)\n            if (scope.loadingMetrics) {\n                metricsDelayCounter++;\n            }\n            if (metricsDelayCounter >= metricsDelayThreshold) {\n                scope.showMetrics = true;\n                scope.loadingMetrics = false;\n                metricsDelayCounter = 0;\n            }\n        }\n        \n        scope.settingTime = false;\n        scope.setTime = function() {\n            scope.settingTime = true;\n            if (scope.severelyDrifted) { // we only need to reload the Grafana dashboard if time drift is so bad that it has no data to show\n                scope.showMetrics = false;\n            }\n            scope.loadingMetrics = true;\n            fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json; charset=UTF-8'\n                },\n                body: JSON.stringify({\n                    timestamp: (new Date()).getTime()\n                })\n            });\n        }\n        \n        scope.reloadMetricsDashboard = function() {\n            scope.showMetrics = false;\n        }\n\n        scope.$watch('msg.payload', function(systemTime) {\n            if (systemTime !== undefined) {\n                determineDrift(scope, systemTime);\n                scope.settingTime = false;\n            }\n            showMetrics(scope);\n        });\n    })(scope);\n</script>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -9326,671 +8241,6 @@
             [],
             [],
             []
-        ]
-    },
-    {
-        "id": "b9bf06d6.26c518",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "sudo iwlist wlan0 scan | grep ESSID | sed 's/ESSID://g;s/\"//g;s/^ *//;s/ *$//'",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "scan",
-        "x": 450,
-        "y": 80,
-        "wires": [
-            [
-                "9642cb31.663b4"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "9642cb31.663b4",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "parseOptions",
-        "func": "var ssids = msg.payload.split('\\n').filter(s => !!s)\n\nssids = [...new Set(ssids)];\n\nmsg.options = ssids\nmsg.payload = null\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 610,
-        "y": 80,
-        "wires": [
-            [
-                "dbc0d44.5361b28"
-            ]
-        ]
-    },
-    {
-        "id": "dbc0d44.5361b28",
-        "type": "ui_dropdown",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "label": "Wifi",
-        "tooltip": "",
-        "place": "Select a WIFI",
-        "group": "9e409235.73cd7",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "multiple": false,
-        "options": [],
-        "payload": "",
-        "topic": "",
-        "x": 770,
-        "y": 80,
-        "wires": [
-            [
-                "cdfa9013.b91278"
-            ]
-        ]
-    },
-    {
-        "id": "2bf338e3.966468",
-        "type": "ui_button",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "group": "9e409235.73cd7",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Scan",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "fa-wifi fa-2x",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "",
-        "x": 270,
-        "y": 40,
-        "wires": [
-            [
-                "b9bf06d6.26c518"
-            ]
-        ]
-    },
-    {
-        "id": "4c0400c.69a1e8",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "ip -j addr show",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "getInfo",
-        "x": 450,
-        "y": 180,
-        "wires": [
-            [
-                "88e05f37a8745216"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "bcb20e39.00cea8",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "parse IP Info",
-        "func": "var ip = \"\";\nvar broadcast = \"\";\nvar iface = \"\";\nvar iface_up = false;\n\nif (msg.rc.code === 0){\n    payload = msg.payload\n    for (let info in payload) {\n      if (payload[info].operstate === \"UP\") {\n      \tif (iface_up){\n        \t// We have two concurrent interfaces up\n          // We need to deactivate one\n          ip = \"Remove Ethernet cable or disconnect wifi\"\n          broadcast = \"Remove Ethernet cable or disconnect wifi\"\n          iface = \"Remove Ethernet cable or disconnect wifi\"\n          break\n        }\n        if (payload[info].ifname === \"eth0\") {\n          iface = \"Ethernet\"\n        } else if (payload[info].ifname === \"wifi0\" || payload[info].ifname === \"wlan0\") {\n          iface = \"Wifi\"\n        }\n        ip = payload[info].addr_info[0].local;\n        broadcast = payload[info].addr_info[0].broadcast;\n        iface_up = true;\n      }\n    }\n}\n\nif (iface_up) {\n  return([{\n    topic: 'interface',\n    payload: iface\n  }, {\n    topic: 'ip',\n    payload: ip\n  }, {\n    topic: 'broadcast',\n    payload: broadcast\n  }])\n}\n",
-        "outputs": 3,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 180,
-        "wires": [
-            [
-                "67d052ba.99ff24"
-            ],
-            [
-                "d71c8185.800fd"
-            ],
-            [
-                "dc305a26.b33fc"
-            ]
-        ],
-        "outputLabels": [
-            "interface",
-            "ip",
-            "broadcast"
-        ]
-    },
-    {
-        "id": "d71c8185.800fd",
-        "type": "ui_text",
-        "z": "f21ba04.c26266",
-        "group": "919923a3.d10868",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "IP",
-        "format": "{{msg.payload || '---'}}",
-        "layout": "row-spread",
-        "x": 930,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "67d052ba.99ff24",
-        "type": "ui_text",
-        "z": "f21ba04.c26266",
-        "group": "919923a3.d10868",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Interface",
-        "format": "{{msg.payload || '---'}}",
-        "layout": "row-spread",
-        "x": 940,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "dc305a26.b33fc",
-        "type": "ui_text",
-        "z": "f21ba04.c26266",
-        "group": "919923a3.d10868",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Broadcast",
-        "format": "{{msg.payload || '---'}}",
-        "layout": "row-spread",
-        "x": 940,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "94b2e8fc.aa20e",
-        "type": "ui_form",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "label": "Update",
-        "group": "9e409235.73cd7",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "SSID",
-                "value": "ssid",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Password",
-                "value": "password",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "ssid": "",
-            "password": ""
-        },
-        "payload": "",
-        "submit": "Add the network",
-        "cancel": "Reset fields",
-        "topic": "",
-        "x": 1100,
-        "y": 80,
-        "wires": [
-            [
-                "d59021e3.1b63e8"
-            ]
-        ]
-    },
-    {
-        "id": "cdfa9013.b91278",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "insert ssid",
-        "func": "\nmsg.payload = {ssid: msg.payload}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 930,
-        "y": 80,
-        "wires": [
-            [
-                "94b2e8fc.aa20e"
-            ]
-        ]
-    },
-    {
-        "id": "448b4c37.be50bc",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "iw dev wlan0 info",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "getCurrentSSID",
-        "x": 480,
-        "y": 260,
-        "wires": [
-            [
-                "151819d4.0dbe56"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "c8a5ae48.ef1308",
-        "type": "ui_text",
-        "z": "f21ba04.c26266",
-        "group": "919923a3.d10868",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "SSID",
-        "format": "{{msg.payload || '---'}}",
-        "layout": "row-spread",
-        "x": 930,
-        "y": 259,
-        "wires": []
-    },
-    {
-        "id": "151819d4.0dbe56",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "parse SSID",
-        "func": "var ssid = \"\"\n\nif (msg.rc.code === 0){\n    ssid = msg.payload.match(/\\sssid (.+)/)[1];\n    return({topic: 'ssid', payload: ssid})\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 260,
-        "wires": [
-            [
-                "c8a5ae48.ef1308"
-            ]
-        ]
-    },
-    {
-        "id": "ff059f3f.9c0f28",
-        "type": "ui_ui_control",
-        "z": "f21ba04.c26266",
-        "name": "onTab",
-        "events": "all",
-        "x": 130,
-        "y": 80,
-        "wires": [
-            [
-                "f103cd20eb4362a4"
-            ]
-        ]
-    },
-    {
-        "id": "167d7bd0.679ce4",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "update contry code",
-        "func": "var template = `sudo sed -i \\\"s/^country.*/country=\"${msg.payload}\"/\\\" /home/pi/wpa_supplicant.conf`\n// sudo tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\n//ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n//update_config=1\n//country=IT\nmsg.payload = template\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 630,
-        "y": 400,
-        "wires": [
-            [
-                "9d30f7b5.aac88"
-            ]
-        ]
-    },
-    {
-        "id": "9d30f7b5.aac88",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "updateConf",
-        "x": 890,
-        "y": 400,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "deb8c14e.ff1fd",
-        "type": "ui_button",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "group": "9e409235.73cd7",
-        "order": 5,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Change Country Code",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "country_code",
-        "payloadType": "flow",
-        "topic": "",
-        "x": 400,
-        "y": 400,
-        "wires": [
-            [
-                "167d7bd0.679ce4"
-            ]
-        ]
-    },
-    {
-        "id": "6d4ce391.04abf4",
-        "type": "ui_text_input",
-        "z": "f21ba04.c26266",
-        "name": "country_code",
-        "label": "Country Code",
-        "tooltip": "ISO/IEC alpha2 country code",
-        "group": "9e409235.73cd7",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "text",
-        "delay": "500",
-        "topic": "country_code",
-        "x": 420,
-        "y": 360,
-        "wires": [
-            [
-                "3f60469d.620aea"
-            ]
-        ]
-    },
-    {
-        "id": "3f60469d.620aea",
-        "type": "change",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "country_code",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 640,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d59021e3.1b63e8",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "add network",
-        "func": "var data = msg.payload\n\nvar command = `wpa_passphrase \"${data.ssid}\" \"${data.password}\" | sed '/#psk=\".*\"/d' | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null`\n \nmsg.payload = command\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1270,
-        "y": 80,
-        "wires": [
-            [
-                "64a1f2f2.3de8b4"
-            ]
-        ]
-    },
-    {
-        "id": "64a1f2f2.3de8b4",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Save Network",
-        "x": 1460,
-        "y": 80,
-        "wires": [
-            [
-                "6868b4c4.65987c"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "6868b4c4.65987c",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "sudo /usr/bin/autohotspotN >/dev/null",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "reconfigure",
-        "x": 1250,
-        "y": 180,
-        "wires": [
-            [
-                "59e24c40.e1a4dc"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "59e24c40.e1a4dc",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "showMessage",
-        "func": "msg.payload = \"Wifi configuration updated successfully, please connect to the network you just used.\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1420,
-        "y": 180,
-        "wires": [
-            [
-                "4ecb6be2.ad39f4"
-            ]
-        ]
-    },
-    {
-        "id": "4ecb6be2.ad39f4",
-        "type": "ui_toast",
-        "z": "f21ba04.c26266",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 1590,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "991d1df9.3ffb3",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "reset wpa_supplicant.conf",
-        "func": "country_code = flow.get(\"country_code\")\n\nvar template = `sudo tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=${country_code}\n\nEOF`\n\nmsg.payload = template\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 650,
-        "y": 460,
-        "wires": [
-            [
-                "2124997d.2cbf0e"
-            ]
-        ]
-    },
-    {
-        "id": "2124997d.2cbf0e",
-        "type": "exec",
-        "z": "f21ba04.c26266",
-        "command": "",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "resetConf",
-        "x": 880,
-        "y": 460,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8b3a1ecb.c4d2e8",
-        "type": "ui_button",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "group": "9e409235.73cd7",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Reset wifi networks",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "#AD1625",
-        "icon": "",
-        "payload": "country_code",
-        "payloadType": "flow",
-        "topic": "",
-        "x": 410,
-        "y": 460,
-        "wires": [
-            [
-                "991d1df9.3ffb3"
-            ]
-        ]
-    },
-    {
-        "id": "3db572cd.cf972e",
-        "type": "inject",
-        "z": "f21ba04.c26266",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payloadType": "date",
-        "x": 270,
-        "y": 180,
-        "wires": [
-            [
-                "b9bf06d6.26c518",
-                "4c0400c.69a1e8",
-                "448b4c37.be50bc"
-            ]
-        ]
-    },
-    {
-        "id": "88e05f37a8745216",
-        "type": "json",
-        "z": "f21ba04.c26266",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 590,
-        "y": 180,
-        "wires": [
-            [
-                "bcb20e39.00cea8"
-            ]
-        ]
-    },
-    {
-        "id": "f103cd20eb4362a4",
-        "type": "function",
-        "z": "f21ba04.c26266",
-        "name": "check tab",
-        "func": "if (msg.name === \"Wifi\"){\n    return [msg, msg]\n}\n\nif ([\"Optic Configuration\", \"Fluidic Acquisition\", \"Segmentation\", \"Gallery\"].includes(msg.name)){\n    return [null, msg]\n}",
-        "outputs": 2,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 80,
-        "wires": [
-            [
-                "b9bf06d6.26c518",
-                "4c0400c.69a1e8",
-                "448b4c37.be50bc"
-            ],
-            [
-                "4c0400c.69a1e8",
-                "448b4c37.be50bc"
-            ]
-        ],
-        "outputLabels": [
-            "interface",
-            "ip"
         ]
     },
     {
@@ -10164,8 +8414,7 @@
         "z": "1eaf21c8.f7a21e",
         "name": "Stepper config change",
         "links": [
-            "45a7b5aa.2ed20c",
-            "835916dcb5ddf246"
+            "45a7b5aa.2ed20c"
         ],
         "x": 1475,
         "y": 380,
@@ -10532,9 +8781,7 @@
         "type": "link out",
         "z": "1eaf21c8.f7a21e",
         "name": "Process_pixel calibration",
-        "links": [
-            "cfc783d7.d6ceb"
-        ],
+        "links": [],
         "x": 1475,
         "y": 500,
         "wires": []

@@ -2,7 +2,7 @@
 name = "planktoscope-docs"
 # Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
 # "2023.7.0-beta.0", which is different from the Semantic Versioning schema
-version = "2024.0.0b1"
+version = "2024.0.0"
 description = "Documentation for the PlanktoScope project"
 # For simplicity, we follow the definition of "Maintainer" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
@@ -17,9 +17,7 @@ maintainers = [
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
 # "Author: The person/s or organization that created the project".
 # Here, we only list the authors of the PlanktoScope documentation project.
-authors = [
-  "Thibaut Pollina <thibaut.pollina@gmail.com>",
-]
+authors = ["Thibaut Pollina <thibaut.pollina@gmail.com>"]
 license = "CC-BY-SA-4.0"
 readme = "README.md"
 homepage = "https://www.planktoscope.org"
@@ -39,27 +37,27 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.dependencies]
 python = "^3.8"
 mkdocs = "^1.4.3"
-mkdocs-charts-plugin = "^0.0.10"
+mkdocs-charts-plugin = "^0.0.12"
 mkdocs-glightbox = "^0.4.0"
-mkdocs-macros-plugin = "^1.0.5"
-mkdocs-markdownextradata-plugin = "^0.2.5"
+mkdocs-macros-plugin = "^1.3.7"
+mkdocs-markdownextradata-plugin = "^0.2.6"
 mkdocs-material = "^9.5.18"
 mkdocs-minify-plugin = "^0.8.0"
-mkdocs-redirects = "^1.2.0"
+mkdocs-redirects = "^1.2.2"
 # Note: we do not allow the mkdocs-table-reader-plugin in this project because it pulls in a
 # large number of dependencies, several of which (especially pandas) take an unacceptably long time
 # to install.
-Pygments = "^2.18.0"
-pymdown-extensions = "^10.8"
+Pygments = "^2.19.1"
+pymdown-extensions = "^10.14"
 LinkChecker = "^10.3.0"
-poethepoet = "^0.27.0"
-mkdocs-git-revision-date-localized-plugin = "^1.2.6"
+poethepoet = "^0.30.0"
+mkdocs-git-revision-date-localized-plugin = "^1.3.0"
 
 [tool.poetry.group.imaging]
 optional = true
 
 [tool.poetry.group.imaging.dependencies]
-mkdocs-material = {extras = ["imaging"], version = "^9.5.18"}
+mkdocs-material = { extras = ["imaging"], version = "^9.5.18" }
 imgp = "^2.8"
 
 [tool.poe.tasks]
@@ -67,7 +65,11 @@ imgp = "^2.8"
 clean-hardware-assets = "rm -rf docs/assets/hardware"
 import-hardware-assets = "cp -r ../hardware docs/assets/hardware"
 import-repo-assets = "cp ../software/CHANGELOG.md docs/reference/software/changelog.md"
-import-external-assets = ["clean-hardware-assets", "import-hardware-assets", "import-repo-assets"]
+import-external-assets = [
+  "clean-hardware-assets",
+  "import-hardware-assets",
+  "import-repo-assets",
+]
 
 # Image optimization
 optimize-png-photos = "imgp --convert --optimize --quality 95 --recurse --overwrite docs/images/assembly_guide/*.png"

@@ -10,14 +10,15 @@ on:
 jobs:
   ff-branch:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Needed to be able to push to protected (push-restricted) branches:
+          ssh-key: ${{secrets.RELEASE_BRANCH_DEPLOY_KEY}}
+          persist-credentials: true
 
       - run: |
           git checkout documentation/beta
@@ -26,6 +27,7 @@ jobs:
       - uses: ad-m/github-push-action@v0.8.0
         with:
           branch: documentation/beta
+          ssh: true
 
   deploy-docs-site:
     # We call this workflow manually because it doesn't appear to be triggered automatically by a

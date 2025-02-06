@@ -18,6 +18,10 @@ on:
         description: 'The release date of the RPi OS base image'
         required: true
         type: string
+      base_file_release_date:
+        description: 'The release date of the RPi OS base image file, if different from the group release date'
+        required: false
+        type: string
       arch:
         description: 'The CPU architecture of the OS (armhf, arm64)'
         required: true
@@ -30,7 +34,7 @@ on:
 jobs:
   build-os-image:
     name: Build image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     env:
       KERNEL_VERSION: 6.1.21
       SETUP_USER: pi
@@ -72,16 +76,6 @@ jobs:
           fetch-tags: true
           filter: 'blob:none'
 
-      # This is needed so that the QEMU VM build step doesn't run out of disk space:
-      - name: Free up disk space
-        uses: jlumbroso/free-disk-space@v1.3.1
-        with:
-          docker-images: false
-          swap-storage: false
-          # removing these packages involves running `apt`, which is relatively slow:
-          dotnet: false
-          large-packages: false
-
       # GET BASE IMAGE
 
       - name: Determine Raspberry Pi OS base image URL
@@ -104,7 +98,12 @@ jobs:
             IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.base_image_variant }}"
           fi
           IMAGE_REPO_GROUP="${IMAGE_REPO_GROUP}_${{ inputs.arch }}"
-          IMAGE_FILENAME="${{ inputs.base_release_date }}-raspios-${{ inputs.base_release_name }}-${{ inputs.arch }}"
+          if [[ -z "${{ inputs.base_file_release_date }}" ]]; then
+            BASE_FILE_RELEASE_DATE="${{ inputs.base_release_date }}"
+          else
+            BASE_FILE_RELEASE_DATE="${{ inputs.base_file_release_date }}"
+          fi
+          IMAGE_FILENAME="$BASE_FILE_RELEASE_DATE-raspios-${{ inputs.base_release_name }}-${{ inputs.arch }}"
           if [[ "${{ inputs.base_image_variant }}" != "desktop" ]]; then
             IMAGE_FILENAME="${IMAGE_FILENAME}-${{ inputs.base_image_variant }}"
           fi
@@ -140,7 +139,9 @@ jobs:
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
+          args: >-
+            --bind "$(pwd)":/run/os-setup
+            --machine=raspberrypi
           run: |
             export DEBIAN_FRONTEND=noninteractive
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
@@ -242,6 +243,7 @@ jobs:
           user: ${{ env.SETUP_USER }}
           args: >-
             --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
+            --machine=raspberrypi
           run: |
             local_cache="$HOME/.cache/forklift/containers/docker-archives"
             mkdir -p "$local_cache"
@@ -250,70 +252,23 @@ jobs:
 
       # RUN OS SETUP SCRIPTS
 
-      # Note: for performance reasons, we run most setup steps in a systemd-nspawn container, which
-      # is much faster than a QEMU VM for downloading files.
-      - name: Run base OS setup scripts in an unbooted container
+      - name: Run OS setup scripts in a booted container
         uses: ethanjli/pinspawn-action@v0.1.4
-        timeout-minutes: 30
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
+          # Note: CAP_NET_ADMIN is needed for iptables, which is needed for Docker (at least in an
+          # unbooted container). Setting the machine ID (and therefore hostname) to `raspberrypi`
+          # resolves noisy (but harmless) error messages from sudo.
+          args: >-
+            --bind "$(pwd)":/run/os-setup
+            --capability=CAP_NET_ADMIN
+            --machine=raspberrypi
           run: |
-            export DEBIAN_FRONTEND=noninteractive
             echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/base-os/setup-unbooted.sh
-
-      - name: Copy the setup scripts into the image to run remaining OS build scripts in a booted VM
-        uses: ethanjli/pinspawn-action@v0.1.4
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          args: --bind "$(pwd)":/run/os-setup
-          run: |
-            sudo cp -r /run/os-setup /usr/lib/os-setup
-
-      # Note: for now, we need to boot the OS in a QEMU VM rather than a systemd-nspawn container 
-      # (even though the VM is much much slower) because `docker.socket`/`docker.service` can't
-      # start properly in the container due to its use of iptables-nft: Docker's use of
-      # iptables/nftables results in error "Failed to initialize nft: Protocol not supported".
-      # iptables/nftables which won't work if run using qemu-aarch64-static (see
-      # https://github.com/multiarch/qemu-user-static/issues/191 for details).
-      # Once GitHub makes arm64 runners available to open-source projects, then we can get rid of
-      # QEMU and we may be able to successfully start Docker in a systemd-nspawn container.
-      - name: Run base OS setup scripts in a booted VM
-        uses: ethanjli/piqemu-action@v0.1.1
-        #uses: ethanjli/pinspawn-action@v0.1.4
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          machine: rpi-3b+
-          #boot: true
-          user: ${{ env.SETUP_USER }}
-          shell: /usr/lib/os-setup/software/distro/setup/base-os/setup-booted.sh
-
-      # Set up PlanktoScope application environment
-      # Note: we only perform this setup work after QEMU VM setup steps, because this sets up some
-      # background system services which may slow down the QEMU VM setup by ~20 minutes.
-      - name: Run PlanktoScope application environment setup scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@v0.1.4
-        if: inputs.variant != 'none'
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
-          run: |
             export DEBIAN_FRONTEND=noninteractive
-            echo "Running setup scripts..."
-            /run/os-setup/software/distro/setup/planktoscope-app-env/setup.sh ${{ inputs.variant }}
-
-      - name: Clean up after running setup
-        uses: ethanjli/pinspawn-action@v0.1.4
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: --bind "$(pwd)":/run/os-setup
-          run: |
-            sudo rm -rf /usr/lib/os-setup
-            /run/os-setup/software/distro/setup/cleanup.sh ${{ inputs.variant }}
+            /run/os-setup/software/distro/setup/setup.sh ${{ inputs.variant }}
+            echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal
         uses: ethanjli/pinspawn-action@v0.1.4
@@ -322,6 +277,7 @@ jobs:
           DEFAULT_KEYBOARD_LAYOUT: us
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          args: --machine=raspberrypi
           run: |
             # Change default settings for the SD card to enable headless & keyboardless first boot
             # Note: we could change the username by making a `/boot/userconf.txt` file with the new

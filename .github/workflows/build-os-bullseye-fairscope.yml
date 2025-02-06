@@ -8,7 +8,14 @@ on:
       - 'software/stable'
     tags:
       - 'software/v*'
+    paths:
+      - 'software/**'
+      - '!software/CHANGELOG.md'
+      - '.github/workflows/build-os*.yml'
   pull_request:
+    paths:
+      - 'software/**'
+      - '.github/workflows/build-os*.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -28,8 +35,6 @@ jobs:
       matrix:
         variant:
           - fairscope-latest
-        arch:
-          - arm64
         base_variant_name:
           - lite
     permissions:
@@ -42,6 +47,7 @@ jobs:
       name: planktoscope
       base_release_name: bullseye
       base_image_variant: ${{ matrix.base_variant_name }}
-      base_release_date: 2024-03-12
-      arch: ${{ matrix.arch }}
+      base_release_date: 2024-10-28
+      base_file_release_date: 2024-10-22
+      arch: arm64
       variant: ${{ matrix.variant }}
