@@ -245,9 +245,10 @@ jobs:
             --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
             --machine=raspberrypi
           run: |
-            local_cache="/root/.cache/forklift/containers/docker-archives"
+            local_cache="$HOME/.cache/forklift/containers/docker-archives"
             sudo mkdir -p "$local_cache"
             sudo cp -r /run/container-images/* "$local_cache"
+            sudo chown $USER -R "$local_cache"
 
       # RUN OS SETUP SCRIPTS
 

@@ -29,7 +29,7 @@ Multiple levels of reset are possible; from least-disruptive (and shallowest) to
 2. (Only recommended for advanced users) If you want to reset the running software back to the original release of the PlanktoScope OS provided with your SD card image, while keeping any customizations you have made to override default PlanktoScope OS configurations (such as those described in the [networking operations guide](./networking.md)), then you can run the following command on your PlanktoScope (for example in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> ) and then reboot your PlanktoScope:
 
     ```sh
-    sudo forklift stage set-next --no-cache-img factory-reset
+    forklift stage set-next --no-cache-img factory-reset
     ```
 
     This reset will only have an effect if you had previously run a `forklift` command for configuring the OS; otherwise, it will not cause any visible change to your PlanktoScope. If your PlanktoScope is [connected to the internet](./networking.md#connect-your-planktoscope-to-the-internet), you can also omit the `--no-cache-img` flag, in order to ensure that the PlanktoScope will have all necessary programs at the originally-required versions before you reboot (if you never previously took manual action to delete any Docker container images from your PlanktoScope, you don't need to worry about this and you can keep the `--no-cache-img` flag in the command).
@@ -51,16 +51,16 @@ Starting with the [v2024.0.0 release](https://github.com/PlanktoScope/PlanktoSco
 When an in-place upgrade to a new release is possible, specific instructions and backwards-compatibility information will be mentioned in the GitHub release notes for that release. However, the general pattern will look something like running the following command (from v2024.0.0 of the PlanktoScope OS), where `{version-query}` would be replaced by a Git branch name (e.g. `beta`), tagged version (e.g. `v2024.0.0`), or (potentially-abbreviated) Git commit SHA:
 
 ```sh
-sudo forklift pallet switch github.com/PlanktoScope/pallet-standard@{version-query}
+forklift pallet switch github.com/PlanktoScope/pallet-standard@{version-query}
 ```
 
 or one of the following commands (from v2025.0.0-alpha.0 of the PlanktoScope OS):
 
 ```sh
 # for a specific version:
-sudo forklift pallet upgrade @{version-query}
+forklift pallet upgrade @{version-query}
 # for the latest version available in the most-recently-used version query:
-sudo forklift pallet upgrade
+forklift pallet upgrade
 ```
 
 and then rebooting after that command finishes successfully.
@@ -89,7 +89,7 @@ If you reset/upgraded/downgraded the PlanktoScope OS by re-flashing your SD card
 - (Only relevant for advanced users) If you were running a non-standard Forklift pallet (i.e. anything other than [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard)) which you had pushed to a GitHub repository host (such as GitHub), then you can run a Forklift command to switch back to that pallet (assuming that your PlanktoScope [has an internet connection](./networking.md#connect-your-planktoscope-to-the-internet) so that it can download the pallet), for example in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> :
 
     ```sh
-    sudo forklift pallet switch github.com/name-of/your-pallet@version-query
+    forklift pallet switch github.com/name-of/your-pallet@version-query
     ```
 
     Afterwards, you should reboot your PlanktoScope; it will try to boot using the pallet you had specified.
