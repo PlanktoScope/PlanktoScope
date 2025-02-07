@@ -246,7 +246,7 @@ jobs:
             --machine=raspberrypi
           run: |
             local_cache="$HOME/.cache/forklift/containers/docker-archives"
-            sudo mkdir -p "$local_cache"
+            mkdir -p "$local_cache"
             sudo cp -r /run/container-images/* "$local_cache"
             sudo chown $USER -R "$local_cache"
 
