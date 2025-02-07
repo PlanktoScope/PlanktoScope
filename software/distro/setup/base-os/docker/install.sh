@@ -11,8 +11,8 @@ fi
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 DISTRO_VERSION_CODENAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
 echo \
-  "deb [arch=""$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  ""$DISTRO_VERSION_CODENAME stable" |
+  "deb [arch=" "$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] " \
+  "https://download.docker.com/linux/debian $DISTRO_VERSION_CODENAME stable" |
   sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 sudo -E apt-get update -y -o Dpkg::Progress-Fancy=0 # get the list of packages from the docker repo
 # The following command may fail with a post-install error if the system installed kernel updates
