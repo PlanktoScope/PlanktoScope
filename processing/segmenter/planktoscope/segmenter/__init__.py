@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -29,13 +29,13 @@ import datetime
 import time
 
 # Libraries manipulate json format, execute bash commands
-import json, shutil, os
+import json
+import os
 
 # Library for starting processes
 import multiprocessing
 
 import io
-import os
 
 import threading
 import functools
@@ -55,7 +55,6 @@ import planktoscope.segmenter.ecotaxa
 import skimage.measure
 import skimage.exposure
 import cv2
-import scipy.stats
 import numpy as np
 import PIL.Image
 import math
@@ -67,13 +66,16 @@ logger.info("planktoscope.segmenter is loaded")
 # Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
 # package from PyPI for more structured parsing of env vars:
 SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
-    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS",
-    "False"
-).lower() in ('true', '1', 't')
+    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "False"
+).lower() in ("true", "1", "t")
 if SUBTRACT_CONSECUTIVE_MASKS:
-    logger.info("The segmentation pipeline will subtract masks between consecutive raw frames!")
+    logger.info(
+        "The segmentation pipeline will subtract masks between consecutive raw frames!"
+    )
 else:
-    logger.info("The segmentation pipeline will NOT subtract masks between consecutive raw frames!")
+    logger.info(
+        "The segmentation pipeline will NOT subtract masks between consecutive raw frames!"
+    )
 
 
 ################################################################################
@@ -169,11 +171,11 @@ class SegmenterProcess(multiprocessing.Process):
         # make sure image number is smaller than image list
         if images_number > len(images_list):
             logger.error(
-                "The image number can't be bigger than the lenght of the provided list!"
+                "The image number can't be bigger than the length of the provided list!"
             )
             images_number = len(images_list)
 
-        logger.debug("Opening images")
+        logger.debug(f"Opening {images_number} images: {images_list[:images_number]}")
         # start = time.monotonic()
         # Read images and build array
         images_array = np.array(
@@ -366,7 +368,7 @@ class SegmenterProcess(multiprocessing.Process):
             # Y coordinates of the top left point of the smallest rectangle enclosing the object
             "by": prop.bbox[0],
             # circularity : (4∗π ∗Area)/Perim^2 a value of 1 indicates a perfect circle, a value approaching 0 indicates an increasingly elongated polygon
-            "circ.": (4 * np.pi * prop.filled_area) / prop.perimeter ** 2,
+            "circ.": (4 * np.pi * prop.filled_area) / prop.perimeter**2,
             # Surface area of the object excluding holes, in square pixels (=Area*(1-(%area/100))
             "area_exc": prop.area,
             # Surface area of the object in square pixels
@@ -381,7 +383,7 @@ class SegmenterProcess(multiprocessing.Process):
             "y": prop.centroid[0],
             # X position of the center of gravity of the object
             "x": prop.centroid[1],
-            # The area of the smallest polygon within which all points in the objet fit
+            # The area of the smallest polygon within which all points in the object fit
             "convex_area": prop.convex_area,
             # # Minimum grey value within the object (0 = black)
             # "min": prop.min_intensity,
@@ -402,7 +404,7 @@ class SegmenterProcess(multiprocessing.Process):
             # perim/major
             "perimmajor": prop.perimeter / prop.major_axis_length,
             # (4 ∗ π ∗ Area_exc)/perim 2
-            "circex": np.divide(4 * np.pi * prop.area, prop.perimeter ** 2),
+            "circex": np.divide(4 * np.pi * prop.area, prop.perimeter**2),
             # Angle between the primary axis and a line parallel to the x-axis of the image
             "angle": prop.orientation / np.pi * 180 + 90,
             # # X coordinate of the top left point of the image
@@ -475,9 +477,9 @@ class SegmenterProcess(multiprocessing.Process):
             return dim_slice
 
         min_mesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
-        min_esd = min_mesh # or process_min_ESD in the future (microns)
+        min_esd = min_mesh  # or process_min_ESD in the future (microns)
         pixel_size = self.__global_metadata["process_pixel"]
-        min_radius = min_esd / 2 / pixel_size # (pixels)
+        min_radius = min_esd / 2 / pixel_size  # (pixels)
         min_area = math.pi * min_radius * min_radius
 
         labels, nlabels = skimage.measure.label(mask, return_num=True)
@@ -488,7 +490,7 @@ class SegmenterProcess(multiprocessing.Process):
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")
 
-        for (i, region) in enumerate(regionprops_filtered):
+        for i, region in enumerate(regionprops_filtered):
             region.label = i + start_count
 
             # Publish the object_id to via MQTT to Node-RED
@@ -619,7 +621,7 @@ class SegmenterProcess(multiprocessing.Process):
         average_time = 0
 
         # TODO here would be a good place to parallelize the computation
-        for (i, filename) in enumerate(images_list):
+        for i, filename in enumerate(images_list):
             name = os.path.splitext(filename)[0]
 
             # Publish the object_id to via MQTT to Node-RED
@@ -871,7 +873,7 @@ class SegmenterProcess(multiprocessing.Process):
             self.__ecotaxa_path,
             # filename includes project name, timestamp and sample id
             f"ecotaxa_{acquisition}.zip",
-        # TODO #102 sanitize the filename to remove potential problems with spaces and special characters
+            # TODO #102 sanitize the filename to remove potential problems with spaces and special characters
         )
 
         self.__working_path = path
@@ -1026,7 +1028,7 @@ class SegmenterProcess(multiprocessing.Process):
             server = planktoscope.segmenter.streamer.StreamingServer(address, handler)
         except Exception as e:
             logger.exception(
-                f"An exception has occured when starting up the segmenter: {e}"
+                f"An exception has occurred when starting up the segmenter: {e}"
             )
             raise e
 
