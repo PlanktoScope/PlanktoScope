@@ -601,11 +601,12 @@ class SegmenterProcess(multiprocessing.Process):
         # TODO check image list here to find if a flat exists
         # we recalculate the flat every 10 pictures
         if recalculate_flat:
-            recalculate_flat = False
+            
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Calculating flat"}'
             )
             if images_count < 10:
+                recalculate_flat = False
                 self._calculate_flat(
                     images_list[0:images_count], images_count, self.__working_path
                 )
@@ -632,11 +633,12 @@ class SegmenterProcess(multiprocessing.Process):
 
             # we recalculate the flat if the heuristics detected we should
             if recalculate_flat:  # not i % 10 and i < (images_count - 10)
-                recalculate_flat = False
-                if len(images_list) == 10:
-                    # We are too close to the end of the list, take the previous 10 images instead of the next 10
+
+                if len(images_list) <= 10:
+                    # there is too few images : take whatever exists
                     flat = self._calculate_flat(images_list, 10, self.__working_path)
                 elif i > (len(images_list) - 11):
+                    recalculate_flat = False
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
                     flat = self._calculate_flat(
                         images_list[i - 10 : i], 10, self.__working_path
