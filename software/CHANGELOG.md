@@ -12,10 +12,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
+- (System: networking) Firewalld is now enabled, and default firewall policies are provided (via Forklift) for the public and nm-shared firewall zones.
 
 ### Changed
 
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
+- (System: networking) Autohotspot network management is now based on NetworkManager, in preparation for an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images.
 
 ### Removed
 

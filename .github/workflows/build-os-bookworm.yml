@@ -1,5 +1,5 @@
 ---
-name: build-os-bookworm-dx
+name: build-os-bookworm
 on:
   push:
     branches:
@@ -37,7 +37,7 @@ jobs:
           - none
           - segmenter-only
         base_variant_name:
-          - desktop
+          - lite
     permissions:
       contents: read
       packages: write

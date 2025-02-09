@@ -46,13 +46,13 @@ Power on your PlanktoScope, and wait for it to start up. Note that it may take a
 
     You will not be able to access the PlanktoScope's graphical user interface by plugging in a display to the Raspberry Pi. This is because the SD card image we provide does not include a graphical desktop or web browser, in order to keep the SD card image file smaller and to keep the PlanktoScope's Raspberry Pi running more efficiently.
 
-Once your PlanktoScope has created its Wi-Fi hotspot, you can connect another device (e.g. a phone or a computer) directly to the PlanktoScope - either through its Wi-Fi hotspot or through an Ethernet cable directly to the PlanktoScope's Ethernet port. Afterwards, you can open a web browser on the device to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
+Once your PlanktoScope has created its Wi-Fi hotspot, you can connect your computer (or phone/tablet/etc.) directly to the PlanktoScope - either through its Wi-Fi hotspot or through an Ethernet cable directly to the PlanktoScope's Ethernet port. Afterwards, you can open a web browser on your computer to access the PlanktoScope's graphical user interface at one of the following URLs (try them in the following order, and just use the first one which works):
 
-- <http://planktoscope.local> (this should work unless you're on a device or web browser without mDNS support; notably, older versions of Android did not support mDNS, and web browsers installed on Linux computers via Flatpak [do not yet support mDNS](https://github.com/flatpak/xdg-desktop-portal/discussions/1365))
-- <http://pkscope.local> (this should work unless you're on a device or web browser without mDNS support)
+- <http://planktoscope.local> (this should work unless you're on a computer or web browser without mDNS support; notably, older versions of Android did not support mDNS, and web browsers installed on Linux computers via Flatpak [do not yet support mDNS](https://github.com/flatpak/xdg-desktop-portal/discussions/1365))
+- <http://pkscope.local> (this should work unless you're on a computer or web browser without mDNS support)
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
-- <http://192.168.4.1> (this should always work on devices connected directly to the PlanktoScope, especially for devices connected directly to the PlanktoScope's Wi-Fi hotspot)
-- <http://192.168.5.1> (this should always work on devices connected directly to the PlanktoScope, especially for devices connected directly to the PlanktoScope's Ethernet port)
+- <http://192.168.4.1> (this should always work on computers connected to the PlanktoScope's Wi-Fi hotspot, unless your computer is also connected to some other device meant to be accessed with that URL)
+- <http://192.168.5.1> (this should always work on computers connected directly to the PlanktoScope's Ethernet port, unless your computer is also connected to some other device meant to be accessed with that URL)
 
 !!! warning
 

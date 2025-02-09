@@ -252,7 +252,7 @@ jobs:
 
       # RUN OS SETUP SCRIPTS
 
-      - name: Run OS setup scripts in a booted container
+      - name: Run OS setup scripts in an unbooted container
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
