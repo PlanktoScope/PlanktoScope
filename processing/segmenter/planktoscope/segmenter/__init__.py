@@ -66,7 +66,7 @@ logger.info("planktoscope.segmenter is loaded")
 # Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
 # package from PyPI for more structured parsing of env vars:
 SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
-    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "False"
+    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "True"
 ).lower() in ("true", "1", "t")
 if SUBTRACT_CONSECUTIVE_MASKS:
     logger.info(
@@ -599,19 +599,20 @@ class SegmenterProcess(multiprocessing.Process):
         average_objects = 0
         recalculate_flat = True
         # TODO check image list here to find if a flat exists
-        # we recalculate the flat every 10 pictures
+        # we recalculate the flat on 5 images every 15 pictures (time optimisation)
+        count_recalculateflat=0
         if recalculate_flat:
             
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Calculating flat"}'
             )
-            if images_count < 10:
+            if images_count < 5:
                 recalculate_flat = False
                 self._calculate_flat(
                     images_list[0:images_count], images_count, self.__working_path
                 )
             else:
-                self._calculate_flat(images_list[0:10], 10, self.__working_path)
+                self._calculate_flat(images_list[0:5], 5, self.__working_path)
 
             if self.__save_debug_img:
                 self._save_image(
@@ -630,22 +631,27 @@ class SegmenterProcess(multiprocessing.Process):
                 "status/segmenter",
                 f'{{"status":"Segmenting image {filename}, image {i+1}/{images_count}"}}',
             )
+            count_recalculateflat=count_recalculateflat+1
+            if count_recalculateflat==15:
+                count_recalculateflat=0
+                recalculate_flat = True
 
             # we recalculate the flat if the heuristics detected we should
-            if recalculate_flat:  # not i % 10 and i < (images_count - 10)
+            if recalculate_flat:  # not i % 5 and i < (images_count - 5)
 
-                if len(images_list) <= 10:
+                if len(images_list) <= 5:
                     # there is too few images : take whatever exists
-                    flat = self._calculate_flat(images_list, 10, self.__working_path)
-                elif i > (len(images_list) - 11):
+                    flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                elif i > (len(images_list) - 6):
                     recalculate_flat = False
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
                     flat = self._calculate_flat(
-                        images_list[i - 10 : i], 10, self.__working_path
+                        images_list[i - 5 : i], 5, self.__working_path
                     )
                 else:
+                    recalculate_flat = False
                     flat = self._calculate_flat(
-                        images_list[i : i + 10], 10, self.__working_path
+                        images_list[i : i + 5], 5, self.__working_path
                     )
                 if self.__save_debug_img:
                     self._save_image(
