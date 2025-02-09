@@ -66,7 +66,7 @@ logger.info("planktoscope.segmenter is loaded")
 # Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
 # package from PyPI for more structured parsing of env vars:
 SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
-    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "True"
+    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "true"
 ).lower() in ("true", "1", "t")
 if SUBTRACT_CONSECUTIVE_MASKS:
     logger.info(
@@ -611,8 +611,16 @@ class SegmenterProcess(multiprocessing.Process):
                 self._calculate_flat(
                     images_list[0:images_count], images_count, self.__working_path
                 )
+                img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                self.__mask_to_remove = mask_flat
+                global mask_flat
             else:
                 self._calculate_flat(images_list[0:5], 5, self.__working_path)
+                img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                self.__mask_to_remove = mask_flat
+                global mask_flat
 
             if self.__save_debug_img:
                 self._save_image(
@@ -621,12 +629,6 @@ class SegmenterProcess(multiprocessing.Process):
                 )
 
         average_time = 0
-        img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
-        ret, mask_flat = cv2.threshold(
-        img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE
-        )
-        self.__mask_to_remove = mask_flat
-        global mask_flat
 
 
         # TODO here would be a good place to parallelize the computation
@@ -649,17 +651,31 @@ class SegmenterProcess(multiprocessing.Process):
                 if len(images_list) <= 5:
                     # there is too few images : take whatever exists
                     flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                    img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                    ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                    self.__mask_to_remove = mask_flat
+                    global mask_flat
                 elif i > (len(images_list) - 6):
                     recalculate_flat = False
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
                     flat = self._calculate_flat(
                         images_list[i - 5 : i], 5, self.__working_path
                     )
+                    flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                    img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                    ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                    self.__mask_to_remove = mask_flat
+                    global mask_flat
                 else:
                     recalculate_flat = False
                     flat = self._calculate_flat(
                         images_list[i : i + 5], 5, self.__working_path
                     )
+                    flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                    img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                    ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                    self.__mask_to_remove = mask_flat
+                    global mask_flat
                 if self.__save_debug_img:
                     self._save_image(
                         self.__flat,
@@ -668,11 +684,7 @@ class SegmenterProcess(multiprocessing.Process):
                             f"flat_color_{i}.jpg",
                         ),
                     )
-                img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
-                ret, mask_flat = cv2.threshold(
-                img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE
-                )
-                global mask_flat
+
 
             self.__working_debug_path = os.path.join(
                 self.__debug_objects_root,
