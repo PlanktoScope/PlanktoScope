@@ -252,7 +252,7 @@ class SegmenterProcess(multiprocessing.Process):
         pipeline = [
             # "adaptative_threshold",
             "simple_threshold",
-            "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
+            "remove_flat_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
             "erode",
             "dilate",
             "close",
@@ -621,6 +621,13 @@ class SegmenterProcess(multiprocessing.Process):
                 )
 
         average_time = 0
+        img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+        ret, mask_flat = cv2.threshold(
+        img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE
+        )
+        self.__mask_to_remove = mask_flat
+        global mask_flat
+
 
         # TODO here would be a good place to parallelize the computation
         for i, filename in enumerate(images_list):
@@ -661,6 +668,11 @@ class SegmenterProcess(multiprocessing.Process):
                             f"flat_color_{i}.jpg",
                         ),
                     )
+                img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                ret, mask_flat = cv2.threshold(
+                img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE
+                )
+                global mask_flat
 
             self.__working_debug_path = os.path.join(
                 self.__debug_objects_root,
