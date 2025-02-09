@@ -614,13 +614,13 @@ class SegmenterProcess(multiprocessing.Process):
                 img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
                 ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
                 self.__mask_to_remove = mask_flat
-                global mask_flat
+                
             else:
                 self._calculate_flat(images_list[0:5], 5, self.__working_path)
                 img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
                 ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
                 self.__mask_to_remove = mask_flat
-                global mask_flat
+                
 
             if self.__save_debug_img:
                 self._save_image(
@@ -654,7 +654,7 @@ class SegmenterProcess(multiprocessing.Process):
                     img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
                     ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
                     self.__mask_to_remove = mask_flat
-                    global mask_flat
+                    
                 elif i > (len(images_list) - 6):
                     recalculate_flat = False
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
@@ -665,7 +665,7 @@ class SegmenterProcess(multiprocessing.Process):
                     img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
                     ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
                     self.__mask_to_remove = mask_flat
-                    global mask_flat
+                    
                 else:
                     recalculate_flat = False
                     flat = self._calculate_flat(
@@ -675,7 +675,7 @@ class SegmenterProcess(multiprocessing.Process):
                     img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
                     ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
                     self.__mask_to_remove = mask_flat
-                    global mask_flat
+                    
                 if self.__save_debug_img:
                     self._save_image(
                         self.__flat,
