@@ -3,9 +3,9 @@
 In this section you will go through all the steps to supply and create your PlanktoScope kit.
 You can find a list of the components needed in the [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
 
-| Files                                                                               | Description                       |
-|-------------------------------------------------------------------------------------|-----------------------------------|
-| [Planktoscope V2.6 BOM](../../../../../../hardware/v2.6/Planktoscope_V2.6_BOM.xlsx) | Bill Of Material for PlanktoScope |
+| Files                                                                                | Description                       |
+|--------------------------------------------------------------------------------------|-----------------------------------|
+| [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx) | Bill Of Material for PlanktoScope |
 
 We tried to have the most easy-to-supply components, you still may have to adapt and research for new suppliers according to product availability and your location.
 If you find some local alternative please share your custom BOM to our GitHub Discussions thread for [v2.6 Localized Hardware BOMs](https://github.com/PlanktoScope/PlanktoScope/discussions/502), so that other members of our community can learn from your work!
@@ -112,10 +112,10 @@ We will also guide you through the assembly of side components to complete the P
 
 #### PCB Manufacturing Files
 
-| Files                                                                                                                | Description                                                                                                                   |
-|----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| [Gerber files PlanktoScope HAT V1.3.zip](../../../../../../hardware/v2.6/Gerber_files_PlanktoScope_HAT_V1.3.zip)     | The exported Gerber files for PCB fabrication                                                                                 |
-| [Assembly files PlanktoScope HAT V1.3.zip](../../../../../../hardware/v2.6/Assembly_files_PlanktoScope_HAT_V1.3.zip) | The SMD components list and assembly footprints, Pick-and-place machine instructions, Additional data for ThruHole components |
+| Files                                                                                                                 | Description                                                                                                                   |
+|-----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| [Gerber files PlanktoScope HAT V1.3.zip](../../../../assets/hardware/v2.6/Gerber_files_PlanktoScope_HAT_V1.3.zip)     | The exported Gerber files for PCB fabrication                                                                                 |
+| [Assembly files PlanktoScope HAT V1.3.zip](../../../../assets/hardware/v2.6/Assembly_files_PlanktoScope_HAT_V1.3.zip) | The SMD components list and assembly footprints, Pick-and-place machine instructions, Additional data for ThruHole components |
 
 Some components are missing from the "Pick-and-Place machine instructions" file. Please refer to the document titled "PlanktoscopeHat-v1.3-fab\_thru-hole component (missing from PnP).jpg" for further details.
 
