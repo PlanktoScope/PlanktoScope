@@ -447,7 +447,7 @@ The Alim Jack Assembly will be the link between the external 12V adaptor to the 
 >It will be plugged to the OnOff Button Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition to be sure that black wire will go with white wire and red wire with the yellow.
 
 7. Alim Jack Assembly is ready!
-   ![Alim_jack_final](images/Alim_jack_final.JPG "Alim_jack_final")
+   ![Alim_jack_final](images/Alim_Jack_final.JPG "Alim_jack_final")
 
 ### OnOff Button Assembly
 
@@ -531,7 +531,7 @@ Prepare the following toolings:
 
 6. Insert the M12/12 Lens in the CM1L10 Extension Tube.Threaded side of the lens out. By using the Tooling SPW909 screw gently up to contact with the M12/25 Lens. _If you go gentlyn no worries of damaging anything, the contact zone will not be between the 2 lens directly but between the 2 black casing diameter._
    Set back the protective cap.
-![Optic_Assy_Lens_12](images/Optic_Assy_Lens_12.JPG "Optic_Assy_Lens_12")
+![Optic_Assy_lens_12](images/Optic_Assy_lens_12.JPG "Optic_Assy_lens_12")
 
 7.  Open the black connector is simply a push/pull fit and disengage the cable ribbon. Save it for later on assembly
 ![Optic_Assy_cable_ribbon](images/Optic_Assy_cable_ribbon.JPG "Optic_Assy_cable_ribbon")
