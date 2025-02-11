@@ -517,13 +517,13 @@ Prepare the following toolings:
 
 2. Set the  **M12/25 Lens** and the **M12/12 Lens** on each of the **S1TM12 Lens Adapters**.
 
-![Optic_Assy_lens](images/Optic_Assy_lens.JPG "Optic_Assy_lens")
+![Optic_Assy_lens1](images/Optic_Assy_lens1.JPG "Optic_Assy_lens1")
 
 3. Remove the retaining ring in the **CM1L10 Extension Tube**
 
 4. Insert the M12/25 Lens in the CM1L10 Extension Tube.Threaded side of the lens first. By using the **Tooling SPW909** set the lens Adapter at **14.7mm** deep.
 
-![Optic_Assy_lens_25](images/Optic_Assy_lens_25.JPG "Optic_Assy_lens_25")
+![Optic_Assy_lens1_25](images/Optic_Assy_lens1_25.JPG "Optic_Assy_lens1_25")
 
 5. Remove M12/25 & M12/12 Lens protective caps on lens side.
 
@@ -531,7 +531,7 @@ Prepare the following toolings:
 
 6. Insert the M12/12 Lens in the CM1L10 Extension Tube.Threaded side of the lens out. By using the Tooling SPW909 screw gently up to contact with the M12/25 Lens. _If you go gentlyn no worries of damaging anything, the contact zone will not be between the 2 lens directly but between the 2 black casing diameter._
    Set back the protective cap.
-![Optic_Assy_lens_12](images/Optic_Assy_lens_12.JPG "Optic_Assy_lens_12")
+![Optic_Assy_lens1_12](images/Optic_Assy_lens1_12.JPG "Optic_Assy_lens1_12")
 
 7.  Open the black connector is simply a push/pull fit and disengage the cable ribbon. Save it for later on assembly
 ![Optic_Assy_cable_ribbon](images/Optic_Assy_cable_ribbon.JPG "Optic_Assy_cable_ribbon")
