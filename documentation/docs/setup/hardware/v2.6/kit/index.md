@@ -447,7 +447,7 @@ The Alim Jack Assembly will be the link between the external 12V adaptor to the 
 >It will be plugged to the OnOff Button Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition to be sure that black wire will go with white wire and red wire with the yellow.
 
 7. Alim Jack Assembly is ready!
-   ![Alim_jack_final](images/Alim_Jack_final.JPG "Alim_jack_final")
+   ![Alim_Jack_final](images/Alim_Jack_final.JPG "Alim_Jack_final")
 
 ### OnOff Button Assembly
 
