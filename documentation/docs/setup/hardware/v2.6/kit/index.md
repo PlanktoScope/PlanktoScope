@@ -1,7 +1,7 @@
 # Kit Production
 ## Kit Composition
 In this section you will go through all the steps to supply and create your PlanktoScope kit.
-You can find a list of the components needed in the [Planktoscope V2.6 BOM](../../../../../../hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
+You can find a list of the components needed in the [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
 
 | Files                                                                               | Description                       |
 |-------------------------------------------------------------------------------------|-----------------------------------|

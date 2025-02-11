@@ -17,7 +17,7 @@ It is important to ensure that you have all of the necessary components before b
 ![Exploded view all parts.PNG](images/Exploded_view_all_parts.PNG)
 ![Exploded view bamboo parts.PNG](images/Exploded_view_bamboo_parts.PNG "Exploded view bamboo parts.PNG")
 
-You can find the BOM for the PlanktoScope V2.6 and all the informations to supply or manufacture the components named with "… Assembly" in the [Kit Production](.../kit/index.md) documentation.
+You can find the BOM for the PlanktoScope V2.6 and all the informations to supply or manufacture the components named with "… Assembly" in the [Kit Production](../kit/index.md) documentation.
 
 ## Toolings :hammer_and_wrench:
 In order to perform all the assembly steps you will need the following toolings:
