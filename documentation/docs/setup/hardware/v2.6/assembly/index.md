@@ -17,7 +17,7 @@ It is important to ensure that you have all of the necessary components before b
 ![Exploded view all parts.PNG](images/Exploded_view_all_parts.PNG)
 ![Exploded view bamboo parts.PNG](images/Exploded_view_bamboo_parts.PNG "Exploded view bamboo parts.PNG")
 
-You can find the BOM for the PlanktoScope V2.6 and all the informations to supply or manufacture the components named with "… Assembly" in the [Kit Production](.../kit/Kit Production.md) documentation.
+You can find the BOM for the PlanktoScope V2.6 and all the informations to supply or manufacture the components named with "… Assembly" in the [Kit Production](.../kit/index.md) documentation.
 
 ## Toolings :hammer_and_wrench:
 In order to perform all the assembly steps you will need the following toolings:
@@ -449,7 +449,5 @@ If your arrive to this step it probably means that your PlanktoScope V2.6 is ful
 What a journey, thank you very much for your commitment.
 
 In order to continue and before starting your first images, the last step is the PlanktoScope set up, ready as it can be to start operating and discovering the beauty of your planktons samples!
-
-To see the set up phase please continue on the next chapter: [PlanktoScope V2.6 SetUp for Operation](.../set up/index.md)
 
 
