@@ -382,7 +382,7 @@ You willl also need, in addition to the component themselves, some consumable:
 - [ ] Zip Ties
 
 >[!NOTE]
->You can find reference example in the "Consumable" section of the [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope V2.6 BOM.xlsx).
+>You can find reference example in the "Consumable" section of the [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
 
 ### LED Assembly
 
