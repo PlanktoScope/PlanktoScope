@@ -217,12 +217,12 @@ It is easy to restrict access in the `public` firewall zone for the following po
 - mDNS (port 5353), whose access is provided by a Forklift package deployment named `host/networking/avahi-daemon`: restricting access to this will prevent devices in the `public` zone from discovering the PlanktoScope's IP address(es) by querying the PlanktoScope's mDNS hostnames (i.e. hostnames ending in `.local`, such as `planktoscope.local`).
 - ICMP, whose access is provided by a Forklift package deployment named `host/networking/networkmanager`: restricting access this will prevent devices in the `public` zone from pinging the PlanktoScope to check whether it exists.
 
-To restrict access for the `public` zone for one or more of these ports/protocols, run the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default), replacing the instances of `{package deployment name}` with the names of the various package deployments providing access to ports/protocols which you want to restrict:
+To restrict access for the `public` zone for one or more of these ports/protocols, run the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default), replacing the instances of `{package deployment}` with the names of the various package deployments providing access to ports/protocols which you want to restrict:
 
 ```
-forklift pallet disable-deployment-feature {package deployment name} firewall-allow-public
-forklift pallet disable-deployment-feature {package deployment name} firewall-allow-public
-forklift pallet disable-deployment-feature {package deployment name} firewall-allow-public
+forklift pallet disable-deployment-feature {package deployment} firewall-allow-public
+forklift pallet disable-deployment-feature {package deployment} firewall-allow-public
+forklift pallet disable-deployment-feature {package deployment} firewall-allow-public
 forklift pallet stage --no-cache-img
 ```
 
@@ -240,12 +240,12 @@ After running these commands, you can apply your changes by rebooting.
 
     It is easy to restrict access so much that you will become unable to access the PlanktoScope over its network interfaces through a router connected to your PlanktoScope. You should make sure you have some way to directly connect to the PlanktoScope, e.g. by a direct Ethernet cable connection or with a keyboard and display.
 
-To undo your changes, run the following commands, replacing the instances of `{package deployment name}` with the names of the various package deployments which you want to restore access to:
+To undo your changes, run the following commands, replacing the instances of `{package deployment}` with the names of the various package deployments which you want to restore access to:
 
 ```
-forklift pallet enable-deployment-feature {package deployment name} firewall-allow-public
-forklift pallet enable-deployment-feature {package deployment name} firewall-allow-public
-forklift pallet enable-deployment-feature {package deployment name} firewall-allow-public
+forklift pallet enable-deployment-feature {package deployment} firewall-allow-public
+forklift pallet enable-deployment-feature {package deployment} firewall-allow-public
+forklift pallet enable-deployment-feature {package deployment} firewall-allow-public
 forklift pallet stage --no-cache-img
 ```
 
@@ -266,6 +266,52 @@ If you really want to limit access in the `nm-shared` zone, you can follow the a
 !!! warning
 
     It is easy to restrict access so much that you will become unable to access the PlanktoScope over its network interfaces from devices with direct network connections to the PlanktoScope. If that happens, then the only way to access your PlanktoScope (e.g. to restore its previous settings) will be by connecting a display and keyboard to your PlanktoScope.
+
+### Disable all access to privileged web browser apps
+
+The following web browser apps provide full administrative (i.e. root or superuser) access to the system on port 80 via the HTTP reverse-proxy server:
+
+- Cockpit: a system administration dashboard which includes a terminal for running arbitrary commands (including privileged commands with `sudo`); access to this is provided by a feature flag named `frontend` in a Forklift package deployment named `apps/cockpit`.
+- System file manager: provides privileged access for viewing and editing arbitrary files across the entire filesystem; access to this is provided by a feature flag named `frontend` in a Forklift package deployment named `apps/filebrowser-root`.
+- Node-RED dashboard editor: provides a mechanism for running arbitrary privileged commands; access to this is provided by a feature flag named `editor` in a Forklift package deployment named `apps/ps/node-red-dashboard`.
+
+To disable access to one or more of these apps, run the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default), replacing the instances of `{package deployment}` with the names of the various package deployments providing access which you want to restrict, and replacing the instances of `{feature flag}` with the names of the feature flags which specifically provide the access you want to restrict:
+
+```
+forklift pallet disable-deployment-feature {package deployment} {feature flag}
+forklift pallet disable-deployment-feature {package deployment} {feature flag}
+forklift pallet disable-deployment-feature {package deployment} {feature flag}
+forklift pallet stage --no-cache-img
+```
+
+For example, to restrict access to the system file manager and the Node-RED dashboard editor, you would run the following commands:
+
+```
+forklift pallet disable-deployment-feature apps/filebrowser-root frontend
+forklift pallet disable-deployment-feature apps/ps/node-red-dashboard editor
+forklift pallet stage --no-cache-img
+```
+
+After running these commands, you can apply your changes by rebooting. Note that the landing page will still link to those apps, but the links won't work anymore.
+
+To undo your changes, run the following commands, replacing the instances of `{package deployment}` and `{feature flag}` with the names of the various package deployments and their respective feature flags which you want to re-enable to restore access:
+
+```
+forklift pallet enable-deployment-feature {package deployment} {feature flag}
+forklift pallet enable-deployment-feature {package deployment} {feature flag}
+forklift pallet enable-deployment-feature {package deployment} {feature flag}
+forklift pallet stage --no-cache-img
+```
+
+For example, to restore access to the system file manager and the Node-RED dashboard editor, you would run the following commands:
+
+```
+forklift pallet enable-deployment-feature apps/filebrowser-root frontend
+forklift pallet enable-deployment-feature apps/ps/node-red-dashboard editor
+forklift pallet stage --no-cache-img
+```
+
+After running these commands, you should apply the resulting changes by rebooting.
 
 ## Allow access to Cockpit from additional domain names or IP addresses
 

@@ -70,7 +70,7 @@ Traditional Linux distros such as the Raspberry Pi OS are designed to run softwa
 
 - Making certain customizations to the OS, such as adding additional programs/libraries or modifying system configuration files, increases the risk of *configuration drift* in which the system's actual state increasingly diverges over time from the state expected by the PlanktoScope's software maintainers, and thus becomes harder to understand, troubleshoot, or replace. User customizations to the OS cannot be easily separated from the default configuration of the OS, so it is complicated to copy only those customizations in order to drop them onto a fresh installation of the OS from a newer release - especially if the updated OS includes changes to default configurations which conflict with the user customizations.
 
-- Some Python packages required by PlanktoScope-specific programs (namely the PlanktoScope hardware controller and the PlanktoScope segmenter, which are both described in later sections of this document), such as [picamera2](https://github.com/raspberrypi/picamera2) and [opencv-python-headless](https://github.com/opencv/opencv-python), can only be installed as [pre-built wheels](https://pythonwheels.com/) from [piwheels](https://www.piwheels.org/) (which is used instead of PyPi because the PlanktoScope OS is not yet able to run as a 64-bit operating system) when certain versions of system libraries are installed, or else they must be re-compiled from source (which is prohitively slow on the Raspberry Pi for the affected Python packages). This makes dependencies more complicated to manage in maintenance of the PlanktoScope OS for creating and releasing new SD card images with updated software. The reliance on system libraries also increases the risk that a user-initiated upgrade or removal of some of the system's installed APT packages could cause breakage of some `pip`-managed Python packages which had been installed before the change.
+- Some Python packages required by PlanktoScope-specific programs (namely the PlanktoScope hardware controller and the PlanktoScope segmenter, which are both described in later sections of this document), such as [picamera2](https://github.com/raspberrypi/picamera2) and [opencv-python-headless](https://github.com/opencv/opencv-python), can only be installed as [pre-built wheels](https://pythonwheels.com/) from PyPI when certain versions of system libraries are installed, or else they must be re-compiled from source (which is prohitively slow on the Raspberry Pi for the affected Python packages). This makes dependencies more complicated to manage in maintenance of the PlanktoScope OS for creating and releasing new SD card images with updated software. The reliance on system libraries also increases the risk that a user-initiated upgrade or removal of some of the system's installed APT packages could cause breakage of some `pip`-managed Python packages which had been installed before the change.
 
 All of the factors listed above increase the perceived risk (and/or the required effort for sufficient mitigation of that risk) of accidentally degrading system integrity by keeping all software on the OS up-to-date, which makes it harder for users to receive bugfixes, security patches, and new features in a timely manner. Indeed, outside of systems like phones and Chromebooks (whose operating systems [automatically update themselves](https://chromium.googlesource.com/aosp/platform/system/update_engine/+/HEAD/README.md)), it is common for users of operating systems to avoid installing security updates or OS upgrades out of a fear of breaking their installed software; this is especially common for users who rely on software to operate other scientific instruments, and for good reasons! But the PlanktoScope project currently does not have enough resources to be able to support users stuck on old versions of the PlanktoScope OS; instead, we want to make it easy and safe for all users to always keep their PlanktoScopes - even with customizations to the OS - automatically updated to the latest version of the PlanktoScope OS. We intend to achieve this by:
 
@@ -86,7 +86,7 @@ We have implemented most of the systems necessary for these goals. Much of the P
 - PlanktoScope-specific systemd services.
 - PlanktoScope-specific OS configuration files.
 
-Everything managed by `forklift` is version-controlled in a [Git](https://git-scm.com/) repository with a special file structure (so that the repository is called a *pallet*), enabling easy backup and restoration of `forklift`-managed configurations even if the PlanktoScope's SD card is wiped and re-flashed. Forklift is designed so that a pallet is effectively a version-controlled, configurable, declarative [bill of materials](https://en.wikipedia.org/wiki/Bill_of_materials) for software/configuration modules which are composed together by Forklift into a significant layer of the PlanktoScope OS. Performing an OS upgrade/downgrade with Forklift is just a matter of running a `forklift` command to switch to a different version of a pallet, as described [in our OS upgrade operations guide](../../../operation/software-upgrades.md#perform-an-in-place-upgradedowngrade).
+Everything managed by `forklift` is version-controlled in a [Git](https://git-scm.com/) repository with a special file structure (so that the repository is called a *pallet*), enabling easy backup and restoration of `forklift`-managed configurations even if the PlanktoScope's SD card is wiped and re-flashed. Forklift is designed so that a pallet is effectively a version-controlled, configurable, declarative [bill of materials](https://en.wikipedia.org/wiki/Bill_of_materials) for software/configuration modules which are composed together by Forklift into a significant layer of the PlanktoScope OS; many kinds of customizations can be performed through a feature-flagging interface which is uniform regardless of the underlying formats of OS configurations involved in those customizations (e.g. as illustrated in our networking operations guides for [adjusting firewalld zone rules](../../../operation/networking.md#make-the-firewall-more-restrictive) and for [disabling one or both Wi-Fi hotspots](../../../operation/networking.md#disable-the-wi-fi-hotspot) and for [disabling access to one or more browser apps](../../../operation/networking.md#disable-all-access-to-privileged-web-browser-apps)). Performing an OS upgrade/downgrade with Forklift is just a matter of running a `forklift` command to switch to a different version of a pallet and then rebooting, as described [in our OS upgrade operations guide](../../../operation/software-upgrades.md#perform-an-in-place-upgradedowngrade).
 
 !!! info
 
@@ -108,13 +108,15 @@ This design is intended to facilitate replacement of particular programs with mo
 
 #### Making & publishing customizations
 
-The workflow with `forklift` for developing/testing OS customizations, such as new package deployments or non-standard configurations of existing package deployments or substitutions of existing package deployments, is as follows:
+The workflow with `forklift` for developing/testing new OS customizations, such as new package deployments or non-standard configurations of existing package deployments or substitutions of existing package deployments, is as follows:
 
 - Initialize a custom pallet based on (i.e. layered over) an existing pallet, using the `forklift pallet init` command (e.g. `forklift pallet init --from github.com/PlanktoScope/pallet-standard@stable --as github.com/ethanjli/custom-pallet` to make a starter which will be a customization of the latest stable version of the [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard) pallet, and which can be published to `github.com/ethanjli/custom-pallet`). (Note: the `forklift pallet init` command is not yet implemented, so currently a new pallet can only be created by manually initializing a new Git repository and creating a few YAML files inside it)
 
 - Optionally, create new Forklift packages with definitions of Docker Compose applications and/or systemd services and/or OS configuration files, and configure the deployment of those packages by creating particular files in the pallet.
 
 - Optionally, add one or more files which override files from the existing pallet, in order to override the configurations specified by those files.
+
+- Optionally, add one or more new files, in order to add entirely new configurations.
 
 - Stage the pallet to be applied on the next boot of the PlanktoScope OS, with the `forklift pallet stage` command; when Forklift applies a pallet, it makes the PlanktoScope OS match the configuration of Forklift package deployments specified by the pallet.
 
@@ -146,7 +148,7 @@ PlanktoScope-specific hardware modules are abstracted by PlanktoScope-specific p
 
 Traditional operating systems provide a desktop environment with a graphical user interface for operating the computer. By contrast, the PlanktoScope OS provides a set of web browser-based graphical user interfaces for operating the PlanktoScope. This approach was chosen for the following reasons:
 
-- Most people already have a personal computing device (e.g. a phone or laptop). By relying on the user's personal computing device as the graphical interface for the PlanktoScope's software, the PlanktoScope project can reduce hardware costs by omitting a display from the PlanktoScope hardware.
+- Most people already have a personal computing device (e.g. a phone or laptop). By relying on the user's personal computing device as the graphical interface for the PlanktoScope's software, the PlanktoScope project can reduce hardware costs by omitting a full display from the PlanktoScope hardware.
 
 - The PlanktoScope's computational resources are limited and may often need to be fully used for [data processing](#data-processing) tasks. By offloading real-time interaction (such as rendering of the graphical display, and handling of mouse and keyboard events) to a separate device, we can ensure a smooth user experience even when the PlanktoScope's Raspberry Pi computer is busy with other work.
 
@@ -158,9 +160,7 @@ The PlanktoScope OS adds the following network services which provide web browse
 
 - A datasets [file browser](https://filebrowser.org/) for viewing, managing, uploading, and downloading image dataset files on the PlanktoScope. These files are generated and used by the PlanktoScope hardware controller and the PlanktoScope segmenter.
 
-- [device-portal](https://github.com/PlanktoScope/device-portal): a landing page with links for end-users to quickly access the various web browser-based interfaces mentioned above.
-
-Note: we will probably simplify things by consolidating some of these components together into the PlanktoScope's Node-RED dashboard.
+- [device-portal](https://github.com/PlanktoScope/device-portal): a PlanktoScope-specific landing page with links for end-users to quickly access the various web browser-based interfaces mentioned above.
 
 The PlanktoScope OS also provides various tools with web browser-based interfaces to aid with system administration and troubleshooting:
 
@@ -174,7 +174,9 @@ The PlanktoScope OS also provides various tools with web browser-based interface
 
 - [Grafana](https://grafana.com/): for monitoring and exploring metrics stored in Prometheus.
 
-Finally, the PlanktoScope OS adds some command-line tools (beyond what is already provided by the default installation of the Raspberry Pi OS) for administrative tasks which system administrators, software developers, and advanced users may need to use:
+Finally, the PlanktoScope OS adds some terminal tools (beyond what is already provided by the default installation of the Raspberry Pi OS) for administrative tasks which system administrators, software developers, and advanced users may need to use:
+
+- [`forklift`](https://github.com/PlanktoScope/forklift): for configuring, customizing, and updating the PlanktoScope OS.
 
 - [`vim`](https://www.vim.org/): for editing text files.
 
@@ -182,19 +184,21 @@ Finally, the PlanktoScope OS adds some command-line tools (beyond what is alread
 
 - [`git`](https://git-scm.com/): for interacting with Git repositories.
 
-- [`w3m`](https://tracker.debian.org/pkg/w3m) and [`lynx`](https://lynx.invisible-island.net/): for interacting with web pages (such as Wi-Fi network captive portals) from the PlanktoScope.
+- [`docker`](https://docs.docker.com/reference/cli/docker/) (including [Docker Compose](https://docs.docker.com/compose/)) and [`lazydocker`](https://github.com/jesseduffield/lazydocker): for inspecting Docker containers.
 
-- [`docker`](https://docs.docker.com/reference/cli/docker/): for managing and inspecting Docker containers.
+- [`w3m`](https://tracker.debian.org/pkg/w3m) and [`lynx`](https://lynx.invisible-island.net/): for interacting with web pages (such as Wi-Fi network captive portals) directly from the PlanktoScope.
+
+- Various (relatively) low-level tools provided by [`net-tools`](https://manpages.debian.org/bookworm/net-tools/index.html), [`netcat-openbsd`](https://manpages.debian.org/bookworm/netcat-openbsd/index.html), [`nmap`](https://manpages.debian.org/bookworm/nmap/index.html), [`bind9-dnsutils`](https://manpages.debian.org/bookworm/bind9-dnsutils/index.html), and [`avahi-utils`](https://manpages.debian.org/bookworm/avahi-utils/index.html), for troubleshooting (relatively) low-level networking issues.
 
 ## Networking
 
-The PlanktoScope is often deployed in settings with limited or unstable internet access, and also in settings with no internet access at all. The PlanktoScope also needs to be deployable in remote settings where the user needs to control the PlanktoScope without being physically present. In both types of situations, the PlanktoScope's web browser-based interfaces need to remain accessible.
+The PlanktoScope is often operated with limited or sporadic internet access, and also in settings with no internet access at all. The PlanktoScope also needs to be deployable in remote settings where the user needs to control the PlanktoScope without being physically present. In both types of situations, the PlanktoScope's web browser-based interfaces need to remain accessible.
 
 We solve this problem by allowing the PlanktoScope to connect to the internet over a known Wi-Fi network, and/or over Ethernet, so that the PlanktoScope's web browser-based interfaces can be accessed over the internet; and by making the PlanktoScope bring up a Wi-Fi hotspot (more formally, a [wireless access point](https://en.wikipedia.org/wiki/Wireless_access_point)) using the Raspberry Pi's integrated Wi-Fi module in the absence of any known Wi-Fi network, so that the web browser-based interfaces can be accessed over the Wi-Fi hotspot.
 
-When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), the PlanktoScope acts as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a DNS server to assign itself certain domain names (e.g. `home.pkscope`), so that user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. The PlanktoScope also announces itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `planktoscope.local`) which may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network).
+The PlanktoScope's networking systems are built around [NetworkManager](https://networkmanager.dev/), [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html), [firewalld](https://firewalld.org/), and [Avahi](https://avahi.org/). When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), the PlanktoScope acts as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a DNS server to assign itself certain domain names (e.g. `home.pkscope`) (with DHCP server and DNS server functionalities provided by a dnsmasq instance launched by NetworkManager), so that user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. The PlanktoScope also uses Avahi to announce itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `planktoscope.local`) which may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network).
 
-When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with network configurations for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access.
+When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with NetworkManager's "shared" IPv4 connection type for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access.
 
 The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of the Raspberry Pi OS) for managing the PlanktoScope's network connectivity:
 
@@ -228,27 +232,38 @@ The standard PlanktoScope OS also adds the following systemd services for dynami
 
 - `assemble-hosts` generates a temporary hosts file (which is used by a symlink at `/etc/hosts`) from drop-in snippets at `/etc/hosts-templates.d`.
 
-The standard PlanktoScope OS also adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
-
-- [Mosquito](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
-
-- [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
-
 The standard PlanktoScope OS also adds the following systemd services for reporting information about the system for easy access:
 
 - `report-mac-addresses`: generates a temporary file at `/run/mac-addresses.yml` which enumerates the system's network interfaces and their respective MAC addresses
 
+### Machine naming
+
+
+### Firewall
+
+### App integration
+
+The standard PlanktoScope OS adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
+
+- [Mosquitto](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
+
+- [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
+
 ## Filesystem
 
-The PlanktoScope OS's filesystem makes some changes from the default Debian/Raspberry Pi OS filesystem structure so that various sets of files in `/etc` and `/usr` can be atomically upgraded/downgraded/replaced together (using Forklift) while still being directly customizable by the system administrator. Specifically, a number of systemd services in the PlanktoScope OS run during early boot to:
+The PlanktoScope OS's filesystem makes some changes from the default Debian/Raspberry Pi OS filesystem structure to make the OS easier to upgrade cleanly with customizations.
+
+### Overlays
+
+ The biggest change is that the PlanktoScope OS splits the filesystem up into layers combined with the Linux kernel's [overlay-filesystem](https://docs.kernel.org/filesystems/overlayfs.html) functionality, so that various sets of files in `/etc` and `/usr` can be atomically upgraded/downgraded/replaced together (using Forklift) while still being directly customizable by the system administrator. Specifically, a number of systemd services in the PlanktoScope OS run during early boot to:
 
 - Make a read-only mount (via the `overlay-sysroot` systemd service) of the initial root filesystem, at `/sysroot` (this layout is loosely inspired by [OSTree's filesystem layout](https://ostreedev.github.io/ostree/adapting-existing/)).
 
 - Make a read-only mount of the next Forklift pallet to be applied (via the `bindro-run-forklift-stages-current.service`) from a subdirectory within `/var/lib/forklift/stages` to `/run/forklift/stages/current`.
 
-- Remount `/usr` (via the `overlay-usr` systemd service) as a writable overlay with a Forklift-managed intermediate layer (in a subdirectory within `/var/lib/forklift/stages` which can also be accessed at `/run/forklift/stages/current/exports/overlays/usr`) and `/sysroot/usr` as a base layer; any changes made by the system administrator to files in `/usr` will be transparently stored by the overlay in `/var/lib/overlays/overrides/usr`. This allows Forklift to provide extra files in `/usr` in an atomic way, while overrides made by the system administrator are stored separately.
+- Remount `/usr` (via the `overlay-usr` systemd service) as a writable overlay with a Forklift-managed intermediate layer (in a subdirectory within `/var/lib/forklift/stages` which can also be accessed at `/run/forklift/stages/current/exports/overlays/usr`) and `/sysroot/usr` as a base layer; any changes made by the system administrator to files in `/usr` will be transparently stored by the overlay in `/var/lib/overlays/overrides/usr`. This allows Forklift to provide extra files in `/usr` in an atomic way (for atomic upgrades), while overrides made by the system administrator are stored separately. This restructuring of `/usr` also enables factory resetting of the OS even if more packages have been installed using APT, e.g. as discussed in the software reset/upgrade operation guide's [discussion of `apt`/`apt-get`](../../../operation/software-upgrades.md#avoid-touching-aptapt-get).
 
-- Remount `/etc` (via the `overlay-etc` systemd service) as a writable overlay with a Forklift-managed intermediate layer (in a subdirectory within `/var/lib/forklift/stages` which can also be accessed at `/run/forklift/stages/current/exports/overlays/etc`) and `/sysroot/etc` as a base layer; any changes made by the system administrator to files in `/etc` will be transparently stored by the overlay in `/var/lib/overlays/overrides/etc`. This allows Forklift to provide extra files in `/etc` in an atomic way, while overrides made by the system administrator are stored separately.
+- Remount `/etc` (via the `overlay-etc` systemd service) as a writable overlay with a Forklift-managed intermediate layer (in a subdirectory within `/var/lib/forklift/stages` which can also be accessed at `/run/forklift/stages/current/exports/overlays/etc`) and `/sysroot/etc` as a base layer; any changes made by the system administrator to files in `/etc` will be transparently stored by the overlay in `/var/lib/overlays/overrides/etc`. This allows Forklift to provide extra files in `/etc` in an atomic way (for atomic upgrades), while overrides made by the system administrator are stored separately. This restructuring of `/etc` also enables factory resetting of the OS even if the user has manually edited any files in `/etc`, e.g. as discussed in the software reset/upgrade operation guide for [resetting the OS](../../../operation/software-upgrades.md#reset-the-planktoscope-os).
 
 - Make a writable mount of `/var/lib/forklift/stages` to `/home/pi/.local/share/forklift/stages` (via the `bind-.local-share-forklift-stages@home-pi` systemd service) so that, when the `pi` user runs `forklift` commands like `forklift pallet switch`, those commands will update `/var/lib/forklift/stages` - and without requiring the use of `sudo`.
 
@@ -256,11 +271,13 @@ The PlanktoScope OS's filesystem makes some changes from the default Debian/Rasp
 
 Beyond what is required by the Linux [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html), the PlanktoScope OS sets the following conventions related to filesystem paths:
 
-- Scripts which are provided by Forklift and only used as part of systemd services should be provided in `/usr/libexec`, Forklift packages should export those scripts to `overlays/usr/libexec` (so, for example, they will be accessible in `/run/forklift/stages/current/exports/overlays/usr/libexec`).
+- Scripts which are provided by Forklift and only used as part of systemd services should be provided in `/usr/libexec`, and Forklift packages should export those scripts to `overlays/usr/libexec` (so, for example, they will be accessible in `/run/forklift/stages/current/exports/overlays/usr/libexec`).
 
-- Systemd units provided by Forklift should be provided in `/usr/lib/systemd/system`, and Forklift packages should export those units to `overlays/usr/lib/systemd/system`. Symlinks to enable those units should be provided in `/etc/systemd/system`, and Forklift packages should export those scripts to `overlays/etc/systemd/system`.
+- Systemd units provided by Forklift should be provided in `/usr/lib/systemd/system`, and Forklift packages should export those units to `overlays/usr/lib/systemd/system`. Symlinks to enable those units should be provided in `/etc/systemd/system`, and Forklift packages should export those symlinks to directories within `overlays/etc/systemd/system`.
 
 - Forklift-provided systemd services which dynamically generate temporary files meant to be used in `/etc` should generate those temporary files at stable paths in `/run/overlays/generated/etc`. Forklift packages which provide such systemd services should also provide relative symlinks into those temporary files in `/run/overlays/generated/etc` to be exported into `overlays/etc` as overlays for the corresponding paths in `/etc`. For example, if a package provides a service to dynamically generate a hosts file meant to be used as `/etc/hosts`, that service should generate the file in `/run/overlays/generated/etc/hosts` and the package should export a symlink at `overlays/etc/hosts` which points to `../../run/overlays/generated/etc/hosts`, so that `/etc/hosts` will be a symlink pointing to `/run/overlays/generated/etc/hosts`.
+
+### Config file assembly from drop-in fragments
 
 ## Observability & telemetry
 
@@ -282,7 +299,7 @@ Note: in the future, the PlanktoScope OS will add more on-board services for pro
 
 ## Security
 
-Currently, the PlanktoScope OS lacks basic security measures to make it safe for them to be connected to the internet; currently it is the responsibility of system administrators to add extremely basic risk mitigations, for example by:
+Currently, the PlanktoScope OS lacks basic security measures to make it safe for them to be connected to the internet; currently it is the responsibility of system administrators to add extremely basic risk mitigations, for example by following the relevant instructions in the [Networking operation guide](../../../operation/networking.md#secure-your-planktoscope):
 
 - Changing the password of the `pi` user away from the default of `copepode`.
 
@@ -300,4 +317,4 @@ Other risk mitigations will require deeper changes to the PlanktoScope OS, such 
 
 - Password-protecting network [APIs](https://en.wikipedia.org/wiki/API).
 
-We would like to start taking even just the very basic steps listed above to improve security, but security is not yet a high-enough priority for us to work on it with the limited resources available to us 🙃 - if you're interested in computer/network security and you'd like to help us as a volunteer on this project, please contact us!
+We would like to implement these additional risk mitigations, but security is not yet a high-enough priority for us to work on it with the limited resources available to us 🙃 - if you're interested in computer/network security and you'd like to help us as a volunteer on this project, please contact us!
