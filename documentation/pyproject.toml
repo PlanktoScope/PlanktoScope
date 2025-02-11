@@ -85,6 +85,7 @@ remove-nav-exclusions = "sed -i 's~^.* # poe(make-minimal): exclude$~~' mkdocs.y
 # Warning: this command should be run in GitHub Actions, but not on a developer computer! This is 
 # because it will delete files, and those deletions should never be committed to GitHub.
 make-minimal = [
+  "clean-hardware-assets",
   "remove-hardware-setup-guides",
   "replace-hardware-setup-index",
   "remove-nav-exclusions",
