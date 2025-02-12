@@ -143,16 +143,18 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * Open the black connector is simply a push/pull fit. To disengage the cable, pull the two corners of the black connector down, away from the camera board. It will unclip to about 3mm, make sure you don't pull it off!
 
->[!WARNING]
->Be careful, this part is delicate. Gently prise the black connector with nail or fingertip and thumb.
+!!! warning
+
+	Be careful, this part is delicate. Gently prise the black connector with nail or fingertip and thumb.
 ![Assemble Core Module 4.png](images/Assemble_Core_Module_4.png "Assemble Core Module 4")
 
 * Insert the **Ribbon Cable** you just detached from the Raspberry Pi Camera in the Raspberry Pi
 * Make sure to insert in as much as you can
 * Secure the Ribbon Cable in the Raspberry Pi by pressing firmly on the black connector
 
->[!WARNING]
->Blue rectangle on Ribbon Cable should face the same direction as the arrow below.
+!!! warning
+
+	Blue rectangle on Ribbon Cable should face the same direction as the arrow below.
 ![Assemble Core Module 5](images/Assemble_Core_Module_5.png "Assemble Core Module 5")
 
 * Thread the Ribbon cable through the **PlanktoScope HAT V1.3 Assy** slot from the underside
@@ -204,8 +206,9 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * Insert the Optic 20-200 Assy into the designated hole on Part B
   
->[!WARNING]
-> Pay a close attention to its correct orientation
+!!! warning
+
+	Pay a close attention to its correct orientation
 
 * Use the **T8H or Hex2 screwdriver** to fix each of the **4 x M2.5x5mm screws** in place, ensuring they are firmly attached but not overly tightened
 ![Assemble the Optic 20-200 Assy 2](images/Assemble_the_Optic_20-200_Assy_2.png "Assemble the Optic 20-200 Assy 2")
@@ -255,8 +258,9 @@ In order to perform all the assembly steps you will need the following toolings:
     * ⚫Black in **"-"**
 * Use the **flat screwdriver 2.5** to secure the two connectors, ensuring they are firmly attached but not overly tightened
   
->[!WARNING]
->Be careful with the power block terminal, as it is delicate. Support it while tightening to prevent solder joint breakage.
+!!! warning
+
+	Be careful with the power block terminal, as it is delicate. Support it while tightening to prevent solder joint breakage.
 
 ![Finalize the core module 1](images/Finalize_the_core_module_1.png "Finalize the core module 1")
 
@@ -298,8 +302,10 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * Bring the **camera module** close to the core module, making sure about its orientation (see :orange_circle: orientation refrence)
 * Connect the **ribbon cable** to the camera
->[!WARNING]
->Blue rectangle on Ribbon Cable should face you. Be careful of the connector and the complete connection of the ribbon.
+
+!!! warning
+
+	Blue rectangle on Ribbon Cable should face you. Be careful of the connector and the complete connection of the ribbon.
 
 ![Finalize Main Assembly 2.png](images/Finalize_Main_Assembly_2.png "Finalize Main Assembly 2.png")
 
@@ -319,8 +325,9 @@ In order to perform all the assembly steps you will need the following toolings:
 * Find the **Part E** and the place on the 2 Linear stepper motor
 * Use the **T8H or Hex2 screwdriver** to fix each of the **4 x M2.5x10mm screws** in place, ensuring they are firmly attached but not overly tightened
 
->[!NOTE]
->Design of Bamboo Part E has evolved suring PlanktoscopeV2.6 life. You may obtain a slightly different part as shown in the picture. Assembly process is the same.
+!!! note
+
+	Design of Bamboo Part E has evolved suring PlanktoscopeV2.6 life. You may obtain a slightly different part as shown in the picture. Assembly process is the same.
 
 ![Finalize Main Assembly 6.png](images/Finalize_Main_Assembly_6.png "Finalize Main Assembly 6.png")
 
@@ -346,8 +353,9 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * Utilize the **spiral cable jacket** to organize and maintain a neat cable passage
 
->[!WARNING]
->Be careful not to apply tension on the led wires and the led itself while setting the cable jacket.
+!!! warning
+
+	Be careful not to apply tension on the led wires and the led itself while setting the cable jacket.
 
 ![Finalize Main Assembly 13.png](images/Finalize_Main_Assembly_13.png "Finalize Main Assembly 13.png")
 
@@ -402,8 +410,10 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * On **Part G**, set the **O-ring** in position
 * Assemble the **2 x knurled head screws M2,5x12mm** with their **2 x Nut HU M2.5**
->[!NOTE]
->Beware of the assembly way : nuts on the Oring side in the machined holes
+
+!!! note
+
+	Beware of the assembly way : nuts on the Oring side in the machined holes
 
 ![Flowcell Holder Assembly 2](images/Flowcell_Holder_Assembly_2.jpg "Flowcell Holder Assembly 2")
 

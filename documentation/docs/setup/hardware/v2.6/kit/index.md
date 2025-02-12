@@ -12,9 +12,9 @@ If you find some local alternative please share your custom BOM to our GitHub Di
 
 In the following sections we will go more in detail on:
 
-- the possibility to machined on your own the [Mechanical Structure](#mechanical-structure)
-- the documentations and assembly steps to manufacture the [PlanktoScope HAT V1.3](#planktoscope-hat-1.3-pcb)
-- the cabling steps of the [LED Assy](#led-assembly), the [Alim Jack Assy](#alim-jack-assembly) and the [OnOff Button Assy](#onoff-button-assembly)
+- The possibility to machined on your own the [Mechanical Structure](#mechanical-structure)
+- The documentations and assembly steps to manufacture the [PlanktoScope HAT V1.3](#planktoscope-hat-13-pcb)
+- The cabling steps of the [LED Assembly](#led-assembly), the [Alim Jack Assembly](#alim-jack-assembly) and the [OnOff Button Assembly](#onoff-button-assembly)
 - And finaly the [Optic 20-200 Assy](#optic-20-200-assembly)
 
 
@@ -32,8 +32,9 @@ And don't forget safety, use your nicest protective glasses! :-)
 Here you can find the .dxf file to create the program on a CNC milling machine. If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
 
 
->[!NOTE]
-> Depending on stock availability, FairScope can also be considered as a supplier.
+!!! note
+
+	Depending on stock availability, FairScope can also be considered as a supplier for the Structure Bamboo Plate.
     
 
 | Files                     | Description                              |
@@ -45,15 +46,16 @@ This .dxf file has been designed for a **thickness of the material at 7.6mm (3 i
 
 For a different thickness you’ll need to adapt it.
 
->[!TIP]
->For a better assembly and if your software does not add it automaticaly use "dog bone" filet on every corner. :bone:
+!!! tips
+
+	For a better assembly and if your software does not add it automaticaly use "dog bone" filet on every corner. :bone:
 
 ![Dogbone example.png](images/Dogbone_example.png)
 
 
 ### Reference Plate
 
-In order to calibrate correctly your CNC machine you'll find here the .dxf file and the expected dimensions of a reference plate. If your parameters allowed you to reach these dimensions, you can report the adaptation on the [PlanktoScope_CaseV2.6.dxf] and launch the milling with more insurance.
+In order to calibrate correctly your CNC machine you'll find here the .dxf file and the expected dimensions of a reference plate. If your parameters allowed you to reach these dimensions, you can report the adaptation on the *PlanktoScope_CaseV2.6.dxf* and launch the milling with more insurance.
 
 | Files           | Description                    |
 |-----------------|--------------------------------|
@@ -77,12 +79,13 @@ Valchromat is a wood-based composite material made from recycled wood fibers and
 
 ### Finnish of the plates
 
-After your wonderful milling process, remove all dust and remains of the milling and machining.
+After your successful milling process, remove all dust and remains of the milling and machining.
 
 Here you can use your favorite finishing according to the selected material. Be sure that it remains as environmentally friendly as possible.
 
->[!NOTE]
-> For example, FairScope uses Rubio Monocoat Plus. It is a wood finishing product that is designed to provide a durable, natural-looking finish to wood surfaces. It is made from plant-based oils and pigments, which give it a transparent finish that enhances the natural aspect of the wood.
+!!! note
+
+	For example, FairScope uses Rubio Monocoat Plus. It is a wood finishing product that is designed to provide a durable, natural-looking finish to wood surfaces. It is made from plant-based oils and pigments, which give it a transparent finish that enhances the natural aspect of the wood.
 
 Dry all parts and store them for the assembly process.
 
@@ -102,11 +105,12 @@ A **Printed Circuit Board (PCB)** is a vital component of electronic devices, pr
 
 Components used on PCBs are either **Thru-Hole** (leads pass through the board, ideal for durability) or **Surface Mount** (soldered directly on the surface, suited for compact designs). The choice depends on the device’s requirements.
 
-You will find on the following files the full documentation to ask for a quotation to your electronic prototypist.
+You will find in the following files the full documentation to start a quotation on your electronic prototypist platefrom.
 We will also guide you through the assembly of side components to complete the PlanktoScope HAT 1.3 fabrication.
 
->[!NOTE]
-> Depending on stock availability, FairScope can also be considered as a supplier for the fully assembled PlanktoScope HAT 1.3.
+!!!note
+
+	Depending on stock availability, FairScope can also be considered as a supplier for the fully assembled PlanktoScope HAT 1.3.
 
 ### PCB Manufacturing Information
 
@@ -128,8 +132,9 @@ They are not included in Thru-Hole components list for the prototypiste.
 
 The following configuration parameters can be used for the production of the PCB.
 
->[!CAUTION]
-> Please note that the naming may vary depending on the manufacturing company you used and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
+!!! note
+
+	Please note that the naming may vary depending on the manufacturing company you use and are only intended to provide you with support. You can, of course, adjust the parameters as you see fit.
 
 ##### Board dimensions
 
@@ -196,21 +201,23 @@ As explain earlier on and in order to let you dive into a fun DIY project or pic
 
 ### Assembly of the Drivers TMC 5160
 
+These steps will show you how to correctly solder driver boards on their connectors. 
+
 #### Tooling :hammer_and_wrench:
 
 - [ ] Professional Soldering Iron
 - [ ] Solder
 - [ ] Breadboard
-- [ ] Utility knife
-- [ ] Mutlimeter
+- [ ] Utility Knife / Razor Blade
+- [ ] Multimeter
+
 ![Drivers_toolings](images/Drivers_toolings.JPG "Drivers_toolings")
 
->[!WARNING] 
-> When you solder this for the first time, take special care to gather information and train yourself. Do not hesitate to have a look to this [Soldering 101: Beginners Guide](https://www.youtube.com/watch?v=rK38rpUy568).
+When you solder this for the first time, take special care to gather information and train yourself. Do not hesitate to have a look to this [Soldering 101: Beginners Guide](https://www.youtube.com/watch?v=rK38rpUy568).
 
 #### Assembly Steps
 
-1. Prepare the components
+**1. Prepare the components**
 
 | Component                            | Example of reference | Qty |
 |--------------------------------------|----------------------|-----|
@@ -219,56 +226,58 @@ As explain earlier on and in order to let you dive into a fun DIY project or pic
 
 ![Drivers_components](images/Drivers_components.JPG "Drivers_components")
 
->[!NOTE]
-> Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
+!!! note
+
+	Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
 
 Unpack the Drivers TMC 5160 and the Connector Header strips of 8 pins (x2) and 2 pins(x1), take the breadboard and warm your soldering iron.
 
-2. Cut the via bridge
+**2. Cut the via bridge**
 
 :hammer_and_wrench:
-[Tooling](#tooling-hammerandwrench): 
-- [ ] Utility knife
+[Tooling](#tooling): 
+
+- [ ] Utility Knife / Razor Blade
 - [ ] Multimeter
 
-Bridge Cut: use a razor blade or a utility knife to unable conductivity between 2 of the 4 slots as shown in the following visual:
+Bridge Cut: use a **razor blade or a utility knife** to unable conductivity between 2 of the 4 slots as shown in the following visual:
 
 ![Drivers_bridge_cut](images/Drivers_bridge_cut.PNG "Drivers_bridge_cut")
 
-Check if the two slots are correctly isolated from one another with a multimeter in conductivity mode.
+Check if the two slots are correctly isolated from one another with a **multimeter** in conductivity mode.
 
 ![Drivers_bridge_cut_check](images/Drivers_bridge_cut_check.JPG "Drivers_bridge_cut_check")
 
->[!WARNING]
-> This step not follow traditional methods, but be careful to cut this bridge only to keep the PCB integrity.
+!!! warning
 
-3.  Set in position the Connector Header strips
+	This step does not really follow traditional methods, but be careful to cut this bridge only to keep the PCB integrity.
 
-Plug the connectors with the appropriate distance to the breadboard.
+**3.  Set in position the Connector Header strips**
 
-photo connector sur une breadboard
+Plug the connectors with the appropriate distance to the **breadboard**.
+
+![Drivers_positioning](images/Drivers_positioning.JPG "Drivers_positioning")
 
 The breadboard supports you during soldering to ensure the spacing and angle of the Connectors.
 
 
-4.  Set in position the Drivers TMC 5160 PCB
+**4.  Set in position the Drivers TMC 5160 PCB**
 
 Positioned the Drivers TMC 5160 PCB on the connectors set on the breadboard.
 
-![Drivers_positioning](images/Drivers_positioning.JPG "Drivers_positioning")
+!!! warning
 
+	Make sure that the larger chip labeled "trimatik" is positioned on the bottom of the board and the four smaller chips are positioned on the top of the board as shown in the picture.
 
->[!WARNING]
-> Make sure that the larger chip labeled "trimatik" is positioned on the bottom of the board and the four smaller chips are positioned on the top of the board as shown in the picture.
-
-5.  Soldering
+**5.  Soldering**
 
 Now solder all pins of the connectors strip.
 
 ![Drivers_soldering](images/Drivers_soldering.JPG "Drivers_soldering")
 
->[!TIP]
-> You can also solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally.
+!!! tips
+
+	You can also solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally.
 
 
 #### Finalisation & Installation
@@ -295,7 +304,7 @@ These steps will show you how to install the axial fan on the PlanktoScope Hat 1
 
 #### Assembly Steps
 
-1. Prepare the components
+**1. Prepare the components**
 
 | Component                             | Example of reference | Qty |
 |---------------------------------------|----------------------|-----|
@@ -306,16 +315,17 @@ These steps will show you how to install the axial fan on the PlanktoScope Hat 1
 
 ![Axial_fan_components](images/Axial_fan_components.JPG "Axial_fan_components")
 
-2. Install the Axial Fan
+**2. Install the Axial Fan**
 
 :hammer_and_wrench:
-[Tooling](#tooling-hammerandwrench): 
+[Tooling](#tooling): 
+
 - [ ] Wire stripper pliers
 - [ ] Screwdriver Hex2
 - [ ] Classic Pliers
 
 Cut off the wires of the Axial Fan in order to leave about 6 cm.
-Strip the wires on 5mm.
+Strip the wires on 5mm with **Wire stripper pliers**.
 
 ![Axial_fan_preparation](images/Axial_fan_preparation.JPG "Axial_fan_preparation")
 
@@ -329,15 +339,17 @@ Engage the wire through the hole in the PlanktoScope HAT 1.3 PCB to reach the bo
 Screw the 4x **M3*14 Screw** with **Screwdriver Hex2** and **Classical pliers**.
 ![Axial_fan_fixing](images/Axial_fan_fixing.JPG "Axial_fan_fixing")
 
-3. Solder the wires
+**3. Solder the wires**
 
-Tin the wires extremities. Solder the fan cables according to the marking and color codes ⚫ GND, 🔴 VCC.
+Tin the wires extremities. Solder the fan cables according to the marking and color codes:
+- Black ⚫ on GND
+- Red 🔴 on VCC
 
 ![Axial_fan_tining](images/Axial_fan_tining.JPG "Axial_fan_tining")
 
 ![Axial_fan_wire_soldering](images/Axial_fan_wire_soldering.JPG "Axial_fan_wire_soldering")
 
-4. Solder bridges
+**4. Solder bridges**
 
 Create soldering bridges between:
 
@@ -350,6 +362,9 @@ Create soldering bridges between:
 - The middle slot and )D
 ![Axial_fan_D_bridge](images/Axial_fan_D_bridge.JPG "Axial_fan_D_bridge")
   
+Final result:
+
+![Axial_fan_bridge_final](images/Axial_fan_bridge_final.JPG "Axial_fan_bridge_final")
 
 ### You have finished soldering and assembling the components!
 
@@ -371,24 +386,26 @@ For this the needed equipments will be:
 - [ ] Stripping pliers
 - [ ] Third Hand / small Anvil
 - [ ] Heat Gun
+      
 ![Cabling_toolings](images/Cabling_toolings.JPG "Cabling_toolings")
 
 You willl also need, in addition to the component themselves, some consumable:
 #### Consumable:
 
-- [ ] Heat Shrink Black \&Oslash
-- [ ] Heat Shrink Red \&Oslash
+- [ ] Heat Shrink Black
+- [ ] Heat Shrink Red
 - [ ] Wire Crimps
 - [ ] Zip Ties
 
->[!NOTE]
->You can find reference example in the "Consumable" section of the [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
+!!! note
+
+	You can find reference example in the "Consumable" section of the Planktoscope V2.6 BOM.
 
 ### LED Assembly
 
 A simple first assembly is the LED Assembly.
 
-1. Prepare the components
+**1. Prepare the components**
 
 | Designation                       | Qty | Example of reference  |
 |-----------------------------------|-----|-----------------------|
@@ -399,32 +416,50 @@ Here the JST connector proposed is already wired.
 
 ![Led_Assy_components](images/Led_Assy_components.JPG "Led_Assy_components")
 
-2. Prepare the wires. With the **stripping pliers** stripped the wire over 1cm.
+**2. Prepare the wires**
 
-3. Slide a black **heat shrink** on both of the wires. Slide an aditional and smaller red **Heat Shrink** on the red wire.
+With the **stripping pliers** stripped the wire over 5mm.
+
+**3. Set Heat Shrink**
+
+Slide a **Black heat shrink** on both of the wires. Slide an aditional and smaller **Red Heat Shrink** on the red wire.
+
 ![Led_Assy_heat_shrink](images/Led_Assy_heat_shrink.JPG "Led_Assy_heat_shrink")
 
 
-4. Find the anode (smaller) and cathode (longer) pin of the **LED**.
+**4. LED configuration**
+
+Find the anode (smaller) and cathode (longer) pin of the **LED**.
 
 ![Led_Assy_polarity](images/Led_Assy_polarity.JPG "Led_Assy_polarity")
 
-5. Maintain the LED or the wires with the **third hand**. Add some soldering material to both the wires extremities and to the pins of the LED.
-   Solder the 🔴red wire to the cathode pin (longer pin) and the ⚫black wire to the anode (small pin)..
+**5. Wires soldering on Led pin**
+
+Maintain the LED or the wires with the **third hand**. Add some soldering material to both the wires extremities and to the pins of the LED.
+Solder:
+- the red wire🔴 to the cathode pin (longer pin)
+- the black wire⚫ to the anode (small pin).
+
 ![Led_Assy_wires_solder](images/Led_Assy_wires_solder.JPG "Led_Assy_wires_solder")
 
 
-6. Slide the heat srink on the soldering and use the **heat gun** to secure it and make sure <ins>no contact can be made between the 2 pins</ins>.
+**6. Heat Shrink heating**
+
+Slide the heat shrink on the soldering and use the **heat gun** to secure it. 
+- First the red one which make sure <ins>no contact can be made between the 2 pins</ins>.
+- Second the black one to insulate from outside environnement
+
 ![Led_Assy_heat_shrink2](images/Led_Assy_heat_shrink2.JPG "Led_Assy_heat_shrink2")
 
-7. Led Assembly is ready!
+**7. Led Assembly is ready!**
+   
 ![Led_Assy_final](images/Led_Assy_final.JPG "Led_Assy_final")
 
 ### Alim Jack Assembly
 
 The Alim Jack Assembly will be the link between the external 12V adaptor to the internal electronic system.
 
-1. Prepare the components
+**1. Prepare the components**
    
 | Designation                          | Qty | Example of reference |
 |--------------------------------------|-----|----------------------|
@@ -433,27 +468,41 @@ The Alim Jack Assembly will be the link between the external 12V adaptor to the 
 
 ![Alim_Jack_Components](images/Alim_Jack_Components.JPG "Alim_Jack_Components")
 
-2. Set 15mm of Black and Red Heat Shrink  resppectively on the Black and Red wires.
+**2. Heat Shrink set up**
+
+Set 15mm of Black and Red Heat Shrink  resppectively on the Black and Red wires.
+
 ![Alim_jack_heat_shrink](images/Alim_jack_heat_shrink.JPG "Alim_jack_heat_shrink")
 
-3. Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chambre of the connector with some soldering material and dive the 🔴**Red Wire** in. Remove the solder iron. Wait the soldering material to dry.
-4. Slide a 15mm of Red Heat Srink on the female connector. Be careful of covering all the metalic part. Use the **heat gun** to secure it.
+**3. Soldering for red wire**
+
+Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chambre of the connector with some soldering material and dive the 🔴**Red Wire** in. Remove the solder iron. Wait the soldering material to dry.
+
+**4. Heat Shrink heating**
+
+Slide the  Red Heat Shrink on the female connector. <ins>Be careful of covering all the metalic part.</ins> Use the **heat gun** to secure it.
+
 ![Alim_jack_red_wire](images/Alim_jack_red_wire.JPG "Alim_jack_red_wire")
 
-5. Same operations with the **Male Bullet Connector** and the ⚫**Black Wire**.
-6. Slide a 15mm of Black Heat Srink on the male connector. Be careful of covering just the begining of the metalic connector. Use the **heat gun** to secure it.
+**5. Soldering for black wire**
 
->[!CAUTION]
->It will be plugged to the OnOff Button Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition to be sure that black wire will go with white wire and red wire with the yellow.
+Same operations with the **Male Bullet Connector** and the ⚫**Black Wire**.
 
-7. Alim Jack Assembly is ready!
+Be careful of covering just the begining of the metalic connector.
+
+!!! warning
+
+	It will be plugged to the OnOff Button Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition to be sure that black wire will go with white wire and red wire with the yellow.
+
+**6. Alim Jack Assembly is ready!**
+
    ![Alim_Jack_final](images/Alim_Jack_final.JPG "Alim_Jack_final")
 
 ### OnOff Button Assembly
 
 The OnOff Button Assembly will be place between the Alim Jack Assembly and the PlanktoScope Hat 1.3 PCB. It will play the role of the switch On & Off of the PlanktoScope.
 
-1. Prepare the components:
+**1. Prepare the components:**
 
 | Designation                                    | Qty | Reference           |
 |------------------------------------------------|-----|---------------------|
@@ -462,29 +511,60 @@ The OnOff Button Assembly will be place between the Alim Jack Assembly and the P
 
 ![OnOff_button_component](images/OnOff_button_component.JPG "OnOff_button_component")
 
-2. Preparation of the **Push Button Gebildet**. Remove ⚪**White Wire** by firmly pulling on it. Prepare each wire end (whit wire include) with a 1 cm striping.
+**2. Preparation of the Push Button Gebildet**
+
+Remove ⚪**White Wire** by firmly pulling on it. Prepare each wire end (whit wire include) with a 1 cm striping.
+
    ![OnOff_button_prépa](images/OnOff_button_prépa.JPG "OnOff_button_prépa")
 
-3. Use the **Crimpimg Plier** to add a wire crimp on the 🔴+ :green_circle: **Red+Green wires**.
+**3. Wire crimp Red & Green**
+
+Use the **Crimpimg Plier** to add a wire crimp on the 🔴+ :green_circle: **Red+Green wires**.**4. Heat Shrink heating**
+
+**4. Heat Shrink heating**
+
+Slide the Red Heat Shrink on the female connector. Use the **heat gun** to secure it.
+
 ![OnOff_button_crimp_rg](images/OnOff_button_crimp_rg.JPG "OnOff_button_crimp_rg")
 
-4. Use the **Crimpimg Plier** to add a wire crimp on the ⚫+⚪**Black+White wires**.
+**5. Wire crimp Black & White**
+
+Use the **Crimpimg Plier** to add a wire crimp on the ⚫+⚪**Black+White wires**.
+
+**6. Heat Shrink heating**
+
+Slide the Black Heat Shrink on the female connector. Use the **heat gun** to secure it.
+
 ![OnOff_button_crimp_bw](images/OnOff_button_crimp_bw.JPG "OnOff_button_crimp_bw")
 
-5. Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chambre of the connector with some soldering material and dive the other extemity of the ⚪**White wire** in. Remove the solder iron. Wait the soldering material to dry.
+**7. Soldering for White wire**
+
+Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chambre of the connector with some soldering material and dive the other extemity of the ⚪**White wire** in. Remove the solder iron. Wait the soldering material to dry.
+
+**8. Heat Shrink heating**
+
+Slide the Black Heat Shrink on the female connector. <ins>Be careful of covering all the metalic part.</ins> Use the **heat gun** to secure it.
+
   ![OnOff_button_solder_f](images/OnOff_button_solder_f.JPG "OnOff_button_solder_f")
 
-6. Same operation with the **Male Bullet Connector** and the :yellow_circle: **Yellow Wire**.
+**9. Soldering yellow wire**
+
+Same operation with the **Male Bullet Connector** and the :yellow_circle: **Yellow Wire**.
+Be careful of covering just the begining of the metalic connector with heat shrink.
+
    ![OnOff_button_solder_m](images/OnOff_button_solder_m.JPG "OnOff_button_solder_m")
 
-   
->[!CAUTION]
->It will be plugged to the Alim Jack Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition with Alim Jack Assembly to be sure that white wire will go with black wire and the yellow wire with the red wire.
+!!! warning
+	
+    It will be plugged to the Alim Jack Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition with Alim Jack Assembly to be sure that white wire will go with black wire and the yellow wire with the red wire.
 
-7. Use 4 **Zip Ties** to secure the wires together.
+**10. Finalize**
+
+Use 4 **Zip Ties** to secure the wires together.
+
 ![OnOff_button_final](images/OnOff_button_final.JPG "OnOff_button_final")
 
-8. OnOff Button is ready!
+OnOff Button is ready!
 
 ## Optic Assembly
 
@@ -499,10 +579,11 @@ Prepare the following toolings:
 - [ ] Screwdriver Hex 1.5
 - [ ] Specific Thorlab tooling SPW909
 - [ ] A caliper
+
 ![Optic_Assy_tools](images/Optic_Assy_tools.JPG "Optic_Assy_tools")
 ### Optic 20-200 Assembly
 
-1. Prepare the components:
+**1. Prepare the components:**
 
 | Designation                                     | Qty | Reference example |
 |-------------------------------------------------|-----|-------------------|
@@ -515,50 +596,75 @@ Prepare the following toolings:
 
 ![Optic_Assy_components](images/Optic_Assy_components.JPG "Optic_Assy_components")
 
-2. Set the  **M12/25 Lens** and the **M12/12 Lens** on each of the **S1TM12 Lens Adapters**.
+**2. Lens on lens Adapter**
+
+Set the  **M12/25 Lens** and the **M12/12 Lens** on each of the **S1TM12 Lens Adapters**.
 
 ![Optic_Assy_lens1](images/Optic_Assy_lens1.JPG "Optic_Assy_lens1")
 
-3. Remove the retaining ring in the **CM1L10 Extension Tube**
+**3. Remove The retaining ring**
 
-4. Insert the M12/25 Lens in the CM1L10 Extension Tube.Threaded side of the lens first. By using the **Tooling SPW909** set the lens Adapter at **14.7mm** deep.
+Remove the retaining ring in the **CM1L10 Extension Tube**
+
+**4. M12/25 Lens Insertion**
+
+Insert the M12/25 Lens in the CM1L10 Extension Tube.Threaded side of the lens first. By using the **Tooling SPW909** set the lens Adapter at **14.7mm** deep.
 
 ![Optic_Assy_lens1_25](images/Optic_Assy_lens1_25.JPG "Optic_Assy_lens1_25")
 
-5. Remove M12/25 & M12/12 Lens protective caps on lens side.
+**6. Protective cap removal**
+
+Remove M12/25 & M12/12 Lens protective caps on lens side.
 
 ![Optic_Assy_caps](images/Optic_Assy_caps.JPG "Optic_Assy_caps")
 
-6. Insert the M12/12 Lens in the CM1L10 Extension Tube.Threaded side of the lens out. By using the Tooling SPW909 screw gently up to contact with the M12/25 Lens. _If you go gentlyn no worries of damaging anything, the contact zone will not be between the 2 lens directly but between the 2 black casing diameter._
+**7. M12/25 Lens Insertion**
+
+Insert the M12/12 Lens in the CM1L10 Extension Tube.Threaded side of the lens out. By using the Tooling SPW909 screw gently up to contact with the M12/25 Lens. _If you go gentlyn no worries of damaging anything, the contact zone will not be between the 2 lens directly but between the 2 black casing diameter._
    Set back the protective cap.
 ![Optic_Assy_lens1_12](images/Optic_Assy_lens1_12.JPG "Optic_Assy_lens1_12")
 
-7.  Open the black connector is simply a push/pull fit and disengage the cable ribbon. Save it for later on assembly
+**8. Disenagge cable ribbon**
+
+Open gently the connector and disengage the cable ribbon. Save it for later on assembly.
+
 ![Optic_Assy_cable_ribbon](images/Optic_Assy_cable_ribbon.JPG "Optic_Assy_cable_ribbon")
 
-8.  Remove the black holding part of the **HQ Camera Pi**  with the  **Screwdriver Hex 1.5**. We will not use it afterwards.
+**9. Remove black holding extension**
+
+Remove the black holding part of the **HQ Camera Pi**  with the  **Screwdriver Hex 1.5**. We will not use it afterwards.
+
 ![Optic_Assy_holding](images/Optic_Assy_holding.JPG "Optic_Assy_holding")
 
-9.  Follow the [official tutorial from RaspBerry to remove the IR Filtre](https://www.raspberrypi.com/documentation/accessories/camera.html#filter-removal).
+**10. Remove IR Filtre**
 
->[!NOTE]
-> Do not hesitate to warm a bit the UV Filter with a heat gun or a hair dryer to soften the glue.
+Follow the [official tutorial from RaspBerry to remove the IR Filtre](https://www.raspberrypi.com/documentation/accessories/camera.html#filter-removal).
 
->[!WARNING]
-> This step is critical, try to remove the IR filtre without breaking it. If it is broken, clean as much as possible to remove all glass debris. Anyway, set your camera sensor asside and in a protected area during this operation. All dust and glass debris on the sensor will be really visible and emphasize on the final assembly.
+!!! note
 
-10. Remove M12/25 2nd protective cap. Do a small air cleaning with a dust blower. You can now assemble the Optical canon assembly with the HQ Camera Pi. 
-     Engage back the cable ribbon.
+	 Do not hesitate to warm a bit the UV Filter with a heat gun or a hair dryer to soften the glue.
+
+!!! warning
+
+	This step is critical, try to remove the IR filtre without breaking it. If it is broken, clean as much as possible to remove all glass debris. Anyway, set your camera sensor asside and in a protected area during this operation. All dust and glass debris on the sensor will be really visible and emphasized during use afterward.
+
+**11. Optical canon on Rpi HQ Camera**
+
+Remove M12/25 2nd protective cap. Do a small air cleaning with a dust blower. You can now assemble the Optical canon assembly with the HQ Camera Pi. 
+     
 ![Optic_Assy_assembly](images/Optic_Assy_assembly.JPG "Optic_Assy_assembly")
 
->[!NOTE]
-> On the first PlanktoScope switch on, you will see the results of this assembly. If some dust is visible use really carefuly a small dust blower to remove it from the camera sensor.
+!!! note
 
-11. The Optic 20-200 Assembly is ready!
+	On the first PlanktoScope switch on, you will see the results of this assembly. If some dust is visible use really carefuly a small dust blower to remove it from the camera sensor.
+
+**12. The Optic 20-200 Assembly is ready!**
+
 ![Optic_Assy_final](images/Optic_Assy_final.JPG "Optic_Assy_final")
+
 ## To be continued...
 
-Congratulation, if you make it to the end of this "Kit Section" you may have succeeded to supply and manufacture the entire BOM for the PlanktoScope V2.6.
+Congratulation, if you make it to the end of this "Kit Section" you may have succeeded to supply and manufacture the entire BOM of the PlanktoScope V2.6.
 
 We would be thrilled to have you continue your journey with us as we move on to the next phase of the documentation in the
  [assembly](../assembly/index.md) section. :flying_saucer: :microbe:
