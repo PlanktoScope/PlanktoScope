@@ -94,11 +94,11 @@ Everything managed by `forklift` is version-controlled in a [Git](https://git-sc
 
     In an ideal world, we would not need to use/maintain Forklift in the PlanktoScope OS for achieving the goals which originally motivated the creation of Forklift...or at least Forklift could outsource so much functionality to externally-maintained systems that Forklift could be reduced to a UI wrapper. Or maybe the PlanktoScope OS's goals will later be reduced to the point that Forklift will no longer be very useful for the PlanktoScope OS.
 
-### Package management with `forklift`
+### System customization & configuration
 
-When you're just experimenting and you can tolerate the challenges mentioned above, it's fine to customize the PlanktoScope OS by installing software packages using `pip` directly on the OS and/or by making extensive changes to OS configuration files. However, once you actually care about keeping your customizations around - and especially if/when you want to share your customizations with other people - we recommend migrating those customizations into Forklift packages, which are just files and configuration files stored in a specially-structured Git repository which is also published online (e.g. on GitHub, GitLab, Gitea, etc.). `forklift` provides an easy way to [package, publish](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-packaging-and-distribution), [combine, and apply](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-deployment-configuration) customizations via YAML configuration files in Git repositories; this enables easy sharing, configuration, (re-)composition, and downloading of Docker Compose applications, systemd services, and OS configuration files. Configurations of all deployments of Forklift packages on a computer running the PlanktoScope OS are specified and integrated in a single Git repository, a *Forklift pallet*. At any given time, each PlanktoScope has exactly one Forklift pallet applied; switching between Forklift pallets (whether to try out a different set of customizations or to upgrade/downgrade all programs and OS configurations managed by Forklift) is easy and can be done by running just one command (`forklift pallet switch`, described below in the [Applying published customizations](#applying-published-customizations) subsection).
+When you're just experimenting and you can tolerate the challenges mentioned above, it's fine to customize the PlanktoScope OS by installing software packages using `pip` directly on the OS and/or by making extensive changes directly to OS configuration files in `/etc`. However, once you actually care about keeping your customizations around - and especially if/when you want to share your customizations with other people - we recommend migrating those customizations into Forklift packages, which are just files and configuration files stored in a specially-structured Git repository which is also published online (e.g. on GitHub, GitLab, Gitea, etc.). `forklift` provides an easy way to [package, publish](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-packaging-and-distribution), [combine, and apply](https://github.com/PlanktoScope/forklift/blob/main/docs/design.md#app-deployment-configuration) customizations via YAML configuration files in Git repositories; this enables easy sharing, configuration, (re-)composition, and downloading of Docker Compose applications, systemd services, and OS configuration files. Configurations of all deployments of Forklift packages on a computer running the PlanktoScope OS are specified and integrated in a single Git repository, a *Forklift pallet*. At any given time, each PlanktoScope has exactly one Forklift pallet applied; switching between Forklift pallets (whether to try out a different set of customizations or to upgrade/downgrade all programs and OS configurations managed by Forklift) is easy and can be done by running just one command (`forklift pallet switch`, described below in the [Applying published customizations](#applying-published-customizations) subsection).
 
-`forklift` is used very differently compared to traditional Linux system package managers like APT, for which you must run step-by-step commands in order to modify the state of your system (e.g. to install some package or install some other package). When using `forklift`, you instead edit configuration files which declare the desired state of your system (or you can instead run some commands provided by `forklift` for common operations, such as in [this example](../../../operation/networking.md#dont-allow-the-planktoscope-to-be-used-as-a-default-gateway-to-the-internet)), and then you ask `forklift` to prepare to make your system match the desired state on its next boot.
+`forklift` organizes apps and configurations into modules called *packages*, but `forklift` is used very differently compared to traditional Linux system package managers like APT, for which you must run step-by-step commands in order to modify the state of your system (e.g. to install some package or install some other package). When using `forklift`, you instead edit configuration files which declare the desired state of your system (or you can instead run some commands provided by `forklift` for common operations, such as in [this example](../../../operation/networking.md#dont-allow-the-planktoscope-to-be-used-as-a-default-gateway-to-the-internet)), and then you ask `forklift` to prepare to make your system match the desired state on its next boot.
 
 #### (No traditional) dependency management
 
@@ -172,7 +172,7 @@ The PlanktoScope OS also provides various tools with web browser-based interface
 
 - [Dozzle](https://dozzle.dev/): for viewing and monitoring logs of Docker containers.
 
-- [Grafana](https://grafana.com/): for monitoring and exploring metrics stored in Prometheus.
+- [Grafana](https://grafana.com/): for monitoring and exploring metrics stored in Prometheus. Note that this app will no longer be default included on the PlanktoScope OS starting with a future version of the PlanktoScope OS; instead, it will become an optional app which the user would have to manually enable via a Forklift command.
 
 Finally, the PlanktoScope OS adds some terminal tools (beyond what is already provided by the default installation of the Raspberry Pi OS) for administrative tasks which system administrators, software developers, and advanced users may need to use:
 
@@ -194,27 +194,20 @@ Finally, the PlanktoScope OS adds some terminal tools (beyond what is already pr
 
 The PlanktoScope is often operated with limited or sporadic internet access, and also in settings with no internet access at all. The PlanktoScope also needs to be deployable in remote settings where the user needs to control the PlanktoScope without being physically present. In both types of situations, the PlanktoScope's web browser-based interfaces need to remain accessible.
 
-We solve this problem by allowing the PlanktoScope to connect to the internet over a known Wi-Fi network, and/or over Ethernet, so that the PlanktoScope's web browser-based interfaces can be accessed over the internet; and by making the PlanktoScope bring up a Wi-Fi hotspot (more formally, a [wireless access point](https://en.wikipedia.org/wiki/Wireless_access_point)) using the Raspberry Pi's integrated Wi-Fi module in the absence of any known Wi-Fi network, so that the web browser-based interfaces can be accessed over the Wi-Fi hotspot.
+We solve this problem by allowing the PlanktoScope to connect to the internet over a known Wi-Fi network, and/or over Ethernet (or USB tethering to a phone sharing its internet access), so that the PlanktoScope's web browser-based interfaces can be accessed over the internet; and by making the PlanktoScope bring up a Wi-Fi hotspot (more formally, a [wireless access point](https://en.wikipedia.org/wiki/Wireless_access_point)) using the Raspberry Pi's integrated Wi-Fi module (or an optional USB Wi-Fi dongle) in the absence of any known Wi-Fi network, so that the web browser-based interfaces can be accessed over the Wi-Fi hotspot. The PlanktoScope implements these functionalities on the available networking-related hardware by using the sofware systems described in the subsections below. 
 
-The PlanktoScope's networking systems are built around [NetworkManager](https://networkmanager.dev/), [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html), [firewalld](https://firewalld.org/), and [Avahi](https://avahi.org/). When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), the PlanktoScope acts as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a DNS server to assign itself certain domain names (e.g. `home.pkscope`) (with DHCP server and DNS server functionalities provided by a dnsmasq instance launched by NetworkManager), so that user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. The PlanktoScope also uses Avahi to announce itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `planktoscope.local`) which may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network).
+In addition to systemd services enumerated in the subsections below, the standard PlanktoScope OS also adds the following networking-related systemd services:
 
-When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with NetworkManager's "shared" IPv4 connection type for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access.
+- `assemble-hosts-templated`: generates a temporary hosts drop-in snippet (which is used by a symlink at `/etc/hosts.d/50-generated-templated`) from drop-in hosts snippet templates at `/etc/hosts-templates.d`.
 
-The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of the Raspberry Pi OS) for managing the PlanktoScope's network connectivity:
+- `assemble-hosts` generates a temporary hosts file (which is used by a symlink at `/etc/hosts`) from drop-in snippets at `/etc/hosts-templates.d`.
 
-- `autohotspot` (which in turn launches `hostapd`): a PlanktoScope-specific daemon for automatically checking the presence of known Wi-Fi networks, automatically connecting to any known Wi-Fi networks, and falling back to creating a Wi-Fi hotspot when no known Wi-Fi networks are present.
+- `report-mac-addresses`: generates a temporary file at `/run/mac-addresses.yml` which enumerates the system's network interfaces and their respective MAC addresses
 
-- `enable-interface-forwarding-between`: configures the Linux kernel firewall's IP packet filter rules to forward packets between the Raspberry Pi's network interfaces, to allow the Raspberry Pi to act as a network router.
+### Machine naming
 
-- `enable-interface-forwarding-inbound`: configures the Linux kernel firewall's IP packet filter rules to forward packets targeted at `192.168.4.1`, `192.168.5.1`, etc., all to `localhost`, so that the PlanktoScope can be accessed from a client device's web browser at any such static IP address regardless of which network interface the client device is actually connected to.
 
-- `dnsmasq`: for allowing computers connected to the PlanktoScope over a network to access the PlanktoScope using domain names defined on the PlanktoScope.
-
-- `firewalld`: a network firewall (currently disabled by default).
-
-- `planktoscope-mdns-alias@pkscope.service` and `planktoscopemdns-alias@planktoscope.service` configure the Avahi daemon (provided by the Raspberry Pi OS) to also resolve mDNS names `pkscope.local` and `planktoscope.local`, respectively, to an IP address (192.168.4.1) which is usable by devices connected to the PlanktoScope by a direct connection between their respective network interfaces.
-
-The standard PlanktoScope OS also adds the following systemd services for dynamically updating the system's network configuration during boot:
+The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of Raspberry Pi OS 12) for dynamically generating/updating the hostname at boot:
 
 - `generate-machine-name`: generates a human-readable machine name  at `/run/machine-name` from the Raspberry Pi's serial number (or, if that's missing, from `/etc/machine-d`).
 
@@ -222,32 +215,78 @@ The standard PlanktoScope OS also adds the following systemd services for dynami
 
 - `update-hostname`: updates `systemd-hostnamed` so that the hostname matches what is specified by `/etc/hostname`.
 
-- `assemble-dnsmasq-config-templated`: generates a temporary dnsmasq drop-in config file (which is used by a symlink at `/etc/dnsmasq.d/40-generated-templated-config`) from drop-in config file templates at `/etc/dnsmasq-templates.d`. 
+### NetworkManager connections
 
-- `assemble-hostapd-config-templated`: generates a temporary hostapd drop-in config file (which is used by a symlink at `/etc/hostapd/hostapd.conf.d/60-generated-templated.conf`) from drop-in config file templates at `/etc/hostapd/hostapd.conf-templates.d`.
+The PlanktoScope uses  [NetworkManager](https://networkmanager.dev/) to handle the different network connection modes the PlanktoScope supports on its various network interfaces (internal Ethernet port, internal Wi-Fi module, optional USB Ethernet adapter, optional USB Wi-FI dongle, optional USB connection to a phone in tethering mode).
 
-- `assemble-hostapd-config`: generates a temporary hostapd config file (which is used by a symlink at `/etc/hostapd/hostapd.conf`) from drop-in config files at `/etc/hostapd/hostapd.conf.d`.
+When the PlanktoScope both has internet access and has devices connected to it (e.g. over a Wi-Fi hotspot or over Ethernet), the PlanktoScope shares its internet access with all connected devices, to enable the user to access web pages even when connected to the PlanktoScope. This is implemented in the PlanktoScope OS with NetworkManager's "shared" IPv4 connection type for the PlanktoScope to act as a network router using [Network Address Translation](https://en.wikipedia.org/wiki/Network_address_translation) when it has internet access. When the PlanktoScope shares its connection to a router with a captive portal, connected devices opening the captive portal's web page will appear to the router as if the PlanktoScope itself was opening that captive portal's web page.
 
-- `assemble-hosts-templated`: generates a temporary hosts drop-in snippet (which is used by a symlink at `/etc/hosts.d/50-generated-templated`) from drop-in hosts snippet templates at `/etc/hosts-templates.d`.
 
-- `assemble-hosts` generates a temporary hosts file (which is used by a symlink at `/etc/hosts`) from drop-in snippets at `/etc/hosts-templates.d`.
+The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of Raspberry Pi OS 12) for dynamically updating the NetworkManager connection profiles during boot:
 
-The standard PlanktoScope OS also adds the following systemd services for reporting information about the system for easy access:
+- `assemble-networkmanager-connection@eth0-default.service`, `assemble-networkmanager-connection@eth1-default.service`, and `assemble-networkmanager-connection@usb0-default.service`: generate NetworkManager connection profiles from drop-in connection profile snippets in `/etc/NetworkManager/system-connections.d/eth0-default`, `/etc/NetworkManager/system-connections.d/eth1-default`, `/etc/NetworkManager/system-connections.d/usb0-default`, respectively.
 
-- `report-mac-addresses`: generates a temporary file at `/run/mac-addresses.yml` which enumerates the system's network interfaces and their respective MAC addresses
+- `assemble-networkmanager-connection@eth0-static.service` and `assemble-networkmanager-connection@eth1-static.service`: generate NetworkManager connection profiles from drop-in connection profile snippets in `/etc/NetworkManager/system-connections.d/eth0-static` and `/etc/NetworkManager/system-connections.d/eth1-static`, respectively.
 
-### Machine naming
+- `assemble-networkmanager-connection-templated@wlan0-hotspot.service` and `assemble-networkmanager-connection-templated@wlan1-hotspot.service`: generate temporary drop-in NetworkManager connection profile snippets (which are used by symlinks at `/etc/NetworkManager/system-connections.d/wlan0-hotspot/40-generated-templated.nmconnection` and `/etc/NetworkManager/system-connections.d/wlan1-hotspot/40-generated-templated.nmconnection`, respectively) from drop-in connection profile snippet templates in `/etc/NetworkManager/system-connections-templates.d/wlan0-hotspot` and `/etc/NetworkManager/system-connections-templates.d/wlan1-hotspot`, respectively.
 
+- `assemble-networkmanager-connection@wlan0-hotspot.service` and `assemble-networkmanager-connection@wlan1-hotspot.service`: generate NetworkManager connection profiles from drop-in connection profile snippets in `/etc/NetworkManager/system-connections.d/wlan0-hotspot` and `/etc/NetworkManager/system-connections.d/wlan1-hotspot`, respectively.
+
+### DHCP & DNS server
+
+When a device connects directly to the PlanktoScope (e.g. via the PlanktoScope's Wi-Fi hotspot, or via an Ethernet cable), it will rely on the one of the PlanktoScope's NetworkManager `-hotspot` or `-static` connection profiles depending on the network interface being used; these connection profiles are of the `shared` IPv4 connection method so that NetworkManager will:
+
+- configure NAT for internet connection sharing.
+- launch an instance of [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html) as a [DHCP](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol) server for the PlanktoScope to assign itself certain static IP addresses (e.g. 192.168.4.1) and as a [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) server for the PlanktoScope to assign itself certain domain names (e.g. `home.pkscope`), so that the user can locate and open the PlanktoScope's web browser-based interfaces via those domain names. 
+
+The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of Raspberry Pi OS 12) for dynamically updating the NetworkManager's `shared`-network dnsmasq configuration during boot:
+
+- `assemble-dnsmasq-config-templated`: generates a temporary dnsmasq drop-in config file (which is used by a symlink at `/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config.conf`) from drop-in config file templates at `/etc/NetworkManager/dnsmasq-shared-templates.d`.
+
+### mDNS
+
+In addition to the `.pkscope` domain names set by dnsmasq as a DNS server (which only work on devices connected directly to the PlanktoScope), the PlanktoScope also uses [Avahi](https://avahi.org/) to announce itself under certain [mDNS](https://en.wikipedia.org/wiki/Multicast_DNS) names (e.g. `planktoscope.local`) for all devices it's connected to; these mDNS names may work on networks where the PlanktoScope does not have a static IP address (e.g. because the PlanktoScope is connected to an existing Wi-Fi network). By default, Avahi is configured so that the PlanktoScope announces itself with the mDNS name `{hostname}.local`. For user convenience, the PlanktoScope also announces `planktoscope.local` and `pkscope.local` as CNAME aliases for `{hostname}.local`.
+
+The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of Raspberry Pi OS 12) to provide mDNS aliases:
+
+- `avahi-publish-cname@pkscope.local` and `avahi-publish-cname@planktoscope.local` configure the Avahi daemon (provided by the Raspberry Pi OS) to also resolve mDNS names `pkscope.local` and `planktoscope.local`, respectively, as aliases for the PlanktoScope's mDNS-based hostname (which has format `{hostname}.local`).
 
 ### Firewall
 
-### App integration
+For security reasons, the PlanktoScope includes a network firewall ([firewalld](https://firewalld.org/)) which is active by default with a default configuration in which incoming traffic is only allowed on explicitly-allowed ports/protocols (i.e. [default deny + enumerate goodness](https://www.ranum.com/security/computer_security/editorials/dumb/)). These ports/protocols are:
+
+- ICMP
+- DHCP: UDP port 67
+- DHCPv6: UDP port 547
+- DHCPv6 Client: UDP port 546
+- DNS: TCP/UDP port 53
+- mDNS: UDP port 5353
+- SSH: TCP port 22
+- Direct-access fallback for the Cockpit system administration dashboard: TCP port 9090
+- HTTP: TCP port 80
+- HTTPS: TCP port 443
+- MQTT: TCP port 1883
+
+By default, these ports/protocols are allowed on two firewalld zones:
+
+1. `nm-shared`, a firewall zone for devices connecting to the PlanktoScope as a network router (e.g. connected to the PlanktoScope's Wi-Fi hotspot, or connected directly to the PlanktoScope via Ethernet cable)
+2. `public`, a firewall zone for devices accessing the PlanktoScope through a network router to which the PlanktoScope is connected.
+
+For more information about these ports/protocols and zones, and for information about disabling the rules for allowing one or more of the ports/protocols listed above, refer to the networking operations guide for [making the firewall more restrictive](http://localhost:8000/operation/networking/#make-the-firewall-more-restrictive).
+
+The standard PlanktoScope OS adds the following systemd services (beyond what is already provided by the default installation of Raspberry Pi OS 12) for the firewall:
+
+- `firewalld`: the firewalld daemon.
+
+- `assemble-firewalld-zone@nm-shared` and `assemble-firewalld-zone@public`: generate firewalld zone XML files for zones `nm-shared` and `public` from drop-in XML snippets in `/etc/firewalld/zones.d/nm-shared` and `/etc/firewalld/zones.d/public`, respectively.
+
+## App/API integration
 
 The standard PlanktoScope OS adds the following common services for integrating network APIs provided by various programs, and to facilitate communication among programs running on the PlanktoScope OS:
 
 - [Mosquitto](https://mosquitto.org/): a server which acts as an MQTT broker. This is used by the PlanktoScope hardware controller and segmenter (described below) to receive commands and broadcast notifications. This is also used by the PlanktoScope's Node-RED dashboard (described below) to send commands and receive notifications.
 
-- [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope.
+- [Caddy](https://caddyserver.com/) with the [caddy-docker-proxy plugin](https://github.com/lucaslorentz/caddy-docker-proxy): an HTTP server which acts as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to route all HTTP requests on port 80 from HTTP clients (e.g. web browsers) to the appropriate HTTP servers (e.g. the Node-RED server, Prometheus, and the PlanktoScope hardware controller's HTTP-MJPEG camera preview stream) running on the PlanktoScope. Apps deployed on the PlanktoScope are integrated with the reverse-proxy server by having the Docker containers for those apps include container labels parsed by the caddy-docker-proxy plugin to configure the reverse-proxy server; for apps not exposed in a port on the host, they can be attached to the `caddy-ingress` Docker bridge network so that the reverse proxy can connectly connect to such apps. Currently, the Caddy [site addresses](https://caddyserver.com/docs/caddyfile/concepts#addresses) for the reverse-proxy are for port 80 as an HTTP catch-all; the equivalent Caddyfile site address would be `:80`. Note that this means that HTTPS is currently not supported by the reverse-proxy server's configurations.
 
 ## Filesystem
 
@@ -279,11 +318,13 @@ Beyond what is required by the Linux [Filesystem Hierarchy Standard](https://ref
 
 ### Config file assembly from drop-in fragments
 
+FIXME: finish this
+
 ## Observability & telemetry
 
 Although it is not a high priority yet, we would like to enable operators of large (>10) collections of PlanktoScopes to easily log and monitor the health and utilization of each PlanktoScope and to investigate issues with their PlanktoScopes, regardless of whether each PlanktoScope is deployed locally or remotely. The PlanktoScope OS currently includes the following common services to support system observability and telemetry both for the PlanktoScope OS as a system and for programs running on the PlanktoScope OS:
 
-- [Prometheus](https://prometheus.io/): a server for collecting and storing metrics and for exposing metrics over an HTTP API.
+- [Prometheus](https://prometheus.io/): a server for collecting and storing metrics and for exposing metrics over an HTTP API. Apps deployed on the PlanktoScope can be integrated with the Prometheus server by having the Docker containers for those apps include container labels parsed by Prometheus's [Docker container service discovery mechanism](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#docker_sd_config); for apps not exposed in a port (or via the Caddy reverse-proxy server) on the host, they can be attached to the `prometheus-metrics` Docker bridge network so that the Prometheus server can connectly connect to such apps.
 
 - [Prometheus node exporter](https://github.com/prometheus/node_exporter): for measuring computer hardware and OS monitoring metrics and exposing them over a Prometheus-compatible HTTP API.
 
