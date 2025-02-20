@@ -329,7 +329,7 @@ If you're unhappy with these names, you can change any or all of them.
 
 ### Change the machine name
 
-To change your PlanktoScope's machine name, create and edit a file at `/etc/machine-name`. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/etc/> . To apply your changes, restart the PlanktoScope. Note: this change will also affect your PlanktoScope's hostname and Wi-Fi hotspot name, unless you've also customized them separately (as described below).
+To change your PlanktoScope's machine name, create and edit a file at `/etc/machine-name`; the contents of that file should be the name you want to assign to the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/etc/> . To apply your changes, restart the PlanktoScope. Note: this change will also affect your PlanktoScope's hostname and Wi-Fi hotspot name, unless you've also customized them separately (as described below).
 
 To revert your changes back to the default auto-generated machine name based on the Raspberry Pi's serial number, delete the file at `/var/lib/overlays/overrides/etc/machine-name` and then restart the PlanktoScope. For example, you can do this in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/> . Then restart the PlanktoScope immediately.
 
