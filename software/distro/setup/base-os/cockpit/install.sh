@@ -3,5 +3,4 @@
 
 # Install cockpit
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
-  cockpit
-# TODO: after we switch to NetworkManager, add cockpit-networkmanager
+  cockpit cockpit-networkmanager cockpit-storaged

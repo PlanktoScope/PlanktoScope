@@ -14,16 +14,15 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 sudo cp "$config_files_root"/usr/lib/systemd/system/* /usr/lib/systemd/system/
 sudo cp "$config_files_root"/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
 
-# Make the stage store at /var/lib/forklift/stages available for non-root access in the current
-# (i.e. default) user's default Forklift workspace, both in the current boot and subsequent boots:
-local_stage_store="$HOME/.local/share/forklift/stages"
-mkdir -p "$local_stage_store"
+# Make the stage store at /var/lib/forklift/stages available for easy access in the root user's
+# default Forklift workspace, both in the current boot and subsequent boots:
+mkdir -p "$HOME/.local/share/forklift/stages"
 sudo mkdir -p /var/lib/forklift/stages
 # TODO: maybe we should instead make a new "forklift" group which owns everything in
 # /var/lib/forklift?
 sudo chown "$USER" /var/lib/forklift/stages
-sudo systemctl enable "bind-.local-share-forklift-stages@-home-$USER.service"
-if ! sudo systemctl start "bind-.local-share-forklift-stages@-home-$USER.service" 2>/dev/null; then
+sudo systemctl enable "bind-.local-share-forklift-stages@home-$USER.service"
+if ! sudo systemctl start "bind-.local-share-forklift-stages@home-$USER.service" 2>/dev/null; then
   echo "Warning: the system's Forklift stage store is not mounted to $USER's Forklift stage store."
   echo "As long as you don't touch the Forklift stage store before the next boot, this is fine."
 fi
