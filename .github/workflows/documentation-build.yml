@@ -61,9 +61,6 @@ jobs:
         run: |
           poetry -C ./documentation/ install
 
-      - name: Import external assets
-        run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
-
       - name: Make documentation ${{ matrix.variant }}
         if: matrix.variant != 'default'
         run: poetry -C ./documentation/ run poe --root ./documentation/ make-${{ matrix.variant }}

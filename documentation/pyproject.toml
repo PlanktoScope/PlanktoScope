@@ -61,15 +61,7 @@ mkdocs-material = { extras = ["imaging"], version = "^9.5.18" }
 imgp = "^2.8"
 
 [tool.poe.tasks]
-# Assets from outside the documentation directory
 clean-hardware-assets = "rm -rf docs/assets/hardware"
-import-hardware-assets = "cp -r ../hardware docs/assets/hardware"
-import-repo-assets = "cp ../software/CHANGELOG.md docs/reference/software/changelog.md"
-import-external-assets = [
-  "clean-hardware-assets",
-  "import-hardware-assets",
-  "import-repo-assets",
-]
 
 # Image optimization
 optimize-png-photos = "imgp --convert --optimize --quality 95 --recurse --overwrite docs/images/assembly_guide/*.png"
