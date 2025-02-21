@@ -35,6 +35,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: networking) `planktoscope.local` and `pkscope.local` should now work on local area networks (i.e. when the PlanktoScope is connected to a router) and not just on direct connections.
 - (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
+- (System: networking) The v2024.0.0 networking operations documentation described a way to manually override the PlanktoScope's auto-generated machine name, but that functionality was not actually implemented yet. It is implemented now.
 
 ## v2024.0.0 - 2024-12-25
 

@@ -73,9 +73,8 @@ if ! docker info 2>&1 >/dev/null; then
   FORKLIFT="sudo -E forklift --stage-store /var/lib/forklift/stages"
 fi
 
-# Make a temporary file which may be required by some Docker Compose apps in the pallet, just so
-# that those Compose apps can be successfully created (this is a rather dirty hack/workaround):
-echo "setup" | sudo tee /run/machine-name
+# Make a fallback machine name (this can be overridden by the Forklift pallet):
+sudo ln -s /etc/hostname /etc/machine-name
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
