@@ -71,14 +71,14 @@ Note that this command will also delete any other downloaded copies of apps whic
 Since the v2024.0.0-beta.0 prerelease of PlanktoScope OS, the segmenter no longer subtracts consecutive segmentation masks from each other by default. We will eventually add a GUI toggle for this behavior; in the meantime, if you would like to re-enable this behavior by default, you can do so (even on a PlanktoScope without internet access) by running the following commands in the Cockpit Terminal and then restarting the PlanktoScope:
 
 ```
-forklift plt enable-depl-feat apps/ps/backend/proc-segmenter pipeline-subtract-consecutive-masks
+forklift pallet enable-depl-feat apps/ps/backend/proc-segmenter pipeline-subtract-consecutive-masks
 forklift pallet stage --no-cache-img
 ```
 
 To revert back to disabling this behavior by default, run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
-forklift plt disable-depl-feat apps/ps/backend/proc-segmenter pipeline-subtract-consecutive-masks
+forklift pallet disable-depl-feat apps/ps/backend/proc-segmenter pipeline-subtract-consecutive-masks
 forklift pallet stage --no-cache-img
 ```
 
