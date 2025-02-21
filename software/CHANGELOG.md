@@ -27,6 +27,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) Various elements of the Node-RED dashboard which were deprecated in v2024.0.0 and in v2024.0.0-alpha.2 have now been removed, including the old USB backup functionality.
 - (Application: GUI) Portainer (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
 
+### Deprecated
+
+- (Application: GUI) In a future release, the Grafana dashboard will no longer be enabled by default; then it will be an opt-in app deployment (which will require an internet connection for downloading Grafana to enable it in the PlanktoScope OS via Forklift). This change will be made after the upcoming v3 of the Node-RED dashboard fully replaces the Grafana-based metrics dashboard on the Node-RED dashboard's System Monitoring page, removing the need for Grafana.
+
 ### Fixed
 
 - (System: networking) `planktoscope.local` and `pkscope.local` should now work on local area networks (i.e. when the PlanktoScope is connected to a router) and not just on direct connections.
