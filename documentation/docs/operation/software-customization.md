@@ -34,7 +34,13 @@ The apps provided by the PlanktoScope OS can be customized in various ways.
 
 ### PlanktoScope documentation site
 
-The PlanktoScope OS includes a documentation site at <http://planktoscope.local/ps/docs/> for offline access to the project documentation. However, by default the offline copy of the documentation site excludes the hardware setup guides at <http://planktoscope.local/ps/docs/setup/hardware/>, because that section of the site includes many photographs which would significantly increase the size of the SD card images we provide for the PlanktoScope OS. You can download and the hardware setup guides to include as part of your PlanktoScope's offline copy of the documentation site while your PlanktoScope has a (perhaps temporary) connection to the internet by running the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default) and then restart the PlanktoScope:
+The PlanktoScope OS includes a documentation site at <http://planktoscope.local/ps/docs/> for offline access to the project documentation. 
+
+#### Hardware guides
+
+By default the offline copy of the documentation site excludes the hardware setup guides at <http://planktoscope.local/ps/docs/setup/hardware/>, because that section of the site contains many photographs whose inclusion would significantly increase the size of the SD card images we provide for the PlanktoScope OS.
+
+You can download the hardware setup guides to include as part of your PlanktoScope's offline copy of the documentation site while your PlanktoScope has a (perhaps temporary) connection to the internet by running the following commands in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> (which you should log in to with the username `pi` and the `pi` user's password, which is `copepode` by default) and then restarting the PlanktoScope:
 
 ```
 forklift pallet enable-deployment-feature apps/ps/docs full-site
@@ -50,13 +56,13 @@ forklift pallet disable-deployment-feature apps/ps/docs full-site
 forklift pallet stage --no-cache-img
 ```
 
-Note that your PlanktoScope will still have a copy of the hardware setup guides even if you hide them. If you really want to delete that copy, you can run the following command in the Cockpit Terminal:
+Note that your PlanktoScope will still have a copy of the hardware setup guides even if you hide them. If you really want to delete that copy after running the above commands, you can run the following command in the Cockpit Terminal:
 
 ```
 docker image prune -a
 ```
 
-Note that this may also delete other copies of apps which are not currently enabled - so, for example, if you [disabled Grafana](#grafana), then you will only be able to re-enable Grafana once your PlanktoScope has an internet connection to re-download Grafana, and you will need to run `forklift pallet stage` instead of `forklift pallet stage --no-cache-img` (so that Grafana will be re-downloaded).
+Note that this command will also delete any other downloaded copies of apps which are not currently enabled - so, for example, if you [disabled Grafana](#grafana), then you will only be able to re-enable Grafana once your PlanktoScope has an internet connection to re-download Grafana, and you will need to run `forklift pallet stage` instead of `forklift pallet stage --no-cache-img` (so that Grafana will be re-downloaded).
 
 ### Segmenter
 
