@@ -37,6 +37,14 @@ function panic {
 
 # Run sub-scripts
 
+description="disable first-boot wizards"
+report_starting "$description"
+if "$build_scripts_root/wizards/remove.sh"; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="set up Node-RED frontend"
 report_starting "$description"
 if "$build_scripts_root/node-red-frontend/install.sh" "$hardware_type"; then
@@ -77,14 +85,6 @@ fi
 description="enable CPU overclocking"
 report_starting "$description"
 if "$build_scripts_root/overclocking/config.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="disable first-boot wizards"
-report_starting "$description"
-if "$build_scripts_root/wizards/remove.sh"; then
   report_finished "$description"
 else
   panic "$description"
