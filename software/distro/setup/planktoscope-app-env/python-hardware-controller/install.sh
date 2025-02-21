@@ -60,9 +60,11 @@ sudo cp "$config_files_root$file" "$file"
 # or for the PlanktoScope HAT
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-planktoscopehat.service"
 sudo cp "$config_files_root$file" "$file"
-# FIXME: make this directory in the main.py file
+# FIXME: make these directories in the main.py file
 sudo -E mkdir -p "$HOME/data/img"
+sudo -E chown -R "$USER" "$HOME/data"
 sudo -E mkdir -p "$HOME/device-backend-logs/control"
+sudo -E chown -R "$USER" "$HOME/device-backend-logs"
 
 # Select the enabled hardware controller
 mkdir -p "$HOME/PlanktoScope"
