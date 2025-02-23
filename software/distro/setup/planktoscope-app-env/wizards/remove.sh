@@ -6,4 +6,4 @@
 # else
 #   sudo -E apt-get autoremove -y -o Dpkg::Progress-Fancy=0
 # fi
-rm -f /etc/xdg/autostart/piwiz.desktop
+sudo rm -f /etc/xdg/autostart/piwiz.desktop
