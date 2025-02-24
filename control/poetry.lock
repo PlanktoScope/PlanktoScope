@@ -7,7 +7,8 @@ description = "CircuitPython APIs for non-CircuitPython versions of Python such 
 optional = false
 python-versions = ">=3.7.0"
 files = [
-    {file = "Adafruit_Blinka-8.19.0-py3-none-any.whl", hash = "sha256:41dfc5988d9897841db5969f93e33f02834c32e1923446d93a30f034e0723f77"},
+    {file = "Adafruit-Blinka-8.19.0.tar.gz", hash = "sha256:be65e91dfdd9780cc39ed2beaf489aee5b24a28759aad20633282f946e5113fb"},
+    {file = "Adafruit_Blinka-8.19.0-py3-none-any.whl", hash = "sha256:95c3a58fcf1e820b295a994b21eeafef707525a9b9d6287f9085a7cccc05547b"},
 ]
 
 [package.dependencies]
@@ -15,14 +16,6 @@ adafruit-circuitpython-typing = "*"
 Adafruit-PlatformDetect = ">=3.13.0"
 Adafruit-PureIO = ">=1.1.7"
 pyftdi = ">=0.40.0"
-"RPi.GPIO" = "*"
-rpi-ws281x = ">=4.0.0"
-sysv-ipc = ">=1.1.0"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-circuitpython-busdevice"
@@ -31,17 +24,13 @@ description = "CircuitPython bus device classes to manage bus sharing."
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_busdevice-5.2.6-py3-none-any.whl", hash = "sha256:b6eed0dd8444c3812a26dc34590d83449c9617454618d55417bae0069cf383b3"},
+    {file = "adafruit-circuitpython-busdevice-5.2.6.tar.gz", hash = "sha256:ed06f5552e5567b0c89589c5bc6ef3adcac67d59eb505ce9127af99f33c2bc90"},
+    {file = "adafruit_circuitpython_busdevice-5.2.6-py3-none-any.whl", hash = "sha256:9f25577843f0a338a0936a1b57436f4451f7783b38e3cf46160b6be78faeaa44"},
 ]
 
 [package.dependencies]
 Adafruit-Blinka = ">=7.0.0"
 adafruit-circuitpython-typing = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-circuitpython-connectionmanager"
@@ -50,16 +39,12 @@ description = "A urllib3.poolmanager/urllib3.connectionpool-like library for man
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_connectionmanager-1.0.1-py3-none-any.whl", hash = "sha256:67dead68080d54d11a7ef0c1ae951bd5edfe6e592c61f09a0e0d59e513277441"},
+    {file = "adafruit-circuitpython-connectionmanager-1.0.1.tar.gz", hash = "sha256:913b325488860524edcb6a69f13575addc27c0127764cd74074476e149ba7a73"},
+    {file = "adafruit_circuitpython_connectionmanager-1.0.1-py3-none-any.whl", hash = "sha256:9b7800960b61896f499086a2dbf192c270a3eb1f69bf88268a1bd5422f33ad68"},
 ]
 
 [package.dependencies]
 Adafruit-Blinka = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-circuitpython-motor"
@@ -68,16 +53,11 @@ description = "CircuitPython helper library provides higher level objects to con
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_motor-3.3.5-py3-none-any.whl", hash = "sha256:feb6712522fc61fb96eeaae60396300a9ac87e212d7b4e48ae293da210c82ef5"},
+    {file = "adafruit-circuitpython-motor-3.3.5.tar.gz", hash = "sha256:46c8442815cf8ab42d09370eb6cfb313c99819ccf216163e9451db07f28d2bb1"},
 ]
 
 [package.dependencies]
 Adafruit-Blinka = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-circuitpython-motorkit"
@@ -86,7 +66,8 @@ description = "CircuitPython helper library for DC & Stepper Motor FeatherWing, 
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_motorkit-1.6.14-py3-none-any.whl", hash = "sha256:a4d136d2ab967c2d0a7b3e1e44ada51626ba0bf9f0a3579cdcfed79052851562"},
+    {file = "adafruit-circuitpython-motorkit-1.6.14.tar.gz", hash = "sha256:9f55b52659d67429fbf4b53f683279f39b64df46d4294b81c02e1e0eb5cd4f85"},
+    {file = "adafruit_circuitpython_motorkit-1.6.14-py3-none-any.whl", hash = "sha256:4f35cf3bbe01c25ec89c605f89b0eb849d50f12a5092888754b0ef7e70fd7101"},
 ]
 
 [package.dependencies]
@@ -96,11 +77,6 @@ adafruit-circuitpython-motor = "*"
 adafruit-circuitpython-pca9685 = "*"
 adafruit-circuitpython-register = "*"
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "adafruit-circuitpython-pca9685"
 version = "3.4.15"
@@ -108,18 +84,14 @@ description = "CircuitPython driver for motor, stepper, and servo based on PCA96
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_pca9685-3.4.15-py3-none-any.whl", hash = "sha256:c185ba1fe4737b212c5abe3e8bd7f7eb9d1f67c3faa81869e1ad5e4953129484"},
+    {file = "adafruit-circuitpython-pca9685-3.4.15.tar.gz", hash = "sha256:c4b7fbce46992c6f584c5e56abd18bff995ec6a149f9dbb0a425be06ff54853d"},
+    {file = "adafruit_circuitpython_pca9685-3.4.15-py3-none-any.whl", hash = "sha256:c6bb9d8c204d96b9c4e135573810bb885a58546188be50c81def511d2fc6d415"},
 ]
 
 [package.dependencies]
 Adafruit-Blinka = "*"
 adafruit-circuitpython-busdevice = "*"
 adafruit-circuitpython-register = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-circuitpython-register"
@@ -128,7 +100,8 @@ description = "CircuitPython data descriptor classes to represent hardware regis
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_register-1.9.18-py3-none-any.whl", hash = "sha256:a7273badfa4754681ff943e0ffd06304fcca8e5446f34babc28b3dac9246d05b"},
+    {file = "adafruit-circuitpython-register-1.9.18.tar.gz", hash = "sha256:146fdec0ca787663962e1a894a3028056f1adbd0322a1d187bdeda739e4e228d"},
+    {file = "adafruit_circuitpython_register-1.9.18-py3-none-any.whl", hash = "sha256:fc84e55129c32e65e740c37f821efb1a6ab2b9439d2b27459c85a6017b0d9302"},
 ]
 
 [package.dependencies]
@@ -137,11 +110,6 @@ adafruit-circuitpython-busdevice = "*"
 adafruit-circuitpython-typing = ">=1.3.1,<2.dev0"
 typing-extensions = ">=4.0,<5.0"
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "adafruit-circuitpython-requests"
 version = "3.2.2"
@@ -149,17 +117,13 @@ description = "A requests-like library for web interfacing"
 optional = false
 python-versions = "*"
 files = [
-    {file = "adafruit_circuitpython_requests-3.2.2-py3-none-any.whl", hash = "sha256:2c82a2b42671c6c57c5f1a106eb3905f6c99ec1e87a40e074644c1624240cacc"},
+    {file = "adafruit-circuitpython-requests-3.2.2.tar.gz", hash = "sha256:57fabbeebed2f4dd9a7a860341a70d94d748030f9dc1b4d5df35a1b599cfb3ad"},
+    {file = "adafruit_circuitpython_requests-3.2.2-py3-none-any.whl", hash = "sha256:474efb9349e9e7d6100cbc78bfbd88ca0aca4f630eff2bd4808db8b05512a859"},
 ]
 
 [package.dependencies]
 Adafruit-Blinka = "*"
 Adafruit-Circuitpython-ConnectionManager = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-circuitpython-typing"
@@ -168,7 +132,8 @@ description = "Types needed for type annotation that are not in `typing`"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "adafruit_circuitpython_typing-1.10.3-py3-none-any.whl", hash = "sha256:43ae1cca51305c9de2e6b092aafeb5eb24018e6d8aec98dff317daf765e455c4"},
+    {file = "adafruit-circuitpython-typing-1.10.3.tar.gz", hash = "sha256:4c5c1eeb3ae8a3d2dfa75129654c73690fbdb576d9069542a6ea3355467e1e74"},
+    {file = "adafruit_circuitpython_typing-1.10.3-py3-none-any.whl", hash = "sha256:4e23d6828deafa4dfd554fd7d3f06b8ff8e2cc554b9c7aecba9d778d45970c18"},
 ]
 
 [package.dependencies]
@@ -177,11 +142,6 @@ adafruit-circuitpython-busdevice = "*"
 adafruit-circuitpython-requests = "*"
 typing-extensions = ">=4.0,<5.0"
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "adafruit-gpio"
 version = "1.0.3"
@@ -189,17 +149,12 @@ description = "Library to provide a cross-platform GPIO interface on the Raspber
 optional = false
 python-versions = "*"
 files = [
-    {file = "Adafruit_GPIO-1.0.3-py3-none-any.whl", hash = "sha256:2ec40553c94a154b62d3822ddd83b38428d8e1546f4fccce3aa6ab6e2d64ad79"},
+    {file = "Adafruit_GPIO-1.0.3.tar.gz", hash = "sha256:d6465b92c866c51ca8f3bc1e8f2ec36f5ccdb46d0fd54101c1109756d4a2dcd0"},
 ]
 
 [package.dependencies]
 adafruit-pureio = "*"
 spidev = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-platformdetect"
@@ -208,13 +163,9 @@ description = "Platform detection for use by libraries like Adafruit-Blinka."
 optional = false
 python-versions = "*"
 files = [
-    {file = "Adafruit_PlatformDetect-3.45.2-py3-none-any.whl", hash = "sha256:e5a9343bdfd0989312b9bc49cdb67f6d301a3c1af452d1fc1f94862e75cc1519"},
+    {file = "Adafruit-PlatformDetect-3.45.2.tar.gz", hash = "sha256:6c7ac539fe906f5cf7b81e47a53ab84fe4d697b61854bf38f690f27077a4ca79"},
+    {file = "Adafruit_PlatformDetect-3.45.2-py3-none-any.whl", hash = "sha256:6ad943b215f75a0a54438d35172c57693447a6c68b5b9517ef887811a6231374"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-pureio"
@@ -223,13 +174,9 @@ description = "Pure python (i.e. no native extensions) access to Linux IO    inc
 optional = false
 python-versions = ">=3.5.0"
 files = [
-    {file = "Adafruit_PureIO-1.1.11-py3-none-any.whl", hash = "sha256:665f23279bc216de92a00f34833650e2f49c9acc913fc3ca91195b94d172ed0f"},
+    {file = "Adafruit_PureIO-1.1.11-py3-none-any.whl", hash = "sha256:281ab2099372cc0decc26326918996cbf21b8eed694ec4764d51eefa029d324e"},
+    {file = "Adafruit_PureIO-1.1.11.tar.gz", hash = "sha256:c4cfbb365731942d1f1092a116f47dfdae0aef18c5b27f1072b5824ad5ea8c7c"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "adafruit-ssd1306"
@@ -238,16 +185,11 @@ description = "Python library to use SSD1306-based 128x64 or 128x32 pixel OLED d
 optional = false
 python-versions = "*"
 files = [
-    {file = "Adafruit_SSD1306-1.6.2-py3-none-any.whl", hash = "sha256:328e650bcff0cb8a693e9b8660932a323db4df6ff1d8041e98b0a6e53d7b9413"},
+    {file = "Adafruit_SSD1306-1.6.2.tar.gz", hash = "sha256:4768518204037db82eb6b90838938f8519ecd29fe3d6cc3efa0d1100ed527727"},
 ]
 
 [package.dependencies]
 Adafruit-GPIO = ">=0.6.5"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "astroid"
@@ -256,16 +198,12 @@ description = "An abstract syntax tree for Python with inference support."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "astroid-3.1.0-py3-none-any.whl", hash = "sha256:8b6501916903f6fa856760ff12178d0cb86687a84fdffec941d54c1df58c3a71"},
+    {file = "astroid-3.1.0-py3-none-any.whl", hash = "sha256:951798f922990137ac090c53af473db7ab4e70c770e6d7fae0cec59f74411819"},
+    {file = "astroid-3.1.0.tar.gz", hash = "sha256:ac248253bfa4bd924a0de213707e7ebeeb3138abeb48d798784ead1e56d419d4"},
 ]
 
 [package.dependencies]
 typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.11\""}
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "av"
@@ -327,7 +265,28 @@ description = "The uncompromising code formatter."
 optional = false
 python-versions = ">=3.8"
 files = [
+    {file = "black-24.3.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:7d5e026f8da0322b5662fa7a8e752b3fa2dac1c1cbc213c3d7ff9bdd0ab12395"},
+    {file = "black-24.3.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:9f50ea1132e2189d8dff0115ab75b65590a3e97de1e143795adb4ce317934995"},
+    {file = "black-24.3.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e2af80566f43c85f5797365077fb64a393861a3730bd110971ab7a0c94e873e7"},
+    {file = "black-24.3.0-cp310-cp310-win_amd64.whl", hash = "sha256:4be5bb28e090456adfc1255e03967fb67ca846a03be7aadf6249096100ee32d0"},
+    {file = "black-24.3.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:4f1373a7808a8f135b774039f61d59e4be7eb56b2513d3d2f02a8b9365b8a8a9"},
+    {file = "black-24.3.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:aadf7a02d947936ee418777e0247ea114f78aff0d0959461057cae8a04f20597"},
+    {file = "black-24.3.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:65c02e4ea2ae09d16314d30912a58ada9a5c4fdfedf9512d23326128ac08ac3d"},
+    {file = "black-24.3.0-cp311-cp311-win_amd64.whl", hash = "sha256:bf21b7b230718a5f08bd32d5e4f1db7fc8788345c8aea1d155fc17852b3410f5"},
+    {file = "black-24.3.0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:2818cf72dfd5d289e48f37ccfa08b460bf469e67fb7c4abb07edc2e9f16fb63f"},
+    {file = "black-24.3.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:4acf672def7eb1725f41f38bf6bf425c8237248bb0804faa3965c036f7672d11"},
+    {file = "black-24.3.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c7ed6668cbbfcd231fa0dc1b137d3e40c04c7f786e626b405c62bcd5db5857e4"},
+    {file = "black-24.3.0-cp312-cp312-win_amd64.whl", hash = "sha256:56f52cfbd3dabe2798d76dbdd299faa046a901041faf2cf33288bc4e6dae57b5"},
+    {file = "black-24.3.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:79dcf34b33e38ed1b17434693763301d7ccbd1c5860674a8f871bd15139e7837"},
+    {file = "black-24.3.0-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:e19cb1c6365fd6dc38a6eae2dcb691d7d83935c10215aef8e6c38edee3f77abd"},
+    {file = "black-24.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:65b76c275e4c1c5ce6e9870911384bff5ca31ab63d19c76811cb1fb162678213"},
+    {file = "black-24.3.0-cp38-cp38-win_amd64.whl", hash = "sha256:b5991d523eee14756f3c8d5df5231550ae8993e2286b8014e2fdea7156ed0959"},
+    {file = "black-24.3.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:c45f8dff244b3c431b36e3224b6be4a127c6aca780853574c00faf99258041eb"},
+    {file = "black-24.3.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:6905238a754ceb7788a73f02b45637d820b2f5478b20fec82ea865e4f5d4d9f7"},
+    {file = "black-24.3.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d7de8d330763c66663661a1ffd432274a2f92f07feeddd89ffd085b5744f85e7"},
+    {file = "black-24.3.0-cp39-cp39-win_amd64.whl", hash = "sha256:7bb041dca0d784697af4646d3b62ba4a6b028276ae878e53f6b4f74ddd6db99f"},
     {file = "black-24.3.0-py3-none-any.whl", hash = "sha256:41622020d7120e01d377f74249e677039d20e6344ff5851de8a10f11f513bf93"},
+    {file = "black-24.3.0.tar.gz", hash = "sha256:a0c9c4a0771afc6919578cec71ce82a3e31e054904e7197deacbc9382671c41f"},
 ]
 
 [package.dependencies]
@@ -345,11 +304,6 @@ d = ["aiohttp (>=3.7.4)", "aiohttp (>=3.7.4,!=3.9.0)"]
 jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
 uvloop = ["uvloop (>=0.15.2)"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "click"
 version = "8.1.7"
@@ -357,16 +311,12 @@ description = "Composable command line interface toolkit"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "click-8.1.7-py3-none-any.whl", hash = "sha256:8e38806544348fdafedd47e92e90aca882377a0680918dec4c80c225a0e5ed13"},
+    {file = "click-8.1.7-py3-none-any.whl", hash = "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28"},
+    {file = "click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"},
 ]
 
 [package.dependencies]
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "colorama"
@@ -376,34 +326,8 @@ optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
+    {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "colorzero"
-version = "2.0"
-description = "Yet another Python color library"
-optional = false
-python-versions = "*"
-files = [
-    {file = "colorzero-2.0-py2.py3-none-any.whl", hash = "sha256:0e60d743a6b8071498a56465f7719c96a5e92928f858bab1be2a0d606c9aa0f8"},
-]
-
-[package.dependencies]
-setuptools = "*"
-
-[package.extras]
-doc = ["pkginfo", "sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "dill"
@@ -412,17 +336,13 @@ description = "serialize all of Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "dill-0.3.8-py3-none-any.whl", hash = "sha256:66471bcd78eccf94f71aee7839ec8891a9e14f84043c5832c8b35c2f3630e86a"},
+    {file = "dill-0.3.8-py3-none-any.whl", hash = "sha256:c36ca9ffb54365bdd2f8eb3eff7d2a21237f8452b57ace88b1ac615b7e815bd7"},
+    {file = "dill-0.3.8.tar.gz", hash = "sha256:3ebe3c479ad625c4553aca177444d89b486b1d84982eeacded644afc0cf797ca"},
 ]
 
 [package.extras]
 graph = ["objgraph (>=1.7.2)"]
 profile = ["gprof2dot (>=2022.7.29)"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "eradicate"
@@ -431,13 +351,9 @@ description = "Removes commented-out code."
 optional = false
 python-versions = "*"
 files = [
-    {file = "eradicate-2.3.0-py3-none-any.whl", hash = "sha256:242133f1ee05d3847adcf38b002f26526cf2e49b807445009613bf8c6f2c2cd3"},
+    {file = "eradicate-2.3.0-py3-none-any.whl", hash = "sha256:2b29b3dd27171f209e4ddd8204b70c02f0682ae95eecb353f10e8d72b149c63e"},
+    {file = "eradicate-2.3.0.tar.gz", hash = "sha256:06df115be3b87d0fc1c483db22a2ebb12bcf40585722810d809cc770f5031c37"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "flake8"
@@ -446,18 +362,14 @@ description = "the modular source code checker: pep8 pyflakes and co"
 optional = false
 python-versions = ">=3.8.1"
 files = [
-    {file = "flake8-7.0.0-py2.py3-none-any.whl", hash = "sha256:e848533d2ae02cf0e4b5efab19601f6ce2f2f3ab8c702c9dadaaeb936859c844"},
+    {file = "flake8-7.0.0-py2.py3-none-any.whl", hash = "sha256:a6dfbb75e03252917f2473ea9653f7cd799c3064e54d4c8140044c5c065f53c3"},
+    {file = "flake8-7.0.0.tar.gz", hash = "sha256:33f96621059e65eec474169085dc92bf26e7b2d47366b70be2f67ab80dc25132"},
 ]
 
 [package.dependencies]
 mccabe = ">=0.7.0,<0.8.0"
 pycodestyle = ">=2.11.0,<2.12.0"
 pyflakes = ">=3.2.0,<3.3.0"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "flake8-import-restrictions"
@@ -466,13 +378,9 @@ description = "A flake8 plugin used to disallow certain forms of imports."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "flake8_import_restrictions-2.0.1-py3-none-any.whl", hash = "sha256:b2c05d5865e42087213dadd7020a94d4f5b9769a741cf9227121e5d958d5442e"},
+    {file = "flake8-import-restrictions-2.0.1.tar.gz", hash = "sha256:710616f448678b96bc931a57d3b04668858ac6edd1698168e32f387fe5ebc66f"},
+    {file = "flake8_import_restrictions-2.0.1-py3-none-any.whl", hash = "sha256:ef06de68d0e8c66f6ce908e0a0c7906739dfb11e135a09067e9fd84e66f4b2a5"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "future"
@@ -481,13 +389,9 @@ description = "Clean single-source support for Python 3 and 2"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 files = [
-    {file = "future-1.0.0-py3-none-any.whl", hash = "sha256:4d2e474080933772cbc7fd735ff5a32925bb105a29dfd1efad6fe2c0a6f6a7ff"},
+    {file = "future-1.0.0-py3-none-any.whl", hash = "sha256:929292d34f5872e70396626ef385ec22355a1fae8ad29e1a734c3e43f9fbc216"},
+    {file = "future-1.0.0.tar.gz", hash = "sha256:bd2968309307861edae1458a4f8a4f3598c03be43b97521076aebf5d94c07b05"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "isort"
@@ -496,16 +400,12 @@ description = "A Python utility / library to sort Python imports."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "isort-5.13.2-py3-none-any.whl", hash = "sha256:34a146c22c83acbd192a848e12a9b5e6bc14ef3d17f38fd5ad22a0b0488b87ba"},
+    {file = "isort-5.13.2-py3-none-any.whl", hash = "sha256:8ca5e72a8d85860d5a3fa69b8745237f2939afe12dbf656afbcb47fe72d947a6"},
+    {file = "isort-5.13.2.tar.gz", hash = "sha256:48fdfcb9face5d58a4f6dde2e72a1fb8dcaf8ab26f95ab49fab84c2ddefb0109"},
 ]
 
 [package.extras]
 colors = ["colorama (>=0.4.6)"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "loguru"
@@ -526,28 +426,6 @@ win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
 dev = ["Sphinx (>=2.2.1)", "black (>=19.10b0)", "codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "isort (>=5.1.1)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "tox (>=3.9.0)", "tox-travis (>=0.12)"]
 
 [[package]]
-name = "loguru"
-version = "0.5.3"
-description = "Python logging made (stupidly) simple"
-optional = false
-python-versions = ">=3.5"
-files = [
-    {file = "loguru-0.5.3-py3-none-any.whl", hash = "sha256:f8087ac396b5ee5f67c963b495d615ebbceac2796379599820e324419d53667c"},
-]
-
-[package.dependencies]
-colorama = {version = ">=0.3.4", markers = "sys_platform == \"win32\""}
-win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
-
-[package.extras]
-dev = ["Sphinx (>=2.2.1)", "black (>=19.10b0)", "codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "isort (>=5.1.1)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "tox (>=3.9.0)", "tox-travis (>=0.12)"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "mando"
 version = "0.6.4"
 description = "Create Python CLI apps with little to no effort at all!"
@@ -555,6 +433,7 @@ optional = false
 python-versions = "*"
 files = [
     {file = "mando-0.6.4-py2.py3-none-any.whl", hash = "sha256:4ce09faec7e5192ffc3c57830e26acba0fd6cd11e1ee81af0d4df0657463bd1c"},
+    {file = "mando-0.6.4.tar.gz", hash = "sha256:79feb19dc0f097daa64a1243db578e7674909b75f88ac2220f1c065c10a0d960"},
 ]
 
 [package.dependencies]
@@ -563,11 +442,6 @@ six = "*"
 [package.extras]
 restructuredtext = ["rst2ansi"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "mccabe"
 version = "0.7.0"
@@ -575,13 +449,9 @@ description = "McCabe checker, plugin for flake8"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "mccabe-0.7.0-py2.py3-none-any.whl", hash = "sha256:afd5dbbfbc7a5c66374ba2c14777063ec6fb2f0218bf1de55c65dbcf8a7f053d"},
+    {file = "mccabe-0.7.0-py2.py3-none-any.whl", hash = "sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e"},
+    {file = "mccabe-0.7.0.tar.gz", hash = "sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "mypy"
@@ -590,7 +460,33 @@ description = "Optional static typing for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mypy-1.9.0-py3-none-any.whl", hash = "sha256:ce791e6baf19ef9cdd7d8aec5a8bed003aabc6752cf98f89165a0ca5ac4e78d5"},
+    {file = "mypy-1.9.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:f8a67616990062232ee4c3952f41c779afac41405806042a8126fe96e098419f"},
+    {file = "mypy-1.9.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:d357423fa57a489e8c47b7c85dfb96698caba13d66e086b412298a1a0ea3b0ed"},
+    {file = "mypy-1.9.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:49c87c15aed320de9b438ae7b00c1ac91cd393c1b854c2ce538e2a72d55df150"},
+    {file = "mypy-1.9.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:48533cdd345c3c2e5ef48ba3b0d3880b257b423e7995dada04248725c6f77374"},
+    {file = "mypy-1.9.0-cp310-cp310-win_amd64.whl", hash = "sha256:4d3dbd346cfec7cb98e6cbb6e0f3c23618af826316188d587d1c1bc34f0ede03"},
+    {file = "mypy-1.9.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:653265f9a2784db65bfca694d1edd23093ce49740b2244cde583aeb134c008f3"},
+    {file = "mypy-1.9.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3a3c007ff3ee90f69cf0a15cbcdf0995749569b86b6d2f327af01fd1b8aee9dc"},
+    {file = "mypy-1.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2418488264eb41f69cc64a69a745fad4a8f86649af4b1041a4c64ee61fc61129"},
+    {file = "mypy-1.9.0-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:68edad3dc7d70f2f17ae4c6c1b9471a56138ca22722487eebacfd1eb5321d612"},
+    {file = "mypy-1.9.0-cp311-cp311-win_amd64.whl", hash = "sha256:85ca5fcc24f0b4aeedc1d02f93707bccc04733f21d41c88334c5482219b1ccb3"},
+    {file = "mypy-1.9.0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:aceb1db093b04db5cd390821464504111b8ec3e351eb85afd1433490163d60cd"},
+    {file = "mypy-1.9.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:0235391f1c6f6ce487b23b9dbd1327b4ec33bb93934aa986efe8a9563d9349e6"},
+    {file = "mypy-1.9.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d4d5ddc13421ba3e2e082a6c2d74c2ddb3979c39b582dacd53dd5d9431237185"},
+    {file = "mypy-1.9.0-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:190da1ee69b427d7efa8aa0d5e5ccd67a4fb04038c380237a0d96829cb157913"},
+    {file = "mypy-1.9.0-cp312-cp312-win_amd64.whl", hash = "sha256:fe28657de3bfec596bbeef01cb219833ad9d38dd5393fc649f4b366840baefe6"},
+    {file = "mypy-1.9.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:e54396d70be04b34f31d2edf3362c1edd023246c82f1730bbf8768c28db5361b"},
+    {file = "mypy-1.9.0-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:5e6061f44f2313b94f920e91b204ec600982961e07a17e0f6cd83371cb23f5c2"},
+    {file = "mypy-1.9.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:81a10926e5473c5fc3da8abb04119a1f5811a236dc3a38d92015cb1e6ba4cb9e"},
+    {file = "mypy-1.9.0-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:b685154e22e4e9199fc95f298661deea28aaede5ae16ccc8cbb1045e716b3e04"},
+    {file = "mypy-1.9.0-cp38-cp38-win_amd64.whl", hash = "sha256:5d741d3fc7c4da608764073089e5f58ef6352bedc223ff58f2f038c2c4698a89"},
+    {file = "mypy-1.9.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:587ce887f75dd9700252a3abbc9c97bbe165a4a630597845c61279cf32dfbf02"},
+    {file = "mypy-1.9.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:f88566144752999351725ac623471661c9d1cd8caa0134ff98cceeea181789f4"},
+    {file = "mypy-1.9.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:61758fabd58ce4b0720ae1e2fea5cfd4431591d6d590b197775329264f86311d"},
+    {file = "mypy-1.9.0-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:e49499be624dead83927e70c756970a0bc8240e9f769389cdf5714b0784ca6bf"},
+    {file = "mypy-1.9.0-cp39-cp39-win_amd64.whl", hash = "sha256:571741dc4194b4f82d344b15e8837e8c5fcc462d66d076748142327626a1b6e9"},
+    {file = "mypy-1.9.0-py3-none-any.whl", hash = "sha256:a260627a570559181a9ea5de61ac6297aa5af202f06fd7ab093ce74e7181e43e"},
+    {file = "mypy-1.9.0.tar.gz", hash = "sha256:3cc5da0127e6a478cddd906068496a97a7618a21ce9b54bde5bf7e539c7af974"},
 ]
 
 [package.dependencies]
@@ -604,11 +500,6 @@ install-types = ["pip"]
 mypyc = ["setuptools (>=50)"]
 reports = ["lxml"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "mypy-extensions"
 version = "1.0.0"
@@ -616,13 +507,9 @@ description = "Type system extensions for programs checked with the mypy type ch
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "mypy_extensions-1.0.0-py3-none-any.whl", hash = "sha256:7b58bcc6d3a548c146400c2e5de934bdbf2658503f897adee40f210e19b1f0ac"},
+    {file = "mypy_extensions-1.0.0-py3-none-any.whl", hash = "sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d"},
+    {file = "mypy_extensions-1.0.0.tar.gz", hash = "sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "numpy"
@@ -676,13 +563,9 @@ description = "Core utilities for Python packages"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:f77492ae2aa2351902c35d1f38e576d0f76d93df929d9f65e6409f2d09b3b3b3"},
+    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
+    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "paho-mqtt"
@@ -698,24 +581,6 @@ files = [
 proxy = ["PySocks"]
 
 [[package]]
-name = "paho-mqtt"
-version = "1.6.1"
-description = "MQTT version 5.0/3.1.1 client class"
-optional = false
-python-versions = "*"
-files = [
-    {file = "paho_mqtt-1.6.1-py3-none-any.whl", hash = "sha256:c44b3dd1b298894c44e3e842f7b0ca3ebe01f628a6f229c881b2324613d7bba7"},
-]
-
-[package.extras]
-proxy = ["PySocks"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "pastel"
 version = "0.2.1"
 description = "Bring colors to your terminal."
@@ -723,12 +588,8 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 files = [
     {file = "pastel-0.2.1-py2.py3-none-any.whl", hash = "sha256:4349225fcdf6c2bb34d483e523475de5bb04a5c10ef711263452cb37d7dd4364"},
+    {file = "pastel-0.2.1.tar.gz", hash = "sha256:e6581ac04e973cac858828c6202c1e1e81fee1dc7de7683f3e1ffe0bfd8a573d"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "pathspec"
@@ -737,33 +598,9 @@ description = "Utility library for gitignore style pattern matching of file path
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pathspec-0.12.1-py3-none-any.whl", hash = "sha256:abdf2ccde2babf20f12de0f090074ebea14a544ece6a038e20fb5e000a30e869"},
+    {file = "pathspec-0.12.1-py3-none-any.whl", hash = "sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08"},
+    {file = "pathspec-0.12.1.tar.gz", hash = "sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "picamera"
-version = "1.13"
-description = "A pure Python interface for the Raspberry Pi camera module."
-optional = false
-python-versions = "*"
-files = [
-    {file = "picamera-1.13-py3-none-any.whl", hash = "sha256:122e792bb944973cdf2e810a8cbfc405d5c154083943ef75a5cc9f57ee4058f5"},
-]
-
-[package.extras]
-array = ["numpy"]
-doc = ["sphinx"]
-test = ["Pillow", "coverage", "mock", "numpy", "pytest"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "picamera2"
@@ -789,29 +626,6 @@ v4l2-python3 = "*"
 gui = ["PyQt5", "pyopengl"]
 
 [[package]]
-name = "picamerax"
-version = "21.9.8"
-description = "A pure Python interface for the Raspberry Pi camera module, with extra features and fixes."
-optional = false
-python-versions = "*"
-files = [
-    {file = "picamerax-21.9.8-py3-none-any.whl", hash = "sha256:2386c3617fe4a65472e981e38501ebb3cd4a6a7cd2d72c0c85495078d60230ec"},
-]
-
-[package.dependencies]
-colorzero = "*"
-
-[package.extras]
-array = ["numpy"]
-doc = ["sphinx"]
-test = ["Pillow", "coverage", "mock", "numpy", "pytest"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "pidng"
 version = "4.0.9"
 description = "Python utility for creating Adobe DNG files from RAW image data."
@@ -832,12 +646,8 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 files = [
     {file = "piexif-1.1.3-py2.py3-none-any.whl", hash = "sha256:3bc435d171720150b81b15d27e05e54b8abbde7b4242cddd81ef160d283108b6"},
+    {file = "piexif-1.1.3.zip", hash = "sha256:83cb35c606bf3a1ea1a8f0a25cb42cf17e24353fd82e87ae3884e74a302a5f1b"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "pillow"
@@ -932,16 +742,12 @@ optional = false
 python-versions = ">=3.8"
 files = [
     {file = "platformdirs-4.2.0-py3-none-any.whl", hash = "sha256:0614df2a2f37e1a662acbd8e2b25b92ccf8632929bc6d43467e17fe89c75e068"},
+    {file = "platformdirs-4.2.0.tar.gz", hash = "sha256:ef0cc731df711022c174543cb70a9b5bd22e5a9337c8624ef2c2ceb8ddad8768"},
 ]
 
 [package.extras]
 docs = ["furo (>=2023.9.10)", "proselint (>=0.13)", "sphinx (>=7.2.6)", "sphinx-autodoc-typehints (>=1.25.2)"]
 test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.4.3)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "poethepoet"
@@ -951,6 +757,7 @@ optional = false
 python-versions = ">=3.8"
 files = [
     {file = "poethepoet-0.25.0-py3-none-any.whl", hash = "sha256:42c0fd654f23e1b7c67aa8aa395c72e15eb275034bd5105171003daf679c1470"},
+    {file = "poethepoet-0.25.0.tar.gz", hash = "sha256:ca8f1d8475aa10d2ceeb26331d2626fc4a6b51df1e7e70d3d0d6481a984faab6"},
 ]
 
 [package.dependencies]
@@ -960,11 +767,6 @@ tomli = ">=1.2.2"
 [package.extras]
 poetry-plugin = ["poetry (>=1.0,<2.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "pycodestyle"
 version = "2.11.1"
@@ -972,13 +774,9 @@ description = "Python style guide checker"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pycodestyle-2.11.1-py2.py3-none-any.whl", hash = "sha256:ee547ed18c8e0a8af96be1242e679c0e6fcbcc271ae5e2e7ec0d67fa44526e8c"},
+    {file = "pycodestyle-2.11.1-py2.py3-none-any.whl", hash = "sha256:44fe31000b2d866f2e41841b18528a505fbd7fef9017b04eff4e2648a0fadc67"},
+    {file = "pycodestyle-2.11.1.tar.gz", hash = "sha256:41ba0e7afc9752dfb53ced5489e89f8186be00e599e712660695b7a75ff2663f"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "pydocstyle"
@@ -987,7 +785,8 @@ description = "Python docstring style checker"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "pydocstyle-6.3.0-py3-none-any.whl", hash = "sha256:4f68aaa152354d3aa430bd7fe4d13b46794b7b8ea0199d464d43927c9986d595"},
+    {file = "pydocstyle-6.3.0-py3-none-any.whl", hash = "sha256:118762d452a49d6b05e194ef344a55822987a462831ade91ec5c06fd2169d019"},
+    {file = "pydocstyle-6.3.0.tar.gz", hash = "sha256:7ce43f0c0ac87b07494eb9c0b462c0b73e6ff276807f204d6b53edc72b7e44e1"},
 ]
 
 [package.dependencies]
@@ -996,11 +795,6 @@ snowballstemmer = ">=2.2.0"
 [package.extras]
 toml = ["tomli (>=1.2.3)"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "pyflakes"
 version = "3.2.0"
@@ -1008,13 +802,9 @@ description = "passive checker of Python programs"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyflakes-3.2.0-py2.py3-none-any.whl", hash = "sha256:2f47e486427c68ec1f4a5f04dfcb1df637f456b649852051047181ec76dc8cf8"},
+    {file = "pyflakes-3.2.0-py2.py3-none-any.whl", hash = "sha256:84b5be138a2dfbb40689ca07e2152deb896a65c3a3e24c251c5c62489568074a"},
+    {file = "pyflakes-3.2.0.tar.gz", hash = "sha256:1c61603ff154621fb2a9172037d84dca3500def8c8b630657d1701f026f8af3f"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "pyftdi"
@@ -1023,17 +813,13 @@ description = "FTDI device driver (pure Python)"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyftdi-0.55.0-py3-none-any.whl", hash = "sha256:662770e70b3c26dd8832a63adc660836f6557808005dd2735182f0c5a6aaa449"},
+    {file = "pyftdi-0.55.0-py3-none-any.whl", hash = "sha256:6af7b6c73da1256fd5140076fe77a616c13e44dd0779dd561dac1b5981dbd43f"},
+    {file = "pyftdi-0.55.0.tar.gz", hash = "sha256:a747bbbccc4eeea26cefa2c8bd3d2b8bef8c94ecb6969bb9c75a63640887519a"},
 ]
 
 [package.dependencies]
 pyserial = ">=3.0"
 pyusb = ">=1.0.0,<1.2.0 || >1.2.0"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "pylama"
@@ -1042,7 +828,8 @@ description = "Code audit tool for python"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pylama-8.4.1-py3-none-any.whl", hash = "sha256:8c2dbbe6e0e49735f35ca31d2ee8253b863be68be63dd11273142e82c46702aa"},
+    {file = "pylama-8.4.1-py3-none-any.whl", hash = "sha256:5bbdbf5b620aba7206d688ed9fc917ecd3d73e15ec1a89647037a09fa3a86e60"},
+    {file = "pylama-8.4.1.tar.gz", hash = "sha256:2d4f7aecfb5b7466216d48610c7d6bad1c3990c29cdd392ad08259b161e486f6"},
 ]
 
 [package.dependencies]
@@ -1067,11 +854,6 @@ tests = ["eradicate (>=2.0.0)", "mypy", "pylama-quotes", "pylint (>=2.11.1)", "p
 toml = ["toml (>=0.10.2)"]
 vulture = ["vulture"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "pylint"
 version = "3.1.0"
@@ -1079,7 +861,8 @@ description = "python code static checker"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "pylint-3.1.0-py3-none-any.whl", hash = "sha256:95f9e0012bafab0b16b32dd834f069f522b2ac6bc2f81d7767d8c9a534d81919"},
+    {file = "pylint-3.1.0-py3-none-any.whl", hash = "sha256:507a5b60953874766d8a366e8e8c7af63e058b26345cfcb5f91f89d987fd6b74"},
+    {file = "pylint-3.1.0.tar.gz", hash = "sha256:6a69beb4a6f63debebaab0a3477ecd0f559aa726af4954fc948c51f7a2549e23"},
 ]
 
 [package.dependencies]
@@ -1101,11 +884,6 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 spelling = ["pyenchant (>=3.2,<4.0)"]
 testutils = ["gitpython (>3)"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [[package]]
 name = "pylint-google-style-guide-imports-enforcing"
 version = "1.3.0"
@@ -1113,13 +891,8 @@ description = "Plugin for PyLint that checks if we import only modules or packag
 optional = false
 python-versions = "*"
 files = [
-    {file = "pylint_google_style_guide_imports_enforcing-1.3.0-py3-none-any.whl", hash = "sha256:ecbc63c10b87ce56646f4944a1f115b6189406233bc92297657c7ec0b97c548d"},
+    {file = "pylint_google_style_guide_imports_enforcing-1.3.0.tar.gz", hash = "sha256:0abea8199d656e189677560c429a463b139308105c4485d15cfd589c66484306"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "pyserial"
@@ -1129,15 +902,11 @@ optional = false
 python-versions = "*"
 files = [
     {file = "pyserial-3.5-py2.py3-none-any.whl", hash = "sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"},
+    {file = "pyserial-3.5.tar.gz", hash = "sha256:3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"},
 ]
 
 [package.extras]
 cp2110 = ["hidapi"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "python-prctl"
@@ -1157,12 +926,8 @@ optional = false
 python-versions = ">=3.6.0"
 files = [
     {file = "pyusb-1.2.1-py3-none-any.whl", hash = "sha256:2b4c7cb86dbadf044dfb9d3a4ff69fd217013dbe78a792177a3feb172449ea36"},
+    {file = "pyusb-1.2.1.tar.gz", hash = "sha256:a4cc7404a203144754164b8b40994e2849fde1cfff06b08492f12fff9d9de7b9"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "radon"
@@ -1171,18 +936,14 @@ description = "Code Metrics in Python"
 optional = false
 python-versions = "*"
 files = [
-    {file = "radon-5.1.0-py2.py3-none-any.whl", hash = "sha256:5dda03bf2ed05aa89225c57255aafa7348abf27496ba09801157ae430e0b599d"},
+    {file = "radon-5.1.0-py2.py3-none-any.whl", hash = "sha256:fa74e018197f1fcb54578af0f675d8b8e2342bd8e0b72bef8197bc4c9e645f36"},
+    {file = "radon-5.1.0.tar.gz", hash = "sha256:cb1d8752e5f862fb9e20d82b5f758cbc4fb1237c92c9a66450ea0ea7bf29aeee"},
 ]
 
 [package.dependencies]
 colorama = {version = ">=0.4.1", markers = "python_version > \"3.4\""}
 future = "*"
 mando = ">=0.6,<0.7"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "readerwriterlock"
@@ -1191,16 +952,12 @@ description = "A python implementation of the three Reader-Writer problems."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "readerwriterlock-1.0.9-py3-none-any.whl", hash = "sha256:e9dc92072cc1719ae74fb4bb34254c36bbe383515c5841242e4e576faf93dbd0"},
+    {file = "readerwriterlock-1.0.9-py3-none-any.whl", hash = "sha256:8c4b704e60d15991462081a27ef46762fea49b478aa4426644f2146754759ca7"},
+    {file = "readerwriterlock-1.0.9.tar.gz", hash = "sha256:b7c4cc003435d7a8ff15b312b0a62a88d9800ba6164af88991f87f8b748f9bea"},
 ]
 
 [package.dependencies]
 typing-extensions = "*"
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "rpi-gpio"
@@ -1218,28 +975,6 @@ files = [
 ]
 
 [[package]]
-name = "rpi-gpio"
-version = "0.7.1"
-description = "A module to control Raspberry Pi GPIO channels"
-optional = false
-python-versions = "*"
-files = [
-    {file = "RPi.GPIO-0.7.1-cp311-cp311-linux_armv6l.whl", hash = "sha256:df02c92d1a55ff8cdfffea5012ea73a9b09fdcc4d14799d834b3840fcf4039ad"},
-    {file = "RPi.GPIO-0.7.1-cp311-cp311-linux_armv7l.whl", hash = "sha256:df02c92d1a55ff8cdfffea5012ea73a9b09fdcc4d14799d834b3840fcf4039ad"},
-    {file = "RPi.GPIO-0.7.1-cp35-cp35m-linux_armv6l.whl", hash = "sha256:5073d1972727cfad38a1a42f02da91dc41f137679290aa804ab6c410168347ac"},
-    {file = "RPi.GPIO-0.7.1-cp35-cp35m-linux_armv7l.whl", hash = "sha256:5073d1972727cfad38a1a42f02da91dc41f137679290aa804ab6c410168347ac"},
-    {file = "RPi.GPIO-0.7.1-cp37-cp37m-linux_armv6l.whl", hash = "sha256:e5dfec2c4ccb7dbe9eef3dfc76a3b04121fc62d77fd8fbe1a8e841468a1b0c4c"},
-    {file = "RPi.GPIO-0.7.1-cp37-cp37m-linux_armv7l.whl", hash = "sha256:e5dfec2c4ccb7dbe9eef3dfc76a3b04121fc62d77fd8fbe1a8e841468a1b0c4c"},
-    {file = "RPi.GPIO-0.7.1-cp39-cp39-linux_armv6l.whl", hash = "sha256:231f6142c25975a7e39b96faf4905f05f97dba6809e8c5f0d58f284b35b4b821"},
-    {file = "RPi.GPIO-0.7.1-cp39-cp39-linux_armv7l.whl", hash = "sha256:231f6142c25975a7e39b96faf4905f05f97dba6809e8c5f0d58f284b35b4b821"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "rpi-ws281x"
 version = "5.0.0"
 description = "Userspace Raspberry Pi PWM/PCM/SPI library for SK6812 and WS281X LEDs."
@@ -1248,44 +983,6 @@ python-versions = ">=3.6"
 files = [
     {file = "rpi_ws281x-5.0.0.tar.gz", hash = "sha256:00ce6db771436b778d0930245cf8ea2aae11008cc5fd67d57789c5422af3ee55"},
 ]
-
-[[package]]
-name = "rpi-ws281x"
-version = "5.0.0"
-description = "Userspace Raspberry Pi PWM/PCM/SPI library for SK6812 and WS281X LEDs."
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "rpi_ws281x-5.0.0-cp37-cp37m-linux_armv6l.whl", hash = "sha256:2d9d8cb8f54bf68c1935a9b466aef8960f2e4aec4328057c0a9e59fc8eaad187"},
-    {file = "rpi_ws281x-5.0.0-cp37-cp37m-linux_armv7l.whl", hash = "sha256:2d9d8cb8f54bf68c1935a9b466aef8960f2e4aec4328057c0a9e59fc8eaad187"},
-    {file = "rpi_ws281x-5.0.0-cp39-cp39-linux_armv6l.whl", hash = "sha256:3c4af921dda22a393e42793e799823918e7d7a5bb71e50e885c22769ffa00c73"},
-    {file = "rpi_ws281x-5.0.0-cp39-cp39-linux_armv7l.whl", hash = "sha256:3c4af921dda22a393e42793e799823918e7d7a5bb71e50e885c22769ffa00c73"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
-name = "setuptools"
-version = "69.2.0"
-description = "Easily download, build, install, upgrade, and uninstall Python packages"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "setuptools-69.2.0-py3-none-any.whl", hash = "sha256:d279ffc6227266fdba425aa9742a3e6d0ba4dacfa2b1312f1b65ed3890082e6a"},
-]
-
-[package.extras]
-docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (<7.2.5)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-inline-tabs", "sphinx-lint", "sphinx-notfound-page (>=1,<2)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
-testing = ["build[virtualenv]", "filelock (>=3.4.0)", "importlib-metadata", "ini2toml[lite] (>=0.9)", "jaraco.develop (>=7.21)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "mypy (==1.9)", "packaging (>=23.2)", "pip (>=19.1)", "pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-home (>=0.5)", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-ruff (>=0.2.1)", "pytest-timeout", "pytest-xdist (>=3)", "tomli", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
-testing-integration = ["build[virtualenv] (>=1.0.3)", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "packaging (>=23.2)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "simplejpeg"
@@ -1356,12 +1053,8 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 files = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "smbus2"
@@ -1370,18 +1063,14 @@ description = "smbus2 is a drop-in replacement for smbus-cffi/smbus-python in pu
 optional = false
 python-versions = "*"
 files = [
-    {file = "smbus2-0.4.3-py2.py3-none-any.whl", hash = "sha256:4747d1f1394d9fb900d960a76931166645f901f3170616ab3aeb7eaaa6505bf5"},
+    {file = "smbus2-0.4.3-py2.py3-none-any.whl", hash = "sha256:a2fc29cfda4081ead2ed61ef2c4fc041d71dd40a8d917e85216f44786fca2d1d"},
+    {file = "smbus2-0.4.3.tar.gz", hash = "sha256:36f2288a8e1a363cb7a7b2244ec98d880eb5a728a2494ac9c71e9de7bf6a803a"},
 ]
 
 [package.extras]
 docs = ["sphinx (>=1.5.3)"]
 qa = ["flake8"]
 test = ["mock", "nose"]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "snowballstemmer"
@@ -1390,13 +1079,9 @@ description = "This package provides 29 stemmers for 28 languages generated from
 optional = false
 python-versions = "*"
 files = [
-    {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:53823aa64ad78444911007d0f56ee775f1b8c1e34c32bdba744d8be02ce7bbf3"},
+    {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a"},
+    {file = "snowballstemmer-2.2.0.tar.gz", hash = "sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "spidev"
@@ -1407,30 +1092,6 @@ python-versions = "*"
 files = [
     {file = "spidev-3.5.tar.gz", hash = "sha256:8a7f5c289f161ea2ac4697fa8a10918232c990678dd0053084b3c43b1363910d"},
 ]
-
-[[package]]
-name = "spidev"
-version = "3.5"
-description = "Python bindings for Linux SPI access through spidev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "spidev-3.5-cp311-cp311-linux_armv6l.whl", hash = "sha256:7d7aebb179f6f1b5e4f19c888e5064fe26062fabf2e408bfc48105dd3477be70"},
-    {file = "spidev-3.5-cp311-cp311-linux_armv7l.whl", hash = "sha256:7d7aebb179f6f1b5e4f19c888e5064fe26062fabf2e408bfc48105dd3477be70"},
-    {file = "spidev-3.5-cp34-cp34m-linux_armv6l.whl", hash = "sha256:73a92248f6873d23e213961db087a3023ee939836ae4a247f7bbf07526f7a904"},
-    {file = "spidev-3.5-cp34-cp34m-linux_armv7l.whl", hash = "sha256:73a92248f6873d23e213961db087a3023ee939836ae4a247f7bbf07526f7a904"},
-    {file = "spidev-3.5-cp35-cp35m-linux_armv6l.whl", hash = "sha256:c810a1e2262bd949ffc9a4dbd831a54783d364705ecd6d3cc8b5b0b911db59e6"},
-    {file = "spidev-3.5-cp35-cp35m-linux_armv7l.whl", hash = "sha256:c810a1e2262bd949ffc9a4dbd831a54783d364705ecd6d3cc8b5b0b911db59e6"},
-    {file = "spidev-3.5-cp37-cp37m-linux_armv6l.whl", hash = "sha256:20261448f6427beb63df6a13914acf7aeeabb25b2c01d4d90d2f1f14c8e70268"},
-    {file = "spidev-3.5-cp37-cp37m-linux_armv7l.whl", hash = "sha256:20261448f6427beb63df6a13914acf7aeeabb25b2c01d4d90d2f1f14c8e70268"},
-    {file = "spidev-3.5-cp39-cp39-linux_armv6l.whl", hash = "sha256:fac5de521322fa884a58e517cdba46e964accedcb4d2f2df8d09d21303471737"},
-    {file = "spidev-3.5-cp39-cp39-linux_armv7l.whl", hash = "sha256:fac5de521322fa884a58e517cdba46e964accedcb4d2f2df8d09d21303471737"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "sysv-ipc"
@@ -1447,26 +1108,6 @@ files = [
 ]
 
 [[package]]
-name = "sysv-ipc"
-version = "1.1.0"
-description = "System V IPC primitives (semaphores, shared memory and message queues) for Python"
-optional = false
-python-versions = "*"
-files = [
-    {file = "sysv_ipc-1.1.0-cp311-cp311-linux_armv6l.whl", hash = "sha256:5fb634b7ff62415d240a6a37a7e7c0ed6fe708b2bb541a81bfaf3da4df7a47ff"},
-    {file = "sysv_ipc-1.1.0-cp311-cp311-linux_armv7l.whl", hash = "sha256:5fb634b7ff62415d240a6a37a7e7c0ed6fe708b2bb541a81bfaf3da4df7a47ff"},
-    {file = "sysv_ipc-1.1.0-cp37-cp37m-linux_armv6l.whl", hash = "sha256:3cc523ce39338200c0ad7735c48267a26735690977b4eb4879bd8e10b4e7a82d"},
-    {file = "sysv_ipc-1.1.0-cp37-cp37m-linux_armv7l.whl", hash = "sha256:3cc523ce39338200c0ad7735c48267a26735690977b4eb4879bd8e10b4e7a82d"},
-    {file = "sysv_ipc-1.1.0-cp39-cp39-linux_armv6l.whl", hash = "sha256:0ef1f4360d0c4e353f63d43743911c060881ebf920c95ec8adfa4fcbf58955da"},
-    {file = "sysv_ipc-1.1.0-cp39-cp39-linux_armv7l.whl", hash = "sha256:0ef1f4360d0c4e353f63d43743911c060881ebf920c95ec8adfa4fcbf58955da"},
-]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
-[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -1474,12 +1115,8 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 files = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
+    {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "tomli"
@@ -1489,12 +1126,8 @@ optional = false
 python-versions = ">=3.7"
 files = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
+    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "tomlkit"
@@ -1504,12 +1137,8 @@ optional = false
 python-versions = ">=3.7"
 files = [
     {file = "tomlkit-0.12.4-py3-none-any.whl", hash = "sha256:5cd82d48a3dd89dee1f9d64420aa20ae65cfbd00668d6f094d7578a78efbb77b"},
+    {file = "tomlkit-0.12.4.tar.gz", hash = "sha256:7ca1cfc12232806517a8515047ba66a19369e71edf2439d0f5824f91032b6cc3"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "types-paho-mqtt"
@@ -1518,13 +1147,9 @@ description = "Typing stubs for paho-mqtt"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types_paho_mqtt-1.6.0.20240321-py3-none-any.whl", hash = "sha256:60959b56713689c3707500b65240ed28ca9a41e16226e642c7a118b5d58124cd"},
+    {file = "types-paho-mqtt-1.6.0.20240321.tar.gz", hash = "sha256:694eec160340f2a2b151237dcc3f107a63e1c4e5b8f9fcda0ba392049af9cbec"},
+    {file = "types_paho_mqtt-1.6.0.20240321-py3-none-any.whl", hash = "sha256:cd275c14f39363c2a0f8286ead9a46962e5421ebd477547b892ae016699f5a4a"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "typing-extensions"
@@ -1533,13 +1158,9 @@ description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.10.0-py3-none-any.whl", hash = "sha256:cf4b3897a28953482b51a794c6e2eacd0493446a7aa3f5f0913e4c612fde12da"},
+    {file = "typing_extensions-4.10.0-py3-none-any.whl", hash = "sha256:69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475"},
+    {file = "typing_extensions-4.10.0.tar.gz", hash = "sha256:b0abd7c89e8fb96f98db18d86106ff1d90ab692004eb746cf6eda2682f91b3cb"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "v4l2-python3"
@@ -1548,13 +1169,9 @@ description = "Python bindings for the v4l2 userspace api."
 optional = false
 python-versions = "*"
 files = [
-    {file = "v4l2_python3-0.3.4-py3-none-any.whl", hash = "sha256:37db285b21b70eed7abc4d42e53f193076702b2c614699046a8174fa34df6c1b"},
+    {file = "v4l2-python3-0.3.4.tar.gz", hash = "sha256:6258917ac8049ac69871a5e0dfd6d89d55c9e7f80e812c1ef8ba8879bda1c587"},
+    {file = "v4l2_python3-0.3.4-py3-none-any.whl", hash = "sha256:5badeade4959c6ffff335ed94d2279e490978ecb9929fb13615c7e4c02c1ef31"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "vulture"
@@ -1563,16 +1180,12 @@ description = "Find dead code"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "vulture-2.11-py2.py3-none-any.whl", hash = "sha256:32fc974fb142b97a1365a4ccabf4465399fe6a96c0edf29467a8930efb7e4462"},
+    {file = "vulture-2.11-py2.py3-none-any.whl", hash = "sha256:12d745f7710ffbf6aeb8279ba9068a24d4e52e8ed333b8b044035c9d6b823aba"},
+    {file = "vulture-2.11.tar.gz", hash = "sha256:f0fbb60bce6511aad87ee0736c502456737490a82d919a44e6d92262cb35f1c2"},
 ]
 
 [package.dependencies]
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
-
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
 
 [[package]]
 name = "win32-setctime"
@@ -1581,18 +1194,14 @@ description = "A small Python utility to set file creation time on Windows"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "win32_setctime-1.1.0-py3-none-any.whl", hash = "sha256:54a20e4c3e8534eef93b7260e3ff70e947cb049b8aa0e26034030c485b4d6b04"},
+    {file = "win32_setctime-1.1.0-py3-none-any.whl", hash = "sha256:231db239e959c2fe7eb1d7dc129f11172354f98361c4fa2d6d2d7e278baa8aad"},
+    {file = "win32_setctime-1.1.0.tar.gz", hash = "sha256:15cf5750465118d6929ae4de4eb46e8edae9a5634350c01ba582df868e932cb2"},
 ]
 
 [package.extras]
 dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 
-[package.source]
-type = "legacy"
-url = "https://www.piwheels.org/simple"
-reference = "piwheels"
-
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9.2"
-content-hash = "4eaeac52540e4352bf48f06fd52c27a62dd2f22482d702da780bdc2a9261f5c6"
+content-hash = "5e8d3bbf28b4f6655ddeb91e34c3fb07ce65d6c7d7a75d82fd01938688837d33"

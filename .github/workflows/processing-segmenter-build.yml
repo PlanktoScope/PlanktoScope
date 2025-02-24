@@ -30,17 +30,18 @@ env:
 
 jobs:
   build-container-image:
-    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
-          - linux/arm/v7
+        include:
+          - docker-platform: linux/amd64
+            gha-runner: ubuntu-24.04
+          - docker-platform: linux/arm64
+            gha-runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.gha-runner }}
     steps:
       - uses: actions/checkout@v4
 
@@ -61,9 +62,6 @@ jobs:
           tags: |
             type=sha # this sha doesn't appear to correspond to the git sha
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -81,10 +79,10 @@ jobs:
         with:
           context: ./processing/segmenter
           pull: true
-          platforms: ${{ matrix.platform }}
+          platforms: ${{ matrix.docker-platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=processing-segmenter-build-${{ matrix.platform }}
-          cache-to: type=gha,mode=max,scope=processing-segmenter-build-${{ matrix.platform }}
+          cache-from: type=gha,scope=processing-segmenter-build-${{ matrix.docker-platform }}
+          cache-to: type=gha,mode=max,scope=processing-segmenter-build-${{ matrix.docker-platform }}
           outputs: type=image,name=${{ steps.image_registry_case.outputs.lowercase }},push-by-digest=true,name-canonical=true,push=${{ env.PUSH_IMAGE }}
 
       - name: Export digest
@@ -95,7 +93,7 @@ jobs:
 
       - name: Determine digest name
         run: |
-          platform=${{ matrix.platform }}
+          platform=${{ matrix.docker-platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
 
       - name: Upload digest

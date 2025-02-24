@@ -232,6 +232,7 @@ class Worker(multiprocessing.Process):
                 "status/imager",
                 json.dumps({"status": f"Configuration update error: {str(e)}"}),
             )
+            return
         if output_path is None:
             # An error status was already reported, so we don't need to do anything else
             return

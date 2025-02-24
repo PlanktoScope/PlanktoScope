@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Removed
+
+- (Hardware controller) The old raspimjpeg-based imager has been fully deleted, having been deprecated in v2024.0.0-alpha.2.
+- Support for deployment on ARMv7 (32-bit OSes) is removed, having been deprecated in PlanktoScope OS v2024.0.0-beta.0.
+
+### Fixed
+
+- (Hardware controller) Error handling of a failure to create a raw image dataset directory (e.g. because the directory already exists, due to a duplicate acquisition ID) now correctly terminates the attempted data acquisition run.
+
 ## v2024.0.0 - 2024-12-25
 
 ### Fixed
