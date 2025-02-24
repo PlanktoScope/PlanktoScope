@@ -1,9 +1,11 @@
 #!/bin/bash -eux
 
+# Determine the base path for copied files
+config_files_root="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
 # Disable the first-boot graphical wizard
-# if ! sudo -E apt-get purge -y -o Dpkg::Progress-Fancy=0 piwiz; then
-#   echo "piwiz is already not installed, so no need to remove it!"
-# else
-#   sudo -E apt-get autoremove -y -o Dpkg::Progress-Fancy=0
-# fi
-sudo rm -f /etc/xdg/autostart/piwiz.desktop
+if [ -f /etc/xdg/autostart/piwiz.desktop ]; then
+  sudo mv /etc/xdg/autostart/piwiz.desktop /etc/xdg/autostart/piwiz.desktop.disabled
+  file="/etc/lightdm/lightdm.conf"
+  sudo cp "$config_files_root$file" "$file"
+fi
