@@ -16,6 +16,9 @@ from planktoscope.imager import mqtt as imager
 
 # enqueue=True is necessary so we can log across modules
 # rotation happens everyday at 01:00 if not restarted
+logs_path = "/home/pi/device-backend-logs/control"
+if not os.path.exists(logs_path):
+    os.makedirs(logs_path)
 logger.add(
     # sys.stdout,
     "/home/pi/device-backend-logs/control/{time}.log",
@@ -72,7 +75,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
     # Let's make sure the used base path exists
-    img_path = "/home/pi/PlanktoScope/img"  # FIXME: this path is incorrect - why doesn't it cause side effects?
+    img_path = "/home/pi/img"
     # check if this path exists
     if not os.path.exists(img_path):
         # create the path!

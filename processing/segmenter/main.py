@@ -1,17 +1,17 @@
 # Copyright Romain Bazile and other PlanktoScope project contributors
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 import multiprocessing
@@ -53,6 +53,7 @@ logger.info("Starting the PlanktoScope data processing segmenter!")
 
 run = True  # global variable to enable clean shutdown from stop signals
 
+
 def handler_stop_signals(signum, _):
     """This handler simply stop the forever running loop in __main__"""
     global run
@@ -62,11 +63,13 @@ def handler_stop_signals(signum, _):
 
 if __name__ == "__main__":
     logger.info("Welcome!")
-    logger.info( "Initialising signals handling and sanitizing the directories (step 1/2)")
+    logger.info(
+        "Initialising signals handling and sanitizing the directories (step 1/2)"
+    )
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
-    export_path = "/home/pi/data/export"
+    export_path = "/home/pi/data/export/ecotaxa"
     # check if this path exists
     if not os.path.exists(export_path):
         # create the path!
@@ -79,8 +82,10 @@ if __name__ == "__main__":
     # Starts the segmenter process
     logger.info("Starting the segmenter control process (step 2/2)")
     try:
-        segmenter_thread = planktoscope.segmenter.SegmenterProcess(shutdown_event, "/home/pi/data")
-    except Exception as e:
+        segmenter_thread = planktoscope.segmenter.SegmenterProcess(
+            shutdown_event, "/home/pi/data"
+        )
+    except Exception:
         logger.error("The segmenter control process could not be started")
         segmenter_thread = None
     else:
