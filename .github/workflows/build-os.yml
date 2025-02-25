@@ -236,7 +236,16 @@ jobs:
           key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
           path: ${{ steps.setup-precaching.outputs.path }}
 
-      - name: Copy pre-downloaded container images into image
+      # Note: the following step isn't strictly necessary, but it's nice to separate the GitHub
+      # Actions log outputs for setting up pinspawn-action for the first time from the logs for
+      # pre-downloading container images
+      - name: Install pinspawn-action dependencies
+        uses: ethanjli/pinspawn-action@v0.1.4
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          run: echo "Done!"
+
+      - name: Copy pre-downloaded container images into OS image
         uses: ethanjli/pinspawn-action@v0.1.4
         with:
           image: ${{ steps.expand-image.outputs.destination }}
