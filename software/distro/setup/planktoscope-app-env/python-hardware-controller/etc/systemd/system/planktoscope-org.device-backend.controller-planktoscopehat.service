@@ -10,6 +10,8 @@ After=nodered.service
 Type=simple
 Environment=HOME=/home/pi
 ExecStart=/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/device-backend/control run python -u /home/pi/device-backend/control/planktoscopehat/main.py
+User=pi
+Group=pi
 
 [Install]
 WantedBy=multi-user.target
