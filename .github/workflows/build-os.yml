@@ -36,7 +36,6 @@ jobs:
     name: Build image
     runs-on: ubuntu-24.04-arm
     env:
-      KERNEL_VERSION: 6.1.21
       SETUP_USER: pi
     permissions:
       contents: read
