@@ -345,7 +345,7 @@ jobs:
           echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
 
       - name: Shrink the OS image
-        uses: ethanjli/pishrink-action@v0.1.3
+        uses: ethanjli/pishrink-action@v0.1.4
         env:
           PISHRINK_XZ: -T0 ${{ github.ref_type == 'tag' && '-9' || '-1' }}
         with:
