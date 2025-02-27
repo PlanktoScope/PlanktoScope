@@ -22,9 +22,9 @@ You can find the BOM for the PlanktoScope V2.6 and all the informations to suppl
 ## Toolings :hammer_and_wrench:
 In order to perform all the assembly steps you will need the following toolings:
 
-- PH1 screwdriver
-- T8H or Hex2 screwdriver
-- T6H or Hex1.5 screwdriver
+- PH1 (Phillips) screwdriver
+- T8H/Hex2 screwdriver
+- T6H/Hex1.5 screwdriver
 - Flat screwdriver 2.5
 - Small cutting pliers
 - Female Hexagonal 4mm screwdriver or small pliers
@@ -37,16 +37,18 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench): 
+
 - [ ] PH1 screwdriver
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] 4 x rubber Feets
 - [ ] Bamboo Part I
 
-* Locate the **4 x rubber feet** for the PlanktoScope
+* Locate the **4 rubber feets** for the PlanktoScope
 
-* Place each rubber foot under **Part I** of the PlanktoScope
+* Place each rubber foot under **Part I**
 
 * Use the **PH1 screwdriver** to fix each foot in place, ensuring they are firmly attached but not overly tightened
 
@@ -59,10 +61,12 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] screwdriver
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] 32 x square nuts M3x5.5
 - [ ] Bamboo Part A, B, C & D
 
@@ -81,6 +85,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench): 
+
 - [ ] Small manual press or mallet
 
 
@@ -90,16 +95,19 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench): 
+
 - [ ] Small manual press or mallet
 
 ## Step 3: Assemble the pump module
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench): 
+
 - [ ] T8H or Hex2 screwdriver
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] 2 x M2.5x5mm screws
 - [ ] Bamboo Part L
 - [ ] Persitaltic Pump
@@ -116,11 +124,13 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] Female Hexagonal 4mm screwdriver or small pliers
 - [ ] T6H or Hex1.5 screwdriver
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] 4 x Hexagonal Spacer M2X5
 - [ ] 4 x Hexagonal Spacer M2X12
 - [ ] 4 x Screw TCHC M2X4
@@ -134,7 +144,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 
 
-* Position the Raspberry Pi 4 so that it rests on each spacer
+* Position the Raspberry Pi 4 so that it rests on each spacer and stands as shown in the picture below
 * Using a **Female Hexagonal 4mm screwdriver**, securely fasten each of the **4 x Hexagonal Spacer M2X12**, making sure they're tight but not over-tightened
 ![Assemble Core Module 2.png](images/Assemble_Core_Module_2.png "Assemble Core Module 2")
 
@@ -149,8 +159,8 @@ In order to perform all the assembly steps you will need the following toolings:
 ![Assemble Core Module 4.png](images/Assemble_Core_Module_4.png "Assemble Core Module 4")
 
 * Insert the **Ribbon Cable** you just detached from the Raspberry Pi Camera in the Raspberry Pi
-* Make sure to insert in as much as you can
-* Secure the Ribbon Cable in the Raspberry Pi by pressing firmly on the black connector
+* Make sure to insert it as much as you can
+* Secure the Ribbon Cable in the Raspberry Pi by pressing back connector
 
 !!! warning
 
@@ -165,13 +175,15 @@ In order to perform all the assembly steps you will need the following toolings:
 ![Assemble Core Module 7](images/Assemble_Core_Module_7.png "Assemble Core Module 7")
 * Put this assembly on the side.
 
-## Step 5 : Position the Alim Jack Assy
+## Step 5: Position the Alim Jack Assy
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] open-end wrench 14
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] Alim Jack Assy
 - [ ] Part K
 
@@ -192,10 +204,12 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] T8H or Hex2 screwdriver
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] Optic 20-200 Assy
 - [ ] Part B
 - [ ] 4 x M2.5x5mm screws
@@ -219,10 +233,12 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] open-end wrench 19
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] OnOff Button Assy
 - [ ] Part M
 
@@ -242,11 +258,13 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] Flat screwdriver 2.5
 - [ ] Small cutting pliers
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] OnOff Button Assy
 - [ ] Led Assy
 - [ ] 2x Linear Stepper Motor
@@ -260,7 +278,8 @@ In order to perform all the assembly steps you will need the following toolings:
   
 !!! warning
 
-	Be careful with the power block terminal, as it is delicate. Support it while tightening to prevent solder joint breakage.
+	- /!\ Do not exchange Black and Red - it will lead to critical short circuit. 
+    - Be careful with the power block terminal, as it is delicate. Support it while tightening to prevent solder joint breakage.
 
 ![Finalize the core module 1](images/Finalize_the_core_module_1.png "Finalize the core module 1")
 
@@ -281,11 +300,13 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ]  T8H or Hex2 screwdriver
 - [ ]  Small cutting pliers
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] Bamboo Parts I, E, D, C, J
 - [ ] [Core module](#step-4-assemble-the-core-module)
 - [ ] [Optic module](#step-6-assemble-the-optic-20-200-assy)
@@ -327,7 +348,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 !!! note
 
-	Design of Bamboo Part E has evolved suring PlanktoscopeV2.6 life. You may obtain a slightly different part as shown in the picture. Assembly process is the same.
+	Design of Bamboo Part E has slightly evolved during Planktoscope V2.6 life. You may obtain a slightly different part as shown in the picture. Assembly process is the same.
 
 ![Finalize Main Assembly 6.png](images/Finalize_Main_Assembly_6.png "Finalize Main Assembly 6.png")
 
@@ -359,7 +380,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 ![Finalize Main Assembly 13.png](images/Finalize_Main_Assembly_13.png "Finalize Main Assembly 13.png")
 
-*  Position **4x Zip ties** to simplify the electrical assembly
+*  Position **4x Zip ties** to maintain cleanly spiral cable jacket.
 *  Cut the extremities of the Zip ties with the **Small cutting pliers**
 ![Finalize Main Assembly 14.png](images/Finalize_Main_Assembly_14.png "Finalize Main Assembly 14.png")
 
@@ -379,6 +400,11 @@ In order to perform all the assembly steps you will need the following toolings:
 ![Finalize Main Assembly 18.png](images/Finalize_Main_Assembly_18.png "Finalize Main Assembly 18.png")
 
 * Position button module onto main assembly
+  
+!!! warning
+	
+    Be careful not to pinch any wire while you close the PlanktoScope.
+  
 ![Finalize Main Assembly 19.png](images/Finalize_Main_Assembly_19.png "Finalize Main Assembly 19.png")
 
 * Use the **T8H or Hex2 screwdriver** to fix each of the **8 x M3x14mm screws** in place on top of the main assembly, ensuring they are firmly attached but not overly tightened
@@ -395,10 +421,12 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
+
 - [ ] T8H or Hex2 screwdriver
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] Bamboo Parts F, G & H
 - [ ] 1 x O-ring
 - [ ] 4 x Screw TCHC M2.5X16
@@ -434,6 +462,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
+
 - [ ] Bamboo Part P
 - [ ] [Flowcell Holder Assy](#step-10-flowcell-holder-assembly)
 
@@ -455,9 +484,9 @@ When the software will be uploaded, you can install the SD Card in the PlanktoSc
 
 # Congratulations!! :tada: :clap: :champagne:
 
-If your arrive to this step it probably means that your PlanktoScope V2.6 is fully assembled!!
+If your get to this step it probably means that your PlanktoScope V2.6 is fully assembled!!
 What a journey, thank you very much for your commitment.
 
-In order to continue and before starting your first images, the last step is the PlanktoScope set up, ready as it can be to start operating and discovering the beauty of your planktons samples!
+In order to continue let's go to [Operation](../../../../operation/index.md). This section will help you to set your PlanktoScope ready as it can be to start operating and discovering the beauty of your planktons samples!
 
 

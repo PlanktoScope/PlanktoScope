@@ -93,6 +93,7 @@ Dry all parts and store them for the assembly process.
 ## PlanktoScope Hat 1.3 PCB
 
 Welcome to the PCB production manual for the PlanktoScope Hat 1.3!
+
 ![Hat_recto_verso](images/Hat_recto_verso.PNG "Hat_recto_verso")
 
 A **Printed Circuit Board (PCB)** is a vital component of electronic devices, providing physical support and electrical connections for components. The PCB production process involves three main stages:
@@ -103,7 +104,7 @@ A **Printed Circuit Board (PCB)** is a vital component of electronic devices, pr
 
 3. Assembly: Components are placed and soldered either manually or with automated systems.
 
-Components used on PCBs are either **Thru-Hole** (leads pass through the board, ideal for durability) or **Surface Mount** (soldered directly on the surface, suited for compact designs). The choice depends on the device’s requirements.
+Components assembled on PCBs are either **Thru-Hole** (leads pass through the board, ideal for durability) or **Surface Mount** (soldered directly on the surface, suited for compact designs). The choice depends on the device’s requirements.
 
 You will find in the following files the full documentation to start a quotation on your electronic prototypist platefrom.
 We will also guide you through the assembly of side components to complete the PlanktoScope HAT 1.3 fabrication.
@@ -130,7 +131,7 @@ They are not included in Thru-Hole components list for the prototypiste.
 
 #### Configuration on prototypist website
 
-The following configuration parameters can be used for the production of the PCB.
+When you ask an electronic proptypist to create and assemble your PCB, technical informations will be asked. The following configuration parameters can be used to this purpose.
 
 !!! note
 
@@ -197,7 +198,7 @@ You should receive a PCB looking similar to the following pictures:
 ![Hat_recto_verso_2](images/Hat_recto_verso_2.PNG "Hat_recto_verso_2")
 
 #### Next steps
-As explain earlier on and in order to let you dive into a fun DIY project or pick up a new skills, some soldering is about to come! In the following steps, we’ll guide you through assembling the Drivers TMC 5160 (used to control the peristaltic pump and the linear stepper motors) and the Axial Fan. Let’s get started!
+As explain earlier on and in order to let you dive into a fun DIY project, some soldering is about to come! In the following steps, we’ll guide you through assembling the Drivers TMC 5160 (used to control the peristaltic pump and the linear stepper motors) and the Axial Fan. Let’s get started!
 
 ### Assembly of the Drivers TMC 5160
 
@@ -228,9 +229,9 @@ When you solder this for the first time, take special care to gather information
 
 !!! note
 
-	Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4*8 and 2*2 connectors.
+	Usually 2 Connectors Header of 8 position comme alongside each Driver. If it is not the case you can also buy one with many position and cut it in order to gets 4x8 pins and 2x2 pins connectors.
 
-Unpack the Drivers TMC 5160 and the Connector Header strips of 8 pins (x2) and 2 pins(x1), take the breadboard and warm your soldering iron.
+Unpack the Drivers TMC 5160, the Connector Header strips of 8 pins (x2) and 2 pins(x1), take the breadboard and warm your soldering iron.
 
 **2. Cut the via bridge**
 
@@ -250,7 +251,7 @@ Check if the two slots are correctly isolated from one another with a **multimet
 
 !!! warning
 
-	This step does not really follow traditional methods, but be careful to cut this bridge only to keep the PCB integrity.
+	This step does not really follow traditional methods, be careful to only cut this bridge and keep the PCB integrity.
 
 **3.  Set in position the Connector Header strips**
 
@@ -329,9 +330,9 @@ Strip the wires on 5mm with **Wire stripper pliers**.
 
 ![Axial_fan_preparation](images/Axial_fan_preparation.JPG "Axial_fan_preparation")
 
-Install the fan with the four screws and nuts on the top side of the PlanktoScope HAT 1.3 PCB. 
+Install the fan on the top side of the PlanktoScope HAT 1.3 PCB. 
 
-Pay attention to the **running direction** with the arrow marking on the side of the Axial Fan. The Axial Fan should **blow on the cooler** of the Raspberry Pi (from Top to Bottom of the PlanktoScope HAT 1.3 PCB).
+Pay attention to the **running direction** with the arrow marking on the side of the Axial Fan. The Axial Fan should **blow on the Raspberry Pi** (from Top to Bottom of the PlanktoScope HAT 1.3 PCB).
 Engage the wire through the hole in the PlanktoScope HAT 1.3 PCB to reach the bottom of the board.
 
 ![Axial_fan_placement](images/Axial_fan_placement.JPG "Axial_fan_placement")
@@ -356,17 +357,15 @@ Create soldering bridges between:
 - The 2 slots of J3
 ![Axial_fan_J3_bridge](images/Axial_fan_J3_bridge.JPG "Axial_fan_J3_bridge")
 
-- The middle slot and +5V
+- The middle slot and +5V. _(leaving +12V slot isolated)_
 ![Axial_fan_5V_bridge](images/Axial_fan_5V_bridge.JPG "Axial_fan_5V_bridge")
     
-- The middle slot and )D
+- The middle slot and )D. _(leaving IC slot isolated)_
 ![Axial_fan_D_bridge](images/Axial_fan_D_bridge.JPG "Axial_fan_D_bridge")
   
 Final result:
 
 ![Axial_fan_bridge_final](images/Axial_fan_bridge_final.JPG "Axial_fan_bridge_final")
-
-### You have finished soldering and assembling the components!
 
 Congratulation! You have finished to assemble the PlanktoScope HAT 1.3 PCB components, it should look like on the following pictures:
 
@@ -429,7 +428,7 @@ Slide a **Black heat shrink** on both of the wires. Slide an aditional and small
 
 **4. LED configuration**
 
-Find the anode (smaller) and cathode (longer) pin of the **LED**.
+Find the cathode (smaller) and anode (longer) pin of the **LED**.
 
 ![Led_Assy_polarity](images/Led_Assy_polarity.JPG "Led_Assy_polarity")
 
@@ -437,8 +436,9 @@ Find the anode (smaller) and cathode (longer) pin of the **LED**.
 
 Maintain the LED or the wires with the **third hand**. Add some soldering material to both the wires extremities and to the pins of the LED.
 Solder:
-- the red wire🔴 to the cathode pin (longer pin)
-- the black wire⚫ to the anode (small pin).
+
+- the red wire🔴 to the anode (longer pin)
+- the black wire⚫ to the cathode (small pin).
 
 ![Led_Assy_wires_solder](images/Led_Assy_wires_solder.JPG "Led_Assy_wires_solder")
 
@@ -446,6 +446,7 @@ Solder:
 **6. Heat Shrink heating**
 
 Slide the heat shrink on the soldering and use the **heat gun** to secure it. 
+
 - First the red one which make sure <ins>no contact can be made between the 2 pins</ins>.
 - Second the black one to insulate from outside environnement
 
@@ -488,7 +489,7 @@ Slide the  Red Heat Shrink on the female connector. <ins>Be careful of covering 
 
 Same operations with the **Male Bullet Connector** and the ⚫**Black Wire**.
 
-Be careful of covering just the begining of the metalic connector.
+<ins>Be careful of covering just the begining of the metalic connector.</ins>
 
 !!! warning
 
@@ -519,7 +520,7 @@ Remove ⚪**White Wire** by firmly pulling on it. Prepare each wire end (whit wi
 
 **3. Wire crimp Red & Green**
 
-Use the **Crimpimg Plier** to add a wire crimp on the 🔴+ :green_circle: **Red+Green wires**.**4. Heat Shrink heating**
+Use the **Crimpimg Plier** to add a wire crimp on the **🔴Red + :green_circle: Green wires**.
 
 **4. Heat Shrink heating**
 
@@ -529,7 +530,7 @@ Slide the Red Heat Shrink on the female connector. Use the **heat gun** to secur
 
 **5. Wire crimp Black & White**
 
-Use the **Crimpimg Plier** to add a wire crimp on the ⚫+⚪**Black+White wires**.
+Use the **Crimpimg Plier** to add a wire crimp on the **⚫ Black + ⚪ White wires**.
 
 **6. Heat Shrink heating**
 
@@ -550,7 +551,7 @@ Slide the Black Heat Shrink on the female connector. <ins>Be careful of covering
 **9. Soldering yellow wire**
 
 Same operation with the **Male Bullet Connector** and the :yellow_circle: **Yellow Wire**.
-Be careful of covering just the begining of the metalic connector with heat shrink.
+<ins>Be careful of covering just the begining of the metalic connector with heat shrink.</ins>
 
    ![OnOff_button_solder_m](images/OnOff_button_solder_m.JPG "OnOff_button_solder_m")
 
@@ -608,9 +609,15 @@ Remove the retaining ring in the **CM1L10 Extension Tube**
 
 **4. M12/25 Lens Insertion**
 
-Insert the M12/25 Lens in the CM1L10 Extension Tube.Threaded side of the lens first. By using the **Tooling SPW909** set the lens Adapter at **14.7mm** deep.
+Insert the M12/25 Lens in the CM1L10 Extension Tube. Threaded side of the lens first. By using the **Tooling SPW909** set the lens Adapter at **14.7mm** deep.
 
 ![Optic_Assy_lens1_25](images/Optic_Assy_lens1_25.JPG "Optic_Assy_lens1_25")
+
+Control the deepness of the Lens adaptor with a caliper. The distance must be measured between the surface of the lens adaptor and the of the last surface of the extension tube. Adjust the assembly to 
+acheive 14,7mm (+/-0,05mm).
+
+
+![Optic_Assy_scheme2](images/Optic_Assy_scheme2.JPG "Optic_Assy_scheme2")
 
 **6. Protective cap removal**
 
@@ -620,11 +627,11 @@ Remove M12/25 & M12/12 Lens protective caps on lens side.
 
 **7. M12/25 Lens Insertion**
 
-Insert the M12/12 Lens in the CM1L10 Extension Tube.Threaded side of the lens out. By using the Tooling SPW909 screw gently up to contact with the M12/25 Lens. _If you go gentlyn no worries of damaging anything, the contact zone will not be between the 2 lens directly but between the 2 black casing diameter._
+Insert the M12/12 Lens in the CM1L10 Extension Tube.Threaded side of the lens out. By using the Tooling SPW909 screw gently up to contact with the M12/25 Lens. _If you go gently no worries of damaging anything, the contact zone will not be between the 2 lens directly but between the 2 black casing diameter._
    Set back the protective cap.
 ![Optic_Assy_lens1_12](images/Optic_Assy_lens1_12.JPG "Optic_Assy_lens1_12")
 
-**8. Disenagge cable ribbon**
+**8. Disengage cable ribbon**
 
 Open gently the connector and disengage the cable ribbon. Save it for later on assembly.
 
@@ -664,7 +671,6 @@ Remove M12/25 2nd protective cap. Do a small air cleaning with a dust blower. Yo
 
 ## To be continued...
 
-Congratulation, if you make it to the end of this "Kit Section" you may have succeeded to supply and manufacture the entire BOM of the PlanktoScope V2.6.
+Congratulation, if you make it to the end of this "Kit Section" you have successfully to supplied and manufactured the entire BOM of the PlanktoScope V2.6.
 
-We would be thrilled to have you continue your journey with us as we move on to the next phase of the documentation in the
- [assembly](../assembly/index.md) section. :flying_saucer: :microbe:
+We would be thrilled to have you continue your journey with us as we move on to the next phase of the documentation in the [assembly](../assembly/index.md) section. :flying_saucer: :microbe:
