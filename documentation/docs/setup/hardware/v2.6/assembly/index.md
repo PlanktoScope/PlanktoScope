@@ -95,12 +95,12 @@ In order to perform all the assembly steps you will need the following toolings:
 - [ ] Bamboo Parts E, F, L, M, N, P
 
 * Insert **8 Black Neodyme Magnets** in the **Bamboo Parts E, L, M** in the same way to have the same magnet polarity on all this assembly: 🔴Red Dots = Polarity A.
-![Assemble_Magnet_PolarityA_1](images/Assemble_magnet_polaritya_1.png "Assemble_Magnet_PolarityA_1")
-![Assemble_Magnet_PolarityA_2](images/Assemble_magnet_polaritya_2.png "Assemble_Magnet_PolarityA_2")
+![Assemble_Magnet_PolarityA_1](images/Magnet_PolarityA_1.png "Assemble_Magnet_PolarityA_1")
+![Assemble_Magnet_PolarityA_2](images/Magnet_PolarityA_2.png "Assemble_Magnet_PolarityA_2")
 
 * Insert **8 Black Neodyme Magnets** in the **Bamboo Parts F, N, P**
 <ins>in the opposite polarity as Polarity A</ins> and all in the same way to have the same magnet polarity on all this assembly: :blue_circle:Blue Dots = Polarity B. 
-![Assemble Magnet PolarityB 1](images/Assemble_Magnet_PolarityB_1.png "Assemble_Magnet_PolarityB_1")
+![Assemble Magnet PolarityB 1](images/Magnet_PolarityB_1.png "Assemble_Magnet_PolarityB_1")
 
 !!! warning
 
