@@ -88,7 +88,23 @@ In order to perform all the assembly steps you will need the following toolings:
 
 - [ ] Small manual press or mallet
 
+:gear:
+[Parts Needed](#content-of-the-kit-gear):
 
+- [ ] 16 x Black Neodyme Magnet
+- [ ] Bamboo Parts E, F, L, M, N, P
+
+* Insert **8 Black Neodyme Magnets** in the **Bamboo Parts E, L, M** in the same way to have the same magnet polarity on all this assembly: 🔴Red Dots = Polarity A.
+![Assemble_Magnet_PolarityA_1](images/Assemble_Magnet_PolarityA_1.png "Assemble_Magnet_PolarityA_1")
+![Assemble_Magnet_PolarityA_2](images/Assemble_Magnet_PolarityA_2.png "Assemble_Magnet_PolarityA_2")
+
+* Insert **8 Black Neodyme Magnets** in the **Bamboo Parts F, N, P**
+<ins>in the opposite polarity as Polarity A</ins> and all in the same way to have the same magnet polarity on all this assembly: :blue_circle:Blue Dots = Polarity B. 
+![Assemble_Magnet_PolarityB_1](images/Assemble_Magnet_PolarityB_1.png "Assemble_Magnet_PolarityB_1")
+
+!!! warning
+
+	Be really careful to the polarity of your magnets, it will define if parts can be magnetized to each other or not.
 
 
 ## Step 4: Assemble inserts
@@ -97,6 +113,19 @@ In order to perform all the assembly steps you will need the following toolings:
 [Tooling](#toolings-hammerandwrench): 
 
 - [ ] Small manual press or mallet
+
+:gear:
+[Parts Needed](#content-of-the-kit-gear):
+
+- [ ] 10 x Insert M2.5
+- [ ] 4 x Insert M2	
+- [ ] Bamboo Parts C, F, H
+
+* Insert the **4 Inserts M2** in the 4 slots of the **bamboo part C**
+* Insert **4 of the Inserts M2.5**  in the 4 slots of the **2 bamboo parts H**. Bamboo part H choosen must be the one without the counterbore for screw head. It must be orientated with the largest flat surface below.
+* Insert the **2 of the Inserts M2.5** in the 2 slots of the **bamboo part F**. Bamboo part F must be orientated with the magnet side below.
+* Insert **the 4 remaing Inserts M2.5** in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
+
 
 ## Step 3: Assemble the pump module
 

@@ -669,6 +669,34 @@ Remove M12/25 2nd protective cap. Do a small air cleaning with a dust blower. Yo
 
 ![Optic_Assy_final](images/Optic_Assy_final.JPG "Optic_Assy_final")
 
+## Fluidic Line Set Up
+The next, and final step, of this kit preparation is to create the tubing needed for the fluidic line to carry the sample from the syringue to the "trash tube".
+
+Prepare the following toolings:
+#### Tooling :hammer_and_wrench:
+
+- [ ] Utility knife
+- [ ] Measuring ruler
+- [ ] Drill
+- [ ] 5mm drill bit
+- [ ] 1mm drill bit
+
+### Trash Falcon tube assembly
+
+**1. Prepare the components:**
+
+| Designation                                                                                | Qty   | Reference example |
+|--------------------------------------------------------------------------------------------|-------|-------------------|
+| Falcon tube conic 50ml                                                                     | 1     |                   |
+| Barbed to Female Luer Adapter for 1/16"                                                    | 1     |                   |
+| 2.4mm elbow connector                                                                      | 1     |                   |
+| Flexible Tube Saint Gobain Tygon® E-3603 PVC Special, Ø 1.6mm x Ø 3.2mm, L 15m Transparent | 10 cm |                   |
+
+**2. Tap preparation**
+Drill the 
+
+
+
 ## To be continued...
 
 Congratulation, if you make it to the end of this "Kit Section" you have successfully to supplied and manufactured the entire BOM of the PlanktoScope V2.6.
