@@ -15,7 +15,7 @@ In the following sections we will go more in detail on:
 - The possibility to machined on your own the [Mechanical Structure](#mechanical-structure)
 - The documentations and assembly steps to manufacture the [PlanktoScope HAT V1.3](#planktoscope-hat-13-pcb)
 - The cabling steps of the [LED Assembly](#led-assembly), the [Alim Jack Assembly](#alim-jack-assembly) and the [OnOff Button Assembly](#onoff-button-assembly)
-- And finaly the [Optic 20-200 Assy](#optic-20-200-assembly)
+- Finaly the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Setup](#fluidic_line_set_up)
 
 
 ## Mechanical Structure
@@ -29,7 +29,9 @@ And don't forget safety, use your nicest protective glasses! :-)
 
 ### Manufacturing file
 
-Here you can find the .dxf file to create the program on a CNC milling machine. If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
+Here you can find the Fusion link to the Planktoscope V2.6 Case file. You will be able to download on every format you prefer.
+It is mostly the .dxf which is interesting to create the program on a CNC milling machine. The file .step will also help you to understand the depth of the various pocket and perform modification if you need.
+If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
 
 
 !!! note
@@ -37,9 +39,9 @@ Here you can find the .dxf file to create the program on a CNC milling machine. 
 	Depending on stock availability, FairScope can also be considered as a supplier for the Structure Bamboo Plate.
     
 
-| Files                     | Description                              |
-|---------------------------|------------------------------------------|
-| PlanktoScope_CaseV2.6.dxf | PlanktoScope Case export for CNC Milling |
+| Files                                            | Description                            |
+|--------------------------------------------------|----------------------------------------|
+| [PlanktoScope_CaseV2.6](https://a360.co/40VXXBz) | PlanktoScope V2.6 Case for CNC Milling |
 
 
 This .dxf file has been designed for a **thickness of the material at 7.6mm (3 inches)**. 
@@ -51,18 +53,6 @@ For a different thickness you’ll need to adapt it.
 	For a better assembly and if your software does not add it automaticaly use "dog bone" filet on every corner. :bone:
 
 ![Dogbone example.png](images/Dogbone_example.png)
-
-
-### Reference Plate
-
-In order to calibrate correctly your CNC machine you'll find here the .dxf file and the expected dimensions of a reference plate. If your parameters allowed you to reach these dimensions, you can report the adaptation on the *PlanktoScope_CaseV2.6.dxf* and launch the milling with more insurance.
-
-| Files           | Description                    |
-|-----------------|--------------------------------|
-| Plate_F_Ref.dxf | Plate F export for CNC milling |
-
-Drawing with quotation
-
 
 ### Material
 A great variety of material can be used to create the PlanktoScope case. You need to be sure that it can be machined easily and has great durability in harsh conditions. Here you can find 2 examples of used material: Bamboo Plywood & Valchromat.
@@ -106,8 +96,8 @@ A **Printed Circuit Board (PCB)** is a vital component of electronic devices, pr
 
 Components assembled on PCBs are either **Thru-Hole** (leads pass through the board, ideal for durability) or **Surface Mount** (soldered directly on the surface, suited for compact designs). The choice depends on the device’s requirements.
 
-You will find in the following files the full documentation to start a quotation on your electronic prototypist platefrom.
-We will also guide you through the assembly of side components to complete the PlanktoScope HAT 1.3 fabrication.
+You will find in the following files the full documentation to start a quotation on your favorite electronic prototypist platefrom.
+We will also guide you through the assembly of side components (Dirvers & Fan) to complete the PlanktoScope HAT 1.3 fabrication.
 
 !!!note
 
@@ -124,14 +114,14 @@ We will also guide you through the assembly of side components to complete the P
 
 Some components are missing from the "Pick-and-Place machine instructions" file. Please refer to the document titled "PlanktoscopeHat-v1.3-fab\_thru-hole component (missing from PnP).jpg" for further details.
 
-We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, be really cautious of the correct solderings.
+We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, you will have to adapt the BOM and be really cautious of the correct solderings.
 
 The assembly of the Drivers TMC 5160 and the Axial Fan assembly are here proposed in parallel and DIY. No worries, everything is explain in [Assembly of the Drivers TMC 5160](#assembly-of-the-drivers-tmc-5160) & [Assembly of the Axial Fan](#assembly-of-the-axial-fan). 
 They are not included in Thru-Hole components list for the prototypiste.
 
 #### Configuration on prototypist website
 
-When you ask an electronic proptypist to create and assemble your PCB, technical informations will be asked. The following configuration parameters can be used to this purpose.
+When you ask an electronic proptypist to create your PCB and assemble the components, technical informations will be asked. The following configuration parameters can be used to this purpose.
 
 !!! note
 
@@ -194,7 +184,7 @@ When you ask an electronic proptypist to create and assemble your PCB, technical
 | Gold fingers (thickness)   | without   |
 | Gold fingers (qty/PCB)     | without   |
 
-You should receive a PCB looking similar to the following pictures:
+You should receive a PCB looking similar to the following pictures (top & bottom):
 ![Hat_recto_verso_2](images/Hat_recto_verso_2.PNG "Hat_recto_verso_2")
 
 #### Next steps
@@ -206,7 +196,7 @@ These steps will show you how to correctly solder driver boards on their connect
 
 #### Tooling :hammer_and_wrench:
 
-- [ ] Professional Soldering Iron
+- [ ] Soldering Iron
 - [ ] Solder
 - [ ] Breadboard
 - [ ] Utility Knife / Razor Blade
@@ -223,7 +213,7 @@ When you solder this for the first time, take special care to gather information
 | Component                            | Example of reference | Qty |
 |--------------------------------------|----------------------|-----|
 | Driver TMC 5160 SilentStepStick      | 700-TMC5160SILENTSTE | 2   |
-| Connector Header Vertical 2POS .54MM | 732-5315-ND          | 2   |
+| Connector Header Vertical 2POS .54MM | 732-5315-ND          | 1   |
 
 ![Drivers_components](images/Drivers_components.JPG "Drivers_components")
 
@@ -278,16 +268,14 @@ Now solder all pins of the connectors strip.
 
 !!! tips
 
-	You can also solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally.
+	You can solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally while you solder the other pins.
 
 
 #### Finalisation & Installation
 
 Re do the operation for the second Driver TMC 5160. 
 
-Install it on your PlanktoScope Hat 1.3 on the designated connectors.
-
-Photo montage driver sur HAT
+Install it on your PlanktoScope Hat 1.3 on the designated connectors. In order to avoid any electric continuity between the 2 Drivers, you can spray them with some tropicalization varnish or add electronic tape between both.
 
 ### Assembly of the Axial Fan
 
@@ -333,7 +321,7 @@ Strip the wires on 5mm with **Wire stripper pliers**.
 Install the fan on the top side of the PlanktoScope HAT 1.3 PCB. 
 
 Pay attention to the **running direction** with the arrow marking on the side of the Axial Fan. The Axial Fan should **blow on the Raspberry Pi** (from Top to Bottom of the PlanktoScope HAT 1.3 PCB).
-Engage the wire through the hole in the PlanktoScope HAT 1.3 PCB to reach the bottom of the board.
+Engage the wire through the hole in the PlanktoScope HAT 1.3 PCB to reach the bottom side of the board.
 
 ![Axial_fan_placement](images/Axial_fan_placement.JPG "Axial_fan_placement")
 
@@ -343,6 +331,7 @@ Screw the 4x **M3*14 Screw** with **Screwdriver Hex2** and **Classical pliers**.
 **3. Solder the wires**
 
 Tin the wires extremities. Solder the fan cables according to the marking and color codes:
+
 - Black ⚫ on GND
 - Red 🔴 on VCC
 
@@ -367,7 +356,7 @@ Final result:
 
 ![Axial_fan_bridge_final](images/Axial_fan_bridge_final.JPG "Axial_fan_bridge_final")
 
-Congratulation! You have finished to assemble the PlanktoScope HAT 1.3 PCB components, it should look like on the following pictures:
+Congratulation! You have finished to assemble the PlanktoScope HAT 1.3 PCB components, it should look like on the following picture:
 
 photo hat terminé
 
@@ -462,22 +451,22 @@ The Alim Jack Assembly will be the link between the external 12V adaptor to the 
 
 **1. Prepare the components**
    
-| Designation                          | Qty | Example of reference |
-|--------------------------------------|-----|----------------------|
-| DC Power Jack Shield - 5,5mm 2,1mm   | 1   | Ampul	AM1249         |
-| Bullet Connector 3.5mm Male + Female | 1   | Amazon B081TXM3XN    |
+| Designation                          | Qty | Example of reference                        |
+|--------------------------------------|-----|---------------------------------------------|
+| DC Power Jack Shield - 5,5mm 2,1mm   | 1   | Amazon CC 5,5*2,1mm DC DC power Jack Female |
+| Bullet Connector 3.5mm Male + Female | 1   | Amazon B081TXM3XN                           |
 
 ![Alim_Jack_Components](images/Alim_Jack_Components.JPG "Alim_Jack_Components")
 
 **2. Heat Shrink set up**
 
-Set 15mm of Black and Red Heat Shrink  resppectively on the Black and Red wires.
+Set 15mm of Black and Red Heat Shrink respectively on the Black and Red wires.
 
 ![Alim_jack_heat_shrink](images/Alim_jack_heat_shrink.JPG "Alim_jack_heat_shrink")
 
 **3. Soldering for red wire**
 
-Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chambre of the connector with some soldering material and dive the 🔴**Red Wire** in. Remove the solder iron. Wait the soldering material to dry.
+Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip**, fill the chambre of the connector with some soldering material and dive the 🔴**Red Wire** in. Remove the solder iron. Wait the soldering material to dry.
 
 **4. Heat Shrink heating**
 
@@ -493,7 +482,7 @@ Same operations with the **Male Bullet Connector** and the ⚫**Black Wire**.
 
 !!! warning
 
-	It will be plugged to the OnOff Button Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition to be sure that black wire will go with white wire and red wire with the yellow.
+	It will be plugged to the OnOff Button Assembly so each connector male or female must be solder carefully to be pluggable. It is made in opposition to be sure that black wire will go with white wire and red wire with the yellow one.
 
 **6. Alim Jack Assembly is ready!**
 
@@ -501,7 +490,7 @@ Same operations with the **Male Bullet Connector** and the ⚫**Black Wire**.
 
 ### OnOff Button Assembly
 
-The OnOff Button Assembly will be place between the Alim Jack Assembly and the PlanktoScope Hat 1.3 PCB. It will play the role of the switch On & Off of the PlanktoScope.
+The OnOff Button Assembly will be place between the Alim Jack Assembly and the PlanktoScope Hat 1.3. It will play the role of the switch On & Off of the PlanktoScope.
 
 **1. Prepare the components:**
 
@@ -514,13 +503,13 @@ The OnOff Button Assembly will be place between the Alim Jack Assembly and the P
 
 **2. Preparation of the Push Button Gebildet**
 
-Remove ⚪**White Wire** by firmly pulling on it. Prepare each wire end (whit wire include) with a 1 cm striping.
+Remove ⚪**White Wire** by firmly pulling on it. Prepare each wire end (white wire included) with a 1 cm striping.
 
    ![OnOff_button_prépa](images/OnOff_button_prépa.JPG "OnOff_button_prépa")
 
 **3. Wire crimp Red & Green**
 
-Use the **Crimpimg Plier** to add a wire crimp on the **🔴Red + :green_circle: Green wires**.
+Use the **Crimping Plier** to add a wire crimp on the **🔴Red + :green_circle: Green wires**.
 
 **4. Heat Shrink heating**
 
@@ -530,7 +519,7 @@ Slide the Red Heat Shrink on the female connector. Use the **heat gun** to secur
 
 **5. Wire crimp Black & White**
 
-Use the **Crimpimg Plier** to add a wire crimp on the **⚫ Black + ⚪ White wires**.
+Use the **Crimping Plier** to add a wire crimp on the **⚫ Black + ⚪ White wires**.
 
 **6. Heat Shrink heating**
 
@@ -603,7 +592,7 @@ Set the  **M12/25 Lens** and the **M12/12 Lens** on each of the **S1TM12 Lens Ad
 
 ![Optic_Assy_lens1](images/Optic_Assy_lens1.JPG "Optic_Assy_lens1")
 
-**3. Remove The retaining ring**
+**3. Remove the retaining ring**
 
 Remove the retaining ring in the **CM1L10 Extension Tube**
 
@@ -613,7 +602,7 @@ Insert the M12/25 Lens in the CM1L10 Extension Tube. Threaded side of the lens f
 
 ![Optic_Assy_lens1_25](images/Optic_Assy_lens1_25.JPG "Optic_Assy_lens1_25")
 
-Control the deepness of the Lens adaptor with a caliper. The distance must be measured between the surface of the lens adaptor and the of the last surface of the extension tube. Adjust the assembly to 
+Control the deepness of the Lens adaptor with a caliper. The distance must be measured between the surface of the lens adaptor and the last surface of the extension tube. Adjust the assembly to 
 acheive 14,7mm (+/-0,05mm).
 
 

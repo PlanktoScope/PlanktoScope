@@ -1,6 +1,6 @@
 # Assembly of the PlanktoScope V2.6
 
-Be prepared, stretch your legs, take a snack, some water: now start the 2nd part of the journey. Next stop : a fully assembled PlanktoScope!! :microscope: :world_map:
+Be prepared, stretch your legs, take a snack, some water: now start the 2nd part of the journey. Next stop : a fully assembled PlanktoScope V2.6!! :microscope: :world_map:
 
 All the following steps will guide you step by step through it.
 
@@ -43,7 +43,7 @@ In order to perform all the assembly steps you will need the following toolings:
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] 4 x rubber Feets
+- [ ] 4 x rubber feets
 - [ ] Bamboo Part I
 
 * Locate the **4 rubber feets** for the PlanktoScope
@@ -94,17 +94,17 @@ In order to perform all the assembly steps you will need the following toolings:
 - [ ] 16 x Black Neodyme Magnet
 - [ ] Bamboo Parts E, F, L, M, N, P
 
-* Insert **8 Black Neodyme Magnets** in the **Bamboo Parts E, L, M** in the same way to have the same magnet polarity on all this assembly: 🔴Red Dots = Polarity A.
+* Insert **8 Black Neodyme Magnets** in the **Bamboo Parts E, L, M** in the same way to have the same magnet polarity on all these assemblies: 🔴Red Dots = Polarity A.
 ![Assemble_Magnet_PolarityA_1](images/Magnet_PolarityA_1.png "Assemble_Magnet_PolarityA_1")
 ![Assemble_Magnet_PolarityA_2](images/Magnet_PolarityA_2.png "Assemble_Magnet_PolarityA_2")
 
 * Insert **8 Black Neodyme Magnets** in the **Bamboo Parts F, N, P**
-<ins>in the opposite polarity as Polarity A</ins> and all in the same way to have the same magnet polarity on all this assembly: :blue_circle:Blue Dots = Polarity B. 
+<ins>in the opposite polarity as Polarity A</ins> and all in the same way to have the same magnet polarity on all these assemblies: :blue_circle:Blue Dots = Polarity B. 
 ![Assemble Magnet PolarityB 1](images/Magnet_PolarityB_1.png "Assemble_Magnet_PolarityB_1")
 
 !!! warning
 
-	Be really careful to the polarity of your magnets, it will define if parts can be magnetized to each other or not.
+	Be really careful to the polarity of your magnets, it will define if parts can be magnetized to each other or not. You can check F with E, P with L or N with M.
 
 
 ## Step 4: Assemble inserts
@@ -123,7 +123,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 * Insert the **4 Inserts M2** in the 4 slots of the **bamboo part C**
 * Insert **4 of the Inserts M2.5**  in the 4 slots of the **2 bamboo parts H**. Bamboo part H choosen must be the one without the counterbore for screw head. It must be orientated with the largest flat surface below.
-* Insert the **2 of the Inserts M2.5** in the 2 slots of the **bamboo part F**. Bamboo part F must be orientated with the magnet side below.
+* Insert **2 of the Inserts M2.5** in the 2 slots of the **bamboo part F**. Bamboo part F must be orientated with the magnet side below.
 * Insert **the 4 remaing Inserts M2.5** in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
 
 
@@ -170,8 +170,7 @@ In order to perform all the assembly steps you will need the following toolings:
 - [ ] Camera Ribbon Cable
 
 * Using a **Female Hexagonal 4mm screwdriver**, securely fasten each of the **4 x Hexagonal Spacer M2X5** on **Bamboo Part A**, making sure they're tight but not over-tightened
-
-
+![Assemble Core Module 1.png](images/Assemble_Core_Module_1.png "Assemble Core Module 1")
 
 * Position the Raspberry Pi 4 so that it rests on each spacer and stands as shown in the picture below
 * Using a **Female Hexagonal 4mm screwdriver**, securely fasten each of the **4 x Hexagonal Spacer M2X12**, making sure they're tight but not over-tightened
@@ -180,7 +179,7 @@ In order to perform all the assembly steps you will need the following toolings:
   * Remove its protective layer of the **heat sink** and tape it on the Broadcom chip of the **Raspberry Pi**
 ![Assemble Core Module 3.png](images/Assemble_Core_Module_3.png "Assemble Core Module 3")
 
-* Open the black connector is simply a push/pull fit. To disengage the cable, pull the two corners of the black connector down, away from the camera board. It will unclip to about 3mm, make sure you don't pull it off!
+* Open the black connector simply as a push/pull fit. It will unclip to about 3mm, make sure you don't pull it off!
 
 !!! warning
 
@@ -193,7 +192,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 !!! warning
 
-	Blue rectangle on Ribbon Cable should face the same direction as the arrow below.
+	Blue rectangle on Ribbon Cable should face the same direction as the shown below.
 ![Assemble Core Module 5](images/Assemble_Core_Module_5.png "Assemble Core Module 5")
 
 * Thread the Ribbon cable through the **PlanktoScope HAT V1.3 Assy** slot from the underside
@@ -204,7 +203,7 @@ In order to perform all the assembly steps you will need the following toolings:
 ![Assemble Core Module 7](images/Assemble_Core_Module_7.png "Assemble Core Module 7")
 * Put this assembly on the side.
 
-## Step 5: Position the Alim Jack Assy
+## Step 5: Assemble the Alim Jack Module
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
 
@@ -341,7 +340,7 @@ In order to perform all the assembly steps you will need the following toolings:
 - [ ] [Optic module](#step-6-assemble-the-optic-20-200-assy)
 - [ ] [Pump module](#step-3-assemble-the-pump-module)
 - [ ] [Button module](#step-7-assemble-the-button-module)
-- [ ] [Alim Jack module](#step-5--position-the-alim-jack-assy)
+- [ ] [Alim Jack module](#step-5-Assemble-the-Alim-Jack-Module)
 - [ ] 4 x Zip Ties
 - [ ] 20 cm Spiral Cable Jacket
 - [ ] 32 x M3x14mm screws
@@ -377,7 +376,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 !!! note
 
-	Design of Bamboo Part E has slightly evolved during Planktoscope V2.6 life. You may obtain a slightly different part as shown in the picture. Assembly process is the same.
+	Design of Bamboo Part E has evolved during Planktoscope V2.6 life. You may obtain a slightly different part as shown in the picture. Assembly process is the same.
 
 ![Finalize Main Assembly 6.png](images/Finalize_Main_Assembly_6.png "Finalize Main Assembly 6.png")
 
@@ -492,11 +491,11 @@ In order to perform all the assembly steps you will need the following toolings:
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] Bamboo Part P
+- [ ] Bamboo Parts P &N
 - [ ] [Flowcell Holder Assy](#step-10-flowcell-holder-assembly)
 
 
-* Position **Part P** onto main assembly.
+* Position **Part P** and **Part N** onto main assembly.
 ![Finalization 1](images/Finalization_1.png "Finalization 1")
 
 * Position **Flowcell Holder** onto main assembly.
