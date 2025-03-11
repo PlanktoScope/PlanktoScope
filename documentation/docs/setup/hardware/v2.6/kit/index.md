@@ -15,7 +15,7 @@ In the following sections we will go more in detail on:
 - The possibility to machined on your own the [Mechanical Structure](#mechanical-structure)
 - The documentations and assembly steps to manufacture the [PlanktoScope HAT V1.3](#planktoscope-hat-13-pcb)
 - The cabling steps of the [LED Assembly](#led-assembly), the [Alim Jack Assembly](#alim-jack-assembly) and the [OnOff Button Assembly](#onoff-button-assembly)
-- Finaly the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Set Up](#fluidic_line_set_up)
+- Finaly the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Set Up](#fluidic-line-set-up)
 
 
 ## Mechanical Structure

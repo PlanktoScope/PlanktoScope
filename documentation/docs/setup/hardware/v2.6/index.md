@@ -12,4 +12,4 @@ Once you have an assembly kit, you will need to [assemble it](assembly/index.md)
 
 ## Next steps
 
-If you assembled your PlanktoScope from a kit provided by FairScope, you can proceed to our [operation guide](../../../operation/index.md) to learn how to operate your PlanktoScope. Otherwise, you will first need to [set up the PlanktoScope software](../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi.
+When you have a fully assembled PlanktoScope you will first need to [set up the PlanktoScope software](../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi. Then you can move to our [operation guide](../../../operation/index.md) to learn how to operate your PlanktoScope. 
