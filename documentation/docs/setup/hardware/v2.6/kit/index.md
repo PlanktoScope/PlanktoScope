@@ -15,7 +15,7 @@ In the following sections we will go more in detail on:
 - The possibility to machined on your own the [Mechanical Structure](#mechanical-structure)
 - The documentations and assembly steps to manufacture the [PlanktoScope HAT V1.3](#planktoscope-hat-13-pcb)
 - The cabling steps of the [LED Assembly](#led-assembly), the [Alim Jack Assembly](#alim-jack-assembly) and the [OnOff Button Assembly](#onoff-button-assembly)
-- Finaly the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Setup](#fluidic_line_set_up)
+- Finaly the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Set Up](#fluidic_line_set_up)
 
 
 ## Mechanical Structure
@@ -658,7 +658,9 @@ Remove M12/25 2nd protective cap. Do a small air cleaning with a dust blower. Yo
 
 ![Optic_Assy_final](images/Optic_Assy_final.JPG "Optic_Assy_final")
 
+
 ## Fluidic Line Set Up
+
 The next, and final step, of this kit preparation is to create the tubing needed for the fluidic line to carry the sample from the syringue to the "trash tube".
 
 Prepare the following toolings:
@@ -674,17 +676,48 @@ Prepare the following toolings:
 
 **1. Prepare the components:**
 
-| Designation                                                                                | Qty   | Reference example |
-|--------------------------------------------------------------------------------------------|-------|-------------------|
-| Falcon tube conic 50ml                                                                     | 1     |                   |
-| Barbed to Female Luer Adapter for 1/16"                                                    | 1     |                   |
-| 2.4mm elbow connector                                                                      | 1     |                   |
-| Flexible Tube Saint Gobain Tygon® E-3603 PVC Special, Ø 1.6mm x Ø 3.2mm, L 15m Transparent | 10 cm |                   |
+| Designation                                                                                | Qty   | Reference example   |
+|--------------------------------------------------------------------------------------------|-------|---------------------|
+| Falcon tube conic 50ml                                                                     | 1     | B088RCY7TG          |
+| Barbed to Female Luer Adapter for 1/16"                                                    | 1     | CIL-P-857           |
+| 2.4mm elbow connector                                                                      | 1     | AliExpress - EC-2.4 |
+| Flexible Tube Saint Gobain Tygon® E-3603 PVC Special, Ø 1.6mm x Ø 3.2mm, L 15m Transparent | 10 cm | ACF00002            |
 
 **2. Tap preparation**
-Drill the 
+
+Drill at the **center** of the Falcon Tube tap a hole with the **5mm drill bit**.
+Drill at **5-10mm from the center** of the Falcon Tube tape a hole with the **1mm drill bit**.
+Insert the **2.4mm elbow connector** in the 5mm holle. Secure it with the nut.
+
+**3. Tubing set up**
+
+Cut a **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**
+On one end of the tube plug the elbow connector. Warming lightly the tube can help you for the insertion.
+On the other end plug the **Barbed to Female Luer Adapter for 1/16"**.
+
+### Tubing for the fluidic line
+
+**1. Prepare the components:**
+
+| Designation                                                                                | Qty    | Reference example |
+|--------------------------------------------------------------------------------------------|--------|-------------------|
+| Barbed to Male Luer Adapter for 1/16"                                                      | 1      | CIL-P-850         |
+| Barbed to Female Luer Adapter for 1/16"                                                    | 1      | CIL-P-857         |
+| Flexible Tube Saint Gobain Tygon® E-3603 PVC Special, Ø 1.6mm x Ø 3.2mm, L 15m Transparent | 3*10cm | ACF00002          |
+| Robert clip for soft tubing 3 to 6 mm                                                      | 1      | RCST3.6           |
 
 
+**2. Cut the tube**
+
+Cut 3 times **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**.
+
+**3. Assemble the connector and tubing**
+
+* 1x10cm Tubing with 1 Male Luer Adapter
+* 1x10cm Tubing with 1 Female Adapter
+* 1x10cm Tubing with 2 Male Luer Adapter and the Robert clip in between
+
+**The Fluidic Line is ready!**
 
 ## To be continued...
 
