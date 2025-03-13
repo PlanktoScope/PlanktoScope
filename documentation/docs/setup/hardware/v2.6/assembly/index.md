@@ -22,16 +22,16 @@ You can find the BOM for the PlanktoScope V2.6 and all the informations to suppl
 ## Toolings :hammer_and_wrench:
 In order to perform all the assembly steps you will need the following toolings:
 
-- PH1 (Phillips) screwdriver
-- T8H/Hex2 screwdriver
-- T6H/Hex1.5 screwdriver
-- Flat screwdriver 2.5
-- Small cutting pliers
-- Female Hexagonal 4mm screwdriver or small pliers
-- open-end wrench 14
-- open-end wrench 19
+1. T6H/Hex1.5 screwdriver
+2. T8H/Hex2 screwdriver
+3. Flat screwdriver 2.5
+4. PH1 (Phillips) screwdriver
+5. Female Hexagonal 4mm screwdriver or small pliers
+6. Open-end wrench 14
+7. Open-end wrench 19
+8. Small cutting pliers
 
-
+![Toolings_for_assembly.PNG](images/Toolings_for_assembly.png)
 
 ## Step 1: Rubber Feets Assembly
 
@@ -117,15 +117,21 @@ In order to perform all the assembly steps you will need the following toolings:
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] 10 x Insert M2.5
-- [ ] 4 x Insert M2	
-- [ ] Bamboo Parts C, F, H
+- [ ] 4 x Insert M2 :orange_circle:
+- [ ] 10 x Insert M2.5 :green_cricle:
+- [ ] Bamboo Parts B, C, F, H
 
-* Insert the **4 Inserts M2** in the 4 slots of the **bamboo part C**
-* Insert **4 of the Inserts M2.5**  in the 4 slots of the **2 bamboo parts H**. Bamboo part H choosen must be the one without the counterbore for screw head. It must be orientated with the largest flat surface below.
-* Insert **2 of the Inserts M2.5** in the 2 slots of the **bamboo part F**. Bamboo part F must be orientated with the magnet side below.
-* Insert **the 4 remaing Inserts M2.5** in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
+* Insert the **4 Inserts M2** :orange_circle: in the 4 slots of the **bamboo part C**
+  ![Insert_assembly_1.png](images/Insert_assembly_1.png)
+  
+* Insert **4 of the Inserts M2.5** :green_circle: in the 4 slots of the **2 bamboo parts H**. Bamboo part H choosen must be the one without the counterbore for screw head. It must be orientated with the largest flat surface below.![Insert_assembly_2.png](images/Insert_assembly_2.png "Insert_assembly_2.png")
 
+* Insert **2 of the Inserts M2.5** :green_circle: in the 2 slots of the **bamboo part F**. Bamboo part F must be orientated with the magnet side below.
+
+ ![Insert_assembly_3.png](images/Insert_assembly_3.png "Insert_assembly_3.png")
+ 
+* Insert **the 4 remaing Inserts M2.5** :green_circle: in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
+![Insert_assembly_4.png](images/Insert_assembly_4.png "Insert_assembly_4.png")
 
 ## Step 3: Assemble the pump module
 

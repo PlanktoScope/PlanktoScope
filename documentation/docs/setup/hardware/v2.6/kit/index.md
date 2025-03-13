@@ -683,17 +683,25 @@ Prepare the following toolings:
 | 2.4mm elbow connector                                                                      | 1     | AliExpress - EC-2.4 |
 | Flexible Tube Saint Gobain Tygon® E-3603 PVC Special, Ø 1.6mm x Ø 3.2mm, L 15m Transparent | 10 cm | ACF00002            |
 
+![Trash_falcon_tube_0.png](images/Trash_falcon_tube_0.png "Trash_falcon_tube_0.png")
+
 **2. Tap preparation**
 
 Drill at the **center** of the Falcon Tube tap a hole with the **5mm drill bit**.
 Drill at **5-10mm from the center** of the Falcon Tube tape a hole with the **1mm drill bit**.
+![Trash_falcon_tube_1.png](images/Trash_falcon_tube_1.png)
+
 Insert the **2.4mm elbow connector** in the 5mm holle. Secure it with the nut.
+![Trash_falcon_tube_2.png](images/Trash_falcon_tube_2.png "Trash_falcon_tube_2.png")
 
 **3. Tubing set up**
 
 Cut a **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**
+![Trash_falcon_tube_3.png](images/Trash_falcon_tube_3.png "Trash_falcon_tube_3.png")
+
 On one end of the tube plug the elbow connector. Warming lightly the tube can help you for the insertion.
 On the other end plug the **Barbed to Female Luer Adapter for 1/16"**.
+![Trash_falcon_tube_4.png](images/Trash_falcon_tube_4.png "Trash_falcon_tube_4.png")
 
 ### Tubing for the fluidic line
 
@@ -710,12 +718,14 @@ On the other end plug the **Barbed to Female Luer Adapter for 1/16"**.
 **2. Cut the tube**
 
 Cut 3 times **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**.
+![Trash_falcon_tube_3.png](images/Trash_falcon_tube_3.png "Trash_falcon_tube_3.png")
 
 **3. Assemble the connector and tubing**
 
+* 1x10cm Tubing with 2 Male Luer Adapter and the Robert clip in between
 * 1x10cm Tubing with 1 Male Luer Adapter
 * 1x10cm Tubing with 1 Female Adapter
-* 1x10cm Tubing with 2 Male Luer Adapter and the Robert clip in between
+![Tubings_1.png](images/Tubings_1.png "Tubings_1.png")
 
 **The Fluidic Line is ready!**
 
