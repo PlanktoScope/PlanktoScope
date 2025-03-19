@@ -17,10 +17,10 @@ It is important to ensure that you have all of the necessary components before b
 ![Exploded view all parts.PNG](images/Exploded_view_all_parts.PNG)
 ![Exploded view bamboo parts.PNG](images/Exploded_view_bamboo_parts.PNG "Exploded view bamboo parts.PNG")
 
-You can find the BOM for the PlanktoScope V2.6 and all the informations to supply or manufacture the components named with "… Assembly" in the [Kit Production](../kit/index.md) documentation.
+You can find the BOM for the PlanktoScope V2.6 and all the information to supply or manufacture the components named with "… Assembly" in the [Kit Production](../kit/index.md) documentation.
 
-## Toolings :hammer_and_wrench:
-In order to perform all the assembly steps you will need the following toolings:
+## Tooling :hammer_and_wrench:
+In order to perform all the assembly steps you will need the following tooling :
 
 1. T6H/Hex1.5 screwdriver
 2. T8H/Hex2 screwdriver
@@ -33,7 +33,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 ![Toolings_for_assembly.PNG](images/Toolings_for_assembly.png)
 
-## Step 1: Rubber Feets Assembly
+## Step 1: Rubber Feet Assembly
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench): 
@@ -43,10 +43,10 @@ In order to perform all the assembly steps you will need the following toolings:
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] 4 x rubber feets
+- [ ] 4 x rubber feet
 - [ ] Bamboo Part I
 
-* Locate the **4 rubber feets** for the PlanktoScope
+* Locate the **4 rubber feet** for the PlanktoScope
 
 * Place each rubber foot under **Part I**
 
@@ -118,19 +118,19 @@ In order to perform all the assembly steps you will need the following toolings:
 [Parts Needed](#content-of-the-kit-gear):
 
 - [ ] 4 x Insert M2 :orange_circle:
-- [ ] 10 x Insert M2.5 :green_cricle:
+- [ ] 10 x Insert M2.5 :green_circle:
 - [ ] Bamboo Parts B, C, F, H
 
 * Insert the **4 Inserts M2** :orange_circle: in the 4 slots of the **bamboo part C**
   ![Insert_assembly_1.png](images/Insert_assembly_1.png)
   
-* Insert **4 of the Inserts M2.5** :green_circle: in the 4 slots of the **2 bamboo parts H**. Bamboo part H choosen must be the one without the counterbore for screw head. It must be orientated with the largest flat surface below.![Insert_assembly_2.png](images/Insert_assembly_2.png "Insert_assembly_2.png")
+* Insert **4 of the Inserts M2.5** :green_circle: in the 4 slots of the **2 bamboo parts H**. Bamboo part H chosen must be the one without the counter bore for screw head. It must be orientated with the largest flat surface below.![Insert_assembly_2.png](images/Insert_assembly_2.png "Insert_assembly_2.png")
 
 * Insert **2 of the Inserts M2.5** :green_circle: in the 2 slots of the **bamboo part F**. Bamboo part F must be orientated with the magnet side below.
 
  ![Insert_assembly_3.png](images/Insert_assembly_3.png "Insert_assembly_3.png")
  
-* Insert **the 4 remaing Inserts M2.5** :green_circle: in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
+* Insert **the 4 reaming Inserts M2.5** :green_circle: in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
 ![Insert_assembly_4.png](images/Insert_assembly_4.png "Insert_assembly_4.png")
 
 ## Step 3: Assemble the pump module
@@ -145,7 +145,7 @@ In order to perform all the assembly steps you will need the following toolings:
 
 - [ ] 2 x M2.5x5mm screws
 - [ ] Bamboo Part L
-- [ ] Persitaltic Pump
+- [ ] Peristaltic Pump
 
 
 * Place the **Peristaltic Pump** into its designated hole on **Part L**
@@ -185,7 +185,7 @@ In order to perform all the assembly steps you will need the following toolings:
   * Remove its protective layer of the **heat sink** and tape it on the Broadcom chip of the **Raspberry Pi**
 ![Assemble Core Module 3.png](images/Assemble_Core_Module_3.png "Assemble Core Module 3")
 
-* Open the black connector simply as a push/pull fit. It will unclip to about 3mm, make sure you don't pull it off!
+* Open the black connector simply as a push/pull fit. It will un-clip to about 3mm, make sure you don't pull it off!
 
 !!! warning
 
@@ -227,7 +227,7 @@ In order to perform all the assembly steps you will need the following toolings:
 * Set it in position on the **Part K**
 ![Position the Alim Jack Assy 2](images/Position_the_Alim_Jack_Assy_2.png)
 
-* Reposition the nut on the nut on the **Alim Jack Assy**
+* Re-position the nut on the nut on the **Alim Jack Assy**
 * Use **open-end wrench 14** to securely tighten it
 ![Position the Alim Jack Assy 3](images/Position_the_Alim_Jack_Assy_3.png "Position the Alim Jack Assy 3")
 
@@ -346,7 +346,7 @@ In order to perform all the assembly steps you will need the following toolings:
 - [ ] [Optic module](#step-6-assemble-the-optic-20-200-assy)
 - [ ] [Pump module](#step-3-assemble-the-pump-module)
 - [ ] [Button module](#step-7-assemble-the-button-module)
-- [ ] [Alim Jack module](#step-5-Assemble-the-Alim-Jack-Module)
+- [ ] [Alim Jack module](#step-5-assemble-the-alim-jack-module)
 - [ ] 4 x Zip Ties
 - [ ] 20 cm Spiral Cable Jacket
 - [ ] 32 x M3x14mm screws
@@ -508,7 +508,7 @@ In order to perform all the assembly steps you will need the following toolings:
 ![Finalization 2](images/Finalization_2.png "Finalization 2")
   
 
-# SD Card SetUp and Installation
+# SD Card Set Up and Installation
 
 
 Next, you will need to [set up the PlanktoScope software](../../../software/index.md) on the micro-SD card of your PlanktoScope's Raspberry Pi.
@@ -518,9 +518,9 @@ When the software will be uploaded, you can install the SD Card in the PlanktoSc
 
 # Congratulations!! :tada: :clap: :champagne:
 
-If your get to this step it probably means that your PlanktoScope V2.6 is fully assembled!!
+If you get to this step it probably means that your PlanktoScope V2.6 is fully assembled!!
 What a journey, thank you very much for your commitment.
 
-In order to continue let's go to [Operation](../../../../operation/index.md). This section will help you to set your PlanktoScope ready as it can be to start operating and discovering the beauty of your planktons samples!
+In order to continue let's go to [Operation](../../../../operation/index.md). This section will help you to set your PlanktoScope ready as it can be to start operating and discovering the beauty of your plankton samples!
 
 

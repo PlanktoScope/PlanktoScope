@@ -1,7 +1,7 @@
 # Kit Production
 ## Kit Composition
 In this section you will go through all the steps to supply and create your PlanktoScope kit.
-You can find a list of the components needed in the [Planktoscope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
+You can find a list of the components needed in the [PlanktoScope V2.6 BOM](../../../../assets/hardware/v2.6/Planktoscope_V2.6_BOM.xlsx).
 
 | Files                                                                                | Description                       |
 |--------------------------------------------------------------------------------------|-----------------------------------|
@@ -15,13 +15,13 @@ In the following sections we will go more in detail on:
 - The possibility to machined on your own the [Mechanical Structure](#mechanical-structure)
 - The documentations and assembly steps to manufacture the [PlanktoScope HAT V1.3](#planktoscope-hat-13-pcb)
 - The cabling steps of the [LED Assembly](#led-assembly), the [Alim Jack Assembly](#alim-jack-assembly) and the [OnOff Button Assembly](#onoff-button-assembly)
-- Finaly the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Set Up](#fluidic-line-set-up)
+- Finally the [Optic 20-200 Assy](#optic-20-200-assembly) & the [Fluidic Line Set Up](#fluidic-line-set-up)
 
 
 ## Mechanical Structure
 
 In order to create the PlanktoScope case, parts were designed to be machined with a CNC milling machine. 
-The configuration of the CNC milling machine plays a crucial role in the machining process and can significantly affect the quality and efficiency of the production of a workpiece. You will have to adapt the file to your machine as every CNC milling machine gets its characteristics: feed rate and diameter adjustment according to your machine and selected end mill. 
+The configuration of the CNC milling machine plays a crucial role in the machining process and can significantly affect the quality and efficiency of the production of a work piece. You will have to adapt the file to your machine as every CNC milling machine gets its characteristics: feed rate and diameter adjustment according to your machine and selected end mill. 
 And don't forget safety, use your nicest protective glasses! :-)
 
 ![Bamboo Structure V2.6 dxf view](images/Bamboo_Structure_V2.6_dxf_view.png "Bamboo Structure V2.6 dxf view")
@@ -29,7 +29,7 @@ And don't forget safety, use your nicest protective glasses! :-)
 
 ### Manufacturing file
 
-Here you can find the Fusion link to the Planktoscope V2.6 Case file. You will be able to download on every format you prefer.
+Here you can find the Fusion link to the PlanktoScope V2.6 Case file. You will be able to download on every format you prefer.
 It is mostly the .dxf which is interesting to create the program on a CNC milling machine. The file .step will also help you to understand the depth of the various pocket and perform modification if you need.
 If you do not have the equipment and/or the knowledge do not hesitate to contact local suppliers and fablabs. 
 
@@ -97,7 +97,7 @@ A **Printed Circuit Board (PCB)** is a vital component of electronic devices, pr
 Components assembled on PCBs are either **Thru-Hole** (leads pass through the board, ideal for durability) or **Surface Mount** (soldered directly on the surface, suited for compact designs). The choice depends on the device’s requirements.
 
 You will find in the following files the full documentation to start a quotation on your favorite electronic prototypist platefrom.
-We will also guide you through the assembly of side components (Dirvers & Fan) to complete the PlanktoScope HAT 1.3 fabrication.
+We will also guide you through the assembly of side components (Drivers & Fan) to complete the PlanktoScope HAT 1.3 fabrication.
 
 !!!note
 
@@ -114,14 +114,14 @@ We will also guide you through the assembly of side components (Dirvers & Fan) t
 
 Some components are missing from the "Pick-and-Place machine instructions" file. Please refer to the document titled "PlanktoscopeHat-v1.3-fab\_thru-hole component (missing from PnP).jpg" for further details.
 
-We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, you will have to adapt the BOM and be really cautious of the correct solderings.
+We recommend asking your prototypist to assemble all the thru-hole components. In order to reduce costs and if you feel like doing it, you can assemble them manually, you will have to adapt the BOM and be really cautious of the correct soldering.
 
 The assembly of the Drivers TMC 5160 and the Axial Fan assembly are here proposed in parallel and DIY. No worries, everything is explain in [Assembly of the Drivers TMC 5160](#assembly-of-the-drivers-tmc-5160) & [Assembly of the Axial Fan](#assembly-of-the-axial-fan). 
-They are not included in Thru-Hole components list for the prototypiste.
+They are not included in Thru-Hole components list for the prototypist.
 
 #### Configuration on prototypist website
 
-When you ask an electronic proptypist to create your PCB and assemble the components, technical informations will be asked. The following configuration parameters can be used to this purpose.
+When you ask an electronic prototypist to create your PCB and assemble the components, technical information will be asked. The following configuration parameters can be used to this purpose.
 
 !!! note
 
@@ -200,7 +200,7 @@ These steps will show you how to correctly solder driver boards on their connect
 - [ ] Solder
 - [ ] Breadboard
 - [ ] Utility Knife / Razor Blade
-- [ ] Multimeter
+- [ ] Multi-meter
 
 ![Drivers_toolings](images/Drivers_toolings.JPG "Drivers_toolings")
 
@@ -229,13 +229,13 @@ Unpack the Drivers TMC 5160, the Connector Header strips of 8 pins (x2) and 2 pi
 [Tooling](#tooling): 
 
 - [ ] Utility Knife / Razor Blade
-- [ ] Multimeter
+- [ ] Multi-meter
 
 Bridge Cut: use a **razor blade or a utility knife** to unable conductivity between 2 of the 4 slots as shown in the following visual:
 
 ![Drivers_bridge_cut](images/Drivers_bridge_cut.PNG "Drivers_bridge_cut")
 
-Check if the two slots are correctly isolated from one another with a **multimeter** in conductivity mode.
+Check if the two slots are correctly isolated from one another with a **multi-meter** in conductivity mode.
 
 ![Drivers_bridge_cut_check](images/Drivers_bridge_cut_check.JPG "Drivers_bridge_cut_check")
 
@@ -271,7 +271,7 @@ Now solder all pins of the connectors strip.
 	You can solder one pin on one side and then the opposite pin on the other side to secure your workpiece, ensuring it stays in place without shifting accidentally while you solder the other pins.
 
 
-#### Finalisation & Installation
+#### Finalization & Installation
 
 Re do the operation for the second Driver TMC 5160. 
 
@@ -356,16 +356,14 @@ Final result:
 
 ![Axial_fan_bridge_final](images/Axial_fan_bridge_final.JPG "Axial_fan_bridge_final")
 
-Congratulation! You have finished to assemble the PlanktoScope HAT 1.3 PCB components, it should look like on the following picture:
-
-photo hat terminé
+Congratulation! You have finished to assemble the PlanktoScope HAT 1.3 PCB components.
 
 ## Cabling Component
 The next step of the kit preparation is to prepare some cabling: by using standard component with few simple cabling steps it become possible to get tailor maid component for the PlanktoScope.
 
 In the following chapters we will go through soldering and crimping adventures.
 
-For this the needed equipments will be:
+For this the needed equipment will be:
 #### Tooling :hammer_and_wrench:
 
 - [ ] Professional Soldering Iron
@@ -377,7 +375,7 @@ For this the needed equipments will be:
       
 ![Cabling_toolings](images/Cabling_toolings.JPG "Cabling_toolings")
 
-You willl also need, in addition to the component themselves, some consumable:
+You will also need, in addition to the component themselves, some consumable:
 #### Consumable:
 
 - [ ] Heat Shrink Black
@@ -410,7 +408,7 @@ With the **stripping pliers** stripped the wire over 5mm.
 
 **3. Set Heat Shrink**
 
-Slide a **Black heat shrink** on both of the wires. Slide an aditional and smaller **Red Heat Shrink** on the red wire.
+Slide a **Black heat shrink** on both of the wires. Slide an additional and smaller **Red Heat Shrink** on the red wire.
 
 ![Led_Assy_heat_shrink](images/Led_Assy_heat_shrink.JPG "Led_Assy_heat_shrink")
 
@@ -437,7 +435,7 @@ Solder:
 Slide the heat shrink on the soldering and use the **heat gun** to secure it. 
 
 - First the red one which make sure <ins>no contact can be made between the 2 pins</ins>.
-- Second the black one to insulate from outside environnement
+- Second the black one to insulate from outside environment
 
 ![Led_Assy_heat_shrink2](images/Led_Assy_heat_shrink2.JPG "Led_Assy_heat_shrink2")
 
@@ -447,7 +445,7 @@ Slide the heat shrink on the soldering and use the **heat gun** to secure it.
 
 ### Alim Jack Assembly
 
-The Alim Jack Assembly will be the link between the external 12V adaptor to the internal electronic system.
+The Alim Jack Assembly will be the link between the external 12V adapter to the internal electronic system.
 
 **1. Prepare the components**
    
@@ -466,11 +464,11 @@ Set 15mm of Black and Red Heat Shrink respectively on the Black and Red wires.
 
 **3. Soldering for red wire**
 
-Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip**, fill the chambre of the connector with some soldering material and dive the 🔴**Red Wire** in. Remove the solder iron. Wait the soldering material to dry.
+Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip**, fill the chamber of the connector with some soldering material and dive the 🔴**Red Wire** in. Remove the solder iron. Wait the soldering material to dry.
 
 **4. Heat Shrink heating**
 
-Slide the  Red Heat Shrink on the female connector. <ins>Be careful of covering all the metalic part.</ins> Use the **heat gun** to secure it.
+Slide the  Red Heat Shrink on the female connector. <ins>Be careful of covering all the metallic part.</ins> Use the **heat gun** to secure it.
 
 ![Alim_jack_red_wire](images/Alim_jack_red_wire.JPG "Alim_jack_red_wire")
 
@@ -478,7 +476,7 @@ Slide the  Red Heat Shrink on the female connector. <ins>Be careful of covering 
 
 Same operations with the **Male Bullet Connector** and the ⚫**Black Wire**.
 
-<ins>Be careful of covering just the begining of the metalic connector.</ins>
+<ins>Be careful of covering just the beginning of the metallic connector.</ins>
 
 !!! warning
 
@@ -509,7 +507,7 @@ Remove ⚪**White Wire** by firmly pulling on it. Prepare each wire end (white w
 
 **3. Wire crimp Red & Green**
 
-Use the **Crimping Plier** to add a wire crimp on the **🔴Red + :green_circle: Green wires**.
+Use the **Crimping Pliers** to add a wire crimp on the **🔴Red + :green_circle: Green wires**.
 
 **4. Heat Shrink heating**
 
@@ -519,7 +517,7 @@ Slide the Red Heat Shrink on the female connector. Use the **heat gun** to secur
 
 **5. Wire crimp Black & White**
 
-Use the **Crimping Plier** to add a wire crimp on the **⚫ Black + ⚪ White wires**.
+Use the **Crimping Pliers** to add a wire crimp on the **⚫ Black + ⚪ White wires**.
 
 **6. Heat Shrink heating**
 
@@ -529,18 +527,18 @@ Slide the Black Heat Shrink on the female connector. Use the **heat gun** to sec
 
 **7. Soldering for White wire**
 
-Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chambre of the connector with some soldering material and dive the other extemity of the ⚪**White wire** in. Remove the solder iron. Wait the soldering material to dry.
+Maintain the **Female Bullet Connector** up on the **Small Anvil**, warm it with the **Solder Iron tip** and fill the chamber of the connector with some soldering material and dive the other extremity of the ⚪**White wire** in. Remove the solder iron. Wait the soldering material to dry.
 
 **8. Heat Shrink heating**
 
-Slide the Black Heat Shrink on the female connector. <ins>Be careful of covering all the metalic part.</ins> Use the **heat gun** to secure it.
+Slide the Black Heat Shrink on the female connector. <ins>Be careful of covering all the metallic part.</ins> Use the **heat gun** to secure it.
 
   ![OnOff_button_solder_f](images/OnOff_button_solder_f.JPG "OnOff_button_solder_f")
 
 **9. Soldering yellow wire**
 
 Same operation with the **Male Bullet Connector** and the :yellow_circle: **Yellow Wire**.
-<ins>Be careful of covering just the begining of the metalic connector with heat shrink.</ins>
+<ins>Be careful of covering just the beginning of the metallic connector with heat shrink.</ins>
 
    ![OnOff_button_solder_m](images/OnOff_button_solder_m.JPG "OnOff_button_solder_m")
 
@@ -559,11 +557,11 @@ OnOff Button is ready!
 ## Optic Assembly
 
 One of the crucial part of the PlanktoScope is the Optic. It is **THE most sensitive assembly** as the sensor of the PI Camera HQ will be unprotected for few minutes.
-**To perform this assembly, make sure your workstation is as clean as possible: dust will be our worst ennemy during this step**.
+**To perform this assembly, make sure your workstation is as clean as possible: dust will be our worst enemy during this step**.
 
 ![Optic_Assy_scheme](images/Optic_Assy_scheme.JPG "Optic_Assy_scheme")
 
-Prepare the following toolings:
+Prepare the following tooling:
 #### Tooling :hammer_and_wrench:
 
 - [ ] Screwdriver Hex 1.5
@@ -602,8 +600,8 @@ Insert the M12/25 Lens in the CM1L10 Extension Tube. Threaded side of the lens f
 
 ![Optic_Assy_lens1_25](images/Optic_Assy_lens1_25.JPG "Optic_Assy_lens1_25")
 
-Control the deepness of the Lens adaptor with a caliper. The distance must be measured between the surface of the lens adaptor and the last surface of the extension tube. Adjust the assembly to 
-acheive 14,7mm (+/-0,05mm).
+Control the deepness of the Lens adapter with a caliper. The distance must be measured between the surface of the lens adapter and the last surface of the extension tube. Adjust the assembly to 
+achieve 14,7mm (+/-0,05mm).
 
 
 ![Optic_Assy_scheme2](images/Optic_Assy_scheme2.JPG "Optic_Assy_scheme2")
@@ -632,9 +630,9 @@ Remove the black holding part of the **HQ Camera Pi**  with the  **Screwdriver H
 
 ![Optic_Assy_holding](images/Optic_Assy_holding.JPG "Optic_Assy_holding")
 
-**10. Remove IR Filtre**
+**10. Remove IR Filter**
 
-Follow the [official tutorial from RaspBerry to remove the IR Filtre](https://www.raspberrypi.com/documentation/accessories/camera.html#filter-removal).
+Follow the [official tutorial from RaspBerry to remove the IR Filter](https://www.raspberrypi.com/documentation/accessories/camera.html#filter-removal).
 
 !!! note
 
@@ -661,9 +659,9 @@ Remove M12/25 2nd protective cap. Do a small air cleaning with a dust blower. Yo
 
 ## Fluidic Line Set Up
 
-The next, and final step, of this kit preparation is to create the tubing needed for the fluidic line to carry the sample from the syringue to the "trash tube".
+The next, and final step, of this kit preparation is to create the tubing needed for the fluidic line to carry the sample from the syringe to the "trash tube".
 
-Prepare the following toolings:
+Prepare the following tooling:
 #### Tooling :hammer_and_wrench:
 
 - [ ] Utility knife
@@ -691,12 +689,12 @@ Drill at the **center** of the Falcon Tube tap a hole with the **5mm drill bit**
 Drill at **5-10mm from the center** of the Falcon Tube tape a hole with the **1mm drill bit**.
 ![Trash_falcon_tube_1.png](images/Trash_falcon_tube_1.png)
 
-Insert the **2.4mm elbow connector** in the 5mm holle. Secure it with the nut.
+Insert the **2.4mm elbow connector** in the 5mm hole. Secure it with the nut.
 ![Trash_falcon_tube_2.png](images/Trash_falcon_tube_2.png "Trash_falcon_tube_2.png")
 
 **3. Tubing set up**
 
-Cut a **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**
+Cut a **10cm length** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**
 ![Trash_falcon_tube_3.png](images/Trash_falcon_tube_3.png "Trash_falcon_tube_3.png")
 
 On one end of the tube plug the elbow connector. Warming lightly the tube can help you for the insertion.
@@ -717,7 +715,7 @@ On the other end plug the **Barbed to Female Luer Adapter for 1/16"**.
 
 **2. Cut the tube**
 
-Cut 3 times **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**.
+Cut 3 times **10cm length** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**.
 ![Trash_falcon_tube_3.png](images/Trash_falcon_tube_3.png "Trash_falcon_tube_3.png")
 
 **3. Assemble the connector and tubing**
@@ -725,6 +723,7 @@ Cut 3 times **10cm lenght** of **Flexible Tube Saint Gobain Tygon® Ø 1.6mm**.
 * 1x10cm Tubing with 2 Male Luer Adapter and the Robert clip in between
 * 1x10cm Tubing with 1 Male Luer Adapter
 * 1x10cm Tubing with 1 Female Adapter
+
 ![Tubings_1.png](images/Tubings_1.png "Tubings_1.png")
 
 **The Fluidic Line is ready!**
