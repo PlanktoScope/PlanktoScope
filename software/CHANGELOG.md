@@ -36,6 +36,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: networking) `planktoscope.local` and `pkscope.local` should now work on local area networks (i.e. when the PlanktoScope is connected to a router) and not just on direct connections.
 - (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
 - (Application) The `/home/pi/data` and `/home/pi/device-backend-logs` are now created with non-`root` user ownership, so that their contents can be managed via an SFTP/SCP connection as the `pi` user. This fixes a regression introduced with v2023.9.0-beta.0.
+- (System) The system time is now correctly persisted on the filesystem (in `/etc/fake-hwclock.data`) in a way that the system time should no longer reset back to a previous time in the past between reboots.
 
 ## v2024.0.0 - 2024-12-25
 
