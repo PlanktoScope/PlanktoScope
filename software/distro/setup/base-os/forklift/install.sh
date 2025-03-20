@@ -101,4 +101,5 @@ sudo systemctl preset \
   bindro-run-forklift-stages-current.service \
   overlay-usr.service \
   overlay-etc.service \
-  start-overlaid-units.service
+  start-overlaid-units.service \
+  fake-hwclock-overlay-support.service
