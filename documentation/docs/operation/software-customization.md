@@ -25,7 +25,7 @@ To disable Portainer, run the following commands in the Cockpit Terminal and the
 
 ```
 forklift pallet disable-deployment apps/portainer
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 ## Customize provided apps
@@ -53,7 +53,7 @@ To revert back to hiding the hardware setup guides from the documentation site, 
 
 ```
 forklift pallet disable-deployment-feature apps/ps/docs full-site
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 Note that your PlanktoScope will still have a copy of the hardware setup guides even if you hide them. If you really want to delete that copy after running the above commands, you can run the following command in the Cockpit Terminal:
@@ -62,7 +62,7 @@ Note that your PlanktoScope will still have a copy of the hardware setup guides 
 docker image prune -a
 ```
 
-Note that this command will also delete any other downloaded copies of apps which are not currently enabled - so, for example, if you [disabled Grafana](#grafana), then you will only be able to re-enable Grafana once your PlanktoScope has an internet connection to re-download Grafana, and you will need to run `forklift pallet stage` instead of `forklift pallet stage --no-cache-img` (so that Grafana will be re-downloaded).
+Note that this command will also delete any other downloaded copies of apps which are not currently enabled - so, for example, if you [disabled Grafana](#grafana), then you will only be able to re-enable Grafana once your PlanktoScope has an internet connection to re-download Grafana, and you will need to run `forklift pallet stage` instead of `forklift pallet stage --cache-img=false` (so that Grafana will be re-downloaded).
 
 ### Segmenter
 
@@ -72,14 +72,14 @@ Since the v2024.0.0-beta.0 prerelease of PlanktoScope OS, the segmenter no longe
 
 ```
 forklift pallet enable-depl-feat apps/ps/backend/proc-segmenter pipeline-subtract-consecutive-masks
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 To revert back to disabling this behavior by default, run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
 forklift pallet disable-depl-feat apps/ps/backend/proc-segmenter pipeline-subtract-consecutive-masks
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 ## Disable provided apps
@@ -92,12 +92,12 @@ The PlanktoScope OS includes some apps which you might want to disable for some 
 
 ```
 forklift pallet disable-deployment apps/grafana
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 To re-enable Grafana, run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
 forklift pallet enable-deployment apps/grafana
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
