@@ -26,6 +26,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: backend) The old raspimjpeg-based imager has now been completely removed, following a deprecation in v2024.0.0-alpha.2.
 - (Application: GUI) Various elements of the Node-RED dashboard which were deprecated in v2024.0.0 and in v2024.0.0-alpha.2 have now been removed, including the old USB backup functionality.
 - (Application: GUI) Portainer (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
+- (System) The `planktoscope-org.init-gpio-steppers.service` systemd service, which has never actually worked correctly, is now disabled by default. If for some reason you want to re-enable it, you can use Forklift to enable the `host/planktoscope/gpio-init` package deployment.
 
 ### Deprecated
 
@@ -36,6 +37,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: networking) `planktoscope.local` and `pkscope.local` should now work on local area networks (i.e. when the PlanktoScope is connected to a router) and not just on direct connections.
 - (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
 - (Application) The `/home/pi/data` and `/home/pi/device-backend-logs` are now created with non-`root` user ownership, so that their contents can be managed via an SFTP/SCP connection as the `pi` user. This fixes a regression introduced with v2023.9.0-beta.0.
+- (System) Machine name generation now falls back to the `en_US.UTF-8`-based naming scheme when the OS is set to a non-default locale (i.e. anything other than `en_US.UTF-8`), instead of failing and falling back to `unknown`.
 
 ## v2024.0.0 - 2024-12-25
 
