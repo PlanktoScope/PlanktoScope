@@ -25,6 +25,6 @@ Except where otherwise indicated, source code provided here is covered by the fo
 
 Copyright PlanktoScope project contributors
 
-SPDX-License-Identifier: GPL-3.0-or-later
+SPDX-License-Identifier: `GPL-3.0-or-later`
 
 You can use the source code provided here under the [GPL 3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
