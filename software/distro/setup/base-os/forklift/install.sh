@@ -79,16 +79,16 @@ echo "setup" | sudo tee /run/machine-name
 
 # Applying the staged pallet (i.e. making Docker instantiate all the containers) significantly
 # decreases first-boot time, by up to 30 sec for github.com/PlanktoScope/pallet-standard.
-if ! "$FORKLIFT" stage apply; then
+if ! $FORKLIFT stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
-  "$FORKLIFT" stage set-next --cache-img=false next
-  if ! "$FORKLIFT" stage apply; then
+  $FORKLIFT stage set-next --cache-img=false next
+  if ! $FORKLIFT stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
-    "$FORKLIFT" stage set-next --cache-img=false next
+    $FORKLIFT stage set-next --cache-img=false next
     echo "Checking the plan for applying the staged pallet..."
-    "$FORKLIFT" stage plan
+    $FORKLIFT stage plan
   fi
 fi
 
