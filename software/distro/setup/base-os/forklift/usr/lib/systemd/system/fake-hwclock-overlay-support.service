@@ -1,0 +1,17 @@
+[Unit]
+Description=Copy the fake-hwclock file from the overlay override during shutdown
+DefaultDependencies=no
+# This ensures that the shutdown part of this service will run after the `/etc` overlay is unmounted:
+Before=overlay-etc.service
+Conflicts=shutdown.target
+Before=shutdown.target
+ConditionPathExists=/var/lib/overlays/overrides/etc/fake-hwclock.data
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=sleep 1
+ExecStopPost=cp /var/lib/overlays/overrides/etc/fake-hwclock.data /etc/fake-hwclock.data
+
+[Install]
+WantedBy=overlay-etc.service
