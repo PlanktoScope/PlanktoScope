@@ -39,7 +39,7 @@ First, you should plug in your USB Wi-Fi dongle. It needs to have Linux driver s
 
 To create a new Wi-Fi connection, run the command `sudo nmtui edit` and follow the dialogs to add a new Wi-Fi connection. In the "Edit Connection" window, you should specify either `wlan0` or `wlan1` as the device for that connection, depending on whether you want to connect to that Wi-Fi network with your Raspberry Pi's internal Wi-Fi module (`wlan0`) or with your USB Wi-Fi dongle (`wlan1`); then you should avoid creating any Wi-Fi connections for the other Wi-Fi module, so that it will still make a Wi-Fi hotspot. Then you can activate that new connection by rebooting or by running the command `sudo nmcli conn up "{connection name}"`, where `{connection name}` should be replaced with the connection profile name you had set when you created that connection. For example, if you created a Wi-Fi connection named `My Favorite Connection`, then you would run `sudo nmcli conn up "My Favorite Connection"`. It will take a while to finish, after which either the connection will have activated successfully or the command will have printed an error message. You can run `sudo nmtui conn` again to check what connections are active on your PlanktoScope.
 
-Once your PlanktoScope is connected to that external Wi-Fi network, you should try to access it through that network via your PlanktoScope's machine-specific mDNS URL, which has format `http://pkscope-{machine-name}.local`; in order to test whether this works, you will need to disconnect any direct connections your computer might have to your PlanktoScope (e.g. via a Wi-Fi hotspot on the other Wi-Fi module, or via a direct Ethernet connection). Note that your PlanktoScope might not be reachable over the external Wi-Fi network if your Wi-Fi network has restrictive firewall settings, in which case you will only be able to connect to your PlanktoScope directly via Ethernet cable. Note also that this URL only works if your device and web browser both support mDNS.
+Once your PlanktoScope is connected to that external Wi-Fi network, you may want to try to access it through that network via your PlanktoScope's machine-specific mDNS URL, which has format `http://pkscope-{machine-name}.local`; in order to test whether this works, you will need to disconnect any direct connections your computer might have to your PlanktoScope (e.g. via a Wi-Fi hotspot on the other Wi-Fi module, or via a direct Ethernet connection). Note that your PlanktoScope might not be reachable over the external Wi-Fi network if your Wi-Fi network has restrictive firewall settings, in which case you will only be able to connect to your PlanktoScope directly (e.g. via the Wi-Fi hotspot on the other Wi-Fi module, or via a direct Ethernet connection). Note also that this URL only works if your device and web browser both support mDNS.
 
 You may also want to check whether you can access the internet on the PlanktoScope. If the Wi-Fi network has a captive portal (e.g. for device registration or for a terms-of-service agreement), you should disconnect your computer from any Wi-Fi/Ethernet networks with internet access (in order to force it to use the PlanktoScope for internet access) and then try to open a webpage (e.g. <http://google.com>) in your computer's web browser to see if you can access the captive portal. If the Wi-Fi network doesn't have a captive portal, or if you successfully proceed through the captive portal, then you should be able to load web-pages using the internet access shared by the PlanktoScope.
 
@@ -88,7 +88,7 @@ Because by default your PlanktoScope is configured to act as a router so that it
 
 You can work around this unfortunate behavior of your computer's operating system by disabling one or two settings in the PlanktoScope's networking configuration so that the PlanktoScope no longer advertises itself as a router with internet access; note that doing so will prevent the PlanktoScope from being able to share its own internet access with connected devices as long as these settings are disabled.
 
-There are two settings, one controlling the behavior for Ethernet connections to the PlanktoScope and one controlling the behavior for the PlanktoScope's Wi-Fi hotspot. You can change just one setting, or you can change both settings together (in which case you can run both of the `forklift pallet disable-deployment-feature`/`forklift pallet enable-deployment-feature` commands consecutively and then just run the `forklift pallet stage --no-cache-img` command afterwards).
+There are two settings, one controlling the behavior for Ethernet connections to the PlanktoScope and one controlling the behavior for the PlanktoScope's Wi-Fi hotspot. You can change just one setting, or you can change both settings together (in which case you can run both of the `forklift pallet disable-deployment-feature`/`forklift pallet enable-deployment-feature` commands consecutively and then just run the `forklift pallet stage --cache-img=false` command afterwards).
 
 #### For Ethernet connections
 
@@ -96,14 +96,14 @@ To disable this setting for Ethernet connections to the PlanktoScope, run the fo
 
 ```
 forklift pallet disable-deployment-feature host/networking/networkmanager-dnsmasq dhcp-default-route
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 To revert this setting back to the default behavior (which is for the PlanktoScope to advertise itself as a router with internet access, so that the PlanktoScope can share its internet access with all connected devices), run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
 forklift pallet enable-deployment-feature host/networking/networkmanager-dnsmasq dhcp-default-route
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 #### For the Wi-Fi hotspot
@@ -112,14 +112,14 @@ To disable this setting for the PlanktoScope's Wi-Fi hotspots, run the following
 
 ```
 forklift pallet disable-deployment-feature host/networking/networkmanager-hotspot dhcp-default-route
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 To revert this setting back to the default behavior (which is for the PlanktoScope to advertise itself as a router with internet access, so that the PlanktoScope can share its internet access with all connected devices), run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
 forklift pallet enable-deployment-feature host/networking/interface-forwarding dhcp-default-route
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 ## Secure your PlanktoScope
@@ -142,7 +142,7 @@ The simplest way to disable both hotspots together is to run the following comma
 
 ```
 forklift pallet disable-deployment host/networking/networkmanager-hotspot
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 !!! warning
@@ -153,7 +153,7 @@ To undo this change (and allow the hotspots to be enabled or disabled separately
 
 ```
 forklift pallet enable-deployment host/networking/networkmanager-hotspot
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 #### Disable the internal Wi-Fi module's hotspot
@@ -162,14 +162,14 @@ To disable the PlanktoScope's Wi-Fi hotspot, run the following commands in the C
 
 ```
 forklift pallet disable-deployment-feature host/networking/networkmanager-hotspot wlan0
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 To revert your changes back to the default behavior (which is for the PlanktoScope to make its own Wi-Fi hotspot when it doesn't detect any known existing Wi-Fi networks to connect to with the internal Wi-Fi module), run the following commands in the Cockpit Terminal and then restart the PlanktoScope:
 
 ```
 forklift pallet enable-deployment-feature host/networking/networkmanager-hotspot wlan0
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 !!! warning
@@ -223,7 +223,7 @@ To restrict access for the `public` zone for one or more of these ports/protocol
 forklift pallet disable-deployment-feature {package deployment} firewall-allow-public
 forklift pallet disable-deployment-feature {package deployment} firewall-allow-public
 forklift pallet disable-deployment-feature {package deployment} firewall-allow-public
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 For example, to restrict ports 22 and 9090, you would run the following commands:
@@ -231,7 +231,7 @@ For example, to restrict ports 22 and 9090, you would run the following commands
 ```
 forklift pallet disable-deployment-feature host/sshd firewall-allow-public
 forklift pallet disable-deployment-feature host/cockpit firewall-allow-public
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 After running these commands, you can apply your changes by rebooting.
@@ -246,7 +246,7 @@ To undo your changes, run the following commands, replacing the instances of `{p
 forklift pallet enable-deployment-feature {package deployment} firewall-allow-public
 forklift pallet enable-deployment-feature {package deployment} firewall-allow-public
 forklift pallet enable-deployment-feature {package deployment} firewall-allow-public
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 For example, to restore access to ports 22 and 9090, you would run the following commands:
@@ -254,7 +254,7 @@ For example, to restore access to ports 22 and 9090, you would run the following
 ```
 forklift pallet enable-deployment-feature host/sshd firewall-allow-public
 forklift pallet enable-deployment-feature host/cockpit firewall-allow-public
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 After running these commands, you should apply the resulting changes by rebooting.
@@ -281,7 +281,7 @@ To disable access to one or more of these apps, run the following commands in th
 forklift pallet disable-deployment-feature {package deployment} {feature flag}
 forklift pallet disable-deployment-feature {package deployment} {feature flag}
 forklift pallet disable-deployment-feature {package deployment} {feature flag}
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 For example, to restrict access to the system file manager and the Node-RED dashboard editor, you would run the following commands:
@@ -289,7 +289,7 @@ For example, to restrict access to the system file manager and the Node-RED dash
 ```
 forklift pallet disable-deployment-feature apps/filebrowser-root frontend
 forklift pallet disable-deployment-feature apps/ps/node-red-dashboard editor
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 After running these commands, you can apply your changes by rebooting. Note that the landing page will still link to those apps, but the links won't work anymore.
@@ -300,7 +300,7 @@ To undo your changes, run the following commands, replacing the instances of `{p
 forklift pallet enable-deployment-feature {package deployment} {feature flag}
 forklift pallet enable-deployment-feature {package deployment} {feature flag}
 forklift pallet enable-deployment-feature {package deployment} {feature flag}
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 For example, to restore access to the system file manager and the Node-RED dashboard editor, you would run the following commands:
@@ -308,7 +308,7 @@ For example, to restore access to the system file manager and the Node-RED dashb
 ```
 forklift pallet enable-deployment-feature apps/filebrowser-root frontend
 forklift pallet enable-deployment-feature apps/ps/node-red-dashboard editor
-forklift pallet stage --no-cache-img
+forklift pallet stage --cache-img=false
 ```
 
 After running these commands, you should apply the resulting changes by rebooting.
