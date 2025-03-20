@@ -330,7 +330,7 @@ jobs:
             version="$(printf "%.7s" "${{ github.sha }}")"
           fi
           variant="${{ inputs.variant }}"
-          if [[ "${{ inputs.base_release_name }}" != "bullseye" ]]; then
+          if [[ "${{ inputs.base_release_name }}" != "bookworm" ]]; then
             variant="$variant.${{ inputs.base_release_name }}"
           fi
           if [[ "${{ inputs.arch }}" != "arm64" ]]; then
