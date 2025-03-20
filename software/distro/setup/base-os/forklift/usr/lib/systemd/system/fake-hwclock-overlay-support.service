@@ -1,17 +1,18 @@
 [Unit]
-Description=Copy the fake-hwclock file to the underlay during shutdown before fake-hwclock's shutdown work
-Wants=fake-hwclock.service
-After=fake-hwclock.service
-Requires=overlay-sysroot.service
-After=overlay-sysroot.service
-After=overlay-etc.service
-ConditionPathExists=/etc/fake-hwclock.data
+Description=Copy the fake-hwclock file from the overlay override during shutdown
+DefaultDependencies=no
+Requires=overlay-etc.service
+# This ensures that the shutdown task will run after `/sysroot` is unmounted:
+Before=overlay-sysroot.service
+ConditionPathExists=/var/lib/overlays/overrides/etc/fake-hwclock.data
+Conflicts=shutdown.target
+Before=shutdown.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=true
 ExecStart=sleep 1
-ExecStopPost=cp /etc/fake-hwclock.data /sysroot/etc/fake-hwclock.data
+ExecStopPost=cp /var/lib/overlays/overrides/etc/fake-hwclock.data /etc/fake-hwclock.data
 
 [Install]
 WantedBy=overlay-etc.service
