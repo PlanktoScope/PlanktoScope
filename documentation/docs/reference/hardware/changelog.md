@@ -2,6 +2,33 @@
 
 The design of the PlanktoScope's hardware has been evolving to fix usability issues and improve the quality of images captured by the PlanktoScope. Thus, multiple versions of the hardware have been developed:
 
+<!--
+
+## v3.0
+
+WORK IN PROGRESS
+
+Replaces [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with [Raspberry PI 5](https://www.raspberrypi.com/products/raspberry-pi-5/) for much faster CPU and GPU computing power.
+
+Increased RAM from 4 to 8 GB.
+
+Includes a [Real Time Clock (RTC)](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#real-time-clock-rtc)
+
+Includes [RTC rechargeable battery](https://www.raspberrypi.com/products/rtc-battery/)
+
+Includes [Raspberry Pi Active Cooler](https://www.raspberrypi.com/products/active-cooler/)
+
+Features a [power button](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-button).
+
+The PlanktoScope is now powered by the Raspberry via USB-C instead of by the hat.
+
+Faster wifi from 120Mb/s to 300Mb/s
+
+[PCIe connector](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-connector-for-pcie), compatible with:
+* [Raspberry Pi AI HAT+](https://www.raspberrypi.com/products/ai-hat/)
+* [Raspberry Pi SSD Kit](https://www.raspberrypi.com/products/ssd-kit/)
+-->
+
 ## v2.6
 
 This is the latest version of the PlanktoScope hardware, and it is the version currently sold by FairScope. It replaced the optical components so that the PlanktoScope produces higher-quality images.
