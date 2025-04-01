@@ -13,9 +13,9 @@ On the Raspberry, we recommend using our developer image which is built upon [Ra
 You can find the latest build in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm-dx.yml?query=branch%3Amaster)
 
 1. Choose the branch (e.g. `master`)
-1. Navigate to the first action in the table
-2. Download one of the Artifact depending on your PlanktoScope hardware
-3. Run `unzip filename.zip` to extract files
+2. Click on the most recent action in the table
+3. Download one of the Artifact depending on your PlanktoScope hardware
+4. Run `unzip filename.zip` to extract files
 
 See [Backup and Restore SD Card image](#backup-and-restore-sd-card) below to write the `.img.xz` file to the sdcard
 
@@ -36,4 +36,54 @@ sudo dd bs=1M if=/dev/device status=progress | xz > sdcard.img.xz
 xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/mmcblk0 status=progress
 ```
 
-See also the operating guide [SD Card Cloning](/operation/clone-sd/).
+See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
+
+### Documentation quick setup
+
+This is a quick setup guide. See also
+
+* [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
+* [Writing Documentation](./documentation.md)
+
+Install dependencies:
+
+<details>
+    <summary>Windows</summary>
+
+Start by [installing WSL (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command)
+
+Because of a small incompatibilty between Windows and Linux; we recommend cloning the repo "in WSL" but if you prefer keeping your git clone "in Windows", here are other options:
+* [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
+* [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
+* 
+Then follow the Ubuntu instructions below.
+</details>
+
+<details>
+    <summary>Ubuntu</summary>
+
+```shell
+sudo apt update
+sudo apt install python3-poetry
+cd documentation
+poetry install --no-root
+```
+</details>
+
+<details>
+    <summary>Fedora</summary>
+
+```shell
+sudo dnf install python3-poetry
+cd documentation
+poetry install --no-root
+```
+</details>
+
+Run live previewer:
+
+```sh
+poetry run poe preview
+```
+
+Visit [`http://localhost:8000`](http://localhost:8000) to see local changes.
