@@ -43,14 +43,14 @@ Next, you will need to write your downloaded Raspberry Pi OS image file to your 
 
 To use a graphical application to write the image file to your microSD card, you can install the Raspberry Pi imager. Download the latest version of the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), install it, and start it. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the appropriate button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
 
-If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use a tool like `ddrescue` on a Debian-based system, e.g. as follows:
+If you'd instead prefer to write the `.xz.img` image file to your microSD card from a command-line tool, you can use the following command
 
-```
-gunzip planktoscope-v2.3-final.img.gz
-sudo ddrescue planktoscope-v2.3-final.img /dev/mmcblk0 --force
+```sh
+xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/mmcblk0 status=progress
 ```
 
-Warning: be extremely careful when choosing the storage medium and ensure that you are writing the OS image file to the device which actually corresponds to the correct microSD card. Once the image has been written, data previously on the device will be lost and impossible to recover.
+!!! warning
+    Be extremely careful when choosing the storage medium and ensure that you are writing the OS image file to the device which actually corresponds to the correct microSD card. Once the image has been written, data previously on the device will be lost.
 
 ### Configure your Raspberry Pi
 

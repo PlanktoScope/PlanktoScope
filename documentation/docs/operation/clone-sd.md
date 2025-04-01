@@ -105,10 +105,10 @@ In order to make the SD card practical to share, you should shrink and compress 
 cd /some/path/here
 wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
 chmod +x pishrink.sh
-sudo ./pishrink.sh -za image-name-here.img
+sudo ./pishrink.sh -Za image-name-here.img
 ```
 
-If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you should get a `image-name-here.img.gz` file which is at least 2 GB in size.
+If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you should get a `image-name-here.img.xz` file which is at least 2 GB in size.
 
 ## Use the SD card image
 
