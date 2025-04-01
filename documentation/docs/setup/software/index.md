@@ -10,7 +10,7 @@ In order to install the PlanktoScope software, you will first need to choose an 
 
 ## Choosing an SD card image
 
-PlanktoScope SD card image files are identified with a version number as well as a hardware configuration tag - for example, the SD card image file named `planktoscope-v2024.0.0+planktoscopehat.img.gz` is for v2020.0.0 of the PlanktoScope OS, configured to work with versions of the PlanktoScope hardware based on the custom PlanktoScope HAT (rather than the Adafruit Stepper Motor HAT). Thus, you will need to choose both a version number (e.g. v2023.9.0) and a hardware configuration (e.g. `planktoscopehat`).
+PlanktoScope SD card image files are identified with a version number as well as a hardware configuration tag - for example, the SD card image file named `planktoscope-v2024.0.0+planktoscopehat.img.xz` is for v2020.0.0 of the PlanktoScope OS, configured to work with versions of the PlanktoScope hardware based on the custom PlanktoScope HAT (rather than the Adafruit Stepper Motor HAT). Thus, you will need to choose both a version number (e.g. v2023.9.0) and a hardware configuration (e.g. `planktoscopehat`).
 
 ### PlanktoScope OS versions
 
