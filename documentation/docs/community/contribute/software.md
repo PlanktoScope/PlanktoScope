@@ -1,4 +1,4 @@
-# How to help development for the PlanktoScope code
+# Software Development
 
 We are using the [Github Flow approach](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests) for our development efforts.
 
