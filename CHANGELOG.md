@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## v2024.0.1-beta.0 - 2025-04-01
+
+### Fixed
+
+- (Hardware controller) The ISO value stored in dataset metadata now correctly matches the user-set ISO setting, instead of being a constant scaling of the image gain (which is calculated from the user-set ISO according to a camera model-specific scaling factor). This fixes a regression introduced with v2024.0.0-beta.2.
+
 ## v2024.0.0 - 2024-12-25
 
 ### Fixed
