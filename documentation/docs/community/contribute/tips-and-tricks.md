@@ -1,6 +1,6 @@
 # Tips and tricks
 
-This page provides useful snippets and how-tos while developping software for the PlanktoScope.
+This page provides useful snippets and how-tos while developing software for the PlanktoScope.
 
 !!! warning
 
@@ -38,7 +38,7 @@ xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
 
-### Documentation quick setup
+## Documentation quick setup
 
 This is a quick setup guide. See also
 
