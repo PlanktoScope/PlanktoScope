@@ -17,6 +17,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Hardware controller) Error handling of a failure to create a raw image dataset directory (e.g. because the directory already exists, due to a duplicate acquisition ID) now correctly terminates the attempted data acquisition run.
 
+## v2024.0.1-beta.0 - 2025-04-02
+
+### Fixed
+
+- (Hardware controller) The ISO value stored in dataset metadata now correctly matches the user-set ISO setting, instead of being a constant scaling of the image gain (which is calculated from the user-set ISO according to a camera model-specific scaling factor). This fixes a regression introduced with v2024.0.0-beta.2.
+
 ## v2024.0.0 - 2024-12-25
 
 ### Fixed

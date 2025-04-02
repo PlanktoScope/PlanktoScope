@@ -211,12 +211,13 @@ class Worker(multiprocessing.Process):
         ) is not None
         camera_settings = self._camera.camera.settings
         assert (image_gain := camera_settings.image_gain) is not None
+        calibration = camera.ISO_CALIBRATIONS.get(self._camera.camera.sensor_name, 100)
         machine_name = identity.load_machine_name()
         metadata = {
             **self._metadata,
             "acq_local_datetime": datetime.datetime.now().isoformat().split(".")[0],
             "acq_camera_resolution": f"{capture_size[0]}x{capture_size[1]}",
-            "acq_camera_iso": int(image_gain * 100),
+            "acq_camera_iso": int(image_gain * calibration),
             "acq_camera_shutter_speed": camera_settings.exposure_time,
             "acq_uuid": machine_name,
             "sample_uuid": machine_name,
