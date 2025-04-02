@@ -25,4 +25,4 @@ chmod +x pishrink.sh
 sudo ./pishrink.sh -za image-name-here.img
 ```
 
-If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you should get a `image-name-here.img.gz` file which is approximately 1 GB in size.
+If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you should get a `image-name-here.img.xz` file which is approximately 1 GB in size.
