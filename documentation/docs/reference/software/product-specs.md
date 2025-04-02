@@ -4,7 +4,7 @@ The PlanktoScope OS includes all software which needs to run on the PlanktoScope
 
 ## v2024.0.0
 
-Specs for v2024.0.0 are the same as in v2023.9.0, except for the following sections:
+Specs for v2024.0.0 (and any patch releases, such as v2024.0.1) are the same as in v2023.9.0, except for the following sections:
 
 - Base operating system: the binary target architecture has changed from 32-bit to 64-bit.
 - System performance: on-board image processing speeds have improved (processing speeds have nearly doubled).
