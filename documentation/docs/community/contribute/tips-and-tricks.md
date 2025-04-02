@@ -55,7 +55,7 @@ Start by [installing WSL (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl
 Because of a small incompatibilty between Windows and Linux; we recommend cloning the repo "in WSL" but if you prefer keeping your git clone "in Windows", here are other options:
 * [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
 * [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
-* 
+
 Then follow the Ubuntu instructions below.
 </details>
 
@@ -83,6 +83,7 @@ poetry install --no-root
 Run live previewer:
 
 ```sh
+cd documentation
 poetry run poe preview
 ```
 
