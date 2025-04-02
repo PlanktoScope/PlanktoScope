@@ -9,7 +9,10 @@
 #### RTC RV-3028-C7
 
 Address 0x52
-Configured through a kernel driver.
+
+!!! note
+
+    The schematic does include the RTC RV-3028 but due to a lack of software support; it was removed in production at Fairscope. Some PlanktoScope hat units may have it but that is currently unsupported. The PlanktoScope v3 will have complete RTC support.
 
 #### OLED Display
 

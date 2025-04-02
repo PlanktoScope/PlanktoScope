@@ -8,6 +8,7 @@ if ! [ -S /var/run/docker.sock ] &&
   echo "Warning: couldn't start docker the easy way!"
   echo "Starting containerd daemon directly..."
   sudo /usr/bin/containerd &
+  sleep 5
   echo "Starting docker daemon directly..."
   sudo /usr/bin/dockerd &
   sleep 5

@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 # This script records OS installation versioning information in the same way as the
-# install.planktoscope.community/distro.sh script does. To invnoke it, you must set the following
+# install.planktoscope.community/distro.sh script does. To invoke it, you must set the following
 # environment variables:
 # REPO (the repo used for setup, e.g. github.com/PlanktoScope/PlanktoScope)
 # VERSION_QUERY (the version query, e.g. a commit hash)

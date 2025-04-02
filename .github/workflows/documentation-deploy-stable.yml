@@ -51,9 +51,6 @@ jobs:
         run: |
           poetry -C ./documentation/ install --with imaging
 
-      - name: Import external assets
-        run: poetry -C ./documentation/ run poe --root ./documentation/ import-external-assets
-
       - name: Build documentation
         env:
           DOCS_DEPLOY: true

@@ -7,7 +7,7 @@
 
 # Determine the base path for sub-scripts
 
-build_scripts_root=$(dirname $(realpath $BASH_SOURCE))
+build_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Get command-line args
 
@@ -37,22 +37,30 @@ function panic {
 
 # Run sub-scripts
 
-description="set up Node-RED frontend"
+description="disable first-boot wizards"
 report_starting "$description"
-if $build_scripts_root/node-red-frontend/install.sh "$hardware_type" ; then
+if "$build_scripts_root/wizards/remove.sh"; then
   report_finished "$description"
 else
   panic "$description"
 fi
 
-if [ $hardware_type = "segmenter-only" ]; then
+description="set up Node-RED frontend"
+report_starting "$description"
+if "$build_scripts_root/node-red-frontend/install.sh" "$hardware_type"; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
+if [ "$hardware_type" = "segmenter-only" ]; then
   echo "Warning: skipping PlanktoScope hardware-specific setup because hardware type was specified as: $hardware_type"
   exit 0
 fi
 
 description="set up Python hardware controller"
 report_starting "$description"
-if $build_scripts_root/python-hardware-controller/install.sh "$hardware_type" ; then
+if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
   report_finished "$description"
 else
   panic "$description"
@@ -60,7 +68,7 @@ fi
 
 description="configure kernel hardware drivers"
 report_starting "$description"
-if $build_scripts_root/platform-hardware/config.sh ; then
+if "$build_scripts_root/platform-hardware/config.sh"; then
   report_finished "$description"
 else
   panic "$description"
@@ -68,7 +76,7 @@ fi
 
 description="set up GPS and clock driver"
 report_starting "$description"
-if $build_scripts_root/gps/install.sh ; then
+if "$build_scripts_root/gps/install.sh"; then
   report_finished "$description"
 else
   panic "$description"
@@ -76,7 +84,7 @@ fi
 
 description="enable CPU overclocking"
 report_starting "$description"
-if $build_scripts_root/overclocking/config.sh ; then
+if "$build_scripts_root/overclocking/config.sh"; then
   report_finished "$description"
 else
   panic "$description"

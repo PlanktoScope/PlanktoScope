@@ -41,7 +41,6 @@ Usually, you should edit the documentation sources (in `/some/path/here/PlanktoS
 
 ```
 cd /some/path/here/PlanktoScope/documentation
-poetry run poe import-external-assets
 poetry run poe preview
 ```
 
@@ -62,7 +61,6 @@ Usually you will not need to manually build a local copy of the documentation we
 
 ```
 cd /some/path/here/PlanktoScope/documentation
-poetry run poe import-external-assets
 poetry run poe build
 ```
 
@@ -72,7 +70,7 @@ If you really don't want to change your current working directory to `/some/path
 poetry -C /some/path/here/PlanktoScope/documentation/ run poe --root /some/path/here/PlanktoScope/documentation/ build
 ```
 
-(this also works for `import-external-assets`, `preview`, `check`, and any other subcommands of `poe`)
+(this also works for `preview`, `check`, and any other subcommands of `poe`)
 
 #### Publishing your changes
 

@@ -12,15 +12,33 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
+- (System: networking) If you plug in a supported USB Wi-Fi dongle into the PlanktoScope, now it will  by default automatically create a Wi-Fi hotspot network from that Wi-Fi dongle - regardless of whether the PlanktoScope's internal Wi-Fi module is configured to also create the same Wi-Fi hotspot network or to connect to some external Wi-Fi network. This means that the PlanktoScope now supports creating its own Wi-Fi hotspot while simultaneously being connected to the internet via a Wi-Fi network, if you plug in a USB Wi-Fi dongle.
+- (System: networking) If the PlanktoScope is connected to a Wi-Fi network with a captive portal, you should be able to access and proceed through the captive portal from a computer/phone connected to the PlanktoScope.
+- (System: networking) Firewalld is now enabled, and default firewall policies are provided (via Forklift) for the `public` and `nm-shared` firewall zones. This means that if you want to access any additional ports besides the ports for programs provided with the standard PlanktoScope OS) from other devices, now you must add configurations to open those additional ports, e.g. via drop-in configuration snippets in `/etc/firewalld/zones.d`.
 
 ### Changed
 
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
+- (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, in preparation for an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images. As part of this change the previous autohotspot service has been removed, as it's redundant with functionality provided by NetworkManager.
 
 ### Removed
 
 - (Application: backend) The old raspimjpeg-based imager has now been completely removed, following a deprecation in v2024.0.0-alpha.2.
 - (Application: GUI) Various elements of the Node-RED dashboard which were deprecated in v2024.0.0 and in v2024.0.0-alpha.2 have now been removed, including the old USB backup functionality.
+- (Application: GUI) Portainer (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
+- (System) The `planktoscope-org.init-gpio-steppers.service` systemd service, which has never actually worked correctly, is now disabled by default. If for some reason you want to re-enable it, you can use Forklift to enable the `host/planktoscope/gpio-init` package deployment.
+
+### Deprecated
+
+- (Application: GUI) In a future release, the Grafana dashboard will no longer be enabled by default; then it will be an opt-in app deployment (which will require an internet connection for downloading Grafana to enable it in the PlanktoScope OS via Forklift). This change will be made after the upcoming v3 of the Node-RED dashboard fully replaces the Grafana-based metrics dashboard on the Node-RED dashboard's System Monitoring page, removing the need for Grafana.
+
+### Fixed
+
+- (System: networking) `planktoscope.local` and `pkscope.local` should now work on local area networks (i.e. when the PlanktoScope is connected to a router) and not just on direct connections.
+- (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
+- (Application) The `/home/pi/data` and `/home/pi/device-backend-logs` are now created with non-`root` user ownership, so that their contents can be managed via an SFTP/SCP connection as the `pi` user. This fixes a regression introduced with v2023.9.0-beta.0.
+- (System) The system time is now correctly persisted on the filesystem (in `/etc/fake-hwclock.data`) in a way that the system time should no longer reset back to a previous time in the past between reboots.
+- (System) Machine name generation now falls back to the `en_US.UTF-8`-based naming scheme when the OS is set to a non-default locale (i.e. anything other than `en_US.UTF-8`), instead of failing and falling back to `unknown`.
 
 ## v2024.0.0 - 2024-12-25
 

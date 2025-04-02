@@ -94,13 +94,13 @@ This phase performs steps which might (in theory) be useful for other projects w
 
 - Installation of base tools: Docker, Cockpit, and various command-line tools are installed.
 
-- Installation of `forklift` and a Forklift pallet: a hard-coded version of `forklift` is downloaded to `/usr/bin/forklift` , a hard-coded version of a hard-coded pallet (namely, [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard)) is downloaded and prepared for deployment, and the `forklift-apply.service` systemd service is created and enabled. (Note: in the future, it will be possible to specify the pallet to be installed as a command-line argument.)
+- Installation of `forklift` and a Forklift pallet: a hard-coded version of `forklift` is downloaded to `/usr/bin/forklift` , a hard-coded version of a hard-coded pallet (namely, [github.com/PlanktoScope/pallet-standard](https://github.com/PlanktoScope/pallet-standard)) is downloaded and prepared for deployment, and some Forklift-specific systemd services are created and enabled. (Note: in the future, it will be possible to specify the pallet to be installed as a command-line argument.)
 
 - Partial configuration of Raspberry Pi-specific hardware: the SPI and I2C hardware interfaces are enabled, and the serial port and serial port console are enabled (note: the serial port console will be disabled by the PlanktoScope application environment setup phase so that the serial port can be used for the PlanktoScope's GPS receiver instead), and legacy camera support is disabled.
 
 - Configuration of the system locale: the system's language is changed to `en_US.UTF-8`, but the time and measurement formats are changed to `en_DK.UTF-8` so that the date format is `yyyy-mm-dd` and units are metric. The system timezone is set to UTC.
 
-- Partial configuration of networking: various system services are installed and configured, namely `dhcpcd`, `dnsmasq`, `hostapd`, and `firewalld`. The `enable-interface-forwarding.service` and `autohotspot.service` systemd services are created and enabled. The Raspberry Pi's Wi-Fi country is set to the US.
+- Partial configuration of networking: various system components are installed, namely `network-manager`, `dnsmasq-base`, and `firewalld`. The Raspberry Pi's Wi-Fi country is set to the US.
 
 - Cleanup: SSH keys are reset to be regenerated on the next boot, unnecessary APT files are removed, and the OS [machine ID](https://wiki.debian.org/MachineId) is reset to be regenerated on the next boot.
 
@@ -108,11 +108,9 @@ This phase performs steps which might (in theory) be useful for other projects w
 
 This phase performs steps specific to the PlanktoScope's hardware:
 
-- Remaining configuration of networking: a hard-coded version of [`machine-name`](https://github.com/PlanktoScope/machine-name) is downloaded to `/usr/bin/machine-name`, `avahi-utils` is installed using APT, and various systemd services are created and enabled to update the PlanktoScope OS's networking configurations based on a machine name which will be determined by `machine-name` from the Raspberry Pi's serial number at every boot. Additional systemd services are created and enabled so that the PlanktoScope will be accessible over some additional mDNS names (namely, `pkscope.local` and `planktoscope.local`).
-
 - Setup of the PlanktoScope hardware controller: various Python tools (`pip`, `venv`, and `poetry`) are installed using APT, a hard-coded version of a hard-coded Git repository (namely [github.com/PlanktoScope/device-backend](https://github.com/PlanktoScope/device-backend)) is cloned, and various dependencies (both system libraries and Python packages) of the hardware controller are installed. The `planktoscope-org.device-backend.controller-adafruithat.service` and `planktoscope-org.device-backend.controller-planktoscopehat.service` systemd services are created, and the appropriate one is enabled depending on which HAT the PlanktoScope OS is being installed for. The appropriate hardware configuration file will also be copied into the location expected by the hardware controller. (Note: once the PlanktoScope hardware controller is containerized and managed in Forklift, this step will be eliminated.)
 
-- Setup of GPIO stepper initialization at boot: a systemd service is created to release the stepper motors at startup. (Note: this service currently doesn't work and will eventually be deleted or replaced.)
+- Setup of GPIO stepper initialization at boot: a systemd service is created to release the stepper motors at startup. (Note: this service currently doesn't work and will eventually be fixed, deleted, or replaced.)
 
 - Setup of the PlanktoScope Node-RED dashboard: Node-RED is installed, as well as a Python package required by the `adafruithat` version of the PlanktoScope Node-RED dashboard (Note: the dependency on that package will eventually be removed.). The appropriate version of the PlanktoScope Node-RED dashboard and will be copied to the location expected by Node-RED depending on which HAT the PlanktoScope OS is being installed for, along with the appropriate configuration file. Finally, `npm` packages required by the Node-RED dashboard are installed. (Note: once the Node-RED dashboard is containerized and managed in Forklift, this step will be eliminated.)
 

@@ -43,14 +43,14 @@ Next, you will need to write your downloaded Raspberry Pi OS image file to your 
 
 To use a graphical application to write the image file to your microSD card, you can install the Raspberry Pi imager. Download the latest version of the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), install it, and start it. Select the Raspberry Pi OS image file (likely a `.img`, `.img.gz`, or `.img.xz` file) you just downloaded, and select the SD card you want to write the Raspberry Pi OS image to. Review your selections and click the appropriate button to begin writing the Raspberry Pi OS image to the SD card. The process should take several minutes.
 
-If you'd instead prefer to write the image file to your microSD card from a command-line tool, you could instead use a tool like `ddrescue` on a Debian-based system, e.g. as follows:
+If you'd instead prefer to write the `.xz.img` image file to your microSD card from a command-line tool, you can use the following command
 
-```
-gunzip planktoscope-v2.3-final.img.gz
-sudo ddrescue planktoscope-v2.3-final.img /dev/mmcblk0 --force
+```sh
+xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/mmcblk0 status=progress
 ```
 
-Warning: be extremely careful when choosing the storage medium and ensure that you are writing the OS image file to the device which actually corresponds to the correct microSD card. Once the image has been written, data previously on the device will be lost and impossible to recover.
+!!! warning
+    Be extremely careful when choosing the storage medium and ensure that you are writing the OS image file to the device which actually corresponds to the correct microSD card. Once the image has been written, data previously on the device will be lost.
 
 ### Configure your Raspberry Pi
 
@@ -141,7 +141,7 @@ You will only be able to access the PlanktoScope's graphical user interface by p
 
 - If you plan to connect another device directly to your PlanktoScope via its Wi-Fi hotspot or via an Ethernet cable, follow the same instructions for connecting to your PlanktoScope as in the [standard installation guide](./standard-install.md#connect-to-the-planktoscope).
 
-- If you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own Wi-Fi hotspot. On the Wi-Fi network it's connected to, it will only be accessible by its machine-specific mDNS URL,  which has the format `http://pkscope-{machine-name}.local`, where `{machine-name}` should be replaced by your PlanktoScope's specific machine name (which you should have recorded in the previous step).
+- If you had previously configured your PlanktoScope's Raspberry Pi to connect to a Wi-Fi network, it will not make its own Wi-Fi hotspot. On the Wi-Fi network it's connected to, it will only be accessible by its mDNS URLs (i.e. URLs ending in `.local`), such as the machine-specific URL which has the format `http://pkscope-{machine-name}.local`, where `{machine-name}` should be replaced by your PlanktoScope's specific machine name (which you should have recorded in the previous step). <http://planktoscope.local> should also work, though if your PlanktoScope is connected to a Wi-Fi network which also has other PlanktoScopes connected, then <http://planktoscope.local> may show you the landing page for one of those other PlanktoScopes; in that case, you should use your PlanktoScope's machine-specific URL.
 
 ## Next steps
 

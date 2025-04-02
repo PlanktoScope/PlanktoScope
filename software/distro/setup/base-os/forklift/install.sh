@@ -14,16 +14,15 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 sudo cp "$config_files_root"/usr/lib/systemd/system/* /usr/lib/systemd/system/
 sudo cp "$config_files_root"/usr/lib/systemd/system-preset/* /usr/lib/systemd/system-preset/
 
-# Make the stage store at /var/lib/forklift/stages available for non-root access in the current
-# (i.e. default) user's default Forklift workspace, both in the current boot and subsequent boots:
-local_stage_store="$HOME/.local/share/forklift/stages"
-mkdir -p "$local_stage_store"
+# Make the stage store at /var/lib/forklift/stages available for easy access in the root user's
+# default Forklift workspace, both in the current boot and subsequent boots:
+mkdir -p "$HOME/.local/share/forklift/stages"
 sudo mkdir -p /var/lib/forklift/stages
 # TODO: maybe we should instead make a new "forklift" group which owns everything in
 # /var/lib/forklift?
 sudo chown "$USER" /var/lib/forklift/stages
-sudo systemctl enable "bind-.local-share-forklift-stages@-home-$USER.service"
-if ! sudo systemctl start "bind-.local-share-forklift-stages@-home-$USER.service" 2>/dev/null; then
+sudo systemctl enable "bind-.local-share-forklift-stages@home-$USER.service"
+if ! sudo systemctl start "bind-.local-share-forklift-stages@home-$USER.service" 2>/dev/null; then
   echo "Warning: the system's Forklift stage store is not mounted to $USER's Forklift stage store."
   echo "As long as you don't touch the Forklift stage store before the next boot, this is fine."
 fi
@@ -31,7 +30,7 @@ fi
 # Clone & stage a local pallet
 pallet_path="$(cat "$config_files_root/forklift-pallet")"
 pallet_version="$(cat "$config_files_root/forklift-pallet-version")"
-forklift --stage-store /var/lib/forklift/stages plt switch --no-cache-img "$pallet_path@$pallet_version"
+forklift --stage-store /var/lib/forklift/stages plt switch --cache-img=false "$pallet_path@$pallet_version"
 forklift --stage-store /var/lib/forklift/stages stage add-bundle-name factory-reset next
 
 # Set up Forklift upgrade checks
@@ -83,11 +82,11 @@ echo "setup" | sudo tee /run/machine-name
 if ! $FORKLIFT stage apply; then
   echo "The staged pallet couldn't be applied; we'll try again now..."
   # Reset the "apply-failed" status of the staged pallet to apply:
-  $FORKLIFT stage set-next --no-cache-img next
+  $FORKLIFT stage set-next --cache-img=false next
   if ! $FORKLIFT stage apply; then
     echo "Warning: the next staged pallet could not be successfully applied. We'll try again on the next boot, since the pallet might require some files which will only be created during the next boot."
     # Reset the "apply-failed" status of the staged pallet to apply:
-    $FORKLIFT stage set-next --no-cache-img next
+    $FORKLIFT stage set-next --cache-img=false next
     echo "Checking the plan for applying the staged pallet..."
     $FORKLIFT stage plan
   fi
@@ -102,4 +101,5 @@ sudo systemctl preset \
   bindro-run-forklift-stages-current.service \
   overlay-usr.service \
   overlay-etc.service \
-  start-overlaid-units.service
+  start-overlaid-units.service \
+  fake-hwclock-overlay-support.service

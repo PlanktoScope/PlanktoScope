@@ -34,27 +34,23 @@ The PlanktoScope OS's setup scripts provide some system services which are not m
 
 For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.target`) referred to below, see [systemd's bootup process](https://www.freedesktop.org/software/systemd/man/latest/bootup.html) and [systemd's special targets](https://www.freedesktop.org/software/systemd/man/latest/systemd.special.html):
 
-- `generate-machine-name.service` and `generate-hostname-templated.service` runs before `sysinit.target`.
+- `generate-machine-name.service` and `generate-hostname-templated.service` runs after `local-fs.target` but before `sysinit.target` and `systemd-hostnamed.service`.
 
-- `update-hostname.service` runs after `generate-hostname-templated.service` and `systemd-hostnamed.service` but before `network-pre.target`.
+- `update-hostname.service` runs after `generate-hostname-templated.service` and `systemd-hostnamed.service` but before `network-pre.target` and `avahi-daemon.service`.
 
-- `assemble-dnsmasq-config-templated.service` runs after `generate-machine-name.service` and `generate-hostname-templated.service` but before `dnsmasq.service`.
+- `assemble-firewalld-zone@nm-shared.service` and `assemble-firewalld-zone@public.service` run before `firewalld.service` and `NetworkManager.service`.
 
-- `assemble-hosts-templated.service` and `assemble-hosts.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `dnsmasq.service` and `network-pre.target`.
+- `assemble-hosts-templated.service` and `assemble-hosts.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `NetworkManager.service` and `network-pre.target`.
 
-- `enable-interface-forwarding-between.service` runs before `network-online.target`.
+- `assemble-dnsmasq-config-templated.service` runs after `generate-machine-name.service` and `generate-hostname-templated.service` but before `NetworkManager.service`.
 
-- `enable-interface-forwarding-inbound.service` runs before `network-online.target`.
+- `assemble-networkmanager-connection-templated@wlan0-hotspot.service`, `assemble-networkmanager-connection-templated@wlan1-hotspot.service`, `assemble-networkmanager-connection@wlan0-hotspot.service` and `assemble-networkmanager-connection@wlan1-hotspot.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `NetworkManager.service`.
 
-- `report-mac-addresses.service` runs before `network-online.target`. It is re-run every two minutes by `report-mac-addresses.timer`.
+- `assemble-networkmanager-connection@eth0-default.service`, `assemble-networkmanager-connection@eth0-static.service`, `assemble-networkmanager-connection@eth1-default.service`, `assemble-networkmanager-connection@eth1-static.service`, and `assemble-networkmanager-connection@usb0-default.service` run before `NetworkManager.service`.
 
-- `assemble-hostapd-config-templated.service` and `assemble-hostapd-config.service` run after `generate-machine-name.service` and `generate-hostname-templated.service` but before `hostapd.service`.
+- `avahi-publish-cname@pkscope.local.service` and `avahi-publish-cname@planktoscope.local.service` run after `update-hostname.service` and `avahi-daemon.service`.
 
-- The `hostapd` daemon is manually started and stopped by `autohotspot.service`.
-
-- `autohotspot.service` runs after `forklift-apply.service` and `enable-interface-forwarding-between.service` and ``enable-interface-forwarding-inbound.service`` have started (so that the PlanktoScope's web browser-based user interfaces are ready for connections before the PlanktoScope's Wi-Fi hotspot is started) and before network connectivity is considered to have been established. It is re-run every two minutes by `autohotspot.timer`.
-
-- `planktoscope-mdns-alias@pkscope.service` and `planktoscopemdns-alias@planktoscope.service` run after `avahi-daemon.service`.
+- `report-mac-addresses.service` runs after `network-online.target`. It is re-run every two minutes by `report-mac-addresses.timer`.
 
 ### User interface
 
@@ -62,8 +58,8 @@ For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.tar
 
 - `ensure-ssh-host-keys.service` regenerates the SSH server's host keys if the keys are missing, and runs before `ssh.service`.
 
-- The PlanktoScope Node-RED dashboard (managed by `nodered.service`) starts after `planktoscope-org.update-machine-name.service` has started, to ensure that the Node-RED dashboard has the correct machine name. (In the future the PlanktoScope Node-RED dashboard will instead be run as a Docker container and will be managed by `forklift`.)
+- The PlanktoScope Node-RED dashboard (managed by `nodered.service`) starts after `generate-machine-name.service` has started, to ensure that the Node-RED dashboard has the correct machine name. (In the future the PlanktoScope Node-RED dashboard will instead be run as a Docker container and will be managed by `forklift`.)
 
 ### PlanktoScope-specific hardware abstraction
 
-- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquito) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
+- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquitto) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
