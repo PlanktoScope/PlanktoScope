@@ -80,7 +80,7 @@ If needed you can also clean the outside of the objective lens with a soft cloth
 
 For quantitative imaging of water samples, refer to the following protocols published by members of the PlanktoScope community:
 
-- "[Planktoscope protocol for plankton imaging](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe)". A [PDF copy](protocol-v4.pdf) of a draft of version 4 of this protocol is also available for offline use.
+- "[Planktoscope protocol for plankton imaging](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe)". A [PDF copy](protocol-v4.pdf) of version 4 of this protocol is also available for offline use.
 
 ## Manage your PlanktoScope's embedded computer
 
