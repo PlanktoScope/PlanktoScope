@@ -4012,9 +4012,15 @@
         "label": "Light  ",
         "stateField": "payload",
         "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
         "rounded": true,
         "useThemeColors": true,
         "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
         "options": [
             {
                 "label": "Off",
@@ -4029,6 +4035,7 @@
                 "color": "#999999"
             }
         ],
+        "topic": "",
         "x": 310,
         "y": 120,
         "wires": [
@@ -4042,11 +4049,13 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Prepare message",
-        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nvar led_output = flow.get('led_output')\nif (led_output !== undefined && led_output !== \"\") {\n    msg.payload[\"led\"] = led_output\n}\n\nreturn msg;",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 490,
         "y": 120,
         "wires": [
@@ -4063,107 +4072,15 @@
         "topic": "",
         "qos": "",
         "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "8dc3722c.06efa8",
         "x": 650,
         "y": 120,
         "wires": []
-    },
-    {
-        "id": "4535ab65.009354",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "led_output",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 6,
-        "height": 1,
-        "label": "LED output",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "1",
-                "value": "1",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "2",
-                "value": "2",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 310,
-        "y": 180,
-        "wires": [
-            [
-                "152f58e5.ca51df"
-            ]
-        ]
-    },
-    {
-        "id": "703d6ecd.62af88",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 1",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 120,
-        "y": 180,
-        "wires": [
-            [
-                "4535ab65.009354"
-            ]
-        ]
-    },
-    {
-        "id": "152f58e5.ca51df",
-        "type": "change",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "led_output",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 180,
-        "wires": [
-            [
-                "f0775525.cf806",
-                "99ae4886.8d43c"
-            ]
-        ]
     },
     {
         "id": "8ea9dc9a.c7d87",
@@ -8401,6 +8318,8 @@
         "qos": "0",
         "datatype": "json",
         "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 290,
         "y": 340,
