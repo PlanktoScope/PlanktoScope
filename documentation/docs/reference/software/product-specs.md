@@ -7,6 +7,7 @@ The PlanktoScope OS includes all software which needs to run on the PlanktoScope
 Specs for v2024.0.0 are the same as in v2023.9.0, except for the following sections:
 
 - Base operating system: the binary target architecture has changed from 32-bit to 64-bit.
+- Supported optional addons: support for up to one USB-to-Ethernet adapter as an optional addon.
 - System performance: on-board image processing speeds have improved (processing speeds have nearly doubled).
 
 ### Functionalities
@@ -50,10 +51,22 @@ Recommended:
 Forwards-incompatibilities:
 
 - Unable to run on the Raspberry Pi 5 computer.
+- Incompatible with the upcoming PlanktoScope hardware v3.
 
 Backwards-incompatibilities:
 
 - Might still work on a Raspberry Pi 3 Model B+ computer or a Raspberry Pi 4 Model B computer with 1 GB of RAM, but compatibility is not tested.
+
+### Supported optional addons
+
+Networking peripherals:
+
+- Up to one phone (Android only) connected by USB cable in USB tethering mode: for internet access.
+- Up to one USB-to-Ethernet adapter: either for internet access or for direct access from a connected device.
+
+Miscellaneous data sources:
+
+- Up to one Adafruit Ultimate GPS HAT: for system clock synchronization, and for automatic detection of GPS location coordinates.
 
 ### System performance
 
@@ -103,10 +116,21 @@ Recommended:
 Forwards-incompatibilities:
 
 - Unable to run on the Raspberry Pi 5 computer.
+- Incompatible with the upcoming PlanktoScope hardware v3.
 
 Backwards-incompatibilities:
 
 - Might still work on a Raspberry Pi 3 Model B+ computer or a Raspberry Pi 4 Model B computer with 1 GB of RAM, but compatibility is not tested.
+
+### Supported optional addons
+
+Networking peripherals:
+
+- Up to one phone (Android only) connected by USB cable in USB tethering mode: for internet access.
+
+Miscellaneous data sources:
+
+- Up to one Adafruit Ultimate GPS HAT: for system clock synchronization, and for automatic detection of GPS location coordinates.
 
 ### System performance
 
@@ -155,7 +179,18 @@ Recommended for full functionality:
 Forwards-incompatibilities:
 
 - Unable to run on the Raspberry Pi 5 computer.
+- Incompatible with the upcoming PlanktoScope hardware v3.
 - Incompatible with Adafruit Stepper Motor HATs (used in PlanktoScope hardware v2.1) manufactured after mid-2022.
+
+### Supported optional addons
+
+Networking peripherals:
+
+- Up to one phone (Android only) connected by USB cable in USB tethering mode: for internet access.
+
+Miscellaneous data sources:
+
+- Up to one Adafruit Ultimate GPS HAT: for system clock synchronization, and for automatic detection of GPS location coordinates.
 
 ### System performance
 
