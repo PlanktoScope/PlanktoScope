@@ -57,6 +57,15 @@ If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find 
 
 See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/)
 
+## Disable splash screen
+
+We recommend disabling the splash screen to get better boot logs
+
+```sh
+sudo nano /boot/firmware/cmdline.txt
+# remove "quiet splash plymouth.ignore-serial-consoles"
+```
+
 ## Backup and Restore SD Card
 
 You will need to plug the SD card into your computer.
