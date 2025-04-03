@@ -41,10 +41,4 @@ However, we encourage all PlanktoScope users who use the stable release channel 
 
 ## Upgrading to a new release or pre-release
 
-In order to use a new release or pre-release of the PlanktoScope OS, you will need to do one of the following:
-
-- Download the new SD card image for that release/pre-release, following the [standard installation process](../../setup/software/standard-install.md).
-
-- Create a new custom SD card image for that release/pre-release, following the [non-standard installation process](../../setup/software/nonstandard-install.md).
-
-Then you will need to re-flash your PlanktoScope's SD card (or flash a new SD card for your PlanktoScope) with the resulting SD card image for the new release/pre-release of the PlanktoScope OS.
+In order to use a new release or pre-release of the PlanktoScope OS, please follow the [software reset & upgrades guide](../../operation/software-upgrades.md).
