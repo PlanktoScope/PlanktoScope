@@ -20,7 +20,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
 - (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images. As part of this change the previous autohotspot service has been removed, as it's redundant with functionality provided by NetworkManager.
-- (Breaking change; System) The official PlanktoScope OS images are now built by on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye).
+- (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye).
 
 ### Removed
 
