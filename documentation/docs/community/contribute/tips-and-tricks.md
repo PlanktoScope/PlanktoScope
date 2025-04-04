@@ -91,13 +91,24 @@ Visit [`http://localhost:8000`](http://localhost:8000) to see local changes.
 
 ## Test dataset for segmenter
 
-For testing, you can download
-[this example dataset](https://drive.google.com/drive/folders/1g6OPaUIhYkU2FPqtIK4AW6U4FYmhFxuw)
-as a `.zip` archive, unzip it into a new directory, and then copy/upload that directory into
-the `img` directory of the Dataset File Manager, for example resulting in a new directory at
-a path like `/home/pi/data/img/BTS2023_S3_A2` (which would correspond to a Dataset File Manager URL
-like <http://planktoscope.local/ps/data/browse/files/img/BTS2023_S3_A2/>) which will contain 29
-`.jpg` files, a `metadata.json` file, and a few other irrelevant files. Then a new dataset named
-`BTS2023_S3_A2` should show up in the Node-RED dashboard's "Segmentation" page after you press its
-"Update acquisition's folder list" button. If you run the segmenter on that dataset, the segmenter
-should segment approximately 365 objects.
+We have an
+[example dataset](https://drive.google.com/drive/folders/1g6OPaUIhYkU2FPqtIK4AW6U4FYmhFxuw)
+which you can use for testing the segmenter.
+
+To use it, first download it as a `.zip` archive, e.g. to
+`~/Downloads/BTS2023_S3_A2-TIMESTAMP-001.zip`. Then extract it:
+
+```
+unzip BTS2023_S3_A2-TIMESTAMP-001.zip
+```
+
+This will result in a new directory named `BTS2023_S3_A2`. Upload that new directory into the
+PlanktoScope's `data/img` directory, e.g. via SCP:
+
+```
+scp -r BTS2023_S3_A2 pi@planktoscope.local:~/data/img
+```
+
+In the Node-RED dashboard's "Segmentation" page, press the "Update acquisition's folder list"
+button. Then a new dataset named `BTS2023_S3_A2` should appear. If you run the segmenter on that
+dataset, the segmenter should segment approximately 365 objects.
