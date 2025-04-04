@@ -187,7 +187,6 @@ The `on` command turns on the sample illumination LED. For example:
 ```json
 {
   "action": "on",
-  "led": "1"
 }
 ```
 
@@ -196,7 +195,6 @@ The `on` command has the following parameters:
 | Field    | Description                                        | Type    | Accepted Values |
 | -------- | -------------------------------------------------- | ------- | --------------- |
 | `action` | Specifies the `on` command.                        | string  | `on`            |
-| `led`    | Specifies the LED to turn on.<br/>Defaults to `1`. | integer | `1` (optional)  |
 
 #### `on` command responses
 
@@ -204,8 +202,7 @@ The Python backend can send status updates on the `status/light` topic in respon
 
 | Status/Error            | Cause                                                             |
 | ----------------------- | ----------------------------------------------------------------- |
-| `Led 1: On`             | The LED turned on successfully.                                   |
-| `Error with LED number` | An invalid value was provided for the `led` field of the command. |
+| `On`                    | The LED turned on successfully.                                   |
 
 ### `off` command
 
@@ -222,7 +219,6 @@ The `off` command has the following parameters:
 | Field    | Description                                       | Type    | Accepted Values |
 | -------- | ------------------------------------------------- | ------- | --------------- |
 | `action` | Specifies the `off` command.                      | string  | `off`           |
-| `led`    | Specifies the LED to turn on.<br/>Defaults to `1` | integer | `1`             |
 
 #### `off` command responses
 
@@ -230,8 +226,7 @@ The Python backend can send status updates on the `status/light` topic in respon
 
 | Status/Error            | Cause                                                             |
 | ----------------------- | ----------------------------------------------------------------- |
-| `Led 1: Off`            | The LED turned off successfully.                                  |
-| `Error with LED number` | An invalid value was provided for the `led` field of the command. |
+| `Off`                   | The LED turned off successfully.                                  |
 
 ### Non-response status updates
 
