@@ -18,9 +18,9 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye). No support will be given for running the PlanktoScope OS setup scripts on bullseye base images, and the OS setup scripts will not work on bullseye.
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
-- (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images. As part of this change the previous autohotspot service has been removed, as it's redundant with functionality provided by NetworkManager.
-- (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye).
+- (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). As part of this change the previous autohotspot service has been removed, as it's redundant with functionality now provided by NetworkManager.
 
 ### Removed
 
@@ -33,7 +33,6 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Deprecated
 
 - (Application: GUI) In a future release, the Grafana dashboard will no longer be enabled by default; then it will be an opt-in app deployment (which will require an internet connection for downloading Grafana to enable it in the PlanktoScope OS via Forklift). This change will be made after the upcoming v3 of the Node-RED dashboard fully replaces the Grafana-based metrics dashboard on the Node-RED dashboard's System Monitoring page, removing the need for Grafana.
-- (System) In a future release, the PlanktoScope OS setup scripts (which can be used to make custom/unofficial OS images) will no longer work on Raspberry Pi OS 11 (bullseye) as a base OS; instead, only Raspberry Pi OS 12 (bookworm) will be supported.
 
 ### Fixed
 
