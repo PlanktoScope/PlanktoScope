@@ -3531,6 +3531,38 @@
         ]
     },
     {
+        "id": "8038414a.34461",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Calculate optics",
+        "func": "var acq_fnumber_objective = String(global.get(\"acq_fnumber_objective\"));\nvar acq_camera = global.get(\"acq_camera\")\n\n// Those values needs to be recalculated, they are not good!\nif (acq_camera == \"HQ Camera\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.56;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 1.01;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.79;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.53;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.41;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}\nelse if (acq_camera == \"Camera v2.1\"){\n    switch(acq_fnumber_objective) {\n      case \"25\":\n        acq_magnification= 0.6;\n        process_pixel= 1.86;\n        sug_min= 60;\n        sug_max= 670;\n        sug_flowrate= 3;\n        break;\n      case \"16\":\n        acq_magnification= 1.6;\n        process_pixel= 0.7;\n        sug_min= 40;\n        sug_max= 430;\n        sug_flowrate= 2.4;\n        break;\n      case \"12\":\n        acq_magnification= 1.20;\n        process_pixel= 0.94;\n        sug_min= 30;\n        sug_max= 340;\n        sug_flowrate= 1.25;\n        break;\n      case \"8\":\n        acq_magnification= 1.78;\n        process_pixel= 0.63;\n        sug_min= 20;\n        sug_max= 230;\n        sug_flowrate= 0.42;\n        break;\n      case \"6\":\n        acq_magnification= 2.36;\n        process_pixel= 0.48;\n        sug_min= 15;\n        sug_max= 170;\n        sug_flowrate= 0.32;\n        break;\n    }\n}else {\n    acq_magnification= \"ERROR\";\n    process_pixel= \"ERROR\";\n    sug_min= \"ERROR\";\n    sug_max= \"ERROR\";\n    sug_flowrate= \"ERROR\";\n}\n\nvar process_pixel_fixed = global.get(\"process_pixel_fixed\")\n\nif (process_pixel_fixed !== undefined && process_pixel_fixed !== \"\") {\n    process_pixel = process_pixel_fixed\n}\n\nglobal.set(\"process_pixel\",process_pixel);\n\nglobal.set(\"acq_magnification\",acq_magnification);\n\n\nreturn [{payload: acq_fnumber_objective}, {payload: acq_magnification}, {payload: process_pixel}, {payload: sug_min}, {payload: sug_max}];",
+        "outputs": 5,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 120,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "inputLabels": [
+            "acq_fnumber_objective"
+        ],
+        "outputLabels": [
+            "acq_magnification",
+            "process_pixel",
+            "sug_min",
+            "sug_max",
+            ""
+        ]
+    },
+    {
         "id": "f61aaed5.1e64",
         "type": "ui_button",
         "z": "bccd1f23.87219",
@@ -3911,6 +3943,23 @@
         ]
     },
     {
+        "id": "cfc783d7.d6ceb",
+        "type": "link in",
+        "z": "bccd1f23.87219",
+        "name": "Optics recalculation",
+        "links": [
+            "559a8085.1d6b9",
+            "5d5ad36d2c50dcc2"
+        ],
+        "x": 915,
+        "y": 120,
+        "wires": [
+            [
+                "8038414a.34461"
+            ]
+        ]
+    },
+    {
         "id": "326a1d95.ca21aa",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "bccd1f23.87219",
@@ -4012,9 +4061,15 @@
         "label": "Light  ",
         "stateField": "payload",
         "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
         "rounded": true,
         "useThemeColors": true,
         "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
         "options": [
             {
                 "label": "Off",
@@ -4029,6 +4084,7 @@
                 "color": "#999999"
             }
         ],
+        "topic": "",
         "x": 310,
         "y": 120,
         "wires": [
@@ -4042,11 +4098,13 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Prepare message",
-        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nvar led_output = flow.get('led_output')\nif (led_output !== undefined && led_output !== \"\") {\n    msg.payload[\"led\"] = led_output\n}\n\nreturn msg;",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 490,
         "y": 120,
         "wires": [
@@ -4063,107 +4121,15 @@
         "topic": "",
         "qos": "",
         "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "8dc3722c.06efa8",
         "x": 650,
         "y": 120,
         "wires": []
-    },
-    {
-        "id": "4535ab65.009354",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "led_output",
-        "group": "4248342d.e55fac",
-        "order": 2,
-        "width": 6,
-        "height": 1,
-        "label": "LED output",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "1",
-                "value": "1",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "2",
-                "value": "2",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 310,
-        "y": 180,
-        "wires": [
-            [
-                "152f58e5.ca51df"
-            ]
-        ]
-    },
-    {
-        "id": "703d6ecd.62af88",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: 1",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "1",
-        "payloadType": "num",
-        "x": 120,
-        "y": 180,
-        "wires": [
-            [
-                "4535ab65.009354"
-            ]
-        ]
-    },
-    {
-        "id": "152f58e5.ca51df",
-        "type": "change",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "led_output",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 180,
-        "wires": [
-            [
-                "f0775525.cf806",
-                "99ae4886.8d43c"
-            ]
-        ]
     },
     {
         "id": "8ea9dc9a.c7d87",
@@ -8401,6 +8367,8 @@
         "qos": "0",
         "datatype": "json",
         "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 290,
         "y": 340,

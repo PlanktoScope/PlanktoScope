@@ -12,7 +12,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
-- (System: networking) If you plug in a supported USB Wi-Fi dongle into the PlanktoScope, now it will  by default automatically create a Wi-Fi hotspot network from that Wi-Fi dongle - regardless of whether the PlanktoScope's internal Wi-Fi module is configured to also create the same Wi-Fi hotspot network or to connect to some external Wi-Fi network. This means that the PlanktoScope now supports creating its own Wi-Fi hotspot while simultaneously being connected to the internet via a Wi-Fi network, if you plug in a USB Wi-Fi dongle.
+- (System: networking) If you plug in a supported USB Wi-Fi dongle into the PlanktoScope, now it will by default automatically create a Wi-Fi hotspot network from that Wi-Fi dongle - regardless of whether the PlanktoScope's internal Wi-Fi module is configured to also create the same Wi-Fi hotspot network or to connect to some external Wi-Fi network. This means that the PlanktoScope now supports creating its own Wi-Fi hotspot while simultaneously being connected to the internet via a Wi-Fi network, if you plug in a USB Wi-Fi dongle.
 - (System: networking) If the PlanktoScope is connected to a Wi-Fi network with a captive portal, you should be able to access and proceed through the captive portal from a computer/phone connected to the PlanktoScope.
 - (System: networking) Firewalld is now enabled, and default firewall policies are provided (via Forklift) for the `public` and `nm-shared` firewall zones. This means that if you want to access any additional ports besides the ports for programs provided with the standard PlanktoScope OS) from other devices, now you must add configurations to open those additional ports, e.g. via drop-in configuration snippets in `/etc/firewalld/zones.d`.
 
@@ -28,6 +28,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) Various elements of the Node-RED dashboard which were deprecated in v2024.0.0 and in v2024.0.0-alpha.2 have now been removed, including the old USB backup functionality.
 - (Application: GUI) Portainer (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
 - (System) The `planktoscope-org.init-gpio-steppers.service` systemd service, which has never actually worked correctly, is now disabled by default. If for some reason you want to re-enable it, you can use Forklift to enable the `host/planktoscope/gpio-init` package deployment.
+- (System) Support for use of the setup scripts (and PlanktoScope software components) on ARMv7 (32-bit OSes) is removed, following a deprecation in v2024.0.0-beta.0.
 
 ### Deprecated
 
@@ -36,9 +37,11 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Fixed
 
+- (Application: hardware controller) The ISO value stored in dataset metadata now correctly matches the user-set ISO setting, instead of being a constant scaling of the image gain (which is calculated from the user-set ISO according to a camera model-specific scaling factor). This fixes a regression introduced with v2024.0.0-beta.2.
 - (System: networking) `planktoscope.local` and `pkscope.local` should now work on local area networks (i.e. when the PlanktoScope is connected to a router) and not just on direct connections.
 - (Application: GUI) The Node-RED dashboard's sample page's "Dilution Factor" input field has been renamed to "Concentration Factor", which is a less misleading name for what that input field actually represents.
-- (Application) The `/home/pi/data` and `/home/pi/device-backend-logs` are now created with non-`root` user ownership, so that their contents can be managed via an SFTP/SCP connection as the `pi` user. This fixes a regression introduced with v2023.9.0-beta.0.
+- (Application: hardware controller) Error handling of a failure to create a raw image dataset directory (e.g. because the directory already exists, due to a duplicate acquisition ID) now correctly terminates the attempted data acquisition run. This fixes a problem which might be a regression introduced with v2024.0.0-alpha.1.
+- (Application: backend) The `/home/pi/data` and `/home/pi/device-backend-logs` are now created with non-`root` user ownership, so that their contents can be managed via an SFTP/SCP connection as the `pi` user. This fixes a regression introduced with v2023.9.0-beta.0.
 - (System) The system time is now correctly persisted on the filesystem (in `/etc/fake-hwclock.data`) in a way that the system time should no longer reset back to a previous time in the past between reboots.
 - (System) Machine name generation now falls back to the `en_US.UTF-8`-based naming scheme when the OS is set to a non-default locale (i.e. anything other than `en_US.UTF-8`), instead of failing and falling back to `unknown`.
 
@@ -71,6 +74,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) The landing page now links to v3 of the protocols.io protocol for PlanktoScope operation.
 - (Application: GUI) The landing page now shows a warning/info message for users accessing the landing page using any domain name other than `pkscope-{machine-name}.local`, that such a hostname will not work for accessing the PlanktoScope via Wi-Fi router or Ethernet router, and that `pkscope-{machine-name}.local` must be used in such situations.
 
+### Changed
+
+- (Application: hardware controller) The resolution of the camera preview stream has been reduced from 960x720 to 800x600 in an attempt to mitigate hard-to-reproduce preview stream latency problems.
+- (Application: hardware controller) The bitrate of the camera preview stream has been reduced slightly from ~8 Mbps to ~7 Mbps.
+- (Application: hardware controller) The framerate of the camera preview stream is now explicitly limited to 25 fps.
+
 ### Removed
 
 - (Application: Documentation) The embedded documentation site no longer includes [v1 of the protocols.io protocol for PlanktoScope operation](https://www.protocols.io/view/planktoscope-protocol-for-plankton-imaging-bp2l6bq3zgqe/v1)
@@ -93,8 +102,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Fixed
 
-- (Application: backend) Changed the hardware controller's libcamera-based camera controller to initialize its default image gain based on camera sensor type in order to match the GUI's default ISO value of 150, instead of initializing default image gain to 1.0 regardless of camera sensor type.
-- (Breaking change; Application: backend) Changed the segmenter to include the acquisition ID in the filename of the metadata TSV file included with the EcoTaxa export ZIP archive; this is necessary to allow efficient bulk importing of such ZIP archives into EcoTaxa, which was previously prevented by the use of the same `ecotaxa_export.tsv` filename for all metadata TSV files.
+- (Application: hardware controller) Changed the hardware controller's libcamera-based camera controller to initialize its default image gain based on camera sensor type in order to match the GUI's default ISO value of 150, instead of initializing default image gain to 1.0 regardless of camera sensor type (which corresponds to an ISO of around 40 or 50).
+- (Breaking change; Application: segmenter) Changed the segmenter to include the acquisition ID in the filename of the metadata TSV file included with the EcoTaxa export ZIP archive; this is necessary to allow efficient bulk importing of such ZIP archives into EcoTaxa, which was previously prevented by the use of the same `ecotaxa_export.tsv` filename for all metadata TSV files.
 - (Application: GUI) The Grafana server's CPU allowance should now be limited to one core, in an attempt to prevent it from starving other programs of CPU time shortly after booting up under certain situations.
 
 ## v2024.0.0-beta.1 - 2024-06-24
@@ -103,12 +112,14 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Application: GUI) On the `planktoscopehat` SD card image, the Node-RED dashboard's homepage now asks the user to set the hardware version (choosing between v2.3, v2.5, and v2.6) as a first-boot setup step; this dialog replaces the navigation buttons on the homepage until a hardware version is set.
 - (Release) A `fairscope-latest` SD card image is now provided which is identical to the `planktoscopehat` SD card image, except that its default settings configuration file is for the v2.6 PlanktoScope hardware (so that the homepage does not ask the user to choose a hardware version).
+- (Application: hardware controller) A default `fairscope-latest` hardware config file has been created as the default v2.6 hardware config file.
 - (System: administration) The Forklift pallet provided by default as the SD card image is now named (and pinned as) the `factory-reset` staged pallet bundle.
 - (System: networking) The `planktoscope.local` mDNS name was deprecated in v2023.9.0-beta.1, but now it's un-deprecated (i.e. official support for this name is added back to the project). As before, you can still use `pkscope.local` or the machine-specific mDNS name (of format `pkscope-{machine-name}.local`) instead of `planktoscope.local`.
 
 ### Changed
 
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image has been reverted to be for the v2.5 PlanktoScope hardware (reverting a change made for v2024.0.0-alpha.2); in v2024.0.0-alpha.2, it was for the v2.6 hardware, while in previous versions it was still for the v2.5 hardware.
+- (Breaking change; Application: hardware controller) The default planktoscopehat hardware config file has been rolled back from the default v2.6 hardware config file to the default v2.5 hardware config file. This reverts a change made in v2024.0.0-alpha.1.
 - (Release) SD card images are now released with xz compression (as `.img.xz` files) rather than gzip compression (as `.img.gz` files).
 
 ### Removed
@@ -155,8 +166,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
-- (Breaking change; Application: backend) Previously, the segmenter's default behavior was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should enable the `pipeline-subtract-consecutive-masks` feature flag in the `apps/ps/backend/proc-segmenter` package deployment of the local Forklift pallet and re-apply the pallet.
-- (Application: backend, GUI) The image quality of frames in the camera preview stream is increased, and frames also have greater width and height.
+- (Breaking change; Application: segmenter) Previously, the segmenter's default behavior was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should enable the `pipeline-subtract-consecutive-masks` feature flag in the `apps/ps/backend/proc-segmenter` package deployment of the local Forklift pallet and re-apply the pallet (this feature flag sets the segmenter's new `SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS` environment variable to `true`).
+- (Application: hardware controller, GUI) The image quality of frames in the camera preview stream is increased, and frames also have greater width and height.
 - (Breaking change; Application: GUI) The default settings configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was still for the v2.5 hardware.
 - (Breaking change; System: administration) The minimum supported Forklift version for Forklift pallets has increased from v0.4.0 to v0.7.0, due to new integration between Forklift and the filesystem.
 - (System: administration) Forklift has been upgraded to v0.7.0, so that pallets are staged before being applied (and with automatic fallback to the last successfully-applied staged pallet), and so that systemd services, `/etc` config files, and some scripts in `/usr` are now managed by Forklift.
@@ -167,12 +178,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (System: administration, troubleshooting; Application: GUI) Portainer will no longer be installed/provided by default after v2024.0.0. This is because it requires inclusion of a relatively large Docker container image in the PlanktoScope OS's SD card image (which is constrained to be up to 2 GB in size so that it can be attached as an upload to GitHub Releases), and because it has an annoying first-time user experience (i.e. that a password must be set within a few minutes of boot, or else the Portainer container must be restarted), and because Dozzle already provides all the basic functionalities needed by most users, and because Portainer has never actually been used for troubleshooting within the past year of the project, and because Portainer has a nontrivial impact on the sizes of the PlanktoScope OS SD card images (which are limited to 2 GB).
 - (System: administration; Application: GUI) The "USB backup" functionality of the Node-RED dashboard will be removed in v2024.1.0 (the next release after v2024.0.0). Instead, you should use the datasets file browser for backing up and deleting dataset files on your PlanktoScope.
-- (Application: backend) The raspimjpeg-based imaging module in the Python hardware controller has not yet been deleted so that you can change the Python hardware controller code to switch back from the new picamera2-based imaging module if picamera2 ends up causing big problems for you. However, we are deprecating the raspimjpeg-based imaging module, and we will fully delete it in a future release (perhaps v2024.1.0, or perhaps later).
+- (Application: hardware controller) The raspimjpeg-based imaging module in the Python hardware controller has not yet been deleted so that you can change the Python hardware controller code to switch back from the new picamera2-based imaging module if picamera2 ends up causing big problems for you. However, we are deprecating the raspimjpeg-based imaging module, and we will fully delete it in a future release.
 
 ### Fixed
 
 - (Application: GUI) The white balance input validation, which previously only allowed gains between 1.0 and 8.0, now allows gains in the full range allowed by the camera (i.e. between 0.0 and 32.0).
-- (Application: backend, GUI) The incorrect scaling factor for converting between ISO settings (in the Node-RED dashboard) and image gains in the new picamera2-based imager is fixed.
+- (Application: hardware controller, GUI) The incorrect scaling factor for converting between ISO settings (in the Node-RED dashboard) and image gains in the new picamera2-based imager is fixed.
 - (System: networking) Some uncommon edge cases for packet forwarding (e.g. accessing a one of the PlanktoScope's static IP addresses on a network interface not associated with that static IP address) should work now.
 
 ## v2024.0.0-alpha.1 - 2024-03-26
@@ -181,6 +192,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - (Breaking change; System: setup) The word `pscopehat` has been replaced with `planktoscopehat` everywhere. This means that any distro setup scripts/commands you previously used with `pscopehat` should be changed.
 - (Breaking change; Application: hardware controller) The hardware controller now uses `picamera2` instead of `raspimjpeg` for camera control. This may require different ISO and white balance gains to be used. It also no longer limits the framerate of the camera preview, so the preview stream should adapt to the bandwidth available on your network connection and the system resources available to your web browser; this may increase resource usage on your web browser.
+- (Breaking change; segmenter) EcoTaxa export archive filenames are now saved as `ecotaxa_{acquisition id}.zip` instead of `ecotaxa_{project id}_{date}_{sample id}.zip`, which was long and redundant and (because many devices have incorrect system times) inappropriate for viewing files in a logically sorted order.
 
 ### Deprecated
 
@@ -188,9 +200,13 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Fixed
 
-- (Breaking change; Application: backend) The default hardware configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was (incorrectly) a mixture of v2.5 and v2.6 optical settings.
+- (Breaking change; Application: hardware controller) Images acquired by the hardware controller now have more unique filenames (which include an incrementing index and the date of image capture, rather than just the time of the image capture).
+- (Breaking change; Application: hardware controller) The hardware controller no longer crashes when invalid values are given for certain camera settings (e.g. null or non-numeric white balance gains).
+- (Breaking change; Application: hardware controller) The pixel calibration values have been switched between the default v2.5 hardware config file and the default v2.6 hardware config file, so that each file has the correct pixel calibration.
+- (Breaking change; Application: hardware controller) The default hardware configuration file for the `planktoscopehat` SD card image is now for the v2.6 PlanktoScope hardware; previously, it was (incorrectly) a mixture of v2.5 and v2.6 optical settings.
+- (Breaking change; Application: segmenter) The segmenter now runs as `root` (instead of `pi`) in the Docker container for it, so that it doesn't break on various actual & potential edge cases of files/directories being created with `root` ownership (rather than `pi` ownership) before being bind mounted into the container.
 - (Application: hardware controller) The camera no longer overexposes captured images compared to the camera preview stream, and it no longer produces camera timeout errors.
-- (Application: backend) The segmenter should no longer have file permissions errors when trying to read or write files in directories created by Docker or by the Python hardware controller.
+- (Application: segmenter) The segmenter should no longer have file permissions errors when trying to read or write files in directories created by Docker or by the Python hardware controller.
 
 ## v2024.0.0-alpha.0 - 2024-02-06
 
@@ -213,6 +229,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: administration) Docker commands can now be run without `sudo`.
 - (System: security) `ufw` has been replaced with `firewalld`. However, `firewalld` has not yet been properly configured.
 - (System) The PlanktoScope's machine name is now saved to `/var/lib/planktoscope/machine-name` instead of `/home/pi/.local/etc/machine-name`, and it's now saved without a trailing newline.
+- (Application: segmenter) The segmenter is now built and run as a Docker container.
 
 ### Removed
 
@@ -227,6 +244,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) On Mozilla Firefox, the embedded file browser in the Node-RED dashboard's "Gallery" page should now consistently load with the correct height, instead of sometimes loading with an absurdly small height.
 - (System: networking) The Raspberry Pi now correctly detects a phone connected in USB tethering mode to share internet access regardless of when the phone was connected, instead of only detecting that phone if USB tethering mode was enabled early in startup (specifically, before the `dhcpcd` service had started).
 - (System: networking) Functionality for automatically updating the `/etc/hosts` file and the hostname based on the machine name has now been split into two separate system services, `planktoscope-org.update-hosts-machine-name.service` and `planktoscope-org.update-hostname-machine-name.service`.
+- (Application: segmenter) An extraneous `export` directory should no longer be created by the segmenter under `/home/pi/PlanktoScope`. The correct directory is `/home/pi/data/export`.
 
 ## v2023.9.0 - 2023-12-30
 
@@ -245,6 +263,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Removed
 
 - (Application: documentation) The offline documentation included on the PlanktoScope now omits the hardware setup guides.
+- (Application: backend) The segmenter's minimal use of Morphocut has now been fully removed.
 
 ### Fixed
 
@@ -276,11 +295,13 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (User-facing change; Application: backend) The Python backend now uses the new machine naming scheme everywhere.
 - (System: networking) The default hostname and SSID (used only in certain unexpected situations when a machine name cannot be determined) have both been shortened from `planktoscope` to `pkscope`.
 - (System: networking) The SSID format is now specified in `/home/pi/.local/etc/hostapd/ssid.snippet`, instead of `/home/pi/.local/bin/update-ssid-machine-name.sh`.
+- (Application: backend) The backend now also uses the machine name in the new scheme, by loading the name from from a file (currently at `/home/pi/.local/etc/machine-name`) which is automatically generated by the operating system.
 
 ### Deprecated
 
 - (System: networking) The `planktoscope.local` mDNS name is no longer recommended. We will continue to support it for the foreseeable future (and definitely for at least one year), but we recommend using `pkscope.local` or the machine-specific mDNS name (of format `pkscope-{machine-name}.local`) instead.
 - (Application: backend) The Python backend's logs still print machine names in the old naming scheme, to help instrument operators with the naming scheme transition (so that they can identify how each machine was renamed). The machine names in this old naming scheme will be removed in a future release - probably the next release.
+- (Application: backend) The old "Baba"-based machine naming scheme should no longer be used. The `uuidName` module will be removed the next stable release (the stable release after v2023.9.0).
 
 ### Removed
 
@@ -338,6 +359,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System) The chrony configuration has been simplified, but it may be broken.
 - (System) The default timezone is now officially set to UTC, and we will be using UTC as the standard system time zone for all PlanktoScopes. Previously, the pre-built SD card images provided by this project used UTC as the timezone, but the "Expert Setup" instructions for manually setting up the PlanktoScope software did not specify a time zone to use.
 - (System, Dependencies) The base OS is now the 2023-05-03 release of Raspberry Pi OS Bullseye.
+- (Application: Backend) The Python backend has now been split into a hardware controller (of which there are two versions for the Adafruit HAT and the custom PlanktoScope HAT, respectively) and a data processing segmenter. These two components are run separately, so that a crash in one component will not automatically cause a crash in the other component. Additionally, their dependencies are managed separately.
 - (Application: Backend, Dependencies) The Python backend and Node-RED dashboard's indirect dependencies are now version-locked to improve the reproducibility of the OS setup script independently of when the script is run.
 
 ### Deprecated
@@ -360,6 +382,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (System: networking) Previously the autohotspot script would always wait 20 seconds after attempting to connect to a Wi-Fi network before checking whether the connection was successful, even if it didn't actually need to wait 20 seconds. Now the autohotspot script repeatedly attempts to ping google.com with a timeout of 2 seconds per attempt and a maximum of 10 attempts, so that the autohotspot script only waits as long as a necessary to determine that a Wi-Fi network connection has succeeded.
 - (System: networking) Previously the autohotspot script could decide that the SSID scan results were available even if no SSIDs were found (despite local Wi-Fi networks being active). Now an empty SSID scan result is treated as a condition where a re-scan is required.
 - (System: networking) Previously the log messages from the autohotspot script had inconsistent capitalization and grammar, and slightly unclear wording. Those have now been made more clear and consistent.
+- (Application: backend) The default `hardware.json` file for PlanktoScope v2.1 had incorrect keys for the white balance values; the keys have now been fixed.
 
 ## v2.3.0 - 2021-12-20
 

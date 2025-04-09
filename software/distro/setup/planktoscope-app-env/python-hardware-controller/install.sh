@@ -21,6 +21,11 @@ esac
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   git python3-pip python3-venv
 
+## Upgrade python3-libcamera to solve an issue in Raspberry Pi OS bookworm-2024-11-19
+## https://github.com/raspberrypi/picamera2/issues/1229#issuecomment-2772493538
+sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
+  python3-libcamera
+
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
 # (see https://github.com/pypa/pip/issues/7883)
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
