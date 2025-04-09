@@ -1,19 +1,21 @@
 #!/bin/bash -eux
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
-# Clean up any unnecessary apt files
+USER_CACHE_DIR="$(systemd-path user-state-cache)"
+
+# apt
 sudo apt-get autoremove -y
 sudo apt-get clean -y
 
-# Clean up any unnecessary pip, poetry, and npm files
+# pip
 pip3 cache purge || true
-sudo rm -rf $HOME/.cache/pip
-POETRY_VENV=$HOME/.local/share/pypoetry/venv
-if [ -f $POETRY_VENV/bin/poetry ]; then
-  BACKEND_CONTROLLER=$HOME/device-backend/control
-  $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear _default_cache --all
-  $POETRY_VENV/bin/poetry --no-interaction --directory $BACKEND_CONTROLLER cache clear piwheels --all
-fi
+rm -rf ${USER_CACHE_DIR}/pip
 
-# Remove history files
+# poetry
+# https://github.com/python-poetry/poetry/issues/8156#issuecomment-1620770507
+poetry cache clear --all . || true
+rm -rf ${USER_CACHE_DIR}/pypoetry
+
+# history files
 rm -f $HOME/.python_history
+rm -F $HOME/.bash_history
