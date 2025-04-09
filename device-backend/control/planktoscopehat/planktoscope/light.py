@@ -41,7 +41,7 @@ class i2c_led:
 
     def __init__(self):
         # The led is controlled by LM36011
-        # but on version < 2 of the PlanktoScope hat (for example PlanktoScope v2.6)
+        # but on version 1.2 of the PlanktoScope HAT (PlanktoScope v2.6)
         # the circuit is connected to that pin so it needs to be high
         # pin is assigned to self to prevent gpiozero from immediately releasing it
         self.__pin = DigitalOutputDevice(pin=18, initial_value=True)

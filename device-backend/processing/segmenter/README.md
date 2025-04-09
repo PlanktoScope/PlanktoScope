@@ -18,6 +18,13 @@ Currently, the simplest way to deploy the segmenter on any computer is using the
 
 TBD
 
+### Prerequisites
+
+To use this project, you'll need:
+
+- Python >= 3.9
+- Poetry 2.1.2
+
 ## Licensing
 
 Except where otherwise indicated, source code provided here is covered by the following information:

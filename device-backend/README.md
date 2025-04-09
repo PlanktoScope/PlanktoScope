@@ -15,10 +15,6 @@ This repository contains the PlanktoScope's backend software services implementi
 - Data processing: transforms raw data into processed data for downstream analysis and quantification. Currently, data processing functionality consists of:
   - [Object isolation and segmentation](./processing/segmenter/README.md): detects objects from camera frames and creates an image for each isolated object, with the background removed.
 
-## Usage
-
-TBD
-
 ## Licensing
 
 Except where otherwise indicated, source code provided here is covered by the following information:
