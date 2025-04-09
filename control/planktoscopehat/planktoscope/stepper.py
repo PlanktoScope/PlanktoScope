@@ -2,9 +2,8 @@
 import time
 import json
 import os
-import planktoscope.mqtt
+from . import mqtt
 import multiprocessing
-import RPi.GPIO
 
 import shush
 
@@ -417,7 +416,7 @@ class StepperProcess(multiprocessing.Process):
         # it doesn't see changes and calls made by self.actuator_client because this one
         # only exist in the master process
         # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
-        self.actuator_client = planktoscope.mqtt.MQTT_Client(
+        self.actuator_client = mqtt.MQTT_Client(
             topic="actuator/#", name="actuator_client"
         )
         # Publish the status "Ready" to via MQTT to Node-RED

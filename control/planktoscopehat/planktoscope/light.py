@@ -4,21 +4,20 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
+from gpiozero import DigitalOutputDevice
+
 import os, time
 
 # Library for starting processes
 import multiprocessing
 
 # Basic planktoscope libraries
-import planktoscope.mqtt
-
-import RPi.GPIO
+from . import mqtt
 
 # Library to send command over I2C for the light module on the fan
 import smbus2 as smbus
 
 import enum
-
 
 logger.info("planktoscope.light is loaded")
 
@@ -40,20 +39,19 @@ class i2c_led:
     # This constant defines the current (mA) sent to the LED, 10 allows the use of the full ISO scale and results in a voltage of 2.77v
     DEFAULT_CURRENT = 10
 
-    # This is the BCM pin of the led
-    LED_PIN = 18
-
     def __init__(self):
+        # The led is controlled by LM36011
+        # but on version < 2 of the PlanktoScope hat (for example PlanktoScope v2.6)
+        # the circuit is connected to that pin so it needs to be high
+        # pin is assigned to self to prevent gpiozero from immediately releasing it
+        self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
+
         self.VLED_short = False
         self.thermal_scale = False
         self.thermal_shutdown = False
         self.UVLO = False
         self.flash_timeout = False
         self.IVFM = False
-        RPi.GPIO.setwarnings(False)
-        RPi.GPIO.setmode(RPi.GPIO.BCM)
-        RPi.GPIO.setup(self.LED_PIN, RPi.GPIO.OUT)
-        RPi.GPIO.output(self.LED_PIN, RPi.GPIO.HIGH)
         self.on = False
         try:
             self.force_reset()
@@ -280,7 +278,7 @@ class LightProcess(multiprocessing.Process):
         )
 
         # MQTT Service connection
-        self.light_client = planktoscope.mqtt.MQTT_Client(
+        self.light_client = mqtt.MQTT_Client(
             topic="light", name="light_client"
         )
 
@@ -299,7 +297,6 @@ class LightProcess(multiprocessing.Process):
         self.led.set_torch_current(1)
         self.led.set_flash_current(1)
         self.led.get_flags()
-        RPi.GPIO.cleanup()
         self.light_client.client.publish("status/light", '{"status":"Dead"}')
         self.light_client.shutdown()
         logger.success("Light process shut down! See you!")
@@ -320,4 +317,3 @@ if __name__ == "__main__":
     led.set_torch_current(1)
     led.set_flash_current(1)
     led.get_flags()
-    RPi.GPIO.cleanup()

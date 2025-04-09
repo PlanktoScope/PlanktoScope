@@ -45,11 +45,12 @@ adafruit-circuitpython-motor = "~3.3.1"
 adafruit-ssd1306 = "~1.6.2"
 adafruit-platformdetect = "~3.45.2"
 smbus2 = "~0.4.1"
+spidev = "~3.5"
+gpiozero = "^2.0.1"
 # Note: the following packages are only indirect dependencies, but we need to download wheels from
 # the appropriate sources, so we must explicitly select them here
 rpi-ws281x = "~5.0.0"
 sysv-ipc = "~1.1.0"
-spidev = "~3.5"
 
 [tool.poetry.group.hw-dev]
 optional = true
