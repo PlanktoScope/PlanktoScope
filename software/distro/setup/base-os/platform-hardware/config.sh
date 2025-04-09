@@ -14,7 +14,7 @@
 # it harder for our project to enable running the PlanktoScope software on computers besides the
 # Raspberry Pi. So we should avoid adding more raspi-config commands.
 
-if ! command -v raspi-config &> /dev/null; then
+if ! command -v raspi-config &>/dev/null; then
   echo "Warning: raspi-config is unavailable, so no RPi-specific hardware configuration will be applied!"
   exit 0
 fi
@@ -24,17 +24,8 @@ sudo raspi-config nonint do_spi 0
 sudo raspi-config nonint do_i2c 0
 
 # The following command enables the serial port and serial port console.
-# do_serial_cons and do_serial_hw are needed for Raspberry Pi OS 12 (bookworm) and above, while
-# do_serial is needed for Raspberry Pi OS (bullseye).
-DISTRO_VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
-if [ $DISTRO_VERSION_ID -ge 12 ]; then # Support Raspberry Pi OS 12 (bookworm)
-  sudo raspi-config nonint do_serial_hw 0
-  sudo raspi-config nonint do_serial_cons 0
-else # Support Raspberry Pi OS 11 (bullseye)
-  sudo raspi-config nonint do_serial 0
-fi
+sudo raspi-config nonint do_serial_hw 0
+sudo raspi-config nonint do_serial_cons 0
 
-# The following command enables the camera on the 32-bit Raspberry Pi OS (ARMv7):
-sudo raspi-config nonint do_camera 0
 # The following command disables legacy camera support so that we can use libcamera:
 sudo raspi-config nonint do_legacy 1
