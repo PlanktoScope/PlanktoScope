@@ -4,7 +4,6 @@
 # Determine the base path for copied files
 config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 distro_setup_files_root=$(dirname "$(dirname "$config_files_root")")
-repo_root=$(dirname "$(dirname "$(dirname "$distro_setup_files_root")")")
 
 # Get command-line args
 hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
@@ -50,21 +49,13 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
 
 # Select the enabled dashboard
 mkdir -p "$HOME"/.node-red
-cp "$repo_root/software/node-red-dashboard/flows/$hardware_type.json" \
+cp "$HOME/PlanktoScope/software/node-red-dashboard/flows/$hardware_type.json" \
   "$HOME"/.node-red/flows.json
 mkdir -p "$HOME"/PlanktoScope
-cp "$repo_root/software/node-red-dashboard/default-configs/$default_config.config.json" \
+cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
 
-# Copy required dependencies with hard-coded paths in the Node-RED dashboard
-# TODO: get rid of this when we move the Node-RED dashboard out to its own repository
-mkdir -p "$HOME"/PlanktoScope/software/node-red-dashboard
-directory="software/node-red-dashboard/default-configs"
-cp -r "$repo_root/$directory" "$HOME/PlanktoScope/$directory"
-directory="software/node-red-dashboard/flows"
-cp -r "$repo_root/$directory" "$HOME/PlanktoScope/$directory"
-
 # Install dependencies in a way that makes them available to Node-RED
-cp "$repo_root"/software/node-red-dashboard/package.json "$HOME"/.node-red/
-cp "$repo_root"/software/node-red-dashboard/package-lock.json "$HOME"/.node-red/
+cp "$HOME"/PlanktoScope/software/node-red-dashboard/package.json "$HOME"/.node-red/
+cp "$HOME"/PlanktoScope/software/node-red-dashboard/package-lock.json "$HOME"/.node-red/
 npm --prefix "$HOME"/.node-red update
