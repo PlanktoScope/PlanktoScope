@@ -1,0 +1,49 @@
+name: Build the hardware controller
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'beta'
+      - 'stable'
+    tags:
+      - 'v*'
+  pull_request:
+    paths:
+      - 'control/**'
+      - '.github/workflows/control-*.yml'
+  merge_group:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: 'Git ref (optional)'
+        required: false
+
+env:
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  IMAGE_NAME: device-backend-control
+
+jobs:
+  ci-checks:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry==1.7.1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'poetry'
+          cache-dependency-path: |
+            control/poetry.lock
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get install -y libcap-dev
+          poetry -C ./control/ install --with dev,hw-dev --no-root
+
+      - name: Run checks
+        run: poetry -C ./control/ run poe --root ./control/ check
