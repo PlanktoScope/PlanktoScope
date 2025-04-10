@@ -45,10 +45,16 @@ python3 -m venv "$POETRY_VENV"
 "$POETRY_VENV/bin/pip" install --progress-bar off poetry==1.7.1
 
 # Download device-backend monorepo
-backend_repo="$(cat "$config_files_root/backend-repo")"
 backend_version="$(cat "$config_files_root/backend-version")"
-git clone "https://$backend_repo" "$HOME/device-backend" --no-checkout --filter=blob:none
-git -C "$HOME/device-backend" checkout --quiet "$backend_version"
+git clone "https://github.com/PlanktoScope/PlanktoScope.git" "$HOME/repo" --no-checkout --filter=blob:none
+git -C "$HOME/repo" checkout --quiet "$backend_version"
+
+# Historically device-backend lived in its own repository at https://github.com/PlanktoScope/device-backend
+# and was cloned to $HOME/device-backend, it was later merged into the PlanktoScope monorepo
+# we keep a bind mount until the transition is complete
+mkdir -p $HOME/device-backend
+sudo mount --bind $HOME/repo/device-backend $HOME/device-backend
+echo "$HOME/repo/device-backend $HOME/device-backend none defaults,bind" | sudo tee -a /etc/fstab
 
 # Set up the hardware controllers
 # Note(ethanjli): we use picamera2 from the system for compatibility, and because dependencies are
