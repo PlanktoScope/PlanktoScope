@@ -45,6 +45,14 @@ else
   panic "$description"
 fi
 
+description="set up /home/pi/PlanktoScope"
+report_starting "$description"
+if "$build_scripts_root/PlanktoScope/install.sh"; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 description="set up Node-RED frontend"
 report_starting "$description"
 if "$build_scripts_root/node-red-frontend/install.sh" "$hardware_type"; then
