@@ -1,6 +1,6 @@
 # Non-Standard Installation
 
-This page provides instructions for setting up non-standard versions of the PlanktoScope OS on a PlanktoScope. The PlanktoScope project also uses this same process for creating the official PlanktoScope software SD card images used in the [standard software installation process](standard-install.md).
+This page provides instructions for setting up non-standard versions of the PlanktoScope OS on a PlanktoScope. The PlanktoScope project uses an automated version of this process for creating the official PlanktoScope software SD card images used in the [standard software installation process](standard-install.md).
 
 ## Prerequisites
 
@@ -8,13 +8,13 @@ This guide assumes that:
 
 1. You have previous experience with using the command-line terminal on the Raspberry Pi OS or another Linux distribution.
 2. You have already confirmed that your PlanktoScope works without any problems with software installed by the standard PlanktoScope software setup process.
-3. You already know how to use the PlanktoScope software.
+3. You are already familiar with the PlanktoScope software and the way the PlanktoScope project does [versioning](../../reference/software/release-process.md) of the PlanktoScope OS.
 
-If you have not used the PlanktoScope software before, you should first start with the standard software setup process in order to troubleshoot any problems with your PlanktoScope hardware; you can then try the non-standard setup process afterwards.
+If you have not used the PlanktoScope software before, you should first start with the standard software setup process in order to troubleshoot any problems with your PlanktoScope hardware; you can then try the non-standard setup process later.
 
 In order to complete the non-standard setup process, you will need all of the following:
 
-1. A Raspberry Pi computer. We only test to ensure that the PlanktoScope software works on the Raspberry Pi 4; it may or may not work on the Raspberry Pi 3, and it does not yet work on the Raspberry Pi 5.
+1. A Raspberry Pi computer. Each version of PlanktoScope OS is only compatible with certain versions of Raspberry Pi computers; for more information, please check the [software product specifications](../../reference/software/product-specs.md) for the version of PlanktoScope OS which you want to set up.
 2. A keyboard connected to your Raspberry Pi.
 3. A display connected to your Raspberry Pi.
 4. A micro-SD card for your Raspberry Pi.
@@ -25,17 +25,29 @@ In order to complete the non-standard setup process, you will need all of the fo
 
 ### Download a Raspberry Pi OS SD card image
 
-The setup scripts for the PlanktoScope OS assume that you will be setting up the PlanktoScope software on a 64-bit version of the Raspberry Pi OS with Debian version 11 (bullseye), preferably the version released on 2023-03-12. You can choose any of the following three variants of that version of the Raspberry Pi OS, depending on your needs:
+#### Choose an appropriate Raspberry Pi OS release version
 
-- ["Raspberry Pi OS with desktop"](https://downloads.raspberrypi.com/raspios_oldstable_arm64/images/raspios_oldstable_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64.img.xz)
-- ["Raspberry Pi OS with desktop and recommended software"](https://downloads.raspberrypi.com/raspios_oldstable_full_arm64/images/raspios_oldstable_full_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-full.img.xz)
-- ["Raspberry Pi OS Lite"](https://downloads.raspberrypi.com/raspios_oldstable_lite_arm64/images/raspios_oldstable_lite_arm64-2024-03-12/2024-03-12-raspios-bullseye-arm64-lite.img.xz)
-
-The standard PlanktoScope software SD card images are built on the Raspberry Pi OS Lite image, which only provides a command-line interface, without a graphical desktop environment or web browser; because the PlanktoScope's graphical user interface must be accessed from a web browser, you might prefer to use the "Raspberry Pi OS with desktop" image in order to have a graphical desktop environment with a web browser. This would allow you to operate the PlanktoScope by plugging in a display, keyboard, and mouse to your Raspberry Pi; otherwise, you will have to connect to the PlanktoScope from another device over Ethernet or Wi-Fi in order access the PlanktoScope's graphical user interface.
+The setup scripts for the PlanktoScope OS assume that you will be setting up the PlanktoScope software on a 64-bit version of the Raspberry Pi OS with the same Raspberry Pi OS release name (e.g. `bookworm`) and release date (e.g. `2024-11-19`) as what we use in building our official SD card images of the PlanktoScope OS.
 
 !!! warning
+    The PlanktoScope OS setup scripts are very likely to work incorrectly (in obvious or subtle ways) on other versions of Raspberry Pi OS. For example, we are aware that some Raspberry Pi OS versions come with buggy or incompatible versions of system packages required by PlanktoScope OS.
 
-    The latest version of Raspberry Pi OS, with Debian version 12 (bookworm), can be downloaded from [the Raspberry Pi Operating system images page](https://www.raspberrypi.com/software/operating-systems/), but the PlanktoScope software setup scripts do not yet work on Debian version 12; that page also has links named "Archive" under the download buttons where you can find older versions with Debian version 11 (bullseye) under the "Raspberry Pi OS (Legacy)" section; those links are the same as the links we listed above.
+Here is how you can determine the appropriate release name and release date to use for the version of PlanktoScope OS which you want to set up:
+
+1. Base OS release name: check the "distro" information for the base operating system for that version of PlanktoScope OS in the [software product specifications](../../reference/software/product-specs.md). For example, the section for PlanktoScope OS v2025.0.0 lists its base distro as "Raspberry Pi OS 12 (bookworm)", so the base OS release name is `bookworm`. 
+2. Base OS release date: check the `base_release_date` field of the matching `build-os-{base OS release name}.yml` file (e.g. `build-os-bookworm.yml`) in the `.github/workflows` subdirectory of the PlanktoScope OS repository at that version of the PlanktoScope OS. For example, v2025.0.0's required base release date might be something like `2024-11-19`.
+
+If you need help determining this information, please post a message in the `#6-dev-software` channel on the PlanktoScope Slack and mention the version of the PlanktoScope OS which you want to set up with this non-standard method, so that we can help you.
+
+#### Choose an appropriate Raspberry Pi OS variant
+
+The standard PlanktoScope software SD card images are built on the Raspberry Pi OS Lite image for the appropriate release version of Raspberry Pi OS. The Lite image only provides a command-line interface, without a graphical desktop environment or web browser. Because the PlanktoScope's graphical user interface must be accessed from a web browser, you might prefer to use the "Raspberry Pi OS with desktop" image in order to have a graphical desktop environment with a web browser. This would allow you to operate the PlanktoScope by plugging in a display, keyboard, and mouse to your Raspberry Pi; otherwise, you will have to connect to the PlanktoScope from another device over Ethernet or Wi-Fi in order to access the PlanktoScope's graphical user interface.
+
+We also build and use (but we don't officially release or support) developer-focused SD card images (which we label "-dx" as an abbreviation for "developer experience") which come with the Raspberry Pi OS graphical desktop environment (which is called "Raspberry Pi OS with desktop" in the Raspberry Pi OS download page). To learn more about these `-dx` images, please post a message in the `#6-dev-software` channel on the PlanktoScope Slack.
+
+#### Download the correct Raspberry Pi OS image
+
+Once you have determined the appropriate release name, release date, and variant of Raspberry Pi OS, you should download the appropriate 64-bit version of Raspberry Pi OS from the [Raspberry Pi OS download page](https://www.raspberrypi.com/software/operating-systems/). If the appropriate release date is not shown on that page, you may need to use the "Archive" link in the section of that page corresponding to the appropriate release name and variant; with the "Archive" link, you can choose an image with the appropriate release date. If you need help, please post a message in the `#6-dev-software` channel on the PlanktoScope Slack and mention the release name, release date, and variant which you are trying to download.
 
 ### Write the OS image to an SD card
 

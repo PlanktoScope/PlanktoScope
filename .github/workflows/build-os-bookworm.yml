@@ -17,7 +17,7 @@ on:
       - 'software/**'
       - '!software/CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
-  #merge_group:
+  merge_group:
   workflow_dispatch:
     inputs:
       git-ref:
@@ -37,6 +37,7 @@ jobs:
         variant:
           - adafruithat
           - planktoscopehat
+          - fairscope-latest
         base_variant_name:
           - lite
     permissions:

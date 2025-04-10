@@ -12,12 +12,7 @@ sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
 # The following command enables the serial port but disables the login shell over the serial port.
 # We use this because the serial port is reserved for a GPS device.
 # Note that this overrides a setting in the base-os/platform-hardware/config.sh script.
-DISTRO_VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
-if [ "$DISTRO_VERSION_ID" -ge 12 ]; then # Support Raspberry Pi OS 12 (bookworm)
-  sudo raspi-config nonint do_serial_cons 1
-else # Support Raspberry Pi OS 11 (bullseye)
-  sudo raspi-config nonint do_serial 2
-fi
+sudo raspi-config nonint do_serial_cons 1
 
 # Enable automatic time update from GPSD
 file="/boot/config.txt"

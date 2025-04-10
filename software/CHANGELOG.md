@@ -18,8 +18,9 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye). No support will be given for running the PlanktoScope OS setup scripts on bullseye base images, and the OS setup scripts will not work on bullseye.
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
-- (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, in preparation for an upgrade to Raspberry Pi OS 12 (bookworm). Thus, NetworkManager is installed on bullseye-based images, while dhcpcd is now uninstalled on bullseye-based images. As part of this change the previous autohotspot service has been removed, as it's redundant with functionality provided by NetworkManager.
+- (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). As part of this change the previous autohotspot service has been removed, as it's redundant with functionality now provided by NetworkManager.
 
 ### Removed
 
