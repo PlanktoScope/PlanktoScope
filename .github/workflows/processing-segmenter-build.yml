@@ -105,6 +105,9 @@ jobs:
           retention-days: 1
 
   merge-container-images:
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     needs:
       - build-container-image
