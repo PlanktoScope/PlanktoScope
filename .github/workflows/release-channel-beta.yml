@@ -1,0 +1,40 @@
+---
+name: release-channel-beta
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+-beta.*'
+      # We want to advance the beta branch to the latest stable release, too:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  ff-branch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'ci-checks'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
+      - uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'merge-container-images'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - run: |
+          git checkout beta
+          git merge --ff-only ${{ github.ref_name }}
+
+      - uses: ad-m/github-push-action@v0.8.0
+        with:
+          branch: beta

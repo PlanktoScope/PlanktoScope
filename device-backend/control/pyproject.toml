@@ -1,0 +1,311 @@
+[tool.poetry]
+name = "planktoscope-controller"
+# Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
+# "2023.7.0-beta.0", which is different from the Semantic Versioning schema
+version = "2024.0.0"
+description = "Controller of PlanktoScope hardware"
+# For simplicity, we follow the definition of "Maintainer" from
+# https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
+# "Maintainers: Contributors who are responsible for driving the vision and managing the
+# organizational aspects of the project".
+# Here, we only list the current maintainers of the PlanktoScope backend software.
+maintainers = ["Ethan Li <lietk12@gmail.com>"]
+# For simplicity, we follow the definition of "Author" from
+# https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
+# "Author: The person/s or organization that created the project".
+# Here, we only list the authors of the PlanktoScope backend software.
+authors = ["Romain Bazile <romain@oceantrotter.org>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+homepage = "https://www.planktoscope.org"
+repository = "https://github.com/PlanktoScope/device-backend"
+documentation = "https://docs.planktoscope.community/"
+keywords = ["planktoscope"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Natural Language :: English",
+  "Topic :: Scientific/Engineering",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.9.2"
+paho-mqtt = "~1.6.1"
+loguru = "~0.5.3"
+readerwriterlock = "~1.0.9"
+
+[tool.poetry.group.hw.dependencies]
+rpi-gpio = "~0.7.0"
+adafruit-blinka = "~8.19.0"
+adafruit-circuitpython-motorkit = "~1.6.3"
+adafruit-circuitpython-motor = "~3.3.1"
+adafruit-ssd1306 = "~1.6.2"
+adafruit-platformdetect = "~3.45.2"
+smbus2 = "~0.4.1"
+spidev = "~3.5"
+gpiozero = "^2.0.1"
+# Note: the following packages are only indirect dependencies, but we need to download wheels from
+# the appropriate sources, so we must explicitly select them here
+rpi-ws281x = "~5.0.0"
+sysv-ipc = "~1.1.0"
+
+[tool.poetry.group.hw-dev]
+optional = true
+
+# Note: the following packages are only indirect dependencies of picamera2, and on the RPi we use
+# the system's installation of them (managed by apt-get) because poetry tries to build them from
+# source instead of installing the armv7l wheels. Maybe poetry is messing up at detecting the
+# machine platform or something.
+[tool.poetry.group.hw-dev.dependencies]
+# v1.19.5 (the version from the RPi on bullseye) fails to install in GitHub Actions, so we just use
+# the latest version and hope that the differences won't be significant enough to cause a mismatch
+# between CI and the production environment (i.e. the RPi):
+picamera2 = "==0.3.12"
+numpy = "~1.26.4"
+pidng = "~4.0.9"
+simplejpeg = "~1.6.4"
+pillow = "~10.2.0"
+av = "~10.0.0"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.25.0"
+black = "^24.2.0"
+isort = "^5.13.2"
+mypy = "^1.9.0"
+pylama = { extras = ["all", "toml"], version = "^8.4.1" }
+flake8 = "^7.0.0"
+flake8-import-restrictions = "^2.0.1"
+pylint = "^3.1.0"
+pylint-google-style-guide-imports-enforcing = "^1.3.0"
+types-paho-mqtt = "^1.6.0.20240106"
+
+[tool.black]
+# We are gradually introducing standard formatting as we rewrite each module; we haven't rewritten
+# the following files yet:
+extend_exclude = '''
+(
+    adafruithat/main.py
+  | adafruithat/planktoscope/__init__.py
+  | adafruithat/planktoscope/display.py
+  | adafruithat/planktoscope/identity.py
+  | adafruithat/planktoscope/integrity.py
+  | adafruithat/planktoscope/light.py
+  | adafruithat/planktoscope/mqtt.py
+  | adafruithat/planktoscope/stepper.py
+  | adafruithat/planktoscope/uuidName.py
+  | adafruithat/planktoscope/imager/.*
+  | planktoscopehat/main.py
+  | planktoscopehat/main_thread.py
+  | planktoscopehat/shush/.*
+  | planktoscopehat/planktoscope/__init__.py
+  | planktoscopehat/planktoscope/display.py
+  | planktoscopehat/planktoscope/identity.py
+  | planktoscopehat/planktoscope/integrity.py
+  | planktoscopehat/planktoscope/light.py
+  | planktoscopehat/planktoscope/module.py
+  | planktoscopehat/planktoscope/mqtt.py
+  | planktoscopehat/planktoscope/stepper.py
+  | planktoscopehat/planktoscope/uuidName.py
+  | planktoscopehat/planktoscope/imager/.*
+)
+'''
+line-length = 100
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true
+line_length = 100
+known_first_party = ["planktoscope", "shush"]
+# We are gradually introducing deterministic import ordering as we rewrite each module; we haven't
+# rewritten the following files yet:
+extend_skip_glob = [
+  "adafruithat/main.py",
+  "adafruithat/planktoscope/__init__.py",
+  "adafruithat/planktoscope/display.py",
+  "adafruithat/planktoscope/identity.py",
+  "adafruithat/planktoscope/integrity.py",
+  "adafruithat/planktoscope/light.py",
+  "adafruithat/planktoscope/mqtt.py",
+  "adafruithat/planktoscope/stepper.py",
+  "adafruithat/planktoscope/uuidName.py",
+  "adafruithat/planktoscope/imager/*",
+  "planktoscopehat/main.py",
+  "planktoscopehat/main_thread.py",
+  "planktoscopehat/shush/*",
+  "planktoscopehat/planktoscope/__init__.py",
+  "planktoscopehat/planktoscope/display.py",
+  "planktoscopehat/planktoscope/identity.py",
+  "planktoscopehat/planktoscope/integrity.py",
+  "planktoscopehat/planktoscope/light.py",
+  "planktoscopehat/planktoscope/module.py",
+  "planktoscopehat/planktoscope/mqtt.py",
+  "planktoscopehat/planktoscope/stepper.py",
+  "planktoscopehat/planktoscope/uuidName.py",
+  "planktoscopehat/planktoscope/imager/*",
+]
+
+[tool.mypy]
+warn_unused_configs = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+# We are gradually introducing type-checking as we rewrite each module; we have to rewrite some
+# modules before we can enable these flags:
+# disallow_untyped_calls = true
+# disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_reexport = true
+strict_equality = true
+extra_checks = true
+# We are gradually introducing type-checking as we rewrite each module; we haven't rewritten the
+# following files yet:
+exclude = [
+  'adafruithat/main\.py',
+  'adafruithat/planktoscope/__init__\.py',
+  'adafruithat/planktoscope/display\.py',
+  'adafruithat/planktoscope/identity\.py',
+  'adafruithat/planktoscope/integrity\.py',
+  'adafruithat/planktoscope/light\.py',
+  'adafruithat/planktoscope/mqtt\.py',
+  'adafruithat/planktoscope/stepper\.py',
+  'adafruithat/planktoscope/uuidName\.py',
+  'adafruithat/planktoscope/imager/.*',
+  'planktoscopehat/main\.py',
+  'planktoscopehat/main_thread\.py',
+  'planktoscopehat/shush/.*',
+  'planktoscopehat/planktoscope/__init__\.py',
+  'planktoscopehat/planktoscope/display\.py',
+  'planktoscopehat/planktoscope/identity\.py',
+  'planktoscopehat/planktoscope/integrity\.py',
+  'planktoscopehat/planktoscope/light\.py',
+  'planktoscopehat/planktoscope/module\.py',
+  'planktoscopehat/planktoscope/mqtt\.py',
+  'planktoscopehat/planktoscope/stepper\.py',
+  'planktoscopehat/planktoscope/uuidName\.py',
+  'planktoscopehat/planktoscope/imager/.*',
+]
+
+[tool.pylama]
+# We are gradually introducing linting as we rewrite each module; we haven't rewritten the following
+# files yet:
+skip = '''
+adafruithat/main.py,\
+adafruithat/planktoscope/__init__.py,\
+adafruithat/planktoscope/display.py,\
+adafruithat/planktoscope/identity.py,\
+adafruithat/planktoscope/integrity.py,\
+adafruithat/planktoscope/light.py,\
+adafruithat/planktoscope/mqtt.py,\
+adafruithat/planktoscope/stepper.py,\
+adafruithat/planktoscope/uuidName.py,\
+adafruithat/planktoscope/imager/*,\
+planktoscopehat/main.py,\
+planktoscopehat/main_thread.py,\
+planktoscopehat/shush/*,\
+planktoscopehat/planktoscope/__init__.py,\
+planktoscopehat/planktoscope/display.py,\
+planktoscopehat/planktoscope/identity.py,\
+planktoscopehat/planktoscope/integrity.py,\
+planktoscopehat/planktoscope/light.py,\
+planktoscopehat/planktoscope/module.py,\
+planktoscopehat/planktoscope/mqtt.py,\
+planktoscopehat/planktoscope/stepper.py,\
+planktoscopehat/planktoscope/uuidName.py,\
+planktoscopehat/planktoscope/imager/*,\
+'''
+
+[tool.pylama.linter.pycodestyle]
+max_line_length = 100
+ignore = "E704,W503"
+
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 100
+
+[tool.pylint.MASTER]
+disable = [
+  # Until we upgrade to python 3.10 on the RPi (by upgrading to bookworm), we can't use alternative
+  # union syntax; but GitHub Actions CI runs python3.10, so we need to suppress this warning to pass
+  # CI checks:
+  "consider-alternative-union-syntax",
+  # Until we can import RPi-specific libraries when running checks in Docker or in a linter, we
+  # can't accurately check for invalid imports on non-RPi computers:
+  "import-error",
+  # We have too many TODOs and FIXMEs to check in the linter:
+  "fixme",
+  # This gives false positives on Mypy protocols which often only need only one public method:
+  "too-few-public-methods",
+]
+load-plugins = [
+  "pylint.extensions.code_style",
+  "pylint.extensions.comparison_placement",
+  "pylint.extensions.confusing_elif",
+  "pylint.extensions.bad_builtin",
+  "pylint.extensions.check_elif",
+  "pylint.extensions.dunder",
+  "pylint.extensions.check_elif",
+  "pylint.extensions.empty_comment",
+  "pylint.extensions.eq_without_hash",
+  "pylint.extensions.private_import",
+  "pylint.extensions.redefined_variable_type",
+  "pylint.extensions.docparams",
+  "pylint.extensions.typing",
+  "pylint_google_style_guide_imports_enforcing",
+]
+# We are gradually introducing standard formatting as we rewrite each module; we haven't rewritten
+# the following files yet:
+ignore-paths = [
+  "adafruithat/main.py",
+  "adafruithat/planktoscope/__init__.py",
+  "adafruithat/planktoscope/display.py",
+  "adafruithat/planktoscope/identity.py",
+  "adafruithat/planktoscope/integrity.py",
+  "adafruithat/planktoscope/light.py",
+  "adafruithat/planktoscope/mqtt.py",
+  "adafruithat/planktoscope/stepper.py",
+  "adafruithat/planktoscope/uuidName.py",
+  "adafruithat/planktoscope/imager/.*",
+  "planktoscopehat/main.py",
+  "planktoscopehat/main_thread.py",
+  "planktoscopehat/shush/.*",
+  "planktoscopehat/planktoscope/__init__.py",
+  "planktoscopehat/planktoscope/display.py",
+  "planktoscopehat/planktoscope/identity.py",
+  "planktoscopehat/planktoscope/integrity.py",
+  "planktoscopehat/planktoscope/light.py",
+  "planktoscopehat/planktoscope/module.py",
+  "planktoscopehat/planktoscope/mqtt.py",
+  "planktoscopehat/planktoscope/stepper.py",
+  "planktoscopehat/planktoscope/uuidName.py",
+  "planktoscopehat/planktoscope/imager/.*",
+]
+
+[tool.pylint.similarities]
+min-similarity-lines = 60
+
+[tool.poe.tasks]
+fmt-black = "black ."
+fmt-isort = "isort ."
+fmt = ["fmt-black", "fmt-isort"]
+check-black = "black --diff --color ."
+check-isort = "isort --check --diff ."
+lint-mypy-adafruithat = "mypy adafruithat"
+lint-mypy-planktoscopehat = "mypy planktoscopehat"
+lint-mypy = ["lint-mypy-adafruithat", "lint-mypy-planktoscopehat"]
+lint-pylama = "pylama"
+lint-flake8 = "flake8 ."
+lint-pylint-adafruithat = "pylint adafruithat"
+lint-pylint-planktoscopehat = "pylint planktoscopehat"
+lint-pylint = ["lint-pylint-adafruithat", "lint-pylint-planktoscopehat"]
+lint = ["lint-mypy", "lint-pylama", "lint-flake8", "lint-pylint"]
+check = ["check-black", "check-isort", "lint"]
+scp = "scp -r \"$PWD\" pi@${HOST}:/home/pi/device-backend/control"
