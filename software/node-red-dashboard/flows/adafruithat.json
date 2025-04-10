@@ -9028,7 +9028,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$join([\"/home/pi/device-backend/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
+                "to": "$join([\"/home/pi/PlanktoScope/device-backend/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
                 "tot": "jsonata"
             }
         ],
