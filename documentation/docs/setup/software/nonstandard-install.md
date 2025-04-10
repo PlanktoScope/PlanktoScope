@@ -8,7 +8,7 @@ This guide assumes that:
 
 1. You have previous experience with using the command-line terminal on the Raspberry Pi OS or another Linux distribution.
 2. You have already confirmed that your PlanktoScope works without any problems with software installed by the standard PlanktoScope software setup process.
-3. You are already familiar with the PlanktoScope software and the way the PlanktoScope project manages versions of the PlanktoScope OS.
+3. You are already familiar with the PlanktoScope software and the way the PlanktoScope project does [versioning](../../reference/software/release-process.md) of the PlanktoScope OS.
 
 If you have not used the PlanktoScope software before, you should first start with the standard software setup process in order to troubleshoot any problems with your PlanktoScope hardware; you can then try the non-standard setup process later.
 
