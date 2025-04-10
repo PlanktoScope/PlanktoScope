@@ -10,7 +10,7 @@ on:
       - 'v*'
   pull_request:
     paths:
-      - 'processing/segmenter/**'
+      - 'device-backend/processing/segmenter/**'
       - '.github/workflows/processing-segmenter-*.yml'
   merge_group:
   workflow_dispatch:
@@ -77,7 +77,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./processing/segmenter
+          context: ./device-backend/processing/segmenter
           pull: true
           platforms: ${{ matrix.docker-platform }}
           labels: ${{ steps.meta.outputs.labels }}
