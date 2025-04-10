@@ -21,11 +21,6 @@ esac
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   git python3-pip python3-venv
 
-## Upgrade python3-libcamera to solve an issue in Raspberry Pi OS bookworm-2024-11-19
-## https://github.com/raspberrypi/picamera2/issues/1229#issuecomment-2772493538
-sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
-  python3-libcamera
-
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
 # (see https://github.com/pypa/pip/issues/7883)
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
@@ -42,7 +37,7 @@ python3 -m venv "$POETRY_VENV"
 "$POETRY_VENV/bin/pip" install --upgrade --progress-bar off \
   pip==23.3.2 setuptools==68.2.2
 "$POETRY_VENV/bin/pip" install --progress-bar off cryptography==41.0.5
-"$POETRY_VENV/bin/pip" install --progress-bar off poetry==1.7.1
+"$POETRY_VENV/bin/pip" install --progress-bar off poetry==2.1.2
 
 # Download device-backend monorepo
 backend_repo="$(cat "$config_files_root/backend-repo")"
@@ -51,13 +46,15 @@ git clone "https://$backend_repo" "$HOME/device-backend" --no-checkout --filter=
 git -C "$HOME/device-backend" checkout --quiet "$backend_version"
 
 # Set up the hardware controllers
-# Note(ethanjli): we use picamera2 from the system for compatibility, and because dependencies are
-# annoying to manage on armv7. Once we migrate to RPi OS 12 (bookworm), let's try again to just
-# install it via poetry.
+# Upgrade python3-libcamera to solve an issue in Raspberry Pi OS bookworm-2024-11-19
+# https://github.com/raspberrypi/picamera2/issues/1229#issuecomment-2772493538
+# Once this fails in CI, it means the default version of python3-libcamera in
+# Raspberry Pi OS has been updated. In which case this can be removed.
+echo "If the next command fails, see comment in install.sh"
+sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
+  python3-libcamera=0.4.0+rpt20250213-1
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
-"$POETRY_VENV/bin/poetry" --directory "$HOME/device-backend/control" config \
-  virtualenvs.options.system-site-packages true --local
 "$POETRY_VENV/bin/poetry" --directory "$HOME/device-backend/control" install \
   --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
