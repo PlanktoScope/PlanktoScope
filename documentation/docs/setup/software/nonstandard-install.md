@@ -47,7 +47,7 @@ We also build and use (but we don't officially release or support) developer-foc
 
 #### Download the correct Raspberry Pi OS image
 
-Once you have determined the appropriate release name, release date, and variant of Raspberry Pi OS, you should download the appropriate 64-bit version of Raspberry Pi OS from the [Raspberry Pi OS download page](https://www.raspberrypi.com/software/operating-systems/). If the appropriate release date is not shown on that page, you may need to use the "Archive" link in the corresponding section of that page to choose an image with the appropriate release date. If you need help, please post a message in the `#6-dev-software` channel on the PlanktoScope Slack and mention the release name, release date, and variant which you are trying to download.
+Once you have determined the appropriate release name, release date, and variant of Raspberry Pi OS, you should download the appropriate 64-bit version of Raspberry Pi OS from the [Raspberry Pi OS download page](https://www.raspberrypi.com/software/operating-systems/). If the appropriate release date is not shown on that page, you may need to use the "Archive" link in the section of that page corresponding to the appropriate release name and variant; with the "Archive" link, you can choose an image with the appropriate release date. If you need help, please post a message in the `#6-dev-software` channel on the PlanktoScope Slack and mention the release name, release date, and variant which you are trying to download.
 
 ### Write the OS image to an SD card
 
