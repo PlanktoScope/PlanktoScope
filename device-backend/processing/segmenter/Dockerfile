@@ -13,8 +13,8 @@ RUN \
 
 RUN useradd --create-home pi
 USER pi:pi
-RUN mkdir -p /home/pi/device-backend/processing/segmenter
-WORKDIR /home/pi/device-backend/processing/segmenter
+RUN mkdir -p /home/pi/PlanktoScope/device-backend/processing/segmenter
+WORKDIR /home/pi/PlanktoScope/device-backend/processing/segmenter
 
 # Install Python dependencies
 
