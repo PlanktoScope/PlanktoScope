@@ -19,11 +19,13 @@ However, the organization of the source code does not yet reflect the organizati
 
 Currently the hardware controller can only be deployed as part of the distro setup scripts at [github.com/PlanktoScope/PlanktoScope](https://github.com/PlanktoScope/PlanktoScope).
 
+Please note that for camera we rely on the Raspberry OS packages `python3-picamera2` and `python3-libcamera`.
+
 ### Development
 
 To install all dependencies including development tooling, run:
 ```
-poetry install --with dev,hw-dev --no-root
+poetry install --with dev --no-root
 ```
 
 Then you can run the code auto-formatter on the project by running:
@@ -42,8 +44,8 @@ We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.
 
 To use this project, you'll need:
 
-- Python 3.9
-- Poetry 1.4.2
+- Python >= 3.9
+- Poetry 2.1.2
 
 ## Licensing
 
