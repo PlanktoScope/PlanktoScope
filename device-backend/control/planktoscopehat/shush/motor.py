@@ -10,11 +10,11 @@ class Motor(Board):
         # Setting the CS and enable pins according to the motor number called
 
         if motor == 0:
-            self.chip_select = s1.m0_cs
+            # self.chip_select = s1.m0_cs
             self.enable = DigitalOutputDevice(s1.m0_enable, active_high=False)
             self.spi = Board.spi0
         elif motor == 1:
-            self.chip_select = s1.m1_cs
+            # self.chip_select = s1.m1_cs
             self.enable = DigitalOutputDevice(s1.m1_enable, active_high=False)
             self.spi = Board.spi1
 

@@ -19,20 +19,20 @@ class Board:
         # Only applies to Raspberry Pi
 
         # Define chip select pins
-        self.m0_cs = DigitalOutputDevice(s1.m0_cs)
-        self.m1_cs = DigitalOutputDevice(s1.m1_cs)
+        # self.m0_cs = DigitalOutputDevice(s1.m0_cs)
+        # self.m1_cs = DigitalOutputDevice(s1.m1_cs)
 
         # Define error and stall pins
         self.error = DigitalInputDevice(s1.error)
         self.stall = DigitalInputDevice(s1.stall)
 
         # Pull all cs pins HIGH (LOW initializes data transmission)
-        self.m0_cs.on()
-        self.m1_cs.on()
+        # self.m0_cs.on()
+        # self.m1_cs.on()
 
     def deinit_gpio_state(self):
-        self.m0_cs.close()
-        self.m1_cs.close()
+        # self.m0_cs.close()
+        # self.m1_cs.close()
         self.error.close()
         self.stall.close()
 
