@@ -3,11 +3,15 @@ name: Build the hardware controller
 on:
   push:
     branches:
+      - 'master'
       - 'main'
-      - 'beta'
-      - 'stable'
+      - 'software/beta'
+      - 'software/stable'
     tags:
       - 'v*'
+    paths:
+      - 'device-backend/control/**'
+      - '.github/workflows/control-*.yml'
   pull_request:
     paths:
       - 'device-backend/control/**'
