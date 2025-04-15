@@ -8,3 +8,6 @@ repo_root="$(dirname "$(dirname "$(dirname "$distro_setup_files_root")")")"
 
 sudo cp -r "$repo_root" "$HOME/PlanktoScope"
 sudo chown -R pi:pi "$HOME/PlanktoScope"
+
+file="enable-developer-mode.sh"
+cp "$config_files_root/$file" "$HOME/$file"
