@@ -1,21 +1,21 @@
 __author__ = "ZJAllen"
 
-from shush.board import Board, s1, gpio
+from shush.board import Board, s1
 from shush.drivers import tmc5160_reg as reg
 import time
-
+from gpiozero import OutputDevice, DigitalOutputDevice
 
 class Motor(Board):
     def __init__(self, motor: int):
         # Setting the CS and enable pins according to the motor number called
 
         if motor == 0:
-            self.chip_select = s1.m0_cs
-            self.enable = s1.m0_enable
+            # self.chip_select = s1.m0_cs
+            self.enable = DigitalOutputDevice(s1.m0_enable, active_high=False)
             self.spi = Board.spi0
         elif motor == 1:
-            self.chip_select = s1.m1_cs
-            self.enable = s1.m1_enable
+            # self.chip_select = s1.m1_cs
+            self.enable = DigitalOutputDevice(s1.m1_enable, active_high=False)
             self.spi = Board.spi1
 
         # Initially apply default settings.
@@ -23,12 +23,10 @@ class Motor(Board):
         self.default_settings()
 
     def enable_motor(self):
-        # Pull Enable pin LOW to enable motor
-        gpio.output(self.enable, gpio.LOW)
+        self.enable.on()
 
     def disable_motor(self):
-        # Pull Enable pin HIGH to disable motor
-        gpio.output(self.enable, gpio.HIGH)
+        self.enable.off()
 
     def default_settings(self):
         # Set default motor parameters
