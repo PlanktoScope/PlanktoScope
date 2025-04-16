@@ -45,7 +45,6 @@ python3 -m venv "$POETRY_VENV"
 # https://github.com/raspberrypi/picamera2/issues/1202
 # Once this fails in CI, it means the default version of python3-libcamera in
 # Raspberry Pi OS has been updated. In which case this can be removed.
-sudo -E apt-get update -y -o Dpkg::Progress-Fancy=0
 echo "If the next command fails, see comment in install.sh"
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
   python3-libcamera=0.4.0+rpt20250213-1 python3-av=12.3.0-2+rpt1
