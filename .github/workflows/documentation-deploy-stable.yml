@@ -1,0 +1,71 @@
+name: deploy-documentation/stable
+
+on:
+  push:
+    branches:
+      - 'documentation/stable'
+  workflow_call:
+  workflow_dispatch:
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
+# queued. But do not cancel in-progress runs - we want these deploymeents to complete.
+concurrency:
+  group: "docs-stable-deploy"
+  cancel-in-progress: false
+
+env:
+    DESTINATION_OWNER: ${{ github.repository_owner }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    environment:
+      name: documentation-stable
+      url: ${{ vars.URL }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: documentation/stable
+
+      - name: Install dependencies for mkdocs-material image-processing libraries
+        run: |
+          sudo apt-get -y install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+          sudo apt-get -y install pngquant
+
+      - name: Install poetry
+        run: pipx install poetry==1.7.1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'poetry'
+          cache-dependency-path: |
+            documentation/poetry.lock
+
+      - name: Install build dependencies
+        run: |
+          poetry -C ./documentation/ install --with imaging
+
+      - name: Build documentation
+        env:
+          DOCS_DEPLOY: true
+          DOCS_SITEURL: ${{ vars.URL }}
+        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+
+      - name: Push to ${{ vars.REPOSITORY_NAME }}
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: documentation/site/
+          destination-github-username: ${{ env.DESTINATION_OWNER }}
+          destination-repository-name: ${{ vars.REPOSITORY_NAME }}
+          user-email: github-actions[bot]@users.noreply.github.com
+          user-name: github-actions[bot]
+          commit-message: Deploy ORIGIN_COMMIT
+          target-directory: site

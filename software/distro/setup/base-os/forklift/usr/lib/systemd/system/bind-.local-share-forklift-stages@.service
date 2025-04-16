@@ -1,0 +1,26 @@
+[Unit]
+Description=Mount the Forklift stage store into the default path for the Forklift workspace at %f
+Requires=-.mount
+After=-.mount
+Wants=home.mount
+After=home.mount
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+# This is implemented as a service rather than a mount so that we can have a unit name which isn't
+# bound to the home directory of a specific user.
+Type=oneshot
+RemainAfterExit=true
+Environment=SOURCE=/var/lib/forklift/stages
+ExecStartPre=mkdir -p /var/lib/forklift/stages
+Environment=TARGET=%I/.local/share/forklift/stages
+ExecStartPre=mkdir -p $TARGET
+ExecStart=bash -c 'mount -o bind $SOURCE $TARGET'
+# Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
+# because it just removes the mounts from the namespace while writes to open files can continue;
+# however, this is probably acceptable behavior for our use-case.
+ExecStopPost=umount -l $TARGET
+
+[Install]
+WantedBy=default.target

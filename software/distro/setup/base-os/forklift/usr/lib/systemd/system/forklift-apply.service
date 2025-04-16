@@ -1,0 +1,12 @@
+[Unit]
+Description=Docker Compose applications specified by the local Forklift pallet
+Wants=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+ExecStart=forklift stage apply
+
+[Install]
+WantedBy=multi-user.target

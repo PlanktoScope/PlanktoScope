@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "planktoscope-processing-segmenter"
+# Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
+# "2023.7.0-beta.0", which is different from the Semantic Versioning schema
+version = "2024.0.0"
+description = "Data processor to segment objects from raw PlanktoScope data"
+# For simplicity, we follow the definition of "Maintainer" from
+# https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
+# "Maintainers: Contributors who are responsible for driving the vision and managing the
+# organizational aspects of the project".
+# Here, we only list the current maintainers of the PlanktoScope backend software.
+maintainers = ["Ethan Li <lietk12@gmail.com>"]
+# For simplicity, we follow the definition of "Author" from
+# https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
+# "Author: The person/s or organization that created the project".
+# Here, we only list the authors of the PlanktoScope backend software.
+authors = ["Romain Bazile <romain@oceantrotter.org>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+homepage = "https://www.planktoscope.org"
+repository = "https://github.com/PlanktoScope/device-backend"
+documentation = "https://docs.planktoscope.community/"
+keywords = ["planktoscope"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Natural Language :: English",
+  "Topic :: Scientific/Engineering",
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.9.2"
+paho-mqtt = "^1.6.1"
+numpy = "^1.22.4"
+pandas = "^2.1.4"
+loguru = "^0.5.3"
+opencv-python-headless = "^4.6.0.66"
+scikit-image = "^0.19.3"
