@@ -3404,21 +3404,6 @@
         ]
     },
     {
-        "id": "cbb8afed.0a026",
-        "type": "rpi-gpio out",
-        "z": "bccd1f23.87219",
-        "name": "LED Output",
-        "pin": "21",
-        "set": true,
-        "level": "0",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 550,
-        "y": 120,
-        "wires": []
-    },
-    {
         "id": "3cb96380.e575ec",
         "type": "function",
         "z": "bccd1f23.87219",
@@ -3646,31 +3631,6 @@
         ]
     },
     {
-        "id": "9a1d0e7c.2d5a1",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: OFF",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "off",
-        "payloadType": "str",
-        "x": 130,
-        "y": 120,
-        "wires": [
-            [
-                "f0775525.cf806"
-            ]
-        ]
-    },
-    {
         "id": "f782a471.447748",
         "type": "inject",
         "z": "bccd1f23.87219",
@@ -3850,43 +3810,6 @@
         "wires": [
             [
                 "62030521.88317c"
-            ]
-        ]
-    },
-    {
-        "id": "f0775525.cf806",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "light_control",
-        "group": "4248342d.e55fac",
-        "order": 1,
-        "width": 5,
-        "height": 1,
-        "label": "Light  ",
-        "stateField": "payload",
-        "enableField": "enable",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "options": [
-            {
-                "label": "Off",
-                "value": "0",
-                "valueType": "num",
-                "color": "#009933"
-            },
-            {
-                "label": "On",
-                "value": "1",
-                "valueType": "num",
-                "color": "#999999"
-            }
-        ],
-        "x": 350,
-        "y": 120,
-        "wires": [
-            [
-                "cbb8afed.0a026"
             ]
         ]
     },
@@ -7130,64 +7053,6 @@
         ]
     },
     {
-        "id": "43cf8ff7.75231",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "Pump Enable",
-        "pin": "4",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 420,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "4bca8a25.15be3c",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "Focus Enable",
-        "pin": "12",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 420,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "50f9b5b.a84bccc",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "Default: ON",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.01",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 150,
-        "y": 100,
-        "wires": [
-            [
-                "43cf8ff7.75231",
-                "4bca8a25.15be3c",
-                "6db0fcf5.f0effc",
-                "5fc4ede4.72516c"
-            ]
-        ]
-    },
-    {
         "id": "45a7b5aa.2ed20c",
         "type": "link in",
         "z": "9daf9e2b.019fc",
@@ -7219,36 +7084,6 @@
                 "4af9112d.87767"
             ]
         ]
-    },
-    {
-        "id": "5fc4ede4.72516c",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "HAT Pump Enable",
-        "pin": "23",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 430,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "6db0fcf5.f0effc",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "HAT Focus Enable",
-        "pin": "5",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 430,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "38c05fcb891c82bf",

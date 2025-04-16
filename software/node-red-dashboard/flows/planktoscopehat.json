@@ -7231,34 +7231,6 @@
         ]
     },
     {
-        "id": "50f9b5b.a84bccc",
-        "type": "inject",
-        "z": "9daf9e2b.019fc",
-        "name": "Default: ON",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.01",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 150,
-        "y": 100,
-        "wires": [
-            [
-                "ae3c28d0ec056b4a",
-                "81b84006deb8bda6",
-                "f6d2cd9f04d5b7ba",
-                "312003ed9b9014ab"
-            ]
-        ]
-    },
-    {
         "id": "b81b990a.d4dca",
         "type": "link in",
         "z": "9daf9e2b.019fc",
@@ -7273,66 +7245,6 @@
                 "611a8b1c.a829b4"
             ]
         ]
-    },
-    {
-        "id": "81b84006deb8bda6",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "Pump Enable",
-        "pin": "4",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 400,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "f6d2cd9f04d5b7ba",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "Focus Enable",
-        "pin": "12",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 400,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "ae3c28d0ec056b4a",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "HAT Pump Enable",
-        "pin": "23",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 410,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "312003ed9b9014ab",
-        "type": "rpi-gpio out",
-        "z": "9daf9e2b.019fc",
-        "name": "HAT Focus Enable",
-        "pin": "5",
-        "set": true,
-        "level": "1",
-        "freq": "",
-        "out": "out",
-        "bcm": true,
-        "x": 410,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "ea4fae012404854c",
@@ -7509,26 +7421,6 @@
         "wires": []
     },
     {
-        "id": "ddcbbfa5.cd158",
-        "type": "exec",
-        "z": "1371dec5.76e671",
-        "command": "vcgencmd measure_temp | tr -d \"temp=\" | tr -d \"'C\" | tr -d \"\\n\"",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "",
-        "timer": "",
-        "name": "RPi Temp.",
-        "x": 330,
-        "y": 40,
-        "wires": [
-            [
-                "bc503fa5.f46dd"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "3910d662.fa1f7a",
         "type": "exec",
         "z": "1371dec5.76e671",
@@ -7574,97 +7466,9 @@
         "wires": [
             [
                 "3910d662.fa1f7a",
-                "ddcbbfa5.cd158",
                 "aa2e4cd182dbc776",
                 "797675a937dc1629",
                 "f6f570b10c675854"
-            ]
-        ]
-    },
-    {
-        "id": "bc503fa5.f46dd",
-        "type": "switch",
-        "z": "1371dec5.76e671",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "38",
-                "vt": "num"
-            },
-            {
-                "t": "lte",
-                "v": "35",
-                "vt": "num"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 570,
-        "y": 40,
-        "wires": [
-            [
-                "a25d6486.e1ce28"
-            ],
-            [
-                "5d4f3e71.1bad4"
-            ]
-        ]
-    },
-    {
-        "id": "5d4f3e71.1bad4",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Set OFF",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "20",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 720,
-        "y": 60,
-        "wires": [
-            [
-                "952db22920d7d5f1"
-            ]
-        ]
-    },
-    {
-        "id": "a25d6486.e1ce28",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Set ON",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "100",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 720,
-        "y": 20,
-        "wires": [
-            [
-                "952db22920d7d5f1"
             ]
         ]
     },
@@ -7928,21 +7732,6 @@
                 "24df077a.cb252"
             ]
         ]
-    },
-    {
-        "id": "952db22920d7d5f1",
-        "type": "rpi-gpio out",
-        "z": "1371dec5.76e671",
-        "name": "Fan",
-        "pin": "13",
-        "set": false,
-        "level": "0",
-        "freq": "25000",
-        "out": "pwm",
-        "bcm": true,
-        "x": 1110,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "5883e629f5d546ed",
