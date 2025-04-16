@@ -47,10 +47,6 @@ fi
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered |
   bash -s - --confirm-install --confirm-pi --no-init
 
-# Select the enabled dashboard
-mkdir -p "$HOME"/.node-red
-cp "$HOME/PlanktoScope/software/node-red-dashboard/flows/$hardware_type.json" \
-  "$HOME"/.node-red/flows.json
 mkdir -p "$HOME"/PlanktoScope
 cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
@@ -58,4 +54,4 @@ cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_conf
 # Install dependencies in a way that makes them available to Node-RED
 cp "$HOME"/PlanktoScope/software/node-red-dashboard/package.json "$HOME"/.node-red/
 cp "$HOME"/PlanktoScope/software/node-red-dashboard/package-lock.json "$HOME"/.node-red/
-npm --prefix "$HOME"/.node-red update
+npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$default_config update
