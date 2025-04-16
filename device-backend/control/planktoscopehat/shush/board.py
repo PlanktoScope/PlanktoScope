@@ -1,12 +1,7 @@
-__author__ = "ZJAllen"
-
 import shush.boards.pscope_hat_0_1 as s1
 
 import spidev
-import RPi.GPIO as gpio
-
-gpio.setwarnings(False)
-
+from gpiozero import DigitalOutputDevice, DigitalInputDevice
 
 class Board:
     def __init__(self):
@@ -14,53 +9,62 @@ class Board:
         self.init_spi()
         self.init_gpio_state()
 
+    def deinitBoard(self):
+        # Closes the board and releases the peripherals.
+        self.deinit_gpio_state()
+        self.deinit_spi()
+
     def init_gpio_state(self):
         # Sets the default states for the GPIO on the Shush modules.
         # Only applies to Raspberry Pi
 
-        gpio.setmode(gpio.BCM)
-
         # Define chip select pins
-        gpio.setup(s1.m0_cs, gpio.OUT)
-        gpio.setup(s1.m1_cs, gpio.OUT)
+        # self.m0_cs = DigitalOutputDevice(s1.m0_cs)
+        # self.m1_cs = DigitalOutputDevice(s1.m1_cs)
 
         # Define error and stall pins
-        gpio.setup(s1.error, gpio.IN)
-        gpio.setup(s1.stall, gpio.IN)
-
-        # Define enable pins
-        gpio.setup(s1.m0_enable, gpio.OUT)
-        gpio.setup(s1.m1_enable, gpio.OUT)
+        self.error = DigitalInputDevice(s1.error)
+        self.stall = DigitalInputDevice(s1.stall)
 
         # Pull all cs pins HIGH (LOW initializes data transmission)
-        gpio.output(s1.m0_cs, gpio.HIGH)
-        gpio.output(s1.m1_cs, gpio.HIGH)
+        # self.m0_cs.on()
+        # self.m1_cs.on()
+
+    def deinit_gpio_state(self):
+        # self.m0_cs.close()
+        # self.m1_cs.close()
+        self.error.close()
+        self.stall.close()
 
     def init_spi(self):
         # Initialize SPI Bus for motor drivers.
 
-        Board.spi0 = spidev.SpiDev()
+        # SPI for motor 0
+        spi0 = spidev.SpiDev()
         # Open(Bus, Device)
-        Board.spi0.open(0, 0)
+        spi0.open(0, 0)
         # 1 MHZ
-        Board.spi0.max_speed_hz = 1000000
+        spi0.max_speed_hz = 1000000
         # 8 bits per word (32-bit word is broken into 4x 8-bit words)
-        Board.spi0.bits_per_word = 8
-        Board.spi0.loop = False
+        spi0.bits_per_word = 8
+        spi0.loop = False
         # SPI Mode 3
-        Board.spi0.mode = 3
+        spi0.mode = 3
+        Board.spi0 = spi0
 
-        Board.spi1 = spidev.SpiDev()
+        # SPI for motor 1
+        spi1 = spidev.SpiDev()
         # Open(Bus, Device)
-        Board.spi1.open(0, 1)
+        spi1.open(0, 1)
         # 1 MHZ
-        Board.spi1.max_speed_hz = 1000000
+        spi1.max_speed_hz = 1000000
         # 8 bits per word (32-bit word is broken into 4x 8-bit words)
-        Board.spi1.bits_per_word = 8
-        Board.spi1.loop = False
+        spi1.bits_per_word = 8
+        spi1.loop = False
         # SPI Mode 3
-        Board.spi1.mode = 3
+        spi1.mode = 3
+        Board.spi1 = spi1
 
-    def deinitBoard(self):
-        # Closes the board and releases the peripherals.
-        gpio.cleanup()
+    def deinit_spi(self):
+        self.spi0.close()
+        self.spi1.close()

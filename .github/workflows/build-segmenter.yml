@@ -3,11 +3,15 @@ name: Build Docker container image for the segmenter
 on:
   push:
     branches:
+      - 'master'
       - 'main'
-      - 'beta'
-      - 'stable'
+      - 'software/beta'
+      - 'software/stable'
     tags:
       - 'v*'
+    paths:
+      - 'device-backend/processing/segmenter/**'
+      - '.github/workflows/processing-segmenter-*.yml'
   pull_request:
     paths:
       - 'device-backend/processing/segmenter/**'
