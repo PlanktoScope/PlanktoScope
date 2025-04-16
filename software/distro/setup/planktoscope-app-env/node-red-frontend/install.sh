@@ -36,7 +36,6 @@ sudo ln -s /run/machine-name /var/lib/planktoscope/machine-name
 # default, we do `pip3 install` as the pi user. This makes the smbus2 module available to Node-RED.
 # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
 # the Python backend.
-# Note: for bookworm we need to install the apt package; for bullseye there is no apt package
 if ! sudo apt-get install -y python3-smbus2; then
   sudo apt-get install -y python3-pip
   pip3 install smbus2==0.4.3
@@ -47,11 +46,8 @@ fi
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered |
   bash -s - --confirm-install --confirm-pi --no-init
 
-mkdir -p "$HOME"/PlanktoScope
 cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
 
-# Install dependencies in a way that makes them available to Node-RED
-cp "$HOME"/PlanktoScope/software/node-red-dashboard/package.json "$HOME"/.node-red/
-cp "$HOME"/PlanktoScope/software/node-red-dashboard/package-lock.json "$HOME"/.node-red/
-npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$default_config update
+# Install dependencies to make them available to Node-RED
+npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$default_config install
