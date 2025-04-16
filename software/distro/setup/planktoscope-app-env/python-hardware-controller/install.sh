@@ -41,11 +41,13 @@ python3 -m venv "$POETRY_VENV"
 # Set up the hardware controllers
 # Upgrade python3-libcamera to solve an issue in Raspberry Pi OS bookworm-2024-11-19
 # https://github.com/raspberrypi/picamera2/issues/1229#issuecomment-2772493538
+# Upgrade python3-av to solve an issue on Raspberry Pi 5 and Raspberry Pi OS bookworm-2024-11-19
+# https://github.com/raspberrypi/picamera2/issues/1202
 # Once this fails in CI, it means the default version of python3-libcamera in
 # Raspberry Pi OS has been updated. In which case this can be removed.
 echo "If the next command fails, see comment in install.sh"
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
-  python3-libcamera=0.4.0+rpt20250213-1
+  python3-libcamera=0.4.0+rpt20250213-1 python3-av=12.3.0-2+rpt1
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
 "$POETRY_VENV/bin/poetry" --directory "$HOME/PlanktoScope/device-backend/control" install \
