@@ -50,4 +50,4 @@ cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_conf
   "$HOME"/PlanktoScope/config.json
 
 # Install dependencies to make them available to Node-RED
-npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$default_config install
+npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$hardware_type install
