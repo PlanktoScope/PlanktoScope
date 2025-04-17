@@ -38,7 +38,7 @@ Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pksco
     <summary>On the PlanktoScope</summary>
 
 ```sh
-cd ~/Planktoscope
+cd ~/PlanktoScope
 # Enable Developer Mode
 ./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
 # Configure git
@@ -54,7 +54,7 @@ git config --global user.name "Your Name"
 # Create an SSH key for the PlanktoScope specifically
 ssh-keygen -t ed25519 -C "pi@$planktoscope" -f ~/.ssh/$planktoscope
 # Make the SSH key accepted by the PlanktoScope
-scp ~/.ssh/$planktoscope.pub pkscope:~/.ssh/authorized_keys
+ssh-copy-id -i ~/.ssh/$planktoscope.pub pi@$planktoscope
 ```
 
 ```
