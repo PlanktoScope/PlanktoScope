@@ -1,5 +1,12 @@
 // https://nodered.org/docs/user-guide/runtime/configuration
 
+const yaml = require('js-yaml');
+const fs = require('fs');
+const path = require('path');
+
+const doc = yaml.load(fs.readFileSync('/usr/share/planktoscope/installer-config.yml', 'utf8'));
+const userDir = path.join(__dirname, doc.hardware);
+
 module.exports = {
 
     /*******************************************************************************
@@ -33,12 +40,12 @@ module.exports = {
          * the user's home directory. To use a different location, the following
          * property can be used
          */
-        userDir: process.env.USER_DIR || '/home/pi/.node-red',
+        userDir: process.env.USER_DIR || userDir,
     
         /** Node-RED scans the `nodes` directory in the userDir to find local node files.
          * The following property can be used to specify an additional directory to scan.
          */
-        nodesDir: process.env.NODES_DIR || '/home/pi/.node-red/nodes',
+        nodesDir: process.env.NODES_DIR || path.join(userDir, 'nodes'),
     
     /*******************************************************************************
      * Security
