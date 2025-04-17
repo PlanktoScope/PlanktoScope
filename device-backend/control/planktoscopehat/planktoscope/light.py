@@ -41,11 +41,10 @@ class i2c_led:
     DEFAULT_CURRENT = 10
 
     def __init__(self):
-        configuration = None
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
+        try:
             with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
                 configuration = json.load(config_file)
-        else:
+        except FileNotFoundError:
             logger.info(
                 "The hardware configuration file doesn't exists, using defaults"
             )
