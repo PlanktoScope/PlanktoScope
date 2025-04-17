@@ -47,7 +47,6 @@ else
   fi
 fi
 
-
 description="remove unnecessary artifacts from the base operating system"
 report_starting "$description"
 if $setup_scripts_root/base-os/cleanup.sh ; then

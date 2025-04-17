@@ -1,12 +1,21 @@
 # Tips and tricks
 
+
 This page provides useful snippets and how-tos while developing software for the PlanktoScope.
 
 !!! warning
 
     This document is meant for PlanktoScope developers. Proceed with care.
 
-## Development Environment
+- [Development OS](#development-os)
+- [Development Environment](#development-environment)
+- [Connect to router](#connect-to-router)
+- [Disable splash screen](#disable-splash-screen)
+- [Backup and Restore SD Card](#backup-and-restore-sd-card)
+- [Documentation quick setup](#documentation-quick-setup)
+- [Test dataset for segmenter](#test-dataset-for-segmenter)
+
+## Development OS
 
 On the Raspberry, we recommend using our developer image which is built upon [Raspberry Pi OS with desktop 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
 
@@ -18,6 +27,66 @@ You can find the latest build in [actions](https://github.com/PlanktoScope/Plank
 4. Run `unzip filename.zip` to extract files
 
 See [Backup and Restore SD Card image](#backup-and-restore-sd-card) below to write the `.img.xz` file to the sdcard
+
+## Development Environment
+
+To setup the recommended development environment, run the following commands.
+
+Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pkscope-sponge-bob-123`
+
+<details>
+    <summary>On the PlanktoScope</summary>
+
+```sh
+cd ~/Planktoscope
+# Enable Developer Mode
+./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
+# Configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+</details>
+
+<details>
+    <summary>On your computer</summary>
+
+```sh
+# Create an SSH key for the PlanktoScope specifically
+ssh-keygen -t ed25519 -C "pi@$planktoscope" -f ~/.ssh/$planktoscope
+# Make the SSH key accepted by the PlanktoScope
+scp ~/.ssh/$planktoscope.pub pkscope:~/.ssh/authorized_keys
+```
+
+```
+# Add the following to ~/.ssh/config
+Host $planktoscope
+  # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding
+  ForwardAgent yes
+  User pi
+  IdentityFile ~/.ssh/planktoscope
+```
+
+</details>
+
+---
+
+You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`) and use `~/PlanktoScope` as a regular git repository.
+
+```sh
+ssh $planktoscope
+cd PlanktoScope
+git status
+git checkout master
+```
+
+We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh).
+Use `$planktoscope` as the host to connect to and open the "PlanktoScope" directory.
+
+If you make changes to the backend, you can restart the backend and test your changes with
+
+```sh
+sudo systemctl restart planktoscope-org.device-backend.controller-planktoscopehat.service 
+```
 
 ## Connect to router
 
@@ -145,14 +214,14 @@ which you can use for testing the segmenter.
 To use it, first download it as a `.zip` archive, e.g. to
 `~/Downloads/BTS2023_S3_A2-TIMESTAMP-001.zip`. Then extract it:
 
-```
+```sh
 unzip BTS2023_S3_A2-TIMESTAMP-001.zip
 ```
 
 This will result in a new directory named `BTS2023_S3_A2`. Upload that new directory into the
 PlanktoScope's `data/img` directory, e.g. via SCP:
 
-```
+```sh
 scp -r BTS2023_S3_A2 pi@planktoscope.local:~/data/img
 ```
 
