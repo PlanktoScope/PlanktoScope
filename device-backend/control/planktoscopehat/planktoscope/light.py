@@ -3,6 +3,7 @@
 ################################################################################
 # Logger library compatible with multiprocessing
 from loguru import logger
+import json
 
 from gpiozero import DigitalOutputDevice
 
@@ -40,11 +41,24 @@ class i2c_led:
     DEFAULT_CURRENT = 10
 
     def __init__(self):
+        try:
+            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+                configuration = json.load(config_file)
+        except FileNotFoundError:
+            logger.info(
+                "The hardware configuration file doesn't exists, using defaults"
+            )
+            configuration = {}
+
+        hat_type = configuration.get("hat_type") or ""
+        hat_version = float(configuration.get("hat_version") or 0)
+
         # The led is controlled by LM36011
         # but on version 1.2 of the PlanktoScope HAT (PlanktoScope v2.6)
         # the circuit is connected to that pin so it needs to be high
         # pin is assigned to self to prevent gpiozero from immediately releasing it
-        self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
+        if  hat_type != "planktoscope" or hat_version < 3.1:
+            self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
 
         self.VLED_short = False
         self.thermal_scale = False
