@@ -3,7 +3,6 @@
 
 # Determine the base path for copied files
 config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
-distro_setup_files_root=$(dirname "$(dirname "$config_files_root")")
 
 # Get command-line args
 hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
@@ -48,6 +47,10 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
 
 cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
+
+# Configure node-red
+npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard install
+sudo cp $config_files_root/30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
 
 # Install dependencies to make them available to Node-RED
 npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$hardware_type install
