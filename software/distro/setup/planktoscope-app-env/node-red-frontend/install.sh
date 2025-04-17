@@ -3,7 +3,6 @@
 
 # Determine the base path for copied files
 config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
-distro_setup_files_root=$(dirname "$(dirname "$config_files_root")")
 
 # Get command-line args
 hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
@@ -36,7 +35,6 @@ sudo ln -s /run/machine-name /var/lib/planktoscope/machine-name
 # default, we do `pip3 install` as the pi user. This makes the smbus2 module available to Node-RED.
 # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
 # the Python backend.
-# Note: for bookworm we need to install the apt package; for bullseye there is no apt package
 if ! sudo apt-get install -y python3-smbus2; then
   sudo apt-get install -y python3-pip
   pip3 install smbus2==0.4.3
@@ -47,15 +45,13 @@ fi
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered |
   bash -s - --confirm-install --confirm-pi --no-init
 
-# Select the enabled dashboard
-mkdir -p "$HOME"/.node-red
-cp "$HOME/PlanktoScope/software/node-red-dashboard/flows/$hardware_type.json" \
-  "$HOME"/.node-red/flows.json
-mkdir -p "$HOME"/PlanktoScope
 cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
 
-# Install dependencies in a way that makes them available to Node-RED
-cp "$HOME"/PlanktoScope/software/node-red-dashboard/package.json "$HOME"/.node-red/
-cp "$HOME"/PlanktoScope/software/node-red-dashboard/package-lock.json "$HOME"/.node-red/
-npm --prefix "$HOME"/.node-red update
+# Configure node-red
+npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard install
+sudo mkdir -p /etc/systemd/system/nodered.service.d
+sudo cp $config_files_root/30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
+
+# Install dependencies to make them available to Node-RED
+npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$hardware_type install
