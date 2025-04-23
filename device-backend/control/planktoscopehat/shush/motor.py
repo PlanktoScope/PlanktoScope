@@ -1,6 +1,6 @@
 __author__ = "ZJAllen"
 
-from shush.board import Board, s1
+from shush.board import Board
 from shush.drivers import tmc5160_reg as reg
 import time
 from gpiozero import OutputDevice, DigitalOutputDevice
@@ -9,13 +9,13 @@ class Motor(Board):
     def __init__(self, motor: int):
         # Setting the CS and enable pins according to the motor number called
 
+        # Pump
         if motor == 0:
-            # self.chip_select = s1.m0_cs
-            self.enable = DigitalOutputDevice(s1.m0_enable, active_high=False)
+            self.enable = DigitalOutputDevice(23, active_high=False)
             self.spi = Board.spi0
+        # Focus
         elif motor == 1:
-            # self.chip_select = s1.m1_cs
-            self.enable = DigitalOutputDevice(s1.m1_enable, active_high=False)
+            self.enable = DigitalOutputDevice(5, active_high=False)
             self.spi = Board.spi1
 
         # Initially apply default settings.
@@ -376,10 +376,10 @@ class Motor(Board):
         # Clear write bit
         address_buffer[0] = address & 0x7F
 
-        self.send_data(address_buffer)
+        self.spi.xfer2(address_buffer)
 
         # It will look like [address, 0, 0, 0, 0]
-        read_buffer = self.send_data(address_buffer)
+        read_buffer = self.spi.xfer2(address_buffer)
 
         # Parse data returned from SPI transfer/read
         value = read_buffer[1]
@@ -406,22 +406,7 @@ class Motor(Board):
         write_buffer[3] = 0xFF & (data >> 8)
         write_buffer[4] = 0xFF & data
 
-        return self.send_data(write_buffer)
-
-    def send_data(self, data_array: list) -> int:
-        # Send data (read/write) over the SPI bus.
-        # Pulls CS Low, transfers data array, then pulls CS High
-
-        # Begin transmission by pulling CS pin low
-        # gpio.output(self.chip_select, gpio.LOW)
-
-        # Send data
-        return self.spi.xfer2(data_array)
-
-        # End transmission by pulling CS pin HIGH
-        # gpio.output(self.chip_select, gpio.HIGH)
-
-        # return response
+        return self.spi.xfer2(write_buffer)
 
     def twos_comp(self, value: int, bits: int = 32) -> int:
         # if (value & (1 << (bits - 1))) != 0:
