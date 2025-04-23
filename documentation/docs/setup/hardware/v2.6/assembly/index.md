@@ -133,7 +133,7 @@ In order to perform all the assembly steps you will need the following tooling :
 * Insert **the 4 reaming Inserts M2.5** :green_circle: in the 4 slots of the **bamboo part B**. Bamboo part B must be orientated with the square nuts side below.
 ![Insert_assembly_4.png](images/Insert_assembly_4.png "Insert_assembly_4.png")
 
-## Step 3: Assemble the pump module
+## Step 5: Assemble the pump module
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench): 
@@ -171,7 +171,7 @@ In order to perform all the assembly steps you will need the following tooling :
 - [ ] 4 x Screw TCHC M2X4
 - [ ] Bamboo Part A
 - [ ] Raspberry Pi 4
-- [ ] Hat v1.3 Assy
+- [ ] Hat v1.3 Assembly
 - [ ] Heat Sink
 - [ ] Camera Ribbon Cable
 
@@ -201,10 +201,10 @@ In order to perform all the assembly steps you will need the following tooling :
 	Blue rectangle on Ribbon Cable should face the same direction as the shown below.
 ![Assemble Core Module 5](images/Assemble_Core_Module_5.png "Assemble Core Module 5")
 
-* Thread the Ribbon cable through the **PlanktoScope HAT V1.3 Assy** slot from the underside
+* Thread the Ribbon cable through the **PlanktoScope HAT V1.3 Assembly** slot from the underside
 ![Assemble Core Module 6](images/Assemble_Core_Module_6.png "Assemble Core Module 6")
 
-* Plug the PlanktoScope HAT V1.3 Assy into the Raspberry Pi
+* Plug the PlanktoScope HAT V1.3 Assembly into the Raspberry Pi
 * Use the **T6H or Hex1.5 screwdriver** to fix each of the **4 x Screw TCHC M2X4** in place, ensuring they are firmly attached but not overly tightened
 ![Assemble Core Module 7](images/Assemble_Core_Module_7.png "Assemble Core Module 7")
 * Put this assembly on the side.
@@ -218,23 +218,23 @@ In order to perform all the assembly steps you will need the following tooling :
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] Alim Jack Assy
+- [ ] Alim Jack Assembly
 - [ ] Part K
 
-* Loosen the nut of the **Alim Jack Assy**
+* Loosen the nut of the **Alim Jack Assembly**
 ![Position the Alim Jack Assy 1](images/Position_the_Alim_Jack_Assy_1.png)
 
 * Set it in position on the **Part K**
 ![Position the Alim Jack Assy 2](images/Position_the_Alim_Jack_Assy_2.png)
 
-* Re-position the nut on the nut on the **Alim Jack Assy**
+* Re-position the nut on the nut on the **Alim Jack Assembly**
 * Use **open-end wrench 14** to securely tighten it
 ![Position the Alim Jack Assy 3](images/Position_the_Alim_Jack_Assy_3.png "Position the Alim Jack Assy 3")
 
 * Put this assembly on the side.
 
   
-## Step 6: Assemble the Optic 20-200 Assy
+## Step 6: Assemble the Optic 20-200 Assembly
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
@@ -244,15 +244,15 @@ In order to perform all the assembly steps you will need the following tooling :
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] Optic 20-200 Assy
+- [ ] Optic 20-200 Assembly
 - [ ] Part B
 - [ ] 4 x M2.5x5mm screws
 
-* Locate the **Part B** and the **Optic 20-200 Assy**
+* Locate the **Part B** and the **Optic 20-200 Assembly**
 * Set in position the Part B - Insert on top
 ![Assemble the Optic 20-200 Assy 1](images/Assemble_the_Optic_20-200_Assy_1.png "Assemble the Optic 20-200 Assy 1")
 
-* Insert the Optic 20-200 Assy into the designated hole on Part B
+* Insert the Optic 20-200 Assembly into the designated hole on Part B
   
 !!! warning
 
@@ -273,7 +273,7 @@ In order to perform all the assembly steps you will need the following tooling :
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] OnOff Button Assy
+- [ ] OnOff Button Assembly
 - [ ] Part M
 
 * Unplug the **locked push button** and remove the **nut**
@@ -299,13 +299,13 @@ In order to perform all the assembly steps you will need the following tooling :
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
 
-- [ ] OnOff Button Assy
-- [ ] Led Assy
+- [ ] OnOff Button Assembly
+- [ ] Led Assembly
 - [ ] 2x Linear Stepper Motor
 - [ ] "[core module](#step-4-assemble-the-core-module)"
 - [ ] 3 x Zip Ties
 
-* Connect the **OnOff Button Assy** on the PlanktoScope HAT V1.3 Assy **power terminal block**
+* Connect the **OnOff Button Assembly** on the PlanktoScope HAT V1.3 Assembly **power terminal block**
     * 🔴Red in **"+"**
     * ⚫Black in **"-"**
 * Use the **flat screwdriver 2.5** to secure the two connectors, ensuring they are firmly attached but not overly tightened
@@ -418,7 +418,7 @@ In order to perform all the assembly steps you will need the following tooling :
 *  Cut the extremities of the Zip ties with the **Small cutting pliers**
 ![Finalize Main Assembly 14.png](images/Finalize_Main_Assembly_14.png "Finalize Main Assembly 14.png")
 
-* Connect the **Alim module** into the **OnOff button Assy** .
+* Connect the **Alim module** into the **OnOff button Assembly** .
     * Connect 🔴 Red wire in 🔴 Red Terminal
     * Connect ⚫ Black wire in ⚫ Black Terminal
 ![Finalize Main Assembly 15.png](images/Finalize_Main_Assembly_15.png "Finalize Main Assembly 15.png")
