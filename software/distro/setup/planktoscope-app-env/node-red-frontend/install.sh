@@ -20,8 +20,8 @@ fi
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered |
   bash -s - --confirm-install --confirm-pi --no-init
 
-cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
-  "$HOME"/PlanktoScope/config.json
+# cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
+#   "$HOME"/PlanktoScope/config.json
 
 # Configure node-red
 npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard install
