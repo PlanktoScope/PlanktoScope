@@ -8244,77 +8244,6 @@
         "wires": []
     },
     {
-        "id": "e10f5e55.00b828",
-        "type": "change",
-        "z": "1eaf21c8.f7a21e",
-        "name": "Get stepper_type",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.stepper_type",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 650,
-        "y": 360,
-        "wires": [
-            [
-                "dee52a36.2af72"
-            ]
-        ]
-    },
-    {
-        "id": "dee52a36.2af72",
-        "type": "ui_dropdown",
-        "z": "1eaf21c8.f7a21e",
-        "name": "stepper_type",
-        "label": "",
-        "tooltip": "",
-        "place": "",
-        "group": "6be36295.0ab324",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "multiple": false,
-        "options": [
-            {
-                "label": "",
-                "value": "adafruit",
-                "type": "str"
-            },
-            {
-                "label": "",
-                "value": "waveshare",
-                "type": "str"
-            },
-            {
-                "label": "",
-                "value": "pscope_hat",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "stepper_type",
-        "topicType": "str",
-        "className": "",
-        "x": 970,
-        "y": 360,
-        "wires": [
-            [
-                "2068e7f.f4efb18",
-                "8e3b3d3c.955148"
-            ]
-        ]
-    },
-    {
         "id": "e41870d7.300eb8",
         "type": "link out",
         "z": "1eaf21c8.f7a21e",
@@ -8930,7 +8859,6 @@
         "y": 440,
         "wires": [
             [
-                "e10f5e55.00b828",
                 "54ba7f16.709ad8",
                 "c534fd26.13741",
                 "c67c305004f87e39",
