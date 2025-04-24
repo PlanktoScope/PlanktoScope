@@ -47,9 +47,3 @@ sudo cp "$config_files_root$file" "$file"
 # or for the PlanktoScope HAT
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-planktoscopehat.service"
 sudo cp "$config_files_root$file" "$file"
-
-# Select the enabled hardware controller
-mkdir -p "$HOME/PlanktoScope"
-# sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
-# cp "$HOME/PlanktoScope/device-backend/default-configs/$default_config.hardware.json" \
-#   "$HOME/PlanktoScope/hardware.json"
