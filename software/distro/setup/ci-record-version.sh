@@ -180,7 +180,7 @@ main() {
 REPO="$1"
 VERSION_QUERY="$2"
 QUERY_TYPE="$3"
-VERSION_QUERY_DIR="$5"
+VERSION_QUERY_DIR="$4"
 
 # Set default values for the command-line arguments
 if [ -z "${REPO-}" ]; then
