@@ -20,15 +20,6 @@ case "$hardware_type" in
   ;;
 esac
 
-# Prepare tool to generate machine names based on serial numbers
-# Note: the tool itself is deployed/managed by Forklift.
-# TODO: remove this by updating the Node-RED frontend and Python backend:
-# Add a symlink at /var/lib/planktoscope/machine-name for backwards-compatibility with the Node-RED
-# frontend and Python backend, which are not yet updated to check /run/machine-name instead:
-sudo mkdir -p /var/lib/planktoscope
-sudo rm -f /var/lib/planktoscope/machine-name
-sudo ln -s /run/machine-name /var/lib/planktoscope/machine-name
-
 # Install dependencies
 # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
 # Since the Node-RED systemd service runs as the pi user by default (and we don't override that
