@@ -11,7 +11,6 @@ import planktoscope.stepper
 import planktoscope.light  # Fan HAT LEDs
 import planktoscope.identity
 import planktoscope.uuidName  # Note: this is deprecated.
-import planktoscope.display  # Fan HAT OLED screen
 from planktoscope.imager import mqtt as imager
 
 # enqueue=True is necessary so we can log across modules
@@ -54,7 +53,7 @@ def handler_stop_signals(signum, frame):
 if __name__ == "__main__":
     logger.info("Welcome!")
     logger.info(
-        "Initialising signals handling and sanitizing the directories (step 1/5)"
+        "Initialising signals handling and sanitizing the directories (step 1/4)"
     )
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
@@ -96,13 +95,13 @@ if __name__ == "__main__":
     shutdown_event.clear()
 
     # Starts the stepper process for actuators
-    logger.info("Starting the stepper control process (step 2/5)")
+    logger.info("Starting the stepper control process (step 2/4)")
     stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 3/5)")
+    logger.info("Starting the imager control process (step 3/4)")
     try:
         imager_thread = imager.Worker(shutdown_event)
     except Exception as e:
@@ -112,7 +111,7 @@ if __name__ == "__main__":
         imager_thread.start()
 
     # Starts the light process
-    logger.info("Starting the light control process (step 4/5)")
+    logger.info("Starting the light control process (step 4/4)")
     try:
         light_thread = planktoscope.light.LightProcess(shutdown_event)
     except Exception:
@@ -120,9 +119,6 @@ if __name__ == "__main__":
         light_thread = None
     else:
         light_thread.start()
-
-    logger.info("Starting the display control (step 5/5)")
-    display = planktoscope.display.Display()
 
     logger.success("Looks like everything is set up and running, have fun!")
 
@@ -137,7 +133,6 @@ if __name__ == "__main__":
             break
         time.sleep(1)
 
-    display.display_text("Bye Bye!")
     logger.info("Shutting down the shop")
     shutdown_event.set()
     time.sleep(1)
@@ -153,7 +148,5 @@ if __name__ == "__main__":
         imager_thread.close()
     if light_thread:
         light_thread.close()
-
-    display.stop()
 
     logger.info("Bye")
