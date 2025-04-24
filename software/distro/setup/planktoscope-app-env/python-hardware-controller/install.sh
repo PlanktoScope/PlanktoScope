@@ -6,16 +6,6 @@
 config_files_root="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 distro_setup_files_root="$(dirname "$(dirname "$config_files_root")")"
 
-# Get command-line args
-hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope-latest
-default_config="$hardware_type-latest"
-case "$hardware_type" in
-"fairscope-latest")
-  hardware_type="planktoscopehat"
-  default_config="fairscope-latest"
-  ;;
-esac
-
 ## Install basic Python tooling
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   git python3-pip python3-venv
@@ -60,6 +50,6 @@ sudo cp "$config_files_root$file" "$file"
 
 # Select the enabled hardware controller
 mkdir -p "$HOME/PlanktoScope"
-sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
-cp "$HOME/PlanktoScope/device-backend/default-configs/$default_config.hardware.json" \
-  "$HOME/PlanktoScope/hardware.json"
+# sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
+# cp "$HOME/PlanktoScope/device-backend/default-configs/$default_config.hardware.json" \
+#   "$HOME/PlanktoScope/hardware.json"

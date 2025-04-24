@@ -5,7 +5,6 @@
 # REPO (the repo used for setup, e.g. github.com/PlanktoScope/PlanktoScope)
 # VERSION_QUERY (the version query, e.g. a commit hash)
 # QUERY_TYPE (eitiher branch, tag, or hash)
-# HARDWARE (either none, segmenter-only, adafruithat, or planktoscopehat)
 # VERSION_QUERY_DIR (the filesystem path of the git repo used for getting version info)
 
 # Utilities for user interaction
@@ -99,7 +98,6 @@ main() {
   info "${BOLD}Repo${NO_COLOR}:          ${GREEN}${pretty_repo}${NO_COLOR}"
   info "${BOLD}Version query${NO_COLOR}: ${GREEN}${VERSION_QUERY}${NO_COLOR}"
   info "${BOLD}Query type${NO_COLOR}:    ${GREEN}${QUERY_TYPE}${NO_COLOR}"
-  info "${BOLD}Hardware${NO_COLOR}:      ${GREEN}${HARDWARE}${NO_COLOR}"
   if [ -n "${VERBOSE-}" ]; then
     VERBOSE=v
     info "${BOLD}Tag prefix${NO_COLOR}:    $(with_empty_placeholder "${TAG_PREFIX}")"
@@ -160,7 +158,6 @@ main() {
       "repo" "${pretty_repo}" \
       "version-query" "${VERSION_QUERY}" \
       "query-type" "${QUERY_TYPE}" \
-      "hardware" "${HARDWARE}" \
       "tag-prefix" "${TAG_PREFIX}" \
       "setup-entrypoint" "${SETUP_ENTRYPOINT}" \
       | sudo tee --append "${installer_config_file}" > /dev/null
@@ -183,7 +180,6 @@ main() {
 REPO="$1"
 VERSION_QUERY="$2"
 QUERY_TYPE="$3"
-HARDWARE="$4"
 VERSION_QUERY_DIR="$5"
 
 # Set default values for the command-line arguments
@@ -198,11 +194,6 @@ fi
 DEFAULT_QUERY_TYPE="branch"
 if [ -z "${QUERY_TYPE-}" ]; then
   error "QUERY_TYPE environment variable was not set!"
-  exit 1
-fi
-DEFAULT_HARDWARE="planktoscopehat"
-if [ -z "${HARDWARE-}" ]; then
-  error "HARDWARE environment variable was not set!"
   exit 1
 fi
 DEFAULT_TAG_PREFIX="software/"

@@ -5,10 +5,6 @@
 
 setup_scripts_root=$(dirname $(realpath $BASH_SOURCE))
 
-# Get command-line args
-
-hardware_type="$1" # should be either none, adafruithat, planktoscopehat, or segmenter-only
-
 # Set up pretty error printing
 
 red_fg=31
@@ -35,16 +31,12 @@ function panic {
 
 # Run sub-scripts
 
-if [ $hardware_type = "none" ]; then
-  echo "Warning: skipping PlanktoScope-specific setup because hardware type was specified as: $hardware_type"
+description="remove unnecessary artifacts from the PlanktoScope application environment"
+report_starting "$description"
+if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
+  report_finished "$description"
 else
-  description="remove unnecessary artifacts from the PlanktoScope application environment"
-  report_starting "$description"
-  if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
-    report_finished "$description"
-  else
-    panic "$description"
-  fi
+  panic "$description"
 fi
 
 description="remove unnecessary artifacts from the base operating system"
