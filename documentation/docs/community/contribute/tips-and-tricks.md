@@ -17,9 +17,9 @@ This page provides useful snippets and how-tos while developing software for the
 
 ## Development OS
 
-On the Raspberry, we recommend using our developer image which is built upon [Raspberry Pi OS with desktop 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
+You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%3Amaster)
 
-You can find the latest build in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm-dx.yml?query=branch%3Amaster)
+It is built upon [Raspberry Pi OS Lite 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
 
 1. Choose the branch (e.g. `master`)
 2. Click on the most recent action in the table
@@ -27,6 +27,17 @@ You can find the latest build in [actions](https://github.com/PlanktoScope/Plank
 4. Run `unzip filename.zip` to extract files
 
 See [Backup and Restore SD Card image](#backup-and-restore-sd-card) below to write the `.img.xz` file to the sdcard
+
+## Graphical UI
+
+To install the graphical desktop similar to what you find on the desktop edition of Raspberry Pi OS proceed as following:
+
+```sh
+sudo apt install raspberrypi-ui-mods
+# Change the boot option
+sudo raspi-config # System Options -> Boot -> Desktop GUI
+reboot
+```
 
 ## Development Environment
 
