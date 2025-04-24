@@ -8505,8 +8505,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 510,
-        "y": 300,
+        "x": 490,
+        "y": 360,
         "wires": [
             []
         ]
@@ -8522,8 +8522,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 300,
+        "x": 330,
+        "y": 360,
         "wires": [
             [
                 "1cfadc66.3cde8c"
@@ -8756,8 +8756,8 @@
         "className": "",
         "topic": "Resetting hardware configuration to version-specific default",
         "name": "",
-        "x": 370,
-        "y": 260,
+        "x": 350,
+        "y": 320,
         "wires": []
     },
     {
@@ -8779,7 +8779,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 410,
+        "x": 610,
         "y": 220,
         "wires": [
             [
@@ -8799,7 +8799,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "Copy default hardware config",
-        "x": 700,
+        "x": 940,
         "y": 220,
         "wires": [
             [
@@ -8826,8 +8826,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 930,
-        "y": 220,
+        "x": 1190,
+        "y": 240,
         "wires": [
             [
                 "3973b999ee7b3b1d"
@@ -8846,8 +8846,8 @@
             "5984b086eddc9311",
             "a2f2a4c7cbae4446"
         ],
-        "x": 1095,
-        "y": 220,
+        "x": 1315,
+        "y": 240,
         "wires": []
     },
     {
@@ -8945,14 +8945,15 @@
             "08d177136bd18281",
             "9f34e4a2f33c4022"
         ],
-        "x": 205,
+        "x": 125,
         "y": 260,
         "wires": [
             [
                 "68703ef63da2f081",
                 "d276ce894f483bcf",
                 "3e2c5c1c.4c57b4",
-                "a7e5c7f4.644678"
+                "a7e5c7f4.644678",
+                "0adb1755a133ca44"
             ]
         ]
     },
@@ -8981,5 +8982,54 @@
         "x": 875,
         "y": 120,
         "wires": []
+    },
+    {
+        "id": "be756939e3b468be",
+        "type": "exec",
+        "z": "1eaf21c8.f7a21e",
+        "command": "cp",
+        "addpay": "payload",
+        "append": "/home/pi/PlanktoScope/config.json",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Copy default software config",
+        "x": 940,
+        "y": 280,
+        "wires": [
+            [
+                "97e582080deae888"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "0adb1755a133ca44",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choose default software config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join([\"/home/pi/PlanktoScope/node-red-dashboard/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".config.json\"])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "be756939e3b468be"
+            ]
+        ]
     }
 ]
