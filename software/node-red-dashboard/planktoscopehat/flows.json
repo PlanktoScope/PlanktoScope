@@ -99,6 +99,7 @@
             }
         ],
         "env": [],
+        "meta": {},
         "color": "#DDAA99"
     },
     {
@@ -155,6 +156,41 @@
         "env": [],
         "meta": {},
         "color": "#DDAA99"
+    },
+    {
+        "id": "312b406fb4b5b22a",
+        "type": "group",
+        "z": "1eaf21c8.f7a21e",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "427c312.fc5e65",
+            "8c8ed9e0b7724439",
+            "c00c6732b9f36adb"
+        ],
+        "x": 14,
+        "y": 99,
+        "w": 372,
+        "h": 142
+    },
+    {
+        "id": "48a24615eef0ab29",
+        "type": "junction",
+        "z": "1eaf21c8.f7a21e",
+        "x": 760,
+        "y": 240,
+        "wires": [
+            [
+                "56dd3f82c45717f0"
+            ]
+        ]
     },
     {
         "id": "3a6bb13f.c9703e",
@@ -8404,27 +8440,6 @@
         ]
     },
     {
-        "id": "be888117.5cd67",
-        "type": "ui_template",
-        "z": "1eaf21c8.f7a21e",
-        "group": "6be36295.0ab324",
-        "name": "Stepper controller type header",
-        "order": 3,
-        "width": "5",
-        "height": 1,
-        "format": "<div>Stepper controller type</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 550,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "7534dfd9.8cf3e8",
         "type": "ui_template",
         "z": "1eaf21c8.f7a21e",
@@ -8534,9 +8549,10 @@
         "id": "427c312.fc5e65",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "1eaf21c8.f7a21e",
+        "g": "312b406fb4b5b22a",
         "name": "",
         "env": [],
-        "x": 170,
+        "x": 90,
         "y": 140,
         "wires": [
             [
@@ -8889,6 +8905,7 @@
         "id": "c00c6732b9f36adb",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
+        "g": "312b406fb4b5b22a",
         "name": "Get acq_instrument",
         "rules": [
             {
@@ -8911,7 +8928,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
+        "x": 270,
         "y": 140,
         "wires": [
             [
@@ -9053,6 +9070,49 @@
             ],
             [],
             []
+        ]
+    },
+    {
+        "id": "8c8ed9e0b7724439",
+        "type": "catch",
+        "z": "1eaf21c8.f7a21e",
+        "g": "312b406fb4b5b22a",
+        "name": "",
+        "scope": "group",
+        "uncaught": false,
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "a4d44f0d0c41771e"
+            ]
+        ]
+    },
+    {
+        "id": "a4d44f0d0c41771e",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "null",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 240,
+        "wires": [
+            [
+                "48a24615eef0ab29"
+            ]
         ]
     }
 ]
