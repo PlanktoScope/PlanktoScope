@@ -9,7 +9,7 @@ After=nodered.service
 [Service]
 Type=simple
 Environment=HOME=/home/pi
-ExecStart=/home/pi/.local/share/pypoetry/venv/bin/poetry --directory /home/pi/PlanktoScope/device-backend/control run python -u /home/pi/PlanktoScope/device-backend/control/adafruithat/main.py
+ExecStart=poetry --directory /home/pi/PlanktoScope/device-backend/control run python -u /home/pi/PlanktoScope/device-backend/control/adafruithat/main.py
 User=pi
 Group=pi
 

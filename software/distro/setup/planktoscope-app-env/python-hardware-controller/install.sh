@@ -16,27 +16,17 @@ case "$hardware_type" in
   ;;
 esac
 
-## Install basic Python tooling
+## Install basic tooling
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-  git python3-pip python3-venv
+  git python3-pip python3-venv pipx
 
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
 # (see https://github.com/pypa/pip/issues/7883)
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 # Install Poetry
-# Note: Because the poetry installation process (whether with pipx or the official installer) always
-# selects the most recent version of the cryptography dependency, we must instead do a manual poetry
-# installation to ensure that a wheel is available from piwheels for the cryptography dependency.
-# We have had problems in the past with a version of that dependency not being available from
-# piwheels.
-POETRY_VENV=$HOME/.local/share/pypoetry/venv
-mkdir -p "$POETRY_VENV"
-python3 -m venv "$POETRY_VENV"
-"$POETRY_VENV/bin/pip" install --upgrade --progress-bar off \
-  pip==23.3.2 setuptools==68.2.2
-"$POETRY_VENV/bin/pip" install --progress-bar off cryptography==41.0.5
-"$POETRY_VENV/bin/pip" install --progress-bar off poetry==2.1.2
+pipx install poetry==2.1.2
+pipx ensurepath
 
 # Set up the hardware controllers
 # Upgrade python3-libcamera to solve an issue in Raspberry Pi OS bookworm-2024-11-19
@@ -50,7 +40,7 @@ sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
   python3-libcamera=0.4.0+rpt20250213-1 python3-av=12.3.0-2+rpt1
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
-"$POETRY_VENV/bin/poetry" --directory "$HOME/PlanktoScope/device-backend/control" install \
+poetry --directory "$HOME/PlanktoScope/device-backend/control" install \
   --no-root --compile
 file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
 sudo cp "$config_files_root$file" "$file"

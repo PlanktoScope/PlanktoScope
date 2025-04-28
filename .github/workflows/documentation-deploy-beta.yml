@@ -37,7 +37,7 @@ jobs:
           sudo apt-get -y install pngquant
 
       - name: Install poetry
-        run: pipx install poetry==1.7.1
+        run: pipx install poetry==2.1.2
 
       - name: Set up Python
         uses: actions/setup-python@v5
