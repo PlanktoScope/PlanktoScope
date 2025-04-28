@@ -103,6 +103,7 @@ known_first_party = ["planktoscope", "shush"]
 extend_skip_glob = [
   "adafruithat/main.py",
   "adafruithat/planktoscope/__init__.py",
+  "adafruithat/planktoscope/display.py",
   "adafruithat/planktoscope/identity.py",
   "adafruithat/planktoscope/integrity.py",
   "adafruithat/planktoscope/light.py",
@@ -170,6 +171,7 @@ exclude = [
 skip = '''
 adafruithat/main.py,\
 adafruithat/planktoscope/__init__.py,\
+adafruithat/planktoscope/display.py,\
 adafruithat/planktoscope/identity.py,\
 adafruithat/planktoscope/integrity.py,\
 adafruithat/planktoscope/light.py,\
@@ -231,6 +233,7 @@ load-plugins = [
 ignore-paths = [
   "adafruithat/main.py",
   "adafruithat/planktoscope/__init__.py",
+  "adafruithat/planktoscope/display.py",
   "adafruithat/planktoscope/identity.py",
   "adafruithat/planktoscope/integrity.py",
   "adafruithat/planktoscope/light.py",
