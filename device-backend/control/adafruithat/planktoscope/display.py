@@ -1,30 +1,31 @@
 # Copyright (C) 2021 Romain Bazile
-#
+# 
 # This file is part of the PlanktoScope software.
-#
+# 
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#
+# 
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
+# 
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
+
+# Logger library compatible with multiprocessing
+from loguru import logger
 
 import datetime
 import os
 
 import Adafruit_SSD1306
+
 import PIL.Image
 import PIL.ImageDraw
 import PIL.ImageFont
-
-# Logger library compatible with multiprocessing
-from loguru import logger
 
 logger.info("planktoscope.display is loading")
 
@@ -86,7 +87,9 @@ class Display(object):
             x = 0
 
             # Load default font.
-            font = PIL.ImageFont.truetype(font="truetype/dejavu/DejaVuSansMono.ttf", size=15)
+            font = PIL.ImageFont.truetype(
+                font="truetype/dejavu/DejaVuSansMono.ttf", size=15
+            )
 
             # Draw a black filled box to clear the image.
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
