@@ -68,11 +68,12 @@ fi
 
 description="set up Python hardware controller"
 report_starting "$description"
-if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
+$build_scripts_root/python-hardware-controller/install.sh
+# if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
+#   report_finished "$description"
+# else
+#   panic "$description"
+# fi
 
 description="configure kernel hardware drivers"
 report_starting "$description"
