@@ -288,7 +288,7 @@ jobs:
           args: --machine=raspberrypi
           run: |
             # Change default settings for the SD card to enable headless & keyboardless first boot
-            # Note: we could change the username by making a `/boot/userconf.txt` file with the new
+            # Note: we could change the username by making a `userconf.txt` file with the new
             # username and an encrypted representation of the password (and un-disabling and
             # unmasking `userconfig.service`), but we don't need to do that for now.
             # See https://github.com/RPi-Distro/userconf-pi/blob/bookworm/userconf-service and
