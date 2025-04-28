@@ -74,14 +74,6 @@ else
   panic "$description"
 fi
 
-description="configure kernel hardware drivers"
-report_starting "$description"
-if "$build_scripts_root/platform-hardware/config.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="set up GPS and clock driver"
 report_starting "$description"
 if "$build_scripts_root/gps/install.sh"; then
