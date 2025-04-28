@@ -71,7 +71,7 @@ Compile it with dtc compiler :
 make dtb
 ```
 
-For testing purposes, you can load this dtb as an overlay, using `dtoverlay=` in `/boot/config.txt`. Don't forget to copy the `pscope_hat.dtb` file to your `/boot/overlays` folder.
+For testing purposes, you can load this dtb as an overlay, using `dtoverlay=` in `/boot/firmware/config.txt`. Don't forget to copy the `pscope_hat.dtb` file to your `/boot/overlays` folder.
 
 Now, we can generate a eep file containing both board definition (eeprom_config.txt) and device-tree (for kernel auto configuration).
 

@@ -27,6 +27,11 @@ Faster wifi from 120Mb/s to 300Mb/s
 [PCIe connector](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-connector-for-pcie), compatible with:
 * [Raspberry Pi AI HAT+](https://www.raspberrypi.com/products/ai-hat/)
 * [Raspberry Pi SSD Kit](https://www.raspberrypi.com/products/ssd-kit/)
+
+Easier access to the SD Card, no need for tweezers anymore
+
+The Raspberry micro HDMI ports are now accessible
+
 -->
 
 ## v2.6

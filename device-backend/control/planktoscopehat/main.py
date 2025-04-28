@@ -58,14 +58,14 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
     # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
-    with open("/boot/config.txt", "r") as config_file:
+    with open("/boot/firmware/config.txt", "r") as config_file:
         for i, line in enumerate(config_file):
             if line.startswith("gpu_mem") and int(line.split("=")[1].strip()) < 256:
                 logger.error(
                     "The GPU memory size is less than 256, this will prevent the camera from running properly"
                 )
                 logger.error(
-                    "Please edit the file /boot/config.txt to change the gpu_mem value to at least 256"
+                    "Please edit the file /boot/firmware/config.txt to change the gpu_mem value to at least 256"
                 )
                 logger.error(
                     "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
