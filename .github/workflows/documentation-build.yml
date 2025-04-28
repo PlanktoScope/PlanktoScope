@@ -14,6 +14,7 @@ on:
     paths:
       - 'documentation/**'
       - 'hardware/**'
+      - '.github/workflows/documentation-build.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -47,7 +48,7 @@ jobs:
 
       # Build documentation website
       - name: Install poetry
-        run: pipx install poetry==1.7.1
+        run: pipx install poetry==2.1.2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -59,17 +60,20 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install
+          poetry -C ./documentation/ install --no-root
 
       - name: Make documentation ${{ matrix.variant }}
         if: matrix.variant != 'default'
-        run: poetry -C ./documentation/ run poe --root ./documentation/ make-${{ matrix.variant }}
+        working-directory: documentation
+        run: poetry run poe make-${{ matrix.variant }}
 
       - name: Check documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ check
+        working-directory: documentation
+        run: poetry run poe check
 
       - name: Build documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        working-directory: documentation
+        run: poetry run poe build
 
       # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
       # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
