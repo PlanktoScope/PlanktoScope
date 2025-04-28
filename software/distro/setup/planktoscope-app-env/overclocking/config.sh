@@ -8,5 +8,5 @@ config_files_root=$(dirname $(realpath $BASH_SOURCE))
 
 # Overvoltage to 6 and set clock speed to 2 GHz, for a V_core of 1.0125, a maximum allowable
 # temperature of 72 deg C, a power draw of 11 Watt, and a performance increase of 33%.
-file="/boot/firmware/config.txt"
+file="/boot/config.txt"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
