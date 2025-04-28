@@ -27,6 +27,7 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 # Install Poetry
 pipx install poetry==2.1.2
 pipx ensurepath
+source ~/.bashrc
 
 # Set up the hardware controllers
 # Upgrade python3-libcamera to solve an issue in Raspberry Pi OS bookworm-2024-11-19
