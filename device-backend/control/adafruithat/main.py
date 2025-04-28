@@ -27,7 +27,6 @@ import planktoscope.mqtt
 import planktoscope.stepper
 import planktoscope.light  # Fan HAT LEDs
 import planktoscope.identity
-import planktoscope.uuidName  # Note: this is deprecated.
 import planktoscope.display  # Fan HAT OLED screen
 from planktoscope.imager import mqtt as imager
 
@@ -99,13 +98,7 @@ if __name__ == "__main__":
         os.makedirs(img_path)
 
     logger.info(
-        f"This PlanktoScope's Raspberry Pi's serial number is {planktoscope.uuidName.getSerial()}"
-    )
-    logger.info(
         f"This PlanktoScope's machine name is {planktoscope.identity.load_machine_name()}"
-    )
-    logger.info(
-        f"This PlanktoScope's deprecated name is {planktoscope.uuidName.machineName(machine=planktoscope.uuidName.getSerial())}"
     )
 
     # Prepare the event for a graceful shutdown
