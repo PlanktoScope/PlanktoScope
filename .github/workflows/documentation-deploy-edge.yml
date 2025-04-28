@@ -58,13 +58,15 @@ jobs:
           poetry -C ./documentation/ install --with imaging --no-root
 
       - name: Set release channel
-        run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
+        working-directory: documentation
+        run: poetry run poe set-edge-release-channel
 
       - name: Build documentation
         env:
           DOCS_DEPLOY: true
           DOCS_SITEURL: ${{ vars.URL }}
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        working-directory: documentation
+        run: poetry run poe build
 
       - name: Set up Pages
         id: pages

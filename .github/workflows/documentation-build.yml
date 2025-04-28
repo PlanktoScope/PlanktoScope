@@ -64,13 +64,16 @@ jobs:
 
       - name: Make documentation ${{ matrix.variant }}
         if: matrix.variant != 'default'
-        run: poetry -C ./documentation/ run poe --root ./documentation/ make-${{ matrix.variant }}
+        working-directory: documentation
+        run: poetry run poe make-${{ matrix.variant }}
 
       - name: Check documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ check
+        working-directory: documentation
+        run: poetry run poe check
 
       - name: Build documentation
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        working-directory: documentation
+        run: poetry run poe build
 
       # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
       # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12
