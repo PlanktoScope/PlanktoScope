@@ -68,7 +68,7 @@ fi
 
 description="set up Python hardware controller"
 report_starting "$description"
-$build_scripts_root/python-hardware-controller/install.sh
+$build_scripts_root/python-hardware-controller/install.sh "$hardware_type"
 # if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
 #   report_finished "$description"
 # else
