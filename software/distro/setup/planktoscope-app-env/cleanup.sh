@@ -11,7 +11,7 @@ sudo apt-get clean -y
 # Clean up any unnecessary pip, poetry, and npm files
 pip3 cache purge || true
 rm -rf $HOME/.cache/pip
-poetry cache clear --all .
+poetry cache clear --no-interaction --all .
 
 # Remove history files
 rm -f $HOME/.python_history
