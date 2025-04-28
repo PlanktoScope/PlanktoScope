@@ -54,7 +54,8 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install --with imaging
+          sudo apt install libjpeg-dev
+          poetry -C ./documentation/ install --with imaging --no-root
 
       - name: Set release channel
         run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
