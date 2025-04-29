@@ -11,4 +11,6 @@ git fetch origin --filter=blob:none
 # "Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and reports what has not been updated."
 # https://git-scm.com/docs/git-reset#Documentation/git-reset.txt---mixed
 git reset --mixed $commit
+
+cd $HOME/PlanktoScope/device-backend/control
 poetry install --with dev --no-root
