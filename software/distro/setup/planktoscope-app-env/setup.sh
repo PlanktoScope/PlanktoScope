@@ -37,14 +37,6 @@ function panic {
 
 # Run sub-scripts
 
-description="disable first-boot wizards"
-report_starting "$description"
-if "$build_scripts_root/wizards/remove.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="set up /home/pi/PlanktoScope"
 report_starting "$description"
 if "$build_scripts_root/PlanktoScope/install.sh"; then
