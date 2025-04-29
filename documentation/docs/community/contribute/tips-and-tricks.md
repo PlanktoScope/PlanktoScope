@@ -106,12 +106,7 @@ The default behavior of the PlanktoScope is to act as a router to connect your c
 If you have a LAN it may be more convenient to connect the PlanktoScope to it and act as a simple client.
 
 ```sh
-# Ethernet
-nmcli connection down eth0-static
 nmcli connection up eth0-default
-
-# Wifi
-nmcli connection down wlan0-hotspot
 ```
 
 <details>
@@ -120,10 +115,6 @@ nmcli connection down wlan0-hotspot
 ```sh
 # Ethernet
 nmcli connection down eth0-default
-nmcli connection up eth0-static
-
-# Wifi
-nmcli connection up wlan0-hotspot
 ```
 </details>
 
@@ -136,15 +127,6 @@ And access the UI with http://pkscope-example-name-0000/
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
 See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/)
-
-## Disable splash screen
-
-We recommend disabling the splash screen to get better boot logs
-
-```sh
-sudo nano /boot/firmware/cmdline.txt
-# remove "quiet splash plymouth.ignore-serial-consoles"
-```
 
 ## Backup and Restore SD Card
 
