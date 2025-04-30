@@ -76,13 +76,10 @@ if [ "$hardware_type" = "adafruithat" ]; then
   fi
 fi
 
-device_model=$(< /proc/device-tree/model)
-if [[ $device_model = "Raspberry Pi 4"* ]]; then
-  description="enable CPU overclocking"
-  report_starting "$description"
-  if "$build_scripts_root/overclocking/config.sh"; then
-    report_finished "$description"
-  else
-    panic "$description"
-  fi
+description="enable CPU overclocking"
+report_starting "$description"
+if "$build_scripts_root/overclocking/config.sh"; then
+  report_finished "$description"
+else
+  panic "$description"
 fi
