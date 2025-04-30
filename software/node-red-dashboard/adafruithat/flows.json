@@ -4873,32 +4873,6 @@
         ]
     },
     {
-        "id": "4b489713.ccde5",
-        "type": "ui_button",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "group": "4322c187.e73e5",
-        "order": 12,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Start Acquisition",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "camera",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "imager/image",
-        "x": 460,
-        "y": 480,
-        "wires": [
-            [
-                "c9f510c0.7d1328"
-            ]
-        ]
-    },
-    {
         "id": "c9f510c0.7d1328",
         "type": "function",
         "z": "baa1e3d9.cb29d",
@@ -4970,10 +4944,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "#AD1625",
+        "className": "",
         "icon": "cancel",
         "payload": "{\"action\":\"stop\"}",
         "payloadType": "json",
         "topic": "imager/image",
+        "topicType": "str",
         "x": 460,
         "y": 520,
         "wires": [
@@ -5841,6 +5817,58 @@
             [
                 "fb887036.12429",
                 "67091ac0.8f9f6c"
+            ]
+        ]
+    },
+    {
+        "id": "f4caa15e2bbfd6e7",
+        "type": "ui_template",
+        "z": "baa1e3d9.cb29d",
+        "group": "4322c187.e73e5",
+        "name": "Start Acquisition",
+        "order": 13,
+        "width": "5",
+        "height": "1",
+        "format": "<div ng-if=\"drifted && !settingTime\" width=>\n    <button class=\"md-raised md-button\" type=\"button\" ng-click=\"setTime()\" style=\"z-index: 1; padding: 1em; width: 100%;\">\n        <span>Update System Time</span>\n    </button>\n</div>\n\n<div ng-if=\"!showStart && !drifted\" style=\"width: 100%; height: 830px;\">\n    <p>Loading, please wait...</p>\n</div>\n\n<div ng-if=\"showStart && !drifted\">\n    <button class=\"md-raised md-button\" type=\"button\" ng-click=\"send({topic: 'imager/image'})\" style=\"z-index: 1; padding: 1em; width: 100%;\">\n        <span>Start Acquisition</span>\n    </button>\n</div>\n\n<script>\n    (function(scope) {\n        scope.drifted = undefined;\n        function determineDrift(scope, systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            scope.drifted = drift >= threshold;\n        }\n        \n        scope.showStart = false;\n        scope.settingTime = false;\n        scope.setTime = function() {\n            scope.settingTime = true;\n            if (scope.drifted) {\n                scope.showStart = false;\n            }\n            fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json; charset=UTF-8'\n                },\n                body: JSON.stringify({\n                    timestamp: (new Date()).getTime()\n                })\n            });\n        }\n\n        scope.$watch('msg.payload', function(systemTime) {\n            if (systemTime !== undefined) {\n                determineDrift(scope, systemTime);\n                scope.settingTime = false;\n            }\n            if (scope.drifted === false) {\n                scope.showStart = true;\n            }\n        });\n    })(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "c9f510c0.7d1328"
+            ]
+        ]
+    },
+    {
+        "id": "e2415b526151504b",
+        "type": "inject",
+        "z": "baa1e3d9.cb29d",
+        "name": "Time",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "f4caa15e2bbfd6e7"
             ]
         ]
     },
