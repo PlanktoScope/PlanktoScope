@@ -32,6 +32,10 @@ Easier access to the SD Card, no need for tweezers anymore
 
 The Raspberry micro HDMI ports are now accessible
 
+Reduce power usage when powered off
+
+Does not automatically power on when connected anymore
+
 -->
 
 ## v2.6
