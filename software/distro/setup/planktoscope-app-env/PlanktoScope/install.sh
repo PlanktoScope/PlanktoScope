@@ -16,4 +16,4 @@ sudo bash -c "cat \"$config_files_root/config.txt.snippet\" >> \"/boot/config.tx
 
 # Disable the 4 Raspberry logo in the top left corner
 # more space for kernel and system logs
-sudo sed -i -e 's/$/ logo.nologo/' /boot/firmware/cmdline.txt
+sudo sed -i -e 's/$/ logo.nologo/' /boot/cmdline.txt
