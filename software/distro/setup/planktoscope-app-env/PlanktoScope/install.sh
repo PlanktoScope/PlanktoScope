@@ -17,8 +17,3 @@ sudo bash -c "cat \"$config_files_root/config.txt.snippet\" >> \"/boot/config.tx
 # Disable the 4 Raspberry logo in the top left corner
 # more space for kernel and system logs
 sudo sed -i -e 's/$/ logo.nologo/' /boot/firmware/cmdline.txt
-
-# Tweak bootloader
-# https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#update-the-bootloader-configuration
-sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 rpi-eeprom
-sudo rpi-eeprom-config --apply "$config_files_root/boot.conf"
