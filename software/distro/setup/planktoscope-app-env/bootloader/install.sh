@@ -18,7 +18,7 @@ rpi-eeprom-digest -i /tmp/pieeprom.upd -o /tmp/pieeprom.sig
 
 # /boot and not /boot/firmware
 # see https://github.com/ethanjli/pinspawn-action/issues/5
-sudo cp pieeprom.bin pieeprom.sig recovery.bin /boot/
+sudo cp /tmp/pieeprom.bin /tmp/pieeprom.sig /tmp/recovery.bin /boot/
 
 # The bootloader will be installed on first boot and the files removed
 # see https://github.com/PlanktoScope/PlanktoScope/pull/589
