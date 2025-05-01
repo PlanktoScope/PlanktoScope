@@ -12,9 +12,7 @@ Replaces [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-mo
 
 Increased RAM from 4 to 8 GB.
 
-Includes a [Real Time Clock (RTC)](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#real-time-clock-rtc)
-
-Includes [RTC rechargeable battery](https://www.raspberrypi.com/products/rtc-battery/)
+Includes a [Real Time Clock (RTC)](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#real-time-clock-rtc) with [rechargeable battery](https://www.raspberrypi.com/products/rtc-battery/).
 
 Includes [Raspberry Pi Active Cooler](https://www.raspberrypi.com/products/active-cooler/)
 
