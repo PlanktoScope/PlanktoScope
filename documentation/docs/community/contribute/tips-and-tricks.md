@@ -137,7 +137,7 @@ You will need to plug the SD card into your computer.
 
 ```sh
 # backup whole SD card onto an image file on your computer
-sudo dd bs=1M if=/dev/device status=progress | xz > sdcard.img.xz
+sudo dd bs=1M if=/dev/device status=progress conv=fdatasync | xz > sdcard.img.xz
 ```
 
 ```sh
