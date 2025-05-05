@@ -22,3 +22,6 @@ sudo cp /tmp/pieeprom.upd /tmp/pieeprom.sig /tmp/recovery.bin /boot/
 
 # The bootloader will be installed on first boot and the files removed
 # see https://github.com/PlanktoScope/PlanktoScope/pull/589
+
+# https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#automaticupdates
+sudo systemctl mask rpi-eeprom-update
