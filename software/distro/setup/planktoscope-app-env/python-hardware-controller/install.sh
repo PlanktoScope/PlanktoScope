@@ -38,7 +38,7 @@ PATH="$PATH:/home/pi/.local/bin"
 # Raspberry Pi OS has been updated. In which case this can be removed.
 echo "If the next command fails, see comment in install.sh"
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
-  python3-libcamera=0.4.0+rpt20250213-1 python3-av=12.3.0-2+rpt1
+  python3-libcamera=0.5.0+rpt20250429-1 python3-av=12.3.0-2+rpt1
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
 poetry --directory "$HOME/PlanktoScope/device-backend/control" install \
