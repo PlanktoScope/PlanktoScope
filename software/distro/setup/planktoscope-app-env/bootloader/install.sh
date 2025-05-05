@@ -1,6 +1,7 @@
 #!/bin/bash -eux
 # Update and configure the bootloader
 # https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#update-the-bootloader-configuration
+# Please note that we disable self update on anything but Raspberry Pi 5; see config.txt.snippet
 
 # Determine the base path for copied files
 config_files_root="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
