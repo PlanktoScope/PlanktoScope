@@ -89,7 +89,7 @@ if __name__ == "__main__":
     shutdown_event.clear()
 
     # Starts the pump process
-    logger.info("Starting the pump control process (step 2/4)")
+    logger.info("Starting the pump control process (step 1/4)")
     pump_thread = planktoscope.pump.PumpProcess(shutdown_event)
     pump_thread.start()
 
