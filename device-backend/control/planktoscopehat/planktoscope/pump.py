@@ -1,10 +1,13 @@
-import time
 import json
-import os
-from . import mqtt
 import multiprocessing
+import os
+import time
+
 from loguru import logger
+
 from planktoscope.stepper import stepper
+
+from . import mqtt
 
 logger.info("planktoscope.pump is loaded")
 
@@ -12,6 +15,7 @@ logger.info("planktoscope.pump is loaded")
 FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
+
 
 class PumpProcess(multiprocessing.Process):
     # 507 steps per ml for PlanktoScope standard
@@ -34,15 +38,11 @@ class PumpProcess(multiprocessing.Process):
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
         else:
-            logger.info(
-                "The hardware configuration file doesn't exists, using defaults"
-            )
+            logger.info("The hardware configuration file doesn't exists, using defaults")
             configuration = {}
 
         # parse the config data. If the key is absent, we are using the default value
-        self.pump_steps_per_ml = configuration.get(
-            "pump_steps_per_ml", self.pump_steps_per_ml
-        )
+        self.pump_steps_per_ml = configuration.get("pump_steps_per_ml", self.pump_steps_per_ml)
         self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
 
         # /dev/spidev0.0
@@ -51,9 +51,7 @@ class PumpProcess(multiprocessing.Process):
         # Set stepper controller max speed
         self.pump_stepper.acceleration = 2000
         self.pump_stepper.deceleration = self.pump_stepper.acceleration
-        self.pump_stepper.speed = (
-            self.pump_max_speed * self.pump_steps_per_ml * 256 / 60
-        )
+        self.pump_stepper.speed = self.pump_max_speed * self.pump_steps_per_ml * 256 / 60
 
         logger.info("Pump initialisation is over")
 
@@ -67,9 +65,7 @@ class PumpProcess(multiprocessing.Process):
             logger.info("The pump has been interrupted")
 
             # Publish the status "Interrupted" to via MQTT to Node-RED
-            self.actuator_client.client.publish(
-                "status/pump", '{"status":"Interrupted"}'
-            )
+            self.actuator_client.client.publish("status/pump", '{"status":"Interrupted"}')
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move pump command")
@@ -79,9 +75,7 @@ class PumpProcess(multiprocessing.Process):
                 or "volume" not in last_message
                 or "flowrate" not in last_message
             ):
-                logger.error(
-                    f"The received message has the wrong argument {last_message}"
-                )
+                logger.error(f"The received message has the wrong argument {last_message}")
                 self.actuator_client.client.publish(
                     "status/pump",
                     '{"status":"Error, the message is missing an argument"}',
@@ -109,18 +103,16 @@ class PumpProcess(multiprocessing.Process):
     def treat_command(self):
         command = ""
         logger.info("We received a new message")
-        last_message = self.actuator_client.msg["payload"]
+        last_message = self.actuator_client.msg["payload"]  # type: ignore[index]
         logger.debug(last_message)
-        command = self.actuator_client.msg["topic"].split("/", 1)[1]
+        command = self.actuator_client.msg["topic"].split("/", 1)[1]  # type: ignore[index]
         logger.debug(command)
         self.actuator_client.read_message()
 
         if command == "pump":
             self.__message_pump(last_message)
         elif command != "":
-            logger.warning(
-                f"We did not understand the received request {command} - {last_message}"
-            )
+            logger.warning(f"We did not understand the received request {command} - {last_message}")
 
     # The pump max speed will be at about 400 full steps per second
     # This amounts to 0.9mL per seconds maximum, or 54mL/min
@@ -149,9 +141,7 @@ class PumpProcess(multiprocessing.Process):
         logger.debug(f"The number of microsteps that will be applied is {nb_steps}")
         if speed > self.pump_max_speed:
             speed = self.pump_max_speed
-            logger.warning(
-                f"Pump speed has been clamped to a maximum safe speed of {speed}mL/min"
-            )
+            logger.warning(f"Pump speed has been clamped to a maximum safe speed of {speed}mL/min")
         steps_per_second = speed * self.pump_steps_per_ml * 256 / 60
         logger.debug(f"There will be a speed of {steps_per_second} steps per second")
         self.pump_stepper.speed = int(steps_per_second)
@@ -176,18 +166,14 @@ class PumpProcess(multiprocessing.Process):
     @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread"""
-        logger.info(
-            f"The pump control process has been started in process {os.getpid()}"
-        )
+        logger.info(f"The pump control process has been started in process {os.getpid()}")
 
         # Creates the MQTT Client
         # We have to create it here, otherwise when the process running run is started
         # it doesn't see changes and calls made by self.actuator_client because this one
         # only exist in the master process
         # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
-        self.actuator_client = mqtt.MQTT_Client(
-            topic="actuator/#", name="actuator_client"
-        )
+        self.actuator_client = mqtt.MQTT_Client(topic="actuator/#", name="actuator_client")
         # Publish the status "Ready" to via MQTT to Node-RED
         self.actuator_client.client.publish("status/pump", '{"status":"Ready"}')
 

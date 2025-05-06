@@ -1,7 +1,14 @@
+# mypy: ignore-errors
+
 import spidev
 from loguru import logger
 
 from .motor.motor import Motor
+
+"""Step forward"""
+FORWARD = 1
+""""Step backward"""
+BACKWARD = 2
 
 class stepper:
     def __init__(self, pin, spi_bus, spi_device, size=0):
@@ -49,7 +56,7 @@ class stepper:
         """
         return self.__stepper.get_velocity() != 0
 
-    def go(self, direction, distance):
+    def go(self, direction: int, distance: int):
         """move in the given direction for the given distance
 
         Args:

@@ -1,9 +1,13 @@
+# mypy: ignore-errors
+
 import time
+
 from gpiozero import DigitalOutputDevice
 
 from . import registers as reg
 
-class Motor():
+
+class Motor:
     def __init__(self, pin: int, spi):
         # Setting the CS and enable pins according to the motor number called
         self.enable = DigitalOutputDevice(pin, active_high=False)
@@ -201,8 +205,8 @@ class Motor():
         self.write_ramp_params()
 
         # Position range is from -2^31 to +(2^31)-1
-        maximum_position = (2 ** 31) - 1
-        minimum_position = -(2 ** 31)
+        maximum_position = (2**31) - 1
+        minimum_position = -(2**31)
 
         # Check if position is within bounds
         if position > maximum_position:

@@ -1,10 +1,13 @@
-import time
 import json
-import os
-from . import mqtt
 import multiprocessing
+import os
+import time
+
 from loguru import logger
+
 from planktoscope.stepper import stepper
+
+from . import mqtt
 
 logger.info("planktoscope.focus is loaded")
 
@@ -12,6 +15,7 @@ logger.info("planktoscope.focus is loaded")
 FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
+
 
 class FocusProcess(multiprocessing.Process):
     focus_steps_per_mm = 40
@@ -32,18 +36,12 @@ class FocusProcess(multiprocessing.Process):
                 configuration = json.load(config_file)
                 logger.debug(f"Hardware configuration loaded is {configuration}")
         else:
-            logger.info(
-                "The hardware configuration file doesn't exists, using defaults"
-            )
+            logger.info("The hardware configuration file doesn't exists, using defaults")
             configuration = {}
 
         # parse the config data. If the key is absent, we are using the default value
-        self.focus_steps_per_mm = configuration.get(
-            "focus_steps_per_mm", self.focus_steps_per_mm
-        )
-        self.focus_max_speed = configuration.get(
-            "focus_max_speed", self.focus_max_speed
-        )
+        self.focus_steps_per_mm = configuration.get("focus_steps_per_mm", self.focus_steps_per_mm)
+        self.focus_max_speed = configuration.get("focus_max_speed", self.focus_max_speed)
 
         # /dev/spidev0.1
         self.focus_stepper = stepper(pin=5, spi_bus=0, spi_device=1, size=45)
@@ -66,20 +64,14 @@ class FocusProcess(multiprocessing.Process):
             logger.info("The focus has been interrupted")
 
             # Publish the status "Interrupted" to via MQTT to Node-RED
-            self.actuator_client.client.publish(
-                "status/focus", '{"status":"Interrupted"}'
-            )
+            self.actuator_client.client.publish("status/focus", '{"status":"Interrupted"}')
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move focus command")
 
             if "direction" not in last_message or "distance" not in last_message:
-                logger.error(
-                    f"The received message has the wrong argument {last_message}"
-                )
-                self.actuator_client.client.publish(
-                    "status/focus", '{"status":"Error"}'
-                )
+                logger.error(f"The received message has the wrong argument {last_message}")
+                self.actuator_client.client.publish("status/focus", '{"status":"Error"}')
             # Get direction from the different received arguments
             direction = last_message["direction"]
             # Get number of steps from the different received arguments
@@ -99,18 +91,16 @@ class FocusProcess(multiprocessing.Process):
     def treat_command(self):
         command = ""
         logger.info("We received a new message")
-        last_message = self.actuator_client.msg["payload"]
+        last_message = self.actuator_client.msg["payload"]  # type: ignore[index]
         logger.debug(last_message)
-        command = self.actuator_client.msg["topic"].split("/", 1)[1]
+        command = self.actuator_client.msg["topic"].split("/", 1)[1]  # type: ignore[index]
         logger.debug(command)
         self.actuator_client.read_message()
 
         if command == "focus":
             self.__message_focus(last_message)
         elif command != "":
-            logger.warning(
-                f"We did not understand the received request {command} - {last_message}"
-            )
+            logger.warning(f"We did not understand the received request {command} - {last_message}")
 
     def focus(self, direction, distance, speed=focus_max_speed):
         """Moves the focus stepper
@@ -125,9 +115,7 @@ class FocusProcess(multiprocessing.Process):
             speed (int, optional): max speed of the stage, in mm/sec. Defaults to focus_max_speed.
         """
 
-        logger.info(
-            f"The focus stage will move {direction} for {distance}mm at {speed}mm/sec"
-        )
+        logger.info(f"The focus stage will move {direction} for {distance}mm at {speed}mm/sec")
 
         # Validation of inputs
         if direction not in ["UP", "DOWN"]:
@@ -171,18 +159,14 @@ class FocusProcess(multiprocessing.Process):
     @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread"""
-        logger.info(
-            f"The focus control process has been started in process {os.getpid()}"
-        )
+        logger.info(f"The focus control process has been started in process {os.getpid()}")
 
         # Creates the MQTT Client
         # We have to create it here, otherwise when the process running run is started
         # it doesn't see changes and calls made by self.actuator_client because this one
         # only exist in the master process
         # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
-        self.actuator_client = mqtt.MQTT_Client(
-            topic="actuator/#", name="actuator_client"
-        )
+        self.actuator_client = mqtt.MQTT_Client(topic="actuator/#", name="actuator_client")
         # Publish the status "Ready" to via MQTT to Node-RED
         self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
 
