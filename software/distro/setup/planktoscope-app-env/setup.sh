@@ -66,17 +66,27 @@ else
   panic "$description"
 fi
 
-description="set up GPS and clock driver"
-report_starting "$description"
-if "$build_scripts_root/gps/install.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
+if [ "$hardware_type" = "adafruithat" ]; then
+  description="set up GPS and clock driver"
+  report_starting "$description"
+  if "$build_scripts_root/gps/install.sh"; then
+    report_finished "$description"
+  else
+    panic "$description"
+  fi
 fi
 
 description="enable CPU overclocking"
 report_starting "$description"
 if "$build_scripts_root/overclocking/config.sh"; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
+description="update and configure bootloader"
+report_starting "$description"
+if "$build_scripts_root/bootloader/install.sh"; then
   report_finished "$description"
 else
   panic "$description"

@@ -152,10 +152,7 @@ class StepperProcess(multiprocessing.Process):
             )
             configuration = {}
 
-        reverse = False
-
         # parse the config data. If the key is absent, we are using the default value
-        reverse = configuration.get("stepper_reverse", reverse)
         self.focus_steps_per_mm = configuration.get(
             "focus_steps_per_mm", self.focus_steps_per_mm
         )
@@ -168,12 +165,8 @@ class StepperProcess(multiprocessing.Process):
         self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
 
         # define the names for the 2 exsting steppers
-        if reverse:
-            self.pump_stepper = stepper(STEPPER2)
-            self.focus_stepper = stepper(STEPPER1, size=45)
-        else:
-            self.pump_stepper = stepper(STEPPER1)
-            self.focus_stepper = stepper(STEPPER2, size=45)
+        self.pump_stepper = stepper(STEPPER1)
+        self.focus_stepper = stepper(STEPPER2, size=45)
 
         # Set stepper controller max speed
 
@@ -443,7 +436,7 @@ class StepperProcess(multiprocessing.Process):
                     '{"status":"Done"}',
                 )
                 self.focus_started = False
-                self.pump_stepper.release()
+                self.focus_stepper.release()
             time.sleep(0.01)
         logger.info("Shutting down the stepper process")
         self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
