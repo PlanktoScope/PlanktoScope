@@ -144,7 +144,7 @@ jobs:
           run: |
             export DEBIAN_FRONTEND=noninteractive
             sudo apt-get update -y -o Dpkg::Progress-Fancy=0
-            sudo apt-get upgrade -y -o Dpkg::Progress-Fancy=0
+            sudo apt-get dist-upgrade -y -o Dpkg::Progress-Fancy=0
             sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
             # chown is needed to suppress a git error about dubious repo ownership:
             sudo chown -R $USER "/run/os-setup"
