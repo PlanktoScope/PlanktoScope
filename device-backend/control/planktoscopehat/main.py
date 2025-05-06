@@ -7,7 +7,8 @@ import os
 from loguru import logger
 
 import planktoscope.mqtt
-import planktoscope.stepper
+# import planktoscope.stepper
+import planktoscope.focus
 import planktoscope.light  # Fan HAT LEDs
 import planktoscope.identity
 from planktoscope.imager import mqtt as imager
@@ -88,9 +89,14 @@ if __name__ == "__main__":
     shutdown_event.clear()
 
     # Starts the stepper process for actuators
-    logger.info("Starting the stepper control process (step 2/4)")
-    stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
-    stepper_thread.start()
+    # logger.info("Starting the stepper control process (step 2/4)")
+    # stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
+    # stepper_thread.start()
+
+    # Starts the focus process
+    logger.info("Starting the focus control process (step 2/4)")
+    focus_thread = planktoscope.focus.StepperProcess(shutdown_event)
+    focus_thread.start()
 
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
@@ -118,8 +124,11 @@ if __name__ == "__main__":
     while run:
         # TODO look into ways of restarting the dead threads
         logger.trace("Running around in circles while waiting for someone to die!")
-        if not stepper_thread.is_alive():
-            logger.error("The stepper process died unexpectedly! Oh no!")
+        # if not stepper_thread.is_alive():
+        #     logger.error("The stepper process died unexpectedly! Oh no!")
+        #     break
+        if not focus_thread.is_alive():
+            logger.error("The focus process died unexpectedly! Oh no!")
             break
         if not imager_thread or not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
@@ -130,13 +139,15 @@ if __name__ == "__main__":
     shutdown_event.set()
     time.sleep(1)
 
-    stepper_thread.join()
+    # stepper_thread.join()
+    focus_thread.join()
     if imager_thread:
         imager_thread.join()
     if light_thread:
         light_thread.join()
 
-    stepper_thread.close()
+    # stepper_thread.close()
+    focus_thread.close()
     if imager_thread:
         imager_thread.close()
     if light_thread:

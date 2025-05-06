@@ -5,18 +5,22 @@ from shush.drivers import tmc5160_reg as reg
 import time
 from gpiozero import OutputDevice, DigitalOutputDevice
 
-class Motor(Board):
-    def __init__(self, motor: int):
+class Motor():
+    def __init__(self, motor: int, spi):
         # Setting the CS and enable pins according to the motor number called
 
-        # Pump
-        if motor == 0:
-            self.enable = DigitalOutputDevice(23, active_high=False)
-            self.spi = Board.spi0
-        # Focus
-        elif motor == 1:
-            self.enable = DigitalOutputDevice(5, active_high=False)
-            self.spi = Board.spi1
+        print(motor)
+        self.enable = DigitalOutputDevice(motor, active_high=False)
+        self.spi = spi
+
+        # # Pump
+        # if motor == 0:
+        #     self.enable = DigitalOutputDevice(23, active_high=False)
+        #     self.spi = Board.spi0
+        # # Focus
+        # elif motor == 1:
+        #     self.enable = DigitalOutputDevice(5, active_high=False)
+        #     self.spi = Board.spi1
 
         # Initially apply default settings.
         # These can be configured at any time.
