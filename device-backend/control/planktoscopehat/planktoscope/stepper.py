@@ -1,6 +1,7 @@
 import spidev
-import shush.motor
 from loguru import logger
+
+from .motor.motor import Motor
 
 class stepper:
     def __init__(self, pin, spi_bus, spi_device, size=0):
@@ -13,7 +14,7 @@ class stepper:
             size (int): maximum number of steps of this stepper (aka stage size). Can be 0 if not applicable
         """
         self.init_spi(spi_bus, spi_device)
-        self.__stepper = shush.Motor(pin, self.__spi)
+        self.__stepper = Motor(pin, self.__spi)
         self.__size = size
         self.__goal = 0
         self.__direction = ""

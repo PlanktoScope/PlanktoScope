@@ -1,9 +1,7 @@
-__author__ = "ZJAllen"
-
-from shush.board import Board
-from shush.drivers import tmc5160_reg as reg
 import time
-from gpiozero import OutputDevice, DigitalOutputDevice
+from gpiozero import DigitalOutputDevice
+
+from . import registers as reg
 
 class Motor():
     def __init__(self, pin: int, spi):
