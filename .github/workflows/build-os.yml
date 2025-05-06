@@ -134,7 +134,7 @@ jobs:
       # record the same information here.
 
       - name: Record OS installation versioning information
-        uses: ethanjli/pinspawn-action@178f5a6
+        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -239,13 +239,13 @@ jobs:
       # Actions log outputs for setting up pinspawn-action for the first time from the logs for
       # pre-downloading container images
       - name: Install pinspawn-action dependencies
-        uses: ethanjli/pinspawn-action@178f5a6
+        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           run: echo "Done!"
 
       - name: Copy pre-downloaded container images into OS image
-        uses: ethanjli/pinspawn-action@178f5a6
+        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -261,7 +261,7 @@ jobs:
       # RUN OS SETUP SCRIPTS
 
       - name: Run OS setup scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@178f5a6
+        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           user: ${{ env.SETUP_USER }}
@@ -279,7 +279,7 @@ jobs:
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal
-        uses: ethanjli/pinspawn-action@178f5a6
+        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         env:
           DEFAULT_PASSWORD: copepode
           DEFAULT_KEYBOARD_LAYOUT: us
@@ -345,7 +345,7 @@ jobs:
           echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
 
       - name: Shrink the OS image
-        uses: ethanjli/pishrink-action@178f5a6
+        uses: ethanjli/pishrink-action@179f5a66e7343ab76924595c02fd077092fd902d
         env:
           PISHRINK_XZ: -T0 ${{ github.ref_type == 'tag' && '-9' || '-1' }}
         with:
