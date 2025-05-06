@@ -137,6 +137,7 @@ jobs:
         uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          boot-partition-mount: /boot/firmware
           user: ${{ env.SETUP_USER }}
           args: >-
             --bind "$(pwd)":/run/os-setup
@@ -242,12 +243,14 @@ jobs:
         uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          boot-partition-mount: /boot/firmware
           run: echo "Done!"
 
       - name: Copy pre-downloaded container images into OS image
         uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          boot-partition-mount: /boot/firmware
           user: ${{ env.SETUP_USER }}
           args: >-
             --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
@@ -264,6 +267,7 @@ jobs:
         uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          boot-partition-mount: /boot/firmware
           user: ${{ env.SETUP_USER }}
           # Note: CAP_NET_ADMIN is needed for iptables, which is needed for Docker (at least in an
           # unbooted container). Setting the machine ID (and therefore hostname) to `raspberrypi`
@@ -285,6 +289,7 @@ jobs:
           DEFAULT_KEYBOARD_LAYOUT: us
         with:
           image: ${{ steps.expand-image.outputs.destination }}
+          boot-partition-mount: /boot/firmware
           args: --machine=raspberrypi
           run: |
             # Change default settings for the SD card to enable headless & keyboardless first boot
