@@ -116,4 +116,3 @@ class stepper:
         """
         logger.debug(f"Setting stepper deceleration to {deceleration}")
         self.__stepper.ramp_DMAX = int(deceleration)
-
