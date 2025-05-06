@@ -6,24 +6,10 @@ import time
 from gpiozero import OutputDevice, DigitalOutputDevice
 
 class Motor():
-    def __init__(self, motor: int, spi):
+    def __init__(self, pin: int, spi):
         # Setting the CS and enable pins according to the motor number called
-
-        print(motor)
-        self.enable = DigitalOutputDevice(motor, active_high=False)
+        self.enable = DigitalOutputDevice(pin, active_high=False)
         self.spi = spi
-
-        # # Pump
-        # if motor == 0:
-        #     self.enable = DigitalOutputDevice(23, active_high=False)
-        #     self.spi = Board.spi0
-        # # Focus
-        # elif motor == 1:
-        #     self.enable = DigitalOutputDevice(5, active_high=False)
-        #     self.spi = Board.spi1
-
-        # Initially apply default settings.
-        # These can be configured at any time.
         self.default_settings()
 
     def enable_motor(self):
