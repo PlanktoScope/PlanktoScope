@@ -5067,32 +5067,6 @@
         ]
     },
     {
-        "id": "4b489713.ccde5",
-        "type": "ui_button",
-        "z": "baa1e3d9.cb29d",
-        "name": "",
-        "group": "4322c187.e73e5",
-        "order": 12,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Start Acquisition",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "camera",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "imager/image",
-        "x": 420,
-        "y": 440,
-        "wires": [
-            [
-                "c9f510c0.7d1328"
-            ]
-        ]
-    },
-    {
         "id": "c9f510c0.7d1328",
         "type": "function",
         "z": "baa1e3d9.cb29d",
@@ -6012,6 +5986,29 @@
             [
                 "fb887036.12429",
                 "67091ac0.8f9f6c"
+            ]
+        ]
+    },
+    {
+        "id": "37116281279b9b82",
+        "type": "ui_template",
+        "z": "baa1e3d9.cb29d",
+        "group": "4322c187.e73e5",
+        "name": "Start Acquisition",
+        "order": 12,
+        "width": "5",
+        "height": "1",
+        "format": "<button class=\"md-raised md-button\" type=\"button\" ng-click=\"startAcquisition()\" style=\"z-index: 1; padding: 1em; width: 100%;\">\n    <span>Start Acquisition</span>\n</button>\n\n<script>\n    (function(scope) {\n        scope.startAcquisition = async function() {\n            const systemTime = await getSystemTime();\n            if (systemTime !== undefined && isDrifted(new Date(systemTime.timestamp))) {\n                await setSystemTime((new Date()).getTime());\n                // Changing the system time seems to trigger a MQTT client\n                // disconnection+reconnection in Node-RED, and the duration of\n                // disconnection is controlled by a reconnection interval in\n                // Node-RED's settings.js file:\n                await new Promise(resolve => setTimeout(resolve, 2000));\n            }\n            scope.send({topic: 'imager/image'});\n        }\n        \n        async function getSystemTime() {\n            const response = await fetch('/ps/node-red-v2/api/system-time', {method: 'GET'});\n            if (!response.ok) {\n                alert(`Couldn't check whether system time is accurate (HTTP error ${response.status}); press OK to continue anyways...`);\n                return undefined;\n            }\n            try {\n                const result = await response.json();\n                if (!('timestamp' in result)) {\n                    // TODO: emit a notification toast message instead\n                    alert('Couldn\\'t check whether system time is accurate (invalid JSON object in response body); press OK to continue anyways...');\n                    return undefined;\n                }\n                return result;\n            } catch (e) {\n                // TODO: emit a notification toast message instead\n                alert('Couldn\\'t check whether system time is accurate (unable to parse response body as JSON); press OK to continue anyways...');\n                return undefined;\n            }\n        }\n        function isDrifted(systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            return drift >= threshold;\n        }\n        async function setSystemTime(timestamp) {\n            const response = await fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {'Content-Type': 'application/json; charset=UTF-8'},\n                body: JSON.stringify({timestamp: timestamp}),\n            });\n            if (!response.ok) {\n                // TODO: emit a notification toast message instead\n                alert('We might have failed to update the system time to match the time in your web browser; press OK to continue anyways...');\n                return;\n            }\n        }\n    })(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "c9f510c0.7d1328"
             ]
         ]
     },
@@ -8088,7 +8085,8 @@
         "y": 340,
         "wires": [
             [
-                "1c4113d4c933fd4b"
+                "1c4113d4c933fd4b",
+                "423659c62bae0524"
             ]
         ]
     },
@@ -8151,6 +8149,67 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "3822b843fda94733",
+        "type": "http in",
+        "z": "1371dec5.76e671",
+        "name": "GET /api/system-time",
+        "url": "/api/system-time",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "5b0a65d3fe187424"
+            ]
+        ]
+    },
+    {
+        "id": "5b0a65d3fe187424",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date();\nmsg.payload = {'timestamp': date.getTime()};\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "312a15407574b38e"
+            ]
+        ]
+    },
+    {
+        "id": "423659c62bae0524",
+        "type": "http response",
+        "z": "1371dec5.76e671",
+        "name": "Send POST response",
+        "statusCode": "",
+        "headers": {},
+        "x": 620,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "312a15407574b38e",
+        "type": "http response",
+        "z": "1371dec5.76e671",
+        "name": "Send GET response",
+        "statusCode": "",
+        "headers": {
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+        "x": 620,
+        "y": 420,
+        "wires": []
     },
     {
         "id": "1fdf77b5.24e4e",

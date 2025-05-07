@@ -18,6 +18,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change; Application: GUI) When you press the "Start Acquisition" button in the Node-RED dashboard, it now automatically adjusts the PlanktoScope's system time to match the time in your web browser (but still in UTC time zone on the PlanktoScope) if the times are different by more than one minute, so that datasets will be created with correct dates in the dataset directory structure.
 - (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye). No support will be given for running the PlanktoScope OS setup scripts on bullseye base images, and the OS setup scripts will not work on bullseye.
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
 - (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). As part of this change the previous autohotspot service has been removed, as it's redundant with functionality now provided by NetworkManager.
