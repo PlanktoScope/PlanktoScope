@@ -52,7 +52,6 @@ class Worker(multiprocessing.Process):
         # constructor.
         self._camera: typing.Optional[camera.Worker] = None
 
-        print(configuration)
         self.configuration = configuration
 
         loguru.logger.success("planktoscope.imager is initialized and ready to go!")
