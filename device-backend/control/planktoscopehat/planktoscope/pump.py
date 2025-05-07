@@ -65,7 +65,7 @@ class PumpProcess(multiprocessing.Process):
             logger.info("The pump has been interrupted")
 
             # Publish the status "Interrupted" to via MQTT to Node-RED
-            self.actuator_client.client.publish("status/pump", '{"status":"Interrupted"}')
+            self.pump_client.client.publish("status/pump", '{"status":"Interrupted"}')
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move pump command")
@@ -76,7 +76,7 @@ class PumpProcess(multiprocessing.Process):
                 or "flowrate" not in last_message
             ):
                 logger.error(f"The received message has the wrong argument {last_message}")
-                self.actuator_client.client.publish(
+                self.pump_client.client.publish(
                     "status/pump",
                     '{"status":"Error, the message is missing an argument"}',
                 )
@@ -89,7 +89,7 @@ class PumpProcess(multiprocessing.Process):
             flowrate = float(last_message["flowrate"])
             if flowrate == 0:
                 logger.error("The flowrate should not be == 0")
-                self.actuator_client.client.publish(
+                self.pump_client.client.publish(
                     "status/pump", '{"status":"Error, The flowrate should not be == 0"}'
                 )
                 return
@@ -103,11 +103,11 @@ class PumpProcess(multiprocessing.Process):
     def treat_command(self):
         command = ""
         logger.info("We received a new message")
-        last_message = self.actuator_client.msg["payload"]  # type: ignore[index]
+        last_message = self.pump_client.msg["payload"]  # type: ignore[index]
         logger.debug(last_message)
-        command = self.actuator_client.msg["topic"].split("/", 1)[1]  # type: ignore[index]
+        command = self.pump_client.msg["topic"].split("/", 1)[1]  # type: ignore[index]
         logger.debug(command)
-        self.actuator_client.read_message()
+        self.pump_client.read_message()
 
         if command == "pump":
             self.__message_pump(last_message)
@@ -147,7 +147,7 @@ class PumpProcess(multiprocessing.Process):
         self.pump_stepper.speed = int(steps_per_second)
 
         # Publish the status "Started" to via MQTT to Node-RED
-        self.actuator_client.client.publish(
+        self.pump_client.client.publish(
             "status/pump",
             f'{{"status":"Started", "duration":{nb_steps / steps_per_second}}}',
         )
@@ -168,22 +168,19 @@ class PumpProcess(multiprocessing.Process):
         """This is the function that needs to be started to create a thread"""
         logger.info(f"The pump control process has been started in process {os.getpid()}")
 
-        # Creates the MQTT Client
-        # We have to create it here, otherwise when the process running run is started
-        # it doesn't see changes and calls made by self.actuator_client because this one
-        # only exist in the master process
-        # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
-        self.actuator_client = mqtt.MQTT_Client(topic="actuator/#", name="actuator_client")
+        # # MQTT Service connection
+        self.pump_client = mqtt.MQTT_Client(topic="actuator/pump", name="pump_client")
+
         # Publish the status "Ready" to via MQTT to Node-RED
-        self.actuator_client.client.publish("status/pump", '{"status":"Ready"}')
+        self.pump_client.client.publish("status/pump", '{"status":"Ready"}')
 
         logger.success("Pump is READY!")
         while not self.stop_event.is_set():
-            if self.actuator_client.new_message_received():
+            if self.pump_client.new_message_received():
                 self.treat_command()
             if self.pump_started and self.pump_stepper.at_goal():
                 logger.success("The pump movement is over!")
-                self.actuator_client.client.publish(
+                self.pump_client.client.publish(
                     "status/pump",
                     '{"status":"Done"}',
                 )
@@ -191,7 +188,7 @@ class PumpProcess(multiprocessing.Process):
                 self.pump_stepper.release()
             time.sleep(0.01)
         logger.info("Shutting down the pump process")
-        self.actuator_client.client.publish("status/pump", '{"status":"Dead"}')
+        self.pump_client.client.publish("status/pump", '{"status":"Dead"}')
         self.pump_stepper.shutdown()
-        self.actuator_client.shutdown()
+        self.pump_client.shutdown()
         logger.success("Pump process shut down! See you!")

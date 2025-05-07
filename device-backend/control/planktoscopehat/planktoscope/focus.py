@@ -64,14 +64,14 @@ class FocusProcess(multiprocessing.Process):
             logger.info("The focus has been interrupted")
 
             # Publish the status "Interrupted" to via MQTT to Node-RED
-            self.actuator_client.client.publish("status/focus", '{"status":"Interrupted"}')
+            self.focus_client.client.publish("status/focus", '{"status":"Interrupted"}')
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move focus command")
 
             if "direction" not in last_message or "distance" not in last_message:
                 logger.error(f"The received message has the wrong argument {last_message}")
-                self.actuator_client.client.publish("status/focus", '{"status":"Error"}')
+                self.focus_client.client.publish("status/focus", '{"status":"Error"}')
             # Get direction from the different received arguments
             direction = last_message["direction"]
             # Get number of steps from the different received arguments
@@ -91,11 +91,11 @@ class FocusProcess(multiprocessing.Process):
     def treat_command(self):
         command = ""
         logger.info("We received a new message")
-        last_message = self.actuator_client.msg["payload"]  # type: ignore[index]
+        last_message = self.focus_client.msg["payload"]  # type: ignore[index]
         logger.debug(last_message)
-        command = self.actuator_client.msg["topic"].split("/", 1)[1]  # type: ignore[index]
+        command = self.focus_client.msg["topic"].split("/", 1)[1]  # type: ignore[index]
         logger.debug(command)
-        self.actuator_client.read_message()
+        self.focus_client.read_message()
 
         if command == "focus":
             self.__message_focus(last_message)
@@ -140,7 +140,7 @@ class FocusProcess(multiprocessing.Process):
         self.focus_stepper.speed = int(steps_per_second)
 
         # Publish the status "Started" to via MQTT to Node-RED
-        self.actuator_client.client.publish(
+        self.focus_client.client.publish(
             "status/focus",
             f'{{"status":"Started", "duration":{nb_steps / steps_per_second}}}',
         )
@@ -161,22 +161,19 @@ class FocusProcess(multiprocessing.Process):
         """This is the function that needs to be started to create a thread"""
         logger.info(f"The focus control process has been started in process {os.getpid()}")
 
-        # Creates the MQTT Client
-        # We have to create it here, otherwise when the process running run is started
-        # it doesn't see changes and calls made by self.actuator_client because this one
-        # only exist in the master process
-        # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
-        self.actuator_client = mqtt.MQTT_Client(topic="actuator/#", name="actuator_client")
+        # MQTT Service connection
+        self.focus_client = mqtt.MQTT_Client(topic="actuator/focus", name="focus_client")
+
         # Publish the status "Ready" to via MQTT to Node-RED
-        self.actuator_client.client.publish("status/focus", '{"status":"Ready"}')
+        self.focus_client.client.publish("status/focus", '{"status":"Ready"}')
 
         logger.success("Focus is READY!")
         while not self.stop_event.is_set():
-            if self.actuator_client.new_message_received():
+            if self.focus_client.new_message_received():
                 self.treat_command()
             if self.focus_started and self.focus_stepper.at_goal():
                 logger.success("The focus movement is over!")
-                self.actuator_client.client.publish(
+                self.focus_client.client.publish(
                     "status/focus",
                     '{"status":"Done"}',
                 )
@@ -184,7 +181,7 @@ class FocusProcess(multiprocessing.Process):
                 self.focus_stepper.release()
             time.sleep(0.01)
         logger.info("Shutting down the focus process")
-        self.actuator_client.client.publish("status/focus", '{"status":"Dead"}')
+        self.focus_client.client.publish("status/focus", '{"status":"Dead"}')
         self.focus_stepper.shutdown()
-        self.actuator_client.shutdown()
+        self.focus_client.shutdown()
         logger.success("Focus process shut down! See you!")
