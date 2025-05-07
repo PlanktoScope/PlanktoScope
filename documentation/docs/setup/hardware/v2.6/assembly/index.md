@@ -155,7 +155,7 @@ In order to perform all the assembly steps you will need the following tooling :
 ![Assemble the pump 2.png](images/Assemble_the_pump_2.png "Assemble the pump 2.png")
 * Put this assembly on the side.
 
-## Step 4: Assemble the Core Module
+## Step 6: Assemble the Core Module
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
@@ -209,7 +209,7 @@ In order to perform all the assembly steps you will need the following tooling :
 ![Assemble Core Module 7](images/Assemble_Core_Module_7.png "Assemble Core Module 7")
 * Put this assembly on the side.
 
-## Step 5: Assemble the Alim Jack Module
+## Step 7: Assemble the Alim Jack Module
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
 
@@ -234,7 +234,7 @@ In order to perform all the assembly steps you will need the following tooling :
 * Put this assembly on the side.
 
   
-## Step 6: Assemble the Optic 20-200 Assembly
+## Step 8: Assemble the Optic 20-200 Assembly
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
@@ -263,7 +263,7 @@ In order to perform all the assembly steps you will need the following tooling :
 
 * Put this assembly on the side.
 
-## Step 7: Assemble the button module
+## Step 9: Assemble the button module
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
@@ -288,7 +288,7 @@ In order to perform all the assembly steps you will need the following tooling :
 
 * Put this assembly on the side.
 
-## Step 8: Finalize the core module
+## Step 10: Finalize the core module
 
 :hammer_and_wrench:
 [Tooling](#toolings-hammerandwrench):
@@ -329,7 +329,7 @@ In order to perform all the assembly steps you will need the following tooling :
 
 * Put this assembly on the side.
 
-## Step 9: Finalize Main Assembly
+## Step 11: Finalize Main Assembly
 
 
 :hammer_and_wrench:
@@ -342,11 +342,11 @@ In order to perform all the assembly steps you will need the following tooling :
 [Parts Needed](#content-of-the-kit-gear):
 
 - [ ] Bamboo Parts I, E, D, C, J
-- [ ] [Core module](#step-4-assemble-the-core-module)
-- [ ] [Optic module](#step-6-assemble-the-optic-20-200-assy)
-- [ ] [Pump module](#step-3-assemble-the-pump-module)
-- [ ] [Button module](#step-7-assemble-the-button-module)
-- [ ] [Alim Jack module](#step-5-assemble-the-alim-jack-module)
+- [ ] [Core module](#step-6-assemble-the-core-module)
+- [ ] [Optic module](#step-8-assemble-the-optic-20-200-assembly)
+- [ ] [Pump module](#step-5-assemble-the-pump-module)
+- [ ] [Button module](#step-9-assemble-the-button-module)
+- [ ] [Alim Jack module](#step-7-assemble-the-alim-jack-module)
 - [ ] 4 x Zip Ties
 - [ ] 20 cm Spiral Cable Jacket
 - [ ] 32 x M3x14mm screws
@@ -403,11 +403,9 @@ In order to perform all the assembly steps you will need the following tooling :
 * Use the **T8H or Hex2 screwdriver** to fix each of the **4 x M3x14mm screws** in place, ensuring they are firmly attached but not overly tightened
 ![Finalize Main Assembly 11.png](images/Finalize_Main_Assembly_11.png "Finalize Main Assembly 11.png")
 
-* Connect the Peristaltic pump on the PlanktoScope HAT
-![Finalize Main Assembly 12.png](images/Finalize_Main_Assembly_12.png "Finalize Main Assembly 12.png")
-
 * Utilize the **spiral cable jacket** to organize and maintain a neat cable passage
-
+* Slide the cables protect in the lateral slots
+* Connect the Peristaltic pump on the PlanktoScope HAT
 !!! warning
 
 	Be careful not to apply tension on the led wires and the led itself while setting the cable jacket.
@@ -450,7 +448,7 @@ In order to perform all the assembly steps you will need the following tooling :
 * Use the **T8H or Hex2 screwdriver** to fix each of the **8 x M3x14mm screws** in place on Alim module side of the main assembly, ensuring they are firmly attached but not overly tightened
 ![Finalize Main Assembly 22.png](images/Finalize_Main_Assembly_22.png "Finalize Main Assembly 22.png")
 
-## Step 10: Flowcell Holder Assembly
+## Step 12: Flowcell Holder Assembly
 
 
 :hammer_and_wrench:
@@ -492,7 +490,7 @@ In order to perform all the assembly steps you will need the following tooling :
 ![Flowcell Holder Assembly 6](images/Flowcell_Holder_Assembly_6.jpg "Flowcell Holder Assembly 6")
 
 
-## Step 11: Finalization
+## Step 13: Finalization
 
 :gear:
 [Parts Needed](#content-of-the-kit-gear):
