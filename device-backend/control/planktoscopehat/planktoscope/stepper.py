@@ -78,10 +78,10 @@ class stepper:
         self.__stepper.stop_motor()
         self.__stepper.disable_motor()
         self.__goal = self.__stepper.get_position()
-        self.__spi.close()
 
     def release(self):
         self.__stepper.disable_motor()
+        self.__spi.close()
 
     @property
     def speed(self):
