@@ -5829,7 +5829,7 @@
         "order": 13,
         "width": "5",
         "height": "1",
-        "format": "<div ng-if=\"drifted && !settingTime\" width=>\n    <button class=\"md-raised md-button\" type=\"button\" ng-click=\"setTime()\" style=\"z-index: 1; padding: 1em; width: 100%;\">\n        <span>Update System Time</span>\n    </button>\n</div>\n\n<div ng-if=\"!showStart && !drifted\" style=\"width: 100%; height: 830px;\">\n    <p>Loading, please wait...</p>\n</div>\n\n<div ng-if=\"showStart && !drifted\">\n    <button class=\"md-raised md-button\" type=\"button\" ng-click=\"send({topic: 'imager/image'})\" style=\"z-index: 1; padding: 1em; width: 100%;\">\n        <span>Start Acquisition</span>\n    </button>\n</div>\n\n<script>\n    (function(scope) {\n        scope.drifted = undefined;\n        function determineDrift(scope, systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            scope.drifted = drift >= threshold;\n        }\n        \n        scope.showStart = false;\n        scope.settingTime = false;\n        scope.setTime = function() {\n            scope.settingTime = true;\n            if (scope.drifted) {\n                scope.showStart = false;\n            }\n            fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {\n                    'Content-Type': 'application/json; charset=UTF-8'\n                },\n                body: JSON.stringify({\n                    timestamp: (new Date()).getTime()\n                })\n            });\n        }\n\n        scope.$watch('msg.payload', function(systemTime) {\n            if (systemTime !== undefined) {\n                determineDrift(scope, systemTime);\n                scope.settingTime = false;\n            }\n            if (scope.drifted === false) {\n                scope.showStart = true;\n            }\n        });\n    })(scope);\n</script>",
+        "format": "<button class=\"md-raised md-button\" type=\"button\" ng-click=\"startAcquisition()\" style=\"z-index: 1; padding: 1em; width: 100%;\">\n    <span>Start Acquisition</span>\n</button>\n\n<script>\n    (function(scope) {\n        scope.startAcquisition = async function() {\n            const systemTime = await getSystemTime();\n            if (systemTime !== undefined && isDrifted(new Date(systemTime.timestamp))) {\n                await setSystemTime((new Date()).getTime());\n            }\n            scope.send({topic: 'imager/image'});\n        }\n        \n        async function getSystemTime() {\n            const response = await fetch('/ps/node-red-v2/api/system-time', {method: 'GET'});\n            if (!response.ok) {\n                alert(`Couldn't check whether system time is accurate (HTTP error ${response.status}); press OK to continue anyways...`);\n                return undefined;\n            }\n            try {\n                const result = await response.json();\n                if (!('timestamp' in result)) {\n                    alert('Couldn\\'t check whether system time is accurate (invalid JSON object in response body); press OK to continue anyways...');\n                    return undefined;\n                }\n                return result;\n            } catch (e) {\n                alert('Couldn\\'t check whether system time is accurate (unable to parse response body as JSON); press OK to continue anyways...');\n                return undefined;\n            }\n        }\n        function isDrifted(systemTime) {\n            const browserTime = (new Date()).getTime();\n            const drift = Math.abs(browserTime - systemTime);\n            const threshold = 1000 * 60; // 1 minute\n            return drift >= threshold;\n        }\n        async function setSystemTime(timestamp) {\n            const response = await fetch('/ps/node-red-v2/api/system-time', {\n                method: 'POST',\n                headers: {'Content-Type': 'application/json; charset=UTF-8'},\n                body: JSON.stringify({timestamp: timestamp}),\n            });\n            if (!response.ok) {\n                alert('We might have failed to update the system time to match the time in your web browser; press OK to continue anyways...');\n            }\n        }\n    })(scope);\n</script>",
         "storeOutMessages": true,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -5840,35 +5840,6 @@
         "wires": [
             [
                 "c9f510c0.7d1328"
-            ]
-        ]
-    },
-    {
-        "id": "e2415b526151504b",
-        "type": "inject",
-        "z": "baa1e3d9.cb29d",
-        "name": "Time",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 270,
-        "y": 480,
-        "wires": [
-            [
-                "f4caa15e2bbfd6e7"
             ]
         ]
     },
@@ -8319,6 +8290,56 @@
             [],
             []
         ]
+    },
+    {
+        "id": "c8be8dad272e1fa5",
+        "type": "http in",
+        "z": "1371dec5.76e671",
+        "name": "GET /api/system-time",
+        "url": "/api/system-time",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "0f4ce59587fa14e1"
+            ]
+        ]
+    },
+    {
+        "id": "0f4ce59587fa14e1",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "Get system time",
+        "func": "var date = new Date();\nmsg.payload = {'timestamp': date.getTime()};\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "433d48a4b1bc0b27"
+            ]
+        ]
+    },
+    {
+        "id": "433d48a4b1bc0b27",
+        "type": "http response",
+        "z": "1371dec5.76e671",
+        "name": "Send GET response",
+        "statusCode": "",
+        "headers": {
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+        "x": 620,
+        "y": 420,
+        "wires": []
     },
     {
         "id": "1fdf77b5.24e4e",
