@@ -2,16 +2,15 @@
 
 The PlanktoScope's hardware controller.
 
-Note: this is a work-in-progress refactor and is not yet ready for general use.
+## Architecture
 
-## Introduction
+Each feature of the hardware is controlled by a separate process. Processes communicate between each other and with external clients using MQTT.
 
-This repository contains the PlanktoScope's hardware controller, which controls the PlanktoScope's sensors and actuators, producing raw data. Currently, device control consists of:
-- Hardware abstraction layers: implements a simple, mostly-uniform internal API on different underlying hardware devices, for the application-level hardware controller to be used with different hardware implementations of PlanktoScope designs.
-- Application-level controller: provides device behaviors (such as stop-flow imaging) generalizable across different generations of PlanktoScopes. In software engineering jargon, this is the "business logic" of the PlanktoScope hardware-control software.
-- API adapter: exposes the application-level controller with a standard public API for other software clients to use.
+Please note the following particularity of Python processes
 
-However, the organization of the source code does not yet reflect the organization of software functionalities.
+> Bear in mind that each spawned process is initialized with a copy of the memory footprint of the master process. And that the constructor code (i.e. stuff inside __init__()) is executed in the master process -- only code inside run() executes in separate processes.
+
+https://stackoverflow.com/a/17220739
 
 ## Usage
 

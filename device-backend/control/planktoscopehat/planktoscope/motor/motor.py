@@ -1,25 +1,17 @@
-__author__ = "ZJAllen"
+# mypy: ignore-errors
 
-from shush.board import Board
-from shush.drivers import tmc5160_reg as reg
 import time
-from gpiozero import OutputDevice, DigitalOutputDevice
 
-class Motor(Board):
-    def __init__(self, motor: int):
+from gpiozero import DigitalOutputDevice
+
+from . import registers as reg
+
+
+class Motor:
+    def __init__(self, pin: int, spi):
         # Setting the CS and enable pins according to the motor number called
-
-        # Pump
-        if motor == 0:
-            self.enable = DigitalOutputDevice(23, active_high=False)
-            self.spi = Board.spi0
-        # Focus
-        elif motor == 1:
-            self.enable = DigitalOutputDevice(5, active_high=False)
-            self.spi = Board.spi1
-
-        # Initially apply default settings.
-        # These can be configured at any time.
+        self.enable = DigitalOutputDevice(pin, active_high=False)
+        self.spi = spi
         self.default_settings()
 
     def enable_motor(self):
@@ -213,8 +205,8 @@ class Motor(Board):
         self.write_ramp_params()
 
         # Position range is from -2^31 to +(2^31)-1
-        maximum_position = (2 ** 31) - 1
-        minimum_position = -(2 ** 31)
+        maximum_position = (2**31) - 1
+        minimum_position = -(2**31)
 
         # Check if position is within bounds
         if position > maximum_position:
