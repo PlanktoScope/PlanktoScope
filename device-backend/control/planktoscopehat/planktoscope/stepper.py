@@ -81,7 +81,6 @@ class stepper:
 
     def release(self):
         self.__stepper.disable_motor()
-        self.__spi.close()
 
     @property
     def speed(self):
