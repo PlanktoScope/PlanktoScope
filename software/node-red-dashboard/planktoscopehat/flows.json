@@ -8291,65 +8291,6 @@
         "wires": []
     },
     {
-        "id": "c534fd26.13741",
-        "type": "change",
-        "z": "1eaf21c8.f7a21e",
-        "name": "Get stepper_reverse",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.stepper_reverse",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 660,
-        "y": 440,
-        "wires": [
-            [
-                "cd1987c7.027f58"
-            ]
-        ]
-    },
-    {
-        "id": "cd1987c7.027f58",
-        "type": "ui_switch",
-        "z": "1eaf21c8.f7a21e",
-        "name": "stepper_reverse",
-        "label": "Invert stepper output",
-        "tooltip": "Stepper 1 is controlled by output 1 or the other way around",
-        "group": "6be36295.0ab324",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "decouple": "false",
-        "topic": "stepper_reverse",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 960,
-        "y": 440,
-        "wires": [
-            [
-                "8e3b3d3c.955148",
-                "2068e7f.f4efb18"
-            ]
-        ]
-    },
-    {
         "id": "54ba7f16.709ad8",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
@@ -8401,27 +8342,6 @@
                 "2068e7f.f4efb18",
                 "8e3b3d3c.955148"
             ]
-        ]
-    },
-    {
-        "id": "be888117.5cd67",
-        "type": "ui_template",
-        "z": "1eaf21c8.f7a21e",
-        "group": "6be36295.0ab324",
-        "name": "Stepper controller type header",
-        "order": 3,
-        "width": "5",
-        "height": 1,
-        "format": "<div>Stepper controller type</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 550,
-        "y": 80,
-        "wires": [
-            []
         ]
     },
     {
@@ -8860,7 +8780,6 @@
         "wires": [
             [
                 "54ba7f16.709ad8",
-                "c534fd26.13741",
                 "c67c305004f87e39",
                 "11955bbeefc29ab4"
             ]
