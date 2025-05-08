@@ -11,14 +11,14 @@ hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope
 default_config="$hardware_type-latest"
 case "$hardware_type" in
 "fairscope-latest")
-  hardware_type="planktoscopehat"
-  default_config="fairscope-latest"
-  ;;
+	hardware_type="planktoscopehat"
+	default_config="fairscope-latest"
+	;;
 esac
 
 ## Install basic tooling
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-  git python3-pip python3-venv pipx
+	git python3-pip python3-venv pipx
 
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
 # (see https://github.com/pypa/pip/issues/7883)
@@ -38,19 +38,16 @@ PATH="$PATH:/home/pi/.local/bin"
 # Raspberry Pi OS has been updated. In which case this can be removed.
 echo "If the next command fails, see comment in install.sh"
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 --only-upgrade \
-  python3-libcamera=0.5.0+rpt20250429-1 python3-av=12.3.0-2+rpt1
+	python3-libcamera=0.5.0+rpt20250429-1 python3-av=12.3.0-2+rpt1
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
-  i2c-tools libopenjp2-7 python3-picamera2
+	i2c-tools libopenjp2-7 python3-picamera2
 poetry --directory "$HOME/PlanktoScope/device-backend/control" install \
-  --no-root --compile
-file="/etc/systemd/system/planktoscope-org.device-backend.controller-adafruithat.service"
+	--no-root --compile
+file="/etc/systemd/system/planktoscope-org.device-backend.controller.service"
 sudo cp "$config_files_root$file" "$file"
-# or for the PlanktoScope HAT
-file="/etc/systemd/system/planktoscope-org.device-backend.controller-planktoscopehat.service"
-sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable "planktoscope-org.device-backend.controller.service"
 
 # Select the enabled hardware controller
 mkdir -p "$HOME/PlanktoScope"
-sudo systemctl enable "planktoscope-org.device-backend.controller-$hardware_type.service"
 cp "$HOME/PlanktoScope/device-backend/default-configs/$default_config.hardware.json" \
-  "$HOME/PlanktoScope/hardware.json"
+	"$HOME/PlanktoScope/hardware.json"
