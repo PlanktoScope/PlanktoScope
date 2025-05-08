@@ -37,4 +37,5 @@ sudo mkdir -p /etc/systemd/system/nodered.service.d
 sudo cp "$config_files_root/30-override.conf" /etc/systemd/system/nodered.service.d/30-override.conf
 
 # Install dependencies to make them available to Node-RED
-npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/$hardware_type" install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/adafruithat" install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/planktoscopehat" install

@@ -1,41 +1,50 @@
 // https://nodered.org/docs/user-guide/runtime/configuration
 
-const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
 
-function load_variant_setting(config_file) {
-	let doc = {};
+const hardware_variants = {
+	"PlanktoScope v2.1": "adafruithat",
+	"PlanktoScope v2.3": "planktoscopehat",
+	"PlanktoScope v2.5": "planktoscopehat",
+	"PlanktoScope v2.6": "planktoscopehat",
+	"PlanktoScope v3.0": "planktoscopehat",
+	// Note: null is the default version value for planktoscopehat-latest.config.json; see
+	// https://github.com/PlanktoScope/PlanktoScope/pull/432 for details.
+	null: "planktoscopehat",
+};
+function load_variant_setting(config_path) {
+	let config = {};
 	try {
-		doc = yaml.load(
-			// TODO: instead check `~/PlanktoScope/config.json`?
-			fs.readFileSync(installer_config_file, "utf8"),
-		);
+		const file = fs.readFileSync(config_path, "utf8");
+		try {
+			config = JSON.parse(file);
+		} catch (e) {
+			console.error(`Couldn't parse ${config_path} as JSON file`);
+			return undefined;
+		}
 	} catch (e) {
-		console.warn(`Couldn't open & parse ${config_file} as YAML file`);
+		console.error(`Couldn't open ${config_path}`);
 		return undefined;
 	}
 
-	let variant = doc.hardware;
-	if (variant === undefined) {
-		console.warn(`${config_file} lacks a 'hardware' field`);
+	if (config.acq_instrument === undefined) {
+		console.error(`${config_path} lacks a 'acq_instrument' field`);
 		return undefined;
 	}
-
-	if (variant === "fairscope-latest") {
-		variant = "planktoscopehat";
-	}
-
-	return variant;
+	return hardware_variants[config.acq_instrument];
 }
 
-const installer_config_file = "/usr/share/planktoscope/installer-config.yml";
+const config_path = path.join(
+	path.dirname(path.dirname(__dirname)),
+	"config.json",
+);
 console.log("Determining configured hardware variant...");
-let variant = load_variant_setting(installer_config_file);
+let variant = load_variant_setting(config_path);
 if (variant === undefined) {
 	variant = "planktoscopehat";
 	console.warn(
-		`Couldn't load hardware variant setting, defaulting to ${variant}`,
+		`Couldn't load hardware variant setting from config, defaulting to ${variant}`,
 	);
 }
 console.log(`Hardware variant: ${variant}`);
