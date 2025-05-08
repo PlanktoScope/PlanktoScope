@@ -12,7 +12,7 @@ def determine_variant(config_file: str):
         variant: typing.Optional[str] = None
         try:
             config = yaml.safe_load(file)
-            variant = config.hardware
+            variant = config["hardware"]
             return variant
         except yaml.YAMLError:
             loguru.logger.exception(
