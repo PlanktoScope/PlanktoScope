@@ -6,6 +6,8 @@ import yaml
 # TODO: instead check `~/PlanktoScope/config.json`'s `acq_instrument` field?
 INSTALLER_CONFIG_FILE = "/usr/share/planktoscope/installer-config.yml"
 
+# FIXME: move loguru configuration to here instead
+
 
 def determine_variant(config_file: str):
     with open(config_file, "r") as file:
@@ -13,9 +15,13 @@ def determine_variant(config_file: str):
         try:
             config = yaml.safe_load(file)
             variant = config["hardware"]
+            if variant == "fairscope-latest":
+                variant = "planktoscopehat"
             return variant
         except yaml.YAMLError:
-            loguru.logger.exception(f"Couldn't parse {INSTALLER_CONFIG_FILE} as YAML file")
+            loguru.logger.exception(
+                f"Couldn't parse {INSTALLER_CONFIG_FILE} as YAML file"
+            )
 
 
 def main():

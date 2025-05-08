@@ -10,7 +10,7 @@ import typing
 
 import loguru
 
-from planktoscope import identity, integrity, mqtt
+from .. import identity, integrity, mqtt
 from ..camera import mqtt as camera
 from . import stopflow
 
