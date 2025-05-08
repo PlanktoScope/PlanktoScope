@@ -15,9 +15,7 @@ def determine_variant(config_file: str):
             variant = config["hardware"]
             return variant
         except yaml.YAMLError:
-            loguru.logger.exception(
-                f"Couldn't parse {INSTALLER_CONFIG_FILE} as YAML file"
-            )
+            loguru.logger.exception(f"Couldn't parse {INSTALLER_CONFIG_FILE} as YAML file")
 
 
 def main():

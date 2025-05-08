@@ -5,9 +5,8 @@ import time
 
 from loguru import logger
 
-from .stepper import stepper
-
 from . import mqtt
+from .stepper import stepper
 
 logger.info("planktoscope.pump is loaded")
 
