@@ -8,8 +8,7 @@ import typing
 
 import loguru
 
-from planktoscope import mqtt as messaging
-
+from .. import mqtt as messaging
 from . import hardware, mjpeg
 
 loguru.logger.info("planktoscope.camera is loaded")
@@ -163,7 +162,9 @@ class Worker(threading.Thread):
         settings = message["payload"]["settings"]
         try:
             converted_settings = _convert_settings(
-                settings, self._camera.settings.white_balance_gains, self._camera.sensor_name
+                settings,
+                self._camera.settings.white_balance_gains,
+                self._camera.sensor_name,
             )
             _validate_settings(converted_settings)
         except (TypeError, ValueError) as e:
