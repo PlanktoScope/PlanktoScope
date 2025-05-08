@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const doc = yaml.load(
+	// TODO: instead check `~/PlanktoScope/config.json`?
 	fs.readFileSync("/usr/share/planktoscope/installer-config.yml", "utf8"),
 );
 const userDir = path.join(__dirname, doc.hardware);
