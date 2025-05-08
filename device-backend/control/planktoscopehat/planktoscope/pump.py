@@ -5,7 +5,7 @@ import time
 
 from loguru import logger
 
-from planktoscope.stepper import stepper
+from .stepper import stepper
 
 from . import mqtt
 

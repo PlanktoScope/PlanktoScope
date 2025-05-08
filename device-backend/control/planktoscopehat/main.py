@@ -6,12 +6,8 @@ import os
 
 from loguru import logger
 
-import planktoscope.mqtt
-import planktoscope.pump
-import planktoscope.focus
-import planktoscope.light
-import planktoscope.identity
-from planktoscope.imager import mqtt as imager
+from planktoscopehat.planktoscope import pump, focus, light, identity
+from planktoscopehat.planktoscope.imager import mqtt as imager
 
 # enqueue=True is necessary so we can log across modules
 # rotation happens everyday at 01:00 if not restarted
@@ -80,9 +76,7 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(img_path)
 
-    logger.info(
-        f"This PlanktoScope's machine name is {planktoscope.identity.load_machine_name()}"
-    )
+    logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
@@ -90,12 +84,12 @@ if __name__ == "__main__":
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/5)")
-    pump_thread = planktoscope.pump.PumpProcess(shutdown_event)
+    pump_thread = pump.PumpProcess(shutdown_event)
     pump_thread.start()
 
     # Starts the focus process
     logger.info("Starting the focus control process (step 3/5)")
-    focus_thread = planktoscope.focus.FocusProcess(shutdown_event)
+    focus_thread = focus.FocusProcess(shutdown_event)
     focus_thread.start()
 
     # TODO try to isolate the imager thread (or another thread)
@@ -112,7 +106,7 @@ if __name__ == "__main__":
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
     try:
-        light_thread = planktoscope.light.LightProcess(shutdown_event)
+        light_thread = light.LightProcess(shutdown_event)
     except Exception:
         logger.error("The light control process could not be started")
         light_thread = None
