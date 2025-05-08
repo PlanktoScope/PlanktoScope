@@ -49,8 +49,7 @@ resolve_commit() {
 	if [ "$query_type" = "tag" ]; then
 		version_query="${tag_prefix}${version_query}"
 	fi
-	cmd="git -C ${mirror_dir} rev-list -n 1 ${version_query}"
-	"$cmd" && return 0 || rc=$?
+	git -C ${mirror_dir} rev-list -n 1 ${version_query} && return 0 || rc=$?
 
 	error "Command failed (exit code $rc): ${BLUE}${cmd}${NO_COLOR}"
 	printf "\n" >&2
