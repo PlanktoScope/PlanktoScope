@@ -4,14 +4,41 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
 
-const doc = yaml.load(
-	// TODO: instead check `~/PlanktoScope/config.json`?
-	fs.readFileSync("/usr/share/planktoscope/installer-config.yml", "utf8"),
-);
-let variant = doc.hardware;
-if (variant === "fairscope-latest") {
-	variant = "planktoscopehat";
+function load_variant_setting(config_file) {
+	let doc = {};
+	try {
+		doc = yaml.load(
+			// TODO: instead check `~/PlanktoScope/config.json`?
+			fs.readFileSync(installer_config_file, "utf8"),
+		);
+	} catch (e) {
+		console.warn(`Couldn't open & parse ${config_file} as YAML file`);
+		return undefined;
+	}
+
+	let variant = doc.hardware;
+	if (variant === undefined) {
+		console.warn(`${config_file} lacks a 'hardware' field`);
+		return undefined;
+	}
+
+	if (variant === "fairscope-latest") {
+		variant = "planktoscopehat";
+	}
+
+	return variant;
 }
+
+const installer_config_file = "/usr/share/planktoscope/installer-config.yml";
+console.log("Determining configured hardware variant...");
+let variant = load_variant_setting(installer_config_file);
+if (variant === undefined) {
+	variant = "planktoscopehat";
+	console.warn(
+		`Couldn't load hardware variant setting, defaulting to ${variant}`,
+	);
+}
+console.log(`Hardware variant: ${variant}`);
 const userDir = path.join(__dirname, variant);
 
 module.exports = {

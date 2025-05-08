@@ -3,30 +3,47 @@ import typing
 import loguru
 import yaml
 
-# TODO: instead check `~/PlanktoScope/config.json`'s `acq_instrument` field?
-INSTALLER_CONFIG_FILE = "/usr/share/planktoscope/installer-config.yml"
-
 # FIXME: move loguru configuration to here instead
 
 
-def determine_variant(config_file: str):
-    with open(config_file, "r") as file:
-        variant: typing.Optional[str] = None
-        try:
-            config = yaml.safe_load(file)
-            variant = config["hardware"]
-            if variant == "fairscope-latest":
-                variant = "planktoscopehat"
-            return variant
-        except yaml.YAMLError:
-            loguru.logger.exception(
-                f"Couldn't parse {INSTALLER_CONFIG_FILE} as YAML file"
-            )
+def load_variant_setting(config_file: str):
+    config = {}
+    try:
+        with open(config_file, "r") as file:
+            try:
+                config = yaml.safe_load(file)
+            except Exception:
+                loguru.logger.exception(f"Couldn't parse {config_file} as YAML file")
+                return None
+    except Exception:
+        loguru.logger.exception(f"Couldn't open {config_file}")
+        return None
+
+    variant: typing.Optional[str] = None
+    try:
+        variant = config["hardware"]
+    except Exception:
+        loguru.logger.error(f"{config_file} lacks a 'hardware' field")
+        return None
+
+    if variant == "fairscope-latest":
+        return "planktoscopehat"
+
+    return variant
+
+
+# TODO: instead check `~/PlanktoScope/config.json`'s `acq_instrument` field?
+INSTALLER_CONFIG_FILE = "/usr/share/planktoscope/installer-config.yml"
 
 
 def main():
     loguru.logger.info("Determining configured hardware variant...")
-    variant = determine_variant(INSTALLER_CONFIG_FILE)
+    variant = load_variant_setting(INSTALLER_CONFIG_FILE)
+    if variant is None:
+        variant = "planktoscopehat"
+        loguru.logger.warning(
+            f"Couldn't load hardware variant setting, defaulting to {variant}"
+        )
     loguru.logger.info(f"Hardware variant: {variant}")
     # Note: once the `main.py` files are rewritten to have a main() function, we can import the
     # appropriate module and invoke its main function. For now, we have to do an `exec`:

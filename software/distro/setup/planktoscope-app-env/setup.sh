@@ -11,7 +11,7 @@ build_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Get command-line args
 
-hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
+hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest
 
 # Set up pretty error printing
 
@@ -24,15 +24,15 @@ error_fmt="\e[${bold};${red_fg}m"
 reset_fmt='\e[0m'
 
 function report_starting {
-  echo
-  echo -e "${subscript_fmt}Starting: ${1}...${reset_fmt}"
+	echo
+	echo -e "${subscript_fmt}Starting: ${1}...${reset_fmt}"
 }
 function report_finished {
-  echo -e "${subscript_fmt}Finished: ${1}!${reset_fmt}"
+	echo -e "${subscript_fmt}Finished: ${1}!${reset_fmt}"
 }
 function panic {
-  echo -e "${error_fmt}Error: couldn't ${1}${reset_fmt}"
-  exit 1
+	echo -e "${error_fmt}Error: couldn't ${1}${reset_fmt}"
+	exit 1
 }
 
 # Run sub-scripts
@@ -40,54 +40,49 @@ function panic {
 description="set up /home/pi/PlanktoScope"
 report_starting "$description"
 if "$build_scripts_root/PlanktoScope/install.sh"; then
-  report_finished "$description"
+	report_finished "$description"
 else
-  panic "$description"
+	panic "$description"
 fi
 
 description="set up Node-RED frontend"
 report_starting "$description"
 if "$build_scripts_root/node-red-frontend/install.sh" "$hardware_type"; then
-  report_finished "$description"
+	report_finished "$description"
 else
-  panic "$description"
-fi
-
-if [ "$hardware_type" = "segmenter-only" ]; then
-  echo "Warning: skipping PlanktoScope hardware-specific setup because hardware type was specified as: $hardware_type"
-  exit 0
+	panic "$description"
 fi
 
 description="set up Python hardware controller"
 report_starting "$description"
 if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
-  report_finished "$description"
+	report_finished "$description"
 else
-  panic "$description"
+	panic "$description"
 fi
 
 if [ "$hardware_type" = "adafruithat" ]; then
-  description="set up GPS and clock driver"
-  report_starting "$description"
-  if "$build_scripts_root/gps/install.sh"; then
-    report_finished "$description"
-  else
-    panic "$description"
-  fi
+	description="set up GPS and clock driver"
+	report_starting "$description"
+	if "$build_scripts_root/gps/install.sh"; then
+		report_finished "$description"
+	else
+		panic "$description"
+	fi
 fi
 
 description="enable CPU overclocking"
 report_starting "$description"
 if "$build_scripts_root/overclocking/config.sh"; then
-  report_finished "$description"
+	report_finished "$description"
 else
-  panic "$description"
+	panic "$description"
 fi
 
 description="update and configure bootloader"
 report_starting "$description"
 if "$build_scripts_root/bootloader/install.sh"; then
-  report_finished "$description"
+	report_finished "$description"
 else
-  panic "$description"
+	panic "$description"
 fi
