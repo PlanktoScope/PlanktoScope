@@ -134,10 +134,9 @@ jobs:
       # record the same information here.
 
       - name: Record OS installation versioning information
-        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
+        uses: ethanjli/pinspawn-action@ff063750a0e85cf96bd513df9134c27d31899285
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          boot-partition-mount: /boot/firmware
           user: ${{ env.SETUP_USER }}
           args: >-
             --bind "$(pwd)":/run/os-setup
@@ -240,17 +239,15 @@ jobs:
       # Actions log outputs for setting up pinspawn-action for the first time from the logs for
       # pre-downloading container images
       - name: Install pinspawn-action dependencies
-        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
+        uses: ethanjli/pinspawn-action@ff063750a0e85cf96bd513df9134c27d31899285
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          boot-partition-mount: /boot/firmware
           run: echo "Done!"
 
       - name: Copy pre-downloaded container images into OS image
-        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
+        uses: ethanjli/pinspawn-action@ff063750a0e85cf96bd513df9134c27d31899285
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          boot-partition-mount: /boot/firmware
           user: ${{ env.SETUP_USER }}
           args: >-
             --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
@@ -264,10 +261,9 @@ jobs:
       # RUN OS SETUP SCRIPTS
 
       - name: Run OS setup scripts in an unbooted container
-        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
+        uses: ethanjli/pinspawn-action@ff063750a0e85cf96bd513df9134c27d31899285
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          boot-partition-mount: /boot/firmware
           user: ${{ env.SETUP_USER }}
           # Note: CAP_NET_ADMIN is needed for iptables, which is needed for Docker (at least in an
           # unbooted container). Setting the machine ID (and therefore hostname) to `raspberrypi`
@@ -283,13 +279,12 @@ jobs:
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal
-        uses: ethanjli/pinspawn-action@179f5a66e7343ab76924595c02fd077092fd902d
+        uses: ethanjli/pinspawn-action@ff063750a0e85cf96bd513df9134c27d31899285
         env:
           DEFAULT_PASSWORD: copepode
           DEFAULT_KEYBOARD_LAYOUT: us
         with:
           image: ${{ steps.expand-image.outputs.destination }}
-          boot-partition-mount: /boot/firmware
           args: --machine=raspberrypi
           run: |
             # Change default settings for the SD card to enable headless & keyboardless first boot
