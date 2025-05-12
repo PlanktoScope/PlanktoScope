@@ -1,4 +1,3 @@
-import json
 import multiprocessing
 import os
 import time
@@ -21,22 +20,12 @@ class FocusProcess(multiprocessing.Process):
     # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the PlanktoScope can send
     focus_max_speed = 5
 
-    def __init__(self, event):
+    def __init__(self, event, configuration):
         super(FocusProcess, self).__init__()
         logger.info("Initialising the focus process")
 
         self.stop_event = event
         self.focus_started = False
-
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-                # TODO #100 insert guard for config_file empty
-                configuration = json.load(config_file)
-                logger.debug(f"Hardware configuration loaded is {configuration}")
-        else:
-            logger.info("The hardware configuration file doesn't exists, using defaults")
-            configuration = {}
 
         # parse the config data. If the key is absent, we are using the default value
         self.focus_steps_per_mm = configuration.get("focus_steps_per_mm", self.focus_steps_per_mm)

@@ -3,6 +3,7 @@ import multiprocessing
 import time
 import signal
 import os
+import json
 
 from loguru import logger
 
@@ -49,7 +50,7 @@ def handler_stop_signals(signum, frame):
 if __name__ == "__main__":
     logger.info("Welcome!")
     logger.info(
-        "Initialising signals handling and sanitizing the directories (step 1/5)"
+        "Initialising configuration, signals handling and sanitizing the directories (step 1/5)"
     )
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
@@ -78,25 +79,34 @@ if __name__ == "__main__":
 
     logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
+    try:
+        with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
+            configuration = json.load(config_file)
+    except FileNotFoundError:
+        logger.info(
+            "The hardware configuration file doesn't exists, using defaults"
+        )
+        configuration = {}
+
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/5)")
-    pump_thread = pump.PumpProcess(shutdown_event)
+    pump_thread = pump.PumpProcess(shutdown_event, configuration)
     pump_thread.start()
 
     # Starts the focus process
     logger.info("Starting the focus control process (step 3/5)")
-    focus_thread = focus.FocusProcess(shutdown_event)
+    focus_thread = focus.FocusProcess(shutdown_event, configuration)
     focus_thread.start()
 
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
     logger.info("Starting the imager control process (step 4/5)")
     try:
-        imager_thread = imager.Worker(shutdown_event)
+        imager_thread = imager.Worker(shutdown_event, configuration)
     except Exception as e:
         logger.error(f"The imager control process could not be started: {e}")
         imager_thread = None
@@ -106,7 +116,7 @@ if __name__ == "__main__":
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
     try:
-        light_thread = light.LightProcess(shutdown_event)
+        light_thread = light.LightProcess(shutdown_event, configuration)
     except Exception:
         logger.error("The light control process could not be started")
         light_thread = None

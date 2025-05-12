@@ -3,7 +3,6 @@
 ################################################################################
 # Logger library compatible with multiprocessing
 from loguru import logger
-import json
 
 from gpiozero import DigitalOutputDevice
 
@@ -40,22 +39,13 @@ class i2c_led:
     # This constant defines the current (mA) sent to the LED, 10 allows the use of the full ISO scale and results in a voltage of 2.77v
     DEFAULT_CURRENT = 10
 
-    def __init__(self):
-        try:
-            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-                configuration = json.load(config_file)
-        except FileNotFoundError:
-            logger.info(
-                "The hardware configuration file doesn't exists, using defaults"
-            )
-            configuration = {}
-
+    def __init__(self, configuration):
         hat_type = configuration.get("hat_type") or ""
         hat_version = float(configuration.get("hat_version") or 0)
 
         # The led is controlled by LM36011
         # but on version 1.2 of the PlanktoScope HAT (PlanktoScope v2.6)
-        # the circuit is connected to that pin so it needs to be high
+        # the circuit is connected to the pin 18 so it needs to be high
         # pin is assigned to self to prevent gpiozero from immediately releasing it
         if  hat_type != "planktoscope" or hat_version < 3.1:
             self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
@@ -176,7 +166,7 @@ class i2c_led:
 class LightProcess(multiprocessing.Process):
     """This class contains the main definitions for the light of the PlanktoScope"""
 
-    def __init__(self, event):
+    def __init__(self, event, configuration):
         """Initialize the Light class
 
         Args:
@@ -189,7 +179,7 @@ class LightProcess(multiprocessing.Process):
         self.stop_event = event
         self.light_client = None
         try:
-            self.led = i2c_led()
+            self.led = i2c_led(configuration)
             self.led.set_torch_current(self.led.DEFAULT_CURRENT)
             self.led.activate_torch_ramp()
             self.led.activate_torch()

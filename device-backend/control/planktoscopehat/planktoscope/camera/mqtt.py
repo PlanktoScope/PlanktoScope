@@ -1,7 +1,6 @@
 """mqtt provides an MJPEG+MQTT API for camera supervision and interaction."""
 
 import json
-import os
 import threading
 import time
 import typing
@@ -17,7 +16,11 @@ loguru.logger.info("planktoscope.camera is loaded")
 class Worker(threading.Thread):
     """Runs a camera with live MJPEG preview and an MQTT API for adjusting camera settings."""
 
-    def __init__(self, mjpeg_server_address: tuple[str, int] = ("", 8000)) -> None:
+    def __init__(
+        self,
+        configuration: dict[str, typing.Any],
+        mjpeg_server_address: tuple[str, int] = ("", 8000),
+    ) -> None:
         """Initialize the backend.
 
         Args:
@@ -50,19 +53,7 @@ class Worker(threading.Thread):
             sharpness=0,  # disable the default "normal" sharpening level
             jpeg_quality=95,  # maximize image quality
         )
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r", encoding="utf-8") as config_file:
-                hardware_config = json.load(config_file)
-                loguru.logger.debug(
-                    f"Loaded hardware configuration file: {hardware_config}",
-                )
-                settings = settings.overlay(hardware.config_to_settings_values(hardware_config))
-        else:
-            loguru.logger.info(
-                "The hardware configuration file doesn't exist, using default settings: "
-                + f"{settings}"
-            )
+        settings = settings.overlay(hardware.config_to_settings_values(configuration))
 
         # I/O
         self._preview_stream: hardware.PreviewStream = hardware.PreviewStream()

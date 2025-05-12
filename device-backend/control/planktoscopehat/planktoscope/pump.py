@@ -1,4 +1,3 @@
-import json
 import multiprocessing
 import os
 import time
@@ -23,22 +22,12 @@ class PumpProcess(multiprocessing.Process):
     # pump max speed is in ml/min
     pump_max_speed = 50
 
-    def __init__(self, event):
+    def __init__(self, event, configuration):
         super(PumpProcess, self).__init__()
         logger.info("Initialising the pump process")
 
         self.stop_event = event
         self.pump_started = False
-
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-                # TODO #100 insert guard for config_file empty
-                configuration = json.load(config_file)
-                logger.debug(f"Hardware configuration loaded is {configuration}")
-        else:
-            logger.info("The hardware configuration file doesn't exists, using defaults")
-            configuration = {}
 
         # parse the config data. If the key is absent, we are using the default value
         self.pump_steps_per_ml = configuration.get("pump_steps_per_ml", self.pump_steps_per_ml)
