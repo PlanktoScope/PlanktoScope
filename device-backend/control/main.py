@@ -6,18 +6,6 @@ import loguru
 # FIXME: move loguru configuration to here instead
 
 
-HARDWARE_VARIANTS = {
-    "PlanktoScope v2.1": "adafruithat",
-    "PlanktoScope v2.3": "planktoscopehat",
-    "PlanktoScope v2.5": "planktoscopehat",
-    "PlanktoScope v2.6": "planktoscopehat",
-    "PlanktoScope v3.0": "planktoscopehat",
-    # Note: null is the default version value for planktoscopehat-latest.config.json; see
-    # https://github.com/PlanktoScope/PlanktoScope/pull/432 for details.
-    None: "planktoscopehat",
-}
-
-
 def load_variant_setting(config_path: str):
     config = {}
     try:
@@ -35,7 +23,11 @@ def load_variant_setting(config_path: str):
         loguru.logger.error(f"{config_path} lacks a 'acq_instrument' field")
         return None
 
-    return HARDWARE_VARIANTS.get(config["acq_instrument"], None)
+    # This is a special case for legacy hardware; new hardware designs should all be part of the
+    # planktoscopehat codebase:
+    if config["acq_instrument"] == "PlanktoScope v2.1":
+        return "adafruithat"
+    return "planktoscopehat"
 
 
 CONFIG_PATH = path.join(

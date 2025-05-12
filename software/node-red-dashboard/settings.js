@@ -3,16 +3,6 @@
 const fs = require("fs");
 const path = require("path");
 
-const hardware_variants = {
-	"PlanktoScope v2.1": "adafruithat",
-	"PlanktoScope v2.3": "planktoscopehat",
-	"PlanktoScope v2.5": "planktoscopehat",
-	"PlanktoScope v2.6": "planktoscopehat",
-	"PlanktoScope v3.0": "planktoscopehat",
-	// Note: null is the default version value for planktoscopehat-latest.config.json; see
-	// https://github.com/PlanktoScope/PlanktoScope/pull/432 for details.
-	null: "planktoscopehat",
-};
 function load_variant_setting(config_path) {
 	let config = {};
 	try {
@@ -32,7 +22,13 @@ function load_variant_setting(config_path) {
 		console.error(`${config_path} lacks a 'acq_instrument' field`);
 		return undefined;
 	}
-	return hardware_variants[config.acq_instrument];
+
+	// This is a special case for legacy hardware; new hardware designs should all be part of the
+	// planktoscopehat codebase:
+	if (config.acq_instrument === "PlanktoScope v2.1") {
+		return "adafruithat";
+	}
+	return "planktoscopehat";
 }
 
 const config_path = path.join(
