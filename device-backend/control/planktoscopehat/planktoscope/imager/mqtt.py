@@ -29,7 +29,7 @@ class Worker(multiprocessing.Process):
     # TODO(ethanjli): instead of passing in a stop_event, just expose a `close()` method! This
     # way, we don't give any process the ability to stop all other processes watching the same
     # stop_event!
-    def __init__(self, stop_event: threading.Event) -> None:
+    def __init__(self, stop_event: threading.Event, configuration) -> None:
         """Initialize the worker's internal state, but don't start anything yet.
 
         Args:
@@ -51,6 +51,8 @@ class Worker(multiprocessing.Process):
         # be started from the main script; and then the camera object should be passed into the
         # constructor.
         self._camera: typing.Optional[camera.Worker] = None
+
+        self.configuration = configuration
 
         loguru.logger.success("planktoscope.imager is initialized and ready to go!")
 
@@ -74,7 +76,7 @@ class Worker(multiprocessing.Process):
         loguru.logger.success("Pump RPC client is ready!")
 
         loguru.logger.info("Starting the camera...")
-        self._camera = camera.Worker()
+        self._camera = camera.Worker(self.configuration)
         self._camera.start()
         if self._camera.camera is None:
             loguru.logger.error(
