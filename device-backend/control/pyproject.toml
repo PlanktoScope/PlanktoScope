@@ -89,6 +89,8 @@ extend_exclude = '''
   | planktoscopehat/planktoscope/mqtt.py
   | planktoscopehat/planktoscope/stepper.py
   | planktoscopehat/planktoscope/imager/.*
+  | planktoscopehat/planktoscope/motor/motor.py
+  | planktoscopehat/planktoscope/motor/registers.py
 )
 '''
 line-length = 100
@@ -121,6 +123,8 @@ extend_skip_glob = [
   "planktoscopehat/planktoscope/mqtt.py",
   "planktoscopehat/planktoscope/stepper.py",
   "planktoscopehat/planktoscope/imager/*",
+  "planktoscopehat/planktoscope/motor/motor.py",
+  "planktoscopehat/planktoscope/motor/registers.py",
 ]
 
 [tool.mypy]
@@ -163,6 +167,8 @@ exclude = [
   'planktoscopehat/planktoscope/mqtt\.py',
   'planktoscopehat/planktoscope/stepper\.py',
   'planktoscopehat/planktoscope/imager/.*',
+  'planktoscopehat/planktoscope/motor/motor\.py',
+  'planktoscopehat/planktoscope/motor/registers\.py',
 ]
 
 [tool.pylama]
@@ -189,6 +195,10 @@ planktoscopehat/planktoscope/module.py,\
 planktoscopehat/planktoscope/mqtt.py,\
 planktoscopehat/planktoscope/stepper.py,\
 planktoscopehat/planktoscope/imager/*,\
+planktoscopehat/planktoscope/motor/motor.py,\
+planktoscopehat/planktoscope/motor/registers.py,\
+planktoscopehat/planktoscope/focus.py,\
+planktoscopehat/planktoscope/pump.py,\
 '''
 
 [tool.pylama.linter.pycodestyle]
@@ -251,6 +261,10 @@ ignore-paths = [
   "planktoscopehat/planktoscope/mqtt.py",
   "planktoscopehat/planktoscope/stepper.py",
   "planktoscopehat/planktoscope/imager/.*",
+  "planktoscopehat/planktoscope/motor/motor.py",
+  "planktoscopehat/planktoscope/motor/registers.py",
+  "planktoscopehat/planktoscope/focus.py",
+  "planktoscopehat/planktoscope/pump.py",
 ]
 
 [tool.pylint.similarities]

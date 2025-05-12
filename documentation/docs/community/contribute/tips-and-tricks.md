@@ -142,7 +142,7 @@ sudo dd bs=1M if=/dev/device status=progress conv=fdatasync | xz > sdcard.img.xz
 
 ```sh
 # restore an image file from your computer onto the SD card
-xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress
+xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress conv=fdatasync
 ```
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
