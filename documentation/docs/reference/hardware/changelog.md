@@ -34,6 +34,10 @@ Reduce power usage when powered off
 
 Does not automatically power on when connected anymore
 
+Much faster CPU and GPU performances
+
+Faster sdcard access
+
 -->
 
 ## v2.6
