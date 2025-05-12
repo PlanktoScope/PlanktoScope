@@ -25,16 +25,16 @@ error_fmt="\e[${bold};${red_fg}m"
 reset_fmt='\e[0m'
 
 function report_starting {
-	echo
-	echo -e "${script_fmt}Starting: ${1}...${reset_fmt}"
+  echo
+  echo -e "${script_fmt}Starting: ${1}...${reset_fmt}"
 }
 function report_finished {
-	echo
-	echo -e "${script_fmt}Finished: ${1}!${reset_fmt}"
+  echo
+  echo -e "${script_fmt}Finished: ${1}!${reset_fmt}"
 }
 function panic {
-	echo -e "${error_fmt}Error: couldn't ${1}${reset_fmt}"
-	exit 1
+  echo -e "${error_fmt}Error: couldn't ${1}${reset_fmt}"
+  exit 1
 }
 
 # Run sub-scripts
@@ -44,23 +44,23 @@ echo -e "${script_fmt}Setting up full operating system...${reset_fmt}"
 description="set up base operating system"
 report_starting "$description"
 if "$setup_scripts_root"/base-os/setup.sh; then
-	report_finished "$description"
-	source "$setup_scripts_root"/base-os/export-env.sh
+  report_finished "$description"
+  source "$setup_scripts_root"/base-os/export-env.sh
 else
-	panic "$description"
+  panic "$description"
 fi
 
 if [ "$hardware_type" = "none" ]; then
-	echo "Warning: skipping PlanktoScope-specific setup because hardware type was specified as: $hardware_type"
+  echo "Warning: skipping PlanktoScope-specific setup because hardware type was specified as: $hardware_type"
 else
-	description="set up PlanktoScope application environment"
-	report_starting "$description"
-	if "$setup_scripts_root"/planktoscope-app-env/setup.sh "$hardware_type"; then
-		report_finished "$description"
-		source "$setup_scripts_root"/planktoscope-app-env/export-env.sh
-	else
-		panic "$description"
-	fi
+  description="set up PlanktoScope application environment"
+  report_starting "$description"
+  if "$setup_scripts_root"/planktoscope-app-env/setup.sh "$hardware_type"; then
+    report_finished "$description"
+    source "$setup_scripts_root"/planktoscope-app-env/export-env.sh
+  else
+    panic "$description"
+  fi
 fi
 
 "$setup_scripts_root"/cleanup.sh "$hardware_type"
