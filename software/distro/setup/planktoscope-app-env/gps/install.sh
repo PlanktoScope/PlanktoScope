@@ -7,7 +7,7 @@ config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Install dependencies
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-	gpsd pps-tools chrony
+  gpsd pps-tools chrony
 
 # The following command enables the serial port but disables the login shell over the serial port.
 # We use this because the serial port is reserved for a GPS device.

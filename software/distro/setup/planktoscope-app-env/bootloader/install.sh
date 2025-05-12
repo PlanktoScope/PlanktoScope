@@ -9,7 +9,7 @@ distro_setup_files_root="$(dirname "$(dirname "$config_files_root")")"
 repo_root="$(dirname "$(dirname "$(dirname "$distro_setup_files_root")")")"
 
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
-	rpi-eeprom
+  rpi-eeprom
 
 cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/pieeprom-2025-03-19.bin /tmp
 cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/recovery.bin /tmp
@@ -28,5 +28,5 @@ sudo systemctl mask rpi-eeprom-update
 # "The temporary EEPROM update files are automatically deleted by the rpi-eeprom-update service at startup."
 # from https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#bootloader-update-files
 # But we mask it to avoid auto updates so we have a custom unit file instead
-sudo cp "$config_files_root/planktoscope-org.firstboot.service" /etc/systemd/system/
+sudo cp $config_files_root/planktoscope-org.firstboot.service /etc/systemd/system/
 sudo systemctl enable planktoscope-org.firstboot.service
