@@ -3,7 +3,7 @@
 import spidev
 from loguru import logger
 
-from .motor.motor import Motor
+from motor.motor import Motor
 
 """Step forward"""
 FORWARD = 1
@@ -22,6 +22,7 @@ class stepper:
         """
         self.init_spi(spi_bus, spi_device)
         self.__stepper = Motor(pin, self.__spi)
+        self.stepper = self.__stepper
         self.__size = size
         self.__goal = 0
         self.__direction = ""
@@ -38,6 +39,7 @@ class stepper:
         spi.loop = False
         # SPI Mode 3
         spi.mode = 3
+        self.spi = spi
         self.__spi = spi
 
     def at_goal(self):
