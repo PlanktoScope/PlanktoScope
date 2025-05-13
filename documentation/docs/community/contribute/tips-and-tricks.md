@@ -46,19 +46,6 @@ To setup the recommended development environment, run the following commands.
 Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pkscope-sponge-bob-123`
 
 <details>
-    <summary>On the PlanktoScope</summary>
-
-```sh
-cd ~/PlanktoScope
-# Enable Developer Mode
-./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
-# Configure git
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-```
-</details>
-
-<details>
     <summary>On your computer</summary>
 
 ```sh
@@ -79,9 +66,31 @@ Host $planktoscope
 
 </details>
 
----
+You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`).
 
-You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`) and use `~/PlanktoScope` as a regular git repository.
+<details>
+    <summary>On the PlanktoScope</summary>
+
+```sh
+cd ~/PlanktoScope
+# Enable Developer Mode
+./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
+
+# Configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+# [Optional] change the remote
+
+# If you are a contributor to github.com/PlanktoScope/PlanktoScope
+git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
+
+# If you have your own fork
+git remote set-url origin git@github.com:MYUSERNAME/PlanktoScope.git
+```
+</details>
+
+You can now use `~/PlanktoScope` as a regular git repository.
 
 ```sh
 ssh $planktoscope
@@ -105,18 +114,24 @@ The default behavior of the PlanktoScope is to act as a router to connect your c
 
 If you have a LAN it may be more convenient to connect the PlanktoScope to it and act as a simple client.
 
+<details>
+    <summary>Ethernet</summary>
+
 ```sh
 nmcli connection up eth0-default
 ```
+</details>
 
 <details>
-    <summary>Revert changes</summary>
+    <summary>WiFi</summary>
 
 ```sh
-# Ethernet
-nmcli connection down eth0-default
+nmcli connection down wlan0-hotspot
+nmcli device wifi list
+nmcli device wifi connect "<SSID>" --ask
 ```
 </details>
+
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
 
@@ -146,6 +161,10 @@ xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress conv=fdatasyn
 ```
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
+
+## Opening a port on the firewall
+
+https://firewalld.org/documentation/howto/open-a-port-or-service.html
 
 ## Documentation quick setup
 
