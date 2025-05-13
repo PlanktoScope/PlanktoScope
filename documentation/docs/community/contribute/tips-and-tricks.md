@@ -166,6 +166,10 @@ See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
 
 https://firewalld.org/documentation/howto/open-a-port-or-service.html
 
+## Working with GPIOs on the CLI
+
+https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
+
 ## Documentation quick setup
 
 This is a quick setup guide. See also
