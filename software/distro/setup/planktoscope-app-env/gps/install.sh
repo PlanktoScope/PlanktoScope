@@ -15,5 +15,5 @@ sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
 sudo raspi-config nonint do_serial_cons 1
 
 # Enable automatic time update from GPSD
-file="/boot/config.txt"
+file="/boot/firmware/config.txt"
 sudo bash -c "cat \"$config_files_root$file.snippet\" >> \"$file\""
