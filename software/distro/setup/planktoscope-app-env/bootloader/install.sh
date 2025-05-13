@@ -17,9 +17,7 @@ cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/recovery.bin /tmp
 rpi-eeprom-config /tmp/pieeprom-2025-03-19.bin --config "$config_files_root/boot.conf" --out /tmp/pieeprom.upd
 rpi-eeprom-digest -i /tmp/pieeprom.upd -o /tmp/pieeprom.sig
 
-# /boot and not /boot/firmware
-# see https://github.com/ethanjli/pinspawn-action/issues/5
-sudo cp /tmp/pieeprom.upd /tmp/pieeprom.sig /tmp/recovery.bin /boot/
+sudo cp /tmp/pieeprom.upd /tmp/pieeprom.sig /tmp/recovery.bin /boot/firmware/
 
 # The bootloader will be installed on first boot and the files removed
 # see https://github.com/PlanktoScope/PlanktoScope/pull/589
