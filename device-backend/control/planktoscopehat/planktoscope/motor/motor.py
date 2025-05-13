@@ -1,17 +1,35 @@
 # mypy: ignore-errors
 
 import time
+from spidev import SpiDev
 
 from gpiozero import DigitalOutputDevice
 
 from . import registers as reg
 
+"""Step forward"""
+FORWARD = 1
+""""Step backward"""
+BACKWARD = 2
 
 class Motor:
-    def __init__(self, pin: int, spi):
-        # Setting the CS and enable pins according to the motor number called
+    def __init__(self, pin: int, spi_bus: int, spi_device: int):
         self.enable = DigitalOutputDevice(pin, active_high=False)
-        self.spi = spi
+
+        spi = SpiDev()
+        spi.open(spi_bus, spi_device)
+        # 1 MHZ
+        spi.max_speed_hz = 1000000
+        # 8 bits per word (32-bit word is broken into 4x 8-bit words)
+        spi.bits_per_word = 8
+        spi.loop = False
+        # SPI Mode 3
+        spi.mode = 3
+        self.__spi = spi
+
+        self.__goal = 0
+        self.__direction = ""
+        self.disable_motor()
 
     def enable_motor(self):
         self.enable.on()
@@ -136,10 +154,10 @@ class Motor:
         # Clear write bit
         address_buffer[0] = address & 0x7F
 
-        self.spi.xfer2(address_buffer)
+        self.__spi.xfer2(address_buffer)
 
         # It will look like [address, 0, 0, 0, 0]
-        read_buffer = self.spi.xfer2(address_buffer)
+        read_buffer = self.__spi.xfer2(address_buffer)
 
         # Parse data returned from SPI transfer/read
         value = read_buffer[1]
@@ -166,7 +184,7 @@ class Motor:
         write_buffer[3] = 0xFF & (data >> 8)
         write_buffer[4] = 0xFF & data
 
-        return self.spi.xfer2(write_buffer)
+        return self.__spi.xfer2(write_buffer)
 
     def twos_comp(self, value: int, bits: int = 32) -> int:
         # if (value & (1 << (bits - 1))) != 0:
@@ -175,3 +193,85 @@ class Motor:
         #     signed_value = value
         # return signed_value
         return (value - (1 << bits)) if ((value & (1 << (bits - 1))) != 0) else value
+
+    @property
+    def speed(self):
+        return self.ramp_VMAX
+
+    @speed.setter
+    def speed(self, speed: int):
+        """Change the stepper speed
+
+        Args:
+            speed (int): speed of the movement by the stepper, in microsteps unit/s
+        """
+        self.ramp_VMAX = int(speed)
+
+    @property
+    def acceleration(self):
+        return self.ramp_AMAX
+
+    @acceleration.setter
+    def acceleration(self, acceleration: int):
+        """Change the stepper acceleration
+
+        Args:
+            acceleration (int): acceleration reachable by the stepper, in microsteps unit/s²
+        """
+        self.ramp_AMAX = int(acceleration)
+
+    @property
+    def deceleration(self):
+        return self.ramp_DMAX
+
+    @deceleration.setter
+    def deceleration(self, deceleration: int):
+        """Change the stepper deceleration
+
+        Args:
+            deceleration (int): deceleration reachable by the stepper, in microsteps unit/s²
+        """
+        self.ramp_DMAX = int(deceleration)
+
+    def at_goal(self):
+        """Is the motor at its goal
+
+        Returns:
+            Bool: True if position and goal are identical
+        """
+        return self.get_position() == self.__goal
+
+    def is_moving(self):
+        """is the stepper in movement?
+
+        Returns:
+          Bool: True if the stepper is moving
+        """
+        return self.get_velocity() != 0
+
+    def go(self, direction: int, distance: int):
+        """move in the given direction for the given distance
+
+        Args:
+          direction: gives the movement direction
+          distance:
+        """
+
+        self.__direction = direction
+        if self.__direction == FORWARD:
+            self.__goal = int(self.get_position() + distance)
+        elif self.__direction == BACKWARD:
+            self.__goal = int(self.get_position() - distance)
+        else:
+            raise ValueError(f'Unknown direction "{direction}".')
+        self.enable_motor()
+        self.go_to(self.__goal)
+
+    def shutdown(self):
+        """Shutdown everything ASAP"""
+        self.stop_motor()
+        self.disable_motor()
+        self.__goal = self.get_position()
+
+    def release(self):
+        self.disable_motor()

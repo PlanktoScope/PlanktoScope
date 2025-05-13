@@ -4,7 +4,7 @@ import time
 
 from loguru import logger
 
-from planktoscope.stepper import stepper
+from .motor.motor import Motor
 
 from . import mqtt
 
@@ -14,7 +14,6 @@ logger.info("planktoscope.pump is loaded")
 FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
-
 
 class PumpProcess(multiprocessing.Process):
     # 507 steps per ml for PlanktoScope standard
@@ -35,7 +34,7 @@ class PumpProcess(multiprocessing.Process):
         self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
 
         # /dev/spidev0.0
-        self.pump_stepper = stepper(pin=23, spi_bus=0, spi_device=0, size=0)
+        self.pump_stepper = Motor(pin=23, spi_bus=0, spi_device=0)
 
         # Set stepper controller max speed
         self.pump_stepper.acceleration = 2000
