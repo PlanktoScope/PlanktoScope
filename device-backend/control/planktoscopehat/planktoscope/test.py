@@ -186,3 +186,8 @@ while True:
         obj2[name] = reg_class(value)
 
     print(obj2)
+
+
+# https://github.com/Chr157i4n/PyTmcStepper/blob/ee0afd5ef20d99209f231164dee6f5e178f066c7/src/tmc_driver/reg/_tmc224x_reg.py
+# https://github.com/Chr157i4n/PyTmcStepper/blob/main/src/tmc_driver/reg/_tmc_reg.py#L12
+# https://github.com/Chr157i4n/PyTmcStepper/tree/ee0afd5ef20d99209f231164dee6f5e178f066c7?tab=readme-ov-file
