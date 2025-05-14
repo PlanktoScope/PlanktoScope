@@ -4,7 +4,7 @@ import time
 
 from loguru import logger
 
-from planktoscope.stepper import stepper
+from .motor.motor import Motor
 
 from . import mqtt
 
@@ -33,7 +33,7 @@ class FocusProcess(multiprocessing.Process):
         self.focus_max_speed = configuration.get("focus_max_speed", self.focus_max_speed)
 
         # /dev/spidev0.1
-        self.focus_stepper = stepper(pin=5, spi_bus=0, spi_device=1, size=45)
+        self.focus_stepper = Motor(pin=5, spi_bus=0, spi_device=1)
 
         # Set stepper controller max speed
         self.focus_stepper.acceleration = 1000
