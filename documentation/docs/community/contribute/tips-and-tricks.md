@@ -100,13 +100,7 @@ git checkout master
 ```
 
 We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh).
-Use `$planktoscope` as the host to connect to and open the "PlanktoScope" directory.
-
-If you make changes to the backend, you can restart the backend and test your changes with
-
-```sh
-sudo systemctl restart planktoscope-org.device-backend.controller-planktoscopehat.service 
-```
+Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
 
@@ -141,7 +135,17 @@ And access the UI with http://pkscope-example-name-0000/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
-See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/)
+See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/).
+
+## Offline access
+
+When network is not available you have several options for debugging
+
+* Plug-in a keyboard and display (needs micro HDMI adapter)
+* [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
+* Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
+
+The NanoKVM USB solution works for all setups.
 
 ## Backup and Restore SD Card
 

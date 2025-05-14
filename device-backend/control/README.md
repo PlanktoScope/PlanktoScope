@@ -22,18 +22,26 @@ Please note that for camera we rely on the Raspberry OS packages `python3-picame
 
 ### Development
 
-To install all dependencies including development tooling, run:
-```
+Install all dependencies including development tooling:
+```sh
 poetry install --with dev --no-root
 ```
 
-Then you can run the code auto-formatter on the project by running:
+Start controller for development:
+```sh
+# replace `planktoscopehat` with `adafruithat` if appropriate
+sudo systemctl stop planktoscope-org.device-backend.controller-planktoscopehat.service
+poetry run python -u planktoscopehat/main.py
+# make changes and restart
 ```
+
+Run the code auto-formatter on the project:
+```sh
 poetry run poe fmt
 ```
 
-And you can run all checks (including code formatting and linting) by running:
-```
+Run all checks (including code formatting and linting):
+```sh
 poetry run poe check
 ```
 
