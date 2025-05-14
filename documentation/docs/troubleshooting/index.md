@@ -4,7 +4,7 @@ We don't yet have complete documentation to help you troubleshoot problems with 
 
 ## Hostname/DHCP issue with Orange Livebox router
 
-If you connected your PlanktoScope to a Orange Livebox, its hostname may be incorrect and change often. For example if your PlanktoScope name is `pretty-flower-123` the router might have assigned the hostname `pkscope-pretty-flower` instead of `pkscope-pretty-flower-123`.
+If you connected your PlanktoScope to a Orange Livebox, its hostname may be incorrect and change often. For example if your PlanktoScope name is `pretty-flower-123` the router may assign the hostname `pkscope-pretty-flower` instead of `pkscope-pretty-flower-123`.
 
 You can workaround this issue by:
 
@@ -12,7 +12,7 @@ Assign the static hostname `pkscope-pretty-flower-123` to the PlanktoScope in th
 
 or
 
-[Change the PlanktoScope machine name](https://docs.planktoscope.community/operation/networking/#change-your-planktoscopes-name) to `pretty-flower`
+[Change the PlanktoScope machine name](../operation/networking.md/#change-your-planktoscopes-name) to `pretty-flower`
 
 See also [#603](https://github.com/PlanktoScope/PlanktoScope/issues/603)
 
