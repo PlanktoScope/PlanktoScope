@@ -66,7 +66,7 @@ logger.info("planktoscope.segmenter is loaded")
 # Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
 # package from PyPI for more structured parsing of env vars:
 SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
-    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "False"
+    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "true"
 ).lower() in ("true", "1", "t")
 if SUBTRACT_CONSECUTIVE_MASKS:
     logger.info(
@@ -252,7 +252,7 @@ class SegmenterProcess(multiprocessing.Process):
         pipeline = [
             # "adaptative_threshold",
             "simple_threshold",
-            "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
+            "remove_flat_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
             "erode",
             "dilate",
             "close",
@@ -599,18 +599,28 @@ class SegmenterProcess(multiprocessing.Process):
         average_objects = 0
         recalculate_flat = True
         # TODO check image list here to find if a flat exists
-        # we recalculate the flat every 10 pictures
+        # we recalculate the flat on 5 images every 15 pictures (time optimisation)
+        count_recalculateflat=0
         if recalculate_flat:
-            recalculate_flat = False
+            
             self.segmenter_client.client.publish(
                 "status/segmenter", '{"status":"Calculating flat"}'
             )
-            if images_count < 10:
+            if images_count < 5:
+                recalculate_flat = False
                 self._calculate_flat(
                     images_list[0:images_count], images_count, self.__working_path
                 )
+                img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                self.__mask_to_remove = mask_flat
+                
             else:
-                self._calculate_flat(images_list[0:10], 10, self.__working_path)
+                self._calculate_flat(images_list[0:5], 5, self.__working_path)
+                img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                self.__mask_to_remove = mask_flat
+                
 
             if self.__save_debug_img:
                 self._save_image(
@@ -619,6 +629,7 @@ class SegmenterProcess(multiprocessing.Process):
                 )
 
         average_time = 0
+
 
         # TODO here would be a good place to parallelize the computation
         for i, filename in enumerate(images_list):
@@ -629,22 +640,42 @@ class SegmenterProcess(multiprocessing.Process):
                 "status/segmenter",
                 f'{{"status":"Segmenting image {filename}, image {i+1}/{images_count}"}}',
             )
+            count_recalculateflat=count_recalculateflat+1
+            if count_recalculateflat==15:
+                count_recalculateflat=0
+                recalculate_flat = True
 
             # we recalculate the flat if the heuristics detected we should
-            if recalculate_flat:  # not i % 10 and i < (images_count - 10)
-                recalculate_flat = False
-                if len(images_list) == 10:
-                    # We are too close to the end of the list, take the previous 10 images instead of the next 10
-                    flat = self._calculate_flat(images_list, 10, self.__working_path)
-                elif i > (len(images_list) - 11):
+            if recalculate_flat:  # not i % 5 and i < (images_count - 5)
+
+                if len(images_list) <= 5:
+                    # there is too few images : take whatever exists
+                    flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                    img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                    ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                    self.__mask_to_remove = mask_flat
+                    
+                elif i > (len(images_list) - 6):
+                    recalculate_flat = False
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
                     flat = self._calculate_flat(
-                        images_list[i - 10 : i], 10, self.__working_path
+                        images_list[i - 5 : i], 5, self.__working_path
                     )
+                    flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                    img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                    ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                    self.__mask_to_remove = mask_flat
+                    
                 else:
+                    recalculate_flat = False
                     flat = self._calculate_flat(
-                        images_list[i : i + 10], 10, self.__working_path
+                        images_list[i : i + 5], 5, self.__working_path
                     )
+                    flat = self._calculate_flat(images_list, images_count, self.__working_path)
+                    img_gray_flat = cv2.cvtColor(self.__flat, cv2.COLOR_BGR2GRAY)
+                    ret, mask_flat = cv2.threshold(img_gray_flat, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
+                    self.__mask_to_remove = mask_flat
+                    
                 if self.__save_debug_img:
                     self._save_image(
                         self.__flat,
@@ -653,6 +684,7 @@ class SegmenterProcess(multiprocessing.Process):
                             f"flat_color_{i}.jpg",
                         ),
                     )
+
 
             self.__working_debug_path = os.path.join(
                 self.__debug_objects_root,

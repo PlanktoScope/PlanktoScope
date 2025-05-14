@@ -196,6 +196,26 @@ def remove_previous_mask(mask):
         __mask_to_remove = mask
         return __mask_to_remove
 
+def remove_flat_mask(mask):
+    """Remove the mask from the mask calculated on the flat image
+    
+    Args:
+        mask (cv2 img): mask to apply the operation on
+
+    Returns:
+        cv2 img: mask after the transformation
+    """
+    global __mask_to_remove
+    if __mask_to_remove is not None:
+        # start = time.monotonic()
+        # np.append(__mask_to_remove, img_erode_2)
+        # logger.debug(time.monotonic() - start)
+        mask_and = mask & __mask_to_remove
+        mask_final = mask - mask_and
+        logger.success("Done removing the flat mask")
+        return mask_final
+
+
 
 def no_op(mask):
     """Return the mask without modifying it.
