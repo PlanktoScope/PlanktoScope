@@ -1,35 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  FlatList,
-  StatusBar,
-  View,
-  TextInput,
-} from "react-native";
+import { StyleSheet, FlatList, StatusBar, View, TextInput } from "react-native";
+
+import SelectItem, { ITEM_HEIGHT } from "./SelectItem";
 
 export type ItemData = {
   value: string;
   label: string;
 };
-
-type ItemProps = {
-  item: ItemData;
-  onPress: () => void;
-  selected?: boolean;
-};
-
-function Item({ item, onPress, selected = false }: ItemProps) {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.item, selected && styles.itemSelected]}
-    >
-      <Text style={[styles.title]}>{item.label}</Text>
-    </TouchableOpacity>
-  );
-}
 
 type SelectProps = {
   data: ItemData[];
@@ -37,8 +14,6 @@ type SelectProps = {
   onSelectedValue?: (value: string) => void;
   search?: boolean;
 };
-
-const ITEM_HEIGHT = 52;
 
 export default function Select({
   data,
@@ -81,7 +56,7 @@ export default function Select({
   const renderItem = useCallback(
     function renderItem({ item }: { item: ItemData }) {
       return (
-        <Item
+        <SelectItem
           item={item}
           onPress={() => onSelectedValue?.(item.value)}
           selected={item.value === selectedValue}
@@ -123,21 +98,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-  item: {
-    minHeight: ITEM_HEIGHT,
-    height: ITEM_HEIGHT,
-    maxHeight: ITEM_HEIGHT,
-  },
-  itemSelected: {
-    backgroundColor: "pink",
-  },
   search: {
     height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
-  },
-  title: {
-    fontSize: 24,
   },
 });
