@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import fetch from "@/fetch";
 
 export default function useRemoteValue(
   url: string,

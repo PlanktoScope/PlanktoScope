@@ -1,15 +1,15 @@
 import { StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
-import { iso31661 } from "iso-3166";
 
 import Select, { ItemData } from "../../components/Select";
 import useRemoteValue from "@/hooks/useRemoteValue";
+import { useEffect, useState } from "react";
+import fetch from "@/fetch";
 
 export default function Country() {
   const { navigate } = useRouter();
-  const [country, submitValue] = useRemoteValue(
-    "http://localhost:8585/country"
-  );
+  const [country, submitValue] = useRemoteValue("/country");
+  const [countries, setCountries] = useState([]);
 
   function onSelectedValue(value: string) {
     submitValue(value).then(() => {
@@ -17,10 +17,14 @@ export default function Country() {
     });
   }
 
+  useEffect(() => {
+    getCountries().then(setCountries);
+  }, []);
+
   return (
     <View style={styles.view}>
       <Select
-        data={COUNTRIES}
+        data={countries}
         selectedValue={country}
         onSelectedValue={onSelectedValue}
       />
@@ -34,12 +38,9 @@ const styles = StyleSheet.create({
   },
 });
 
-// Use /usr/share/zoneinfo/iso3166.tab
 // TODO: Detect browser/ip
-const COUNTRIES: ItemData[] = iso31661
-  .map((item) => {
-    return { label: item.name, value: item.alpha2 };
-  })
-  .sort((a, b) => {
-    return a.label.localeCompare(b.label);
-  });
+
+async function getCountries() {
+  const res = await fetch("/countries");
+  return res.json();
+}

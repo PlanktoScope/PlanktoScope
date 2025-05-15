@@ -62,7 +62,7 @@ export default function Select({
     const index = filteredData.findIndex((item) => {
       return item.value === selectedValue;
     });
-    if (!index) return;
+    if (index < 0) return;
 
     ref.current?.scrollToIndex({ index, animated: false, viewPosition: 0.5 });
   }, [selectedValue, filteredData]);

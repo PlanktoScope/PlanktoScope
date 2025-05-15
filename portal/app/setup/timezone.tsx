@@ -1,16 +1,16 @@
 import { View, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
+import { useState, useEffect } from "react";
 
-import timezones from "timezones-list";
+import fetch from "@/fetch";
 
 import Select, { ItemData } from "../../components/Select";
 import useRemoteValue from "@/hooks/useRemoteValue";
 
 export default function WizardTimezone() {
   const { navigate } = useRouter();
-  const [timezone, submitValue] = useRemoteValue(
-    "http://localhost:8585/timezone"
-  );
+  const [timezone, submitValue] = useRemoteValue("/timezone");
+  const [timezones, setTimezones] = useState([]);
 
   function onSelectedValue(value: string) {
     submitValue(value).then(() => {
@@ -18,10 +18,14 @@ export default function WizardTimezone() {
     });
   }
 
+  useEffect(() => {
+    getTimezones().then(setTimezones);
+  }, []);
+
   return (
     <View style={styles.view}>
       <Select
-        data={TIMEZONES}
+        data={timezones}
         selectedValue={timezone}
         onSelectedValue={onSelectedValue}
       />
@@ -35,12 +39,8 @@ const styles = StyleSheet.create({
   },
 });
 
-// Use timedatectl list-timezones
 // TODO: Detect browser
-const TIMEZONES: ItemData[] = timezones
-  .map((item) => {
-    return { label: item.label, value: item.tzCode };
-  })
-  .sort((a, b) => {
-    return a.label.localeCompare(b.label);
-  });
+async function getTimezones() {
+  const res = await fetch("/timezones");
+  return res.json();
+}
