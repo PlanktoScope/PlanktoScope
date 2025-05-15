@@ -16,7 +16,7 @@ export default function RootLayout() {
   return (
     <>
       <Stack>
-        {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen
           name="setup/index"
           options={{ headerShown: false, title: "Welcome!" }}
@@ -24,7 +24,6 @@ export default function RootLayout() {
         <Stack.Screen name="setup/hardware" options={{ title: "Hardware" }} />
         <Stack.Screen name="setup/country" options={{ title: "Country" }} />
         <Stack.Screen name="setup/timezone" options={{ title: "Timezone" }} />
-        <Stack.Screen name="setup/done" options={{ title: "Done" }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

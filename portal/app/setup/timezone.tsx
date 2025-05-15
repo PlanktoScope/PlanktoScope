@@ -14,7 +14,7 @@ export default function WizardTimezone() {
 
   function onSelectedValue(value: string) {
     submitValue(value).then(() => {
-      navigate("/setup/done");
+      navigate("/");
     });
   }
 
