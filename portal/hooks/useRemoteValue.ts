@@ -15,7 +15,7 @@ export default function useRemoteValue(
     }
 
     fetchValue().catch(console.error);
-  });
+  }, [url]);
 
   async function submitValue(value: string) {
     return fetch(url, {

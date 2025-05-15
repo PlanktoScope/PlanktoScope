@@ -21,8 +21,6 @@ export default function Hardware() {
     getHardwareVersions().then(setHardwareVersions);
   }, []);
 
-  console.log(hardware);
-
   return (
     <View style={styles.view}>
       <Select
