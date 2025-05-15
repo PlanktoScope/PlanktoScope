@@ -34,7 +34,7 @@ export async function getWifiRegulatoryDomain() {
   let data;
 
   try {
-    await readFile(path, {
+    data = await readFile(path, {
       encoding: "utf8",
     });
   } catch (err) {
