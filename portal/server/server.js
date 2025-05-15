@@ -14,6 +14,7 @@ import {
 } from "./hardware.js";
 
 import { setTimezone, getTimezone, timezones } from "./timezone.js";
+import { getName, getHostname } from "./identity.js";
 
 const app = express();
 
@@ -60,6 +61,22 @@ app.get("/timezone", async (req, res) => {
 app.post("/timezone", async (req, res) => {
   await setTimezone(req.body.value);
   res.end();
+});
+
+app.get("/bootstrap", async (req, res) => {
+  const [hardware_version, name, hostname] = await Promise.all([
+    getHardwareVersion(),
+    getName(),
+    getHostname(),
+  ]);
+  const access_hostname = req.hostname;
+
+  res.json({
+    setup: !hardware_version,
+    name,
+    hostname,
+    access_hostname,
+  });
 });
 
 app.listen(8585);

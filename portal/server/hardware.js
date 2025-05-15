@@ -37,4 +37,6 @@ export async function setHardwareVersion(hardware_version) {
       "/home/pi/PlanktoScope/hardware.json"
     ),
   ]);
+  // TODO: confgure node-red
+  // TODO: restart backend
 }
