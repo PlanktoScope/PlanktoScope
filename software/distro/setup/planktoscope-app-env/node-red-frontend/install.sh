@@ -35,6 +35,7 @@ fi
 # TODO: run Node-RED in a Docker container instead
 curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered |
   bash -s - --confirm-install --confirm-pi --no-init
+sudo systemctl enable nodered.service
 
 cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
