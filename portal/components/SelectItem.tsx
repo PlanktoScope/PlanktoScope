@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { ItemData } from "./Select";
@@ -17,26 +17,26 @@ export default function SelectItem({
   selected = false,
 }: ItemProps) {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{
-        flexDirection: "row",
-        minHeight: ITEM_HEIGHT,
-        height: ITEM_HEIGHT,
-        maxHeight: ITEM_HEIGHT,
-        backgroundColor: "white",
-        alignItems: "center",
-        borderBottomWidth: 1,
-        borderBottomColor: "lightgrey",
-      }}
-    >
-      <Ionicons
-        name="checkmark"
-        size={24}
-        color="black"
-        style={{ opacity: selected ? 1 : 0, paddingRight: 4 }}
-      />
-      <Text style={{ fontSize: 22 }}>{item.label}</Text>
-    </TouchableOpacity>
+    <Pressable onPress={onPress}>
+      <View
+        style={{
+          flexDirection: "row",
+          minHeight: ITEM_HEIGHT,
+          height: ITEM_HEIGHT,
+          maxHeight: ITEM_HEIGHT,
+          alignItems: "center",
+          borderBottomWidth: 1,
+          borderBottomColor: "lightgrey",
+        }}
+      >
+        <Ionicons
+          name="checkmark"
+          size={24}
+          color="black"
+          style={{ opacity: selected ? 1 : 0, paddingRight: 4 }}
+        />
+        <Text style={{ fontSize: 22 }}>{item.label}</Text>
+      </View>
+    </Pressable>
   );
 }

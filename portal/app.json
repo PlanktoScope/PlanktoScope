@@ -4,7 +4,7 @@
     "slug": "PlanktoScope",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon.svg",
     "scheme": "planktoscope",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -20,8 +20,7 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/icon.svg"
+      "output": "static"
     },
     "plugins": [
       "expo-router",

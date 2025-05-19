@@ -6,7 +6,14 @@ export default function Setup() {
   const { navigate } = useRouter();
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 20,
+      }}
+    >
       <Text
         style={{ fontSize: 34, textAlign: "center" }}
       >{`Welcome to your\nPlanktoScope!`}</Text>

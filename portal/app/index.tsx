@@ -9,7 +9,10 @@ export default function HomeScreen() {
   const [data, setData] = useState();
 
   useEffect(() => {
-    bootstrap().then(setData);
+    bootstrap().then((data) => {
+      globalThis.document.title = `PlanktoScope ${data.name}`;
+      setData(data);
+    });
   }, []);
 
   if (!data) return null;
