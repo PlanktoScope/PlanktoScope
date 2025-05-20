@@ -40,9 +40,16 @@ def main():
     loguru.logger.info(f"Hardware variant: {variant}")
     # Note: once the `main.py` files are rewritten to have a main() function, we can import the
     # appropriate module and invoke its main function. For now, we have to do an `exec`:
-    script_path = path.join(path.dirname(__file__), variant, "main.py")
-    with open(script_path) as script:
-        exec(script.read())
+    # script_path = path.join(path.dirname(__file__), variant, "main.py")
+    # with open(script_path) as script:
+        # exec(script.read())
+
+    if variant == "adafruithat":
+       from adafruithat import main as platform
+    else:
+        from planktoscopehat import main as platform
+
+    platform.main()
 
 
 if __name__ == "__main__":

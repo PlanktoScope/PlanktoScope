@@ -63,7 +63,7 @@ def handler_stop_signals(signum, _):
     run = False
 
 
-if __name__ == "__main__":
+def main():
     logger.info("Welcome!")
     logger.info(
         "Initialising signals handling and sanitizing the directories (step 1/4)"
