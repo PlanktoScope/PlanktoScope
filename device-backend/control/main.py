@@ -3,11 +3,36 @@ from os import path
 
 import loguru
 
-# FIXME: move loguru configuration to here instead
+# enqueue=True is necessary so we can log across modules
+# rotation happens everyday at 01:00 if not restarted
+logs_path = "/home/pi/device-backend-logs/control"
+if not os.path.exists(logs_path):
+    os.makedirs(logs_path)
+logger.add(
+    # sys.stdout,
+    "/home/pi/device-backend-logs/control/{time}.log",
+    rotation="5 MB",
+    retention="1 week",
+    compression=".tar.gz",
+    enqueue=True,
+    level="DEBUG",
+)
+
+# The available level for the logger are as follows:
+# Level name 	Severity 	Logger method
+# TRACE 	    5 	        logger.trace()
+# DEBUG 	    10 	        logger.debug()
+# INFO 	        20 	        logger.info()
+# SUCCESS 	    25 	        logger.success()
+# WARNING 	    30      	logger.warning()
+# ERROR 	    40       	logger.error()
+# CRITICAL 	    50      	logger.critical()
 
 # This is a special case for legacy hardware; new hardware designs should all be part of the
 # planktoscopehat codebase:
 CONFIG_PATH = "/home/pi/PlanktoScope/config.json"
+
+
 def load_variant_setting(config_path: str = CONFIG_PATH):
     config = {}
     try:
@@ -38,14 +63,9 @@ def main():
             f"Couldn't load hardware variant setting from config, defaulting to {variant}"
         )
     loguru.logger.info(f"Hardware variant: {variant}")
-    # Note: once the `main.py` files are rewritten to have a main() function, we can import the
-    # appropriate module and invoke its main function. For now, we have to do an `exec`:
-    # script_path = path.join(path.dirname(__file__), variant, "main.py")
-    # with open(script_path) as script:
-        # exec(script.read())
 
     if variant == "adafruithat":
-       from adafruithat import main as platform
+        from adafruithat import main as platform
     else:
         from planktoscopehat import main as platform
 

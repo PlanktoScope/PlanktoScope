@@ -26,31 +26,6 @@ from loguru import logger  # for logging with multiprocessing
 from adafruithat.planktoscope import stepper, light, identity, display
 from adafruithat.planktoscope.imager import mqtt as imager
 
-# enqueue=True is necessary so we can log across modules
-# rotation happens everyday at 01:00 if not restarted
-logs_path = "/home/pi/device-backend-logs/control"
-if not os.path.exists(logs_path):
-    os.makedirs(logs_path)
-logger.add(
-    # sys.stdout,
-    "/home/pi/device-backend-logs/control/{time}.log",
-    rotation="5 MB",
-    retention="1 week",
-    compression=".tar.gz",
-    enqueue=True,
-    level="DEBUG",
-)
-
-# The available level for the logger are as follows:
-# Level name 	Severity 	Logger method
-# TRACE 	    5 	        logger.trace()
-# DEBUG 	    10 	        logger.debug()
-# INFO 	        20 	        logger.info()
-# SUCCESS 	    25 	        logger.success()
-# WARNING 	    30      	logger.warning()
-# ERROR 	    40       	logger.error()
-# CRITICAL 	    50      	logger.critical()
-
 logger.info("Starting the PlanktoScope hardware controller!")
 
 run = True  # global variable to enable clean shutdown from stop signals
