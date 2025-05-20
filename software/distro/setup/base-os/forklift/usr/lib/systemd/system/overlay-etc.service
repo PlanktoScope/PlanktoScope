@@ -21,6 +21,7 @@ ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/etc
 ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/etc
+ExecStartPre=mkdir -p /sysroot${TARGET}
 ExecStart=mount --bind $TARGET /sysroot${TARGET}
 ExecStart=mount -o bind,remount,ro /sysroot${TARGET}
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
