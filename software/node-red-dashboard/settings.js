@@ -3,7 +3,10 @@
 const fs = require("fs");
 const path = require("path");
 
-function load_variant_setting(config_path) {
+// This is a special case for legacy hardware; new hardware designs should all be part of the
+// planktoscopehat codebase:
+const CONFIG_PATH = "/home/pi/PlanktoScope/config.json";
+function load_variant_setting(config_path = CONFIG_PATH) {
 	let config = {};
 	try {
 		const file = fs.readFileSync(config_path, "utf8");
@@ -23,20 +26,15 @@ function load_variant_setting(config_path) {
 		return undefined;
 	}
 
-	// This is a special case for legacy hardware; new hardware designs should all be part of the
-	// planktoscopehat codebase:
 	if (config.acq_instrument === "PlanktoScope v2.1") {
 		return "adafruithat";
 	}
 	return "planktoscopehat";
 }
 
-const config_path = path.join(
-	path.dirname(path.dirname(__dirname)),
-	"config.json",
-);
+
 console.log("Determining configured hardware variant...");
-let variant = load_variant_setting(config_path);
+let variant = load_variant_setting();
 if (variant === undefined) {
 	variant = "planktoscopehat";
 	console.warn(

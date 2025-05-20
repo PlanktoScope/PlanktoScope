@@ -5,8 +5,10 @@ import loguru
 
 # FIXME: move loguru configuration to here instead
 
-
-def load_variant_setting(config_path: str):
+# This is a special case for legacy hardware; new hardware designs should all be part of the
+# planktoscopehat codebase:
+CONFIG_PATH = "/home/pi/PlanktoScope/config.json"
+def load_variant_setting(config_path: str = CONFIG_PATH):
     config = {}
     try:
         with open(config_path, "r") as file:
@@ -23,22 +25,13 @@ def load_variant_setting(config_path: str):
         loguru.logger.error(f"{config_path} lacks a 'acq_instrument' field")
         return None
 
-    # This is a special case for legacy hardware; new hardware designs should all be part of the
-    # planktoscopehat codebase:
     if config["acq_instrument"] == "PlanktoScope v2.1":
         return "adafruithat"
     return "planktoscopehat"
 
-
-CONFIG_PATH = path.join(
-    path.dirname(path.dirname(path.dirname(__file__))),
-    "config.json",
-)
-
-
 def main():
     loguru.logger.info("Determining configured hardware variant...")
-    variant = load_variant_setting(CONFIG_PATH)
+    variant = load_variant_setting()
     if variant is None:
         variant = "planktoscopehat"
         loguru.logger.warning(
