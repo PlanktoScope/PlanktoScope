@@ -21,8 +21,8 @@ ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/etc
 ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/etc
-ExecStart=mount --bind $TARGET /sysroot$TARGET
-ExecStart=mount -o bind,remount,ro /sysroot$TARGET
+ExecStart=mount --bind $TARGET /sysroot${TARGET}
+ExecStart=mount -o bind,remount,ro /sysroot${TARGET}
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 # Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
@@ -41,7 +41,7 @@ ExecStart=systemctl daemon-reload
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
 # will be in our upperdir anyways.
 ExecStopPost=umount -l $TARGET
-ExecStopPost=umount -l /sysroot$TARGET
+ExecStopPost=umount -l /sysroot${TARGET}
 
 [Install]
 WantedBy=local-fs.target
