@@ -7,6 +7,6 @@ const installer_config = yaml.load(
 	fs.readFileSync("/usr/share/planktoscope/installer-config.yml", "utf8"),
 );
 
-const config = require(	`./${installer_config}/settings.js`);
+const config = require(	`./${installer_config.hardware}/settings.js`);
 
 module.exports = config;

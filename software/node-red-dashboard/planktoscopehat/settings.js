@@ -39,7 +39,7 @@ module.exports = {
 	/** Node-RED scans the `nodes` directory in the userDir to find local node files.
 	 * The following property can be used to specify an additional directory to scan.
 	 */
-	nodesDir: process.env.NODES_DIR || path.join(userDir, "nodes"),
+	nodesDir: process.env.NODES_DIR,
 
 	/*******************************************************************************
 	 * Security
@@ -242,11 +242,11 @@ module.exports = {
 	 * provided here will enable file-based context that flushes to disk every 30 seconds.
 	 * Refer to the documentation for further options: https://nodered.org/docs/api/context/
 	 */
-	//contextStorage: {
-	//    default: {
-	//        module:"localfilesystem"
-	//    },
-	//},
+	contextStorage: {
+	   default: {
+	       module:"localfilesystem"
+	   },
+	},
 
 	/** `global.keys()` returns a list of all properties set in global context.
 	 * This allows them to be displayed in the Context Sidebar within the editor.
@@ -314,7 +314,7 @@ module.exports = {
 		},
 		projects: {
 			/** To enable the Projects feature, set this value to true */
-			enabled: false,
+			enabled: true,
 			workflow: {
 				/** Set the default projects workflow mode.
 				 *  - manual - you must manually commit changes

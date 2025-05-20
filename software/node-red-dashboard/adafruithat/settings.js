@@ -39,7 +39,7 @@ module.exports = {
 	/** Node-RED scans the `nodes` directory in the userDir to find local node files.
 	 * The following property can be used to specify an additional directory to scan.
 	 */
-	nodesDir: process.env.NODES_DIR || path.join(userDir, "nodes"),
+	// nodesDir: process.env.NODES_DIR,
 
 	/*******************************************************************************
 	 * Security
