@@ -5,20 +5,12 @@
 config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Get command-line args
-hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
+hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope-latest
 default_config="$hardware_type-latest"
-case "$hardware_type" in
-"fairscope-latest")
+if [ "$hardware_type" = "fairscope-latest" ]; then
   hardware_type="planktoscopehat"
   default_config="fairscope-latest"
-  ;;
-"segmenter-only")
-  # FIXME: instead set up the segmenter-only version of the Node-RED dashboard!
-  echo "Warning: setting up adafruithat version of Node-RED dashboard for hardware type: $hardware_type"
-  hardware_type=adafruithat
-  default_config="adafruithat-latest"
-  ;;
-esac
+fi
 
 # Install dependencies
 # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
@@ -50,5 +42,5 @@ cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_conf
   "$HOME"/PlanktoScope/config.json
 
 # Configure node-red
-npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard install
-npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$hardware_type install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/adafruithat" install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/planktoscopehat" install

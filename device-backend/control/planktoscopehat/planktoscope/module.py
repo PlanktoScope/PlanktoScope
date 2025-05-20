@@ -10,7 +10,7 @@ import os, time
 import multiprocessing
 
 # Basic planktoscope communication libraries
-import planktoscope.mqtt
+from . import mqtt
 
 logger.info("planktoscope.module is loaded")
 
@@ -69,7 +69,7 @@ class ModuleProcess(multiprocessing.Process):
         )
 
         # MQTT Service connection
-        self.module_client = planktoscope.mqtt.MQTT_Client(
+        self.module_client = mqtt.MQTT_Client(
             topic="module/#", name="module_client"
         )
 

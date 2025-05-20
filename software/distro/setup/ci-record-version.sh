@@ -5,7 +5,7 @@
 # REPO (the repo used for setup, e.g. github.com/PlanktoScope/PlanktoScope)
 # VERSION_QUERY (the version query, e.g. a commit hash)
 # QUERY_TYPE (eitiher branch, tag, or hash)
-# HARDWARE (either none, segmenter-only, adafruithat, or planktoscopehat)
+# HARDWARE (either none, adafruithat, or planktoscopehat)
 # VERSION_QUERY_DIR (the filesystem path of the git repo used for getting version info)
 
 # Utilities for user interaction

@@ -8,7 +8,7 @@ import loguru
 import picamera2  # type: ignore
 from picamera2 import encoders, outputs
 
-from planktoscope.camera import hardware, mjpeg
+from . import hardware, mjpeg
 
 
 def main() -> None:

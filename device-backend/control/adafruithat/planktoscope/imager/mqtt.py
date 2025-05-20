@@ -10,9 +10,9 @@ import typing
 
 import loguru
 
-from planktoscope import identity, integrity, mqtt
-from planktoscope.camera import mqtt as camera
-from planktoscope.imager import stopflow
+from .. import identity, integrity, mqtt
+from ..camera import mqtt as camera
+from . import stopflow
 
 loguru.logger.info("planktoscope.imager is loaded")
 

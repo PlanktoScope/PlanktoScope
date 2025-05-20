@@ -18,18 +18,15 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-import datetime
-import os
-
 import Adafruit_SSD1306
 
 import PIL.Image
 import PIL.ImageDraw
 import PIL.ImageFont
 
-logger.info("planktoscope.display is loading")
+from . import identity
 
-import planktoscope.identity
+logger.info("planktoscope.display is loading")
 
 
 class Display(object):
@@ -54,7 +51,7 @@ class Display(object):
     def display_machine_name(self):
         if self.display_available:
             self.__clear()
-            machineName = planktoscope.identity.load_machine_name()
+            machineName = identity.load_machine_name()
             self.display_text(machineName.replace(" ", "\n"))
 
     def display_text(self, message):

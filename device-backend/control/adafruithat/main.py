@@ -23,37 +23,8 @@ import os
 
 from loguru import logger  # for logging with multiprocessing
 
-import planktoscope.mqtt
-import planktoscope.stepper
-import planktoscope.light  # Fan HAT LEDs
-import planktoscope.identity
-import planktoscope.display  # Fan HAT OLED screen
-from planktoscope.imager import mqtt as imager
-
-# enqueue=True is necessary so we can log across modules
-# rotation happens everyday at 01:00 if not restarted
-logs_path = "/home/pi/device-backend-logs/control"
-if not os.path.exists(logs_path):
-    os.makedirs(logs_path)
-logger.add(
-    # sys.stdout,
-    "/home/pi/device-backend-logs/control/{time}.log",
-    rotation="5 MB",
-    retention="1 week",
-    compression=".tar.gz",
-    enqueue=True,
-    level="DEBUG",
-)
-
-# The available level for the logger are as follows:
-# Level name 	Severity 	Logger method
-# TRACE 	    5 	        logger.trace()
-# DEBUG 	    10 	        logger.debug()
-# INFO 	        20 	        logger.info()
-# SUCCESS 	    25 	        logger.success()
-# WARNING 	    30      	logger.warning()
-# ERROR 	    40       	logger.error()
-# CRITICAL 	    50      	logger.critical()
+from adafruithat.planktoscope import stepper, light, identity, display
+from adafruithat.planktoscope.imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope hardware controller!")
 
@@ -67,7 +38,7 @@ def handler_stop_signals(signum, _):
     run = False
 
 
-if __name__ == "__main__":
+def main():
     logger.info("Welcome!")
     logger.info(
         "Initialising signals handling and sanitizing the directories (step 1/4)"
@@ -97,9 +68,7 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(img_path)
 
-    logger.info(
-        f"This PlanktoScope's machine name is {planktoscope.identity.load_machine_name()}"
-    )
+    logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
@@ -107,7 +76,7 @@ if __name__ == "__main__":
 
     # Starts the stepper process for actuators
     logger.info("Starting the stepper control process (step 2/4)")
-    stepper_thread = planktoscope.stepper.StepperProcess(shutdown_event)
+    stepper_thread = stepper.StepperProcess(shutdown_event)
     stepper_thread.start()
 
     # Starts the imager control process
@@ -121,10 +90,10 @@ if __name__ == "__main__":
         imager_thread.start()
 
     logger.info("Starting the display module (step 4/4)")
-    display = planktoscope.display.Display()
+    display = display.Display()
 
     logger.success("Looks like the controller is set up and running, have fun!")
-    planktoscope.light.ready()
+    light.ready()
 
     while run:
         # TODO look into ways of restarting the dead threads
