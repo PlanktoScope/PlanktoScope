@@ -1,13 +1,13 @@
 import json
-from os import path
+from os import makedirs, path
 
-import loguru
+from loguru import logger
 
 # enqueue=True is necessary so we can log across modules
 # rotation happens everyday at 01:00 if not restarted
 logs_path = "/home/pi/device-backend-logs/control"
-if not os.path.exists(logs_path):
-    os.makedirs(logs_path)
+if not path.exists(logs_path):
+    makedirs(logs_path)
 logger.add(
     # sys.stdout,
     "/home/pi/device-backend-logs/control/{time}.log",
@@ -40,34 +40,35 @@ def load_variant_setting(config_path: str = CONFIG_PATH):
             try:
                 config = json.load(file)
             except Exception:
-                loguru.logger.exception(f"Couldn't parse {config_path} as JSON file")
+                logger.exception(f"Couldn't parse {config_path} as JSON file")
                 return None
     except Exception:
-        loguru.logger.exception(f"Couldn't open {config_path}")
+        logger.exception(f"Couldn't open {config_path}")
         return None
 
     if "acq_instrument" not in config:
-        loguru.logger.error(f"{config_path} lacks a 'acq_instrument' field")
+        logger.error(f"{config_path} lacks a 'acq_instrument' field")
         return None
 
     if config["acq_instrument"] == "PlanktoScope v2.1":
         return "adafruithat"
     return "planktoscopehat"
 
+
 def main():
-    loguru.logger.info("Determining configured hardware variant...")
+    logger.info("Determining configured hardware variant...")
     variant = load_variant_setting()
     if variant is None:
         variant = "planktoscopehat"
-        loguru.logger.warning(
+        logger.warning(
             f"Couldn't load hardware variant setting from config, defaulting to {variant}"
         )
-    loguru.logger.info(f"Hardware variant: {variant}")
+    logger.info(f"Hardware variant: {variant}")
 
     if variant == "adafruithat":
-        from adafruithat import main as platform
+        from adafruithat import main as platform  # noqa: IMR200
     else:
-        from planktoscopehat import main as platform
+        from planktoscopehat import main as platform  # noqa: IMR200
 
     platform.main()
 
@@ -76,4 +77,4 @@ if __name__ == "__main__":
     try:
         main()
     except Exception:
-        loguru.logger.exception("Unhandled exception")
+        logger.exception("Unhandled exception")
