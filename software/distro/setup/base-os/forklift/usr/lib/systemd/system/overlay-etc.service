@@ -1,8 +1,6 @@
 [Unit]
 Description=Remount /etc as a writable overlay with a Forklift-managed intermediate layer, during early boot
 DefaultDependencies=no
-Requires=overlay-sysroot.service
-After=overlay-sysroot.service
 Wants=systemd-machine-id-commit.service
 After=systemd-machine-id-commit.service
 # If forklift (or the upperdir) provides kernel parameters via `/etc/sysctl.d`, we must make those
@@ -22,15 +20,16 @@ Environment=WORKDIR=/var/lib/overlays/workdirs/etc
 ExecStartPre=mkdir -p $WORKDIR
 Environment=UPPERDIR=/var/lib/overlays/overrides/etc
 ExecStartPre=mkdir -p $UPPERDIR
-Environment=LOWERDIR_BASE=/sysroot/etc
 Environment=TARGET=/etc
+ExecStart=mount --bind $TARGET /sysroot$TARGET
+ExecStart=mount -o bind,remount,ro /sysroot$TARGET
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 # Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
 # (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
 ExecStart=bash -c -e '\
   LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next)/exports/overlays/etc; \
-  LOWERDIRS="$LOWERDIR_BASE"; \
+  LOWERDIRS="/sysroot$TARGET"; \
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
   echo "Overlay lower directories: $LOWERDIRS"; \
   mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
@@ -42,6 +41,7 @@ ExecStart=systemctl daemon-reload
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
 # will be in our upperdir anyways.
 ExecStopPost=umount -l $TARGET
+ExecStopPost=umount -l /sysroot$TARGET
 
 [Install]
 WantedBy=local-fs.target
