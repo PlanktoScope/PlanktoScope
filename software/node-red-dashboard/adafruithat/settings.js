@@ -1,7 +1,5 @@
 // https://nodered.org/docs/user-guide/runtime/configuration
 
-const path = require("path");
-
 module.exports = {
 	/*******************************************************************************
 	 * Flow File and User Directory Settings
