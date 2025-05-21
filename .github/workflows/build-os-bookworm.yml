@@ -3,25 +3,25 @@ name: build-os-bookworm
 on:
   push:
     branches:
-      - 'master'
-      - 'software/beta'
-      - 'software/stable'
+      - "master"
+      - "software/beta"
+      - "software/stable"
     tags:
-      - 'software/v*'
+      - "software/v*"
     paths:
-      - 'software/**'
-      - '!software/CHANGELOG.md'
-      - '.github/workflows/build-os*.yml'
+      - "software/**"
+      - "!software/CHANGELOG.md"
+      - ".github/workflows/build-os*.yml"
   pull_request:
     paths:
-      - 'software/**'
-      - '!software/CHANGELOG.md'
-      - '.github/workflows/build-os*.yml'
+      - "software/**"
+      - "!software/CHANGELOG.md"
+      - ".github/workflows/build-os*.yml"
   merge_group:
   workflow_dispatch:
     inputs:
       git-ref:
-        description: 'Git ref (optional)'
+        description: "Git ref (optional)"
         required: false
 
 concurrency:
@@ -50,7 +50,7 @@ jobs:
       name: planktoscope
       base_release_name: bookworm
       base_image_variant: ${{ matrix.base_variant_name }}
-      base_release_date: 2025-05-07
-      base_file_release_date: 2025-05-06
+      base_release_date: 2025-05-13
+      base_file_release_date: 2025-05-13
       arch: arm64
       variant: ${{ matrix.variant }}
