@@ -45,20 +45,6 @@ To setup the recommended development environment, run the following commands.
 Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pkscope-sponge-bob-123`
 
 <details>
-    <summary>On the PlanktoScope</summary>
-
-```sh
-cd ~/PlanktoScope
-# Enable Developer Mode
-./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
-# Configure git
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-```
-
-</details>
-
-<details>
     <summary>On your computer</summary>
 
 ```sh
@@ -74,14 +60,37 @@ Host $planktoscope
   # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding
   ForwardAgent yes
   User pi
-  IdentityFile ~/.ssh/planktoscope
+  IdentityFile ~/.ssh/$planktoscope
 ```
 
 </details>
 
----
+You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`).
 
-You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`) and use `~/PlanktoScope` as a regular git repository.
+<details>
+    <summary>On the PlanktoScope</summary>
+
+```sh
+cd ~/PlanktoScope
+# Enable Developer Mode
+./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
+
+# Configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+# [Optional] change the remote
+
+# If you are a contributor to github.com/PlanktoScope/PlanktoScope
+git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
+
+# If you have your own fork
+git remote set-url origin git@github.com:MYUSERNAME/PlanktoScope.git
+```
+
+</details>
+
+You can now use `~/PlanktoScope` as a regular git repository.
 
 ```sh
 ssh $planktoscope
@@ -91,13 +100,7 @@ git checkout master
 ```
 
 We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh).
-Use `$planktoscope` as the host to connect to and open the "PlanktoScope" directory.
-
-If you make changes to the backend, you can restart the backend and test your changes with
-
-```sh
-sudo systemctl restart planktoscope-org.device-backend.controller.service
-```
+Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
 
@@ -105,16 +108,22 @@ The default behavior of the PlanktoScope is to act as a router to connect your c
 
 If you have a LAN it may be more convenient to connect the PlanktoScope to it and act as a simple client.
 
+<details>
+    <summary>Ethernet</summary>
+
 ```sh
 nmcli connection up eth0-default
 ```
 
+</details>
+
 <details>
-    <summary>Revert changes</summary>
+    <summary>WiFi</summary>
 
 ```sh
-# Ethernet
-nmcli connection down eth0-default
+nmcli connection down wlan0-hotspot
+nmcli device wifi list
+nmcli device wifi connect "<SSID>" --ask
 ```
 
 </details>
@@ -127,7 +136,17 @@ And access the UI with http://pkscope-example-name-0000/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
-See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/)
+See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/).
+
+## Offline access
+
+When network is not available you have several options for debugging
+
+- Plug-in a keyboard and display (needs micro HDMI adapter)
+- [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
+- Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
+
+The NanoKVM USB solution works for all setups.
 
 ## Backup and Restore SD Card
 
@@ -146,6 +165,14 @@ xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress conv=fdatasyn
 ```
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
+
+## Opening a port on the firewall
+
+https://firewalld.org/documentation/howto/open-a-port-or-service.html
+
+## Working with GPIOs on the CLI
+
+https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
 
 ## Documentation quick setup
 
