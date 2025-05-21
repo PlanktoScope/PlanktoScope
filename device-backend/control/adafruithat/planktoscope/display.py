@@ -77,9 +77,9 @@ class Display(object):
 
             # Draw some shapes.
             # First define some constants to allow easy resizing of shapes.
-            padding = -2
-            top = padding
-            bottom = height - padding
+            # padding = -2
+            # top = padding
+            # bottom = height - padding
             # Move left to right keeping track of the current x position for drawing shapes.
             x = 0
 

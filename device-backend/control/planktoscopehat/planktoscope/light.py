@@ -6,7 +6,8 @@ from loguru import logger
 
 from gpiozero import DigitalOutputDevice
 
-import os, time
+import os
+import time
 
 # Library for starting processes
 import multiprocessing
@@ -247,7 +248,7 @@ class LightProcess(multiprocessing.Process):
                     logger.info(f"Switching the LED current to {current}mA")
                     try:
                         self.led.set_torch_current(current)
-                    except:
+                    except Exception:
                         self.light_client.client.publish(
                             "status/light",
                             '{"status":"Error while setting the current, power cycle your machine"}',

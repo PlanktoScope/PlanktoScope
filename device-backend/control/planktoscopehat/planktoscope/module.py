@@ -4,7 +4,8 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-import os, time
+import os
+import time
 
 # Library for starting processes
 import multiprocessing
