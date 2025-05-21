@@ -8,7 +8,7 @@ Each feature of the hardware is controlled by a separate process. Processes comm
 
 Please note the following particularity of Python processes
 
-> Bear in mind that each spawned process is initialized with a copy of the memory footprint of the master process. And that the constructor code (i.e. stuff inside __init__()) is executed in the master process -- only code inside run() executes in separate processes.
+> Bear in mind that each spawned process is initialized with a copy of the memory footprint of the master process. And that the constructor code (i.e. stuff inside **init**()) is executed in the master process -- only code inside run() executes in separate processes.
 
 https://stackoverflow.com/a/17220739
 
@@ -23,24 +23,28 @@ Please note that for camera we rely on the Raspberry OS packages `python3-picame
 ### Development
 
 Install all dependencies including development tooling:
+
 ```sh
 poetry install --with dev --no-root
 ```
 
 Start controller for development:
+
 ```sh
 # replace `planktoscopehat` with `adafruithat` if appropriate
-sudo systemctl stop planktoscope-org.device-backend.controller-planktoscopehat.service
+sudo systemctl stop planktoscope-org.device-backend.controller.service
 poetry run python -u planktoscopehat/main.py
 # make changes and restart
 ```
 
 Run the code auto-formatter on the project:
+
 ```sh
 poetry run poe fmt
 ```
 
 Run all checks (including code formatting and linting):
+
 ```sh
 poetry run poe check
 ```
