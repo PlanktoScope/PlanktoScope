@@ -2,21 +2,21 @@
 
 This document explains how the [PlanktoScope OS](../architecture/os.md)'s installation process works, as a companion to our [non-standard installation guide](../../../setup/software/nonstandard-install.md) which carries out the process explained below.
 
-The installation process is initiated by booting into an [appropriate](../../../setup/software/nonstandard-install.md#download-a-raspberry-pi-os-sd-card-image) installation of the Raspberry Pi OS and then downloading and [running the *installation bootstrap script*](../../../setup/software/nonstandard-install.md#run-the-installation-script), which in turn downloads and runs the appropriate *distro setup scripts* according to the installation parameters provided to the installation bootstrap script.
+The installation process is initiated by booting into an [appropriate](../../../setup/software/nonstandard-install.md#download-a-raspberry-pi-os-sd-card-image) installation of the Raspberry Pi OS and then downloading and [running the _installation bootstrap script_](../../../setup/software/nonstandard-install.md#run-the-installation-script), which in turn downloads and runs the appropriate _distro setup scripts_ according to the installation parameters provided to the installation bootstrap script.
 
 ## Installation bootstrap script
 
-The [installation bootstrap script](https://github.com/PlanktoScope/install.planktoscope.community/blob/edge/distro.sh) is provided so that a one-line command can be executed to  automatically perform the entire process of installing the PlanktoScope OS on top of the Raspberry Pi OS. [The GitHub repository which contains that script](https://github.com/PlanktoScope/install.planktoscope.community) always publishes the latest version on its `stable` branch to [install.planktoscope.community/distro.sh](https://install.planktoscope.community/distro.sh) via GitHub Pages; other versions can be downloaded from GitHub via the corresponding permalinks for those versions of the file (e.g. <https://github.com/PlanktoScope/install.planktoscope.community/raw/v2023.9.0/distro.sh> for the version from the v2023.9.0 tag in the repository). The installation bootstrap script performs the following steps:
+The [installation bootstrap script](https://github.com/PlanktoScope/install.planktoscope.community/blob/edge/distro.sh) is provided so that a one-line command can be executed to automatically perform the entire process of installing the PlanktoScope OS on top of the Raspberry Pi OS. [The GitHub repository which contains that script](https://github.com/PlanktoScope/install.planktoscope.community) always publishes the latest version on its `stable` branch to [install.planktoscope.community/distro.sh](https://install.planktoscope.community/distro.sh) via GitHub Pages; other versions can be downloaded from GitHub via the corresponding permalinks for those versions of the file (e.g. <https://github.com/PlanktoScope/install.planktoscope.community/raw/v2023.9.0/distro.sh> for the version from the v2023.9.0 tag in the repository). The installation bootstrap script performs the following steps:
 
 1. The script loads some [parameters](#script-parameters) (set by environment variables and/or corresponding command-line arguments) which set the behavior of the script.
 
 2. The script installs `git`, if it was not already installed (as is the case on the "Lite" image of the Raspberry Pi OS); if the `yes` parameter was not set and `git` was not already installed, the script will first ask the user to confirm that they wish to install `git` before the script continues. `git` is required to resolve version query parameters provided to the script, so that the script can determine how to download the requested version of the PlanktoScope OS's distro setup scripts.
 
 3. The script clones a minimal ["mirror"](https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---mirror) copy of the specified repository (set by the `repo` parameter) of distro setup scripts to a temporary directory (i.e. a directory created in `/tmp`). This "mirror" copy is used to:
-   
-    - Resolve the version query parameters (`version-query`, `query-type`, and - when `query-type` is `tag` - `tag-prefix`) into a specific commit hash for the repository.
-   
-    - Determine a [*(pseudo-)version*](https://git-scm.com/docs/git-describe#_examples) string for the resolved commit based on the last release tag (whose name is prefixed with the `tag-prefix` parameter) ancestral to that commit.
+
+   - Resolve the version query parameters (`version-query`, `query-type`, and - when `query-type` is `tag` - `tag-prefix`) into a specific commit hash for the repository.
+
+   - Determine a [_(pseudo-)version_](https://git-scm.com/docs/git-describe#_examples) string for the resolved commit based on the last release tag (whose name is prefixed with the `tag-prefix` parameter) ancestral to that commit.
 
 4. The script clones a copy of the specified repository (set by the `repo` parameter) to a temporary directory and checks out the specific commit which was resolved by the previous step; if the `yes` parameter was not set, the script will first ask the user to confirm that they wish to download the resolved commit of the distro setup scripts before the script continues. Because the repository containing the distro setup scripts may have many large files (e.g. image files for documentation) which are unrelated to the distro setup scripts, this step only downloads files in the specific commit needed for the distro setup scripts.
 
