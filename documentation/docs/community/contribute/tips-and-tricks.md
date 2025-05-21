@@ -52,6 +52,8 @@ Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pksco
 ssh-keygen -t ed25519 -C "pi@$planktoscope" -f ~/.ssh/$planktoscope
 # Make the SSH key accepted by the PlanktoScope
 ssh-copy-id -i ~/.ssh/$planktoscope.pub pi@$planktoscope
+# Add your keys to your SSH agent
+ssh-add -k
 ```
 
 ```
