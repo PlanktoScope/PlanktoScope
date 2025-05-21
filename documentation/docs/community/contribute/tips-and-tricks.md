@@ -1,6 +1,5 @@
 # Tips and tricks
 
-
 This page provides useful snippets and how-tos while developing software for the PlanktoScope.
 
 !!! warning
@@ -56,6 +55,7 @@ cd ~/PlanktoScope
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
+
 </details>
 
 <details>
@@ -96,7 +96,7 @@ Use `$planktoscope` as the host to connect to and open the "PlanktoScope" direct
 If you make changes to the backend, you can restart the backend and test your changes with
 
 ```sh
-sudo systemctl restart planktoscope-org.device-backend.controller-planktoscopehat.service 
+sudo systemctl restart planktoscope-org.device-backend.controller.service
 ```
 
 ## Connect to router
@@ -116,6 +116,7 @@ nmcli connection up eth0-default
 # Ethernet
 nmcli connection down eth0-default
 ```
+
 </details>
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
@@ -134,7 +135,6 @@ You will need to plug the SD card into your computer.
 
 `/dev/device` refers to the path of the SD card device/disk. You will need to adjust it. Use `diskutil list` on macOS and `fdisk --list` on Linux.
 
-
 ```sh
 # backup whole SD card onto an image file on your computer
 sudo dd bs=1M if=/dev/device status=progress conv=fdatasync | xz > sdcard.img.xz
@@ -151,8 +151,8 @@ See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
 
 This is a quick setup guide. See also
 
-* [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
-* [Writing Documentation](./documentation.md)
+- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
+- [Writing Documentation](./documentation.md)
 
 Install dependencies:
 
@@ -162,10 +162,12 @@ Install dependencies:
 Start by [installing WSL (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command)
 
 Because of a small incompatibilty between Windows and Linux; we recommend cloning the repo "in WSL" but if you prefer keeping your git clone "in Windows", here are other options:
-* [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
-* [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
+
+- [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
+- [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
 
 Then follow the Ubuntu instructions below.
+
 </details>
 
 <details>
@@ -177,6 +179,7 @@ sudo apt install python3-poetry
 cd documentation
 poetry install --no-root
 ```
+
 </details>
 
 <details>
@@ -187,6 +190,7 @@ sudo dnf install python3-poetry
 cd documentation
 poetry install --no-root
 ```
+
 </details>
 
 Run live previewer:
