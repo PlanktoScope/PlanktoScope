@@ -22,7 +22,7 @@ The PlanktoScope OS's setup scripts provide some system services which are not m
 
 - `overlay-usr.service` runs after `overlay-sysroot.service` and before `overlay-fs.target`.
 
-- `overlay-etc.service` runs after `overlay-sysroot.service` and  `systemd-machine-id-commit.service` , and before `systemd-sysctl.service` and `overlay-fs.target`.
+- `overlay-etc.service` runs after `overlay-sysroot.service` and `systemd-machine-id-commit.service` , and before `systemd-sysctl.service` and `overlay-fs.target`.
 
 - `start-overlaid-units.service` runs after `overlay-fs.target` and `basic.target`.
 
@@ -54,7 +54,7 @@ For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.tar
 
 ### User interface
 
-- `assemble-cockpit-config.service`, `assemble-cockpit-origins.service`, and `assemble-cockpit-origins-templated.service` update Cockpit's configuration file  from drop-in config file fragments in `/etc/cockpit/cockpit.conf.d`, `/etc/cockpit/origins.d`, and `/etc/cockpit/origins-templates.d`, respectively. They run after `generate-machine-name.service` and `generate-hostname-templated.service` and before `cockpit.service`.
+- `assemble-cockpit-config.service`, `assemble-cockpit-origins.service`, and `assemble-cockpit-origins-templated.service` update Cockpit's configuration file from drop-in config file fragments in `/etc/cockpit/cockpit.conf.d`, `/etc/cockpit/origins.d`, and `/etc/cockpit/origins-templates.d`, respectively. They run after `generate-machine-name.service` and `generate-hostname-templated.service` and before `cockpit.service`.
 
 - `ensure-ssh-host-keys.service` regenerates the SSH server's host keys if the keys are missing, and runs before `ssh.service`.
 
@@ -62,4 +62,4 @@ For descriptions of the various targets (e.g. `sysinit.target`, `network-pre.tar
 
 ### PlanktoScope-specific hardware abstraction
 
-- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller-{adafruithat or planktoscopehat}.service`) starts after `forklift-apply.service` (which manages Mosquitto) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
+- The PlanktoScope hardware controller (managed by `planktoscope-org.device-backend.controller.service`) starts after `forklift-apply.service` (which manages Mosquitto) and `nodered.service` have started, to ensure that the PlanktoScope hardware controller broadcasts the detected camera model name only after the PlanktoScope Node-RED dashboard is ready to receive that broadcast. (In the future the PlanktoScope hardware controller will instead be run as a Docker container and will be managed by `forklift`.)
