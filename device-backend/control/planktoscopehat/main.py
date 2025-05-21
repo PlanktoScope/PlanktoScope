@@ -7,37 +7,8 @@ import json
 
 from loguru import logger
 
-import planktoscope.mqtt
-import planktoscope.pump
-import planktoscope.focus
-import planktoscope.light
-import planktoscope.identity
-from planktoscope.imager import mqtt as imager
-
-# enqueue=True is necessary so we can log across modules
-# rotation happens everyday at 01:00 if not restarted
-logs_path = "/home/pi/device-backend-logs/control"
-if not os.path.exists(logs_path):
-    os.makedirs(logs_path)
-logger.add(
-    # sys.stdout,
-    "/home/pi/device-backend-logs/control/{time}.log",
-    rotation="5 MB",
-    retention="1 week",
-    compression=".tar.gz",
-    enqueue=True,
-    level="DEBUG",
-)
-
-# The available level for the logger are as follows:
-# Level name 	Severity 	Logger method
-# TRACE 	    5 	        logger.trace()
-# DEBUG 	    10 	        logger.debug()
-# INFO 	        20 	        logger.info()
-# SUCCESS 	    25 	        logger.success()
-# WARNING 	    30      	logger.warning()
-# ERROR 	    40       	logger.error()
-# CRITICAL 	    50      	logger.critical()
+from planktoscopehat.planktoscope import pump, focus, light, identity
+from planktoscopehat.planktoscope.imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
 
@@ -51,7 +22,7 @@ def handler_stop_signals(signum, frame):
     run = False
 
 
-if __name__ == "__main__":
+def main():
     logger.info("Welcome!")
     logger.info(
         "Initialising configuration, signals handling and sanitizing the directories (step 1/5)"
@@ -81,9 +52,7 @@ if __name__ == "__main__":
         # create the path!
         os.makedirs(img_path)
 
-    logger.info(
-        f"This PlanktoScope's machine name is {planktoscope.identity.load_machine_name()}"
-    )
+    logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
     try:
         with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
@@ -100,12 +69,12 @@ if __name__ == "__main__":
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/5)")
-    pump_thread = planktoscope.pump.PumpProcess(shutdown_event, configuration)
+    pump_thread = pump.PumpProcess(shutdown_event, configuration)
     pump_thread.start()
 
     # Starts the focus process
     logger.info("Starting the focus control process (step 3/5)")
-    focus_thread = planktoscope.focus.FocusProcess(shutdown_event, configuration)
+    focus_thread = focus.FocusProcess(shutdown_event, configuration)
     focus_thread.start()
 
     # TODO try to isolate the imager thread (or another thread)
@@ -122,7 +91,7 @@ if __name__ == "__main__":
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
     try:
-        light_thread = planktoscope.light.LightProcess(shutdown_event, configuration)
+        light_thread = light.LightProcess(shutdown_event, configuration)
     except Exception:
         logger.error("The light control process could not be started")
         light_thread = None

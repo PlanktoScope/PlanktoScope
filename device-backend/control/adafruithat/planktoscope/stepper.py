@@ -21,10 +21,10 @@ import adafruit_motorkit
 import time
 import json
 import os
-import planktoscope.mqtt
-import planktoscope.light
 import multiprocessing
 import RPi.GPIO
+
+from . import mqtt, light
 
 # Logger library compatible with multiprocessing
 from loguru import logger
@@ -203,11 +203,11 @@ class StepperProcess(multiprocessing.Process):
                 "status/pump", '{"status":"Interrupted"}'
             )
 
-            planktoscope.light.ready()
+            light.ready()
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move pump command")
-            planktoscope.light.pumping()
+            light.pumping()
 
             if (
                 "direction" not in last_message
@@ -256,11 +256,11 @@ class StepperProcess(multiprocessing.Process):
                 "status/focus", '{"status":"Interrupted"}'
             )
 
-            planktoscope.light.ready()
+            light.ready()
 
         elif last_message["action"] == "move":
             logger.debug("We have received a move focus command")
-            planktoscope.light.focusing()
+            light.focusing()
 
             if "direction" not in last_message or "distance" not in last_message:
                 logger.error(
@@ -422,7 +422,7 @@ class StepperProcess(multiprocessing.Process):
         # it doesn't see changes and calls made by self.actuator_client because this one
         # only exist in the master process
         # see https://stackoverflow.com/questions/17172878/using-pythons-multiprocessing-process-class
-        self.actuator_client = planktoscope.mqtt.MQTT_Client(
+        self.actuator_client = mqtt.MQTT_Client(
             topic="actuator/#", name="actuator_client"
         )
         # Publish the status "Ready" to via MQTT to Node-RED
@@ -437,14 +437,14 @@ class StepperProcess(multiprocessing.Process):
                 self.treat_command()
             if self.pump_stepper.move():
                 delay = 0.0001
-                planktoscope.light.ready()
+                light.ready()
                 self.actuator_client.client.publish(
                     "status/pump",
                     '{"status":"Done"}',
                 )
             if self.focus_stepper.move():
                 delay = 0.0001
-                planktoscope.light.ready()
+                light.ready()
                 self.actuator_client.client.publish(
                     "status/focus",
                     '{"status":"Done"}',

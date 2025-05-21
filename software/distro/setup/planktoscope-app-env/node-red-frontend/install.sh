@@ -5,20 +5,12 @@
 config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
 # Get command-line args
-hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest, or segmenter-only
+hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope-latest
 default_config="$hardware_type-latest"
-case "$hardware_type" in
-"fairscope-latest")
+if [ "$hardware_type" = "fairscope-latest" ]; then
   hardware_type="planktoscopehat"
   default_config="fairscope-latest"
-  ;;
-"segmenter-only")
-  # FIXME: instead set up the segmenter-only version of the Node-RED dashboard!
-  echo "Warning: setting up adafruithat version of Node-RED dashboard for hardware type: $hardware_type"
-  hardware_type=adafruithat
-  default_config="adafruithat-latest"
-  ;;
-esac
+fi
 
 # Install dependencies
 # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
@@ -31,19 +23,24 @@ if ! sudo apt-get install -y python3-smbus2; then
   pip3 install smbus2==0.4.3
 fi
 
+# Install Node.js 20
+# https://github.com/nodesource/distributions/blob/master/README.md#using-debian-as-root-nodejs-20
+curl -fsSL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
+sudo -E bash /tmp/nodesource_setup.sh
+sudo apt-get install -y nodejs
+
 # Install Node-RED
-# TODO: run Node-RED in a Docker container instead
-curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered |
-  bash -s - --confirm-install --confirm-pi --no-init
+npm config set prefix /home/pi/.local
+npm install -g node-red@v4.0.9
+sudo cp $config_files_root/nodered.service /etc/systemd/system/nodered.service
+sudo mkdir -p /etc/systemd/system/nodered.service.d
+sudo cp $config_files_root/30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
 sudo systemctl enable nodered.service
+rm -rf /home/pi/.node-red
 
 cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
 
 # Configure node-red
-npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard install
-sudo mkdir -p /etc/systemd/system/nodered.service.d
-sudo cp $config_files_root/30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
-
-# Install dependencies to make them available to Node-RED
-npm --prefix "$HOME"/PlanktoScope/software/node-red-dashboard/$hardware_type install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/adafruithat" install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/planktoscopehat" install

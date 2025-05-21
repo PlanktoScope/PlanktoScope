@@ -632,16 +632,6 @@
         "className": ""
     },
     {
-        "id": "fc5e4e6f.5b1c8",
-        "type": "ui_group",
-        "name": "GPS Status",
-        "tab": "737ec584.2eea2c",
-        "order": 6,
-        "disp": true,
-        "width": 10,
-        "collapse": false
-    },
-    {
         "id": "f3ca28ef.4df0a8",
         "type": "ui_group",
         "name": "Shutdown",
@@ -791,16 +781,6 @@
         "group": "3e1ba03d.f01d8",
         "order": 5,
         "width": 10,
-        "height": 1
-    },
-    {
-        "id": "d65a6ccdeb9d35d6",
-        "type": "ui_spacer",
-        "z": "b771c342.49603",
-        "name": "spacer",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 3,
-        "width": 1,
         "height": 1
     },
     {
@@ -1992,31 +1972,6 @@
         ]
     },
     {
-        "id": "18f44504.cac66b",
-        "type": "gpsd",
-        "z": "b771c342.49603",
-        "name": "",
-        "hostname": "localhost",
-        "port": "2947",
-        "tpv": true,
-        "sky": false,
-        "info": false,
-        "device": false,
-        "gst": false,
-        "att": false,
-        "x": 250,
-        "y": 1240,
-        "wires": [
-            [
-                "258b4562.9f778a",
-                "54e37580.fdc31c",
-                "cc21ca16.b92928",
-                "4a4de52c.cf2884",
-                "73c4a14a.9b93c8"
-            ]
-        ]
-    },
-    {
         "id": "726a7822.cd6298",
         "type": "ui_ui_control",
         "z": "b771c342.49603",
@@ -2209,22 +2164,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "7116e906.9f50f",
-        "type": "ui_text",
-        "z": "b771c342.49603",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 1,
-        "width": 10,
-        "height": 1,
-        "name": "GPS Status Display",
-        "label": "GPS Status:",
-        "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "x": 740,
-        "y": 1080,
-        "wires": []
     },
     {
         "id": "9c7f7fc9.c8d3a",
@@ -2751,141 +2690,6 @@
         ]
     },
     {
-        "id": "4fb4e0ad.c417c",
-        "type": "ui_text",
-        "z": "b771c342.49603",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 6,
-        "width": 5,
-        "height": 1,
-        "name": "Latitude",
-        "label": "Latitude",
-        "format": "{{msg.payload.lat.deg}}&deg{{msg.payload.lat.min}}'{{msg.payload.lat.sec}}{{msg.payload.lat.dir}}",
-        "layout": "col-center",
-        "x": 700,
-        "y": 1120,
-        "wires": []
-    },
-    {
-        "id": "8d2b5026.13e6e8",
-        "type": "ui_text",
-        "z": "b771c342.49603",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 7,
-        "width": 5,
-        "height": 1,
-        "name": "Longitude",
-        "label": "Longitude",
-        "format": "{{msg.payload.lon.deg}}&deg{{msg.payload.lon.min}}'{{msg.payload.lon.sec}}{{msg.payload.lon.dir}}",
-        "layout": "col-center",
-        "x": 700,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "258b4562.9f778a",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Convert DD to DMS",
-        "func": "function ConvertDDToDMS(D, lng){\n    // from https://stackoverflow.com/a/5786281/2108279\n    return {\n        dir : D<0?lng?'W':'S':lng?'E':'N',\n        deg : 0|(D<0?D=-D:D),\n        min : 0|D%1*60,\n        sec :(0|D*60%1*6000)/100\n    };\n}\n\nmsg.payload = {\n    \"lat\":ConvertDDToDMS(msg.payload.lat, false),\n    \"lon\":ConvertDDToDMS(msg.payload.lon, true)\n};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 490,
-        "y": 1140,
-        "wires": [
-            [
-                "4fb4e0ad.c417c",
-                "8d2b5026.13e6e8"
-            ]
-        ]
-    },
-    {
-        "id": "7c4ce5f3.62dd5c",
-        "type": "ui_text",
-        "z": "b771c342.49603",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 4,
-        "width": 2,
-        "height": 1,
-        "name": "Speed",
-        "label": "Speed",
-        "format": "{{msg.payload}} kts",
-        "layout": "col-center",
-        "x": 690,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "54e37580.fdc31c",
-        "type": "ui_text",
-        "z": "b771c342.49603",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 5,
-        "width": 2,
-        "height": 1,
-        "name": "Direction",
-        "label": "Direction",
-        "format": "{{msg.payload.track}} °",
-        "layout": "col-center",
-        "x": 700,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "cc21ca16.b92928",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "GPS Mode",
-        "func": "switch (msg.payload.mode){\n case 1:msg.payload = \"No Fix\"; break\n case 2:msg.payload = \"2D Fix\"; break\n case 3:msg.payload = \"3D Fix\"; break\n default: msg.payload = \"No info\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 470,
-        "y": 1080,
-        "wires": [
-            [
-                "7116e906.9f50f"
-            ]
-        ]
-    },
-    {
-        "id": "4a4de52c.cf2884",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Speed conversion",
-        "func": "msg.payload = (0|msg.payload.speed) * 1.9438\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 490,
-        "y": 1200,
-        "wires": [
-            [
-                "7c4ce5f3.62dd5c"
-            ]
-        ]
-    },
-    {
-        "id": "35ad311f.344c76",
-        "type": "ui_text",
-        "z": "b771c342.49603",
-        "group": "fc5e4e6f.5b1c8",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "name": "Time",
-        "label": "Time",
-        "format": "{{msg.payload.time}}",
-        "layout": "col-center",
-        "x": 690,
-        "y": 1280,
-        "wires": []
-    },
-    {
         "id": "e73fd87d.d24e4",
         "type": "function",
         "z": "b771c342.49603",
@@ -2920,24 +2724,6 @@
         "wires": [
             [
                 "10eb31a2d7a6590c"
-            ]
-        ]
-    },
-    {
-        "id": "73c4a14a.9b93c8",
-        "type": "function",
-        "z": "b771c342.49603",
-        "name": "Convert time",
-        "func": "msg.payload.time = msg.payload.time.replace('T', ' ')\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 470,
-        "y": 1280,
-        "wires": [
-            [
-                "35ad311f.344c76"
             ]
         ]
     },
@@ -7298,7 +7084,7 @@
         "id": "c54d948575dbcff8",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo systemctl restart planktoscope-org.device-backend.controller-planktoscopehat.service",
+        "command": "sudo systemctl restart planktoscope-org.device-backend.controller.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
