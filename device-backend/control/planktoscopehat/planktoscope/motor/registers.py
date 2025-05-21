@@ -1,8 +1,9 @@
-'''
+"""
 Registers from the TMC5160 datasheet:
 https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC5160_Datasheet_V1.01.pdf
-'''
+"""
 
+# fmt: off
 GCONF       = 0x00
 GSTAT       = 0x01
 IFCNT       = 0x02
@@ -57,3 +58,4 @@ PWMCONF     = 0x70
 PWMSTATUS   = 0x71
 ENCM_CTRL   = 0x72
 LOST_STEPS  = 0x73
+# fmt: on

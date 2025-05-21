@@ -59,6 +59,9 @@ types-paho-mqtt = "^1.6.0.20240106"
 picamera2 = "^0.3.25"
 ruff = "^0.11.10"
 
+[tool.ruff]
+line-length = 100
+
 [tool.mypy]
 warn_unused_configs = true
 disallow_any_generics = true
@@ -110,4 +113,5 @@ lint-mypy-planktoscopehat = "mypy planktoscopehat"
 lint-mypy = ["lint-mypy-adafruithat", "lint-mypy-planktoscopehat"]
 lint-ruff = "ruff check"
 lint = ["lint-ruff", "lint-mypy"]
-check = ["lint"]
+fmt-check = "ruff format --check"
+check = ["fmt-check", "lint"]

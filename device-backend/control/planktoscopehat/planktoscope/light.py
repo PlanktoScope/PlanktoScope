@@ -21,6 +21,7 @@ import enum
 
 logger.info("planktoscope.light is loaded")
 
+
 class i2c_led:
     """
     LM36011 Led controller
@@ -47,7 +48,7 @@ class i2c_led:
         # but on version 1.2 of the PlanktoScope HAT (PlanktoScope v2.6)
         # the circuit is connected to the pin 18 so it needs to be high
         # pin is assigned to self to prevent gpiozero from immediately releasing it
-        if  hat_type != "planktoscope" or hat_version < 3.1:
+        if hat_type != "planktoscope" or hat_version < 3.1:
             self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
 
         self.VLED_short = False
@@ -125,9 +126,7 @@ class i2c_led:
         if current > 376:
             raise ValueError("the chosen current is too high, max value is 376mA")
         value = int(current * 0.34)
-        logger.debug(
-            f"Setting torch current to {current}mA, or integer {value} in the register"
-        )
+        logger.debug(f"Setting torch current to {current}mA, or integer {value} in the register")
         try:
             self._write_byte(self.Register.torch, value)
         except Exception as e:
@@ -159,6 +158,7 @@ class i2c_led:
         with smbus.SMBus(1) as bus:
             b = bus.read_byte_data(self.DEVICE_ADDRESS, address)
         return b
+
 
 ################################################################################
 # Main Segmenter class
@@ -210,9 +210,7 @@ class LightProcess(multiprocessing.Process):
             logger.debug(last_message)
             self.light_client.read_message()
             if "action" not in last_message and "settings" not in last_message:
-                logger.error(
-                    f"The received message has the wrong argument {last_message}"
-                )
+                logger.error(f"The received message has the wrong argument {last_message}")
                 self.light_client.client.publish(
                     "status/light",
                     '{"status":"Received message did not contain action or settings"}',
@@ -225,16 +223,12 @@ class LightProcess(multiprocessing.Process):
                     # {"action":"on"}
                     logger.info("Turning the light on.")
                     self.led_on()
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"On"}'
-                    )
+                    self.light_client.client.publish("status/light", '{"status":"On"}')
                 elif action == "off":
                     # {"action":"off"}
                     logger.info("Turn the light off.")
                     self.led_off()
-                    self.light_client.client.publish(
-                        "status/light", '{"status":"Off"}'
-                    )
+                    self.light_client.client.publish("status/light", '{"status":"Off"}')
                 else:
                     logger.warning(
                         f"We did not understand the received request {action} - {last_message}"
@@ -277,14 +271,10 @@ class LightProcess(multiprocessing.Process):
     @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread"""
-        logger.info(
-            f"The light control thread has been started in process {os.getpid()}"
-        )
+        logger.info(f"The light control thread has been started in process {os.getpid()}")
 
         # MQTT Service connection
-        self.light_client = mqtt.MQTT_Client(
-            topic="light", name="light_client"
-        )
+        self.light_client = mqtt.MQTT_Client(topic="light", name="light_client")
 
         # Publish the status "Ready" to via MQTT to Node-RED
         self.light_client.client.publish("status/light", '{"status":"Ready"}')

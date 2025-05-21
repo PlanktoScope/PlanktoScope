@@ -10,6 +10,7 @@ FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
 
+
 class stepper:
     def __init__(self, pin, spi_bus, spi_device, size=0):
         """Initialize the stepper class

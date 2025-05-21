@@ -14,6 +14,7 @@ from . import mqtt
 
 logger.info("planktoscope.module is loaded")
 
+
 ################################################################################
 # Main Segmenter class
 ################################################################################
@@ -44,9 +45,7 @@ class ModuleProcess(multiprocessing.Process):
             logger.debug(last_message)
             self.module_client.read_message()
             if "action" not in last_message:
-                logger.error(
-                    f"The received message has the wrong argument {last_message}"
-                )
+                logger.error(f"The received message has the wrong argument {last_message}")
                 self.module_client.client.publish("status/module", '{"status":"Error"}')
                 return
             action = last_message["action"]
@@ -54,9 +53,7 @@ class ModuleProcess(multiprocessing.Process):
             # Treat the received messages here
             pass
         elif action != "":
-            logger.warning(
-                f"We did not understand the received request {action} - {last_message}"
-            )
+            logger.warning(f"We did not understand the received request {action} - {last_message}")
 
     ################################################################################
     # While loop for capturing commands from Node-RED
@@ -64,14 +61,10 @@ class ModuleProcess(multiprocessing.Process):
     @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread"""
-        logger.info(
-            f"The module control thread has been started in process {os.getpid()}"
-        )
+        logger.info(f"The module control thread has been started in process {os.getpid()}")
 
         # MQTT Service connection
-        self.module_client = mqtt.MQTT_Client(
-            topic="module/#", name="module_client"
-        )
+        self.module_client = mqtt.MQTT_Client(topic="module/#", name="module_client")
 
         # Publish the status "Ready" to via MQTT to Node-RED
         self.module_client.client.publish("status/module", '{"status":"Ready"}')

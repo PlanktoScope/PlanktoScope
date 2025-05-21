@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -152,9 +152,7 @@ def check_integrity(path):
     integrity_file_path = os.path.join(path, integrity_file_name)
 
     with open(integrity_file_path, "r") as integrity_file:
-        if integrity_file.readline().startswith(
-            "#"
-        ) and integrity_file.readline().startswith("#"):
+        if integrity_file.readline().startswith("#") and integrity_file.readline().startswith("#"):
             for line in integrity_file:
                 filename, size, checksum = line.rstrip().split(",")
                 filepath = os.path.join(path, filename)
@@ -175,9 +173,7 @@ def check_integrity(path):
 def check_path_integrity(path):
     # TODO implement the method that recursively reads the integrity file of a repository and checks everything down to the file
     # Recursively scan all directories and save the ones with an integrity file in them
-    to_scan = [
-        root for root, dirs, files in os.walk(path) if integrity_file_name in files
-    ]
+    to_scan = [root for root, dirs, files in os.walk(path) if integrity_file_name in files]
 
     valid_list = []
     not_valid_list = []
