@@ -10,11 +10,11 @@ on:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
 # queued. But do not cancel in-progress runs - we want these deploymeents to complete.
 concurrency:
-  group: "docs-stable-deploy"
+  group: 'docs-stable-deploy'
   cancel-in-progress: false
 
 env:
-    DESTINATION_OWNER: ${{ github.repository_owner }}
+  DESTINATION_OWNER: ${{ github.repository_owner }}
 
 defaults:
   run:
@@ -51,7 +51,7 @@ jobs:
         working-directory: documentation
         run: |
           sudo apt install libjpeg-dev
-          poetry install --with imaging --no-root
+          poetry install --with imaging
 
       - name: Build documentation
         env:

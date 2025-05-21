@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.9.18-slim-bullseye
+FROM docker.io/library/python:3.11.12-slim-bullseye
 
 # Install OS dependencies
 
@@ -26,7 +26,7 @@ RUN \
   export PATH="/home/pi/.local/bin:$PATH" && \
   pip install --no-cache-dir cryptography==43.0.3 poetry==2.1.2 \
     --extra-index-url https://www.piwheels.org/simple && \
-  poetry install --no-root --only main --compile && \
+  poetry install --only main --compile && \
   poetry --no-interaction cache list && \
   poetry --no-interaction cache clear pypi --all && \
   poetry --no-interaction cache clear piwheels --all && \

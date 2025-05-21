@@ -39,7 +39,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'poetry'
           cache-dependency-path: |
             device-backend/control/poetry.lock
@@ -48,7 +48,7 @@ jobs:
         working-directory: ./device-backend/control
         run: |
           sudo apt-get install -y libcap-dev
-          poetry install --with dev --no-root
+          poetry install --with dev
 
       - name: Run checks
         working-directory: ./device-backend/control

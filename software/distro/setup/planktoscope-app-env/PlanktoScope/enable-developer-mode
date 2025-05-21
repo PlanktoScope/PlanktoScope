@@ -13,4 +13,4 @@ git fetch origin --filter=blob:none
 git reset --mixed $commit
 
 cd $HOME/PlanktoScope/device-backend/control
-poetry install --with dev --no-root
+poetry install --with dev
