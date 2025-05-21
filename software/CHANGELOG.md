@@ -7,7 +7,7 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
-## Unreleased
+## v2025.0.0-alpha.0 - 2025-05-21
 
 ### Added
 
@@ -22,6 +22,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye). No support will be given for running the PlanktoScope OS setup scripts on bullseye base images, and the OS setup scripts will not work on bullseye.
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
 - (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). As part of this change the previous autohotspot service has been removed, as it's redundant with functionality now provided by NetworkManager.
+- (Application: backend) The systemd services for running the Python hardware controller have now been renamed/unified into `planktoscope-org.device-backend.controller.service`.
 
 ### Removed
 
