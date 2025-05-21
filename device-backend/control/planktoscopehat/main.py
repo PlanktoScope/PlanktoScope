@@ -58,9 +58,7 @@ def main():
         with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
             configuration = json.load(config_file)
     except FileNotFoundError:
-        logger.info(
-            "The hardware configuration file doesn't exists, using defaults"
-        )
+        logger.info("The hardware configuration file doesn't exists, using defaults")
         configuration = {}
 
     # Prepare the event for a graceful shutdown

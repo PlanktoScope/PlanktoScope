@@ -236,7 +236,6 @@ class Motor:
             switch_pressed = int(self.get_ramp_status.status_stop_l)
 
             if switch_pressed == 1:
-
                 # Move away from switch
                 self.go_to(512000)
 
@@ -250,7 +249,6 @@ class Motor:
             switch_pressed = int(self.get_ramp_status.status_stop_r)
 
             if switch_pressed == 1:
-
                 # Move away from switch
                 self.go_to(-512000)
 

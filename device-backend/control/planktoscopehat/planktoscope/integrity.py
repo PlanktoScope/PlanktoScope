@@ -135,9 +135,7 @@ def check_integrity(path):
     integrity_file_path = os.path.join(path, integrity_file_name)
 
     with open(integrity_file_path, "r") as integrity_file:
-        if integrity_file.readline().startswith(
-            "#"
-        ) and integrity_file.readline().startswith("#"):
+        if integrity_file.readline().startswith("#") and integrity_file.readline().startswith("#"):
             for line in integrity_file:
                 filename, size, checksum = line.rstrip().split(",")
                 filepath = os.path.join(path, filename)
@@ -158,9 +156,7 @@ def check_integrity(path):
 def check_path_integrity(path):
     # TODO implement the method that recursively reads the integrity file of a repository and checks everything down to the file
     # Recursively scan all directories and save the ones with an integrity file in them
-    to_scan = [
-        root for root, dirs, files in os.walk(path) if integrity_file_name in files
-    ]
+    to_scan = [root for root, dirs, files in os.walk(path) if integrity_file_name in files]
 
     valid_list = []
     not_valid_list = []

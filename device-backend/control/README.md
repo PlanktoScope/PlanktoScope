@@ -8,7 +8,7 @@ Each feature of the hardware is controlled by a separate process. Processes comm
 
 Please note the following particularity of Python processes
 
-> Bear in mind that each spawned process is initialized with a copy of the memory footprint of the master process. And that the constructor code (i.e. stuff inside __init__()) is executed in the master process -- only code inside run() executes in separate processes.
+> Bear in mind that each spawned process is initialized with a copy of the memory footprint of the master process. And that the constructor code (i.e. stuff inside **init**()) is executed in the master process -- only code inside run() executes in separate processes.
 
 https://stackoverflow.com/a/17220739
 
@@ -23,17 +23,20 @@ Please note that for camera we rely on the Raspberry OS packages `python3-picame
 ### Development
 
 To install all dependencies including development tooling, run:
-```
-poetry install --with dev --no-root
+
+```sh
+poetry install --with dev
 ```
 
 Then you can run the code auto-formatter on the project by running:
-```
+
+```sh
 poetry run poe fmt
 ```
 
 And you can run all checks (including code formatting and linting) by running:
-```
+
+```sh
 poetry run poe check
 ```
 
@@ -43,7 +46,7 @@ We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.
 
 To use this project, you'll need:
 
-- Python >= 3.9
+- Python >= 3.11.2
 - Poetry 2.1.2
 
 ## Licensing
