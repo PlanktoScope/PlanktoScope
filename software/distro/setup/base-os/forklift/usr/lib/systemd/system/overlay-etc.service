@@ -23,7 +23,10 @@ ExecStartPre=mkdir -p $UPPERDIR
 Environment=TARGET=/etc
 ExecStartPre=mkdir -p /sysroot${TARGET}
 ExecStart=mount --bind $TARGET /sysroot${TARGET}
+# Prevent changes to the contents in /sysroot:
 ExecStart=mount -o bind,remount,ro /sysroot${TARGET}
+# Prevent the overlay mount from also being created onto the directory in /sysroot:
+ExecStart=mount --make-private /sysroot/${TARGET}
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 # Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
 # mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
@@ -33,8 +36,7 @@ ExecStart=bash -c -e '\
   LOWERDIRS="/sysroot$TARGET"; \
   if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
   echo "Overlay lower directories: $LOWERDIRS"; \
-  mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET; \
-  umount -l /sysroot$TARGET \
+  mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
 '
 # Immediately update any systemd units added by the overlay:
 ExecStart=systemctl daemon-reload
@@ -43,7 +45,7 @@ ExecStart=systemctl daemon-reload
 # however, this is probably acceptable behavior for the overlay at shutdown, because any writes
 # will be in our upperdir anyways.
 ExecStopPost=umount -l $TARGET
-#ExecStopPost=umount -l /sysroot${TARGET}
+ExecStopPost=umount -l /sysroot${TARGET}
 
 [Install]
 WantedBy=local-fs.target
