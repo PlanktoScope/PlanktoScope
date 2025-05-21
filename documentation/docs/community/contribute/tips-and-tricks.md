@@ -1,6 +1,5 @@
 # Tips and tricks
 
-
 This page provides useful snippets and how-tos while developing software for the PlanktoScope.
 
 !!! warning
@@ -61,7 +60,7 @@ Host $planktoscope
   # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding
   ForwardAgent yes
   User pi
-  IdentityFile ~/.ssh/planktoscope
+  IdentityFile ~/.ssh/$planktoscope
 ```
 
 </details>
@@ -88,6 +87,7 @@ git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
 # If you have your own fork
 git remote set-url origin git@github.com:MYUSERNAME/PlanktoScope.git
 ```
+
 </details>
 
 You can now use `~/PlanktoScope` as a regular git repository.
@@ -114,6 +114,7 @@ If you have a LAN it may be more convenient to connect the PlanktoScope to it an
 ```sh
 nmcli connection up eth0-default
 ```
+
 </details>
 
 <details>
@@ -124,8 +125,8 @@ nmcli connection down wlan0-hotspot
 nmcli device wifi list
 nmcli device wifi connect "<SSID>" --ask
 ```
-</details>
 
+</details>
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
 
@@ -141,9 +142,9 @@ See also the operating guide [Networking](https://docs-edge.planktoscope.communi
 
 When network is not available you have several options for debugging
 
-* Plug-in a keyboard and display (needs micro HDMI adapter)
-* [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
-* Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
+- Plug-in a keyboard and display (needs micro HDMI adapter)
+- [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
+- Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
 
 The NanoKVM USB solution works for all setups.
 
@@ -152,7 +153,6 @@ The NanoKVM USB solution works for all setups.
 You will need to plug the SD card into your computer.
 
 `/dev/device` refers to the path of the SD card device/disk. You will need to adjust it. Use `diskutil list` on macOS and `fdisk --list` on Linux.
-
 
 ```sh
 # backup whole SD card onto an image file on your computer
@@ -178,8 +178,8 @@ https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
 
 This is a quick setup guide. See also
 
-* [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
-* [Writing Documentation](./documentation.md)
+- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
+- [Writing Documentation](./documentation.md)
 
 Install dependencies:
 
@@ -189,10 +189,12 @@ Install dependencies:
 Start by [installing WSL (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command)
 
 Because of a small incompatibilty between Windows and Linux; we recommend cloning the repo "in WSL" but if you prefer keeping your git clone "in Windows", here are other options:
-* [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
-* [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
+
+- [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
+- [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
 
 Then follow the Ubuntu instructions below.
+
 </details>
 
 <details>
@@ -204,6 +206,7 @@ sudo apt install python3-poetry
 cd documentation
 poetry install --no-root
 ```
+
 </details>
 
 <details>
@@ -214,6 +217,7 @@ sudo dnf install python3-poetry
 cd documentation
 poetry install --no-root
 ```
+
 </details>
 
 Run live previewer:
