@@ -97,7 +97,6 @@ sudo systemctl preset forklift-apply.service
 # Set up read-write filesystem overlays with forklift-managed layers for /etc and /usr
 # (see https://docs.kernel.org/filesystems/overlayfs.html):
 sudo systemctl preset \
-  overlay-sysroot.service \
   bindro-run-forklift-stages-current.service \
   overlay-usr.service \
   overlay-etc.service \
