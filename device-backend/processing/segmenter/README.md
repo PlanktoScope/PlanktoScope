@@ -22,7 +22,7 @@ TBD
 
 To use this project, you'll need:
 
-- Python >= 3.11.2
+- Python >= 3.9
 - Poetry 2.1.2
 
 ## Licensing
