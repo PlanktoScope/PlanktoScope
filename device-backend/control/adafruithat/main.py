@@ -23,7 +23,8 @@ import os
 
 from loguru import logger  # for logging with multiprocessing
 
-from adafruithat.planktoscope import stepper, light, identity, display
+from adafruithat.planktoscope import stepper, light, identity
+from adafruit.planktoscope.display import Display
 from adafruithat.planktoscope.imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope hardware controller!")
@@ -40,9 +41,7 @@ def handler_stop_signals(signum, _):
 
 def main():
     logger.info("Welcome!")
-    logger.info(
-        "Initialising signals handling and sanitizing the directories (step 1/4)"
-    )
+    logger.info("Initialising signals handling and sanitizing the directories (step 1/4)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
@@ -90,7 +89,7 @@ def main():
         imager_thread.start()
 
     logger.info("Starting the display module (step 4/4)")
-    display = display.Display()
+    display = Display()
 
     logger.success("Looks like the controller is set up and running, have fun!")
     light.ready()

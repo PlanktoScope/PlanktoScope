@@ -25,13 +25,12 @@ Please note that for camera we rely on the Raspberry OS packages `python3-picame
 Install all dependencies including development tooling:
 
 ```sh
-poetry install --with dev --no-root
+poetry install --with dev
 ```
 
 Start controller for development:
 
 ```sh
-# replace `planktoscopehat` with `adafruithat` if appropriate
 sudo systemctl stop planktoscope-org.device-backend.controller.service
 poetry run python -u planktoscopehat/main.py
 # make changes and restart
@@ -55,7 +54,7 @@ We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.
 
 To use this project, you'll need:
 
-- Python >= 3.9
+- Python >= 3.11.2
 - Poetry 2.1.2
 
 ## Licensing

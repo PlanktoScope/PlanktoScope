@@ -14,7 +14,7 @@ You can view the published documentation at the following URLs:
 
 ### Develop the documentation
 
-First, use your favorite Git client (such as [Github Desktop](https://desktop.github.com/) or, if you already have some experience with Git, [GitKraken](https://www.gitkraken.com/)) to clone the PlanktoScope repository to your computer. For the rest of this development guide, we will assume you've cloned it to `/some/path/here/PlanktoScope` - you should replace that with the actual path where your local clone of the PlanktoScope repository is stored on  your computer.
+First, use your favorite Git client (such as [Github Desktop](https://desktop.github.com/) or, if you already have some experience with Git, [GitKraken](https://www.gitkraken.com/)) to clone the PlanktoScope repository to your computer. For the rest of this development guide, we will assume you've cloned it to `/some/path/here/PlanktoScope` - you should replace that with the actual path where your local clone of the PlanktoScope repository is stored on your computer.
 
 #### Installing development tools
 
@@ -24,11 +24,11 @@ You will need to install Python 3.8 or a more recent version of Python on your c
 
 Once you have Python, we recommend installing Poetry [using pipx](https://python-poetry.org/docs/#installing-with-pipx), as that is the easiest way to install Poetry. Please follow the instructions at https://pypa.github.io/pipx/installation/ to install pipx. Then run `pipx install poetry` in your terminal to install Poetry.
 
-Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install --no-root`. For example (using our example path):
+Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install`. For example (using our example path):
 
 ```
 cd /some/path/here/PlanktoScope/documentation
-poetry install --no-root
+poetry install
 ```
 
 #### Making changes

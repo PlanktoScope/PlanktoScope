@@ -204,7 +204,7 @@ Then follow the Ubuntu instructions below.
 sudo apt update
 sudo apt install python3-poetry
 cd documentation
-poetry install --no-root
+poetry install
 ```
 
 </details>
@@ -215,7 +215,7 @@ poetry install --no-root
 ```shell
 sudo dnf install python3-poetry
 cd documentation
-poetry install --no-root
+poetry install
 ```
 
 </details>

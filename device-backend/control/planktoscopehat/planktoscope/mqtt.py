@@ -110,9 +110,7 @@ class MQTT_Client:
             "5: Connection refused - not authorised",
         ]
         # Print when connected
-        logger.success(
-            f"{self.name} connected to {self.server}:{self.port}! - {reason[rc]}"
-        )
+        logger.success(f"{self.name} connected to {self.server}:{self.port}! - {reason[rc]}")
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
 
@@ -121,9 +119,7 @@ class MQTT_Client:
     def on_subscribe(self, client, obj, mid, granted_qos):
         # Print when subscribed
         # TODO Fix bug when this is called outside of this init function (for example when the imager subscribe to status/pump)
-        logger.success(
-            f"{self.name} subscribed to {self.topic}! - mid:{mid} qos:{granted_qos}"
-        )
+        logger.success(f"{self.name} subscribed to {self.topic}! - mid:{mid} qos:{granted_qos}")
 
     # Run this command when Node-RED is sending a message on the subscribed topic
     @logger.catch
@@ -140,9 +136,7 @@ class MQTT_Client:
     @logger.catch
     def on_disconnect(self, client, userdata, rc):
         if rc != 0:
-            logger.error(
-                f"Connection to the MQTT server is unexpectedly lost by {self.name}"
-            )
+            logger.error(f"Connection to the MQTT server is unexpectedly lost by {self.name}")
         else:
             logger.warning(f"Connection to the MQTT server is closed by {self.name}")
         # TODO for now, we just log the disconnection, we need to evaluate what to do

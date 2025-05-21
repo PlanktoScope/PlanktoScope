@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -77,16 +77,14 @@ class Display(object):
 
             # Draw some shapes.
             # First define some constants to allow easy resizing of shapes.
-            padding = -2
-            top = padding
-            bottom = height - padding
+            # padding = -2
+            # top = padding
+            # bottom = height - padding
             # Move left to right keeping track of the current x position for drawing shapes.
             x = 0
 
             # Load default font.
-            font = PIL.ImageFont.truetype(
-                font="truetype/dejavu/DejaVuSansMono.ttf", size=15
-            )
+            font = PIL.ImageFont.truetype(font="truetype/dejavu/DejaVuSansMono.ttf", size=15)
 
             # Draw a black filled box to clear the image.
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
