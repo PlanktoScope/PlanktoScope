@@ -8,7 +8,7 @@ on:
       - 'software/beta'
       - 'software/stable'
     tags:
-      - 'v*'
+      - 'segmenter/v*'
     paths:
       - 'device-backend/processing/segmenter/**'
       - '.github/workflows/processing-segmenter-*.yml'
@@ -29,7 +29,7 @@ env:
   MAIN_BRANCH: 'main' # pushing to this branch will update the "edge" tag on the image
   BETA_BRANCH: 'beta' # pushing to this branch will update the "beta" tag on the image
   STABLE_BRANCH: 'stable' # pushing to this branch will update the "stable" tag on the image
-  TAG_PREFIX: 'v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
+  TAG_PREFIX: 'segmenter/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
   PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:

@@ -1,6 +1,10 @@
 [Unit]
 Description=Remount /usr as a writable overlay with a Forklift-managed intermediate layer, during early boot
 DefaultDependencies=no
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
 Wants=overlay-fs.target
 Before=overlay-fs.target
 Conflicts=umount.target
