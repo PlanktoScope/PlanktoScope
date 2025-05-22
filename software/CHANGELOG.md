@@ -14,15 +14,25 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
 - (System: networking) If you plug in a supported USB Wi-Fi dongle into the PlanktoScope, now it will by default automatically create a Wi-Fi hotspot network from that Wi-Fi dongle - regardless of whether the PlanktoScope's internal Wi-Fi module is configured to also create the same Wi-Fi hotspot network or to connect to some external Wi-Fi network. This means that the PlanktoScope now supports creating its own Wi-Fi hotspot while simultaneously being connected to the internet via a Wi-Fi network, if you plug in a USB Wi-Fi dongle.
 - (System: networking) If the PlanktoScope is connected to a Wi-Fi network with a captive portal, you should be able to access and proceed through the captive portal from a computer/phone connected to the PlanktoScope.
-- (System: networking) Firewalld is now enabled, and default firewall policies are provided (via Forklift) for the `public` and `nm-shared` firewall zones. This means that if you want to access any additional ports besides the ports for programs provided with the standard PlanktoScope OS) from other devices, now you must add configurations to open those additional ports, e.g. via drop-in configuration snippets in `/etc/firewalld/zones.d`.
+- (System: networking) Firewalld is now enabled, and default firewall policies are provided (via Forklift) for the `public` and `nm-shared` firewall zones. This means that if you want to access any additional ports besides the ports for programs provided with the standard PlanktoScope OS from other devices, now you must add configurations to open those additional ports, e.g. via drop-in configuration snippets in `/etc/firewalld/zones.d`.
+- (Developers) Developer Mode and [Tips and Tricks page](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/docs/community/contribute/tips-and-tricks.md)
+- (System) Enable [CQE](https://www.raspberrypi.com/news/sd-cards-and-bumper/) for significantly faster sdcard speed (Raspberry PI 5 only)
+- (System) Enable [SDRAM tuning](https://www.jeffgeerling.com/blog/2024/raspberry-pi-boosts-pi-5-performance-sdram-tuning) improvements for faster processing
 
 ### Changed
 
 - (Breaking change; Application: GUI) When you press the "Start Acquisition" button in the Node-RED dashboard, it now automatically adjusts the PlanktoScope's system time to match the time in your web browser (but still in UTC time zone on the PlanktoScope) if the times are different by more than one minute, so that datasets will be created with correct dates in the dataset directory structure.
-- (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm) instead of Raspberry Pi OS 11 (bullseye). No support will be given for running the PlanktoScope OS setup scripts on bullseye base images, and the OS setup scripts will not work on bullseye.
+- (Breaking change; System) The official PlanktoScope OS images are now built on Raspberry Pi OS 12 (bookworm, 2025-05-13) instead of Raspberry Pi OS 11 (bullseye). No support will be given for running the PlanktoScope OS setup scripts on bullseye base images, and the OS setup scripts will not work on bullseye.
 - (Application: GUI) The Node-RED dashboard now initializes the Sample page's Dilution Factor field to 1.0, instead of leaving it empty.
 - (System: networking) Wi-Fi hotspot behavior and network connection management is now based on NetworkManager, as part of an upgrade to Raspberry Pi OS 12 (bookworm). As part of this change the previous autohotspot service has been removed, as it's redundant with functionality now provided by NetworkManager.
 - (Application: backend) The systemd services for running the Python hardware controller have now been renamed/unified into `planktoscope-org.device-backend.controller.service`.
+- (Application: backend) Replaced isort, flake8 pylint and pylama with [Ruff](https://docs.astral.sh/ruff/).
+- (System) Node-RED is now installed using npm
+- (Application: backend) Separate pump and focus threads for `planktoscopehat`
+- (System) Change boot order to sdcard, nvme then usb
+- (Application: GUI) Configure Node-RED so that flows are now part of the git repository
+- (Application: backend) Replace rpi.gpio with gpiozero for `planktoscopehat`
+- (Application: backend) The `device-backend` is now part of the main `PlanktoScope` monorepo
 
 ### Removed
 
@@ -31,10 +41,20 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: GUI) Portainer (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
 - (System) The `planktoscope-org.init-gpio-steppers.service` systemd service, which has never actually worked correctly, is now disabled by default. If for some reason you want to re-enable it, you can use Forklift to enable the `host/planktoscope/gpio-init` package deployment.
 - (System) Support for use of the setup scripts (and PlanktoScope software components) on ARMv7 (32-bit OSes) is removed, following a deprecation in v2024.0.0-beta.0.
+- (Application: GUI) GPS support for `planktoscopehat` is removed
+- (Application) The setting to invert pump and focus is removed
+- (Application: backed) Remove deprecated uuid module
+- (System) Remove unsupported and broken RTC support
+- (System) Stop building desktop images
+- (System: backend) Remove unused display module for `planktoscopehat`
+- (System: backend) Remove unsupported Waveshare stepper HAT support
+- (System: backend) Remove support for unused second LED
+- (System: backend) Remove support for unused PWM LED
 
 ### Deprecated
 
 - (Application: GUI) In a future release, the Grafana dashboard will no longer be enabled by default; then it will be an opt-in app deployment (which will require an internet connection for downloading Grafana to enable it in the PlanktoScope OS via Forklift). This change will be made after the upcoming v3 of the Node-RED dashboard fully replaces the Grafana-based metrics dashboard on the Node-RED dashboard's System Monitoring page, removing the need for Grafana.
+- (Application: GUI) GPS support for `adafruithat` is now deprecated
 
 ### Fixed
 
@@ -45,6 +65,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Application: backend) The `/home/pi/data` and `/home/pi/device-backend-logs` are now created with non-`root` user ownership, so that their contents can be managed via an SFTP/SCP connection as the `pi` user. This fixes a regression introduced with v2023.9.0-beta.0.
 - (System) The system time is now correctly persisted on the filesystem (in `/etc/fake-hwclock.data`) in a way that the system time should no longer reset back to a previous time in the past between reboots.
 - (System) Machine name generation now falls back to the `en_US.UTF-8`-based naming scheme when the OS is set to a non-default locale (i.e. anything other than `en_US.UTF-8`), instead of failing and falling back to `unknown`.
+- (System: backend) Previously; the pump would stop when focus is complete, this is now solved.
 
 ## v2024.0.0 - 2024-12-25
 
