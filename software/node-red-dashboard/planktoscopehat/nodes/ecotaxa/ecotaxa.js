@@ -3,31 +3,41 @@ const { extname, basename } = require("node:path")
 
 const { default: mime } = require("mime")
 
+const ecotaxa_api_url = "http://192.168.1.128:8088/api/"
+
 module.exports = function (RED) {
   function EcotaxaNode(config) {
     // console.log(config)
     RED.nodes.createNode(this, config)
     var node = this
     node.on("input", function (msg) {
-      msg.payload = msg.payload.toLowerCase()
+      msg.payload = msg.payload.username.toLowerCase()
       node.send(msg)
     })
   }
   RED.nodes.registerType("ecotaxa", EcotaxaNode)
 }
 
-const ecotaxa_api_url = "http://192.168.1.128:8088/api/"
+// async
 
-;(async () => {
+async function go() {
   const token = await login()
 
-  const foo = await uploadFile({
-    path: "/home/pi/PlanktoScope/config.json",
+  const remote_path = await uploadFile({
+    path: "/home/pi/data/export/ecotaxa/ecotaxa_Project's_name_1_1.zip",
     token,
   })
+  console.log(remote_path)
 
-  console.log(foo)
-})()
+  const result = await importFile({
+    path: remote_path,
+    project_id: 30,
+    token,
+  })
+  console.log(result)
+}
+
+// go()
 
 async function login() {
   const req = await fetch(new URL("login", ecotaxa_api_url), {
@@ -59,7 +69,7 @@ async function createProject({ token }) {
   return project_id
 }
 
-async function uploadFile({ path, token }) {
+export async function uploadFile({ ecotaxa_api_url, path, token }) {
   const type = mime.getType(extname(path))
   const blob = await openAsBlob(path, { type })
   const file = new File([blob], basename(path), { type: blob.type })
@@ -67,18 +77,18 @@ async function uploadFile({ path, token }) {
   const form = new FormData()
   form.append("file", file)
 
-  const req = await fetch(new URL("my_files", ecotaxa_api_url), {
+  const req = await fetch(new URL("my_files/", ecotaxa_api_url), {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    // body: form,
+    body: form,
   })
   const res = await req.json()
   return res
 }
 
-async function importFile({ path, project_id, token }) {
+export async function importFile({ ecotaxa_api_url, path, token, project_id }) {
   const req = await fetch(
     new URL(`file_import/${project_id}`, ecotaxa_api_url),
     {
@@ -98,6 +108,5 @@ async function importFile({ path, project_id, token }) {
   )
 
   const result = await req.json()
-  const job_id = result["job_id"]
-  return job_id
+  return result
 }
