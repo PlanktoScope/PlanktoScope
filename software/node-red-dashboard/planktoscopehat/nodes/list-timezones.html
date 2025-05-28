@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  RED.nodes.registerType("list-timezones", {
+  RED.nodes.registerType("list timezones", {
     category: "PlanktoScope",
     color: "#8E7DC4",
     defaults: {
@@ -9,18 +9,18 @@
     outputs: 1,
     icon: "file.svg",
     label: function () {
-      return this.name || "Get Timezones"
+      return this.name || "List Timezones"
     },
   })
 </script>
 
-<script type="text/x-red" data-template-name="list-timezones">
+<script type="text/x-red" data-template-name="list timezones">
   <div class="form-row">
       <label for="node-input-name"><i class="icon-tag"></i> Name</label>
       <input type="text" id="node-input-name" placeholder="Name">
   </div>
 </script>
 
-<script type="text/html" data-help-name="list-timezones">
+<script type="text/html" data-help-name="list timezones">
   <p>Get the list of timezones.</p>
 </script>

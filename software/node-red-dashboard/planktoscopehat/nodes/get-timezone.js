@@ -15,5 +15,5 @@ export default function (RED) {
         .catch(done)
     })
   }
-  RED.nodes.registerType("get-timezone", GetTimezoneNode)
+  RED.nodes.registerType("get timezone", GetTimezoneNode)
 }

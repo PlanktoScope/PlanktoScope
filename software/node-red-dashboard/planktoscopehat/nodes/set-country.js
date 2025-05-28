@@ -6,9 +6,14 @@ export default function (RED) {
     const node = this
     node.on("input", function (msg, send, done) {
       const { country } = msg.payload
-      setWifiRegulatoryDomain(country).then(done, done)
+      setWifiRegulatoryDomain(country)
+        .then(() => {
+          send(msg)
+          done()
+        })
+        .catch(done)
     })
   }
 
-  RED.nodes.registerType("set-country", SetCountryNode)
+  RED.nodes.registerType("set country", SetCountryNode)
 }

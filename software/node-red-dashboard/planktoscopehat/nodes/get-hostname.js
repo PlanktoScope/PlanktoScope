@@ -16,5 +16,5 @@ export default function (RED) {
     })
   }
 
-  RED.nodes.registerType("get-hostname", Node)
+  RED.nodes.registerType("get hostname", Node)
 }

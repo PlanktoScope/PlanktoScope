@@ -14,5 +14,5 @@ export default function (RED) {
         .catch(done)
     })
   }
-  RED.nodes.registerType("set-timezone", SetTimezoneNode)
+  RED.nodes.registerType("set timezone", SetTimezoneNode)
 }
