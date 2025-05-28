@@ -15,5 +15,5 @@ export default function (RED) {
     })
   }
 
-  RED.nodes.registerType("get-countries", Node)
+  RED.nodes.registerType("list-countries", Node)
 }
