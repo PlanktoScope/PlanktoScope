@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  RED.nodes.registerType("storage info", {
+    category: "PlanktoScope",
+    color: "#8E7DC4",
+    defaults: {
+      name: { value: "" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "file.svg",
+    label: function () {
+      return this.name || "Storage Info"
+    },
+  })
+</script>
+
+<script type="text/x-red" data-template-name="storage info">
+  <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="storage info">
+  <p>Retrieve info and stats about storage.</p>
+</script>

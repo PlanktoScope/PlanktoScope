@@ -17,3 +17,7 @@ sudo bash -c "cat \"$config_files_root/config.txt.snippet\" >> \"/boot/firmware/
 # Disable the 4 Raspberry logo in the top left corner
 # more space for kernel and system logs
 sudo sed -i -e 's/$/ logo.nologo/' /boot/firmware/cmdline.txt
+
+# Create a file needed by the "set country" Node-RED node
+sudo cp -r "$repo_root/cfg80211_regdomain.conf" "/etc/modprobe.d/"
+sudo chown -R pi:pi "/etc/modprobe.d/cfg80211_regdomain.conf"
