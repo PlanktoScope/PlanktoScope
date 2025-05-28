@@ -21,6 +21,13 @@ On Fedora you need to disable SELinux with
 sudo setenforce 0
 ```
 
+Start node-red manually
+
+```sh
+sudo systemctl stop node-red
+node-red-pi --settings /home/pi/PlanktoScope/software/node-red-dashboard/settings.js
+```
+
 ## Tests
 
 Currently broken

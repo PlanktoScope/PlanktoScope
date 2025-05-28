@@ -1,9 +1,9 @@
-const { openAsBlob } = require("node:fs")
-const { extname, basename } = require("node:path")
+import { openAsBlob } from "node:fs"
+import { extname, basename } from "node:path"
 
-const { default: mime } = require("mime")
+import mime from "mime"
 
-module.exports = function (RED) {
+export default function (RED) {
   function EcotaxaNode(config) {
     RED.nodes.createNode(this, config)
     const node = this
