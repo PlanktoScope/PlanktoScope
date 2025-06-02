@@ -1,11 +1,15 @@
 import { readFile, copyFile } from "fs/promises"
+import child_process from "child_process"
+import { promisify } from "util"
+
+const execFile = promisify(child_process.execFile)
 
 const hardware_versions = ["v3.0", "v2.6", "v2.5", "v2.3", "v2.1"].map((v) => {
   return { label: `PlanktoScope ${v}`, value: v }
 })
 
 export async function getHardwareVersions() {
-  return { hardware_versions }
+  return hardware_versions
 }
 
 const path = "/home/pi/PlanktoScope/config.json"
@@ -43,4 +47,12 @@ export async function setHardwareVersion(hardware_version) {
   ])
   // TODO: confgure node-red
   // TODO: restart backend
+}
+
+export async function reboot() {
+  await execFile("sudo", ["systemctl", "reboot"])
+}
+
+export async function poweroff() {
+  await execFile("sudo", ["systemctl", "poweroff"])
 }
