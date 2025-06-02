@@ -23,9 +23,9 @@ if ! sudo apt-get install -y python3-smbus2; then
   pip3 install smbus2==0.4.3
 fi
 
-# Install Node.js 20
-# https://github.com/nodesource/distributions/blob/master/README.md#using-debian-as-root-nodejs-20
-curl -fsSL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
+# Install Node.js 22
+# https://github.com/nodesource/distributions/blob/master/README.md#using-debian-as-root-nodejs-22
+curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
 sudo -E bash /tmp/nodesource_setup.sh
 sudo apt-get install -y nodejs
 

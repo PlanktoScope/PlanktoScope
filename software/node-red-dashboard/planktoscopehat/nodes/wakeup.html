@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  RED.nodes.registerType("wake up", {
+    category: "PlanktoScope",
+    color: "#8E7DC4",
+    defaults: {
+      name: { value: "" },
+      minutes: { value: "1" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "planktoscope.png",
+    label: function () {
+      return this.name || "Wake Up"
+    },
+    oneditprepare() {
+      $("#node-input-minutes").typedInput({
+        type: "num",
+        types: ["num"],
+        typeField: "#node-input-minutes-type",
+      })
+    },
+  })
+</script>
+
+<script type="text/x-red" data-template-name="wake up">
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-minutes"><i class="fa fa-clock-o"></i> Minutes</label>
+    <input type="number" id="node-input-minutes" min="1">
+    <input type="hidden" id="node-input-minutes-type">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="wake up">
+  <p>Power off for the specified amount of minutes then power on.</p>
+</script>
