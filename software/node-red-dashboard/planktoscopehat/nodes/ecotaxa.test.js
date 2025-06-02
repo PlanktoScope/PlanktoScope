@@ -2,7 +2,6 @@ const { describe, afterEach, beforeEach, it } = require("node:test")
 
 const helper = require("node-red-node-test-helper")
 const ecotaxaNode = require("./ecotaxa.js")
-const { resolve } = require("path")
 
 helper.init(require.resolve("node-red"))
 
