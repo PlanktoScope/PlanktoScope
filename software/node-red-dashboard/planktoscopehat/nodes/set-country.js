@@ -1,7 +1,7 @@
 import { setWifiRegulatoryDomain } from "./api/country.js"
 
 export default function (RED) {
-  function SetCountryNode(config) {
+  function Node(config) {
     RED.nodes.createNode(this, config)
     const node = this
     node.on("input", function (msg, send, done) {
@@ -15,5 +15,5 @@ export default function (RED) {
     })
   }
 
-  RED.nodes.registerType("set country", SetCountryNode)
+  RED.nodes.registerType("set country", Node)
 }

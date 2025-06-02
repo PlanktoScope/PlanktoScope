@@ -9,6 +9,12 @@ Custom Node-RED modules for the PlanktoScope
 
 ## Development
 
+```sh
+cd nodes
+npm install
+npm test
+```
+
 Run excotaxa:
 
 https://github.com/ecotaxa/ecotaxa_front/tree/master/docker/all_in_one

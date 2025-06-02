@@ -1,7 +1,7 @@
 import { getTimezone } from "./api/timezone.js"
 
 export default function (RED) {
-  function GetTimezoneNode(config) {
+  function Node(config) {
     RED.nodes.createNode(this, config)
     const node = this
     node.on("input", function (msg, send, done) {
@@ -15,5 +15,5 @@ export default function (RED) {
         .catch(done)
     })
   }
-  RED.nodes.registerType("get timezone", GetTimezoneNode)
+  RED.nodes.registerType("get timezone", Node)
 }
