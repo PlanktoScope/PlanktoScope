@@ -42,5 +42,5 @@ cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_conf
   "$HOME"/PlanktoScope/config.json
 
 # Configure node-red
-npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/adafruithat" install
-npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/planktoscopehat" install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard" install
+npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/nodes" install
