@@ -466,7 +466,7 @@ module.exports = {
 
         multiplayer: {
             /** To enable the Multiplayer feature, set this value to true */
-            enabled: false
+            enabled: true
         },
     },
 
