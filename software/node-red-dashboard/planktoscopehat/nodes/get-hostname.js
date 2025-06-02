@@ -1,4 +1,4 @@
-import { getHostname } from "./identity.js"
+import { getHostname } from "./api/identity.js"
 
 export default function (RED) {
   function Node(config) {

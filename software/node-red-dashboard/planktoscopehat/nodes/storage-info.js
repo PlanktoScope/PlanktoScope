@@ -2,7 +2,7 @@ import {
   countImageAcquired,
   countObjectSegmented,
   getStorageInfo,
-} from "./stats.js"
+} from "./api/stats.js"
 
 export default function (RED) {
   function Node(config) {

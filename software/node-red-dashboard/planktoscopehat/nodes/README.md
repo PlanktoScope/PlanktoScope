@@ -1,6 +1,6 @@
-# node-red-contrib-ecotaxa
+# nodes
 
-A work in progress ecotaxa module for Node-RED
+Custom Node-RED modules for the PlanktoScope
 
 - https://nodered.org/docs/creating-nodes/
 - https://github.com/node-red/node-red-node-test-helper/
@@ -25,7 +25,7 @@ Start node-red manually
 
 ```sh
 sudo systemctl stop node-red
-node-red-pi --settings /home/pi/PlanktoScope/software/node-red-dashboard/settings.js
+node-red --settings /home/pi/PlanktoScope/software/node-red-dashboard/settings.js
 ```
 
 ## Tests

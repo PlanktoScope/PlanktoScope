@@ -1,4 +1,4 @@
-import { setTimezone } from "./timezone.js"
+import { setTimezone } from "./api/timezone.js"
 
 export default function (RED) {
   function SetTimezoneNode(config) {

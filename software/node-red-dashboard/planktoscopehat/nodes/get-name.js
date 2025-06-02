@@ -1,4 +1,4 @@
-import { getName } from "./identity.js"
+import { getName } from "./api/identity.js"
 
 export default function (RED) {
   function Node(config) {
