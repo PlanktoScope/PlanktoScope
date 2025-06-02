@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  RED.nodes.registerType("set hardware version", {
+    category: "PlanktoScope",
+    color: "#8E7DC4",
+    defaults: {
+      name: { value: "" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "planktoscope.png",
+    label: function () {
+      return this.name || "Set Hardware Version"
+    },
+  })
+</script>
+
+<script type="text/x-red" data-template-name="set hardware version">
+  <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="set hardware version">
+  <p>Set the hardware version.</p>
+</script>
