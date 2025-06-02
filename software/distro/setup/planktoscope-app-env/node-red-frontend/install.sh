@@ -38,9 +38,9 @@ sudo cp $config_files_root/30-override.conf /etc/systemd/system/nodered.service.
 sudo systemctl enable nodered.service
 rm -rf /home/pi/.node-red
 
-cp "$HOME/PlanktoScope/software/node-red-dashboard/default-configs/$default_config.config.json" \
+cp "$HOME/PlanktoScope/node-red/default-configs/$default_config.config.json" \
   "$HOME"/PlanktoScope/config.json
 
 # Configure node-red
-npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard" install
-npm --prefix "$HOME/PlanktoScope/software/node-red-dashboard/nodes" install
+npm --prefix "$HOME/PlanktoScope/software/node-red/nodes" install
+npm --prefix "$HOME/PlanktoScope/software/node-red" install
