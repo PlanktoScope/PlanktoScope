@@ -47,5 +47,5 @@ npm --prefix "$HOME/PlanktoScope/node-red" install
 sudo apt-get install -y jq
 
 config_project_path="$HOME/PlanktoScope/node-red/.config.projects.json"
-config_project=${jq ".activeProject = \"$hardware_type\"" node-red/.config.projects.json}
+config_project=$(jq ".activeProject = \"$hardware_type\"" node-red/.config.projects.json)
 echo $config_project > $config_project_path
