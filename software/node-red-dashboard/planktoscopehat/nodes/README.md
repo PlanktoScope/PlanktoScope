@@ -30,9 +30,10 @@ sudo setenforce 0
 Start node-red manually
 
 ```sh
-sudo systemctl stop node-red
-node-red --settings /home/pi/PlanktoScope/software/node-red-dashboard/settings.js
+npm run dev
 ```
+
+The script will watch for changes in the `flows` directory and restart `node-red` automatically.
 
 ## Tests
 

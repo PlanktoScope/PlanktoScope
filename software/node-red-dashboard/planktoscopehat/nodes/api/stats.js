@@ -3,7 +3,15 @@ import { join } from "path"
 import mime from "mime"
 
 async function* walk(dir) {
-  for await (const d of await opendir(dir)) {
+  let fsdir
+  try {
+    fsdir = await opendir(dir)
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err
+    return
+  }
+
+  for await (const d of fsdir) {
     const entry = join(dir, d.name)
     if (d.isDirectory()) yield* walk(entry)
     else if (d.isFile()) yield entry
