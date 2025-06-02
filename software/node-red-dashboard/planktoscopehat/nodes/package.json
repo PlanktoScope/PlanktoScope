@@ -14,6 +14,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "dev": "sudo systemctl stop nodered &>/dev/null && node --watch-path ~/PlanktoScope/software/node-red-dashboard/planktoscopehat/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/software/node-red-dashboard/settings.js"
   }
 }
