@@ -49,10 +49,27 @@ export async function setHardwareVersion(hardware_version) {
   // TODO: restart backend
 }
 
+async function resetWakeAlarm() {
+  await execFile("sudo", ["sh", "-c", "echo 0 > /sys/class/rtc/rtc0/wakealarm"])
+}
+
 export async function reboot() {
+  await resetWakeAlarm()
   await execFile("sudo", ["systemctl", "reboot"])
 }
 
 export async function poweroff() {
+  await resetWakeAlarm()
+  await execFile("sudo", ["systemctl", "poweroff"])
+}
+
+export async function wakeup(minutes) {
+  await resetWakeAlarm()
+  // https://www.linux.com/training-tutorials/wake-linux-rtc-alarm-clock/
+  await execFile("sudo", [
+    "sh",
+    "-c",
+    `echo \`date "+%s" -d "+ ${minutes} minutes"\` > /sys/class/rtc/rtc0/wakealarm`,
+  ])
   await execFile("sudo", ["systemctl", "poweroff"])
 }

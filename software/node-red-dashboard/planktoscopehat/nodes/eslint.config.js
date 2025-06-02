@@ -16,6 +16,6 @@ export default defineConfig([
   {
     files: ["**/*.html"],
     plugins: { html },
-    languageOptions: { globals: { ...globals.browser, RED: true } },
+    languageOptions: { globals: { ...globals.browser, RED: true, $: true } },
   },
 ])
