@@ -79,6 +79,9 @@ cd ~/PlanktoScope
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 
+# To contribute, change the remote to PlanktoScope/PlanktoScope or your fork
+git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
+
 git fetch origin
 git checkout master
 ```
