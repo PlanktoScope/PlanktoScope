@@ -74,6 +74,7 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
           filter: 'blob:none'
+          submodules: recursive
 
       # GET BASE IMAGE
 
@@ -196,7 +197,7 @@ jobs:
         env:
           PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
         with:
-          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
+          key: 'container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}'
           path: ${{ steps.setup-precaching.outputs.path }}
 
       - name: Pre-download container images
@@ -227,12 +228,12 @@ jobs:
       # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
       # fixed, we can simplify this job a bit.
       - name: Save container image pre-cache to GitHub Actions cache
-        if: "!steps.restore-precache.outputs.cache-hit"
+        if: '!steps.restore-precache.outputs.cache-hit'
         uses: actions/cache/save@v4
         env:
           PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
         with:
-          key: "container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}"
+          key: 'container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}'
           path: ${{ steps.setup-precaching.outputs.path }}
 
       # Note: the following step isn't strictly necessary, but it's nice to separate the GitHub
@@ -313,7 +314,7 @@ jobs:
 
       - name: Determine output image name
         env:
-          TAG_PREFIX: "software/v"
+          TAG_PREFIX: 'software/v'
         run: |
           # Determine the version for the image name
           if [[ -n "${{ github.event.pull_request.head.sha }}" ]]; then

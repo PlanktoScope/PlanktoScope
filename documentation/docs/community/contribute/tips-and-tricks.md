@@ -74,32 +74,19 @@ You can now SSH into your PlanktoScope without username / password (using `ssh $
 
 ```sh
 cd ~/PlanktoScope
-# Enable Developer Mode
-./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
 
 # Configure git
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 
-# [Optional] change the remote
-
-# If you are a contributor to github.com/PlanktoScope/PlanktoScope
+# To contribute, change the remote to PlanktoScope/PlanktoScope or your fork
 git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
 
-# If you have your own fork
-git remote set-url origin git@github.com:MYUSERNAME/PlanktoScope.git
+git fetch origin
+git checkout master
 ```
 
 </details>
-
-You can now use `~/PlanktoScope` as a regular git repository.
-
-```sh
-ssh $planktoscope
-cd PlanktoScope
-git status
-git checkout master
-```
 
 We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh).
 Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.

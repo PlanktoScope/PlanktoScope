@@ -37,7 +37,7 @@ export async function getHardwareVersion() {
 export async function setHardwareVersion(hardware_version) {
   await Promise.all([
     copyFile(
-      `/home/pi/PlanktoScope/software/node-red-dashboard/default-configs/${hardware_version}.config.json`,
+      `/home/pi/PlanktoScope/node-red/default-configs/${hardware_version}.config.json`,
       "/home/pi/PlanktoScope/config.json"
     ),
     copyFile(

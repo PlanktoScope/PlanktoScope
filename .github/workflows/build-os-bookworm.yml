@@ -10,6 +10,8 @@ on:
       - 'software/v*'
     paths:
       - 'software/**'
+      - 'device-backend/**'
+      - 'node-red/**'
       - '!software/CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
   pull_request:
