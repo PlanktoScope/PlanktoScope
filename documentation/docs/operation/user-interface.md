@@ -125,7 +125,7 @@ You will need to change the PlanktoScope's system time (for example by pressing 
 
 !!! warning
 
-    This page will be removed in a future version of the PlanktoScope software, because it doesn't always work. You should instead refer to the network operations guide's section for [connecting your PlanktoScope to an existing Wi-Fi network](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network).
+    This page will be removed in a future version of the PlanktoScope software, because it doesn't always work. You should instead refer to the network operations guide's section for [connecting your PlanktoScope to the Internet](./networking.md#connect-your-planktoscope-to-the-internet).
 
 ![Administration](../images/ui_guide/wifi.webp)
 
