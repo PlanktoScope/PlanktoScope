@@ -86,7 +86,7 @@ Currently, the entrypoint of the distro setup scripts, at [`software/distro/setu
 
 Currently, the distro setup scripts must be run by a user named `pi`. The scripts should not be run with `sudo`!
 
-Currently, the distro setup scripts are split into two phases: setup of the base operating system, and setup of the PlanktoScope application environment. In the future, as we remove various setup steps from these scripts (and instead manage those steps using [`forklift`](../architecture/os.md#package-management-with-forklift)), we may consolidate these two phases into a single phase.
+Currently, the distro setup scripts are split into two phases: setup of the base operating system, and setup of the PlanktoScope application environment. In the future, as we remove various setup steps from these scripts (and instead manage those steps using [`forklift`](../architecture/os.md#system-customization-configuration)), we may consolidate these two phases into a single phase.
 
 ### Base system setup
 
