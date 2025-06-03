@@ -1,9 +1,6 @@
 #!/bin/bash -eux
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
-# Clear git repo - can be re-init with enable-developer-mode.sh
-rm -rf $HOME/PlanktoScope/.git
-
 # Clean up any unnecessary apt files
 sudo apt-get autoremove -y
 sudo apt-get clean -y

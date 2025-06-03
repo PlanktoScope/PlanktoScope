@@ -43,6 +43,8 @@ console.log(`Hardware variant: ${variant}`)
 const CONFIG_PROJECT_PATH = path.join(__dirname, ".config.projects.json")
 
 const config = require(CONFIG_PROJECT_PATH)
-config.activeProject = variant
 
-fs.writeFileSync(CONFIG_PROJECT_PATH, JSON.stringify(config, null, 4))
+if (config.activeProject !== "dashboard") {
+  config.activeProject = variant
+  fs.writeFileSync(CONFIG_PROJECT_PATH, JSON.stringify(config, null, 4))
+}
