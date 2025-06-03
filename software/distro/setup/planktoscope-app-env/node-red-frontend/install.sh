@@ -44,3 +44,8 @@ cp "$HOME/PlanktoScope/node-red/default-configs/$default_config.config.json" \
 # Configure node-red
 npm --prefix "$HOME/PlanktoScope/node-red/nodes" install
 npm --prefix "$HOME/PlanktoScope/node-red" install
+
+# projects/dashboard submodule
+cd "$HOME/PlanktoScope"
+git submodule init
+git submodule update
