@@ -91,5 +91,5 @@ make-minimal = [
 
 # Documentation checking
 build-check = "mkdocs build --clean --strict --no-directory-urls"
-check-links = "linkchecker --config .linkcheckerrc site"
+check-links = "linkchecker site"
 check = ["build-check", "check-links"]
