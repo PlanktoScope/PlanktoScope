@@ -11,11 +11,11 @@ on:
       - 'segmenter/v*'
     paths:
       - 'device-backend/processing/segmenter/**'
-      - '.github/workflows/processing-segmenter-*.yml'
+      - '.github/workflows/build-segmenter.yml'
   pull_request:
     paths:
       - 'device-backend/processing/segmenter/**'
-      - '.github/workflows/processing-segmenter-*.yml'
+      - '.github/workflows/build-segmenter.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -26,9 +26,9 @@ on:
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
   IMAGE_NAME: 'device-backend-processing-segmenter'
-  MAIN_BRANCH: 'main' # pushing to this branch will update the "edge" tag on the image
-  BETA_BRANCH: 'beta' # pushing to this branch will update the "beta" tag on the image
-  STABLE_BRANCH: 'stable' # pushing to this branch will update the "stable" tag on the image
+  MAIN_BRANCH: 'master' # pushing to this branch will update the "edge" tag on the image
+  BETA_BRANCH: 'software/beta' # pushing to this branch will update the "beta" tag on the image
+  STABLE_BRANCH: 'software/stable' # pushing to this branch will update the "stable" tag on the image
   TAG_PREFIX: 'segmenter/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
   PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
