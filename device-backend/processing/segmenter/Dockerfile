@@ -25,7 +25,7 @@ COPY --chown=pi:pi pyproject.toml poetry.lock ./
 RUN \
   export PATH="/home/pi/.local/bin:$PATH" && \
   pip install --no-cache-dir cryptography==43.0.3 poetry==2.1.2 \
-  --extra-index-url https://www.piwheels.org/simple && \
+    --extra-index-url https://www.piwheels.org/simple && \
   poetry install --only main --compile && \
   poetry --no-interaction cache list && \
   poetry --no-interaction cache clear pypi --all && \
@@ -44,8 +44,3 @@ COPY --chown=pi:pi planktoscope/ ./planktoscope
 ENTRYPOINT ["/home/pi/.local/bin/poetry", "run", "python", "main.py"]
 EXPOSE 8001
 RUN mkdir -p /home/pi/device-backend-logs/processing/segmenter
-
-# Set container image metadata
-# Note: this is just to try to make GitHub aware that we've moved the segmenter source code from
-# github.com/PlanktoScope/device-backend to github.com/PlanktoScope/PlanktoScope:
-LABEL org.opencontainers.image.source = "https://github.com/PlanktoScope/PlanktoScope"
