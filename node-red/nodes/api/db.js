@@ -1,8 +1,6 @@
 import { join } from "path"
 import { opendir, readFile } from "fs/promises"
 
-import mime from "mime"
-
 const PATH_ACQUISITION = "/home/pi/data/img"
 
 export async function listAcquisitions() {
@@ -89,8 +87,8 @@ async function getAcquisitionFromPath(path) {
   const acquisition_id =
     metadata.acq_id.split(sample_id + "_")[1] || metadata.acq_id
   const operator_name = metadata.sample_operator
-  const image_acquired_count = await countImageAcquired(path)
-  // const is_segmented = null TODO
+  const image_acquired_count = metadata.acq_nb_frame
+  const is_segmented = null // TODO
 
   const acquisition = {
     project_name,
@@ -98,19 +96,21 @@ async function getAcquisitionFromPath(path) {
     acquisition_id,
     operator_name,
     image_acquired_count,
-    is_segmented: null,
+    is_segmented,
   }
 
   return acquisition
 }
 
-async function countImageAcquired(path) {
-  let c = 0
-  for await (const d of await opendir(path)) {
-    if (!d.isFile()) continue
-    if (mime.getType(d.name)?.startsWith("image/")) {
-      c++
-    }
-  }
-  return c
-}
+// Looks like we can use acq_nb_frame instead
+// import mime from "mime"
+// async function countImageAcquired(path) {
+//   let c = 0
+//   for await (const d of await opendir(path)) {
+//     if (!d.isFile()) continue
+//     if (mime.getType(d.name)?.startsWith("image/")) {
+//       c++
+//     }
+//   }
+//   return c
+// }

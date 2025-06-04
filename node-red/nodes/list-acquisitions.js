@@ -7,8 +7,8 @@ export default function (RED) {
     node.on("input", function (msg, send, done) {
       listAcquisitions()
         .then((acquisitions) => {
-          msg.payload ??= {}
-          msg.payload.acquisitions = acquisitions
+          msg.payload = acquisitions
+          // msg.payload.acquisitions = acquisitions
           send(msg)
         })
         .catch(done)
