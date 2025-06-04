@@ -11,11 +11,11 @@ on:
       - 'segmenter/v*'
     paths:
       - 'device-backend/processing/segmenter/**'
-      - '.github/workflows/build-segmenter-*.yml'
+      - '.github/workflows/build-segmenter.yml'
   pull_request:
     paths:
       - 'device-backend/processing/segmenter/**'
-      - '.github/workflows/build-segmenter-*.yml'
+      - '.github/workflows/build-segmenter.yml'
   merge_group:
   workflow_dispatch:
     inputs:
