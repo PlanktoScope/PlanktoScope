@@ -4649,22 +4649,6 @@
         ]
     },
     {
-        "id": "703c216a56944ee2",
-        "type": "link in",
-        "z": "bccd1f23.87219",
-        "name": "link in 1",
-        "links": [
-            "7fea073841c5dfd0"
-        ],
-        "x": 35,
-        "y": 160,
-        "wires": [
-            [
-                "ac2b9d1604a13a35"
-            ]
-        ]
-    },
-    {
         "id": "bf696a1bfcf40cc9",
         "type": "function",
         "z": "bccd1f23.87219",
@@ -4676,8 +4660,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1440,
-        "y": 160,
+        "x": 1680,
+        "y": 100,
         "wires": [
             [
                 "853fdbc93d99656b"
@@ -4698,8 +4682,8 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1470,
-        "y": 240,
+        "x": 1850,
+        "y": 100,
         "wires": []
     },
     {
@@ -4713,8 +4697,8 @@
         "once": true,
         "onceDelay": "0",
         "topic": "",
-        "x": 1400,
-        "y": 80,
+        "x": 1500,
+        "y": 100,
         "wires": [
             [
                 "bf696a1bfcf40cc9"
@@ -4738,6 +4722,144 @@
         "wires": [
             [
                 "f0775525.cf806"
+            ]
+        ]
+    },
+    {
+        "id": "310ee70930b17fae",
+        "type": "mqtt in",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "status/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 1470,
+        "y": 180,
+        "wires": [
+            [
+                "fcaf6b9230805de2"
+            ]
+        ]
+    },
+    {
+        "id": "fcaf6b9230805de2",
+        "type": "json",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": true,
+        "x": 1610,
+        "y": 180,
+        "wires": [
+            [
+                "1e021d2306c69193"
+            ]
+        ]
+    },
+    {
+        "id": "1e9ddd41b0fa067d",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "light_control",
+        "group": "4248342d.e55fac",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "Light  ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "off",
+                "valueType": "str",
+                "color": "#009933"
+            },
+            {
+                "label": "On",
+                "value": "on",
+                "valueType": "str",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1510,
+        "y": 260,
+        "wires": [
+            [
+                "fa4e2b4c606ec8a8"
+            ]
+        ]
+    },
+    {
+        "id": "fa4e2b4c606ec8a8",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Prepare message",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 260,
+        "wires": [
+            [
+                "82b88ded06e67fba"
+            ]
+        ]
+    },
+    {
+        "id": "82b88ded06e67fba",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1e021d2306c69193",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Set Led Status",
+        "func": "msg.payload = msg.payload.status.toLowerCase();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 180,
+        "wires": [
+            [
+                "1e9ddd41b0fa067d"
             ]
         ]
     },
@@ -8100,16 +8222,11 @@
                 "t": "cont",
                 "v": "status/segmenter",
                 "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "status/light",
-                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 3,
+        "outputs": 2,
         "x": 620,
         "y": 340,
         "wires": [
@@ -8118,9 +8235,6 @@
             ],
             [
                 "dcf5bd45.16a8d"
-            ],
-            [
-                "7fea073841c5dfd0"
             ]
         ]
     },
@@ -8150,7 +8264,7 @@
             "bb628f8d.98f108"
         ],
         "x": 795,
-        "y": 300,
+        "y": 320,
         "wires": []
     },
     {
@@ -8162,20 +8276,7 @@
             "25867454.a8e334"
         ],
         "x": 795,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "7fea073841c5dfd0",
-        "type": "link out",
-        "z": "9a22e67a.378818",
-        "name": "Optic configuration status",
-        "mode": "link",
-        "links": [
-            "703c216a56944ee2"
-        ],
-        "x": 795,
-        "y": 380,
+        "y": 360,
         "wires": []
     },
     {
