@@ -199,5 +199,3 @@ async function listSegmentationsFromDirectory(dir_path) {
 
   return segmentations
 }
-
-listSegmentations().then(console.log).catch(console.error)
