@@ -178,7 +178,7 @@ The Light API controls the state of the LED lighting system in the PlanktoScope:
 
 - **MQTT topics for commands**: `actuator/light`
 - **MQTT topics for status updates**: `status/light`
-- **Commands**: `on`, `off`
+- **Commands**: `on`, `off`, `status`
 
 ### `on` command
 
@@ -227,6 +227,32 @@ The Python backend can send status updates on the `status/light` topic in respon
 | Status/Error            | Cause                                                             |
 | ----------------------- | ----------------------------------------------------------------- |
 | `Off`                   | The LED turned off successfully.                                  |
+
+### `status` command
+
+The `status` command requests the backend to publish the status of the led. For example:
+
+```json
+{
+  "action": "status"
+}
+```
+
+The `status` command has the following parameters:
+
+| Field    | Description                                       | Type    | Accepted Values |
+| -------- | ------------------------------------------------- | ------- | --------------- |
+| `action` | Specifies the `status` command.                   | string  | `status`        |
+
+#### `status` command responses
+
+The Python backend can send status updates on the `status/light` topic in response to the `status` command. The `status` field of such status updates can have any of the following values:
+
+| Status/Error            | Cause                                                             |
+| ----------------------- | ----------------------------------------------------------------- |
+| `On`                    | The LED turned on successfully.                                   |
+| `Off`                   | The LED turned off successfully.                                  |
+
 
 ### Non-response status updates
 

@@ -32,7 +32,7 @@ Start controller for development:
 
 ```sh
 sudo systemctl stop planktoscope-org.device-backend.controller.service
-poetry run python -u planktoscopehat/main.py
+poetry run python -u main.py
 # make changes and restart
 ```
 
