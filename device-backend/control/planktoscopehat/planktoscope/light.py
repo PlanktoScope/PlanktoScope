@@ -8,6 +8,7 @@ from gpiozero import DigitalOutputDevice
 
 import os
 import time
+import json
 
 # Library for starting processes
 import multiprocessing
@@ -149,7 +150,7 @@ class i2c_led:
     def deactivate_torch(self):
         logger.debug("Deactivate torch")
         self._write_byte(self.Register.enable, 0b00)
-        self.off = False
+        self.on = False
 
     def _write_byte(self, address, data):
         with smbus.SMBus(1) as bus:
@@ -202,6 +203,11 @@ class LightProcess(multiprocessing.Process):
         logger.debug("Turning led on")
         self.led.activate_torch()
 
+    def publish_status(self):
+        self.light_client.client.publish(
+            "status/light", json.dumps({"status": "On" if self.led.on else "Off"})
+        )
+
     @logger.catch
     def treat_message(self):
         last_message = None
@@ -221,15 +227,15 @@ class LightProcess(multiprocessing.Process):
             if "action" in last_message:
                 action = last_message["action"]
                 if action == "on":
-                    # {"action":"on"}
                     logger.info("Turning the light on.")
                     self.led_on()
-                    self.light_client.client.publish("status/light", '{"status":"On"}')
+                    self.publish_status()
                 elif action == "off":
-                    # {"action":"off"}
                     logger.info("Turn the light off.")
                     self.led_off()
-                    self.light_client.client.publish("status/light", '{"status":"Off"}')
+                    self.publish_status()
+                elif action == "status":
+                    self.publish_status()
                 else:
                     logger.warning(
                         f"We did not understand the received request {action} - {last_message}"

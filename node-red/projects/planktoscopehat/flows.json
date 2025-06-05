@@ -3633,31 +3633,6 @@
         ]
     },
     {
-        "id": "9a1d0e7c.2d5a1",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: OFF",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "off",
-        "payloadType": "str",
-        "x": 130,
-        "y": 120,
-        "wires": [
-            [
-                "f0775525.cf806"
-            ]
-        ]
-    },
-    {
         "id": "f782a471.447748",
         "type": "inject",
         "z": "bccd1f23.87219",
@@ -3876,8 +3851,8 @@
             }
         ],
         "topic": "",
-        "x": 310,
-        "y": 120,
+        "x": 350,
+        "y": 160,
         "wires": [
             [
                 "99ae4886.8d43c"
@@ -3896,8 +3871,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 490,
-        "y": 120,
+        "x": 530,
+        "y": 160,
         "wires": [
             [
                 "d31fcead.7e2ef"
@@ -3918,8 +3893,8 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 650,
-        "y": 120,
+        "x": 690,
+        "y": 160,
         "wires": []
     },
     {
@@ -4670,6 +4645,221 @@
         "wires": [
             [
                 "eb9966de.cf13c8"
+            ]
+        ]
+    },
+    {
+        "id": "bf696a1bfcf40cc9",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Get led status",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":\"status\"}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 100,
+        "wires": [
+            [
+                "853fdbc93d99656b"
+            ]
+        ]
+    },
+    {
+        "id": "853fdbc93d99656b",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1850,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "73d75d56a5860c40",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 1500,
+        "y": 100,
+        "wires": [
+            [
+                "bf696a1bfcf40cc9"
+            ]
+        ]
+    },
+    {
+        "id": "ac2b9d1604a13a35",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Set Led Status",
+        "func": "msg.payload = msg.payload.status.toLowerCase();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "f0775525.cf806"
+            ]
+        ]
+    },
+    {
+        "id": "310ee70930b17fae",
+        "type": "mqtt in",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "status/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 1470,
+        "y": 180,
+        "wires": [
+            [
+                "fcaf6b9230805de2"
+            ]
+        ]
+    },
+    {
+        "id": "fcaf6b9230805de2",
+        "type": "json",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": true,
+        "x": 1610,
+        "y": 180,
+        "wires": [
+            [
+                "1e021d2306c69193"
+            ]
+        ]
+    },
+    {
+        "id": "1e9ddd41b0fa067d",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "light_control",
+        "group": "4248342d.e55fac",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "Light  ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "off",
+                "valueType": "str",
+                "color": "#009933"
+            },
+            {
+                "label": "On",
+                "value": "on",
+                "valueType": "str",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1510,
+        "y": 260,
+        "wires": [
+            [
+                "fa4e2b4c606ec8a8"
+            ]
+        ]
+    },
+    {
+        "id": "fa4e2b4c606ec8a8",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Prepare message",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 260,
+        "wires": [
+            [
+                "82b88ded06e67fba"
+            ]
+        ]
+    },
+    {
+        "id": "82b88ded06e67fba",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1e021d2306c69193",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Set Led Status",
+        "func": "msg.payload = msg.payload.status.toLowerCase();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 180,
+        "wires": [
+            [
+                "1e9ddd41b0fa067d"
             ]
         ]
     },
@@ -8069,6 +8259,7 @@
         "type": "link out",
         "z": "9a22e67a.378818",
         "name": "Fluidic module status",
+        "mode": "link",
         "links": [
             "bb628f8d.98f108"
         ],
