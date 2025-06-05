@@ -180,13 +180,12 @@ class LightProcess(multiprocessing.Process):
 
         self.stop_event = event
         self.light_client = None
+        self.chronometer = None
+        self.operating_time = 0
         try:
             self.led = i2c_led(configuration)
             self.led.set_torch_current(self.led.DEFAULT_CURRENT)
             self.led.activate_torch_ramp()
-            self.led.activate_torch()
-            time.sleep(0.5)
-            self.led.deactivate_torch()
         except Exception as e:
             logger.error(
                 f"We have encountered an error trying to start the LED module, stopping now, exception is {e}"
@@ -198,14 +197,28 @@ class LightProcess(multiprocessing.Process):
     def led_off(self):
         logger.debug("Turning led off")
         self.led.deactivate_torch()
+        if self.chronometer:
+            self.save_operating_time()
+        self.publish_status()
 
     def led_on(self):
         logger.debug("Turning led on")
         self.led.activate_torch()
+        self.publish_status()
+        self.chronometer = int(time.time())
+
+    def save_operating_time(self):
+        seconds = int(time.time()) - self.chronometer
+        self.operating_time += seconds
+        self.chronometer = None
+        print(self.operating_time)
 
     def publish_status(self):
         self.light_client.client.publish(
-            "status/light", json.dumps({"status": "On" if self.led.on else "Off"})
+            "status/light",
+            json.dumps(
+                {"status": "On" if self.led.on else "Off", "operating_time": self.operating_time}
+            ),
         )
 
     @logger.catch
@@ -229,11 +242,9 @@ class LightProcess(multiprocessing.Process):
                 if action == "on":
                     logger.info("Turning the light on.")
                     self.led_on()
-                    self.publish_status()
                 elif action == "off":
                     logger.info("Turn the light off.")
                     self.led_off()
-                    self.publish_status()
                 elif action == "status":
                     self.publish_status()
                 else:
@@ -286,19 +297,27 @@ class LightProcess(multiprocessing.Process):
         # Publish the status "Ready" to via MQTT to Node-RED
         self.light_client.client.publish("status/light", '{"status":"Ready"}')
 
+        self.publish_status()
+
         logger.success("Light module is READY!")
+
+        t = int(time.time())
 
         # This is the loop
         while not self.stop_event.is_set():
             self.treat_message()
             time.sleep(0.1)
+            # Every 5 seconds
+            if int(time.time()) == (t + 5):
+                t = int(time.time())
+                if self.led.on:
+                    self.save_operating_time()
+                    self.chronometer = t
 
         logger.info("Shutting down the light process")
-        self.led.deactivate_torch()
-        self.led.set_torch_current(1)
-        self.led.set_flash_current(1)
-        self.led.get_flags()
+        self.led_off()
         self.light_client.client.publish("status/light", '{"status":"Dead"}')
+        self.publish_status()
         self.light_client.shutdown()
         logger.success("Light process shut down! See you!")
 
