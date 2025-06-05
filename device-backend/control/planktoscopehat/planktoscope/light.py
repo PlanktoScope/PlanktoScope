@@ -204,7 +204,6 @@ class LightProcess(multiprocessing.Process):
         self.led.activate_torch()
 
     def publish_status(self):
-        print(self.led.on)
         self.light_client.client.publish(
             "status/light", json.dumps({"status": "On" if self.led.on else "Off"})
         )
@@ -285,7 +284,7 @@ class LightProcess(multiprocessing.Process):
         self.light_client = mqtt.MQTT_Client(topic="light", name="light_client")
 
         # Publish the status "Ready" to via MQTT to Node-RED
-        self.light_client.client.publish("status/light", json.dumps({"status": "Ready"}))
+        self.light_client.client.publish("status/light", '{"status":"Ready"}')
 
         logger.success("Light module is READY!")
 
