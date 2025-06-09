@@ -55,7 +55,7 @@ Our long term goal is to automate as much of the testing as possible, until then
 
 Prepare tubing, sample and flowcell.
 
-Setup the right focus in "Optic Configuration"
+Setup focus in "Optic Configuration"
 
 ## Fluidic acquisition
 
@@ -86,16 +86,36 @@ Setup the right focus in "Optic Configuration"
 
 ## Segmentation
 
-"Start segmentation"
+1. Start segmentation
+2. [ ] "Status" updates and shows progress
+3. Wait for segmentation to complete
+4. Note the number of object counts
+5. Go to "Gallery" in the menu
+6. [ ] Go to `objects` -> `<today's date>` -> `name of the sample` -> `name of the acquisition`
+7. [ ] There are as many jpeg images as there were objects counted
+8. [ ] The jpeg images are of acceptable quality9.
+9. [ ] There is a `ecotaxa_<name of the acquisition>.tsv` file
+10. Open one of the image and click the "HD" button
+11. The quality is acceptable and the focus is correct
 
-if pass/ok
+## Ecotaxa
 
-gallery objects / clean
+1. Go to "Gallery" in the menu
+2. [ ] Go to `export` -> `ecotaxa`
+3. [ ] Download the `ecotaxa_<name of the acquisition>.zip` file
+4. Go to Ecotaxa
+5. Import the zip and wait for completion
+6. [ ] The result on Ecotaxa matches expectations
 
-download the ecotaxa zip
+## System Monitoring
 
-go to ecotaxa
+1. "Metrics" are coherent
+2. "Information" is correct
 
-import the zip
+## Administration
 
-check the resut on ecotaxa matches expectations
+1. [ ] Logs can be viewed and downloaded
+2. [ ] "Restart Hardware Controller" button is working
+3. [ ] "Restart Segmenter" button is working
+4. [ ] "Reboot" button is working
+5. [ ] "Shutdown" button is working
