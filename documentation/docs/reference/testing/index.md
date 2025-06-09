@@ -1,0 +1,101 @@
+# Testing
+
+This document provides a simple protocol for testing the PlanktoScope. This may be used when a new software or hardware release is made available.
+
+Our long term goal is to automate as much of the testing as possible, until then, manual checks are required.
+
+## Setup
+
+1. [Set up the SD card and start the PlanktoScope](https://docs.planktoscope.community/setup/software/standard-install/)
+2. [ ] The PlanktoScope asks for Hardware version
+
+## Sample
+
+1. Go to "Sample"
+2. Select "Plankton net" for Sample gear
+3. Fill the form
+4. [ ] The calculations are correct
+
+<!-- TODO: Add a tool to verify calculations -->
+
+## Optic
+
+**LED and preview**
+
+1. [ ] "Light on" turns on the LED
+2. [ ] The preview shows images without significant lag
+3. [ ] Updating "ISO" modifies the image
+4. [ ] Updating "Shutter Speed" modifies the image
+<!-- 5. [ ] Verify white balance-->
+5. [ ] "Light off" turns off the LED
+
+**Focus**
+
+1. [ ] "UP 1MM" moves the focus in one direction
+2. [ ] "DOWN 1MM" moves the focus in the other direction
+3. [ ] Quick succession of "UP 100MM" moves the focus in one direction
+4. [ ] Quick succession of "DOWN 100MM" moves the focus in the other direction
+5. [ ] "Focus Distance" and "Focus Speed" impacts "⩓" in one direction
+6. [ ] "Focus Distance" and "Focus Speed" impacts "⩔" in the other direction
+7. [ ] "STOP FOCUS" stops movement
+
+<!-- TODO: Add focus scenarios -->
+
+**Pump**
+
+1. [ ] The left arrow pumps in one direction
+2. [ ] The right arrow pumps in the other direction
+3. [ ] "Flowrate" and "Volume to pass" impacts speed in one direction
+4. [ ] "Flowrate" and "Volume to pass" impacts speed in the other direction
+5. [ ] "STOP PUMP" stops the pump
+
+<!-- TODO: Add pump scenarios -->
+
+**Prepare**
+
+Prepare tubing, sample and flowcell.
+
+Setup the right focus in "Optic Configuration"
+
+## Fluidic acquisition
+
+**UI**
+
+1. [ ] "Number of images to acquire" and "Pumped volume" correctly updates "Total imaged volume" and "Total pumped volume"
+2. [ ] Delay to stabilize image cannot be lower than 0.1
+3. [ ] Delay to stabilize image cannot be higher than 5
+4. [ ] "Flowcell" offers 5 different options
+5. [ ] "Statistics" is coherent with information entered in "Sample"
+
+**Small capture**
+
+1. Start acquisition with 5 images
+2. [ ] "Capture progress" shows progress
+3. Wait for completion
+4. Go to "Gallery" in the menu
+5. [ ] Go to `img` -> `<today's date>` -> `name of the sample` -> `name of the acquisition`
+6. [ ] There are 5 jpeg images of acceptable quality
+7. [ ] There is a `metadata.json` file with coherent information
+8. [ ] There is an `integrity.check` file listing the 5 images and the `metadata.json` file
+9. Open one of the image and click the "HD" button
+10. The quality is acceptable and the focus is correct
+
+**Big capture**
+
+1. Start acquisition with 100 images
+
+## Segmentation
+
+"Start segmentation"
+
+if pass/ok
+
+gallery objects / clean
+
+download the ecotaxa zip
+
+go to ecotaxa
+
+import the zip
+
+check the resut on ecotaxa matches expectations
