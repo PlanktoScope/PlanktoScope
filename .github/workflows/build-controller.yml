@@ -45,11 +45,11 @@ jobs:
             controller/poetry.lock
 
       - name: Install build dependencies
-        working-directory: ./device-backend/control
+        working-directory: ./controller
         run: |
           sudo apt-get install -y libcap-dev
           poetry install --with dev
 
       - name: Run checks
-        working-directory: ./device-backend/control
+        working-directory: ./controller
         run: poetry run poe check
