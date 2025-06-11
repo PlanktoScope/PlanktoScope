@@ -40,5 +40,5 @@ sudo systemctl enable "planktoscope-org.device-backend.controller.service"
 
 # Select the enabled hardware controller
 mkdir -p "$HOME/PlanktoScope"
-cp "$HOME/PlanktoScope/device-backend/default-configs/$default_config.hardware.json" \
+cp "$HOME/PlanktoScope/default-configs/$default_config.hardware.json" \
   "$HOME/PlanktoScope/hardware.json"
