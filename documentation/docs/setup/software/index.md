@@ -40,7 +40,7 @@ If you have a PlanktoScope from FairScope, you should probably use the `fairscop
 
 ## Installation
 
-After you have chosen a PlanktoScope OS SD card image for the desired OS version and hardware configuration, you should follow our [standard installation](standard-install.md) guide in order to install that SD card image into your PlanktoScope. If the official PlanktoScope SD card images don't meet your requirements and you have successfully set up and used the PlanktoScope OS in the past via the standard installation process, then you may also find the [non-standard installation](nonstandard-install.md) guide useful.
+After you have chosen a PlanktoScope OS SD card image for the desired OS version and hardware configuration, you should follow our [standard installation](standard-install.md) guide in order to install that SD card image into your PlanktoScope.
 
 ## Post-installation configuration
 
