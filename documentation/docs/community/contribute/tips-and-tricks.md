@@ -9,7 +9,6 @@ This page provides useful snippets and how-tos while developing software for the
 - [Development OS](#development-os)
 - [Development Environment](#development-environment)
 - [Connect to router](#connect-to-router)
-- [Disable splash screen](#disable-splash-screen)
 - [Backup and Restore SD Card](#backup-and-restore-sd-card)
 - [Documentation quick setup](#documentation-quick-setup)
 - [Test dataset for segmenter](#test-dataset-for-segmenter)
