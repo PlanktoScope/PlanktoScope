@@ -1,7 +1,7 @@
 ---
-name: Test suite run
+name: Test Suite Run
 about: Run the test suite to help us
-title: ""
+title: "Test Suite Run"
 labels: test-run
 assignees: ""
 ---
