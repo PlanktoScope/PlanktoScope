@@ -70,7 +70,7 @@ All hardware files and documentation located in the `hardware` directory are rel
 
 ### Software Source Code
 
-The source code located in the `flows` and `scripts` directories is released under the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
+The source code is released under the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
 
 ### Other Materials
 
@@ -81,6 +81,7 @@ If you wish to use any of the materials in this repository for a project that ca
 We encourage you to fork this repository and publish any improvements you make. Doing so helps others and allows us to potentially integrate your changes into this repository.
 
 ## Citing PlanktoScope
+
 If you use PlanktoScope in your research, please use the following BibTeX entry.
 
 ```
