@@ -1,8 +1,30 @@
-# Testing
+---
+name: Test suite run
+about: Run the test suite to help us
+title: ""
+labels: test-run
+assignees: ""
+---
 
-This document provides a simple protocol for testing the PlanktoScope. This may be used when a new software or hardware release is made available.
+# Info
 
-Our long term goal is to automate as much of the testing as possible, until then, manual checks are required.
+**PlanktoScope**
+
+- Hardware version: eg `v2.5`
+- Software version: eg `2025.0.0.alpha.1`
+- Machine name: eg `sponge-care-245`
+- Serial number: eg `U132` (leave empty if unknown)
+
+**Computer**
+
+- Operating system: eg `macOS 14.1`
+- Browser: eg `Firefox 128`
+
+**Comment**
+
+Anthing else worth knowing?
+
+# Test suite
 
 ## Setup
 
