@@ -1,4 +1,4 @@
-# control
+# Controller
 
 The PlanktoScope's hardware controller.
 

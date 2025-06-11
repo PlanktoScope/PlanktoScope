@@ -10,12 +10,12 @@ on:
     tags:
       - 'v*'
     paths:
-      - 'device-backend/control/**'
-      - '.github/workflows/control-*.yml'
+      - 'controler/**'
+      - '.github/workflows/build-controller.yml'
   pull_request:
     paths:
-      - 'device-backend/control/**'
-      - '.github/workflows/control-*.yml'
+      - 'controler/**'
+      - '.github/workflows/build-controller.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -42,7 +42,7 @@ jobs:
           python-version: '3.11'
           cache: 'poetry'
           cache-dependency-path: |
-            device-backend/control/poetry.lock
+            controller/poetry.lock
 
       - name: Install build dependencies
         working-directory: ./device-backend/control
