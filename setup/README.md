@@ -1,6 +1,6 @@
-# software/distro/setup
+# setup
 
-This directory contains a setup script (`distro/setup/setup.sh`) which you can run on an installation of the Raspberry Pi OS in order to setup the PlanktoScope OS.
+This directory contains a `setup.sh` script which you can run on an installation of the Raspberry Pi OS in order to setup the PlanktoScope OS.
 
 ## Usage
 

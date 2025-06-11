@@ -209,7 +209,7 @@ DEFAULT_TAG_PREFIX="software/"
 if [ -z "${TAG_PREFIX-}" ]; then
   TAG_PREFIX="${DEFAULT_TAG_PREFIX}"
 fi
-DEFAULT_SETUP_ENTRYPOINT="software/distro/setup/setup.sh"
+DEFAULT_SETUP_ENTRYPOINT="setup/setup.sh"
 if [ -z "${SETUP_ENTRYPOINT-}" ]; then
   SETUP_ENTRYPOINT="${DEFAULT_SETUP_ENTRYPOINT}"
 fi
