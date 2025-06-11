@@ -10,11 +10,11 @@ on:
     tags:
       - 'segmenter/v*'
     paths:
-      - 'device-backend/processing/segmenter/**'
+      - 'segmenter/**'
       - '.github/workflows/build-segmenter.yml'
   pull_request:
     paths:
-      - 'device-backend/processing/segmenter/**'
+      - 'segmenter/**'
       - '.github/workflows/build-segmenter.yml'
   merge_group:
   workflow_dispatch:
@@ -81,7 +81,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: ./device-backend/processing/segmenter
+          context: ./segmenter
           pull: true
           platforms: ${{ matrix.docker-platform }}
           labels: ${{ steps.meta.outputs.labels }}
