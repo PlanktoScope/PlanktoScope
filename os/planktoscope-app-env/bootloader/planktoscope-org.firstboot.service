@@ -1,0 +1,10 @@
+[Unit]
+Description=PlanktoScope first boot service
+ConditionFirstBoot=yes
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/PlanktoScope/os/planktoscope-app-env/bootloader/firstboot.sh
+
+[Install]
+WantedBy=sysinit.target
