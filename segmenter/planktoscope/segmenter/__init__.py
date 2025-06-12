@@ -69,13 +69,9 @@ SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
     "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "False"
 ).lower() in ("true", "1", "t")
 if SUBTRACT_CONSECUTIVE_MASKS:
-    logger.info(
-        "The segmentation pipeline will subtract masks between consecutive raw frames!"
-    )
+    logger.info("The segmentation pipeline will subtract masks between consecutive raw frames!")
 else:
-    logger.info(
-        "The segmentation pipeline will NOT subtract masks between consecutive raw frames!"
-    )
+    logger.info("The segmentation pipeline will NOT subtract masks between consecutive raw frames!")
 
 
 ################################################################################
@@ -170,9 +166,7 @@ class SegmenterProcess(multiprocessing.Process):
 
         # make sure image number is smaller than image list
         if images_number > len(images_list):
-            logger.error(
-                "The image number can't be bigger than the length of the provided list!"
-            )
+            logger.error("The image number can't be bigger than the length of the provided list!")
             images_number = len(images_list)
 
         logger.debug(f"Opening {images_number} images: {images_list[:images_number]}")
@@ -230,9 +224,7 @@ class SegmenterProcess(multiprocessing.Process):
         # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
         # logger.debug(time.monotonic() - start)
 
-        image = skimage.exposure.rescale_intensity(
-            image, in_range=(0, 1.04), out_range="uint8"
-        )
+        image = skimage.exposure.rescale_intensity(image, in_range=(0, 1.04), out_range="uint8")
         # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
         logger.debug(time.monotonic() - start)
         logger.success("Flat calc")
@@ -433,9 +425,7 @@ class SegmenterProcess(multiprocessing.Process):
             return len(w) == 0
 
         img_object = io.BytesIO()
-        PIL.Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)).save(
-            img_object, format="JPEG"
-        )
+        PIL.Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)).save(img_object, format="JPEG")
         logger.debug("Sending the object in the pipe!")
         if not pipe_full(planktoscope.segmenter.streamer.sender):
             planktoscope.segmenter.streamer.sender.send(img_object)
@@ -484,9 +474,7 @@ class SegmenterProcess(multiprocessing.Process):
 
         labels, nlabels = skimage.measure.label(mask, return_num=True)
         regionprops = skimage.measure.regionprops(labels)
-        regionprops_filtered = [
-            region for region in regionprops if region.filled_area >= min_area
-        ]
+        regionprops_filtered = [region for region in regionprops if region.filled_area >= min_area]
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")
 
@@ -526,9 +514,7 @@ class SegmenterProcess(multiprocessing.Process):
             # publish metrics about the found object
             self.segmenter_client.client.publish(
                 "status/segmenter/metric",
-                json.dumps(
-                    object_metadata, cls=planktoscope.segmenter.encoder.NpEncoder
-                ),
+                json.dumps(object_metadata, cls=planktoscope.segmenter.encoder.NpEncoder),
             )
 
             if "objects" in self.__global_metadata:
@@ -578,9 +564,7 @@ class SegmenterProcess(multiprocessing.Process):
 
     def _pipe(self, ecotaxa_export):
         logger.info("Finding images")
-        images_list = self._find_files(
-            self.__working_path, ("JPG", "jpg", "JPEG", "jpeg")
-        )
+        images_list = self._find_files(self.__working_path, ("JPG", "jpg", "JPEG", "jpeg"))
 
         logger.debug(f"Images found are {images_list}")
         images_count = len(images_list)
@@ -606,9 +590,7 @@ class SegmenterProcess(multiprocessing.Process):
                 "status/segmenter", '{"status":"Calculating flat"}'
             )
             if images_count < 10:
-                self._calculate_flat(
-                    images_list[0:images_count], images_count, self.__working_path
-                )
+                self._calculate_flat(images_list[0:images_count], images_count, self.__working_path)
             else:
                 self._calculate_flat(images_list[0:10], 10, self.__working_path)
 
@@ -627,7 +609,7 @@ class SegmenterProcess(multiprocessing.Process):
             # Publish the object_id to via MQTT to Node-RED
             self.segmenter_client.client.publish(
                 "status/segmenter",
-                f'{{"status":"Segmenting image {filename}, image {i+1}/{images_count}"}}',
+                f'{{"status":"Segmenting image {filename}, image {i + 1}/{images_count}"}}',
             )
 
             # we recalculate the flat if the heuristics detected we should
@@ -638,13 +620,9 @@ class SegmenterProcess(multiprocessing.Process):
                     flat = self._calculate_flat(images_list, 10, self.__working_path)
                 elif i > (len(images_list) - 11):
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
-                    flat = self._calculate_flat(
-                        images_list[i - 10 : i], 10, self.__working_path
-                    )
+                    flat = self._calculate_flat(images_list[i - 10 : i], 10, self.__working_path)
                 else:
-                    flat = self._calculate_flat(
-                        images_list[i : i + 10], 10, self.__working_path
-                    )
+                    flat = self._calculate_flat(images_list[i : i + 10], 10, self.__working_path)
                 if self.__save_debug_img:
                     self._save_image(
                         self.__flat,
@@ -667,7 +645,7 @@ class SegmenterProcess(multiprocessing.Process):
                 os.makedirs(self.__working_debug_path)
 
             start = time.monotonic()
-            logger.info(f"Starting work on {name}, image {i+1}/{images_count}")
+            logger.info(f"Starting work on {name}, image {i + 1}/{images_count}")
 
             img = self._open_and_apply_flat(
                 os.path.join(self.__working_path, images_list[i]), self.__flat
@@ -713,7 +691,7 @@ class SegmenterProcess(multiprocessing.Process):
 
         total_duration = (time.monotonic() - first_start) / 60
         logger.success(
-            f"{images_count} images done in {total_duration} minutes, or an average of {average_time}s per image or {total_duration*60/images_count}s per image"
+            f"{images_count} images done in {total_duration} minutes, or an average of {average_time}s per image or {total_duration * 60 / images_count}s per image"
         )
         logger.success(
             f"We also found {total_objects} objects, or an average of {total_objects / (total_duration * 60)}objects per second"
@@ -733,9 +711,7 @@ class SegmenterProcess(multiprocessing.Process):
             else:
                 logger.info("There are no objects to export")
         else:
-            logger.info(
-                "We are not creating the ecotaxa output archive for this folder"
-            )
+            logger.info("We are not creating the ecotaxa output archive for this folder")
 
         # cleanup
         # we're done free some mem
@@ -781,13 +757,9 @@ class SegmenterProcess(multiprocessing.Process):
             if os.path.exists(os.path.join(path, "metadata.json")):
                 # The file exists, let's check if we force or not
                 # we also need to check for the presence of done.txt in each folder
-                logger.debug(
-                    f"{path}: Checking for the presence of done.txt or forcing({force})"
-                )
+                logger.debug(f"{path}: Checking for the presence of done.txt or forcing({force})")
                 if os.path.exists(os.path.join(path, "done.txt")) and not force:
-                    logger.debug(
-                        f"Moving to the next folder, {path} has already been segmented"
-                    )
+                    logger.debug(f"Moving to the next folder, {path} has already been segmented")
                 else:
                     # forcing, let's gooooo
                     try:
@@ -799,9 +771,7 @@ class SegmenterProcess(multiprocessing.Process):
                 logger.debug(f"Moving to the next folder, {path} has no metadata.json")
         if exception is None:
             # Publish the status "Done" to via MQTT to Node-RED
-            self.segmenter_client.client.publish(
-                "status/segmenter", '{"status":"Done"}'
-            )
+            self.segmenter_client.client.publish("status/segmenter", '{"status":"Done"}')
         else:
             self.segmenter_client.client.publish(
                 "status/segmenter",
@@ -933,11 +903,7 @@ class SegmenterProcess(multiprocessing.Process):
                 # {"action":"segment"}
                 if "settings" in last_message:
                     # force rework of already done folder
-                    force = (
-                        last_message["settings"]["force"]
-                        if "force" in last_message
-                        else False
-                    )
+                    force = last_message["settings"]["force"] if "force" in last_message else False
 
                     # parse folders recursively starting from the given parameter
                     recursive = (
@@ -948,9 +914,7 @@ class SegmenterProcess(multiprocessing.Process):
 
                     # generate ecotaxa output archive
                     ecotaxa_export = (
-                        last_message["settings"]["ecotaxa"]
-                        if "ecotaxa" in last_message
-                        else True
+                        last_message["settings"]["ecotaxa"] if "ecotaxa" in last_message else True
                     )
 
                     if "keep" in last_message["settings"]:
@@ -965,9 +929,7 @@ class SegmenterProcess(multiprocessing.Process):
                 path = last_message["path"] if "path" in last_message else None
 
                 # Publish the status "Started" to via MQTT to Node-RED
-                self.segmenter_client.client.publish(
-                    "status/segmenter", '{"status":"Started"}'
-                )
+                self.segmenter_client.client.publish("status/segmenter", '{"status":"Started"}')
                 if path:
                     if recursive:
                         self.segment_all(path, force, ecotaxa_export)
@@ -980,24 +942,16 @@ class SegmenterProcess(multiprocessing.Process):
                 logger.info("The segmentation has been interrupted.")
 
                 # Publish the status "Interrupted" to via MQTT to Node-RED
-                self.segmenter_client.client.publish(
-                    "status/segmenter", '{"status":"Interrupted"}'
-                )
+                self.segmenter_client.client.publish("status/segmenter", '{"status":"Interrupted"}')
 
             elif last_message["action"] == "update_config":
-                logger.error(
-                    "We can't update the configuration while we are segmenting."
-                )
+                logger.error("We can't update the configuration while we are segmenting.")
 
                 # Publish the status "Interrupted" to via MQTT to Node-RED
-                self.segmenter_client.client.publish(
-                    "status/segmenter", '{"status":"Busy"}'
-                )
+                self.segmenter_client.client.publish("status/segmenter", '{"status":"Busy"}')
 
             elif last_message["action"] != "":
-                logger.warning(
-                    f"We did not understand the received request {last_message}"
-                )
+                logger.warning(f"We did not understand the received request {last_message}")
 
     ################################################################################
     # While loop for capturing commands from Node-RED
@@ -1005,9 +959,7 @@ class SegmenterProcess(multiprocessing.Process):
     @logger.catch
     def run(self):
         """This is the function that needs to be started to create a thread"""
-        logger.info(
-            f"The segmenter control thread has been started in process {os.getpid()}"
-        )
+        logger.info(f"The segmenter control thread has been started in process {os.getpid()}")
 
         # MQTT Service connection
         self.segmenter_client = planktoscope.mqtt.MQTT_Client(
@@ -1021,20 +973,14 @@ class SegmenterProcess(multiprocessing.Process):
         address = ("", 8001)
         fps = 0.5
         refresh_delay = 3  # was 1/fps
-        handler = functools.partial(
-            planktoscope.segmenter.streamer.StreamingHandler, refresh_delay
-        )
+        handler = functools.partial(planktoscope.segmenter.streamer.StreamingHandler, refresh_delay)
         try:
             server = planktoscope.segmenter.streamer.StreamingServer(address, handler)
         except Exception as e:
-            logger.exception(
-                f"An exception has occurred when starting up the segmenter: {e}"
-            )
+            logger.exception(f"An exception has occurred when starting up the segmenter: {e}")
             raise e
 
-        self.streaming_thread = threading.Thread(
-            target=server.serve_forever, daemon=True
-        )
+        self.streaming_thread = threading.Thread(target=server.serve_forever, daemon=True)
         # start streaming only when needed
         self.streaming_thread.start()
 

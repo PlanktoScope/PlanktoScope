@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -50,9 +50,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
             self.send_header("Age", 0)
             self.send_header("Cache-Control", "no-cache, private")
             self.send_header("Pragma", "no-cache")
-            self.send_header(
-                "Content-Type", "multipart/x-mixed-replace; boundary=FRAME"
-            )
+            self.send_header("Content-Type", "multipart/x-mixed-replace; boundary=FRAME")
 
             self.end_headers()
             try:
@@ -62,9 +60,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                         try:
                             file = receiver.recv()
                         except EOFError as e:
-                            logger.error(
-                                "Pipe has been closed, nothing is left here, let's die"
-                            )
+                            logger.error("Pipe has been closed, nothing is left here, let's die")
                             break
                         frame = file.getvalue()
                         # TODO #101 insert try block here to catch ConnectionResetError: [Errno 104] Connection reset by peer
