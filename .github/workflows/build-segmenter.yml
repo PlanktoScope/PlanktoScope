@@ -25,7 +25,7 @@ on:
 
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  IMAGE_NAME: 'device-backend-processing-segmenter'
+  IMAGE_NAME: 'segmenter'
   MAIN_BRANCH: 'master' # pushing to this branch will update the "edge" tag on the image
   BETA_BRANCH: 'software/beta' # pushing to this branch will update the "beta" tag on the image
   STABLE_BRANCH: 'software/stable' # pushing to this branch will update the "stable" tag on the image
@@ -85,8 +85,8 @@ jobs:
           pull: true
           platforms: ${{ matrix.docker-platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=processing-segmenter-build-${{ matrix.docker-platform }}
-          cache-to: type=gha,mode=max,scope=processing-segmenter-build-${{ matrix.docker-platform }}
+          cache-from: type=gha,scope=segmenter-build-${{ matrix.docker-platform }}
+          cache-to: type=gha,mode=max,scope=segmenter-build-${{ matrix.docker-platform }}
           outputs: type=image,name=${{ steps.image_registry_case.outputs.lowercase }},push-by-digest=true,name-canonical=true,push=${{ env.PUSH_IMAGE }}
 
       - name: Export digest

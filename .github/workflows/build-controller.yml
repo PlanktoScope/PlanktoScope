@@ -23,10 +23,6 @@ on:
         description: 'Git ref (optional)'
         required: false
 
-env:
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  IMAGE_NAME: device-backend-control
-
 jobs:
   ci-checks:
     runs-on: ubuntu-24.04-arm
