@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.9.18-slim-bullseye
+FROM docker.io/library/python:3.11.2-slim-bookworm
 
 # Install OS dependencies
 
@@ -15,6 +15,8 @@ RUN useradd --create-home pi
 USER pi:pi
 RUN mkdir -p /home/pi/PlanktoScope/segmenter
 WORKDIR /home/pi/PlanktoScope/segmenter
+
+ENV MQTT_HOSTNAME=host.docker.internal
 
 # Install Python dependencies
 

@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -70,6 +70,7 @@
 # We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque
 import paho.mqtt.client as mqtt
 import json
+from os import getenv
 
 # Logger library compatible with multiprocessing
 from loguru import logger
@@ -84,7 +85,7 @@ class MQTT_Client:
     when creating this object
     """
 
-    def __init__(self, topic, server="host.docker.internal", port=1883, name="client"):
+    def __init__(self, topic, hostname="localhost", port=1883, name="client"):
         # Declare the global variables command and args
         self.command = ""
         self.args = ""
@@ -95,17 +96,17 @@ class MQTT_Client:
         self.client = mqtt.Client()
         # self.client.enable_logger(logger)
         self.topic = topic
-        self.server = server
+        self.hostname = hostname or getenv("MQTT_HOSTNAME", "localhost")
         self.port = port
         self.name = name
         self.connect()
 
     @logger.catch
     def connect(self):
-        logger.info(f"trying to connect to {self.server}:{self.port}")
+        logger.info(f"trying to connect to {self.hostname}:{self.port}")
         # TODO #104 add try: except ConnectionRefusedError: block here
         # This is a symptom that Mosquitto may have failed to start
-        self.client.connect(self.server, self.port, 60)
+        self.client.connect(self.hostname, self.port, 60)
         self.client.on_connect = self.on_connect
         self.client.on_subscribe = self.on_subscribe
         self.client.on_message = self.on_message
@@ -129,7 +130,7 @@ class MQTT_Client:
         ]
         # Print when connected
         logger.success(
-            f"{self.name} connected to {self.server}:{self.port}! - {reason[rc]}"
+            f"{self.name} connected to {self.hostname}:{self.port}! - {reason[rc]}"
         )
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
