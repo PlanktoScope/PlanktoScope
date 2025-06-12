@@ -11,17 +11,17 @@ This repository is also a good way to get involved. Please fill in an issue if y
 ## Assumptions
 
 1. **You're familiar with [git](https://git-scm.com/) and the [Merge Request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)(PR) workflow.**
-2. **You've read the PlanktoScope [documentation](../../index.md).
+2. \*\*You've read the PlanktoScope [documentation](../../index.md).
 3. **You know about the PlanktoScope [community on Slack](https://planktoscope.slack.com/). Please use this for help.**
 
 ## How to Contribute
 
 1. Make sure that the contribution you want to make is explained or detailed in a GitHub issue! Find an [existing issue](https://github.com/PlanktoScope/PlanktoScope/issues) or [open a new one](https://github.com/PlanktoScope/PlanktoScope/issues/new/choose).
-2. Once done, [fork the PlanktoScope repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) in your Github account. Ask a mastertainer if you want your issue to be checked before making a PR.
+2. Once done, [fork the PlanktoScope repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) in your Github account. Ask a maintainer if you want your issue to be checked before making a PR.
 3. [Create a new Git branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository).
-4. Review the [Development Workflow](#development-workflow) section that describes the steps to mastertain the repository.
+4. Review the [Development Workflow](#development-workflow) section that describes the steps to maintainer the repository.
 5. Make the changes on your branch.
-6. [Submit the branch as a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) pointing to the `master` branch of the master fabcity-os-core-chart repository. A mastertainer should comment and/or review your Pull Request within a few days. Although depending on the circumstances, it may take longer. We do not enforce a naming convention for the PRs, but **please use something descriptive of your changes**, having in mind that the title of your PR will be automatically added to the next [release changelog](https://github.com/PlanktoScope/PlanktoScope/releases).
+6. [Submit the branch as a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) pointing to the `main` branch of the main PlanktoScope repository. A maintainer should comment and/or review your Pull Request within a few days. Although depending on the circumstances, it may take longer. We do not enforce a naming convention for the PRs, but **please use something descriptive of your changes**, having in mind that the title of your PR will be automatically added to the next [release changelog](https://github.com/PlanktoScope/PlanktoScope/releases).
 
 ## Git Guidelines
 
@@ -47,8 +47,8 @@ Some notes on PRs:
 
 - [Convert your PR as a draft]() if your changes are a work in progress: no one will review it until you pass your PR as ready for review.<br>
   The draft PR can be very useful if you want to show that you are working on something and make your work visible.
-- The branch related to the PR must be **up-to-date with `master`** before merging. Fortunately, this project [integrates a bot]() to automatically enforce this requirement without the PR author having to do it manually.
-- All PRs must be reviewed and approved by at least one mastertainer.
+- The branch related to the PR must be **up-to-date with `main`** before merging. Fortunately, this project [integrates a bot]() to automatically enforce this requirement without the PR author having to do it manually.
+- All PRs must be reviewed and approved by at least one maintainer.
 - The PR title should be accurate and descriptive of the changes. The title of the PR will be indeed automatically added to the next [release changelogs]().
 
 ## Release Process (for internal team only)
@@ -64,8 +64,8 @@ _[Read more about this]()._
 
 ⚠️ Before doing anything, make sure you got through the guide about [Releasing an Integration]().
 
-⚠️ Every PR that is merged to `master` introducing changes to the PlanktoScope needs to modify the file [``](), by increasing the version of the chart accordingly.
+⚠️ Every PR that is merged to `main` introducing changes to the PlanktoScope needs to modify the file [``](), by increasing the version of the chart accordingly.
 
-Every PR that is merged to `master` triggers the automated release process, as specified at [``](). A GitHub Action will be triggered and publish a new release on the GitHub repository [releases](). This will enable users to start using the new version of the chart immediately after publishing.
+Every PR that is merged to `main` triggers the automated release process, as specified at [``](). A GitHub Action will be triggered and publish a new release on the GitHub repository [releases](). This will enable users to start using the new version of the chart immediately after publishing.
 
 Thank you again for reading this through, we can not wait to begin to work with you if you made your way through this contributing guide ❤️
