@@ -11,7 +11,7 @@ This repository is also a good way to get involved. Please fill in an issue if y
 ## Assumptions
 
 1. **You're familiar with [git](https://git-scm.com/) and the [Merge Request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)(PR) workflow.**
-2. \*\*You've read the PlanktoScope [documentation](../../index.md).
+2. **You've read the PlanktoScope [documentation](../../index.md).**
 3. **You know about the PlanktoScope [community on Slack](https://planktoscope.slack.com/). Please use this for help.**
 
 ## How to Contribute
