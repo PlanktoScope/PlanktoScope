@@ -31,10 +31,48 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.9.2"
+python = ">=3.11.2"
 paho-mqtt = "^1.6.1"
 numpy = "^1.22.4"
 pandas = "^2.1.4"
 loguru = "^0.5.3"
 opencv-python-headless = "^4.6.0.66"
-scikit-image = "^0.19.3"
+scikit-image = "^0.25.2"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.25.0"
+mypy = "^1.9.0"
+types-paho-mqtt = "^1.6.0.20240106"
+ruff = "^0.11.10"
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+warn_unused_configs = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+# We are gradually introducing type-checking as we rewrite each module; we have to rewrite some
+# modules before we can enable these flags:
+# disallow_untyped_calls = true
+# disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_reexport = true
+strict_equality = true
+extra_checks = true
+
+[tool.poe.tasks]
+fmt = "ruff format"
+lint-mypy = "mypy ."
+lint-ruff = "ruff check"
+lint = ["lint-ruff", "lint-mypy"]
+fmt-check = "ruff format --check"
+check = ["fmt-check", "lint"]
