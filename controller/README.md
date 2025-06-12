@@ -31,7 +31,7 @@ poetry install --with dev
 Start controller for development:
 
 ```sh
-sudo systemctl stop planktoscope-org.device-backend.controller.service
+sudo systemctl stop planktoscope-org.controller.service
 poetry run python -u main.py
 # make changes and restart
 ```

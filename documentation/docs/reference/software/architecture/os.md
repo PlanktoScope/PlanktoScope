@@ -142,7 +142,7 @@ PlanktoScope-specific hardware modules are abstracted by PlanktoScope-specific p
 
 - [`chronyd`](https://chrony-project.org/): for managing synchronization of the Raspberry Pi's system clock with the PlanktoScope's GPS receiver and with any time sources available over the Internet.
 
-- The [PlanktoScope hardware controller](https://github.com/PlanktoScope/device-backend/tree/main/control): for controlling PlanktoScope-specific hardware modules and abstracting them into high-level network APIs for other programs to interact with.
+- The [PlanktoScope hardware controller](https://github.com/PlanktoScope/PlanktoScope/tree/master/controller): for controlling PlanktoScope-specific hardware modules and abstracting them into high-level network APIs for other programs to interact with.
 
 ## User interface
 
