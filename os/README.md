@@ -1,4 +1,4 @@
-# setup
+# OS
 
 This directory contains a `setup.sh` script which you can run on an installation of the Raspberry Pi OS in order to setup the PlanktoScope OS.
 

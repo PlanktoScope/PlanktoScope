@@ -151,7 +151,7 @@ jobs:
 
             set -x
             ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
-            /run/os-setup/setup/ci-record-version.sh \
+            /run/os-setup/os/ci-record-version.sh \
               "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
               "${{ inputs.variant }}" "/run/os-setup"
             echo "installer-config.yml:"
@@ -276,7 +276,7 @@ jobs:
           run: |
             echo "Running setup scripts..."
             export DEBIAN_FRONTEND=noninteractive
-            /run/os-setup/setup/setup.sh ${{ inputs.variant }}
+            /run/os-setup/os/setup.sh ${{ inputs.variant }}
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal

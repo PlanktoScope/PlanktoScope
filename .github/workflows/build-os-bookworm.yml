@@ -9,12 +9,12 @@ on:
     tags:
       - 'software/v*'
     paths:
-      - 'setup/**'
+      - 'os/**'
       - '!CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
   pull_request:
     paths:
-      - 'setup/**'
+      - 'os/**'
       - '!CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
   merge_group:
