@@ -175,12 +175,12 @@ jobs:
       - name: Set up container image pre-caching
         id: setup-precaching
         run: |
-          forklift_setup_root="./setup/base-os/forklift"
+          forklift_setup_root="./os/base-os/forklift"
           "$forklift_setup_root/download-forklift.sh" "/usr/bin"
 
-          pallet="$(cat setup/base-os/forklift/forklift-pallet)"
+          pallet="$(cat os/base-os/forklift/forklift-pallet)"
           echo "pallet=$pallet" >> $GITHUB_OUTPUT
-          pallet_version="$(cat setup/base-os/forklift/forklift-pallet-version)"
+          pallet_version="$(cat os/base-os/forklift/forklift-pallet-version)"
           echo "pallet_version=$pallet_version" >> $GITHUB_OUTPUT
           echo "Pallet query: ${pallet}@${pallet_version}"
 
@@ -211,7 +211,7 @@ jobs:
             exit 0
           fi
           forklift plt ls-img > "$PRECACHE_PATH/images-list"
-          forklift_setup_root="./setup/base-os/forklift"
+          forklift_setup_root="./os/base-os/forklift"
 
           echo "Downloading temporary tools to pre-download container images..."
           tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
