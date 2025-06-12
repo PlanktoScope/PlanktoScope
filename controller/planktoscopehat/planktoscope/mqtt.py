@@ -53,6 +53,7 @@
 # We can use collections.deque https://docs.python.org/3/library/collections.html#collections.deque
 import paho.mqtt.client as mqtt
 import json
+from os import getenv
 
 # Logger library compatible with multiprocessing
 from loguru import logger
@@ -67,7 +68,7 @@ class MQTT_Client:
     when creating this object
     """
 
-    def __init__(self, topic, server="127.0.0.1", port=1883, name="client"):
+    def __init__(self, topic, hostname, port=1883, name="client"):
         # Declare the global variables command and args
         self.args = ""
         self.__new_message = False
@@ -77,17 +78,17 @@ class MQTT_Client:
         self.client = mqtt.Client()
         # self.client.enable_logger(logger)
         self.topic = topic
-        self.server = server
+        self.hostname = hostname or getenv("MQTT_HOSTNAME", "localhost")
         self.port = port
         self.name = name
         self.connect()
 
     @logger.catch
     def connect(self):
-        logger.info(f"trying to connect to {self.server}:{self.port}")
+        logger.info(f"trying to connect to {self.hostname}:{self.port}")
         # TODO #104 add try: except ConnectionRefusedError: block here
         # This is a symptom that Mosquitto may have failed to start
-        self.client.connect(self.server, self.port, 60)
+        self.client.connect(self.hostname, self.port, 60)
         self.client.on_connect = self.on_connect
         self.client.on_subscribe = self.on_subscribe
         self.client.on_message = self.on_message
@@ -110,7 +111,7 @@ class MQTT_Client:
             "5: Connection refused - not authorised",
         ]
         # Print when connected
-        logger.success(f"{self.name} connected to {self.server}:{self.port}! - {reason[rc]}")
+        logger.success(f"{self.name} connected to {self.hostname}:{self.port}! - {reason[rc]}")
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
 

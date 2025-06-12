@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Romain Bazile
-# 
+#
 # This file is part of the PlanktoScope software.
-# 
+#
 # PlanktoScope is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # PlanktoScope is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -72,9 +72,7 @@ def simple_threshold(img):
     logger.debug("Simple threshold calc")
     # img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    ret, mask = cv2.threshold(
-        img_gray, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE
-    )
+    ret, mask = cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_TRIANGLE)
 
     # logger.debug(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
     # logger.debug(time.monotonic() - start)

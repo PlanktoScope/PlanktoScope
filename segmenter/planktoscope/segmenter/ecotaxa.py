@@ -240,7 +240,7 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
         # sometimes the camera resolution is not exported as string
         if not isinstance(metadata["acq_camera_resolution"], str):
             metadata["acq_camera_resolution"] = (
-                f'{metadata["acq_camera_resolution"][0]}x{metadata["acq_camera_resolution"][1]}'
+                f"{metadata['acq_camera_resolution'][0]}x{metadata['acq_camera_resolution'][1]}"
             )
 
         # let's go!
@@ -277,14 +277,10 @@ def ecotaxa_export(archive_filepath, metadata, image_base_path, keep_files=False
         # add the tsv to the archive
         archive.writestr(
             tsv_filename,
-            io.BytesIO(
-                tsv_content.to_csv(sep="\t", encoding="utf-8", index=False).encode()
-            ).read(),
+            io.BytesIO(tsv_content.to_csv(sep="\t", encoding="utf-8", index=False).encode()).read(),
         )
         if keep_files:
             tsv_file = os.path.join(image_base_path, tsv_filename)
-            tsv_content.to_csv(
-                path_or_buf=tsv_file, sep="\t", encoding="utf-8", index=False
-            )
+            tsv_content.to_csv(path_or_buf=tsv_file, sep="\t", encoding="utf-8", index=False)
     logger.success("Ecotaxa archive is ready!")
     return 1
