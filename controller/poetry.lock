@@ -65,14 +65,14 @@ Adafruit-Blinka = "*"
 
 [[package]]
 name = "adafruit-circuitpython-motorkit"
-version = "1.6.14"
+version = "1.6.17"
 description = "CircuitPython helper library for DC & Stepper Motor FeatherWing, Shield, and Pi Hat kits."
 optional = false
 python-versions = "*"
 groups = ["hw"]
 files = [
-    {file = "adafruit-circuitpython-motorkit-1.6.14.tar.gz", hash = "sha256:9f55b52659d67429fbf4b53f683279f39b64df46d4294b81c02e1e0eb5cd4f85"},
-    {file = "adafruit_circuitpython_motorkit-1.6.14-py3-none-any.whl", hash = "sha256:4f35cf3bbe01c25ec89c605f89b0eb849d50f12a5092888754b0ef7e70fd7101"},
+    {file = "adafruit_circuitpython_motorkit-1.6.17-py3-none-any.whl", hash = "sha256:4d6f370e1affdcea4976dc7122c789b677ac328535980d09c291e2a8b209dc20"},
+    {file = "adafruit_circuitpython_motorkit-1.6.17.tar.gz", hash = "sha256:67afc1057a92c5435fd23214cbe46ca1ee94ee0a7b097365caf60efca0ff9dda"},
 ]
 
 [package.dependencies]
@@ -968,7 +968,7 @@ version = "78.1.1"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 optional = false
 python-versions = ">=3.9"
-groups = ["dev", "hw"]
+groups = ["hw"]
 files = [
     {file = "setuptools-78.1.1-py3-none-any.whl", hash = "sha256:c3a9c4211ff4c309edb8b8c4f1cbfa7ae324c4ba9f91ff254e3d305b9fd54561"},
     {file = "setuptools-78.1.1.tar.gz", hash = "sha256:fcc17fd9cd898242f6b4adfaca46137a9edef687f43e6f78469692a5e70d851d"},
@@ -1139,4 +1139,4 @@ dev = ["black (>=19.3b0) ; python_version >= \"3.6\"", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11.2"
-content-hash = "1ae8a05d0c249acb3ec30d481b299c229ee08fb5d3974f141a33282407987c70"
+content-hash = "ee45e582015fe4b8a04ebd499dc01dc8ba6ab15357bd171974471bd839fed685"
