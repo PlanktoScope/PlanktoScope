@@ -1,4 +1,4 @@
-name: Build Docker container image for the segmenter
+name: Build the segmenter
 
 on:
   push:
@@ -32,6 +32,31 @@ env:
   PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:
+  ci-checks:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry==2.1.2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'poetry'
+          cache-dependency-path: |
+            segmenter/poetry.lock
+
+      - name: Install build dependencies
+        working-directory: ./segmenter
+        run: |
+          poetry install --with dev
+
+      - name: Run checks
+        working-directory: ./segmenter
+        run: poetry run poe check
+
   build-container-image:
     permissions:
       contents: read
