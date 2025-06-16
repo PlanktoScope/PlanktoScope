@@ -6,20 +6,35 @@
 version: 2
 updates:
   # Maintain dependencies for the documentation system
-  - package-ecosystem: "pip"
-    directory: "/documentation"
+  - package-ecosystem: 'pip'
+    directory: '/documentation'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
+
+  - package-ecosystem: 'pip'
+    directory: '/controller'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'pip'
+    directory: '/segmenter'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'npm'
+    directory: '/node-red'
+    schedule:
+      interval: 'monthly'
 
   # Maintain dependencies for the Docker container to serve the documentation
-  - package-ecosystem: "docker"
+  - package-ecosystem: 'docker'
     # Look for a Dockerfile in the `documentation` diectory
-    directory: "/documentation"
+    directory: '/documentation'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
 
   # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
