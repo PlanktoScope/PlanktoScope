@@ -1,5 +1,5 @@
 [Unit]
-Description=Run the PlanktoScope hardware controller
+Description=Run the PlanktoScope segmenter
 # Wait for Forklift to bring up mosquitto, in case the controller needs to start after mosquitto
 Wants=forklift-apply.service
 After=forklift-apply.service
