@@ -1,6 +1,6 @@
 [Unit]
 Description=Run the PlanktoScope segmenter
-# Wait for Forklift to bring up mosquitto, in case the controller needs to start after mosquitto
+# Wait for Forklift to bring up mosquitto, in case the segmenter needs to start after mosquitto
 Wants=forklift-apply.service
 After=forklift-apply.service
 # Start after Node-RED so that Node-RED can catch all MQTT messages emitted at startup
@@ -9,7 +9,7 @@ After=nodered.service
 [Service]
 Type=simple
 Environment=HOME=/home/pi
-WorkingDirectory=/home/pi/PlanktoScope/controller
+WorkingDirectory=/home/pi/PlanktoScope/segmenter
 ExecStart=/home/pi/.local/bin/poetry run python -u main.py
 User=pi
 Group=pi
