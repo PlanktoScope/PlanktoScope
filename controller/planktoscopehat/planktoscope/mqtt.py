@@ -68,7 +68,9 @@ class MQTT_Client:
     when creating this object
     """
 
-    def __init__(self, topic, hostname, port=1883, name="client"):
+    def __init__(
+        self, topic, hostname=getenv("MQTT_HOSTNAME", "localhost"), port=1883, name="client"
+    ):
         # Declare the global variables command and args
         self.args = ""
         self.__new_message = False
@@ -78,7 +80,7 @@ class MQTT_Client:
         self.client = mqtt.Client()
         # self.client.enable_logger(logger)
         self.topic = topic
-        self.hostname = hostname or getenv("MQTT_HOSTNAME", "localhost")
+        self.hostname = hostname
         self.port = port
         self.name = name
         self.connect()

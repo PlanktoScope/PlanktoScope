@@ -25,7 +25,10 @@ poetry install --with dev
 Start controller for development:
 
 ```sh
-docker stop $(docker ps -q --filter ancestor=segmenter )
+docker ps
+# copy the container id of the segmenter
+docker stop <container-id>
+
 poetry run python -u main.py
 # make changes and restart
 ```
