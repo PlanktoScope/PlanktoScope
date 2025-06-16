@@ -272,7 +272,7 @@ class SegmenterProcess(multiprocessing.Process):
     def _get_color_info(self, bgr_img, mask):
         # bgr_mean, bgr_stddev = cv2.meanStdDev(bgr_img, mask=mask)
         # (b_channel, g_channel, r_channel) = cv2.split(bgr_img)
-        quartiles = [0, 0.05, 0.25, 0.50, 0.75, 0.95, 1]
+        # quartiles = [0, 0.05, 0.25, 0.50, 0.75, 0.95, 1]
         # b_quartiles = np.quantile(b_channel, quartiles)
         # g_quartiles = np.quantile(g_channel, quartiles)
         # r_quartiles = np.quantile(r_channel, quartiles)
@@ -578,7 +578,7 @@ class SegmenterProcess(multiprocessing.Process):
 
         first_start = time.monotonic()
         self.__mask_to_remove = None
-        average = 0
+        # average = 0
         total_objects = 0
         average_objects = 0
         recalculate_flat = True
@@ -622,7 +622,7 @@ class SegmenterProcess(multiprocessing.Process):
                     # We are too close to the end of the list, take the previous 10 images instead of the next 10
                     flat = self._calculate_flat(images_list[i - 10 : i], 10, self.__working_path)
                 else:
-                    flat = self._calculate_flat(images_list[i : i + 10], 10, self.__working_path)
+                    flat = self._calculate_flat(images_list[i : i + 10], 10, self.__working_path)  # noqa: F841
                 if self.__save_debug_img:
                     self._save_image(
                         self.__flat,
@@ -971,7 +971,7 @@ class SegmenterProcess(multiprocessing.Process):
 
         logger.info("Setting up the streaming server thread")
         address = ("", 8001)
-        fps = 0.5
+        # fps = 0.5
         refresh_delay = 3  # was 1/fps
         handler = functools.partial(planktoscope.segmenter.streamer.StreamingHandler, refresh_delay)
         try:

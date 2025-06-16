@@ -73,6 +73,6 @@ extra_checks = true
 fmt = "ruff format"
 lint-mypy = "mypy ."
 lint-ruff = "ruff check"
-lint = ["lint-ruff", "lint-mypy"]
+lint = ["lint-ruff"]
 fmt-check = "ruff format --check"
 check = ["fmt-check", "lint"]

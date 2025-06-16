@@ -21,7 +21,6 @@ import time
 
 import socketserver
 import http.server
-import threading
 import multiprocessing
 
 # assert_new_image = threading.Condition()
@@ -59,7 +58,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                         logger.debug("Got a new object in the pipe!")
                         try:
                             file = receiver.recv()
-                        except EOFError as e:
+                        except EOFError:
                             logger.error("Pipe has been closed, nothing is left here, let's die")
                             break
                         frame = file.getvalue()
@@ -74,7 +73,7 @@ class StreamingHandler(http.server.BaseHTTPRequestHandler):
                     else:
                         time.sleep(0.2)
 
-            except BrokenPipeError as e:
+            except BrokenPipeError:
                 logger.info(f"Removed streaming client {self.client_address}")
         else:
             self.send_error(404)
