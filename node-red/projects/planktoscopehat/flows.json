@@ -3816,88 +3816,6 @@
         ]
     },
     {
-        "id": "f0775525.cf806",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "light_control",
-        "group": "4248342d.e55fac",
-        "order": 1,
-        "width": 6,
-        "height": 1,
-        "label": "Light  ",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "never",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "Off",
-                "value": "off",
-                "valueType": "str",
-                "color": "#009933"
-            },
-            {
-                "label": "On",
-                "value": "on",
-                "valueType": "str",
-                "color": "#999999"
-            }
-        ],
-        "topic": "",
-        "x": 350,
-        "y": 160,
-        "wires": [
-            [
-                "99ae4886.8d43c"
-            ]
-        ]
-    },
-    {
-        "id": "99ae4886.8d43c",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "Prepare message",
-        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 530,
-        "y": 160,
-        "wires": [
-            [
-                "d31fcead.7e2ef"
-            ]
-        ]
-    },
-    {
-        "id": "d31fcead.7e2ef",
-        "type": "mqtt out",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 690,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "8ea9dc9a.c7d87",
         "type": "function",
         "z": "bccd1f23.87219",
@@ -4706,38 +4624,18 @@
         ]
     },
     {
-        "id": "ac2b9d1604a13a35",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "Set Led Status",
-        "func": "msg.payload = msg.payload.status.toLowerCase();\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 160,
-        "wires": [
-            [
-                "f0775525.cf806"
-            ]
-        ]
-    },
-    {
         "id": "310ee70930b17fae",
         "type": "mqtt in",
         "z": "bccd1f23.87219",
         "name": "",
-        "topic": "status/#",
+        "topic": "status/light",
         "qos": "0",
         "datatype": "json",
         "broker": "8dc3722c.06efa8",
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 1470,
+        "x": 1480,
         "y": 180,
         "wires": [
             [
@@ -4753,7 +4651,7 @@
         "property": "payload",
         "action": "obj",
         "pretty": true,
-        "x": 1610,
+        "x": 1630,
         "y": 180,
         "wires": [
             [
@@ -4810,7 +4708,7 @@
         "type": "function",
         "z": "bccd1f23.87219",
         "name": "Prepare message",
-        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\": msg.payload}\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
