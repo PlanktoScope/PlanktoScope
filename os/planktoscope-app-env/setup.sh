@@ -53,9 +53,9 @@ else
   panic "$description"
 fi
 
-description="set up Python hardware controller"
+description="set up Python backends"
 report_starting "$description"
-if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
+if "$build_scripts_root/python-backend/install.sh" "$hardware_type"; then
   report_finished "$description"
 else
   panic "$description"

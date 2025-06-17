@@ -29,7 +29,7 @@ pipx install poetry==2.1.2
 pipx ensurepath
 PATH="$PATH:/home/pi/.local/bin"
 
-# Set up the hardware controllers
+# Set up the hardware controller
 sudo -E apt-get install -y --no-install-recommends -o Dpkg::Progress-Fancy=0 \
   i2c-tools libopenjp2-7 python3-picamera2
 poetry --directory "$HOME/PlanktoScope/controller" install \
@@ -42,3 +42,10 @@ sudo systemctl enable "planktoscope-org.controller.service"
 mkdir -p "$HOME/PlanktoScope"
 cp "$HOME/PlanktoScope/default-configs/$default_config.hardware.json" \
   "$HOME/PlanktoScope/hardware.json"
+
+# Set up the segmenter
+poetry --directory "$HOME/PlanktoScope/segmenter" install \
+  --compile
+file="/etc/systemd/system/planktoscope-org.segmenter.service"
+sudo cp "$config_files_root$file" "$file"
+sudo systemctl enable "planktoscope-org.segmenter.service"
