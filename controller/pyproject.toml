@@ -33,10 +33,10 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.11.2"
+python = ">=3.11.2,<4.0"
 paho-mqtt = "^1.6.1"
-loguru = "^0.5.3"
 readerwriterlock = "^1.0.9"
+loguru = "^0.7.3"
 
 [tool.poetry.group.hw.dependencies]
 rpi-gpio = "^0.7.0"
