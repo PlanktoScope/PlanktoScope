@@ -1550,6 +1550,11 @@
         "options": [
             {
                 "label": "",
+                "value": "PlanktoScope v2.1",
+                "type": "str"
+            },
+            {
+                "label": "",
                 "value": "PlanktoScope v2.3",
                 "type": "str"
             },
@@ -7183,7 +7188,9 @@
         "x": 780,
         "y": 420,
         "wires": [
-            [],
+            [
+                "8cad7139d2a089d9"
+            ],
             [],
             []
         ]
@@ -7295,6 +7302,26 @@
         "x": 750,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "8cad7139d2a089d9",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "sudo systemctl restart nodered.service",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Restart Node Red",
+        "x": 1090,
+        "y": 400,
+        "wires": [
+            [],
+            [],
+            []
+        ]
     },
     {
         "id": "3910d662.fa1f7a",
