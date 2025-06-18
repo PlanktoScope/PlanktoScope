@@ -157,6 +157,29 @@
         "color": "#DDAA99"
     },
     {
+        "id": "37fd90bb2f83eddc",
+        "type": "group",
+        "z": "1eaf21c8.f7a21e",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "427c312.fc5e65",
+            "c00c6732b9f36adb",
+            "e1d81baf6ae9ac67"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 392,
+        "h": 142
+    },
+    {
         "id": "3a6bb13f.c9703e",
         "type": "ui_tab",
         "name": "Home",
@@ -8233,8 +8256,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1180,
-        "y": 380,
+        "x": 1160,
+        "y": 520,
         "wires": [
             [
                 "e41870d7.300eb8"
@@ -8247,8 +8270,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 1220,
-        "y": 420,
+        "x": 1200,
+        "y": 560,
         "wires": []
     },
     {
@@ -8270,8 +8293,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
-        "y": 400,
+        "x": 650,
+        "y": 540,
         "wires": [
             [
                 "ee58b91c.396108"
@@ -8296,8 +8319,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 940,
-        "y": 400,
+        "x": 920,
+        "y": 540,
         "wires": [
             [
                 "2068e7f.f4efb18",
@@ -8371,8 +8394,8 @@
         "topic": "acq_instrument",
         "topicType": "str",
         "className": "",
-        "x": 670,
-        "y": 160,
+        "x": 650,
+        "y": 300,
         "wires": [
             [
                 "08d177136bd18281",
@@ -8386,8 +8409,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 510,
-        "y": 300,
+        "x": 490,
+        "y": 440,
         "wires": [
             []
         ]
@@ -8403,8 +8426,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 300,
+        "x": 330,
+        "y": 440,
         "wires": [
             [
                 "1cfadc66.3cde8c"
@@ -8415,10 +8438,11 @@
         "id": "427c312.fc5e65",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "1eaf21c8.f7a21e",
+        "g": "37fd90bb2f83eddc",
         "name": "",
         "env": [],
-        "x": 170,
-        "y": 140,
+        "x": 110,
+        "y": 60,
         "wires": [
             [
                 "c00c6732b9f36adb"
@@ -8444,8 +8468,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
-        "y": 480,
+        "x": 650,
+        "y": 620,
         "wires": [
             [
                 "244ca5dd62df2bcd"
@@ -8470,8 +8494,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 940,
-        "y": 480,
+        "x": 920,
+        "y": 620,
         "wires": [
             [
                 "8e3b3d3c.955148",
@@ -8490,8 +8514,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 480,
+        "x": 1200,
+        "y": 620,
         "wires": [
             [
                 "5d5ad36d2c50dcc2"
@@ -8552,8 +8576,8 @@
         "payload": "",
         "topic": "acq_fnumber_objective",
         "topicType": "str",
-        "x": 930,
-        "y": 520,
+        "x": 910,
+        "y": 660,
         "wires": [
             [
                 "a6983d3232b570a7",
@@ -8580,8 +8604,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1260,
-        "y": 520,
+        "x": 1240,
+        "y": 660,
         "wires": [
             [
                 "5d5ad36d2c50dcc2"
@@ -8614,8 +8638,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
-        "y": 520,
+        "x": 660,
+        "y": 660,
         "wires": [
             [
                 "6146ba22df928516"
@@ -8637,8 +8661,8 @@
         "className": "",
         "topic": "Resetting hardware configuration to version-specific default",
         "name": "",
-        "x": 370,
-        "y": 260,
+        "x": 350,
+        "y": 400,
         "wires": []
     },
     {
@@ -8660,8 +8684,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 410,
-        "y": 220,
+        "x": 390,
+        "y": 360,
         "wires": [
             [
                 "e3ba6ac89221b17b"
@@ -8680,8 +8704,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Copy default hardware config",
-        "x": 700,
-        "y": 220,
+        "x": 680,
+        "y": 360,
         "wires": [
             [
                 "97e582080deae888"
@@ -8707,8 +8731,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 930,
-        "y": 220,
+        "x": 910,
+        "y": 360,
         "wires": [
             [
                 "3973b999ee7b3b1d"
@@ -8727,8 +8751,8 @@
             "5984b086eddc9311",
             "a2f2a4c7cbae4446"
         ],
-        "x": 1095,
-        "y": 220,
+        "x": 1075,
+        "y": 360,
         "wires": []
     },
     {
@@ -8736,8 +8760,8 @@
         "type": "subflow:b7861ce703215a01",
         "z": "1eaf21c8.f7a21e",
         "name": "",
-        "x": 380,
-        "y": 440,
+        "x": 360,
+        "y": 580,
         "wires": [
             [
                 "54ba7f16.709ad8",
@@ -8769,6 +8793,7 @@
         "id": "c00c6732b9f36adb",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
+        "g": "37fd90bb2f83eddc",
         "name": "Get acq_instrument",
         "rules": [
             {
@@ -8791,8 +8816,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
-        "y": 140,
+        "x": 310,
+        "y": 60,
         "wires": [
             [
                 "a7e5c7f4.644678",
@@ -8808,8 +8833,8 @@
         "links": [
             "3973b999ee7b3b1d"
         ],
-        "x": 205,
-        "y": 420,
+        "x": 185,
+        "y": 560,
         "wires": [
             [
                 "3bcaf757cbc77fbe"
@@ -8825,8 +8850,8 @@
             "08d177136bd18281",
             "9f34e4a2f33c4022"
         ],
-        "x": 205,
-        "y": 260,
+        "x": 185,
+        "y": 400,
         "wires": [
             [
                 "68703ef63da2f081",
@@ -8845,8 +8870,8 @@
         "links": [
             "cb9009e8a49e93cc"
         ],
-        "x": 875,
-        "y": 160,
+        "x": 855,
+        "y": 300,
         "wires": []
     },
     {
@@ -8861,5 +8886,48 @@
         "x": 875,
         "y": 120,
         "wires": []
+    },
+    {
+        "id": "e1d81baf6ae9ac67",
+        "type": "catch",
+        "z": "1eaf21c8.f7a21e",
+        "g": "37fd90bb2f83eddc",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "d88e0266c746ea70"
+            ]
+        ]
+    },
+    {
+        "id": "d88e0266c746ea70",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Set acq_instrument to null",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "null",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "56dd3f82c45717f0"
+            ]
+        ]
     }
 ]
