@@ -27,8 +27,3 @@ poetry --directory "$HOME/PlanktoScope/controller" install \
 file="/etc/systemd/system/planktoscope-org.controller.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable "planktoscope-org.controller.service"
-
-# Select the enabled hardware controller
-mkdir -p "$HOME/PlanktoScope"
-cp "$HOME/PlanktoScope/default-configs/$default_config.hardware.json" \
-  "$HOME/PlanktoScope/hardware.json"
