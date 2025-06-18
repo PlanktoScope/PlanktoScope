@@ -9,8 +9,6 @@
 
 build_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
-# Get command-line args
-
 # Set up pretty error printing
 
 red_fg=31
@@ -59,14 +57,12 @@ else
   panic "$description"
 fi
 
-if [ "$hardware_type" = "adafruithat" ]; then
-  description="set up GPS and clock driver"
-  report_starting "$description"
-  if "$build_scripts_root/gps/install.sh"; then
-    report_finished "$description"
-  else
-    panic "$description"
-  fi
+description="set up GPS and clock driver"
+report_starting "$description"
+if "$build_scripts_root/gps/install.sh"; then
+  report_finished "$description"
+else
+  panic "$description"
 fi
 
 description="enable CPU overclocking"
