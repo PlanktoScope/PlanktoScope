@@ -1,6 +1,5 @@
 # Tips and tricks
 
-
 This page provides useful snippets and how-tos while developing software for the PlanktoScope.
 
 !!! warning
@@ -10,18 +9,17 @@ This page provides useful snippets and how-tos while developing software for the
 - [Development OS](#development-os)
 - [Development Environment](#development-environment)
 - [Connect to router](#connect-to-router)
-- [Disable splash screen](#disable-splash-screen)
 - [Backup and Restore SD Card](#backup-and-restore-sd-card)
 - [Documentation quick setup](#documentation-quick-setup)
 - [Test dataset for segmenter](#test-dataset-for-segmenter)
 
 ## Development OS
 
-You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%3Amaster)
+You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%main)
 
 It is built upon [Raspberry Pi OS Lite 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
 
-1. Choose the branch (e.g. `master`)
+1. Choose the branch (e.g. `main`)
 2. Click on the most recent action in the table
 3. Download one of the Artifact depending on your PlanktoScope hardware
 4. Run `unzip filename.zip` to extract files
@@ -46,19 +44,6 @@ To setup the recommended development environment, run the following commands.
 Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pkscope-sponge-bob-123`
 
 <details>
-    <summary>On the PlanktoScope</summary>
-
-```sh
-cd ~/PlanktoScope
-# Enable Developer Mode
-./software/distro/setup/planktoscope-app-env/PlanktoScope/enable-developer-mode
-# Configure git
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-```
-</details>
-
-<details>
     <summary>On your computer</summary>
 
 ```sh
@@ -66,6 +51,8 @@ git config --global user.name "Your Name"
 ssh-keygen -t ed25519 -C "pi@$planktoscope" -f ~/.ssh/$planktoscope
 # Make the SSH key accepted by the PlanktoScope
 ssh-copy-id -i ~/.ssh/$planktoscope.pub pi@$planktoscope
+# Add your keys to your SSH agent
+ssh-add -k
 ```
 
 ```
@@ -74,30 +61,34 @@ Host $planktoscope
   # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding
   ForwardAgent yes
   User pi
-  IdentityFile ~/.ssh/planktoscope
+  IdentityFile ~/.ssh/$planktoscope
 ```
 
 </details>
 
----
+You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`).
 
-You can now SSH into your PlanktoScope without username / password (using `ssh $planktoscope`) and use `~/PlanktoScope` as a regular git repository.
+<details>
+    <summary>On the PlanktoScope</summary>
 
 ```sh
-ssh $planktoscope
-cd PlanktoScope
-git status
-git checkout master
+cd ~/PlanktoScope
+
+# Configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+# To contribute, change the remote to PlanktoScope/PlanktoScope or your fork
+git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
+
+git fetch origin
+git checkout main
 ```
+
+</details>
 
 We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh).
-Use `$planktoscope` as the host to connect to and open the "PlanktoScope" directory.
-
-If you make changes to the backend, you can restart the backend and test your changes with
-
-```sh
-sudo systemctl restart planktoscope-org.device-backend.controller-planktoscopehat.service 
-```
+Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
 
@@ -105,17 +96,24 @@ The default behavior of the PlanktoScope is to act as a router to connect your c
 
 If you have a LAN it may be more convenient to connect the PlanktoScope to it and act as a simple client.
 
+<details>
+    <summary>Ethernet</summary>
+
 ```sh
 nmcli connection up eth0-default
 ```
 
+</details>
+
 <details>
-    <summary>Revert changes</summary>
+    <summary>WiFi</summary>
 
 ```sh
-# Ethernet
-nmcli connection down eth0-default
+nmcli connection down wlan0-hotspot
+nmcli device wifi list
+nmcli device wifi connect "<SSID>" --ask
 ```
+
 </details>
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
@@ -126,14 +124,23 @@ And access the UI with http://pkscope-example-name-0000/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
-See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/)
+See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/).
+
+## Offline access
+
+When network is not available you have several options for debugging
+
+- Plug-in a keyboard and display (needs micro HDMI adapter)
+- [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
+- Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
+
+The NanoKVM USB solution works for all setups.
 
 ## Backup and Restore SD Card
 
 You will need to plug the SD card into your computer.
 
 `/dev/device` refers to the path of the SD card device/disk. You will need to adjust it. Use `diskutil list` on macOS and `fdisk --list` on Linux.
-
 
 ```sh
 # backup whole SD card onto an image file on your computer
@@ -147,12 +154,20 @@ xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress conv=fdatasyn
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
 
+## Opening a port on the firewall
+
+https://firewalld.org/documentation/howto/open-a-port-or-service.html
+
+## Working with GPIOs on the CLI
+
+https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
+
 ## Documentation quick setup
 
 This is a quick setup guide. See also
 
-* [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
-* [Writing Documentation](./documentation.md)
+- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/main/documentation/README.md)
+- [Writing Documentation](./documentation.md)
 
 Install dependencies:
 
@@ -162,10 +177,12 @@ Install dependencies:
 Start by [installing WSL (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command)
 
 Because of a small incompatibilty between Windows and Linux; we recommend cloning the repo "in WSL" but if you prefer keeping your git clone "in Windows", here are other options:
-* [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
-* [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
+
+- [Git line endings](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git#git-line-endings)
+- [Visual Studio Code WSL extension](https://code.visualstudio.com/docs/remote/wsl)
 
 Then follow the Ubuntu instructions below.
+
 </details>
 
 <details>
@@ -175,8 +192,9 @@ Then follow the Ubuntu instructions below.
 sudo apt update
 sudo apt install python3-poetry
 cd documentation
-poetry install --no-root
+poetry install
 ```
+
 </details>
 
 <details>
@@ -185,8 +203,9 @@ poetry install --no-root
 ```shell
 sudo dnf install python3-poetry
 cd documentation
-poetry install --no-root
+poetry install
 ```
+
 </details>
 
 Run live previewer:

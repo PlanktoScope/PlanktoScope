@@ -5,21 +5,77 @@
 
 version: 2
 updates:
-  # Maintain dependencies for the documentation system
-  - package-ecosystem: "pip"
-    directory: "/documentation"
+  # documentation
+  - package-ecosystem: 'pip'
+    directory: '/documentation'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
+    groups:
+      documentation:
+        patterns:
+          - '*'
 
-  # Maintain dependencies for the Docker container to serve the documentation
-  - package-ecosystem: "docker"
-    # Look for a Dockerfile in the `documentation` diectory
-    directory: "/documentation"
+  - package-ecosystem: 'docker'
+    directory: '/documentation'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
+    groups:
+      documentation:
+        patterns:
+          - '*'
 
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  # segmenter
+  - package-ecosystem: 'pip'
+    directory: '/segmenter'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
+    groups:
+      segmenter:
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'docker'
+    directory: '/segmenter'
+    schedule:
+      interval: 'monthly'
+    groups:
+      segmenter:
+        patterns:
+          - '*'
+
+  # controller
+  - package-ecosystem: 'pip'
+    directory: '/controller'
+    schedule:
+      interval: 'monthly'
+    groups:
+      controller:
+        patterns:
+          - '*'
+
+  # github actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+    groups:
+      github-actions:
+        patterns:
+          - '*'
+
+  # node-red
+  - package-ecosystem: 'npm'
+    directory: '/node-red/nodes'
+    schedule:
+      interval: 'monthly'
+    groups:
+      node-red:
+        patterns:
+          - '*'
+
+  # Disabled, node-red has a strange dependency resolution between userDir and projects
+  # - package-ecosystem: 'npm'
+  #   directory: '/node-red'
+  #   schedule:
+  #     interval: 'monthly'
+  #   groups: node-red

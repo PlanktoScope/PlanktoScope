@@ -8,6 +8,7 @@ Specs for v2025.0.0 are the same as in v2024.0.0, except for the following secti
 
 - Base operating system: the distro has changed from Raspberry Pi OS 11 (bullseye) to Raspberry Pi OS 12 (bookworm).
 - Supported optional addons: additional support for up to one USB Wi-Fi adapter (with a compatible Wi-Fi chipset).
+- Forwards-incompatible: now able to run on the Raspberry Pi 5 computer.
 
 ### Functionalities
 
@@ -36,11 +37,12 @@ Minimum for image acquisition (but not sufficient for on-board image processing)
 
 - PlanktoScope: hardware v2.1 with Raspberry Pi 4 Model B computer
 - Memory: 1 GB RAM
-- Storage: 8 GB capacity
+- Storage: 16 GB capacity
 
 Minimum for full functionality, including on-board image processing:
 
 - Memory: 4 GB RAM
+- Storage: 16 GB capacity
 
 Recommended:
 
@@ -49,7 +51,6 @@ Recommended:
 
 Forwards-incompatibilities:
 
-- Unable to run on the Raspberry Pi 5 computer.
 - Incompatible with the upcoming PlanktoScope hardware v3.
 
 Backwards-incompatibilities:
@@ -109,11 +110,12 @@ Minimum for image acquisition (but not sufficient for on-board image processing)
 
 - PlanktoScope: hardware v2.1 with Raspberry Pi 4 Model B computer
 - Memory: 1 GB RAM
-- Storage: 8 GB capacity
+- Storage: 16 GB capacity
 
 Minimum for full functionality, including on-board image processing:
 
 - Memory: 4 GB RAM
+- Storage: 16 GB capacity
 
 Recommended:
 
@@ -179,6 +181,7 @@ Minimum for image acquisition (but not sufficient for on-board image processing)
 Minimum for full functionality, including on-board image processing:
 
 - Memory: 4 GB RAM
+- Storage: 16 GB capacity
 
 Recommended:
 
@@ -242,6 +245,7 @@ Minimum for full functionality, including on-board image processing:
 
 - PlanktoScope: hardware v2.1 with Raspberry Pi 4 Model B computer
 - Memory: 4 GB RAM
+- Storage: 16 GB capacity
 
 Recommended for full functionality:
 

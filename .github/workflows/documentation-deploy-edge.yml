@@ -3,11 +3,11 @@ name: deploy-documentation/edge
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
     paths:
       - 'documentation/**'
       - 'hardware/**'
-      - 'software/CHANGELOG.md'
+      - 'CHANGELOG.md'
       - '.github/workflows/documentation-deploy-edge.yml'
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
 # queued. But do not cancel in-progress runs - we want these deploymeents to complete.
 concurrency:
-  group: "docs-edge-deploy"
+  group: 'docs-edge-deploy'
   cancel-in-progress: false
 
 defaults:
@@ -55,7 +55,7 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt install libjpeg-dev
-          poetry -C ./documentation/ install --with imaging --no-root
+          poetry -C ./documentation/ install --with imaging
 
       - name: Set release channel
         working-directory: documentation

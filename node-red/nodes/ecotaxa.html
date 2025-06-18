@@ -1,0 +1,70 @@
+<script type="text/javascript">
+  RED.nodes.registerType("ecotaxa", {
+    category: "function",
+    color: "#a6bbcf",
+    defaults: {
+      name: { value: "" },
+      api_url: { value: "https://ecotaxa.obs-vlfr.fr/api/" },
+      // api_url: { value: "http://192.168.1.128:8088/api/" },
+      project_id: { value: "30" },
+      // file_path: {
+      //   value: "/home/pi/data/export/ecotaxa/ecotaxa_Project's_name_1_1.zip",
+      // },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "planktoscope.png",
+    label: function () {
+      return this.name || "Import segmentation to Ecotaxa project"
+    },
+    credentials: {
+      username: { type: "text" },
+      password: { type: "password" },
+      // token: { type: "password" },
+    },
+  })
+</script>
+
+<script type="text/html" data-template-name="ecotaxa">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-api_url"><i class="fa fa-globe"></i> API URL</label>
+    <input type="url" id="node-input-api_url" required placeholder="" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-username"><i class="fa fa-user"></i> Username</label>
+    <input type="text" id="node-input-username" required />
+  </div>
+  <div class="form-row">
+    <label for="node-input-password"><i class="fa fa-lock"></i> Password</label>
+    <input type="password" id="node-input-password" required />
+  </div>
+  <!-- <div class="form-row">
+    <label for="node-input-token"><i class="fa fa-tag"></i> Token</label>
+    <input type="password" id="node-input-token" required placeholder="" />
+  </div> -->
+  <div class="form-row">
+    <label for="node-input-project_id"
+      ><i class="fa fa-folder"></i> Project ID</label
+    >
+    <input type="text" id="node-input-project_id" required placeholder="" />
+  </div>
+  <!-- <div class="form-row">
+    <label for="node-input-file_path"
+      ><i class="fa fa-file"></i> File Path</label
+    >
+    <input
+      type="text"
+      id="node-input-file_path"
+      required
+      placeholder="/home/pi/data/export/ecotaxa/project.zip"
+    />
+  </div> -->
+</script>
+
+<script type="text/html" data-help-name="ecotaxa">
+  <p>A node that imports a local zip file into an Exotaca project</p>
+</script>

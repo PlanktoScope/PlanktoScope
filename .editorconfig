@@ -8,6 +8,23 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.sh]
+indent_style = space
+indent_size = 2
+
 # Tab indentation (no size specified)
 [Makefile]
 indent_style = tab
+
+# Formatting managed by Node-RED
+[flows.json]
+[node-red/settings.js]
+[node-red/*.config.*.json]
+indent_style = unset
+indent_size = unset
+end_of_line = unset
+insert_final_newline = unset

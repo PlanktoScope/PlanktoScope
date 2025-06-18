@@ -3,7 +3,7 @@ name: build-documentation
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
       - 'documentation/beta'
       - 'documentation/stable'
       - 'software/beta'
@@ -25,7 +25,7 @@ on:
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
   IMAGE_NAME: 'project-docs'
-  MAIN_BRANCH: 'master' # pushing to the main branch will update the "edge" tag on the image
+  MAIN_BRANCH: 'main' # pushing to the main branch will update the "edge" tag on the image
   BETA_BRANCH: 'documentation/beta' # pushing to this branch will update the "beta" tag on the image
   STABLE_BRANCH: 'documentation/stable' # pushing to this branch will update the "stable" tag on the image
   TAG_PREFIX: 'documentation/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
@@ -60,7 +60,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          poetry -C ./documentation/ install --no-root
+          poetry -C ./documentation/ install
 
       - name: Make documentation ${{ matrix.variant }}
         if: matrix.variant != 'default'

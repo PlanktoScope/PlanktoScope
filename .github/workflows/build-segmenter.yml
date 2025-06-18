@@ -1,21 +1,20 @@
-name: Build Docker container image for the segmenter
+name: Build the segmenter
 
 on:
   push:
     branches:
-      - 'master'
       - 'main'
       - 'software/beta'
       - 'software/stable'
     tags:
-      - 'v*'
+      - 'segmenter/v*'
     paths:
-      - 'device-backend/processing/segmenter/**'
-      - '.github/workflows/processing-segmenter-*.yml'
+      - 'segmenter/**'
+      - '.github/workflows/build-segmenter.yml'
   pull_request:
     paths:
-      - 'device-backend/processing/segmenter/**'
-      - '.github/workflows/processing-segmenter-*.yml'
+      - 'segmenter/**'
+      - '.github/workflows/build-segmenter.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -25,14 +24,39 @@ on:
 
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  IMAGE_NAME: 'device-backend-processing-segmenter'
+  IMAGE_NAME: 'segmenter'
   MAIN_BRANCH: 'main' # pushing to this branch will update the "edge" tag on the image
-  BETA_BRANCH: 'beta' # pushing to this branch will update the "beta" tag on the image
-  STABLE_BRANCH: 'stable' # pushing to this branch will update the "stable" tag on the image
-  TAG_PREFIX: 'v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
+  BETA_BRANCH: 'software/beta' # pushing to this branch will update the "beta" tag on the image
+  STABLE_BRANCH: 'software/stable' # pushing to this branch will update the "stable" tag on the image
+  TAG_PREFIX: 'segmenter/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
   PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:
+  ci-checks:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry==2.1.2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'poetry'
+          cache-dependency-path: |
+            segmenter/poetry.lock
+
+      - name: Install build dependencies
+        working-directory: ./segmenter
+        run: |
+          poetry install --with dev
+
+      - name: Run checks
+        working-directory: ./segmenter
+        run: poetry run poe check
+
   build-container-image:
     permissions:
       contents: read
@@ -81,12 +105,12 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: ./device-backend/processing/segmenter
+          context: ./segmenter
           pull: true
           platforms: ${{ matrix.docker-platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=processing-segmenter-build-${{ matrix.docker-platform }}
-          cache-to: type=gha,mode=max,scope=processing-segmenter-build-${{ matrix.docker-platform }}
+          cache-from: type=gha,scope=segmenter-build-${{ matrix.docker-platform }}
+          cache-to: type=gha,mode=max,scope=segmenter-build-${{ matrix.docker-platform }}
           outputs: type=image,name=${{ steps.image_registry_case.outputs.lowercase }},push-by-digest=true,name-canonical=true,push=${{ env.PUSH_IMAGE }}
 
       - name: Export digest

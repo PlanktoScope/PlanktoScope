@@ -1,0 +1,50 @@
+name: Build the hardware controller
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'software/beta'
+      - 'software/stable'
+    tags:
+      - 'v*'
+    paths:
+      - 'controler/**'
+      - '.github/workflows/build-controller.yml'
+  pull_request:
+    paths:
+      - 'controler/**'
+      - '.github/workflows/build-controller.yml'
+  merge_group:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: 'Git ref (optional)'
+        required: false
+
+jobs:
+  ci-checks:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry==2.1.2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'poetry'
+          cache-dependency-path: |
+            controller/poetry.lock
+
+      - name: Install build dependencies
+        working-directory: ./controller
+        run: |
+          sudo apt-get install -y libcap-dev
+          poetry install --with dev
+
+      - name: Run checks
+        working-directory: ./controller
+        run: poetry run poe check
