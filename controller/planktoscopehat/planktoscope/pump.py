@@ -40,7 +40,7 @@ class PumpProcess(multiprocessing.Process):
         # Set stepper controller max speed
         self.pump_stepper.acceleration = 2000
         self.pump_stepper.deceleration = self.pump_stepper.acceleration
-        self.pump_stepper.speed = self.pump_max_speed * self.pump_steps_per_ml * 256 / 60
+        self.pump_stepper.speed = int(self.pump_max_speed * self.pump_steps_per_ml * 256 / 60)
 
         logger.info("Pump initialisation is over")
 
