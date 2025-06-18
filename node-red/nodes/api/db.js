@@ -1,5 +1,6 @@
 import { join } from "path"
 import { opendir, readFile, access, constants } from "fs/promises"
+import { parse } from "csv-parse/sync"
 
 const PATH_ACQUISITION = "/home/pi/data/img/"
 const PATH_SEGMENTATION = "/home/pi/data/objects/"
@@ -104,8 +105,7 @@ async function getAcquisitionFromPath(path) {
 }
 
 async function isAcquisitionSegmented(path) {
-  // FIXME segmentation date may be different than acquisition
-  const segmentation_path = path.replace(PATH_ACQUISITION, PATH_SEGMENTATION)
+  const segmentation_path = join(path, "done.txt")
 
   try {
     await access(segmentation_path, constants.F_OK)
@@ -116,19 +116,6 @@ async function isAcquisitionSegmented(path) {
 
   return true
 }
-
-// Looks like we can use acq_nb_frame instead
-// import mime from "mime"
-// async function countImageAcquired(path) {
-//   let c = 0
-//   for await (const d of await opendir(path)) {
-//     if (!d.isFile()) continue
-//     if (mime.getType(d.name)?.startsWith("image/")) {
-//       c++
-//     }
-//   }
-//   return c
-// }
 
 export async function listSegmentations() {
   let segmentations = []
@@ -189,13 +176,45 @@ async function listSegmentationsFromDirectory(dir_path) {
     if (!d.isDirectory()) continue
 
     const path = join(dir_path, d.name)
-    const segmentation = {
-      project_name: path,
-      sample_id: path,
-      acquisition_id: path,
-    }
+    const segmentation = await getSegmentationFromPath(path)
+    if (!segmentation) continue
     segmentations.push(segmentation)
   }
 
   return segmentations
+}
+
+async function getSegmentationFromPath(path) {
+  const id = path.split("/").pop()
+  const tsv_path = join(path, `ecotaxa_${id}.tsv`)
+
+  let tsv
+  try {
+    const data = await readFile(tsv_path, "utf8")
+    tsv = parse(data, {
+      columns: true,
+      escape: null,
+      delimiter: "	",
+      skip_empty_lines: true,
+    })
+    // First line is column data type so remove it
+    tsv.shift()
+  } catch {
+    return
+  }
+
+  const project_name = tsv[0].sample_project
+  const sample_id =
+    tsv[0].sample_id.split(tsv[0].sample_project + "_")[1] || tsv[0].sample_id
+  const acquisition_id =
+    tsv[0].acq_id.split(sample_id + "_")[1] || tsv[0].acq_id
+
+  const segmentation = {
+    project_name,
+    sample_id,
+    acquisition_id,
+    image_acquired_count: tsv.length,
+  }
+
+  return segmentation
 }

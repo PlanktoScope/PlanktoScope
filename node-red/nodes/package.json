@@ -10,11 +10,13 @@
     "node-red-node-test-helper": "^0.3.4"
   },
   "dependencies": {
+    "csv-parse": "^5.6.0",
     "mime": "^4.0.7"
   },
   "scripts": {
     "lint": "eslint .",
     "test": "npm run lint",
-    "dev": "sudo systemctl stop nodered &>/dev/null && node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.js"
+    "dev": "sudo systemctl stop nodered &>/dev/null && node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.js",
+    "ci": "npm run test"
   }
 }
