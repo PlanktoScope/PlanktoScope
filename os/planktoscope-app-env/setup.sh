@@ -57,14 +57,6 @@ else
   panic "$description"
 fi
 
-description="set up GPS and clock driver"
-report_starting "$description"
-if "$build_scripts_root/gps/install.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="enable CPU overclocking"
 report_starting "$description"
 if "$build_scripts_root/overclocking/config.sh"; then
