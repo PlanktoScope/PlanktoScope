@@ -3,79 +3,75 @@ site_name: PlanktoScope Documentation # poe(release-channels): substitute
 site_description: An open and affordable imaging platform for citizen oceanography
 site_url: !ENV DOCS_SITEURL
 repo_url: https://github.com/PlanktoScope/PlanktoScope
-edit_uri: edit/master/documentation/docs/
+edit_uri: edit/main/documentation/docs/
 
 nav:
   - Home: index.md
   - Setup:
-    - setup/index.md
-    - Hardware:
-      - setup/hardware/index.md
-      - v2.5: # poe(make-minimal): exclude
-        - setup/hardware/v2.5/index.md # poe(make-minimal): exclude
-        - Kit Production: setup/hardware/v2.5/kit/index.md # poe(make-minimal): exclude
-        - Assembly: setup/hardware/v2.5/assembly/index.md # poe(make-minimal): exclude
-      - v2.1: # poe(make-minimal): exclude
-        - setup/hardware/v2.1/index.md # poe(make-minimal): exclude
-        - Kit Production: setup/hardware/v2.1/kit/index.md # poe(make-minimal): exclude
-        - Assembly: setup/hardware/v2.1/assembly/index.md # poe(make-minimal): exclude
-    - Software:
-      - setup/software/index.md
-      - Standard Installation: setup/software/standard-install.md
-      - Non-Standard Installation: setup/software/nonstandard-install.md
-      - Post-Installation Configuration: setup/software/config.md
+      - setup/index.md
+      - Hardware:
+          - setup/hardware/index.md
+          - v2.5: # poe(make-minimal): exclude
+              - setup/hardware/v2.5/index.md # poe(make-minimal): exclude
+              - Kit Production: setup/hardware/v2.5/kit/index.md # poe(make-minimal): exclude
+              - Assembly: setup/hardware/v2.5/assembly/index.md # poe(make-minimal): exclude
+          - v2.1: # poe(make-minimal): exclude
+              - setup/hardware/v2.1/index.md # poe(make-minimal): exclude
+              - Kit Production: setup/hardware/v2.1/kit/index.md # poe(make-minimal): exclude
+              - Assembly: setup/hardware/v2.1/assembly/index.md # poe(make-minimal): exclude
+      - Software:
+          - setup/software/index.md
+          - Standard Installation: setup/software/standard-install.md
+          - Post-Installation Configuration: setup/software/config.md
   - Operation:
-    - operation/index.md
-    # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
-    # - Sample Collection: operation/sample-collection.md
-    - Graphical User Interface: operation/user-interface.md
-    - Maintenance: operation/maintenance.md
-    - Software Customization: operation/software-customization.md
-    - Software Reset & Upgrades: operation/software-upgrades.md
-    - Networking: operation/networking.md
-    - SD Card Cloning: operation/clone-sd.md
+      - operation/index.md
+      # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+      # - Sample Collection: operation/sample-collection.md
+      - Graphical User Interface: operation/user-interface.md
+      - Maintenance: operation/maintenance.md
+      - Software Customization: operation/software-customization.md
+      - Software Reset & Upgrades: operation/software-upgrades.md
+      - Networking: operation/networking.md
+      - SD Card Cloning: operation/clone-sd.md
   - Troubleshooting:
-    - troubleshooting/index.md
+      - troubleshooting/index.md
   - Community:
-    - community/index.md
-    - Contribute:
-      - Github: community/contribute/github.md
-      - Hardware: community/contribute/hardware.md
-      - Software: community/contribute/software.md
-      - Documentation: community/contribute/documentation.md
-    # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
-    # - Trainings: community/trainings.md
-    - Code of Conduct: community/code-of-conduct.md
-    - License: community/license.md
+      - community/index.md
+      - Contribute:
+          - Github: community/contribute/github.md
+          - Hardware: community/contribute/hardware.md
+          - Software: community/contribute/software.md
+          - Documentation: community/contribute/documentation.md
+      # (@ethanjli) I'm hiding this page because I don't consider it ready for public use:
+      # - Trainings: community/trainings.md
+      - Code of Conduct: community/code-of-conduct.md
+      - License: community/license.md
   - Technical Reference:
-    - reference/index.md
-    - Hardware:
-      - Product Specifications: reference/hardware/product-specs.md
-      - Planktoscope HAT: reference/hardware/hat.md
-      - Changelog: reference/hardware/changelog.md
-    - Software:
-      - Product Specifications: reference/software/product-specs.md
-      - Architecture:
-        - Operating System: reference/software/architecture/os.md
-      - Functionalities:
-        - Camera Settings: reference/software/functionalities/camera-settings.md
-        - Sample Imaging: reference/software/functionalities/sample-imaging.md
-        - Image Segmentation: reference/software/functionalities/segmentation.md
-      - Interfaces:
-        - MQTT API: reference/software/interfaces/mqtt.md
-        - Exported Metadata: reference/software/interfaces/exported-metadata.md
-      - Subsystems:
-        - Installation: reference/software/subsystems/installation.md
-        - Startup: reference/software/subsystems/startup.md
-      - Release Process: reference/software/release-process.md
-      - Changelog: reference/software/changelog.md
+      - reference/index.md
+      - Hardware:
+          - Product Specifications: reference/hardware/product-specs.md
+          - Planktoscope HAT: reference/hardware/hat.md
+          - Changelog: reference/hardware/changelog.md
+      - Software:
+          - Product Specifications: reference/software/product-specs.md
+          - Architecture:
+              - Operating System: reference/software/architecture/os.md
+          - Functionalities:
+              - Camera Settings: reference/software/functionalities/camera-settings.md
+              - Sample Imaging: reference/software/functionalities/sample-imaging.md
+              - Image Segmentation: reference/software/functionalities/segmentation.md
+          - Interfaces:
+              - MQTT API: reference/software/interfaces/mqtt.md
+              - Exported Metadata: reference/software/interfaces/exported-metadata.md
+          - Release Process: reference/software/release-process.md
+          - Changelog: reference/software/changelog.md
   - Frequently Asked Questions: faq.md
 
 theme:
   logo: images/logos/planktoscope_white.png
   favicon: images/logos/planktoscope_lavender.png
   icon:
-      repo: fontawesome/brands/github
+    repo: fontawesome/brands/github
   language: en
   name: material
   font:
@@ -90,14 +86,14 @@ theme:
     - content.code.annotate
     - content.code.copy
   palette:
-    - media: "(prefers-color-scheme: dark)"
+    - media: '(prefers-color-scheme: dark)'
       scheme: slate
       primary: indigo
       accent: indigo
       toggle:
         icon: material/weather-night
         name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
+    - media: '(prefers-color-scheme: light)'
       scheme: default
       primary: indigo
       accent: indigo
@@ -123,7 +119,7 @@ markdown_extensions:
   - md_in_html
   - tables
   - toc:
-      permalink: "🔗"
+      permalink: '🔗'
       toc_depth: 3
   - pymdownx.details
   - pymdownx.superfences:

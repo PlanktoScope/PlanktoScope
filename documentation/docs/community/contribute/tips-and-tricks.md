@@ -9,18 +9,17 @@ This page provides useful snippets and how-tos while developing software for the
 - [Development OS](#development-os)
 - [Development Environment](#development-environment)
 - [Connect to router](#connect-to-router)
-- [Disable splash screen](#disable-splash-screen)
 - [Backup and Restore SD Card](#backup-and-restore-sd-card)
 - [Documentation quick setup](#documentation-quick-setup)
 - [Test dataset for segmenter](#test-dataset-for-segmenter)
 
 ## Development OS
 
-You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%3Amaster)
+You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%main)
 
 It is built upon [Raspberry Pi OS Lite 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
 
-1. Choose the branch (e.g. `master`)
+1. Choose the branch (e.g. `main`)
 2. Click on the most recent action in the table
 3. Download one of the Artifact depending on your PlanktoScope hardware
 4. Run `unzip filename.zip` to extract files
@@ -83,7 +82,7 @@ git config --global user.name "Your Name"
 git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
 
 git fetch origin
-git checkout master
+git checkout main
 ```
 
 </details>
@@ -167,7 +166,7 @@ https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
 
 This is a quick setup guide. See also
 
-- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
+- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/main/documentation/README.md)
 - [Writing Documentation](./documentation.md)
 
 Install dependencies:

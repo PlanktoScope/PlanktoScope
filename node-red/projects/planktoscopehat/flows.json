@@ -3633,31 +3633,6 @@
         ]
     },
     {
-        "id": "9a1d0e7c.2d5a1",
-        "type": "inject",
-        "z": "bccd1f23.87219",
-        "name": "Default: OFF",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "off",
-        "payloadType": "str",
-        "x": 130,
-        "y": 120,
-        "wires": [
-            [
-                "f0775525.cf806"
-            ]
-        ]
-    },
-    {
         "id": "f782a471.447748",
         "type": "inject",
         "z": "bccd1f23.87219",
@@ -3839,88 +3814,6 @@
                 "62030521.88317c"
             ]
         ]
-    },
-    {
-        "id": "f0775525.cf806",
-        "type": "ui_multistate_switch",
-        "z": "bccd1f23.87219",
-        "name": "light_control",
-        "group": "4248342d.e55fac",
-        "order": 1,
-        "width": 6,
-        "height": 1,
-        "label": "Light  ",
-        "stateField": "payload",
-        "enableField": "enable",
-        "passthroughField": "passthrough",
-        "inputMsgField": "inputmsg",
-        "rounded": true,
-        "useThemeColors": true,
-        "hideSelectedLabel": false,
-        "multilineLabel": false,
-        "passThrough": "never",
-        "inputMsg": "all",
-        "userInput": "enabled_show",
-        "options": [
-            {
-                "label": "Off",
-                "value": "off",
-                "valueType": "str",
-                "color": "#009933"
-            },
-            {
-                "label": "On",
-                "value": "on",
-                "valueType": "str",
-                "color": "#999999"
-            }
-        ],
-        "topic": "",
-        "x": 310,
-        "y": 120,
-        "wires": [
-            [
-                "99ae4886.8d43c"
-            ]
-        ]
-    },
-    {
-        "id": "99ae4886.8d43c",
-        "type": "function",
-        "z": "bccd1f23.87219",
-        "name": "Prepare message",
-        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":msg.payload}\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 490,
-        "y": 120,
-        "wires": [
-            [
-                "d31fcead.7e2ef"
-            ]
-        ]
-    },
-    {
-        "id": "d31fcead.7e2ef",
-        "type": "mqtt out",
-        "z": "bccd1f23.87219",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 650,
-        "y": 120,
-        "wires": []
     },
     {
         "id": "8ea9dc9a.c7d87",
@@ -4670,6 +4563,201 @@
         "wires": [
             [
                 "eb9966de.cf13c8"
+            ]
+        ]
+    },
+    {
+        "id": "bf696a1bfcf40cc9",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Get led status",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\":\"status\"}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 100,
+        "wires": [
+            [
+                "853fdbc93d99656b"
+            ]
+        ]
+    },
+    {
+        "id": "853fdbc93d99656b",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1850,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "73d75d56a5860c40",
+        "type": "inject",
+        "z": "bccd1f23.87219",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 1500,
+        "y": 100,
+        "wires": [
+            [
+                "bf696a1bfcf40cc9"
+            ]
+        ]
+    },
+    {
+        "id": "310ee70930b17fae",
+        "type": "mqtt in",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "status/light",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 1480,
+        "y": 180,
+        "wires": [
+            [
+                "fcaf6b9230805de2"
+            ]
+        ]
+    },
+    {
+        "id": "fcaf6b9230805de2",
+        "type": "json",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": true,
+        "x": 1630,
+        "y": 180,
+        "wires": [
+            [
+                "1e021d2306c69193"
+            ]
+        ]
+    },
+    {
+        "id": "1e9ddd41b0fa067d",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "light_control",
+        "group": "4248342d.e55fac",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "Light  ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "off",
+                "valueType": "str",
+                "color": "#009933"
+            },
+            {
+                "label": "On",
+                "value": "on",
+                "valueType": "str",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1510,
+        "y": 260,
+        "wires": [
+            [
+                "fa4e2b4c606ec8a8"
+            ]
+        ]
+    },
+    {
+        "id": "fa4e2b4c606ec8a8",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Prepare message",
+        "func": "msg.topic = \"light\"\nmsg.payload = {\"action\": msg.payload}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 260,
+        "wires": [
+            [
+                "82b88ded06e67fba"
+            ]
+        ]
+    },
+    {
+        "id": "82b88ded06e67fba",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1e021d2306c69193",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Set Led Status",
+        "func": "msg.payload = msg.payload.status.toLowerCase();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 180,
+        "wires": [
+            [
+                "1e9ddd41b0fa067d"
             ]
         ]
     },
@@ -7084,7 +7172,7 @@
         "id": "c54d948575dbcff8",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo systemctl restart planktoscope-org.device-backend.controller.service",
+        "command": "sudo systemctl restart planktoscope-org.controller.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -7158,7 +7246,7 @@
         "order": 1,
         "width": "0",
         "height": "0",
-        "format": "<p>\n    The PlanktoScope software application consists of three components: a Node-RED dashboard which provides the user interface you're using; a Hardware Controller\n    which executes commands sent from the Node-RED dashboard for hardware control and image acquisition; and a Segmenter which processes an acquired dataset of\n    images and isolates objects from those images. Each component has its own independent log of messages, managed separately from the logs for the other components.\n</p>\n<p>\n    All three components have live-updating logs which you can monitor. Additionally, the Hardware Controller and the Segmenter also save all of their log messages\n    to files which you can browse and download. Those software components create a new log file each time they start, and the name of the log file includes the time\n    in the PlanktoScope's clock when the software component started. However, if your PlanktoScope's clock is usually wrong, it makes the log files difficult to navigate.\n    This will be fixed in a future version of the software.\n</p>\n<p>\n    If you need to share your logs with other people (e.g. on Slack or GitHub), you should open the \"Downloadable Logs\" links, and then you can select one file or multiple\n    log files for downloading as a zip archive.\n</p>\n<ul>\n    <li>\n        Node-RED:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=nodered.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li>Certain errors generated in the dashboard: see the \"Dashboard errors\" panel on this page.</li>\n        </ul>\n    </li>\n    <li>\n        Hardware Controller:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.device-backend.controller.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/control/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Segmenter:\n        <ul>\n            \n            <li><a href=\"/admin/dozzle/show?name=apps_ps_backend_proc-segmenter-server-1\" style=\"color: white;\">Live-updating logs</a></li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/processing/segmenter/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Operating System:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=err\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n</ul>",
+        "format": "<p>\n    The PlanktoScope software application consists of three components: a Node-RED dashboard which provides the user interface you're using; a Hardware Controller\n    which executes commands sent from the Node-RED dashboard for hardware control and image acquisition; and a Segmenter which processes an acquired dataset of\n    images and isolates objects from those images. Each component has its own independent log of messages, managed separately from the logs for the other components.\n</p>\n<p>\n    All three components have live-updating logs which you can monitor. Additionally, the Hardware Controller and the Segmenter also save all of their log messages\n    to files which you can browse and download. Those software components create a new log file each time they start, and the name of the log file includes the time\n    in the PlanktoScope's clock when the software component started. However, if your PlanktoScope's clock is usually wrong, it makes the log files difficult to navigate.\n    This will be fixed in a future version of the software.\n</p>\n<p>\n    If you need to share your logs with other people (e.g. on Slack or GitHub), you should open the \"Downloadable Logs\" links, and then you can select one file or multiple\n    log files for downloading as a zip archive.\n</p>\n<ul>\n    <li>\n        Node-RED:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=nodered.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li>Certain errors generated in the dashboard: see the \"Dashboard errors\" panel on this page.</li>\n        </ul>\n    </li>\n    <li>\n        Hardware Controller:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.controller.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/control/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Segmenter:\n        <ul>\n            \n            <li><a href=\"/admin/dozzle/show?name=apps_ps_backend_proc-segmenter-server-1\" style=\"color: white;\">Live-updating logs</a></li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/processing/segmenter/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Operating System:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=err\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n</ul>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -8069,6 +8157,7 @@
         "type": "link out",
         "z": "9a22e67a.378818",
         "name": "Fluidic module status",
+        "mode": "link",
         "links": [
             "bb628f8d.98f108"
         ],
@@ -8535,7 +8624,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$join([\"/home/pi/PlanktoScope/device-backend/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
+                "to": "$join([\"/home/pi/PlanktoScope/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
                 "tot": "jsonata"
             }
         ],

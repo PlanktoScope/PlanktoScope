@@ -16,6 +16,18 @@ or
 
 See also [#603](https://github.com/PlanktoScope/PlanktoScope/issues/603)
 
+## No internet after connecting LAN to the PlanktoScope
+
+If your laptop is connected to the PlanktoScope with a LAN cable and to the Internet with WiFi, it's possible your system will prefer LAN and try to use it for Internet.
+
+Find the LAN setting to only use it for resources on its network.
+
+For example on Fedora / Ubuntu, the setting is called
+
+> Use this connection only for resources on its network
+
+and is present on the IPv4 and IPv6 tabs of the LAN network options.
+
 ## Error with camera or Python backend
 
 A common (and very broad) category of problems results in an error message like `If you see this, there probably is an error either with your camera or with the python service. Please try restarting your machine.` being displayed instead of a camera preview in the Node-RED dashboard. This error message can be caused by a variety of potential failure modes such as a disconnected camera or a crash in the Python hardware controller program (which controls the PlanktoScope's camera as well as the pump, focusing motors, etc.). If you see this problem, we recommend first checking whether the Python hardware controller is responsive to button-presses in the Node-RED dashboard for moving the pump and/or the focusing stepper motors; if so, then there is likely a problem specifically with the camera hardware or the camera preview. Otherwise, it is very possible that the Python hardware controller has crashed for other reasons. Troubleshooting this situation will require you to download the Python hardware controller's error logs so that you can attach the logs with a request for help on the PlanktoScope Slack community.
