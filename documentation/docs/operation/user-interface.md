@@ -105,36 +105,6 @@ Note: if your PlanktoScope's system time is different from your web browser's ti
 
 You will need to change the PlanktoScope's system time (for example by pressing the button displayed in the prompt) in order for the Metrics panel to work, and in order for your PlanktoScope to record accurate timestamps with its image acquisition datasets. The system time will be accurate until your PlanktoScope shuts down; the next time you turn on your PlanktoScope, you will need to change the PlanktoScope's system time again. This is a known problem, and we will improve the usability of this situation in future versions of the PlanktoScope software.
 
-!!! warning
-
-    The USB Backup panel doesn't always work; it will be removed in a future version of the PlanktoScope software; you should instead download files using the [Gallery tab](#gallery).
-
-!!! warning
-
-    The Navigation panel, including its fan toggle (which doesn't work correctly) will be removed in a future version of the PlanktoScope software.
-
-## Wifi
-
-!!! warning
-
-    This page will be removed in a future version of the PlanktoScope software, because it doesn't always work. You should instead refer to the network operations guide's section for [connecting your PlanktoScope to the Internet](./networking.md#connect-your-planktoscope-to-the-internet).
-
-![Administration](../images/ui_guide/wifi.webp)
-
-This page will give you information about the network the PlanktoScope is connected to. It will also allows you to connect your machine to a new WiFi network.
-
-Start by doing a network scan by clicking on the `Scan` button. The list will be populated with detected networks after a few seconds. You can then choose one of them, enter its password and click on `Add the network` to connect to it. The wifi network of the PlanktoScope will disappear after a few seconds, so **you will need to connect back to the same network you just put the machine on**.
-
-Finally, if you are not located in the US, please update the Country code in the field below. This will ensure the PlanktoScope complies with local Wifi regulations (such as maximum emitted power, duty cycle and such).
-
-Clicking on the button `Reset wifi networks` will erase ALL networks saved previously by the machine. If you do this, it will disconnect immediately from any network it's connected to, and will put up its own network.
-
-!!! info
-For now, only WPA/WPA2 Personal security is supported; Wi-Fi networks without passwords are not supported.
-
-!!! warning
-Please be mindful about the security policies of your organisation before connecting your device to a network (either through Wifi or with an Ethernet cable). A lot of research institutions don't allow devices not controlled by them to be connected to their network without first going on an approved list with a least a basic security checkup.
-
 ## Administration
 
 ![Administration](../images/ui_guide/administration.png)
