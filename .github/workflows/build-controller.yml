@@ -9,11 +9,11 @@ on:
     tags:
       - 'v*'
     paths:
-      - 'controler/**'
+      - 'controller/**'
       - '.github/workflows/build-controller.yml'
   pull_request:
     paths:
-      - 'controler/**'
+      - 'controller/**'
       - '.github/workflows/build-controller.yml'
   merge_group:
   workflow_dispatch:
