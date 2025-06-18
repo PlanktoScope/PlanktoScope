@@ -6916,7 +6916,7 @@
         "command": "sudo systemctl restart planktoscope-org.controller.service",
         "addpay": false,
         "append": "",
-        "useSpawn": "false",
+        "useSpawn": "true",
         "timer": "",
         "winHide": false,
         "oldrc": false,
@@ -6924,7 +6924,9 @@
         "x": 800,
         "y": 420,
         "wires": [
-            [],
+            [
+                "154753a6a39b04b8"
+            ],
             [],
             []
         ]
@@ -7157,6 +7159,26 @@
         "x": 770,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "154753a6a39b04b8",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "sudo systemctl restart nodered.service",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Restart Node Red",
+        "x": 1070,
+        "y": 420,
+        "wires": [
+            [],
+            [],
+            []
+        ]
     },
     {
         "id": "ddcbbfa5.cd158",
