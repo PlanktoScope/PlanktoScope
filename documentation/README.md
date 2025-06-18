@@ -8,13 +8,13 @@ This directory contains the PlanktoScope's documentation system. Documentation s
 
 You can view the published documentation at the following URLs:
 
-- <https://docs-edge.planktoscope.community/>: this shows the "edge" (i.e. development) version of documentation on the `master` branch of the main PlanktoScope repository at https://github.com/PlanktoScope/PlanktoScope . Note that this version probably contains errors and broken content, and it is not an official release of the documentation. This version of the documentation is hosted as a way for documentation maintainers to preview changes while working together across pull requests.
+- <https://docs-edge.planktoscope.community/>: this shows the "edge" (i.e. development) version of documentation on the `main` branch of the main PlanktoScope repository at https://github.com/PlanktoScope/PlanktoScope . Note that this version probably contains errors and broken content, and it is not an official release of the documentation. This version of the documentation is hosted as a way for documentation maintainers to preview changes while working together across pull requests.
 - <https://docs-beta.planktoscope.community/>: this shows the "beta" version of documentation on the `beta` branch of the main PlanktoScope repository. This version is shown to beta testers; it probably has problems, but it is more reliable than the "edge" version
 - <https://docs.planktoscope.community>: this shows the "stable" version of documentation on the `stable` branch of the main PlanktoScope repository. This is the up-to-date version of PlanktoScope documentation which all PlanktoScope users should refer to as the official documentation website.
 
 ### Develop the documentation
 
-First, use your favorite Git client (such as [Github Desktop](https://desktop.github.com/) or, if you already have some experience with Git, [GitKraken](https://www.gitkraken.com/)) to clone the PlanktoScope repository to your computer. For the rest of this development guide, we will assume you've cloned it to `/some/path/here/PlanktoScope` - you should replace that with the actual path where your local clone of the PlanktoScope repository is stored on  your computer.
+First, use your favorite Git client (such as [Github Desktop](https://desktop.github.com/) or, if you already have some experience with Git, [GitKraken](https://www.gitkraken.com/)) to clone the PlanktoScope repository to your computer. For the rest of this development guide, we will assume you've cloned it to `/some/path/here/PlanktoScope` - you should replace that with the actual path where your local clone of the PlanktoScope repository is stored on your computer.
 
 #### Installing development tools
 
@@ -24,11 +24,11 @@ You will need to install Python 3.8 or a more recent version of Python on your c
 
 Once you have Python, we recommend installing Poetry [using pipx](https://python-poetry.org/docs/#installing-with-pipx), as that is the easiest way to install Poetry. Please follow the instructions at https://pypa.github.io/pipx/installation/ to install pipx. Then run `pipx install poetry` in your terminal to install Poetry.
 
-Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install --no-root`. For example (using our example path):
+Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install`. For example (using our example path):
 
-```
-cd /some/path/here/PlanktoScope/documentation
-poetry install --no-root
+```sh
+cd documentation
+poetry install
 ```
 
 #### Making changes
@@ -39,8 +39,8 @@ To make changes, directly edit the files in the `docs` subdirectory using a text
 
 Usually, you should edit the documentation sources (in `/some/path/here/PlanktoScope/documentation/docs`) while running a live preview of the documentation site. You can start the live preview server in your terminal using the following commands:
 
-```
-cd /some/path/here/PlanktoScope/documentation
+```sh
+cd documentation
 poetry run poe preview
 ```
 
@@ -50,8 +50,8 @@ Then you can open the documentation website in your web browser at http://localh
 
 While changing the documentation source files, you should regularly check the documentation for errors. We provide some tools to help automate this process. You can run these tools in your terminal using the following commands:
 
-```
-cd /some/path/here/PlanktoScope/documentation
+```sh
+cd documentation
 poetry run poe check
 ```
 
@@ -59,19 +59,13 @@ poetry run poe check
 
 Usually you will not need to manually build a local copy of the documentation website, because we automate the process on GitHub as part of the process of deploying our documentation to a website on the internet. However, you can build a local copy of the documentation website using the following commands:
 
-```
-cd /some/path/here/PlanktoScope/documentation
+```sh
+cd documentation
 poetry run poe build
-```
-
-If you really don't want to change your current working directory to `/some/path/here/PlanktoScope/documentation`, you can instead run the following command:
-
-```
-poetry -C /some/path/here/PlanktoScope/documentation/ run poe --root /some/path/here/PlanktoScope/documentation/ build
 ```
 
 (this also works for `preview`, `check`, and any other subcommands of `poe`)
 
 #### Publishing your changes
 
-To publish your changes, make a [pull request](https://github.com/PlanktoScope/PlanktoScope/pulls) on our GitHub repository with a branch titled `feature/docs-<description of your changes>` (e.g. `feature/docs-fix-broken-link` or `feature/docs-improve-assembly-instructions`), and configure the pull request to merge the branch into the `master` branch. Once we merge the pull request, your changes will be published to the "edge" version of our documentation website (see the above "View the documentation" section of this README for the URL of the "edge" version of our documentation website).
+To publish your changes, make a [pull request](https://github.com/PlanktoScope/PlanktoScope/pulls) on our GitHub repository with a branch titled `feature/docs-<description of your changes>` (e.g. `feature/docs-fix-broken-link` or `feature/docs-improve-assembly-instructions`), and configure the pull request to merge the branch into the `main` branch. Once we merge the pull request, your changes will be published to the "edge" version of our documentation website (see the above "View the documentation" section of this README for the URL of the "edge" version of our documentation website).

@@ -32,7 +32,7 @@ Next, proceed to the [Make an SD card image](#make-an-sd-card-image) section of 
 
 ### Prepare an exact backup
 
-If you want to make an exact backup of your SD card and you don't want to reuse your SD card image across multiple PlanktoScopes, then you shouldn't run the `/usr/libexec/prepare-custom-image` script: that script will delete some files which you probably want to keep. Instead, you should edit the `/boot/cmdline.txt` file to add the string ` init=/usr/lib/raspberrypi-sys-mods/firstboot` to the end of the file, for example resulting in a file which looks something like:
+If you want to make an exact backup of your SD card and you don't want to reuse your SD card image across multiple PlanktoScopes, then you shouldn't run the `/usr/libexec/prepare-custom-image` script: that script will delete some files which you probably want to keep. Instead, you should edit the `/boot/firmware/cmdline.txt` file to add the string ` init=/usr/lib/raspberrypi-sys-mods/firstboot` to the end of the file, for example resulting in a file which looks something like:
 
 ```
 console=tty1 root=PARTUUID=someuniqueidhere rootfstype=ext4 fsck.repair=yes rootwait init=/usr/lib/raspberrypi-sys-mods/firstboot
@@ -41,7 +41,7 @@ console=tty1 root=PARTUUID=someuniqueidhere rootfstype=ext4 fsck.repair=yes root
 Next, you should remove the SD card from your PlanktoScope and plug it into another computer, so that you can clone the SD card into an SD card image; this guide assumes that your other computer runs Linux. Then proceed to the [Make an SD card image](#make-an-sd-card-image) section of this guide.
 
 !!! warning
-    After you have finished cloning the SD card to an SD card image, you should edit the `/boot/cmdline.txt` file to remove the ` init=/usr/lib/raspberrypi-sys-mods/firstboot` string, before booting up the Raspberry Pi with your SD card again. This will prevent the first-boot script from deleting the SSH server keys already on your SD card.
+    After you have finished cloning the SD card to an SD card image, you should edit the `/boot/firmware/cmdline.txt` file to remove the ` init=/usr/lib/raspberrypi-sys-mods/firstboot` string, before booting up the Raspberry Pi with your SD card again. This will prevent the first-boot script from deleting the SSH server keys already on your SD card.
 
 ## Make an SD card image
 

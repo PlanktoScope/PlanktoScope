@@ -1,0 +1,14 @@
+[all]
+bootloader_update=0
+disable_poe_fan=1
+
+[pi5]
+# Enable battery charging
+# https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#enable-battery-charging
+dtparam=rtc_bbat_vchg=3000000
+# Enable self update for RPI 5 only
+bootloader_update=1
+# Enable CQHCI on SanDisk Extreme A2 sdcards
+dtparam=sd_cqe=2
+
+[all]

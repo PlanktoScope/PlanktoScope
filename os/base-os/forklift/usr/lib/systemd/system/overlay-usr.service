@@ -1,0 +1,50 @@
+[Unit]
+Description=Remount /usr as a writable overlay with a Forklift-managed intermediate layer, during early boot
+DefaultDependencies=no
+Requires=-.mount
+After=-.mount
+Requires=systemd-remount-fs.service
+After=systemd-remount-fs.service
+Wants=overlay-fs.target
+Before=overlay-fs.target
+Conflicts=umount.target
+Before=umount.target
+
+[Service]
+# This is implemented as a service rather than a mount because keeping all the related ExecStart
+# commands in one unit makes the sequence of steps clearer.
+Type=oneshot
+RemainAfterExit=true
+Environment=WORKDIR=/var/lib/overlays/workdirs/usr
+ExecStartPre=mkdir -p $WORKDIR
+Environment=UPPERDIR=/var/lib/overlays/overrides/usr
+ExecStartPre=mkdir -p $UPPERDIR
+Environment=TARGET=/usr
+ExecStartPre=mkdir -p /sysroot${TARGET}
+ExecStart=mount --bind $TARGET /sysroot${TARGET}
+# Prevent changes to the contents in /sysroot:
+ExecStart=mount -o bind,remount,ro /sysroot${TARGET}
+# Prevent the overlay mount from also being created onto the directory in /sysroot:
+ExecStart=mount --make-private /sysroot/${TARGET}
+Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
+# Warning: the upper and lower dirs are not allowed to be modified directly while the overlay is
+# mounted! Doing so causes undefined behavior, i.e. weirdness and inconsistency
+# (see https://docs.kernel.org/filesystems/overlayfs.html#changes-to-underlying-filesystems).
+ExecStart=bash -c -e '\
+  LOWERDIR_FORKLIFT=$(forklift stage locate-bundle next)/exports/overlays/usr; \
+  LOWERDIRS="/sysroot$TARGET"; \
+  if [ -d $LOWERDIR_FORKLIFT ]; then LOWERDIRS="$LOWERDIR_FORKLIFT:$LOWERDIRS"; fi; \
+  echo "Overlay lower directories: $LOWERDIRS"; \
+  mount -t overlay overlay -o workdir=$WORKDIR,upperdir=$UPPERDIR,lowerdir=$LOWERDIRS $TARGET \
+'
+# Immediately update any systemd units added by the overlay:
+ExecStart=systemctl daemon-reload
+# Note: `umount -l` is not recommended in general (see https://unix.stackexchange.com/a/390057)
+# because it just removes the mounts from the namespace while writes to open files can continue;
+# however, this is probably acceptable behavior for the overlay at shutdown, because any writes
+# will be in our upperdir anyways.
+ExecStopPost=umount -l $TARGET
+ExecStopPost=umount -l /sysroot${TARGET}
+
+[Install]
+WantedBy=local-fs.target

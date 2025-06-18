@@ -12,9 +12,7 @@ Replaces [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-mo
 
 Increased RAM from 4 to 8 GB.
 
-Includes a [Real Time Clock (RTC)](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#real-time-clock-rtc)
-
-Includes [RTC rechargeable battery](https://www.raspberrypi.com/products/rtc-battery/)
+Includes a [Real Time Clock (RTC)](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#real-time-clock-rtc) with [rechargeable battery](https://www.raspberrypi.com/products/rtc-battery/).
 
 Includes [Raspberry Pi Active Cooler](https://www.raspberrypi.com/products/active-cooler/)
 
@@ -27,6 +25,19 @@ Faster wifi from 120Mb/s to 300Mb/s
 [PCIe connector](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-connector-for-pcie), compatible with:
 * [Raspberry Pi AI HAT+](https://www.raspberrypi.com/products/ai-hat/)
 * [Raspberry Pi SSD Kit](https://www.raspberrypi.com/products/ssd-kit/)
+
+Easier access to the SD Card, no need for tweezers anymore
+
+The Raspberry micro HDMI ports are now accessible
+
+Reduce power usage when powered off
+
+Does not automatically power on when connected anymore
+
+Much faster CPU and GPU performances
+
+Faster sdcard access
+
 -->
 
 ## v2.6

@@ -10,11 +10,11 @@ on:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
 # queued. But do not cancel in-progress runs - we want these deploymeents to complete.
 concurrency:
-  group: "docs-stable-deploy"
+  group: 'docs-stable-deploy'
   cancel-in-progress: false
 
 env:
-    DESTINATION_OWNER: ${{ github.repository_owner }}
+  DESTINATION_OWNER: ${{ github.repository_owner }}
 
 defaults:
   run:
@@ -37,7 +37,7 @@ jobs:
           sudo apt-get -y install pngquant
 
       - name: Install poetry
-        run: pipx install poetry==1.7.1
+        run: pipx install poetry==2.1.2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -48,14 +48,17 @@ jobs:
             documentation/poetry.lock
 
       - name: Install build dependencies
+        working-directory: documentation
         run: |
-          poetry -C ./documentation/ install --with imaging
+          sudo apt install libjpeg-dev
+          poetry install --with imaging
 
       - name: Build documentation
         env:
           DOCS_DEPLOY: true
           DOCS_SITEURL: ${{ vars.URL }}
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        working-directory: documentation
+        run: poetry run poe build
 
       - name: Push to ${{ vars.REPOSITORY_NAME }}
         uses: cpina/github-action-push-to-another-repository@main

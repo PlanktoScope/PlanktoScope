@@ -212,7 +212,7 @@ To order a PCB board including assembly, follow these steps:
 
 !!! warning
 
-    It is crucial that you use the exact IC's like the RTC and EEPROM we specified. If a component is "end of life" (EOL), do not hesitate to contact us so we can help you find an alternative solution. For all other components, you are welcome to choose alternatives providet by the manufacturing company.
+    It is crucial that you use the exact IC's like the EEPROM we specified. If a component is "end of life" (EOL), do not hesitate to contact us so we can help you find an alternative solution. For all other components, you are welcome to choose alternatives providet by the manufacturing company.
 
 !!! info
 

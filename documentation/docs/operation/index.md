@@ -14,7 +14,7 @@ You can connect your computer to the PlanktoScope by plugging an Ethernet cable 
 
 ### Connect with the PlanktoScope's Wi-Fi hotspot
 
-Unless you have already [configured your PlanktoScope to connect to an existing Wi-Fi network](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network) or [disabled your PlanktoScope's Wi-Fi hotspot functionality](./networking.md#disable-the-wi-fi-hotspot), your PlanktoScope will create its own isolated Wi-Fi network (like a Wi-Fi hotspot, but without internet access). The Wi-Fi hotspot created by your PlanktoScope should appear on your computer's list of available Wi-Fi networks a few minutes after you turn on power to your PlanktoScope.
+Unless you have already [configured your PlanktoScope to connect to an existing Wi-Fi network with its embedded Wi-Fi module](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network-with-a-single-wi-fi-module) or [disabled your PlanktoScope's Wi-Fi hotspot functionality](./networking.md#disable-the-wi-fi-hotspot), your PlanktoScope will create its own isolated Wi-Fi network (like a Wi-Fi hotspot, but without internet access). The Wi-Fi hotspot created by your PlanktoScope should appear on your computer's list of available Wi-Fi networks a few minutes after you turn on power to your PlanktoScope.
 
 ![wifi-network.png](images/wifi-network.png)
 
@@ -44,7 +44,7 @@ If those URLs don't work for you and you're connecting your computer directly to
 
 !!! warning
     
-    The four URLs listed directly above **will not work** if you're trying to connect to your PlanktoScope indirectly, e.g. via a [Wi-Fi router providing internet access to the PlanktoScope](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network). In that case, you will instead need to try one of the previously-described URLs ending in `.local`.
+    The four URLs listed directly above **will not work** if you're trying to connect to your PlanktoScope indirectly, e.g. via a [Wi-Fi router providing internet access to the PlanktoScope](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network-with-a-single-wi-fi-module). In that case, you will instead need to try one of the previously-described URLs ending in `.local`.
 
 !!! warning
 

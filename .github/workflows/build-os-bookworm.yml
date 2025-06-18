@@ -3,19 +3,19 @@ name: build-os-bookworm
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
       - 'software/beta'
       - 'software/stable'
     tags:
       - 'software/v*'
     paths:
-      - 'software/**'
-      - '!software/CHANGELOG.md'
+      - 'os/**'
+      - '!CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
   pull_request:
     paths:
-      - 'software/**'
-      - '!software/CHANGELOG.md'
+      - 'os/**'
+      - '!CHANGELOG.md'
       - '.github/workflows/build-os*.yml'
   merge_group:
   workflow_dispatch:
@@ -41,5 +41,6 @@ jobs:
       name: planktoscope
       base_release_name: bookworm
       base_image_variant: lite
-      base_release_date: 2024-11-19
+      base_release_date: 2025-05-13
+      base_file_release_date: 2025-05-13
       arch: arm64

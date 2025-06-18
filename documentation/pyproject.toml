@@ -1,8 +1,6 @@
 [tool.poetry]
+package-mode = false
 name = "planktoscope-docs"
-# Note: PEP 440 requires pre-releases to be formatted like "2023.7.0b0" rather than
-# "2023.7.0-beta.0", which is different from the Semantic Versioning schema
-version = "2024.0.0"
 description = "Documentation for the PlanktoScope project"
 # For simplicity, we follow the definition of "Maintainer" from
 # https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
@@ -35,13 +33,13 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.11.2"
 mkdocs = "^1.4.3"
 mkdocs-charts-plugin = "^0.0.12"
 mkdocs-glightbox = "^0.4.0"
 mkdocs-macros-plugin = "^1.3.7"
 mkdocs-markdownextradata-plugin = "^0.2.6"
-mkdocs-material = "^9.5.18"
+mkdocs-material = "^9.6.14"
 mkdocs-minify-plugin = "^0.8.0"
 mkdocs-redirects = "^1.2.2"
 # Note: we do not allow the mkdocs-table-reader-plugin in this project because it pulls in a
@@ -49,15 +47,15 @@ mkdocs-redirects = "^1.2.2"
 # to install.
 Pygments = "^2.19.1"
 pymdown-extensions = "^10.14"
-LinkChecker = "^10.3.0"
-poethepoet = "^0.30.0"
-mkdocs-git-revision-date-localized-plugin = "^1.4.5"
+LinkChecker = "^10.5.0"
+poethepoet = "^0.35.0"
+mkdocs-git-revision-date-localized-plugin = "^1.4.7"
 
 [tool.poetry.group.imaging]
 optional = true
 
 [tool.poetry.group.imaging.dependencies]
-mkdocs-material = { extras = ["imaging"], version = "^9.5.18" }
+mkdocs-material = { extras = ["imaging"], version = "^9.6.14" }
 imgp = "^2.8"
 
 [tool.poe.tasks]
@@ -93,5 +91,5 @@ make-minimal = [
 
 # Documentation checking
 build-check = "mkdocs build --clean --strict --no-directory-urls"
-check-links = "linkchecker --config .linkcheckerrc site"
+check-links = "linkchecker site"
 check = ["build-check", "check-links"]

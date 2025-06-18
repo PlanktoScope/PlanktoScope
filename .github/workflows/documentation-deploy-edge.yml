@@ -3,11 +3,11 @@ name: deploy-documentation/edge
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
     paths:
       - 'documentation/**'
       - 'hardware/**'
-      - 'software/CHANGELOG.md'
+      - 'CHANGELOG.md'
       - '.github/workflows/documentation-deploy-edge.yml'
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest
 # queued. But do not cancel in-progress runs - we want these deploymeents to complete.
 concurrency:
-  group: "docs-edge-deploy"
+  group: 'docs-edge-deploy'
   cancel-in-progress: false
 
 defaults:
@@ -42,7 +42,7 @@ jobs:
           sudo apt-get -y install pngquant
 
       - name: Install poetry
-        run: pipx install poetry==1.7.1
+        run: pipx install poetry==2.1.2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -54,16 +54,19 @@ jobs:
 
       - name: Install build dependencies
         run: |
+          sudo apt install libjpeg-dev
           poetry -C ./documentation/ install --with imaging
 
       - name: Set release channel
-        run: poetry -C ./documentation/ run poe --root ./documentation/ set-edge-release-channel
+        working-directory: documentation
+        run: poetry run poe set-edge-release-channel
 
       - name: Build documentation
         env:
           DOCS_DEPLOY: true
           DOCS_SITEURL: ${{ vars.URL }}
-        run: poetry -C ./documentation/ run poe --root ./documentation/ build
+        working-directory: documentation
+        run: poetry run poe build
 
       - name: Set up Pages
         id: pages
