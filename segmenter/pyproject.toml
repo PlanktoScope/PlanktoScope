@@ -33,9 +33,9 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.dependencies]
 python = ">=3.11.2"
 paho-mqtt = "^2.1.0"
-numpy = "^1.22.4"
+numpy = "^2.3.0"
 pandas = "^2.1.4"
-loguru = "^0.5.3"
+loguru = "^0.7.2"
 opencv-python-headless = "^4.6.0.66"
 scikit-image = "^0.25.2"
 
@@ -43,8 +43,8 @@ scikit-image = "^0.25.2"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-poethepoet = "^0.25.0"
-mypy = "^1.9.0"
+poethepoet = "^0.35.0"
+mypy = "^1.16.1"
 types-paho-mqtt = "^1.6.0.20240106"
 ruff = "^0.11.10"
 
