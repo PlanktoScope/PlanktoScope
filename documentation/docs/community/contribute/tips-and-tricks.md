@@ -138,7 +138,7 @@ The NanoKVM USB solution works for all setups.
 
 ## Backup and Restore SD Card
 
-You will need to plug the SD card into your computer.
+Plug the SD card into your computer.
 
 `/dev/device` refers to the path of the SD card device/disk. You will need to adjust it. Use `diskutil list` on macOS and `fdisk --list` on Linux.
 
