@@ -3,7 +3,8 @@
 
 .PHONY: setup
 setup:
-	sudo apt install jq shellcheck golang --no-install-recommends
+	sudo apt install golang --no-install-recommends
+	go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 	git submodule update --init
 	make -C node-red setup
 	make -C controller setup

@@ -2,6 +2,7 @@
 .DEFAULT_GOAL := setup
 
 setup:
+	sudo apt install jq --no-install-recommends
 	npm install
 	cd nodes && npm install
 
