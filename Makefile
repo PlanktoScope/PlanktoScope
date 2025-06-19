@@ -5,6 +5,7 @@
 setup:
 	sudo apt install golang --no-install-recommends
 	go install github.com/mrtazz/checkmake/cmd/checkmake@latest
+	pipx install poetry==2.1.3
 	git submodule update --init
 	make -C node-red setup
 	make -C controller setup
