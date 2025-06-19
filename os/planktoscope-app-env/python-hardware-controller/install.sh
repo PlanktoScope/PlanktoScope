@@ -15,7 +15,7 @@ sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 # Install Poetry
-pipx install poetry==2.1.2
+pipx install poetry==2.1.3
 pipx ensurepath
 PATH="$PATH:/home/pi/.local/bin"
 

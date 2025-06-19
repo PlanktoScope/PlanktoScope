@@ -52,7 +52,7 @@ We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.
 To use this project, you'll need:
 
 - Python >= 3.9
-- Poetry 2.1.2
+- Poetry 2.1.3
 
 ## Licensing
 

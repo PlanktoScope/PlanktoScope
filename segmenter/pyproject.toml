@@ -31,11 +31,11 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.11.2"
+python = ">=3.11.2,<4.0"
 paho-mqtt = "^2.1.0"
 numpy = "^2.3.0"
 pandas = "^2.1.4"
-loguru = "^0.7.2"
+loguru = "^0.7.3"
 opencv-python-headless = "^4.6.0.66"
 scikit-image = "^0.25.2"
 
