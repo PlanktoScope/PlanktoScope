@@ -34,9 +34,9 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
 python = ">=3.11.2,<4.0"
-paho-mqtt = "^1.6.1"
-readerwriterlock = "^1.0.9"
+paho-mqtt = "^2.1.0"
 loguru = "^0.7.3"
+readerwriterlock = "^1.0.9"
 
 [tool.poetry.group.hw.dependencies]
 rpi-gpio = "^0.7.0"
@@ -45,7 +45,7 @@ adafruit-circuitpython-motorkit = "^1.6.3"
 adafruit-circuitpython-motor = "^3.3.1"
 adafruit-ssd1306 = "^1.6.2"
 adafruit-platformdetect = "^3.45.2"
-smbus2 = "^0.4.1"
+smbus2 = "^0.5.0"
 spidev = "^3.5"
 gpiozero = "^2.0.1"
 
@@ -53,8 +53,8 @@ gpiozero = "^2.0.1"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-poethepoet = "^0.25.0"
-mypy = "^1.9.0"
+poethepoet = "^0.35.0"
+mypy = "^1.16.1"
 types-paho-mqtt = "^1.6.0.20240106"
 picamera2 = "^0.3.25"
 ruff = "^0.11.13"

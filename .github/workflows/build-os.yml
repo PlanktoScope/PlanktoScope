@@ -26,10 +26,6 @@ on:
         description: 'The CPU architecture of the OS (armhf, arm64)'
         required: true
         type: string
-      variant:
-        description: 'The name of the RPi OS base image variant (none, segmenter-only, adafruithat, planktoscopehat)'
-        required: true
-        type: string
 
 jobs:
   build-os-image:
@@ -153,7 +149,7 @@ jobs:
             ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
             /run/os-setup/os/ci-record-version.sh \
               "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
-              "${{ inputs.variant }}" "/run/os-setup"
+              "/run/os-setup"
             echo "installer-config.yml:"
             cat /usr/share/planktoscope/installer-config.yml
             echo "installer-versioning.yml:"
@@ -276,7 +272,7 @@ jobs:
           run: |
             echo "Running setup scripts..."
             export DEBIAN_FRONTEND=noninteractive
-            /run/os-setup/os/setup.sh ${{ inputs.variant }}
+            /run/os-setup/os/setup.sh
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal
@@ -330,9 +326,10 @@ jobs:
           else
             version="$(printf "%.7s" "${{ github.sha }}")"
           fi
-          variant="${{ inputs.variant }}"
+
+          variant=""
           if [[ "${{ inputs.base_release_name }}" != "bookworm" ]]; then
-            variant="$variant.${{ inputs.base_release_name }}"
+            variant="${{ inputs.base_release_name }}"
           fi
           if [[ "${{ inputs.arch }}" != "arm64" ]]; then
             variant="$variant.${{ inputs.arch }}"
@@ -342,7 +339,10 @@ jobs:
           fi
 
           # Assemble the image name
-          output_name="${{ inputs.name }}-$version+$variant"
+          output_name="${{ inputs.name }}-$version"
+          if [[ $variant != "" ]]; then
+            output_name="$output_name.$variant"
+          fi
           echo "OUTPUT_IMAGE_NAME=$output_name" >> $GITHUB_ENV
 
       - name: Shrink the OS image

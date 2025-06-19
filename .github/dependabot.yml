@@ -10,45 +10,68 @@ updates:
     directory: '/documentation'
     schedule:
       interval: 'monthly'
-    groups: documentation
+    groups:
+      documentation:
+        patterns:
+          - '*'
 
   - package-ecosystem: 'docker'
     directory: '/documentation'
     schedule:
       interval: 'monthly'
-    groups: documentation
+    groups:
+      documentation:
+        patterns:
+          - '*'
 
   # segmenter
   - package-ecosystem: 'pip'
     directory: '/segmenter'
     schedule:
       interval: 'monthly'
-    groups: segmenter
+    groups:
+      segmenter:
+        patterns:
+          - '*'
 
   - package-ecosystem: 'docker'
     directory: '/segmenter'
     schedule:
       interval: 'monthly'
+    groups:
+      segmenter:
+        patterns:
+          - '*'
 
   # controller
   - package-ecosystem: 'pip'
     directory: '/controller'
     schedule:
       interval: 'monthly'
-    groups: controller
+    groups:
+      controller:
+        patterns:
+          - '*'
 
   # github actions
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       interval: 'monthly'
+    groups:
+      github-actions:
+        patterns:
+          - '*'
 
   # node-red
   - package-ecosystem: 'npm'
     directory: '/node-red/nodes'
     schedule:
       interval: 'monthly'
-    groups: node-red
+    groups:
+      node-red:
+        patterns:
+          - '*'
 
   # Disabled, node-red has a strange dependency resolution between userDir and projects
   # - package-ecosystem: 'npm'
