@@ -9,10 +9,6 @@
 
 build_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
-# Get command-line args
-
-hardware_type="$1" # should be either adafruithat, planktoscopehat, fairscope-latest
-
 # Set up pretty error printing
 
 red_fg=31
@@ -47,7 +43,7 @@ fi
 
 description="set up Node-RED frontend"
 report_starting "$description"
-if "$build_scripts_root/node-red-frontend/install.sh" "$hardware_type"; then
+if "$build_scripts_root/node-red-frontend/install.sh"; then
   report_finished "$description"
 else
   panic "$description"
@@ -55,20 +51,10 @@ fi
 
 description="set up Python hardware controller"
 report_starting "$description"
-if "$build_scripts_root/python-hardware-controller/install.sh" "$hardware_type"; then
+if "$build_scripts_root/python-hardware-controller/install.sh"; then
   report_finished "$description"
 else
   panic "$description"
-fi
-
-if [ "$hardware_type" = "adafruithat" ]; then
-  description="set up GPS and clock driver"
-  report_starting "$description"
-  if "$build_scripts_root/gps/install.sh"; then
-    report_finished "$description"
-  else
-    panic "$description"
-  fi
 fi
 
 description="enable CPU overclocking"

@@ -4,8 +4,9 @@ import time
 
 from loguru import logger
 
+from .motor.motor import Motor
+
 from . import mqtt
-from .stepper import stepper
 
 logger.info("planktoscope.pump is loaded")
 
@@ -34,12 +35,12 @@ class PumpProcess(multiprocessing.Process):
         self.pump_max_speed = configuration.get("pump_max_speed", self.pump_max_speed)
 
         # /dev/spidev0.0
-        self.pump_stepper = stepper(pin=23, spi_bus=0, spi_device=0, size=0)
+        self.pump_stepper = Motor(pin=23, spi_bus=0, spi_device=0)
 
         # Set stepper controller max speed
         self.pump_stepper.acceleration = 2000
         self.pump_stepper.deceleration = self.pump_stepper.acceleration
-        self.pump_stepper.speed = self.pump_max_speed * self.pump_steps_per_ml * 256 / 60
+        self.pump_stepper.speed = int(self.pump_max_speed * self.pump_steps_per_ml * 256 / 60)
 
         logger.info("Pump initialisation is over")
 

@@ -19,35 +19,9 @@ import time
 import signal  # for handling SIGINT/SIGTERM
 import os
 
-from loguru import logger  # for logging with multiprocessing
+from loguru import logger
 
 import planktoscope.segmenter
-
-logs_path = "/home/pi/device-backend-logs/processing/segmenter"
-if not os.path.exists(logs_path):
-    os.makedirs(logs_path)
-
-# enqueue=True is necessary so we can log accross modules
-# rotation happens everyday at 01:00 if not restarted
-# TODO: ensure the log directory exists
-logger.add(
-    logs_path + "/{time}.log",
-    rotation="5 MB",
-    retention="1 week",
-    compression=".tar.gz",
-    enqueue=True,
-    level="DEBUG",
-)
-
-# The available level for the logger are as follows:
-# Level name 	Severity 	Logger method
-# TRACE 	    5 	        logger.trace()
-# DEBUG 	    10 	        logger.debug()
-# INFO 	        20 	        logger.info()
-# SUCCESS 	    25 	        logger.success()
-# WARNING 	    30      	logger.warning()
-# ERROR 	    40       	logger.error()
-# CRITICAL 	    50      	logger.critical()
 
 logger.info("Starting the PlanktoScope data processing segmenter!")
 

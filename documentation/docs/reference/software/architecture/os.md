@@ -28,7 +28,7 @@ This definition is a reasonable description of the PlanktoScope OS, because it's
 
 - A Raspberry Pi computer.
 
-- Various input/output devices such as actuators (e.g. the pump, the sample focus-adjustment actuators, and the illumination LED), sensors (e.g. the camera and the GPS module), and information storage devices (e.g. the real-time clock and the EEPROM).
+- Various input/output devices such as actuators (e.g. the pump, the sample focus-adjustment actuators, and the illumination LED), sensors (e.g. the camera), and information storage devices (e.g. the real-time clock and the EEPROM).
 
 ## Software deployment & execution
 
@@ -137,10 +137,6 @@ Note: currently all of `forklift`'s functionality is only exposed through a comm
 ## PlanktoScope-specific hardware abstraction
 
 PlanktoScope-specific hardware modules are abstracted by PlanktoScope-specific programs which expose high-level network APIs (typically using [MQTT](https://mqtt.org/) and/or [HTTP](https://en.wikipedia.org/wiki/HTTP)); other programs should use these APIs in order to interact with the PlanktoScope-specific hardware modules. To provide these APIs, the PlanktoScope OS adds the following services (beyond what is already provided by the default installation of the Raspberry Pi OS):
-
-- [`gpsd`](https://gpsd.gitlab.io/gpsd/): for providing an abstraction for the PlanktoScope's GPS receiver.
-
-- [`chronyd`](https://chrony-project.org/): for managing synchronization of the Raspberry Pi's system clock with the PlanktoScope's GPS receiver and with any time sources available over the Internet.
 
 - The [PlanktoScope hardware controller](https://github.com/PlanktoScope/PlanktoScope/tree/main/controller): for controlling PlanktoScope-specific hardware modules and abstracting them into high-level network APIs for other programs to interact with.
 

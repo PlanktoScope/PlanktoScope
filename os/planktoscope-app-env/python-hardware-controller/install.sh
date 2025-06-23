@@ -6,16 +6,6 @@
 config_files_root="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 distro_setup_files_root="$(dirname "$(dirname "$config_files_root")")"
 
-# Get command-line args
-hardware_type="$1" # should be either adafruithat, planktoscopehat, or fairscope-latest
-default_config="$hardware_type-latest"
-case "$hardware_type" in
-"fairscope-latest")
-  hardware_type="planktoscopehat"
-  default_config="fairscope-latest"
-  ;;
-esac
-
 ## Install basic tooling
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   git python3-pip python3-venv pipx
@@ -30,7 +20,7 @@ sudo systemctl enable mosquitto.service
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 # Install Poetry
-pipx install poetry==2.1.2
+pipx install poetry==2.1.3
 pipx ensurepath
 PATH="$PATH:/home/pi/.local/bin"
 
@@ -42,8 +32,3 @@ poetry --directory "$HOME/PlanktoScope/controller" install \
 file="/etc/systemd/system/planktoscope-org.controller.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable "planktoscope-org.controller.service"
-
-# Select the enabled hardware controller
-mkdir -p "$HOME/PlanktoScope"
-cp "$HOME/PlanktoScope/default-configs/$default_config.hardware.json" \
-  "$HOME/PlanktoScope/hardware.json"

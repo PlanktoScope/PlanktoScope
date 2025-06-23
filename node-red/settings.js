@@ -23,6 +23,7 @@ require('./setup.js');
  **/
 
 module.exports = {
+    nrlint: require("./.nrlintrc.js"),
 
 /*******************************************************************************
  * Flow File and User Directory Settings

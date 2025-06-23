@@ -65,6 +65,15 @@ updates:
 
   # node-red
   - package-ecosystem: 'npm'
+    directory: '/node-red'
+    schedule:
+      interval: 'monthly'
+    groups:
+      node-red:
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'npm'
     directory: '/node-red/nodes'
     schedule:
       interval: 'monthly'
@@ -73,9 +82,29 @@ updates:
         patterns:
           - '*'
 
-  # Disabled, node-red has a strange dependency resolution between userDir and projects
-  # - package-ecosystem: 'npm'
-  #   directory: '/node-red'
-  #   schedule:
-  #     interval: 'monthly'
-  #   groups: node-red
+  - package-ecosystem: 'npm'
+    directory: '/node-red/projects/adafruithat'
+    schedule:
+      interval: 'monthly'
+    groups:
+      node-red:
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'npm'
+    directory: '/node-red/projects/dashboard'
+    schedule:
+      interval: 'monthly'
+    groups:
+      node-red:
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'npm'
+    directory: '/node-red/projects/planktoscopehat'
+    schedule:
+      interval: 'monthly'
+    groups:
+      node-red:
+        patterns:
+          - '*'

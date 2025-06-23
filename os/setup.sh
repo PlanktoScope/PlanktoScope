@@ -9,10 +9,6 @@
 
 setup_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
 
-# Get command-line args
-
-hardware_type="$1" # should be either none, adafruithat, planktoscopehat, or fairscope-latest
-
 # Set up pretty error printing
 
 red_fg=31
@@ -50,17 +46,13 @@ else
   panic "$description"
 fi
 
-if [ "$hardware_type" = "none" ]; then
-  echo "Warning: skipping PlanktoScope-specific setup because hardware type was specified as: $hardware_type"
+description="set up PlanktoScope application environment"
+report_starting "$description"
+if "$setup_scripts_root"/planktoscope-app-env/setup.sh; then
+  report_finished "$description"
+  source "$setup_scripts_root"/planktoscope-app-env/export-env.sh
 else
-  description="set up PlanktoScope application environment"
-  report_starting "$description"
-  if "$setup_scripts_root"/planktoscope-app-env/setup.sh "$hardware_type"; then
-    report_finished "$description"
-    source "$setup_scripts_root"/planktoscope-app-env/export-env.sh
-  else
-    panic "$description"
-  fi
+  panic "$description"
 fi
 
-"$setup_scripts_root"/cleanup.sh "$hardware_type"
+"$setup_scripts_root"/cleanup.sh

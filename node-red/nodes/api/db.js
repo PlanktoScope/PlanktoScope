@@ -1,7 +1,9 @@
 import { join } from "path"
-import { opendir, readFile } from "fs/promises"
+import { opendir, readFile, access, constants } from "fs/promises"
+import { parse } from "csv-parse/sync"
 
-const PATH_ACQUISITION = "/home/pi/data/img"
+const PATH_ACQUISITION = "/home/pi/data/img/"
+const PATH_SEGMENTATION = "/home/pi/data/objects/"
 
 export async function listAcquisitions() {
   let acquisitions = []
@@ -88,7 +90,7 @@ async function getAcquisitionFromPath(path) {
     metadata.acq_id.split(sample_id + "_")[1] || metadata.acq_id
   const operator_name = metadata.sample_operator
   const image_acquired_count = metadata.acq_nb_frame
-  const is_segmented = null // TODO
+  const is_segmented = await isAcquisitionSegmented(path)
 
   const acquisition = {
     project_name,
@@ -102,15 +104,117 @@ async function getAcquisitionFromPath(path) {
   return acquisition
 }
 
-// Looks like we can use acq_nb_frame instead
-// import mime from "mime"
-// async function countImageAcquired(path) {
-//   let c = 0
-//   for await (const d of await opendir(path)) {
-//     if (!d.isFile()) continue
-//     if (mime.getType(d.name)?.startsWith("image/")) {
-//       c++
-//     }
-//   }
-//   return c
-// }
+async function isAcquisitionSegmented(path) {
+  const segmentation_path = join(path, "done.txt")
+
+  try {
+    await access(segmentation_path, constants.F_OK)
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err
+    return false
+  }
+
+  return true
+}
+
+export async function listSegmentations() {
+  let segmentations = []
+
+  let fsdir
+  try {
+    fsdir = await opendir(PATH_SEGMENTATION)
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err
+    return segmentations
+  }
+
+  for await (const d of fsdir) {
+    if (!d.isDirectory()) continue
+    segmentations.push(...(await listSegmentationsForDate(d.name)))
+  }
+
+  return segmentations
+}
+
+async function listSegmentationsForDate(date) {
+  let segmentations = []
+
+  let fsdir
+
+  try {
+    fsdir = await opendir(join(PATH_SEGMENTATION, date))
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err
+    return segmentations
+  }
+
+  for await (const d of fsdir) {
+    if (!d.isDirectory()) continue
+    segmentations.push(
+      ...(await listSegmentationsFromDirectory(
+        join(PATH_SEGMENTATION, date, d.name)
+      ))
+    )
+  }
+
+  return segmentations
+}
+
+async function listSegmentationsFromDirectory(dir_path) {
+  let segmentations = []
+
+  let fsdir
+
+  try {
+    fsdir = await opendir(dir_path)
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err
+    return segmentations
+  }
+
+  for await (const d of fsdir) {
+    if (!d.isDirectory()) continue
+
+    const path = join(dir_path, d.name)
+    const segmentation = await getSegmentationFromPath(path)
+    if (!segmentation) continue
+    segmentations.push(segmentation)
+  }
+
+  return segmentations
+}
+
+async function getSegmentationFromPath(path) {
+  const id = path.split("/").pop()
+  const tsv_path = join(path, `ecotaxa_${id}.tsv`)
+
+  let tsv
+  try {
+    const data = await readFile(tsv_path, "utf8")
+    tsv = parse(data, {
+      columns: true,
+      escape: null,
+      delimiter: "	",
+      skip_empty_lines: true,
+    })
+    // First line is column data type so remove it
+    tsv.shift()
+  } catch {
+    return
+  }
+
+  const project_name = tsv[0].sample_project
+  const sample_id =
+    tsv[0].sample_id.split(tsv[0].sample_project + "_")[1] || tsv[0].sample_id
+  const acquisition_id =
+    tsv[0].acq_id.split(sample_id + "_")[1] || tsv[0].acq_id
+
+  const segmentation = {
+    project_name,
+    sample_id,
+    acquisition_id,
+    image_acquired_count: tsv.length,
+  }
+
+  return segmentation
+}
