@@ -2,6 +2,7 @@
 Description=Run the PlanktoScope hardware controller
 # Start after Node-RED so that Node-RED can catch all MQTT messages emitted at startup
 # Node-RED is started after Mosquitto
+Wants=nodered.service
 After=nodered.service
 
 [Service]
