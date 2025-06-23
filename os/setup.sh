@@ -27,7 +27,7 @@ function panic {
 }
 # Run sub-scripts
 
-echo -e "${script_fmt}Setting up full operating system...${reset_fmt}"
+echo -e "${subscript_fmt}Setting up full operating system...${reset_fmt}"
 
 export PATH="$HOME/.local/bin:$PATH"
 export LANG="en_US.UTF-8"
