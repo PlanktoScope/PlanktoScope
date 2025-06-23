@@ -40,9 +40,9 @@ def main():
     logger.info(f"Hardware variant: {variant}")
 
     if variant == "adafruithat":
-        from adafruithat import main as platform  # noqa: IMR200
+        from adafruithat import main as platform
     else:
-        from planktoscopehat import main as platform  # noqa: IMR200
+        from planktoscopehat import main as platform
 
     platform.main()
 
