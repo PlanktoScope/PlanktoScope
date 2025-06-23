@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.11-slim-bookworm
+FROM docker.io/library/python:3.13-slim-bookworm
 
 # Install OS dependencies
 
