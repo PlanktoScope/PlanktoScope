@@ -132,4 +132,4 @@ else
   panic "$description"
 fi
 
-"$setup_scripts_root"/cleanup.sh
+"$build_scripts_root"/cleanup.sh
