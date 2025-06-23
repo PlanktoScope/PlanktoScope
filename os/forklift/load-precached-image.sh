@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 image="$1"
 cache_path="$2" # e.g. ~/.cache/containers
 

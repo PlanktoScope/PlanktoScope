@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 # This script records OS installation versioning information in the same way as the
 # install.planktoscope.community/distro.sh script does. To invoke it, you must set the following
 # environment variables:

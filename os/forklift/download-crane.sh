@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 parent="$1"
 
 config_files_root=$(dirname $(realpath $BASH_SOURCE))
