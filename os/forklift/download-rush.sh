@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 parent="$1"
 
-config_files_root=$(dirname $(realpath $BASH_SOURCE))
+config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 version="$(cat "$config_files_root/rush-version")"
 arch="$(uname -m | sed -e 's~x86_64~amd64~' -e 's~aarch64~arm64~')"
 tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"

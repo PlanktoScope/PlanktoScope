@@ -1,8 +1,6 @@
 #!/bin/bash -eux
 # Docker enables deployment of containerized applications.
 
-config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
-
 sudo install -m 0755 -d /etc/apt/keyrings
 if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
   curl -fsSL "https://download.docker.com/linux/debian/gpg" |

@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 parent="$1"
 
-config_files_root=$(dirname $(realpath $BASH_SOURCE))
+config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
 version="$(cat "$config_files_root/forklift-version")"
 # Note: currently we use dpkg --print-architecture instead of uname -m because Forklift selects
 # container image architectures for download based on the CPU target Forklift was compiled for, and

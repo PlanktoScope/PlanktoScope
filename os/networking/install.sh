@@ -2,9 +2,6 @@
 # The networking configuration enables access to network services via static IP over Ethernet, and
 # via self-hosted wireless AP when a specified external wifi network is not available.
 
-# Determine the base path for copied files
-config_files_root=$(dirname "$(realpath "$BASH_SOURCE")")
-
 # Install dependencies
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   network-manager firewalld dnsmasq-base
