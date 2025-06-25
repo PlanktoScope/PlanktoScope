@@ -1,48 +1,33 @@
-#!/bin/bash -eu
-# This script performs cleanup which must happen after all other setup work has finished.
+#!/bin/bash -eux
+# Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
-# Determine the base path for sub-scripts
+# Remove unnecessary packages:
+sudo apt-get remove -y gcc triggerhappy
+sudo apt-get remove -y gcc-10 || true
+sudo apt-get remove -y gcc-12 || true
 
-setup_scripts_root=$(dirname $(realpath $BASH_SOURCE))
+# Clean up any unnecessary apt files:
+sudo apt-get autoremove -y
+sudo apt-get clean -y
 
-# Set up pretty error printing
+# Clear machine-id so that it will be regenerated on the next boot
+# (refer to https://www.freedesktop.org/software/systemd/man/latest/machine-id.html):
+sudo bash -c 'printf "" > /var/lib/dbus/machine-id'
+sudo bash -c 'printf "uninitialized\n" > /etc/machine-id'
 
-red_fg=31
-blue_fg=34
-magenta_fg=35
-bold=1
+# Clear other secrets (refer to https://systemd.io/BUILDING_IMAGES/):
+sudo rm -f /var/lib/systemd/random-seed
+sudo rm -f /var/lib/systemd/credential.secret
 
-script_fmt="\e[${bold};${magenta_fg}m"
-error_fmt="\e[${bold};${red_fg}m"
-reset_fmt='\e[0m'
+# Remove SSH keys:
+sudo rm -f /etc/ssh/ssh_host_*_key*
 
-function report_starting {
-  echo
-  echo -e "${script_fmt}Starting: ${1}...${reset_fmt}"
-}
-function report_finished {
-  echo
-  echo -e "${script_fmt}Finished: ${1}!${reset_fmt}"
-}
-function panic {
-  echo -e "${error_fmt}Error: couldn't ${1}${reset_fmt}"
-  exit 1
-}
+# Clean up any unnecessary pip, poetry, and npm files
+pip3 cache purge || true
+rm -rf "$HOME"/.cache/pip
+poetry cache clear --no-interaction --all .
+npm cache clean --force
 
-# Run sub-scripts
-
-description="remove unnecessary artifacts from the PlanktoScope application environment"
-report_starting "$description"
-if $setup_scripts_root/planktoscope-app-env/cleanup.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="remove unnecessary artifacts from the base operating system"
-report_starting "$description"
-if $setup_scripts_root/base-os/cleanup.sh ; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
+# Remove history files
+rm -f "$HOME"/.python_history
+rm -f "$HOME"/.bash_history

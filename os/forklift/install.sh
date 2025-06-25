@@ -69,7 +69,7 @@ forklift plt ls-img |
 # `newgrp docker` in the script to avoid the need for `sudo -E here`, but it doesn't work in the
 # script here (even though it works after the script finishes, before rebooting):
 FORKLIFT="forklift --stage-store /var/lib/forklift/stages"
-if ! docker info 2>&1 >/dev/null; then
+if ! docker info > /dev/null 2>&1; then
   FORKLIFT="sudo -E forklift --stage-store /var/lib/forklift/stages"
 fi
 

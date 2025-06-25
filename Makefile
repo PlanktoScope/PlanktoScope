@@ -1,7 +1,6 @@
-.PHONY: all clean
+.PHONY: all clean setup test developer-mode
 .DEFAULT_GOAL := setup
 
-.PHONY: setup
 setup:
 	sudo apt install golang --no-install-recommends
 	go install github.com/mrtazz/checkmake/cmd/checkmake@latest
@@ -13,7 +12,6 @@ setup:
 	make -C os setup
 	make -C documentation setup
 
-.PHONY: test
 test:
 	~/go/bin/checkmake Makefile
 	make -C node-red test
@@ -22,7 +20,6 @@ test:
 	make -C os test
 	make -C documentation test
 
-.PHONY: developer-mode
 developer-mode:
 	git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
 	git fetch origin

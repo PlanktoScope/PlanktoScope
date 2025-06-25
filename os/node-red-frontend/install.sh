@@ -24,9 +24,9 @@ sudo apt-get install -y nodejs
 # Install Node-RED
 npm config set prefix /home/pi/.local
 npm install -g node-red@v4.0.9
-sudo cp $config_files_root/nodered.service /etc/systemd/system/nodered.service
+sudo cp "$config_files_root"/nodered.service /etc/systemd/system/nodered.service
 sudo mkdir -p /etc/systemd/system/nodered.service.d
-sudo cp $config_files_root/30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
+sudo cp "$config_files_root"/30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
 sudo systemctl enable nodered.service
 rm -rf /home/pi/.node-red
 
