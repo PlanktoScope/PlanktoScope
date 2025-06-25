@@ -22,13 +22,10 @@ Install all dependencies including development tooling:
 poetry install --with dev
 ```
 
-Start controller for development:
+Start segmenter for development:
 
 ```sh
-docker ps
-# copy the container id of the segmenter
-docker stop <container-id>
-
+sudo systemctl stop planktoscope-org.segmenter.service
 poetry run python -u main.py
 # make changes and restart
 ```
@@ -51,7 +48,7 @@ We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.
 
 To use this project, you'll need:
 
-- Python >= 3.9
+- Python >= 3.11.2
 - Poetry 2.1.3
 
 ## Licensing
