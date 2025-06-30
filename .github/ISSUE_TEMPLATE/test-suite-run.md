@@ -22,7 +22,7 @@ assignees: ""
 
 **Comment**
 
-Anthing else worth knowing?
+Anything else worth knowing?
 
 # Test suite
 
@@ -181,3 +181,7 @@ Replace `{machine-name}` with your PlanktoScope name.
    1. [ ] [http://pkscope-{machine-name}.local](http://pkscope-{machine-name}.local)
 
 -->
+
+## Additional tests
+
+If you've run tests that are not included in this test suite, please describe them here and share results.
