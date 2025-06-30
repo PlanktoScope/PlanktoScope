@@ -7,10 +7,11 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
-## v2025.0.0-alpha.0 - 2025-05-21
+## v2025.0.0 - unreleased
 
 ### Added
 
+- Add 500µm Capillary flowcell option #667
 - (Application: GUI) The landing page now has a link to a new page (actually a filebrowser file viewer) which lists the MAC addresses of all network interfaces, to make it easier to figure out MAC addresses for registering the Raspberry Pi on networks which require such registrations as a requirement for internet access.
 - (System: networking) If you plug in a supported USB Wi-Fi dongle into the PlanktoScope, now it will by default automatically create a Wi-Fi hotspot network from that Wi-Fi dongle - regardless of whether the PlanktoScope's internal Wi-Fi module is configured to also create the same Wi-Fi hotspot network or to connect to some external Wi-Fi network. This means that the PlanktoScope now supports creating its own Wi-Fi hotspot while simultaneously being connected to the internet via a Wi-Fi network, if you plug in a USB Wi-Fi dongle.
 - (System: networking) If the PlanktoScope is connected to a Wi-Fi network with a captive portal, you should be able to access and proceed through the captive portal from a computer/phone connected to the PlanktoScope.
