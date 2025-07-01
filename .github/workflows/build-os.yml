@@ -161,77 +161,6 @@ jobs:
         run: |
           sudo chown -R $USER .
 
-      # PRE-CACHE CONTAINER IMAGES
-      # Because Docker Hub rate-limits container image pulls and we want to pull the same set of
-      # images many times for building a matrix of OS images, we pre-cache container images so that
-      # they can be reused across workflow runs.
-      # TODO: move some of this into a separate GitHub Action and/or Forklift command, to keep
-      # this workflow simpler
-
-      - name: Set up container image pre-caching
-        id: setup-precaching
-        run: |
-          forklift_setup_root="./os/forklift"
-          "$forklift_setup_root/download-forklift.sh" "/usr/bin"
-
-          pallet="$(cat os/forklift/forklift-pallet)"
-          echo "pallet=$pallet" >> $GITHUB_OUTPUT
-          pallet_version="$(cat os/forklift/forklift-pallet-version)"
-          echo "pallet_version=$pallet_version" >> $GITHUB_OUTPUT
-          echo "Pallet query: ${pallet}@${pallet_version}"
-
-          mkdir -p /tmp/forklift/container-image-precache
-          echo "path=/tmp/forklift/container-image-precache" >> $GITHUB_OUTPUT
-          forklift plt clone "$pallet@$pallet_version"
-          commit="$(git -C ~/.local/share/forklift/pallet show -s --format=%h)"
-          echo "commit=$commit" >> $GITHUB_OUTPUT
-          echo "Resolved $pallet@$pallet_version as commit $commit!"
-
-      - name: Try to load container image pre-cache from GitHub Actions cache
-        id: restore-precache
-        uses: actions/cache/restore@v4
-        env:
-          PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
-        with:
-          key: 'container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}'
-          path: ${{ steps.setup-precaching.outputs.path }}
-
-      - name: Pre-download container images
-        env:
-          ARCH: ${{ inputs.arch }}
-          PRECACHE_PATH: ${{ steps.setup-precaching.outputs.path }}
-        run: |
-          set -x
-          if [ -f "$PRECACHE_PATH/images-list" ]; then
-            echo "Pre-downloaded container images can be loaded from the GitHub Actions cache!"
-            exit 0
-          fi
-          forklift plt ls-img > "$PRECACHE_PATH/images-list"
-          forklift_setup_root="./os/forklift"
-
-          echo "Downloading temporary tools to pre-download container images..."
-          tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
-          "$forklift_setup_root/download-crane.sh" "$tmp_bin"
-          "$forklift_setup_root/download-rush.sh" "$tmp_bin"
-
-          echo "Pre-downloading container images..."
-          export PATH="$tmp_bin:$PATH"
-          container_platform="linux/$(echo "$ARCH" | sed -e 's~armhf~arm/v7~' -e 's~aarch64~arm64~')"
-          rush "$forklift_setup_root/precache-image.sh" {} "$PRECACHE_PATH" "$container_platform" \
-            < "$PRECACHE_PATH/images-list"
-
-      # We only use actions/cache/restore and actions/cache/save separately because actions/cache's
-      # save-always flag is broken: https://github.com/actions/cache/issues/1315 ; once that's
-      # fixed, we can simplify this job a bit.
-      - name: Save container image pre-cache to GitHub Actions cache
-        if: '!steps.restore-precache.outputs.cache-hit'
-        uses: actions/cache/save@v4
-        env:
-          PALLET: ${{ steps.setup-precaching.outputs.pallet }}@${{ steps.setup-precaching.outputs.commit }}
-        with:
-          key: 'container-images-${{ inputs.arch }}-pallet-${{ env.PALLET }}'
-          path: ${{ steps.setup-precaching.outputs.path }}
-
       # Note: the following step isn't strictly necessary, but it's nice to separate the GitHub
       # Actions log outputs for setting up pinspawn-action for the first time from the logs for
       # pre-downloading container images
@@ -240,20 +169,6 @@ jobs:
         with:
           image: ${{ steps.expand-image.outputs.destination }}
           run: echo "Done!"
-
-      - name: Copy pre-downloaded container images into OS image
-        uses: ethanjli/pinspawn-action@v0.1.5
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: >-
-            --bind ${{ steps.setup-precaching.outputs.path }}:/run/container-images
-            --machine=raspberrypi
-          run: |
-            local_cache="$HOME/.cache/forklift/containers/docker-archives"
-            mkdir -p "$local_cache"
-            sudo cp -r /run/container-images/* "$local_cache"
-            sudo chown $USER -R "$local_cache"
 
       # RUN OS SETUP SCRIPTS
 
