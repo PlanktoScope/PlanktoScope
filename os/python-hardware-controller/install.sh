@@ -9,6 +9,11 @@ config_files_root="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   git python3-pip python3-venv pipx
 
+## Install mosquitto
+sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
+  mosquitto
+sudo systemctl enable mosquitto.service
+
 # Suppress keyring dialogs when setting up the PlanktoScope distro on a graphical desktop
 # (see https://github.com/pypa/pip/issues/7883)
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
