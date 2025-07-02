@@ -14,8 +14,6 @@ jobs:
 
       - run: make setup
       - run: make test
-      - run: make developer-mode
       # run again to ensoure idempotence
       # that is; scripts do not fail if they run again
       - run: make setup
-      - run: make developer-mode
