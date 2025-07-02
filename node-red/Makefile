@@ -7,7 +7,7 @@ setup:
 	cd nodes && npm install
 
 test:
-	~/go/bin/checkmake Makefile
+	checkmake Makefile
 	jq . projects/adafruithat/flows.json 1> /dev/null
 	jq . projects/planktoscopehat/flows.json 1> /dev/null
 	jq . projects/dashboard/flows.json 1> /dev/null

@@ -8,5 +8,5 @@ setup:
 	sudo systemctl daemon-reload
 
 test:
-	~/go/bin/checkmake Makefile
+	checkmake Makefile
 	poetry run poe check

@@ -5,5 +5,5 @@ setup:
 	poetry lock && poetry install
 
 test:
-	~/go/bin/checkmake Makefile
+	checkmake Makefile
 	poetry run poe check

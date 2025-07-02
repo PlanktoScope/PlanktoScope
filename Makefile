@@ -3,7 +3,7 @@
 
 setup:
 	sudo apt install -y golang --no-install-recommends
-	go install github.com/mrtazz/checkmake/cmd/checkmake@latest
+	GOBIN=~/.local/bin go install github.com/mrtazz/checkmake/cmd/checkmake@latest
 	pipx install poetry==2.1.3 --force
 	git submodule update --init
 	make -C node-red setup
@@ -13,7 +13,7 @@ setup:
 	make -C documentation setup
 
 test:
-	~/go/bin/checkmake Makefile
+	checkmake Makefile
 	make -C node-red test
 	make -C controller test
 	make -C segmenter test
@@ -23,6 +23,7 @@ test:
 developer-mode:
 	git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
 	git fetch origin
+	sudo apt install -y build-essential
 # Install some tools for a nicer command-line experience over ssh
 	sudo apt install -y vim byobu git curl tmux
 # Install some tools for dealing with captive portals
