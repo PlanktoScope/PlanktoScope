@@ -24,6 +24,7 @@ test:
     just --justfile documentation/justfile test
 
 developer-mode:
+    #!/bin/sh
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
     [ "$CI" != "true" ] && git fetch origin
     sudo apt install -y build-essential
