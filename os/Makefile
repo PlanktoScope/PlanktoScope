@@ -2,7 +2,7 @@
 .DEFAULT_GOAL := setup
 
 setup:
-	sudo apt install shellcheck
+	sudo apt install -y shellcheck
 
 test:
 	shellcheck **/*.sh
