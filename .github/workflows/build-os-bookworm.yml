@@ -47,7 +47,7 @@ jobs:
     uses: ./.github/workflows/build-os.yml
     secrets: inherit
     with:
-      name: planktoscope
+      name: PlanktoScope-OS
       base_release_name: bookworm
       base_image_variant: ${{ matrix.base_variant_name }}
       base_release_date: 2025-05-13
