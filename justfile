@@ -24,8 +24,8 @@ test:
     just --justfile documentation/justfile test
 
 developer-mode:
-    git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
-    git fetch origin
+    [ "$CI" != "true" ] && git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
+    [ "$CI" != "true" ] && git fetch origin
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
     sudo apt install -y vim byobu git curl tmux
