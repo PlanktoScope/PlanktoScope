@@ -24,9 +24,8 @@ test:
     just --justfile documentation/justfile test
 
 developer-mode:
-    #!/bin/sh
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
-    [ "$CI" != "true" ] && git fetch origin
+    git fetch origin
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
     sudo apt install -y vim byobu git curl tmux
@@ -36,5 +35,5 @@ developer-mode:
     sudo apt install -y net-tools bind9-dnsutils netcat-openbsd nmap avahi-utils
     ./os/developer-mode/install-github-cli.sh
     ./os/developer-mode/install-just.sh
-    [ "$CI" != "true" ] && npm install -g zx@8
-    [ "$CI" != "true" ] && ./os/developer-mode/configure.mjs
+    npm install -g zx@8; fi
+    ./os/developer-mode/configure.mjs; fi
