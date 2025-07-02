@@ -63,10 +63,32 @@ class Motor:
         # Set XTARGET to 0, which holds the motor at the current position
         self.write(reg.XTARGET, 0)
 
-    def reset_ramp_defaults(self):
-        self.__ramp_AMAX = 5000
-        self.__ramp_VMAX = 100000
-        self.__ramp_DMAX = 5000
+    @property
+    def ramp_VSTART(self):
+        return self.__ramp_VSTART
+
+    @ramp_VSTART.setter
+    def ramp_VSTART(self, value: int):
+        self.write(reg.VSTART, value)
+        self.__ramp_VSTART = value
+
+    @property
+    def ramp_A1(self):
+        return self.__ramp_A1
+
+    @ramp_A1.setter
+    def ramp_A1(self, value: int):
+        self.write(reg.A1, value)
+        self.__ramp_A1 = value
+
+    @property
+    def ramp_V1(self):
+        return self.__ramp_V1
+
+    @ramp_V1.setter
+    def ramp_V1(self, value: int):
+        self.write(reg.V1, value)
+        self.__ramp_V1 = value
 
     @property
     def ramp_AMAX(self):
@@ -95,6 +117,44 @@ class Motor:
         self.write(reg.DMAX, value)
         self.__ramp_DMAX = value
 
+    @property
+    def ramp_D1(self):
+        return self.__ramp_D1
+
+    @ramp_D1.setter
+    def ramp_D1(self, value: int):
+        self.write(reg.D1, value)
+        self.__ramp_D1 = value
+
+    @property
+    def ramp_VSTOP(self):
+        return self.__ramp_VSTOP
+
+    @ramp_VSTOP.setter
+    def ramp_VSTOP(self, value: int):
+        self.write(reg.VSTOP, value)
+        self.__ramp_VSTOP = value
+
+    def write_ramp_params(self):
+        self.ramp_VSTART = self.ramp_VSTART
+        self.ramp_A1 = self.ramp_A1
+        self.ramp_V1 = self.ramp_V1
+        self.ramp_AMAX = self.ramp_AMAX
+        self.ramp_VMAX = self.ramp_VMAX
+        self.ramp_DMAX = self.ramp_DMAX
+        self.ramp_D1 = self.ramp_D1
+        self.ramp_VSTOP = self.ramp_VSTOP
+
+    def reset_ramp_defaults(self):
+        self.ramp_VSTART = 1
+        self.ramp_A1 = 2000
+        self.ramp_V1 = 3000
+        self.ramp_AMAX = 5000
+        self.ramp_VMAX = 100000
+        self.ramp_DMAX = 5000
+        self.ramp_D1 = 4000
+        self.ramp_VSTOP = 10
+
     def get_position(self) -> int:
         # Returns the current position of the motor relative to Home (0)
 
@@ -121,6 +181,8 @@ class Motor:
         # Move to an absolute position relative to Home (0).
 
         self.position_mode()
+
+        self.write_ramp_params()
 
         # Position range is from -2^31 to +(2^31)-1
         maximum_position = (2**31) - 1
