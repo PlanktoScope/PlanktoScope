@@ -37,4 +37,3 @@ developer-mode:
     ./os/developer-mode/install-just.sh
     [ "$CI" != "true" ] && npm install -g zx@8
     [ "$CI" != "true" ] && ./os/developer-mode/configure.mjs
-    

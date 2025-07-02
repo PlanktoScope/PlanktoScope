@@ -1,4 +1,5 @@
 #!/bin/bash -eux
+# shellcheck disable=all
 
 # Copied from
 # https://github.com/cli/cli/blob/4c47bad604d8b206a4bc686507b2e9a3bed2b317/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt
