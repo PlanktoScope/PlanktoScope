@@ -21,8 +21,8 @@ It is built upon [Raspberry Pi OS Lite 64-bit](https://www.raspberrypi.com/softw
 
 1. Choose the branch (e.g. `main`)
 2. Click on the most recent action in the table
-3. Download the Artifact `planktopscope-xxx`
-4. Run `unzip planktoscope-xxx.zip` to extract files
+3. Download the Artifact `PlanktoScope-OS-xxx`
+4. Run `unzip PlanktoScope-OS-xxx.zip` to extract files
 
 See [Backup and Restore SD Card image](#backup-and-restore-sd-card) below to write the `.img.xz` file to the sdcard
 
@@ -73,16 +73,9 @@ You can now SSH into your PlanktoScope without username / password (using `ssh $
 
 ```sh
 cd ~/PlanktoScope
-
-# Configure git
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-
-# To contribute, change the remote to PlanktoScope/PlanktoScope or your fork
-git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
-
-git fetch origin
+just developer-mode
 git checkout main
+git status
 ```
 
 </details>

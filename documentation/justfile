@@ -1,0 +1,9 @@
+setup:
+    poetry lock && poetry install
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable
+    poetry run poe check

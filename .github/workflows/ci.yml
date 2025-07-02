@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: make setup
-      - run: make test
+      - run: just setup
+      - run: just test
+      - run: just format
       # run again to ensoure idempotence
       # that is; scripts do not fail if they run again
-      - run: make setup
+      - run: just setup

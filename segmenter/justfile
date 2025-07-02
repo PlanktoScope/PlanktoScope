@@ -1,0 +1,14 @@
+setup:
+    poetry lock && poetry install --with=dev
+
+dev:
+    docker stop apps_ps_backend_proc-segmenter-server-1
+    poetry run python -u main.py
+
+format:
+    just --fmt --unstable
+    poetry run poe fmt
+
+test:
+    just --fmt --check --unstable
+    poetry run poe check
