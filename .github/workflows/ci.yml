@@ -14,3 +14,6 @@ jobs:
 
       - run: make setup
       - run: make test
+      # run again to ensoure idempotence
+      # that is; scripts do not fail if they run again
+      - run: make setup

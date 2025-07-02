@@ -7190,8 +7190,8 @@
         "z": "9daf9e2b.019fc",
         "name": "Restart Hardware Controller",
         "links": [
-            "e41870d7.300eb8",
-            "3973b999ee7b3b1d"
+            "3973b999ee7b3b1d",
+            "e41870d7.300eb8"
         ],
         "x": 195,
         "y": 420,
@@ -8241,8 +8241,8 @@
         "links": [
             "438febd245a9f73c"
         ],
-        "x": 1495,
-        "y": 380,
+        "x": 1385,
+        "y": 640,
         "wires": []
     },
     {
@@ -8261,8 +8261,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1160,
-        "y": 520,
+        "x": 1200,
+        "y": 640,
         "wires": [
             [
                 "e41870d7.300eb8"
@@ -8275,8 +8275,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 1200,
-        "y": 560,
+        "x": 1240,
+        "y": 680,
         "wires": []
     },
     {
@@ -8298,8 +8298,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
-        "y": 540,
+        "x": 690,
+        "y": 660,
         "wires": [
             [
                 "ee58b91c.396108"
@@ -8324,8 +8324,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 920,
-        "y": 540,
+        "x": 960,
+        "y": 660,
         "wires": [
             [
                 "2068e7f.f4efb18",
@@ -8414,8 +8414,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 490,
-        "y": 440,
+        "x": 390,
+        "y": 580,
         "wires": [
             []
         ]
@@ -8427,12 +8427,13 @@
         "name": "Save global",
         "func": "global.set(msg.topic,msg.payload);\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 440,
+        "x": 230,
+        "y": 580,
         "wires": [
             [
                 "1cfadc66.3cde8c"
@@ -8473,8 +8474,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
-        "y": 620,
+        "x": 690,
+        "y": 740,
         "wires": [
             [
                 "244ca5dd62df2bcd"
@@ -8499,8 +8500,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 920,
-        "y": 620,
+        "x": 960,
+        "y": 740,
         "wires": [
             [
                 "8e3b3d3c.955148",
@@ -8519,8 +8520,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1200,
-        "y": 620,
+        "x": 1240,
+        "y": 740,
         "wires": [
             [
                 "5d5ad36d2c50dcc2"
@@ -8533,8 +8534,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "Process_pixel calibration",
         "links": [],
-        "x": 1495,
-        "y": 500,
+        "x": 1545,
+        "y": 760,
         "wires": []
     },
     {
@@ -8581,8 +8582,8 @@
         "payload": "",
         "topic": "acq_fnumber_objective",
         "topicType": "str",
-        "x": 910,
-        "y": 660,
+        "x": 950,
+        "y": 780,
         "wires": [
             [
                 "a6983d3232b570a7",
@@ -8609,8 +8610,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1240,
-        "y": 660,
+        "x": 1280,
+        "y": 780,
         "wires": [
             [
                 "5d5ad36d2c50dcc2"
@@ -8643,8 +8644,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 660,
+        "x": 700,
+        "y": 780,
         "wires": [
             [
                 "6146ba22df928516"
@@ -8666,8 +8667,8 @@
         "className": "",
         "topic": "Resetting hardware configuration to version-specific default",
         "name": "",
-        "x": 350,
-        "y": 400,
+        "x": 250,
+        "y": 520,
         "wires": []
     },
     {
@@ -8689,8 +8690,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
-        "y": 360,
+        "x": 550,
+        "y": 420,
         "wires": [
             [
                 "e3ba6ac89221b17b"
@@ -8709,11 +8710,11 @@
         "winHide": false,
         "oldrc": false,
         "name": "Copy default hardware config",
-        "x": 680,
-        "y": 360,
+        "x": 820,
+        "y": 420,
         "wires": [
             [
-                "97e582080deae888"
+                "d0eeba02f973ab72"
             ],
             [],
             []
@@ -8736,8 +8737,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 910,
-        "y": 360,
+        "x": 1210,
+        "y": 440,
         "wires": [
             [
                 "3973b999ee7b3b1d"
@@ -8756,8 +8757,8 @@
             "5984b086eddc9311",
             "a2f2a4c7cbae4446"
         ],
-        "x": 1075,
-        "y": 360,
+        "x": 1325,
+        "y": 440,
         "wires": []
     },
     {
@@ -8765,8 +8766,8 @@
         "type": "subflow:b7861ce703215a01",
         "z": "1eaf21c8.f7a21e",
         "name": "",
-        "x": 360,
-        "y": 580,
+        "x": 400,
+        "y": 700,
         "wires": [
             [
                 "54ba7f16.709ad8",
@@ -8786,8 +8787,8 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 170,
-        "y": 460,
+        "x": 190,
+        "y": 660,
         "wires": [
             [
                 "3bcaf757cbc77fbe"
@@ -8838,8 +8839,8 @@
         "links": [
             "3973b999ee7b3b1d"
         ],
-        "x": 185,
-        "y": 560,
+        "x": 215,
+        "y": 740,
         "wires": [
             [
                 "3bcaf757cbc77fbe"
@@ -8855,14 +8856,15 @@
             "08d177136bd18281",
             "9f34e4a2f33c4022"
         ],
-        "x": 185,
-        "y": 400,
+        "x": 85,
+        "y": 500,
         "wires": [
             [
                 "68703ef63da2f081",
                 "d276ce894f483bcf",
                 "3e2c5c1c.4c57b4",
-                "a7e5c7f4.644678"
+                "a7e5c7f4.644678",
+                "66090e62d5ab9f22"
             ]
         ]
     },
@@ -8927,11 +8929,89 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 410,
-        "y": 220,
+        "x": 650,
+        "y": 180,
         "wires": [
             [
                 "56dd3f82c45717f0"
+            ]
+        ]
+    },
+    {
+        "id": "a4346039e6b93f74",
+        "type": "exec",
+        "z": "1eaf21c8.f7a21e",
+        "command": "cp",
+        "addpay": "payload",
+        "append": "/home/pi/PlanktoScope/config.json",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Copy default software config",
+        "x": 820,
+        "y": 480,
+        "wires": [
+            [
+                "d0eeba02f973ab72"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "66090e62d5ab9f22",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choose default software config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join([\"/home/pi/PlanktoScope/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".config.json\"])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 480,
+        "wires": [
+            [
+                "a4346039e6b93f74"
+            ]
+        ]
+    },
+    {
+        "id": "d0eeba02f973ab72",
+        "type": "join",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "",
+        "propertyType": "full",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1050,
+        "y": 440,
+        "wires": [
+            [
+                "97e582080deae888"
             ]
         ]
     }
