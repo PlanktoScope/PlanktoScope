@@ -28,6 +28,8 @@ class Motor:
         spi.mode = 3
         self.__spi = spi
 
+        self.default_settings()
+
         self.__goal = 0
         self.__direction = ""
         self.disable_motor()
@@ -37,6 +39,34 @@ class Motor:
 
     def disable_motor(self):
         self.enable.off()
+
+    def default_settings(self):
+        # Set default motor parameters
+
+        # MULTISTEP_FILT = 1, EN_PWM_MODE = 1 enables stealthChopAdd commentMore actions
+        self.write(reg.GCONF, 0b0000000000001110)
+        # TOFF = 3, HSTRT = 4, HEND = 1, TBL = 2, CHM = 0 (spreadCycle)
+        self.write(reg.CHOPCONF, 0x000100C3)
+        # IHOLD = 1, IRUN = 5 (max current), IHOLDDELAY = 8
+        self.write(reg.IHOLD_IRUN, 0x00080501)
+        # TPOWERDOWN = 10: Delay before powerdown in standstill
+        self.write(reg.TPOWERDOWN, 0x0000000A)
+        # TPWMTHRS = 500
+        self.write(reg.TPWMTHRS, 0x000001F4)
+
+        self.reset_ramp_defaults()
+
+        # Position mode
+        self.write(reg.RAMPMODE, 0)
+        # Set current position to 0
+        self.write(reg.XACTUAL, 0)
+        # Set XTARGET to 0, which holds the motor at the current position
+        self.write(reg.XTARGET, 0)
+
+    def reset_ramp_defaults(self):
+        self.__ramp_AMAX = 5000
+        self.__ramp_VMAX = 100000
+        self.__ramp_DMAX = 5000
 
     @property
     def ramp_AMAX(self):
