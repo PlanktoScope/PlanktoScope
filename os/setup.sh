@@ -124,4 +124,12 @@ else
   panic "$description"
 fi
 
+description="install just"
+report_starting "$description"
+if "$build_scripts_root/developer-mode/install-just.sh"; then
+  report_finished "$description"
+else
+  panic "$description"
+fi
+
 "$build_scripts_root"/cleanup.sh
