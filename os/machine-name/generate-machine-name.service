@@ -1,0 +1,16 @@
+[Unit]
+Description=Generate a human-readable machine name at /run/machine-name from the Raspberry Pi's serial number
+DefaultDependencies=no
+ConditionFileIsExecutable=/usr/libexec/generate-machine-name
+Wants=local-fs.target
+After=local-fs.target
+Before=sysinit.target
+Before=systemd-hostnamed.service
+
+[Service]
+Type=oneshot
+ExecStartPre=sh -c "echo 'unknown' >/run/machine-name"
+ExecStart=/usr/libexec/generate-machine-name
+
+[Install]
+WantedBy=sysinit.target

@@ -1,0 +1,18 @@
+[Unit]
+Description=Generate a hostname at /etc/hostname using the template at /etc/hostname-template
+DefaultDependencies=no
+ConditionFileIsExecutable=/usr/libexec/generate-hostname-templated
+ConditionPathExists=/etc/hostname-template
+Requires=local-fs.target
+After=local-fs.target
+Wants=generate-machine-name.service
+After=generate-machine-name.service
+Before=systemd-hostnamed.service
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/generate-hostname-templated
+
+[Install]
+WantedBy=sysinit.target
