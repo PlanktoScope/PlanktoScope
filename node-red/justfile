@@ -1,7 +1,11 @@
 setup:
+    npm install --omit=dev
+    cd nodes && npm install --without=dev
+
+setup-dev:
     sudo apt install -y jq --no-install-recommends
-    npm install
-    cd nodes && npm install
+    npm install --include=dev
+    cd nodes && npm install --include=dev
 
 format:
     just --fmt --unstable
