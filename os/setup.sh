@@ -58,14 +58,6 @@ else
   panic "$description"
 fi
 
-description="install Docker"
-report_starting "$description"
-if "$build_scripts_root"/docker/install.sh; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="install Cockpit"
 report_starting "$description"
 if "$build_scripts_root"/cockpit/install.sh; then
