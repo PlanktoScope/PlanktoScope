@@ -1,7 +1,6 @@
 [Unit]
 Description=Generate a hostname at /etc/hostname using the template at /etc/hostname-template
 DefaultDependencies=no
-ConditionFileIsExecutable=/usr/libexec/generate-hostname-templated
 ConditionPathExists=/etc/hostname-template
 Requires=local-fs.target
 After=local-fs.target
@@ -12,7 +11,7 @@ Before=sysinit.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/generate-hostname-templated
+ExecStart=/home/pi/PlanktoScope/os/machine-name/generate-hostname-templated.sh
 
 [Install]
 WantedBy=sysinit.target

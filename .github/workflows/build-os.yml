@@ -221,6 +221,14 @@ jobs:
             # https://forums.raspberrypi.com/viewtopic.php?p=2032694#p2032694
             systemctl enable getty@tty1
 
+      # RUN TESTS
+
+      - name: Run tests
+      - uses: ethanjli/pinspawn-action@v0.1.5
+        run: |
+          cd /home/pi/PlanktoScope
+          just ci
+
       # UPLOAD OS IMAGE
 
       - name: Determine output image name

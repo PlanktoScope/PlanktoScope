@@ -114,4 +114,8 @@ else
   panic "$description"
 fi
 
+description="run just scripts"
+report_starting "$description"
+just --justfile "$build_scripts_root"/justfile setup
+
 "$build_scripts_root"/cleanup.sh

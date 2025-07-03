@@ -1,16 +1,21 @@
 setup:
+    just --justfile caddy/justfile        setup
+    just --justfile machine-name/justfile setup
+    just --justfile ssh/justfile          setup
+
+setup-dev:
     sudo apt install -y shellcheck
-    cd machine-name && just
-    just ssh
 
 format:
     just --fmt --unstable
+    just --justfile caddy/justfile        format
+    just --justfile machine-name/justfile format
+    just --justfile ssh/justfile          format
 
 test:
     just --fmt --check --unstable
     shellcheck **/*.sh
     systemd-analyze verify **/*.service
-
-ssh:
-    sudo systemctl enable --now ssh
-    sudo firewall-cmd --permanent --zone=public --add-service=http
+    just --justfile caddy/justfile        test
+    just --justfile machine-name/justfile test
+    just --justfile ssh/justfile          test
