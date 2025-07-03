@@ -1,10 +1,12 @@
 setup:
     sudo apt install -y libcap-dev
-    poetry lock && poetry install --with=dev
+    poetry lock && poetry install --without=dev
     sudo cp ../os/python-hardware-controller/etc/systemd/system/planktoscope-org.controller.service /etc/systemd/system/
     sudo systemctl daemon-reload
     sudo systemctl enable planktoscope-org.controller
-    sudo systemctl restart planktoscope-org.controller
+
+setup-dev:
+    poetry lock && poetry install --with=dev
 
 dev:
     sudo systemctl stop planktoscope-org.controller

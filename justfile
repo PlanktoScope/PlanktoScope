@@ -7,6 +7,13 @@ setup:
     just --justfile os/justfile            setup
     just --justfile documentation/justfile setup
 
+setup-dev:
+    just --justfile node-red/justfile      setup-dev
+    just --justfile controller/justfile    setup-dev
+    just --justfile segmenter/justfile     setup-dev
+    just --justfile os/justfile            setup-dev
+    just --justfile documentation/justfile setup-dev
+
 format:
     just --fmt --unstable
     just --justfile node-red/justfile      format
@@ -24,6 +31,7 @@ test:
     just --justfile documentation/justfile test
 
 developer-mode:
+    just setup-dev
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
     git fetch origin
     # https://www.damirscorner.com/blog/posts/20210423-ChangingUrlsOfGitSubmodules.html
@@ -41,6 +49,14 @@ developer-mode:
     npm install -g zx@8
     ./os/developer-mode/configure.mjs
 
-os:
-    cd os && just ssh
-    cd PlanktoScope && just
+ci:
+    just setup
+    just setup-dev
+    just test
+    just format
+    # just developer-mode TODO
+    # run again to ensoure idempotence
+    # that is; scripts do not fail if they run again
+    just setup
+    just setup-dev
+    # just developer-mode TODO
