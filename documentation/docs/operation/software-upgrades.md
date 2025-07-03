@@ -22,27 +22,7 @@ Advanced users may also want to take the following actions, depending on what ch
 
 ## Reset the PlanktoScope OS
 
-Multiple levels of reset are possible: a full reset, and various levels of partial resets.
-
-### Full reset
-
-For most users we recommend performing a full reset rather than a partial reset, because the "full reset" process is easier to understand. This involves completely wiping your SD card and resetting everything by re-flashing your PlanktoScope's SD card. You can do this by writing an SD card image to the SD card, following the instructions in our [standard software installation guide](../setup/software/standard-install.md). If you want to reset to the same release of the PlanktoScope as what you were originally using, you can check the release's version number in the "Software Version" field of the "Information" panel in [the Node-RED dashboard's System Monitoring page](./user-interface.md#system-monitoring); then you should download an SD card image for the corresponding release (as described in the software installation guide). When you re-flash the SD card, it will lose all data and non-default settings mentioned in [the section of this guide on backing up your data & settings](#back-up-your-data-settings).
-
-### Partial reset
-
-For now, partial reset approaches are only recommended for advanced users who can understand the implications of those partial reset approaches. Two kinds of partial reset are possible:
-
-1. If you just need to reset some or all of your operating system configuration file changes (such as those described in the [networking operations guide](./networking.md)) back to the default settings for the PlanktoScope OS, then you can just delete the relevant files (or you can even delete all files) within `/var/lib/overlays/overrides/etc/` (for example in the file browser at <http://planktoscope.local/admin/fs/files/var/lib/overlays/overrides/etc/> ) and then reboot your PlanktoScope immediately afterwards.
-
-2. If you want to reset the running software back to the original release of the PlanktoScope OS provided with your SD card image, while keeping any customizations you have made to override default PlanktoScope OS configurations (such as those described in the [networking operations guide](./networking.md)), then you can run the following command on your PlanktoScope (for example in the Cockpit Terminal at <http://planktoscope.local/admin/cockpit/system/terminal> ) and then reboot your PlanktoScope:
-
-   ```sh
-   forklift stage set-next --cache-img=false factory-reset
-   ```
-
-   This reset will only have an effect if you had previously run a `forklift` command for configuring the OS; otherwise, it will not cause any visible change to your PlanktoScope. If your PlanktoScope is [connected to the internet](./networking.md#connect-your-planktoscope-to-the-internet), you can also omit the `--cache-img=false` flag, in order to ensure that the PlanktoScope will have all necessary programs at the originally-required versions before you reboot; but if you never previously took manual action to delete any Docker container images from your PlanktoScope, you don't need to worry about this and you can keep the `--cache-img=false` flag in the command.
-
-If you perform both kinds of partial reset consecutively, then you will reset the running software back to the original release of the PlanktoScope OS provided with your SD card image and you will also discard any customizations you have made to override default PlanktoScope OS configurations. Note that this does not reset certain kinds of application settings (such as for the Node-RED dashboard), and it does not delete any datasets you have collected with the PlanktoScope.
+This involves completely wiping your SD card and resetting everything by re-flashing your PlanktoScope's SD card. You can do this by writing an SD card image to the SD card, following the instructions in our [standard software installation guide](../setup/software/standard-install.md). If you want to reset to the same release of the PlanktoScope as what you were originally using, you can check the release's version number in the "Software Version" field of the "Information" panel in [the Node-RED dashboard's System Monitoring page](./user-interface.md#system-monitoring); then you should download an SD card image for the corresponding release (as described in the software installation guide). When you re-flash the SD card, it will lose all data and non-default settings mentioned in [the section of this guide on backing up your data & settings](#back-up-your-data-settings).
 
 ## Upgrade/downgrade the PlanktoScope OS
 

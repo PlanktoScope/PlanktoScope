@@ -26,6 +26,9 @@ test:
 developer-mode:
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
     git fetch origin
+    # https://www.damirscorner.com/blog/posts/20210423-ChangingUrlsOfGitSubmodules.html
+    git submodule sync
+    git submodule update --init --recursive --remote
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
     sudo apt install -y vim byobu git curl tmux lsof ripgrep
@@ -41,4 +44,3 @@ developer-mode:
 os:
     cd os && just ssh
     cd PlanktoScope && just
-    
