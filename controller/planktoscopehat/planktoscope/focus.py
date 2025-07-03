@@ -17,7 +17,8 @@ BACKWARD = 2
 
 
 class FocusProcess(multiprocessing.Process):
-    focus_steps_per_mm = 40
+    # https://github.com/PlanktoScope/PlanktoScope/issues/691
+    focus_steps_per_mm = 27
     # focus max speed is in mm/sec and is limited by the maximum number of pulses per second the PlanktoScope can send
     focus_max_speed = 5
 
