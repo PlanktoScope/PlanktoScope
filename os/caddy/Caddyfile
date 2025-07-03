@@ -1,0 +1,24 @@
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
+
+:80 {
+	redir / /ps/node-red-v2/ui
+
+	handle /ps/hal/camera/streams/preview.mjpg {
+		rewrite * /stream.mjpg
+		reverse_proxy localhost:8000
+	}
+
+	handle /ps/processing/segmenter/streams/object.mjpg {
+		rewrite * /object.mjpg
+		reverse_proxy localhost:8001
+	}
+
+	handle /admin/ps/node-red-v2/* {
+		reverse_proxy localhost:1880
+	}
+
+	handle /ps/node-red-v2/* {
+		reverse_proxy localhost:1880
+	}
+}

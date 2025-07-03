@@ -40,7 +40,7 @@ Run all checks (including code formatting and linting):
 just test
 ```
 
-We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.visualstudio.com/docs/remote/ssh)
+We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
 
 ### Prerequisites
 

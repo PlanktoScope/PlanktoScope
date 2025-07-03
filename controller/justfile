@@ -3,11 +3,11 @@ setup:
     poetry lock && poetry install --with=dev
     sudo cp ../os/python-hardware-controller/etc/systemd/system/planktoscope-org.controller.service /etc/systemd/system/
     sudo systemctl daemon-reload
-    sudo systemctl enable planktoscope-org.controller.service
-    sudo systemctl restart planktoscope-org.controller.service
+    sudo systemctl enable planktoscope-org.controller
+    sudo systemctl restart planktoscope-org.controller
 
 dev:
-    sudo systemctl stop planktoscope-org.controller.service
+    sudo systemctl stop planktoscope-org.controller
     poetry run python -u main.py
 
 format:
