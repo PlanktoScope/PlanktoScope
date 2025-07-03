@@ -226,7 +226,7 @@ jobs:
       - name: Run tests
         run: |
           cd /home/pi/PlanktoScope
-          sudo dbus-daemon --system &> /dev/null
+          sudo firewall-offline-cmd --enabled
           just ci
 
       # UPLOAD OS IMAGE
