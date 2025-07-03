@@ -13,14 +13,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: lewagon/wait-on-check-action@v1.3.4
+      - uses: lewagon/wait-on-check-action@v1.4.0
         with:
           ref: ${{ github.ref }}
           check-name: 'ci-checks'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-      - uses: lewagon/wait-on-check-action@v1.3.4
+      - uses: lewagon/wait-on-check-action@v1.4.0
         with:
           ref: ${{ github.ref }}
           check-name: 'merge-container-images'
