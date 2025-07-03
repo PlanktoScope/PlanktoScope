@@ -28,7 +28,7 @@ developer-mode:
     git fetch origin
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
-    sudo apt install -y vim byobu git curl tmux lsof
+    sudo apt install -y vim byobu git curl tmux lsof ripgrep
     # Install some tools for dealing with captive portals
     sudo apt install -y w3m lynx
     # Install some tools for troubleshooting networking stuff
