@@ -21,7 +21,7 @@ cd controller
 just
 ```
 
-Start controller for development:
+Start segmenter for development:
 
 ```sh
 just dev
@@ -46,7 +46,7 @@ We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.
 
 To use this project, you'll need:
 
-- Python >= 3.9
+- Python >= 3.11.2
 - Poetry 2.1.3
 
 ## Licensing
