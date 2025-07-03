@@ -19,30 +19,27 @@ Currently, the simplest way to deploy the segmenter on any computer is using the
 Install all dependencies including development tooling:
 
 ```sh
-poetry install --with dev
+cd controller
+just
 ```
 
 Start controller for development:
 
 ```sh
-docker ps
-# copy the container id of the segmenter
-docker stop <container-id>
-
-poetry run python -u main.py
+just dev
 # make changes and restart
 ```
 
 Run the code auto-formatter on the project:
 
 ```sh
-poetry run poe fmt
+just format
 ```
 
 Run all checks (including code formatting and linting):
 
 ```sh
-poetry run poe check
+just test
 ```
 
 We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.visualstudio.com/docs/remote/ssh)

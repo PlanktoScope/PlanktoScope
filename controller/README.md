@@ -25,27 +25,27 @@ Please note that for camera we rely on the Raspberry OS packages `python3-picame
 Install all dependencies including development tooling:
 
 ```sh
-poetry install --with dev
+cd controller
+just
 ```
 
 Start controller for development:
 
 ```sh
-sudo systemctl stop planktoscope-org.controller.service
-poetry run python -u main.py
+just dev
 # make changes and restart
 ```
 
 Run the code auto-formatter on the project:
 
 ```sh
-poetry run poe fmt
+just format
 ```
 
 Run all checks (including code formatting and linting):
 
 ```sh
-poetry run poe check
+just test
 ```
 
 We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.visualstudio.com/docs/remote/ssh)

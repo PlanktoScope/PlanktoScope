@@ -1,0 +1,9 @@
+setup:
+    sudo apt install -y shellcheck
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable
+    shellcheck **/*.sh

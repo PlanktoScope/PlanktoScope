@@ -12,8 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: make setup
-      - run: make test
+      - run: ./os/developer-mode/install-just.sh
+      - run: just setup
+      - run: just test
+      - run: just format
+      # - run: just developer-mode TODO
       # run again to ensoure idempotence
       # that is; scripts do not fail if they run again
-      - run: make setup
+      - run: just setup
+      # - run: just developer-mode TODO
