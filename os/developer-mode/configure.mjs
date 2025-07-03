@@ -13,7 +13,7 @@ async function $verbose(...args) {
   $.verbose = false
 }
 
-let user_name = String(await $`git config --global user.name`)
+let user_name = String(await $`git config --global user.name`.catch(() => ""))
 if (!user_name) {
   user_name = await question(
     `Please enter your name. ${chalk.dim(`e.g. John Doe`)}\n> `
@@ -21,7 +21,7 @@ if (!user_name) {
   await $verbose`git config --global user.name ${user_name}`
 }
 
-let user_email = String(await $`git config --global user.email`)
+let user_email = String(await $`git config --global user.email`.catch(() => ""))
 if (!user_email) {
   user_email = await question(
     `Your email address? eg ${chalk.dim(`e.g. john.doe@example.edu`)}\n> `
@@ -29,6 +29,8 @@ if (!user_email) {
   await $verbose`git config --global user.email ${user_email}`
 }
 
-if (!String(await $`git config --global push.autoSetupRemote`)) {
+if (
+  !String(await $`git config --global push.autoSetupRemote`.catch(() => ""))
+) {
   await $verbose`git config --global push.autoSetupRemote true`
 }

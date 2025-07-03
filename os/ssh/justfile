@@ -1,0 +1,10 @@
+setup:
+    sudo systemctl enable ssh
+    # FIXME: moved to firstboot
+    # sudo firewall-cmd --permanent --zone=public --add-service=ssh
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable

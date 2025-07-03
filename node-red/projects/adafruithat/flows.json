@@ -7061,7 +7061,7 @@
         "id": "38c05fcb891c82bf",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "docker restart apps_ps_backend_proc-segmenter-server-1",
+        "command": "sudo systemctl restart planktoscope-org.segmenter.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",

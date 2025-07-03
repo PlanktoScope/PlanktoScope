@@ -7,6 +7,13 @@ setup:
     just --justfile os/justfile            setup
     just --justfile documentation/justfile setup
 
+setup-dev:
+    just --justfile node-red/justfile      setup-dev
+    just --justfile controller/justfile    setup-dev
+    just --justfile segmenter/justfile     setup-dev
+    just --justfile os/justfile            setup-dev
+    just --justfile documentation/justfile setup-dev
+
 format:
     just --fmt --unstable
     just --justfile node-red/justfile      format
@@ -24,16 +31,32 @@ test:
     just --justfile documentation/justfile test
 
 developer-mode:
+    just setup-dev
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
     git fetch origin
+    # https://www.damirscorner.com/blog/posts/20210423-ChangingUrlsOfGitSubmodules.html
+    git submodule sync
+    git submodule update --init --recursive --remote
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
-    sudo apt install -y vim byobu git curl tmux
+    sudo apt install -y vim byobu git curl tmux lsof ripgrep
     # Install some tools for dealing with captive portals
     sudo apt install -y w3m lynx
     # Install some tools for troubleshooting networking stuff
     sudo apt install -y net-tools bind9-dnsutils netcat-openbsd nmap avahi-utils
     ./os/developer-mode/install-github-cli.sh
     ./os/developer-mode/install-just.sh
-    npm install -g zx@8; fi
-    ./os/developer-mode/configure.mjs; fi
+    npm install -g zx@8
+    ./os/developer-mode/configure.mjs
+
+ci:
+    just setup
+    just setup-dev
+    just test
+    just format
+    # just developer-mode TODO
+    # run again to ensoure idempotence
+    # that is; scripts do not fail if they run again
+    just setup
+    just setup-dev
+    # just developer-mode TODO

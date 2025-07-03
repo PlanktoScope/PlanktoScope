@@ -1,0 +1,14 @@
+setup:
+    sudo apt install -y caddy
+    sudo cp Caddyfile /etc/caddy/
+    sudo systemctl enable caddy
+    # FIXME: moved to firstboot
+    # sudo firewall-cmd --permanent --zone=public --add-service=http
+
+format:
+    just --fmt --unstable
+    caddy fmt --overwrite Caddyfile
+
+test:
+    just --fmt --check --unstable
+    caddy validate Caddyfile
