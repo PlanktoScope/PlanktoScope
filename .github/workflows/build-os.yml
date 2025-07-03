@@ -226,6 +226,7 @@ jobs:
       - name: Run tests
         run: |
           cd /home/pi/PlanktoScope
+          sudo dbus-daemon --system &> /dev/null
           just ci
 
       # UPLOAD OS IMAGE
