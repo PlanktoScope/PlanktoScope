@@ -1,5 +1,7 @@
 setup:
     sudo apt install -y shellcheck
+    cd machine-name && just
+    just ssh
 
 format:
     just --fmt --unstable
@@ -7,3 +9,8 @@ format:
 test:
     just --fmt --check --unstable
     shellcheck **/*.sh
+    systemd-analyze verify **/*.service
+
+ssh:
+    sudo systemctl enable --now ssh
+    sudo firewall-cmd --permanent --zone=public --add-service=http
