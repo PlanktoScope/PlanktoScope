@@ -1,0 +1,21 @@
+setup:
+    sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged cockpit-pcp
+    sudo cp cockpit.toml /etc/cockpit/cockpit.conf
+    # https://cockpit-project.org/guide/latest/feature-pcp
+    sudo systemctl enable --now pmlogger
+    sudo systemctl enable cockpit.socket
+    sudo systemctl restart cockpit.socket
+    # TODO consider
+    # https://github.com/cockpit-project/cockpit-files
+    # https://github.com/gbraad-cockpit/cockpit-tailscale
+    # https://github.com/gbraad-cockpit/cockpit-headscale
+
+setup-dev:
+    sudo apt install -y dasel
+    dasel validate cockpit.toml
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable

@@ -1,0 +1,7 @@
+[WebService]
+AllowUnencrypted = true
+# Cannot use "*://" or "*"
+Origins = "http://localhost http://planktoscope.local http://pkscope.local http://192.168.4.1 http://192.168.5.1 http://pkscope-sponge-care http://pkscope-sponge-care-280"
+ProtocolHeader = "X-Forwarded-Proto"
+ForwardedForHeader = "X-Forwarded-For"
+UrlRoot = "/admin/cockpit/"

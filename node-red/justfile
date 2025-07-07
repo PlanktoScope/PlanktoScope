@@ -3,7 +3,7 @@ setup:
     cd nodes && npm install --without=dev
 
 setup-dev:
-    sudo apt install -y jq --no-install-recommends
+    sudo apt install -y dasel
     npm install --include=dev
     cd nodes && npm install --include=dev
 
@@ -12,9 +12,9 @@ format:
 
 test:
     just --fmt --check --unstable
-    jq . projects/adafruithat/flows.json 1> /dev/null
-    jq . projects/planktoscopehat/flows.json 1> /dev/null
-    jq . projects/dashboard/flows.json 1> /dev/null
+    dasel validate projects/adafruithat/flows.json
+    dasel validate projects/planktoscopehat/flows.json
+    dasel validate projects/dashboard/flows.jso
     cd nodes && npm test
 
 # Too many errors for now

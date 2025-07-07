@@ -5,6 +5,7 @@ setup:
 
 setup-dev:
     sudo apt install -y shellcheck
+    just --justfile cockpit/justfile      setup-dev
 
 format:
     just --fmt --unstable
@@ -19,3 +20,4 @@ test:
     just --justfile caddy/justfile        test
     just --justfile machine-name/justfile test
     just --justfile ssh/justfile          test
+    just --justfile cockpit/justfile      test
