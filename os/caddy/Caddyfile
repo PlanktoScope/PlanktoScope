@@ -14,11 +14,18 @@
 		reverse_proxy localhost:8001
 	}
 
+	redir /admin/ps/node-red-v2 /admin/ps/node-red-v2/
 	handle /admin/ps/node-red-v2/* {
 		reverse_proxy localhost:1880
 	}
 
+	redir /ps/node-red-v2 /ps/node-red-v2/
 	handle /ps/node-red-v2/* {
 		reverse_proxy localhost:1880
+	}
+
+	redir /admin/fs /admin/fs/
+	handle /admin/fs/* {
+		reverse_proxy localhost:8080
 	}
 }
