@@ -37,6 +37,8 @@ poetry --directory "$HOME/PlanktoScope/device-backend/control" install \
 file="/etc/systemd/system/planktoscope-org.device-backend.controller.service"
 sudo cp "$config_files_root$file" "$file"
 sudo systemctl enable "planktoscope-org.device-backend.controller.service"
+sudo -E mkdir -p "$HOME/device-backend-logs/control"
+sudo chown -R pi:pi "$HOME/device-backend-logs"
 
 # Select the enabled hardware controller
 mkdir -p "$HOME/PlanktoScope"
