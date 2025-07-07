@@ -28,4 +28,9 @@
 	handle /admin/fs/* {
 		reverse_proxy localhost:8080
 	}
+
+	redir /admin/cockpit /admin/cockpit/
+	handle /admin/cockpit/* {
+		reverse_proxy localhost:9090
+	}
 }
