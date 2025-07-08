@@ -1,7 +1,9 @@
 [Unit]
 Description=Run the PlanktoScope hardware controller
+# Wait for Forklift to bring up mosquitto, in case the controller needs to start after mosquitto
+Wants=forklift-apply.service
+After=forklift-apply.service
 # Start after Node-RED so that Node-RED can catch all MQTT messages emitted at startup
-# Node-RED is started after Mosquitto
 After=nodered.service
 
 [Service]

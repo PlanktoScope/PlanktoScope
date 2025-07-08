@@ -5,6 +5,7 @@ After=docker.service
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 Environment=FORKLIFT_STAGE_STORE=/var/lib/forklift/stages
 ExecStart=forklift stage apply
 
