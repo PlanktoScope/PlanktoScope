@@ -82,14 +82,6 @@ else
   panic "$description"
 fi
 
-description="enable CPU overclocking"
-report_starting "$description"
-if "$build_scripts_root/overclocking/config.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="update and configure bootloader"
 report_starting "$description"
 if "$build_scripts_root/bootloader/install.sh"; then
