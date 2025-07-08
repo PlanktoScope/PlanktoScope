@@ -194,7 +194,7 @@ module.exports = {
      * can be used to specify a different root path. If set to false, this is
      * disabled.
      */
-    httpNodeRoot: "/ps/node-red-v2",
+    // httpNodeRoot: "/ps/node-red-v2",
 
     /** The following property can be used to configure cross-origin resource sharing
      * in the HTTP nodes.
@@ -529,7 +529,7 @@ module.exports = {
      *  middleware:{function or array}, (req,res,next) - http middleware
      *  ioMiddleware:{function or array}, (socket,next) - socket.io middleware
      */
-    //ui: { path: "ui" },
+    ui: { path: "/" },
 
     /** Colourise the console output of the debug node */
     //debugUseColors: true,

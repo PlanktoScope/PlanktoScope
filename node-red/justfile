@@ -1,6 +1,8 @@
 setup:
     npm install --omit=dev
     cd nodes && npm install --without=dev
+    sudo systemctl enable nodered
+    sudo systemctl restart nodered
 
 setup-dev:
     sudo apt install -y dasel

@@ -2,6 +2,7 @@ setup:
     sudo apt install -y caddy
     sudo cp Caddyfile /etc/caddy/
     sudo systemctl enable caddy
+    sudo systemctl restart caddy
     sudo firewall-cmd --permanent --zone=public --add-service=http
 
 format:

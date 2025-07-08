@@ -2,7 +2,12 @@
 # https://caddyserver.com/docs/caddyfile
 
 :80 {
-	redir / /ps/node-red-v2/ui
+	redir / /dashboard/
+
+	handle /ps/hal/camera/streams/preview.mjpg {
+		rewrite * /stream.mjpg
+		reverse_proxy localhost:8000
+	}
 
 	handle /ps/hal/camera/streams/preview.mjpg {
 		rewrite * /stream.mjpg
@@ -19,8 +24,10 @@
 		reverse_proxy localhost:1880
 	}
 
-	redir /ps/node-red-v2 /ps/node-red-v2/
-	handle /ps/node-red-v2/* {
+	# base path cannot be changed
+	# even with url rewrite, it shows a white page after loading
+	# https://github.com/FlowFuse/node-red-dashboard/issues/586
+	handle /dashboard/* {
 		reverse_proxy localhost:1880
 	}
 
