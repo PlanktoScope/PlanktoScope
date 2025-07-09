@@ -1,5 +1,6 @@
 setup:
     pipx install poetry==2.1.3 --force
+    pipx ensurepath
     git submodule update --init
     just --justfile node-red/justfile      setup
     just --justfile controller/justfile    setup
