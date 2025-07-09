@@ -4,7 +4,7 @@ setup:
     sudo systemctl enable nodered
 
 setup-dev:
-    sudo apt install -y dasel
+    GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
     npm install --include=dev
     cd nodes && npm install --include=dev
 
@@ -13,9 +13,9 @@ format:
 
 test:
     just --fmt --check --unstable
-    dasel validate projects/adafruithat/flows.json
-    dasel validate projects/planktoscopehat/flows.json
-    dasel validate projects/dashboard/flows.jso
+    validator projects/adafruithat/flows.json
+    validator projects/planktoscopehat/flows.json
+    validator projects/dashboard/flows.jso
     cd nodes && npm test
 
 # Too many errors for now
