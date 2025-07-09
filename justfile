@@ -13,6 +13,8 @@ setup-dev:
     just --justfile segmenter/justfile     setup-dev
     just --justfile os/justfile            setup-dev
     just --justfile documentation/justfile setup-dev
+    sudo apt install -y golang
+    GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
 
 format:
     just --fmt --unstable
@@ -29,6 +31,7 @@ test:
     just --justfile segmenter/justfile     test
     just --justfile os/justfile            test
     just --justfile documentation/justfile test
+    actionlint --shellcheck="" # TODO: Enable shelcheck for actionlint
 
 developer-mode:
     just setup-dev
