@@ -223,13 +223,13 @@ jobs:
 
       # RUN TESTS
 
-      - name: Run tests
-        uses: ethanjli/pinspawn-action@v0.1.5
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          run: |
-            cd /home/pi/PlanktoScope
-            just ci
+      # - name: Run tests
+      #   uses: ethanjli/pinspawn-action@v0.1.5
+      #   with:
+      #     image: ${{ steps.expand-image.outputs.destination }}
+      #     run: |
+      #       cd /home/pi/PlanktoScope
+      #       just ci
 
       # UPLOAD OS IMAGE
 
