@@ -224,10 +224,14 @@ jobs:
       # RUN TESTS
 
       - name: Run tests
-      - uses: ethanjli/pinspawn-action@v0.1.5
-        run: |
-          cd /home/pi/PlanktoScope
-          just ci
+        uses: ethanjli/pinspawn-action@v0.1.5
+        with:
+          image: ${{ steps.expand-image.outputs.destination }}
+          user: pi
+          run: |
+            export DEBIAN_FRONTEND=noninteractive
+            cd /home/pi/PlanktoScope
+            just ci
 
       # UPLOAD OS IMAGE
 
