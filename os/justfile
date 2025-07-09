@@ -2,6 +2,8 @@ setup:
     just --justfile caddy/justfile        setup
     just --justfile machine-name/justfile setup
     just --justfile ssh/justfile          setup
+    just --justfile cockpit/justfile      setup
+    just --justfile filebrowser/justfile  setup
     just --justfile tailscale/justfile    setup
     just --justfile network/justfile      setup
 
@@ -15,6 +17,8 @@ format:
     just --justfile caddy/justfile        format
     just --justfile machine-name/justfile format
     just --justfile ssh/justfile          format
+    just --justfile cockpit/justfile      format
+    just --justfile filebrowser/justfile  format
     just --justfile network/justfile      format
 
 test:
@@ -25,4 +29,5 @@ test:
     just --justfile machine-name/justfile test
     just --justfile ssh/justfile          test
     just --justfile cockpit/justfile      test
+    just --justfile filebrowser/justfile  test
     just --justfile network/justfile      test
