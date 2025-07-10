@@ -1,0 +1,17 @@
+[Unit]
+Description=Make systemd-hostnamed update the hostname from /etc/hostname
+ConditionPathExists=/etc/hostname
+Wants=generate-hostname-templated.service
+After=generate-hostname-templated.service
+Requires=systemd-hostnamed.service
+After=systemd-hostnamed.service
+Wants=network-pre.target
+Before=network-pre.target
+Before=avahi-daemon.service
+
+[Service]
+Type=oneshot
+ExecStart=sh -c 'hostnamectl hostname "$(cat /etc/hostname)"'
+
+[Install]
+WantedBy=multi-user.target

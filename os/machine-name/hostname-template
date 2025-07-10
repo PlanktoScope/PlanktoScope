@@ -1,0 +1,16 @@
+# This template is used to generate a hostname by replacing the string "{machine-name}" with the
+# machine-specific name from /run/machine-name (which will look something like "metal-slope-23501").
+# This string-interpolation format will be familiar to you if you have used Python 3.6+'s f-strings:
+# https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep498 .
+
+# If the machine name is not set, then "{machine-name}" will be replaced with "unknown".
+# If this hostname template file is removed or if this file is changed so that it does not provide a
+# hostname template, a fallback template of machine-{machine-name} will be used instead.
+
+# If the final hostname is also used as the SSID for making a wireless AP (i.e. a Wi-Fi hotspot),
+# e.g. with hostapd, then the full hostname may be longer than the 32-character length limit for
+# SSIDs; in that case, only the first 32 characters of the hostname will be used for the SSID.
+# Assuming the machine name is never longer than 24 characters, then you can add up to 8 characters
+# before/after it if you want to prevent the hostname from being truncated in the SSID.
+
+pkscope-{machine-name}

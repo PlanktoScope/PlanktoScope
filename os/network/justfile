@@ -1,0 +1,14 @@
+setup:
+    sudo apt install -y network-manager firewalld dnsmasq-base
+    sudo cp public.xml /etc/firewalld/zones/
+    sudo systemctl enable NetworkManager firewalld
+
+setup-dev:
+    sudo apt install -y libxml2-utils
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable
+    xmllint --noout public.xml

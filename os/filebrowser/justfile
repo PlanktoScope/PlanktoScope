@@ -1,0 +1,12 @@
+setup:
+    wget https://github.com/filebrowser/filebrowser/releases/download/v2.36.3/linux-arm64-filebrowser.tar.gz -P /tmp
+    cd /tmp && tar -xzf /tmp/linux-arm64-filebrowser.tar.gz filebrowser
+    sudo cp /tmp/filebrowser /usr/bin/filebrowser
+    sudo cp filebrowser.service /etc/systemd/system/
+    sudo systemctl enable filebrowser
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable

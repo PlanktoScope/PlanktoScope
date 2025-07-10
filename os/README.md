@@ -26,3 +26,11 @@ sudo ./pishrink.sh -za image-name-here.img
 ```
 
 If you had set up the PlanktoScope software on a Raspberry Pi OS Lite image, you should get a `image-name-here.img.xz` file which is approximately 1 GB in size.
+
+## Develop
+
+### Rules
+
+Name config files according to their file format. For example `cockpit.init` instead of `cockpit.conf`.
+
+Lint files in `just test`, we use [config-file-validator](https://github.com/Boeing/config-file-validator) which supports a lot of file format but if a better tool can be used, do it.

@@ -1,0 +1,21 @@
+setup:
+    sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged cockpit-pcp
+    sudo cp cockpit.ini /etc/cockpit/cockpit.conf
+    # https://cockpit-project.org/guide/latest/feature-pcp
+    sudo systemctl enable --now pmlogger
+    sudo systemctl enable cockpit.socket
+    # TODO consider
+    # https://github.com/cockpit-project/cockpit-files
+    # https://github.com/gbraad-cockpit/cockpit-tailscale
+    # https://github.com/gbraad-cockpit/cockpit-headscale
+
+setup-dev:
+    # dasel is a good alternative available in deb repositories but does not support ini
+    GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable
+    validator cockpit.ini
