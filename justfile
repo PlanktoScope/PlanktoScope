@@ -1,4 +1,4 @@
-export PATH := "$PATH:/home/$USER/.local/bin"
+export PATH := x"${PATH}:/home/$USER/.local/bin"
 
 setup:
     pipx install poetry==2.1.3 --force
