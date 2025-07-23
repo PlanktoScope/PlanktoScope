@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - 'main'
+      - 'custom-runner'
   pull_request:
 
 jobs:
   ci-checks:
-    runs-on: ubuntu-24.04-arm
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
 
