@@ -1,5 +1,5 @@
 setup:
-    sudo apt install -y pipx git
+    sudo apt install -y pipx git nodejs
     pipx install poetry==2.1.3 --force
     git submodule update --init
     just --justfile node-red/justfile      setup
