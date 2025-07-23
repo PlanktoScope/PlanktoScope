@@ -45,5 +45,6 @@ developer-mode:
     ./os/developer-mode/configure.mjs; fi
 
 # We run setup twice to ensure it is idempotent
+
 # TODO: Run developer-mode (twice)
 ci: base setup test format setup
