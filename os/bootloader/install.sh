@@ -9,10 +9,10 @@ config_files_root="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 sudo -E apt-get install -y -o Dpkg::Progress-Fancy=0 \
   rpi-eeprom
 
-cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/pieeprom-2025-03-19.bin /tmp
+cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/pieeprom-2025-07-17.bin /tmp
 cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/recovery.bin /tmp
 
-rpi-eeprom-config /tmp/pieeprom-2025-03-19.bin --config "$config_files_root/boot.conf" --out /tmp/pieeprom.upd
+rpi-eeprom-config /tmp/pieeprom-2025-07-17.bin --config "$config_files_root/boot.conf" --out /tmp/pieeprom.upd
 rpi-eeprom-digest -i /tmp/pieeprom.upd -o /tmp/pieeprom.sig
 
 sudo cp /tmp/pieeprom.upd /tmp/pieeprom.sig /tmp/recovery.bin /boot/firmware/
