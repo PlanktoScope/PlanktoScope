@@ -1,7 +1,6 @@
 export PATH := x"${PATH}:/home/$USER/.local/bin"
 
 setup:
-    pipx install poetry==2.1.3 --force
     git submodule update --init
     just --justfile node-red/justfile      setup
     just --justfile controller/justfile    setup
@@ -18,6 +17,13 @@ setup-dev:
     just --justfile documentation/justfile setup-dev
     sudo apt install -y golang
     GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
+
+base:
+    curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
+    sudo -E bash /tmp/nodesource_setup.sh
+    sudo apt install -y pipx git nodejs
+    pipx install poetry==2.1.3 --force
+    pipx ensurepath
 
 format:
     just --fmt --unstable
@@ -57,14 +63,7 @@ developer-mode:
     npm install -g zx@8
     ./os/developer-mode/configure.mjs
 
-ci:
-    just setup
-    just setup-dev
-    just test
-    just format
-    # just developer-mode TODO
-    # run again to ensoure idempotence
-    # that is; scripts do not fail if they run again
-    just setup
-    just setup-dev
-    # just developer-mode TODO
+# We run setup and setup-dev twice to ensure it is idempotent
+
+# TODO: Run developer-mode (twice)
+ci: base setup setup-dev test format setup setup-dev
