@@ -23,5 +23,6 @@ sudo systemctl mask rpi-eeprom-update
 # "The temporary EEPROM update files are automatically deleted by the rpi-eeprom-update service at startup."
 # from https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#bootloader-update-files
 # But we mask it to avoid auto updates so we have a custom unit file instead
+sudo cp firstboot.sh /usr/libexec
 sudo cp planktoscope-org.firstboot.service /etc/systemd/system/
 sudo systemctl enable planktoscope-org.firstboot.service
