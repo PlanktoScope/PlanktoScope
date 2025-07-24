@@ -1,4 +1,5 @@
 setup:
+    echo "Hello FairScope"
     git submodule update --init
     just --justfile node-red/justfile      setup
     just --justfile controller/justfile    setup
