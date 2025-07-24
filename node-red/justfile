@@ -20,7 +20,7 @@ test:
     just --fmt --check --unstable
     validator projects/adafruithat/flows.json
     validator projects/planktoscopehat/flows.json
-    validator projects/dashboard/flows.jso
+    validator projects/dashboard/flows.json
     cd nodes && npm test
 
 # Too many errors for now
