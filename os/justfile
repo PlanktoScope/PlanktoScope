@@ -5,6 +5,7 @@ setup:
     just --justfile cockpit/justfile      setup
     just --justfile filebrowser/justfile  setup
     just --justfile network/justfile      setup
+    just --justfile mosquitto/justfile    setup
 
 setup-dev:
     sudo apt install -y shellcheck

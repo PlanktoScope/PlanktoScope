@@ -58,14 +58,6 @@ else
   panic "$description"
 fi
 
-description="set up Python hardware controller"
-report_starting "$description"
-if "$build_scripts_root/python-hardware-controller/install.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="enable CPU overclocking"
 report_starting "$description"
 if "$build_scripts_root/overclocking/config.sh"; then
