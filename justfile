@@ -1,11 +1,17 @@
 setup:
-    pipx install poetry==2.1.3 --force
     git submodule update --init
     just --justfile node-red/justfile      setup
     just --justfile controller/justfile    setup
     just --justfile segmenter/justfile     setup
     just --justfile os/justfile            setup
     just --justfile documentation/justfile setup
+
+base:
+    curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
+    sudo -E bash /tmp/nodesource_setup.sh
+    sudo apt install -y pipx git nodejs
+    pipx install poetry==2.1.3 --force
+    pipx ensurepath
 
 format:
     just --fmt --unstable
@@ -37,3 +43,8 @@ developer-mode:
     ./os/developer-mode/install-just.sh
     npm install -g zx@8; fi
     ./os/developer-mode/configure.mjs; fi
+
+# We run setup twice to ensure it is idempotent
+
+# TODO: Run developer-mode (twice)
+ci: base setup test format setup
