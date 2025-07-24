@@ -14,15 +14,15 @@ setup-dev:
     just --justfile segmenter/justfile     setup-dev
     just --justfile os/justfile            setup-dev
     just --justfile documentation/justfile setup-dev
-    sudo apt install -y golang
     GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
 
 base:
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
     sudo -E bash /tmp/nodesource_setup.sh
-    sudo apt install -y pipx git nodejs
-    pipx install poetry==2.1.3 --force
+    sudo apt install -y pipx git nodejs golang
     pipx ensurepath
+    pipx install poetry==2.1.3 --force
+    npm config set prefix /home/pi/.local
 
 format:
     just --fmt --unstable

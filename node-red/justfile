@@ -1,6 +1,9 @@
 setup:
     npm install --omit=dev
     cd nodes && npm install --without=dev
+    sudo cp nodered.service /etc/systemd/system/nodered.service
+    sudo mkdir -p /etc/systemd/system/nodered.service.d
+    sudo cp 30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
     sudo systemctl enable nodered
 
 setup-dev:
