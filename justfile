@@ -19,7 +19,7 @@ setup-dev:
 base:
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
     sudo -E bash /tmp/nodesource_setup.sh
-    sudo apt install -y pipx git nodejs golang npm
+    sudo apt install -y pipx git nodejs golang
     pipx ensurepath
     pipx install poetry==2.1.3 --force
     npm config set prefix /home/pi/.local

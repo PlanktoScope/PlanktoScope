@@ -92,6 +92,7 @@ fi
 
 description="run just scripts"
 report_starting "$description"
+just --justfile "$build_scripts_root"/justfile base
 just --justfile "$build_scripts_root"/justfile setup
 
 "$build_scripts_root"/cleanup.sh
