@@ -1,6 +1,5 @@
 setup:
-    sudo apt install -y mosquitto
-    sudo systemctl enable mosquitto.service
+    ./config.sh
 
 format:
     just --fmt --unstable

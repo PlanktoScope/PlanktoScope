@@ -64,3 +64,5 @@ developer-mode:
 
 # TODO: Run developer-mode (twice)
 ci: base setup setup-dev test format setup setup-dev
+    just --justfile os/justfile cleanup
+    just --justfile os/justfile cleanup

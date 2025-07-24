@@ -34,49 +34,9 @@ export LANG="en_US.UTF-8"
 
 sudo apt-get update -y -o Dpkg::Progress-Fancy=0 -o DPkg::Lock::Timeout=60
 
-description="configure system locales"
-report_starting "$description"
-if "$build_scripts_root"/localization/config.sh; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="configure Raspberry Pi-specific hardware"
-report_starting "$description"
-if "$build_scripts_root"/platform-hardware/config.sh; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="set up /home/pi/PlanktoScope"
 report_starting "$description"
 if "$build_scripts_root/PlanktoScope/install.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="enable CPU overclocking"
-report_starting "$description"
-if "$build_scripts_root/overclocking/config.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="update and configure bootloader"
-report_starting "$description"
-if "$build_scripts_root/bootloader/install.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
-description="install just"
-report_starting "$description"
-if "$build_scripts_root/developer-mode/install-just.sh"; then
   report_finished "$description"
 else
   panic "$description"
@@ -89,4 +49,4 @@ report_starting "$description"
 just --justfile "$build_scripts_root"/../justfile base
 just --justfile "$build_scripts_root"/../justfile setup
 
-"$build_scripts_root"/cleanup.sh
+just cleanup

@@ -1,9 +1,4 @@
 #!/bin/bash -eux
-# The platform hardware configuration is for configuration specific to the underlying compute
-# platform used to run the operating system. Currently the only supported platform hardware is the
-# Raspberry Pi 4 running Raspberry Pi OS 11 or newer.
-# Hopefully, in the future other platforms will also be supported - in which case alternative OS
-# build scripts will be needed for configuration.
 
 # Note: in general, 0 represents "success/yes/selected", while 1 represents "failed/no/unselected",
 # but there is no consistent meaning. Partial documentation of raspi-commands is available at
