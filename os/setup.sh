@@ -90,6 +90,8 @@ else
   panic "$description"
 fi
 
+sudo chown -R "$USER" "$build_scripts_root"/..
+
 description="run just scripts"
 report_starting "$description"
 just --justfile "$build_scripts_root"/../justfile base
