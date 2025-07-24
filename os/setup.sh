@@ -58,14 +58,6 @@ else
   panic "$description"
 fi
 
-description="set up Node-RED frontend"
-report_starting "$description"
-if "$build_scripts_root/node-red-frontend/install.sh"; then
-  report_finished "$description"
-else
-  panic "$description"
-fi
-
 description="set up Python hardware controller"
 report_starting "$description"
 if "$build_scripts_root/python-hardware-controller/install.sh"; then
