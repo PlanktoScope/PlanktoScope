@@ -10,7 +10,7 @@ export LANG="en_US.UTF-8"
 sudo cp -r "$build_scripts_root"/.. "$HOME/PlanktoScope"
 sudo chown -R "$USER:$USER" "$HOME/PlanktoScope"
 
-./"$build_scripts_root"/developper-mode/install-just.sh
+./"$build_scripts_root"/developer-mode/install-just.sh
 
 just --justfile ../justfile base
 just --justfile ../justfile setup
