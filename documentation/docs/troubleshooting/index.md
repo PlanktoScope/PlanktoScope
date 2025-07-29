@@ -12,7 +12,7 @@ Assign the static hostname `pkscope-pretty-flower-123` to the PlanktoScope in th
 
 or
 
-[Change the PlanktoScope machine name](../operation/networking.md/#change-your-planktoscopes-name) to `pretty-flower`
+Change the PlanktoScope machine name to `pretty-flower`
 
 See also [#603](https://github.com/PlanktoScope/PlanktoScope/issues/603)
 

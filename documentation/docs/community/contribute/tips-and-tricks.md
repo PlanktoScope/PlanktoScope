@@ -117,8 +117,6 @@ And access the UI with http://pkscope-example-name-0000/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
-See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/).
-
 ## Offline access
 
 When network is not available you have several options for debugging
