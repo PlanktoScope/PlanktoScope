@@ -15,6 +15,8 @@ setup-dev:
     just --justfile os/justfile            setup-dev
     just --justfile documentation/justfile setup-dev
     GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
+    # dasel is a good alternative available in deb repositories but does not support ini
+    GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
 
 base:
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh

@@ -15,10 +15,6 @@ setup:
     # https://github.com/gbraad-cockpit/cockpit-tailscale
     # https://github.com/gbraad-cockpit/cockpit-headscale
 
-setup-dev:
-    # dasel is a good alternative available in deb repositories but does not support ini
-    GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
-
 format:
     just --fmt --unstable
 
