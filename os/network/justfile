@@ -1,5 +1,5 @@
 setup:
-    sudo apt install -y network-manager firewalld dnsmasq-base
+    sudo apt install -y network-manager firewalld dnsmasq-base avahi-utils
     sudo cp public.xml /etc/firewalld/zones/
     sudo cp nm-shared.xml /etc/firewalld/zones/
     sudo systemctl enable NetworkManager firewalld
@@ -13,8 +13,9 @@ setup:
     # We want to enable wifi so that the user can set the country themselves.
     sudo rfkill unblock wifi
     sudo nmcli radio wifi on
-    sudo cp hosts /etc/
 
+    sudo cp hosts /etc/
+    sudo cp dnsmasq-shared.ini /etc/NetworkManager/dnsmasq-shared.d/40-config.conf
     sudo ./setup-hostname.sh
 
 format:
@@ -22,5 +23,7 @@ format:
 
 test:
     just --fmt --check --unstable
+    validator nm-shared.xml
     validator public.xml
     validator wlan0-hotspot.ini
+    validator dnsmasq-shared.ini
