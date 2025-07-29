@@ -10,21 +10,21 @@ In order to operate your PlanktoScope, you will need to connect to your PlanktoS
 
 ### Connect with an Ethernet cable
 
-You can connect your computer to the PlanktoScope by plugging an Ethernet cable between your computer and your PlanktoScope's Raspberry Pi.
+You can connect your PlanktoScope to a router with an Ethernet cable. It will be accessible via its network ip address or `http://pkscope-{machine-name}`.
 
 ### Connect with the PlanktoScope's Wi-Fi hotspot
 
-Unless you have already [configured your PlanktoScope to connect to an existing Wi-Fi network with its embedded Wi-Fi module](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network-with-a-single-wi-fi-module) or [disabled your PlanktoScope's Wi-Fi hotspot functionality](./networking.md#disable-the-wi-fi-hotspot), your PlanktoScope will create its own isolated Wi-Fi network (like a Wi-Fi hotspot, but without internet access). The Wi-Fi hotspot created by your PlanktoScope should appear on your computer's list of available Wi-Fi networks a few minutes after you turn on power to your PlanktoScope.
+Your PlanktoScope will create its own isolated Wi-Fi network (like a Wi-Fi hotspot, but without internet access). The Wi-Fi hotspot created by your PlanktoScope should appear on your computer's list of available Wi-Fi networks a few minutes after you turn on power to your PlanktoScope.
 
 ![wifi-network.png](images/wifi-network.png)
 
-As you can see, the name of your PlanktoScope's Wi-Fi hotspot will be of the format `pkscope-{machine-name}`, where (unless you have [customized your PlanktoScope's naming system](./networking.md#change-your-planktoscopes-name)) `{machine-name}` has the format `{random word}-{random word}-{random number}`; in the above screenshot, the highlighted Wi-Fi hotspot is from a PlanktoScope with machine name `chain-list-27764`. By default, your PlanktoScope's machine name corresponds exactly to the serial number of the Raspberry Pi computer in your PlanktoScope. You should connect your computer to the Wi-Fi hotspot specific to your PlanktoScope.
+As you can see, the name of your PlanktoScope's Wi-Fi hotspot will be of the format `pkscope-{machine-name}`; `{machine-name}` has the format `{random word}-{random word}-{random number}`; in the above screenshot, the highlighted Wi-Fi hotspot is from a PlanktoScope with machine name `chain-list-27764`. Your PlanktoScope's machine name corresponds exactly to the serial number of the Raspberry Pi computer in your PlanktoScope. You should connect your computer to the Wi-Fi hotspot specific to your PlanktoScope.
 
 !!! tip
 
     You may want to write down the PlanktoScope's machine name in a note (or on your PlanktoScope) for future reference; this will be especially important if you might have multiple PlanktoScopes in the future.
 
-Unless you have [changed the password](./networking.md#change-the-wi-fi-hotspots-password) of your PlanktoScope's Wi-Fi hotspot, the password should be `copepode`.
+The password is `copepode`.
 
 ### Access your PlanktoScope's software
 
@@ -40,19 +40,6 @@ If those URLs don't work for you and you're connecting your computer directly to
 - a URL of format `http://{machine-name}.pkscope`, where `{machine-name}` should be substituted with your PlanktoScope's machine name (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://192.168.4.1> (this should always work on computers connected to the PlanktoScope's Wi-Fi hotspot, unless your computer is also connected to some other device meant to be accessed with that URL)
-- <http://192.168.5.1> (this should always work on computers connected directly to the PlanktoScope's Ethernet port, unless your computer is also connected to some other device meant to be accessed with that URL)
-
-!!! warning
-    
-    The four URLs listed directly above **will not work** if you're trying to connect to your PlanktoScope indirectly, e.g. via a [Wi-Fi router providing internet access to the PlanktoScope](./networking.md#connect-your-planktoscope-to-an-existing-wi-fi-network-with-a-single-wi-fi-module). In that case, you will instead need to try one of the previously-described URLs ending in `.local`.
-
-!!! warning
-
-    The four URLs listed directly above may behave in weird ways if your computer is directly connected to multiple PlanktoScopes. In such a situation, those URLs may cause you to access the software for a different PlanktoScope connected to your computer than the one you had intended to access. You should instead use a machine-specific URL, either of format `http://pkscope-{machine-name}.local` (which will only work if your device and web browser support mDNS), or otherwise of format `http://{machine-name}.pkscope` (which will only work if your computer is connected directly to the PlanktoScope). If you still encounter weird behavior, then you will need to disconnect one or more of your other PlanktoScopes from your computer.
-
-!!! warning
-
-    You may encounter older documents which ask you to connect to <http://planktoscope.local:1880/ui>, which is the URL to use for software version 2.3 and older versions. That link does not work on software versions newer than v2.3; instead, you should use the links listed above.
 
 One of the above URLs should work, and your web browser should show a landing page with a list of links, as well as its machine-specific URL with format `http://pkscope-{machine-name}.local`; in this screenshot of the landing page accessed via the URL <http://home.pkscope>, the PlanktoScope's machine name is `clear-request-6329`:
 
@@ -87,5 +74,4 @@ For quantitative imaging of water samples, refer to the following protocols publ
 Your PlanktoScope has a Raspberry Pi computer embedded inside it which runs the PlanktoScope's software. You may need to perform various system administration/operations tasks on it, such as:
 
 - [Resetting or upgrading/downgrading the software on it](./software-upgrades.md), such as for resetting your PlanktoScope's settings back to its factory defaults, testing out new software updates, or switching back to an older software version after testing out a newer version.
-- [Changing its network configuration](./networking.md), such as for connecting your PlanktoScope to the internet, maintaining internet access on a computer connected simultaneously to both your PlanktoScope (e.g. by Ethernet) and an external network (e.g. by Wi-Fi), making your PlanktoScope more secure, or customizing your PlanktoScope's machine name.
 - [Cloning its SD card](./clone-sd.md) to back up its settings and data, or to replicate its exact settings and data across multiple PlanktoScopes
