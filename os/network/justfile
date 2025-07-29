@@ -13,6 +13,9 @@ setup:
     # We want to enable wifi so that the user can set the country themselves.
     sudo rfkill unblock wifi
     sudo nmcli radio wifi on
+    sudo cp hosts /etc/
+
+    sudo ./setup-hostname.sh
 
 format:
     just --fmt --unstable
