@@ -1,6 +1,7 @@
 setup:
     sudo apt install -y network-manager firewalld dnsmasq-base
     sudo cp public.xml /etc/firewalld/zones/
+    sudo cp nm-shared.xml /etc/firewalld/zones/
     sudo systemctl enable NetworkManager firewalld
     sudo cp -r cfg80211_regdomain.conf /etc/modprobe.d/
     sudo cp wlan0-hotspot.ini /etc/NetworkManager/system-connections/wlan0-hotspot.nmconnection
