@@ -68,3 +68,5 @@ developer-mode:
 ci: base setup setup-dev test format setup setup-dev
     just --justfile os/justfile cleanup
     just --justfile os/justfile cleanup
+    # Otherwise can't ssh back into the machine
+    sudo ssh-keygen -A

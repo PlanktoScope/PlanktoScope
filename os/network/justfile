@@ -11,7 +11,7 @@ setup:
     # "Wi-Fi is currently blocked by rfkill.
     # Use raspi-config to set the country before use."
     # We want to enable wifi so that the user can set the country themselves.
-    sudo rfkill unblock wifi
+    sudo rfkill unblock wifi || true
     sudo nmcli radio wifi on
 
     wget https://github.com/grishy/go-avahi-cname/releases/download/v2.2.5/go-avahi-cname_2.2.5_linux_arm64.tar.gz -P /tmp
