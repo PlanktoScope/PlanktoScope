@@ -1,4 +1,10 @@
 setup:
+    # # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
+    # Since the Node-RED systemd service runs as the pi user by default (and we don't override that
+    # default, we do `pip3 install` as the pi user. This makes the smbus2 module available to Node-RED.
+    # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
+    # the Python backend.
+    sudo apt install -y python3-smbus2
     npm install -g node-red@v4.0.9
     npm install --omit=dev
     cd nodes && npm install --without=dev
