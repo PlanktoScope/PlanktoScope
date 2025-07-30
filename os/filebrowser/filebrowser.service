@@ -1,0 +1,9 @@
+[Unit]
+Description=File browser
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/filebrowser --root / --database /home/pi/PlanktoScope/os/filebrowser/filebrowser.db --noauth --baseurl /admin/fs
+
+[Install]
+WantedBy=multi-user.target

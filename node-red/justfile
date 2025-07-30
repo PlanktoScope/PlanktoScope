@@ -1,16 +1,31 @@
 setup:
-    sudo apt install -y jq --no-install-recommends
-    npm install
-    cd nodes && npm install
+    # # smbus is needed by some python3 nodes in the Node-RED dashboard for the Adafruit HAT.
+    # Since the Node-RED systemd service runs as the pi user by default (and we don't override that
+    # default, we do `pip3 install` as the pi user. This makes the smbus2 module available to Node-RED.
+    # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
+    # the Python backend.
+    sudo apt install -y python3-smbus2
+    npm install -g node-red@v4.0.9
+    npm install --omit=dev
+    cd nodes && npm install --without=dev
+    sudo cp nodered.service /etc/systemd/system/nodered.service
+    sudo mkdir -p /etc/systemd/system/nodered.service.d
+    sudo cp 30-override.conf /etc/systemd/system/nodered.service.d/30-override.conf
+    sudo systemctl enable nodered
+    rm -rf /home/pi/.node-red
+
+setup-dev:
+    npm install --include=dev
+    cd nodes && npm install --include=dev
 
 format:
     just --fmt --unstable
 
 test:
     just --fmt --check --unstable
-    jq . projects/adafruithat/flows.json 1> /dev/null
-    jq . projects/planktoscopehat/flows.json 1> /dev/null
-    jq . projects/dashboard/flows.json 1> /dev/null
+    validator projects/adafruithat/flows.json
+    validator projects/planktoscopehat/flows.json
+    validator projects/dashboard/flows.json
     cd nodes && npm test
 
 # Too many errors for now

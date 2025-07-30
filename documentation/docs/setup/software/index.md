@@ -2,7 +2,7 @@
 
 This section of the PlanktoScope documentation will help you to set up the necessary software for your PlanktoScope hardware. Our documentation splits the PlanktoScope software setup process into two phases: installing the PlanktoScope software onto the micro-SD card of the Raspberry Pi computer in your PlanktoScope, and configuring the PlanktoScope software after installation.
 
-The PlanktoScope software is an operating system, the [PlanktoScope OS](../../reference/software/architecture/os.md), distributed as an SD card image to be run on the PlanktoScope hardware's embedded Raspberry Pi computer.
+The PlanktoScope software is an operating system, the PlanktoScope OS, distributed as an SD card image to be run on the PlanktoScope hardware's embedded Raspberry Pi computer.
 
 If you are building your own PlanktoScope from your own hardware kit, you will need to install and set up the PlanktoScope OS yourself. If you received a PlanktoScope from FairScope, a working and pre-configured version of the PlanktoScope OS is already pre-installed, and you can skip the software setup process and proceed to our guide on how to [operate your PlanktoScope](../../operation/index.md). - but you still might wish to update your PlanktoScope to the latest release of the PlanktoScope OS, in which case you should reinstall the PlanktoScope software by going through our software setup guide below.
 

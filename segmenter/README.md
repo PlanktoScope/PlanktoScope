@@ -12,8 +12,6 @@ This repository contains the PlanktoScope's segmenter, which detects objects fro
 
 The segmenter is published for deployment as a Docker container image at [https://ghcr.io/PlanktoScope/segmenter](https://github.com/PlanktoScope/PlanktoScope/pkgs/container/segmenter). Note that the segmenter requires an MQTT broker accessible on the port 1883 of the host, as well as something to send MQTT commands to the segmenter.
 
-Currently, the simplest way to deploy the segmenter on any computer is using the [Forklift](https://github.com/PlanktoScope/forklift) pallet [github.com/PlanktoScope/pallet-segmenter](https://github.com/PlanktoScope/pallet-segmenter). However, that method is still experimental.
-
 ### Development
 
 Install all dependencies including development tooling:
@@ -23,7 +21,7 @@ cd controller
 just
 ```
 
-Start controller for development:
+Start segmenter for development:
 
 ```sh
 just dev
@@ -42,13 +40,13 @@ Run all checks (including code formatting and linting):
 just test
 ```
 
-We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.visualstudio.com/docs/remote/ssh)
+We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
 
 ### Prerequisites
 
 To use this project, you'll need:
 
-- Python >= 3.9
+- Python >= 3.11.2
 - Poetry 2.1.3
 
 ## Licensing

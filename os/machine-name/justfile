@@ -1,0 +1,23 @@
+setup:
+    wget https://github.com/PlanktoScope/machine-name/releases/download/v0.1.3/machine-name_0.1.3_linux_arm64.tar.gz -P /tmp
+    cd /tmp && tar -xzf /tmp/machine-name_0.1.3_linux_arm64.tar.gz machine-name
+    sudo cp /tmp/machine-name /usr/bin/machine-name
+
+    sudo cp generate-hostname-templated.sh /usr/libexec
+    sudo cp generate-machine-name.sh /usr/libexec
+
+    sudo cp generate-machine-name.service /usr/lib/systemd/system/
+    sudo systemctl enable generate-machine-name
+
+    sudo cp hostname-template /etc/
+    sudo cp generate-hostname-templated.service /usr/lib/systemd/system/
+    sudo systemctl enable generate-hostname-templated
+
+    sudo cp update-hostname.service /usr/lib/systemd/system/
+    sudo systemctl enable update-hostname
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable

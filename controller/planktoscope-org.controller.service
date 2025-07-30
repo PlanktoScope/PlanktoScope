@@ -1,0 +1,16 @@
+[Unit]
+Description=Run the PlanktoScope hardware controller
+Wants=mosquitto.service
+After=mosquitto.service
+After=nodered.service
+
+[Service]
+Type=simple
+Environment=HOME=/home/pi
+WorkingDirectory=/home/pi/PlanktoScope/controller
+ExecStart=/home/pi/.local/bin/poetry run python -u main.py
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
