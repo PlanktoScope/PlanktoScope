@@ -1,0 +1,8 @@
+setup:
+    ./config.sh
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable

@@ -1,17 +1,19 @@
 setup:
-    sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged cockpit-pcp
+    # Install cockpit
+    # Note: we need to adjust update-initramfs's behavior to make apt-get finish successfully; see
+    # https://github.com/PlanktoScope/PlanktoScope/pull/596 and
+    # https://github.com/RPi-Distro/repo/issues/382 for details.
+    sudo sed -i 's~MODULES=dep~MODULES=most~' /etc/initramfs-tools/initramfs.conf
+    sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged # cockpit-pcp
+    sudo sed -i 's~MODULES=most~MODULES=dep~' /etc/initramfs-tools/initramfs.conf
     sudo cp cockpit.ini /etc/cockpit/cockpit.conf
     # https://cockpit-project.org/guide/latest/feature-pcp
-    sudo systemctl enable --now pmlogger
+    sudo systemctl enable pmlogger
     sudo systemctl enable cockpit.socket
     # TODO consider
     # https://github.com/cockpit-project/cockpit-files
     # https://github.com/gbraad-cockpit/cockpit-tailscale
     # https://github.com/gbraad-cockpit/cockpit-headscale
-
-setup-dev:
-    # dasel is a good alternative available in deb repositories but does not support ini
-    GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
 
 format:
     just --fmt --unstable

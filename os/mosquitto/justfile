@@ -1,0 +1,9 @@
+setup:
+    sudo apt install -y mosquitto
+    sudo systemctl enable mosquitto.service
+
+format:
+    just --fmt --unstable
+
+test:
+    just --fmt --check --unstable

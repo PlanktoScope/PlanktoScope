@@ -2,8 +2,16 @@
 <zone>
   <short>Public</short>
   <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
-  <service name="ssh"/>
+  <protocol value="icmp"/>
+  <protocol value="ipv6-icmp"/>
+  <service name="dhcp"/>
+  <service name="dhcpv6"/>
   <service name="dhcpv6-client"/>
+  <service name="dns"/>
+  <service name="mdns"/>
+  <service name="ssh"/>
+  <service name="cockpit"/>
   <service name="http"/>
-  <forward/>
+  <service name="https"/>
+  <service name="mqtt"/>
 </zone>

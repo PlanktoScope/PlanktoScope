@@ -124,16 +124,6 @@ Setup focus in "Optic Configuration"
 
 Replace `{machine-name}` with your PlanktoScope name.
 
-### Direct Ethernet
-
-1. Connect your computer to the PlanktoScope ethernet
-2. PlanktoScope is accessible at
-   1. [ ] [http://planktoscope.local](http://planktoscope.local)
-   2. [ ] [http://pkscope.local](http://pkscope.local)
-   3. [ ] [http://home.pkscope](http://home.pkscope)
-   4. [ ] [http://192.168.5.1/](http://192.168.5.1/)
-   5. [ ] [http://pkscope-{machine-name}.local/](http://pkscope-{machine-name}.local/)
-
 ### Direct WiFi
 
 1. Connect your computer to the PlanktoScope WiFi hotspot
@@ -150,12 +140,6 @@ Replace `{machine-name}` with your PlanktoScope name.
 2. PlanktoScope is accessible at
    1. [ ] [http://pkscope-{machine-name}.local](http://pkscope-{machine-name}.local)
 
-<!--
+## Additional tests
 
-### LAN WiFi
-
-1. Connect the PlanktoScope to your router wifi
-2. PlanktoScope is accessible at
-   1. [ ] [http://pkscope-{machine-name}.local](http://pkscope-{machine-name}.local)
-
--->
+If you've run tests that are not included in this test suite, please describe them here and share results.

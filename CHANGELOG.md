@@ -7,7 +7,7 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
-## v2025.0.0 - unreleased
+## v2025.0.0 - 2025-07-21
 
 ### Added
 
