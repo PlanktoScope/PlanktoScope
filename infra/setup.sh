@@ -1,18 +1,17 @@
 #!/bin/bash -eux
 
-# TODO: On Debian 13 we can use the just package from Debian repositories
+../os/developer-mode/install-just.sh
 
-# Install Just - Copied from
-# https://docs.makedeb.org/prebuilt-mpr/getting-started/#setting-up-the-repository
-# https://github.com/casey/just/blob/743e700d8bb5ae66b5d2f061461a4964ba124be3/README.md#linux
-wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
-echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
-sudo apt update
-sudo apt install -y just
+sudo apt install -y git ssh tmux
+sudo systemctl enable --now ssh
 
+# https://github.com/actions/runner/releases/tag/v2.327.1
 cd ~
+# Create a folder
 mkdir actions-runner && cd actions-runner
-curl -O -L https://github.com/actions/runner/releases/download/v2.327.0/actions-runner-linux-arm-2.327.0.tar.gz
-tar xzf ./actions-runner-linux-arm-2.327.0.tar.gz
-# ./config.sh ... # See instructions when adding a custom runner
-# ./run.sh
+# Download the latest runner package
+curl -O -L https://github.com/actions/runner/releases/download/v2.327.1/actions-runner-linux-arm64-2.327.1.tar.gz
+# Extract the installer
+tar xzf ./actions-runner-linux-arm64-2.327.1.tar.gz
+
+sudo tailesale up
