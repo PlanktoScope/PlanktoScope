@@ -1,12 +1,7 @@
 setup:
     poetry lock && poetry install --without=dev
-<<<<<<< HEAD
-    sudo cp ../os/python-hardware-controller/etc/systemd/system/planktoscope-org.segmenter.service /etc/systemd/system/
-    sudo systemctl daemon-reload
-=======
     sudo cp planktoscope-org.segmenter.service /etc/systemd/system/
     # sudo systemctl daemon-reload
->>>>>>> main
     sudo systemctl enable planktoscope-org.segmenter
 
 setup-dev:

@@ -12,8 +12,6 @@ setup:
 
 setup-dev:
     sudo apt install -y shellcheck
-    just --justfile cockpit/justfile      setup-dev
-    just --justfile network/justfile      setup-dev
 
 format:
     just --fmt --unstable

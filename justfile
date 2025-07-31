@@ -7,16 +7,6 @@ setup:
     just --justfile segmenter/justfile     setup
     just --justfile os/justfile            setup
     just --justfile documentation/justfile setup
-    just --justfile filebrowser/justfile   setup
-
-setup-dev:
-    just --justfile node-red/justfile      setup-dev
-    just --justfile controller/justfile    setup-dev
-    just --justfile segmenter/justfile     setup-dev
-    just --justfile os/justfile            setup-dev
-    just --justfile documentation/justfile setup-dev
-    sudo apt install -y golang
-    GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
 
 setup-dev:
     just --justfile node-red/justfile      setup-dev
@@ -43,7 +33,6 @@ format:
     just --justfile segmenter/justfile     format
     just --justfile os/justfile            format
     just --justfile documentation/justfile format
-    just --justfile filebrowser/justfile   format
 
 test:
     just --fmt --check --unstable
@@ -52,7 +41,6 @@ test:
     just --justfile segmenter/justfile     test
     just --justfile os/justfile            test
     just --justfile documentation/justfile test
-    just --justfile filebrowser/justfile   test
     actionlint --shellcheck="" # TODO: Enable shelcheck for actionlint
 
 developer-mode:
