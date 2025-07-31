@@ -9,7 +9,7 @@ setup:
     sudo chmod 0600 /etc/NetworkManager/system-connections/wlan0-hotspot.nmconnection
     # By default we are greeted with
     # "Wi-Fi is currently blocked by rfkill.
-    # We want to enable wifi so that the user can set the country themselves.
+    # Enable wifi, country is unset, user will set it.
     sudo rfkill unblock wifi || true
     sudo nmcli radio wifi on || true
 
