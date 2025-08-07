@@ -10,8 +10,11 @@ setup:
     # By default we are greeted with
     # "Wi-Fi is currently blocked by rfkill.
     # Enable wifi, country is unset, user will set it.
+    # See https://github.com/RPi-Distro/raspberrypi-net-mods/blob/master/etc/profile.d/wifi-check.sh
     sudo rm -f /etc/profile.d/wifi-check.sh
-    sudo nmcli radio wifi on || true # See also firstboot.sh
+
+    # Enable wifi by default
+    sudo cp wifi.sh /etc/profile.d
 
     wget https://github.com/grishy/go-avahi-cname/releases/download/v2.2.5/go-avahi-cname_2.2.5_linux_arm64.tar.gz -P /tmp
     cd /tmp && tar -xzf /tmp/go-avahi-cname_2.2.5_linux_arm64.tar.gz go-avahi-cname
