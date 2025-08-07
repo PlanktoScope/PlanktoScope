@@ -1,1 +1,0 @@
-nmcli radio wifi on
