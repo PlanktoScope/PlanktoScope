@@ -7,10 +7,16 @@ setup:
     sudo cp wlan0-hotspot.ini /etc/NetworkManager/system-connections/wlan0-hotspot.nmconnection
     # "failed to load connection: File permissions (100644) are insecure"
     sudo chmod 0600 /etc/NetworkManager/system-connections/wlan0-hotspot.nmconnection
+
     # By default we are greeted with
     # "Wi-Fi is currently blocked by rfkill.
-    # Use raspi-config to set the country before use."
-    sudo raspi-config nonint do_wifi_country US
+    # Enable wifi, country is unset, user will set it.
+    # See https://github.com/RPi-Distro/raspberrypi-net-mods/blob/master/etc/profile.d/wifi-check.sh
+    sudo rm -f /etc/profile.d/wifi-check.sh
+
+    # Enable wifi by default without selecting a country (will use global)
+    sudo cp org-planktoscope.firstboot-wifi.service /etc/systemd/system/
+    sudo systemctl enable org-planktoscope.firstboot-wifi.service
 
     wget https://github.com/grishy/go-avahi-cname/releases/download/v2.2.5/go-avahi-cname_2.2.5_linux_arm64.tar.gz -P /tmp
     cd /tmp && tar -xzf /tmp/go-avahi-cname_2.2.5_linux_arm64.tar.gz go-avahi-cname
