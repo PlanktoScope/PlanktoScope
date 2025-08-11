@@ -8,7 +8,7 @@ ee
 
 # read
 sudo eepflash.sh --yes --read --type=24c32 --address=50 --file=dump.eep
-eepdump dump.eep
+eepdump dump.eep dump.txt
 ```
 
 See https://github.com/raspberrypi/utils/blob/master/eeptools/eeprom_settings.txt
