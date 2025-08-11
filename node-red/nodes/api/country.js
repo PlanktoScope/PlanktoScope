@@ -31,7 +31,6 @@ export async function setWifiRegulatoryDomain(code) {
   await writeFile(path, `options cfg80211 ieee80211_regdom=${code}`)
 }
 
-// TODO: set by default to 00 which is global setting
 export async function getWifiRegulatoryDomain() {
   let data
 
