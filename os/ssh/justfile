@@ -1,8 +1,2 @@
 setup:
     sudo systemctl enable ssh
-
-format:
-    just --fmt --unstable
-
-test:
-    just --fmt --check --unstable

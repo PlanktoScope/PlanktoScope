@@ -33,11 +33,7 @@ setup:
     sudo cp dnsmasq-shared.properties /etc/NetworkManager/dnsmasq-shared.d/40-config.conf
     sudo ./setup-hostname.sh
 
-format:
-    just --fmt --unstable
-
 test:
-    just --fmt --check --unstable
     validator nm-shared.xml
     validator public.xml
     validator wlan0-hotspot.ini

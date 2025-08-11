@@ -15,9 +15,3 @@ setup:
 
     sudo cp update-hostname.service /usr/lib/systemd/system/
     sudo systemctl enable update-hostname
-
-format:
-    just --fmt --unstable
-
-test:
-    just --fmt --check --unstable

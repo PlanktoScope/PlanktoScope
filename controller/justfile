@@ -13,9 +13,7 @@ dev:
     poetry run python -u main.py
 
 format:
-    just --fmt --unstable
     poetry run poe fmt
 
 test:
-    just --fmt --check --unstable
     poetry run poe check

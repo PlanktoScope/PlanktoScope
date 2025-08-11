@@ -15,9 +15,5 @@ setup:
     # https://github.com/gbraad-cockpit/cockpit-tailscale
     # https://github.com/gbraad-cockpit/cockpit-headscale
 
-format:
-    just --fmt --unstable
-
 test:
-    just --fmt --check --unstable
     validator cockpit.ini

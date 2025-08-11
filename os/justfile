@@ -12,31 +12,9 @@ setup:
 setup-dev:
     sudo apt install -y shellcheck
 
-format:
-    just --fmt --unstable
-    just --justfile localization/justfile format
-    just --justfile caddy/justfile        format
-    just --justfile machine-name/justfile format
-    just --justfile ssh/justfile          format
-    just --justfile cockpit/justfile      format
-    just --justfile filebrowser/justfile  format
-    just --justfile network/justfile      format
-    just --justfile mosquitto/justfile    format
-    just --justfile raspberry/justfile    format
-
 test:
-    just --fmt --check --unstable
     shellcheck **/*.sh
     systemd-analyze verify **/*.service
-    just --justfile localization/justfile test
-    just --justfile caddy/justfile        test
-    just --justfile machine-name/justfile test
-    just --justfile ssh/justfile          test
-    just --justfile cockpit/justfile      test
-    just --justfile filebrowser/justfile  test
-    just --justfile network/justfile      test
-    just --justfile mosquitto/justfile    test
-    just --justfile raspberry/justfile    test
 
 cleanup:
     ./cleanup.sh

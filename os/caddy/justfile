@@ -4,9 +4,7 @@ setup:
     sudo systemctl enable caddy
 
 format:
-    just --fmt --unstable
     caddy fmt --overwrite Caddyfile
 
 test:
-    just --fmt --check --unstable
     caddy validate Caddyfile

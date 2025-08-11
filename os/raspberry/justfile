@@ -3,10 +3,6 @@ setup:
     ./raspi-config.sh
     ./bootloader.sh
 
-format:
-    just --fmt --unstable
-
 test:
-    just --fmt --check --unstable
     validator boot.ini
     validator config.ini

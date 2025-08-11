@@ -27,15 +27,10 @@ base:
     npm config set prefix /home/pi/.local
 
 format:
-    just --fmt --unstable
-    just --justfile node-red/justfile      format
-    just --justfile controller/justfile    format
-    just --justfile segmenter/justfile     format
-    just --justfile os/justfile            format
-    just --justfile documentation/justfile format
+    find . -type f -name 'justfile' -exec just --fmt --unstable --justfile {} ';'
 
 test:
-    just --fmt --check --unstable
+    find . -type f -name 'justfile' -exec just --fmt --check --unstable --justfile {} ';'
     just --justfile node-red/justfile      test
     just --justfile controller/justfile    test
     just --justfile segmenter/justfile     test

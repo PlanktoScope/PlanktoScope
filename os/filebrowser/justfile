@@ -7,9 +7,3 @@ setup:
     sudo cp /tmp/filebrowser /usr/bin/filebrowser
     sudo cp filebrowser.service /etc/systemd/system/
     sudo systemctl enable filebrowser
-
-format:
-    just --fmt --unstable
-
-test:
-    just --fmt --check --unstable
