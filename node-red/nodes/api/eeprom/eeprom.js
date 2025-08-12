@@ -1,13 +1,16 @@
+// https://github.com/raspberrypi/utils/tree/master/eeptools
+
 import child_process from "node:child_process"
 import { promisify } from "node:util"
 import os from "node:os"
 import path from "node:path"
 
 import { Chip, Line } from "node-libgpiod"
+import { readFile } from "node:fs/promises"
 
 const execFile = promisify(child_process.execFile)
 
-async function writeEEPROM(custom) {
+async function writeEEPROM() {
   const file_eep = path.join(os.tmpdir(), "planktoscope-hat.eep")
 
   await execFile("eepmake", [
@@ -20,31 +23,48 @@ async function writeEEPROM(custom) {
   eeprom_rp.requestOutputMode()
   eeprom_rp.setValue(0)
 
+  try {
+    await execFile("sudo", [
+      "eepflash.sh",
+      "--yes",
+      "--write",
+      "--type=24c32",
+      "--address=50",
+      `--file=${file_eep}`,
+    ])
+  } finally {
+    eeprom_rp.setValue(1)
+    eeprom_rp.release()
+  }
+}
+
+async function readEEPROM() {
+  const file_eep = path.join(os.tmpdir(), "planktoscope-hat_dump.eep")
+
   await execFile("sudo", [
     "eepflash.sh",
     "--yes",
-    "--write",
+    "--read",
     "--type=24c32",
     "--address=50",
     `--file=${file_eep}`,
   ])
 
-  eeprom_rp.release()
+  const file_dump = path.join(os.tmpdir(), "planktoscope-hat_dump.txt")
+  await execFile("eepdump", [file_eep, file_dump])
+
+  return await readFile(file_dump, "utf8")
 }
 
-// ```sh
-// eepmake eeprom_settings.txt planktoscope-hat.eep
+async function updateEEPROM() {
+  const content = await readEEPROM()
+  const idx = content.lastIndexOf('custom_data "')
 
-// # write
-// sudo gpioset -m signal gpiochip0 26=0 # disable write protect
-// sudo eepflash.sh --yes --write --type=24c32 --address=50 --file=planktoscope-hat.eep
-// ee
+  const standard = content.slice(0, idx)
 
-// # read
-// sudo eepflash.sh --yes --read --type=24c32 --address=50 --file=dump.eep
-// eepdump dump.eep dump.txt
-// ```
+  const custom = content.slice(idx)
 
-// See https://github.com/raspberrypi/utils/blob/master/eeptools/eeprom_settings.txt
+  console.log(custom)
+}
 
-await writeEEPROM()
+await updateEEPROM()
