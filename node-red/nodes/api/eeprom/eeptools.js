@@ -1,5 +1,13 @@
 // Utils for https://github.com/raspberrypi/utils/tree/master/eeptools
 
+import child_process from "node:child_process"
+import { promisify } from "node:util"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
+import { readFile, mkdtemp, writeFile, rm } from "node:fs/promises"
+
+const execFile = promisify(child_process.execFile)
+
 /* eslint-disable no-useless-escape */
 export function parse(content) {
   let data = {}
@@ -48,9 +56,9 @@ export function parse(content) {
       continue
     }
 
-    // multinline string
+    // multiline string
     const key = line.slice(0, idx)
-    const value = line.slice(idx + 1)
+    let value = line.slice(idx + 1)
     if (!value || value === '"') {
       multiline = true
       multiline_key = key
@@ -58,6 +66,8 @@ export function parse(content) {
       continue
     }
 
+    // vendor "FairScope"   # length=9
+    value = value.split("#")[0].trim()
     if (value.startsWith(`"`) && value.endsWith(`"`)) {
       addKey(key, value.slice(1, -1))
     } else {
@@ -91,4 +101,51 @@ export function serialize(data) {
   }
 
   return content
+}
+
+export async function write(data) {
+  const tmp = await mkdtemp(join(tmpdir(), "eeptools-"))
+
+  try {
+    const file_txt = join(tmp, "content.txt")
+    await writeFile(file_txt, serialize(data))
+
+    const file_eep = join(tmp, "content.eep")
+    await execFile("eepmake", [file_txt, file_eep])
+
+    await execFile("sudo", [
+      "eepflash.sh",
+      "--yes",
+      "--write",
+      "--type=24c32",
+      "--address=50",
+      `--file=${file_eep}`,
+    ])
+  } finally {
+    await rm(tmp, { force: true, recursive: true })
+  }
+}
+
+export async function read() {
+  const tmp = await mkdtemp(join(tmpdir(), "eeptools-"))
+
+  try {
+    const file_eep = join(tmp, "content.eep")
+    await execFile("sudo", [
+      "eepflash.sh",
+      "--yes",
+      "--read",
+      "--type=24c32",
+      "--address=50",
+      `--file=${file_eep}`,
+    ])
+
+    const file_txt = join(tmp, "content.txt")
+    await execFile("eepdump", [file_eep, file_txt])
+
+    const txt = await readFile(file_txt, "utf8")
+    return parse(txt)
+  } finally {
+    await rm(tmp, { force: true, recursive: true })
+  }
 }

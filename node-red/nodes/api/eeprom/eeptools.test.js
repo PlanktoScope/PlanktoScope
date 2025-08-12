@@ -207,6 +207,12 @@ back_power 0
   )
 })
 
+test("parse with trailing comments", (t) => {
+  t.assert.deepStrictEqual(parse(`foo bar # this is a comment`), {
+    foo: "bar",
+  })
+})
+
 test("serialize", (t) => {
   const settings = {
     product_uuid: "00000000-0000-0000-0000-000000000000",
