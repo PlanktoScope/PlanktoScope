@@ -45,7 +45,11 @@ export function parse(content) {
     multiline_value = ""
   }
 
-  for (let line of content.split("\n")) {
+  const lines = content.split("\n")
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+
     if (multiline) {
       if (line === "end") {
         endMultiline()
@@ -53,11 +57,15 @@ export function parse(content) {
       }
 
       const idx = line.indexOf(`\"`)
-      if (idx < 0) {
-        multiline_value += line
-      } else {
+      if (idx > -1) {
         multiline_value += line.slice(0, idx)
         endMultiline()
+      } else {
+        multiline_value += line
+        const next_line = lines[i + 1]
+        if (![`"`, `end`].includes(next_line)) {
+          multiline_value += "\n"
+        }
       }
       continue
     }
