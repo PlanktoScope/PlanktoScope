@@ -16,7 +16,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint",
+    "test": "npm run lint && node --test",
     "dev": "sudo systemctl stop nodered &>/dev/null && node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.js",
     "ci": "npm run test"
   }

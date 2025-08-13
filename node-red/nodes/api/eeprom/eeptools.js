@@ -56,7 +56,7 @@ export function parse(content) {
         continue
       }
 
-      const idx = line.indexOf(`\"`)
+      const idx = line.indexOf(`\\"`)
       if (idx > -1) {
         multiline_value += line.slice(0, idx)
         endMultiline()
@@ -107,6 +107,9 @@ export function serialize(data) {
     if (["product_uuid", "product_id", "product_ver"].includes(key))
       return value
     if (typeof value === "string") {
+      if (value.includes("\n")) {
+        return `"\n${value}\\"`
+      }
       return `"${value}"`
     } else return value
   }

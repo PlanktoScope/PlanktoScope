@@ -2,231 +2,85 @@
 import { test } from "node:test"
 
 import { parse, serialize } from "./eeptools.js"
+import { readFileSync } from "node:fs"
 
 test("parse eeprom_settings.txt", (t) => {
-  t.assert.deepStrictEqual(
-    parse(`########################################################################
-# EEPROM settings text file
-#
-# Edit this file for your particular board and run through eepmake tool,
-# then use eepflash tool to write to attached HAT ID EEPROM 
-#
-# Tools available:
-#  eepmake   Parses EEPROM text file and creates binary .eep file
-#  eepdump   Dumps a binary .eep file as human readable text (for debug)
-#  eepflash  Write or read .eep binary image to/from HAT EEPROM
-#
-########################################################################
-
-# 128 bit UUID. If left at zero eepmake tool will auto-generate
-# RFC 4122 compliant UUID
-product_uuid 00000000-0000-0000-0000-000000000000
-
-# 16 bit product id
-product_id 0x0000
-
-# 16 bit product version
-product_ver 0x0000
-
-# ASCII vendor string  (max 255 characters)
-vendor "ACME Technology Company"
-
-# ASCII product string (max 255 characters)
-product "Special Sensor Board"
-
-# How much current the HAT+ can supply, in milliamps
-current_supply 0
-
-# Which Device Tree overlay to load
-dt_blob "acme-sensor"
-
-# Custom binary data
-custom_data
-deadbeef c00 1c0d e
-end
-
-custom_data "
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-in culpa qui officia deserunt mollit anim id est laborum.
-\"`),
-    {
-      product_uuid: "00000000-0000-0000-0000-000000000000",
-      product_id: "0x0000",
-      product_ver: "0x0000",
-      vendor: "ACME Technology Company",
-      product: "Special Sensor Board",
-      current_supply: 0,
-      dt_blob: "acme-sensor",
-      custom_data: [
-        "deadbeef c00 1c0d e",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore\neu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt\nin culpa qui officia deserunt mollit anim id est laborum.",
-      ],
-    }
+  const txt = readFileSync(
+    new URL(import.meta.resolve("./fixtures/eeprom_settings.txt")),
+    "utf8"
   )
+
+  t.assert.deepStrictEqual(parse(txt), {
+    product_uuid: "00000000-0000-0000-0000-000000000000",
+    product_id: "0x0000",
+    product_ver: "0x0000",
+    vendor: "ACME Technology Company",
+    product: "Special Sensor Board",
+    current_supply: 0,
+    dt_blob: "acme-sensor",
+    custom_data: [
+      "deadbeef c00 1c0d e",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore\neu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt\nin culpa qui officia deserunt mollit anim id est laborum.\n",
+    ],
+  })
 })
 
 test("parse eeprom_v1_settings.txt", (t) => {
-  t.assert.deepStrictEqual(
-    parse(`########################################################################
-# EEPROM settings text file
-#
-# Edit this file for your particular board and run through eepmake tool,
-# then use eepflash tool to write to attached HAT ID EEPROM 
-#
-# Tools available:
-#  eepmake   Parses EEPROM text file and creates binary .eep file
-#  eepdump   Dumps a binary .eep file as human readable text (for debug)
-#  eepflash  Write or read .eep binary image to/from HAT EEPROM
-#
-########################################################################
-
-########################################################################
-# Vendor info
-
-# 128 bit UUID. If left at zero eepmake tool will auto-generate
-# RFC 4122 compliant UUID
-product_uuid 00000000-0000-0000-0000-000000000000
-
-# 16 bit product id
-product_id 0x0000
-
-# 16 bit product version
-product_ver 0x0000
-
-# ASCII vendor string  (max 255 characters)
-vendor "ACME Technology Company"
-
-# ASCII product string (max 255 characters)
-product "Special Sensor Board"
-
-# Custom binary data
-custom_data
-deadbeef c00 1c0d e
-end
-
-########################################################################
-# GPIO bank settings, set to nonzero to change from the default.
-# NOTE these setting can only be set per BANK, uncommenting any of
-# these will force the bank to use the custom setting.
-
-# drive strength, 0=default, 1-8=2,4,6,8,10,12,14,16mA, 9-15=reserved
-gpio_drive 0
-
-# 0=default, 1=slew rate limiting, 2=no slew limiting, 3=reserved
-gpio_slew 0
-
-# 0=default, 1=hysteresis disabled, 2=hysteresis enabled, 3=reserved
-gpio_hysteresis 0
-
-# If board back-powers Pi via 5V GPIO header pins:
-# 0 = board does not back-power
-# 1 = board back-powers and can supply the Pi with a minimum of 1.3A
-# 2 = board back-powers and can supply the Pi with a minimum of 2A
-# 3 = reserved
-# If back_power=2 then USB high current mode will be automatically 
-# enabled on the Pi
-back_power 0
-
-########################################################################
-# GPIO pins, uncomment for GPIOs used on board
-# Options for FUNCTION: INPUT, OUTPUT, ALT0-ALT5
-# Options for PULL: DEFAULT, UP, DOWN, NONE
-# NB GPIO0 and GPIO1 are reserved for ID EEPROM so cannot be set
-
-#         GPIO  FUNCTION  PULL
-#         ----  --------  ----
-#setgpio  2     INPUT     DEFAULT
-#setgpio  3     INPUT     DEFAULT
-#setgpio  4     INPUT     DEFAULT
-#setgpio  5     INPUT     DEFAULT
-#setgpio  6     INPUT     DEFAULT
-#setgpio  7     INPUT     DEFAULT
-#setgpio  8     INPUT     DEFAULT
-#setgpio  9     INPUT     DEFAULT
-#setgpio  10    INPUT     DEFAULT
-#setgpio  11    INPUT     DEFAULT
-#setgpio  12    INPUT     DEFAULT
-#setgpio  13    INPUT     DEFAULT
-#setgpio  14    INPUT     DEFAULT
-#setgpio  15    INPUT     DEFAULT
-#setgpio  16    INPUT     DEFAULT
-#setgpio  17    INPUT     DEFAULT
-#setgpio  18    INPUT     DEFAULT
-#setgpio  19    INPUT     DEFAULT
-#setgpio  20    INPUT     DEFAULT
-#setgpio  21    INPUT     DEFAULT
-#setgpio  22    INPUT     DEFAULT
-#setgpio  23    INPUT     DEFAULT
-#setgpio  24    INPUT     DEFAULT
-#setgpio  25    INPUT     DEFAULT
-#setgpio  26    INPUT     DEFAULT
-#setgpio  27    INPUT     DEFAULT
-
-########################################################################
-# Settings for bank 1 (only valid for CM1/3/3+/4S). Setting one or more of
-# these GPIOs requires setting of drive, slew and hysteresis for bank 1.
-
-# bank1_gpio_drive 0
-# bank1_gpio_slew 0
-# bank1_gpio_hysteresis 0
-
-#setgpio  28    INPUT     DEFAULT
-#setgpio  29    INPUT     DEFAULT
-#setgpio  30    INPUT     DEFAULT
-#setgpio  31    INPUT     DEFAULT
-#setgpio  32    INPUT     DEFAULT
-#setgpio  33    INPUT     DEFAULT
-#setgpio  34    INPUT     DEFAULT
-#setgpio  35    INPUT     DEFAULT
-#setgpio  36    INPUT     DEFAULT
-#setgpio  37    INPUT     DEFAULT
-#setgpio  38    INPUT     DEFAULT
-#setgpio  39    INPUT     DEFAULT
-#setgpio  40    INPUT     DEFAULT
-#setgpio  41    INPUT     DEFAULT
-#setgpio  42    INPUT     DEFAULT
-#setgpio  43    INPUT     DEFAULT
-#setgpio  44    INPUT     DEFAULT
-#setgpio  45    INPUT     DEFAULT`),
-    {
-      product_uuid: "00000000-0000-0000-0000-000000000000",
-      product_id: "0x0000",
-      product_ver: "0x0000",
-      vendor: "ACME Technology Company",
-      product: "Special Sensor Board",
-      back_power: 0,
-      gpio_drive: 0,
-      gpio_hysteresis: 0,
-      gpio_slew: 0,
-      custom_data: ["deadbeef c00 1c0d e"],
-    }
+  const txt = readFileSync(
+    new URL(import.meta.resolve("./fixtures/eeprom_v1_settings.txt")),
+    "utf8"
   )
+
+  t.assert.deepStrictEqual(parse(txt), {
+    product_uuid: "00000000-0000-0000-0000-000000000000",
+    product_id: "0x0000",
+    product_ver: "0x0000",
+    vendor: "ACME Technology Company",
+    product: "Special Sensor Board",
+    back_power: 0,
+    gpio_drive: 0,
+    gpio_hysteresis: 0,
+    gpio_slew: 0,
+    custom_data: ["deadbeef c00 1c0d e"],
+  })
 })
 
 test("parse example", (t) => {
-  t.assert.deepStrictEqual(
-    parse(`
-custom_data "
-This is the start of a long string.
-End this line with a carriage return\r
-NUL-terminated\0
-\"`),
-    {
-      custom_data: [
-        "This is the start of a long string.\nEnd this line with a carriage return\r\nNUL-terminated\0",
-      ],
-    }
+  const txt = readFileSync(
+    new URL(import.meta.resolve("./fixtures/example.txt")),
+    "utf8"
   )
+
+  t.assert.deepStrictEqual(parse(txt), {
+    dt_blob: "rpi-dacpro",
+    custom_data: [
+      "This is the start of a long string.\n" +
+        "End this line with a carriage return\\r\n" +
+        "NUL-terminated\\0\n",
+      "NL and NUL-terminated\n\\0\n",
+      "End text with no NL",
+      "End text with NL\n",
+    ],
+  })
 })
 
 test("parse with trailing comments", (t) => {
   t.assert.deepStrictEqual(parse(`foo bar # this is a comment`), {
     foo: "bar",
   })
+})
+
+test("parse with embedded double quote", (t) => {
+  t.assert.deepStrictEqual(
+    parse(
+      `custom_data "
+super"
+cool"\\"`
+    ),
+    {
+      custom_data: [`super"\ncool"`],
+    }
+  )
 })
 
 test("serialize", (t) => {
@@ -239,8 +93,8 @@ test("serialize", (t) => {
     current_supply: 0,
     dt_blob: "acme-sensor",
     custom_data: [
-      "deadbeef c00 1c0d eend",
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum doloreeu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, suntin culpa qui officia deserunt mollit anim id est laborum."',
+      "deadbeef c00 1c0d e",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore\neu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt\nin culpa qui officia deserunt mollit anim id est laborum.\n",
     ],
   }
 
@@ -255,8 +109,15 @@ vendor "ACME Technology Company"
 product "Special Sensor Board"
 current_supply 0
 dt_blob "acme-sensor"
-custom_data "deadbeef c00 1c0d eend"
-custom_data "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum doloreeu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, suntin culpa qui officia deserunt mollit anim id est laborum.""
+custom_data "deadbeef c00 1c0d e"
+custom_data "
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+in culpa qui officia deserunt mollit anim id est laborum.
+\\"
 `
   )
 
