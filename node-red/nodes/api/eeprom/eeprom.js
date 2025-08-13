@@ -37,23 +37,3 @@ export async function read() {
 
   return data
 }
-
-// const eeprom = {
-//   product_uuid: "167fe1a8-62aa-41d3-a746-8b67d8342f4c",
-//   product_id: "0x0000",
-//   product_ver: "0x0000",
-//   vendor: "FairScope",
-//   product: "PlanktoScope v3",
-//   dt_blob: "planktoscope-hat",
-// }
-// await write(eeprom)
-
-// do {
-//   const eeprom = await read()
-//   eeprom.custom_data = {
-//     random: Math.random().toString().split("0.")[1],
-//     utf8: "@#$@RD)@@² ³’¥²³Ü‘~🤣",
-//   }
-//   await write(eeprom)
-//   console.log(await read())
-// } while (true)
