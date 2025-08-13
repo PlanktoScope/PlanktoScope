@@ -1,10 +1,31 @@
 /* eslint-disable no-useless-escape */
 import { test } from "node:test"
 
-import { parse, serialize } from "./eeptools.js"
+import { parse, serialize, write, read } from "./eeptools.js"
 import { readFileSync } from "node:fs"
 
 test("parse eeprom_settings.txt", (t) => {
+  const txt = readFileSync(
+    new URL(import.meta.resolve("./fixtures/eeprom_settings.txt")),
+    "utf8"
+  )
+
+  t.assert.deepStrictEqual(parse(txt), {
+    product_uuid: "00000000-0000-0000-0000-000000000000",
+    product_id: "0x0000",
+    product_ver: "0x0000",
+    vendor: "ACME Technology Company",
+    product: "Special Sensor Board",
+    current_supply: 0,
+    dt_blob: "acme-sensor",
+    custom_data: [
+      "deadbeef c00 1c0d e",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore\neu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt\nin culpa qui officia deserunt mollit anim id est laborum.\n",
+    ],
+  })
+})
+
+test("write eeprom_settings.txt", async (t) => {
   const txt = readFileSync(
     new URL(import.meta.resolve("./fixtures/eeprom_settings.txt")),
     "utf8"
