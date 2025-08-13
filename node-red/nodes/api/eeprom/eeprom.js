@@ -1,38 +1,35 @@
 import { read as readEEPROM, write as writeEEPROM } from "./eeptools.js"
 import { Chip, Line } from "node-libgpiod"
 
+import { randomBytes } from "crypto"
+
+const type = "24c32"
+const address = "50"
+const gpio_write_protect = 26
+
 async function write(data) {
   const chip = new Chip(0)
-  const eeprom_rp = new Line(chip, 26)
-  eeprom_rp.requestOutputMode()
-  eeprom_rp.setValue(0)
+  const line = new Line(chip, gpio_write_protect)
+  line.requestOutputMode()
+  line.setValue(0)
 
   if (data.custom_data) {
-    data.custom_data = [
-      Buffer.from(JSON.stringify(data.custom_data, 2), "utf8").toString(
-        "latin1"
-      ),
-    ]
+    data.custom_data = [JSON.stringify(data.custom_data, null, 2)]
   }
 
   try {
-    await writeEEPROM(data)
+    await writeEEPROM({ type, address }, data)
   } finally {
-    eeprom_rp.setValue(1)
-    eeprom_rp.release()
+    line.setValue(1)
+    line.release()
   }
 }
 
 async function read() {
-  const data = await readEEPROM()
+  const data = await readEEPROM({ type, address })
 
   if (data.custom_data?.[0]) {
-    console.log(data.custom_data)
-    // try {
-    data.custom_data = JSON.parse(
-      Buffer.from(data.custom_data[0], "latin1").toString("utf8")
-    )
-    // } catch {}
+    data.custom_data = JSON.parse(data.custom_data[0])
   }
 
   return data
@@ -47,12 +44,15 @@ const eeprom = {
   dt_blob: "planktoscope-hat",
 }
 await write(eeprom)
-console.log(await read())
 
-setInterval(async () => {
+do {
   const eeprom = await read()
-  eeprom.custom_data = { random: Math.random().toString().split("0.")[1] }
-
+  eeprom.custom_data = {
+    random: Math.random().toString().split("0.")[1],
+    latin1: randomBytes(2048).toString("base64"),
+  }
+  console.log("writing", '"', eeprom.custom_data.latin1, '"')
+  // console.log(randomBytes(128).toString("latin1"))
   await write(eeprom)
   console.log(await read())
-}, 2000)
+} while (true)

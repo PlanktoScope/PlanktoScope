@@ -128,7 +128,7 @@ export function serialize(data) {
   return content
 }
 
-export async function write(data) {
+export async function write({ type, address }, data) {
   const tmp = await mkdtemp(join(tmpdir(), "eeptools-"))
 
   try {
@@ -142,8 +142,8 @@ export async function write(data) {
       "eepflash.sh",
       "--yes",
       "--write",
-      "--type=24c32",
-      "--address=50",
+      `--type=${type}`,
+      `--address=${address}`,
       `--file=${file_eep}`,
     ])
   } finally {
@@ -151,7 +151,7 @@ export async function write(data) {
   }
 }
 
-export async function read() {
+export async function read({ type, address }) {
   const tmp = await mkdtemp(join(tmpdir(), "eeptools-"))
 
   try {
@@ -160,8 +160,8 @@ export async function read() {
       "eepflash.sh",
       "--yes",
       "--read",
-      "--type=24c32",
-      "--address=50",
+      `--type=${type}`,
+      `--address=${address}`,
       `--file=${file_eep}`,
     ])
 
