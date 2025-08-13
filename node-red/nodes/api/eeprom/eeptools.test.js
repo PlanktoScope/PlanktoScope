@@ -62,8 +62,8 @@ in culpa qui officia deserunt mollit anim id est laborum.
       current_supply: 0,
       dt_blob: "acme-sensor",
       custom_data: [
-        "deadbeef c00 1c0d eend",
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum doloreeu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, suntin culpa qui officia deserunt mollit anim id est laborum."',
+        "deadbeef c00 1c0d e",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quisnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum doloreeu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, suntin culpa qui officia deserunt mollit anim id est laborum.",
       ],
     }
   )
@@ -202,7 +202,41 @@ back_power 0
       gpio_drive: 0,
       gpio_hysteresis: 0,
       gpio_slew: 0,
-      custom_data: ["deadbeef c00 1c0d eend"],
+      custom_data: ["deadbeef c00 1c0d e"],
+    }
+  )
+})
+
+test.skip("parse example", (t) => {
+  t.assert.deepEqual(
+    parse(`dt_blob "rpi-dacpro"
+
+custom_data "
+This is the start of a long string.
+End this line with a carriage return\r
+NUL-terminated\0
+\"
+
+custom_data "
+NL and NUL-terminated
+\0
+\"
+
+# This one could have been a simple string
+custom_data "
+End text with no NL\"
+
+custom_data "
+End text with NL
+\"`),
+    {
+      dt_blob: "rpi-dacpro",
+      custom_data: [
+        'This is the start of a long string.\nEnd this line with a carriage return\r\nNUL-terminated\x00"',
+        'NL and NUL-terminated\x00"',
+        "End text with no NL",
+        "End text with NL",
+      ],
     }
   )
 })

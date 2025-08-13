@@ -32,14 +32,32 @@ export function parse(content) {
     data["custom_data"].push(value)
   }
 
+  function endMultiline() {
+    addKey(multiline_key, multiline_value)
+    multiline = false
+    multiline_key = ""
+    multiline_value = ""
+  }
+
+  function startMultiline(key) {
+    multiline = true
+    multiline_key = key
+    multiline_value = ""
+  }
+
   for (let line of content.split("\n")) {
     if (multiline) {
-      multiline_value += line
-      if (line.endsWith("end") || line.endsWith(`\"`)) {
-        addKey(multiline_key, multiline_value)
-        multiline = false
-        multiline_key = ""
-        multiline_value = ""
+      if (line === "end") {
+        endMultiline()
+        continue
+      }
+
+      const idx = line.indexOf(`\"`)
+      if (idx < 0) {
+        multiline_value += line
+      } else {
+        multiline_value += line.slice(0, idx)
+        endMultiline()
       }
       continue
     }
@@ -50,9 +68,7 @@ export function parse(content) {
 
     // multiline binary
     if (idx < 0) {
-      multiline = true
-      multiline_key = line
-      multiline_value = ""
+      startMultiline(line)
       continue
     }
 
@@ -60,9 +76,7 @@ export function parse(content) {
     const key = line.slice(0, idx)
     let value = line.slice(idx + 1)
     if (!value || value === '"') {
-      multiline = true
-      multiline_key = key
-      multiline_value = ""
+      startMultiline(key)
       continue
     }
 
