@@ -1,0 +1,13 @@
+setup:
+    npm install --omit=dev
+    sudo cp planktoscope-org.eeprom.service /etc/systemd/system/
+    sudo systemctl enable planktoscope-org.eeprom.service
+
+setup-dev:
+    npm install --include=dev
+
+format:
+    eslint --fix .
+
+test:
+    npm test

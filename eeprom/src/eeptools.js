@@ -8,7 +8,6 @@ import { readFile, mkdtemp, writeFile, rm } from "node:fs/promises"
 
 const execFile = promisify(child_process.execFile)
 
-/* eslint-disable no-useless-escape */
 export function parse(content) {
   let data = {}
 

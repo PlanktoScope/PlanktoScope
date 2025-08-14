@@ -1,12 +1,11 @@
-/* eslint-disable no-useless-escape */
 import { test } from "node:test"
 
-import { parse, serialize, write, read } from "./eeptools.js"
+import { parse, serialize } from "./eeptools.js"
 import { readFileSync } from "node:fs"
 
 test("parse eeprom_settings.txt", (t) => {
   const txt = readFileSync(
-    new URL(import.meta.resolve("./fixtures/eeprom_settings.txt")),
+    new URL(import.meta.resolve("../fixtures/eeprom_settings.txt")),
     "utf8"
   )
 
@@ -27,7 +26,7 @@ test("parse eeprom_settings.txt", (t) => {
 
 test("write eeprom_settings.txt", async (t) => {
   const txt = readFileSync(
-    new URL(import.meta.resolve("./fixtures/eeprom_settings.txt")),
+    new URL(import.meta.resolve("../fixtures/eeprom_settings.txt")),
     "utf8"
   )
 
@@ -48,7 +47,7 @@ test("write eeprom_settings.txt", async (t) => {
 
 test("parse eeprom_v1_settings.txt", (t) => {
   const txt = readFileSync(
-    new URL(import.meta.resolve("./fixtures/eeprom_v1_settings.txt")),
+    new URL(import.meta.resolve("../fixtures/eeprom_v1_settings.txt")),
     "utf8"
   )
 
@@ -68,7 +67,7 @@ test("parse eeprom_v1_settings.txt", (t) => {
 
 test("parse example", (t) => {
   const txt = readFileSync(
-    new URL(import.meta.resolve("./fixtures/example.txt")),
+    new URL(import.meta.resolve("../fixtures/example.txt")),
     "utf8"
   )
 

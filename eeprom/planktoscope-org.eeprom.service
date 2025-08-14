@@ -1,0 +1,16 @@
+[Unit]
+Description=PlanktoScope HAT EEPROM service
+Wants=mosquitto.service
+After=mosquitto.service
+
+[Service]
+Type=simple
+Environment=PORT=3001
+ExecStart=/usr/bin/node /home/pi/PlanktoScope/eeprom/service.js
+Restart=on-failure
+
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
