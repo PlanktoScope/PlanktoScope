@@ -1,0 +1,18 @@
+setup:
+    poetry lock && poetry install --without=dev
+    sudo cp planktoscope-org.segmenter.service /etc/systemd/system/
+    # sudo systemctl daemon-reload
+    sudo systemctl enable planktoscope-org.segmenter
+
+setup-dev:
+    poetry lock && poetry install --with=dev
+
+dev:
+    sudo systemctl stop planktoscope-org.segmenter
+    poetry run python -u main.py
+
+format:
+    poetry run poe fmt
+
+test:
+    poetry run poe check

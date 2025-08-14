@@ -1,1 +1,1 @@
-../../../../software/CHANGELOG.md
+../../../../CHANGELOG.md

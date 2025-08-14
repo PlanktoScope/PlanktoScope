@@ -1,0 +1,10 @@
+[Unit]
+Description=PlanktoScope first boot service
+ConditionFirstBoot=yes
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/firstboot.sh
+
+[Install]
+WantedBy=sysinit.target

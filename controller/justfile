@@ -1,0 +1,19 @@
+setup:
+    sudo apt install -y gcc libcap-dev python3-dev i2c-tools libopenjp2-7 python3-picamera2
+    poetry lock && poetry install --without=dev
+    sudo cp planktoscope-org.controller.service /etc/systemd/system/
+    # sudo systemctl daemon-reload
+    sudo systemctl enable planktoscope-org.controller
+
+setup-dev:
+    poetry lock && poetry install --with=dev
+
+dev:
+    sudo systemctl stop planktoscope-org.controller
+    poetry run python -u main.py
+
+format:
+    poetry run poe fmt
+
+test:
+    poetry run poe check

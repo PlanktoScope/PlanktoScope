@@ -8,7 +8,6 @@ export default function (RED) {
       listAcquisitions()
         .then((acquisitions) => {
           msg.payload = acquisitions
-          // msg.payload.acquisitions = acquisitions
           send(msg)
         })
         .catch(done)

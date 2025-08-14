@@ -1,0 +1,7 @@
+setup:
+
+setup-dev:
+    poetry lock && poetry install
+
+test:
+    poetry run poe check

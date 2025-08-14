@@ -9,21 +9,20 @@ This page provides useful snippets and how-tos while developing software for the
 - [Development OS](#development-os)
 - [Development Environment](#development-environment)
 - [Connect to router](#connect-to-router)
-- [Disable splash screen](#disable-splash-screen)
 - [Backup and Restore SD Card](#backup-and-restore-sd-card)
 - [Documentation quick setup](#documentation-quick-setup)
 - [Test dataset for segmenter](#test-dataset-for-segmenter)
 
 ## Development OS
 
-You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%3Amaster)
+You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%3Amain)
 
 It is built upon [Raspberry Pi OS Lite 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
 
-1. Choose the branch (e.g. `master`)
+1. Choose the branch (e.g. `main`)
 2. Click on the most recent action in the table
-3. Download one of the Artifact depending on your PlanktoScope hardware
-4. Run `unzip filename.zip` to extract files
+3. Download the Artifact `PlanktoScope-OS-xxx`
+4. Run `unzip PlanktoScope-OS-xxx.zip` to extract files
 
 See [Backup and Restore SD Card image](#backup-and-restore-sd-card) below to write the `.img.xz` file to the sdcard
 
@@ -74,16 +73,9 @@ You can now SSH into your PlanktoScope without username / password (using `ssh $
 
 ```sh
 cd ~/PlanktoScope
-
-# Configure git
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-
-# To contribute, change the remote to PlanktoScope/PlanktoScope or your fork
-git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
-
-git fetch origin
-git checkout master
+just developer-mode
+git checkout main
+git status
 ```
 
 </details>
@@ -125,8 +117,6 @@ And access the UI with http://pkscope-example-name-0000/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
-See also the operating guide [Networking](https://docs-edge.planktoscope.community/operation/networking/).
-
 ## Offline access
 
 When network is not available you have several options for debugging
@@ -139,7 +129,7 @@ The NanoKVM USB solution works for all setups.
 
 ## Backup and Restore SD Card
 
-You will need to plug the SD card into your computer.
+Plug the SD card into your computer.
 
 `/dev/device` refers to the path of the SD card device/disk. You will need to adjust it. Use `diskutil list` on macOS and `fdisk --list` on Linux.
 
@@ -167,7 +157,7 @@ https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
 
 This is a quick setup guide. See also
 
-- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/master/documentation/README.md)
+- [documentation README](https://github.com/PlanktoScope/PlanktoScope/blob/main/documentation/README.md)
 - [Writing Documentation](./documentation.md)
 
 Install dependencies:

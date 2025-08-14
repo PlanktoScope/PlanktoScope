@@ -157,6 +157,29 @@
         "color": "#DDAA99"
     },
     {
+        "id": "37fd90bb2f83eddc",
+        "type": "group",
+        "z": "1eaf21c8.f7a21e",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "427c312.fc5e65",
+            "c00c6732b9f36adb",
+            "e1d81baf6ae9ac67"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 392,
+        "h": 142
+    },
+    {
         "id": "3a6bb13f.c9703e",
         "type": "ui_tab",
         "name": "Home",
@@ -1548,6 +1571,11 @@
         "passthru": false,
         "multiple": false,
         "options": [
+            {
+                "label": "",
+                "value": "PlanktoScope v2.1",
+                "type": "str"
+            },
             {
                 "label": "",
                 "value": "PlanktoScope v2.3",
@@ -4818,6 +4846,11 @@
                 "type": "num"
             },
             {
+                "label": "500 µm capillary",
+                "value": 500,
+                "type": "num"
+            },
+            {
                 "label": "600 μm µ-Slide I Luer",
                 "value": 600,
                 "type": "num"
@@ -7157,8 +7190,8 @@
         "z": "9daf9e2b.019fc",
         "name": "Restart Hardware Controller",
         "links": [
-            "e41870d7.300eb8",
-            "3973b999ee7b3b1d"
+            "3973b999ee7b3b1d",
+            "e41870d7.300eb8"
         ],
         "x": 195,
         "y": 420,
@@ -7172,7 +7205,7 @@
         "id": "c54d948575dbcff8",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "sudo systemctl restart planktoscope-org.device-backend.controller.service",
+        "command": "sudo systemctl restart planktoscope-org.controller.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -7183,7 +7216,9 @@
         "x": 780,
         "y": 420,
         "wires": [
-            [],
+            [
+                "8cad7139d2a089d9"
+            ],
             [],
             []
         ]
@@ -7221,7 +7256,7 @@
         "id": "2cdbadb65d0e1b20",
         "type": "exec",
         "z": "9daf9e2b.019fc",
-        "command": "docker restart apps_ps_backend_proc-segmenter-server-1",
+        "command": "sudo systemctl restart planktoscope-org.segmenter.service",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -7246,7 +7281,7 @@
         "order": 1,
         "width": "0",
         "height": "0",
-        "format": "<p>\n    The PlanktoScope software application consists of three components: a Node-RED dashboard which provides the user interface you're using; a Hardware Controller\n    which executes commands sent from the Node-RED dashboard for hardware control and image acquisition; and a Segmenter which processes an acquired dataset of\n    images and isolates objects from those images. Each component has its own independent log of messages, managed separately from the logs for the other components.\n</p>\n<p>\n    All three components have live-updating logs which you can monitor. Additionally, the Hardware Controller and the Segmenter also save all of their log messages\n    to files which you can browse and download. Those software components create a new log file each time they start, and the name of the log file includes the time\n    in the PlanktoScope's clock when the software component started. However, if your PlanktoScope's clock is usually wrong, it makes the log files difficult to navigate.\n    This will be fixed in a future version of the software.\n</p>\n<p>\n    If you need to share your logs with other people (e.g. on Slack or GitHub), you should open the \"Downloadable Logs\" links, and then you can select one file or multiple\n    log files for downloading as a zip archive.\n</p>\n<ul>\n    <li>\n        Node-RED:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=nodered.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li>Certain errors generated in the dashboard: see the \"Dashboard errors\" panel on this page.</li>\n        </ul>\n    </li>\n    <li>\n        Hardware Controller:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.device-backend.controller.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/control/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Segmenter:\n        <ul>\n            \n            <li><a href=\"/admin/dozzle/show?name=apps_ps_backend_proc-segmenter-server-1\" style=\"color: white;\">Live-updating logs</a></li>\n            <li><a href=\"/admin/ps/device-backend-logs/browse/files/processing/segmenter/\" style=\"color: white;\">Downloadable logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Operating System:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=err\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n</ul>",
+        "format": "<p>\n    The PlanktoScope software application consists of three components: a Node-RED dashboard which provides the user interface you're using; a Hardware Controller\n    which executes commands sent from the Node-RED dashboard for hardware control and image acquisition; and a Segmenter which processes an acquired dataset of\n    images and isolates objects from those images. Each component has its own independent log of messages, managed separately from the logs for the other components.\n</p>\n<p>\n    All three components have live-updating logs which you can monitor. Additionally, the Hardware Controller and the Segmenter also save all of their log messages\n    to files which you can browse and download. Those software components create a new log file each time they start, and the name of the log file includes the time\n    in the PlanktoScope's clock when the software component started. However, if your PlanktoScope's clock is usually wrong, it makes the log files difficult to navigate.\n    This will be fixed in a future version of the software.\n</p>\n<p>\n    If you need to share your logs with other people (e.g. on Slack or GitHub), you should open the \"Downloadable Logs\" links, and then you can select one file or multiple\n    log files for downloading as a zip archive.\n</p>\n<ul>\n    <li>\n        Node-RED:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=nodered.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n            <li>Certain errors generated in the dashboard: see the \"Dashboard errors\" panel on this page.</li>\n        </ul>\n    </li>\n    <li>\n        Hardware Controller:\n        <ul>\n            <li><a href=\"/admin/cockpit/system/logs#/?prio=debug&amp;service=planktoscope-org.controller.service\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n    <li>\n        Segmenter:\n        <ul>\n            \n            <li><a href=\"/admin/dozzle/show?name=apps_ps_backend_proc-segmenter-server-1\" style=\"color: white;\">Live-updating logs</a></li>\n        </ul>\n    </li>\n    <li>\n        Operating System:\n        <ul>\n            \n            <li><a href=\"/admin/cockpit/system/logs#/?prio=err\" style=\"color: white;\">Live-updating logs</a> (log in as the \"pi\" user with the \"pi\" user's password)</li>\n        </ul>\n    </li>\n</ul>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -7295,6 +7330,26 @@
         "x": 750,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "8cad7139d2a089d9",
+        "type": "exec",
+        "z": "9daf9e2b.019fc",
+        "command": "sudo systemctl restart nodered.service",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Restart Node Red",
+        "x": 1030,
+        "y": 420,
+        "wires": [
+            [],
+            [],
+            []
+        ]
     },
     {
         "id": "3910d662.fa1f7a",
@@ -8186,8 +8241,8 @@
         "links": [
             "438febd245a9f73c"
         ],
-        "x": 1495,
-        "y": 380,
+        "x": 1385,
+        "y": 640,
         "wires": []
     },
     {
@@ -8206,8 +8261,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1180,
-        "y": 380,
+        "x": 1200,
+        "y": 640,
         "wires": [
             [
                 "e41870d7.300eb8"
@@ -8220,8 +8275,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 1220,
-        "y": 420,
+        "x": 1240,
+        "y": 680,
         "wires": []
     },
     {
@@ -8243,8 +8298,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
-        "y": 400,
+        "x": 690,
+        "y": 660,
         "wires": [
             [
                 "ee58b91c.396108"
@@ -8269,8 +8324,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 940,
-        "y": 400,
+        "x": 960,
+        "y": 660,
         "wires": [
             [
                 "2068e7f.f4efb18",
@@ -8344,8 +8399,8 @@
         "topic": "acq_instrument",
         "topicType": "str",
         "className": "",
-        "x": 670,
-        "y": 160,
+        "x": 650,
+        "y": 300,
         "wires": [
             [
                 "08d177136bd18281",
@@ -8359,8 +8414,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "",
         "env": [],
-        "x": 510,
-        "y": 300,
+        "x": 390,
+        "y": 580,
         "wires": [
             []
         ]
@@ -8372,12 +8427,13 @@
         "name": "Save global",
         "func": "global.set(msg.topic,msg.payload);\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 300,
+        "x": 230,
+        "y": 580,
         "wires": [
             [
                 "1cfadc66.3cde8c"
@@ -8388,10 +8444,11 @@
         "id": "427c312.fc5e65",
         "type": "subflow:1c24ad9c.bebec2",
         "z": "1eaf21c8.f7a21e",
+        "g": "37fd90bb2f83eddc",
         "name": "",
         "env": [],
-        "x": 170,
-        "y": 140,
+        "x": 110,
+        "y": 60,
         "wires": [
             [
                 "c00c6732b9f36adb"
@@ -8417,8 +8474,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
-        "y": 480,
+        "x": 690,
+        "y": 740,
         "wires": [
             [
                 "244ca5dd62df2bcd"
@@ -8443,8 +8500,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "str",
-        "x": 940,
-        "y": 480,
+        "x": 960,
+        "y": 740,
         "wires": [
             [
                 "8e3b3d3c.955148",
@@ -8463,8 +8520,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 480,
+        "x": 1240,
+        "y": 740,
         "wires": [
             [
                 "5d5ad36d2c50dcc2"
@@ -8477,8 +8534,8 @@
         "z": "1eaf21c8.f7a21e",
         "name": "Process_pixel calibration",
         "links": [],
-        "x": 1495,
-        "y": 500,
+        "x": 1545,
+        "y": 760,
         "wires": []
     },
     {
@@ -8525,8 +8582,8 @@
         "payload": "",
         "topic": "acq_fnumber_objective",
         "topicType": "str",
-        "x": 930,
-        "y": 520,
+        "x": 950,
+        "y": 780,
         "wires": [
             [
                 "a6983d3232b570a7",
@@ -8553,8 +8610,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1260,
-        "y": 520,
+        "x": 1280,
+        "y": 780,
         "wires": [
             [
                 "5d5ad36d2c50dcc2"
@@ -8587,8 +8644,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
-        "y": 520,
+        "x": 700,
+        "y": 780,
         "wires": [
             [
                 "6146ba22df928516"
@@ -8610,8 +8667,8 @@
         "className": "",
         "topic": "Resetting hardware configuration to version-specific default",
         "name": "",
-        "x": 370,
-        "y": 260,
+        "x": 250,
+        "y": 520,
         "wires": []
     },
     {
@@ -8624,7 +8681,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$join([\"/home/pi/PlanktoScope/device-backend/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
+                "to": "$join([\"/home/pi/PlanktoScope/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".hardware.json\"])",
                 "tot": "jsonata"
             }
         ],
@@ -8633,8 +8690,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 410,
-        "y": 220,
+        "x": 550,
+        "y": 420,
         "wires": [
             [
                 "e3ba6ac89221b17b"
@@ -8653,11 +8710,11 @@
         "winHide": false,
         "oldrc": false,
         "name": "Copy default hardware config",
-        "x": 700,
-        "y": 220,
+        "x": 820,
+        "y": 420,
         "wires": [
             [
-                "97e582080deae888"
+                "d0eeba02f973ab72"
             ],
             [],
             []
@@ -8680,8 +8737,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 930,
-        "y": 220,
+        "x": 1210,
+        "y": 440,
         "wires": [
             [
                 "3973b999ee7b3b1d"
@@ -8700,8 +8757,8 @@
             "5984b086eddc9311",
             "a2f2a4c7cbae4446"
         ],
-        "x": 1095,
-        "y": 220,
+        "x": 1325,
+        "y": 440,
         "wires": []
     },
     {
@@ -8709,8 +8766,8 @@
         "type": "subflow:b7861ce703215a01",
         "z": "1eaf21c8.f7a21e",
         "name": "",
-        "x": 380,
-        "y": 440,
+        "x": 400,
+        "y": 700,
         "wires": [
             [
                 "54ba7f16.709ad8",
@@ -8730,8 +8787,8 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 170,
-        "y": 460,
+        "x": 190,
+        "y": 660,
         "wires": [
             [
                 "3bcaf757cbc77fbe"
@@ -8742,6 +8799,7 @@
         "id": "c00c6732b9f36adb",
         "type": "change",
         "z": "1eaf21c8.f7a21e",
+        "g": "37fd90bb2f83eddc",
         "name": "Get acq_instrument",
         "rules": [
             {
@@ -8764,8 +8822,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 370,
-        "y": 140,
+        "x": 310,
+        "y": 60,
         "wires": [
             [
                 "a7e5c7f4.644678",
@@ -8781,8 +8839,8 @@
         "links": [
             "3973b999ee7b3b1d"
         ],
-        "x": 205,
-        "y": 420,
+        "x": 215,
+        "y": 740,
         "wires": [
             [
                 "3bcaf757cbc77fbe"
@@ -8798,14 +8856,15 @@
             "08d177136bd18281",
             "9f34e4a2f33c4022"
         ],
-        "x": 205,
-        "y": 260,
+        "x": 85,
+        "y": 500,
         "wires": [
             [
                 "68703ef63da2f081",
                 "d276ce894f483bcf",
                 "3e2c5c1c.4c57b4",
-                "a7e5c7f4.644678"
+                "a7e5c7f4.644678",
+                "66090e62d5ab9f22"
             ]
         ]
     },
@@ -8818,8 +8877,8 @@
         "links": [
             "cb9009e8a49e93cc"
         ],
-        "x": 875,
-        "y": 160,
+        "x": 855,
+        "y": 300,
         "wires": []
     },
     {
@@ -8834,5 +8893,126 @@
         "x": 875,
         "y": 120,
         "wires": []
+    },
+    {
+        "id": "e1d81baf6ae9ac67",
+        "type": "catch",
+        "z": "1eaf21c8.f7a21e",
+        "g": "37fd90bb2f83eddc",
+        "name": "",
+        "scope": "group",
+        "uncaught": false,
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "d88e0266c746ea70"
+            ]
+        ]
+    },
+    {
+        "id": "d88e0266c746ea70",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Set acq_instrument to null",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "null",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "56dd3f82c45717f0"
+            ]
+        ]
+    },
+    {
+        "id": "a4346039e6b93f74",
+        "type": "exec",
+        "z": "1eaf21c8.f7a21e",
+        "command": "cp",
+        "addpay": "payload",
+        "append": "/home/pi/PlanktoScope/config.json",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Copy default software config",
+        "x": 820,
+        "y": 480,
+        "wires": [
+            [
+                "d0eeba02f973ab72"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "66090e62d5ab9f22",
+        "type": "change",
+        "z": "1eaf21c8.f7a21e",
+        "name": "Choose default software config",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$join([\"/home/pi/PlanktoScope/default-configs/\", $substringAfter(msg.payload, \"PlanktoScope \"), \".config.json\"])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 480,
+        "wires": [
+            [
+                "a4346039e6b93f74"
+            ]
+        ]
+    },
+    {
+        "id": "d0eeba02f973ab72",
+        "type": "join",
+        "z": "1eaf21c8.f7a21e",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "",
+        "propertyType": "full",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1050,
+        "y": 440,
+        "wires": [
+            [
+                "97e582080deae888"
+            ]
+        ]
     }
 ]

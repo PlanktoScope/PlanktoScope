@@ -2,15 +2,11 @@
 
 This section of the PlanktoScope documentation will help you to set up the necessary software for your PlanktoScope hardware. Our documentation splits the PlanktoScope software setup process into two phases: installing the PlanktoScope software onto the micro-SD card of the Raspberry Pi computer in your PlanktoScope, and configuring the PlanktoScope software after installation.
 
-The PlanktoScope software is an operating system, the [PlanktoScope OS](../../reference/software/architecture/os.md), distributed as an SD card image to be run on the PlanktoScope hardware's embedded Raspberry Pi computer.
+The PlanktoScope software is an operating system, the PlanktoScope OS, distributed as an SD card image to be run on the PlanktoScope hardware's embedded Raspberry Pi computer.
 
 If you are building your own PlanktoScope from your own hardware kit, you will need to install and set up the PlanktoScope OS yourself. If you received a PlanktoScope from FairScope, a working and pre-configured version of the PlanktoScope OS is already pre-installed, and you can skip the software setup process and proceed to our guide on how to [operate your PlanktoScope](../../operation/index.md). - but you still might wish to update your PlanktoScope to the latest release of the PlanktoScope OS, in which case you should reinstall the PlanktoScope software by going through our software setup guide below.
 
 In order to install the PlanktoScope software, you will first need to choose an SD card image file to use for installation, and then you will install that SD card image and perform some configuration of the software.
-
-## Choosing an SD card image
-
-PlanktoScope SD card image files are identified with a version number as well as a hardware configuration tag - for example, the SD card image file named `planktoscope-v2024.0.0+planktoscopehat.img.xz` is for v2020.0.0 of the PlanktoScope OS, configured to work with versions of the PlanktoScope hardware based on the custom PlanktoScope HAT (rather than the Adafruit Stepper Motor HAT). Thus, you will need to choose both a version number (e.g. v2023.9.0) and a hardware configuration (e.g. `planktoscopehat`).
 
 ### PlanktoScope OS versions
 
@@ -26,21 +22,9 @@ PlanktoScope OS versions are independent of hardware versions, and (starting in 
 
 - v2024.1.0: this version will be the second release of the PlanktoScope OS in 2024.
 
-### Hardware configurations
-
-Currently, each version of the PlanktoScope OS is provided as three SD card images which support the two different types of hardware configurations supported by the PlanktoScope software:
-
-- `adafruithat`: this configuration of the PlanktoScope OS is compatible with v2.1 of the PlanktoScope hardware, which uses the [Adafruit Stepper Motor HAT](https://learn.adafruit.com/adafruit-dc-and-stepper-motor-hat-for-raspberry-pi/overview).
-
-- `planktoscopehat`: this configuration of the PlanktoScope OS is compatible with all versions of the PlanktoScope hardware starting with hardware v2.3; those hardware versions use the [PlanktoScope HAT](../../reference/hardware/hat.md) instead of the Adafruit Stepper Motor HAT. This configuration requires you to select the hardware version of your PlanktoScope in the [post-installation configuration](config.md) process.
-
-- `fairscope-latest`: this configuration of the PlanktoScope OS is identical to the `planktoscopehat` configuration, except that this one sets the default settings to be for hardware version v2.6 so that you won't need to select the hardware version of your PlanktoScope in the post-installation configuration process.
-
-If you have a PlanktoScope from FairScope, you should probably use the `fairscope-latest` SD card image; otherwise, if you have a non-FairScope PlanktoScope with hardware version v2.3 or later, you should probably use the `planktoscopehat` SD card image; otherwise, if you have a v2.1 PlanktoScope, you should probably use an `adafruithat` SD card image.
-
 ## Installation
 
-After you have chosen a PlanktoScope OS SD card image for the desired OS version and hardware configuration, you should follow our [standard installation](standard-install.md) guide in order to install that SD card image into your PlanktoScope. If the official PlanktoScope SD card images don't meet your requirements and you have successfully set up and used the PlanktoScope OS in the past via the standard installation process, then you may also find the [non-standard installation](nonstandard-install.md) guide useful.
+After you have chosen a PlanktoScope OS SD card image for the desired OS version and hardware configuration, you should follow our [standard installation](standard-install.md) guide in order to install that SD card image into your PlanktoScope.
 
 ## Post-installation configuration
 

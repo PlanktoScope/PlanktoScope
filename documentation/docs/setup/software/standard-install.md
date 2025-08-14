@@ -40,7 +40,7 @@ Insert the microSD card into the Raspberry Pi computer installed in your Plankto
 
 ## Connect to the PlanktoScope
 
-Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up, depending on the speed of your SD card. Once it has finished starting up, its internal Raspberry Pi computer should create a new isolated Wi-Fi network (which we call the PlanktoScope's *Wi-Fi hotspot*) whose name starts with the word `pkscope` followed by your PlanktoScope's *machine name*, a unique randomly-generated name; for example, if your PlanktoScope's machine name is `clear-request-6329`, then the Wi-Fi network will be named `pkscope-clear-request-6329`. The password of this Wi-Fi network is `copepode`.
+Power on your PlanktoScope, and wait for it to start up. Note that it may take a few minutes to start up, depending on the speed of your SD card. Once it has finished starting up, its internal Raspberry Pi computer should create a new isolated Wi-Fi network (which we call the PlanktoScope's _Wi-Fi hotspot_) whose name starts with the word `pkscope` followed by your PlanktoScope's _machine name_, a unique randomly-generated name; for example, if your PlanktoScope's machine name is `clear-request-6329`, then the Wi-Fi network will be named `pkscope-clear-request-6329`. The password of this Wi-Fi network is `copepode`.
 
 !!! info
 
@@ -52,12 +52,11 @@ Once your PlanktoScope has created its Wi-Fi hotspot, you can connect your compu
 - <http://pkscope.local> (this should work unless you're on a computer or web browser without mDNS support)
 - <http://home.pkscope> (this should work unless your web browser is configured to use a Private DNS provider)
 - <http://192.168.4.1> (this should always work on computers connected to the PlanktoScope's Wi-Fi hotspot, unless your computer is also connected to some other device meant to be accessed with that URL)
-- <http://192.168.5.1> (this should always work on computers connected directly to the PlanktoScope's Ethernet port, unless your computer is also connected to some other device meant to be accessed with that URL)
 
 !!! warning
 
     The URLs listed above will **only** work when you are connecting directly to the PlanktoScope through its Wi-Fi hotspot or through an Ethernet cable. If you use one of those URLs, the landing page (shown in the screenshot below) will also display a link with a different URL (a machine-specific URL) to try using; you may want to try that link to see if it works, and you may want to write it down or bookmark it for future reference. That machine-specific URL, which has format `http://pkscope-{machine-name}.local` (e.g. `http://pkscope-clear-request-6329.local`) should work even if your device is connected indirectly to the PlanktoScope (e.g. via a Wi-Fi router which is providing internet access to the PlanktoScope).
-    
+
     For more information, refer to the [operation guide](../../operation/index.md#access-your-planktoscopes-software).
 
 The web browser should show a landing page with some information about your PlanktoScope and with a list of links, including links to apps running on your PlanktoScope. It should look something like the following screenshot, though every instance of "`clear-request-6329`" will be replaced with a different name specific to your machine:

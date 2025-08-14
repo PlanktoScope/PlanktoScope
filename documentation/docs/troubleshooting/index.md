@@ -12,9 +12,21 @@ Assign the static hostname `pkscope-pretty-flower-123` to the PlanktoScope in th
 
 or
 
-[Change the PlanktoScope machine name](../operation/networking.md/#change-your-planktoscopes-name) to `pretty-flower`
+Change the PlanktoScope machine name to `pretty-flower`
 
 See also [#603](https://github.com/PlanktoScope/PlanktoScope/issues/603)
+
+## No internet after connecting LAN to the PlanktoScope
+
+If your laptop is connected to the PlanktoScope with a LAN cable and to the Internet with WiFi, it's possible your system will prefer LAN and try to use it for Internet.
+
+Find the LAN setting to only use it for resources on its network.
+
+For example on Fedora / Ubuntu, the setting is called
+
+> Use this connection only for resources on its network
+
+and is present on the IPv4 and IPv6 tabs of the LAN network options.
 
 ## Error with camera or Python backend
 
