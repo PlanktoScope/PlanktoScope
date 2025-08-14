@@ -5,8 +5,7 @@ After=mosquitto.service
 
 [Service]
 Type=simple
-Environment=PORT=3001
-ExecStart=/usr/bin/node /home/pi/PlanktoScope/eeprom/service.js
+ExecStart=/usr/bin/node /home/pi/PlanktoScope/eeprom/src/service.js
 Restart=on-failure
 
 User=pi

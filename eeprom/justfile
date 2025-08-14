@@ -7,7 +7,11 @@ setup-dev:
     npm install --include=dev
 
 format:
-    eslint --fix .
+    npx eslint --fix .
 
 test:
     npm test
+
+dev:
+    sudo systemctl stop planktoscope-org.eeprom.service &>/dev/null
+    node --watch-path . src/service.js
