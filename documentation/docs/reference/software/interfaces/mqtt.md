@@ -10,13 +10,13 @@ flowchart TD
     Broker -->|Status Update| API
 ```
 
-Most messages in the MQTT API are organized according to a request-response pattern in which the API client sends a *command* as a request to take some action, and then the Python backend sends one or more responses as *status updates* about how the Python backend's state has changed as a result of the command:
+Most messages in the MQTT API are organized according to a request-response pattern in which the API client sends a _command_ as a request to take some action, and then the Python backend sends one or more responses as _status updates_ about how the Python backend's state has changed as a result of the command:
 
 - **API clients** send commands to the Python backend (via the MQTT broker), and receive status updates from the Python backend (also via the MQTT broker). The PlanktoScope's Node-RED dashboard is an API client, but other programs are also allowed to act as API clients.
 - The **MQTT broker** passes commands and status updates between the API client(s) and the Python backend. The MQTT broker runs on the PlanktoScope and accepts connections from API clients on port 1883.
 - The **Python backend** handles commands, takes actions (e.g. changing the state of hardware actuators), and publishes status updates both in response to commands and in response to changes in internal state. Currently, parts of the Python backend also act as MQTT API clients to other parts of the Python backend.
 
-Every MQTT message in the PlanktoScope's MQTT API is published on a specific *topic*, which is a slash-delimited path of strings (e.g. `actuator/pump`). Every MQTT message in the PlanktoScope's MQTT API carries a *payload*, which is a JSON object serialized as a string:
+Every MQTT message in the PlanktoScope's MQTT API is published on a specific _topic_, which is a slash-delimited path of strings (e.g. `actuator/pump`). Every MQTT message in the PlanktoScope's MQTT API carries a _payload_, which is a JSON object serialized as a string:
 
 - Messages which are commands usually specify the type of command in an `action` field of the payload object; other fields of the payload object are parameters of the command.
 - Messages which are status updates have a single field in the payload object, `status`, which is a string containing a status or error message.
@@ -186,23 +186,23 @@ The `on` command turns on the sample illumination LED. For example:
 
 ```json
 {
-  "action": "on",
+  "action": "on"
 }
 ```
 
 The `on` command has the following parameters:
 
-| Field    | Description                                        | Type    | Accepted Values |
-| -------- | -------------------------------------------------- | ------- | --------------- |
-| `action` | Specifies the `on` command.                        | string  | `on`            |
+| Field    | Description                 | Type   | Accepted Values |
+| -------- | --------------------------- | ------ | --------------- |
+| `action` | Specifies the `on` command. | string | `on`            |
 
 #### `on` command responses
 
 The Python backend can send status updates on the `status/light` topic in response to the `on` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error            | Cause                                                             |
-| ----------------------- | ----------------------------------------------------------------- |
-| `On`                    | The LED turned on successfully.                                   |
+| Status/Error | Cause                           |
+| ------------ | ------------------------------- |
+| `On`         | The LED turned on successfully. |
 
 ### `off` command
 
@@ -216,17 +216,17 @@ The `off` command turns off the sample illumination LED. For example:
 
 The `off` command has the following parameters:
 
-| Field    | Description                                       | Type    | Accepted Values |
-| -------- | ------------------------------------------------- | ------- | --------------- |
-| `action` | Specifies the `off` command.                      | string  | `off`           |
+| Field    | Description                  | Type   | Accepted Values |
+| -------- | ---------------------------- | ------ | --------------- |
+| `action` | Specifies the `off` command. | string | `off`           |
 
 #### `off` command responses
 
 The Python backend can send status updates on the `status/light` topic in response to the `off` command. The `status` field of such status updates can have any of the following values:
 
-| Status/Error            | Cause                                                             |
-| ----------------------- | ----------------------------------------------------------------- |
-| `Off`                   | The LED turned off successfully.                                  |
+| Status/Error | Cause                            |
+| ------------ | -------------------------------- |
+| `Off`        | The LED turned off successfully. |
 
 ### `status` command
 
@@ -240,19 +240,22 @@ The `status` command requests the backend to publish the status of the led. For 
 
 The `status` command has the following parameters:
 
-| Field    | Description                                       | Type    | Accepted Values |
-| -------- | ------------------------------------------------- | ------- | --------------- |
-| `action` | Specifies the `status` command.                   | string  | `status`        |
+| Field    | Description                     | Type   | Accepted Values |
+| -------- | ------------------------------- | ------ | --------------- |
+| `action` | Specifies the `status` command. | string | `status`        |
 
 #### `status` command responses
 
-The Python backend can send status updates on the `status/light` topic in response to the `status` command. The `status` field of such status updates can have any of the following values:
+The Python backend can send status updates on the `status/light` topic in response to the `status` command.
 
-| Status/Error            | Cause                                                             |
-| ----------------------- | ----------------------------------------------------------------- |
-| `On`                    | The LED turned on successfully.                                   |
-| `Off`                   | The LED turned off successfully.                                  |
+The `status` field of such status updates can have any of the following values:
 
+| Status/Error | Cause                            |
+| ------------ | -------------------------------- |
+| `On`         | The LED turned on successfully.  |
+| `Off`        | The LED turned off successfully. |
+
+The `operating_time` field is an integer representing the number of seconds the LED was recorded operating.
 
 ### Non-response status updates
 
@@ -291,7 +294,7 @@ The `settings` command changes the camera settings. The fields `iso`, `shutter_s
     "iso": 100,
     "shutter_speed": 40,
     "white_balance_gain": { "red": 100, "blue": 100 },
-    "white_balance": "auto",
+    "white_balance": "auto"
   }
 }
 ```
@@ -361,7 +364,7 @@ The `update_config` command sets/changes the metadata which will be saved with t
     "acq_saturation": "N/A",
     "acq_gamma": "N/A",
     "acq_uuid": "acq-uuid-5678",
-    "acq_volume": 2.50,
+    "acq_volume": 2.5,
     "acq_imaged_volume": 1.04,
     "acq_minimum_mesh": 300,
     "acq_maximum_mesh": 300,
@@ -663,7 +666,7 @@ The `stop` command has the following parameters:
 | `action`  | string | "stop"          | Specifies the action to stop segmentation. |
 
 !!! warning
-    The functionality for this command has not yet been implemented. Currently an `Interrupted` status is sent as a response on the `segmenter/segment` topic even though no interruption will actual happen.
+The functionality for this command has not yet been implemented. Currently an `Interrupted` status is sent as a response on the `segmenter/segment` topic even though no interruption will actual happen.
 
 #### `stop` command responses
 
