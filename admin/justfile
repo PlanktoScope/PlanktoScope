@@ -1,0 +1,17 @@
+setup:
+    npm install --omit=dev
+    npm run build
+
+setup-dev:
+    npm install --include=dev
+
+# format:
+# npx eslint --fix .
+
+# test:
+# npm test
+
+dev:
+    sudo firewall-cmd --zone=public --add-port=1234/tcp &> /dev/null
+    npm start
+    sudo firewall-cmd --zone=public --remove-port=1234/tcp &> /dev/null

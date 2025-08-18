@@ -18,6 +18,8 @@ export async function write(data) {
     ]
   }
 
+  console.debug("eeprom", "writing", data)
+
   try {
     await writeEEPROM({ type, address }, data)
   } finally {
@@ -26,12 +28,43 @@ export async function write(data) {
   }
 }
 
-export async function read() {
+// Make sure we run only one at a time
+let queue = []
+let running = false
+
+export function read() {
+  const promise = Promise.withResolvers()
+  queue.push(promise)
+
+  if (!running) {
+    _read()
+      .then((result) => {
+        while (queue.length > 0) {
+          const next = queue.shift()
+          next.resolve(result)
+        }
+      })
+      .catch((error) => {
+        while (queue.length > 0) {
+          const next = queue.shift()
+          next.reject(error)
+        }
+      })
+      .finally(() => {
+        running = false
+      })
+    running = true
+  }
+
+  return promise.promise
+}
+
+async function _read() {
   const data = await readEEPROM({ type, address })
 
   if (data.custom_data?.[0]) {
     data.custom_data = JSON.parse(
-      Buffer.from(data.custom_data[0], "base64").toString("utf8")
+      Buffer.from(data.custom_data[0], "base64").toString("utf8"),
     )
   }
 

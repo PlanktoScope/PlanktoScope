@@ -55,7 +55,7 @@ ssh-copy-id -i ~/.ssh/$planktoscope.pub pi@$planktoscope
 ssh-add -k
 ```
 
-```
+```sh
 # Add the following to ~/.ssh/config
 Host $planktoscope
   # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding

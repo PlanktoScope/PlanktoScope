@@ -1,52 +1,126 @@
+import crypto from "node:crypto"
+
 import mqtt from "mqtt"
-import express from "express"
+
 import { read, write } from "./eeprom.js"
-import cors from "cors"
 
 process.title = "planktoscope-org.eeprom"
 
-const client = mqtt.connect("mqtt://localhost:1883")
+const client = mqtt.connect("ws://pkscope-wax-ornament-42816:9001", {
+  protocolVersion: 5,
+  properties: {
+    requestResponseInformation: true,
+  },
+})
 
-client.on("message", (topic, message) => {
-  console.debug("message", topic, message.toString())
-  client.end()
+const handlers = new Map()
+
+async function handle(topic, handler) {
+  await client.subscribeAsync(topic)
+  handlers.set(topic, handler)
+}
+
+client.on("message", async (topic, message, packet) => {
+  const handler = handlers.get(topic)
+  if (!handler) return
+
+  const responseTopic = packet.properties?.responseTopic
+  if (!responseTopic) return
+
+  async function respond(data) {
+    await client.publishAsync(responseTopic, JSON.stringify(data))
+  }
+
+  let data
+  if (message.length > 0) {
+    try {
+      data = JSON.parse(message.toString())
+    } catch (err) {
+      await respond({ error: err.message })
+      return
+    }
+  }
+
+  let result
+  try {
+    result = await handler(data)
+  } catch (err) {
+    console.error(err)
+    await respond({ error: err.message })
+    return
+  }
+
+  await respond({ result })
+})
+
+await handle("eeprom/bootsrap", async () => {
+  const eeprom = await read()
+
+  if (eeprom.custom_data?.eeprom_version !== 0) {
+    return {
+      product_uuid: crypto.randomUUID(),
+      product_id: "0x0000", // TODO
+      product_ver: "0x0000", //TODO
+      vendor: "FairScope",
+      product: "PlanktoScope HAT v3",
+      current_supply: 0,
+      dt_blob: "planktoscope-hat-v3",
+      custom_data: {
+        unit: "",
+        eeprom_version: 0,
+      },
+    }
+  }
+
+  return eeprom
+})
+
+await handle("eeprom/update", async (data) => {
+  await write(data)
+})
+
+client.on("message", (topic, message, packet) => {
+  console.debug("mqtt message", { topic, message, packet })
 })
 
 client.on("error", (err) => {
-  console.error(err)
+  console.error("mqtt error", err)
 })
 
-client.on("connect", () => {
-  console.log("connected")
+client.on("connect", (packet) => {
+  console.debug("mqtt connect", packet)
 })
 
 client.on("disconnect", () => {
-  console.log("disconnected")
+  console.debug("mqtt disconnect")
 })
 
 client.on("offline", () => {
-  console.log("offline")
+  console.debug("mqtt offline")
 })
 
 client.on("reconnect", () => {
-  console.log("reconnect")
+  console.debug("mqtt reconnect")
 })
 
-const app = express()
-const port = process.env.PORT || 3001
+// handle("/api/eeprom/bootstrap", async (req, res) => {
+//     const eeprom = await read()
+//     res.json(eeprom)
+//     res.end()
+// })
 
-app.use(cors())
+// app.get("/api/eeprom", async (req, res) => {
+//     const eeprom = await read()
+//     res.json(eeprom)
+//     res.end()
+// })
 
-app.get("/", (req, res) => {
-  res.send("Hello World!")
-})
+// app.post("/api/eeprom", async (req, res) => {
+//     await write(req.body)
+//     res.json(req.body)
+//     res.end()
+// })
 
-app.get("/api/eeprom", async (req, res) => {
-  const eeprom = await read()
-  res.json(eeprom)
-  res.end()
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//     console.log(`Example app listening on port ${port}`)
+// })
