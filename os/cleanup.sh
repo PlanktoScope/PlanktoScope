@@ -21,10 +21,10 @@ sudo rm -f /var/lib/systemd/credential.secret
 sudo rm -f /etc/ssh/ssh_host_*_key*
 
 # Clean up any unnecessary pip, poetry, and npm files
-pip3 cache purge &> /dev/null
-rm -rf "$HOME"/.cache/pip
 poetry cache clear --no-interaction --all .
 npm cache clean --force
+rm -rf "$HOME"/.cache
+mkdir "$HOME"/.cache
 
 # Remove history files
 rm -f "$HOME"/.python_history
