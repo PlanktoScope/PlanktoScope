@@ -2,9 +2,7 @@
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
 # Remove unnecessary packages:
-sudo apt-get remove -y gcc triggerhappy
-sudo apt-get remove -y gcc-10 &> /dev/null
-sudo apt-get remove -y gcc-12 &> /dev/null
+sudo apt-get remove -y gcc gcc-12 triggerhappy
 
 # Clean up any unnecessary apt files:
 sudo apt-get autoremove -y
