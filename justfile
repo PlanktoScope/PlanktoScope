@@ -1,7 +1,6 @@
 export PATH := x"${PATH}:/home/$USER/.local/bin"
 
 setup:
-    git submodule update --init
     just --justfile node-red/justfile      setup
     just --justfile controller/justfile    setup
     just --justfile segmenter/justfile     setup
@@ -42,9 +41,6 @@ developer-mode:
     just setup-dev
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
     git fetch origin
-    # https://www.damirscorner.com/blog/posts/20210423-ChangingUrlsOfGitSubmodules.html
-    git submodule sync
-    git submodule update --init --recursive --remote
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
     sudo apt install -y vim byobu git curl tmux lsof ripgrep

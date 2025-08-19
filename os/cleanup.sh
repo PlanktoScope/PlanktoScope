@@ -2,9 +2,7 @@
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
 # Remove unnecessary packages:
-sudo apt-get remove -y gcc triggerhappy
-sudo apt-get remove -y gcc-10 || true
-sudo apt-get remove -y gcc-12 || true
+sudo apt-get remove -y gcc gcc-12 triggerhappy
 
 # Clean up any unnecessary apt files:
 sudo apt-get autoremove -y
@@ -23,10 +21,10 @@ sudo rm -f /var/lib/systemd/credential.secret
 sudo rm -f /etc/ssh/ssh_host_*_key*
 
 # Clean up any unnecessary pip, poetry, and npm files
-pip3 cache purge || true
-rm -rf "$HOME"/.cache/pip
 poetry cache clear --no-interaction --all .
 npm cache clean --force
+rm -rf "$HOME"/.cache
+mkdir "$HOME"/.cache
 
 # Remove history files
 rm -f "$HOME"/.python_history
