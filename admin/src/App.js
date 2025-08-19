@@ -16,7 +16,6 @@ function useTopic(topic, options) {
 export function App() {
   const {
     isLoading: bootstrapPending,
-    error: _error,
     data: EEPROM,
     mutate: update,
   } = useTopic("eeprom/bootsrap", {
@@ -27,7 +26,7 @@ export function App() {
 
   const disabled = true
 
-  const [_state, submitAction, updatePending] = useActionState(
+  const [, submitAction, updatePending] = useActionState(
     async (_previousState, formData) => {
       const data = Object.fromEntries(formData.entries())
 

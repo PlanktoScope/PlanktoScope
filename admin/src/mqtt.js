@@ -19,9 +19,9 @@ async function subscribe(topic) {
   return client.subscribeAsync(topic)
 }
 
-async function unsubscribe(topic) {
-  return client.unsubscribeAsync(topic)
-}
+// async function unsubscribe(topic) {
+//   return client.unsubscribeAsync(topic)
+// }
 
 const promises = new Map()
 async function request(topic, data) {
@@ -41,7 +41,7 @@ async function request(topic, data) {
   return resolvers.promise
 }
 
-client.on("message", (topic, message, packet) => {
+client.on("message", (topic, message /*packet*/) => {
   const resolvers = promises.get(topic)
   if (!resolvers) return
 

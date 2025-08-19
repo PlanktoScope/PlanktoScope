@@ -1,16 +1,19 @@
 {
-    "private": true,
-    "source": "src/index.html",
-    "scripts": {
-        "start": "parcel",
-        "build": "parcel build"
-    },
-    "dependencies": {
-        "@picocss/pico": "^2.1.1",
-        "mqtt": "^5.14.0",
-        "parcel": "^2.15.4",
-        "react": "^19.1.1",
-        "react-dom": "^19.1.1",
-        "swr": "^2.3.6"
-    }
+  "private": true,
+  "type": "module",
+  "source": "src/index.html",
+  "dependencies": {
+    "@picocss/pico": "^2.1.1",
+    "mqtt": "^5.14.0",
+    "parcel": "^2.15.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "swr": "^2.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0"
+  }
 }

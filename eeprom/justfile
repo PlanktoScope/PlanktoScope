@@ -1,5 +1,5 @@
 setup:
-    sudo apt install -y build-essential gpiod libgpiod2 libgpiod-dev libnode-dev
+    sudo apt install -y libgpiod-dev
     npm install --omit=dev
     sudo cp planktoscope-org.eeprom.service /etc/systemd/system/
     sudo systemctl enable planktoscope-org.eeprom.service
@@ -11,7 +11,8 @@ format:
     npx eslint --fix .
 
 test:
-    npm test
+    npx eslint .
+    node --test
 
 dev:
     sudo systemctl stop planktoscope-org.eeprom.service &> /dev/null

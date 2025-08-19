@@ -6,6 +6,7 @@ setup:
     just --justfile segmenter/justfile     setup
     just --justfile os/justfile            setup
     just --justfile documentation/justfile setup
+    just --justfile eeprom/justfile        setup
 
 setup-dev:
     just --justfile node-red/justfile      setup-dev
@@ -13,6 +14,7 @@ setup-dev:
     just --justfile segmenter/justfile     setup-dev
     just --justfile os/justfile            setup-dev
     just --justfile documentation/justfile setup-dev
+    just --justfile eeprom/justfile        setup-dev
     GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
     # dasel is a good alternative available in deb repositories but does not support ini
     GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
@@ -35,10 +37,10 @@ test:
     just --justfile segmenter/justfile     test
     just --justfile os/justfile            test
     just --justfile documentation/justfile test
+    just --justfile eeprom/justfile        test
     actionlint --shellcheck="" # TODO: Enable shelcheck for actionlint
 
-developer-mode:
-    just setup-dev
+developer-mode: setup-dev
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
     git fetch origin
     sudo apt install -y build-essential
