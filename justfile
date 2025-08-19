@@ -28,7 +28,6 @@ base:
 
 format:
     find . -type f -name 'justfile' -exec just --fmt --unstable --justfile {} ';'
-    just --justfile eeprom/justfile format
 
 test:
     find . -type f -name 'justfile' -exec just --fmt --check --unstable --justfile {} ';'
