@@ -1,5 +1,6 @@
-import { read as readEEPROM, write as writeEEPROM } from "./eeptools.js"
 import { Chip, Line } from "node-libgpiod"
+
+import { read as readEEPROM, write as writeEEPROM } from "./eeptools.js"
 
 const type = "24c32"
 const address = "50"
@@ -18,8 +19,6 @@ export async function write(data) {
     ]
   }
 
-  console.debug("eeprom", "writing", data)
-
   try {
     await writeEEPROM({ type, address }, data)
   } finally {
@@ -29,7 +28,7 @@ export async function write(data) {
 }
 
 // Make sure we run only one at a time
-let queue = []
+const queue = []
 let running = false
 
 export function read() {

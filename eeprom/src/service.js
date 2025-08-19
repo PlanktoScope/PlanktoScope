@@ -56,7 +56,7 @@ client.on("message", async (topic, message, packet) => {
 await handle("eeprom/bootsrap", async () => {
   const eeprom = await read()
 
-  if (eeprom.custom_data?.eeprom_version !== 0) {
+  if (eeprom.custom_data?.eeprom_version !== "0") {
     return {
       product_uuid: crypto.randomUUID(),
       product_id: "0x0000", // TODO
@@ -79,9 +79,9 @@ await handle("eeprom/update", async (data) => {
   await write(data)
 })
 
-client.on("message", (topic, message, packet) => {
-  console.debug("mqtt message", { topic, message, packet })
-})
+// client.on("message", (topic, message, packet) => {
+//   console.debug("mqtt message", { topic, message, packet })
+// })
 
 client.on("error", (err) => {
   console.error("mqtt error", err)
@@ -102,25 +102,3 @@ client.on("offline", () => {
 client.on("reconnect", () => {
   console.debug("mqtt reconnect")
 })
-
-// handle("/api/eeprom/bootstrap", async (req, res) => {
-//     const eeprom = await read()
-//     res.json(eeprom)
-//     res.end()
-// })
-
-// app.get("/api/eeprom", async (req, res) => {
-//     const eeprom = await read()
-//     res.json(eeprom)
-//     res.end()
-// })
-
-// app.post("/api/eeprom", async (req, res) => {
-//     await write(req.body)
-//     res.json(req.body)
-//     res.end()
-// })
-
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
