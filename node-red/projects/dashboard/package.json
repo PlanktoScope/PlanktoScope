@@ -1,0 +1,15 @@
+{
+  "name": "dashboard",
+  "private": true,
+  "description": "PlanktoScope dashboard",
+  "dependencies": {
+    "@flowfuse/node-red-dashboard": "~1.24.2",
+    "@flowfuse/node-red-dashboard-2-ui-flowviewer": "~1.0.1"
+  },
+  "node-red": {
+    "settings": {
+      "flowFile": "flows.json",
+      "credentialsFile": "flows_cred.json"
+    }
+  }
+}
