@@ -3,8 +3,8 @@
 
 # Remove unnecessary packages:
 sudo apt-get remove -y gcc triggerhappy
-sudo apt-get remove -y gcc-10 || true
-sudo apt-get remove -y gcc-12 || true
+sudo apt-get remove -y gcc-10 &> /dev/null
+sudo apt-get remove -y gcc-12 &> /dev/null
 
 # Clean up any unnecessary apt files:
 sudo apt-get autoremove -y
@@ -23,7 +23,7 @@ sudo rm -f /var/lib/systemd/credential.secret
 sudo rm -f /etc/ssh/ssh_host_*_key*
 
 # Clean up any unnecessary pip, poetry, and npm files
-pip3 cache purge || true
+pip3 cache purge &> /dev/null
 rm -rf "$HOME"/.cache/pip
 poetry cache clear --no-interaction --all .
 npm cache clean --force
