@@ -22,8 +22,7 @@ setup:
     wget https://github.com/grishy/go-avahi-cname/releases/download/v2.2.5/go-avahi-cname_2.2.5_linux_arm64.tar.gz -P /tmp
     cd /tmp && tar -xzf /tmp/go-avahi-cname_2.2.5_linux_arm64.tar.gz go-avahi-cname
     # cp: cannot create regular file '/usr/bin/go-avahi-cname': Text file busy
-    sudo killall go-avahi-cname || true
-    sleep 1
+    sudo killall -w go-avahi-cname &> /dev/null
     sudo cp /tmp/go-avahi-cname /usr/bin/go-avahi-cname
     sudo cp avahi-publish-cname@.service /usr/lib/systemd/system
     sudo systemctl enable avahi-publish-cname@planktoscope.local.service
