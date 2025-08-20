@@ -1,10 +1,33 @@
 import { Chip, Line } from "node-libgpiod"
+import child_process from "node:child_process"
+
+import i2c from "i2c-bus"
 
 import { read as readEEPROM, write as writeEEPROM } from "./eeptools.js"
 
 const type = "24c32"
 const address = "50"
 const gpio_write_protect = 26
+
+export function isSupported() {
+  let supported = false
+
+  try {
+    child_process.execFileSync("sudo", [
+      "dtoverlay",
+      "i2c-gpio",
+      "i2c_gpio_sda=0",
+      "i2c_gpio_scl=1",
+      "bus=9",
+    ])
+    const i2c1 = i2c.openSync(9)
+    supported = i2c1.scanSync().includes("80")
+  } catch {
+    //
+  }
+
+  return supported
+}
 
 export async function write(data) {
   const chip = new Chip(0)

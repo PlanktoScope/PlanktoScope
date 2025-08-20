@@ -1,9 +1,9 @@
 import { after, before, suite, test } from "node:test"
 import { parse } from "./eeptools.js"
-import { write, read } from "./eeprom.js"
+import { write, read, isSupported } from "./eeprom.js"
 import { readFileSync } from "node:fs"
 
-suite("eeprom", () => {
+suite("eeprom", { skip: !isSupported() }, () => {
   let original_eeprom_content
   before(async () => {
     original_eeprom_content = await read()
@@ -15,7 +15,7 @@ suite("eeprom", () => {
   test("write/read", async (t) => {
     const txt = readFileSync(
       new URL(import.meta.resolve("../fixtures/eeprom_settings.txt")),
-      "utf8"
+      "utf8",
     )
 
     const parsed = parse(txt)
