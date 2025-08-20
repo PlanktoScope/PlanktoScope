@@ -66,7 +66,8 @@ await handle("eeprom/bootsrap", async () => {
       current_supply: 0,
       dt_blob: "planktoscope-hat-v3",
       custom_data: {
-        unit: "",
+        serial_number: "",
+        hardware_version: "",
         eeprom_version: 0,
       },
     }

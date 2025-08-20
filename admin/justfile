@@ -1,6 +1,8 @@
 setup:
     npm install --omit=dev
-    npx parcel build
+    npx parcel build --public-url=/admin/fairscope
+    sudo rm -rf /srv/admin
+    sudo cp -r dist /srv/admin
 
 setup-dev:
     npm install --include=dev

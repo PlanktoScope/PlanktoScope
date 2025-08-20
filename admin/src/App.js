@@ -4,12 +4,8 @@ import useSWR from "swr"
 
 import { request } from "./mqtt.js"
 
-function fetcher(topic) {
-  return request(topic)
-}
-
 function useTopic(topic, options) {
-  const value = useSWR(topic, fetcher, options)
+  const value = useSWR(topic, request, options)
   return value
 }
 
@@ -31,11 +27,13 @@ export function App() {
       const data = Object.fromEntries(formData.entries())
 
       data.custom_data = {
-        unit: data.unit,
+        serial_number: data.serial_number,
+        hardware_version: data.hardware_version,
         eeprom_version: data.eeprom_version,
       }
-      delete data.unit
+      delete data.serial_number
       delete data.eeprom_version
+      delete data.hardware_version
 
       await request("eeprom/update", data)
 
@@ -134,21 +132,31 @@ export function App() {
             </legend>
             <div>
               <label>
-                unit
-                <input name="unit" defaultValue={EEPROM?.custom_data?.unit} />
+                serial_number
+                <input
+                  name="serial_number"
+                  defaultValue={EEPROM?.custom_data?.serial_number}
+                />
               </label>
             </div>
             <div>
               <label>
-                eeprom_version
+                hardware_version
                 <input
-                  name="eeprom_version"
-                  type="number"
-                  readOnly
-                  defaultValue={EEPROM?.custom_data?.eeprom_version}
+                  name="hardware_version"
+                  defaultValue={EEPROM?.custom_data?.hardware_version}
                 />
               </label>
             </div>
+            <label>
+              eeprom_version
+              <input
+                name="eeprom_version"
+                type="number"
+                readOnly
+                defaultValue={EEPROM?.custom_data?.eeprom_version}
+              />
+            </label>
           </fieldset>
 
           <button

@@ -33,4 +33,11 @@
 	handle /admin/cockpit/* {
 		reverse_proxy localhost:9090
 	}
+
+	redir /admin/fairscope /admin/fairscope/
+	handle_path /admin/fairscope/* {
+		try_files {path} /index.html
+		root * /srv/admin
+		file_server
+	}
 }
