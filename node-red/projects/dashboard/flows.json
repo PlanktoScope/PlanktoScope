@@ -1091,6 +1091,54 @@
         "h": 142
     },
     {
+        "id": "dc307bb5d26c60f4",
+        "type": "group",
+        "z": "a02961610bc3982a",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "300343e6b56f088e",
+            "743aaf81267c0a04",
+            "da645aa8ebbed646",
+            "7d1f9414be49d7c3"
+        ],
+        "x": 994,
+        "y": 519,
+        "w": 412,
+        "h": 142
+    },
+    {
+        "id": "855d9ef468b5db0f",
+        "type": "group",
+        "z": "a02961610bc3982a",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f7c18ab2aa687120",
+            "ede7a86fd97b5e1b",
+            "389e0cdd7d3853b0",
+            "af8ce4702c170449"
+        ],
+        "x": 14,
+        "y": 979,
+        "w": 412,
+        "h": 142
+    },
+    {
         "id": "f9b137cda6a41cc8",
         "type": "group",
         "z": "ae92a0a869ca847f",
@@ -1158,30 +1206,6 @@
         "y": 299,
         "w": 252,
         "h": 122
-    },
-    {
-        "id": "dc307bb5d26c60f4",
-        "type": "group",
-        "z": "a02961610bc3982a",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "300343e6b56f088e",
-            "743aaf81267c0a04",
-            "da645aa8ebbed646",
-            "7d1f9414be49d7c3"
-        ],
-        "x": 994,
-        "y": 519,
-        "w": 412,
-        "h": 142
     },
     {
         "id": "e6ae26617c24c3ea",
@@ -2815,7 +2839,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 690,
+        "x": 700,
         "y": 300,
         "wires": [
             []
@@ -2866,7 +2890,7 @@
         "y": 100,
         "wires": [
             [
-                "28937f51511569e1"
+                "abe86c4e9dedb557"
             ]
         ]
     },
@@ -2921,7 +2945,7 @@
         "width": "12",
         "height": "1",
         "head": "",
-        "format": "<template>\n    <v-container>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.acq_instrument }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>U178</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.acq_instrument_id }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.acq_software }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>U178</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.acq_instrument_id }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.acq_software }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n      \n    </v-container>\n</template>\n",
+        "format": "<template>\n    <v-container>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>PlanktoScope {{ msg?.payload?.machine_info?.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{  msg?.payload?.machine_info?.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{  msg?.payload?.machine_info?.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{  msg?.payload?.machine_info?.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>    \n    </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2931,26 +2955,6 @@
         "y": 380,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "28937f51511569e1",
-        "type": "function",
-        "z": "1b667c6443413ced",
-        "name": "Get Global Variables",
-        "func": "const keys = global.keys(); // Get all global keys\n\nkeys.forEach(key => {\n    msg[key] = global.get(key);\n});\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 380,
-        "wires": [
-            [
-                "401d92ce8e2ee079"
-            ]
         ]
     },
     {
@@ -2975,6 +2979,19 @@
         "y": 80,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "abe86c4e9dedb557",
+        "type": "get machine info",
+        "z": "1b667c6443413ced",
+        "name": "",
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "401d92ce8e2ee079"
+            ]
         ]
     },
     {
@@ -9075,5 +9092,68 @@
                 "743aaf81267c0a04"
             ]
         ]
+    },
+    {
+        "id": "f7c18ab2aa687120",
+        "type": "get machine info",
+        "z": "a02961610bc3982a",
+        "g": "855d9ef468b5db0f",
+        "name": "",
+        "x": 150,
+        "y": 1080,
+        "wires": [
+            [
+                "389e0cdd7d3853b0"
+            ]
+        ]
+    },
+    {
+        "id": "ede7a86fd97b5e1b",
+        "type": "inject",
+        "z": "a02961610bc3982a",
+        "g": "855d9ef468b5db0f",
+        "name": "inject",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 1020,
+        "wires": [
+            [
+                "f7c18ab2aa687120"
+            ]
+        ]
+    },
+    {
+        "id": "389e0cdd7d3853b0",
+        "type": "debug",
+        "z": "a02961610bc3982a",
+        "g": "855d9ef468b5db0f",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "af8ce4702c170449",
+        "type": "comment",
+        "z": "a02961610bc3982a",
+        "g": "855d9ef468b5db0f",
+        "name": "machine info",
+        "info": "",
+        "x": 330,
+        "y": 1020,
+        "wires": []
     }
 ]

@@ -1,6 +1,9 @@
 import { readFile, copyFile, access, constants } from "fs/promises"
 import child_process from "child_process"
 import { promisify } from "util"
+import { getName, getHostname } from "./identity.js"
+import { request } from "../../../admin/src/mqtt.js"
+import { parse } from "yaml"
 
 const execFile = promisify(child_process.execFile)
 
@@ -81,4 +84,39 @@ export async function wakeup(minutes) {
     `echo \`date "+%s" -d "+ ${minutes} minutes"\` > /sys/class/rtc/rtc0/wakealarm`,
   ])
   await execFile("sudo", ["systemctl", "poweroff"])
+}
+
+async function getSoftwareVersion() {
+  const path = "/usr/share/planktoscope/installer-versioning.yml"
+
+  let data
+  try {
+    data = await readFile(path, { encoding: "utf8" })
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err
+  }
+
+  const versioning = parse(data)
+
+  console.log(versioning)
+  return versioning.version
+}
+
+export async function getMachineInfo() {
+  const [hardware_version, machine_name, hostname, eeprom, software_version] =
+    await Promise.all([
+      getHardwareVersion(),
+      getName(),
+      getHostname(),
+      request("eeprom/read"),
+      getSoftwareVersion(),
+    ])
+
+  return {
+    hardware_version,
+    machine_name,
+    hostname,
+    serial_number: eeprom?.custom_data?.serial_number,
+    software_version,
+  }
 }

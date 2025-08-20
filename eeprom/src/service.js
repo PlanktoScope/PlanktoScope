@@ -94,6 +94,10 @@ await handle("eeprom/update", async (data) => {
   cached = await read()
 })
 
+await handle("eeprom/read", async (data) => {
+  return cached
+})
+
 // client.on("message", (topic, message, packet) => {
 //   console.debug("mqtt message", { topic, message, packet })
 // })
