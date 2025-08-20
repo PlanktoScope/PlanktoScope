@@ -9,7 +9,7 @@ import { readFile, mkdtemp, writeFile, rm } from "node:fs/promises"
 const execFile = promisify(child_process.execFile)
 
 export function parse(content) {
-  let data = {}
+  const data = {}
 
   let multiline = false
   let multiline_key = ""
@@ -27,8 +27,8 @@ export function parse(content) {
       return
     }
 
-    data["custom_data"] ??= []
-    data["custom_data"].push(value)
+    data.custom_data ??= []
+    data.custom_data.push(value)
   }
 
   function endMultiline() {

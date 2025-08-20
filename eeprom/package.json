@@ -1,19 +1,15 @@
 {
   "private": true,
   "type": "module",
+  "dependencies": {
+    "i2c-bus": "^5.2.3",
+    "mqtt": "^5.14.0",
+    "node-libgpiod": "^0.5.3",
+    "uuid": "^11.1.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "eslint": "^9.32.0",
     "globals": "^16.3.0"
-  },
-  "dependencies": {
-    "mqtt": "^5.14.0",
-    "node-libgpiod": "^0.5.3"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "test": "npm run lint && node --test",
-    "dev": "sudo systemctl stop nodered &>/dev/null && node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.js",
-    "ci": "npm run test"
   }
 }
