@@ -1,5 +1,6 @@
 setup:
     npm install --omit=dev
+    rm -rf .pacel-cache dist
     npx parcel build --public-url=/admin/fairscope
     sudo rm -rf /srv/admin
     sudo cp -r dist /srv/admin
@@ -16,5 +17,6 @@ test:
 
 dev:
     sudo firewall-cmd --zone=public --add-port=1234/tcp &> /dev/null
+    rm -rf .pacel-cache dist
     npx parcel
     sudo firewall-cmd --zone=public --remove-port=1234/tcp &> /dev/null
