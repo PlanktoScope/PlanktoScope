@@ -1,4 +1,4 @@
-import { readFile, copyFile } from "fs/promises"
+import { readFile, copyFile, access, constants } from "fs/promises"
 import child_process from "child_process"
 import { promisify } from "util"
 
@@ -13,6 +13,15 @@ export async function getHardwareVersions() {
 }
 
 const path = "/home/pi/PlanktoScope/config.json"
+
+export async function hasHardwareVersion() {
+  try {
+    await access(path, constants.R_OK)
+    return true
+  } catch {
+    return false
+  }
+}
 
 export async function getHardwareVersion() {
   let data
@@ -38,11 +47,11 @@ export async function setHardwareVersion(hardware_version) {
   await Promise.all([
     copyFile(
       `/home/pi/PlanktoScope/default-configs/${hardware_version}.config.json`,
-      "/home/pi/PlanktoScope/config.json"
+      "/home/pi/PlanktoScope/config.json",
     ),
     copyFile(
       `/home/pi/PlanktoScope/default-configs/${hardware_version}.hardware.json`,
-      "/home/pi/PlanktoScope/hardware.json"
+      "/home/pi/PlanktoScope/hardware.json",
     ),
   ])
   // TODO: confgure node-red

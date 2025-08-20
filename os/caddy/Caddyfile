@@ -2,7 +2,7 @@
 # https://caddyserver.com/docs/caddyfile
 
 :80 {
-	redir / /ps/node-red-v2/ui
+	redir / /ps/node-red-v2/dashboard
 
 	handle /ps/hal/camera/streams/preview.mjpg {
 		rewrite * /stream.mjpg
