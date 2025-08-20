@@ -2,7 +2,11 @@ import crypto from "node:crypto"
 
 import mqtt from "mqtt"
 
-import { read, write } from "./eeprom.js"
+import { read, write, isSupported } from "./eeprom.js"
+import {
+  hasHardwareVersion,
+  setHardwareVersion,
+} from "../../node-red/nodes/api/hardware.js"
 
 process.title = "planktoscope-org.eeprom"
 
@@ -12,6 +16,15 @@ const client = mqtt.connect("ws://pkscope-wax-ornament-42816:9001", {
     requestResponseInformation: true,
   },
 })
+
+let cached
+try {
+  cached = await read()
+} catch {}
+if (cached?.custom_data?.hardware_version && !(await hasHardwareVersion())) {
+  const { hardware_version } = cached?.custom_data
+  await setHardwareVersion(hardware_version)
+}
 
 const handlers = new Map()
 
@@ -54,7 +67,7 @@ client.on("message", async (topic, message, packet) => {
 })
 
 await handle("eeprom/bootsrap", async () => {
-  const eeprom = await read()
+  const eeprom = cached
 
   if (eeprom.custom_data?.eeprom_version !== "0") {
     return {
@@ -78,6 +91,7 @@ await handle("eeprom/bootsrap", async () => {
 
 await handle("eeprom/update", async (data) => {
   await write(data)
+  cached = await read()
 })
 
 // client.on("message", (topic, message, packet) => {
