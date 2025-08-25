@@ -88,17 +88,8 @@ export async function wakeup(minutes) {
 
 async function getSoftwareVersion() {
   const path = "/usr/share/planktoscope/installer-versioning.yml"
-
-  let data
-  try {
-    data = await readFile(path, { encoding: "utf8" })
-  } catch (err) {
-    if (err.code !== "ENOENT") throw err
-  }
-
+  const data = await readFile(path, { encoding: "utf8" })
   const versioning = parse(data)
-
-  console.log(versioning)
   return versioning.version
 }
 
