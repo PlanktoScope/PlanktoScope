@@ -1,48 +1,38 @@
-import "@picocss/pico/css/pico.blue.css"
-import { useActionState } from "react"
-import useSWR from "swr"
+import { createEffect, createResource, Suspense } from "solid-js"
+import { useSubmission, action } from "@solidjs/router"
 
-import { request } from "./mqtt.js"
+import AboutData from "./about.data"
 
-function useTopic(topic, options) {
-  const value = useSWR(topic, request, options)
-  return value
-}
+import { request } from "../mqtt.js"
 
-export function App() {
-  const {
-    isLoading: bootstrapPending,
-    data: EEPROM,
-    mutate: update,
-  } = useTopic("eeprom/bootsrap", {
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
+export default function Production() {
+  const [EEPROM, { refetch }] = createResource(
+    "eeprom/bootstrap",
+    async (topic) => {
+      return request(topic)
+    },
+  )
+
+  const updateBootstrapAction = action(async (data) => {
+    data = Object.fromEntries(data.entries())
+
+    data.custom_data = {
+      serial_number: data.serial_number,
+      hardware_version: data.hardware_version,
+      eeprom_version: data.eeprom_version,
+    }
+    delete data.serial_number
+    delete data.eeprom_version
+    delete data.hardware_version
+
+    await request("eeprom/update", data)
+
+    refetch()
   })
 
-  const disabled = true
+  const submission = useSubmission(updateBootstrapAction)
 
-  const [, submitAction, updatePending] = useActionState(
-    async (_previousState, formData) => {
-      const data = Object.fromEntries(formData.entries())
-
-      data.custom_data = {
-        serial_number: data.serial_number,
-        hardware_version: data.hardware_version,
-        eeprom_version: data.eeprom_version,
-      }
-      delete data.serial_number
-      delete data.eeprom_version
-      delete data.hardware_version
-
-      await request("eeprom/update", data)
-
-      update()
-
-      return null
-    },
-    null,
-  )
+  let disabled = true
 
   return (
     <>
@@ -50,7 +40,7 @@ export function App() {
         <h1>PlanktoScope</h1>
       </header>
       <main>
-        <form action={submitAction}>
+        <form action={updateBootstrapAction} method="post">
           <fieldset className="grid">
             <legend>
               <hgroup>
@@ -63,24 +53,24 @@ export function App() {
                 product_uuid
                 <input
                   name="product_uuid"
-                  readOnly={disabled}
-                  defaultValue={EEPROM?.product_uuid}
+                  readonly={disabled}
+                  value={EEPROM()?.product_uuid}
                 />
               </label>
               <label>
                 product_id
                 <input
                   name="product_id"
-                  readOnly={disabled}
-                  defaultValue={EEPROM?.product_id}
+                  readonly={disabled}
+                  value={EEPROM()?.product_id}
                 />
               </label>
               <label>
                 product_ver
                 <input
                   name="product_ver"
-                  readOnly={disabled}
-                  defaultValue={EEPROM?.product_ver}
+                  readonly={disabled}
+                  value={EEPROM()?.product_ver}
                 />
               </label>
             </div>
@@ -89,8 +79,8 @@ export function App() {
                 product
                 <input
                   name="product"
-                  readOnly={disabled}
-                  defaultValue={EEPROM?.product}
+                  readonly={disabled}
+                  value={EEPROM()?.product}
                 />
               </label>
               {/* <label>
@@ -98,24 +88,24 @@ export function App() {
                   <input
                     name="current_supply"
                     type="number"
-                    readOnly={disabled}
-                    defaultValue={EEPROM?.current_supply}
+                    readonly={disabled}
+                    value={EEPROM?.current_supply}
                   />
                 </label>*/}
               <label>
                 dt_blob
                 <input
                   name="dt_blob"
-                  readOnly={disabled}
-                  defaultValue={EEPROM?.dt_blob}
+                  readonly={disabled}
+                  value={EEPROM()?.dt_blob}
                 />
               </label>
               <label>
                 vendor
                 <input
                   name="vendor"
-                  readOnly={disabled}
-                  defaultValue={EEPROM?.vendor}
+                  readonly={disabled}
+                  value={EEPROM()?.vendor}
                 />
               </label>
             </div>
@@ -135,7 +125,7 @@ export function App() {
                 serial_number
                 <input
                   name="serial_number"
-                  defaultValue={EEPROM?.custom_data?.serial_number}
+                  value={EEPROM()?.custom_data?.serial_number}
                 />
               </label>
             </div>
@@ -144,7 +134,7 @@ export function App() {
                 hardware_version
                 <input
                   name="hardware_version"
-                  defaultValue={EEPROM?.custom_data?.hardware_version}
+                  value={EEPROM()?.custom_data?.hardware_version}
                 />
               </label>
             </div>
@@ -154,24 +144,20 @@ export function App() {
                 name="eeprom_version"
                 type="number"
                 readOnly
-                defaultValue={EEPROM?.custom_data?.eeprom_version}
+                value={EEPROM()?.custom_data?.eeprom_version}
               />
             </label>
           </fieldset>
 
           <button
-            disabled={bootstrapPending || updatePending}
-            aria-busy={updatePending}
+            disabled={EEPROM.loading || submission.pending}
+            aria-busy={submission.pending}
             type="submit"
           >
             Save
           </button>
         </form>
       </main>
-      <footer>
-        Made with ❤️ by <a href="https://fairscope.com/">FairScope</a> in
-        Bretagne
-      </footer>
     </>
   )
 }

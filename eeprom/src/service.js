@@ -1,4 +1,5 @@
 import crypto from "node:crypto"
+import * as z from "zod"
 
 import mqtt from "mqtt"
 
@@ -6,7 +7,19 @@ import { read, write } from "./eeprom.js"
 import {
   hasHardwareVersion,
   setHardwareVersion,
+  getHardwareVersions,
+  getHardwareVersion,
 } from "../../node-red/nodes/api/hardware.js"
+import {
+  getWifiRegulatoryDomains,
+  setWifiRegulatoryDomain,
+  getWifiRegulatoryDomain,
+} from "../../node-red/nodes/api/country.js"
+import {
+  getTimezones,
+  getTimezone,
+  setTimezone,
+} from "../../node-red/nodes/api/timezone.js"
 
 process.title = "planktoscope-org.eeprom"
 
@@ -61,14 +74,21 @@ client.on("message", async (topic, message, packet) => {
     result = await handler(data)
   } catch (err) {
     console.error(err)
-    await respond({ error: err.message })
+
+    if (err instanceof z.ZodError) {
+      await respond({
+        error: { message: "Validation error", data: err.issues },
+      })
+    } else {
+      await respond({ error: { message: err.message } })
+    }
     return
   }
 
   await respond({ result })
 })
 
-await handle("eeprom/bootsrap", async () => {
+await handle("eeprom/bootstrap", async () => {
   const eeprom = cached
 
   if (eeprom.custom_data?.eeprom_version !== "0") {
@@ -100,9 +120,51 @@ await handle("eeprom/read", async () => {
   return cached
 })
 
-// client.on("message", (topic, message, packet) => {
-//   console.debug("mqtt message", { topic, message, packet })
-// })
+await handle("first-time-setup/read", async () => {
+  const [
+    countries,
+    country,
+    timezones,
+    timezone,
+    hardware_versions,
+    hardware_version,
+  ] = await Promise.all([
+    getWifiRegulatoryDomains(),
+    getWifiRegulatoryDomain(),
+    getTimezones(),
+    getTimezone(),
+    getHardwareVersions(),
+    getHardwareVersion(),
+  ])
+
+  return {
+    countries,
+    country,
+    timezones,
+    timezone,
+    hardware_versions,
+    hardware_version,
+  }
+})
+
+const Schema = z.object({
+  country: z.string(),
+  timezone: z.string(),
+  hardware_version: z.string(),
+})
+await handle("first-time-setup/update", async (data) => {
+  const { country, timezone, hardware_version } = Schema.parse(data)
+
+  await Promise.all([
+    setWifiRegulatoryDomain(country),
+    setTimezone(timezone),
+    setHardwareVersion(hardware_version),
+  ])
+})
+
+client.on("message", (topic, message, packet) => {
+  console.debug("mqtt message", { topic, message, packet })
+})
 
 client.on("error", (err) => {
   console.error("mqtt error", err)

@@ -19,7 +19,7 @@ export async function getTimezones() {
   return timezones
 }
 
-export async function setTimezone({ timezone }) {
+export async function setTimezone(timezone) {
   await execFile("sudo", ["timedatectl", "set-timezone", timezone])
 }
 

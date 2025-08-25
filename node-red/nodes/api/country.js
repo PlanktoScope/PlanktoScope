@@ -43,6 +43,6 @@ export async function getWifiRegulatoryDomain() {
     data = ""
   }
 
-  const [, code] = data.match(/options cfg80211 ieee80211_regdom=(.*$)/)
-  return code || null
+  const result = data.match(/options cfg80211 ieee80211_regdom=(.*$)/)
+  return result?.[1] || null
 }

@@ -6,7 +6,7 @@ export default function (RED) {
     const node = this
     node.on("input", function (msg, send, done) {
       const { timezone } = msg.payload
-      setTimezone({ timezone })
+      setTimezone(timezone)
         .then(() => {
           send(msg)
           done()

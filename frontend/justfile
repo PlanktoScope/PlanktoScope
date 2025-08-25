@@ -1,0 +1,20 @@
+setup:
+    npm install --omit=dev
+    npx vite build --base=/admin/fairscope
+    sudo rm -rf /srv/admin
+    sudo cp -r dist /srv/admin
+
+setup-dev:
+    npm install --include=dev
+
+format:
+    npx eslint --fix .
+
+test:
+    npx eslint .
+    node --test
+
+dev:
+    sudo firewall-cmd --zone=public --add-port=3000/tcp &> /dev/null
+    npx vite --host
+    sudo firewall-cmd --zone=public --remove-port=3000/tcp &> /dev/null
