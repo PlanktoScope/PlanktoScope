@@ -20,9 +20,11 @@ const client = mqtt.connect("ws://pkscope-wax-ornament-42816:9001", {
 let cached
 try {
   cached = await read()
-} catch {}
-if (cached?.custom_data?.hardware_version && !(await hasHardwareVersion())) {
-  const { hardware_version } = cached?.custom_data
+} catch {
+  // ignore
+}
+const hardware_version = cached?.custom_data?.hardware_version
+if (hardware_version && !(await hasHardwareVersion())) {
   await setHardwareVersion(hardware_version)
 }
 
@@ -94,7 +96,7 @@ await handle("eeprom/update", async (data) => {
   cached = await read()
 })
 
-await handle("eeprom/read", async (data) => {
+await handle("eeprom/read", async () => {
   return cached
 })
 
