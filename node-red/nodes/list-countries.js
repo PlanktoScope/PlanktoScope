@@ -1,4 +1,4 @@
-import { getWifiRegulatoryDomains } from "./api/country.js"
+import { getWifiRegulatoryDomains } from "/home/pi/PlanktoScope/lib/country.js"
 
 export default function (RED) {
   function Node(config) {

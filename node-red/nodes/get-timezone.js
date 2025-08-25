@@ -1,4 +1,4 @@
-import { getTimezone } from "./api/timezone.js"
+import { getTimezone } from "/home/pi/PlanktoScope/lib/timezone.js"
 
 export default function (RED) {
   function Node(config) {

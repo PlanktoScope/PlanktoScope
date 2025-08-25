@@ -1,4 +1,4 @@
-import { getMachineInfo } from "./api/hardware.js"
+import { getMachineInfo } from "/home/pi/PlanktoScope/lib/hardware.js"
 
 export default function (RED) {
   function Node(config) {

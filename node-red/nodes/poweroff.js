@@ -1,4 +1,4 @@
-import { poweroff } from "./api/hardware.js"
+import { poweroff } from "/home/pi/PlanktoScope/lib/hardware.js"
 
 export default function (RED) {
   function Node(config) {

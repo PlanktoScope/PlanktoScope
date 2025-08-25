@@ -3,7 +3,7 @@ import { useSubmission, action } from "@solidjs/router"
 
 import AboutData from "./about.data"
 
-import { request } from "../mqtt.js"
+import { request } from "/home/pi/PlanktoScope/lib/mqtt.js"
 
 export default function Production() {
   const [EEPROM, { refetch }] = createResource(
