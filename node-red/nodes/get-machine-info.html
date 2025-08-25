@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  RED.nodes.registerType("get hardware version", {
+  RED.nodes.registerType("get machine info", {
     category: "PlanktoScope",
     color: "#8E7DC4",
     defaults: {
@@ -9,18 +9,18 @@
     outputs: 1,
     icon: "planktoscope.png",
     label: function () {
-      return this.name || "Get Hardware Version"
+      return this.name || "Get Machine Info"
     },
   })
 </script>
 
-<script type="text/x-red" data-template-name="get hardware version">
+<script type="text/x-red" data-template-name="get machine info">
   <div class="form-row">
       <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
       <input type="text" id="node-input-name" placeholder="Name">
   </div>
 </script>
 
-<script type="text/html" data-help-name="get hardware version">
-  <p>Get the current hardware version.</p>
+<script type="text/html" data-help-name="get machine info">
+  <p>Get the machine infon.</p>
 </script>
