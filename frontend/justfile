@@ -1,6 +1,6 @@
 setup:
     npm install --omit=dev
-    npx vite build --base=/admin/fairscope
+    npx vite build
     sudo rm -rf /srv/admin
     sudo cp -r dist /srv/admin
 
