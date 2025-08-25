@@ -6,8 +6,9 @@ setup:
     just --justfile segmenter/justfile     setup
     just --justfile os/justfile            setup
     just --justfile documentation/justfile setup
-    just --justfile eeprom/justfile        setup
-    just --justfile admin/justfile         setup
+    just --justfile lib/justfile           setup
+    just --justfile backend/justfile       setup
+    just --justfile frontend/justfile      setup
 
 setup-dev:
     just --justfile node-red/justfile      setup-dev
@@ -15,8 +16,9 @@ setup-dev:
     just --justfile segmenter/justfile     setup-dev
     just --justfile os/justfile            setup-dev
     just --justfile documentation/justfile setup-dev
-    just --justfile eeprom/justfile        setup-dev
-    just --justfile admin/justfile         setup-dev
+    just --justfile lib/justfile           setup-dev
+    just --justfile backend/justfile       setup-dev
+    just --justfile frontend/justfile      setup-dev
     GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
     # dasel is a good alternative available in deb repositories but does not support ini
     GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
@@ -39,8 +41,9 @@ test:
     just --justfile segmenter/justfile     test
     just --justfile os/justfile            test
     just --justfile documentation/justfile test
-    just --justfile eeprom/justfile        test
-    just --justfile admin/justfile         test
+    just --justfile lib/justfile           test
+    just --justfile backend/justfile       test
+    just --justfile frontend/justfile      test
     actionlint --shellcheck="" # TODO: Enable shelcheck for actionlint
 
 developer-mode: setup-dev

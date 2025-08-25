@@ -1,23 +1,20 @@
-# EEPROM
+# backend
 
-API and service for the PlanktoScope HAT EEPROM.
-
-See https://github.com/raspberrypi/utils/blob/master/eeptools
+APIs and service for the PlanktoScope frontend.
 
 ### Development
 
 Install all dependencies including development tooling:
 
 ```sh
-cd eeprom
-just
+cd backend
+just setup-dev
 ```
 
 Start service for development:
 
 ```sh
 just dev
-# make changes and restart
 ```
 
 Run the code auto-formatter on the project:
@@ -35,6 +32,8 @@ just test
 We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
 
 ## Notes
+
+See https://github.com/raspberrypi/utils/blob/master/eeptools
 
 ```sh
 eepmake eeprom_settings.txt planktoscope-hat.eep

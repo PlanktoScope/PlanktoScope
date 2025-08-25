@@ -4,7 +4,7 @@ The PlanktoScope's hardware controller.
 
 ## Architecture
 
-Each feature of the hardware is controlled by a separate process. Processes communicate between each other and with external clients using ..
+Each feature of the hardware is controlled by a separate process. Processes communicate between each other and with external clients using MQTT.
 
 Please note the following particularity of Python processes
 

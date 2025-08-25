@@ -1,7 +1,7 @@
 import crypto from "node:crypto"
 import * as z from "zod"
 
-import { read, write } from "./eeprom.js"
+import { read, write } from "/home/pi/PlanktoScope/lib/eeprom.js"
 import {
   hasHardwareVersion,
   setHardwareVersion,
@@ -21,7 +21,7 @@ import {
 
 import { handle } from "/home/pi/PlanktoScope/lib/mqtt.js"
 
-process.title = "planktoscope-org.eeprom"
+process.title = "planktoscope-org.backend"
 
 let cached
 try {
