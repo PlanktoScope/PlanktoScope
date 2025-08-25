@@ -20,6 +20,7 @@ import {
   getTimezone,
   setTimezone,
 } from "../../node-red/nodes/api/timezone.js"
+import { readFile } from "node:fs/promises"
 
 process.title = "planktoscope-org.eeprom"
 

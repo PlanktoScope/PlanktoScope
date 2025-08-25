@@ -29,11 +29,6 @@ function App(props) {
       <main>
         <Suspense>{props.children}</Suspense>
       </main>
-
-      <footer>
-        Made with ❤️ by <a href="https://fairscope.com/">FairScope</a> in
-        Britanny
-      </footer>
     </>
   )
 }
