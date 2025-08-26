@@ -15,4 +15,4 @@ test:
 
 dev:
     sudo systemctl stop planktoscope-org.backend.service &> /dev/null
-    node --watch-path . src/service.js
+    node --watch src/service.js

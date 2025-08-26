@@ -1,6 +1,7 @@
 setup:
     # cp: cannot create regular file '/usr/bin/filebrowser': Text file busy
     sudo killall -w filebrowser &> /dev/null
+    sleep 2
     wget https://github.com/filebrowser/filebrowser/releases/download/v2.36.3/linux-arm64-filebrowser.tar.gz -P /tmp
     cd /tmp && tar -xzf /tmp/linux-arm64-filebrowser.tar.gz filebrowser
     sudo cp /tmp/filebrowser /usr/bin/filebrowser

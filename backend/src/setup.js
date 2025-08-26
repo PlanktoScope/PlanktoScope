@@ -1,3 +1,6 @@
+// This file is related to setting up the PlanktoScope
+// setup refers to configuration done at first start by the user
+
 import * as z from "zod"
 
 import {
