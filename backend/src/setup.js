@@ -36,7 +36,7 @@ await handle("setup/init", async (data) => {
     }
   }
 
-  if (!software_config.user_setup) {
+  if (software_config.user_setup !== true) {
     return {
       redirect: new URL("/setup", origin),
     }
