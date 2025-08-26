@@ -1,0 +1,15 @@
+[Unit]
+Description=PlanktoScope backend service
+Wants=mosquitto.service
+After=mosquitto.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /home/pi/PlanktoScope/backend/src/service.js
+Restart=on-failure
+
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target

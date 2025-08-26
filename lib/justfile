@@ -1,0 +1,13 @@
+setup:
+    sudo apt install -y g++ libgpiod-dev
+    npm install --omit=dev
+
+setup-dev:
+    npm install --include=dev
+
+format:
+    npx eslint --fix .
+
+test:
+    npx eslint .
+    node --test

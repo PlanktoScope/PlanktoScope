@@ -1,5 +1,3 @@
-require('./setup.js');
-
 /**
  * This is the default settings file provided by Node-RED.
  *

@@ -1,4 +1,4 @@
-import { getHardwareVersion } from "./api/hardware.js"
+import { getHardwareVersion } from "../../lib/hardware.js"
 
 export default function (RED) {
   function Node(config) {

@@ -1,4 +1,4 @@
-import { reboot } from "./api/hardware.js"
+import { reboot } from "../../lib/hardware.js"
 
 export default function (RED) {
   function Node(config) {

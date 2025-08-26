@@ -1,4 +1,4 @@
-import { getWifiRegulatoryDomain } from "./api/country.js"
+import { getWifiRegulatoryDomain } from "../../lib/country.js"
 
 export default function (RED) {
   function Node(config) {

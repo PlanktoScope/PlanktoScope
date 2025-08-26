@@ -2,7 +2,7 @@ import {
   countImageAcquired,
   countObjectSegmented,
   getStorageInfo,
-} from "./api/stats.js"
+} from "../../lib/stats.js"
 
 export default function (RED) {
   function Node(config) {
@@ -32,7 +32,7 @@ export default function (RED) {
             })
             send(msg)
             done()
-          }
+          },
         )
         .catch(done)
     })

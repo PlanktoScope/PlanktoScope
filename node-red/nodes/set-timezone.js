@@ -1,4 +1,4 @@
-import { setTimezone } from "./api/timezone.js"
+import { setTimezone } from "../../lib/timezone.js"
 
 export default function (RED) {
   function Node(config) {
@@ -6,7 +6,7 @@ export default function (RED) {
     const node = this
     node.on("input", function (msg, send, done) {
       const { timezone } = msg.payload
-      setTimezone({ timezone })
+      setTimezone(timezone)
         .then(() => {
           send(msg)
           done()
