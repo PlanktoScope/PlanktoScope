@@ -2,7 +2,7 @@ import {
   countImageAcquired,
   countObjectSegmented,
   getStorageInfo,
-} from "/home/pi/PlanktoScope/lib/stats.js"
+} from "../../lib/stats.js"
 
 export default function (RED) {
   function Node(config) {

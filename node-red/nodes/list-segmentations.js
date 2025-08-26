@@ -1,4 +1,4 @@
-import { listSegmentations } from "/home/pi/PlanktoScope/lib/db.js"
+import { listSegmentations } from "../../lib/db.js"
 
 export default function (RED) {
   function Node(config) {

@@ -1,25 +1,21 @@
 import crypto from "node:crypto"
 import * as z from "zod"
 
-import { read, write } from "/home/pi/PlanktoScope/lib/eeprom.js"
+import { read, write } from "../../lib/eeprom.js"
 import {
   hasHardwareVersion,
   setHardwareVersion,
   getHardwareVersions,
   getHardwareVersion,
-} from "/home/pi/PlanktoScope/lib/hardware.js"
+} from "../../lib/hardware.js"
 import {
   getWifiRegulatoryDomains,
   setWifiRegulatoryDomain,
   getWifiRegulatoryDomain,
-} from "/home/pi/PlanktoScope/lib/country.js"
-import {
-  getTimezones,
-  getTimezone,
-  setTimezone,
-} from "/home/pi/PlanktoScope/lib/timezone.js"
+} from "../../lib/country.js"
+import { getTimezones, getTimezone, setTimezone } from "../../lib/timezone.js"
 
-import { handle } from "/home/pi/PlanktoScope/lib/mqtt.js"
+import { handle } from "../../lib/mqtt.js"
 
 process.title = "planktoscope-org.backend"
 

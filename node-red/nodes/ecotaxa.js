@@ -1,8 +1,4 @@
-import {
-  login,
-  uploadFile,
-  importFile,
-} from "/home/pi/PlanktoScope/lib/ecotaxa.js"
+import { login, uploadFile, importFile } from "../../lib/ecotaxa.js"
 
 export default function (RED) {
   function Node(config) {

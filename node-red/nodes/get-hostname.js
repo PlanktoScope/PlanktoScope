@@ -1,4 +1,4 @@
-import { getHostname } from "/home/pi/PlanktoScope/lib/identity.js"
+import { getHostname } from "../../lib/identity.js"
 
 export default function (RED) {
   function Node(config) {

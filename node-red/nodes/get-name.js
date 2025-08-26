@@ -1,4 +1,4 @@
-import { getName } from "/home/pi/PlanktoScope/lib/identity.js"
+import { getName } from "../../lib/identity.js"
 
 export default function (RED) {
   function Node(config) {

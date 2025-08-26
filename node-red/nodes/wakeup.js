@@ -1,4 +1,4 @@
-import { wakeup } from "/home/pi/PlanktoScope/lib/hardware.js"
+import { wakeup } from "../../lib/hardware.js"
 
 export default function (RED) {
   function Node(config) {

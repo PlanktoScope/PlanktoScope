@@ -1,4 +1,4 @@
-import { getHardwareVersions } from "/home/pi/PlanktoScope/lib/hardware.js"
+import { getHardwareVersions } from "../../lib/hardware.js"
 
 export default function (RED) {
   function Node(config) {
