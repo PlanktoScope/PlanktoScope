@@ -17,35 +17,40 @@ import {
   readSoftwareConfig,
   updateSoftwareConfig,
 } from "../../lib/file-config.js"
+import { getActiveNodeRedProject } from "../../lib/nodered.js"
 
-await handle("setup/init", async () => {
+import { has_eeprom_hardware_version } from "./bootstrap.js"
+
+// const setup_init_schema = z.object({
+//   origin: z.url(),
+// })
+await handle("setup/init", async (data) => {
+  // data = setup_init_schema.parse(data)
+  const { origin } = data
+
   const software_config = await readSoftwareConfig()
 
   if (!software_config) {
     return {
-      redirect: "/setup",
+      redirect: new URL("/setup", origin),
     }
   }
 
   if (!software_config.user_setup) {
     return {
-      redirect: "/setup",
+      redirect: new URL("/setup", origin),
     }
   }
 
-  const hardware_version =
-    software_config?.acq_instrument?.split(" ")[1] || null
-  if (!hardware_version) {
-    return {
-      redirect: "/setup",
-    }
-  }
+  const node_red_project = await getActiveNodeRedProject()
+  const url = new URL(origin)
+  url.port = 80
+  url.pathname =
+    node_red_project === "dashboard"
+      ? "/ps/node-red-v2/dashboard"
+      : "/ps/node-red-v2/ui"
 
-  if (["v2.6", "v2.5", "v2.3", "v2.1"].includes(hardware_version)) {
-    return { redirect: "/ps/node-red-v2/ui" }
-  }
-
-  return { redirect: "/ps/node-red-v2/dashboard" }
+  return { redirect: url }
 })
 
 await handle("setup/read", async () => {
@@ -61,8 +66,8 @@ await handle("setup/read", async () => {
     getWifiRegulatoryDomain(),
     getTimezones(),
     getTimezone(),
-    getHardwareVersions(),
-    getHardwareVersion(),
+    has_eeprom_hardware_version ? null : getHardwareVersions(),
+    has_eeprom_hardware_version ? null : getHardwareVersion(),
   ])
 
   return {
@@ -78,7 +83,7 @@ await handle("setup/read", async () => {
 const Schema = z.object({
   country: z.string(),
   timezone: z.string(),
-  hardware_version: z.string(),
+  hardware_version: z.string().optional(),
 })
 await handle("setup/update", async (data) => {
   const { country, timezone, hardware_version } = Schema.parse(data)
@@ -86,7 +91,7 @@ await handle("setup/update", async (data) => {
   await Promise.all([
     setWifiRegulatoryDomain(country),
     setTimezone(timezone),
-    setHardwareVersion(hardware_version),
+    hardware_version && setHardwareVersion(hardware_version),
   ])
 
   await updateSoftwareConfig({ user_setup: true })

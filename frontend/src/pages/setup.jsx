@@ -62,27 +62,30 @@ export default function Production() {
                 </For>
               </select>
             </label>
-            <label>
-              Model
-              <select name="hardware_version">
-                <option disabled value="">
-                  Pleasse select
-                </option>
-                <For each={data()?.hardware_versions}>
-                  {(hardware_version) => (
-                    <option
-                      key={hardware_version.value}
-                      value={hardware_version.value}
-                      selected={
-                        data()?.hardware_version === hardware_version.value
-                      }
-                    >
-                      {hardware_version.label}
-                    </option>
-                  )}
-                </For>
-              </select>
-            </label>
+
+            <Show when={data()?.hardware_versions}>
+              <label>
+                Model
+                <select name="hardware_version">
+                  <option disabled value="">
+                    Pleasse select
+                  </option>
+                  <For each={data()?.hardware_versions}>
+                    {(hardware_version) => (
+                      <option
+                        key={hardware_version.value}
+                        value={hardware_version.value}
+                        selected={
+                          data()?.hardware_version === hardware_version.value
+                        }
+                      >
+                        {hardware_version.label}
+                      </option>
+                    )}
+                  </For>
+                </select>
+              </label>
+            </Show>
           </fieldset>
 
           <button

@@ -24,6 +24,8 @@ if (hardware_version && !(await hasSoftwareConfig())) {
   await setHardwareVersion(hardware_version)
 }
 
+export const has_eeprom_hardware_version = !!hardware_version
+
 await handle("bootstrap/init", async () => {
   const eeprom = cached
 
