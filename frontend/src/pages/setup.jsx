@@ -17,8 +17,10 @@ export default function Production() {
   const submission = useSubmission(submitAction)
   return (
     <>
-      <main>
+      <header>
         <h1>Welcome on the PlanktoScope GUI</h1>
+      </header>
+      <main>
         <form action={submitAction} method="post">
           <fieldset>
             <legend>Enter your information</legend>

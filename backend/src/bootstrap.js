@@ -53,3 +53,7 @@ await handle("bootstrap/update", async (data) => {
   await write(data)
   cached = await read()
 })
+
+await handle("bootstrap/read", async () => {
+  return read()
+})
