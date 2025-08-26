@@ -1,24 +1,11 @@
-import { createSignal } from "solid-js"
+import { request } from "../../../lib/mqtt"
 
 export default function Home() {
-  const [count, setCount] = createSignal(0)
+  request("setup/init")
+    .then((data) => {
+      window.location.href = data.redirect
+    })
+    .catch(console.error)
 
-  return (
-    <section>
-      <h1>Home</h1>
-      <p>This is the home page.</p>
-
-      <div>
-        <button type="button" onClick={() => setCount(count() - 1)}>
-          -
-        </button>
-
-        <output>Count: {count()}</output>
-
-        <button type="button" onClick={() => setCount(count() + 1)}>
-          +
-        </button>
-      </div>
-    </section>
-  )
+  return null
 }

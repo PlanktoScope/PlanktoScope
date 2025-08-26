@@ -13,6 +13,40 @@ import {
 import { getTimezones, getTimezone, setTimezone } from "../../lib/timezone.js"
 
 import { handle } from "../../lib/mqtt.js"
+import {
+  readSoftwareConfig,
+  updateSoftwareConfig,
+} from "../../lib/file-config.js"
+
+await handle("setup/init", async () => {
+  const software_config = await readSoftwareConfig()
+
+  if (!software_config) {
+    return {
+      redirect: "/setup",
+    }
+  }
+
+  if (!software_config.user_setup) {
+    return {
+      redirect: "/setup",
+    }
+  }
+
+  const hardware_version =
+    software_config?.acq_instrument?.split(" ")[1] || null
+  if (!hardware_version) {
+    return {
+      redirect: "/setup",
+    }
+  }
+
+  if (["v2.6", "v2.5", "v2.3", "v2.1"].includes(hardware_version)) {
+    return { redirect: "/ps/node-red-v2/ui" }
+  }
+
+  return { redirect: "/ps/node-red-v2/dashboard" }
+})
 
 await handle("setup/read", async () => {
   const [
@@ -54,4 +88,6 @@ await handle("setup/update", async (data) => {
     setTimezone(timezone),
     setHardwareVersion(hardware_version),
   ])
+
+  await updateSoftwareConfig({ user_setup: true })
 })
