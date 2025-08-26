@@ -12,6 +12,7 @@ format:
 
 test:
     npx eslint .
+    npx vite build
     node --test
 
 dev:

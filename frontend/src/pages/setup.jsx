@@ -1,7 +1,7 @@
 import { createResource, For } from "solid-js"
 import { useSubmission, action, redirect } from "@solidjs/router"
 
-import { request } from "/home/pi/PlanktoScope/lib/mqtt.js"
+import { request } from "../../../lib/mqtt.js"
 
 export default function Production() {
   const [data] = createResource("setup/read", async (topic) => {
