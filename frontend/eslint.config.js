@@ -5,7 +5,7 @@ import react from "eslint-plugin-react"
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs}"],
+    files: ["**/*.{js,jsx,mjs,cjs}"],
     plugins: { js, react },
     extends: ["js/recommended"],
     languageOptions: {

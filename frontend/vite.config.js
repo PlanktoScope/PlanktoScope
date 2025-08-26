@@ -23,8 +23,5 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-    rollupOptions: {
-      external: [/^\/home\/pi\/PlanktoScope\/lib\/.*/],
-    },
   },
 })

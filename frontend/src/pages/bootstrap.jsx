@@ -1,13 +1,11 @@
-import { createEffect, createResource, Suspense } from "solid-js"
+import { createResource } from "solid-js"
 import { useSubmission, action } from "@solidjs/router"
-
-import AboutData from "./about.data"
 
 import { request } from "/home/pi/PlanktoScope/lib/mqtt.js"
 
 export default function Production() {
   const [EEPROM, { refetch }] = createResource(
-    "eeprom/bootstrap",
+    "bootstrap/init",
     async (topic) => {
       return request(topic)
     },
@@ -25,7 +23,7 @@ export default function Production() {
     delete data.eeprom_version
     delete data.hardware_version
 
-    await request("eeprom/update", data)
+    await request("bootstrap/update", data)
 
     refetch()
   })
@@ -143,7 +141,7 @@ export default function Production() {
               <input
                 name="eeprom_version"
                 type="number"
-                readOnly
+                readonly={disabled}
                 value={EEPROM()?.custom_data?.eeprom_version}
               />
             </label>

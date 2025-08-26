@@ -9,19 +9,19 @@ function App(props) {
       <nav>
         <ul>
           <li>
-            <A href="">Home</A>
+            <A href="/">Home</A>
           </li>
           <li>
-            <A href="production">Production</A>
+            <A href="/bootstrap">Bootstrap</A>
           </li>
           <li>
-            <A href="first-time-setup">First Time Setup</A>
+            <A href="/setup">Setup</A>
           </li>
           <li>
-            <A href="about">About</A>
+            <A href="/about">About</A>
           </li>
           <li>
-            <A href="error">Error</A>
+            <A href="/error">Error</A>
           </li>
         </ul>
       </nav>
