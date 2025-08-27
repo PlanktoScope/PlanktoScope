@@ -1,4 +1,4 @@
-import { createResource, For } from "solid-js"
+import { createResource, For, Show } from "solid-js"
 import { useSubmission, action, redirect } from "@solidjs/router"
 
 import { request } from "../../../lib/mqtt.js"
@@ -34,7 +34,6 @@ export default function Production() {
                 <For each={data()?.countries}>
                   {(country) => (
                     <option
-                      key={country.value}
                       value={country.value}
                       selected={data()?.country === country.value}
                     >
@@ -54,7 +53,6 @@ export default function Production() {
                 <For each={data()?.timezones}>
                   {(timezone) => (
                     <option
-                      key={timezone.value}
                       value={timezone.value}
                       selected={data()?.timezone === timezone.value}
                     >
@@ -75,7 +73,6 @@ export default function Production() {
                   <For each={data()?.hardware_versions}>
                     {(hardware_version) => (
                       <option
-                        key={hardware_version.value}
                         value={hardware_version.value}
                         selected={
                           data()?.hardware_version === hardware_version.value

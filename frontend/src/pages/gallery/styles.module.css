@@ -1,0 +1,38 @@
+:global(html) {
+  background-color: #f3f3f3;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f3f3f3;
+  gap: 48px;
+  align-items: center;
+  /*justify-content: center;*/
+  padding: 24px;
+}
+
+.thumbnail {
+  /*background-color: red;*/
+  /*border: solid 1px black;*/
+  border-radius: 10%;
+  width: 150px;
+  height: 150px;
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: scale-down;
+  /*object-position: center bottom;*/
+  /*Hide alt text while the image is loading*/
+  color: transparent;
+}
+
+.loading {
+  text-align: center;
+}
+
+.modal article {
+  width: unset;
+}

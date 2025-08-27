@@ -39,7 +39,7 @@ export default function Production() {
       </header>
       <main>
         <form action={updateBootstrapAction} method="post">
-          <fieldset className="grid">
+          <fieldset class="grid">
             <legend>
               <hgroup>
                 <h4>Raspberry Pi HAT</h4>
@@ -109,9 +109,9 @@ export default function Production() {
             </div>
           </fieldset>
 
-          <hr></hr>
+          <hr />
 
-          <fieldset className="grid">
+          <fieldset class="grid">
             <legend>
               <hgroup>
                 <h4>PlanktoScope</h4>
