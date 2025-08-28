@@ -1,0 +1,33 @@
+:global(html) {
+  background-color: #f3f3f3;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f3f3f3;
+  gap: 48px;
+  padding: 24px;
+}
+
+.thumbnail {
+  border-radius: 10%;
+  width: 150px;
+  height: 150px;
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: scale-down;
+  /*Hide alt text while the image is loading*/
+  color: transparent;
+}
+
+.loading {
+  text-align: center;
+}
+
+.modal article {
+  width: unset;
+}
