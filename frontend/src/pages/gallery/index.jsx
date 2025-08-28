@@ -12,6 +12,13 @@ let total_pages
 let window_size = 200
 let window_start = 0
 
+// https://github.com/ecotaxa/ecotaxa_back/issues/64
+const api_url = new URL("http://example.com/ecotaxa/api/")
+api_url.hostname = document.location.hostname
+
+// No need for CORS for <img/>
+const vault_url = "https://ecotaxa.obs-vlfr.fr/vault/"
+
 export default function Gallery() {
   const [pages, setEl, { end, setEnd }] = createInfiniteScroll(fetcher)
 
@@ -19,10 +26,8 @@ export default function Gallery() {
 
   async function fetcher(page_number) {
     const { objects, total_ids } = await getObjects({
-      // https://github.com/ecotaxa/ecotaxa_back/issues/64
-      api_url: "http://pkscope-sponge-care-280/ecotaxa/api/",
-      // No need for CORS for <img/>
-      vault_url: "https://ecotaxa.obs-vlfr.fr/vault/",
+      api_url,
+      vault_url,
       project_id: 15730,
       window_start,
       window_size,
