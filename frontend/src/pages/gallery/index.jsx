@@ -2,9 +2,9 @@ import styles from "./styles.module.css"
 
 import { For, createSignal, Show } from "solid-js"
 import { createInfiniteScroll } from "@solid-primitives/pagination"
-import { request } from "../../../../lib/mqtt"
 import arrayShuffle from "array-shuffle"
 import mediumZoom from "medium-zoom"
+import { getObjects } from "../../../../lib/ecotaxa.js"
 
 import Thumbnail from "./Thumbnail.jsx"
 
@@ -18,7 +18,11 @@ export default function Gallery() {
   const [zoomed, setZoomed] = createSignal(false)
 
   async function fetcher(page_number) {
-    const { objects, total_ids } = await request("ecotaxa/getObjects", {
+    const { objects, total_ids } = await getObjects({
+      // https://github.com/ecotaxa/ecotaxa_back/issues/64
+      api_url: "http://pkscope-sponge-care-280/ecotaxa/api/",
+      // No need for CORS for <img/>
+      vault_url: "https://ecotaxa.obs-vlfr.fr/vault/",
       project_id: 15730,
       window_start,
       window_size,
@@ -32,7 +36,7 @@ export default function Gallery() {
   }
 
   const zoom = mediumZoom(null, {
-    background: "rgba(0, 0, 0, 0.8)",
+    background: "rgba(243, 243, 243, 0.75)",
   })
   zoom.on("open", () => setZoomed(true))
   zoom.on("closed", () => setZoomed(false))
