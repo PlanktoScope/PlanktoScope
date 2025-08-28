@@ -1,12 +1,12 @@
 import js from "@eslint/js"
 import globals from "globals"
 import { defineConfig, globalIgnores } from "eslint/config"
-import react from "eslint-plugin-react"
+import solid from "eslint-plugin-solid/configs/recommended"
 
 export default defineConfig([
   {
     files: ["**/*.{js,jsx,mjs,cjs}"],
-    plugins: { js, react },
+    plugins: { js },
     extends: ["js/recommended"],
     languageOptions: {
       parserOptions: {
@@ -16,10 +16,7 @@ export default defineConfig([
       },
       globals: { ...globals.browser },
     },
-    rules: {
-      "react/jsx-uses-vars": "error",
-      "react/jsx-uses-react": "error",
-    },
   },
   globalIgnores(["dist"]),
+  solid,
 ])

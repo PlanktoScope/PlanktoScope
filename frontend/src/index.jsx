@@ -1,4 +1,4 @@
-import "@picocss/pico/css/pico.blue.css"
+import "./index.css"
 
 import { render } from "solid-js/web"
 
