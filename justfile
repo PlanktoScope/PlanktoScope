@@ -6,7 +6,7 @@ base:
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
     sudo -E bash /tmp/nodesource_setup.sh
     sudo apt install -y pipx git nodejs golang
-    npm install -g wait-port
+    npm install -g wait-on
     pipx ensurepath
     pipx install poetry==2.1.3 --force
     npm config set prefix /home/pi/.local
@@ -63,6 +63,11 @@ developer-mode: setup-dev
     ./os/developer-mode/install-just.sh
     npm install -g zx@8
     ./os/developer-mode/configure.mjs
+
+reset: base setup
+    rm /home/pi/PlanktoScope/config.json
+    rm /home/pi/PlanktoScope/hardware.json
+    reboot
 
 # We run setup and setup-dev twice to ensure it is idempotent
 
