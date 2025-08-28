@@ -21,19 +21,18 @@ export default function Thumbnail(props) {
   })
 
   return (
-    <div
-      // <a
+    <a
       class={styles.thumbnail}
-      // href={props.object.file.url}
+      href={props.object.file.url}
       // Hide tooltip on zoom
       // medium-zoom creates a background that desactives interaction with the document
       // so the tooltip stays on when zooming an image
       data-tooltip={props.zoomed ? null : props.object.label}
-      // onClick={(evt) => {
-      //   evt.preventDefault()
-      // }}
+      onClick={(evt) => {
+        evt.preventDefault()
+      }}
     >
       {img}
-    </div>
+    </a>
   )
 }

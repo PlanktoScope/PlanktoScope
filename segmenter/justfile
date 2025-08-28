@@ -8,7 +8,7 @@ setup-dev:
     poetry lock && poetry install --with=dev
 
 dev:
-    sudo systemctl stop planktoscope-org.segmenter
+    sudo systemctl stop planktoscope-org.segmenter &> /dev/null
     poetry run python -u main.py
 
 format:

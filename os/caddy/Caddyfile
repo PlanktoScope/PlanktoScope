@@ -37,4 +37,36 @@
 		root * /srv/admin
 		file_server
 	}
+
+	# https://github.com/ecotaxa/ecotaxa_back/issues/64
+	handle_path /ecotaxa* {
+		@cors_preflight {
+			method OPTIONS
+		}
+
+		header {
+			Access-Control-Allow-Origin *
+		}
+
+		handle @cors_preflight {
+			header {
+				Access-Control-Allow-Methods GET,POST,OPTIONS,HEAD,PATCH,PUT,DELETE
+				Access-Control-Allow-Credentials true
+				Access-Control-Allow-Headers *
+				Access-Control-Max-Age 86400
+			}
+			respond 204
+		}
+
+		reverse_proxy {
+			to https://ecotaxa.obs-vlfr.fr
+			header_up Host ecotaxa.obs-vlfr.fr
+			header_down -Access-Control-Allow-Origin
+			header_down -Access-Control-Allow-Credentials
+			header_down -Access-Control-Allow-Methods
+			header_down -Access-Control-Allow-Headers
+			header_down -Access-Control-Max-Age
+			header_down Access-Control-Expose-Headers *
+		}
+	}
 }

@@ -2,16 +2,23 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@homebridge/dbus-native": "^0.7.2",
     "csv-parse": "^6.1.0",
+    "i2c-bus": "^5.2.3",
     "mime": "^4.0.7",
     "mqtt": "^5.14.0",
-    "yaml": "^2.8.1",
-    "i2c-bus": "^5.2.3",
-    "node-libgpiod": "^0.5.3"
+    "node-libgpiod": "^0.5.3",
+    "p-event": "^6.0.1",
+    "wait-port": "^1.1.0",
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "eslint": "^9.32.0",
+    "eslint-plugin-n": "^17.21.3",
     "globals": "^16.3.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

@@ -63,6 +63,11 @@ developer-mode: setup-dev
     npm install -g zx@8
     ./os/developer-mode/configure.mjs
 
+reset: base setup
+    rm /home/pi/PlanktoScope/config.json
+    rm /home/pi/PlanktoScope/hardware.json
+    sudo systemctl reboot
+
 # We run setup and setup-dev twice to ensure it is idempotent
 
 # TODO: Run developer-mode (twice)

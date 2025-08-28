@@ -20,7 +20,10 @@ import {
   readSoftwareConfig,
   updateSoftwareConfig,
 } from "../../lib/file-config.js"
-import { getActiveNodeRedProject } from "../../lib/nodered.js"
+import {
+  getActiveNodeRedProject,
+  promiseDashboardOnline,
+} from "../../lib/nodered.js"
 
 import { has_eeprom_hardware_version } from "./bootstrap.js"
 
@@ -98,4 +101,6 @@ await handle("setup/update", async (data) => {
   ])
 
   await updateSoftwareConfig({ user_setup: true })
+
+  await promiseDashboardOnline()
 })
