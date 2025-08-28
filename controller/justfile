@@ -9,7 +9,7 @@ setup-dev:
     poetry lock && poetry install --with=dev
 
 dev:
-    sudo systemctl stop planktoscope-org.controller
+    sudo systemctl stop planktoscope-org.controller &> /dev/null
     poetry run python -u main.py
 
 format:

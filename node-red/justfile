@@ -7,7 +7,6 @@ setup:
     sudo apt install -y python3-smbus2
     npm install -g node-red@v4.1.0
     npm install --omit=dev
-    cd nodes && npm install --omit=dev
     sudo cp nodered.service /etc/systemd/system/
     sudo mkdir -p /etc/systemd/system/nodered.service.d
     sudo cp 30-override.conf /etc/systemd/system/nodered.service.d/
@@ -16,13 +15,17 @@ setup:
 
 setup-dev:
     npm install --include=dev
-    cd nodes && npm install --include=dev
+
+dev:
+    sudo systemctl stop nodered &>/dev/null
+    node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.cjs
 
 test:
     validator projects/adafruithat/flows.json
     validator projects/planktoscopehat/flows.json
     validator projects/dashboard/flows.json
-    cd nodes && npm test
+    npx eslint .
+    cd nodes && node --test
 
 # Too many errors for now
 # cd node-red && npx nrlint projects/adafruithat/flows.json

@@ -21,7 +21,7 @@
  **/
 
 module.exports = {
-    nrlint: require("./.nrlintrc.js"),
+    nrlint: require("./.nrlintrc.cjs"),
 
 /*******************************************************************************
  * Flow File and User Directory Settings
