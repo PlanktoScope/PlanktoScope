@@ -13,18 +13,38 @@ This page provides useful snippets and how-tos while developing software for the
 - [Documentation quick setup](#documentation-quick-setup)
 - [Test dataset for segmenter](#test-dataset-for-segmenter)
 
-## Development OS
+## Building the OS
 
-You can find the latest build of PlanktoScope OS in [actions](https://github.com/PlanktoScope/PlanktoScope/actions/workflows/build-os-bookworm.yml?query=branch%3Amain)
+Install [Raspberry Pi OS Lite 2025-05-13 ARM64](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
 
-It is built upon [Raspberry Pi OS Lite 64-bit](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit).
+See [Install an operating system](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system). **DO NOT** apply OS customization settings.
 
-1. Choose the branch (e.g. `main`)
-2. Click on the most recent action in the table
-3. Download the Artifact `PlanktoScope-OS-xxx`
-4. Run `unzip PlanktoScope-OS-xxx.zip` to extract files
+Boot into Raspberry Pi OS and type the following commands
 
-See [Backup and Restore SD Card image](#backup-and-restore-sd-card) below to write the `.img.xz` file to the sdcard
+```sh
+cd /home/pi
+git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
+cd PlanktoScope
+./os/developer-mode/install-just.sh
+just
+sudo systemctl reboot
+```
+
+PlanktoScope OS is ready.
+
+## Updating the OS
+
+Type the following commands
+
+```sh
+cd /home/pi/PlanktoScope
+git checkout main
+git pull
+just
+sudo systemctl reboot
+```
+
+PlanktoScope OS is updated.
 
 ## Graphical UI
 
@@ -34,7 +54,7 @@ To install the graphical desktop similar to what you find on the desktop edition
 sudo apt install raspberrypi-ui-mods
 # Change the boot option
 sudo raspi-config # System Options -> Boot -> Desktop GUI
-reboot
+sudo systemctl reboot
 ```
 
 ## Development Environment
@@ -80,7 +100,7 @@ git status
 
 </details>
 
-We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh).
+We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development).
 Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
