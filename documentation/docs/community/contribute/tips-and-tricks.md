@@ -6,13 +6,6 @@ This page provides useful snippets and how-tos while developing software for the
 
     This document is meant for PlanktoScope developers. Proceed with care.
 
-- [Development OS](#development-os)
-- [Development Environment](#development-environment)
-- [Connect to router](#connect-to-router)
-- [Backup and Restore SD Card](#backup-and-restore-sd-card)
-- [Documentation quick setup](#documentation-quick-setup)
-- [Test dataset for segmenter](#test-dataset-for-segmenter)
-
 ## Building the OS
 
 Install [Raspberry Pi OS Lite 2025-05-13 ARM64](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
@@ -23,12 +16,15 @@ Boot into Raspberry Pi OS and type the following commands
 
 ```sh
 cd /home/pi
+sudo apt install apt
 git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
 cd PlanktoScope
 ./os/developer-mode/install-just.sh
 just
 sudo systemctl reboot
 ```
+
+Open the PlanktoScope URL in your browser.
 
 PlanktoScope OS is ready.
 
@@ -100,7 +96,7 @@ git status
 
 </details>
 
-We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development).
+We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development).b
 Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
