@@ -2,7 +2,8 @@ setup:
     npm install --omit=dev
     sudo cp planktoscope-org.backend.service /etc/systemd/system/
     sudo cp polkit.js /etc/polkit-1/rules.d/planktoscope.rules
-    sudo systemctl enable planktoscope-org.backend.service
+    sudo systemctl reenable planktoscope-org.backend.service
+    sudo systemctl restart planktoscope-org.backend.service
 
 setup-dev:
     npm install --include=dev
@@ -15,5 +16,5 @@ test:
     node --test
 
 dev:
-    sudo systemctl stop planktoscope-org.backend.service &> /dev/null
+    -sudo systemctl stop planktoscope-org.backend
     node --watch src/service.js

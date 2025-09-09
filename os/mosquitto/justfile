@@ -1,3 +1,4 @@
 setup:
     sudo apt install -y mosquitto
-    sudo systemctl enable mosquitto.service
+    sudo systemctl reenable mosquitto
+    sudo systemctl restart mosquitto

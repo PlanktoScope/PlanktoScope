@@ -2,7 +2,8 @@ setup:
     sudo apt install -y network-manager firewalld dnsmasq-base avahi-utils
     sudo cp public.xml /etc/firewalld/zones/
     sudo cp nm-shared.xml /etc/firewalld/zones/
-    sudo systemctl enable NetworkManager firewalld
+    sudo systemctl reenable NetworkManager firewalld
+    sudo systemctl restart NetworkManager firewalld
     sudo cp -r cfg80211_regdomain.conf /etc/modprobe.d/
     sudo chown pi:pi /etc/modprobe.d/cfg80211_regdomain.conf
     sudo cp wlan0-hotspot.ini /etc/NetworkManager/system-connections/wlan0-hotspot.nmconnection
@@ -17,17 +18,17 @@ setup:
 
     # Enable wifi by default without selecting a country (will use global)
     sudo cp org-planktoscope.firstboot-wifi.service /etc/systemd/system/
-    sudo systemctl enable org-planktoscope.firstboot-wifi.service
+    sudo systemctl reenable org-planktoscope.firstboot-wifi.service
+    sudo systemctl restart org-planktoscope.firstboot-wifi.service
 
     wget https://github.com/grishy/go-avahi-cname/releases/download/v2.2.5/go-avahi-cname_2.2.5_linux_arm64.tar.gz -P /tmp
     cd /tmp && tar -xzf /tmp/go-avahi-cname_2.2.5_linux_arm64.tar.gz go-avahi-cname
-    # cp: cannot create regular file '/usr/bin/go-avahi-cname': Text file busy
-    sudo killall -w go-avahi-cname &> /dev/null
-    sleep 2
-    sudo cp /tmp/go-avahi-cname /usr/bin/go-avahi-cname
+    -sudo systemctl stop avahi-publish-cname@planktoscope.local.service
+    -sudo systemctl stop avahi-publish-cname@pkscope.local.service
+    sudo cp /tmp/go-avahi-cname /usr/local/bin/go-avahi-cname
     sudo cp avahi-publish-cname@.service /usr/lib/systemd/system
-    sudo systemctl enable avahi-publish-cname@planktoscope.local.service
-    sudo systemctl enable avahi-publish-cname@pkscope.local.service
+    sudo systemctl reenable avahi-publish-cname@planktoscope.local.service avahi-publish-cname@pkscope.local
+    sudo systemctl restart avahi-publish-cname@planktoscope.local.service avahi-publish-cname@pkscope.local
 
     sudo cp hosts /etc/
     sudo cp dnsmasq-shared.properties /etc/NetworkManager/dnsmasq-shared.d/40-config.conf
