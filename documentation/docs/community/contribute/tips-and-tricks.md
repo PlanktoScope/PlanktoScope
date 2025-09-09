@@ -16,7 +16,7 @@ Boot into Raspberry Pi OS and type the following commands
 
 ```sh
 cd /home/pi
-sudo apt install apt
+sudo apt install git
 git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
 cd PlanktoScope
 ./os/developer-mode/install-just.sh
