@@ -18,7 +18,7 @@ setup-dev:
     npm install --include=dev
 
 dev:
-    sudo systemctl stop nodered &>/dev/null
+    -sudo systemctl stop nodered
     node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.cjs
 
 test:

@@ -16,5 +16,5 @@ test:
     node --test
 
 dev:
-    sudo systemctl stop planktoscope-org.backend.service &> /dev/null
+    -sudo systemctl stop planktoscope-org.backend
     node --watch src/service.js
