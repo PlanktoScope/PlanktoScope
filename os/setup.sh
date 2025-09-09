@@ -1,17 +1,21 @@
-#!/bin/bash -eux
+#!/bin/bash -eu
 
-build_scripts_root=$(dirname "$(realpath "$BASH_SOURCE")")
+# This is an installation script to bootstrap installation of PlanktoScope OS.
+# It is meant to be run on a specific Raspberry OS Pi OS standard installation.
 
-export PATH="$HOME/.local/bin:$PATH"
-export LANG="en_US.UTF-8"
+line=$(head -n 1 /etc/rpi-issue)
+date="2025-05-13"
+expected="Raspberry Pi reference $date"
 
-# The PlanktoScope monorepo is used for running and iterating on software components
-# https://github.com/PlanktoScope/planktoscope
-sudo cp -r "$build_scripts_root"/.. "$HOME/PlanktoScope"
-sudo chown -R "$USER:$USER" "$HOME/PlanktoScope"
+if [ "$line" != "$expected" ]; then
+  echo "ERROR: Only Raspberry Pi OS $date is supported."
+  exit 1
+fi
 
-./"$HOME"/PlanktoScope/os/developer-mode/install-just.sh
-
-just --justfile "$HOME"/PlanktoScope/justfile base
-just --justfile "$HOME"/PlanktoScope/justfile setup
-just --justfile "$HOME"/PlanktoScope/os/justfile cleanup
+cd /home/pi
+sudo apt install git
+git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
+cd PlanktoScope
+./os/developer-mode/install-just.sh
+just
+sudo systemctl reboot

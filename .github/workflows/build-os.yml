@@ -187,7 +187,7 @@ jobs:
           run: |
             echo "Running setup scripts..."
             export DEBIAN_FRONTEND=noninteractive
-            /run/os-setup/os/setup.sh
+            /run/os-setup/os/setup-ci.sh
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal

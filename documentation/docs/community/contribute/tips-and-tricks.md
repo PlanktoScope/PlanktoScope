@@ -15,16 +15,10 @@ See [Install an operating system](https://www.raspberrypi.com/documentation/comp
 Boot into Raspberry Pi OS and type the following commands
 
 ```sh
-cd /home/pi
-sudo apt install git
-git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
-cd PlanktoScope
-./os/developer-mode/install-just.sh
-just
-sudo systemctl reboot
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/PlanktoScope/PlanktoScope/HEAD/os/setup.sh)"
 ```
 
-Open the PlanktoScope URL in your browser.
+After the PlanktoScope has rebooted you can open its URL in your browser.
 
 PlanktoScope OS is ready.
 
@@ -96,34 +90,18 @@ git status
 
 </details>
 
-We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development).b
-Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
+We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development). Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
 
-The default behavior of the PlanktoScope is to act as a router to connect your computer to it directly via WiFi or Ethernet.
-
-If you have a LAN it may be more convenient to connect the PlanktoScope to it and act as a simple client.
-
-<details>
-    <summary>Ethernet</summary>
-
-```sh
-nmcli connection up eth0-default
-```
-
-</details>
-
-<details>
-    <summary>WiFi</summary>
+The supported way to connect the PlanktoScope to a router is with an Ethernet cable.
+If that is not possible you may try the following:
 
 ```sh
 nmcli connection down wlan0-hotspot
 nmcli device wifi list
 nmcli device wifi connect "<SSID>" --ask
 ```
-
-</details>
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
 
