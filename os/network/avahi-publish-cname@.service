@@ -7,7 +7,7 @@ After=update-hostname.service
 
 [Service]
 Type=exec
-ExecStart=/usr/bin/go-avahi-cname cname %i.
+ExecStart=/usr/local/bin/go-avahi-cname cname %i.
 
 [Install]
 WantedBy=multi-user.target

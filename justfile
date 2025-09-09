@@ -5,7 +5,7 @@ default: base setup
 base:
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
     sudo -E bash /tmp/nodesource_setup.sh
-    sudo apt install -y pipx git nodejs golang
+    sudo apt install -y pipx git nodejs
     pipx ensurepath
     pipx install poetry==2.1.3 --force
     npm config set prefix /home/pi/.local
@@ -29,9 +29,8 @@ setup-dev:
     just --justfile lib/justfile           setup-dev
     just --justfile backend/justfile       setup-dev
     just --justfile frontend/justfile      setup-dev
-    GOBIN=~/.local/bin go install github.com/rhysd/actionlint/cmd/actionlint@v1.7
-    # dasel is a good alternative available in deb repositories but does not support ini
-    GOBIN=~/.local/bin go install github.com/Boeing/config-file-validator/cmd/validator@v1.8.0
+    ./os/developer-mode/install-actionlint.sh
+    ./os/developer-mode/install-config-file-validator.sh
 
 format:
     find . -type f -name 'justfile' -exec just --fmt --unstable --justfile {} ';'

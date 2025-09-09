@@ -11,7 +11,7 @@ Before=sysinit.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/generate-hostname-templated.sh
+ExecStart=/home/pi/PlanktoScope/os/machine-name/generate-hostname-templated.sh
 
 [Install]
 WantedBy=sysinit.target
