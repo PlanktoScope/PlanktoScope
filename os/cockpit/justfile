@@ -9,7 +9,8 @@ setup:
     sudo cp cockpit.ini /etc/cockpit/cockpit.conf
     # https://cockpit-project.org/guide/latest/feature-pcp
     # sudo systemctl enable pmlogger
-    sudo systemctl enable cockpit.socket
+    sudo systemctl reenable cockpit.socket
+    sudo systemctl restart cockpit.socket
     # TODO consider
     # https://github.com/cockpit-project/cockpit-files
     # https://github.com/gbraad-cockpit/cockpit-tailscale
