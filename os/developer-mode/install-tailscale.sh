@@ -7,4 +7,5 @@ curl -fsSL https://pkgs.tailscale.com/stable/raspbian/bullseye.noarmor.gpg | sud
 curl -fsSL https://pkgs.tailscale.com/stable/raspbian/bullseye.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 sudo apt update
 sudo apt install -y tailscale
-sudo systemctl enable tailscaled
+sudo systemctl reenable tailscaled
+sudo systemctl restart tailscaled
