@@ -2,8 +2,8 @@ setup:
     sudo apt install -y gcc libcap-dev python3-dev i2c-tools libopenjp2-7 python3-picamera2
     poetry lock && poetry install --without=dev
     sudo cp planktoscope-org.controller.service /etc/systemd/system/
-    # sudo systemctl daemon-reload
-    sudo systemctl enable planktoscope-org.controller
+    sudo systemctl reenable planktoscope-org.controller
+    sudo systemctl restart planktoscope-org.controller
 
 setup-dev:
     poetry lock && poetry install --with=dev

@@ -4,4 +4,5 @@ setup:
     sudo systemctl stop filebrowser
     sudo cp /tmp/filebrowser /usr/local/bin/filebrowser
     sudo cp filebrowser.service /etc/systemd/system/
-    sudo systemctl enable --now filebrowser
+    sudo systemctl reenable filebrowser
+    sudo systemctl restart filebrowser

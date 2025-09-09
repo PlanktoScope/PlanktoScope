@@ -1,8 +1,8 @@
 setup:
     sudo apt install -y caddy
     sudo cp Caddyfile /etc/caddy/
-    sudo systemctl enable caddy
-
+    sudo systemctl reenable caddy
+    sudo systemctl restart caddy
 format:
     caddy fmt --overwrite Caddyfile
 

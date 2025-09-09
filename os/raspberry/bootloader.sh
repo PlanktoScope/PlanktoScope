@@ -25,4 +25,4 @@ sudo systemctl mask rpi-eeprom-update
 # But we mask it to avoid auto updates so we have a custom unit file instead
 sudo cp firstboot.sh /usr/libexec
 sudo cp planktoscope-org.firstboot.service /etc/systemd/system/
-sudo systemctl enable planktoscope-org.firstboot.service
+sudo systemctl reenable planktoscope-org.firstboot.service
