@@ -8,6 +8,18 @@ This page provides useful snippets and how-tos while developing software for the
 
 ## Building the OS
 
+### Install Raspberry Pi OS
+
+Download [2025-05-13-raspios-bookworm-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
+
+Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
+
+When asked to **Use OS customization?** press **EDIT SETTINGS**
+
+* Set **Username** to `pi`
+* Set **Password** to `copepode`
+* Enable SSH with `Use password authentication`
+
 Install [Raspberry Pi OS Lite 2025-05-13 ARM64](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
 
 See [Install an operating system](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system). **DO NOT** apply OS customization settings.
