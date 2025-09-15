@@ -63,6 +63,34 @@ updates:
         patterns:
           - '*'
 
+  # software
+  - package-ecosystem: 'npm'
+    directory: '/lib'
+    schedule:
+      interval: 'monthly'
+    groups:
+      software:
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'npm'
+    directory: '/frontend'
+    schedule:
+      interval: 'monthly'
+    groups:
+      software:
+        patterns:
+          - '*'
+
+  - package-ecosystem: 'npm'
+    directory: '/backend'
+    schedule:
+      interval: 'monthly'
+    groups:
+      software:
+        patterns:
+          - '*'
+
   # node-red
   - package-ecosystem: 'npm'
     directory: '/node-red'
