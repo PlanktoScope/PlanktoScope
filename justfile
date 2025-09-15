@@ -59,7 +59,6 @@ developer-mode: setup-dev
     sudo apt install -y net-tools bind9-dnsutils netcat-openbsd nmap avahi-utils
     ./os/developer-mode/install-github-cli.sh
     ./os/developer-mode/install-just.sh
-    npm install -g zx@8
     ./os/developer-mode/configure.mjs
 
 reset: base setup

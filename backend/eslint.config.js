@@ -10,10 +10,4 @@ export default defineConfig([
     languageOptions: { globals: { ...globals.node } },
     ignores: ["dist"],
   },
-  {
-    files: ["polkit.js"],
-    plugins: { js },
-    extends: ["js/recommended"],
-    languageOptions: { globals: { polkit: true } },
-  },
 ])

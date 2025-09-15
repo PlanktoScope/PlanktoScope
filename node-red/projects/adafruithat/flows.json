@@ -7437,24 +7437,6 @@
         ]
     },
     {
-        "id": "3e64877a.9684b",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "set global",
-        "func": "global.set(\"acq_software\", \"PlanktoScope \" + msg.payload);\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "bdc6718a.dd5d48",
         "type": "ui_text",
         "z": "1371dec5.76e671",
@@ -7494,27 +7476,6 @@
         "color": "#000000",
         "x": 610,
         "y": 660,
-        "wires": []
-    },
-    {
-        "id": "8343fa69.49339",
-        "type": "ui_text",
-        "z": "1371dec5.76e671",
-        "group": "ce9e278.781eed8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Software Version",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": "",
-        "color": "#000000",
-        "x": 850,
-        "y": 540,
         "wires": []
     },
     {
@@ -7762,185 +7723,6 @@
         ]
     },
     {
-        "id": "24de7407445d2087",
-        "type": "inject",
-        "z": "1371dec5.76e671",
-        "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "",
-        "topic": "",
-        "payload": "start",
-        "payloadType": "str",
-        "x": 90,
-        "y": 520,
-        "wires": [
-            [
-                "e4f9ed2b337c2fa6"
-            ]
-        ]
-    },
-    {
-        "id": "e4f9ed2b337c2fa6",
-        "type": "file in",
-        "z": "1371dec5.76e671",
-        "name": "Versioning File",
-        "filename": "/usr/share/planktoscope/installer-versioning.yml",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 240,
-        "y": 520,
-        "wires": [
-            [
-                "db79aae8a7fe3512"
-            ]
-        ]
-    },
-    {
-        "id": "db79aae8a7fe3512",
-        "type": "yaml",
-        "z": "1371dec5.76e671",
-        "property": "payload",
-        "name": "",
-        "x": 390,
-        "y": 520,
-        "wires": [
-            [
-                "04c313e8d9aac122",
-                "ef1970121e57c5e8",
-                "574361abfe75b3b3"
-            ]
-        ]
-    },
-    {
-        "id": "04c313e8d9aac122",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Get repo",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.repo",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 580,
-        "y": 480,
-        "wires": [
-            [
-                "57b3b083a2455e09"
-            ]
-        ]
-    },
-    {
-        "id": "ef1970121e57c5e8",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Get version",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.version",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 590,
-        "y": 520,
-        "wires": [
-            [
-                "3e64877a.9684b",
-                "8343fa69.49339"
-            ]
-        ]
-    },
-    {
-        "id": "57b3b083a2455e09",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "set global",
-        "func": "global.set(\"process_source\", msg.payload);\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "574361abfe75b3b3",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Get commit",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.commit",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 590,
-        "y": 560,
-        "wires": [
-            [
-                "016d1d2a2f19f1a6"
-            ]
-        ]
-    },
-    {
-        "id": "016d1d2a2f19f1a6",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "set global",
-        "func": "global.set(\"process_commit\", msg.payload);\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "4ed64bd91fa9fbdf",
         "type": "ui_template",
         "z": "1371dec5.76e671",
@@ -8180,6 +7962,78 @@
         "x": 620,
         "y": 300,
         "wires": []
+    },
+    {
+        "id": "1f13d1d98f03481e",
+        "type": "ui_text",
+        "z": "1371dec5.76e671",
+        "group": "ce9e278.781eed8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Software Version",
+        "format": "{{msg.payload.software_versioning.version}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 850,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "0abe4d343bb6a2fb",
+        "type": "inject",
+        "z": "1371dec5.76e671",
+        "name": "once",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "x": 90,
+        "y": 520,
+        "wires": [
+            [
+                "8ac8b85e0553703a"
+            ]
+        ]
+    },
+    {
+        "id": "8def4234c1f81614",
+        "type": "function",
+        "z": "1371dec5.76e671",
+        "name": "set globals",
+        "func": "global.set(\"process_source\", msg.payload.software_versioning.repo);\nglobal.set(\"acq_software\", \"PlanktoScope \" + msg.payload.software_versioning.version);\nglobal.set(\"process_commit\", msg.payload.software_versioning.commit);\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ac8b85e0553703a",
+        "type": "get software versioning",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "x": 390,
+        "y": 520,
+        "wires": [
+            [
+                "8def4234c1f81614",
+                "1f13d1d98f03481e"
+            ]
+        ]
     },
     {
         "id": "1fdf77b5.24e4e",
