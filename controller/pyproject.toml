@@ -40,11 +40,11 @@ readerwriterlock = "^1.0.9"
 
 [tool.poetry.group.hw.dependencies]
 rpi-gpio = "^0.7.0"
-adafruit-blinka = "^8.65.0"
+adafruit-blinka = "^8.66.0"
 adafruit-circuitpython-motorkit = "^1.6.18"
 adafruit-circuitpython-motor = "^3.4.17"
 adafruit-ssd1306 = "^1.6.2"
-adafruit-platformdetect = "^3.83.0"
+adafruit-platformdetect = "^3.83.1"
 smbus2 = "^0.5.0"
 spidev = "^3.5"
 gpiozero = "^2.0.1"
@@ -54,10 +54,10 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.37.0"
-mypy = "^1.17.1"
+mypy = "^1.18.1"
 types-paho-mqtt = "^1.6.0.20240106"
-picamera2 = "^0.3.30"
-ruff = "^0.12.11"
+picamera2 = "^0.3.31"
+ruff = "^0.13.0"
 
 [tool.ruff]
 line-length = 100
