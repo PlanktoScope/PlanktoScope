@@ -3,7 +3,7 @@ import { useSubmission, action, redirect } from "@solidjs/router"
 
 import { request } from "../../../lib/mqtt.js"
 
-export default function Production() {
+export default function Setup() {
   const [data] = createResource("setup/read", async (topic) => {
     return request(topic)
   })

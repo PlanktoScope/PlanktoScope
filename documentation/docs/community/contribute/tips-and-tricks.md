@@ -128,9 +128,8 @@ When network is not available you have several options for debugging
 
 - Plug-in a keyboard and display (needs micro HDMI adapter)
 - [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
-- Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
-
-The NanoKVM USB solution works for all setups.
+- Use [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html) (no need for network)
+- Use [JetKVM](https://jetkvm.com/) (local network needed)
 
 ## Backup and Restore SD Card
 
