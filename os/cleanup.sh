@@ -2,11 +2,11 @@
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
 # Remove unnecessary packages:
-sudo apt-get remove -y gcc g++ gcc-12 triggerhappy
+sudo apt purge -y gcc g++ gcc-12 triggerhappy
 
 # Clean up any unnecessary apt files:
-sudo apt-get autoremove -y
-sudo apt-get clean -y
+sudo apt autoremove -y
+sudo apt clean -y
 
 # Clear machine-id so that it will be regenerated on the next boot
 # (refer to https://www.freedesktop.org/software/systemd/man/latest/machine-id.html):
