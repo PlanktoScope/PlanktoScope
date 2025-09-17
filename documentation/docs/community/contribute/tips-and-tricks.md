@@ -8,23 +8,27 @@ This page provides useful snippets and how-tos while developing software for the
 
 ## Building the OS
 
-Install [Raspberry Pi OS Lite 2025-05-13 ARM64](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
+### Install Raspberry Pi OS
 
-See [Install an operating system](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system). **DO NOT** apply OS customization settings.
+Download [2025-05-13-raspios-bookworm-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
 
-Boot into Raspberry Pi OS and type the following commands
+Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
+
+When asked to **Use OS customization?** press **EDIT SETTINGS**
+
+* Set **Username** to `pi`
+* Set **Password** to `copepode`
+* Enable SSH with `Use password authentication`
+
+Boot into Raspberry Pi OS and type the following commands using SSH
 
 ```sh
-cd /home/pi
-sudo apt install git
-git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
-cd PlanktoScope
-./os/developer-mode/install-just.sh
-just
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/PlanktoScope/PlanktoScope/HEAD/os/setup.sh)"
+# After the script ran succesfully
 sudo systemctl reboot
 ```
 
-Open the PlanktoScope URL in your browser.
+After the PlanktoScope has rebooted you can open its URL in your browser.
 
 PlanktoScope OS is ready.
 
@@ -37,6 +41,7 @@ cd /home/pi/PlanktoScope
 git checkout main
 git pull
 just
+# After the script ran succesfully
 sudo systemctl reboot
 ```
 
@@ -96,34 +101,18 @@ git status
 
 </details>
 
-We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development).b
-Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
+We recommend developping directly from the PlanktoScope using [Visual Studio Code and the Remote - SSH extension](https://code.visualstudio.com/docs/remote/ssh) or [Zed - Remote Development](https://zed.dev/docs/remote-development). Use `$planktoscope` as the host to connect to and open the `/home/pi/PlanktoScope` directory.
 
 ## Connect to router
 
-The default behavior of the PlanktoScope is to act as a router to connect your computer to it directly via WiFi or Ethernet.
-
-If you have a LAN it may be more convenient to connect the PlanktoScope to it and act as a simple client.
-
-<details>
-    <summary>Ethernet</summary>
-
-```sh
-nmcli connection up eth0-default
-```
-
-</details>
-
-<details>
-    <summary>WiFi</summary>
+The supported way to connect the PlanktoScope to a router is with an Ethernet cable.
+If that is not possible you may try the following:
 
 ```sh
 nmcli connection down wlan0-hotspot
 nmcli device wifi list
 nmcli device wifi connect "<SSID>" --ask
 ```
-
-</details>
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
 
@@ -139,9 +128,8 @@ When network is not available you have several options for debugging
 
 - Plug-in a keyboard and display (needs micro HDMI adapter)
 - [Connect a serial cable](https://www.jeffgeerling.com/blog/2021/attaching-raspberry-pis-serial-console-uart-debugging)
-- Use the [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html)
-
-The NanoKVM USB solution works for all setups.
+- Use [NanoKVM USB](https://wiki.sipeed.com/hardware/en/kvm/NanoKVM_USB/introduction.html) (no need for network)
+- Use [JetKVM](https://jetkvm.com/) (local network needed)
 
 ## Backup and Restore SD Card
 

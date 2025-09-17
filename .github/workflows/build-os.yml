@@ -125,36 +125,6 @@ jobs:
           mode: to
           size: 16G
 
-      # RECORD INSTALLER VERSIONING INFORMATION
-      # The user-driven setup script (install.planktoscope.community/distro.sh) records version info
-      # which is read by the PlanktoScope's Python backend and Node-RED dashboard, so we must
-      # record the same information here.
-
-      - name: Record OS installation versioning information
-        uses: ethanjli/pinspawn-action@v0.1.5
-        with:
-          image: ${{ steps.expand-image.outputs.destination }}
-          user: ${{ env.SETUP_USER }}
-          args: >-
-            --bind "$(pwd)":/run/os-setup
-            --machine=raspberrypi
-          run: |
-            export DEBIAN_FRONTEND=noninteractive
-            sudo apt-get update -y -o Dpkg::Progress-Fancy=0
-            sudo apt-get install -y -o Dpkg::Progress-Fancy=0 git
-            # chown is needed to suppress a git error about dubious repo ownership:
-            sudo chown -R $USER "/run/os-setup"
-
-            set -x
-            ACTUAL_SHA="$(printf "%.7s" "${{ env.ACTUAL_SHA }}")"
-            /run/os-setup/os/ci-record-version.sh \
-              "github.com/${{ env.REPO }}" "$ACTUAL_SHA" "hash" \
-              "/run/os-setup"
-            echo "installer-config.yml:"
-            cat /usr/share/planktoscope/installer-config.yml
-            echo "installer-versioning.yml:"
-            cat /usr/share/planktoscope/installer-versioning.yml
-
       # If we don't do this, then the post-job cleanup for the actions/checkout step will emit a
       # warning:
       - name: Reset owner of Git repo
@@ -187,7 +157,7 @@ jobs:
           run: |
             echo "Running setup scripts..."
             export DEBIAN_FRONTEND=noninteractive
-            /run/os-setup/os/setup.sh
+            /run/os-setup/os/setup-ci.sh
             echo "Done!"
 
       - name: Prepare for a headless first boot on bare metal
