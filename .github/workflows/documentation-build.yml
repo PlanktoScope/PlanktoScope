@@ -44,14 +44,14 @@ jobs:
           - default
           - minimal # (without hardware setup guides, to save space)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Build documentation website
       - name: Install poetry
         run: pipx install poetry==2.1.3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'poetry'

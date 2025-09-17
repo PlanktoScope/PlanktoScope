@@ -7460,24 +7460,6 @@
         ]
     },
     {
-        "id": "3e64877a.9684b",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "set global",
-        "func": "global.set(\"acq_software\", \"PlanktoScope \" + msg.payload);\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 520,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "bdc6718a.dd5d48",
         "type": "ui_text",
         "z": "1371dec5.76e671",
@@ -7524,7 +7506,7 @@
         "height": 0,
         "name": "",
         "label": "Software Version",
-        "format": "{{msg.payload}}",
+        "format": "{{msg.payload.software_versioning.version}}",
         "layout": "row-spread",
         "className": "",
         "style": false,
@@ -7720,119 +7702,21 @@
         ]
     },
     {
-        "id": "99725e1437cc390b",
-        "type": "file in",
-        "z": "1371dec5.76e671",
-        "name": "Versioning File",
-        "filename": "/usr/share/planktoscope/installer-versioning.yml",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 240,
-        "y": 540,
-        "wires": [
-            [
-                "f4e21e28bd903f6d"
-            ]
-        ],
-        "info": "# PlanktoScope Help\nThis Node will read the content of the file named **config.txt** containing all the input placeholders.\n"
-    },
-    {
         "id": "6a0fa173874c3ddd",
         "type": "inject",
         "z": "1371dec5.76e671",
         "name": "once",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
+        "props": [],
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": "",
         "topic": "",
-        "payload": "start",
-        "payloadType": "str",
         "x": 90,
         "y": 540,
         "wires": [
             [
-                "99725e1437cc390b"
-            ]
-        ]
-    },
-    {
-        "id": "f4e21e28bd903f6d",
-        "type": "yaml",
-        "z": "1371dec5.76e671",
-        "property": "payload",
-        "name": "",
-        "x": 390,
-        "y": 540,
-        "wires": [
-            [
-                "d6264e3e29b68c6e",
-                "aa84b912c996c69e",
-                "fba22dc2c16b3ec8"
-            ]
-        ]
-    },
-    {
-        "id": "d6264e3e29b68c6e",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Get version",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.version",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 590,
-        "y": 540,
-        "wires": [
-            [
-                "3e64877a.9684b",
-                "8343fa69.49339"
-            ]
-        ]
-    },
-    {
-        "id": "aa84b912c996c69e",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Get repo",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.repo",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 580,
-        "y": 500,
-        "wires": [
-            [
-                "fd55e7a43d9bdbbb"
+                "63088f72f704774d"
             ]
         ]
     },
@@ -7840,61 +7724,16 @@
         "id": "fd55e7a43d9bdbbb",
         "type": "function",
         "z": "1371dec5.76e671",
-        "name": "set global",
-        "func": "global.set(\"process_source\", msg.payload);\n",
+        "name": "set globals",
+        "func": "global.set(\"process_source\", msg.payload.software_versioning.repo);\nglobal.set(\"acq_software\", \"PlanktoScope \" + msg.payload.software_versioning.version);\nglobal.set(\"process_commit\", msg.payload.software_versioning.commit);\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 820,
+        "x": 830,
         "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "fba22dc2c16b3ec8",
-        "type": "change",
-        "z": "1371dec5.76e671",
-        "name": "Get commit",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.commit",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 590,
-        "y": 580,
-        "wires": [
-            [
-                "2ddc75a4ac38a17f"
-            ]
-        ]
-    },
-    {
-        "id": "2ddc75a4ac38a17f",
-        "type": "function",
-        "z": "1371dec5.76e671",
-        "name": "set global",
-        "func": "global.set(\"process_commit\", msg.payload);\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 600,
         "wires": [
             []
         ]
@@ -8139,6 +7978,20 @@
         "x": 620,
         "y": 420,
         "wires": []
+    },
+    {
+        "id": "63088f72f704774d",
+        "type": "get software versioning",
+        "z": "1371dec5.76e671",
+        "name": "",
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "fd55e7a43d9bdbbb",
+                "8343fa69.49339"
+            ]
+        ]
     },
     {
         "id": "1fdf77b5.24e4e",
