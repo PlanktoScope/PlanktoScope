@@ -3,7 +3,7 @@ import { useSubmission, action } from "@solidjs/router"
 
 import { request } from "../../../lib/mqtt.js"
 
-export default function Production() {
+export default function Bootstrap() {
   const [EEPROM, { refetch }] = createResource(
     "bootstrap/init",
     async (topic) => {

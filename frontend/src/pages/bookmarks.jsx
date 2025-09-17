@@ -1,4 +1,4 @@
-export default function About() {
+export default function Bookmarks() {
   function makeUrl(path) {
     const url = new URL(document.location.href)
     url.port = 80
