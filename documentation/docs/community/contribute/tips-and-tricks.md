@@ -20,14 +20,12 @@ When asked to **Use OS customization?** press **EDIT SETTINGS**
 * Set **Password** to `copepode`
 * Enable SSH with `Use password authentication`
 
-Install [Raspberry Pi OS Lite 2025-05-13 ARM64](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
-
-See [Install an operating system](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system). **DO NOT** apply OS customization settings.
-
-Boot into Raspberry Pi OS and type the following commands
+Boot into Raspberry Pi OS and type the following commands using SSH
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/PlanktoScope/PlanktoScope/HEAD/os/setup.sh)"
+# After the script ran succesfully
+sudo systemctl reboot
 ```
 
 After the PlanktoScope has rebooted you can open its URL in your browser.
@@ -43,6 +41,7 @@ cd /home/pi/PlanktoScope
 git checkout main
 git pull
 just
+# After the script ran succesfully
 sudo systemctl reboot
 ```
 

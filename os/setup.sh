@@ -13,9 +13,8 @@ if [ "$line" != "$expected" ]; then
 fi
 
 cd /home/pi
-sudo apt install git
-git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none --depth=1
+sudo apt install -y git
+git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none
 cd PlanktoScope
 ./os/developer-mode/install-just.sh
 just
-sudo systemctl reboot
