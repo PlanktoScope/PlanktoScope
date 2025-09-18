@@ -120,14 +120,6 @@
         "env": []
     },
     {
-        "id": "b7e8339668e4bc4a",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "4ed26b8b.253504",
         "type": "subflow",
         "name": "Save hardware config",
@@ -9162,78 +9154,6 @@
         "info": "",
         "x": 330,
         "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "536b2b2c89ab97da",
-        "type": "exec",
-        "z": "b7e8339668e4bc4a",
-        "command": "cd /home/pi/PlanktoScope && git add . && git commit -m 'update' && git push",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 880,
-        "y": 160,
-        "wires": [
-            [
-                "1b76e10ed22d8e89"
-            ],
-            [
-                "1b76e10ed22d8e89"
-            ],
-            [
-                "1b76e10ed22d8e89"
-            ]
-        ]
-    },
-    {
-        "id": "bf5fee1cf69b388a",
-        "type": "inject",
-        "z": "b7e8339668e4bc4a",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 520,
-        "y": 160,
-        "wires": [
-            [
-                "536b2b2c89ab97da"
-            ]
-        ]
-    },
-    {
-        "id": "1b76e10ed22d8e89",
-        "type": "debug",
-        "z": "b7e8339668e4bc4a",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1260,
-        "y": 160,
         "wires": []
     }
 ]
