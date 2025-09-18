@@ -16,7 +16,7 @@ import multiprocessing
 # Basic planktoscope libraries
 from . import mqtt
 
-# Library to send command over I2C for the light module on the fan
+# Library to send command over I2C for the light module
 import smbus2 as smbus
 
 import enum
