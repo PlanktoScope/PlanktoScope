@@ -754,9 +754,28 @@ pathDefaults:
 
 paths:
   cam:
-    source: rpiCamera
-    # rpiCameraWidth: 1280
-    # rpiCameraHeight: 720
-    # rpiCameraVFlip: true
-    # rpiCameraHFlip: true
-    # rpiCameraBitrate: 1500000
+
+  # http://pkscope-sponge-care-280-1:8889/primary/
+  # primary:
+  #   source: rpiCamera
+  #   # rpiCameraSecondary: false
+  #   # rpiCameraWidth: 1920
+  #   # rpiCameraHeight: 1080
+  #   # rpiCameraFPS: 10 # https://forums.raspberrypi.com/viewtopic.php?p=2227794#p2227660
+  #   # rpiCameraCodec: auto
+  #   rpiCameraBitrate: 10000000
+  #   sourceOnDemand: yes
+
+  # Secondary stream can only be mjpeg
+  # mjpeg through http is not supported
+  # but you can use rtsp for example vlc --network-caching=50 rtsp://pkscope-sponge-care-280-1:8554/secondary
+  # I don't really get the point of supporting a secondary stream and why is it specific to rpiCamera?
+  # vlc --network-caching=50 rtsp://pkscope-sponge-care-280-1:8554/secondary
+  # secondary:
+  #   source: rpiCamera
+  #   rpiCameraSecondary: true
+  #   rpiCameraWidth: 1920
+  #   rpiCameraHeight: 1080
+  #   rpiCameraFPS: 10
+  #   rpiCameraCodec: 'mjpeg'
+  #   rpiCameraMJPEGQuality: 100

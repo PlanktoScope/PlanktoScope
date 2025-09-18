@@ -1,6 +1,6 @@
 setup:
     wget https://github.com/bluenviron/mediamtx/releases/download/v1.14.0/mediamtx_v1.14.0_linux_arm64.tar.gz -P /tmp
-    cd /tmp && tar -xf /tmp/linux-arm64-filebrowser.tar.gz
+    cd /tmp && tar -xf /tmp/mediamtx_v1.14.0_linux_arm64.tar.gz
     -sudo systemctl stop mediamtx
     sudo cp /tmp/mediamtx /usr/local/bin/mediamtx
     sudo cp mediamtx.service /etc/systemd/system/

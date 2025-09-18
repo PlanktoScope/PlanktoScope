@@ -1,12 +1,9 @@
 """hardware provides basic I/O abstractions for camera hardware."""
 
-import io
-import threading
 import typing
 
 import loguru
 import picamera2  # type: ignore
-import typing_extensions
 from picamera2 import encoders, outputs
 from readerwriterlock import rwlock
 
@@ -218,7 +215,6 @@ class PiCamera:
 
     def __init__(
         self,
-        preview_output: io.BufferedIOBase,
         stream_config: StreamConfig = StreamConfig(
             preview_size=(800, 600),
             # Note(ethanjli): a bitrate of 80 Mbps in practice results in ~8 Mbps of bandwidth per
@@ -235,8 +231,6 @@ class PiCamera:
         """Set up state needed to initialize the camera, but don't actually start the camera yet.
 
         Args:
-            preview_output: an image stream which this `PiCamera` instance will write camera preview
-              images to once the camera is started.
             stream_config: configuration of camera output streams.
             initial_settings: any camera settings to initialize the camera with.
         """
@@ -245,8 +239,6 @@ class PiCamera:
         self._stream_config = stream_config
         self._cached_settings = initial_settings
 
-        # I/O:
-        self._preview_output = preview_output
         self._camera: typing.Optional[picamera2.Picamera2] = None
 
     def open(self) -> None:
@@ -287,18 +279,18 @@ class PiCamera:
         self.settings = initial_settings
 
         loguru.logger.debug("Starting the camera...")
+
+        encoder = encoders.H264Encoder(bitrate=self._stream_config.preview_bitrate)
+        # http://pkscope-sponge-care-280-1:8889/cam/
+        output = outputs.PyavOutput("rtsp://127.0.0.1:8554/cam", format="rtsp")
         self._camera.start_recording(
-            # Note(ethanjli): for compatibility with the RPi 4 (which must use YUV420 for "lores"
-            # stream output), we cannot use `JpegEncoder` (which only accepts RGB, not YUV); for
-            # details, refer to Table 1 on page 59 of the picamera2 manual. So we must use
-            # `MJPEGEncoder` instead:
-            encoders.MJPEGEncoder(bitrate=self._stream_config.preview_bitrate),
-            outputs.FileOutput(self._preview_output),
+            encoder=encoder,
+            output=output,
             # If we specify quality, it overrides the bitrate, contrary to what the picamera2 docs
             # say (refer to
             # github.com/raspberrypi/picamera2/blob/main/picamera2/encoders/mjpeg_encoder.py#L23):
             # quality=encoders.Quality.VERY_HIGH,
-            name="lores",
+            name="lores"
         )
 
     @property
@@ -431,58 +423,3 @@ class PiCamera:
         self._camera.close()
         self._camera = None
         self._cached_settings = SettingsValues()
-
-
-class PreviewStream(io.BufferedIOBase):
-    """A thread-safe stream of discrete byte buffers for use in live previews.
-
-    This stream is designed to support at-most-once delivery, so no guarantees are made about
-    delivery of every buffer to the consumers: a consumer is allowed to skip buffers when it's too
-    busy. This is a design feature to prevent backpressure on certain consumers (e.g. from
-    downstream clients sending the buffer across a network, when the buffer is a large image) from
-    degrading stream quality for everyone.
-
-    This stream can be used by anything which requires a [io.BufferedIOBase], assuming it never
-    splits any buffer across multiple calls of the `write()` method.
-    """
-
-    def __init__(self) -> None:
-        """Initialize the stream."""
-        self._latest_buffer: typing.Optional[bytes] = None
-        # Mutex to prevent data races between readers and writers:
-        self._latest_buffer_lock = rwlock.RWLockWrite()
-        # Condition variable to allow listeners to wait for a new buffer:
-        self._available = threading.Condition()
-
-    def write(self, buffer: typing_extensions.Buffer) -> int:
-        """Write the byte buffer as the latest buffer in the stream.
-
-        If readers are accessing the buffer when this method is called, then it may block for a
-        while, in order to wait for those readers to finish.
-
-        Returns:
-            The length of the byte buffer written.
-        """
-        b = bytes(buffer)
-        with self._latest_buffer_lock.gen_wlock():
-            self._latest_buffer = b
-        with self._available:
-            self._available.notify_all()
-        return len(b)
-
-    def wait_next(self) -> None:
-        """Wait until the next buffer is available.
-
-        When called, this method blocks until it is awakened by a `update()` call in another
-        thread. Once awakened, it returns.
-        """
-        with self._available:
-            self._available.wait()
-
-    def get(self) -> typing.Optional[bytes]:
-        """Return a copy of the latest buffer in the stream."""
-        if self._latest_buffer is None:
-            return None
-        with self._latest_buffer_lock.gen_rlock():
-            b = self._latest_buffer[:]
-        return b
