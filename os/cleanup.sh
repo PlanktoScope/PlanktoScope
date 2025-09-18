@@ -2,7 +2,7 @@
 # Cleanup removes unnecessary files from the operating system for a smaller and more secure disk image.
 
 # Remove unnecessary packages:
-sudo apt-get remove -y gcc g++ gcc-12 triggerhappy
+sudo apt-get remove -y gcc g++ gcc-12 triggerhappy modemmanager
 
 # Clean up any unnecessary apt files:
 sudo apt-get autoremove -y
