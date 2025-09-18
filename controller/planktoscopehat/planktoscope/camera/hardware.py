@@ -280,7 +280,9 @@ class PiCamera:
 
         loguru.logger.debug("Starting the camera...")
 
-        encoder = encoders.H264Encoder(bitrate=self._stream_config.preview_bitrate)
+        encoder = encoders.H264Encoder(
+            # bitrate=self._stream_config.preview_bitrate
+        )
         # http://pkscope-sponge-care-280-1:8889/cam/
         output = outputs.PyavOutput("rtsp://127.0.0.1:8554/cam", format="rtsp")
         self._camera.start_recording(
