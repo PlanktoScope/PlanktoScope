@@ -1,3 +1,5 @@
+# https://mediamtx.org/docs/usage/start-on-boot#linux
+
 [Unit]
 Wants=network.target
 
@@ -6,5 +8,3 @@ ExecStart=/usr/local/bin/mediamtx /home/pi/PlanktoScope/os/mediamtx/mediamtx.yml
 
 [Install]
 WantedBy=multi-user.target
-
-# https://mediamtx.org/docs/usage/start-on-boot#linux

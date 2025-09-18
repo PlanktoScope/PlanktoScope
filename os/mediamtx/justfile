@@ -7,6 +7,9 @@ setup:
     sudo systemctl reenable mediamtx
     sudo systemctl restart mediamtx
 
+test:
+    validator mediamtx.yml
+
 dev:
     -sudo systemctl stop mediamtx
     mediamtx mediamtx.yml

@@ -16,4 +16,8 @@
   <service name="mqtt"/>
   <!-- Mosquitto MQTT WebSocket  -->
   <port port="9001" protocol="tcp"/>
+  <!-- mediamtx WebRTC -->
+  <port port="8889" protocol="tcp"/>
+  <!-- mediamtx ICE/UDP -->
+  <port port="8189" protocol="tcp"/>
 </zone>
