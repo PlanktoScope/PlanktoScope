@@ -3,6 +3,7 @@ export PATH := x"${PATH}:/home/$USER/.local/bin"
 default: base setup
 
 base:
+    # TODO https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
     sudo -E bash /tmp/nodesource_setup.sh
     sudo apt install -y pipx git nodejs
