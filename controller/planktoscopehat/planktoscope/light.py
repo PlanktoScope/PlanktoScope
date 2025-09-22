@@ -14,7 +14,7 @@ import json
 import multiprocessing
 
 # Basic planktoscope libraries
-from . import mqtt
+import mqtt
 
 # Library to send command over I2C for the light module
 import smbus2 as smbus

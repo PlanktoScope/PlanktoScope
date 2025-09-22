@@ -7,7 +7,7 @@ import typing
 
 import loguru
 
-from .. import mqtt as messaging
+import mqtt as messaging
 from . import hardware
 
 loguru.logger.info("planktoscope.camera is loaded")

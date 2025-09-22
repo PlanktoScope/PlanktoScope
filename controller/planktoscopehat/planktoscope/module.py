@@ -11,7 +11,7 @@ import time
 import multiprocessing
 
 # Basic planktoscope communication libraries
-from . import mqtt
+import mqtt
 
 logger.info("planktoscope.module is loaded")
 

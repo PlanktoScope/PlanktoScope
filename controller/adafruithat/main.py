@@ -23,9 +23,10 @@ import os
 
 from loguru import logger  # for logging with multiprocessing
 
-from adafruithat.planktoscope import stepper, light, identity
+from adafruithat.planktoscope import stepper, light
+import identity
 from adafruithat.planktoscope.display import Display
-from adafruithat.planktoscope.imager import mqtt as imager
+from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope hardware controller!")
 

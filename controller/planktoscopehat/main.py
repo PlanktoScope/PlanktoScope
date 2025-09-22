@@ -7,8 +7,9 @@ import json
 
 from loguru import logger
 
-from planktoscopehat.planktoscope import pump, focus, light, identity
-from planktoscopehat.planktoscope.imager import mqtt as imager
+from planktoscopehat.planktoscope import pump, focus, light
+import identity
+from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
 

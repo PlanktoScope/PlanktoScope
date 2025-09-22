@@ -6,7 +6,7 @@ from loguru import logger
 
 from .motor.motor import Motor
 
-from . import mqtt
+import mqtt
 
 logger.info("planktoscope.pump is loaded")
 
