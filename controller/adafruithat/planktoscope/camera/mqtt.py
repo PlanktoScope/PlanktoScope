@@ -1,7 +1,6 @@
-"""mqtt provides an MJPEG+MQTT API for camera supervision and interaction."""
+"""mqtt provides an MQTT API for camera supervision and interaction."""
 
 import json
-import os
 import threading
 import time
 import typing
@@ -9,20 +8,19 @@ import typing
 import loguru
 
 from .. import mqtt as messaging
-from . import hardware, mjpeg
+from . import hardware
 
 loguru.logger.info("planktoscope.camera is loaded")
 
 
 class Worker(threading.Thread):
-    """Runs a camera with live MJPEG preview and an MQTT API for adjusting camera settings."""
+    """Runs a camera with MQTT API for adjusting camera settings."""
 
-    def __init__(self, mjpeg_server_address: tuple[str, int] = ("", 8000)) -> None:
+    def __init__(
+        self,
+        configuration: dict[str, typing.Any],
+    ) -> None:
         """Initialize the backend.
-
-        Args:
-            mjpeg_server_address: the host and port for the MJPEG camera preview server to listen
-              on.
 
         Raises:
             ValueError: one or more values in the hardware config file are of the wrong type.
@@ -50,25 +48,11 @@ class Worker(threading.Thread):
             sharpness=0,  # disable the default "normal" sharpening level
             jpeg_quality=95,  # maximize image quality
         )
-        if os.path.exists("/home/pi/PlanktoScope/hardware.json"):
-            # load hardware.json
-            with open("/home/pi/PlanktoScope/hardware.json", "r", encoding="utf-8") as config_file:
-                hardware_config = json.load(config_file)
-                loguru.logger.debug(
-                    f"Loaded hardware configuration file: {hardware_config}",
-                )
-                settings = settings.overlay(hardware.config_to_settings_values(hardware_config))
-        else:
-            loguru.logger.info(
-                "The hardware configuration file doesn't exist, using default settings: "
-                + f"{settings}"
-            )
+        settings = settings.overlay(hardware.config_to_settings_values(configuration))
 
         # I/O
-        self._preview_stream: hardware.PreviewStream = hardware.PreviewStream()
-        self._mjpeg_server_address = mjpeg_server_address
         self._camera: typing.Optional[hardware.PiCamera] = hardware.PiCamera(
-            self._preview_stream, initial_settings=settings
+            initial_settings=settings
         )
         self._camera_checked = threading.Event()
         self._stop_event_loop = threading.Event()
@@ -103,11 +87,6 @@ class Worker(threading.Thread):
             f"Set image gain to {changes.image_gain} for sensor {self._camera.sensor_name}!",
         )
 
-        loguru.logger.info("Starting the MJPEG streaming server...")
-        streaming_server = mjpeg.StreamingServer(self._preview_stream, self._mjpeg_server_address)
-        streaming_thread = threading.Thread(target=streaming_server.serve_forever)
-        streaming_thread.start()
-
         loguru.logger.info("Starting the MQTT backend...")
         # TODO(ethanjli): expose the camera settings over "camera/settings" instead! This requires
         # removing the "settings" action from the "imager/image" route which is a breaking change
@@ -132,11 +111,6 @@ class Worker(threading.Thread):
         finally:
             loguru.logger.info("Stopping the MQTT API...")
             mqtt.shutdown()
-
-            loguru.logger.info("Stopping the MJPEG streaming server...")
-            streaming_server.shutdown()
-            streaming_server.server_close()
-            streaming_thread.join()
 
             loguru.logger.info("Stopping the camera...")
             self._camera.close()

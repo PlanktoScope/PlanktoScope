@@ -19,10 +19,10 @@ loguru.logger.info("planktoscope.imager is loaded")
 
 # TODO(ethanjli): convert this from a process into a thread
 class Worker(multiprocessing.Process):
-    """An MQTT+MJPEG API for the PlanktoScope's camera and image acquisition modules.
+    """An MQTT API for the PlanktoScope's camera and image acquisition modules.
 
-    This launches the camera with an MQTT API for settings adjustments and an MJPEG server with a
-    live camera preview stream, and this also launches stop-flow acquisition routines in response to
+    This launches the camera with an MQTT API for settings adjustments
+    and launches stop-flow acquisition routines in response to
     commands received over the MQTT API.
     """
 

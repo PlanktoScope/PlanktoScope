@@ -1,4 +1,4 @@
-"""mqtt provides an MJPEG+MQTT API for camera supervision and interaction."""
+"""mqtt provides an MQTT API for camera supervision and interaction."""
 
 import json
 import threading
@@ -8,24 +8,19 @@ import typing
 import loguru
 
 from .. import mqtt as messaging
-from . import hardware, mjpeg
+from . import hardware
 
 loguru.logger.info("planktoscope.camera is loaded")
 
 
 class Worker(threading.Thread):
-    """Runs a camera with live MJPEG preview and an MQTT API for adjusting camera settings."""
+    """Runs a camera with MQTT API for adjusting camera settings."""
 
     def __init__(
         self,
         configuration: dict[str, typing.Any],
-        mjpeg_server_address: tuple[str, int] = ("", 8000),
     ) -> None:
         """Initialize the backend.
-
-        Args:
-            mjpeg_server_address: the host and port for the MJPEG camera preview server to listen
-              on.
 
         Raises:
             ValueError: one or more values in the hardware config file are of the wrong type.
@@ -56,10 +51,8 @@ class Worker(threading.Thread):
         settings = settings.overlay(hardware.config_to_settings_values(configuration))
 
         # I/O
-        self._preview_stream: hardware.PreviewStream = hardware.PreviewStream()
-        self._mjpeg_server_address = mjpeg_server_address
         self._camera: typing.Optional[hardware.PiCamera] = hardware.PiCamera(
-            self._preview_stream, initial_settings=settings
+            initial_settings=settings
         )
         self._camera_checked = threading.Event()
         self._stop_event_loop = threading.Event()
@@ -94,11 +87,6 @@ class Worker(threading.Thread):
             f"Set image gain to {changes.image_gain} for sensor {self._camera.sensor_name}!",
         )
 
-        loguru.logger.info("Starting the MJPEG streaming server...")
-        streaming_server = mjpeg.StreamingServer(self._preview_stream, self._mjpeg_server_address)
-        streaming_thread = threading.Thread(target=streaming_server.serve_forever)
-        streaming_thread.start()
-
         loguru.logger.info("Starting the MQTT backend...")
         # TODO(ethanjli): expose the camera settings over "camera/settings" instead! This requires
         # removing the "settings" action from the "imager/image" route which is a breaking change
@@ -123,11 +111,6 @@ class Worker(threading.Thread):
         finally:
             loguru.logger.info("Stopping the MQTT API...")
             mqtt.shutdown()
-
-            loguru.logger.info("Stopping the MJPEG streaming server...")
-            streaming_server.shutdown()
-            streaming_server.server_close()
-            streaming_thread.join()
 
             loguru.logger.info("Stopping the camera...")
             self._camera.close()
