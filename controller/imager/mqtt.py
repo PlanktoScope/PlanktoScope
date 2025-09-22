@@ -7,18 +7,21 @@ import os
 import threading
 import time
 import typing
+from multiprocessing.synchronize import Event
 
 import loguru
 
-from .. import identity, integrity, mqtt
-from ..camera import mqtt as camera
+import identity
+import integrity
+import mqtt
+from camera import mqtt as camera
 from . import stopflow
 
 loguru.logger.info("planktoscope.imager is loaded")
 
 
 # TODO(ethanjli): convert this from a process into a thread
-class Worker(multiprocessing.Process):
+class ImagerProcess(multiprocessing.Process):
     """An MQTT API for the PlanktoScope's camera and image acquisition modules.
 
     This launches the camera with an MQTT API for settings adjustments
@@ -29,7 +32,7 @@ class Worker(multiprocessing.Process):
     # TODO(ethanjli): instead of passing in a stop_event, just expose a `close()` method! This
     # way, we don't give any process the ability to stop all other processes watching the same
     # stop_event!
-    def __init__(self, stop_event: threading.Event, configuration) -> None:
+    def __init__(self, stop_event: Event, configuration: dict[str, typing.Any]):
         """Initialize the worker's internal state, but don't start anything yet.
 
         Args:

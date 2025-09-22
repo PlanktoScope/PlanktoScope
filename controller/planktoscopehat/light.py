@@ -14,7 +14,7 @@ import json
 import multiprocessing
 
 # Basic planktoscope libraries
-from . import mqtt
+import mqtt
 
 # Library to send command over I2C for the light module
 import smbus2 as smbus
@@ -301,20 +301,3 @@ class LightProcess(multiprocessing.Process):
         self.light_client.client.publish("status/light", '{"status":"Dead"}')
         self.light_client.shutdown()
         logger.success("Light process shut down! See you!")
-
-
-# This is called if this script is launched directly
-if __name__ == "__main__":
-    led = i2c_led()
-    led.set_torch_current(30)
-    led.activate_torch_ramp()
-    led.activate_torch()
-    time.sleep(5)
-    led.deactivate_torch()
-    led.set_torch_current(10)
-    led.activate_torch()
-    time.sleep(5)
-    led.deactivate_torch()
-    led.set_torch_current(1)
-    led.set_flash_current(1)
-    led.get_flags()

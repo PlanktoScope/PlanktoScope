@@ -24,7 +24,7 @@ import PIL.Image
 import PIL.ImageDraw
 import PIL.ImageFont
 
-from . import identity
+import identity
 
 logger.info("planktoscope.display is loading")
 

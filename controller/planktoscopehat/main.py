@@ -3,12 +3,12 @@ import multiprocessing
 import time
 import signal
 import os
-import json
 
 from loguru import logger
 
-from planktoscopehat.planktoscope import pump, focus, light, identity
-from planktoscopehat.planktoscope.imager import mqtt as imager
+from . import pump, focus, light
+import identity
+from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
 
@@ -22,7 +22,7 @@ def handler_stop_signals(signum, frame):
     run = False
 
 
-def main():
+def main(configuration):
     logger.info("Welcome!")
     logger.info(
         "Initialising configuration, signals handling and sanitizing the directories (step 1/5)"
@@ -54,13 +54,6 @@ def main():
 
     logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
-    try:
-        with open("/home/pi/PlanktoScope/hardware.json", "r") as config_file:
-            configuration = json.load(config_file)
-    except FileNotFoundError:
-        logger.info("The hardware configuration file doesn't exists, using defaults")
-        configuration = {}
-
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
@@ -78,23 +71,21 @@ def main():
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
     logger.info("Starting the imager control process (step 4/5)")
+    imager_thread = None
     try:
-        imager_thread = imager.Worker(shutdown_event, configuration)
+        imager_thread = imager.ImagerProcess(shutdown_event, configuration)
+        imager_thread.start()
     except Exception as e:
         logger.error(f"The imager control process could not be started: {e}")
-        imager_thread = None
-    else:
-        imager_thread.start()
 
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
+    light_thread = None
     try:
         light_thread = light.LightProcess(shutdown_event, configuration)
+        light_thread.start()
     except Exception:
         logger.error("The light control process could not be started")
-        light_thread = None
-    else:
-        light_thread.start()
 
     logger.success("Looks like everything is set up and running, have fun!")
 
@@ -109,6 +100,9 @@ def main():
             break
         if not imager_thread or not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
+            break
+        if not light_thread or not light_thread.is_alive():
+            logger.error("The light process died unexpectedly! Oh no!")
             break
         time.sleep(1)
 
