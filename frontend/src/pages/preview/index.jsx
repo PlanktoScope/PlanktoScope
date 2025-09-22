@@ -1,7 +1,7 @@
+/* globals MediaMTXWebRTCReader */
+
 import styles from "./styles.module.css"
 import "../../../public/reader.js"
-
-console.log(styles.video)
 
 export default function Preview() {
   const video = <video class={styles.video} muted autoplay></video>
