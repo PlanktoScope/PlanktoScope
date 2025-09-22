@@ -51,7 +51,9 @@ class Worker(threading.Thread):
         settings = settings.overlay(hardware.config_to_settings_values(configuration))
 
         # I/O
-        self._camera: typing.Optional[hardware.PiCamera] = hardware.PiCamera(initial_settings=settings)
+        self._camera: typing.Optional[hardware.PiCamera] = hardware.PiCamera(
+            initial_settings=settings
+        )
         self._camera_checked = threading.Event()
         self._stop_event_loop = threading.Event()
 

@@ -303,7 +303,7 @@ class PiCamera:
             # say (refer to
             # https://github.com/raspberrypi/picamera2/blob/63f3be10e317c4b4b0a93e357d7db18fe098e9d4/picamera2/encoders/mjpeg_encoder.py#L23:):
             quality=encoders.Quality.HIGH,
-            name="lores"
+            name="lores",
         )
 
     @property
