@@ -1,6 +1,8 @@
 import multiprocessing
+from multiprocessing.synchronize import Event
 import os
 import time
+import typing
 
 from loguru import logger
 
@@ -23,7 +25,7 @@ class PumpProcess(multiprocessing.Process):
     # pump max speed is in ml/min
     pump_max_speed = 50
 
-    def __init__(self, event, configuration):
+    def __init__(self, event: Event, configuration: dict[str, typing.Any]):
         super(PumpProcess, self).__init__()
         logger.info("Initialising the pump process")
 
