@@ -4,8 +4,8 @@ import styles from "./styles.module.css"
 import "../../../public/reader.js"
 
 export default function Preview() {
-  const video = <video class={styles.video} muted autoplay></video>
-  const message = <div class={styles.message}></div>
+  const video = <video class={styles.video} muted autoplay />
+  const message = <div class={styles.message} />
 
   const setMessage = (str) => {
     message.innerText = str
