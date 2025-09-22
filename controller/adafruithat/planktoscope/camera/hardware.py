@@ -296,8 +296,8 @@ class PiCamera:
             outputs.FileOutput(self._preview_output),
             # If we specify quality, it overrides the bitrate, contrary to what the picamera2 docs
             # say (refer to
-            # github.com/raspberrypi/picamera2/blob/main/picamera2/encoders/mjpeg_encoder.py#L23):
-            # quality=encoders.Quality.VERY_HIGH,
+            # https://github.com/raspberrypi/picamera2/blob/63f3be10e317c4b4b0a93e357d7db18fe098e9d4/picamera2/encoders/mjpeg_encoder.py#L23:
+            quality=encoders.Quality.VERY_HIGH,
             name="lores",
         )
 

@@ -20,9 +20,6 @@ class StreamConfig(typing.NamedTuple):
     # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
     # camera sensor:
     preview_size: typing.Optional[tuple[int, int]] = None
-    # The bitrate (in bits/sec) of the preview stream; defaults to a bitrate automatically
-    # calculated for a high-quality stream:
-    preview_bitrate: typing.Optional[int] = None
     # The number of frame buffers to allocate in memory:
     # Note(ethanjli): from testing, it seems that we need at least three buffers to allow the
     # preview to continue receiving frames smoothly from the "lores" stream while a buffer is
@@ -216,12 +213,8 @@ class PiCamera:
     def __init__(
         self,
         stream_config: StreamConfig = StreamConfig(
-            preview_size=(800, 600),
-            # Note(ethanjli): a bitrate of 80 Mbps in practice results in ~8 Mbps of bandwidth per
-            # stream, both for Ethernet and for the Wi-Fi hotspot. A bitrate of 20 Mbps results in
-            # ~7 Mbps of bandwidth per stream. A bitrate of 15 Mbps results in noticeable JPEG
-            # compression artifacts, and ~5 Mbps of bandwidth per stream.
-            preview_bitrate=25 * 1000000,
+            # half the size of pictures
+            preview_size=(2028, 1520),
             buffer_count=3,
         ),
         # Note(ethanjli): mqtt.Worker's constructor explicitly overrides any defaults we set here -
@@ -253,6 +246,8 @@ class PiCamera:
             self._camera = None
             raise RuntimeError("Could not initialize the camera!") from e
 
+        loguru.logger.debug(f"Camera sensor_modes: {self._camera.sensor_modes}")
+
         loguru.logger.debug("Configuring the camera...")
         main_config: dict[str, typing.Any] = {}
         if (main_size := self._stream_config.capture_size) is not None:
@@ -281,8 +276,24 @@ class PiCamera:
         loguru.logger.debug("Starting the camera...")
 
         encoder = encoders.H264Encoder(
-            # bitrate=self._stream_config.preview_bitrate
+            # picamera2-manual.pdf 7.1.1. H264Encoder
+            # the bitrate (in bits per second) to use. The default value None will cause the encoder to
+            # choose an appropriate bitrate according to the Quality when it starts.
+            # bitrate=None,
+            # picamera2-manual.pdf 7.1.1. H264Encoder
+            # whether to repeat the stream’s sequence headers with every Intra frame (I-frame). This can
+            # be sometimes be useful when streaming video over a network, when the client may not receive the start of the
+            # stream where the sequence headers would normally be located.
+            # repeat=False,
+            # picamera2-manual.pdf 7.1.1. H264Encoder
+            # iperiod (default None) - the number of frames from one I-frame to the next. The value None leaves this at the
+            # discretion of the hardware, which defaults to 60 frames.
+            # iperiod=None
         )
+        # picamera2-manual.pdf 7.1. Encoders
+        # Normally, the encoder of necessity runs at the same frame rate as the camera. By default, every received camera frame
+        # gets sent to the encoder. However, you can use the encoder frame_skip_count property to instead receive every nth frame.
+        # encoder.frame_skip_count = 2
         # rtsp://pkscope-$planktoscope:8554/cam/ (disabled by firewall)
         output = outputs.PyavOutput("rtsp://127.0.0.1:8554/cam", format="rtsp")
         self._camera.start_recording(
@@ -290,8 +301,8 @@ class PiCamera:
             output=output,
             # If we specify quality, it overrides the bitrate, contrary to what the picamera2 docs
             # say (refer to
-            # github.com/raspberrypi/picamera2/blob/main/picamera2/encoders/mjpeg_encoder.py#L23):
-            # quality=encoders.Quality.VERY_HIGH,
+            # https://github.com/raspberrypi/picamera2/blob/63f3be10e317c4b4b0a93e357d7db18fe098e9d4/picamera2/encoders/mjpeg_encoder.py#L23:):
+            quality=encoders.Quality.HIGH,
             name="lores"
         )
 
