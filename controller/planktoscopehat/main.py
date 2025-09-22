@@ -7,7 +7,7 @@ import json
 
 from loguru import logger
 
-from planktoscopehat.planktoscope import pump, focus, light
+from . import pump, focus, light
 import identity
 from imager import mqtt as imager
 
