@@ -73,7 +73,7 @@ def main(configuration):
     logger.info("Starting the imager control process (step 4/5)")
     imager_thread = None
     try:
-        imager_thread = imager.Worker(shutdown_event, configuration)
+        imager_thread = imager.ImagerProcess(shutdown_event, configuration)
         imager_thread.start()
     except Exception as e:
         logger.error(f"The imager control process could not be started: {e}")
@@ -100,6 +100,9 @@ def main(configuration):
             break
         if not imager_thread or not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
+            break
+        if not light_thread or not light_thread.is_alive():
+            logger.error("The light process died unexpectedly! Oh no!")
             break
         time.sleep(1)
 

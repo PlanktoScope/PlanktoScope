@@ -83,7 +83,7 @@ def main(configuration):
     logger.info("Starting the imager control process (step 3/4)")
     imager_thread = None
     try:
-        imager_thread = imager.Worker(shutdown_event, configuration)
+        imager_thread = imager.ImagerProcess(shutdown_event, configuration)
         imager_thread.start()
     except Exception as e:
         logger.error(f"The imager control process could not be started: {e}")

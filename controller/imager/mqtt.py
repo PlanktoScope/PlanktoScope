@@ -21,7 +21,7 @@ loguru.logger.info("planktoscope.imager is loaded")
 
 
 # TODO(ethanjli): convert this from a process into a thread
-class Worker(multiprocessing.Process):
+class ImagerProcess(multiprocessing.Process):
     """An MQTT API for the PlanktoScope's camera and image acquisition modules.
 
     This launches the camera with an MQTT API for settings adjustments
