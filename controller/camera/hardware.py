@@ -6,7 +6,19 @@ import loguru
 import picamera2  # type: ignore
 from picamera2 import encoders, outputs
 from readerwriterlock import rwlock
-from picamera2.platform import Platform, get_platform
+from picamera2.platform import Platform, get_platform  # type: ignore
+
+# The width & height (in pixels) of camera preview; defaults to the max allowed size for the
+# camera sensor:
+#
+# capture uses 4056x3040 (4:3 ratio)
+# we use half on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
+# we use 1440x1080 on RPI5 to stay within the hardware encoder capabilities while maintaining ratio
+# anything <= 1920x1080 divisible by 16 (required by H.264 macroblock alignment) (or 2) is fine
+# See supported levels with
+# v4l2-ctl -D -d /dev/video11 -l -L
+# https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels
+preview_size = (1440, 1080) if (get_platform() == Platform.VC4) else (2028, 1520)
 
 # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
 # camera sensor:
