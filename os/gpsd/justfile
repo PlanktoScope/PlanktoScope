@@ -1,0 +1,13 @@
+setup:
+    sudo apt install -y gpsd
+    -sudo systemctl stop mediamtx
+    sudo cp gpsd.env /etc/default/gpsd
+    sudo systemctl reenable gpsd
+    sudo systemctl restart gpsd
+
+test:
+    validator gpsd.env
+
+dev:
+    -sudo systemctl stop gpsd
+    sudo gpsd --nowait --foreground /dev/ttyUSB0
