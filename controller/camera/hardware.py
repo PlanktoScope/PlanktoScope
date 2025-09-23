@@ -6,6 +6,19 @@ import loguru
 import picamera2  # type: ignore
 from picamera2 import encoders, outputs
 from readerwriterlock import rwlock
+from picamera2.platform import Platform, get_platform  # type: ignore
+
+# The width & height (in pixels) of camera preview; defaults to the max allowed size for the
+# camera sensor:
+#
+# capture uses 4056x3040 (4:3 ratio)
+# we use half on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
+# we use 1440x1080 on RPI5 to stay within the hardware encoder capabilities while maintaining ratio
+# anything <= 1920x1080 divisible by 16 (required by H.264 macroblock alignment) (or 2) is fine
+# See supported levels with
+# v4l2-ctl -D -d /dev/video11 -l -L
+# https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels
+preview_size = (1440, 1080) if (get_platform() == Platform.VC4) else (2028, 1520)
 
 
 class StreamConfig(typing.NamedTuple):
@@ -19,7 +32,7 @@ class StreamConfig(typing.NamedTuple):
     capture_size: typing.Optional[tuple[int, int]] = None
     # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
     # camera sensor:
-    preview_size: typing.Optional[tuple[int, int]] = None
+    preview_size: typing.Optional[tuple[int, int]] = preview_size
     # The number of frame buffers to allocate in memory:
     # Note(ethanjli): from testing, it seems that we need at least three buffers to allow the
     # preview to continue receiving frames smoothly from the "lores" stream while a buffer is
@@ -212,11 +225,7 @@ class PiCamera:
 
     def __init__(
         self,
-        stream_config: StreamConfig = StreamConfig(
-            # half the size of pictures
-            preview_size=(2028, 1520),
-            buffer_count=3,
-        ),
+        stream_config: StreamConfig = StreamConfig(),
         # Note(ethanjli): mqtt.Worker's constructor explicitly overrides any defaults we set here -
         # to set default initial settings, modify mqtt.Worker's constructor instead!
         initial_settings: SettingsValues = SettingsValues(),
@@ -290,6 +299,7 @@ class PiCamera:
             # discretion of the hardware, which defaults to 60 frames.
             # iperiod=None
         )
+        encoder.audio = False
         # picamera2-manual.pdf 7.1. Encoders
         # Normally, the encoder of necessity runs at the same frame rate as the camera. By default, every received camera frame
         # gets sent to the encoder. However, you can use the encoder frame_skip_count property to instead receive every nth frame.
