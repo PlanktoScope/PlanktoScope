@@ -11,15 +11,14 @@ from picamera2.platform import Platform, get_platform
 # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
 # camera sensor:
 #
-# half the size of pictures on RPI5 (software encoding)
-# ratio is 4:3 (1.33:1)
-# 1280x1024 (5:4) on RPI4 because that's the closest to ratio the hardware encoder can do and RPI4 is too slow for software encoder
-# 1920x1080 (16:9) is just too off
+# capture uses 4056x3040 (4:3 ratio)
+# we use half on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
+# we use 1440x1080 on RPI5 to stay within the hardware encoder capabilities while maintaining ratio
+# anything <= 1920x1080 divisible by 16 (required by H.264 macroblock alignment) (or 2) is fine
 # See supported levels with
 # v4l2-ctl -D -d /dev/video11 -l -L
 # https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels
-# See also this somewhat related issue https://github.com/raspberrypi/picamera2/issues/473
-preview_size = (1280, 1024) if (get_platform() == Platform.VC4) else (2028, 1520)
+preview_size = (1440, 1080) if (get_platform() == Platform.VC4) else (2028, 1520)
 
 class StreamConfig(typing.NamedTuple):
     """Values for stream configuration performed exactly once, before the camera starts.
