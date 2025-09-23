@@ -1,4 +1,5 @@
 import json
+from typing import Any
 
 from loguru import logger
 
@@ -7,7 +8,7 @@ from loguru import logger
 CONFIG_PATH = "/home/pi/PlanktoScope/config.json"
 
 
-def load_variant_setting(config_path: str = CONFIG_PATH):
+def read_config(config_path: str = CONFIG_PATH) -> Any:
     config = {}
     try:
         with open(config_path, "r") as file:
@@ -20,8 +21,15 @@ def load_variant_setting(config_path: str = CONFIG_PATH):
         logger.exception(f"Couldn't open {config_path}")
         return None
 
+    return config
+
+
+def get_variant(config: dict[str, Any]) -> str | None:
+    if config is None:
+        return None
+
     if "acq_instrument" not in config:
-        logger.error(f"{config_path} lacks a 'acq_instrument' field")
+        logger.error("config lacks a 'acq_instrument' field")
         return None
 
     if config["acq_instrument"] == "PlanktoScope v2.1":
@@ -31,7 +39,8 @@ def load_variant_setting(config_path: str = CONFIG_PATH):
 
 def main():
     logger.info("Determining configured hardware variant...")
-    variant = load_variant_setting()
+    config = read_config(CONFIG_PATH)
+    variant = get_variant(config)
     if variant is None:
         variant = "planktoscopehat"
         logger.warning(
@@ -44,7 +53,7 @@ def main():
     else:
         from planktoscopehat import main as platform
 
-    platform.main()
+    platform.main(config)
 
 
 if __name__ == "__main__":

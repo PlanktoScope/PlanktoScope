@@ -82,35 +82,16 @@ extra_checks = true
 # We are gradually introducing type-checking as we rewrite each module; we haven't rewritten the
 # following files yet:
 exclude = [
-  'adafruithat/main\.py',
-  'adafruithat/planktoscope/__init__\.py',
-  'adafruithat/planktoscope/display\.py',
-  'adafruithat/planktoscope/identity\.py',
-  'adafruithat/planktoscope/integrity\.py',
-  'adafruithat/planktoscope/light\.py',
-  'adafruithat/planktoscope/mqtt\.py',
-  'adafruithat/planktoscope/stepper\.py',
-  'adafruithat/planktoscope/imager/.*',
-  'planktoscopehat/main\.py',
-  'planktoscopehat/main_thread\.py',
-  'planktoscopehat/shush/.*',
-  'planktoscopehat/planktoscope/__init__\.py',
-  'planktoscopehat/planktoscope/identity\.py',
-  'planktoscopehat/planktoscope/integrity\.py',
-  'planktoscopehat/planktoscope/light\.py',
-  'planktoscopehat/planktoscope/module\.py',
-  'planktoscopehat/planktoscope/mqtt\.py',
-  'planktoscopehat/planktoscope/stepper\.py',
-  'planktoscopehat/planktoscope/imager/.*',
-  'planktoscopehat/planktoscope/motor/motor\.py',
-  'planktoscopehat/planktoscope/motor/registers\.py',
+  'main.py',
+  'adafruithat/stepper.py',
+  'adafruithat/display.py',
+  'planktoscopehat/light.py',
 ]
+follow_imports = "silent" # required for exclude
 
 [tool.poe.tasks]
 fmt = "ruff format"
-lint-mypy-adafruithat = "mypy adafruithat"
-lint-mypy-planktoscopehat = "mypy planktoscopehat"
-lint-mypy = ["lint-mypy-adafruithat", "lint-mypy-planktoscopehat"]
+lint-mypy = "poetry run mypy --explicit-package-bases ."
 lint-ruff = "ruff check"
 lint = ["lint-ruff", "lint-mypy"]
 fmt-check = "ruff format --check"
