@@ -6,7 +6,7 @@ import loguru
 import picamera2  # type: ignore
 from picamera2 import encoders, outputs
 from readerwriterlock import rwlock
-from picamera2.platform import Platform, get_platform
+from picamera2.platform import Platform, get_platform  # type: ignore
 
 # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
 # camera sensor:
@@ -20,6 +20,7 @@ from picamera2.platform import Platform, get_platform
 # https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels
 # See also this somewhat related issue https://github.com/raspberrypi/picamera2/issues/473
 preview_size = (1280, 1024) if (get_platform() == Platform.VC4) else (2028, 1520)
+
 
 class StreamConfig(typing.NamedTuple):
     """Values for stream configuration performed exactly once, before the camera starts.
