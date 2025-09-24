@@ -105,9 +105,9 @@ async function runSequence() {
 
   let object_lat
   let object_lon
-  if (gpsd?.PTV) {
-    object_lat = gpsd.PTV.lat
-    object_lon = gpsd.PTV.lon
+  if (gpsd?.TPV) {
+    object_lat = gpsd.TPV.lat
+    object_lon = gpsd.TPV.lon
   } else if (config.location.latitude && config.location.longitude) {
     object_lat = config.location.latitude
     object_lon = config.location.longitude
