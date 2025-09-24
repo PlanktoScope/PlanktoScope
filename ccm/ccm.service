@@ -1,11 +1,14 @@
 [Unit]
 Description=ccm
 After=network.target
+After=planktoscope-org.controller.service
+Wants=planktoscope-org.controller.service
 
 [Service]
 Type=simple
 User=pi
 ExecStart=/usr/bin/node /home/pi/PlanktoScope/ccm/ccm.js
+ExecStartPre=/bin/sleep 30 # controller is not ready on time
 Restart=no
 
 [Install]
