@@ -1,15 +1,37 @@
 /* globals MediaMTXWebRTCReader */
 
+import { onMount } from "solid-js"
+
 import styles from "./styles.module.css"
 import "../../../public/reader.js"
+import { publish } from "../../../../lib/mqtt"
+
+import Zoomist from "zoomist"
+import "zoomist/css"
+
+import "./zoomist.css"
 
 export default function Preview() {
-  const video = <video class={styles.video} muted autoplay />
+  const video = (
+    <video class={styles.video} muted autoplay disablepictureinpicture />
+  )
+
+  onMount(() => {
+    new Zoomist(".zoomist-container", {
+      slider: true,
+      zoomer: true,
+      maxScale: 4,
+      zoomRatio: 0.1,
+    })
+  })
+
   const message = <div class={styles.message} />
 
   const setMessage = (str) => {
     message.innerText = str
   }
+
+  publish("light", { action: "on" }).catch(console.error)
 
   const url = new URL(document.location)
   url.port = 8889
@@ -32,7 +54,11 @@ export default function Preview() {
 
   return (
     <>
-      {video}
+      <div class="zoomist-container">
+        <div class="zoomist-wrapper">
+          <div class="zoomist-image">{video}</div>
+        </div>
+      </div>
       {message}
     </>
   )
