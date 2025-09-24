@@ -78,7 +78,6 @@ async function runSequence() {
   await turnLightOn()
   completed("light on")
 
-  // Why make a backflush?
   started("cleaning tube backward")
   await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
   completed("cleaning tube backward")
@@ -202,9 +201,9 @@ async function runSequence() {
     }
   }
 
-  started("purge data")
-  await purgeData()
-  completed("purge data")
+  // started("purge data")
+  // await purgeData()
+  // completed("purge data")
 }
 
 try {
