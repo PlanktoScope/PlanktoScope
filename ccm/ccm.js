@@ -25,6 +25,7 @@ import { getSoftwareVersioning } from "../lib/software.js"
 import { Client as GPSDClient } from "../lib/gpsd.js"
 
 import config from "./ccm.config.js"
+import { existsSync } from "node:fs"
 
 const config_safe = structuredClone(config)
 config_safe.ecotaxa.password = "******"
@@ -172,27 +173,30 @@ async function runSequence() {
   })
   completed("segmentation")
 
+  const file_path_ecotaxa_zip = path.join(
+    "/home/pi/data/export/ecotaxa/",
+    `ecotaxa_${acquisition_id}.zip`,
+  )
+
   if (
+    existsSync(file_path_ecotaxa_zip) &&
     config.ecotaxa.upload === true &&
     config.ecotaxa.username &&
     config.ecotaxa.password &&
     config.ecotaxa.project_id
   ) {
     started("upload")
-    const file_path = path.join(
-      "/home/pi/data/export/ecotaxa/",
-      `ecotaxa_${acquisition_id}.zip`,
-    )
+
     await upload({
       username: config.ECOTAXA_USERNAME,
       password: config.ECOTAXA_PASSWORD,
       project_id: config.ECOTAXA_PROJECT_ID,
-      file_path,
+      file_path: file_path_ecotaxa_zip,
     })
     completed("upload")
 
     if (config.ecotaxa.remove_zip_after_upload === true) {
-      await rm(file_path, { force: true })
+      await rm(file_path_ecotaxa_zip, { force: true })
     }
   }
 
