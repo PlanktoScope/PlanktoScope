@@ -1,7 +1,14 @@
 setup:
+    poetry lock && poetry install
+    poetry run poe build
+    sudo rm -rf /srv/docs
+    sudo cp -r site /srv/docs
 
 setup-dev:
     poetry lock && poetry install
+
+dev:
+    poetry run poe preview
 
 test:
     poetry run poe check
