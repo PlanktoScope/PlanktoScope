@@ -1,0 +1,4 @@
+setup:
+    -sudo systemctl stop planktoscope-org.ccm.service
+    sudo cp ccm.service /etc/systemd/system/planktoscope-org.ccm.service
+    sudo systemctl reenable planktoscope-org.ccm

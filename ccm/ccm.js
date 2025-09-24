@@ -9,20 +9,20 @@ import {
   pump,
   configure,
   acquire,
-  // BACKWARD,
+  BACKWARD,
   FORWARD,
   segment,
   purgeData,
   upload,
-} from "./scope.js"
-import crypto from "crypto"
-import { getHardwareVersion, poweroff } from "./hardware.js"
+} from "../lib/scope.js"
+import crypto from "node:crypto"
+import { getHardwareVersion, poweroff } from "../lib/hardware.js"
 import { Temporal, toTemporalInstant } from "@js-temporal/polyfill"
-import { getName } from "./identity.js"
-import path from "path"
-import { rm } from "fs/promises"
-import { getSoftwareVersioning } from "./software.js"
-import { Client as GPSDClient } from "./gpsd.js"
+import { getName } from "../lib/identity.js"
+import path from "node:path"
+import { rm } from "node:fs/promises"
+import { getSoftwareVersioning } from "../lib/software.js"
+import { Client as GPSDClient } from "../lib/gpsd.js"
 
 import config from "./ccm.config.js"
 
@@ -78,9 +78,9 @@ async function runSequence() {
   completed("light on")
 
   // Why make a backflush?
-  // started("cleaning tube backward")
-  // await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
-  // completed("cleaning tube backward")
+  started("cleaning tube backward")
+  await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
+  completed("cleaning tube backward")
 
   started("cleaning tube forward")
   await pump({ direction: FORWARD, volume: 10, flowrate: 10 })

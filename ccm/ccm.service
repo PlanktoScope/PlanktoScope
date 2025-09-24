@@ -1,0 +1,12 @@
+[Unit]
+Description=ccm
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/node /home/pi/PlanktoScope/ccm/ccm.js
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
