@@ -187,10 +187,12 @@ async function runSequence() {
   ) {
     started("upload")
 
+    console.log(file_path_ecotaxa_zip)
+
     await upload({
-      username: config.ECOTAXA_USERNAME,
-      password: config.ECOTAXA_PASSWORD,
-      project_id: config.ECOTAXA_PROJECT_ID,
+      username: config.ecotaxa.username,
+      password: config.ecotaxa.password,
+      project_id: config.ecotaxa.project_id,
       file_path: file_path_ecotaxa_zip,
     })
     completed("upload")
