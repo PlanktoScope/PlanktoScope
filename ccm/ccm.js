@@ -117,7 +117,7 @@ async function runSequence() {
     sample_project: config.project,
     sample_id,
     sample_operator: config.operator,
-    sample_sampling_gear: "ccm_kit",
+    sample_sampling_gear: config.sampling_gear,
     acq_id: acquisition_id,
     acq_instrument: `PlanktoScope ${hardware_version}`,
     acq_instrument_id: machine_name,

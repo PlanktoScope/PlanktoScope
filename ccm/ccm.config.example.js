@@ -1,6 +1,7 @@
 export default {
   project: "Example_Awesome-project",
   operator: "Example Team",
+  sampling_gear: "FairScope-CCM-Kit",
   number_of_images: 2000,
   location: {
     latitude: "",
