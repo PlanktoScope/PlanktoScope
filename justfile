@@ -65,7 +65,7 @@ developer-mode: setup-dev
 reset: base setup
     rm /home/pi/PlanktoScope/config.json
     rm /home/pi/PlanktoScope/hardware.json
-    sudo systemctl reboot
+    sudo reboot
 
 # We run setup and setup-dev twice to ensure it is idempotent
 
