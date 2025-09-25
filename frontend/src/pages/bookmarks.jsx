@@ -64,6 +64,12 @@ export default function Bookmarks() {
           </li>
 
           <li>
+            <a href={makeURL("/admin/cockpit/metrics")} target="_blank">
+              Metrics
+            </a>
+          </li>
+
+          <li>
             <a href={makeUrl("/admin/cockpit/")} target="_blank">
               Cockpit
             </a>
