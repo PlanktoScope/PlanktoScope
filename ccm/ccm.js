@@ -141,6 +141,7 @@ async function runSequence() {
     acq_camera_resolution: "4056x3040",
     acq_camera_iso: 150,
     acq_camera_shutter_speed: 125,
+    // FIXME: for some reason ecotaxa uses acq_instrument_id as acq_uuid and sample_uuid
     acq_uuid: crypto.randomUUID(),
     sample_uuid: crypto.randomUUID(),
   }
