@@ -3,6 +3,7 @@ export PATH := x"${PATH}:/home/$USER/.local/bin"
 default: base setup
 
 base:
+    sudo cp os/debian-backports.sources /etc/apt/sources.list.d/
     # https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/nodesource.gpg
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
