@@ -10,25 +10,25 @@ fi
 
 if [ ! -z "$machine_name" ]; then
   echo "A machine name was manually specified in /etc/machine-name: $machine_name"
-elif [ -f /sys/firmware/devicetree/base/serial-number ] && [ -x /usr/bin/machine-name ]; then
+elif [ -f /sys/firmware/devicetree/base/serial-number ] && [ -x /usr/local/bin/machine-name ]; then
   # Automatically generate a machine-name from the RPi serial number if needed:
   serial_number="$(tr -d '\0' </sys/firmware/devicetree/base/serial-number | cut -c 9-)"
   machine_name="$(
-    /usr/bin/machine-name name --format=hex --sn="$serial_number" ||
+    /usr/local/bin/machine-name name --format=hex --sn="$serial_number" ||
       # fall back to English in case the language setting is unrecognized:
-      LANG=en_US.UTF-8 /usr/bin/machine-name name --format=hex --sn="$serial_number"
+      LANG=en_US.UTF-8 /usr/local/bin/machine-name name --format=hex --sn="$serial_number"
   )"
 fi
 
 if [ "$machine_name" = "" ] &&
   [ -f /etc/machine-id ] &&
   [ -x /usr/bin/sha256sum ] &&
-  [ -x /usr/bin/machine-name ]; then
+  [ -x /usr/local/bin/machine-name ]; then
   serial_number="$(sha256sum /etc/machine-id | cut -c 1-8)"
   machine_name="$(
-    /usr/bin/machine-name name --format=hex --sn="$serial_number" ||
+    /usr/local/bin/machine-name name --format=hex --sn="$serial_number" ||
       # fall back to English in case the language setting is unrecognized:
-      LANG=en_US.UTF-8 /usr/bin/machine-name name --format=hex --sn="$serial_number"
+      LANG=en_US.UTF-8 /usr/local/bin/machine-name name --format=hex --sn="$serial_number"
   )"
 fi
 

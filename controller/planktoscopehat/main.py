@@ -1,13 +1,10 @@
-import sys
 import multiprocessing
 import time
 import signal
-import os
 
 from loguru import logger
 
 from . import pump, focus, light
-import identity
 from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
@@ -23,36 +20,9 @@ def handler_stop_signals(signum, frame):
 
 
 def main(configuration):
-    logger.info("Welcome!")
-    logger.info(
-        "Initialising configuration, signals handling and sanitizing the directories (step 1/5)"
-    )
+    logger.info("Initialising signals handling (step 1/5)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
-
-    # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
-    with open("/boot/firmware/config.txt", "r") as config_file:
-        for i, line in enumerate(config_file):
-            if line.startswith("gpu_mem") and int(line.split("=")[1].strip()) < 256:
-                logger.error(
-                    "The GPU memory size is less than 256, this will prevent the camera from running properly"
-                )
-                logger.error(
-                    "Please edit the file /boot/firmware/config.txt to change the gpu_mem value to at least 256"
-                )
-                logger.error(
-                    "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
-                )
-                sys.exit(1)
-
-    # Let's make sure the used base path exists
-    img_path = "/home/pi/img"
-    # check if this path exists
-    if not os.path.exists(img_path):
-        # create the path!
-        os.makedirs(img_path)
-
-    logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
