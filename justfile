@@ -3,9 +3,11 @@ export PATH := x"${PATH}:/home/$USER/.local/bin"
 default: base setup
 
 base:
+    sudo cp os/debian-backports.sources /etc/apt/sources.list.d/
     # TODO https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
     curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
     sudo -E bash /tmp/nodesource_setup.sh
+    sudo apt update
     sudo apt install -y pipx git nodejs
     pipx ensurepath
     pipx install poetry==2.1.3 --force

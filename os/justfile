@@ -1,5 +1,4 @@
 setup:
-    sudo cp debian-backports.sources /etc/apt/sources.list.d/
     just --justfile localization/justfile setup
     just --justfile caddy/justfile        setup
     just --justfile ssh/justfile          setup
