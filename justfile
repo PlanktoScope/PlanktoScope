@@ -4,11 +4,11 @@ default: base setup
 
 base:
     sudo cp os/debian-backports.sources /etc/apt/sources.list.d/
-    # TODO https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
-    curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
-    sudo -E bash /tmp/nodesource_setup.sh
+    # https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
     sudo apt update
-    sudo apt install --force-confnew -y pipx git nodejs
+    sudo apt install -y pipx git nodejs
     pipx ensurepath
     pipx install poetry==2.1.3 --force
     npm config set prefix /home/pi/.local
