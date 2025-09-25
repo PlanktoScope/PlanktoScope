@@ -56,7 +56,6 @@ def main():
                 )
                 sys.exit(1)
 
-
     logger.info("Determining configured hardware variant...")
     config = read_config(CONFIG_PATH)
     variant = get_variant(config)
