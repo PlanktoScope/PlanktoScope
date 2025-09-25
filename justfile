@@ -65,13 +65,9 @@ developer-mode: setup-dev
 reset: base setup
     rm /home/pi/PlanktoScope/config.json
     rm /home/pi/PlanktoScope/hardware.json
-    sudo systemctl reboot
+    sudo reboot
 
 # We run setup and setup-dev twice to ensure it is idempotent
 
 # TODO: Run developer-mode (twice)
 ci: base setup setup-dev test format setup setup-dev
-    just --justfile os/justfile cleanup
-    just --justfile os/justfile cleanup
-    # Otherwise can't ssh back into the machine
-    sudo ssh-keygen -A

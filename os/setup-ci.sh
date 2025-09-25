@@ -12,6 +12,6 @@ sudo chown -R "$USER:$USER" "$HOME/PlanktoScope"
 
 ./"$HOME"/PlanktoScope/os/developer-mode/install-just.sh
 
-just --justfile "$HOME"/PlanktoScope/justfile base
-just --justfile "$HOME"/PlanktoScope/justfile setup
-just --justfile "$HOME"/PlanktoScope/os/justfile cleanup
+just --justfile "$HOME"/PlanktoScope/justfile
+./postinstall.sh
+./preimage.sh
