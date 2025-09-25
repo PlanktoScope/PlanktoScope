@@ -1,6 +1,6 @@
 setup:
     # Install cockpit
-    sudo apt install -y --no-install-recommends --force-confnew -t bookworm-backports cockpit cockpit-networkmanager cockpit-storaged cockpit-system cockpit-sosreport
+    sudo apt install -y --no-install-recommends -t bookworm-backports cockpit cockpit-networkmanager cockpit-storaged cockpit-system cockpit-sosreport
     sudo apt install -y --no-install-recommends pcp
     just cockpit-files
     sudo cp cockpit.ini /etc/cockpit/cockpit.conf
