@@ -202,9 +202,9 @@ async function runSequence() {
     }
   }
 
-  // started("purge data")
-  // await purgeData()
-  // completed("purge data")
+  started("purge data")
+  await purgeData()
+  completed("purge data")
 }
 
 try {
