@@ -3,6 +3,7 @@ Description=Run the PlanktoScope hardware controller
 Wants=mosquitto.service
 After=mosquitto.service
 After=nodered.service
+After=mediamtx.service
 
 [Service]
 Type=simple

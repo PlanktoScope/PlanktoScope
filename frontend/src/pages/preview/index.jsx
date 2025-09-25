@@ -48,6 +48,10 @@ export default function Preview() {
     },
   })
 
+  function capturePicture() {
+    publish("imager/image", { action: "capture" }).catch(console.error)
+  }
+
   window.addEventListener("beforeunload", () => {
     reader?.close()
   })
@@ -60,6 +64,8 @@ export default function Preview() {
         </div>
       </div>
       {message}
+
+      <button onClick={capturePicture}>Take picture</button>
     </>
   )
 }
