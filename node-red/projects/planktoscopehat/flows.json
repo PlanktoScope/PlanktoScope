@@ -1745,6 +1745,50 @@
         ]
     },
     {
+        "id": "47a14384f9bc3aa7",
+        "type": "ui_button",
+        "z": "eaae323a.31b3",
+        "name": "",
+        "group": "6f97e7ae.270c48",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "New button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "9347ca17849148a8"
+            ]
+        ]
+    },
+    {
+        "id": "9347ca17849148a8",
+        "type": "debug",
+        "z": "eaae323a.31b3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 80,
+        "wires": []
+    },
+    {
         "id": "4557d689.a4fa88",
         "type": "ui_text_input",
         "z": "b771c342.49603",

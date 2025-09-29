@@ -255,7 +255,7 @@
         ],
         "x": 34,
         "y": 799,
-        "w": 282,
+        "w": 292,
         "h": 122
     },
     {
@@ -381,8 +381,6 @@
         },
         "nodes": [
             "bca5fdb275411c2c",
-            "e2f462edae65edea",
-            "8a5154c6b080da73",
             "91bf1946ddb3fb46",
             "b7d4a1f82502ab3e",
             "081ff493602c602a",
@@ -391,11 +389,14 @@
             "7d9e940e0a76d817",
             "9c81667a4c9b050e",
             "aa10a7441bf3a0c3",
-            "fb1a7d1e12afbf61"
+            "fb1a7d1e12afbf61",
+            "b41180beec04f84b",
+            "e7856e14098d221c",
+            "92ab90d868956b20"
         ],
-        "x": 34,
+        "x": 14,
         "y": 119,
-        "w": 832,
+        "w": 852,
         "h": 262
     },
     {
@@ -413,8 +414,6 @@
         },
         "nodes": [
             "c9f8f2f7d2212740",
-            "868fd2a5b5a083db",
-            "678bf0eece4ac552",
             "58ed3f02a7d7e0e4",
             "dd23dcc3b10954ae",
             "872168aa279da8f7",
@@ -423,7 +422,9 @@
             "2730ffc2f82eed88",
             "3994b52159965684",
             "869c5f15f4cc5845",
-            "747a73dd5151b3bb"
+            "747a73dd5151b3bb",
+            "64cb53f020f80d15",
+            "02b2a6038211497e"
         ],
         "x": 34,
         "y": 439,
@@ -475,9 +476,7 @@
             "66756e43efce9726",
             "ac01daf9daeecf2a",
             "4441ba5d435ed9d7",
-            "030373d0c2e162e1",
-            "7cf9eaa2eb0776bf",
-            "fe63985e284437cd"
+            "7cf9eaa2eb0776bf"
         ],
         "x": 34,
         "y": 899,
@@ -549,9 +548,9 @@
             "5f091b11b5c9fa40",
             "0650e037776b3d8a"
         ],
-        "x": 24,
+        "x": 14,
         "y": 739,
-        "w": 1802,
+        "w": 1812,
         "h": 522
     },
     {
@@ -819,9 +818,9 @@
             "aad16ea9eae8d3dd",
             "97541b0d6dcf6747"
         ],
-        "x": 44,
+        "x": 34,
         "y": 219,
-        "w": 552,
+        "w": 562,
         "h": 122
     },
     {
@@ -836,7 +835,7 @@
         "nodes": [
             "a57a165cd0ce511b"
         ],
-        "x": 214,
+        "x": 34,
         "y": 79,
         "w": 192,
         "h": 82
@@ -2082,8 +2081,8 @@
         ],
         "order": 2,
         "className": "",
-        "visible": "true",
-        "disabled": "false"
+        "visible": true,
+        "disabled": false
     },
     {
         "id": "58ab4d5e3dd68192",
@@ -2783,16 +2782,16 @@
         "name": "body",
         "order": 1,
         "width": "12",
-        "height": "1",
+        "height": "11",
         "head": "",
-        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/data/browse/files/\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n      \n    </v-container>\n</template>\n",
+        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/data/browse/files/\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>PlanktoScope {{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{  msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{  msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{  msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>    \n      \n    </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
         "x": 690,
-        "y": 340,
+        "y": 380,
         "wires": [
             []
         ]
@@ -2816,7 +2815,7 @@
         "templateScope": "widget:ui",
         "className": "",
         "x": 690,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -2830,8 +2829,8 @@
         "ui": "",
         "name": "header",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "12",
+        "height": "6",
         "head": "",
         "format": "<template>\n  <v-empty-state\n    headline=\"Welcome on the PlanktoScope GUI,\"\n    icon=\"$vuetify\"\n    title=\"What would you like to do today?\"\n  >\n  </v-empty-state>\n</template>\n",
         "storeOutMessages": true,
@@ -2839,8 +2838,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 700,
-        "y": 300,
+        "x": 690,
+        "y": 340,
         "wires": [
             []
         ]
@@ -2864,7 +2863,7 @@
         "templateScope": "local",
         "className": "",
         "x": 690,
-        "y": 440,
+        "y": 420,
         "wires": [
             []
         ]
@@ -2886,8 +2885,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 630,
-        "y": 180,
+        "x": 610,
+        "y": 40,
         "wires": [
             [
                 "abe86c4e9dedb557"
@@ -2911,8 +2910,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 340,
-        "y": 100,
+        "x": 320,
+        "y": 40,
         "wires": [
             [
                 "67b871e8f9c64c2b"
@@ -2934,30 +2933,6 @@
         ]
     },
     {
-        "id": "401d92ce8e2ee079",
-        "type": "ui-template",
-        "z": "1b667c6443413ced",
-        "group": "713fd4c3b9030f45",
-        "page": "",
-        "ui": "",
-        "name": "metrics",
-        "order": 2,
-        "width": "12",
-        "height": "1",
-        "head": "",
-        "format": "<template>\n    <v-container>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>PlanktoScope {{ msg?.payload?.machine_info?.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{  msg?.payload?.machine_info?.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{  msg?.payload?.machine_info?.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{  msg?.payload?.machine_info?.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>    \n    </v-container>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 700,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "5d4e95854b504124",
         "type": "ui-template",
         "z": "1b667c6443413ced",
@@ -2975,8 +2950,8 @@
         "resendOnRefresh": true,
         "templateScope": "site:style",
         "className": "",
-        "x": 1240,
-        "y": 80,
+        "x": 1020,
+        "y": 60,
         "wires": [
             []
         ]
@@ -2990,9 +2965,73 @@
         "y": 380,
         "wires": [
             [
-                "401d92ce8e2ee079"
+                "39c370d8a50f3acc",
+                "2aa02514512e405b"
             ]
         ]
+    },
+    {
+        "id": "39f5d58341b7ccde",
+        "type": "inject",
+        "z": "1b667c6443413ced",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "5c51e140586e8ad3"
+            ]
+        ]
+    },
+    {
+        "id": "5c51e140586e8ad3",
+        "type": "function",
+        "z": "1b667c6443413ced",
+        "name": "function 1",
+        "func": "global.set(\"foo\", new Date().toISOString());",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2aa02514512e405b",
+        "type": "debug",
+        "z": "1b667c6443413ced",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 300,
+        "wires": []
     },
     {
         "id": "a57a165cd0ce511b",
@@ -3004,8 +3043,8 @@
         "ui": "",
         "name": "Streaming",
         "order": 1,
-        "width": "0",
-        "height": "0",
+        "width": "7",
+        "height": "24",
         "head": "",
         "format": "<center class=\"pa-0\">\n  <img src=\"/ps/hal/camera/streams/preview.mjpg\" class=\"pa-0\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please try restarting your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
         "storeOutMessages": true,
@@ -3013,56 +3052,10 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 310,
+        "x": 130,
         "y": 120,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "8c0dc4c89ed361a0",
-        "type": "mqtt out",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "MQTT",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 1650,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "b1ecc016686e9ee1",
-        "type": "function",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "Pump MQTT Preparation",
-        "func": "var manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    return [null, msg];\n}\nelse if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    return [null, msg];\n}\nelse {\n    msg.topic = \"actuator/pump\";\n    // msg.payload is FORWARD or BACKWARD here\n    msg.payload={\"action\":\"move\", \n                \"direction\":msg.payload,\n                \"volume\":manual_volume,\n                \"flowrate\":flowrate};\n}\nreturn [msg, null];",
-        "outputs": 2,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1250,
-        "y": 300,
-        "wires": [
-            [
-                "8c0dc4c89ed361a0"
-            ],
-            []
-        ],
-        "inputLabels": [
-            "direction"
-        ],
-        "outputLabels": [
-            "message",
-            "error"
         ]
     },
     {
@@ -3074,40 +3067,21 @@
         "ui": "",
         "name": "Pump",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "5",
+        "height": "6",
         "head": "",
-        "format": "<template>\n\n    <!-- Flowrate -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"7\">\n        <v-slider\n          v-model.number=\"flowrate\"\n          :min=\"min\"\n          :max=\"max\"\n          :step=\"0.2\"\n          class=\"align-center\"\n          hide-details\n          label=\"Flowrate\"\n          :thumb-size=\"20\"\n        />\n      </v-col>\n\n      <v-col cols=\"12\" sm=\"5\">\n        <v-text-field\n          v-model.number=\"flowrate\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"ml/min\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"flowratePreset\"\n          class=\"d-flex justify-space-between\"\n          color=\"primary\"\n          variant=\"outlined\"\n          divided\n          shaped\n          mandatory\n          @update:model-value=\"onFlowrateToggle\"\n        >\n          <v-btn\n            v-for=\"value in flowratePresets\"\n            :key=\"'flowrate-' + value\"\n            :value=\"value\"\n            class=\"flex-grow-1\"\n          >\n            {{ value }}\n          </v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"volume\"\n          :min=\"min\"\n          :max=\"max\"\n          :step=\"0.2\"\n          class=\"align-center\"\n          hide-details\n          label=\"Volume\"\n          :thumb-size=\"20\"\n        />\n      </v-col>\n\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"ml\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"volumePreset\"\n          class=\"d-flex justify-space-between\"\n          variant=\"outlined\"\n          color=\"primary\"\n          divided\n          shaped\n          mandatory\n          @update:model-value=\"onVolumeToggle\"\n        >\n          <v-btn\n            v-for=\"value in volumePresets\"\n            :key=\"'volume-' + value\"\n            :value=\"value\"\n            class=\"flex-grow-1\"\n          >\n            {{ value }}\n          </v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Direction Control -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"direction\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      min: 0.02,\n      max: 30,\n      flowrate: 10,\n      volume: 10,\n      flowratePreset: null,\n      volumePreset: null,\n      flowratePresets: [0.02, 0.2, 2, 20],\n      volumePresets: [0.02, 2, 10, 20],\n      direction: 'stop',\n    };\n  },\n  watch: {\n    flowrate(newVal) {\n      this.flowratePreset = this.flowratePresets.find(val => val === newVal) ?? null;\n    },\n    volume(newVal) {\n      this.volumePreset = this.volumePresets.find(val => val === newVal) ?? null;\n    },\n  },\n  methods: {\n    onFlowrateToggle(val) {\n      if (val != null) {\n        this.flowrate = val;\n      }\n    },\n    onVolumeToggle(val) {\n      if (val != null) {\n        this.volume = val;\n      }\n    },\n  },\n};\n</script>\n",
+        "format": "<template>\n  <!-- Flowrate -->\n  <v-row>\n    <v-col cols=\"12\" sm=\"7\">\n      <v-slider\n        v-model.number=\"pump_flowrate\"\n        :min=\"min\"\n        :max=\"max\"\n        :step=\"0.2\"\n        class=\"align-center\"\n        label=\"Flowrate\"\n        hide-details\n        :thumb-size=\"20\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" sm=\"5\">\n      <v-text-field\n        v-model.number=\"pump_flowrate\"\n        type=\"number\"\n        variant=\"outlined\"\n        hide-details\n        suffix=\"ml/min\"\n        append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        v-model=\"flowratePreset\"\n        class=\"d-flex justify-space-between\"\n        color=\"primary\"\n        variant=\"outlined\"\n        divided\n        shaped\n        mandatory\n        @update:model-value=\"onFlowrateToggle\"\n      >\n        <v-btn\n          v-for=\"value in flowratePresets\"\n          :key=\"'flowrate-' + value\"\n          :value=\"value\"\n          class=\"flex-grow-1\"\n        >\n          {{ value }}\n        </v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n\n  <!-- Volume -->\n  <v-row>\n    <v-col cols=\"12\" sm=\"8\">\n      <v-slider\n        v-model.number=\"pump_manual_volume\"\n        :min=\"min\"\n        :max=\"max\"\n        :step=\"0.2\"\n        class=\"align-center\"\n        hide-details\n        label=\"Volume\"\n        :thumb-size=\"20\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" sm=\"4\">\n      <v-text-field\n        v-model.number=\"pump_manual_volume\"\n        type=\"number\"\n        variant=\"outlined\"\n        hide-details\n        suffix=\"ml\"\n        append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        v-model=\"volumePreset\"\n        class=\"d-flex justify-space-between\"\n        variant=\"outlined\"\n        color=\"primary\"\n        divided\n        shaped\n        mandatory\n        @update:model-value=\"onVolumeToggle\"\n      >\n        <v-btn\n          v-for=\"value in volumePresets\"\n          :key=\"'volume-' + value\"\n          :value=\"value\"\n          class=\"flex-grow-1\"\n        >\n          {{ value }}\n        </v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n\n  <!-- Direction Control -->\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        variant=\"outlined\"\n        v-model=\"direction\"\n        color=\"primary\"\n        mandatory\n        divided\n        shaped\n        class=\"d-flex justify-space-between\"\n        @update:model-value=\"onDirectionChange\"\n      >\n        <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n</template>\n\n<script>\nexport default {\n  props: {\n    msg: {\n      type: Object,\n      default: () => ({}),\n    },\n  },\n  data() {\n    return {\n      min: 0.02,\n      max: 30,\n      flowratePreset: null,\n      volumePreset: null,\n      flowratePresets: [0.02, 0.2, 2, 20],\n      volumePresets: [0.02, 2, 10, 20],\n      direction: \"stop\",\n\n      // États locaux\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n    };\n  },\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        this.hydrateFromMsg(newMsg);\n      },\n      deep: true,\n    },\n    // 🔹 Quand l’un change → on envoie les deux\n    pump_flowrate(newVal) {\n      this.flowratePreset =\n        this.flowratePresets.find((val) => val === newVal) ?? null;\n      this.sendParams();\n    },\n    pump_manual_volume(newVal) {\n      this.volumePreset =\n        this.volumePresets.find((val) => val === newVal) ?? null;\n      this.sendParams();\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      this.pump_flowrate =\n        typeof p.flowrate === \"number\"\n          ? p.flowrate\n          : typeof p.pump_flowrate === \"number\"\n          ? p.pump_flowrate\n          : 0;\n      this.pump_manual_volume =\n        typeof p.volume === \"number\"\n          ? p.volume\n          : typeof p.pump_manual_volume === \"number\"\n          ? p.pump_manual_volume\n          : 0;\n      this.flowratePreset =\n        this.flowratePresets.find((val) => val === this.pump_flowrate) ?? null;\n      this.volumePreset =\n        this.volumePresets.find((val) => val === this.pump_manual_volume) ?? null;\n      this.direction = [\"backward\", \"stop\", \"forward\"].includes(p.command)\n        ? p.command\n        : \"stop\";\n    },\n\n    onFlowrateToggle(val) {\n      if (val != null) this.pump_flowrate = val;\n    },\n    onVolumeToggle(val) {\n      if (val != null) this.pump_manual_volume = val;\n    },\n\n    // 🔹 Envoi des paramètres (flowrate+volume)\n    sendParams() {\n      this.send({\n        topic:\"set_global\",\n        payload: {\n          pump_flowrate: Number(this.pump_flowrate) || 0,\n          pump_manual_volume: Number(this.pump_manual_volume) || 0,\n        },\n      });\n    },\n\n    // 🔹 Envoi au clic directionnel\n    onDirectionChange(val) {\n      if (!val) return;\n      this.direction = val;\n\n      if (val === \"stop\") {\n        this.send({\n          topic: \"actuator/pump\",\n          payload: { action: \"stop\" },\n        });\n        return;\n      }\n\n      const dirUpper = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n      this.send({\n        topic: \"actuator/pump\",\n        payload: {\n          action: \"move\",\n          direction: dirUpper,\n          volume: Number(this.pump_manual_volume) || 0,\n          flowrate: Number(this.pump_flowrate) || 0,\n        },\n      });\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 950,
-        "y": 300,
+        "x": 350,
+        "y": 360,
         "wires": [
             [
-                "6d0408bb7ca6e5f3",
-                "b1ecc016686e9ee1"
+                "4112a93b1b129756"
             ]
-        ]
-    },
-    {
-        "id": "6d0408bb7ca6e5f3",
-        "type": "function",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "set global",
-        "func": "global.set(msg.topic,msg.payload);",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1200,
-        "y": 260,
-        "wires": [
-            []
         ]
     },
     {
@@ -3119,50 +3093,21 @@
         "ui": "",
         "name": "Focus",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "5",
+        "height": "4",
         "head": "",
-        "format": "<template>\n\n    <!-- Focus Distance Slider -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"distance\"\n          :max=\"max\"\n          :min=\"min\"\n          :step=\"25\"\n          class=\"align-center\"\n          hide-details\n          label=\"Distance\"\n          :thumb-size=\"20\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"distance\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"μm\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Preset Distances -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"distancePreset\"\n          divided\n          shaped\n          color=\"primary\"\n          class=\"d-flex justify-space-between\"\n          mandatory\n          @update:model-value=\"onDistanceToggle\"\n        >\n          <v-btn\n            v-for=\"value in presetDistances\"\n            :key=\"'distance-' + value\"\n            :value=\"value\"\n            class=\"flex-grow-1\"\n          >\n            {{ value }}\n          </v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Directional Focus Control -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"focusDirection\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'left'\">Left</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'right'\">Right</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      min: 25,\n      max: 5000,\n      distance: 25,\n      distancePreset: null,\n      presetDistances: [25, 150, 500, 5000],\n      focusDirection: 'stop',\n    };\n  },\n  watch: {\n    distance(newVal) {\n      const exactMatch = this.presetDistances.find((val) => val === newVal);\n      this.distancePreset = exactMatch ?? null;\n    },\n  },\n  methods: {\n    onDistanceToggle(val) {\n      if (val != null) {\n        this.distance = val;\n      }\n    },\n  },\n};\n</script>\n",
+        "format": "<template>\n  <!-- Focus Distance Slider -->\n  <v-row>\n    <v-col cols=\"12\" sm=\"8\">\n      <v-slider\n        v-model.number=\"focus_distance\"\n        :max=\"max\"\n        :min=\"min\"\n        :step=\"25\"\n        class=\"align-center\"\n        hide-details\n        label=\"Distance\"\n        :thumb-size=\"20\"\n      />\n    </v-col>\n    <v-col cols=\"12\" sm=\"4\">\n      <v-text-field\n        v-model.number=\"focus_distance\"\n        type=\"number\"\n        variant=\"outlined\"\n        hide-details\n        suffix=\"μm\"\n        append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <!-- Preset Distances -->\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        variant=\"outlined\"\n        v-model=\"distancePreset\"\n        divided\n        shaped\n        color=\"primary\"\n        class=\"d-flex justify-space-between\"\n        mandatory\n        @update:model-value=\"onDistanceToggle\"\n      >\n        <v-btn\n          v-for=\"value in presetDistances\"\n          :key=\"'distance-' + value\"\n          :value=\"value\"\n          class=\"flex-grow-1\"\n        >\n          {{ value }}\n        </v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n\n  <!-- Directional Focus Control -->\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        variant=\"outlined\"\n        v-model=\"focusDirection\"\n        color=\"primary\"\n        mandatory\n        divided\n        shaped\n        class=\"d-flex justify-space-between\"\n        @update:model-value=\"onDirectionChange\"\n      >\n        <v-btn class=\"flex-grow-1\" :value=\"'left'\">Left</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'right'\">Right</v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n</template>\n\n<script>\nexport default {\n  props: {\n    // msg injecté par Node-RED (lecture seule)\n    msg: {\n      type: Object,\n      default: () => ({}),\n    },\n  },\n  data() {\n    return {\n      min: 25,\n      max: 5000,\n      distancePreset: null,\n      presetDistances: [25, 150, 500, 5000],\n      focusDirection: \"stop\",\n\n      // état local (on ne modifie pas msg)\n      focus_distance: 25,\n    };\n  },\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n  watch: {\n    // resync si un nouveau msg arrive\n    msg: {\n      handler(newMsg) {\n        this.hydrateFromMsg(newMsg);\n      },\n      deep: true,\n    },\n\n    // à chaque ajustement → envoie { focus_distance, focus_speed }\n    focus_distance(newVal) {\n      const exactMatch = this.presetDistances.find((v) => v === newVal);\n      this.distancePreset = exactMatch ?? null;\n      this.sendParams(); // envoie un msg propre\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      // Lecture uniquement (aucune réémission automatique de ce msg)\n      this.focus_distance =\n        typeof p.focus_distance === \"number\" ? p.focus_distance : 25;\n\n      this.distancePreset =\n        this.presetDistances.find((v) => v === this.focus_distance) ?? null;\n\n      this.focusDirection = [\"left\", \"stop\", \"right\"].includes(p.command)\n        ? p.command\n        : \"stop\";\n    },\n\n    onDistanceToggle(val) {\n      if (val != null) {\n        this.focus_distance = val; // le watcher déclenche sendParams()\n      }\n    },\n\n    // Interpolation linéaire sur les points d'ancrage\n    // (100 -> 1000), (1000 -> 2000), (5000 -> 5000)\n    speedFromDistance(d) {\n      const x1 = 100,  y1 = 1000;\n      const x2 = 1000, y2 = 2000;\n      const x3 = 5000, y3 = 5000;\n\n      if (d <= x1) return y1;          // clamp min\n      if (d >= x3) return y3;          // clamp max\n      if (d <= x2) {\n        const m = (y2 - y1) / (x2 - x1);  // 1000/900 ≈ 1.111...\n        return Math.round(y1 + m * (d - x1));\n      } else {\n        const m = (y3 - y2) / (x3 - x2);  // 3000/4000 = 0.75\n        return Math.round(y2 + m * (d - x2));\n      }\n    },\n\n    // 🔹 Envoi “propre” des paramètres lors d’un ajustement\n    sendParams() {\n      const d = Number(this.focus_distance) || 25; // μm\n      const speed = this.speedFromDistance(d);\n      this.send({\n        topic:\"set_global\",\n        payload: {\n          focus_distance: d,   // μm (valeur brute)\n          focus_speed: speed,  // même échelle que ci-dessus\n        },\n      });\n    },\n\n    // 🔹 Envoi move/stop au clic directionnel\n    onDirectionChange(val) {\n      if (!val) return;\n      this.focusDirection = val;\n\n      if (val === \"stop\") {\n        // STOP : payload minimal + topic imposé\n        this.send({\n          topic: \"actuator/focus\",\n          payload: { action: \"stop\" },\n        });\n        return;\n      }\n\n      // MOVE (left/right) + distance/speed calculés\n      const d = Number(this.focus_distance) || 25; // μm\n      const speed = this.speedFromDistance(d);\n      this.send({\n        topic: \"actuator/focus\",\n        payload: {\n          action: \"move\",\n          direction: val,        // \"left\" | \"right\"\n          distance: d / 1000,    // mm\n          speed: speed / 1000,   // échelle identique\n        },\n      });\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 950,
-        "y": 340,
+        "x": 350,
+        "y": 460,
         "wires": [
             [
-                "6d0408bb7ca6e5f3",
-                "d7ca56746e08f158"
+                "3f68704ace3f79dc"
             ]
-        ]
-    },
-    {
-        "id": "d7ca56746e08f158",
-        "type": "function",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "Focus MQTT Preparation",
-        "func": "var distance = global.get(\"focus_distance\");\nvar speed = global.get(\"focus_speed\");\n\nif (distance === undefined || distance === \"\" || distance === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Distance\";\n    return [null, msg]\n}\nif (speed === undefined || speed === \"\" || speed === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Speed\";\n    return [null, msg]\n}\n// msg.payload is UP or DOWN here\nmsg.payload={\"action\":\"move\", \n            \"direction\":msg.payload,\n            \"distance\":(distance/1000),\n            \"speed\": (speed/1000)\n};\nreturn [msg, null];",
-        "outputs": 2,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1250,
-        "y": 340,
-        "wires": [
-            [
-                "8c0dc4c89ed361a0"
-            ],
-            []
-        ],
-        "inputLabels": [
-            "direction"
-        ],
-        "outputLabels": [
-            "message",
-            "error"
         ]
     },
     {
@@ -3174,21 +3119,20 @@
         "ui": "",
         "name": "Light",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "5",
+        "height": "3",
         "head": "",
-        "format": "<template>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"ledState\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      ledState: 'off',\n    };\n  },\n};\n</script>\n",
+        "format": "<template>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"ledState\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 950,
-        "y": 380,
+        "x": 350,
+        "y": 540,
         "wires": [
             [
-                "6d0408bb7ca6e5f3",
-                "f5cf7a0fafc8f14d"
+                "2f44981b14726ef3"
             ]
         ]
     },
@@ -3210,8 +3154,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 960,
-        "y": 420,
+        "x": 360,
+        "y": 600,
         "wires": [
             []
         ]
@@ -3221,15 +3165,15 @@
         "type": "function",
         "z": "ab58b3fd0e6bcd77",
         "name": "Get Global Variables",
-        "func": "const keys = global.keys(); // Get all global keys\n\nkeys.forEach(key => {\n    msg[key] = global.get(key);\n});\n\nreturn msg;\n",
+        "func": "const keys = global.keys(); // Get all global keys\n\nkeys.forEach(key => {\n    msg.payload[key] = global.get(key);\n});\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 300,
+        "x": 140,
+        "y": 360,
         "wires": [
             [
                 "f9e9ad7833e9a58f",
@@ -3237,34 +3181,6 @@
                 "ad265a65cffbe1e9",
                 "267aba9da1b9665b"
             ]
-        ]
-    },
-    {
-        "id": "f5cf7a0fafc8f14d",
-        "type": "function",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "Light MQTT Preparation",
-        "func": "//TODO\nreturn [msg, null];",
-        "outputs": 2,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1250,
-        "y": 380,
-        "wires": [
-            [
-                "8c0dc4c89ed361a0"
-            ],
-            []
-        ],
-        "inputLabels": [
-            "direction"
-        ],
-        "outputLabels": [
-            "message",
-            "error"
         ]
     },
     {
@@ -3285,8 +3201,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 530,
-        "y": 120,
+        "x": 110,
+        "y": 40,
         "wires": [
             []
         ]
@@ -3308,7 +3224,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 340,
+        "x": 300,
         "y": 220,
         "wires": [
             [
@@ -3322,7 +3238,7 @@
         "z": "ab58b3fd0e6bcd77",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 140,
+        "x": 100,
         "y": 220,
         "wires": [
             [
@@ -3347,13 +3263,167 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 640,
+        "x": 600,
         "y": 220,
         "wires": [
             [
                 "c8de0186a0a927e8"
             ]
         ]
+    },
+    {
+        "id": "6d0408bb7ca6e5f3",
+        "type": "function",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "set global",
+        "func": "global.set(\"pump_flowrate\", msg.payload.pump_flowrate);\nglobal.set(\"pump_manual_volume\", msg.payload.pump_manual_volume);\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a208e0233bea4ae",
+        "type": "function",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "set global",
+        "func": "\nglobal.set(\"focus_distance\", msg.payload.focus_distance);\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea8e81951587e46d",
+        "type": "mqtt out",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "MQTT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "4112a93b1b129756",
+        "type": "switch",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "set_global",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "actuator/pump",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "6d0408bb7ca6e5f3"
+            ],
+            [
+                "0705a33cf713251a"
+            ]
+        ]
+    },
+    {
+        "id": "3f68704ace3f79dc",
+        "type": "switch",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "set_global",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "actuator/focus",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "4a208e0233bea4ae"
+            ],
+            [
+                "ea8e81951587e46d"
+            ]
+        ]
+    },
+    {
+        "id": "0705a33cf713251a",
+        "type": "mqtt out",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "MQTT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 650,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "2f44981b14726ef3",
+        "type": "debug",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 540,
+        "wires": []
     },
     {
         "id": "349d0f7644f26a62",
@@ -3391,7 +3461,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <!-- Project Metadata Inputs -->\n  <v-row class=\"mt-2\">\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field\n        v-model=\"projectName\"\n        label=\"Name of the project\"\n        placeholder=\"ex : Tara Pacifique\"\n        variant=\"outlined\"\n        clearable\n        hint=\"Enter the research project or expedition name this sample is part of.\" append-icon=\"mdi-information\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field\n        v-model=\"sampleId\"\n        label=\"Sample ID\"\n        placeholder=\"ex : S001\"\n        type=\"text\"\n        variant=\"outlined\"\n        clearable\n        hint=\"Provide a unique identifier for this sample (e.g., S001).\" append-icon=\"mdi-information\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field\n        v-model=\"operatorName\"\n        label=\"Operator name\"\n        placeholder=\"ex : Manu Prakash\"\n        type=\"text\"\n        variant=\"outlined\"\n        clearable\n        hint=\"Name of the person who collected the sample.\" append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <!-- Sampling Gear Selector -->\n  <v-row class=\"mt-4\">\n    <v-col cols=\"12\">\n      <label class=\"text-subtitle-2 font-weight-medium mb-2 d-block\" append-icon=\"mdi-information\">\n        Sampling Gear\n      </label>\n      <v-row>\n          <v-col cols=\"12\">\n            <div style=\"overflow-x: auto;\">\n              <v-btn-toggle\n                variant=\"outlined\"\n                v-model=\"sample_gear\"\n                color=\"primary\"\n                mandatory\n                divided\n                shaped\n                class=\"d-flex\"\n                style=\"min-width: max-content;min-height:100px\"\n              >\n                <v-btn value=\"Horizontal Net\" prepend-icon=\"mdi-arrow-right-bold\" stacked>\n                  <span>Horizontal Net</span>\n                </v-btn>\n                <v-btn value=\"Vertical Net\" prepend-icon=\"mdi-arrow-up-bold\" stacked>\n                  <span>Vertical Net</span>\n                </v-btn>\n                <v-btn value=\"Niskin bottle\" prepend-icon=\"mdi-bottle-tonic\" stacked>\n                  <span>Niskin bottle</span>\n                </v-btn>\n                <v-btn value=\"Lab culture\" prepend-icon=\"mdi-flask-outline\" stacked>\n                  <span>Lab culture</span>\n                </v-btn>\n                <v-btn value=\"Demo / Test\" prepend-icon=\"mdi-beaker-outline\" stacked>\n                  <span>Demo / Test</span>\n                </v-btn>\n              </v-btn-toggle>\n            </div>\n          </v-col>\n        </v-row>\n\n      <div class=\"text-caption text-medium-emphasis mt-1\">\n        The type of gear used to collect the sample. This field describes the specific equipment used during the sampling process and provides context about the sampling method and conditions.\n      </div>\n    </v-col>\n  </v-row>\n</template>\n<script>\nexport default {\n  data() {\n    return {\n      projectName: '',\n      sampleId: '',\n      operatorName: '',\n      sample_gear: null,\n    };\n  },\n};\n</script>\n",
+        "format": "<template>\n  <!-- Project Metadata Inputs -->\n  <v-row class=\"mt-2\">\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field\n        v-model=\"projectName\"\n        label=\"Name of the project\"\n        placeholder=\"ex : Tara Pacifique\"\n        variant=\"outlined\"\n        clearable\n        hint=\"Enter the research project or expedition name this sample is part of.\" append-icon=\"mdi-information\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field\n        v-model=\"sampleId\"\n        label=\"Sample ID\"\n        placeholder=\"ex : S001\"\n        type=\"text\"\n        variant=\"outlined\"\n        clearable\n        hint=\"Provide a unique identifier for this sample (e.g., S001).\" append-icon=\"mdi-information\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field\n        v-model=\"operatorName\"\n        label=\"Operator name\"\n        placeholder=\"ex : Manu Prakash\"\n        type=\"text\"\n        variant=\"outlined\"\n        clearable\n        hint=\"Name of the person who collected the sample.\" append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <!-- Sampling Gear Selector -->\n  <v-row class=\"mt-4\">\n    <v-col cols=\"12\">\n      <label class=\"text-subtitle-2 font-weight-medium mb-2 d-block\" append-icon=\"mdi-information\">\n        Sampling Gear\n      </label>\n      <v-row>\n          <v-col cols=\"12\">\n            <div style=\"overflow-x: auto;\">\n              <v-btn-toggle\n                variant=\"outlined\"\n                v-model=\"sample_gear\"\n                color=\"primary\"\n                mandatory\n                divided\n                shaped\n                class=\"d-flex\"\n                 \n                style=\"min-width: max-content;min-height:100px\"\n              >\n                <v-btn value=\"Horizontal Net\" prepend-icon=\"mdi-arrow-right-bold\" size=\"64\"  stacked>\n                  <span>Horizontal Net</span>\n                </v-btn>\n                <v-btn value=\"Vertical Net\" prepend-icon=\"mdi-arrow-up-bold\" stacked>\n                  <span>Vertical Net</span>\n                </v-btn>\n                <v-btn value=\"Niskin bottle\" prepend-icon=\"mdi-bottle-tonic\" stacked>\n                  <span>Niskin bottle</span>\n                </v-btn>\n                <v-btn value=\"Lab culture\" prepend-icon=\"mdi-flask-outline\" stacked>\n                  <span>Lab culture</span>\n                </v-btn>\n                <v-btn value=\"Demo / Test\" prepend-icon=\"mdi-beaker-outline\" stacked>\n                  <span>Demo / Test</span>\n                </v-btn>\n              </v-btn-toggle>\n            </div>\n          </v-col>\n        </v-row>\n\n      <div class=\"text-caption text-medium-emphasis mt-1\">\n        The type of gear used to collect the sample. This field describes the specific equipment used during the sampling process and provides context about the sampling method and conditions.\n      </div>\n    </v-col>\n  </v-row>\n</template>\n<script>\nexport default {\n  data() {\n    return {\n      projectName: '',\n      sampleId: '',\n      operatorName: '',\n      sample_gear: null,\n    };\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3415,7 +3485,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container>\n    <v-row>\n      <!-- Date -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Date\"\n          variant=\"outlined\"\n          placeholder=\"jj/mm/aaaa\"\n          type=\"date\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n\n      <!-- Time -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Time\"\n          variant=\"outlined\"\n          placeholder=\"--:--\"\n          type=\"time\"\n          density=\"compact\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n    </v-row>\n    <v-row>\n      <!-- GPS Latitude -->\n      <v-col cols=\"12\" md=\"12\">\n        <v-row>\n          <v-col cols=\"1\"> Latitude </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"latitude_D\"\n              :min=\"0\"\n              :max=\"90\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"latitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"2\">\n            <v-text-field\n              v-model.number=\"latitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select variant=\"outlined\" :items=\"['N', 'S']\" hide-details append-icon=\"mdi-information\" />\n          </v-col>\n\n          <v-col cols=\"1\"> Longitude </v-col>\n\n          <!-- GPS Longitude -->\n\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"longitude_D\"\n              :min=\"0\"\n              :max=\"180\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"longitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"2\">\n            <v-text-field\n              v-model.number=\"longitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select :items=\"['E', 'W']\" hide-details variant=\"outlined\" append-icon=\"mdi-information\" />\n          </v-col>\n        </v-row>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container>\n    <v-row>\n      <!-- Date -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Date\"\n          variant=\"outlined\"\n          placeholder=\"jj/mm/aaaa\"\n          type=\"date\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n\n      <!-- Time -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Time\"\n          variant=\"outlined\"\n          placeholder=\"--:--\"\n          type=\"time\"\n          density=\"compact\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n    </v-row>\n    <v-row>\n      <!-- GPS Latitude -->\n      <v-col cols=\"12\" md=\"12\">\n        <v-row>\n          <v-col cols=\"1\"> Latitude </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"latitude_D\"\n              :min=\"0\"\n              :max=\"90\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n\n            <span>°\n            </span>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"latitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"2\">\n            <v-text-field\n              v-model.number=\"latitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select variant=\"outlined\" :items=\"['N', 'S']\" hide-details append-icon=\"mdi-information\" />\n          </v-col>\n\n          <v-col cols=\"1\"> Longitude </v-col>\n\n          <!-- GPS Longitude -->\n\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"longitude_D\"\n              :min=\"0\"\n              :max=\"180\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"longitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"2\">\n            <v-text-field\n              v-model.number=\"longitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select :items=\"['E', 'W']\" hide-details variant=\"outlined\" append-icon=\"mdi-information\" />\n          </v-col>\n        </v-row>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4555,58 +4625,6 @@
         "wires": []
     },
     {
-        "id": "e2f462edae65edea",
-        "type": "inject",
-        "z": "68f63f5275b147d3",
-        "g": "351aed98aa7531c4",
-        "name": "Default: 2mL/min",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "2",
-        "payloadType": "num",
-        "x": 170,
-        "y": 300,
-        "wires": [
-            [
-                "7d9e940e0a76d817"
-            ]
-        ]
-    },
-    {
-        "id": "8a5154c6b080da73",
-        "type": "inject",
-        "z": "68f63f5275b147d3",
-        "g": "351aed98aa7531c4",
-        "name": "Default: 2mL",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "2",
-        "payloadType": "num",
-        "x": 190,
-        "y": 340,
-        "wires": [
-            [
-                "9c81667a4c9b050e"
-            ]
-        ]
-    },
-    {
         "id": "91bf1946ddb3fb46",
         "type": "ui-button",
         "z": "68f63f5275b147d3",
@@ -4717,7 +4735,8 @@
         "y": 220,
         "wires": [
             [
-                "bca5fdb275411c2c"
+                "bca5fdb275411c2c",
+                "92ab90d868956b20"
             ],
             []
         ],
@@ -4829,7 +4848,7 @@
         "iconPosition": "left",
         "iconInnerPosition": "inside",
         "spinner": "default",
-        "x": 380,
+        "x": 400,
         "y": 340,
         "wires": [
             [
@@ -4850,7 +4869,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 620,
         "y": 320,
         "wires": [
             []
@@ -4901,58 +4920,6 @@
         "outputLabels": [
             "message",
             "error"
-        ]
-    },
-    {
-        "id": "868fd2a5b5a083db",
-        "type": "inject",
-        "z": "68f63f5275b147d3",
-        "g": "d331e690efb7d6e9",
-        "name": "Default: 500µm",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "500",
-        "payloadType": "num",
-        "x": 200,
-        "y": 640,
-        "wires": [
-            [
-                "747a73dd5151b3bb"
-            ]
-        ]
-    },
-    {
-        "id": "678bf0eece4ac552",
-        "type": "inject",
-        "z": "68f63f5275b147d3",
-        "g": "d331e690efb7d6e9",
-        "name": "Default: 1000µm/s",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "1000",
-        "payloadType": "num",
-        "x": 190,
-        "y": 600,
-        "wires": [
-            [
-                "869c5f15f4cc5845"
-            ]
         ]
     },
     {
@@ -5472,32 +5439,6 @@
         ]
     },
     {
-        "id": "030373d0c2e162e1",
-        "type": "inject",
-        "z": "68f63f5275b147d3",
-        "g": "239ace7a73b8b6df",
-        "name": "Default: ISO 150",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "150",
-        "payloadType": "num",
-        "x": 170,
-        "y": 1060,
-        "wires": [
-            [
-                "ac01daf9daeecf2a"
-            ]
-        ]
-    },
-    {
         "id": "7cf9eaa2eb0776bf",
         "type": "ui-slider",
         "z": "68f63f5275b147d3",
@@ -5534,30 +5475,105 @@
         ]
     },
     {
-        "id": "fe63985e284437cd",
-        "type": "inject",
+        "id": "b41180beec04f84b",
+        "type": "function",
         "z": "68f63f5275b147d3",
-        "g": "239ace7a73b8b6df",
-        "name": "Default: 125µs",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "125",
-        "payloadType": "num",
-        "x": 180,
-        "y": 1120,
+        "g": "351aed98aa7531c4",
+        "name": "Get pump_flowrate",
+        "func": "msg.payload.pump_flowrate = global.get(\"pump_flowrate\");\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 300,
         "wires": [
             [
-                "7cf9eaa2eb0776bf"
+                "7d9e940e0a76d817"
             ]
         ]
+    },
+    {
+        "id": "64cb53f020f80d15",
+        "type": "function",
+        "z": "68f63f5275b147d3",
+        "g": "d331e690efb7d6e9",
+        "name": "Get focus_speed",
+        "func": "msg.payload.focus_speed = global.get(\"focus_speed\");\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "869c5f15f4cc5845"
+            ]
+        ]
+    },
+    {
+        "id": "02b2a6038211497e",
+        "type": "function",
+        "z": "68f63f5275b147d3",
+        "g": "d331e690efb7d6e9",
+        "name": "Get focus_distance",
+        "func": "msg.payload.focus_distance = global.get(\"focus_distance\");\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "747a73dd5151b3bb"
+            ]
+        ]
+    },
+    {
+        "id": "e7856e14098d221c",
+        "type": "function",
+        "z": "68f63f5275b147d3",
+        "g": "351aed98aa7531c4",
+        "name": "Get pump_manual_volume\t",
+        "func": "msg.payload.pump_manual_volume = global.get(\"pump_manual_volume\t\");\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "9c81667a4c9b050e"
+            ]
+        ]
+    },
+    {
+        "id": "92ab90d868956b20",
+        "type": "debug",
+        "z": "68f63f5275b147d3",
+        "g": "351aed98aa7531c4",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "495e1733d60d5651",
@@ -6860,9 +6876,9 @@
         "name": "body",
         "order": 1,
         "width": "12",
-        "height": "1",
+        "height": "6",
         "head": "",
-        "format": "<template>\n  <v-container>\n    <v-row>\n      <!-- Step 1: White Balance -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_saturation_level\"\n          target=\"_blank\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-eyedropper-variant</v-icon>\n          <v-card-title class=\"text-h6\">White Balance</v-card-title>\n          <v-card-text>\n            Use the color picker to measure the current color values and adjust the white balance accordingly.\n          </v-card-text>\n        </v-card>\n      </v-col>\n\n      <!-- Step 2: Lightness -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_lightness\"\n          target=\"_blank\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-brightness-6</v-icon>\n          <v-card-title class=\"text-h6\">Lightness</v-card-title>\n          <v-card-text>\n            Measure the current lightness value and update the LED intensity or ISO if below optimal levels.\n          </v-card-text>\n        </v-card>\n      </v-col>\n\n      <!-- Step 3: Pixel Size -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_pixel_size\"\n          target=\"_blank\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-ruler</v-icon>\n          <v-card-title class=\"text-h6\">Pixel Size</v-card-title>\n          <v-card-text>\n            Place markers on the micrometric ruler image to calculate the pixel size in microns per pixel.\n          </v-card-text>\n        </v-card>\n      </v-col>\n\n      <!-- Step 4: Pump Calibration -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_pump\"\n          target=\"_blank\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-water-pump</v-icon>\n          <v-card-title class=\"text-h6\">Pump Calibration</v-card-title>\n          <v-card-text>\n            Measure the transferred volume and adjust pump steps to improve accuracy in fluid handling.\n          </v-card-text>\n        </v-card>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container>\n    <v-row>\n      <!-- Step 1: White Balance -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_saturation_level\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-eyedropper-variant</v-icon>\n          <v-card-title class=\"text-h6\">White Balance</v-card-title>\n          <v-card-text>\n            Use the color picker to measure the current color values and adjust the white balance accordingly.\n          </v-card-text>\n        </v-card>\n      </v-col>\n\n      <!-- Step 2: Lightness -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_lightness\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-brightness-6</v-icon>\n          <v-card-title class=\"text-h6\">Lightness</v-card-title>\n          <v-card-text>\n            Measure the current lightness value and update the LED intensity or ISO if below optimal levels.\n          </v-card-text>\n        </v-card>\n      </v-col>\n\n      <!-- Step 3: Pixel Size -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_pixel_size\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-ruler</v-icon>\n          <v-card-title class=\"text-h6\">Pixel Size</v-card-title>\n          <v-card-text>\n            Place markers on the micrometric ruler image to calculate the pixel size in microns per pixel.\n          </v-card-text>\n        </v-card>\n      </v-col>\n\n      <!-- Step 4: Pump Calibration -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card\n          href=\"calibration_pump\"\n          class=\"text-center py-2\"\n        >\n          <v-icon size=\"64\" color=\"primary\">mdi-water-pump</v-icon>\n          <v-card-title class=\"text-h6\">Pump Calibration</v-card-title>\n          <v-card-text>\n            Measure the transferred volume and adjust pump steps to improve accuracy in fluid handling.\n          </v-card-text>\n        </v-card>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -6883,8 +6899,8 @@
         "ui": "",
         "name": "header",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "12",
+        "height": "6",
         "head": "",
         "format": "<template>\n  <v-empty-state\n    headline=\"Calibration steps\"\n    icon=\"$vuetify\"\n    title=\"Follow these steps to ensure optimal image quality and measurement accuracy\"\n  >\n  </v-empty-state>\n</template>\n",
         "storeOutMessages": true,
@@ -6985,7 +7001,7 @@
         "name": "3. Display White Balance Settings",
         "order": 4,
         "width": "4",
-        "height": "1",
+        "height": "10",
         "head": "",
         "format": "<template>\n  <v-card title=\"3. Observe the current White Balance Settings\">\n    <v-card-text>\n      <canvas id=\"wbChart\"></canvas>\n    </v-card-text>\n  </v-card>\n</template>\n\n\n\n<script>\nexport default {\n  data() {\n    return {\n      chart: null,\n    };\n  },\n  mounted() {\n    this.$nextTick(() => {\n      this.createChart(); // Initialize the chart after the component is fully mounted\n    });\n  },\n  beforeDestroy() {\n    if (this.chart) {\n      this.chart.destroy(); // Clean up the chart if the component is destroyed\n    }\n  },\n  methods: {\n    createChart(hexColor = '#000000') {\n      const canvas = document.getElementById('wbChart');\n      if (!canvas) {\n        console.error(\"Canvas element not found.\");\n        return;\n      }\n\n      const ctx = canvas.getContext('2d');\n      if (!ctx) {\n        console.error(\"Unable to get canvas context.\");\n        return;\n      }\n\n      const ratios = this.calculateRatiosFromHex(hexColor);\n\n      if (this.chart) {\n        this.chart.destroy(); // Ensure any existing chart is destroyed before creating a new one\n      }\n\n      this.chart = new Chart(ctx, {\n        type: 'scatter',\n        data: {\n          datasets: [\n            {\n              label: 'Current WB',\n              data: [{ x: ratios.bgRatio, y: ratios.rgRatio }],\n              backgroundColor: 'blue',\n              borderColor: 'black',\n              borderWidth: 1,\n              pointRadius: 10,\n              pointHoverRadius: 15,\n            },\n            {\n              label: 'Acceptable WB',\n              data: [{ x: 1, y: 1 }],\n              backgroundColor: '#5cd65c',\n              borderColor: 'black',\n              borderWidth: 1,\n              pointRadius: 50,\n              pointHoverRadius: 55,\n              pointStyle: 'circle',\n              fill: true,\n              showLine: false,\n            },\n          ],\n        },\n        options: {\n          responsive: true,\n          maintainAspectRatio: true,\n          scales: {\n            x: {\n              type: 'linear',\n              position: 'bottom',\n              title: {\n                display: true,\n                text: 'B/G Ratio',\n              },\n              min: 0.8,\n              max: 1.2,\n            },\n            y: {\n              type: 'linear',\n              title: {\n                display: true,\n                text: 'R/G Ratio',\n              },\n              min: 0.8,\n              max: 1.2,\n            },\n          },\n          plugins: {\n            legend: {\n              display: true,\n            },\n          },\n          animation: {\n            duration: 0, // Disabling animations might prevent some update issues\n          },\n        },\n      });\n    },\n    calculateRatiosFromHex(hex) {\n      const r = parseInt(hex.slice(1, 3), 16);\n      const g = parseInt(hex.slice(3, 5), 16);\n      const b = parseInt(hex.slice(5, 7), 16);\n\n      const rgRatio = r / g || 0;\n      const bgRatio = b / g || 0;\n\n      return { rgRatio, bgRatio };\n    },\n  },\n  watch: {\n    msg(newMsg) {\n      if (newMsg && newMsg.acq_wb_hex) {\n        this.createChart(newMsg.acq_wb_hex);\n      }\n    },\n  },\n};\n</script>\n\n<style scoped>\n#wbChart {\n  width: 100% !important;\n  height: 400px !important;\n}\n</style>\n",
         "storeOutMessages": true,
@@ -7010,7 +7026,7 @@
         "name": "4. Adjust White Balance Settings",
         "order": 5,
         "width": "4",
-        "height": "1",
+        "height": "10",
         "head": "",
         "format": "<template>\n  <v-card title=\"4. Adjust White Balance Settings\">\n    <v-card-text>\n      Use the suggested values to adjust the white balance based on the color input.\n    </v-card-text>\n    <v-card-text>\n      <v-row>\n        <v-col cols=\"4\"></v-col>\n        <v-col cols=\"4\">Current</v-col>\n        <v-col cols=\"4\">Suggested</v-col>\n      </v-row>\n      <v-row>\n        <v-col cols=\"4\">AWRed</v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"currentAWRed\" disabled variant=\"outlined\"></v-text-field>\n        </v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"suggestedAWRed\" variant=\"outlined\"></v-text-field>\n        </v-col>\n      </v-row>\n      <v-row>\n        <v-col cols=\"4\">AWBlue</v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"currentAWBlue\" disabled variant=\"outlined\"></v-text-field>\n        </v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"suggestedAWBlue\" variant=\"outlined\"></v-text-field>\n        </v-col>\n      </v-row>\n    </v-card-text>\n    <v-card-actions>\n    <v-card-text>\n      We have calculated better values for your AWRed and AWBlue : \n    </v-card-text>\n      <v-btn color=\"primary\" @click=\"sendSettings\" variant=\"outlined\">Improve</v-btn>\n    </v-card-actions>\n  </v-card>\n</template>\n\n<script>\nexport default {\n  props: ['id'],\n  data() {\n    return {\n      currentAWRed: '',\n      currentAWBlue: '',\n      suggestedAWRed: '',\n      suggestedAWBlue: '',\n    };\n  },\n  mounted() {\n    this.setupSocketListeners();\n  },\n  methods: {\n    setupSocketListeners() {\n      if (this.$socket) {\n        this.$socket.on('msg-input:' + this.id, (msg) => {\n          if (msg.acq_wb_red !== undefined) {\n            this.currentAWRed = msg.acq_wb_red;\n          }\n          if (msg.acq_wb_blue !== undefined) {\n            this.currentAWBlue = msg.acq_wb_blue;\n          }\n          if (msg.acq_wb_hex !== undefined) {\n            this.calculateSuggestedAW(msg.acq_wb_hex);\n          }\n        });\n      }\n    },\n    hexToRgb(hex) {\n      hex = hex.replace(/^#/, '');\n      let bigint = parseInt(hex, 16);\n      let r = (bigint >> 16) & 255;\n      let g = (bigint >> 8) & 255;\n      let b = bigint & 255;\n      return { r, g, b };\n    },\n    calculateSuggestedAW(hexColor) {\n      const { r, g, b } = this.hexToRgb(hexColor);\n      let redAdjustment = (g - r) + parseInt(this.currentAWRed, 10);\n      let blueAdjustment = (g - b) + parseInt(this.currentAWBlue, 10);\n      this.suggestedAWRed = Math.max(0, redAdjustment);\n      this.suggestedAWBlue = Math.max(0, blueAdjustment);\n    },\n    sendSettings() {\n      const payload = {\n        payload: {\n          action: \"settings\",\n          settings: {\n            white_balance_gain: {\n              blue: this.suggestedAWBlue,\n              red: this.suggestedAWRed,\n            },\n          },\n        },\n        acq_wb_blue:this.suggestedAWBlue,\n        acq_wb_red:this.suggestedAWRed,\n        \n        topic: \"imager/image\",\n        \n      };\n      this.send(payload);\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
@@ -7329,7 +7345,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"1\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\" class=\"selected-step\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
+        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"1\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\" class=\"selected-step\" color=\"primary\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\" color=\"primary\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\" color=\"primary\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\" color=\"primary\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -7640,7 +7656,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"1\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\" class=\"selected-step\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
+        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"2\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\" class=\"selected-step\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -8098,7 +8114,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"1\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\" class=\"selected-step\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
+        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"3\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\" class=\"selected-step\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -8212,7 +8228,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"1\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\" class=\"selected-step\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
+        "format": "<template>\n  <div>\n    <v-stepper class=\"my-stepper\" model-value=\"4\" non-linear>\n      <v-stepper-header>\n        <v-stepper-item value=\"1\" editable @click=\"stepClicked(1)\">Saturation Level</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"2\" editable @click=\"stepClicked(2)\">Lightness</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"3\" editable @click=\"stepClicked(3)\">Pixel size</v-stepper-item>\n        <v-divider></v-divider>\n        <v-stepper-item value=\"4\" editable @click=\"stepClicked(4)\" class=\"selected-step\">Pump</v-stepper-item>\n      </v-stepper-header>\n    </v-stepper>\n  </div>\n</template>\n\n<script>\n  export default {\n    name: 'StepperComponent',\n    methods: {\n      stepClicked(step) {\n        const stepMapping = {\n          1: { page: 'Calibration - Saturation Level' },\n          2: { page: 'Calibration - Lightness' },\n          3: { page: 'Calibration - Pixel size' },\n          4: { page: 'Calibration - Pump' }\n        };\n\n        const msgPayload = stepMapping[step] || {};\n        \n        this.send({ payload: msgPayload });\n      }\n    }\n  }\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
