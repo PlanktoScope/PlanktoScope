@@ -18,4 +18,4 @@ git clone https://github.com/PlanktoScope/PlanktoScope.git --filter=blob:none
 cd PlanktoScope
 ./os/developer-mode/install-just.sh
 just
-./postinstall.sh
+./os/postinstall.sh
