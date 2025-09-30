@@ -4,6 +4,9 @@ import json
 import threading
 import time
 import typing
+import datetime as dt
+import os
+import picamera2  # type: ignore
 
 import loguru
 
@@ -126,8 +129,50 @@ class Worker(threading.Thread):
         """
         assert self._camera is not None
 
-        if message["topic"] != "imager/image" or message["payload"].get("action", "") != "settings":
+        if message["topic"] != "imager/image":
             return None
+
+        if message["payload"].get("action", "") == "capture":
+            picam2 = self._camera._camera
+
+            # https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+            # 6.1.4. Capturing straight to files and file-like objects
+            picam2.options["quality"] = (
+                95  # JPEG quality level, where 0 is the worst quality and 95 is best.
+            )
+
+            filename_basename = (
+                f"{dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d_%H-%M-%S-%f')}"
+            )
+            capture_path = os.path.join("/home/pi/data", filename_basename)
+
+            loguru.logger.debug(f"Capturing and saving image {filename_basename}")
+
+            (buffer_main, buffer_raw), metadata = picam2.capture_buffers(["main", "raw"])
+
+            loguru.logger.debug(
+                f"Image metadata: {metadata}"  # pylint: disable=no-member
+            )
+
+            picam2.helpers.save_dng(
+                buffer=buffer_raw,
+                metadata=metadata,
+                config=picam2.camera_configuration()["raw"],
+                file_output=capture_path + ".dng",
+            )
+
+            image_main = picam2.helpers.make_image(
+                buffer=buffer_main, config=picam2.camera_configuration()["main"]
+            )
+            picam2.helpers.save(
+                img=image_main, metadata=metadata, format="jpeg", file_output=capture_path + ".jpg"
+            )
+
+            return None
+
+        if message["payload"].get("action", "") != "settings":
+            return None
+
         if "settings" not in message["payload"]:
             loguru.logger.error(f"Received message is missing field 'settings': {message}")
             return '{"status":"Camera settings error"}'
