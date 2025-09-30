@@ -3,6 +3,11 @@ export default {
   operator: "Example Team",
   sampling_gear: "FairScope-CCM-Kit",
   number_of_images: 2000,
+  notifications: {
+    enabled: false,
+    slack_token: "",
+    slack_channel: "",
+  },
   location: {
     latitude: "",
     longitude: "",
