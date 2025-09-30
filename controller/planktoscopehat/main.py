@@ -19,7 +19,7 @@ def handler_stop_signals(signum, frame):
     run = False
 
 
-def main(configuration):
+def main(configuration, hardware):
     logger.info("Initialising signals handling (step 1/5)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
@@ -50,7 +50,7 @@ def main(configuration):
 
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
-    hat_version = float(configuration.get("hat_version") or 0)
+    hat_version = float(hardware.get("hat_version") or 0)
     if hat_version < 3.1:
         from . import light_v26 as light
     else:

@@ -18,17 +18,6 @@ MCP4725_ADDR = 0x60
 bus = SMBus(1)
 
 
-def set_voltage(vout):
-    """
-    Fixe la tension de sortie du MCP4725 (0–5.116 V mesurés)
-    """
-    code = int((vout / 5.116) * 65535)
-    code = max(0, min(65535, code))  # sécurité
-    high_byte = (code >> 8) & 0xFF
-    low_byte = code & 0xFF
-    bus.write_i2c_block_data(MCP4725_ADDR, 0x40, [high_byte, low_byte])
-
-
 class i2c_led:
     """
     MCP4725 Led controller
@@ -41,7 +30,7 @@ class i2c_led:
     def get_state(self):
         return self.on
 
-    def set_voltage(vout):
+    def set_voltage(self, vout):
         """
         Fixe la tension de sortie du MCP4725 (0–5.116 V mesurés)
         """
@@ -53,12 +42,12 @@ class i2c_led:
 
     def activate_torch(self):
         logger.debug("Activate torch")
-        self.set_voltage(3.0)
+        self.set_voltage(3)
         self.on = True
 
     def deactivate_torch(self):
         logger.debug("Deactivate torch")
-        self.set_voltage(0.0)
+        self.set_voltage(0)
         self.on = False
 
 
