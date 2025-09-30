@@ -22,6 +22,8 @@ The PlanktoScope is now powered by the Raspberry via USB-C instead of by the hat
 
 Faster wifi from 120Mb/s to 300Mb/s
 
+Less noisy
+
 [PCIe connector](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-connector-for-pcie), compatible with:
 * [Raspberry Pi AI HAT+](https://www.raspberrypi.com/products/ai-hat/)
 * [Raspberry Pi SSD Kit](https://www.raspberrypi.com/products/ssd-kit/)

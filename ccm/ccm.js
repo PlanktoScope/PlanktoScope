@@ -23,15 +23,51 @@ import path from "node:path"
 import { rm } from "node:fs/promises"
 import { getSoftwareVersioning } from "../lib/software.js"
 import { Client as GPSDClient } from "../lib/gpsd.js"
+import { filesize } from "filesize"
+import { stat } from "node:fs/promises"
+import { setTimeout } from "node:timers/promises"
 
 import config from "./ccm.config.js"
 import { existsSync } from "node:fs"
 
+import { WebClient } from "@slack/web-api"
+
+import { client as mqtt } from "../lib/mqtt.js"
+
+mqtt.on("message", (topic, message) => {
+  try {
+    message = JSON.parse(message.toString())
+    if (!message?.status) return
+  } catch {
+    return
+  }
+
+  const { status, ...others } = message
+  log(`mqtt ${topic}: ${status} ${JSON.stringify({ ...others })}`)
+})
+
 const config_safe = structuredClone(config)
 config_safe.ecotaxa.password = "******"
+config_safe.notifications.slack_token = "******"
 console.log("config", config_safe)
 
 Date.prototype.toTemporalInstant = toTemporalInstant
+
+// Create a new instance of the WebClient class with the token read from your environment variable
+const slack = new WebClient(config.notifications.slack_token)
+function log(message) {
+  const str = `${new Date().toISOString()} ${message}`
+
+  console.log(str)
+  slack.chat
+    .postMessage({
+      channel: config.notifications.slack_channel,
+      text: str,
+    })
+    .catch((err) => {
+      console.error("Could not notify on slack", err)
+    })
+}
 
 const hardware_version = await getHardwareVersion()
 const machine_name = await getName()
@@ -56,31 +92,30 @@ if (config.location.gps === true) {
 }
 
 function started(topic) {
-  console.log("\n")
-  console.log(new Date().toISOString(), "start", topic)
-  console.time(topic)
-  console.log("\n")
+  log(`started ${topic}`)
 }
 
 function completed(topic) {
-  console.log("\n")
-  console.log(new Date().toISOString(), "completed", topic)
-  console.timeEnd(topic)
-  console.log("\n")
+  log(`completed ${topic}`)
 }
 
 // 2x1000 images par jour
 const number_of_images = config.number_of_images
 const flowcell_volume = 2.08 // μL
+const wait_seconds = 120
 
 async function runSequence() {
+  log(`online, waiting ${wait_seconds} seconds`)
+  await setTimeout(wait_seconds * 1000)
+
   started("light on")
   await turnLightOn()
   completed("light on")
 
-  started("cleaning tube backward")
-  await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
-  completed("cleaning tube backward")
+  // Why make a backflush?
+  // started("cleaning tube backward")
+  // await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
+  // completed("cleaning tube backward")
 
   started("cleaning tube forward")
   await pump({ direction: FORWARD, volume: 10, flowrate: 10 })
@@ -187,7 +222,8 @@ async function runSequence() {
   ) {
     started("upload")
 
-    console.log(file_path_ecotaxa_zip)
+    const stats = await stat(file_path_ecotaxa_zip, { bigint: true })
+    log(file_path_ecotaxa_zip + " " + filesize(stats.size))
 
     await upload({
       username: config.ecotaxa.username,
@@ -205,6 +241,9 @@ async function runSequence() {
   started("purge data")
   await purgeData()
   completed("purge data")
+
+  log(`done, waiting ${wait_seconds} seconds`)
+  await setTimeout(wait_seconds * 1000)
 }
 
 try {
@@ -216,7 +255,7 @@ try {
   throw err
 }
 
-await poweroff()
+// await poweroff()
 
 // eslint-disable-next-line n/no-process-exit
 process.exit()
