@@ -113,9 +113,9 @@ async function runSequence() {
   completed("light on")
 
   // Why make a backflush?
-  // started("cleaning tube backward")
-  // await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
-  // completed("cleaning tube backward")
+  started("cleaning tube backward")
+  await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
+  completed("cleaning tube backward")
 
   started("cleaning tube forward")
   await pump({ direction: FORWARD, volume: 10, flowrate: 10 })
@@ -255,7 +255,7 @@ try {
   throw err
 }
 
-// await poweroff()
+await poweroff()
 
 // eslint-disable-next-line n/no-process-exit
 process.exit()
