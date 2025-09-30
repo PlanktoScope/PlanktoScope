@@ -12,9 +12,33 @@ import mqtt
 
 from smbus2 import SMBus
 
+MCP4725_ADDR = 0x60
+
+# Proportional 0 to 3.3V
+VALUE_MIN = 0
+VALUE_MAX = 65535
+
+VOLTAGE_MIN = 0
+VOLTAGE_MAX = 3.3
+
+
+def map_to_voltage(value):
+    """
+    Map a value from 0–65535 to 0–3.3V
+    """
+    return (value / VALUE_MAX) * VOLTAGE_MAX
+
+
+def map_to_adc(voltage):
+    """
+    Map a voltage from 0–3.3V to 0–65535
+    """
+    return int((voltage / VOLTAGE_MAX) * VALUE_MAX)
+
+
 logger.info("planktoscope.light is loaded")
 
-MCP4725_ADDR = 0x60
+
 bus = SMBus(1)
 
 
@@ -31,18 +55,14 @@ class i2c_led:
         return self.on
 
     def set_voltage(self, vout):
-        """
-        Fixe la tension de sortie du MCP4725 (0–5.116 V mesurés)
-        """
-        code = int((vout / 5.116) * 65535)
-        code = max(0, min(65535, code))  # sécurité
+        code = map_to_adc(vout)
         high_byte = (code >> 8) & 0xFF
         low_byte = code & 0xFF
         bus.write_i2c_block_data(MCP4725_ADDR, 0x40, [high_byte, low_byte])
 
     def activate_torch(self):
         logger.debug("Activate torch")
-        self.set_voltage(3)
+        self.set_voltage(3.3)
         self.on = True
 
     def deactivate_torch(self):
