@@ -9,11 +9,11 @@ print("Test MOSFET ON/OFF sur GPIO19")
 try:
     while True:
         print("ON")
-        mos.on()       # active la sortie (MOSFET conducteur)
+        mos.on()  # active la sortie (MOSFET conducteur)
         sleep(2)
-        
+
         print("OFF")
-        mos.off()      # coupe la sortie (MOSFET bloqué)
+        mos.off()  # coupe la sortie (MOSFET bloqué)
         sleep(2)
 
 except KeyboardInterrupt:

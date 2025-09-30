@@ -4,8 +4,6 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-from gpiozero import DigitalOutputDevice
-
 import os
 import time
 import json
@@ -43,15 +41,7 @@ class i2c_led:
     DEFAULT_CURRENT = 10
 
     def __init__(self, configuration):
-        hat_type = configuration.get("hat_type") or ""
-        hat_version = float(configuration.get("hat_version") or 0)
-
-        # The led is controlled by LM36011
-        # but on version 1.2 of the PlanktoScope HAT (PlanktoScope v2.6)
-        # the circuit is connected to the pin 18 so it needs to be high
-        # pin is assigned to self to prevent gpiozero from immediately releasing it
-        if hat_type != "planktoscope" or hat_version < 3.1:
-            self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
+        self.__pin = DigitalOutputDevice(pin=18, initial_value=True)
 
         self.VLED_short = False
         self.thermal_scale = False
