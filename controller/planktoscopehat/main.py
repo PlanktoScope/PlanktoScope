@@ -4,7 +4,7 @@ import signal
 
 from loguru import logger
 
-from . import pump, focus, light
+from . import pump, focus
 from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
@@ -50,6 +50,12 @@ def main(configuration):
 
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
+    hat_version = float(configuration.get("hat_version") or 0)
+    if hat_version < 3.1:
+        from . import light_v26 as light
+    else:
+        from . import light_v30 as light
+
     light_thread = None
     try:
         light_thread = light.LightProcess(shutdown_event, configuration)
@@ -71,9 +77,9 @@ def main(configuration):
         if not imager_thread or not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
-        if not light_thread or not light_thread.is_alive():
-            logger.error("The light process died unexpectedly! Oh no!")
-            break
+        # if not light_thread or not light_thread.is_alive():
+        #     logger.error("The light process died unexpectedly! Oh no!")
+        #     break
         time.sleep(1)
 
     logger.info("Shutting down the shop")
@@ -84,14 +90,14 @@ def main(configuration):
     focus_thread.join()
     if imager_thread:
         imager_thread.join()
-    if light_thread:
-        light_thread.join()
+    # if light_thread:
+    #     light_thread.join()
 
     pump_thread.close()
     focus_thread.close()
     if imager_thread:
         imager_thread.close()
-    if light_thread:
-        light_thread.close()
+    # if light_thread:
+    #     light_thread.close()
 
     logger.info("Bye")
