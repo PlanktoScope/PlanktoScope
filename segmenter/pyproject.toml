@@ -34,7 +34,7 @@ build-backend = "poetry.core.masonry.api"
 python = ">=3.11.2,<4.0"
 paho-mqtt = "^2.1.0"
 numpy = "^2.3.3"
-pandas = "^2.3.2"
+pandas = "^2.3.3"
 loguru = "^0.7.3"
 opencv-python-headless = "^4.6.0.66"
 scikit-image = "^0.25.2"
@@ -44,9 +44,9 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.37.0"
-mypy = "^1.18.1"
+mypy = "^1.18.2"
 types-paho-mqtt = "^1.6.0.20240106"
-ruff = "^0.13.0"
+ruff = "^0.13.2"
 
 [tool.ruff]
 line-length = 100
