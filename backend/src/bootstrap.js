@@ -9,7 +9,7 @@ import crypto from "node:crypto"
 import { read, write } from "../../lib/eeprom.js"
 import { setHardwareVersion } from "../../lib/hardware.js"
 
-import { handle } from "../../lib/mqtt.js"
+import { procedure, publish, request } from "../../lib/mqtt.js"
 import { hasSoftwareConfig } from "../../lib/file-config.js"
 
 // If the PlanktoScope has an EEPROM with the hardware version set
@@ -26,10 +26,12 @@ if (hardware_version && !(await hasSoftwareConfig())) {
 
 export const has_eeprom_hardware_version = !!hardware_version
 
-await handle("bootstrap/init", async () => {
+await procedure("bootstrap/init", async () => {
   const eeprom = cached
 
   if (eeprom?.custom_data?.eeprom_version !== "0") {
+    await request("light", { action: "on" })
+
     return {
       product_uuid: crypto.randomUUID(),
       product_id: "0x0000", // TODO
@@ -49,11 +51,15 @@ await handle("bootstrap/init", async () => {
   return eeprom
 })
 
-await handle("bootstrap/update", async (data) => {
+await procedure("bootstrap/update", async (data) => {
   await write(data)
+
+  await request("light", { action: "off" })
+  await request("light", { action: "save" })
+
   cached = await read()
 })
 
-await handle("bootstrap/read", async () => {
+await procedure("bootstrap/read", async () => {
   return cached
 })

@@ -9,12 +9,20 @@ import multiprocessing
 
 # Basic planktoscope libraries
 import mqtt
+from paho.mqtt.client import Properties
+from paho.mqtt.client import PacketTypes
 
-from smbus2 import SMBus
+import board
+import busio
+
+from adafruit_mcp4725 import MCP4725
+
+# Initialize I2C bus.
+i2c = busio.I2C(board.SCL, board.SDA)
 
 MCP4725_ADDR = 0x60
 
-# Proportional 0 to 3.3V
+# Proportional 0 to 5V
 VALUE_MIN = 0
 VALUE_MAX = 65535
 
@@ -34,36 +42,27 @@ def map_to_adc(voltage):
 logger.info("planktoscope.light is loaded")
 
 
-bus = SMBus(1)
-
-
-class i2c_led:
-    """
-    MCP4725 Led controller
-    """
-
+class Led:
     def __init__(self):
-        self.bus = SMBus(1)
+        self.dac = MCP4725(i2c, address=MCP4725_ADDR)
         self.on = False
 
-    def get_state(self):
-        return self.on
-
     def set_voltage(self, vout):
-        code = map_to_adc(vout)
-        high_byte = (code >> 8) & 0xFF
-        low_byte = code & 0xFF
-        bus.write_i2c_block_data(MCP4725_ADDR, 0x40, [high_byte, low_byte])
+        self.dac.value = map_to_adc(vout)
 
     def activate_torch(self):
         logger.debug("Activate torch")
-        self.set_voltage(3.3)
+        self.set_voltage(5)
         self.on = True
 
     def deactivate_torch(self):
         logger.debug("Deactivate torch")
         self.set_voltage(0)
         self.on = False
+
+    def save(self):
+        logger.debug("Saving DAC value to eeprom")
+        self.dac.save_to_eeprom()
 
 
 ################################################################################
@@ -85,9 +84,7 @@ class LightProcess(multiprocessing.Process):
         self.stop_event = event
         self.light_client = None
         try:
-            self.led = i2c_led()
-            self.led.activate_torch()
-            time.sleep(0.5)
+            self.led = Led()
             self.led.deactivate_torch()
         except Exception as e:
             logger.error(
@@ -113,9 +110,11 @@ class LightProcess(multiprocessing.Process):
     @logger.catch
     def treat_message(self):
         last_message = None
+        last_properties = None
         if self.light_client.new_message_received():
             logger.info("We received a new message")
             last_message = self.light_client.msg["payload"]
+            last_properties = self.light_client.msg["properties"]
             logger.debug(last_message)
             self.light_client.read_message()
             if "action" not in last_message and "settings" not in last_message:
@@ -127,21 +126,51 @@ class LightProcess(multiprocessing.Process):
                 return
         if last_message:
             if "action" in last_message:
-                action = last_message["action"]
-                if action == "on":
-                    logger.info("Turning the light on.")
-                    self.led_on()
-                    self.publish_status()
-                elif action == "off":
-                    logger.info("Turn the light off.")
-                    self.led_off()
-                    self.publish_status()
-                elif action == "status":
-                    self.publish_status()
-                else:
-                    logger.warning(
-                        f"We did not understand the received request {action} - {last_message}"
-                    )
+                self.process_action(last_message, last_properties)
+            elif "settings" in last_message:
+                self.process_settings(last_message, last_properties)
+
+    def process_action(self, message, props):
+        action = message["action"]
+        if action == "on":
+            logger.info("Turning the light on.")
+            self.led_on()
+            self.publish_status()
+        elif action == "off":
+            logger.info("Turn the light off.")
+            self.led_off()
+            self.publish_status()
+        elif action == "status":
+            self.publish_status()
+        elif action == "save":
+            self.led.save()
+        else:
+            logger.warning(f"We did not understand the received request {action} - {message}")
+
+        if not hasattr(props, "ResponseTopic"):
+            return
+
+        reply_to = props.ResponseTopic
+
+        reply_props = Properties(PacketTypes.PUBLISH)
+        if hasattr(props, "CorrelationData"):
+            reply_props.CorrelationData = props.CorrelationData
+
+        self.light_client.client.publish(reply_to, json.dumps({}), qos=1, properties=reply_props)
+
+    def process_settings(self, message, properties):
+        if "voltage" in message["settings"]:
+            voltage = message["settings"]["voltage"]
+            self.led.set_voltage(voltage)
+            self.light_client.client.publish(
+                "status/light", f'{{"status":"Voltage set to {voltage}V"}}'
+            )
+        else:
+            logger.warning(f"We did not understand the received settings request in {message}")
+            self.light_client.client.publish(
+                "status/light",
+                f'{{"status":"Settings request not understood in {message}"}}',
+            )
 
     @logger.catch
     def run(self):
