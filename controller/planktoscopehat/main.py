@@ -4,7 +4,7 @@ import signal
 
 from loguru import logger
 
-from . import pump, focus
+from . import pump, focus, buller
 from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
@@ -27,6 +27,11 @@ def main(configuration, hardware):
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
+
+    # Starts the buller process
+    logger.info("Starting the buller control process (step ?/?)")
+    buller_thread = buller.BullerThread()
+    buller_thread.start()
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/5)")

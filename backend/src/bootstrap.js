@@ -9,7 +9,7 @@ import crypto from "node:crypto"
 import { read, write } from "../../lib/eeprom.js"
 import { setHardwareVersion } from "../../lib/hardware.js"
 
-import { procedure, publish, request } from "../../lib/mqtt.js"
+import { procedure, request } from "../../lib/mqtt.js"
 import { hasSoftwareConfig } from "../../lib/file-config.js"
 
 // If the PlanktoScope has an EEPROM with the hardware version set
