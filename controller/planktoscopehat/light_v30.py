@@ -19,20 +19,15 @@ VALUE_MIN = 0
 VALUE_MAX = 65535
 
 VOLTAGE_MIN = 0
-VOLTAGE_MAX = 3.3
+# if you run it from 3.3V, the output range is 0-3.3V. If you run it from 5V the output range is 0-5V.
+VOLTAGE_MAX = 5
 
 
 def map_to_voltage(value):
-    """
-    Map a value from 0–65535 to 0–3.3V
-    """
     return (value / VALUE_MAX) * VOLTAGE_MAX
 
 
 def map_to_adc(voltage):
-    """
-    Map a voltage from 0–3.3V to 0–65535
-    """
     return int((voltage / VOLTAGE_MAX) * VALUE_MAX)
 
 
