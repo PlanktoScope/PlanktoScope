@@ -4,8 +4,9 @@ import signal
 
 from loguru import logger
 
-from . import pump, focus, buller
-from imager import mqtt as imager
+from . import pump, focus, bubbler
+
+# from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope python script!")
 
@@ -20,6 +21,8 @@ def handler_stop_signals(signum, frame):
 
 
 def main(configuration, hardware):
+    hat_version = float(hardware.get("hat_version") or 0)
+
     logger.info("Initialising signals handling (step 1/5)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
@@ -28,10 +31,11 @@ def main(configuration, hardware):
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
 
-    # Starts the buller process
-    logger.info("Starting the buller control process (step ?/?)")
-    buller_thread = buller.BullerThread()
-    buller_thread.start()
+    bubbler_worker = None
+    if hat_version > 3.1:
+        logger.info("Starting the bubbler control worker (step ?/?)")
+        bubbler_worker = bubbler.Worker(shutdown_event, configuration)
+        bubbler_worker.start()
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/5)")
@@ -45,17 +49,16 @@ def main(configuration, hardware):
 
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 4/5)")
-    imager_thread = None
-    try:
-        imager_thread = imager.ImagerProcess(shutdown_event, configuration)
-        imager_thread.start()
-    except Exception as e:
-        logger.error(f"The imager control process could not be started: {e}")
+    # logger.info("Starting the imager control process (step 4/5)")
+    # imager_thread = None
+    # try:
+    #     imager_thread = imager.ImagerProcess(shutdown_event, configuration)
+    #     imager_thread.start()
+    # except Exception as e:
+    #     logger.error(f"The imager control process could not be started: {e}")
 
     # Starts the light process
     logger.info("Starting the light control process (step 5/5)")
-    hat_version = float(hardware.get("hat_version") or 0)
     if hat_version < 3.1:
         from . import light_v26 as light
     else:
@@ -73,18 +76,21 @@ def main(configuration, hardware):
     while run:
         # TODO look into ways of restarting the dead threads
         logger.trace("Running around in circles while waiting for someone to die!")
+        if bubbler_worker and not bubbler_worker.is_alive():
+            logger.error("The bubbler worker died unexpectedly! Oh no!")
+            break
         if not pump_thread.is_alive():
             logger.error("The pump process died unexpectedly! Oh no!")
             break
         if not focus_thread.is_alive():
             logger.error("The focus process died unexpectedly! Oh no!")
             break
-        if not imager_thread or not imager_thread.is_alive():
-            logger.error("The imager process died unexpectedly! Oh no!")
-            break
-        # if not light_thread or not light_thread.is_alive():
-        #     logger.error("The light process died unexpectedly! Oh no!")
+        # if not imager_thread or not imager_thread.is_alive():
+        #     logger.error("The imager process died unexpectedly! Oh no!")
         #     break
+        if not light_thread or not light_thread.is_alive():
+            logger.error("The light process died unexpectedly! Oh no!")
+            break
         time.sleep(1)
 
     logger.info("Shutting down the shop")
@@ -93,16 +99,20 @@ def main(configuration, hardware):
 
     pump_thread.join()
     focus_thread.join()
-    if imager_thread:
-        imager_thread.join()
-    # if light_thread:
-    #     light_thread.join()
+    if bubbler_worker:
+        bubbler_worker.join()
+    # if imager_thread:
+    #     imager_thread.join()
+    if light_thread:
+        light_thread.join()
 
     pump_thread.close()
     focus_thread.close()
-    if imager_thread:
-        imager_thread.close()
-    # if light_thread:
-    #     light_thread.close()
+    if bubbler_worker:
+        bubbler_worker.close()
+    # if imager_thread:
+    #     imager_thread.close()
+    if light_thread:
+        light_thread.close()
 
     logger.info("Bye")
