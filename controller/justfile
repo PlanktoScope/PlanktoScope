@@ -4,6 +4,7 @@ setup:
     sudo cp planktoscope-org.controller.service /etc/systemd/system/
     sudo systemctl reenable planktoscope-org.controller
     sudo systemctl restart planktoscope-org.controller
+    just --justfile bubbler/justfile setup
 
 setup-dev:
     poetry lock && poetry install --with=dev

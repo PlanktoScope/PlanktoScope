@@ -4,7 +4,7 @@ import signal
 
 from loguru import logger
 
-from . import pump, focus, bubbler
+from . import pump, focus
 
 # from imager import mqtt as imager
 
@@ -30,12 +30,6 @@ def main(configuration, hardware):
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
-
-    bubbler_worker = None
-    if hat_version > 3.1:
-        logger.info("Starting the bubbler control worker (step ?/?)")
-        bubbler_worker = bubbler.Worker(shutdown_event, configuration)
-        bubbler_worker.start()
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/5)")
@@ -76,9 +70,6 @@ def main(configuration, hardware):
     while run:
         # TODO look into ways of restarting the dead threads
         logger.trace("Running around in circles while waiting for someone to die!")
-        if bubbler_worker and not bubbler_worker.is_alive():
-            logger.error("The bubbler worker died unexpectedly! Oh no!")
-            break
         if not pump_thread.is_alive():
             logger.error("The pump process died unexpectedly! Oh no!")
             break
@@ -99,8 +90,6 @@ def main(configuration, hardware):
 
     pump_thread.join()
     focus_thread.join()
-    if bubbler_worker:
-        bubbler_worker.join()
     # if imager_thread:
     #     imager_thread.join()
     if light_thread:
@@ -108,8 +97,6 @@ def main(configuration, hardware):
 
     pump_thread.close()
     focus_thread.close()
-    if bubbler_worker:
-        bubbler_worker.close()
     # if imager_thread:
     #     imager_thread.close()
     if light_thread:

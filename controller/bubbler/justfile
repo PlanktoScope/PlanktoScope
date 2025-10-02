@@ -1,0 +1,8 @@
+setup:
+    sudo cp planktoscope-org.controller.bubbler.service /etc/systemd/system/
+    sudo systemctl reenable planktoscope-org.controller.bubbler
+    sudo systemctl restart planktoscope-org.controller.bubbler
+
+dev:
+    -sudo systemctl stop planktoscope-org.controller.bubbler
+    poetry run python -u main.py
