@@ -1,5 +1,4 @@
 [Unit]
-Description=The hardware controller for the bubbler
 Wants=mosquitto.service
 After=mosquitto.service
 
@@ -10,6 +9,7 @@ WorkingDirectory=/home/pi/PlanktoScope/controller
 ExecStart=/home/pi/.local/bin/poetry run python -u bubbler/main.py
 User=pi
 Group=pi
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

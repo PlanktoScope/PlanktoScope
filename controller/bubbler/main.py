@@ -1,23 +1,34 @@
 import asyncio
 import json
 
-from loguru import logger
-import aiomqtt  # type: ignore
-import gpiozero  # type: ignore
+import aiomqtt
+import gpiozero
 import paho
+import sys
+import signal
+import aiofiles
+
+import identity
 
 # pymon "poetry run python -u planktoscopehat/bubbler.py" -x
 
 device = gpiozero.DigitalOutputDevice(19)
 client = None
+loop = asyncio.new_event_loop()
 
 
-async def main() -> None:
+async def start() -> None:
+    if await identity.get_hat_version() != 3.2:
+        sys.exit()
+
+    device.value = 0
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:
-        await client.subscribe("actuator/bubbler")
-        await publish_status()
+        _ = await asyncio.gather(
+            client.subscribe("actuator/bubbler"),
+            publish_status(),
+        )
         async for message in client.messages:
             await handle_message(message)
 
@@ -68,16 +79,19 @@ async def publish_status() -> None:
     await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 
 
-def exit() -> None:
+async def stop() -> None:
+    await off()
     device.close()
+    loop.stop()
+
+
+for s in (signal.SIGINT, signal.SIGTERM):
+    loop.add_signal_handler(s, lambda: asyncio.ensure_future(stop()))
+
+
+def main():
+    loop.run_until_complete(start())
 
 
 if __name__ == "__main__":
-    try:
-        loop = asyncio.run(main())
-    except KeyboardInterrupt:
-        exit()
-
-# TODO:
-# turn off bubbler on exit
-# publish status on exit
+    main()

@@ -7,10 +7,8 @@ watch("status/bubbler").then(async (messages) => {
   }
 })
 
-console.log("start")
 await startBubbler()
 
 await setTimeout(2000)
 
-console.log("stop")
 await stopBubbler()
