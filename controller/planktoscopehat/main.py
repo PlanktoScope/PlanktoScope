@@ -40,10 +40,9 @@ def main(configuration, hardware):
 
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
-    # logger.info("Starting the imager control process (step 4/5)")
-    imager_thread = None
-    # imager_thread = imager.ImagerProcess(shutdown_event, configuration)
-    # imager_thread.start()
+    logger.info("Starting the imager control process (step 4/5)")
+    imager_thread = imager.ImagerProcess(shutdown_event, configuration)
+    imager_thread.start()
 
     # Starts the light process
     hat_version = float(hardware.get("hat_version") or 0)
