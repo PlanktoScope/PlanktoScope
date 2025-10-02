@@ -255,6 +255,8 @@ try {
   throw err
 }
 
+await new Promise((resolve) => setTimeout(resolve, 1000 * 60))
+
 await poweroff()
 
 // eslint-disable-next-line n/no-process-exit
