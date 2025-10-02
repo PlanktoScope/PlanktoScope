@@ -10,6 +10,9 @@ from loguru import logger
 import aiomqtt  # type: ignore
 import gpiozero  # type: ignore
 import paho
+import functools
+import os
+import signal
 
 device = gpiozero.DigitalOutputDevice(19)
 
@@ -21,9 +24,20 @@ class Worker(multiprocessing.Process):
         super().__init__(name="bubbler")
         self.stop_event = event
 
-    @logger.catch
+    def exit(self, signame, loop) -> None:
+        # print("got signal %s: exit" % signame)
+        device.close()
+        loop.stop()
+
     def run(self) -> None:
-        asyncio.run(self.main())
+        loop = asyncio.get_event_loop()
+
+        for signame in {"SIGINT", "SIGTERM"}:
+            loop.add_signal_handler(
+                getattr(signal, signame), functools.partial(self.exit, signame, loop)
+            )
+
+        loop.run_until_complete(self.main())
 
     async def handle_message(self, message) -> None:
         if not message.topic.matches("actuator/bubbler"):
