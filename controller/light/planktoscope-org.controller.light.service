@@ -6,7 +6,7 @@ After=mosquitto.service
 Type=simple
 Environment=HOME=/home/pi
 WorkingDirectory=/home/pi/PlanktoScope/controller
-ExecStart=/home/pi/.local/bin/poetry run python -m bubbler.main
+ExecStart=/home/pi/.local/bin/poetry run python -m light.main
 User=pi
 Group=pi
 Restart=on-failure

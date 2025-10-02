@@ -1,0 +1,8 @@
+setup:
+    sudo cp planktoscope-org.controller.light.service /etc/systemd/system/
+    sudo systemctl reenable planktoscope-org.controller.light
+    sudo systemctl restart planktoscope-org.controller.light
+
+dev:
+    -sudo systemctl stop planktoscope-org.controller.light
+    cd .. && poetry run python -m light.main

@@ -2,30 +2,48 @@ import asyncio
 import json
 
 import aiomqtt
-import gpiozero
 import paho
 import sys
 import signal
 
+import board  # type: ignore
+import busio  # type: ignore
+from adafruit_mcp4725 import MCP4725  # type: ignore
+
 import identity
 
-# pymon "poetry run python -u planktoscopehat/bubbler.py" -x
+MCP4725_ADDR = 0x60
+# Proportional 0 to 5V
+VALUE_MIN = 0
+VALUE_MAX = 65535
+VOLTAGE_MIN = 0
+# if you run it from 3.3V, the output range is 0-3.3V. If you run it from 5V the output range is 0-5V.
+VOLTAGE_MAX = 5
 
-device = gpiozero.DigitalOutputDevice(19)
 client = None
 loop = asyncio.new_event_loop()
+i2c = busio.I2C(board.SCL, board.SDA)
+dac = MCP4725(i2c, address=MCP4725_ADDR)
+
+
+def map_to_voltage(value):
+    return (value / VALUE_MAX) * VOLTAGE_MAX
+
+
+def map_to_adc(voltage):
+    return int((voltage / VOLTAGE_MAX) * VALUE_MAX)
 
 
 async def start() -> None:
-    if await identity.get_hat_version() != 3.2:
-        sys.exit()
+    # if await identity.get_hat_version() != 3.2:
+    #     sys.exit()
 
-    device.value = 0
+    dac.value = 0
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:
         _ = await asyncio.gather(
-            client.subscribe("actuator/bubbler"),
+            client.subscribe("light"),
             publish_status(),
         )
         async for message in client.messages:
@@ -33,7 +51,7 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
-    if not message.topic.matches("actuator/bubbler"):
+    if not message.topic.matches("light"):
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
@@ -61,26 +79,28 @@ async def handle_action(action: str) -> None:
         await on()
     elif action == "off":
         await off()
+    elif action == "save":
+        dac.save_to_eeprom()
 
 
 async def on() -> None:
-    device.on()
+    dac.value = VALUE_MAX
     await publish_status()
 
 
 async def off() -> None:
-    device.off()
+    dac.value = VALUE_MIN
     await publish_status()
 
 
 async def publish_status() -> None:
-    payload = {"status": "On" if device.value == 1 else "Off"}
-    await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
+    payload = {"status": "Off" if dac.value == 0 else "On"}
+    await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
     await off()
-    device.close()
+    i2c.deinit()
     loop.stop()
 
 

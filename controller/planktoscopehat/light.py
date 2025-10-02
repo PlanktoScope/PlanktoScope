@@ -4,7 +4,7 @@
 # Logger library compatible with multiprocessing
 from loguru import logger
 
-from gpiozero import DigitalOutputDevice  # type: ignore
+from gpiozero import DigitalOutputDevice
 
 import os
 import time
