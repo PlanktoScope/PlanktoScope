@@ -62,7 +62,7 @@ function log(message) {
   slack.chat
     .postMessage({
       channel: config.notifications.slack_channel,
-      text: str,
+      text: config.project + " " + str,
     })
     .catch((err) => {
       console.error("Could not notify on slack", err)
@@ -107,10 +107,6 @@ const wait_seconds = 120
 async function runSequence() {
   log(`online, waiting ${wait_seconds} seconds`)
   await setTimeout(wait_seconds * 1000)
-
-  started("light on")
-  await turnLightOn()
-  completed("light on")
 
   // Why make a backflush?
   started("cleaning tube backward")
@@ -183,6 +179,10 @@ async function runSequence() {
   await configure(config_sample)
   completed("configure")
 
+  started("light on")
+  await turnLightOn()
+  completed("light on")
+
   started("acquisition")
   await acquire({
     pump_direction: FORWARD,
@@ -241,20 +241,23 @@ async function runSequence() {
   started("purge data")
   await purgeData()
   completed("purge data")
-
-  log(`done, waiting ${wait_seconds} seconds`)
-  await setTimeout(wait_seconds * 1000)
 }
 
 try {
   await runSequence()
 } catch (err) {
+  log("error " + err.toString())
+  console.error(err)
+} finally {
   try {
     await turnLightOff()
   } catch {}
-  throw err
+
+  log(`done, waiting ${wait_seconds} seconds`)
+  await setTimeout(wait_seconds * 1000)
 }
 
+log("poweroff 😴")
 await poweroff()
 
 // eslint-disable-next-line n/no-process-exit
