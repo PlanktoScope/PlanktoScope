@@ -7,7 +7,7 @@ import paho
 import sys
 import signal
 
-import identity
+import helpers
 
 # pymon "poetry run python -u planktoscopehat/bubbler.py" -x
 
@@ -17,7 +17,7 @@ loop = asyncio.new_event_loop()
 
 
 async def start() -> None:
-    if await identity.get_hat_version() != 3.2:
+    if (await helpers.get_hat_version()) != 3.2:
         sys.exit()
 
     device.value = 0
@@ -41,19 +41,7 @@ async def handle_message(message) -> None:
     if action is not None:
         await handle_action(action)
 
-    response_topic = getattr(message.properties, "ResponseTopic", None)
-    if response_topic is None:
-        return
-
-    correlation_data = getattr(message.properties, "CorrelationData", None)
-    properties = paho.mqtt.properties.Properties(paho.mqtt.packettypes.PacketTypes.PUBLISH)
-
-    if correlation_data is not None:
-        properties.CorrelationData = correlation_data
-
-    await client.publish(
-        topic=response_topic, payload=json.dumps({}), qos=1, properties=properties, retain=False
-    )
+    await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str) -> None:

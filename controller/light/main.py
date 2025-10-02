@@ -10,7 +10,7 @@ import board  # type: ignore
 import busio  # type: ignore
 from adafruit_mcp4725 import MCP4725  # type: ignore
 
-import identity
+import helpers
 
 MCP4725_ADDR = 0x60
 # Proportional 0 to 5V
@@ -35,8 +35,8 @@ def map_to_adc(voltage):
 
 
 async def start() -> None:
-    # if await identity.get_hat_version() != 3.2:
-    #     sys.exit()
+    if (await helpers.get_hat_version()) != 3.2:
+        sys.exit()
 
     dac.value = 0
     global client
@@ -59,19 +59,7 @@ async def handle_message(message) -> None:
     if action is not None:
         await handle_action(action)
 
-    response_topic = getattr(message.properties, "ResponseTopic", None)
-    if response_topic is None:
-        return
-
-    correlation_data = getattr(message.properties, "CorrelationData", None)
-    properties = paho.mqtt.properties.Properties(paho.mqtt.packettypes.PacketTypes.PUBLISH)
-
-    if correlation_data is not None:
-        properties.CorrelationData = correlation_data
-
-    await client.publish(
-        topic=response_topic, payload=json.dumps({}), qos=1, properties=properties, retain=False
-    )
+    await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str) -> None:
