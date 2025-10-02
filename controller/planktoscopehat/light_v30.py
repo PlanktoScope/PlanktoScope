@@ -10,12 +10,12 @@ import multiprocessing
 # Basic planktoscope libraries
 import mqtt
 from paho.mqtt.client import Properties
-from paho.mqtt.client import PacketTypes
+from paho.mqtt.packettypes import PacketTypes
 
-import board
-import busio
+import board  # type: ignore
+import busio  # type: ignore
 
-from adafruit_mcp4725 import MCP4725
+from adafruit_mcp4725 import MCP4725  # type: ignore
 
 # Initialize I2C bus.
 i2c = busio.I2C(board.SCL, board.SDA)

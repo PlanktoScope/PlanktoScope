@@ -6,7 +6,6 @@ import gpiozero
 import paho
 import sys
 import signal
-import aiofiles
 
 import identity
 
@@ -39,7 +38,7 @@ async def handle_message(message) -> None:
 
     payload = json.loads(message.payload.decode("utf-8"))
     action = payload.get("action")
-    if action != None:
+    if action is not None:
         await handle_action(action)
 
     response_topic = getattr(message.properties, "ResponseTopic", None)

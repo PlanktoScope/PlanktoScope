@@ -61,6 +61,7 @@ mypy = "^1.18.1"
 types-paho-mqtt = "^1.6.0.20240106"
 picamera2 = "^0.3.31"
 ruff = "^0.13.0"
+types-aiofiles = "^24.1.0.20250822"
 
 [tool.ruff]
 line-length = 100
@@ -88,7 +89,8 @@ exclude = [
   'main.py',
   'adafruithat/stepper.py',
   'adafruithat/display.py',
-  'planktoscopehat/light.py',
+  'planktoscopehat/light_v26.py',
+  'planktoscopehat/light_v30.py',
 ]
 follow_imports = "silent" # required for exclude
 
