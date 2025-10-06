@@ -39,3 +39,10 @@ sudo journalctl -fu actions.runner.PlanktoScope-PlanktoScope.raspberrypi.service
 See [Monitoring and troubleshooting self-hosted runners](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/monitor-and-troubleshoot)
 
 If you need to debug CI, the repo clone is at `~/actions-runner/_work/PlanktoScope/PlanktoScope`.
+
+Use `sudo -E rpi-eeprom-config --edit` to set
+
+```sh
+POWER_OFF_ON_HALT=0
+WAIT_FOR_POWER_BUTTON=0
+```

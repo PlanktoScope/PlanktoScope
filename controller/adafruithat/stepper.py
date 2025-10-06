@@ -24,7 +24,8 @@ import os
 import multiprocessing
 import RPi.GPIO
 
-from . import mqtt, light
+from . import light
+import mqtt
 
 # Logger library compatible with multiprocessing
 from loguru import logger

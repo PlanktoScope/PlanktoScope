@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import "./bootstrap.js"
 import "./setup.js"
 

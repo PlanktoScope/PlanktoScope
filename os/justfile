@@ -8,6 +8,7 @@ setup:
     just --justfile mosquitto/justfile    setup
     just --justfile raspberry/justfile    setup
     just --justfile machine-name/justfile setup
+    just --justfile mediamtx/justfile     setup
 
 setup-dev:
     sudo apt install -y shellcheck
@@ -15,6 +16,4 @@ setup-dev:
 test:
     shellcheck **/*.sh
     systemd-analyze verify **/*.service
-
-cleanup:
-    ./cleanup.sh
+    just --justfile mediamtx/justfile     test

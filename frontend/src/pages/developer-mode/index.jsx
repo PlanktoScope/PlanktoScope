@@ -1,7 +1,7 @@
 // import { createResource, For, Show } from "solid-js"
 // import { useSubmission, action, redirect } from "@solidjs/router"
 
-export default function Production() {
+export default function DeveloperMode() {
   // const [data] = createResource("setup/read", async (topic) => {
   //   return request(topic)
   // })

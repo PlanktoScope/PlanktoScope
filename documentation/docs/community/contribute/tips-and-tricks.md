@@ -25,7 +25,7 @@ Boot into Raspberry Pi OS and type the following commands using SSH
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/PlanktoScope/PlanktoScope/HEAD/os/setup.sh)"
 # After the script ran succesfully
-sudo systemctl reboot
+sudo reboot
 ```
 
 After the PlanktoScope has rebooted you can open its URL in your browser.
@@ -42,7 +42,7 @@ git checkout main
 git pull
 just
 # After the script ran succesfully
-sudo systemctl reboot
+sudo reboot
 ```
 
 PlanktoScope OS is updated.
@@ -55,7 +55,7 @@ To install the graphical desktop similar to what you find on the desktop edition
 sudo apt install raspberrypi-ui-mods
 # Change the boot option
 sudo raspi-config # System Options -> Boot -> Desktop GUI
-sudo systemctl reboot
+sudo reboot
 ```
 
 ## Development Environment

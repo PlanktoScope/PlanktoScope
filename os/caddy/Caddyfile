@@ -2,11 +2,6 @@
 # https://caddyserver.com/docs/caddyfile
 
 :80 {
-	handle /ps/hal/camera/streams/preview.mjpg {
-		rewrite * /stream.mjpg
-		reverse_proxy localhost:8000
-	}
-
 	handle /ps/processing/segmenter/streams/object.mjpg {
 		rewrite * /object.mjpg
 		reverse_proxy localhost:8001
@@ -32,9 +27,15 @@
 		reverse_proxy localhost:9090
 	}
 
+	redir /ps/docs /ps/docs/
+	handle_path /ps/docs/* {
+		root * /srv/docs
+		file_server
+	}
+
 	handle /* {
 		try_files {path} /index.html
-		root * /srv/admin
+		root * /srv/frontend
 		file_server
 	}
 
