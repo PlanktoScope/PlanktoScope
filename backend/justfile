@@ -1,4 +1,5 @@
 setup:
+    sudo apt install -y gpiod
     npm install --omit=dev
     sudo cp planktoscope-org.backend.service /etc/systemd/system/
     sudo cp polkit.js /etc/polkit-1/rules.d/planktoscope.rules
