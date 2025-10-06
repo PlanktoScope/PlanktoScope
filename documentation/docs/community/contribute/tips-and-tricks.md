@@ -51,8 +51,10 @@ PlanktoScope OS is updated.
 
 To install the graphical desktop similar to what you find on the desktop edition of Raspberry Pi OS proceed as following:
 
+<!--https://www.raspberrypi.com/news/trixie-the-new-version-of-raspberry-pi-os/ -->
+
 ```sh
-sudo apt install raspberrypi-ui-mods
+sudo apt install rpd-wayland-core rpd-theme rpd-preferences rpd-applications rpd-utilities rpd-developers rpd-graphics rpd-wayland-extras
 # Change the boot option
 sudo raspi-config # System Options -> Boot -> Desktop GUI
 sudo reboot
