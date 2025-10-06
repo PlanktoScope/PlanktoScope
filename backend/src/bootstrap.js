@@ -29,7 +29,7 @@ export const has_eeprom_hardware_version = !!hardware_version
 await handle("bootstrap/init", async () => {
   const eeprom = cached
 
-  if (eeprom.custom_data?.eeprom_version !== "0") {
+  if (eeprom?.custom_data?.eeprom_version !== "0") {
     return {
       product_uuid: crypto.randomUUID(),
       product_id: "0x0000", // TODO

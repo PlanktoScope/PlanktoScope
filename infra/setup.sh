@@ -14,4 +14,4 @@ curl -O -L https://github.com/actions/runner/releases/download/v2.327.1/actions-
 # Extract the installer
 tar xzf ./actions-runner-linux-arm64-2.327.1.tar.gz
 
-sudo tailsale up
+sudo tailscale up

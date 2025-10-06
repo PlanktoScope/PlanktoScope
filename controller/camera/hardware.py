@@ -1,14 +1,24 @@
 """hardware provides basic I/O abstractions for camera hardware."""
 
-import io
-import threading
 import typing
 
 import loguru
 import picamera2  # type: ignore
-import typing_extensions
 from picamera2 import encoders, outputs
 from readerwriterlock import rwlock
+from picamera2.platform import Platform, get_platform  # type: ignore
+
+# The width & height (in pixels) of camera preview; defaults to the max allowed size for the
+# camera sensor:
+#
+# capture uses 4056x3040 (4:3 ratio)
+# we use half on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
+# we use 1440x1080 on RPI5 to stay within the hardware encoder capabilities while maintaining ratio
+# anything <= 1920x1080 divisible by 16 (required by H.264 macroblock alignment) (or 2) is fine
+# See supported levels with
+# v4l2-ctl -D -d /dev/video11 -l -L
+# https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels
+preview_size = (1440, 1080) if (get_platform() == Platform.VC4) else (2028, 1520)
 
 
 class StreamConfig(typing.NamedTuple):
@@ -22,10 +32,7 @@ class StreamConfig(typing.NamedTuple):
     capture_size: typing.Optional[tuple[int, int]] = None
     # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
     # camera sensor:
-    preview_size: typing.Optional[tuple[int, int]] = None
-    # The bitrate (in bits/sec) of the preview stream; defaults to a bitrate automatically
-    # calculated for a high-quality stream:
-    preview_bitrate: typing.Optional[int] = None
+    preview_size: typing.Optional[tuple[int, int]] = preview_size
     # The number of frame buffers to allocate in memory:
     # Note(ethanjli): from testing, it seems that we need at least three buffers to allow the
     # preview to continue receiving frames smoothly from the "lores" stream while a buffer is
@@ -218,16 +225,7 @@ class PiCamera:
 
     def __init__(
         self,
-        preview_output: io.BufferedIOBase,
-        stream_config: StreamConfig = StreamConfig(
-            preview_size=(800, 600),
-            # Note(ethanjli): a bitrate of 80 Mbps in practice results in ~8 Mbps of bandwidth per
-            # stream, both for Ethernet and for the Wi-Fi hotspot. A bitrate of 20 Mbps results in
-            # ~7 Mbps of bandwidth per stream. A bitrate of 15 Mbps results in noticeable JPEG
-            # compression artifacts, and ~5 Mbps of bandwidth per stream.
-            preview_bitrate=25 * 1000000,
-            buffer_count=3,
-        ),
+        stream_config: StreamConfig = StreamConfig(),
         # Note(ethanjli): mqtt.Worker's constructor explicitly overrides any defaults we set here -
         # to set default initial settings, modify mqtt.Worker's constructor instead!
         initial_settings: SettingsValues = SettingsValues(),
@@ -235,8 +233,6 @@ class PiCamera:
         """Set up state needed to initialize the camera, but don't actually start the camera yet.
 
         Args:
-            preview_output: an image stream which this `PiCamera` instance will write camera preview
-              images to once the camera is started.
             stream_config: configuration of camera output streams.
             initial_settings: any camera settings to initialize the camera with.
         """
@@ -245,8 +241,6 @@ class PiCamera:
         self._stream_config = stream_config
         self._cached_settings = initial_settings
 
-        # I/O:
-        self._preview_output = preview_output
         self._camera: typing.Optional[picamera2.Picamera2] = None
 
     def open(self) -> None:
@@ -260,6 +254,8 @@ class PiCamera:
         except RuntimeError as e:
             self._camera = None
             raise RuntimeError("Could not initialize the camera!") from e
+
+        loguru.logger.debug(f"Camera sensor_modes: {self._camera.sensor_modes}")
 
         loguru.logger.debug("Configuring the camera...")
         main_config: dict[str, typing.Any] = {}
@@ -287,17 +283,36 @@ class PiCamera:
         self.settings = initial_settings
 
         loguru.logger.debug("Starting the camera...")
+
+        encoder = encoders.H264Encoder(
+            # picamera2-manual.pdf 7.1.1. H264Encoder
+            # the bitrate (in bits per second) to use. The default value None will cause the encoder to
+            # choose an appropriate bitrate according to the Quality when it starts.
+            # bitrate=None,
+            # picamera2-manual.pdf 7.1.1. H264Encoder
+            # whether to repeat the stream’s sequence headers with every Intra frame (I-frame). This can
+            # be sometimes be useful when streaming video over a network, when the client may not receive the start of the
+            # stream where the sequence headers would normally be located.
+            # repeat=False,
+            # picamera2-manual.pdf 7.1.1. H264Encoder
+            # iperiod (default None) - the number of frames from one I-frame to the next. The value None leaves this at the
+            # discretion of the hardware, which defaults to 60 frames.
+            # iperiod=None
+        )
+        encoder.audio = False
+        # picamera2-manual.pdf 7.1. Encoders
+        # Normally, the encoder of necessity runs at the same frame rate as the camera. By default, every received camera frame
+        # gets sent to the encoder. However, you can use the encoder frame_skip_count property to instead receive every nth frame.
+        # encoder.frame_skip_count = 2
+        # rtsp://pkscope-$planktoscope:8554/cam/ (disabled by firewall)
+        output = outputs.PyavOutput("rtsp://127.0.0.1:8554/cam", format="rtsp")
         self._camera.start_recording(
-            # Note(ethanjli): for compatibility with the RPi 4 (which must use YUV420 for "lores"
-            # stream output), we cannot use `JpegEncoder` (which only accepts RGB, not YUV); for
-            # details, refer to Table 1 on page 59 of the picamera2 manual. So we must use
-            # `MJPEGEncoder` instead:
-            encoders.MJPEGEncoder(bitrate=self._stream_config.preview_bitrate),
-            outputs.FileOutput(self._preview_output),
+            encoder=encoder,
+            output=output,
             # If we specify quality, it overrides the bitrate, contrary to what the picamera2 docs
             # say (refer to
-            # github.com/raspberrypi/picamera2/blob/main/picamera2/encoders/mjpeg_encoder.py#L23):
-            # quality=encoders.Quality.VERY_HIGH,
+            # https://github.com/raspberrypi/picamera2/blob/63f3be10e317c4b4b0a93e357d7db18fe098e9d4/picamera2/encoders/mjpeg_encoder.py#L23:):
+            quality=encoders.Quality.HIGH,
             name="lores",
         )
 
@@ -431,58 +446,3 @@ class PiCamera:
         self._camera.close()
         self._camera = None
         self._cached_settings = SettingsValues()
-
-
-class PreviewStream(io.BufferedIOBase):
-    """A thread-safe stream of discrete byte buffers for use in live previews.
-
-    This stream is designed to support at-most-once delivery, so no guarantees are made about
-    delivery of every buffer to the consumers: a consumer is allowed to skip buffers when it's too
-    busy. This is a design feature to prevent backpressure on certain consumers (e.g. from
-    downstream clients sending the buffer across a network, when the buffer is a large image) from
-    degrading stream quality for everyone.
-
-    This stream can be used by anything which requires a [io.BufferedIOBase], assuming it never
-    splits any buffer across multiple calls of the `write()` method.
-    """
-
-    def __init__(self) -> None:
-        """Initialize the stream."""
-        self._latest_buffer: typing.Optional[bytes] = None
-        # Mutex to prevent data races between readers and writers:
-        self._latest_buffer_lock = rwlock.RWLockWrite()
-        # Condition variable to allow listeners to wait for a new buffer:
-        self._available = threading.Condition()
-
-    def write(self, buffer: typing_extensions.Buffer) -> int:
-        """Write the byte buffer as the latest buffer in the stream.
-
-        If readers are accessing the buffer when this method is called, then it may block for a
-        while, in order to wait for those readers to finish.
-
-        Returns:
-            The length of the byte buffer written.
-        """
-        b = bytes(buffer)
-        with self._latest_buffer_lock.gen_wlock():
-            self._latest_buffer = b
-        with self._available:
-            self._available.notify_all()
-        return len(b)
-
-    def wait_next(self) -> None:
-        """Wait until the next buffer is available.
-
-        When called, this method blocks until it is awakened by a `update()` call in another
-        thread. Once awakened, it returns.
-        """
-        with self._available:
-            self._available.wait()
-
-    def get(self) -> typing.Optional[bytes]:
-        """Return a copy of the latest buffer in the stream."""
-        if self._latest_buffer is None:
-            return None
-        with self._latest_buffer_lock.gen_rlock():
-            b = self._latest_buffer[:]
-        return b

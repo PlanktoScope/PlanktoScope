@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
 import multiprocessing
 import time
 import signal  # for handling SIGINT/SIGTERM
-import os
 
 from loguru import logger  # for logging with multiprocessing
 
-from adafruithat.planktoscope import stepper, light, identity
-from adafruithat.planktoscope.display import Display
-from adafruithat.planktoscope.imager import mqtt as imager
+from . import stepper, light
+from .display import Display
+from imager import mqtt as imager
 
 logger.info("Starting the PlanktoScope hardware controller!")
 
@@ -39,35 +37,10 @@ def handler_stop_signals(signum, _):
     run = False
 
 
-def main():
-    logger.info("Welcome!")
-    logger.info("Initialising signals handling and sanitizing the directories (step 1/4)")
+def main(configuration):
+    logger.info("Initialising signals handling (step 1/4)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
-
-    # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
-    with open("/boot/firmware/config.txt", "r") as config_file:
-        for i, line in enumerate(config_file):
-            if line.startswith("gpu_mem") and int(line.split("=")[1].strip()) < 256:
-                logger.error(
-                    "The GPU memory size is less than 256, this will prevent the camera from running properly"
-                )
-                logger.error(
-                    "Please edit the file /boot/firmware/config.txt to change the gpu_mem value to at least 256"
-                )
-                logger.error(
-                    "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
-                )
-                sys.exit(1)
-
-    # Let's make sure the used base path exists
-    img_path = "/home/pi/data/img"
-    # check if this path exists
-    if not os.path.exists(img_path):
-        # create the path!
-        os.makedirs(img_path)
-
-    logger.info(f"This PlanktoScope's machine name is {identity.load_machine_name()}")
 
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
@@ -80,13 +53,12 @@ def main():
 
     # Starts the imager control process
     logger.info("Starting the imager control process (step 3/4)")
+    imager_thread = None
     try:
-        imager_thread = imager.Worker(shutdown_event)
+        imager_thread = imager.ImagerProcess(shutdown_event, configuration)
+        imager_thread.start()
     except Exception as e:
         logger.error(f"The imager control process could not be started: {e}")
-        imager_thread = None
-    else:
-        imager_thread.start()
 
     logger.info("Starting the display module (step 4/4)")
     display = Display()

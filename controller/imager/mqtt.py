@@ -7,29 +7,32 @@ import os
 import threading
 import time
 import typing
+from multiprocessing.synchronize import Event
 
 import loguru
 
-from .. import identity, integrity, mqtt
-from ..camera import mqtt as camera
+import identity
+import integrity
+import mqtt
+from camera import mqtt as camera
 from . import stopflow
 
 loguru.logger.info("planktoscope.imager is loaded")
 
 
 # TODO(ethanjli): convert this from a process into a thread
-class Worker(multiprocessing.Process):
-    """An MQTT+MJPEG API for the PlanktoScope's camera and image acquisition modules.
+class ImagerProcess(multiprocessing.Process):
+    """An MQTT API for the PlanktoScope's camera and image acquisition modules.
 
-    This launches the camera with an MQTT API for settings adjustments and an MJPEG server with a
-    live camera preview stream, and this also launches stop-flow acquisition routines in response to
+    This launches the camera with an MQTT API for settings adjustments
+    and launches stop-flow acquisition routines in response to
     commands received over the MQTT API.
     """
 
     # TODO(ethanjli): instead of passing in a stop_event, just expose a `close()` method! This
     # way, we don't give any process the ability to stop all other processes watching the same
     # stop_event!
-    def __init__(self, stop_event: threading.Event) -> None:
+    def __init__(self, stop_event: Event, configuration: dict[str, typing.Any]):
         """Initialize the worker's internal state, but don't start anything yet.
 
         Args:
@@ -52,6 +55,8 @@ class Worker(multiprocessing.Process):
         # constructor.
         self._camera: typing.Optional[camera.Worker] = None
 
+        self.configuration = configuration
+
         loguru.logger.success("planktoscope.imager is initialized and ready to go!")
 
     @loguru.logger.catch
@@ -72,7 +77,7 @@ class Worker(multiprocessing.Process):
         loguru.logger.success("Pump RPC client is ready!")
 
         loguru.logger.info("Starting the camera...")
-        self._camera = camera.Worker()
+        self._camera = camera.Worker(self.configuration)
         self._camera.start()
         if self._camera.camera is None:
             loguru.logger.error("Missing camera - maybe it's disconnected or it never started?")
