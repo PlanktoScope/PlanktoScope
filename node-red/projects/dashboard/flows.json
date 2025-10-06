@@ -1358,11 +1358,11 @@
             "groupOutline": "#9c9c9c"
         },
         "sizes": {
-            "density": "compact",
+            "density": "default",
             "pagePadding": "12px",
-            "groupGap": "12px",
+            "groupGap": "11px",
             "groupBorderRadius": "4px",
-            "widgetGap": "12px"
+            "widgetGap": "13px"
         }
     },
     {
@@ -1434,7 +1434,7 @@
         "type": "ui-group",
         "name": "Starting point",
         "page": "73070e06474249b4",
-        "width": "12",
+        "width": "6",
         "height": 1,
         "order": 3,
         "showTitle": true,
@@ -1448,7 +1448,7 @@
         "type": "ui-group",
         "name": "Ending point",
         "page": "73070e06474249b4",
-        "width": "12",
+        "width": "6",
         "height": 1,
         "order": 4,
         "showTitle": true,
@@ -2101,12 +2101,12 @@
     {
         "id": "39cbd2658f16d608",
         "type": "ui-group",
-        "name": "Pump settings",
+        "name": "Settings",
         "page": "bcc78241b99ba27f",
         "width": "5",
         "height": 1,
         "order": 3,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -2445,48 +2445,6 @@
         "groupType": "default"
     },
     {
-        "id": "7dcc8848e91343c8",
-        "type": "ui-group",
-        "name": "Focus settings",
-        "page": "bcc78241b99ba27f",
-        "width": "5",
-        "height": 1,
-        "order": 4,
-        "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "86e89a98bf95c5fa",
-        "type": "ui-group",
-        "name": "Light settings",
-        "page": "bcc78241b99ba27f",
-        "width": "5",
-        "height": 1,
-        "order": 5,
-        "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "6b7305fbb10eb680",
-        "type": "ui-group",
-        "name": "Camera settings",
-        "page": "bcc78241b99ba27f",
-        "width": "5",
-        "height": 1,
-        "order": 6,
-        "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
         "id": "1c1efabff5115209",
         "type": "ui-group",
         "name": "Number field",
@@ -2495,20 +2453,6 @@
         "height": 1,
         "order": 6,
         "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "1190bcb9f9eb9202",
-        "type": "ui-group",
-        "name": "To Segment",
-        "page": "7a4e042a60b734a6",
-        "width": "12",
-        "height": 1,
-        "order": 2,
-        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -2782,9 +2726,9 @@
         "name": "body",
         "order": 1,
         "width": "12",
-        "height": "11",
+        "height": "8",
         "head": "",
-        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/data/browse/files/\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>PlanktoScope {{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{  msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{  msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{  msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>    \n      \n    </v-container>\n</template>\n",
+        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/data/browse/files/\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\" v-if=\"msg.payload.machine_info.serial_number\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n    </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2924,7 +2868,7 @@
         "z": "1b667c6443413ced",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 120,
+        "x": 100,
         "y": 40,
         "wires": [
             [
@@ -2944,7 +2888,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "  .v-btn--variant-outlined.v-btn--active {\n    background-color: #1976d2 !important;\n    color: white !important;\n  }",
+        "format": "  .v-btn--variant-outlined.v-btn--active {\n    background-color: #1976d2 !important;\n    color: white !important;\n  }\n\n\n.v-row+.v-row {\n    margin-top: 0px !important;\n}\n\n.v-row {\n    margin: 0px !important;\n}",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2968,53 +2912,6 @@
                 "39c370d8a50f3acc",
                 "2aa02514512e405b"
             ]
-        ]
-    },
-    {
-        "id": "39f5d58341b7ccde",
-        "type": "inject",
-        "z": "1b667c6443413ced",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 180,
-        "y": 680,
-        "wires": [
-            [
-                "5c51e140586e8ad3"
-            ]
-        ]
-    },
-    {
-        "id": "5c51e140586e8ad3",
-        "type": "function",
-        "z": "1b667c6443413ced",
-        "name": "function 1",
-        "func": "global.set(\"foo\", new Date().toISOString());",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 700,
-        "wires": [
-            []
         ]
     },
     {
@@ -3043,8 +2940,8 @@
         "ui": "",
         "name": "Streaming",
         "order": 1,
-        "width": "7",
-        "height": "24",
+        "width": "0",
+        "height": "0",
         "head": "",
         "format": "<center class=\"pa-0\">\n  <img src=\"/ps/hal/camera/streams/preview.mjpg\" class=\"pa-0\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please try restarting your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
         "storeOutMessages": true,
@@ -3054,108 +2951,6 @@
         "className": "",
         "x": 130,
         "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f9e9ad7833e9a58f",
-        "type": "ui-template",
-        "z": "ab58b3fd0e6bcd77",
-        "group": "39cbd2658f16d608",
-        "page": "",
-        "ui": "",
-        "name": "Pump",
-        "order": 1,
-        "width": "5",
-        "height": "6",
-        "head": "",
-        "format": "<template>\n  <!-- Flowrate -->\n  <v-row>\n    <v-col cols=\"12\" sm=\"7\">\n      <v-slider\n        v-model.number=\"pump_flowrate\"\n        :min=\"min\"\n        :max=\"max\"\n        :step=\"0.2\"\n        class=\"align-center\"\n        label=\"Flowrate\"\n        hide-details\n        :thumb-size=\"20\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" sm=\"5\">\n      <v-text-field\n        v-model.number=\"pump_flowrate\"\n        type=\"number\"\n        variant=\"outlined\"\n        hide-details\n        suffix=\"ml/min\"\n        append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        v-model=\"flowratePreset\"\n        class=\"d-flex justify-space-between\"\n        color=\"primary\"\n        variant=\"outlined\"\n        divided\n        shaped\n        mandatory\n        @update:model-value=\"onFlowrateToggle\"\n      >\n        <v-btn\n          v-for=\"value in flowratePresets\"\n          :key=\"'flowrate-' + value\"\n          :value=\"value\"\n          class=\"flex-grow-1\"\n        >\n          {{ value }}\n        </v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n\n  <!-- Volume -->\n  <v-row>\n    <v-col cols=\"12\" sm=\"8\">\n      <v-slider\n        v-model.number=\"pump_manual_volume\"\n        :min=\"min\"\n        :max=\"max\"\n        :step=\"0.2\"\n        class=\"align-center\"\n        hide-details\n        label=\"Volume\"\n        :thumb-size=\"20\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" sm=\"4\">\n      <v-text-field\n        v-model.number=\"pump_manual_volume\"\n        type=\"number\"\n        variant=\"outlined\"\n        hide-details\n        suffix=\"ml\"\n        append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        v-model=\"volumePreset\"\n        class=\"d-flex justify-space-between\"\n        variant=\"outlined\"\n        color=\"primary\"\n        divided\n        shaped\n        mandatory\n        @update:model-value=\"onVolumeToggle\"\n      >\n        <v-btn\n          v-for=\"value in volumePresets\"\n          :key=\"'volume-' + value\"\n          :value=\"value\"\n          class=\"flex-grow-1\"\n        >\n          {{ value }}\n        </v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n\n  <!-- Direction Control -->\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        variant=\"outlined\"\n        v-model=\"direction\"\n        color=\"primary\"\n        mandatory\n        divided\n        shaped\n        class=\"d-flex justify-space-between\"\n        @update:model-value=\"onDirectionChange\"\n      >\n        <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n</template>\n\n<script>\nexport default {\n  props: {\n    msg: {\n      type: Object,\n      default: () => ({}),\n    },\n  },\n  data() {\n    return {\n      min: 0.02,\n      max: 30,\n      flowratePreset: null,\n      volumePreset: null,\n      flowratePresets: [0.02, 0.2, 2, 20],\n      volumePresets: [0.02, 2, 10, 20],\n      direction: \"stop\",\n\n      // États locaux\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n    };\n  },\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        this.hydrateFromMsg(newMsg);\n      },\n      deep: true,\n    },\n    // 🔹 Quand l’un change → on envoie les deux\n    pump_flowrate(newVal) {\n      this.flowratePreset =\n        this.flowratePresets.find((val) => val === newVal) ?? null;\n      this.sendParams();\n    },\n    pump_manual_volume(newVal) {\n      this.volumePreset =\n        this.volumePresets.find((val) => val === newVal) ?? null;\n      this.sendParams();\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      this.pump_flowrate =\n        typeof p.flowrate === \"number\"\n          ? p.flowrate\n          : typeof p.pump_flowrate === \"number\"\n          ? p.pump_flowrate\n          : 0;\n      this.pump_manual_volume =\n        typeof p.volume === \"number\"\n          ? p.volume\n          : typeof p.pump_manual_volume === \"number\"\n          ? p.pump_manual_volume\n          : 0;\n      this.flowratePreset =\n        this.flowratePresets.find((val) => val === this.pump_flowrate) ?? null;\n      this.volumePreset =\n        this.volumePresets.find((val) => val === this.pump_manual_volume) ?? null;\n      this.direction = [\"backward\", \"stop\", \"forward\"].includes(p.command)\n        ? p.command\n        : \"stop\";\n    },\n\n    onFlowrateToggle(val) {\n      if (val != null) this.pump_flowrate = val;\n    },\n    onVolumeToggle(val) {\n      if (val != null) this.pump_manual_volume = val;\n    },\n\n    // 🔹 Envoi des paramètres (flowrate+volume)\n    sendParams() {\n      this.send({\n        topic:\"set_global\",\n        payload: {\n          pump_flowrate: Number(this.pump_flowrate) || 0,\n          pump_manual_volume: Number(this.pump_manual_volume) || 0,\n        },\n      });\n    },\n\n    // 🔹 Envoi au clic directionnel\n    onDirectionChange(val) {\n      if (!val) return;\n      this.direction = val;\n\n      if (val === \"stop\") {\n        this.send({\n          topic: \"actuator/pump\",\n          payload: { action: \"stop\" },\n        });\n        return;\n      }\n\n      const dirUpper = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n      this.send({\n        topic: \"actuator/pump\",\n        payload: {\n          action: \"move\",\n          direction: dirUpper,\n          volume: Number(this.pump_manual_volume) || 0,\n          flowrate: Number(this.pump_flowrate) || 0,\n        },\n      });\n    },\n  },\n};\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 350,
-        "y": 360,
-        "wires": [
-            [
-                "4112a93b1b129756"
-            ]
-        ]
-    },
-    {
-        "id": "d04fdf594224f8af",
-        "type": "ui-template",
-        "z": "ab58b3fd0e6bcd77",
-        "group": "7dcc8848e91343c8",
-        "page": "",
-        "ui": "",
-        "name": "Focus",
-        "order": 1,
-        "width": "5",
-        "height": "4",
-        "head": "",
-        "format": "<template>\n  <!-- Focus Distance Slider -->\n  <v-row>\n    <v-col cols=\"12\" sm=\"8\">\n      <v-slider\n        v-model.number=\"focus_distance\"\n        :max=\"max\"\n        :min=\"min\"\n        :step=\"25\"\n        class=\"align-center\"\n        hide-details\n        label=\"Distance\"\n        :thumb-size=\"20\"\n      />\n    </v-col>\n    <v-col cols=\"12\" sm=\"4\">\n      <v-text-field\n        v-model.number=\"focus_distance\"\n        type=\"number\"\n        variant=\"outlined\"\n        hide-details\n        suffix=\"μm\"\n        append-icon=\"mdi-information\"\n      />\n    </v-col>\n  </v-row>\n\n  <!-- Preset Distances -->\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        variant=\"outlined\"\n        v-model=\"distancePreset\"\n        divided\n        shaped\n        color=\"primary\"\n        class=\"d-flex justify-space-between\"\n        mandatory\n        @update:model-value=\"onDistanceToggle\"\n      >\n        <v-btn\n          v-for=\"value in presetDistances\"\n          :key=\"'distance-' + value\"\n          :value=\"value\"\n          class=\"flex-grow-1\"\n        >\n          {{ value }}\n        </v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n\n  <!-- Directional Focus Control -->\n  <v-row>\n    <v-col cols=\"12\">\n      <v-btn-toggle\n        variant=\"outlined\"\n        v-model=\"focusDirection\"\n        color=\"primary\"\n        mandatory\n        divided\n        shaped\n        class=\"d-flex justify-space-between\"\n        @update:model-value=\"onDirectionChange\"\n      >\n        <v-btn class=\"flex-grow-1\" :value=\"'left'\">Left</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n        <v-btn class=\"flex-grow-1\" :value=\"'right'\">Right</v-btn>\n      </v-btn-toggle>\n    </v-col>\n  </v-row>\n</template>\n\n<script>\nexport default {\n  props: {\n    // msg injecté par Node-RED (lecture seule)\n    msg: {\n      type: Object,\n      default: () => ({}),\n    },\n  },\n  data() {\n    return {\n      min: 25,\n      max: 5000,\n      distancePreset: null,\n      presetDistances: [25, 150, 500, 5000],\n      focusDirection: \"stop\",\n\n      // état local (on ne modifie pas msg)\n      focus_distance: 25,\n    };\n  },\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n  watch: {\n    // resync si un nouveau msg arrive\n    msg: {\n      handler(newMsg) {\n        this.hydrateFromMsg(newMsg);\n      },\n      deep: true,\n    },\n\n    // à chaque ajustement → envoie { focus_distance, focus_speed }\n    focus_distance(newVal) {\n      const exactMatch = this.presetDistances.find((v) => v === newVal);\n      this.distancePreset = exactMatch ?? null;\n      this.sendParams(); // envoie un msg propre\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      // Lecture uniquement (aucune réémission automatique de ce msg)\n      this.focus_distance =\n        typeof p.focus_distance === \"number\" ? p.focus_distance : 25;\n\n      this.distancePreset =\n        this.presetDistances.find((v) => v === this.focus_distance) ?? null;\n\n      this.focusDirection = [\"left\", \"stop\", \"right\"].includes(p.command)\n        ? p.command\n        : \"stop\";\n    },\n\n    onDistanceToggle(val) {\n      if (val != null) {\n        this.focus_distance = val; // le watcher déclenche sendParams()\n      }\n    },\n\n    // Interpolation linéaire sur les points d'ancrage\n    // (100 -> 1000), (1000 -> 2000), (5000 -> 5000)\n    speedFromDistance(d) {\n      const x1 = 100,  y1 = 1000;\n      const x2 = 1000, y2 = 2000;\n      const x3 = 5000, y3 = 5000;\n\n      if (d <= x1) return y1;          // clamp min\n      if (d >= x3) return y3;          // clamp max\n      if (d <= x2) {\n        const m = (y2 - y1) / (x2 - x1);  // 1000/900 ≈ 1.111...\n        return Math.round(y1 + m * (d - x1));\n      } else {\n        const m = (y3 - y2) / (x3 - x2);  // 3000/4000 = 0.75\n        return Math.round(y2 + m * (d - x2));\n      }\n    },\n\n    // 🔹 Envoi “propre” des paramètres lors d’un ajustement\n    sendParams() {\n      const d = Number(this.focus_distance) || 25; // μm\n      const speed = this.speedFromDistance(d);\n      this.send({\n        topic:\"set_global\",\n        payload: {\n          focus_distance: d,   // μm (valeur brute)\n          focus_speed: speed,  // même échelle que ci-dessus\n        },\n      });\n    },\n\n    // 🔹 Envoi move/stop au clic directionnel\n    onDirectionChange(val) {\n      if (!val) return;\n      this.focusDirection = val;\n\n      if (val === \"stop\") {\n        // STOP : payload minimal + topic imposé\n        this.send({\n          topic: \"actuator/focus\",\n          payload: { action: \"stop\" },\n        });\n        return;\n      }\n\n      // MOVE (left/right) + distance/speed calculés\n      const d = Number(this.focus_distance) || 25; // μm\n      const speed = this.speedFromDistance(d);\n      this.send({\n        topic: \"actuator/focus\",\n        payload: {\n          action: \"move\",\n          direction: val,        // \"left\" | \"right\"\n          distance: d / 1000,    // mm\n          speed: speed / 1000,   // échelle identique\n        },\n      });\n    },\n  },\n};\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 350,
-        "y": 460,
-        "wires": [
-            [
-                "3f68704ace3f79dc"
-            ]
-        ]
-    },
-    {
-        "id": "ad265a65cffbe1e9",
-        "type": "ui-template",
-        "z": "ab58b3fd0e6bcd77",
-        "group": "86e89a98bf95c5fa",
-        "page": "",
-        "ui": "",
-        "name": "Light",
-        "order": 1,
-        "width": "5",
-        "height": "3",
-        "head": "",
-        "format": "<template>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"ledState\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 350,
-        "y": 540,
-        "wires": [
-            [
-                "2f44981b14726ef3"
-            ]
-        ]
-    },
-    {
-        "id": "267aba9da1b9665b",
-        "type": "ui-template",
-        "z": "ab58b3fd0e6bcd77",
-        "group": "6b7305fbb10eb680",
-        "page": "",
-        "ui": "",
-        "name": "Camera",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n\n    <v-card-text>\n      Modify your camera settings through the calibration page. Adjust optical parameters to ensure accurate imaging.\n    </v-card-text>\n\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 360,
-        "y": 600,
         "wires": [
             []
         ]
@@ -3172,14 +2967,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 140,
+        "x": 300,
         "y": 360,
         "wires": [
             [
-                "f9e9ad7833e9a58f",
-                "d04fdf594224f8af",
-                "ad265a65cffbe1e9",
-                "267aba9da1b9665b"
+                "f514a138d38d3c61"
             ]
         ]
     },
@@ -3195,7 +2987,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n\n    <v-row justify=\"space-between\" align=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"home\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"metadata\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Home -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"home\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Metadata -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3264,7 +3056,7 @@
         "repair": false,
         "outputs": 1,
         "x": 600,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "c8de0186a0a927e8"
@@ -3283,8 +3075,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 360,
+        "x": 960,
+        "y": 340,
         "wires": [
             []
         ]
@@ -3301,8 +3093,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 460,
+        "x": 960,
+        "y": 440,
         "wires": [
             []
         ]
@@ -3321,8 +3113,8 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 650,
-        "y": 500,
+        "x": 950,
+        "y": 480,
         "wires": []
     },
     {
@@ -3335,19 +3127,34 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "set_global",
+                "v": "set_global/pump",
                 "vt": "str"
             },
             {
                 "t": "eq",
                 "v": "actuator/pump",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "set_global/focus",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "actuator/focus",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "light",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
-        "x": 490,
+        "outputs": 5,
+        "x": 710,
         "y": 360,
         "wires": [
             [
@@ -3355,39 +3162,15 @@
             ],
             [
                 "0705a33cf713251a"
-            ]
-        ]
-    },
-    {
-        "id": "3f68704ace3f79dc",
-        "type": "switch",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "set_global",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "actuator/focus",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 490,
-        "y": 460,
-        "wires": [
+            ],
             [
                 "4a208e0233bea4ae"
             ],
             [
                 "ea8e81951587e46d"
+            ],
+            [
+                "31e644b7332d3cda"
             ]
         ]
     },
@@ -3405,8 +3188,8 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 650,
-        "y": 400,
+        "x": 950,
+        "y": 380,
         "wires": []
     },
     {
@@ -3418,10 +3201,56 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
+        "x": 720,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f514a138d38d3c61",
+        "type": "ui-template",
+        "z": "ab58b3fd0e6bcd77",
+        "group": "39cbd2658f16d608",
+        "page": "",
+        "ui": "",
+        "name": "Settings",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-container fluid>\n    <!-- PUMP CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-pump</v-icon>\n        Pump Control\n      </v-card-title>\n      <v-card-text>\n        <!-- Flowrate -->\n        <v-row align=\"center\">\n          <v-col cols=\"12\" sm=\"9\">\n            <v-slider v-model.number=\"pump_flowrate\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.2\" hide-details\n              :thumb-size=\"20\" />\n          </v-col>\n          <v-col cols=\"12\" sm=\"3\">\n            <v-text-field v-model.number=\"pump_flowrate\" type=\"number\" variant=\"outlined\" hide-details suffix=\"ml/min\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('pump_flowrate')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Flowrate presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_flowrate_preset\" class=\"d-flex justify-space-between\" color=\"primary\"\n              variant=\"outlined\" divided shaped mandatory @update:model-value=\"onFlowrateToggle\">\n              <v-btn v-for=\"value in pump_flowrate_presets\" :key=\"'flowrate-' + value\" :value=\"value\"\n                class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Volume -->\n        <v-row align=\"center\">\n          <v-col cols=\"12\" sm=\"9\">\n            <v-slider v-model.number=\"pump_manual_volume\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.2\" hide-details\n              :thumb-size=\"20\" />\n          </v-col>\n          <v-col cols=\"12\" sm=\"3\">\n            <v-text-field v-model.number=\"pump_manual_volume\" type=\"number\" variant=\"outlined\" hide-details suffix=\"ml\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('pump_manual_volume')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Volume presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_volume_preset\" class=\"d-flex justify-space-between\" variant=\"outlined\"\n              color=\"primary\" divided shaped mandatory @update:model-value=\"onVolumeToggle\">\n              <v-btn v-for=\"value in pump_volume_presets\" :key=\"'volume-' + value\" :value=\"value\" class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Pump direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"pump_direction\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_pump_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- FOCUS CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-camera-control</v-icon>\n        Focus Control\n      </v-card-title>\n      <v-card-text>\n        <!-- Focus slider -->\n        <v-row align=\"center\">\n          <v-col cols=\"12\" sm=\"9\">\n            <v-slider v-model.number=\"focus_distance\" :max=\"maxFocus\" :min=\"minFocus\" :step=\"25\" hide-details\n              :thumb-size=\"20\" />\n          </v-col>\n          <v-col cols=\"12\" sm=\"3\">\n            <v-text-field v-model.number=\"focus_distance\" type=\"number\" variant=\"outlined\" hide-details suffix=\"μm\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('focus_speed')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"focus_distance_preset\" divided shaped color=\"primary\"\n              class=\"d-flex justify-space-between\" mandatory @update:model-value=\"on_focus_distance_toggle\">\n              <v-btn v-for=\"value in focus_distance_presets\" :key=\"'distance-' + value\" :value=\"value\"\n                class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Focus direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"focus_direction\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_focus_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'UP'\">UP</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">DOWN</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- LED CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-lightbulb</v-icon>\n        LED Control\n      </v-card-title>\n      <v-card-text>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"led_state\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_led_toggle\">\n              <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- CALIBRATION INFO -->\n    <v-card variant=\"tonal\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-tune</v-icon>\n        Calibration\n      </v-card-title>\n      <v-card-text>\n        Modify your camera settings through the calibration page. Adjust optical parameters to ensure accurate imaging.\n      </v-card-text>\n    </v-card>\n\n    <!-- INFO DIALOG -->\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"infoDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\n  export default {\n  props: { msg: { type: Object, default: () => ({}) } },\n  data() {\n    return {\n      // Pump\n      minFlow: 0.02,\n      maxFlow: 30,\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n      pump_flowrate_presets: [0.02, 0.2, 2, 20],\n      pump_volume_presets: [0.002, 0.2, 2, 20],\n      pump_flowrate_preset: null,\n      pump_volume_preset: null,\n      pump_direction: \"stop\",\n\n      // Focus\n      minFocus: 25,\n      maxFocus: 5000,\n      focus_distance: 25,\n      focus_distance_presets: [25, 150, 500, 5000],\n      focus_distance_preset: null,\n      focus_direction: \"stop\",\n\n      // LED\n      led_state: \"off\",\n\n      // Info Dialog\n      infoDialog: false,\n      infoContent: { title: \"\", unit: \"\", description: \"\" },\n    };\n  },\n  created() { this.hydrateFromMsg(this.msg); },\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n    pump_flowrate(newVal) {\n      this.pump_flowrate_preset =\n        this.pump_flowrate_presets.find((val) => val === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    pump_manual_volume(newVal) {\n      this.pump_volume_preset =\n        this.pump_volume_presets.find((val) => val === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    focus_distance(newVal) {\n      this.focus_distance_preset =\n        this.focus_distance_presets.find((val) => val === newVal) ?? null;\n      this.sendFocusParams();\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      this.pump_flowrate = p.flowrate ?? p.pump_flowrate ?? 0;\n      this.pump_manual_volume = p.volume ?? p.pump_manual_volume ?? 0;\n      this.pump_direction = [\"backward\", \"stop\", \"forward\"].includes(p.command) ? p.command : \"stop\";\n      this.focus_distance = typeof p.focus_distance === \"number\" ? p.focus_distance : 25;\n      this.focus_direction = [\"UP\", \"stop\", \"DOWN\"].includes(p.command) ? p.command : \"stop\";\n      if (typeof p.ledState === \"string\") this.led_state = p.ledState;\n      else if (typeof p.action === \"string\" && [\"on\",\"off\"].includes(p.action)) this.led_state = p.action;\n    },\n\n    // --- Pump ---\n    onFlowrateToggle(val) { if (val != null) this.pump_flowrate = val; },\n    onVolumeToggle(val) { if (val != null) this.pump_manual_volume = val; },\n    sendPumpParams() {\n      this.send({\n        topic:\"set_global/pump\",\n        payload:{\n          pump_flowrate:Number(this.pump_flowrate)||0,\n          pump_manual_volume:Number(this.pump_manual_volume)||0,\n        },\n      });\n    },\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n      if (val === \"stop\") {\n        this.send({ topic:\"actuator/pump\", payload:{ action:\"stop\" } });\n      } else {\n        const dirUpper = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({\n          topic:\"actuator/pump\",\n          payload:{\n            action:\"move\",\n            direction:dirUpper,\n            volume:Number(this.pump_manual_volume)||0,\n            flowrate:Number(this.pump_flowrate)||0,\n          },\n        });\n      }\n    },\n\n    // --- Focus ---\n    on_focus_distance_toggle(val) { if (val != null) this.focus_distance = val; },\n    speedFromDistance(d) {\n      const x1=100,y1=1000,x2=1000,y2=2000,x3=5000,y3=5000;\n      if(d<=x1)return y1;\n      if(d>=x3)return y3;\n      if(d<=x2){const m=(y2-y1)/(x2-x1);return Math.round(y1+m*(d-x1));}\n      const m=(y3-y2)/(x3-x2);\n      return Math.round(y2+m*(d-x2));\n    },\n    sendFocusParams() {\n      const d=Number(this.focus_distance)||25;\n      const speed=this.speedFromDistance(d);\n      this.send({topic:\"set_global/focus\",payload:{focus_distance:d,focus_speed:speed}});\n    },\n    on_focus_direction_change(val) {\n      this.focus_direction=val;\n      if(val===\"stop\"){this.send({topic:\"actuator/focus\",payload:{action:\"stop\"}});}\n      else{\n        const d=Number(this.focus_distance)||25;\n        const speed=this.speedFromDistance(d);\n        this.send({topic:\"actuator/focus\",payload:{action:\"move\",direction:val,distance:d/1000,speed:speed/1000}});\n      }\n    },\n\n    // --- LED ---\n    on_led_toggle(val) {\n      if(!val)return;\n      this.led_state=val;\n      this.send({topic:\"light\",payload:{action:val}});\n    },\n\n    // --- Info Dialogs ---\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: {\n          title: \"Flowrate (ml/min)\",\n          unit: \"ml/min\",\n          description: \"Flowrate of the pump during the manual exploration\",\n        },\n        pump_manual_volume: {\n          title: \"Volume to pass (ml)\",\n          unit: \"ml\",\n          description: \"Volume displaced by the pump during the manual exploration\",\n        },\n        focus_speed: {\n          title: \"Focus Speed (in µm/sec)\",\n          unit: \"μm/s\",\n          description: \"Speed of the displacement by the focus plate during the manual exploration\",\n        },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "4112a93b1b129756",
+                "2f44981b14726ef3"
+            ]
+        ]
+    },
+    {
+        "id": "31e644b7332d3cda",
+        "type": "mqtt out",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "MQTT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 950,
         "y": 540,
         "wires": []
     },
@@ -3437,14 +3266,14 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n\n    <v-row justify=\"space-between\" align=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"preview\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Preview\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"acquisition\"\n        >\n          Acquisition\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"preview\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Preview\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"acquisition\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Acquisition\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
         "x": 640,
-        "y": 200,
+        "y": 100,
         "wires": [
             []
         ]
@@ -3485,7 +3314,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container>\n    <v-row>\n      <!-- Date -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Date\"\n          variant=\"outlined\"\n          placeholder=\"jj/mm/aaaa\"\n          type=\"date\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n\n      <!-- Time -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Time\"\n          variant=\"outlined\"\n          placeholder=\"--:--\"\n          type=\"time\"\n          density=\"compact\" append-icon=\"mdi-information\"\n        />\n      </v-col>\n    </v-row>\n    <v-row>\n      <!-- GPS Latitude -->\n      <v-col cols=\"12\" md=\"12\">\n        <v-row>\n          <v-col cols=\"1\"> Latitude </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"latitude_D\"\n              :min=\"0\"\n              :max=\"90\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n\n            <span>°\n            </span>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"latitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"2\">\n            <v-text-field\n              v-model.number=\"latitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select variant=\"outlined\" :items=\"['N', 'S']\" hide-details append-icon=\"mdi-information\" />\n          </v-col>\n\n          <v-col cols=\"1\"> Longitude </v-col>\n\n          <!-- GPS Longitude -->\n\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"longitude_D\"\n              :min=\"0\"\n              :max=\"180\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-text-field\n              v-model.number=\"longitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"2\">\n            <v-text-field\n              v-model.number=\"longitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            />\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select :items=\"['E', 'W']\" hide-details variant=\"outlined\" append-icon=\"mdi-information\" />\n          </v-col>\n        </v-row>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container class=\"pa-4\">\n    <h3>Starting point</h3>\n\n    <!-- Date & Time -->\n    <v-row>\n      <!-- Date -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Date\"\n          variant=\"outlined\"\n          placeholder=\"jj/mm/aaaa\"\n          type=\"date\"\n      hide-details=\"auto\"\n        />\n      </v-col>\n\n      <!-- Time -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Time\"\n          variant=\"outlined\"\n          placeholder=\"--:--\"\n          type=\"time\"\n      hide-details=\"auto\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Coordinates DMS -->\n    <v-row>\n      <v-col cols=\"12\" md=\"6\">\n        <v-row>\n          <v-col cols=\"12\"><strong>Latitude (DMS)</strong></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"latitude_D\" label=\"°\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"latitude_M\" label=\"′\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"latitude_S\" label=\"″\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-select v-model=\"latDir\" :items=\"['N','S']\" label=\"Dir\" variant=\"outlined\" hide-details /></v-col>\n        </v-row>\n      </v-col>\n      <v-col cols=\"12\" md=\"6\">\n        <v-row>\n          <v-col cols=\"12\"><strong>Longitude (DMS)</strong></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"longitude_D\" label=\"°\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"longitude_M\" label=\"′\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"longitude_S\" label=\"″\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-select v-model=\"lonDir\" :items=\"['E','W']\" label=\"Dir\" variant=\"outlined\" hide-details /></v-col>\n        </v-row>\n      </v-col>\n    </v-row>\n\n    <!-- Decimal coordinates -->\n    <v-row class=\"mt-4\">\n      <v-col cols=\"6\">\n        <v-text-field\n          v-model.number=\"latitudeDec\"\n          label=\"Latitude (decimal)\"\n          variant=\"outlined\"\n          hide-details\n          @input=\"updateFromDecimal('lat')\"\n          type=\"number\"\n        />\n      </v-col>\n      <v-col cols=\"6\">\n        <v-text-field\n          v-model.number=\"longitudeDec\"\n          label=\"Longitude (decimal)\"\n          variant=\"outlined\"\n          hide-details\n          @input=\"updateFromDecimal('lon')\"\n          type=\"number\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Canvas Map -->\n    <v-row class=\"mt-6\" style=\"position: relative;\">\n      <v-col cols=\"12\" class=\"text-center\" style=\"position: relative;\">\n        <canvas\n          id=\"mapCanvas\"\n          width=\"800\"\n          height=\"500\"\n          style=\"width:100%;max-width:1200px;border:1px solid #999;border-radius:8px;background:#000;cursor:grab;\"\n          @wheel.prevent=\"onWheel\"\n        ></canvas>\n\n        <!-- Zoom controls bottom-right -->\n        <div\n          style=\"position:absolute;bottom:25px;right:18px;display:flex;flex-direction:column;gap:6px;\"\n        >\n          <v-btn icon @click=\"zoomIn\" ><span>+</span></v-btn>\n          <v-btn icon  @click=\"zoomOut\" ><span>−</span></v-btn>\n        </div>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      date: \"\",\n      time: \"\",\n      longitude_D: \"0\",\n      longitude_M: \"0\",\n      longitude_S: \"0\",\n      latitude_D: \"0\",\n      latitude_M: \"0\",\n      latitude_S: \"0\",\n      lonDir: \"E\",\n      latDir: \"N\",\n      longitudeDec: 0,\n      latitudeDec: 0,\n      ctx: null,\n      mapImage: null,\n      imageLoaded: false,\n      zoom: 1,\n      offsetX: 0,\n      offsetY: 0,\n    };\n  },\n\n  mounted() {\n    const canvas = document.getElementById(\"mapCanvas\");\n    this.ctx = canvas.getContext(\"2d\");\n\n    this.mapImage = new Image();\n    this.mapImage.src = \"https://upload.wikimedia.org/wikipedia/commons/a/ac/World_location_map.svg\"; // Place this file in /public/\n    this.mapImage.onload = () => {\n      this.imageLoaded = true;\n      this.syncDecimal();\n      this.centerOnMarker();\n    };\n  },\n\n  watch: {\n    longitude_D() { this.syncDecimal(); },\n    longitude_M() { this.syncDecimal(); },\n    longitude_S() { this.syncDecimal(); },\n    latitude_D() { this.syncDecimal(); },\n    latitude_M() { this.syncDecimal(); },\n    latitude_S() { this.syncDecimal(); },\n    lonDir() { this.syncDecimal(); },\n    latDir() { this.syncDecimal(); },\n  },\n\n  methods: {\n    toDecimal(D, M, S, dir) {\n      const d = parseFloat(D) || 0;\n      const m = parseFloat(M) || 0;\n      const s = parseFloat(S) || 0;\n      let val = d + m / 60 + s / 3600;\n      if (dir === \"S\" || dir === \"W\") val *= -1;\n      return val;\n    },\n\n    fromDecimal(dec, type) {\n      const dirPositive = type === \"lat\" ? \"N\" : \"E\";\n      const dirNegative = type === \"lat\" ? \"S\" : \"W\";\n      const absVal = Math.abs(dec);\n      const D = Math.floor(absVal);\n      const M = Math.floor((absVal - D) * 60);\n      const S = ((absVal - D - M / 60) * 3600).toFixed(3);\n      const dir = dec >= 0 ? dirPositive : dirNegative;\n      return { D, M, S, dir };\n    },\n\n    syncDecimal() {\n      this.longitudeDec = this.toDecimal(this.longitude_D, this.longitude_M, this.longitude_S, this.lonDir);\n      this.latitudeDec = this.toDecimal(this.latitude_D, this.latitude_M, this.latitude_S, this.latDir);\n      this.centerOnMarker();\n    },\n\n    updateFromDecimal(which) {\n      if (which === \"lon\") {\n        const { D, M, S, dir } = this.fromDecimal(this.longitudeDec, \"lon\");\n        this.longitude_D = D;\n        this.longitude_M = M;\n        this.longitude_S = S;\n        this.lonDir = dir;\n      } else {\n        const { D, M, S, dir } = this.fromDecimal(this.latitudeDec, \"lat\");\n        this.latitude_D = D;\n        this.latitude_M = M;\n        this.latitude_S = S;\n        this.latDir = dir;\n      }\n      this.centerOnMarker();\n    },\n\n    onWheel(e) {\n      if (e.deltaY < 0) this.zoomIn();\n      else this.zoomOut();\n    },\n\n    zoomIn() {\n      this.zoom = Math.min(this.zoom * 1.25, 10);\n      this.centerOnMarker();\n    },\n    zoomOut() {\n      this.zoom = Math.max(this.zoom / 1.25, 0.5);\n      this.centerOnMarker();\n    },\n\n    centerOnMarker() {\n      const w = 800;\n      const h = 500;\n\n      const lat = this.latitudeDec;\n      const lon = this.longitudeDec;\n\n      const x = w / 2 + (lon / 180) * (w / 2);\n      const y = h / 2 - (lat / 90) * (h / 2);\n\n      this.offsetX = w / 2 - x;\n      this.offsetY = h / 2 - y;\n\n      this.drawPoint();\n    },\n\n    drawMap(w, h) {\n      const ctx = this.ctx;\n      ctx.clearRect(0, 0, w, h);\n      ctx.save();\n\n      ctx.translate(this.offsetX * this.zoom + w / 2 * (1 - this.zoom), this.offsetY * this.zoom + h / 2 * (1 - this.zoom));\n      ctx.scale(this.zoom, this.zoom);\n\n      if (this.imageLoaded) ctx.drawImage(this.mapImage, 0, 0, w, h);\n      else {\n        ctx.fillStyle = \"#000\";\n        ctx.fillRect(0, 0, w, h);\n      }\n\n      ctx.restore();\n    },\n\n    drawPoint() {\n      const w = 800;\n      const h = 500;\n      const ctx = this.ctx;\n      if (!ctx) return;\n\n      this.drawMap(w, h);\n\n      const lat = this.latitudeDec;\n      const lon = this.longitudeDec;\n\n      const x = w / 2 + (lon / 180) * (w / 2);\n      const y = h / 2 - (lat / 90) * (h / 2);\n\n      ctx.save();\n      ctx.translate(this.offsetX * this.zoom + w / 2 * (1 - this.zoom), this.offsetY * this.zoom + h / 2 * (1 - this.zoom));\n      ctx.scale(this.zoom, this.zoom);\n\n      ctx.fillStyle = \"primary\";\n      ctx.beginPath();\n      ctx.arc(x, y, 6 / this.zoom, 0, 2 * Math.PI);\n      ctx.fill();\n\n      ctx.fillStyle = \"primary\";\n      ctx.font = `${13 / this.zoom}px sans-serif`;\n      ctx.fillText(`${lat.toFixed(4)}°, ${lon.toFixed(4)}°`, x + 10 / this.zoom, y - 10 / this.zoom);\n\n      ctx.restore();\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3494,7 +3323,9 @@
         "x": 640,
         "y": 280,
         "wires": [
-            []
+            [
+                "ffdc5feca7a40c82"
+            ]
         ]
     },
     {
@@ -3509,7 +3340,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container>\n    <v-row>\n      <!-- Date -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Date\"\n          variant=\"outlined\"\n          placeholder=\"jj/mm/aaaa\"\n          type=\"date\"\n        />\n      </v-col>\n\n      <!-- Time -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Time\"\n          variant=\"outlined\"\n          placeholder=\"--:--\"\n          type=\"time\"\n          density=\"compact\"\n        />\n      </v-col>\n    </v-row>\n        <v-row>\n\n      <!-- GPS Latitude -->\n      <v-col cols=\"12\" md=\"12\">\n        <v-row>\n          <v-col cols=\"1\">\n            Latitude\n          </v-col>\n          <v-col cols=\"1\">\n\n            <v-text-field\n              v-model.number=\"latitude_D\"\n              :min=\"0\"\n              :max=\"90\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            /></v-text-field>\n          </v-col>\n          <v-col cols=\"1\">\n              \n            <v-text-field\n              v-model.number=\"latitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            /></v-text-field>\n          </v-col>\n          <v-col cols=\"2\">\n              \n            <v-text-field\n              v-model.number=\"latitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            /></v-text-field>\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select variant=\"outlined\" :items=\"['N', 'S']\" hide-details \n               />\n          </v-col>\n\n          <v-col cols=\"1\">\n            Longitude\n          </v-col>\n\n          <!-- GPS Longitude -->\n          \n          \n          <v-col cols=\"1\">\n\n            <v-text-field\n              v-model.number=\"longitude_D\"\n              :min=\"0\"\n              :max=\"180\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            /></v-text-field>\n          </v-col>\n          <v-col cols=\"1\">\n              \n            <v-text-field\n              v-model.number=\"longitude_M\"\n              :min=\"0\"\n              :max=\"59\"\n              :step=\"1\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            /></v-text-field>\n          </v-col>\n          <v-col cols=\"2\">\n              \n            <v-text-field\n              v-model.number=\"longitude_S\"\n              :min=\"0\"\n              :max=\"59.9999\"\n              :step=\"0.0001\"\n              :model-value=\"0\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n            /></v-text-field>\n          </v-col>\n          <v-col cols=\"1\">\n            <v-select :items=\"['E', 'W']\" hide-details variant=\"outlined\" />\n          </v-col>\n        </v-row>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container class=\"pa-4\">\n    <h3>Starting point</h3>\n\n    <!-- Date & Time -->\n    <v-row>\n      <!-- Date -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Date\"\n          variant=\"outlined\"\n          placeholder=\"jj/mm/aaaa\"\n          type=\"date\"\n      hide-details=\"auto\"\n        />\n      </v-col>\n\n      <!-- Time -->\n      <v-col cols=\"12\" md=\"6\">\n        <v-text-field\n          label=\"Time\"\n          variant=\"outlined\"\n          placeholder=\"--:--\"\n          type=\"time\"\n      hide-details=\"auto\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Coordinates DMS -->\n    <v-row>\n      <v-col cols=\"12\" md=\"6\">\n        <v-row>\n          <v-col cols=\"12\"><strong>Latitude (DMS)</strong></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"latitude_D\" label=\"°\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"latitude_M\" label=\"′\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"latitude_S\" label=\"″\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-select v-model=\"latDir\" :items=\"['N','S']\" label=\"Dir\" variant=\"outlined\" hide-details /></v-col>\n        </v-row>\n      </v-col>\n      <v-col cols=\"12\" md=\"6\">\n        <v-row>\n          <v-col cols=\"12\"><strong>Longitude (DMS)</strong></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"longitude_D\" label=\"°\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"longitude_M\" label=\"′\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-text-field v-model=\"longitude_S\" label=\"″\" variant=\"outlined\" hide-details type=\"number\" /></v-col>\n          <v-col cols=\"3\"><v-select v-model=\"lonDir\" :items=\"['E','W']\" label=\"Dir\" variant=\"outlined\" hide-details /></v-col>\n        </v-row>\n      </v-col>\n    </v-row>\n\n    <!-- Decimal coordinates -->\n    <v-row class=\"mt-4\">\n      <v-col cols=\"6\">\n        <v-text-field\n          v-model.number=\"latitudeDec\"\n          label=\"Latitude (decimal)\"\n          variant=\"outlined\"\n          hide-details\n          @input=\"updateFromDecimal('lat')\"\n          type=\"number\"\n        />\n      </v-col>\n      <v-col cols=\"6\">\n        <v-text-field\n          v-model.number=\"longitudeDec\"\n          label=\"Longitude (decimal)\"\n          variant=\"outlined\"\n          hide-details\n          @input=\"updateFromDecimal('lon')\"\n          type=\"number\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Canvas Map -->\n    <v-row class=\"mt-6\" style=\"position: relative;\">\n      <v-col cols=\"12\" class=\"text-center\" style=\"position: relative;\">\n        <canvas\n          id=\"mapCanvas_end\"\n          width=\"800\"\n          height=\"500\"\n          style=\"width:100%;max-width:1200px;border:1px solid #999;border-radius:8px;background:#000;cursor:grab;\"\n          @wheel.prevent=\"onWheel\"\n        ></canvas>\n\n        <!-- Zoom controls bottom-right -->\n        <div\n          style=\"position:absolute;bottom:25px;right:18px;display:flex;flex-direction:column;gap:6px;\"\n        >\n          <v-btn icon @click=\"zoomIn\" ><span>+</span></v-btn>\n          <v-btn icon  @click=\"zoomOut\" ><span>−</span></v-btn>\n        </div>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      date: \"\",\n      time: \"\",\n      longitude_D: \"0\",\n      longitude_M: \"0\",\n      longitude_S: \"0\",\n      latitude_D: \"0\",\n      latitude_M: \"0\",\n      latitude_S: \"0\",\n      lonDir: \"E\",\n      latDir: \"N\",\n      longitudeDec: 0,\n      latitudeDec: 0,\n      ctx: null,\n      mapImage: null,\n      imageLoaded: false,\n      zoom: 1,\n      offsetX: 0,\n      offsetY: 0,\n    };\n  },\n\n  mounted() {\n    const canvas = document.getElementById(\"mapCanvas_end\");\n    this.ctx = canvas.getContext(\"2d\");\n\n    this.mapImage = new Image();\n    this.mapImage.src = \"https://upload.wikimedia.org/wikipedia/commons/a/ac/World_location_map.svg\"; // Place this file in /public/\n    this.mapImage.onload = () => {\n      this.imageLoaded = true;\n      this.syncDecimal();\n      this.centerOnMarker();\n    };\n  },\n\n  watch: {\n    longitude_D() { this.syncDecimal(); },\n    longitude_M() { this.syncDecimal(); },\n    longitude_S() { this.syncDecimal(); },\n    latitude_D() { this.syncDecimal(); },\n    latitude_M() { this.syncDecimal(); },\n    latitude_S() { this.syncDecimal(); },\n    lonDir() { this.syncDecimal(); },\n    latDir() { this.syncDecimal(); },\n  },\n\n  methods: {\n    toDecimal(D, M, S, dir) {\n      const d = parseFloat(D) || 0;\n      const m = parseFloat(M) || 0;\n      const s = parseFloat(S) || 0;\n      let val = d + m / 60 + s / 3600;\n      if (dir === \"S\" || dir === \"W\") val *= -1;\n      return val;\n    },\n\n    fromDecimal(dec, type) {\n      const dirPositive = type === \"lat\" ? \"N\" : \"E\";\n      const dirNegative = type === \"lat\" ? \"S\" : \"W\";\n      const absVal = Math.abs(dec);\n      const D = Math.floor(absVal);\n      const M = Math.floor((absVal - D) * 60);\n      const S = ((absVal - D - M / 60) * 3600).toFixed(3);\n      const dir = dec >= 0 ? dirPositive : dirNegative;\n      return { D, M, S, dir };\n    },\n\n    syncDecimal() {\n      this.longitudeDec = this.toDecimal(this.longitude_D, this.longitude_M, this.longitude_S, this.lonDir);\n      this.latitudeDec = this.toDecimal(this.latitude_D, this.latitude_M, this.latitude_S, this.latDir);\n      this.centerOnMarker();\n    },\n\n    updateFromDecimal(which) {\n      if (which === \"lon\") {\n        const { D, M, S, dir } = this.fromDecimal(this.longitudeDec, \"lon\");\n        this.longitude_D = D;\n        this.longitude_M = M;\n        this.longitude_S = S;\n        this.lonDir = dir;\n      } else {\n        const { D, M, S, dir } = this.fromDecimal(this.latitudeDec, \"lat\");\n        this.latitude_D = D;\n        this.latitude_M = M;\n        this.latitude_S = S;\n        this.latDir = dir;\n      }\n      this.centerOnMarker();\n    },\n\n    onWheel(e) {\n      if (e.deltaY < 0) this.zoomIn();\n      else this.zoomOut();\n    },\n\n    zoomIn() {\n      this.zoom = Math.min(this.zoom * 1.25, 10);\n      this.centerOnMarker();\n    },\n    zoomOut() {\n      this.zoom = Math.max(this.zoom / 1.25, 0.5);\n      this.centerOnMarker();\n    },\n\n    centerOnMarker() {\n      const w = 800;\n      const h = 500;\n\n      const lat = this.latitudeDec;\n      const lon = this.longitudeDec;\n\n      const x = w / 2 + (lon / 180) * (w / 2);\n      const y = h / 2 - (lat / 90) * (h / 2);\n\n      this.offsetX = w / 2 - x;\n      this.offsetY = h / 2 - y;\n\n      this.drawPoint();\n    },\n\n    drawMap(w, h) {\n      const ctx = this.ctx;\n      ctx.clearRect(0, 0, w, h);\n      ctx.save();\n\n      ctx.translate(this.offsetX * this.zoom + w / 2 * (1 - this.zoom), this.offsetY * this.zoom + h / 2 * (1 - this.zoom));\n      ctx.scale(this.zoom, this.zoom);\n\n      if (this.imageLoaded) ctx.drawImage(this.mapImage, 0, 0, w, h);\n      else {\n        ctx.fillStyle = \"#000\";\n        ctx.fillRect(0, 0, w, h);\n      }\n\n      ctx.restore();\n    },\n\n    drawPoint() {\n      const w = 800;\n      const h = 500;\n      const ctx = this.ctx;\n      if (!ctx) return;\n\n      this.drawMap(w, h);\n\n      const lat = this.latitudeDec;\n      const lon = this.longitudeDec;\n\n      const x = w / 2 + (lon / 180) * (w / 2);\n      const y = h / 2 - (lat / 90) * (h / 2);\n\n      ctx.save();\n      ctx.translate(this.offsetX * this.zoom + w / 2 * (1 - this.zoom), this.offsetY * this.zoom + h / 2 * (1 - this.zoom));\n      ctx.scale(this.zoom, this.zoom);\n\n      ctx.fillStyle = \"primary\";\n      ctx.beginPath();\n      ctx.arc(x, y, 6 / this.zoom, 0, 2 * Math.PI);\n      ctx.fill();\n\n      ctx.fillStyle = \"primary\";\n      ctx.font = `${13 / this.zoom}px sans-serif`;\n      ctx.fillText(`${lat.toFixed(4)}°, ${lon.toFixed(4)}°`, x + 10 / this.zoom, y - 10 / this.zoom);\n\n      ctx.restore();\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3612,6 +3443,22 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "ffdc5feca7a40c82",
+        "type": "debug",
+        "z": "190b0c9aa75e8843",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 300,
+        "wires": []
     },
     {
         "id": "ffe728d961068c62",
@@ -3821,8 +3668,7 @@
         "y": 60,
         "wires": [
             [
-                "d4129bf3f5622aa6",
-                "b888b35ab94613f6"
+                "d4129bf3f5622aa6"
             ]
         ]
     },
@@ -3841,7 +3687,7 @@
         "autocols": false,
         "showSearch": false,
         "deselect": true,
-        "selectionType": "checkbox",
+        "selectionType": "click",
         "columns": [
             {
                 "title": "Project name",
@@ -3898,58 +3744,10 @@
         "x": 350,
         "y": 180,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b888b35ab94613f6",
-        "type": "ui-table",
-        "z": "0fd76ac156d78937",
-        "group": "1190bcb9f9eb9202",
-        "name": "",
-        "label": "",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "maxrows": "10",
-        "passthru": false,
-        "autocols": false,
-        "showSearch": false,
-        "deselect": true,
-        "selectionType": "none",
-        "columns": [
-            {
-                "title": "Sample Project",
-                "key": "sample_project",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "center"
-            },
-            {
-                "title": "Sample ID",
-                "key": "sample_id",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "center"
-            },
-            {
-                "title": "Acquisition ID",
-                "key": "acq_id",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "center"
-            }
-        ],
-        "mobileBreakpoint": "sm",
-        "mobileBreakpointType": "defaults",
-        "action": "replace",
-        "x": 330,
-        "y": 300,
-        "wires": [
-            []
+            [
+                "53d2c3f0c340141f",
+                "d5fb79b6f4826c39"
+            ]
         ]
     },
     {
@@ -3964,6 +3762,111 @@
                 "61c2c281b1c6e055"
             ]
         ]
+    },
+    {
+        "id": "8c07f817fd1def44",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "968a9c38d239e3be",
+        "type": "ui-notification",
+        "z": "0fd76ac156d78937",
+        "ui": "e6ae26617c24c3ea",
+        "position": "center center",
+        "colorDefault": true,
+        "color": "#000000",
+        "displayTime": "",
+        "showCountdown": false,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Close",
+        "allowConfirm": true,
+        "confirmText": "Segment",
+        "raw": true,
+        "className": "",
+        "name": "",
+        "x": 810,
+        "y": 520,
+        "wires": [
+            [
+                "8c07f817fd1def44"
+            ]
+        ]
+    },
+    {
+        "id": "071b566b5f205675",
+        "type": "function",
+        "z": "0fd76ac156d78937",
+        "name": "function 2",
+        "func": "// Input: \n// msg.payload = {\n//   \"project_name\":\"ICES-IOC\",\n//   \"sample_id\":\"Fjellhagen\",\n//   \"acquisition_id\":\"A1\",\n//   \"operator_name\":\"Thibaut Pollina\",\n//   \"image_acquired_count\":200,\n//   \"is_segmented\":true\n// }\n\n// Build HTML popup content\nlet data = msg.payload;\n\nlet html = `\n<div style=\"font-family: Arial, sans-serif; padding: 10px; border-radius: 8px; width:300px\">\n  <h2 style=\"margin-top:0; color:#2c3e50;\">Project: ${data.project_name}</h2>\n  <p><strong>Sample ID:</strong> ${data.sample_id}</p>\n  <p><strong>Acquisition ID:</strong> ${data.acquisition_id}</p>\n  <p><strong>Operator:</strong> ${data.operator_name}</p>\n  <p><strong>Images Acquired:</strong> ${data.image_acquired_count}</p>\n  <p><strong>Segmented:</strong> ${data.is_segmented ? \"✅ Yes\" : \"❌ No\"}</p>\n</div>\n`;\n\nmsg.payload = html;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "968a9c38d239e3be"
+            ]
+        ]
+    },
+    {
+        "id": "53d2c3f0c340141f",
+        "type": "switch",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "property": "payload.is_segmented",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [],
+            [
+                "071b566b5f205675"
+            ]
+        ]
+    },
+    {
+        "id": "d5fb79b6f4826c39",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "f142197f943e06c3",
@@ -4910,7 +4813,8 @@
         "y": 540,
         "wires": [
             [
-                "3994b52159965684"
+                "3994b52159965684",
+                "2b3a27b75e8100b1"
             ],
             []
         ],
@@ -5220,7 +5124,8 @@
         "y": 800,
         "wires": [
             [
-                "50cb535cd51f7270"
+                "50cb535cd51f7270",
+                "2b3a27b75e8100b1"
             ]
         ]
     },
@@ -5573,6 +5478,23 @@
         "statusType": "auto",
         "x": 640,
         "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2b3a27b75e8100b1",
+        "type": "debug",
+        "z": "68f63f5275b147d3",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 740,
         "wires": []
     },
     {
