@@ -9,15 +9,14 @@ setup:
     sudo systemctl reenable cockpit.socket
     sudo systemctl restart cockpit.socket
     # TODO consider
-    # https://github.com/cockpit-project/cockpit-files
     # https://github.com/gbraad-cockpit/cockpit-tailscale
     # https://github.com/gbraad-cockpit/cockpit-headscale
 
 # unailable in debian
 # https://github.com/cockpit-project/cockpit-files/issues/635
 cockpit-files:
-    wget https://github.com/cockpit-project/cockpit-files/releases/download/28/cockpit-files-28.tar.xz -P /tmp
-    cd /tmp && tar -xf cockpit-files-28.tar.xz
+    wget https://github.com/cockpit-project/cockpit-files/releases/download/29/cockpit-files-29.tar.xz -P /tmp
+    cd /tmp && tar -xf cockpit-files-29.tar.xz
     rm -rf ~/.local/share/cockpit/files
     cd /tmp/cockpit-files && make devel-install
 
