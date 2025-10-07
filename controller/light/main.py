@@ -17,8 +17,9 @@ loop = asyncio.new_event_loop()
 
 
 async def start() -> None:
-    # if (await helpers.get_hat_version()) != 3.1:
-    #     sys.exit()
+    if (await helpers.get_hat_type()) != "planktoscope":
+        sys.exit()
+
     led.init()
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)

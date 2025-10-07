@@ -77,11 +77,10 @@ exclude = [
   'main.py',
   'adafruithat/stepper.py',
   'adafruithat/display.py',
-  'planktoscopehat/light.py',
 ]
 follow_imports = "silent" # required for exclude
 [[tool.mypy.overrides]]
-module = ["paho.*"]
+module = ["paho.*", "gpiozero"]
 follow_untyped_imports = true
 
 [tool.poe.tasks]

@@ -10,6 +10,12 @@ async def get_hat_version() -> float:
         return float(hardware.get("hat_version"))
 
 
+async def get_hat_type() -> str:
+    async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
+        hardware = json.loads(await file.read())
+        return str(hardware.get("hat_type"))
+
+
 async def mqtt_reply(client: aiomqtt.Client, message: aiomqtt.Message) -> None:
     response_topic = getattr(message.properties, "ResponseTopic", None)
     if response_topic is None:
