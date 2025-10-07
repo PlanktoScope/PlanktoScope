@@ -10,7 +10,7 @@ async def get_hat_version() -> float:
         return float(hardware.get("hat_version"))
 
 
-async def mqtt_reply(client, message) -> None:
+async def mqtt_reply(client: aiomqtt.Client, message: aiomqtt.Message) -> None:
     response_topic = getattr(message.properties, "ResponseTopic", None)
     if response_topic is None:
         return

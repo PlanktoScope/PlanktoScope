@@ -572,7 +572,6 @@ dev = [
     { name = "poethepoet" },
     { name = "ruff" },
     { name = "types-aiofiles" },
-    { name = "types-paho-mqtt" },
 ]
 
 [package.metadata]
@@ -602,7 +601,6 @@ dev = [
     { name = "poethepoet", specifier = ">=0.37.0,<0.38" },
     { name = "ruff", specifier = ">=0.13.3,<0.14" },
     { name = "types-aiofiles", specifier = ">=24.1.0.20250822" },
-    { name = "types-paho-mqtt", specifier = ">=1.6.0.20240106,<2" },
 ]
 
 [[package]]
@@ -859,15 +857,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/19/48/c64471adac9206cc844afb33ed311ac5a65d2f59df3d861e0f2d0cad7414/types_aiofiles-24.1.0.20250822.tar.gz", hash = "sha256:9ab90d8e0c307fe97a7cf09338301e3f01a163e39f3b529ace82466355c84a7b", size = 14484, upload-time = "2025-08-22T03:02:23.039Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/bc/8e/5e6d2215e1d8f7c2a94c6e9d0059ae8109ce0f5681956d11bb0a228cef04/types_aiofiles-24.1.0.20250822-py3-none-any.whl", hash = "sha256:0ec8f8909e1a85a5a79aed0573af7901f53120dd2a29771dd0b3ef48e12328b0", size = 14322, upload-time = "2025-08-22T03:02:21.918Z" },
-]
-
-[[package]]
-name = "types-paho-mqtt"
-version = "1.6.0.20240321"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a6/2e/8836d327c52dd8818a6c61e976a627f04e68f11dc2e9980b70e7ce447475/types-paho-mqtt-1.6.0.20240321.tar.gz", hash = "sha256:694eec160340f2a2b151237dcc3f107a63e1c4e5b8f9fcda0ba392049af9cbec", size = 8173, upload-time = "2024-03-21T02:15:17.779Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/92/60/bd4d0cf58c7d7bbeed3c0043647f3b7b6ea0c27fd9cfd54dfdea4927bbc6/types_paho_mqtt-1.6.0.20240321-py3-none-any.whl", hash = "sha256:cd275c14f39363c2a0f8286ead9a46962e5421ebd477547b892ae016699f5a4a", size = 9260, upload-time = "2024-03-21T02:15:16.712Z" },
 ]
 
 [[package]]

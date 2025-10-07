@@ -3,7 +3,6 @@ import json
 
 import aiomqtt
 import gpiozero
-import paho
 import sys
 import signal
 

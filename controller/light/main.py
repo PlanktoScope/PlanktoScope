@@ -2,7 +2,6 @@ import asyncio
 import json
 
 import aiomqtt
-import paho
 import sys
 import signal
 
