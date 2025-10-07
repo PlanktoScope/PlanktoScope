@@ -80,7 +80,7 @@ follow_imports = "silent" # required for exclude
 
 [tool.poe.tasks]
 fmt = "ruff format"
-lint-mypy = "poetry run mypy --explicit-package-bases ."
+lint-mypy = "uv run mypy --explicit-package-bases ."
 lint-ruff = "ruff check"
 lint = ["lint-ruff", "lint-mypy"]
 fmt-check = "ruff format --check"

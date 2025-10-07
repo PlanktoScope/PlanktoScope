@@ -27,7 +27,7 @@ COPY --chown=pi:pi pyproject.toml poetry.lock ./
 RUN \
   export PATH="/home/pi/.local/bin:$PATH" && \
   pip install --no-cache-dir cryptography==43.0.3 poetry==2.1.3 \
-    --extra-index-url https://www.piwheels.org/simple && \
+  --extra-index-url https://www.piwheels.org/simple && \
   poetry install --only main --compile && \
   poetry --no-interaction cache list && \
   poetry --no-interaction cache clear pypi --all && \

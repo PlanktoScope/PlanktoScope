@@ -2,14 +2,12 @@ export PATH := x"${PATH}:/home/$USER/.local/bin"
 
 default: base setup
 
-base:
+base: install-uv
     # https://github.com/nodesource/distributions/wiki/Repository-Manual-Installation
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/nodesource.gpg
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
     sudo apt update
-    sudo apt install -y pipx git nodejs
-    pipx ensurepath
-    pipx install poetry==2.1.3 --force
+    sudo apt install -y git nodejs
     npm config set prefix /home/pi/.local
 
 setup:
@@ -67,6 +65,13 @@ reset: base setup
     rm /home/pi/PlanktoScope/config.json
     rm /home/pi/PlanktoScope/hardware.json
     sudo reboot
+
+install-uv:
+    wget https://github.com/astral-sh/uv/releases/download/0.8.24/uv-aarch64-unknown-linux-gnu.tar.gz -P /tmp
+    cd /tmp && tar -xf uv-aarch64-unknown-linux-gnu.tar.gz
+    sudo cp /tmp/uv-aarch64-unknown-linux-gnu/uv /usr/local/bin/
+    sudo cp /tmp/uv-aarch64-unknown-linux-gnu/uvx /usr/local/bin/
+
 
 # We run setup and setup-dev twice to ensure it is idempotent
 

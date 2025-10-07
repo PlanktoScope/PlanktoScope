@@ -239,18 +239,6 @@ wheels = [
 ]
 
 [[package]]
-name = "imgp"
-version = "2.9"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pillow-simd" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/8a/dd/f425a947a781f2820f0fe1d5d8cf2cf4d1068553e5bb931873a60cadcaa0/imgp-2.9.tar.gz", hash = "sha256:38f2be11b27d7b56c13e7c56386cb6cb144d822fa6f2cfd3938398ee487e6d2b", size = 24875, upload-time = "2023-09-10T03:51:27.105Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ce/de/e283fa9c56775a55dd338d3dba33186617ec486c90b7de509d8e81c640dd/imgp-2.9-py3-none-any.whl", hash = "sha256:8b49203dfec731e292c5ac20bffec807473575e31b1dd32d7a786ccd46bda5d3", size = 23524, upload-time = "2023-09-10T03:51:24.255Z" },
-]
-
-[[package]]
 name = "jinja2"
 version = "3.1.6"
 source = { registry = "https://pypi.org/simple" }
@@ -559,12 +547,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pillow-simd"
-version = "9.5.0.post2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d0/d9/5cf8d7c9ecaf389fe62570a5287036611f1328796ed6e59abbc2dc09f4a6/Pillow-SIMD-9.5.0.post2.tar.gz", hash = "sha256:39dfb027bdaa3e35597df9a1c42ea97091f32bc83f25ab9cab0845b3c4bad331", size = 904623, upload-time = "2024-09-23T18:27:59.716Z" }
-
-[[package]]
 name = "planktoscope-docs"
 version = "0.0.1"
 source = { virtual = "." }
@@ -586,7 +568,6 @@ dependencies = [
 
 [package.dev-dependencies]
 imaging = [
-    { name = "imgp" },
     { name = "mkdocs-material", extra = ["imaging"] },
 ]
 
@@ -608,10 +589,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-imaging = [
-    { name = "imgp", specifier = "~=2.8" },
-    { name = "mkdocs-material", extras = ["imaging"], specifier = ">=9.6.21,<10" },
-]
+imaging = [{ name = "mkdocs-material", extras = ["imaging"], specifier = ">=9.6.21,<10" }]
 
 [[package]]
 name = "platformdirs"
