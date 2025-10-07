@@ -4,135 +4,37 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+
+multi-ecosystem-groups:
+  deps:
+    schedule:
+      interval: 'weekly'
+
 updates:
-  # documentation
   - package-ecosystem: 'pip'
-    directory: '/documentation'
-    schedule:
-      interval: 'monthly'
-    groups:
-      documentation:
-        patterns:
-          - '*'
+    directories:
+      - '/documentation'
+      - '/segmenter'
+      - '/controller'
+    multi-ecosystem-group: 'deps'
 
   - package-ecosystem: 'docker'
-    directory: '/documentation'
-    schedule:
-      interval: 'monthly'
-    groups:
-      documentation:
-        patterns:
-          - '*'
+    directories:
+      - '/documentation'
+      - '/segmenter'
+    multi-ecosystem-group: 'deps'
 
-  # segmenter
-  - package-ecosystem: 'pip'
-    directory: '/segmenter'
-    schedule:
-      interval: 'monthly'
-    groups:
-      segmenter:
-        patterns:
-          - '*'
-
-  - package-ecosystem: 'docker'
-    directory: '/segmenter'
-    schedule:
-      interval: 'monthly'
-    groups:
-      segmenter:
-        patterns:
-          - '*'
-
-  # controller
-  - package-ecosystem: 'pip'
-    directory: '/controller'
-    schedule:
-      interval: 'monthly'
-    groups:
-      controller:
-        patterns:
-          - '*'
-
-  # github actions
   - package-ecosystem: 'github-actions'
     directory: '/'
-    schedule:
-      interval: 'monthly'
-    groups:
-      github-actions:
-        patterns:
-          - '*'
-
-  # software
-  - package-ecosystem: 'npm'
-    directory: '/lib'
-    schedule:
-      interval: 'monthly'
-    groups:
-      software:
-        patterns:
-          - '*'
+    multi-ecosystem-group: 'deps'
 
   - package-ecosystem: 'npm'
-    directory: '/frontend'
-    schedule:
-      interval: 'monthly'
-    groups:
-      software:
-        patterns:
-          - '*'
-
-  - package-ecosystem: 'npm'
-    directory: '/backend'
-    schedule:
-      interval: 'monthly'
-    groups:
-      software:
-        patterns:
-          - '*'
-
-  # node-red
-  - package-ecosystem: 'npm'
-    directory: '/node-red'
-    schedule:
-      interval: 'monthly'
-    groups:
-      node-red:
-        patterns:
-          - '*'
-
-  - package-ecosystem: 'npm'
-    directory: '/node-red/nodes'
-    schedule:
-      interval: 'monthly'
-    groups:
-      node-red:
-        patterns:
-          - '*'
-
-  - package-ecosystem: 'npm'
-    directory: '/node-red/projects/adafruithat'
-    schedule:
-      interval: 'monthly'
-    groups:
-      node-red:
-        patterns:
-          - '*'
-
-  - package-ecosystem: 'npm'
-    directory: '/node-red/projects/dashboard'
-    schedule:
-      interval: 'monthly'
-    groups:
-      node-red:
-        patterns:
-          - '*'
-
-  - package-ecosystem: 'npm'
-    directory: '/node-red/projects/planktoscopehat'
-    schedule:
-      interval: 'monthly'
-    groups:
-      node-red:
-        patterns:
-          - '*'
+    directories:
+      - '/lib'
+      - '/frontend'
+      - '/backend'
+      - '/node-red'
+      - '/node-red/projects/planktoscopehat'
+      - '/node-red/projects/adafruithat'
+      - '/node-red/projects/dashboard'
+    multi-ecosystem-group: 'deps'
