@@ -4,9 +4,8 @@ import sys
 
 from loguru import logger
 
-# This is a special case for legacy hardware; new hardware designs should all be part of the
-# planktoscopehat codebase:
 CONFIG_PATH = "/home/pi/PlanktoScope/config.json"
+HARDWARE_PATH = "/home/pi/PlanktoScope/hardware.json"
 
 
 def read_config(config_path: str = CONFIG_PATH) -> Any:
@@ -57,8 +56,9 @@ def main():
                 sys.exit(1)
 
     logger.info("Determining configured hardware variant...")
-    config = read_config(CONFIG_PATH)
-    variant = get_variant(config)
+    configuration = read_config(CONFIG_PATH)
+    hardware = read_config(HARDWARE_PATH)
+    variant = get_variant(configuration)
     if variant is None:
         variant = "planktoscopehat"
         logger.warning(
@@ -71,7 +71,7 @@ def main():
     else:
         from planktoscopehat import main as platform
 
-    platform.main(config)
+    platform.main(configuration, hardware)
 
 
 if __name__ == "__main__":

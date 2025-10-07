@@ -7,6 +7,8 @@ setup:
     sudo cp planktoscope-org.controller.service /etc/systemd/system/
     sudo systemctl reenable planktoscope-org.controller
     sudo systemctl restart planktoscope-org.controller
+    just --justfile bubbler/justfile setup
+    just --justfile light/justfile setup
 
 setup-dev:
     uv sync --group dev
@@ -20,3 +22,6 @@ format:
 
 test:
     uv run poe check
+
+bubbler:
+    uv run bubbler/main.py

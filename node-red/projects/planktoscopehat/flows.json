@@ -4790,6 +4790,144 @@
         ]
     },
     {
+        "id": "87e63c19e7dd1a95",
+        "type": "mqtt in",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "status/bubbler",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 1490,
+        "y": 360,
+        "wires": [
+            [
+                "48af6efd73e3a24f"
+            ]
+        ]
+    },
+    {
+        "id": "48af6efd73e3a24f",
+        "type": "json",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": true,
+        "x": 1630,
+        "y": 360,
+        "wires": [
+            [
+                "2d406247bc374d2b"
+            ]
+        ]
+    },
+    {
+        "id": "df57cacd3c1ffc7d",
+        "type": "ui_multistate_switch",
+        "z": "bccd1f23.87219",
+        "name": "bubbler_control",
+        "group": "4248342d.e55fac",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "label": "Bubbler  ",
+        "stateField": "payload",
+        "enableField": "enable",
+        "passthroughField": "passthrough",
+        "inputMsgField": "inputmsg",
+        "rounded": true,
+        "useThemeColors": true,
+        "hideSelectedLabel": false,
+        "multilineLabel": false,
+        "passThrough": "never",
+        "inputMsg": "all",
+        "userInput": "enabled_show",
+        "options": [
+            {
+                "label": "Off",
+                "value": "off",
+                "valueType": "str",
+                "color": "#009933"
+            },
+            {
+                "label": "On",
+                "value": "on",
+                "valueType": "str",
+                "color": "#999999"
+            }
+        ],
+        "topic": "",
+        "x": 1520,
+        "y": 440,
+        "wires": [
+            [
+                "93b4de3b6cdcb598"
+            ]
+        ]
+    },
+    {
+        "id": "93b4de3b6cdcb598",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Prepare message",
+        "func": "msg.topic = \"actuator/bubbler\"\nmsg.payload = {\"action\": msg.payload}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 440,
+        "wires": [
+            [
+                "0bc4c2b3f54f2808"
+            ]
+        ]
+    },
+    {
+        "id": "0bc4c2b3f54f2808",
+        "type": "mqtt out",
+        "z": "bccd1f23.87219",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1890,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "2d406247bc374d2b",
+        "type": "function",
+        "z": "bccd1f23.87219",
+        "name": "Set Bubbler Status",
+        "func": "msg.payload = msg.payload.status.toLowerCase();\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1790,
+        "y": 360,
+        "wires": [
+            [
+                "df57cacd3c1ffc7d"
+            ]
+        ]
+    },
+    {
         "id": "6b34c456.83178c",
         "type": "ui_text_input",
         "z": "baa1e3d9.cb29d",
