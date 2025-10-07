@@ -20,7 +20,7 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
-      documentation:
+      docker:
         patterns:
           - '*'
 
@@ -30,16 +30,17 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
-      segmenter:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'docker'
     directory: '/segmenter'
     schedule:
       interval: 'monthly'
     groups:
-      segmenter:
+      docker:
         patterns:
           - '*'
 
@@ -49,9 +50,10 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
-      controller:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   # github actions
   - package-ecosystem: 'github-actions'
@@ -69,27 +71,30 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
-      software:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'npm'
     directory: '/frontend'
     schedule:
       interval: 'monthly'
     groups:
-      software:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'npm'
     directory: '/backend'
     schedule:
       interval: 'monthly'
     groups:
-      software:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   # node-red
   - package-ecosystem: 'npm'
@@ -97,42 +102,47 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
-      node-red:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'npm'
     directory: '/node-red/nodes'
     schedule:
       interval: 'monthly'
     groups:
-      node-red:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'npm'
     directory: '/node-red/projects/adafruithat'
     schedule:
       interval: 'monthly'
     groups:
-      node-red:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'npm'
     directory: '/node-red/projects/dashboard'
     schedule:
       interval: 'monthly'
     groups:
-      node-red:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
 
   - package-ecosystem: 'npm'
     directory: '/node-red/projects/planktoscopehat'
     schedule:
       interval: 'monthly'
     groups:
-      node-red:
-        patterns:
-          - '*'
+      development:
+        dependency-type: 'development'
+      runtime:
+        dependency-type: 'production'
