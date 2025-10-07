@@ -33,7 +33,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.11.2,<4.0"
+python = ">=3.13.5,<4.0"
 mkdocs = "^1.4.3"
 mkdocs-charts-plugin = "^0.0.13"
 mkdocs-glightbox = "^0.5.1"
@@ -80,7 +80,7 @@ set-beta-release-channel = ["set-beta-release-channel-header"]
 remove-hardware-setup-guides = "rm -rf docs/setup/hardware/v*"
 replace-hardware-setup-index = "mv docs/setup/hardware/index-noguides.md docs/setup/hardware/index.md"
 remove-nav-exclusions = "sed -i 's~^.* # poe(make-minimal): exclude$~~' mkdocs.yml"
-# Warning: this command should be run in GitHub Actions, but not on a developer computer! This is 
+# Warning: this command should be run in GitHub Actions, but not on a developer computer! This is
 # because it will delete files, and those deletions should never be committed to GitHub.
 make-minimal = [
   "clean-hardware-assets",

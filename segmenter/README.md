@@ -46,7 +46,7 @@ We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
 
 To use this project, you'll need:
 
-- Python >= 3.11.2
+- Python >= 3.13.5
 - Poetry 2.1.3
 
 ## Licensing
