@@ -26,7 +26,7 @@ ENV MQTT_HOSTNAME=host.docker.internal
 # the container image.
 COPY --chown=pi:pi pyproject.toml uv.lock ./
 RUN \
-  uv sync && \
+  uv sync --locked && \
   uv clean --force
 
 # Set up application
