@@ -1,48 +1,53 @@
-[tool.poetry]
-package-mode = false
+[project]
 name = "planktoscope-docs"
+version = "0.0.1"
 description = "Documentation for the PlanktoScope project"
-license = "CC-BY-SA-4.0"
+requires-python = ">=3.13.5,<4.0"
 readme = "README.md"
-homepage = "https://www.planktoscope.org"
-repository = "https://github.com/PlanktoScope/PlanktoScope"
-documentation = "https://docs.planktoscope.community"
-keywords = ["documentation", "planktoscope"]
+license = "CC-BY-SA-4.0"
+keywords = [
+    "documentation",
+    "planktoscope",
+]
 classifiers = [
-  "Intended Audience :: Science/Research",
-  "Natural Language :: English",
-  "Topic :: Scientific/Engineering",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "mkdocs>=1.4.3,<2",
+    "mkdocs-charts-plugin>=0.0.13,<0.0.14",
+    "mkdocs-glightbox>=0.5.1,<0.6",
+    "mkdocs-macros-plugin>=1.4.0,<2",
+    "mkdocs-markdownextradata-plugin>=0.2.6,<0.3",
+    "mkdocs-material>=9.6.21,<10",
+    "mkdocs-minify-plugin>=0.8.0,<0.9",
+    "mkdocs-redirects>=1.2.2,<2",
+    "Pygments>=2.19.2,<3",
+    "pymdown-extensions~=10.16",
+    "LinkChecker>=10.6.0,<11",
+    "poethepoet>=0.37.0,<0.38",
+    "mkdocs-git-revision-date-localized-plugin>=1.4.7,<2",
 ]
 
+[project.urls]
+Homepage = "https://www.planktoscope.org"
+Repository = "https://github.com/PlanktoScope/PlanktoScope"
+Documentation = "https://docs.planktoscope.community"
+
+[dependency-groups]
+imaging = [
+    "mkdocs-material[imaging]>=9.6.21,<10",
+    "imgp~=2.8",
+]
+
+[tool.uv]
+package = false
+default-groups = ["imaging"]
+
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dependencies]
-python = ">=3.13.5,<4.0"
-mkdocs = "^1.4.3"
-mkdocs-charts-plugin = "^0.0.13"
-mkdocs-glightbox = "^0.5.1"
-mkdocs-macros-plugin = "^1.4.0"
-mkdocs-markdownextradata-plugin = "^0.2.6"
-mkdocs-material = "^9.6.21"
-mkdocs-minify-plugin = "^0.8.0"
-mkdocs-redirects = "^1.2.2"
-# Note: we do not allow the mkdocs-table-reader-plugin in this project because it pulls in a
-# large number of dependencies, several of which (especially pandas) take an unacceptably long time
-# to install.
-Pygments = "^2.19.2"
-pymdown-extensions = "^10.16"
-LinkChecker = "^10.6.0"
-poethepoet = "^0.37.0"
-mkdocs-git-revision-date-localized-plugin = "^1.4.7"
-
-[tool.poetry.group.imaging]
-optional = true
-
-[tool.poetry.group.imaging.dependencies]
-mkdocs-material = { extras = ["imaging"], version = "^9.6.21" }
-imgp = "^2.8"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.poe.tasks]
 clean-hardware-assets = "rm -rf docs/assets/hardware"
