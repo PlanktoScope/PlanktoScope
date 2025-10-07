@@ -96,9 +96,8 @@ updates:
       runtime:
         dependency-type: 'production'
 
-  # node-red
   - package-ecosystem: 'npm'
-    directory: '/node-red'
+    directory: '/lib'
     schedule:
       interval: 'monthly'
     groups:
@@ -107,8 +106,9 @@ updates:
       runtime:
         dependency-type: 'production'
 
+  # node-red
   - package-ecosystem: 'npm'
-    directory: '/node-red/nodes'
+    directory: '/node-red'
     schedule:
       interval: 'monthly'
     groups:
