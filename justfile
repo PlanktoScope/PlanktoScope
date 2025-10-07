@@ -72,7 +72,6 @@ install-uv:
     sudo cp /tmp/uv-aarch64-unknown-linux-gnu/uv /usr/local/bin/
     sudo cp /tmp/uv-aarch64-unknown-linux-gnu/uvx /usr/local/bin/
 
-
 # We run setup and setup-dev twice to ensure it is idempotent
 
 # TODO: Run developer-mode (twice)
