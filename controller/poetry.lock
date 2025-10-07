@@ -6,7 +6,7 @@ version = "8.66.2"
 description = "CircuitPython APIs for non-CircuitPython versions of Python such as CPython on Linux and MicroPython."
 optional = false
 python-versions = ">=3.7.0"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_blinka-8.66.2-py3-none-any.whl", hash = "sha256:93cfd6df6c523bc1312b731bdb4d51711d3ec6e468f18c8d40e09b7339bb2574"},
     {file = "adafruit_blinka-8.66.2.tar.gz", hash = "sha256:35f72589aa45d8738922367753f5588700b043b35611510d8efbe818d1a355fd"},
@@ -26,7 +26,7 @@ version = "5.2.13"
 description = "CircuitPython bus device classes to manage bus sharing."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_busdevice-5.2.13-py3-none-any.whl", hash = "sha256:de90f8cd9cc7f8815840f04b6a24c9aa5ec355b368934c7373e219a1c740ea97"},
     {file = "adafruit_circuitpython_busdevice-5.2.13.tar.gz", hash = "sha256:8dbe511f08a347527652f494b55d793c91dc077e01666824b691ae96a05ff2e6"},
@@ -42,7 +42,7 @@ version = "3.1.5"
 description = "A urllib3.poolmanager/urllib3.connectionpool-like library for managing sockets and connections"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_connectionmanager-3.1.5-py3-none-any.whl", hash = "sha256:cea077efe79eaefcd8fc0d6649dbcc6cb0765f71a08bd944fb163043b18cd094"},
     {file = "adafruit_circuitpython_connectionmanager-3.1.5.tar.gz", hash = "sha256:fc037d7ff81cf7bab7653f2810ed8c65fe228e7d51ca7a630724b412d6c77226"},
@@ -57,7 +57,7 @@ version = "3.4.17"
 description = "CircuitPython helper library provides higher level objects to control motors and servos."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_motor-3.4.17-py3-none-any.whl", hash = "sha256:abff1c7d8ec7c133acf463c395f5afdf379800777777c5bd27b137a4153f385a"},
     {file = "adafruit_circuitpython_motor-3.4.17.tar.gz", hash = "sha256:ac16010ca9280e9aaca4ef813ad822e4a9c36d8f81433670c79ce5eb3894d902"},
@@ -73,7 +73,7 @@ version = "1.6.18"
 description = "CircuitPython helper library for DC & Stepper Motor FeatherWing, Shield, and Pi Hat kits."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_motorkit-1.6.18-py3-none-any.whl", hash = "sha256:ee992f64032617602cae6153e8940a1bb6b09cf77aab5f42cc069fbd65c32cde"},
     {file = "adafruit_circuitpython_motorkit-1.6.18.tar.gz", hash = "sha256:e6f7fdd458df1accfa90a762b1cee88ef1c75e5d4b40637a17645a83e7a1fb84"},
@@ -92,7 +92,7 @@ version = "3.4.19"
 description = "CircuitPython driver for motor, stepper, and servo based on PCA9685."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_pca9685-3.4.19-py3-none-any.whl", hash = "sha256:49e9dddfcdcaf9f8845ef7ba4f0bdcbd57573f18a595ae99c264478792c6c074"},
     {file = "adafruit_circuitpython_pca9685-3.4.19.tar.gz", hash = "sha256:921a9cce3af156d690d2e4b1ee9d66843f3fcce3e9217a8518a1fc49cef09c0c"},
@@ -109,7 +109,7 @@ version = "1.10.4"
 description = "CircuitPython data descriptor classes to represent hardware registers on I2C and SPI devices."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_register-1.10.4-py3-none-any.whl", hash = "sha256:96dd6c7771e9b23ab664068a9403e75ff7fbcb3b05549f6c256e3176ee110765"},
     {file = "adafruit_circuitpython_register-1.10.4.tar.gz", hash = "sha256:56be1403e62d5017189b003fc47857337ca8292187cd087cf0757ad4a0ef86b0"},
@@ -127,7 +127,7 @@ version = "4.1.13"
 description = "A requests-like library for web interfacing"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_requests-4.1.13-py3-none-any.whl", hash = "sha256:2d5af59a96dca033033fcc8c17829c3fb28ed8c36a95fe1093c463f5841bc5a5"},
     {file = "adafruit_circuitpython_requests-4.1.13.tar.gz", hash = "sha256:a63fa4eb5824f1f458030da6f44a060d28c01570ffa48569b992abe8e477a1d6"},
@@ -146,7 +146,7 @@ version = "1.12.2"
 description = "Types needed for type annotation that are not in `typing`"
 optional = false
 python-versions = ">=3.8"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_circuitpython_typing-1.12.2-py3-none-any.whl", hash = "sha256:d03e20cb86c5daaadd5297b7d729bd9280fae540a86cbe9fdfa687ca5f4b1f45"},
     {file = "adafruit_circuitpython_typing-1.12.2.tar.gz", hash = "sha256:8a38ad064a665f84ce7a89454f0f37fd072f77d1b5b1a207bc54181cdd0d7e26"},
@@ -164,7 +164,7 @@ version = "1.0.3"
 description = "Library to provide a cross-platform GPIO interface on the Raspberry Pi and Beaglebone Black using the RPi.GPIO and Adafruit_BBIO libraries."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "Adafruit_GPIO-1.0.3.tar.gz", hash = "sha256:d6465b92c866c51ca8f3bc1e8f2ec36f5ccdb46d0fd54101c1109756d4a2dcd0"},
 ]
@@ -179,7 +179,7 @@ version = "3.84.0"
 description = "Platform detection for use by libraries like Adafruit-Blinka."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "adafruit_platformdetect-3.84.0-py3-none-any.whl", hash = "sha256:7c0ebb89e3e40a36b53363377fe05b517e756b1a8944afcee25f633de79e149f"},
     {file = "adafruit_platformdetect-3.84.0.tar.gz", hash = "sha256:71dc77b358047e6ae4fe94247ea03449fe8ab3e3e937239d5bd1d4b942ebee73"},
@@ -191,7 +191,7 @@ version = "1.1.11"
 description = "Pure python (i.e. no native extensions) access to Linux IO    including I2C and SPI. Drop in replacement for smbus and spidev modules."
 optional = false
 python-versions = ">=3.5.0"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "Adafruit_PureIO-1.1.11-py3-none-any.whl", hash = "sha256:281ab2099372cc0decc26326918996cbf21b8eed694ec4764d51eefa029d324e"},
     {file = "Adafruit_PureIO-1.1.11.tar.gz", hash = "sha256:c4cfbb365731942d1f1092a116f47dfdae0aef18c5b27f1072b5824ad5ea8c7c"},
@@ -203,7 +203,7 @@ version = "1.6.2"
 description = "Python library to use SSD1306-based 128x64 or 128x32 pixel OLED displays with a Raspberry Pi or Beaglebone Black."
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "Adafruit_SSD1306-1.6.2.tar.gz", hash = "sha256:4768518204037db82eb6b90838938f8519ecd29fe3d6cc3efa0d1100ed527727"},
 ]
@@ -297,7 +297,7 @@ version = "0.1.6"
 description = "Python Libraries for Binho Multi-Protocol USB Host Adapters"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "binho-host-adapter-0.1.6.tar.gz", hash = "sha256:1e6da7a84e208c13b5f489066f05774bff1d593d0f5bf1ca149c2b8e83eae856"},
     {file = "binho_host_adapter-0.1.6-py3-none-any.whl", hash = "sha256:f71ca176c1e2fc1a5dce128beb286da217555c6c7c805f2ed282a6f3507ec277"},
@@ -325,7 +325,7 @@ version = "2.0"
 description = "Yet another Python color library"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "colorzero-2.0-py2.py3-none-any.whl", hash = "sha256:0e60d743a6b8071498a56465f7719c96a5e92928f858bab1be2a0d606c9aa0f8"},
     {file = "colorzero-2.0.tar.gz", hash = "sha256:e7d5a5c26cd0dc37b164ebefc609f388de24f8593b659191e12d85f8f9d5eb58"},
@@ -344,7 +344,7 @@ version = "2.0.1"
 description = "A simple interface to GPIO devices with Raspberry Pi"
 optional = false
 python-versions = ">=3.9"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "gpiozero-2.0.1-py3-none-any.whl", hash = "sha256:8f621de357171d574c0b7ea0e358cb66e560818a47b0eeedf41ce1cdbd20c70b"},
     {file = "gpiozero-2.0.1.tar.gz", hash = "sha256:d4ea1952689ec7e331f9d4ebc9adb15f1d01c2c9dcfabb72e752c9869ab7e97e"},
@@ -824,7 +824,7 @@ version = "0.57.1"
 description = "FTDI device driver (pure Python)"
 optional = false
 python-versions = ">=3.9"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "pyftdi-0.57.1-py3-none-any.whl", hash = "sha256:efd3f5a7d43202dc883ff261a7b1cb4dcbbe65b19628f8603a8b1183a7bc2841"},
 ]
@@ -839,7 +839,7 @@ version = "3.5"
 description = "Python Serial Port Extension"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "pyserial-3.5-py2.py3-none-any.whl", hash = "sha256:c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"},
     {file = "pyserial-3.5.tar.gz", hash = "sha256:3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"},
@@ -865,7 +865,7 @@ version = "1.3.1"
 description = "Easy USB access for Python"
 optional = false
 python-versions = ">=3.9.0"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "pyusb-1.3.1-py3-none-any.whl", hash = "sha256:bf9b754557af4717fe80c2b07cc2b923a9151f5c08d17bdb5345dac09d6a0430"},
     {file = "pyusb-1.3.1.tar.gz", hash = "sha256:3af070b607467c1c164f49d5b0caabe8ac78dbed9298d703a8dbf9df4052d17e"},
@@ -1136,7 +1136,7 @@ version = "0.7.1"
 description = "A module to control Raspberry Pi GPIO channels"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "RPi.GPIO-0.7.1-cp27-cp27mu-linux_armv6l.whl", hash = "sha256:b86b66dc02faa5461b443a1e1f0c1d209d64ab5229696f32fb3b0215e0600c8c"},
     {file = "RPi.GPIO-0.7.1-cp310-cp310-linux_armv6l.whl", hash = "sha256:57b6c044ef5375a78c8dda27cdfadf329e76aa6943cd6cffbbbd345a9adf9ca5"},
@@ -1181,7 +1181,7 @@ version = "80.9.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 optional = false
 python-versions = ">=3.9"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "setuptools-80.9.0-py3-none-any.whl", hash = "sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922"},
     {file = "setuptools-80.9.0.tar.gz", hash = "sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c"},
@@ -1241,7 +1241,7 @@ version = "0.5.0"
 description = "smbus2 is a drop-in replacement for smbus-cffi/smbus-python in pure Python"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "smbus2-0.5.0-py2.py3-none-any.whl", hash = "sha256:1a15c3b9fa69357beb038cc0b5d37939702f8bfde1ddc89ca9f17d8461dbe949"},
     {file = "smbus2-0.5.0.tar.gz", hash = "sha256:4a5946fd82277870c2878befdb1a29bb28d15cda14ea4d8d2d54cf3d4bdcb035"},
@@ -1257,7 +1257,7 @@ version = "3.8"
 description = "Python bindings for Linux SPI access through spidev"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 files = [
     {file = "spidev-3.8-cp39-cp39-linux_armv7l.whl", hash = "sha256:07d0da112ca944df41f080811bb123b910df63bb38b66712289bc4fd9d682185"},
     {file = "spidev-3.8.tar.gz", hash = "sha256:2bc02fb8c6312d519ebf1f4331067427c0921d3f77b8bcaf05189a2e8b8382c0"},
@@ -1269,7 +1269,7 @@ version = "1.1.0"
 description = "System V IPC primitives (semaphores, shared memory and message queues) for Python"
 optional = false
 python-versions = "*"
-groups = ["hw"]
+groups = ["main"]
 markers = "sys_platform == \"linux\" and platform_machine != \"mips\""
 files = [
     {file = "sysv_ipc-1.1.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:ff6e3c98d8aa3e1ae5378d86869c4699c76f94318705d08085c97fb010770a31"},
@@ -1319,7 +1319,7 @@ version = "4.15.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
-groups = ["main", "dev", "hw"]
+groups = ["main", "dev"]
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
@@ -1359,4 +1359,4 @@ dev = ["black (>=19.3b0) ; python_version >= \"3.6\"", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13.5,<4.0"
-content-hash = "eecde2ef6006a939b463b7adef7bd4cdb9a39bac6294f8d853cb9721898ad990"
+content-hash = "22ac25aeeb76a0088b342b6909d093ff91e14357a73aef15df8b2c3777e8348c"
