@@ -35,7 +35,7 @@ def map_to_adc(voltage):
 
 
 async def start() -> None:
-    if (await helpers.get_hat_version()) != 3.2:
+    if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
 
     dac.value = 0

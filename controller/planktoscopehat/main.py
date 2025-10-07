@@ -47,9 +47,9 @@ def main(configuration, hardware):
     # Starts the light process
     hat_version = float(hardware.get("hat_version") or 0)
     light_thread = None
-    if hat_version < 3.2:
+    if hat_version < 3.3:
         logger.info("Starting the light control process (step 5/5)")
-        import light
+        from . import light
 
         light_thread = light.LightProcess(shutdown_event, configuration)
         light_thread.start()

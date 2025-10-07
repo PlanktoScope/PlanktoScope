@@ -5,4 +5,4 @@ setup:
 
 dev:
     -sudo systemctl stop planktoscope-org.controller.light
-    cd .. && poetry run python -m light.main
+    cd .. && uv run python -m light.main

@@ -9,7 +9,7 @@ import signal
 
 import helpers
 
-# pymon "poetry run python -u planktoscopehat/bubbler.py" -x
+# pymon "uv run planktoscopehat/bubbler.py" -x
 
 device = gpiozero.DigitalOutputDevice(19)
 client = None
@@ -17,7 +17,9 @@ loop = asyncio.new_event_loop()
 
 
 async def start() -> None:
-    if (await helpers.get_hat_version()) != 3.2:
+    # There is no GPIO bubbler on PlanktoScope HAT < 3.3
+    # only USB powered bubbler
+    if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
 
     device.value = 0
