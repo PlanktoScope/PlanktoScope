@@ -20,7 +20,7 @@ def handler_stop_signals(signum, frame):
 
 
 def main(configuration, hardware):
-    logger.info("Initialising signals handling (step 1/5)")
+    logger.info("Initialising signals handling (step 1/4)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
 
@@ -29,30 +29,20 @@ def main(configuration, hardware):
     shutdown_event.clear()
 
     # Starts the pump process
-    logger.info("Starting the pump control process (step 2/5)")
+    logger.info("Starting the pump control process (step 2/4)")
     pump_thread = pump.PumpProcess(shutdown_event, configuration)
     pump_thread.start()
 
     # Starts the focus process
-    logger.info("Starting the focus control process (step 3/5)")
+    logger.info("Starting the focus control process (step 3/4)")
     focus_thread = focus.FocusProcess(shutdown_event, configuration)
     focus_thread.start()
 
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
-    logger.info("Starting the imager control process (step 4/5)")
+    logger.info("Starting the imager control process (step 4/4)")
     imager_thread = imager.ImagerProcess(shutdown_event, configuration)
     imager_thread.start()
-
-    # Starts the light process
-    hat_version = float(hardware.get("hat_version") or 0)
-    light_thread = None
-    if hat_version < 3.3:
-        logger.info("Starting the light control process (step 5/5)")
-        from . import light
-
-        light_thread = light.LightProcess(shutdown_event, configuration)
-        light_thread.start()
 
     logger.success("Looks like everything is set up and running, have fun!")
 
@@ -68,9 +58,6 @@ def main(configuration, hardware):
         if imager_thread and not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
-        if light_thread and not light_thread.is_alive():
-            logger.error("The light process died unexpectedly! Oh no!")
-            break
         time.sleep(1)
 
     logger.info("Shutting down the shop")
@@ -83,8 +70,6 @@ def main(configuration, hardware):
         focus_thread.join()
     if imager_thread:
         imager_thread.join()
-    if light_thread:
-        light_thread.join()
 
     if pump_thread:
         pump_thread.close()
@@ -92,7 +77,5 @@ def main(configuration, hardware):
         focus_thread.close()
     if imager_thread:
         imager_thread.close()
-    if light_thread:
-        light_thread.close()
 
     logger.info("Bye")

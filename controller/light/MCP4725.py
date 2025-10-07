@@ -48,3 +48,7 @@ def init():
 
 def deinit():
     i2c.deinit()
+
+
+def set_current(current):
+    return

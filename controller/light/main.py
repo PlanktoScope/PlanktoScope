@@ -7,7 +7,9 @@ import signal
 
 import helpers
 
-from . import MCP4725 as led
+# from . import MCP4725 as led
+from . import LM36011 as led
+#
 
 
 client = None
@@ -15,9 +17,8 @@ loop = asyncio.new_event_loop()
 
 
 async def start() -> None:
-    if (await helpers.get_hat_version()) != 3.3:
-        sys.exit()
-
+    # if (await helpers.get_hat_version()) != 3.1:
+    #     sys.exit()
     led.init()
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
@@ -37,19 +38,31 @@ async def handle_message(message) -> None:
     payload = json.loads(message.payload.decode("utf-8"))
     action = payload.get("action")
     if action is not None:
-        await handle_action(action)
+        await handle_action(action, payload)
 
     await helpers.mqtt_reply(client, message)
 
 
-async def handle_action(action: str) -> None:
+async def handle_action(action: str, payload) -> None:
     if action == "on":
         await on()
     elif action == "off":
         await off()
+    elif action == "settings":
+        await handle_settings(payload)
     elif action == "save":
-        if hasattr(led, 'save')
+        if hasattr(led, "save"):
             led.save()
+
+
+async def handle_settings(payload) -> None:
+    if "current" in payload["settings"]:
+        # {"settings":{"current":"20"}}
+        current = payload["settings"]["current"]
+        if led.is_on():
+            return
+        led.set_current(current)
+
 
 async def on() -> None:
     led.on()
@@ -62,7 +75,7 @@ async def off() -> None:
 
 
 async def publish_status() -> None:
-    payload = {"status": "Off" if led.is_on() else "On"}
+    payload = {"status": "Off" if led.is_off() else "On"}
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 
