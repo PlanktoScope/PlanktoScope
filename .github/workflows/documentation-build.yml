@@ -46,34 +46,31 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # Build documentation website
-      - name: Install poetry
-        run: pipx install poetry==2.1.3
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
 
       - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-          cache: 'poetry'
-          cache-dependency-path: |
-            documentation/poetry.lock
+        run: uv python install
 
-      - name: Install build dependencies
+      - name: Install dependencies
+        working-directory: ./documentation
         run: |
-          poetry -C ./documentation/ install
+          uv sync --locked
 
       - name: Make documentation ${{ matrix.variant }}
         if: matrix.variant != 'default'
         working-directory: documentation
-        run: poetry run poe make-${{ matrix.variant }}
+        run: uv run poe make-${{ matrix.variant }}
 
       - name: Check documentation
         working-directory: documentation
-        run: poetry run poe check
+        run: uv run poe check
 
       - name: Build documentation
         working-directory: documentation
-        run: poetry run poe build
+        run: uv run poe build
 
       # Work around a bug where capital letters in the GitHub username (e.g. "PlanktoScope") make it
       # impossible to push to GHCR. See https://github.com/macbre/push-to-ghcr/issues/12

@@ -187,9 +187,9 @@ Then follow the Ubuntu instructions below.
 
 ```shell
 sudo apt update
-sudo apt install python3-poetry
+sudo apt install uv
 cd documentation
-poetry install
+uv sync
 ```
 
 </details>
@@ -198,9 +198,9 @@ poetry install
     <summary>Fedora</summary>
 
 ```shell
-sudo dnf install python3-poetry
+sudo dnf install uv
 cd documentation
-poetry install
+uv sync
 ```
 
 </details>
@@ -209,7 +209,7 @@ Run live previewer:
 
 ```sh
 cd documentation
-poetry run poe preview
+uv run poe preview
 ```
 
 Visit [`http://localhost:8000`](http://localhost:8000) to see local changes.
