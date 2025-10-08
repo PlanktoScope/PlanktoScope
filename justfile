@@ -69,6 +69,8 @@ reset: base setup
 install-uv:
     wget https://github.com/astral-sh/uv/releases/download/0.8.24/uv-aarch64-unknown-linux-gnu.tar.gz -P /tmp
     cd /tmp && tar -xf uv-aarch64-unknown-linux-gnu.tar.gz
+    # cp: cannot create regular file '/usr/local/bin/uv': Text file busy
+    sudo rm -f /usr/local/bin/uv /usr/local/bin/uvx
     sudo cp /tmp/uv-aarch64-unknown-linux-gnu/uv /usr/local/bin/
     sudo cp /tmp/uv-aarch64-unknown-linux-gnu/uvx /usr/local/bin/
 
