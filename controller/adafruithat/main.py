@@ -37,7 +37,7 @@ def handler_stop_signals(signum, _):
     run = False
 
 
-def main(configuration, hardware):
+def main(configuration):
     logger.info("Initialising signals handling (step 1/4)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
