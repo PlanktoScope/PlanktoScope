@@ -4,11 +4,11 @@ import sys
 
 from loguru import logger
 
-CONFIG_PATH = "/home/pi/PlanktoScope/config.json"
-HARDWARE_PATH = "/home/pi/PlanktoScope/hardware.json"
+CONFIG_PATH_SOFTWARE = "/home/pi/PlanktoScope/config.json"
+CONFIG_PATH_HARDWARE = "/home/pi/PlanktoScope/hardware.json"
 
 
-def read_config(config_path: str = CONFIG_PATH) -> Any:
+def read_config(config_path: str) -> Any:
     config = {}
     try:
         with open(config_path, "r") as file:
@@ -56,9 +56,9 @@ def main():
                 sys.exit(1)
 
     logger.info("Determining configured hardware variant...")
-    configuration = read_config(CONFIG_PATH)
-    hardware = read_config(HARDWARE_PATH)
-    variant = get_variant(configuration)
+    config_software = read_config(CONFIG_PATH_SOFTWARE)
+    config_hardware = read_config(CONFIG_PATH_HARDWARE)
+    variant = get_variant(config_software)
     if variant is None:
         variant = "planktoscopehat"
         logger.warning(
@@ -71,7 +71,7 @@ def main():
     else:
         from planktoscopehat import main as platform
 
-    platform.main(configuration, hardware)
+    platform.main(config_hardware)
 
 
 if __name__ == "__main__":
