@@ -7,7 +7,7 @@ watch("status/pump").then(async (messages) => {
   }
 })
 
-await startPump({ direction: "BACKWARD", flowrate: 10, volume: 20 })
+await startPump({ direction: "BACKWARD", flowrate: 10, volume: 1 })
 
 await setTimeout(2000)
 

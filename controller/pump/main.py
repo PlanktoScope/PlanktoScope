@@ -130,16 +130,19 @@ def pump(direction, volume, flowrate=pump_max_speed):
         pump_started = True
         pump_stepper.go(BACKWARD, nb_steps)
 
-    while pump_started:
-        if pump_stepper.at_goal():
-            # await client.publish(
-            #     topic="status/pump",
-            #     payload=json.dumps({"status": "Done"}),
-            #     retain=True,
-            # )
-            pump_started = False
-            pump_stepper.shutdown()
-            break
+    print("at goal", pump_stepper.at_goal())
+    print("not at goal", not pump_stepper.at_goal())
+
+    while pump_stepper.at_goal():
+        print("at goal!")
+        # await client.publish(
+        #     topic="status/pump",
+        #     payload=json.dumps({"status": "Done"}),
+        #     retain=True,
+        # )
+        pump_started = False
+        pump_stepper.shutdown()
+        break
 
 
 async def stopPump() -> None:
