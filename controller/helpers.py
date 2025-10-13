@@ -19,7 +19,7 @@ async def get_hat_type() -> str:
         hardware = json.loads(await file.read())
         hat_type = hardware.get("hat_type")
         if hat_type is not None:
-            return hat_type
+            return str(hat_type)
 
     async with aiofiles.open("/home/pi/PlanktoScope/config.json", mode="r") as file:
         config = json.loads(await file.read())
