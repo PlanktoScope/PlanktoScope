@@ -30,13 +30,6 @@ export default function Bookmarks() {
           <li>
             <a href={makeUrl("/ps/data/browse/files/")} target="_blank">
               Gallery
-              {/* FIXME */}
-            </a>
-          </li>
-          <li>
-            <a href={makeUrl("/ps/data/browse/")} target="_blank">
-              File Browser
-              {/* FIXME */}
             </a>
           </li>
           <li>
@@ -75,7 +68,7 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeUrl("/admin/fs/")} target="_blank">
+            <a href={makeUrl("/admin/cockpit/files/")} target="_blank">
               File Browser
             </a>
           </li>
@@ -89,7 +82,6 @@ export default function Bookmarks() {
               href={makeUrl("/ps/processing/segmenter/streams/object.mjpg")}
               target="_blank"
             >
-              {/* FIXME does it work? */}
               Last segmented object
             </a>
           </li>

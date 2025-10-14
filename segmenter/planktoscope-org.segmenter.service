@@ -9,7 +9,7 @@ Type=simple
 Environment=HOME=/home/pi
 Environment=SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS=true
 WorkingDirectory=/home/pi/PlanktoScope/segmenter
-ExecStart=/home/pi/.local/bin/poetry run python -u main.py
+ExecStart=/usr/local/bin/uv run main.py
 User=pi
 Group=pi
 
