@@ -17,8 +17,10 @@ import { hasSoftwareConfig } from "../../lib/file-config.js"
 let cached
 try {
   cached = await read()
-  // eslint-disable-next-line no-empty
-} catch {}
+} catch (err) {
+  console.debug(err)
+}
+
 const hardware_version = cached?.custom_data?.hardware_version
 if (hardware_version && !(await hasSoftwareConfig())) {
   await setHardwareVersion(hardware_version)
@@ -30,7 +32,7 @@ await procedure("bootstrap/init", async () => {
   const eeprom = cached
 
   if (eeprom?.custom_data?.eeprom_version !== "0") {
-    await request("light", { action: "on" })
+    // await request("light", { action: "on" })
 
     return {
       product_uuid: crypto.randomUUID(),
@@ -54,8 +56,8 @@ await procedure("bootstrap/init", async () => {
 await procedure("bootstrap/update", async (data) => {
   await write(data)
 
-  await request("light", { action: "off" })
-  await request("light", { action: "save" })
+  // await request("light", { action: "off" })
+  // await request("light", { action: "save" })
 
   cached = await read()
 })
