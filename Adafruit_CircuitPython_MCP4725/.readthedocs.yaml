@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+#
+# SPDX-License-Identifier: Unlicense
+
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+sphinx:
+  configuration: docs/conf.py
+
+build:
+  os: ubuntu-lts-latest
+  tools:
+    python: "3"
+
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - requirements: requirements.txt
