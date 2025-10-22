@@ -1,6 +1,6 @@
 # Infra
 
-We have a custom runner on GitHub. The base OS is [`2025-05-13-raspios-bookworm-arm64-lite.img.xz`](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/2025-05-13-raspios-bookworm-arm64-lite.img.xz) running on a Raspberry Pi 5.
+We have a custom runner on GitHub. The base OS is [`2025-10-01-raspios-trixie-arm64-lite.img.xz`](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-10-02/2025-10-01-raspios-trixie-arm64-lite.img.xz) running on a Raspberry Pi 5.
 
 <details>
     <summary>SHA256 hash</summary>

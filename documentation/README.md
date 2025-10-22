@@ -18,17 +18,15 @@ First, use your favorite Git client (such as [Github Desktop](https://desktop.gi
 
 #### Installing development tools
 
-Explanation: We use [MkDocs](https://www.mkdocs.org/) to build documentation sources into a documentation website. We recommend running MkDocs on your computer while changing documentation sources so that you can preview the consequences of your changes. Because MkDocs is a Python tool, you will need to install it; and you will also need to install various MkDocs plugins used by our documentation site. We use [Poetry](https://python-poetry.org/) to manage the installation and versioning of MkDocs and MkDocs plugins so that everyone installs the exact same versions of all Python packages needed to build the documentation. We also use [Poe the Poet](https://poethepoet.natn.io/) to provide easy-to-run commands for developing the documentation.
-
 You will need to install Python 3.8 or a more recent version of Python on your computer. If you don't have an appropriate version of Python installed on your computer, you can follow these instructions to install Python: <https://realpython.com/installing-python/>
 
-Once you have Python, we recommend installing Poetry [using pipx](https://python-poetry.org/docs/#installing-with-pipx), as that is the easiest way to install Poetry. Please follow the instructions at https://pypa.github.io/pipx/installation/ to install pipx. Then run `pipx install poetry` in your terminal to install Poetry.
+Once you have Python, [install uv](https://docs.astral.sh/uv/).
 
-Now you can use Poetry to install the various Python tools and dependencies needed to build the documentation sources. In your terminal, change your current directory to the the `PlanktoScope/documentation` directory, and then run `poetry install`. For example (using our example path):
+Now you can use uv to install the various Python tools and dependencies needed to build the documentation sources.
 
 ```sh
 cd documentation
-poetry install
+uv sync
 ```
 
 #### Making changes
@@ -41,7 +39,7 @@ Usually, you should edit the documentation sources (in `/some/path/here/PlanktoS
 
 ```sh
 cd documentation
-poetry run poe preview
+uv run poe preview
 ```
 
 Then you can open the documentation website in your web browser at http://localhost:8000/ . Whenever you change a documentation source file, save your changes, and return to the web browser tab with the locally hosted documentation site, your changes will automatically appear within a few seconds!
@@ -52,7 +50,7 @@ While changing the documentation source files, you should regularly check the do
 
 ```sh
 cd documentation
-poetry run poe check
+uv run poe check
 ```
 
 #### Locally building the documentation website
@@ -61,7 +59,7 @@ Usually you will not need to manually build a local copy of the documentation we
 
 ```sh
 cd documentation
-poetry run poe build
+uv run poe build
 ```
 
 (this also works for `preview`, `check`, and any other subcommands of `poe`)

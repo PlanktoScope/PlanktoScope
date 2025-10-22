@@ -37,25 +37,22 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Install poetry
-        run: pipx install poetry==2.1.3
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
 
       - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-          cache: 'poetry'
-          cache-dependency-path: |
-            segmenter/poetry.lock
+        run: uv python install
 
-      - name: Install build dependencies
+      - name: Install dependencies
         working-directory: ./segmenter
         run: |
-          poetry install --with dev
+          uv sync --locked --dev
 
       - name: Run checks
         working-directory: ./segmenter
-        run: poetry run poe check
+        run: uv run poe check
 
   build-container-image:
     permissions:

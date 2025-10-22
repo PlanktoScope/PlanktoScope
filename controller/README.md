@@ -14,12 +14,6 @@ https://stackoverflow.com/a/17220739
 
 ## Usage
 
-### Deployment
-
-Currently the hardware controller can only be deployed as part of the distro setup scripts at [github.com/PlanktoScope/PlanktoScope](https://github.com/PlanktoScope/PlanktoScope).
-
-Please note that for camera we rely on the Raspberry OS packages `python3-picamera2` and `python3-libcamera`.
-
 ### Development
 
 Install all dependencies including development tooling:
@@ -49,13 +43,6 @@ just test
 ```
 
 We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.visualstudio.com/docs/remote/ssh)
-
-### Prerequisites
-
-To use this project, you'll need:
-
-- Python >= 3.11.2
-- Poetry 2.1.3
 
 ## Licensing
 

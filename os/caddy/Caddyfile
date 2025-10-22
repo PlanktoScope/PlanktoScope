@@ -17,8 +17,11 @@
 		reverse_proxy localhost:1880
 	}
 
-	redir /admin/fs /admin/fs/
-	handle /admin/fs/* {
+	redir /admin/fs /admin/cockpit/files
+	redir /admin/fs/ /admin/cockpit/files
+
+	redir /ps/data/browse /ps/data/browse/
+	handle /ps/data/browse/* {
 		reverse_proxy localhost:8080
 	}
 

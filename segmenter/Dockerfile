@@ -1,4 +1,5 @@
-FROM docker.io/library/python:3.13-slim-bookworm
+FROM docker.io/library/python:3.13-slim-trixie
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Install OS dependencies
 
@@ -23,19 +24,10 @@ ENV MQTT_HOSTNAME=host.docker.internal
 # Note: cmake is needed to install ninja which is needed to install pyproject.toml-based projects.
 # We must remove it in the same RUN command as where we installed it, if we want to keep it out of
 # the container image.
-COPY --chown=pi:pi pyproject.toml poetry.lock ./
+COPY --chown=pi:pi pyproject.toml uv.lock ./
 RUN \
-  export PATH="/home/pi/.local/bin:$PATH" && \
-  pip install --no-cache-dir cryptography==43.0.3 poetry==2.1.3 \
-    --extra-index-url https://www.piwheels.org/simple && \
-  poetry install --only main --compile && \
-  poetry --no-interaction cache list && \
-  poetry --no-interaction cache clear pypi --all && \
-  poetry --no-interaction cache clear piwheels --all && \
-  rm -rf /home/pi/.cache/pypoetry/artifacts && \
-  rm -rf /home/pi/.cache/pypoetry/cache && \
-  pip cache purge && \
-  rm -rf /home/pi/.cache/pip
+  uv sync --locked && \
+  uv clean --force
 
 # Set up application
 
@@ -43,5 +35,5 @@ RUN \
 # permissions.
 COPY --chown=pi:pi main.py .
 COPY --chown=pi:pi planktoscope/ ./planktoscope
-ENTRYPOINT ["/home/pi/.local/bin/poetry", "run", "python", "main.py"]
+ENTRYPOINT ["uv", "run", "main.py"]
 EXPOSE 8001

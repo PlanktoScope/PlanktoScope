@@ -1,52 +1,44 @@
-[tool.poetry]
-package-mode = false
+[project]
 name = "planktoscope-segmenter"
+version = "0.0.1"
 description = "Data processor to segment objects from raw PlanktoScope data"
-# For simplicity, we follow the definition of "Maintainer" from
-# https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
-# "Maintainers: Contributors who are responsible for driving the vision and managing the
-# organizational aspects of the project".
-# Here, we only list the current maintainers of the PlanktoScope backend software.
-maintainers = ["Ethan Li <lietk12@gmail.com>"]
-# For simplicity, we follow the definition of "Author" from
-# https://opensource.guide/how-to-contribute/#anatomy-of-an-open-source-project , which says:
-# "Author: The person/s or organization that created the project".
-# Here, we only list the authors of the PlanktoScope backend software.
-authors = ["Romain Bazile <romain@oceantrotter.org>"]
-license = "GPL-3.0-or-later"
+requires-python = ">=3.13.5,<4.0"
 readme = "README.md"
-homepage = "https://www.planktoscope.org"
-repository = "https://github.com/PlanktoScope/PlanktoScope/tree/main/segmenter"
-documentation = "https://docs.planktoscope.community/"
+license = "GPL-3.0-or-later"
 keywords = ["planktoscope"]
 classifiers = [
-  "Intended Audience :: Science/Research",
-  "Natural Language :: English",
-  "Topic :: Scientific/Engineering",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "paho-mqtt>=2.1.0,<3",
+    "numpy>=2.3.3,<3",
+    "pandas>=2.3.3,<3",
+    "loguru>=0.7.3,<0.8",
+    "opencv-python-headless>=4.6.0.66,<5",
+    "scikit-image>=0.25.2,<0.26",
 ]
 
+[project.urls]
+Homepage = "https://www.planktoscope.org"
+Repository = "https://github.com/PlanktoScope/PlanktoScope/tree/main/segmenter"
+Documentation = "https://docs.planktoscope.community/"
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.37.0,<0.38",
+    "mypy>=1.18.2,<2",
+    "types-paho-mqtt>=1.6.0.20240106,<2",
+    "ruff>=0.13.3,<0.14",
+]
+
+[tool.uv]
+package = false
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dependencies]
-python = ">=3.11.2,<4.0"
-paho-mqtt = "^2.1.0"
-numpy = "^2.3.3"
-pandas = "^2.3.2"
-loguru = "^0.7.3"
-opencv-python-headless = "^4.6.0.66"
-scikit-image = "^0.25.2"
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-poethepoet = "^0.37.0"
-mypy = "^1.18.1"
-types-paho-mqtt = "^1.6.0.20240106"
-ruff = "^0.13.0"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 100

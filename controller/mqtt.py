@@ -77,7 +77,7 @@ class MQTT_Client:
         self.msg = None
 
         # MQTT Client functions definition
-        self.client = mqtt.Client()
+        self.client = mqtt.Client(protocol=mqtt.MQTTv5)
         # self.client.enable_logger(logger)
         self.topic = topic
         self.hostname = hostname
@@ -103,26 +103,22 @@ class MQTT_Client:
 
     @logger.catch
     # Run this function in order to connect to the client (Node-RED)
-    def on_connect(self, client, userdata, flags, rc):
-        reason = [
-            "0: Connection successful",
-            "1: Connection refused - incorrect protocol version",
-            "2: Connection refused - invalid client identifier",
-            "3: Connection refused - server unavailable",
-            "4: Connection refused - bad username or password",
-            "5: Connection refused - not authorised",
-        ]
+    def on_connect(self, client, userdata, flags, reason_code, props):
         # Print when connected
-        logger.success(f"{self.name} connected to {self.hostname}:{self.port}! - {reason[rc]}")
+        logger.success(
+            f"{self.name} connected to {self.hostname}:{self.port}! - {reason_code} - {props}"
+        )
         # When connected, run subscribe()
         self.client.subscribe(self.topic)
 
     # Run this function in order to subscribe to all the topics begining by actuator
     @logger.catch
-    def on_subscribe(self, client, obj, mid, granted_qos):
+    def on_subscribe(self, client, userdata, mid, reason_code_list, properties):
         # Print when subscribed
         # TODO Fix bug when this is called outside of this init function (for example when the imager subscribe to status/pump)
-        logger.success(f"{self.name} subscribed to {self.topic}! - mid:{mid} qos:{granted_qos}")
+        logger.debug(
+            f"{self.name} subscription to {self.topic}! - mid:{mid} reason_code_list:{reason_code_list} properties:{properties}"
+        )
 
     # Run this command when Node-RED is sending a message on the subscribed topic
     @logger.catch
@@ -132,7 +128,7 @@ class MQTT_Client:
         # Decode the message to find the arguments
         self.args = json.loads(msg.payload.decode())
         logger.debug(f"args are {self.args}")
-        self.msg = {"topic": msg.topic, "payload": self.args}
+        self.msg = {"topic": msg.topic, "payload": self.args, "properties": msg.properties}
         logger.debug(f"msg is {self.msg}")
         self.__new_message = True
 
