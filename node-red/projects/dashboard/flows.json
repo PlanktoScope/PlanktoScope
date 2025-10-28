@@ -40,6 +40,22 @@
         "env": []
     },
     {
+        "id": "14f8c9b5ce1235cc",
+        "type": "tab",
+        "label": "Visualization",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2d14eef8a9f51595",
+        "type": "tab",
+        "label": "Export",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "ae92a0a869ca847f",
         "type": "tab",
         "label": "Dev Kit",
@@ -51,7 +67,7 @@
         "id": "83b2474231efac73",
         "type": "tab",
         "label": "Cron",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -674,64 +690,6 @@
         "h": 122
     },
     {
-        "id": "6452e42f1093802f",
-        "type": "group",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "Streaming",
-        "style": {
-            "label": true,
-            "color": "#999999"
-        },
-        "nodes": [
-            "a57a165cd0ce511b"
-        ],
-        "x": 34,
-        "y": 79,
-        "w": 192,
-        "h": 82
-    },
-    {
-        "id": "4b86185ad4a4ade1",
-        "type": "group",
-        "z": "35d7387466dd0bc0",
-        "name": "Streaming",
-        "style": {
-            "label": true,
-            "color": "#999999"
-        },
-        "nodes": [
-            "ffe728d961068c62"
-        ],
-        "x": 1154,
-        "y": 399,
-        "w": 192,
-        "h": 82
-    },
-    {
-        "id": "e8ba2d3274c7e963",
-        "type": "group",
-        "z": "35d7387466dd0bc0",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "7630af38d8e62254",
-            "b3987ca157e030f6",
-            "c1d6882488c0b3ac",
-            "aa6924c7e0aff26c"
-        ],
-        "x": 214,
-        "y": 279,
-        "w": 832,
-        "h": 142
-    },
-    {
         "id": "3bb20cd87e85a6b8",
         "type": "group",
         "z": "a02961610bc3982a",
@@ -1015,6 +973,40 @@
         "h": 262
     },
     {
+        "id": "979647e2e34284fb",
+        "type": "group",
+        "z": "14f8c9b5ce1235cc",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f530763503fdc7d1",
+            "e5a0432fc7b35b29",
+            "ba8045b3448d5bbf",
+            "f0313532a2b77337",
+            "e045f6939008f23f",
+            "68fe28f50beb2add",
+            "a20376f0ac08af8e",
+            "694187e7d85faec3",
+            "693e1ad09770bdf5",
+            "82a3257cd0a3815d",
+            "44ef242ece9b6b4b",
+            "7433aae2400b7f78",
+            "a90099cfe7a37a37",
+            "df0dcb1175b8bd5f"
+        ],
+        "x": 14,
+        "y": 279,
+        "w": 1172,
+        "h": 542
+    },
+    {
         "id": "f9b137cda6a41cc8",
         "type": "group",
         "z": "ae92a0a869ca847f",
@@ -1249,7 +1241,7 @@
         "name": "Metadata",
         "ui": "e6ae26617c24c3ea",
         "path": "/metadata",
-        "icon": "mdi-comment-text",
+        "icon": "information-outline",
         "layout": "grid",
         "theme": "f7770f0b818c3a67",
         "breakpoints": [
@@ -1383,7 +1375,7 @@
         "name": "Segmentation",
         "ui": "e6ae26617c24c3ea",
         "path": "/segmentation",
-        "icon": "mdi-vector-square",
+        "icon": "crop",
         "layout": "grid",
         "theme": "f7770f0b818c3a67",
         "breakpoints": [
@@ -1410,18 +1402,18 @@
         ],
         "order": 5,
         "className": "",
-        "visible": true,
-        "disabled": false
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "bfd4acb7b243514f",
         "type": "ui-group",
         "name": "Table",
         "page": "7a4e042a60b734a6",
-        "width": "12",
+        "width": "8",
         "height": 1,
-        "order": 1,
-        "showTitle": true,
+        "order": 2,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -1458,7 +1450,7 @@
                 "cols": "12"
             }
         ],
-        "order": 7,
+        "order": 9,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1566,7 +1558,7 @@
                 "cols": "12"
             }
         ],
-        "order": 10,
+        "order": 12,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1628,7 +1620,7 @@
                 "cols": "12"
             }
         ],
-        "order": 11,
+        "order": 13,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1690,7 +1682,7 @@
                 "cols": "12"
             }
         ],
-        "order": 12,
+        "order": 14,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1752,7 +1744,7 @@
                 "cols": "12"
             }
         ],
-        "order": 9,
+        "order": 11,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1815,7 +1807,7 @@
                 "cols": "12"
             }
         ],
-        "order": 8,
+        "order": 10,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1895,8 +1887,8 @@
         ],
         "order": 2,
         "className": "",
-        "visible": "true",
-        "disabled": "false"
+        "visible": true,
+        "disabled": false
     },
     {
         "id": "58ab4d5e3dd68192",
@@ -1932,7 +1924,7 @@
         "name": "Acquisition",
         "ui": "e6ae26617c24c3ea",
         "path": "/acquisition",
-        "icon": "mdi-play-circle",
+        "icon": "video-image",
         "layout": "grid",
         "theme": "f7770f0b818c3a67",
         "breakpoints": [
@@ -1959,8 +1951,8 @@
         ],
         "order": 4,
         "className": "",
-        "visible": true,
-        "disabled": false
+        "visible": "true",
+        "disabled": "false"
     },
     {
         "id": "b274327af3807b79",
@@ -2021,7 +2013,7 @@
                 "cols": "12"
             }
         ],
-        "order": 6,
+        "order": 8,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -2233,7 +2225,7 @@
     {
         "id": "7572915171e440cd",
         "type": "ui-group",
-        "name": "Navigation",
+        "name": "Navigation Top",
         "page": "bcc78241b99ba27f",
         "width": "12",
         "height": 1,
@@ -2247,7 +2239,7 @@
     {
         "id": "3ae252a2e5abca89",
         "type": "ui-group",
-        "name": "Navigation",
+        "name": "Navigation Top",
         "page": "5c3e73c675caac42",
         "width": "12",
         "height": 1,
@@ -2267,6 +2259,260 @@
         "height": 1,
         "order": 6,
         "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "55c2fe64e681037d",
+        "type": "ui-group",
+        "name": "Navigation bottom",
+        "page": "bcc78241b99ba27f",
+        "width": "12",
+        "height": 1,
+        "order": 4,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "3d88a1872dbbf8a7",
+        "type": "ui-group",
+        "name": "Navigation bottom",
+        "page": "5c3e73c675caac42",
+        "width": "12",
+        "height": 1,
+        "order": 4,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "9b992ca6515ed058",
+        "type": "ui-group",
+        "name": "Navigation Top",
+        "page": "7a4e042a60b734a6",
+        "width": "12",
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "9f00807878a32dd5",
+        "type": "ui-group",
+        "name": "Navigation Bottom",
+        "page": "7a4e042a60b734a6",
+        "width": "12",
+        "height": 1,
+        "order": 4,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "d129fac8e7742d5b",
+        "type": "ui-page",
+        "name": "Visualization",
+        "ui": "e6ae26617c24c3ea",
+        "path": "/visualization",
+        "icon": "chart-scatter-plot",
+        "layout": "grid",
+        "theme": "f7770f0b818c3a67",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 6,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "b570f76ef526af45",
+        "type": "ui-group",
+        "name": "Navigation Top",
+        "page": "d129fac8e7742d5b",
+        "width": "12",
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "1d3abb201c51ff47",
+        "type": "ui-group",
+        "name": "Navigation Bottom",
+        "page": "d129fac8e7742d5b",
+        "width": "12",
+        "height": 1,
+        "order": 5,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "fa6393a7d7e3b7d7",
+        "type": "ui-group",
+        "name": "Plots Left",
+        "page": "d129fac8e7742d5b",
+        "width": 6,
+        "height": 1,
+        "order": 3,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "d9e5a1ba9059ca02",
+        "type": "ui-page",
+        "name": "Export",
+        "ui": "e6ae26617c24c3ea",
+        "path": "/export",
+        "icon": "export",
+        "layout": "grid",
+        "theme": "f7770f0b818c3a67",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 7,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "1c2cd2bf4d4ab815",
+        "type": "ui-group",
+        "name": "Navigation Top",
+        "page": "d9e5a1ba9059ca02",
+        "width": "12",
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "5d3c24612267b256",
+        "type": "ui-group",
+        "name": "Navigation bottom",
+        "page": "d9e5a1ba9059ca02",
+        "width": "12",
+        "height": 1,
+        "order": 3,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "d1c2dcd580716d02",
+        "type": "ui-group",
+        "name": "Viewer",
+        "page": "d9e5a1ba9059ca02",
+        "width": "12",
+        "height": 1,
+        "order": 2,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "ed357f41cdf951bc",
+        "type": "ui-group",
+        "name": "x vs y",
+        "page": "d129fac8e7742d5b",
+        "width": "12",
+        "height": 1,
+        "order": 2,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "bdcb68c6cff2da73",
+        "type": "ui-group",
+        "name": "Plot Right",
+        "page": "d129fac8e7742d5b",
+        "width": 6,
+        "height": 1,
+        "order": 4,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "402b3d24c87ab0d2",
+        "type": "ui-group",
+        "name": "Group 53",
+        "page": "7a4e042a60b734a6",
+        "width": "4",
+        "height": 1,
+        "order": 3,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -2542,14 +2788,14 @@
         "width": "12",
         "height": "8",
         "head": "",
-        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/data/browse/files/\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\" v-if=\"msg.payload.machine_info.serial_number\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n    </v-container>\n</template>\n",
+        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"visualization\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\" v-if=\"msg.payload.machine_info.serial_number\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n    </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 690,
-        "y": 380,
+        "x": 390,
+        "y": 180,
         "wires": [
             []
         ]
@@ -2572,8 +2818,8 @@
         "resendOnRefresh": true,
         "templateScope": "widget:ui",
         "className": "",
-        "x": 690,
-        "y": 460,
+        "x": 390,
+        "y": 260,
         "wires": [
             []
         ]
@@ -2596,8 +2842,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 690,
-        "y": 340,
+        "x": 390,
+        "y": 140,
         "wires": [
             []
         ]
@@ -2620,8 +2866,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 690,
-        "y": 420,
+        "x": 390,
+        "y": 220,
         "wires": [
             []
         ]
@@ -2643,7 +2889,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 610,
+        "x": 570,
         "y": 40,
         "wires": [
             [
@@ -2668,7 +2914,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 320,
+        "x": 280,
         "y": 40,
         "wires": [
             [
@@ -2682,7 +2928,7 @@
         "z": "1b667c6443413ced",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 100,
+        "x": 80,
         "y": 40,
         "wires": [
             [
@@ -2708,8 +2954,8 @@
         "resendOnRefresh": true,
         "templateScope": "site:style",
         "className": "",
-        "x": 1020,
-        "y": 60,
+        "x": 1300,
+        "y": 40,
         "wires": [
             []
         ]
@@ -2719,52 +2965,34 @@
         "type": "get machine info",
         "z": "1b667c6443413ced",
         "name": "",
-        "x": 490,
-        "y": 380,
+        "x": 110,
+        "y": 140,
         "wires": [
             [
-                "39c370d8a50f3acc",
-                "2aa02514512e405b"
+                "39c370d8a50f3acc"
             ]
         ]
-    },
-    {
-        "id": "2aa02514512e405b",
-        "type": "debug",
-        "z": "1b667c6443413ced",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 700,
-        "y": 300,
-        "wires": []
     },
     {
         "id": "a57a165cd0ce511b",
         "type": "ui-template",
         "z": "ab58b3fd0e6bcd77",
-        "g": "6452e42f1093802f",
         "group": "58ab4d5e3dd68192",
         "page": "",
         "ui": "",
         "name": "Streaming",
         "order": 1,
         "width": "7",
-        "height": "14",
+        "height": "18",
         "head": "",
-        "format": "<!-- Inspired by https://github.com/bluenviron/mediamtx/blob/v1.15.0/internal/servers/webrtc/read_index.html -->\n\n<template>\n    <video id=\"preview-video\" style=\"width: 100%;height:100%\" muted autoplay></video>\n    <div id=\"preview-video-message\"></div>\n</template>\n\n<script src=\"/reader.js\"></script>\n\n<script>\n  const video = document.getElementById(\"preview-video\")\n  const message = document.getElementById(\"preview-video-message\")\n  let reader\n\n  const setMessage = (str) => {\n    message.innerText = str\n  }\n\n  const url = new URL(document.location)\n  url.port = 8889\n  url.pathname = \"/cam/whep\"\n\n  let interval = setInterval(() => {\n    if (window.MediaMTXWebRTCReader) {\n      reader = new MediaMTXWebRTCReader({\n        url,\n        onError: (err) => {\n          message.innerText = err\n          setMessage(err)\n        },\n        onTrack: (evt) => {\n          setMessage(\"\")\n          video.srcObject = evt.streams[0]\n        },\n      })\n      video.muted = true\n      video.autoplay = true\n      clearInterval(interval)\n    }\n}, 100);\n\n  window.addEventListener(\"beforeunload\", () => {\n    reader?.close()\n  })\n</script>\n\n<style>\n#preview-video {\nposition: absolute;\ntop: 0;\nleft: 0;\nwidth: 100%;\nheight: 100%;\nbackground: rgb(30, 30, 30);\n}\n#preview-video-message {\nposition: absolute;\nleft: 0;\ntop: 0;\nwidth: 100%;\nheight: 100%;\ndisplay: flex;\nalign-items: center;\ntext-align: center;\njustify-content: center;\nfont-size: 16px;\nfont-weight: bold;\ncolor: white;\npointer-events: none;\npadding: 20px;\nbox-sizing: border-box;\ntext-shadow: 0 0 5px black;\n}\n</style>\n</center>",
+        "format": "  <iframe \n    src=\"http://pkscope-rich-kettle-10463/preview\" \n    title=\"Page Node-RED\"\n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n      background:red;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 130,
-        "y": 120,
+        "x": 1310,
+        "y": 100,
         "wires": [
             []
         ]
@@ -2781,8 +3009,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 360,
+        "x": 120,
+        "y": 140,
         "wires": [
             [
                 "f514a138d38d3c61"
@@ -2796,7 +3024,7 @@
         "group": "7572915171e440cd",
         "page": "",
         "ui": "",
-        "name": "Navigation",
+        "name": "Navigation Top",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -2807,7 +3035,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 110,
+        "x": 1300,
         "y": 40,
         "wires": [
             []
@@ -2830,8 +3058,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 300,
-        "y": 220,
+        "x": 280,
+        "y": 40,
         "wires": [
             [
                 "6074fc31218f9a74"
@@ -2844,8 +3072,8 @@
         "z": "ab58b3fd0e6bcd77",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 100,
-        "y": 220,
+        "x": 80,
+        "y": 40,
         "wires": [
             [
                 "8d5eadf60a2fd54b"
@@ -2869,8 +3097,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 600,
-        "y": 220,
+        "x": 580,
+        "y": 40,
         "wires": [
             [
                 "c8de0186a0a927e8"
@@ -2881,16 +3109,16 @@
         "id": "6d0408bb7ca6e5f3",
         "type": "function",
         "z": "ab58b3fd0e6bcd77",
-        "name": "set global",
-        "func": "global.set(\"pump_flowrate\", msg.payload.pump_flowrate);\nglobal.set(\"pump_manual_volume\", msg.payload.pump_manual_volume);\n\n",
+        "name": "set pump settings",
+        "func": "if (msg.topic) {\n    global.set(\"pump_flowrate\", msg.payload.pump_flowrate);\n    global.set(\"pump_manual_volume\", msg.payload.pump_manual_volume);\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 960,
-        "y": 320,
+        "x": 810,
+        "y": 140,
         "wires": [
             []
         ]
@@ -2899,16 +3127,16 @@
         "id": "4a208e0233bea4ae",
         "type": "function",
         "z": "ab58b3fd0e6bcd77",
-        "name": "set global",
-        "func": "global.set(\"focus_distance\", msg.payload.focus_distance);",
+        "name": "set focus settings",
+        "func": "if (msg.topic) {\n    global.set(\"focus_distance\", msg.payload.focus_distance);\n\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 960,
-        "y": 440,
+        "x": 810,
+        "y": 180,
         "wires": [
             []
         ]
@@ -2927,8 +3155,8 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 950,
-        "y": 480,
+        "x": 770,
+        "y": 220,
         "wires": []
     },
     {
@@ -2968,14 +3196,14 @@
         "checkall": "true",
         "repair": false,
         "outputs": 5,
-        "x": 710,
-        "y": 360,
+        "x": 550,
+        "y": 160,
         "wires": [
             [
                 "6d0408bb7ca6e5f3"
             ],
             [
-                "0705a33cf713251a"
+                "ea8e81951587e46d"
             ],
             [
                 "4a208e0233bea4ae"
@@ -2984,27 +3212,9 @@
                 "ea8e81951587e46d"
             ],
             [
-                "31e644b7332d3cda"
+                "ea8e81951587e46d"
             ]
         ]
-    },
-    {
-        "id": "0705a33cf713251a",
-        "type": "mqtt out",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "MQTT",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 950,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "f514a138d38d3c61",
@@ -3024,31 +3234,13 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 520,
-        "y": 360,
+        "x": 380,
+        "y": 140,
         "wires": [
             [
                 "4112a93b1b129756"
             ]
         ]
-    },
-    {
-        "id": "31e644b7332d3cda",
-        "type": "mqtt out",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "MQTT",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 950,
-        "y": 540,
-        "wires": []
     },
     {
         "id": "cf663463da2a47a1",
@@ -3062,8 +3254,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 330,
-        "y": 420,
+        "x": 150,
+        "y": 200,
         "wires": [
             [
                 "f514a138d38d3c61"
@@ -3082,8 +3274,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 330,
-        "y": 480,
+        "x": 150,
+        "y": 260,
         "wires": [
             [
                 "f514a138d38d3c61"
@@ -3102,8 +3294,34 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 320,
-        "y": 540,
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "f514a138d38d3c61"
+            ]
+        ]
+    },
+    {
+        "id": "2321977c636b9849",
+        "type": "ui-template",
+        "z": "ab58b3fd0e6bcd77",
+        "group": "55c2fe64e681037d",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Bottom",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Home -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"home\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Metadata -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1290,
+        "y": 160,
         "wires": [
             []
         ]
@@ -3126,8 +3344,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 640,
-        "y": 180,
+        "x": 1300,
+        "y": 40,
         "wires": [
             []
         ]
@@ -3150,8 +3368,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 650,
-        "y": 240,
+        "x": 410,
+        "y": 140,
         "wires": [
             [
                 "13f96cf49ae6d6a6"
@@ -3176,8 +3394,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 640,
-        "y": 420,
+        "x": 400,
+        "y": 200,
         "wires": [
             [
                 "9780c3e7b1792160"
@@ -3202,8 +3420,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 630,
-        "y": 600,
+        "x": 390,
+        "y": 300,
         "wires": [
             [
                 "1d06a5e5a5877d24"
@@ -3222,14 +3440,14 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <!-- Conteneur principal désactivé si sample_gear n'est ni Horizontal Net ni Vertical Net -->\n    <v-container\n      fluid\n      class=\"pa-2\"\n      :disabled=\"isDisabled\"\n      :style=\"{\n        pointerEvents: isDisabled ? 'none' : 'auto',\n        opacity: isDisabled ? 0.5 : 1,\n        width: '100%',\n      }\"\n    >\n\n    <v-row class=\"mt-2\">\n      <!-- Net Mouth Diameter -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Mouth Opening Diameter\"\n          v-model.number=\"sample_net_mouth_diameter\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"cm\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('mouth_diameter')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n\n      <!-- Net Length -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Length of the Net\"\n          v-model.number=\"sample_net_length\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"cm\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('net_length')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n\n      <!-- Mesh Size -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Net Mesh Size\"\n          v-model.number=\"sample_net_mesh_size\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"μm\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('mesh_size')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n\n      <!-- Collector Volume -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Volume of the Collector\"\n          v-model.number=\"sample_collected_volume\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"mL\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('collector_volume')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- MID-INFO POPUP -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text>{{ hintText }}</v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"hintDialog = false\">Got it</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      sample_net_mouth_diameter: 30,\n      sample_net_length: 120,\n      sample_net_mesh_size: 20,\n      sample_collected_volume: 50,\n      sample_gear: \"\", // <-- ajout\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n    };\n  },\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n    isDisabled() {\n      // Désactiver si sample_gear n'est pas \"Horizontal Net\" ou \"Vertical Net\"\n      return ![\"Horizontal Net\", \"Vertical Net\"].includes(this.sample_gear);\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.sample_gear !== undefined) this.sample_gear = p.sample_gear; // <-- récupère la valeur reçue\n        if (p.sample_net_mouth_diameter !== undefined)\n          this.sample_net_mouth_diameter = Number(p.sample_net_mouth_diameter);\n        if (p.sample_net_length !== undefined)\n          this.sample_net_length = Number(p.sample_net_length);\n        if (p.sample_net_mesh_size !== undefined)\n          this.sample_net_mesh_size = Number(p.sample_net_mesh_size);\n        if (p.sample_collected_volume !== undefined)\n          this.sample_collected_volume = Number(p.sample_collected_volume);\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    /**\n     * Send updates (ensures all values are numbers)\n     */\n    sendUpdate(topic, extra = {}) {\n      this.send({\n        topic,\n        payload: {\n          sample_net_mouth_diameter: Number(this.sample_net_mouth_diameter) || 0,\n          sample_net_length: Number(this.sample_net_length) || 0,\n          sample_net_mesh_size: Number(this.sample_net_mesh_size) || 0,\n          sample_collected_volume: Number(this.sample_collected_volume) || 0,\n          ...extra,\n        },\n      });\n    },\n\n    /**\n     * Info popup — consistent with previous templates\n     */\n    openHint(type) {\n      if (type === \"mouth_diameter\") {\n        this.hintTitle = \"Mouth Opening Diameter\";\n        this.hintText =\n          \"Enter the diameter of the net’s mouth — the circular opening where water enters the net — measured in centimeters (cm). \" +\n          \"Typical plankton nets range from 20–60 cm in diameter. Larger diameters capture more water volume.\";\n      } else if (type === \"net_length\") {\n        this.hintTitle = \"Length of the Net\";\n        this.hintText =\n          \"Specify the total length of the net from the mouth opening to the collector. \" +\n          \"Measure in centimeters (cm). This helps calculate the water volume filtered and affects flow resistance.\";\n      } else if (type === \"mesh_size\") {\n        this.hintTitle = \"Net Mesh Size\";\n        this.hintText =\n          \"Enter the mesh size of the net in micrometers (μm). \" +\n          \"This defines the smallest particles or plankton that can pass through. For example, a 20 μm mesh captures microplankton but not bacteria.\";\n      } else if (type === \"collector_volume\") {\n        this.hintTitle = \"Volume of the Collector\";\n        this.hintText =\n          \"Specify the amount of sample collected after towing or pumping, measured in milliliters (mL). \" +\n          \"It should correspond to the water filtered and ensures proper concentration calculations.\";\n      }\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n@media (max-width: 1024px) {\n  .v-text-field input,\n  .v-select input {\n    font-size: 1.2rem !important;\n  }\n}\n</style>\n",
+        "format": "<template>\n  <!-- Conteneur principal désactivé si sample_gear n'est ni Horizontal Net ni Vertical Net -->\n    <v-container\n      fluid\n      class=\"pa-2\"\n      :disabled=\"isDisabled\"\n      :style=\"{\n        pointerEvents: isDisabled ? 'none' : 'auto',\n        opacity: isDisabled ? 0.5 : 1,\n        width: '100%',\n      }\"\n    >\n\n    <v-row class=\"mt-2\">\n      <!-- Net Mouth Diameter -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Mouth Opening Diameter\"\n          v-model.number=\"sample_net_mouth_diameter\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"cm\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('mouth_diameter')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n\n      <!-- Net Length -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Length of the Net\"\n          v-model.number=\"sample_net_length\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"cm\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('net_length')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n\n      <!-- Mesh Size -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Net Mesh Size\"\n          v-model.number=\"sample_net_mesh_size\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"μm\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('mesh_size')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n\n      <!-- Collector Volume -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-text-field\n          label=\"Volume of the Collector\"\n          v-model.number=\"sample_collected_volume\"\n          :min=\"0\"\n          :max=\"1000\"\n          :step=\"1\"\n          suffix=\"mL\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details=\"auto\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          @input=\"sendUpdate('sample_net_params')\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint('collector_volume')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- MID-INFO POPUP -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text>{{ hintText }}</v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"hintDialog = false\">Got it</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      sample_net_mouth_diameter: \"\",\n      sample_net_length: \"\",\n      sample_net_mesh_size: \"\",\n      sample_collected_volume: \"\",\n      sample_gear: \"\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n    };\n  },\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n    isDisabled() {\n      // Désactiver si sample_gear n'est pas \"Horizontal Net\" ou \"Vertical Net\"\n      return ![\"Horizontal Net\", \"Vertical Net\"].includes(this.sample_gear);\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.sample_gear !== undefined) this.sample_gear = p.sample_gear; // <-- récupère la valeur reçue\n        if (p.sample_net_mouth_diameter !== undefined)\n          this.sample_net_mouth_diameter = Number(p.sample_net_mouth_diameter);\n        if (p.sample_net_length !== undefined)\n          this.sample_net_length = Number(p.sample_net_length);\n        if (p.sample_net_mesh_size !== undefined)\n          this.sample_net_mesh_size = Number(p.sample_net_mesh_size);\n        if (p.sample_collected_volume !== undefined)\n          this.sample_collected_volume = Number(p.sample_collected_volume);\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    /**\n     * Send updates (ensures all values are numbers)\n     */\n    sendUpdate(topic, extra = {}) {\n      this.send({\n        topic,\n        payload: {\n          sample_net_mouth_diameter: Number(this.sample_net_mouth_diameter) || 0,\n          sample_net_length: Number(this.sample_net_length) || 0,\n          sample_net_mesh_size: Number(this.sample_net_mesh_size) || 0,\n          sample_collected_volume: Number(this.sample_collected_volume) || 0,\n          ...extra,\n        },\n      });\n    },\n\n    /**\n     * Info popup — consistent with previous templates\n     */\n    openHint(type) {\n      if (type === \"mouth_diameter\") {\n        this.hintTitle = \"Mouth Opening Diameter\";\n        this.hintText =\n          \"Enter the diameter of the net’s mouth — the circular opening where water enters the net — measured in centimeters (cm). \" +\n          \"Typical plankton nets range from 20–60 cm in diameter. Larger diameters capture more water volume.\";\n      } else if (type === \"net_length\") {\n        this.hintTitle = \"Length of the Net\";\n        this.hintText =\n          \"Specify the total length of the net from the mouth opening to the collector. \" +\n          \"Measure in centimeters (cm). This helps calculate the water volume filtered and affects flow resistance.\";\n      } else if (type === \"mesh_size\") {\n        this.hintTitle = \"Net Mesh Size\";\n        this.hintText =\n          \"Enter the mesh size of the net in micrometers (μm). \" +\n          \"This defines the smallest particles or plankton that can pass through. For example, a 20 μm mesh captures microplankton but not bacteria.\";\n      } else if (type === \"collector_volume\") {\n        this.hintTitle = \"Volume of the Collector\";\n        this.hintText =\n          \"Specify the amount of sample collected after towing or pumping, measured in milliliters (mL). \" +\n          \"It should correspond to the water filtered and ensures proper concentration calculations.\";\n      }\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n@media (max-width: 1024px) {\n  .v-text-field input,\n  .v-select input {\n    font-size: 1.2rem !important;\n  }\n}\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 640,
-        "y": 780,
+        "x": 400,
+        "y": 400,
         "wires": [
             [
                 "2ef0ae85c43d66d6"
@@ -3254,8 +3472,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 650,
-        "y": 960,
+        "x": 410,
+        "y": 460,
         "wires": [
             [
                 "d216b35a8b521fe5"
@@ -3274,14 +3492,14 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n\n    <v-row justify=\"space-between\" align=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"preview\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Preview\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"acquisition\"\n        >\n          Acquisition\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"preview\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Preview\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"acquisition\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Acquisition\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 650,
-        "y": 1180,
+        "x": 1290,
+        "y": 160,
         "wires": [
             []
         ]
@@ -3298,8 +3516,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 240,
+        "x": 120,
+        "y": 140,
         "wires": [
             [
                 "279f3ddada9cadaa",
@@ -3316,8 +3534,8 @@
         "z": "190b0c9aa75e8843",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 120,
-        "y": 80,
+        "x": 80,
+        "y": 40,
         "wires": [
             [
                 "a68e52177173f690"
@@ -3341,8 +3559,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 320,
-        "y": 80,
+        "x": 280,
+        "y": 40,
         "wires": [
             [
                 "b1a74fe5569d418a"
@@ -3366,30 +3584,12 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 620,
-        "y": 80,
+        "x": 580,
+        "y": 40,
         "wires": [
             [
                 "a6bc59e4c830d424"
             ]
-        ]
-    },
-    {
-        "id": "f001096c4bbfd93e",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set object_lon",
-        "func": "if (msg.topic) {\n    global.set(\"object_lon\", msg.payload.object_lon);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1220,
-        "y": 540,
-        "wires": [
-            []
         ]
     },
     {
@@ -3414,16 +3614,14 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 930,
-        "y": 420,
+        "x": 570,
+        "y": 200,
         "wires": [
             [
-                "ae90b33dfda74614",
-                "cc84978f293da271"
+                "ae90b33dfda74614"
             ],
             [
-                "875b74e16870159d",
-                "f001096c4bbfd93e"
+                "875b74e16870159d"
             ]
         ]
     },
@@ -3431,34 +3629,16 @@
         "id": "875b74e16870159d",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set object_lat",
-        "func": "if (msg.topic) {\n    global.set(\"object_lat\", msg.payload.object_lat);\n}\nreturn msg;\n",
+        "name": "set object_latlon",
+        "func": "if (msg.topic) {\n    global.set(\"object_lat\", msg.payload.object_lat);\n    global.set(\"object_lon\", msg.payload.object_lon);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cc84978f293da271",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set object_time",
-        "func": "if (msg.topic) {\n    global.set(\"object_time\", msg.payload.object_time);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1220,
-        "y": 460,
+        "x": 760,
+        "y": 240,
         "wires": [
             []
         ]
@@ -3467,34 +3647,16 @@
         "id": "ae90b33dfda74614",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set object_date",
-        "func": "if (msg.topic) {\n    global.set(\"object_date\", msg.payload.object_date);\n}\nreturn msg;\n",
+        "name": "set object_datetime",
+        "func": "if (msg.topic) {\n    global.set(\"object_date\", msg.payload.object_date);\n    global.set(\"object_time\", msg.payload.object_time);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9112072182ad9a14",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set object_lon_end",
-        "func": "if (msg.topic) {\n    global.set(\"object_lon_end\", msg.payload.object_lon_end);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1230,
-        "y": 720,
+        "x": 770,
+        "y": 200,
         "wires": [
             []
         ]
@@ -3521,16 +3683,14 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 930,
-        "y": 600,
+        "x": 570,
+        "y": 300,
         "wires": [
             [
-                "42d27ae01c6fd201",
-                "b173c8bdf7f42d09"
+                "42d27ae01c6fd201"
             ],
             [
-                "23f3059257ce93f6",
-                "9112072182ad9a14"
+                "23f3059257ce93f6"
             ]
         ]
     },
@@ -3538,34 +3698,16 @@
         "id": "23f3059257ce93f6",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set object_lat_end",
-        "func": "if (msg.topic) {\n    global.set(\"object_lat_end\", msg.payload.object_lat_end);\n}\nreturn msg;\n",
+        "name": "set object_latlon_end",
+        "func": "if (msg.topic) {\n    global.set(\"object_lat_end\", msg.payload.object_lat_end);\n    global.set(\"object_lon_end\", msg.payload.object_lon_end);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1230,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b173c8bdf7f42d09",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set object_time_end",
-        "func": "if (msg.topic) {\n    global.set(\"object_time_end\", msg.payload.object_time_end);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 640,
+        "x": 780,
+        "y": 340,
         "wires": [
             []
         ]
@@ -3574,16 +3716,16 @@
         "id": "42d27ae01c6fd201",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set object_date_end",
-        "func": "if (msg.topic) {\n    global.set(\"object_date_end\", msg.payload.object_date_end);\n}\nreturn msg;\n",
+        "name": "set object_datetime_end",
+        "func": "if (msg.topic) {\n    global.set(\"object_date_end\", msg.payload.object_date_end);\n    global.set(\"object_time_end\", msg.payload.object_time_end);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1240,
-        "y": 600,
+        "x": 790,
+        "y": 300,
         "wires": [
             []
         ]
@@ -3605,14 +3747,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 930,
-        "y": 780,
+        "x": 570,
+        "y": 400,
         "wires": [
             [
-                "e32fbe7bc4987b3c",
-                "b8b96f791c462c4a",
-                "820165df580729ae",
-                "c8c5b49cf7a88ff3"
+                "e32fbe7bc4987b3c"
             ]
         ]
     },
@@ -3620,70 +3759,16 @@
         "id": "e32fbe7bc4987b3c",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set sample_net_mouth_diameter",
-        "func": "if (msg.topic) {\n    global.set(\"sample_net_mouth_diameter\", msg.payload.sample_net_mouth_diameter);\n}\nreturn msg;\n",
+        "name": "set sample_net_params",
+        "func": "if (msg.topic) {\n    global.set(\"sample_net_mouth_diameter\", msg.payload.sample_net_mouth_diameter);\n    global.set(\"sample_net_length\", msg.payload.sample_net_length);\n    global.set(\"sample_net_mesh_size\", msg.payload.sample_net_mesh_size);\n    global.set(\"sample_collected_volume\", msg.payload.sample_collected_volume);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
-        "y": 780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b8b96f791c462c4a",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_net_length",
-        "func": "if (msg.topic) {\n    global.set(\"sample_net_length\", msg.payload.sample_net_length);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "820165df580729ae",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_net_mesh_size",
-        "func": "if (msg.topic) {\n    global.set(\"sample_net_mesh_size\", msg.payload.sample_net_mesh_size);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 860,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c8c5b49cf7a88ff3",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_collected_volume",
-        "func": "if (msg.topic) {\n    global.set(\"sample_collected_volume\", msg.payload.sample_collected_volume);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1270,
-        "y": 900,
+        "x": 790,
+        "y": 400,
         "wires": [
             []
         ]
@@ -3705,15 +3790,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 910,
-        "y": 960,
+        "x": 570,
+        "y": 460,
         "wires": [
             [
-                "419e682def601ef5",
-                "398d8a34bf052d54",
-                "be80e9a0a1d8e92c",
-                "c496bb7ff023cb5f",
-                "7c61b189ac3457e0"
+                "419e682def601ef5"
             ]
         ]
     },
@@ -3721,88 +3802,16 @@
         "id": "419e682def601ef5",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set sample_filtered_volume",
-        "func": "if (msg.topic) {\n    global.set(\"sample_filtered_volume\", msg.payload.sample_filtered_volume);\n}\nreturn msg;\n",
+        "name": "set sample_water_params",
+        "func": "if (msg.topic) {\n    global.set(\"sample_filtered_volume\", msg.payload.sample_filtered_volume);\n    global.set(\"sample_concentration_factor\", msg.payload.sample_concentration_factor);\n    global.set(\"sample_sieve_mesh_size\", msg.payload.sample_sieve_mesh_size);\n    global.set(\"sample_depth\", msg.payload.sample_depth);\n    global.set(\"sample_comment\", msg.payload.sample_comment);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 960,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "398d8a34bf052d54",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_concentration_factor",
-        "func": "if (msg.topic) {\n    global.set(\"sample_concentration_factor\", msg.payload.sample_concentration_factor);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1280,
-        "y": 1000,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "be80e9a0a1d8e92c",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_sieve_mesh_size",
-        "func": "if (msg.topic) {\n    global.set(\"sample_sieve_mesh_size\", msg.payload.sample_sieve_mesh_size);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c496bb7ff023cb5f",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_depth",
-        "func": "if (msg.topic) {\n    global.set(\"sample_depth\", msg.payload.sample_depth);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1230,
-        "y": 1080,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7c61b189ac3457e0",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_comment",
-        "func": "if (msg.topic) {\n    global.set(\"sample_comment\", msg.payload.sample_comment);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1240,
-        "y": 1120,
+        "x": 800,
+        "y": 460,
         "wires": [
             []
         ]
@@ -3824,14 +3833,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 930,
-        "y": 240,
+        "x": 570,
+        "y": 140,
         "wires": [
             [
                 "da13300e5bcb0c26",
-                "c8feb9c73ee75883",
-                "04aac5d44041f153",
-                "ac2c9057b0c5b9bf",
                 "1c90e219a749e53e",
                 "09b551fa202d8029",
                 "96550b272e3da513",
@@ -3843,70 +3849,16 @@
         "id": "da13300e5bcb0c26",
         "type": "function",
         "z": "190b0c9aa75e8843",
-        "name": "set sample_project",
-        "func": "if (msg.topic) {\n    global.set(\"sample_project\", msg.payload.sample_project);\n}\nreturn msg;\n",
+        "name": "set sample_project_meta",
+        "func": "if (msg.topic) {\n    global.set(\"sample_project\", msg.payload.sample_project);\n    global.set(\"sample_operator_name\", msg.payload.sample_operator_name);\n    global.set(\"sample_id\", msg.payload.sample_id);\n    global.set(\"sample_gear\", msg.payload.sample_gear);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1230,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c8feb9c73ee75883",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_id",
-        "func": "if (msg.topic) {\n    global.set(\"sample_id\", msg.payload.sample_id);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1220,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "04aac5d44041f153",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_operator_name",
-        "func": "if (msg.topic) {\n    global.set(\"sample_operator_name\", msg.payload.sample_operator_name);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ac2c9057b0c5b9bf",
-        "type": "function",
-        "z": "190b0c9aa75e8843",
-        "name": "set sample_gear",
-        "func": "if (msg.topic) {\n    global.set(\"sample_gear\", msg.payload.sample_gear);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1220,
-        "y": 360,
+        "x": 790,
+        "y": 140,
         "wires": [
             []
         ]
@@ -3915,89 +3867,30 @@
         "id": "ffe728d961068c62",
         "type": "ui-template",
         "z": "35d7387466dd0bc0",
-        "g": "4b86185ad4a4ade1",
         "group": "b274327af3807b79",
         "page": "",
         "ui": "",
         "name": "Streaming",
         "order": 1,
         "width": "7",
-        "height": "14",
+        "height": "18",
         "head": "",
-        "format": "<!-- Inspired by https://github.com/bluenviron/mediamtx/blob/v1.15.0/internal/servers/webrtc/read_index.html -->\n\n<template>\n    <video id=\"preview-video\" style=\"width: 100%;height:100%\" muted autoplay></video>\n    <div id=\"preview-video-message\"></div>\n</template>\n\n<script src=\"/reader.js\"></script>\n\n<script>\n  const video = document.getElementById(\"preview-video\")\n  const message = document.getElementById(\"preview-video-message\")\n  let reader\n\n  const setMessage = (str) => {\n    message.innerText = str\n  }\n\n  const url = new URL(document.location)\n  url.port = 8889\n  url.pathname = \"/cam/whep\"\n\n  let interval = setInterval(() => {\n    if (window.MediaMTXWebRTCReader) {\n      reader = new MediaMTXWebRTCReader({\n        url,\n        onError: (err) => {\n          message.innerText = err\n          setMessage(err)\n        },\n        onTrack: (evt) => {\n          setMessage(\"\")\n          video.srcObject = evt.streams[0]\n        },\n      })\n      video.muted = true\n      video.autoplay = true\n      clearInterval(interval)\n    }\n}, 100);\n\n  window.addEventListener(\"beforeunload\", () => {\n    reader?.close()\n  })\n</script>\n\n<style>\n#preview-video {\nposition: absolute;\ntop: 0;\nleft: 0;\nwidth: 100%;\nheight: 100%;\nbackground: rgb(30, 30, 30);\n}\n#preview-video-message {\nposition: absolute;\nleft: 0;\ntop: 0;\nwidth: 100%;\nheight: 100%;\ndisplay: flex;\nalign-items: center;\ntext-align: center;\njustify-content: center;\nfont-size: 16px;\nfont-weight: bold;\ncolor: white;\npointer-events: none;\npadding: 20px;\nbox-sizing: border-box;\ntext-shadow: 0 0 5px black;\n}\n</style>\n</center>",
+        "format": "  <iframe \n    src=\"http://pkscope-rich-kettle-10463/preview\" \n    title=\"Page Node-RED\"\n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n      background:red;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1250,
-        "y": 440,
+        "x": 1310,
+        "y": 100,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "7630af38d8e62254",
-        "type": "mqtt out",
-        "z": "35d7387466dd0bc0",
-        "g": "e8ba2d3274c7e963",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 970,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "b3987ca157e030f6",
-        "type": "mqtt out",
-        "z": "35d7387466dd0bc0",
-        "g": "e8ba2d3274c7e963",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 970,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "c1d6882488c0b3ac",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "g": "e8ba2d3274c7e963",
-        "name": "pump",
-        "func": "var manual_volume= global.get(\"pump_manual_volume\");\nvar flowrate= global.get(\"pump_flowrate\");\n\nif (manual_volume === undefined || manual_volume === \"\" || manual_volume === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Volume to pass\";\n    return [null, msg];\n}\nelse if (flowrate === undefined || flowrate === \"\" || flowrate === null) {\n    msg.topic = \"Missing entry :\"\n    msg.payload = \"Flowrate\";\n    return [null, msg];\n}\nelse {\n    msg.topic = \"actuator/pump\";\n    // msg.payload is FORWARD or BACKWARD here\n    msg.payload={\"action\":\"move\", \n                \"direction\":msg.payload,\n                \"volume\":manual_volume,\n                \"flowrate\":flowrate};\n}\nreturn [msg, null];",
-        "outputs": 2,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 830,
-        "y": 380,
-        "wires": [
-            [
-                "7630af38d8e62254"
-            ],
-            []
-        ],
-        "inputLabels": [
-            "direction"
-        ],
-        "outputLabels": [
-            "message",
-            "error"
         ]
     },
     {
         "id": "aa6924c7e0aff26c",
         "type": "ui-template",
         "z": "35d7387466dd0bc0",
-        "g": "e8ba2d3274c7e963",
         "group": "d2f77573ed4317e4",
         "page": "",
         "ui": "",
@@ -4006,19 +3899,17 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field label=\"Acquisition ID\" v-model=\"acq_id\" variant=\"outlined\"\n          hint=\"A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.\"\n          append-icon=\"mdi-information\" @click:append=\"openHint('acq_id')\" @input=\"sendUpdate('acq_params')\" />\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider v-model.number=\"acq_number_image_acquired\" :max=\"10000\" :min=\"1\" :step=\"1\" class=\"align-center\"\n          hide-details label=\"Number of Images\" @update:model-value=\"sendUpdate('acq_params')\" />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field v-model.number=\"acq_number_image_acquired\" type=\"number\" variant=\"outlined\" hide-details\n          suffix=\"img\" append-icon=\"mdi-information\" @click:append=\"openHint('acq_number_image_acquired')\"\n          @input=\"sendUpdate('acq_params')\" />\n      </v-col>\n    </v-row>\n\n    <!-- Interframe Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider v-model.number=\"acq_interframe_volume\" :max=\"100\" :min=\"1\" :step=\"1\" class=\"align-center\" hide-details\n          label=\"Volume between frames\" @update:model-value=\"sendUpdate('acq_params')\" />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field v-model.number=\"acq_interframe_volume\" type=\"number\" variant=\"outlined\" hide-details suffix=\"µL\"\n          append-icon=\"mdi-information\" @click:append=\"openHint('acq_interframe_volume')\"\n          @input=\"sendUpdate('acq_params')\" />\n      </v-col>\n    </v-row>\n\n    <!-- Calculated Volumes -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field v-model.number=\"acq_imaged_volume\" type=\"number\" hide-details suffix=\"mL\"\n          append-icon=\"mdi-information\" variant=\"plain\" readonly />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field v-model.number=\"acq_pumped_volume\" type=\"number\" hide-details suffix=\"mL\"\n          append-icon=\"mdi-information\" variant=\"plain\" readonly />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea v-model=\"acq_comment\" clearable label=\"Acquisition Comment\" variant=\"outlined\" row-height=\"20\"\n          rows=\"2\" hint=\"This field is for any additional comments or notes related to the acquisition process.\"\n          append-icon=\"mdi-information\" @click:append=\"openHint('acq_comment')\" @input=\"sendUpdate('acq_params')\" />\n      </v-col>\n    </v-row>\n\n    <!-- Progress -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear v-model=\"acq_progression\" striped color=\"primary\" height=\"25\">\n          <template #default=\"{ value }\">\n            <strong>{{ Math.ceil(value) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Duration -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field v-model.number=\"acq_duration_left\" type=\"number\" hide-details suffix=\"min\"\n          append-icon=\"mdi-information\" variant=\"plain\" readonly />\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle v-model=\"acq_status\" variant=\"outlined\" mandatory divided shaped\n          class=\"d-flex justify-space-between\" @update:model-value=\"sendUpdate('acq_params')\">\n          <v-btn class=\"flex-grow-1\" value=\"off\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Info Popup -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text>{{ hintText }}</v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"hintDialog = false\">Got it</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: null,\n      acq_number_image_acquired: 100,\n      acq_interframe_volume: 2,\n      acq_imaged_volume: 0.02,\n      acq_pumped_volume: 15,\n      acq_progression: 23,\n      acq_duration_left: 15,\n      acq_status: \"off\",\n      acq_comment: \"\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n\n      // 📌 Sample metadata fields\n      object_date: \"2025-10-09\",\n      object_date_end: \"2025-10-09\",\n      object_lat: 1,\n      object_lat_end: 9,\n      object_lon: 1,\n      object_lon_end: 1.116667,\n      object_time: \"12:20\",\n      object_time_end: \"19:31\",\n      sample_comment: \"Comment of the sample\",\n      sample_concentration_factor: 1,\n      sample_depth: 1,\n      sample_filtered_volume: 1500,\n      sample_gear: \"Horizontal Net\",\n      sample_id: \"S0001\",\n      sample_operator_name: \"Thibaut Pollina\",\n      sample_project: \"FairScope\",\n      sample_sieve_mesh_size: 200,\n    };\n  },\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.acq_id !== undefined) this.acq_id = p.acq_id;\n        if (p.acq_number_image_acquired !== undefined)\n          this.acq_number_image_acquired = Number(p.acq_number_image_acquired);\n        if (p.acq_interframe_volume !== undefined)\n          this.acq_interframe_volume = Number(p.acq_interframe_volume);\n        if (p.acq_imaged_volume !== undefined)\n          this.acq_imaged_volume = Number(p.acq_imaged_volume);\n        if (p.acq_pumped_volume !== undefined)\n          this.acq_pumped_volume = Number(p.acq_pumped_volume);\n        if (p.acq_progression !== undefined)\n          this.acq_progression = Number(p.acq_progression);\n        if (p.acq_duration_left !== undefined)\n          this.acq_duration_left = Number(p.acq_duration_left);\n        if (p.acq_status !== undefined)\n          this.acq_status = String(p.acq_status);\n        if (p.acq_comment !== undefined)\n          this.acq_comment = String(p.acq_comment);\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    /** ✅ Send update_config first with all fields, then image **/\n    async sendUpdate(topic, extra = {}) {\n      const configPayload = {\n        // Acquisition params\n        acq_id: this.acq_id || \"\",\n        acq_number_image_acquired: Number(this.acq_number_image_acquired) || 0,\n        acq_interframe_volume: Number(this.acq_interframe_volume) || 0,\n        acq_imaged_volume: Number(this.acq_imaged_volume) || 0,\n        acq_pumped_volume: Number(this.acq_pumped_volume) || 0,\n        acq_progression: Number(this.acq_progression) || 0,\n        acq_duration_left: Number(this.acq_duration_left) || 0,\n        acq_status: this.acq_status || \"off\",\n        acq_comment: this.acq_comment || \"\",\n\n        // 🧪 Sample metadata fields\n        object_date: this.object_date,\n        object_date_end: this.object_date_end,\n        object_lat: this.object_lat,\n        object_lat_end: this.object_lat_end,\n        object_lon: this.object_lon,\n        object_lon_end: this.object_lon_end,\n        object_time: this.object_time,\n        object_time_end: this.object_time_end,\n        sample_comment: this.sample_comment,\n        sample_concentration_factor: this.sample_concentration_factor,\n        sample_depth: this.sample_depth,\n        sample_filtered_volume: this.sample_filtered_volume,\n        sample_gear: this.sample_gear,\n        sample_id: this.sample_id,\n        sample_operator_name: this.sample_operator_name,\n        sample_project: this.sample_project,\n        sample_sieve_mesh_size: this.sample_sieve_mesh_size,\n\n        ...extra,\n      };\n\n      // 1. Send update_config\n      this.send({\n        topic: \"update_config\",\n        payload: configPayload,\n      });\n\n      // 2. Wait a bit to ensure config is applied\n      await new Promise((resolve) => setTimeout(resolve, 800));\n\n      // 3. Send imager command\n      this.send({\n        topic: \"imager\",\n        payload: {\n          action: \"image\",\n          pump_direction: \"FORWARD\",\n          volume: Number(this.acq_imaged_volume) || 0,\n          nb_frame: Number(this.acq_number_image_acquired) || 0,\n          sleep: 0.1,\n        },\n      });\n    },\n\n    /** ℹ️ Info popup **/\n    openHint(type) {\n      if (type === \"acq_id\") {\n        this.hintTitle = \"Acquisition ID\";\n        this.hintText =\n          \"A unique identifier for this acquisition. It helps differentiate between sessions or parameter sets.\";\n      } else if (type === \"acq_number_image_acquired\") {\n        this.hintTitle = \"Number of Images\";\n        this.hintText =\n          \"Total number of images to be captured during this acquisition.\";\n      } else if (type === \"acq_interframe_volume\") {\n        this.hintTitle = \"Interframe Volume\";\n        this.hintText =\n          \"Volume of fluid (in µL) that passes between consecutive frames.\";\n      } else if (type === \"acq_comment\") {\n        this.hintTitle = \"Acquisition Comment\";\n        this.hintText =\n          \"Use this field for notes or comments about this acquisition run.\";\n      }\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n  @media (max-width: 1024px) {\n\n    .v-text-field input,\n    .v-textarea textarea {\n      font-size: 1.2rem !important;\n    }\n  }\n</style>",
+        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model=\"acq_id\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : A001\"\n          hint=\"A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Acquisition ID',\n              'A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_number_image_acquired\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"sendUpdate\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_number_image_acquired\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Number of Images',\n              'The number of individual images captured during this acquisition process.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interframe Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Volume between frames\"\n          hide-details\n          @update:model-value=\"sendUpdate\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Volume between frames',\n              'The volume of sample displaced between each image capture, expressed in microliters (µL).'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Calculated Volumes -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_imaged_volume\"\n          type=\"number\"\n          hide-details\n          suffix=\"mL\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_pumped_volume\"\n          type=\"number\"\n          hide-details\n          suffix=\"mL\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          clearable\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          hint=\"Additional comments or notes related to the acquisition process.\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Acquisition Comment',\n              'Any additional notes or remarks related to the acquisition setup, process, or context.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          v-model=\"acq_progression\"\n          striped\n          color=\"primary\"\n          height=\"25\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.ceil(value) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Duration -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_duration_left\"\n          type=\"number\"\n          hide-details\n          suffix=\"min\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Status -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          <v-icon left>{{ statusIcon }}</v-icon>\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- History -->\n    <v-row v-if=\"status_history.length\">\n      <v-col cols=\"12\">\n        <v-expansion-panels>\n          <v-expansion-panel>\n            <v-expansion-panel-title>\n              <v-icon left>mdi-history</v-icon>\n              Acquisition Log\n            </v-expansion-panel-title>\n            <v-expansion-panel-text>\n              <v-list density=\"compact\">\n                <v-list-item v-for=\"(msg, i) in status_history\" :key=\"i\">\n                  <v-list-item-content>\n                    <v-list-item-title>{{ msg }}</v-list-item-title>\n                  </v-list-item-content>\n                </v-list-item>\n              </v-list>\n            </v-expansion-panel-text>\n          </v-expansion-panel>\n        </v-expansion-panels>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"400\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text>{{ hintText }}</v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_number_image_acquired: 1,\n      acq_interframe_volume: 1,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      status_history: [],\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      topic: \"acq_params\",\n    };\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.acq_id !== undefined) this.acq_id = p.acq_id;\n        if (p.acq_number_image_acquired !== undefined)\n          this.acq_number_image_acquired = p.acq_number_image_acquired;\n        if (p.acq_interframe_volume !== undefined)\n          this.acq_interframe_volume = p.acq_interframe_volume;\n        if (p.acq_imaged_volume !== undefined)\n          this.acq_imaged_volume = p.acq_imaged_volume;\n        if (p.acq_pumped_volume !== undefined)\n          this.acq_pumped_volume = p.acq_pumped_volume;\n        if (p.acq_comment !== undefined) this.acq_comment = p.acq_comment;\n        if (p.acq_progression !== undefined) this.acq_progression = p.acq_progression;\n        if (p.acq_duration_left !== undefined)\n          this.acq_duration_left = p.acq_duration_left;\n        if (p.acq_status !== undefined) this.acq_status = p.acq_status;\n        if (p.status !== undefined) this.updateStatus(p.status);\n      },\n      deep: true,\n    },\n  },\n  computed: {\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message;\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if (s.startsWith(\"Image\") || s === \"Started\" || s === \"Done\") return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      return this.statusColor === \"green\"\n        ? \"success\"\n        : this.statusColor === \"orange\"\n        ? \"warning\"\n        : this.statusColor === \"red\"\n        ? \"error\"\n        : \"info\";\n    },\n    statusIcon() {\n      const s = this.acq_status_message;\n      if (s.startsWith(\"Error\")) return \"mdi-alert-circle\";\n      if (s.startsWith(\"Configuration update error\")) return \"mdi-cog-alert\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"mdi-close-circle\";\n      if (s.startsWith(\"Image\")) return \"mdi-check-circle\";\n      if (s === \"Started\") return \"mdi-camera\";\n      if (s === \"Done\") return \"mdi-check-bold\";\n      return \"mdi-information\";\n    },\n  },\n  methods: {\n    sendUpdate(extra = {}) {\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: this.acq_id,\n          acq_number_image_acquired: this.acq_number_image_acquired,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: this.acq_imaged_volume,\n          acq_pumped_volume: this.acq_pumped_volume,\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          ...extra,\n        },\n      });\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      this.send({\n        topic: \"imager/image\",\n        payload: { status: value },\n      });\n    },\n    updateStatus(status) {\n      this.acq_status_message = status;\n      const log = `${new Date().toLocaleTimeString()} — ${status}`;\n      this.status_history.unshift(log);\n      if (this.status_history.length > 10) this.status_history.pop();\n\n      // --- 🔁 Synchronisation du bouton Start/Stop selon le statut reçu ---\n      if (status === \"Started\") {\n        this.acq_status = \"on\";\n      } else if (\n        status === \"Done\" ||\n        status.startsWith(\"Error\") ||\n        status.startsWith(\"Configuration update error\") ||\n        status.includes(\"WAS NOT CAPTURED\")\n      ) {\n        this.acq_status = \"off\";\n      }\n    },\n    openHint(title, text) {\n      this.hintTitle = title;\n      this.hintText = text;\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer {\n  cursor: pointer;\n}\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 330,
-        "y": 360,
+        "x": 410,
+        "y": 140,
         "wires": [
             [
-                "56b3c60c6d4ffd87",
-                "b3987ca157e030f6",
-                "c10e1efaac59d8f4"
+                "56b3c60c6d4ffd87"
             ]
         ]
     },
@@ -4029,19 +3920,19 @@
         "group": "3ae252a2e5abca89",
         "page": "",
         "ui": "",
-        "name": "Navigation",
+        "name": "Navigation Top",
         "order": 1,
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n\n    <v-row justify=\"space-between\" align=\"center\">\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"metadata\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Metadata\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"auto\">\n        <v-btn\n          variant=\"text\"\n          to=\"segmentation\"\n        >\n          Segmentation\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Metadata\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Segmentation\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1310,
-        "y": 360,
+        "x": 1300,
+        "y": 40,
         "wires": [
             []
         ]
@@ -4058,24 +3949,24 @@
                 "t": "eq",
                 "v": "acq_params",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "imager/image",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 530,
-        "y": 480,
+        "outputs": 2,
+        "x": 570,
+        "y": 140,
         "wires": [
             [
-                "f841ebf999dd8cb3",
-                "13b9505e56d6b4ff",
-                "1dd6b0af8b93650f",
-                "6a2ff726dce805c9",
-                "54d5468196646ec0",
-                "1f8eefad77ecda86",
-                "b85356afb21c10b2",
-                "6bfec3982019cd23",
-                "930a273814f6e44c"
+                "f841ebf999dd8cb3"
+            ],
+            [
+                "09ecc922fe2214a8"
             ]
         ]
     },
@@ -4083,98 +3974,8 @@
         "id": "f841ebf999dd8cb3",
         "type": "function",
         "z": "35d7387466dd0bc0",
-        "name": "set acq_id",
-        "func": "if (msg.topic) {\n    global.set(\"acq_id\", msg.payload.acq_id);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "13b9505e56d6b4ff",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_number_image_acquired",
-        "func": "if (msg.topic) {\n    global.set(\"acq_number_image_acquired\", msg.payload.acq_number_image_acquired);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 800,
-        "y": 520,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1dd6b0af8b93650f",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_interframe_volume",
-        "func": "if (msg.topic) {\n    global.set(\"acq_interframe_volume\", msg.payload.acq_interframe_volume);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 780,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6a2ff726dce805c9",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_imaged_volume",
-        "func": "if (msg.topic) {\n    global.set(\"acq_imaged_volume\", msg.payload.acq_imaged_volume);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 770,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "54d5468196646ec0",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_pumped_volume",
-        "func": "if (msg.topic) {\n    global.set(\"acq_pumped_volume\", msg.payload.acq_pumped_volume);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 770,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1f8eefad77ecda86",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_progression",
-        "func": "if (msg.topic) {\n    global.set(\"acq_progression\", msg.payload.acq_progression);\n}\nreturn msg;\n",
+        "name": "set acq_params",
+        "func": "if (msg.topic) {\n    global.set(\"acq_id\", msg.payload.acq_id);\n    global.set(\"acq_number_image_acquired\", msg.payload.acq_number_image_acquired);\n    global.set(\"acq_interframe_volume\", msg.payload.acq_interframe_volume);\n    global.set(\"acq_imaged_volume\", msg.payload.acq_imaged_volume);\n    global.set(\"acq_pumped_volume\", msg.payload.acq_pumped_volume);\n    global.set(\"acq_comment\", msg.payload.acq_comment);\n    global.set(\"acq_progression\", msg.payload.acq_progression);\n    global.set(\"acq_duration_left\", msg.payload.acq_duration_left);\n    global.set(\"acq_status\", msg.payload.acq_status);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4182,61 +3983,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b85356afb21c10b2",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_duration_left",
-        "func": "if (msg.topic) {\n    global.set(\"acq_duration_left\", msg.payload.acq_duration_left);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 720,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6bfec3982019cd23",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_status",
-        "func": "if (msg.topic) {\n    global.set(\"acq_status\", msg.payload.acq_status);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "930a273814f6e44c",
-        "type": "function",
-        "z": "35d7387466dd0bc0",
-        "name": "set acq_comment",
-        "func": "if (msg.topic) {\n    global.set(\"acq_comment\", msg.payload.acq_comment);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 750,
-        "y": 800,
+        "y": 140,
         "wires": [
             []
         ]
@@ -4247,8 +3994,8 @@
         "z": "35d7387466dd0bc0",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 180,
-        "y": 120,
+        "x": 80,
+        "y": 40,
         "wires": [
             [
                 "5bea829ec02ded61"
@@ -4272,8 +4019,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 380,
-        "y": 120,
+        "x": 280,
+        "y": 40,
         "wires": [
             [
                 "54ae95ca6088f307"
@@ -4297,8 +4044,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 690,
-        "y": 120,
+        "x": 590,
+        "y": 40,
         "wires": [
             [
                 "113085f8dd63df0c"
@@ -4317,8 +4064,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 260,
+        "x": 120,
+        "y": 140,
         "wires": [
             [
                 "aa6924c7e0aff26c"
@@ -4337,44 +4084,210 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 1090,
-        "y": 620,
+        "x": 150,
+        "y": 200,
         "wires": [
             [
-                "6508c2de9ec03479"
+                "aa6924c7e0aff26c"
             ]
         ]
     },
     {
-        "id": "6508c2de9ec03479",
-        "type": "debug",
+        "id": "425d72ed91ea264e",
+        "type": "ui-template",
         "z": "35d7387466dd0bc0",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1240,
-        "y": 620,
+        "group": "3d88a1872dbbf8a7",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Bottom",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Metadata\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Segmentation\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46b98c54eb680c2e",
+        "type": "mqtt out",
+        "z": "35d7387466dd0bc0",
+        "name": "MQTT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1070,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "c10e1efaac59d8f4",
+        "id": "7d28a539738ca73a",
+        "type": "function",
+        "z": "35d7387466dd0bc0",
+        "name": "update_config",
+        "func": "const keys = global.keys(); // Récupère toutes les clés des variables globales\nlet config = {}; // Objet pour stocker la configuration\n\nkeys.forEach(key => {\n    // Ignore les clés qui commencent par \"$\"\n    if (!key.startsWith('$')) {\n        config[key] = global.get(key);\n    }\n});\n\n// Crée le payload final\nmsg.payload = {\n    action: \"update_config\",\n    config: config\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "46b98c54eb680c2e"
+            ]
+        ]
+    },
+    {
+        "id": "09ecc922fe2214a8",
+        "type": "switch",
+        "z": "35d7387466dd0bc0",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 200,
+        "wires": [
+            [
+                "7d28a539738ca73a",
+                "bb2825f419cc6526"
+            ],
+            [
+                "44c8ea6299e13784"
+            ]
+        ]
+    },
+    {
+        "id": "44c8ea6299e13784",
+        "type": "function",
+        "z": "35d7387466dd0bc0",
+        "name": "stop acquisition",
+        "func": "\nmsg.payload = {\n    action: \"stop\"\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 240,
+        "wires": [
+            [
+                "46b98c54eb680c2e"
+            ]
+        ]
+    },
+    {
+        "id": "bb2825f419cc6526",
+        "type": "function",
+        "z": "35d7387466dd0bc0",
+        "name": "start acquisition",
+        "func": "const acq_interframe_volume = global.get(\"acq_interframe_volume\") || 0;\nconst acq_number_image_acquired = global.get(\"acq_number_image_acquired\") || 0;\n\n\n// Crée le payload final\nmsg.payload = {\n    action: \"image\",\n    pump_direction: \"FORWARD\",\n    volume: acq_interframe_volume,\n    nb_frame: acq_number_image_acquired,\n    sleep: 0.1\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "ce5cca3b8fe34379"
+            ]
+        ]
+    },
+    {
+        "id": "ce5cca3b8fe34379",
+        "type": "delay",
+        "z": "35d7387466dd0bc0",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 280,
+        "wires": [
+            [
+                "46b98c54eb680c2e"
+            ]
+        ]
+    },
+    {
+        "id": "6109bcddfb9acab4",
+        "type": "mqtt in",
+        "z": "35d7387466dd0bc0",
+        "name": "",
+        "topic": "status/imager",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 170,
+        "y": 460,
+        "wires": [
+            [
+                "7ad06eb134e5f2b2"
+            ]
+        ]
+    },
+    {
+        "id": "7ad06eb134e5f2b2",
         "type": "debug",
         "z": "35d7387466dd0bc0",
-        "name": "debug 4",
+        "name": "debug 2",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 240,
+        "x": 600,
+        "y": 620,
         "wires": []
     },
     {
@@ -4383,8 +4296,8 @@
         "z": "0fd76ac156d78937",
         "ui": "e6ae26617c24c3ea",
         "name": "UI Event",
-        "x": 120,
-        "y": 60,
+        "x": 80,
+        "y": 40,
         "wires": [
             [
                 "72421c36bb0418bc"
@@ -4408,8 +4321,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 320,
-        "y": 60,
+        "x": 280,
+        "y": 40,
         "wires": [
             [
                 "66d295cc27d69cec"
@@ -4433,8 +4346,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 630,
-        "y": 60,
+        "x": 590,
+        "y": 40,
         "wires": [
             [
                 "d4129bf3f5622aa6"
@@ -4448,7 +4361,7 @@
         "group": "bfd4acb7b243514f",
         "name": "",
         "label": "",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "maxrows": "10",
@@ -4499,6 +4412,14 @@
                 "align": "start"
             },
             {
+                "title": "Path",
+                "key": "path",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
                 "title": "Segmented",
                 "key": "is_segmented",
                 "keyType": "key",
@@ -4510,12 +4431,11 @@
         "mobileBreakpoint": "sm",
         "mobileBreakpointType": "defaults",
         "action": "replace",
-        "x": 350,
+        "x": 270,
         "y": 180,
         "wires": [
             [
-                "53d2c3f0c340141f",
-                "d5fb79b6f4826c39"
+                "cdb586337f186494"
             ]
         ]
     },
@@ -4524,8 +4444,8 @@
         "type": "list acquisitions",
         "z": "0fd76ac156d78937",
         "name": "",
-        "x": 180,
-        "y": 180,
+        "x": 100,
+        "y": 140,
         "wires": [
             [
                 "61c2c281b1c6e055"
@@ -4533,7 +4453,147 @@
         ]
     },
     {
-        "id": "8c07f817fd1def44",
+        "id": "9e44bf9a44615e20",
+        "type": "ui-template",
+        "z": "0fd76ac156d78937",
+        "group": "9f00807878a32dd5",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Bottom",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"acquisition\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Acquisition\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"visualization\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Visualization\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d11906e048438931",
+        "type": "ui-template",
+        "z": "0fd76ac156d78937",
+        "group": "9b992ca6515ed058",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Top",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"acquisition\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Acquisition\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"visualization\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Visualization\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1300,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26074b8d8ad8abf9",
+        "type": "ui-template",
+        "z": "0fd76ac156d78937",
+        "group": "bfd4acb7b243514f",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\n  export default {\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.payload) return;\n        this.payload = msg.payload;\n        this.showDialog = msg.payload.is_segmented === false;\n      },\n    },\n  },\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n          },\n          // 👇 Inject dataset info cleanly under a new key\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 580,
+        "y": 180,
+        "wires": [
+            [
+                "24c71b69e60e41bd"
+            ]
+        ]
+    },
+    {
+        "id": "4bdd8a4afcdb704b",
+        "type": "mqtt out",
+        "z": "0fd76ac156d78937",
+        "name": "MQTT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 930,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "24c71b69e60e41bd",
+        "type": "switch",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "segmenter/segment",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 180,
+        "wires": [
+            [
+                "4bdd8a4afcdb704b",
+                "33c0d1b8251b5d00",
+                "27628ed66c48096e"
+            ]
+        ]
+    },
+    {
+        "id": "34f6f23f1a46da67",
+        "type": "mqtt in",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "topic": "status/segmenter",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "33c0d1b8251b5d00",
+                "27628ed66c48096e"
+            ]
+        ]
+    },
+    {
+        "id": "27628ed66c48096e",
         "type": "debug",
         "z": "0fd76ac156d78937",
         "name": "debug 1",
@@ -4541,101 +4601,810 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 460,
+        "x": 580,
+        "y": 500,
         "wires": []
     },
     {
-        "id": "968a9c38d239e3be",
-        "type": "ui-notification",
+        "id": "33c0d1b8251b5d00",
+        "type": "ui-template",
         "z": "0fd76ac156d78937",
-        "ui": "e6ae26617c24c3ea",
-        "position": "center center",
-        "colorDefault": true,
-        "color": "#000000",
-        "displayTime": "",
-        "showCountdown": false,
-        "outputs": 1,
-        "allowDismiss": true,
-        "dismissText": "Close",
-        "allowConfirm": true,
-        "confirmText": "Segment",
-        "raw": true,
-        "className": "",
+        "group": "402b3d24c87ab0d2",
+        "page": "",
+        "ui": "",
         "name": "",
-        "x": 810,
-        "y": 520,
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n      <!-- Dataset Info -->\n      <v-list density=\"compact\" v-if=\"segment.dataset\">\n        <v-list-item>\n          <v-list-item-title><b>Project:</b> {{ segment.dataset.project_name }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Sample:</b> {{ segment.dataset.sample_id }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Acquisition:</b> {{ segment.dataset.acquisition_id }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Operator:</b> {{ segment.dataset.operator_name }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Images acquired:</b> {{ segment.dataset.image_acquired_count }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Path:</b> {{ segment.dataset.path }}</v-list-item-title>\n        </v-list-item>\n      </v-list>\n\n      <v-divider class=\"my-4\"></v-divider>\n\n      <!-- Segmentation Settings -->\n      <v-list density=\"compact\">\n        <v-list-item>\n          <v-list-item-title><b>Action:</b> {{ segment.action }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Dataset Path:</b> {{ segment.path?.[0] }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Process ID:</b> {{ segment.settings?.process_id }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title>\n            <b>Options:</b>\n            Recursive: <strong>{{ segment.settings?.recursive ? \"Yes\" : \"No\" }}</strong> •\n            EcoTaxa: <strong>{{ segment.settings?.ecotaxa ? \"Yes\" : \"No\" }}</strong> •\n            Keep: <strong>{{ segment.settings?.keep ? \"Yes\" : \"No\" }}</strong>\n          </v-list-item-title>\n        </v-list-item>\n      </v-list>\n\n      <v-divider class=\"my-4\"></v-divider>\n\n      <!-- Progress Info -->\n      <div v-if=\"statusText\">\n        <div class=\"d-flex justify-space-between align-center mb-2\">\n          <span class=\"text-subtitle-1 font-weight-medium\">Progress</span>\n          <span class=\"text-caption\">{{ progressText }}</span>\n        </div>\n\n        <v-progress-linear\n          :model-value=\"progressPercent\"\n          height=\"10\"\n          color=\"primary\"\n          rounded\n          striped\n        ></v-progress-linear>\n\n        <p class=\"mt-3 mb-0 text-body-2\">\n          Currently segmenting:\n          <strong>{{ currentImage }}</strong>\n        </p>\n      </div>\n\n      <div v-else class=\"text-disabled mt-4\">\n        Awaiting segmentation status...\n      </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      segment: {\n        action: \"\",\n        path: [\"\"],\n        settings: {\n          recursive: false,\n          ecotaxa: false,\n          keep: false,\n          process_id: 0,\n        },\n        dataset: null,\n      },\n      statusText: \"\",\n      currentImage: \"\",\n      currentIndex: 0,\n      totalImages: 0,\n      progressPercent: 0,\n      progressText: \"\",\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.topic || !msg.payload) return;\n\n        // 1️⃣ Capture segment configuration\n        if (msg.topic === \"segmenter/segment\") {\n          this.segment = msg.payload;\n        }\n\n        // 2️⃣ Capture segmentation progress\n        if (msg.topic === \"status/segmenter\") {\n          this.statusText = msg.payload.status;\n\n          const imgMatch = this.statusText.match(/image ([\\w\\-\\_\\.]+),/);\n          this.currentImage = imgMatch ? imgMatch[1] : \"\";\n\n          const progressMatch = this.statusText.match(/image (\\d+)\\/(\\d+)/);\n          if (progressMatch) {\n            this.currentIndex = Number(progressMatch[1]);\n            this.totalImages = Number(progressMatch[2]);\n            this.progressPercent = Math.round(\n              (this.currentIndex / this.totalImages) * 100\n            );\n            this.progressText = `${this.currentIndex} / ${this.totalImages} (${this.progressPercent}%)`;\n          }\n        }\n      },\n    },\n  },\n};\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 940,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdb586337f186494",
+        "type": "switch",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "segmenter/segment",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 180,
         "wires": [
             [
-                "8c07f817fd1def44"
+                "26074b8d8ad8abf9"
             ]
         ]
     },
     {
-        "id": "071b566b5f205675",
+        "id": "77bb783e65c3ffd6",
+        "type": "ui-event",
+        "z": "14f8c9b5ce1235cc",
+        "ui": "e6ae26617c24c3ea",
+        "name": "UI Event",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "55814595d9207e95"
+            ]
+        ]
+    },
+    {
+        "id": "55814595d9207e95",
+        "type": "switch",
+        "z": "14f8c9b5ce1235cc",
+        "name": "msg.topic === \"$pageview\"",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "$pageview",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "90c920ecdab16908"
+            ]
+        ]
+    },
+    {
+        "id": "90c920ecdab16908",
+        "type": "switch",
+        "z": "14f8c9b5ce1235cc",
+        "name": "msg.payload.page.path === \"/visualization\"",
+        "property": "payload.page.path",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/visualization",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "75b694eff7cf6747",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "1d3abb201c51ff47",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Bottom",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"export\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Export\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe2e976833fd41a9",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "b570f76ef526af45",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Top",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"export\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Export\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1300,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f530763503fdc7d1",
+        "type": "mqtt in",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "name": "",
+        "topic": "status/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "f0313532a2b77337"
+            ]
+        ]
+    },
+    {
+        "id": "e5a0432fc7b35b29",
         "type": "function",
-        "z": "0fd76ac156d78937",
-        "name": "function 2",
-        "func": "// Input: \n// msg.payload = {\n//   \"project_name\":\"ICES-IOC\",\n//   \"sample_id\":\"Fjellhagen\",\n//   \"acquisition_id\":\"A1\",\n//   \"operator_name\":\"Thibaut Pollina\",\n//   \"image_acquired_count\":200,\n//   \"is_segmented\":true\n// }\n\n// Build HTML popup content\nlet data = msg.payload;\n\nlet html = `\n<div style=\"font-family: Arial, sans-serif; padding: 10px; border-radius: 8px; width:300px\">\n  <h2 style=\"margin-top:0; color:#2c3e50;\">Project: ${data.project_name}</h2>\n  <p><strong>Sample ID:</strong> ${data.sample_id}</p>\n  <p><strong>Acquisition ID:</strong> ${data.acquisition_id}</p>\n  <p><strong>Operator:</strong> ${data.operator_name}</p>\n  <p><strong>Images Acquired:</strong> ${data.image_acquired_count}</p>\n  <p><strong>Segmented:</strong> ${data.is_segmented ? \"✅ Yes\" : \"❌ No\"}</p>\n</div>\n`;\n\nmsg.payload = html;\nreturn msg;\n",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "name": "Count objects segmented",
+        "func": "var objectCount = global.get('objectCount') || 0;\n\nif (msg.payload.status === 'Done') {\n    msg.payload.objectCount = objectCount;\n    objectCount=0;\n    }\nelse if (msg.topic === 'status/segmenter/metric') {\n    objectCount++;\n}\n\nglobal.set('objectCount', objectCount);\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 480,
+        "x": 410,
+        "y": 320,
         "wires": [
             [
-                "968a9c38d239e3be"
+                "ba8045b3448d5bbf"
             ]
         ]
     },
     {
-        "id": "53d2c3f0c340141f",
+        "id": "ba8045b3448d5bbf",
         "type": "switch",
-        "z": "0fd76ac156d78937",
-        "name": "",
-        "property": "payload.is_segmented",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "name": "msg.payload.metadata.equivalent_diameter is not null",
+        "property": "payload.metadata.equivalent_diameter",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "true"
-            },
-            {
-                "t": "false"
+                "t": "nnull"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
-        "x": 430,
-        "y": 380,
+        "outputs": 1,
+        "x": 740,
+        "y": 320,
         "wires": [
-            [],
             [
-                "071b566b5f205675"
+                "68fe28f50beb2add"
             ]
         ]
     },
     {
-        "id": "d5fb79b6f4826c39",
-        "type": "debug",
-        "z": "0fd76ac156d78937",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 180,
-        "wires": []
+        "id": "f0313532a2b77337",
+        "type": "switch",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "status/segmenter/metric",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "e5a0432fc7b35b29"
+            ]
+        ]
+    },
+    {
+        "id": "e045f6939008f23f",
+        "type": "ui-chart",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "bdcb68c6cff2da73",
+        "name": "",
+        "label": "Histogram - Equivalent Diameter",
+        "order": 1,
+        "chartType": "histogram",
+        "category": "Equivalent Diameter (μm)",
+        "categoryType": "str",
+        "xAxisLabel": "Equivalent Diameter (μm)",
+        "xAxisProperty": "payload.metadata.equivalent_diameter",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "bins",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "20",
+        "xmax": "100",
+        "yAxisLabel": "Abundance",
+        "yAxisProperty": "payload.metadata.equivalent_diameter",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": "80",
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "86400",
+        "removeOlderPoints": "",
+        "colors": [
+            "#00ff04",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "3",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 1020,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68fe28f50beb2add",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "name": "convert px to um",
+        "func": "// Conversion factor from pixels to micrometers (µm)\nconst px_to_um = 0.75;\n\n// Convert relevant measurements\nmsg.payload.metadata.equivalent_diameter = Math.round(msg.payload.metadata.equivalent_diameter * px_to_um);\nmsg.payload.metadata.width = Math.round(msg.payload.metadata.width * px_to_um);\nmsg.payload.metadata.height = Math.round(msg.payload.metadata.height * px_to_um);\nmsg.payload.metadata.area = Math.round(msg.payload.metadata.area * (px_to_um ** 2)); // Area is in square units\nmsg.payload.metadata.area_exc = Math.round(msg.payload.metadata.area_exc * (px_to_um ** 2));\nmsg.payload.metadata.convex_area = Math.round(msg.payload.metadata.convex_area * (px_to_um ** 2));\nmsg.payload.metadata.major = Math.round(msg.payload.metadata.major * px_to_um);\nmsg.payload.metadata.minor = Math.round(msg.payload.metadata.minor * px_to_um);\nmsg.payload.metadata.perim = Math.round(msg.payload.metadata[\"perim.\"] * px_to_um); // Ensure proper key reference\nmsg.payload.metadata.bounding_box_area = Math.round(msg.payload.metadata.bounding_box_area * (px_to_um ** 2));\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 520,
+        "wires": [
+            [
+                "e045f6939008f23f",
+                "693e1ad09770bdf5",
+                "7433aae2400b7f78",
+                "a90099cfe7a37a37",
+                "df0dcb1175b8bd5f"
+            ]
+        ]
+    },
+    {
+        "id": "a20376f0ac08af8e",
+        "type": "ui-markdown",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "bdcb68c6cff2da73",
+        "name": "Histogram of equivalent_diameter",
+        "order": 3,
+        "width": "3",
+        "height": "6",
+        "content": "### Distribution of Object Sizes  \nUnderstanding the size distribution of planktonic objects helps identify dominant size classes and detect anomalies. A skewed distribution might indicate specific biological trends, such as a bloom of a particular species or a technical issue in the acquisition process.  \n\n*In the graph:*  \n- A **peak in smaller sizes** suggests dominance of tiny plankton.  \n- A **broad distribution** indicates a mix of various size classes.  \n- A **skewed or bimodal pattern** may reflect biological or technical factors (e.g., species-specific blooms or imaging biases).\n",
+        "className": "",
+        "x": 1020,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "694187e7d85faec3",
+        "type": "ui-markdown",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "bdcb68c6cff2da73",
+        "name": "elongation vs. area",
+        "order": 4,
+        "width": "3",
+        "height": "6",
+        "content": "### Relationship Between Elongation and Object Area  \nThis scatter plot helps assess whether larger objects tend to be more elongated or compact. Certain plankton species have characteristic shapes, and identifying correlations between elongation and area can aid in distinguishing different taxa or understanding morphological variability.  \n\n*In the graph:*  \n- **Top-right**: Large and highly elongated objects (e.g., filamentous plankton).  \n- **Bottom-right**: Small but highly elongated objects (e.g., thin needle-like forms). \n- **Top-left**: Large but compact objects (e.g., rounded or clustered plankton). \n- **Bottom-left**: Small and compact objects (e.g., spherical or short structures).",
+        "className": "",
+        "x": 970,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "693e1ad09770bdf5",
+        "type": "ui-chart",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "bdcb68c6cff2da73",
+        "name": "elongation vs. area",
+        "label": "elongation vs. area",
+        "order": 2,
+        "chartType": "scatter",
+        "category": "elongation vs. area",
+        "categoryType": "str",
+        "xAxisLabel": "elongation (ratio of major to minor axis)",
+        "xAxisProperty": "payload.metadata.elongation",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "linear",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "0",
+        "xmax": "50",
+        "yAxisLabel": "area (μm²)",
+        "yAxisProperty": "payload.metadata.area",
+        "yAxisPropertyType": "msg",
+        "ymin": "300",
+        "ymax": "1500",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": true,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "300",
+        "colors": [
+            "#ff0088",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "3",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 970,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82a3257cd0a3815d",
+        "type": "ui-markdown",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "fa6393a7d7e3b7d7",
+        "name": "equivalent_diameter vs. MeanValue",
+        "order": 3,
+        "width": "3",
+        "height": "6",
+        "content": "### Variation of Mean Brightness with Equivalent Diameter  \nThis graph explores whether larger objects tend to be brighter or darker. This can reveal differences in pigmentation, transparency, or even imaging inconsistencies.  \n\n*In the graph:*   \n- **Top-right**: Large and bright objects.\n- **Top-left**: Small and bright objects.\n- **Bottom-right**: Large and dark objects.\n- **Bottom-left**: Small and dark objects.  ",
+        "className": "",
+        "x": 560,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44ef242ece9b6b4b",
+        "type": "ui-markdown",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "fa6393a7d7e3b7d7",
+        "name": "MeanSaturation vs. MeanValue",
+        "order": 4,
+        "width": "3",
+        "height": "6",
+        "content": "### Relationship Between Mean Saturation and Mean Brightness\nThis visualization helps understand how color properties vary with brightness. Some plankton groups exhibit distinct coloration, and saturation could be a useful feature for classification. A strong trend might suggest systematic differences in pigmentation or optical properties across plankton groups.\n\n*In the graph:*  \n- **Top-right**: Bright and highly saturated objects (vivid colors).  \n- **Top-left**: Bright but low-saturation objects (pale or near-white).  \n- **Bottom-right**: Dark but highly saturated objects (deep, rich colors).  \n- **Bottom-left**: Dark and low-saturation objects (grayish or faintly colored).",
+        "className": "",
+        "x": 550,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7433aae2400b7f78",
+        "type": "ui-chart",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "fa6393a7d7e3b7d7",
+        "name": "equivalent_diameter vs. MeanValue",
+        "label": "equivalent_diameter vs. MeanValue",
+        "order": 1,
+        "chartType": "scatter",
+        "category": "equivalent_diameter vs. MeanValue",
+        "categoryType": "str",
+        "xAxisLabel": "Equivalent Diameter (μm)",
+        "xAxisProperty": "payload.metadata.equivalent_diameter",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "linear",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "0",
+        "xmax": "50",
+        "yAxisLabel": "MeanValue (0–255, grayscale value)",
+        "yAxisProperty": "payload.metadata.MeanValue",
+        "yAxisPropertyType": "msg",
+        "ymin": "150",
+        "ymax": "255",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": true,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "300",
+        "colors": [
+            "#8c00ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "3",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 560,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a90099cfe7a37a37",
+        "type": "ui-chart",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "fa6393a7d7e3b7d7",
+        "name": "MeanSaturation vs. MeanValue",
+        "label": "MeanSaturation vs. MeanValue",
+        "order": 2,
+        "chartType": "scatter",
+        "category": "MeanSaturation vs. MeanValue",
+        "categoryType": "str",
+        "xAxisLabel": "MeanSaturation (%)",
+        "xAxisProperty": "payload.metadata.MeanSaturation",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "linear",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "0",
+        "xmax": "50",
+        "yAxisLabel": "MeanValue (0–255, grayscale value)",
+        "yAxisProperty": "payload.metadata.MeanValue",
+        "yAxisPropertyType": "msg",
+        "ymin": "150",
+        "ymax": "255",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": true,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "300",
+        "colors": [
+            "#ff9500",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "3",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 550,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df0dcb1175b8bd5f",
+        "type": "ui-chart",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "group": "ed357f41cdf951bc",
+        "name": "x vs. y",
+        "label": "x vs. y",
+        "order": 1,
+        "chartType": "scatter",
+        "category": "x vs. y",
+        "categoryType": "str",
+        "xAxisLabel": "x",
+        "xAxisProperty": "payload.metadata.x",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "linear",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "0",
+        "xmax": "50",
+        "yAxisLabel": "y",
+        "yAxisProperty": "payload.metadata.y",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": true,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "1",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "300",
+        "colors": [
+            "#2b00ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "6",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 930,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64c27d4448d8f79f",
+        "type": "ui-event",
+        "z": "2d14eef8a9f51595",
+        "ui": "e6ae26617c24c3ea",
+        "name": "UI Event",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "b47026c6196ae54f"
+            ]
+        ]
+    },
+    {
+        "id": "b47026c6196ae54f",
+        "type": "switch",
+        "z": "2d14eef8a9f51595",
+        "name": "msg.topic === \"$pageview\"",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "$pageview",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "5676b794b1a00c6a"
+            ]
+        ]
+    },
+    {
+        "id": "5676b794b1a00c6a",
+        "type": "switch",
+        "z": "2d14eef8a9f51595",
+        "name": "msg.payload.page.path === \"/export\"",
+        "property": "payload.page.path",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/export",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3cfcc4372e4a3fb2",
+        "type": "ui-template",
+        "z": "2d14eef8a9f51595",
+        "group": "5d3c24612267b256",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Bottom",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "32d0387ec0cb419f",
+        "type": "ui-template",
+        "z": "2d14eef8a9f51595",
+        "group": "1c2cd2bf4d4ab815",
+        "page": "",
+        "ui": "",
+        "name": "Navigation Top",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n    </v-row>\n  </v-container>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1300,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6521e33d1a35408e",
+        "type": "ui-template",
+        "z": "2d14eef8a9f51595",
+        "group": "d1c2dcd580716d02",
+        "page": "",
+        "ui": "",
+        "name": "Viewer",
+        "order": 1,
+        "width": "12",
+        "height": "8",
+        "head": "",
+        "format": "  <iframe \n    src=\"http://pkscope-rich-kettle-10463/admin/fs/files/home/pi/data/\" \n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n      background:red;\n    }\n  </style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1330,
+        "y": 100,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "f142197f943e06c3",
@@ -6517,7 +7286,7 @@
         "width": "4",
         "height": "6",
         "head": "",
-        "format": "<template>\n  <div class=\"image-wrapper\">\n    <img :src=\"dynamicImageUrl\" class=\"rotated-image\">\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      dynamicImageUrl: ''\n    };\n  },\n  mounted() {\n    this.setDynamicImageUrl();\n  },\n  methods: {\n    setDynamicImageUrl() {\n      const currentUrl = new URL(window.location.href);\n      const baseUrlWithoutPort = currentUrl.protocol + '//' + currentUrl.hostname;\n\n      const relativePath = '/ps/hal/camera/streams/preview.mjpg';\n      const fullUrl = new URL(relativePath, baseUrlWithoutPort);\n\n      this.dynamicImageUrl = fullUrl.href;\n    },\n  },\n};\n</script>",
+        "format": "  <iframe \n    src=\"http://pkscope-rich-kettle-10463/preview\" \n    title=\"Page Node-RED\"\n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n      background:red;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
