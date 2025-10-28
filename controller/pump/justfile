@@ -1,0 +1,8 @@
+setup:
+    sudo cp planktoscope-org.controller.pump.service /etc/systemd/system/
+    sudo systemctl reenable planktoscope-org.controller.pump
+    sudo systemctl restart planktoscope-org.controller.pump
+
+dev:
+    -sudo systemctl stop planktoscope-org.controller.pump
+    cd .. && uv run python -m pump.main
