@@ -973,6 +973,40 @@
         "h": 262
     },
     {
+        "id": "979647e2e34284fb",
+        "type": "group",
+        "z": "14f8c9b5ce1235cc",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f530763503fdc7d1",
+            "e5a0432fc7b35b29",
+            "ba8045b3448d5bbf",
+            "f0313532a2b77337",
+            "e045f6939008f23f",
+            "68fe28f50beb2add",
+            "a20376f0ac08af8e",
+            "694187e7d85faec3",
+            "693e1ad09770bdf5",
+            "82a3257cd0a3815d",
+            "44ef242ece9b6b4b",
+            "7433aae2400b7f78",
+            "a90099cfe7a37a37",
+            "df0dcb1175b8bd5f"
+        ],
+        "x": 14,
+        "y": 279,
+        "w": 1172,
+        "h": 542
+    },
+    {
         "id": "f9b137cda6a41cc8",
         "type": "group",
         "z": "ae92a0a869ca847f",
@@ -1040,40 +1074,6 @@
         "y": 299,
         "w": 252,
         "h": 122
-    },
-    {
-        "id": "979647e2e34284fb",
-        "type": "group",
-        "z": "14f8c9b5ce1235cc",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "f530763503fdc7d1",
-            "e5a0432fc7b35b29",
-            "ba8045b3448d5bbf",
-            "f0313532a2b77337",
-            "e045f6939008f23f",
-            "68fe28f50beb2add",
-            "a20376f0ac08af8e",
-            "694187e7d85faec3",
-            "693e1ad09770bdf5",
-            "82a3257cd0a3815d",
-            "44ef242ece9b6b4b",
-            "7433aae2400b7f78",
-            "a90099cfe7a37a37",
-            "df0dcb1175b8bd5f"
-        ],
-        "x": 14,
-        "y": 279,
-        "w": 1172,
-        "h": 542
     },
     {
         "id": "e6ae26617c24c3ea",
@@ -1410,10 +1410,10 @@
         "type": "ui-group",
         "name": "Table",
         "page": "7a4e042a60b734a6",
-        "width": "12",
+        "width": "8",
         "height": 1,
         "order": 2,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -2313,7 +2313,7 @@
         "page": "7a4e042a60b734a6",
         "width": "12",
         "height": 1,
-        "order": 3,
+        "order": 4,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -2498,6 +2498,20 @@
         "width": 6,
         "height": 1,
         "order": 4,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "402b3d24c87ab0d2",
+        "type": "ui-group",
+        "name": "Group 53",
+        "page": "7a4e042a60b734a6",
+        "width": "4",
+        "height": 1,
+        "order": 3,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -4240,6 +4254,43 @@
         ]
     },
     {
+        "id": "6109bcddfb9acab4",
+        "type": "mqtt in",
+        "z": "35d7387466dd0bc0",
+        "name": "",
+        "topic": "status/imager",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 170,
+        "y": 460,
+        "wires": [
+            [
+                "7ad06eb134e5f2b2"
+            ]
+        ]
+    },
+    {
+        "id": "7ad06eb134e5f2b2",
+        "type": "debug",
+        "z": "35d7387466dd0bc0",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 620,
+        "wires": []
+    },
+    {
         "id": "250979b4672d81b6",
         "type": "ui-event",
         "z": "0fd76ac156d78937",
@@ -4310,7 +4361,7 @@
         "group": "bfd4acb7b243514f",
         "name": "",
         "label": "",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "maxrows": "10",
@@ -4361,6 +4412,14 @@
                 "align": "start"
             },
             {
+                "title": "Path",
+                "key": "path",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
                 "title": "Segmented",
                 "key": "is_segmented",
                 "keyType": "key",
@@ -4372,11 +4431,11 @@
         "mobileBreakpoint": "sm",
         "mobileBreakpointType": "defaults",
         "action": "replace",
-        "x": 350,
+        "x": 270,
         "y": 180,
         "wires": [
             [
-                "53d2c3f0c340141f"
+                "cdb586337f186494"
             ]
         ]
     },
@@ -4390,77 +4449,6 @@
         "wires": [
             [
                 "61c2c281b1c6e055"
-            ]
-        ]
-    },
-    {
-        "id": "968a9c38d239e3be",
-        "type": "ui-notification",
-        "z": "0fd76ac156d78937",
-        "ui": "e6ae26617c24c3ea",
-        "position": "center center",
-        "colorDefault": true,
-        "color": "#000000",
-        "displayTime": "",
-        "showCountdown": false,
-        "outputs": 1,
-        "allowDismiss": true,
-        "dismissText": "Close",
-        "allowConfirm": true,
-        "confirmText": "Segment",
-        "raw": true,
-        "className": "",
-        "name": "",
-        "x": 870,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "071b566b5f205675",
-        "type": "function",
-        "z": "0fd76ac156d78937",
-        "name": "Prepare the modal",
-        "func": "// Input: \n// msg.payload = {\n//   \"project_name\":\"ICES-IOC\",\n//   \"sample_id\":\"Fjellhagen\",\n//   \"acquisition_id\":\"A1\",\n//   \"operator_name\":\"Thibaut Pollina\",\n//   \"image_acquired_count\":200,\n//   \"is_segmented\":true\n// }\n\n// Build HTML popup content\nlet data = msg.payload;\n\nlet html = `\n<div style=\"font-family: Arial, sans-serif; padding: 10px; border-radius: 8px; width:300px\">\n  <h2 style=\"margin-top:0; color:#2c3e50;\">Project: ${data.project_name}</h2>\n  <p><strong>Sample ID:</strong> ${data.sample_id}</p>\n  <p><strong>Acquisition ID:</strong> ${data.acquisition_id}</p>\n  <p><strong>Operator:</strong> ${data.operator_name}</p>\n  <p><strong>Images Acquired:</strong> ${data.image_acquired_count}</p>\n  <p><strong>Segmented:</strong> ${data.is_segmented ? \"Yes\" : \"No\"}</p>\n</div>\n`;\n\nmsg.payload = html;\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 650,
-        "y": 180,
-        "wires": [
-            [
-                "968a9c38d239e3be"
-            ]
-        ]
-    },
-    {
-        "id": "53d2c3f0c340141f",
-        "type": "switch",
-        "z": "0fd76ac156d78937",
-        "name": "",
-        "property": "payload.is_segmented",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 470,
-        "y": 180,
-        "wires": [
-            [],
-            [
-                "071b566b5f205675"
             ]
         ]
     },
@@ -4510,6 +4498,164 @@
         "y": 40,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "26074b8d8ad8abf9",
+        "type": "ui-template",
+        "z": "0fd76ac156d78937",
+        "group": "bfd4acb7b243514f",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\n  export default {\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.payload) return;\n        this.payload = msg.payload;\n        this.showDialog = msg.payload.is_segmented === false;\n      },\n    },\n  },\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n          },\n          // 👇 Inject dataset info cleanly under a new key\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 580,
+        "y": 180,
+        "wires": [
+            [
+                "24c71b69e60e41bd"
+            ]
+        ]
+    },
+    {
+        "id": "4bdd8a4afcdb704b",
+        "type": "mqtt out",
+        "z": "0fd76ac156d78937",
+        "name": "MQTT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 930,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "24c71b69e60e41bd",
+        "type": "switch",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "segmenter/segment",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 180,
+        "wires": [
+            [
+                "4bdd8a4afcdb704b",
+                "33c0d1b8251b5d00",
+                "27628ed66c48096e"
+            ]
+        ]
+    },
+    {
+        "id": "34f6f23f1a46da67",
+        "type": "mqtt in",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "topic": "status/segmenter",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "33c0d1b8251b5d00",
+                "27628ed66c48096e"
+            ]
+        ]
+    },
+    {
+        "id": "27628ed66c48096e",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "33c0d1b8251b5d00",
+        "type": "ui-template",
+        "z": "0fd76ac156d78937",
+        "group": "402b3d24c87ab0d2",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n      <!-- Dataset Info -->\n      <v-list density=\"compact\" v-if=\"segment.dataset\">\n        <v-list-item>\n          <v-list-item-title><b>Project:</b> {{ segment.dataset.project_name }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Sample:</b> {{ segment.dataset.sample_id }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Acquisition:</b> {{ segment.dataset.acquisition_id }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Operator:</b> {{ segment.dataset.operator_name }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Images acquired:</b> {{ segment.dataset.image_acquired_count }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Path:</b> {{ segment.dataset.path }}</v-list-item-title>\n        </v-list-item>\n      </v-list>\n\n      <v-divider class=\"my-4\"></v-divider>\n\n      <!-- Segmentation Settings -->\n      <v-list density=\"compact\">\n        <v-list-item>\n          <v-list-item-title><b>Action:</b> {{ segment.action }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Dataset Path:</b> {{ segment.path?.[0] }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title><b>Process ID:</b> {{ segment.settings?.process_id }}</v-list-item-title>\n        </v-list-item>\n        <v-list-item>\n          <v-list-item-title>\n            <b>Options:</b>\n            Recursive: <strong>{{ segment.settings?.recursive ? \"Yes\" : \"No\" }}</strong> •\n            EcoTaxa: <strong>{{ segment.settings?.ecotaxa ? \"Yes\" : \"No\" }}</strong> •\n            Keep: <strong>{{ segment.settings?.keep ? \"Yes\" : \"No\" }}</strong>\n          </v-list-item-title>\n        </v-list-item>\n      </v-list>\n\n      <v-divider class=\"my-4\"></v-divider>\n\n      <!-- Progress Info -->\n      <div v-if=\"statusText\">\n        <div class=\"d-flex justify-space-between align-center mb-2\">\n          <span class=\"text-subtitle-1 font-weight-medium\">Progress</span>\n          <span class=\"text-caption\">{{ progressText }}</span>\n        </div>\n\n        <v-progress-linear\n          :model-value=\"progressPercent\"\n          height=\"10\"\n          color=\"primary\"\n          rounded\n          striped\n        ></v-progress-linear>\n\n        <p class=\"mt-3 mb-0 text-body-2\">\n          Currently segmenting:\n          <strong>{{ currentImage }}</strong>\n        </p>\n      </div>\n\n      <div v-else class=\"text-disabled mt-4\">\n        Awaiting segmentation status...\n      </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      segment: {\n        action: \"\",\n        path: [\"\"],\n        settings: {\n          recursive: false,\n          ecotaxa: false,\n          keep: false,\n          process_id: 0,\n        },\n        dataset: null,\n      },\n      statusText: \"\",\n      currentImage: \"\",\n      currentIndex: 0,\n      totalImages: 0,\n      progressPercent: 0,\n      progressText: \"\",\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.topic || !msg.payload) return;\n\n        // 1️⃣ Capture segment configuration\n        if (msg.topic === \"segmenter/segment\") {\n          this.segment = msg.payload;\n        }\n\n        // 2️⃣ Capture segmentation progress\n        if (msg.topic === \"status/segmenter\") {\n          this.statusText = msg.payload.status;\n\n          const imgMatch = this.statusText.match(/image ([\\w\\-\\_\\.]+),/);\n          this.currentImage = imgMatch ? imgMatch[1] : \"\";\n\n          const progressMatch = this.statusText.match(/image (\\d+)\\/(\\d+)/);\n          if (progressMatch) {\n            this.currentIndex = Number(progressMatch[1]);\n            this.totalImages = Number(progressMatch[2]);\n            this.progressPercent = Math.round(\n              (this.currentIndex / this.totalImages) * 100\n            );\n            this.progressText = `${this.currentIndex} / ${this.totalImages} (${this.progressPercent}%)`;\n          }\n        }\n      },\n    },\n  },\n};\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 940,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdb586337f186494",
+        "type": "switch",
+        "z": "0fd76ac156d78937",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "segmenter/segment",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "26074b8d8ad8abf9"
+            ]
         ]
     },
     {
