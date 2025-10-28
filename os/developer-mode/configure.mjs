@@ -2,13 +2,14 @@
 
 // https://github.com/sindresorhus/execa/blob/main/docs/bash.md
 
-import chalk from "chalk"
+import { styleText } from "node:util"
 import { $ } from "execa"
 import input from "@inquirer/input"
 
 console.log(
   "Setting up Git Identity",
-  chalk.dim(
+  styleText(
+    "dim",
     "https://git-scm.com/book/ms/v2/Getting-Started-First-Time-Git-Setup#_your_identity",
   ),
 )
@@ -18,7 +19,7 @@ let { stdout: user_name } = await $({
 })`git config --global user.name`
 if (!user_name) {
   user_name = await input({
-    message: `Please enter your name. ${chalk.dim(`e.g. John Doe`)}\n> `,
+    message: `Please enter your name. ${styleText("dim", `e.g. John Doe`)}\n> `,
   })
   await $`git config --global user.name ${user_name}`
 }
@@ -28,7 +29,7 @@ let { stdout: user_email } = await $({
 })`git config --global user.email`
 if (!user_email) {
   user_email = await input({
-    message: `Your email address? eg ${chalk.dim(`e.g. john.doe@example.edu`)}\n> `,
+    message: `Your email address? eg ${styleText("dim", `e.g. john.doe@example.edu`)}\n> `,
   })
   await $`git config --global user.email ${user_email}`
 }
