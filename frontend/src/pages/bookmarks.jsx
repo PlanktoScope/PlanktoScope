@@ -43,10 +43,7 @@ export default function Bookmarks() {
 
         <ul>
           <li>
-            <a
-              href={makeUrl("/admin/cockpit/system/logs#/?priority=info")}
-              target="_blank"
-            >
+            <a href={makeUrl("/admin/cockpit/system/logs")} target="_blank">
               Logs
             </a>
           </li>
