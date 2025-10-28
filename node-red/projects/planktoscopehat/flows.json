@@ -6475,7 +6475,6 @@
         "name": "prepare segmentation",
         "func": "global.set('obj_counter', 0);\n\nvar segmentation_list = flow.get('segmentation_list')\nif (segmentation_list !== undefined && segmentation_list !== \"\") {\n    msg.payload['path'] = segmentation_list\n}\n\n\nvar force = flow.get('force')\nif (force !== undefined && force !== \"\") {\n    msg.payload['settings'] = {\"force\":Boolean(force)}\n}\n\n\nvar recursive = flow.get('recursive')\nif (recursive !== undefined && recursive !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"recursive\"] = Boolean(recursive)\n    }\n    else{\n        msg.payload['settings'] = {\"recursive\": Boolean(recursive)}\n    }\n}\n\nvar ecotaxa = flow.get('ecotaxa')\nif (ecotaxa !== undefined && ecotaxa !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"ecotaxa\"] = Boolean(ecotaxa)\n    }\n    else{\n        msg.payload['settings'] = {\"ecotaxa\": Boolean(ecotaxa)}\n    }\n}\n\nvar keep = flow.get('keep')\nif (keep !== undefined && keep !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"keep\"] = Boolean(keep)\n    }\n    else{\n        msg.payload['settings'] = {\"keep\": Boolean(keep)}\n    }\n}\n\nvar process_id = global.get('process_id')\nif (process_id !== undefined && process_id !== \"\") {\n    if (\"settings\" in msg.payload){\n        msg.payload.settings[\"process_id\"] = process_id\n    }\n    else{\n        msg.payload['settings'] = {\"process_id\": process_id}\n    }\n}\n\nreturn msg;",
         "outputs": 1,
-        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -6484,8 +6483,7 @@
         "y": 460,
         "wires": [
             [
-                "16f3cef4.0acac9",
-                "2422b68f4a7c3901"
+                "16f3cef4.0acac9"
             ]
         ]
     },
@@ -7181,22 +7179,6 @@
                 "c8749cbb.55254"
             ]
         ]
-    },
-    {
-        "id": "2422b68f4a7c3901",
-        "type": "debug",
-        "z": "cb95299c.2817c8",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 940,
-        "y": 460,
-        "wires": []
     },
     {
         "id": "2911fbc6.d28c24",
