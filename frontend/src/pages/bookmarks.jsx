@@ -1,3 +1,5 @@
+import "../index.css"
+
 export default function Bookmarks() {
   function makeUrl(path) {
     const url = new URL(document.location.href)

@@ -1,3 +1,5 @@
+import "../../index.css"
+
 import styles from "./styles.module.css"
 
 import { For, createSignal, Show } from "solid-js"
