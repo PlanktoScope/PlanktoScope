@@ -454,23 +454,6 @@
         "h": 522
     },
     {
-        "id": "19c3570e48774bd0",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "name": "Streaming",
-        "style": {
-            "label": true,
-            "color": "#999999"
-        },
-        "nodes": [
-            "3829aff60cdc5be4"
-        ],
-        "x": 34,
-        "y": 119,
-        "w": 192,
-        "h": 82
-    },
-    {
         "id": "631f3e38acec1bc6",
         "type": "group",
         "z": "6426e7bea6900426",
@@ -568,23 +551,6 @@
         "x": 34,
         "y": 19,
         "w": 372,
-        "h": 82
-    },
-    {
-        "id": "0dcebaf2b57a4374",
-        "type": "group",
-        "z": "14c685bd04db8be5",
-        "name": "Streaming",
-        "style": {
-            "label": true,
-            "color": "#999999"
-        },
-        "nodes": [
-            "300c2d2496f1d12d"
-        ],
-        "x": 34,
-        "y": 119,
-        "w": 192,
         "h": 82
     },
     {
@@ -1538,30 +1504,18 @@
         "disabled": "false"
     },
     {
-        "id": "705156ec7eedfb1e",
-        "type": "ui-group",
-        "name": "Preview",
-        "page": "f22f627015431032",
-        "width": "4",
-        "height": "6",
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
         "id": "728c7ed3d63dfcee",
         "type": "ui-group",
         "name": "Settings",
         "page": "f22f627015431032",
-        "width": "8",
+        "width": "12",
         "height": "1",
-        "order": 2,
+        "order": 1,
         "showTitle": false,
         "className": "",
         "visible": "true",
-        "disabled": "false"
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "aa9ba6cedf56d2cd",
@@ -1700,31 +1654,18 @@
         "disabled": "false"
     },
     {
-        "id": "297b9a8eaa0287e2",
+        "id": "af8acdfe9afbad74",
         "type": "ui-group",
-        "name": "Preview",
+        "name": "Settings",
         "page": "803aa402d5c66b73",
-        "width": "4",
-        "height": "6",
+        "width": "12",
+        "height": "1",
         "order": 1,
         "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
-    },
-    {
-        "id": "af8acdfe9afbad74",
-        "type": "ui-group",
-        "name": "Settings",
-        "page": "803aa402d5c66b73",
-        "width": "8",
-        "height": "8",
-        "order": 2,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
     },
     {
         "id": "f8dd620721c6d70b",
@@ -6623,31 +6564,6 @@
         ]
     },
     {
-        "id": "3829aff60cdc5be4",
-        "type": "ui-template",
-        "z": "6426e7bea6900426",
-        "g": "19c3570e48774bd0",
-        "group": "297b9a8eaa0287e2",
-        "page": "",
-        "ui": "",
-        "name": "Streaming",
-        "order": 1,
-        "width": "4",
-        "height": "6",
-        "head": "",
-        "format": "  <iframe \n    src=\"/preview\" \n  >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 130,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "a99be895898a4f2f",
         "type": "ui-template",
         "z": "6426e7bea6900426",
@@ -7517,31 +7433,6 @@
         ]
     },
     {
-        "id": "300c2d2496f1d12d",
-        "type": "ui-template",
-        "z": "14c685bd04db8be5",
-        "g": "0dcebaf2b57a4374",
-        "group": "705156ec7eedfb1e",
-        "page": "",
-        "ui": "",
-        "name": "Streaming",
-        "order": 1,
-        "width": "4",
-        "height": "6",
-        "head": "",
-        "format": "  <iframe \n    src=\"/preview\" >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 130,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "5fbdba7e61973f9a",
         "type": "ui-template",
         "z": "14c685bd04db8be5",
@@ -8076,7 +7967,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container class=\"pa-4 d-flex flex-wrap justify-center align-start\" style=\"gap: 32px;\">\n    <!-- Zone de prévisualisation -->\n    <v-card\n      class=\"calibration-container\"\n      elevation=\"6\"\n      style=\"width:800px;height:600px;position:relative;overflow:hidden;background:black;border-radius:10px;\"\n      @mousemove=\"onDrag\"\n      @mouseup=\"stopDrag\"\n    >\n      <iframe src=\"/preview\" class=\"calibration-iframe\"></iframe>\n\n      <svg class=\"overlay-line\">\n        <line\n          :x1=\"markerA.x\"\n          :y1=\"markerA.y\"\n          :x2=\"markerB.x\"\n          :y2=\"markerB.y\"\n          stroke=\"red\"\n          stroke-width=\"2\"\n        />\n      </svg>\n\n      <!-- marqueurs -->\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerA.x + 'px', top: markerA.y + 'px' }\"\n        @mousedown=\"startDrag('A', $event)\"\n      ></div>\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerB.x + 'px', top: markerB.y + 'px' }\"\n        @mousedown=\"startDrag('B', $event)\"\n      ></div>\n\n      <!-- étiquette flottante -->\n      <div\n        class=\"distance-label\"\n        :style=\"{ left: midPoint.x + 'px', top: midPoint.y - 10 + 'px' }\"\n      >\n        {{ displayLabel }}\n      </div>\n    </v-card>\n\n    <!-- Panneau de contrôle -->\n    <v-card width=\"320\" class=\"pa-4\">\n      <v-card-title class=\"text-center text-primary\">Pixel Calibration</v-card-title>\n\n      <v-card-text>\n        <v-text-field\n          v-model.number=\"knownDistance\"\n          label=\"Known distance (µm)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"compact\"\n          hide-details\n        ></v-text-field>\n\n        <v-text-field\n          v-model=\"pixelDistance\"\n          label=\"Measured distance (px)\"\n          readonly\n          variant=\"outlined\"\n          density=\"compact\"\n          hide-details\n        ></v-text-field>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model.number=\"sensorWidth\"\n          label=\"Camera sensor width (px)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"compact\"\n          hide-details\n          @input=\"updateScaleFactor\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model.number=\"streamWidth\"\n          label=\"Stream width (px)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"compact\"\n          hide-details\n          @input=\"updateScaleFactor\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model.number=\"scaleFactor\"\n          label=\"Stream scale factor\"\n          type=\"number\"\n          step=\"0.01\"\n          variant=\"outlined\"\n          density=\"compact\"\n          hide-details\n          @input=\"manualScaleFactor\"\n        ></v-text-field>\n\n        <div class=\"text-caption text-grey\">\n          ratio = sensor_width / stream_width\n        </div>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model=\"pixelSize\"\n          label=\"Real pixel size (µm/pixel)\"\n          readonly\n          variant=\"outlined\"\n          density=\"compact\"\n          class=\"highlight\"\n          hide-details\n        ></v-text-field>\n\n        <v-btn color=\"error\" block class=\"mt-2\" @click=\"reset\">\n          Reset markers\n        </v-btn>\n        <v-btn\n          color=\"primary\"\n          block\n          class=\"mt-2\"\n          :disabled=\"!pixelSize\"\n          @click=\"saveCalibration\"\n        >\n          Save calibration\n        </v-btn>\n      </v-card-text>\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      markerA: { x: 200, y: 300 },\n      markerB: { x: 600, y: 300 },\n      dragging: null,\n      knownDistance: null,\n      pixelDistance: 0,\n      sensorWidth: 4056, // largeur du capteur\n      streamWidth: 800,  // largeur du flux vidéo\n      scaleFactor: 5.07,\n      pixelSize: null,\n      scaleManual: false,\n    };\n  },\n  computed: {\n    midPoint() {\n      return {\n        x: (this.markerA.x + this.markerB.x) / 2,\n        y: (this.markerA.y + this.markerB.y) / 2,\n      };\n    },\n    displayLabel() {\n      if (this.pixelSize)\n        return `${this.pixelSize.toFixed(6)} µm/px`;\n      return `${this.pixelDistance.toFixed(1)} px`;\n    },\n  },\n  watch: {\n    knownDistance() { this.autoCalculate(); },\n    scaleFactor() { this.autoCalculate(); },\n  },\n  mounted() {\n    this.updateScaleFactor();\n    this.updateDistance();\n  },\n  methods: {\n    /** méthode générique pour envoyer un message Node-RED */\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({\n          topic,\n          payload: {\n            process_pixel_size: Number(this.pixelSize) || 0,\n            scale_factor: Number(this.scaleFactor) || 0,\n            sensor_width: Number(this.sensorWidth) || 0,\n            stream_width: Number(this.streamWidth) || 0,\n            known_distance: Number(this.knownDistance) || 0,\n            measured_distance: Number(this.pixelDistance) || 0,\n            ...extra,\n          },\n        });\n      }\n    },\n\n    startDrag(marker, e) {\n      this.dragging = marker;\n    },\n    onDrag(e) {\n      if (!this.dragging) return;\n      const rect = e.currentTarget.getBoundingClientRect();\n      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));\n      const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height));\n      this[`marker${this.dragging}`] = { x, y };\n      this.updateDistance();\n    },\n    stopDrag() {\n      this.dragging = null;\n    },\n    updateDistance() {\n      const dx = this.markerB.x - this.markerA.x;\n      const dy = this.markerB.y - this.markerA.y;\n      this.pixelDistance = Math.sqrt(dx * dx + dy * dy);\n      this.autoCalculate();\n    },\n    updateScaleFactor() {\n      if (!this.scaleManual && this.sensorWidth > 0 && this.streamWidth > 0) {\n        this.scaleFactor = this.sensorWidth / this.streamWidth;\n        this.autoCalculate();\n      }\n    },\n    manualScaleFactor() {\n      this.scaleManual = true;\n      this.autoCalculate();\n    },\n    autoCalculate() {\n      const { knownDistance, pixelDistance, scaleFactor } = this;\n      if (knownDistance > 0 && pixelDistance > 0 && scaleFactor > 0) {\n        const realDist = pixelDistance * scaleFactor;\n        this.pixelSize = knownDistance / realDist;\n      } else {\n        this.pixelSize = null;\n      }\n    },\n    reset() {\n      this.markerA = { x: 200, y: 300 };\n      this.markerB = { x: 600, y: 300 };\n      this.knownDistance = null;\n      this.pixelDistance = 0;\n      this.pixelSize = null;\n      this.dragging = null;\n      this.scaleManual = false;\n      this.updateScaleFactor();\n      this.updateDistance();\n    },\n    saveCalibration() {\n      if (this.pixelSize > 0) {\n        this.sendUpdate(\"calibration/save\");\n      }\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 800px;\n  height: 600px;\n  border: none;\n  pointer-events: none;\n}\n.overlay-line {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n}\n.marker {\n  position: absolute;\n  width: 24px;\n  height: 24px;\n  transform: translate(-50%, -50%);\n  cursor: crosshair;\n}\n.marker::before,\n.marker::after {\n  content: '';\n  position: absolute;\n  background: red;\n}\n.marker::before {\n  width: 2px;\n  height: 24px;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n}\n.marker::after {\n  width: 24px;\n  height: 2px;\n  top: 50%;\n  left: 0;\n  transform: translateY(-50%);\n}\n.distance-label {\n  position: absolute;\n  color: white;\n  font-size: 16px;\n  background: rgba(0,0,0,0.7);\n  padding: 4px 10px;\n  border-radius: 6px;\n  pointer-events: none;\n  transform: translate(-50%, -50%);\n}\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>\n",
+        "format": "<template>\n  <v-container class=\"pa-4 d-flex flex-wrap justify-center align-start\" style=\"gap: 32px;\">\n    <!-- Streaming Preview -->\n    <v-card\n      class=\"calibration-container\"\n      elevation=\"6\"\n      style=\"width:1000px;height:750px;position:relative;overflow:hidden;background:black;border-radius:10px;\"\n      @pointermove=\"onPointerMove\"\n      @pointerup=\"stopDrag\"\n      @pointercancel=\"stopDrag\"\n      @pointerleave=\"stopDrag\"\n    >\n      <iframe src=\"/preview\" class=\"calibration-iframe\"></iframe>\n\n      <svg class=\"overlay-line\">\n        <line\n          :x1=\"markerA.x\"\n          :y1=\"markerA.y\"\n          :x2=\"markerB.x\"\n          :y2=\"markerB.y\"\n          stroke=\"red\"\n          stroke-width=\"2\"\n        />\n      </svg>\n\n      <!-- draggable markers -->\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerA.x + 'px', top: markerA.y + 'px' }\"\n        @pointerdown=\"startDrag('A', $event)\"\n      ></div>\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerB.x + 'px', top: markerB.y + 'px' }\"\n        @pointerdown=\"startDrag('B', $event)\"\n      ></div>\n\n      <!-- floating label -->\n      <div\n        class=\"distance-label\"\n        :style=\"{ left: midPoint.x + 'px', top: midPoint.y - 10 + 'px' }\"\n      >\n        {{ displayLabel }}\n      </div>\n    </v-card>\n\n    <!-- Control Panel -->\n    <v-card width=\"360\" class=\"pa-4\">\n      <v-card-title class=\"text-center text-primary\">Pixel Calibration</v-card-title>\n\n      <v-card-text>\n        <v-text-field\n          v-model.number=\"knownDistance\"\n          label=\"Known distance (µm)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model=\"pixelDistanceDisplay\"\n          label=\"Measured distance (px)\"\n          readonly\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n        ></v-text-field>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model.number=\"sensorWidth\"\n          label=\"Camera sensor width (px)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"updateScaleFactor\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model.number=\"streamWidth\"\n          label=\"Stream width (px)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"updateScaleFactor\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model.number=\"scaleFactor\"\n          label=\"Stream scale factor\"\n          type=\"number\"\n          step=\"0.01\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"manualScaleFactor\"\n        ></v-text-field>\n\n        <div class=\"text-caption text-grey mb-3\">\n          ratio = sensor_width / stream_width\n        </div>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model=\"pixelSizeDisplay\"\n          label=\"Real pixel size (µm/pixel)\"\n          readonly\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"highlight mb-3\"\n        ></v-text-field>\n\n        <!-- 🧮 Always-visible formula block -->\n        <v-alert\n          color=\"primary\"\n          variant=\"tonal\"\n          class=\"pa-3 text-caption text-primary-darken-3\"\n        >\n          <div><strong>Formula:</strong> pixel_size = known_distance / (measured_distance × scale_factor)</div>\n          <div class=\"mt-1\">\n            = \n            <span>{{ knownDistance || '—' }}</span>\n            /\n            (\n            <span>{{ pixelDistanceDisplay || '—' }}</span>\n            ×\n            <span>{{ scaleFactor ? scaleFactor.toFixed(3) : '—' }}</span>\n            )\n            =\n            <strong>{{ pixelSizeDisplay || '—' }} µm/pixel</strong>\n          </div>\n        </v-alert>\n\n        <v-btn color=\"error\" block class=\"mt-3\" @click=\"reset\">\n          Reset markers\n        </v-btn>\n        <v-btn\n          color=\"primary\"\n          block\n          class=\"mt-2\"\n          :disabled=\"!pixelSize\"\n          @click=\"saveCalibration\"\n        >\n          Save calibration\n        </v-btn>\n      </v-card-text>\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      markerA: { x: 250, y: 375 },\n      markerB: { x: 750, y: 375 },\n      dragging: null,\n      knownDistance: null,\n      pixelDistance: 0,\n      sensorWidth: 4056,\n      streamWidth: 1000, // updated to match preview width\n      scaleFactor: 4056 / 1000,\n      pixelSize: null,\n      scaleManual: false,\n    };\n  },\n  computed: {\n    midPoint() {\n      return {\n        x: (this.markerA.x + this.markerB.x) / 2,\n        y: (this.markerA.y + this.markerB.y) / 2,\n      };\n    },\n    pixelDistanceDisplay() {\n      return this.pixelDistance > 0 ? this.pixelDistance.toFixed(1) : \"\";\n    },\n    pixelSizeDisplay() {\n      return this.pixelSize ? this.pixelSize.toFixed(4) : \"\";\n    },\n    displayLabel() {\n      if (this.pixelSize)\n        return `${this.pixelSize.toFixed(4)} µm/px`;\n      return `${this.pixelDistance.toFixed(1)} px`;\n    },\n  },\n  watch: {\n    knownDistance() { this.autoCalculate(); },\n    scaleFactor() { this.autoCalculate(); },\n  },\n  mounted() {\n    this.updateScaleFactor();\n    this.updateDistance();\n  },\n  methods: {\n    /** Node-RED send wrapper */\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({\n          topic,\n          payload: {\n            process_pixel_size: this.round(this.pixelSize, 4),\n            scale_factor: this.round(this.scaleFactor, 3),\n            sensor_width: Math.round(this.sensorWidth),\n            stream_width: Math.round(this.streamWidth),\n            known_distance: this.round(this.knownDistance, 2),\n            measured_distance: this.round(this.pixelDistance, 1),\n            ...extra,\n          },\n        });\n      }\n    },\n    round(value, digits = 2) {\n      if (typeof value !== \"number\" || isNaN(value)) return 0;\n      const factor = 10 ** digits;\n      return Math.round(value * factor) / factor;\n    },\n\n    /** --- Pointer Events (works on iPad Safari too!) --- */\n    startDrag(marker, e) {\n      e.preventDefault();\n      this.dragging = marker;\n      e.target.setPointerCapture(e.pointerId);\n    },\n    onPointerMove(e) {\n      if (!this.dragging) return;\n      const container = this.$el.querySelector('.calibration-container');\n      const rect = container.getBoundingClientRect();\n      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));\n      const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height));\n      this[`marker${this.dragging}`] = { x, y };\n      this.updateDistance();\n    },\n    stopDrag() {\n      this.dragging = null;\n    },\n\n    /** --- Calculations --- */\n    updateDistance() {\n      const dx = this.markerB.x - this.markerA.x;\n      const dy = this.markerB.y - this.markerA.y;\n      this.pixelDistance = Math.sqrt(dx * dx + dy * dy);\n      this.autoCalculate();\n    },\n    updateScaleFactor() {\n      if (!this.scaleManual && this.sensorWidth > 0 && this.streamWidth > 0) {\n        this.scaleFactor = this.sensorWidth / this.streamWidth;\n        this.autoCalculate();\n      }\n    },\n    manualScaleFactor() {\n      this.scaleManual = true;\n      this.autoCalculate();\n    },\n    autoCalculate() {\n      const { knownDistance, pixelDistance, scaleFactor } = this;\n      if (knownDistance > 0 && pixelDistance > 0 && scaleFactor > 0) {\n        const realDist = pixelDistance * scaleFactor;\n        this.pixelSize = knownDistance / realDist;\n      } else {\n        this.pixelSize = null;\n      }\n    },\n    reset() {\n      this.markerA = { x: 250, y: 375 };\n      this.markerB = { x: 750, y: 375 };\n      this.knownDistance = null;\n      this.pixelDistance = 0;\n      this.pixelSize = null;\n      this.dragging = null;\n      this.scaleManual = false;\n      this.updateScaleFactor();\n      this.updateDistance();\n    },\n    saveCalibration() {\n      if (this.pixelSize > 0) {\n        this.sendUpdate(\"calibration/save\");\n      }\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 1000px;\n  height: 750px;\n  border: none;\n  pointer-events: none;\n}\n.overlay-line {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n}\n.marker {\n  position: absolute;\n  width: 24px;\n  height: 24px;\n  transform: translate(-50%, -50%);\n  cursor: crosshair;\n  touch-action: none; /* crucial for iPad Safari */\n}\n.marker::before,\n.marker::after {\n  content: '';\n  position: absolute;\n  background: red;\n}\n.marker::before {\n  width: 2px;\n  height: 24px;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n}\n.marker::after {\n  width: 24px;\n  height: 2px;\n  top: 50%;\n  left: 0;\n  transform: translateY(-50%);\n}\n.distance-label {\n  position: absolute;\n  color: white;\n  font-size: 16px;\n  background: rgba(0,0,0,0.7);\n  padding: 4px 10px;\n  border-radius: 6px;\n  pointer-events: none;\n  transform: translate(-50%, -50%);\n}\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
