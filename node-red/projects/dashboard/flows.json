@@ -56,14 +56,6 @@
         "env": []
     },
     {
-        "id": "ae92a0a869ca847f",
-        "type": "tab",
-        "label": "Dev Kit",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "83b2474231efac73",
         "type": "tab",
         "label": "Cron",
@@ -123,6 +115,22 @@
         "id": "a02961610bc3982a",
         "type": "tab",
         "label": "[TEST] PlanktoScope nodes",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "807baf16b84dfb29",
+        "type": "tab",
+        "label": "Settings",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ae92a0a869ca847f",
+        "type": "tab",
+        "label": "Dev Kit",
         "disabled": false,
         "info": "",
         "env": []
@@ -597,23 +605,6 @@
         "h": 82
     },
     {
-        "id": "d7c2ea70e05a360f",
-        "type": "group",
-        "z": "3afb1d2b21be9114",
-        "name": "Streaming",
-        "style": {
-            "label": true,
-            "color": "#999999"
-        },
-        "nodes": [
-            "5b95342353581bba"
-        ],
-        "x": 34,
-        "y": 119,
-        "w": 192,
-        "h": 82
-    },
-    {
         "id": "0861054b07c3373d",
         "type": "group",
         "z": "d5b2c64b84f8ed4f",
@@ -628,23 +619,6 @@
         "x": 34,
         "y": 19,
         "w": 372,
-        "h": 82
-    },
-    {
-        "id": "508d01c8283ee722",
-        "type": "group",
-        "z": "d5b2c64b84f8ed4f",
-        "name": "Streaming",
-        "style": {
-            "label": true,
-            "color": "#999999"
-        },
-        "nodes": [
-            "71ba57a25304e08f"
-        ],
-        "x": 34,
-        "y": 119,
-        "w": 192,
         "h": 82
     },
     {
@@ -1450,7 +1424,7 @@
                 "cols": "12"
             }
         ],
-        "order": 9,
+        "order": 8,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1558,7 +1532,7 @@
                 "cols": "12"
             }
         ],
-        "order": 12,
+        "order": 11,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1620,7 +1594,7 @@
                 "cols": "12"
             }
         ],
-        "order": 13,
+        "order": 12,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1630,26 +1604,14 @@
         "type": "ui-group",
         "name": "Settings",
         "page": "aa9ba6cedf56d2cd",
-        "width": "8",
+        "width": "12",
         "height": "1",
-        "order": 2,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "c9933f7d77fc6f01",
-        "type": "ui-group",
-        "name": "Preview",
-        "page": "aa9ba6cedf56d2cd",
-        "width": "4",
-        "height": "6",
         "order": 1,
         "showTitle": false,
         "className": "",
         "visible": "true",
-        "disabled": "false"
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "48216bc1f7c53a75",
@@ -1682,22 +1644,9 @@
                 "cols": "12"
             }
         ],
-        "order": 14,
+        "order": 13,
         "className": "",
         "visible": "false",
-        "disabled": "false"
-    },
-    {
-        "id": "0c3ae4988f81c2ac",
-        "type": "ui-group",
-        "name": "Preview",
-        "page": "48216bc1f7c53a75",
-        "width": "4",
-        "height": "6",
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
         "disabled": "false"
     },
     {
@@ -1705,13 +1654,14 @@
         "type": "ui-group",
         "name": "Settings",
         "page": "48216bc1f7c53a75",
-        "width": "8",
+        "width": "12",
         "height": "1",
-        "order": 2,
+        "order": 1,
         "showTitle": false,
         "className": "",
         "visible": "true",
-        "disabled": "false"
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "803aa402d5c66b73",
@@ -1744,7 +1694,7 @@
                 "cols": "12"
             }
         ],
-        "order": 11,
+        "order": 10,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1807,7 +1757,7 @@
                 "cols": "12"
             }
         ],
-        "order": 10,
+        "order": 9,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -2013,7 +1963,7 @@
                 "cols": "12"
             }
         ],
-        "order": 8,
+        "order": 15,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -2519,6 +2469,56 @@
         "groupType": "default"
     },
     {
+        "id": "5447fb7a420dfdc6",
+        "type": "ui-page",
+        "name": "Settings",
+        "ui": "e6ae26617c24c3ea",
+        "path": "/settings",
+        "icon": "cog",
+        "layout": "grid",
+        "theme": "f7770f0b818c3a67",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 14,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "070185f2b69cf66d",
+        "type": "ui-group",
+        "name": "admin",
+        "page": "5447fb7a420dfdc6",
+        "width": "12",
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
         "id": "82099021.9ceb08",
         "type": "file",
         "z": "4ed26b8b.253504",
@@ -2985,7 +2985,7 @@
         "width": "7",
         "height": "18",
         "head": "",
-        "format": "  <iframe \n    src=\"/preview\" \n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
+        "format": "  <iframe \n    src=\"/preview\" \n>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3875,7 +3875,7 @@
         "width": "7",
         "height": "18",
         "head": "",
-        "format": "  <iframe \n    src=\"/preview\" \n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
+        "format": "  <iframe \n    src=\"/preview\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3899,7 +3899,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model=\"acq_id\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : A001\"\n          hint=\"A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Acquisition ID',\n              'A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_number_image_acquired\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"sendUpdate\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_number_image_acquired\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Number of Images',\n              'The number of individual images captured during this acquisition process.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interframe Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Volume between frames\"\n          hide-details\n          @update:model-value=\"sendUpdate\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Volume between frames',\n              'The volume of sample displaced between each image capture, expressed in microliters (µL).'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Calculated Volumes -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_imaged_volume\"\n          type=\"number\"\n          hide-details\n          suffix=\"mL\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_pumped_volume\"\n          type=\"number\"\n          hide-details\n          suffix=\"mL\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          clearable\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          hint=\"Additional comments or notes related to the acquisition process.\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Acquisition Comment',\n              'Any additional notes or remarks related to the acquisition setup, process, or context.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          v-model=\"acq_progression\"\n          striped\n          color=\"primary\"\n          height=\"25\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.ceil(value) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Duration -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_duration_left\"\n          type=\"number\"\n          hide-details\n          suffix=\"min\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Status -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          <v-icon left>{{ statusIcon }}</v-icon>\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- History -->\n    <v-row v-if=\"status_history.length\">\n      <v-col cols=\"12\">\n        <v-expansion-panels>\n          <v-expansion-panel>\n            <v-expansion-panel-title>\n              <v-icon left>mdi-history</v-icon>\n              Acquisition Log\n            </v-expansion-panel-title>\n            <v-expansion-panel-text>\n              <v-list density=\"compact\">\n                <v-list-item v-for=\"(msg, i) in status_history\" :key=\"i\">\n                  <v-list-item-content>\n                    <v-list-item-title>{{ msg }}</v-list-item-title>\n                  </v-list-item-content>\n                </v-list-item>\n              </v-list>\n            </v-expansion-panel-text>\n          </v-expansion-panel>\n        </v-expansion-panels>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"400\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text>{{ hintText }}</v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_number_image_acquired: 1,\n      acq_interframe_volume: 1,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      status_history: [],\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      topic: \"acq_params\",\n    };\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.acq_id !== undefined) this.acq_id = p.acq_id;\n        if (p.acq_number_image_acquired !== undefined)\n          this.acq_number_image_acquired = p.acq_number_image_acquired;\n        if (p.acq_interframe_volume !== undefined)\n          this.acq_interframe_volume = p.acq_interframe_volume;\n        if (p.acq_imaged_volume !== undefined)\n          this.acq_imaged_volume = p.acq_imaged_volume;\n        if (p.acq_pumped_volume !== undefined)\n          this.acq_pumped_volume = p.acq_pumped_volume;\n        if (p.acq_comment !== undefined) this.acq_comment = p.acq_comment;\n        if (p.acq_progression !== undefined) this.acq_progression = p.acq_progression;\n        if (p.acq_duration_left !== undefined)\n          this.acq_duration_left = p.acq_duration_left;\n        if (p.acq_status !== undefined) this.acq_status = p.acq_status;\n        if (p.status !== undefined) this.updateStatus(p.status);\n      },\n      deep: true,\n    },\n  },\n  computed: {\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message;\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if (s.startsWith(\"Image\") || s === \"Started\" || s === \"Done\") return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      return this.statusColor === \"green\"\n        ? \"success\"\n        : this.statusColor === \"orange\"\n        ? \"warning\"\n        : this.statusColor === \"red\"\n        ? \"error\"\n        : \"info\";\n    },\n    statusIcon() {\n      const s = this.acq_status_message;\n      if (s.startsWith(\"Error\")) return \"mdi-alert-circle\";\n      if (s.startsWith(\"Configuration update error\")) return \"mdi-cog-alert\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"mdi-close-circle\";\n      if (s.startsWith(\"Image\")) return \"mdi-check-circle\";\n      if (s === \"Started\") return \"mdi-camera\";\n      if (s === \"Done\") return \"mdi-check-bold\";\n      return \"mdi-information\";\n    },\n  },\n  methods: {\n    sendUpdate(extra = {}) {\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: this.acq_id,\n          acq_number_image_acquired: this.acq_number_image_acquired,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: this.acq_imaged_volume,\n          acq_pumped_volume: this.acq_pumped_volume,\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          ...extra,\n        },\n      });\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      this.send({\n        topic: \"imager/image\",\n        payload: { status: value },\n      });\n    },\n    updateStatus(status) {\n      this.acq_status_message = status;\n      const log = `${new Date().toLocaleTimeString()} — ${status}`;\n      this.status_history.unshift(log);\n      if (this.status_history.length > 10) this.status_history.pop();\n\n      // --- 🔁 Synchronisation du bouton Start/Stop selon le statut reçu ---\n      if (status === \"Started\") {\n        this.acq_status = \"on\";\n      } else if (\n        status === \"Done\" ||\n        status.startsWith(\"Error\") ||\n        status.startsWith(\"Configuration update error\") ||\n        status.includes(\"WAS NOT CAPTURED\")\n      ) {\n        this.acq_status = \"off\";\n      }\n    },\n    openHint(title, text) {\n      this.hintTitle = title;\n      this.hintText = text;\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer {\n  cursor: pointer;\n}\n</style>\n",
+        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model=\"acq_id\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : A001\"\n          hint=\"A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Acquisition ID',\n              'A unique identifier assigned to each acquisition. Multiple acquisitions are sometimes required to adjust parameters.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_number_image_acquired\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"sendUpdate\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_number_image_acquired\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Number of Images',\n              'The number of individual images captured during this acquisition process.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interframe Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Volume between frames\"\n          hide-details\n          @update:model-value=\"sendUpdate\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Volume between frames',\n              'The volume of sample displaced between each image capture, expressed in microliters (µL).'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Calculated Volumes -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_imaged_volume\"\n          type=\"number\"\n          hide-details\n          suffix=\"mL\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_pumped_volume\"\n          type=\"number\"\n          hide-details\n          suffix=\"mL\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          hint=\"Additional comments or notes related to the acquisition process.\"\n          @input=\"sendUpdate\"\n        >\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Acquisition Comment',\n              'Any additional notes or remarks related to the acquisition setup, process, or context.'\n            )\">mdi-information</v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          v-model=\"acq_progression\"\n          striped\n          color=\"primary\"\n          height=\"25\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.ceil(value) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Duration -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_duration_left\"\n          type=\"number\"\n          hide-details\n          suffix=\"min\"\n          variant=\"plain\"\n          readonly\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Acquisition Status -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          <v-icon left>{{ statusIcon }}</v-icon>\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- History -->\n    <v-row v-if=\"status_history.length\">\n      <v-col cols=\"12\">\n        <v-expansion-panels>\n          <v-expansion-panel>\n            <v-expansion-panel-title>\n              <v-icon left>mdi-history</v-icon>\n              Acquisition Log\n            </v-expansion-panel-title>\n            <v-expansion-panel-text>\n              <v-list density=\"compact\">\n                <v-list-item v-for=\"(msg, i) in status_history\" :key=\"i\">\n                  <v-list-item-content>\n                    <v-list-item-title>{{ msg }}</v-list-item-title>\n                  </v-list-item-content>\n                </v-list-item>\n              </v-list>\n            </v-expansion-panel-text>\n          </v-expansion-panel>\n        </v-expansion-panels>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"400\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text>{{ hintText }}</v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_number_image_acquired: 1,\n      acq_interframe_volume: 1,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      status_history: [],\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      topic: \"acq_params\",\n    };\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.acq_id !== undefined) this.acq_id = p.acq_id;\n        if (p.acq_number_image_acquired !== undefined)\n          this.acq_number_image_acquired = p.acq_number_image_acquired;\n        if (p.acq_interframe_volume !== undefined)\n          this.acq_interframe_volume = p.acq_interframe_volume;\n        if (p.acq_imaged_volume !== undefined)\n          this.acq_imaged_volume = p.acq_imaged_volume;\n        if (p.acq_pumped_volume !== undefined)\n          this.acq_pumped_volume = p.acq_pumped_volume;\n        if (p.acq_comment !== undefined) this.acq_comment = p.acq_comment;\n        if (p.acq_progression !== undefined) this.acq_progression = p.acq_progression;\n        if (p.acq_duration_left !== undefined)\n          this.acq_duration_left = p.acq_duration_left;\n        if (p.acq_status !== undefined) this.acq_status = p.acq_status;\n        if (p.status !== undefined) this.updateStatus(p.status);\n      },\n      deep: true,\n    },\n  },\n  computed: {\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message;\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if (s.startsWith(\"Image\") || s === \"Started\" || s === \"Done\") return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      return this.statusColor === \"green\"\n        ? \"success\"\n        : this.statusColor === \"orange\"\n        ? \"warning\"\n        : this.statusColor === \"red\"\n        ? \"error\"\n        : \"info\";\n    },\n    statusIcon() {\n      const s = this.acq_status_message;\n      if (s.startsWith(\"Error\")) return \"mdi-alert-circle\";\n      if (s.startsWith(\"Configuration update error\")) return \"mdi-cog-alert\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"mdi-close-circle\";\n      if (s.startsWith(\"Image\")) return \"mdi-check-circle\";\n      if (s === \"Started\") return \"mdi-camera\";\n      if (s === \"Done\") return \"mdi-check-bold\";\n      return \"mdi-information\";\n    },\n  },\n  methods: {\n    sendUpdate(extra = {}) {\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: this.acq_id,\n          acq_number_image_acquired: this.acq_number_image_acquired,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: this.acq_imaged_volume,\n          acq_pumped_volume: this.acq_pumped_volume,\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          ...extra,\n        },\n      });\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      this.send({\n        topic: \"imager/image\",\n        payload: { status: value },\n      });\n    },\n    updateStatus(status) {\n      this.acq_status_message = status;\n      const log = `${new Date().toLocaleTimeString()} — ${status}`;\n      this.status_history.unshift(log);\n      if (this.status_history.length > 10) this.status_history.pop();\n\n      // --- 🔁 Synchronisation du bouton Start/Stop selon le statut reçu ---\n      if (status === \"Started\") {\n        this.acq_status = \"on\";\n      } else if (\n        status === \"Done\" ||\n        status.startsWith(\"Error\") ||\n        status.startsWith(\"Configuration update error\") ||\n        status.includes(\"WAS NOT CAPTURED\")\n      ) {\n        this.acq_status = \"off\";\n      }\n    },\n    openHint(title, text) {\n      this.hintTitle = title;\n      this.hintText = text;\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer {\n  cursor: pointer;\n}\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4214,7 +4214,7 @@
         "type": "function",
         "z": "35d7387466dd0bc0",
         "name": "start acquisition",
-        "func": "const acq_interframe_volume = global.get(\"acq_interframe_volume\") || 0;\nconst acq_number_image_acquired = global.get(\"acq_number_image_acquired\") || 0;\n\n\n// Crée le payload final\nmsg.payload = {\n    action: \"image\",\n    pump_direction: \"FORWARD\",\n    volume: acq_interframe_volume,\n    nb_frame: acq_number_image_acquired,\n    sleep: 0.1\n};\n\nreturn msg;\n",
+        "func": "const acq_interframe_volume = global.get(\"acq_interframe_volume\") || 0;\nconst acq_number_image_acquired = global.get(\"acq_number_image_acquired\") || 0;\n\n\n// Crée le payload final\nmsg.payload = {\n    action: \"image\",\n    pump_direction: \"FORWARD\",\n    volume: acq_interframe_volume/1000,\n    nb_frame: acq_number_image_acquired,\n    sleep: 0.1\n};\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4301,7 +4301,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 1160,
@@ -4584,8 +4585,7 @@
         "wires": [
             [
                 "4bdd8a4afcdb704b",
-                "33c0d1b8251b5d00",
-                "27628ed66c48096e"
+                "33c0d1b8251b5d00"
             ]
         ]
     },
@@ -4605,27 +4605,9 @@
         "y": 340,
         "wires": [
             [
-                "33c0d1b8251b5d00",
-                "27628ed66c48096e"
+                "33c0d1b8251b5d00"
             ]
         ]
-    },
-    {
-        "id": "27628ed66c48096e",
-        "type": "debug",
-        "z": "0fd76ac156d78937",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 500,
-        "wires": []
     },
     {
         "id": "33c0d1b8251b5d00",
@@ -5412,7 +5394,7 @@
         "width": "12",
         "height": "8",
         "head": "",
-        "format": "  <iframe \n    src=\"/ps/data/browse/files/\" \n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n    }\n  </style>",
+        "format": "  <iframe \n    src=\"/ps/data/browse/files/\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -5422,657 +5404,6 @@
         "y": 100,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "f142197f943e06c3",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "f9b137cda6a41cc8",
-        "group": "0b938df814df6f89",
-        "page": "",
-        "ui": "",
-        "name": "template with dialog",
-        "order": 1,
-        "width": "4",
-        "height": "1",
-        "head": "",
-        "format": "<template>\n  <div>\n    <v-text-field\n    type=\"number\"\n      label=\"Prepend inner\"\n      prepend-inner-icon=\"mdi-information-outline\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      @click:prepend-inner=\"showDialog = true\"\n    ></v-text-field>\n\n    <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n      <v-card>\n        <v-card-title> Information </v-card-title>\n        <v-card-text>\n          This is some additional information displayed in a dialog.\n        </v-card-text>\n        <v-card-actions>\n          <v-btn text @click=\"showDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n      }\n    },\n  }\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 200,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ba32092924c21704",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "f9b137cda6a41cc8",
-        "group": "0b938df814df6f89",
-        "name": "template with dialog",
-        "order": 4,
-        "width": "4",
-        "height": "1",
-        "content": "# Template with dialog\n```html\n<template>\n  <div>\n    <v-text-field\n      label=\"Prepend inner\"\n      prepend-inner-icon=\"mdi-information-outline\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      @click:prepend-inner=\"showDialog = true\"\n    ></v-text-field>\n\n    <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n      <v-card>\n        <v-card-title> Information </v-card-title>\n        <v-card-text>\n          This is some additional information displayed in a dialog.\n        </v-card-text>\n        <v-card-actions>\n          <v-btn text @click=\"showDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n      }\n    },\n  }\n</script>\n\n```",
-        "className": "",
-        "x": 200,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "09145421eca576b2",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "e42e71164274acdc",
-        "group": "0b938df814df6f89",
-        "page": "",
-        "ui": "",
-        "name": "template persistent hint",
-        "order": 5,
-        "width": "4",
-        "height": "1",
-        "head": "",
-        "format": "<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      persistent-hint\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 470,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f467dd95ca327abe",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "a2eff4bb38731253",
-        "group": "0b938df814df6f89",
-        "page": "",
-        "ui": "",
-        "name": "template hidden hint",
-        "order": 6,
-        "width": "4",
-        "height": "1",
-        "head": "",
-        "format": "<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 740,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "96d4f5ed69c26184",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "e42e71164274acdc",
-        "group": "0b938df814df6f89",
-        "name": "template persistent hint",
-        "order": 2,
-        "width": "4",
-        "height": "1",
-        "content": "# Template persistent hint\n```html\n<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      persistent-hint\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n</template>\n\n```",
-        "className": "",
-        "x": 470,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9460aed131d64851",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "a2eff4bb38731253",
-        "group": "0b938df814df6f89",
-        "name": "template hidden hint",
-        "order": 3,
-        "width": "4",
-        "height": "1",
-        "content": "# Template hidden hint\n```html\n<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n</template>\n\n```",
-        "className": "",
-        "x": 740,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b2b82b3ee278d4bc",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "224fcab0880dd093",
-        "group": "42ad8472e579096e",
-        "page": "",
-        "ui": "",
-        "name": "Sliders",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-card class=\"ma-20 pa-2\">\n    <v-row class=\"ma-20 pa-2\">\n      <v-col cols=\"12\" sm=\"10\">\n        <v-slider\n          v-model=\"slider\"\n          :max=\"max\"\n          :min=\"min\"\n          :step=\"0.2\"\n          class=\"align-center\"\n          hide-details\n          label=\"Label\"\n          :thumb-size=\"30\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"2\">\n        <v-text-field\n          v-model=\"slider\"\n          prepend-inner-icon=\"mdi-information-outline\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"suffix\"\n          density=\"compact\"\n          @click:prepend-inner=\"showDialog = true\"\n        />\n        <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n          <v-card>\n            <v-card-title>Information</v-card-title>\n            <v-card-text>\n              This is some additional information displayed in a dialog.\n            </v-card-text>\n            <v-card-actions>\n              <v-btn text @click=\"showDialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </v-col>\n    </v-row>\n  </v-card>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n        min: -50,\n        max: 90,\n        slider: 40,\n      }\n    },\n  }\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 110,
-        "y": 700,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cead53fe6d7fe793",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "224fcab0880dd093",
-        "group": "42ad8472e579096e",
-        "name": "Slides description",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "content": "# Template for slider\n```html\n<template>\n  <v-card class=\"ma-20 pa-2\">\n    <v-row class=\"ma-20 pa-2\">\n      <v-col cols=\"12\" sm=\"10\">\n        <v-slider\n          v-model=\"slider\"\n          :max=\"max\"\n          :min=\"min\"\n          :step=\"0.2\"\n          class=\"align-center\"\n          hide-details\n          label=\"Label\"\n          :thumb-size=\"30\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"2\">\n        <v-text-field\n          v-model=\"slider\"\n          prepend-inner-icon=\"mdi-information-outline\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"suffix\"\n          density=\"compact\"\n          @click:prepend-inner=\"showDialog = true\"\n        />\n        <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n          <v-card>\n            <v-card-title>Information</v-card-title>\n            <v-card-text>\n              This is some additional information displayed in a dialog.\n            </v-card-text>\n            <v-card-actions>\n              <v-btn text @click=\"showDialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </v-col>\n    </v-row>\n  </v-card>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n        min: -50,\n        max: 90,\n        slider: 40,\n      }\n    },\n  }\n</script>\n```",
-        "className": "",
-        "x": 150,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7777baf58bd1bc87",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "951b589e9ecbbb70",
-        "group": "e461e16bf6fe45b0",
-        "page": "",
-        "ui": "",
-        "name": "Button toggles",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-btn-toggle\n    v-model=\"toggle_btn\"\n    color=\"primary\"\n    mandatory\n    shaped\n    class=\"d-flex justify-space-between\"\n      variant=\"outlined\" divided\n  >\n    <v-btn class=\"flex-grow-1\"> 1 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 2 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 3 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 4 </v-btn>\n  </v-btn-toggle>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        toggle_btn: 0,\n      }\n    },\n  }\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 140,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a43e9d9c640f6a51",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "951b589e9ecbbb70",
-        "group": "e461e16bf6fe45b0",
-        "name": "Button toggles description",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "content": "# Template for btn group\n\n```html\n<template>\n  <v-btn-toggle\n    v-model=\"toggle_btn\"\n    color=\"primary\"\n    mandatory\n    shaped\n    class=\"d-flex justify-space-between\"\n  >\n    <v-btn class=\"flex-grow-1\"> 1 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 2 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 3 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 4 </v-btn>\n  </v-btn-toggle>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        toggle_btn: 0,\n      }\n    },\n  }\n</script>\n\n```",
-        "className": "",
-        "x": 180,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6d725e9d6e6752bd",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "0d9513e4fa8e671f",
-        "group": "3496e96aaf509c63",
-        "name": "Vuetify links",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "content": "# Vuetify Resources and Examples\n\nThis document provides useful links and references for working with Vuetify components, icons, and examples.\n\n## Vuetify Documentation\n- **Component Usage**: Learn how to use components in Vuetify.  \n  [View Documentation](https://vuetifyjs.com/en/components/all/#containment)\n\n- **API Reference**: Explore the full API details for `v-field`.  \n  [View API](https://vuetifyjs.com/en/api/v-field/)\n\n## Icons\n- **Material Design Icons**: Access the Material Design Icons (MDI) library for Vuetify projects.  \n  [Explore Icons](https://pictogrammers.github.io/@mdi/font/2.0.46/)\n\n## Code Playground\n- **Vue Play**: Experiment with Vue.js and Vuetify components in an interactive playground.  \n  [Open Playground](https://play.vuetifyjs.com/#eNrFVdtu2kAQ/ZWV1UdsQ2jUyKIRacVDq6qNClIf4jws9hg2We9ae+HSKP/e2TUYQ0IUibaRAMvnzM7MOR7GNw+BVll8VVXRwkKQBAMDZcWpgctUEDJYhJkUhjIBihTcstzDnlByubnZxHGCX/0xDd6nQcN4TtvpHGgO6vJaQcFWpJCK5JJzqkhmlQKRrQdxO65JjChmPVLo4rCQgZUJCwY8J5xOgWPMVSmtMGlAFpRbQKDXjbpdvK98Kwi8wyyuzu7wkfLurlZ9mgljW2xNWAKbzc2/0v7LZ29pP7uotWvfAQJ8qt9QPZSUcRwEvIi/7MEOJo0dI1+O5rkCjbLbIVuDYEVx/GGfbNwazlyGKJNlO+DN7DOsBPJbCvgP3n1zVzLBmOeN650l/W7ihqvNmnXlSNfoEUuvx5NTvNwymx2FyCBubbCgExiNbMFm0Z2WAhfcgzuUBvgMK8ZB/agMkwKnISGecRzlXC6/eswoC50tns0hu38Gv9Mrh6EYHCxQC9TacIaqGaBnjh6Nv3v/GrKUuXXD9gL5E7Tk1vVYh32yIse2W3G+2y9lJZVhYjbRo5UBobeiXKMu8tHHpwFu+c8vSN+124/6/lwq8IM+Ml8hLGl14GRN7KfBKnW7c2MqncRxlgs8lgNnCxUJMLGoyniIYbHC7YzjEeIWGPaj86jXj3OmTRuPQJfhFB84motZWtoxgWHF+hW1NpFY4kN0XlfYQCGOuHYlnqSO/cNUIb6f8H/lTH+dpINje7IOuCfS9jznTNzrw8F1qyshNyfq9Wlu60KPHWE59z+3fwDtNYW9)\n\n",
-        "className": "",
-        "x": 130,
-        "y": 60,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "eeeea47645f9daca",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "9ac62e47f20b26b7",
-        "group": "c503a4c01451fec2",
-        "name": "Preview description",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "content": "# Template for preview\n\n## Option 1 - ElevateZoom from jQuery\n\nUse the library depending on jQuery - [ElevateZoom](https://igorlino.github.io/elevatezoom-plus/)\n\n```html\n<script src=\"https://code.jquery.com/jquery-3.6.4.min.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.1.6/src/jquery.ez-plus.js\"></script>\n\n<div>\n  <img \n    id=\"zoom\" \n    src=\"http://90.28.148.199/ps/hal/camera/streams/preview.mjpg\" \n    data-zoom-image=\"http://90.28.148.199/ps/hal/camera/streams/preview.mjpg\" \n    alt=\"Live camera stream with zoom feature\" \n  />\n</div>\n\n<script>\n  $(document).ready(function () {\n    $('#zoom').ezPlus({\n      scrollZoom: true,      \n    });\n  });\n</script>\n```\n## Option 2 - ngx-image-zoom from AngularJS\n\nUse the pure Angular library - [ngx-image-zoom](https://www.npmjs.com/package/ngx-image-zoom)\n",
-        "className": "",
-        "x": 150,
-        "y": 1020,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "55bf230acc0db31a",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "9ac62e47f20b26b7",
-        "group": "c503a4c01451fec2",
-        "page": "",
-        "ui": "",
-        "name": "Preview",
-        "order": 1,
-        "width": "12",
-        "height": "1",
-        "head": "",
-        "format": "<!-- Include jQuery and ElevateZoom-Plus -->\n<script src=\"https://code.jquery.com/jquery-3.6.4.min.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.1.6/src/jquery.ez-plus.js\"></script>\n\n<!-- Zoomable Image -->\n<template>\n  <v-row>\n    <v-col cols=\"8\">\n      <v-card variant=\"outlined\" width=\"auto\" height=\"800px\" class=\"pa-0 ma-0\"\n        >\n          <img\n          id=\"zoom\"\n          src=\"/ps/hal/camera/streams/preview.mjpg\"\n          data-zoom-image=\"http://90.28.148.199/ps/hal/camera/streams/preview.mjpg\"\n          alt=\"Live camera stream with zoom feature\"\n          style=\"\n            transform: rotate(-90deg);\n            margin-left: -100px;\n            margin-top: 100px;\n          \"\n          width=\"800px\"\n          height=\"600px\"\n      /></v-card>\n    </v-col>\n    <v-col cols=\"4\">\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n    </v-col>\n  </v-row>\n</template>\n\n\n<!-- Activate Zoom -->\n<script>\n  $(document).ready(function () {\n    $('#zoom').ezPlus({\n      scrollZoom: true,       // Enable scroll zoom\n    });\n  });\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 120,
-        "y": 980,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ff04e338f28791c1",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "f6e28f1fc85830b2",
-        "group": "9919d82f68c7a152",
-        "name": "Textareas description",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "content": "# Template for Textareas\n\n```html\n<template>\n  <v-textarea\n    clearable\n    label=\"Label\"\n    variant=\"outlined\"\n    row-height=\"20\"\n    rows=\"2\"\n  ></v-textarea>\n</template>\n\n\n```",
-        "className": "",
-        "x": 160,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a1de4783b40b22c7",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "f6e28f1fc85830b2",
-        "group": "9919d82f68c7a152",
-        "page": "",
-        "ui": "",
-        "name": "Textareas",
-        "order": 1,
-        "width": "12",
-        "height": "1",
-        "head": "",
-        "format": "<template>\n  <v-textarea\n    clearable\n    label=\"Label\"\n    variant=\"outlined\"\n    row-height=\"20\"\n    rows=\"2\"\n  ></v-textarea>\n</template>\n\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 120,
-        "y": 1120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "af21295c7ed58d76",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "c4dc9bdc60c02255",
-        "group": "2ca4adc305fbadd5",
-        "page": "",
-        "ui": "",
-        "name": "Home",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-empty-state\n    headline=\"Welcome,\"\n    icon=\"$vuetify\"\n    title=\"What would you like to do today?\"\n  >\n    <v-container>\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://vuetifyjs.com/introduction/why-vuetify/#feature-guides\"\n            prepend-icon=\"$vuetify\"\n            target=\"_blank\"\n            text=\"Start with our dedicated feature guides\"\n            title=\"Learn Vuetify\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://play.vuetifyjs.com\"\n            prepend-icon=\"$vuetify-play\"\n            target=\"_blank\"\n            text=\"Test Vuetify out in our playground\"\n            title=\"Create a Playground\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://bin.vuetifyjs.com\"\n            prepend-icon=\"mdi-delete\"\n            target=\"_blank\"\n            text=\"Create a new bin to store your code\"\n            title=\"Create a Bin\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://issues.vuetifyjs.com\"\n            prepend-icon=\"$warning\"\n            target=\"_blank\"\n            text=\"File a bug report for Vuetify\"\n            title=\"Report a Bug\"\n          ></v-card>\n        </v-col>\n      </v-row>\n    </v-container>\n  </v-empty-state>\n</template>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 110,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0666ca0a7a83550a",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "c4dc9bdc60c02255",
-        "group": "2ca4adc305fbadd5",
-        "name": "Home description",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "content": "# Template for Home\n```html\n<template>\n  <v-empty-state\n    headline=\"Welcome,\"\n    icon=\"$vuetify\"\n    title=\"What would you like to do today?\"\n  >\n    <v-container>\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://vuetifyjs.com/introduction/why-vuetify/#feature-guides\"\n            prepend-icon=\"$vuetify\"\n            target=\"_blank\"\n            text=\"Start with our dedicated feature guides\"\n            title=\"Learn Vuetify\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://play.vuetifyjs.com\"\n            prepend-icon=\"$vuetify-play\"\n            target=\"_blank\"\n            text=\"Test Vuetify out in our playground\"\n            title=\"Create a Playground\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://bin.vuetifyjs.com\"\n            prepend-icon=\"mdi-delete\"\n            target=\"_blank\"\n            text=\"Create a new bin to store your code\"\n            title=\"Create a Bin\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://issues.vuetifyjs.com\"\n            prepend-icon=\"$warning\"\n            target=\"_blank\"\n            text=\"File a bug report for Vuetify\"\n            title=\"Report a Bug\"\n          ></v-card>\n        </v-col>\n      </v-row>\n    </v-container>\n  </v-empty-state>\n</template>\n```",
-        "className": "",
-        "x": 150,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bdd5061dc2808c7b",
-        "type": "ui-event",
-        "z": "ae92a0a869ca847f",
-        "g": "f8c01569bc2d2351",
-        "ui": "e6ae26617c24c3ea",
-        "name": "UI Event",
-        "x": 120,
-        "y": 1280,
-        "wires": [
-            [
-                "c7af759e6348052a"
-            ]
-        ]
-    },
-    {
-        "id": "c7af759e6348052a",
-        "type": "switch",
-        "z": "ae92a0a869ca847f",
-        "g": "f8c01569bc2d2351",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 380,
-        "y": 1280,
-        "wires": [
-            [
-                "05f282f697c8d264"
-            ]
-        ]
-    },
-    {
-        "id": "f8450ada286a255f",
-        "type": "debug",
-        "z": "ae92a0a869ca847f",
-        "g": "f8c01569bc2d2351",
-        "name": "msg.payload.page.path",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload.page.path",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1070,
-        "y": 1280,
-        "wires": []
-    },
-    {
-        "id": "05f282f697c8d264",
-        "type": "switch",
-        "z": "ae92a0a869ca847f",
-        "g": "f8c01569bc2d2351",
-        "name": "msg.payload.page.path === \"/home\"",
-        "property": "payload.page.path",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "/load",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 730,
-        "y": 1280,
-        "wires": [
-            [
-                "f8450ada286a255f"
-            ]
-        ]
-    },
-    {
-        "id": "1c2b9fbce068ea00",
-        "type": "ui-flowviewer",
-        "z": "ae92a0a869ca847f",
-        "g": "f8c01569bc2d2351",
-        "name": "",
-        "group": "4b77e32bb8af68b1",
-        "order": 1,
-        "width": "0",
-        "flow": "[     {         \"id\": \"f8450ada286a255f\",         \"type\": \"debug\",         \"z\": \"061f6587029fa891\",         \"name\": \"msg.payload.page.path\",         \"active\": true,         \"tosidebar\": true,         \"console\": false,         \"tostatus\": false,         \"complete\": \"payload.page.path\",         \"targetType\": \"msg\",         \"statusVal\": \"\",         \"statusType\": \"auto\",         \"x\": 1030,         \"y\": 40,         \"wires\": []     },     {         \"id\": \"05f282f697c8d264\",         \"type\": \"switch\",         \"z\": \"061f6587029fa891\",         \"name\": \"msg.payload.page.path === \\\"/home\\\"\",         \"property\": \"payload.page.path\",         \"propertyType\": \"msg\",         \"rules\": [             {                 \"t\": \"eq\",                 \"v\": \"/load\",                 \"vt\": \"str\"             }         ],         \"checkall\": \"true\",         \"repair\": false,         \"outputs\": 1,         \"x\": 690,         \"y\": 40,         \"wires\": [             [                 \"f8450ada286a255f\",                 \"328128b08bc72b65\"             ]         ]     },     {         \"id\": \"c7af759e6348052a\",         \"type\": \"switch\",         \"z\": \"061f6587029fa891\",         \"name\": \"msg.topic === \\\"$pageview\\\"\",         \"property\": \"topic\",         \"propertyType\": \"msg\",         \"rules\": [             {                 \"t\": \"eq\",                 \"v\": \"$pageview\",                 \"vt\": \"str\"             }         ],         \"checkall\": \"true\",         \"repair\": false,         \"outputs\": 1,         \"x\": 340,         \"y\": 40,         \"wires\": [             [                 \"05f282f697c8d264\"             ]         ]     },     {         \"id\": \"bdd5061dc2808c7b\",         \"type\": \"ui-event\",         \"z\": \"061f6587029fa891\",         \"ui\": \"e6ae26617c24c3ea\",         \"name\": \"UI Event\",         \"x\": 80,         \"y\": 40,         \"wires\": [             [                 \"c7af759e6348052a\"             ]         ]     },     {         \"id\": \"e6ae26617c24c3ea\",         \"type\": \"ui-base\",         \"name\": \"My Dashboard\",         \"path\": \"/dashboard\",         \"appIcon\": \"\",         \"includeClientData\": true,         \"acceptsClientConfig\": [             \"ui-notification\",             \"ui-control\"         ],         \"showPathInSidebar\": true,         \"showPageTitle\": false,         \"navigationStyle\": \"fixed\",         \"titleBarStyle\": \"fixed\",         \"showReconnectNotification\": true,         \"notificationDisplayTime\": \"1\",         \"showDisconnectNotification\": true     } ]",
-        "height": "0",
-        "x": 1030,
-        "y": 1320,
-        "wires": []
-    },
-    {
-        "id": "9496c5ceae312a6b",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "f8c01569bc2d2351",
-        "group": "4b77e32bb8af68b1",
-        "name": "Illustration of the Flow",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "content": "\n\n## Illustration of the Flow\n\n### **1. UI Event**\n**Node Name**: `UI Event`  \n**Description**: Captures user events from the dashboard (e.g., page navigation).  \n**Connected Dashboard**: `My Dashboard`.\n\n```javascript\n// Emits messages with the topic and page path when an event occurs.\n```\n\n---\n\n### **2. Switch: `$pageview`**\n**Node Name**: `msg.topic === \"$pageview\"`  \n**Description**: Filters messages where `msg.topic` equals `$pageview`, ensuring only page navigation events are processed.\n\n**Rule**:\n```javascript\nmsg.topic === \"$pageview\";\n```\n\n---\n\n### **3. Switch: `/load`**\n**Node Name**: `msg.payload.page.path === \"/load\"`  \n**Description**: Filters messages to pass only those where the page path matches `/load`.\n\n**Rule**:\n```javascript\nmsg.payload.page.path === \"/load\";\n```\n\n---\n\n### **4. Debug**\n**Node Name**: `msg.payload.page.path`  \n**Description**: Outputs the value of `msg.payload.page.path` to the debug sidebar in Node-RED for monitoring purposes.\n\n```javascript\n// Outputs:\n// msg.payload.page.path\n```\n\n---\n\n## Supporting Details\n\n- **Dashboard Base**: `My Dashboard`  \n  - Accessible at `/dashboard`.  \n  - Includes navigation and notification configurations for seamless user interaction.\n\n---\n",
-        "className": "",
-        "x": 1060,
-        "y": 1360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bdef59faea812013",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "g": "c0721ac2a3ae24b9",
-        "group": "72483a7aac978971",
-        "page": "",
-        "ui": "",
-        "name": "",
-        "order": 3,
-        "width": "0",
-        "height": "0",
-        "head": "",
-        "format": "<template>\n  <v-text-field\n    v-model=\"variable\"\n    label=\"My variable\"\n    variant=\"outlined\"\n    hide-details=\"auto\"\n    @input=\"sendUpdate\"\n  />\n</template>\n\n<script>\nexport default {\n  props: ['msg'],\n  data() {\n    return {\n      variable: this.msg?.payload?.variable ?? ''\n    }\n  },\n  watch: {\n    // when a new message comes in with a variable, update the field\n    msg: {\n      handler(newMsg) {\n        if (newMsg?.payload?.variable !== undefined) {\n          this.variable = newMsg.payload.variable\n        }\n      },\n      deep: true\n    }\n  },\n  methods: {\n    sendUpdate() {\n      this.send({\n        topic: 'variable',\n        payload: this.variable\n      })\n    }\n  }\n}\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 380,
-        "y": 1460,
-        "wires": [
-            [
-                "fc73d6b9b216ac9c"
-            ]
-        ]
-    },
-    {
-        "id": "5a9af1c11b3c3c31",
-        "type": "function",
-        "z": "ae92a0a869ca847f",
-        "g": "c0721ac2a3ae24b9",
-        "name": "get global variable",
-        "func": "const keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 150,
-        "y": 1460,
-        "wires": [
-            [
-                "bdef59faea812013"
-            ]
-        ]
-    },
-    {
-        "id": "fc73d6b9b216ac9c",
-        "type": "function",
-        "z": "ae92a0a869ca847f",
-        "g": "c0721ac2a3ae24b9",
-        "name": "set global variable",
-        "func": "// Set a value in the global context\nif (msg.topic) {\n    global.set(msg.topic, msg.payload);\n}\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 1460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e3f11510712aac2d",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "g": "c0721ac2a3ae24b9",
-        "group": "72483a7aac978971",
-        "name": "Illustration of the Flow",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "content": "## Illustration of the Flow\n\n### **1. Get Global Variable**\n**Node Name**: `get global variable`  \n**Description**: Retrieves a global variable (`variable`) stored in the Node-RED context.\n\n```javascript\nconst keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n\n```\n\n---\n\n### **2. Template**\n**Node Name**: `template`  \n**Description**: Displays a Vue.js-based text field in the user interface, allowing the user to view and update the global variable.\n\n```html\n<template>\n  <v-text-field\n    v-model=\"variable\"\n    label=\"My variable\"\n    variant=\"outlined\"\n    hide-details=\"auto\"\n    @input=\"sendUpdate\"\n  />\n</template>\n\n<script>\nexport default {\n  props: ['msg'],\n  data() {\n    return {\n      variable: this.msg?.payload?.variable ?? ''\n    }\n  },\n  watch: {\n    // when a new message comes in with a variable, update the field\n    msg: {\n      handler(newMsg) {\n        if (newMsg?.payload?.variable !== undefined) {\n          this.variable = newMsg.payload.variable\n        }\n      },\n      deep: true\n    }\n  },\n  methods: {\n    sendUpdate() {\n      this.send({\n        topic: 'variable',\n        payload: this.variable\n      })\n    }\n  }\n}\n</script>\n\n```\n\n---\n\n### **3. Set Global Variable**\n**Node Name**: `set global variable`  \n**Description**: Updates the global variable (`variable`) with the value entered in the UI text field.\n\n```javascript\n// Set a value in the global context\nif (msg.topic) {\n    global.set(msg.topic, msg.payload);\n}\nreturn msg;\n\n```\n\n---\n\n## Supporting Details\n\n- **UI Group**: `Value and payloads`  \n  Groups the widgets under a dashboard section for better organization.\n\n- **UI Page**: `Data in global.json`  \n  Displays the group on a dashboard page accessible via the `/data` URL.\n\n- **Theme**: `FairScope Theme`  \n  Configures the visual style of the dashboard, using a clean and modern design with primary and background colors.\n",
-        "className": "",
-        "x": 620,
-        "y": 1580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "be327c38d0d4571c",
-        "type": "ui-flowviewer",
-        "z": "ae92a0a869ca847f",
-        "g": "c0721ac2a3ae24b9",
-        "name": "",
-        "group": "72483a7aac978971",
-        "order": 1,
-        "width": "0",
-        "flow": "[     {         \"id\": \"5a9af1c11b3c3c31\",         \"type\": \"function\",         \"z\": \"775111265b9951a8\",         \"name\": \"get global variable\",         \"func\": \"// Retrieve the global variable\\nmsg.variable = global.get('variable');\\n\\nreturn msg;\\n\",         \"outputs\": 1,         \"timeout\": 0,         \"noerr\": 0,         \"initialize\": \"\",         \"finalize\": \"\",         \"libs\": [],         \"x\": 290,         \"y\": 40,         \"wires\": [             [                 \"bdef59faea812013\"             ]         ]     },     {         \"id\": \"bdef59faea812013\",         \"type\": \"ui-template\",         \"z\": \"775111265b9951a8\",         \"group\": \"9db62e7f60daa367\",         \"page\": \"\",         \"ui\": \"\",         \"name\": \"\",         \"order\": 2,         \"width\": \"6\",         \"height\": \"1\",         \"head\": \"\",         \"format\": \"<template>\\n    <v-text-field\\n        label=\\\"My variable\\\"\\n        variant=\\\"outlined\\\"\\n        v-model=\\\"msg.variable\\\"\\n      hide-details=\\\"auto\\\"\\n        @update:model-value=\\\"send({ variable: msg.variable})\\\"\\n    ></v-text-field>\\n</template>\\n\",         \"storeOutMessages\": true,         \"passthru\": true,         \"resendOnRefresh\": true,         \"templateScope\": \"local\",         \"className\": \"\",         \"x\": 520,         \"y\": 40,         \"wires\": [             [                 \"fc73d6b9b216ac9c\"             ]         ]     },     {         \"id\": \"fc73d6b9b216ac9c\",         \"type\": \"function\",         \"z\": \"775111265b9951a8\",         \"name\": \"set global variable\",         \"func\": \"// Set a value in the global context\\nglobal.set('variable', msg.variable);\\n\\nreturn msg;\\n\",         \"outputs\": 1,         \"timeout\": 0,         \"noerr\": 0,         \"initialize\": \"\",         \"finalize\": \"\",         \"libs\": [],         \"x\": 750,         \"y\": 40,         \"wires\": [             []         ]     },     {         \"id\": \"9db62e7f60daa367\",         \"type\": \"ui-group\",         \"name\": \"Get and set variable in Global\",         \"page\": \"69706da10df85266\",         \"width\": \"12\",         \"height\": \"1\",         \"order\": 1,         \"showTitle\": true,         \"className\": \"\",         \"visible\": \"true\",         \"disabled\": \"false\",         \"groupType\": \"default\"     },     {         \"id\": \"69706da10df85266\",         \"type\": \"ui-page\",         \"name\": \"Data in global.json\",         \"ui\": \"e6ae26617c24c3ea\",         \"path\": \"/data\",         \"icon\": \"mdi-database\",         \"layout\": \"grid\",         \"theme\": \"acdf17df5536b1d3\",         \"breakpoints\": [             {                 \"name\": \"Default\",                 \"px\": \"0\",                 \"cols\": \"3\"             },             {                 \"name\": \"Tablet\",                 \"px\": \"576\",                 \"cols\": \"6\"             },             {                 \"name\": \"Small Desktop\",                 \"px\": \"768\",                 \"cols\": \"9\"             },             {                 \"name\": \"Desktop\",                 \"px\": \"1024\",                 \"cols\": \"12\"             }         ],         \"order\": 2,         \"className\": \"\",         \"visible\": \"true\",         \"disabled\": \"false\"     },     {         \"id\": \"e6ae26617c24c3ea\",         \"type\": \"ui-base\",         \"name\": \"My Dashboard\",         \"path\": \"/dashboard\",         \"appIcon\": \"\",         \"includeClientData\": true,         \"acceptsClientConfig\": [             \"ui-notification\",             \"ui-control\"         ],         \"showPathInSidebar\": true,         \"showPageTitle\": false,         \"navigationStyle\": \"fixed\",         \"titleBarStyle\": \"fixed\",         \"showReconnectNotification\": true,         \"notificationDisplayTime\": \"1\",         \"showDisconnectNotification\": true     },     {         \"id\": \"acdf17df5536b1d3\",         \"type\": \"ui-theme\",         \"name\": \"FairScope Theme\",         \"colors\": {             \"surface\": \"#ffffff\",             \"primary\": \"#0094ce\",             \"bgPage\": \"#eeeeee\",             \"groupBg\": \"#ffffff\",             \"groupOutline\": \"#cccccc\"         },         \"sizes\": {             \"density\": \"default\",             \"pagePadding\": \"10px\",             \"groupGap\": \"10px\",             \"groupBorderRadius\": \"0px\",             \"widgetGap\": \"10px\"         }     } ]",
-        "height": "0",
-        "x": 590,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "54d6eeb38d467c03",
-        "type": "ui-template",
-        "z": "ae92a0a869ca847f",
-        "group": "1c1efabff5115209",
-        "page": "",
-        "ui": "",
-        "name": "template number field",
-        "order": 1,
-        "width": "4",
-        "height": "1",
-        "head": "",
-        "format": "<template>\n <v-number-input\n          label=\"Volume of the collector\"\n          variant=\"outlined\"\n          :max=\"50\"\n          :min=\"10\"\n          :step=\"2\"\n          :model-value=\"30\"\n          control-variant=\"hidden\"\n          :precision=\"2\"\n          suffix=\"mL\"\n          clearable\n          hint=\"The volume of water collected after sampling, measured in milliliters (ml).\"\n        ></v-number-input>\n\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 180,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "48666748de82f1a9",
-        "type": "ui-markdown",
-        "z": "ae92a0a869ca847f",
-        "group": "1c1efabff5115209",
-        "name": "template number field",
-        "order": 2,
-        "width": "4",
-        "height": "1",
-        "content": "# Template hidden hint\n```html\n<template>\n <v-number-input\n          label=\"Volume of the collector\"\n          variant=\"outlined\"\n          :max=\"50\"\n          :min=\"10\"\n          :step=\"2\"\n          :model-value=\"30\"\n          control-variant=\"hidden\"\n          :precision=\"2\"\n          suffix=\"mL\"\n          clearable\n          hint=\"The volume of water collected after sampling, measured in milliliters (ml).\"\n        ></v-number-input>\n</template>\n\n```",
-        "className": "",
-        "x": 180,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ade743e5b35d1353",
-        "type": "inject",
-        "z": "ae92a0a869ca847f",
-        "g": "c0721ac2a3ae24b9",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 1540,
-        "wires": [
-            [
-                "5a9af1c11b3c3c31"
-            ]
         ]
     },
     {
@@ -7304,7 +6635,7 @@
         "width": "4",
         "height": "6",
         "head": "",
-        "format": "  <iframe \n    src=\"/preview\" \n    allowfullscreen>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
+        "format": "  <iframe \n    src=\"/preview\" \n  >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -8198,7 +7529,7 @@
         "width": "4",
         "height": "6",
         "head": "",
-        "format": "<template>\n  <div class=\"image-wrapper\">\n    <img :src=\"dynamicImageUrl\">\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      dynamicImageUrl: ''\n    };\n  },\n  mounted() {\n    this.setDynamicImageUrl();\n  },\n  methods: {\n    setDynamicImageUrl() {\n      const currentUrl = new URL(window.location.href);\n      const baseUrlWithoutPort = currentUrl.protocol + '//' + currentUrl.hostname;\n\n      const relativePath = '/ps/hal/camera/streams/preview.mjpg';\n      const fullUrl = new URL(relativePath, baseUrlWithoutPort);\n\n      this.dynamicImageUrl = fullUrl.href;\n    },\n  },\n};\n</script>",
+        "format": "  <iframe \n    src=\"/preview\" >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -8398,8 +7729,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1040,
-        "y": 240,
+        "x": 1200,
+        "y": 380,
         "wires": []
     },
     {
@@ -8536,8 +7867,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
-        "y": 740,
+        "x": 640,
+        "y": 520,
         "wires": []
     },
     {
@@ -8618,8 +7949,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1370,
-        "y": 760,
+        "x": 1390,
+        "y": 560,
         "wires": [
             []
         ]
@@ -8643,8 +7974,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1180,
-        "y": 760,
+        "x": 1220,
+        "y": 560,
         "wires": [
             [
                 "09141e4c94cc7e9f"
@@ -8664,8 +7995,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 880,
-        "y": 160,
+        "x": 1200,
+        "y": 340,
         "wires": []
     },
     {
@@ -8710,31 +8041,6 @@
         ]
     },
     {
-        "id": "5b95342353581bba",
-        "type": "ui-template",
-        "z": "3afb1d2b21be9114",
-        "g": "d7c2ea70e05a360f",
-        "group": "c9933f7d77fc6f01",
-        "page": "",
-        "ui": "",
-        "name": "Streaming",
-        "order": 1,
-        "width": "4",
-        "height": "6",
-        "head": "",
-        "format": "<template>\n  <div class=\"image-wrapper\">\n    <img :src=\"dynamicImageUrl\">\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      dynamicImageUrl: ''\n    };\n  },\n  mounted() {\n    this.setDynamicImageUrl();\n  },\n  methods: {\n    setDynamicImageUrl() {\n      const currentUrl = new URL(window.location.href);\n      const baseUrlWithoutPort = currentUrl.protocol + '//' + currentUrl.hostname;\n\n      const relativePath = '/ps/hal/camera/streams/preview.mjpg';\n      const fullUrl = new URL(relativePath, baseUrlWithoutPort);\n\n      this.dynamicImageUrl = fullUrl.href;\n    },\n  },\n};\n</script>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 130,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "c5dfb3fbc57fe27d",
         "type": "ui-template",
         "z": "3afb1d2b21be9114",
@@ -8754,6 +8060,30 @@
         "className": "",
         "x": 550,
         "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2352be52ae097a08",
+        "type": "ui-template",
+        "z": "3afb1d2b21be9114",
+        "group": "c966455a52d121c0",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<style>\n  .calibration-wrapper {\n    display: flex;\n    justify-content: center;\n    align-items: flex-start;\n    gap: 16px;\n    flex-wrap: wrap;\n  }\n\n  .calibration-container {\n    position: relative;\n    width: 640px;\n    height: 480px;\n    border: 1px solid #999;\n    border-radius: 8px;\n    overflow: hidden;\n    background: #000;\n    user-select: none;\n  }\n\n  .calibration-iframe {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 640px;\n    height: 480px;\n    border: none;\n    pointer-events: none;\n  }\n\n  .overlay-line {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    pointer-events: none;\n  }\n\n  .marker {\n    position: absolute;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    background-color: rgba(255, 64, 64, 0.95);\n    border: 2px solid white;\n    transform: translate(-50%, -50%);\n    cursor: grab;\n    box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);\n  }\n\n  .distance-label {\n    position: absolute;\n    color: white;\n    font-size: 15px;\n    background: rgba(0, 0, 0, 0.7);\n    padding: 2px 8px;\n    border-radius: 4px;\n    pointer-events: none;\n    transform: translate(-50%, -50%);\n  }\n\n  .calibration-controls {\n    width: 260px;\n    background: rgba(255, 255, 255, 0.95);\n    color: #222;\n    border-radius: 8px;\n    padding: 16px 18px;\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);\n  }\n\n  .calibration-controls h4 {\n    text-align: center;\n    margin-bottom: 6px;\n    color: #1976d2;\n  }\n\n  .calibration-controls label {\n    font-size: 14px;\n    margin-bottom: 2px;\n    display: block;\n  }\n\n  .calibration-controls input {\n    width: 100%;\n    padding: 8px;\n    border-radius: 4px;\n    border: 1px solid #ccc;\n    font-size: 14px;\n    margin-bottom: 8px;\n    background-color: #fafafa;\n    color: #111;\n  }\n\n  .calibration-controls input[readonly] {\n    background-color: #eee;\n  }\n\n  .highlight {\n    background-color: #1976d2;\n    color: white;\n    font-weight: bold;\n    border: none;\n  }\n\n  .calibration-controls button {\n    background-color: #e53935;\n    color: white;\n    border: none;\n    padding: 8px;\n    border-radius: 4px;\n    cursor: pointer;\n    transition: background 0.2s;\n  }\n\n  .calibration-controls button:hover {\n    background-color: #c62828;\n  }\n</style>\n\n<div class=\"calibration-wrapper\">\n  <div id=\"calibration\" class=\"calibration-container\">\n    <iframe src=\"/preview\" class=\"calibration-iframe\"></iframe>\n\n    <svg class=\"overlay-line\">\n      <line id=\"calibration-line\" x1=\"100\" y1=\"240\" x2=\"540\" y2=\"240\" stroke=\"red\" stroke-width=\"2\" />\n    </svg>\n\n    <div id=\"markerA\" class=\"marker\" style=\"left:100px;top:240px;\"></div>\n    <div id=\"markerB\" class=\"marker\" style=\"left:540px;top:240px;\"></div>\n    <div id=\"distanceLabel\" class=\"distance-label\" style=\"left:320px;top:230px;\">0 px</div>\n  </div>\n\n  <div class=\"calibration-controls\">\n    <h4>Pixel Calibration</h4>\n\n    <div>\n      <label>Known distance (µm)</label>\n      <input type=\"number\" id=\"knownDistance\" placeholder=\"e.g. 100\" step=\"0.1\" />\n    </div>\n\n    <div>\n      <label>Measured distance (px)</label>\n      <input type=\"text\" id=\"pixelDistance\" readonly />\n    </div>\n\n    <div>\n      <label>Real pixel size (µm/pixel)</label>\n      <input type=\"text\" id=\"pixelSize\" class=\"highlight\" readonly />\n    </div>\n\n    <button id=\"resetBtn\">Reset markers</button>\n    <small id=\"scaleInfo\"></small>\n  </div>\n</div>\n\n<script>\n(function() {\n  const SENSOR_WIDTH = 4056;  // PiCamera HQ full width\n  const STREAM_WIDTH = 640;   // Stream width shown in /preview\n  const SCALE_FACTOR = SENSOR_WIDTH / STREAM_WIDTH; // ~6.34\n\n  const container = document.getElementById(\"calibration\");\n  const markerA = document.getElementById(\"markerA\");\n  const markerB = document.getElementById(\"markerB\");\n  const line = document.getElementById(\"calibration-line\");\n  const label = document.getElementById(\"distanceLabel\");\n  const knownInput = document.getElementById(\"knownDistance\");\n  const distInput = document.getElementById(\"pixelDistance\");\n  const sizeInput = document.getElementById(\"pixelSize\");\n  const resetBtn = document.getElementById(\"resetBtn\");\n  const scaleInfo = document.getElementById(\"scaleInfo\");\n\n  scaleInfo.textContent = `Scale factor = ${SCALE_FACTOR.toFixed(2)} (sensor ${SENSOR_WIDTH}px / stream ${STREAM_WIDTH}px)`;\n\n  let dragging = null;\n\n  function updateLine() {\n    const ax = parseFloat(markerA.style.left);\n    const ay = parseFloat(markerA.style.top);\n    const bx = parseFloat(markerB.style.left);\n    const by = parseFloat(markerB.style.top);\n\n    line.setAttribute(\"x1\", ax);\n    line.setAttribute(\"y1\", ay);\n    line.setAttribute(\"x2\", bx);\n    line.setAttribute(\"y2\", by);\n\n    const dist = Math.sqrt((bx - ax) ** 2 + (by - ay) ** 2);\n    distInput.value = dist.toFixed(2);\n    label.textContent = dist.toFixed(1) + \" px\";\n    label.style.left = ((ax + bx) / 2) + \"px\";\n    label.style.top = ((ay + by) / 2) - 10 + \"px\";\n\n    autoCalculate();\n  }\n\n  function startDrag(marker, event) {\n    dragging = marker;\n    window.addEventListener(\"mousemove\", onDrag);\n    window.addEventListener(\"mouseup\", stopDrag);\n  }\n\n  function onDrag(event) {\n    if (!dragging) return;\n    const rect = container.getBoundingClientRect();\n    const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));\n    const y = Math.max(0, Math.min(event.clientY - rect.top, rect.height));\n    dragging.style.left = x + \"px\";\n    dragging.style.top = y + \"px\";\n    updateLine();\n  }\n\n  function stopDrag() {\n    dragging = null;\n    window.removeEventListener(\"mousemove\", onDrag);\n    window.removeEventListener(\"mouseup\", stopDrag);\n  }\n\n  markerA.addEventListener(\"mousedown\", e => startDrag(markerA, e));\n  markerB.addEventListener(\"mousedown\", e => startDrag(markerB, e));\n\n  knownInput.addEventListener(\"input\", autoCalculate);\n\n  resetBtn.addEventListener(\"click\", () => {\n    markerA.style.left = \"100px\";\n    markerA.style.top = \"240px\";\n    markerB.style.left = \"540px\";\n    markerB.style.top = \"240px\";\n    knownInput.value = \"\";\n    distInput.value = \"\";\n    sizeInput.value = \"\";\n    label.textContent = \"0 px\";\n    updateLine();\n  });\n\n  function autoCalculate() {\n    const known = parseFloat(knownInput.value);\n    const dist = parseFloat(distInput.value);\n    if (known > 0 && dist > 0) {\n      const realDist = dist * SCALE_FACTOR;\n      const pixelSize = known / realDist;\n      sizeInput.value = pixelSize.toFixed(6);\n      label.textContent = pixelSize.toFixed(6) + \" µm/px\";\n      if (typeof send === \"function\") {\n        send({ payload: { pixelSize, known, dist, scale: SCALE_FACTOR } });\n      }\n    }\n  }\n\n  updateLine();\n})();\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 520,
+        "y": 220,
         "wires": [
             []
         ]
@@ -8819,31 +8149,6 @@
         "events": "all",
         "x": 320,
         "y": 60,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "71ba57a25304e08f",
-        "type": "ui-template",
-        "z": "d5b2c64b84f8ed4f",
-        "g": "508d01c8283ee722",
-        "group": "0c3ae4988f81c2ac",
-        "page": "",
-        "ui": "",
-        "name": "Streaming",
-        "order": 1,
-        "width": "4",
-        "height": "6",
-        "head": "",
-        "format": "<template>\n  <div class=\"image-wrapper\">\n    <img :src=\"dynamicImageUrl\">\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      dynamicImageUrl: ''\n    };\n  },\n  mounted() {\n    this.setDynamicImageUrl();\n  },\n  methods: {\n    setDynamicImageUrl() {\n      const currentUrl = new URL(window.location.href);\n      const baseUrlWithoutPort = currentUrl.protocol + '//' + currentUrl.hostname;\n\n      const relativePath = '/ps/hal/camera/streams/preview.mjpg';\n      const fullUrl = new URL(relativePath, baseUrlWithoutPort);\n\n      this.dynamicImageUrl = fullUrl.href;\n    },\n  },\n};\n</script>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 130,
-        "y": 160,
         "wires": [
             []
         ]
@@ -9738,5 +9043,894 @@
         "x": 330,
         "y": 1020,
         "wires": []
+    },
+    {
+        "id": "7451ef4165b79c87",
+        "type": "exec",
+        "z": "807baf16b84dfb29",
+        "command": "sudo",
+        "addpay": "payload",
+        "append": "now",
+        "useSpawn": "false",
+        "timer": "2",
+        "winHide": false,
+        "oldrc": false,
+        "name": "sudo cmd now",
+        "x": 560,
+        "y": 380,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "425b04bad228f33e",
+        "type": "exec",
+        "z": "807baf16b84dfb29",
+        "command": "sudo systemctl restart planktoscope-org.controller.service",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Restart hardware controller",
+        "x": 860,
+        "y": 460,
+        "wires": [
+            [
+                "fd74a406ecf48578"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3dac096ae08896f0",
+        "type": "exec",
+        "z": "807baf16b84dfb29",
+        "command": "sudo systemctl restart planktoscope-org.segmenter.service",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Restart segmenter",
+        "x": 830,
+        "y": 600,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fd74a406ecf48578",
+        "type": "exec",
+        "z": "807baf16b84dfb29",
+        "command": "sudo systemctl restart nodered.service",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Restart Node Red",
+        "x": 1130,
+        "y": 460,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "53d72b9f4f4cb00f",
+        "type": "ui-button",
+        "z": "807baf16b84dfb29",
+        "group": "070185f2b69cf66d",
+        "name": "Reboot",
+        "label": "Reboot",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "reboot",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 280,
+        "y": 360,
+        "wires": [
+            [
+                "7451ef4165b79c87"
+            ]
+        ]
+    },
+    {
+        "id": "f040d18d96b705c3",
+        "type": "ui-button",
+        "z": "807baf16b84dfb29",
+        "group": "070185f2b69cf66d",
+        "name": "Shutdown",
+        "label": "Shutdown",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "shutdown",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "7451ef4165b79c87"
+            ]
+        ]
+    },
+    {
+        "id": "bab342f965d345f2",
+        "type": "ui-button",
+        "z": "807baf16b84dfb29",
+        "group": "070185f2b69cf66d",
+        "name": "Restart Hardware controller",
+        "label": "Restart Hardware controller",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 340,
+        "y": 440,
+        "wires": [
+            [
+                "425b04bad228f33e"
+            ]
+        ]
+    },
+    {
+        "id": "1f2fde836eabbb26",
+        "type": "ui-button",
+        "z": "807baf16b84dfb29",
+        "group": "070185f2b69cf66d",
+        "name": "Restart Segmenter",
+        "label": "Restart Segmenter",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "3dac096ae08896f0"
+            ]
+        ]
+    },
+    {
+        "id": "f142197f943e06c3",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "f9b137cda6a41cc8",
+        "group": "0b938df814df6f89",
+        "page": "",
+        "ui": "",
+        "name": "template with dialog",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n  <div>\n    <v-text-field\n    type=\"number\"\n      label=\"Prepend inner\"\n      prepend-inner-icon=\"mdi-information-outline\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      @click:prepend-inner=\"showDialog = true\"\n    ></v-text-field>\n\n    <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n      <v-card>\n        <v-card-title> Information </v-card-title>\n        <v-card-text>\n          This is some additional information displayed in a dialog.\n        </v-card-text>\n        <v-card-actions>\n          <v-btn text @click=\"showDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n      }\n    },\n  }\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 200,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ba32092924c21704",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "f9b137cda6a41cc8",
+        "group": "0b938df814df6f89",
+        "name": "template with dialog",
+        "order": 4,
+        "width": "4",
+        "height": "1",
+        "content": "# Template with dialog\n```html\n<template>\n  <div>\n    <v-text-field\n      label=\"Prepend inner\"\n      prepend-inner-icon=\"mdi-information-outline\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      @click:prepend-inner=\"showDialog = true\"\n    ></v-text-field>\n\n    <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n      <v-card>\n        <v-card-title> Information </v-card-title>\n        <v-card-text>\n          This is some additional information displayed in a dialog.\n        </v-card-text>\n        <v-card-actions>\n          <v-btn text @click=\"showDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </div>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n      }\n    },\n  }\n</script>\n\n```",
+        "className": "",
+        "x": 200,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09145421eca576b2",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "e42e71164274acdc",
+        "group": "0b938df814df6f89",
+        "page": "",
+        "ui": "",
+        "name": "template persistent hint",
+        "order": 5,
+        "width": "4",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      persistent-hint\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 470,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f467dd95ca327abe",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "a2eff4bb38731253",
+        "group": "0b938df814df6f89",
+        "page": "",
+        "ui": "",
+        "name": "template hidden hint",
+        "order": 6,
+        "width": "4",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 740,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96d4f5ed69c26184",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "e42e71164274acdc",
+        "group": "0b938df814df6f89",
+        "name": "template persistent hint",
+        "order": 2,
+        "width": "4",
+        "height": "1",
+        "content": "# Template persistent hint\n```html\n<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      persistent-hint\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n</template>\n\n```",
+        "className": "",
+        "x": 470,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9460aed131d64851",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "a2eff4bb38731253",
+        "group": "0b938df814df6f89",
+        "name": "template hidden hint",
+        "order": 3,
+        "width": "4",
+        "height": "1",
+        "content": "# Template hidden hint\n```html\n<template>\n    <v-text-field\n    type=\"number\"\n      label=\"Label\"\n      variant=\"outlined\"\n      suffix=\"suffix\"\n      density=\"compact\"\n      clearable\n      hint=\"This is some additional information displayed in a hint.\"\n    ></v-text-field>\n</template>\n\n```",
+        "className": "",
+        "x": 740,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2b82b3ee278d4bc",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "224fcab0880dd093",
+        "group": "42ad8472e579096e",
+        "page": "",
+        "ui": "",
+        "name": "Sliders",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <v-card class=\"ma-20 pa-2\">\n    <v-row class=\"ma-20 pa-2\">\n      <v-col cols=\"12\" sm=\"10\">\n        <v-slider\n          v-model=\"slider\"\n          :max=\"max\"\n          :min=\"min\"\n          :step=\"0.2\"\n          class=\"align-center\"\n          hide-details\n          label=\"Label\"\n          :thumb-size=\"30\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"2\">\n        <v-text-field\n          v-model=\"slider\"\n          prepend-inner-icon=\"mdi-information-outline\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"suffix\"\n          density=\"compact\"\n          @click:prepend-inner=\"showDialog = true\"\n        />\n        <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n          <v-card>\n            <v-card-title>Information</v-card-title>\n            <v-card-text>\n              This is some additional information displayed in a dialog.\n            </v-card-text>\n            <v-card-actions>\n              <v-btn text @click=\"showDialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </v-col>\n    </v-row>\n  </v-card>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n        min: -50,\n        max: 90,\n        slider: 40,\n      }\n    },\n  }\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 110,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cead53fe6d7fe793",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "224fcab0880dd093",
+        "group": "42ad8472e579096e",
+        "name": "Slides description",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "content": "# Template for slider\n```html\n<template>\n  <v-card class=\"ma-20 pa-2\">\n    <v-row class=\"ma-20 pa-2\">\n      <v-col cols=\"12\" sm=\"10\">\n        <v-slider\n          v-model=\"slider\"\n          :max=\"max\"\n          :min=\"min\"\n          :step=\"0.2\"\n          class=\"align-center\"\n          hide-details\n          label=\"Label\"\n          :thumb-size=\"30\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"2\">\n        <v-text-field\n          v-model=\"slider\"\n          prepend-inner-icon=\"mdi-information-outline\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"suffix\"\n          density=\"compact\"\n          @click:prepend-inner=\"showDialog = true\"\n        />\n        <v-dialog v-model=\"showDialog\" max-width=\"500px\">\n          <v-card>\n            <v-card-title>Information</v-card-title>\n            <v-card-text>\n              This is some additional information displayed in a dialog.\n            </v-card-text>\n            <v-card-actions>\n              <v-btn text @click=\"showDialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </v-col>\n    </v-row>\n  </v-card>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        showDialog: false, // Controls dialog visibility\n        min: -50,\n        max: 90,\n        slider: 40,\n      }\n    },\n  }\n</script>\n```",
+        "className": "",
+        "x": 150,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7777baf58bd1bc87",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "951b589e9ecbbb70",
+        "group": "e461e16bf6fe45b0",
+        "page": "",
+        "ui": "",
+        "name": "Button toggles",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <v-btn-toggle\n    v-model=\"toggle_btn\"\n    color=\"primary\"\n    mandatory\n    shaped\n    class=\"d-flex justify-space-between\"\n      variant=\"outlined\" divided\n  >\n    <v-btn class=\"flex-grow-1\"> 1 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 2 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 3 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 4 </v-btn>\n  </v-btn-toggle>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        toggle_btn: 0,\n      }\n    },\n  }\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 140,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a43e9d9c640f6a51",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "951b589e9ecbbb70",
+        "group": "e461e16bf6fe45b0",
+        "name": "Button toggles description",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "content": "# Template for btn group\n\n```html\n<template>\n  <v-btn-toggle\n    v-model=\"toggle_btn\"\n    color=\"primary\"\n    mandatory\n    shaped\n    class=\"d-flex justify-space-between\"\n  >\n    <v-btn class=\"flex-grow-1\"> 1 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 2 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 3 </v-btn>\n\n    <v-btn class=\"flex-grow-1\"> 4 </v-btn>\n  </v-btn-toggle>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        toggle_btn: 0,\n      }\n    },\n  }\n</script>\n\n```",
+        "className": "",
+        "x": 180,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6d725e9d6e6752bd",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "0d9513e4fa8e671f",
+        "group": "3496e96aaf509c63",
+        "name": "Vuetify links",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "content": "# Vuetify Resources and Examples\n\nThis document provides useful links and references for working with Vuetify components, icons, and examples.\n\n## Vuetify Documentation\n- **Component Usage**: Learn how to use components in Vuetify.  \n  [View Documentation](https://vuetifyjs.com/en/components/all/#containment)\n\n- **API Reference**: Explore the full API details for `v-field`.  \n  [View API](https://vuetifyjs.com/en/api/v-field/)\n\n## Icons\n- **Material Design Icons**: Access the Material Design Icons (MDI) library for Vuetify projects.  \n  [Explore Icons](https://pictogrammers.github.io/@mdi/font/2.0.46/)\n\n## Code Playground\n- **Vue Play**: Experiment with Vue.js and Vuetify components in an interactive playground.  \n  [Open Playground](https://play.vuetifyjs.com/#eNrFVdtu2kAQ/ZWV1UdsQ2jUyKIRacVDq6qNClIf4jws9hg2We9ae+HSKP/e2TUYQ0IUibaRAMvnzM7MOR7GNw+BVll8VVXRwkKQBAMDZcWpgctUEDJYhJkUhjIBihTcstzDnlByubnZxHGCX/0xDd6nQcN4TtvpHGgO6vJaQcFWpJCK5JJzqkhmlQKRrQdxO65JjChmPVLo4rCQgZUJCwY8J5xOgWPMVSmtMGlAFpRbQKDXjbpdvK98Kwi8wyyuzu7wkfLurlZ9mgljW2xNWAKbzc2/0v7LZ29pP7uotWvfAQJ8qt9QPZSUcRwEvIi/7MEOJo0dI1+O5rkCjbLbIVuDYEVx/GGfbNwazlyGKJNlO+DN7DOsBPJbCvgP3n1zVzLBmOeN650l/W7ihqvNmnXlSNfoEUuvx5NTvNwymx2FyCBubbCgExiNbMFm0Z2WAhfcgzuUBvgMK8ZB/agMkwKnISGecRzlXC6/eswoC50tns0hu38Gv9Mrh6EYHCxQC9TacIaqGaBnjh6Nv3v/GrKUuXXD9gL5E7Tk1vVYh32yIse2W3G+2y9lJZVhYjbRo5UBobeiXKMu8tHHpwFu+c8vSN+124/6/lwq8IM+Ml8hLGl14GRN7KfBKnW7c2MqncRxlgs8lgNnCxUJMLGoyniIYbHC7YzjEeIWGPaj86jXj3OmTRuPQJfhFB84motZWtoxgWHF+hW1NpFY4kN0XlfYQCGOuHYlnqSO/cNUIb6f8H/lTH+dpINje7IOuCfS9jznTNzrw8F1qyshNyfq9Wlu60KPHWE59z+3fwDtNYW9)\n\n",
+        "className": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eeeea47645f9daca",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "9ac62e47f20b26b7",
+        "group": "c503a4c01451fec2",
+        "name": "Preview description",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "content": "# Template for preview\n\n## Option 1 - ElevateZoom from jQuery\n\nUse the library depending on jQuery - [ElevateZoom](https://igorlino.github.io/elevatezoom-plus/)\n\n```html\n<script src=\"https://code.jquery.com/jquery-3.6.4.min.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.1.6/src/jquery.ez-plus.js\"></script>\n\n<div>\n  <img \n    id=\"zoom\" \n    src=\"http://90.28.148.199/ps/hal/camera/streams/preview.mjpg\" \n    data-zoom-image=\"http://90.28.148.199/ps/hal/camera/streams/preview.mjpg\" \n    alt=\"Live camera stream with zoom feature\" \n  />\n</div>\n\n<script>\n  $(document).ready(function () {\n    $('#zoom').ezPlus({\n      scrollZoom: true,      \n    });\n  });\n</script>\n```\n## Option 2 - ngx-image-zoom from AngularJS\n\nUse the pure Angular library - [ngx-image-zoom](https://www.npmjs.com/package/ngx-image-zoom)\n",
+        "className": "",
+        "x": 150,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55bf230acc0db31a",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "9ac62e47f20b26b7",
+        "group": "c503a4c01451fec2",
+        "page": "",
+        "ui": "",
+        "name": "Preview",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "head": "",
+        "format": "<!-- Include jQuery and ElevateZoom-Plus -->\n<script src=\"https://code.jquery.com/jquery-3.6.4.min.js\"></script>\n<script src=\"https://cdn.jsdelivr.net/gh/igorlino/elevatezoom-plus@1.1.6/src/jquery.ez-plus.js\"></script>\n\n<!-- Zoomable Image -->\n<template>\n  <v-row>\n    <v-col cols=\"8\">\n      <v-card variant=\"outlined\" width=\"auto\" height=\"800px\" class=\"pa-0 ma-0\"\n        >\n          <img\n          id=\"zoom\"\n          src=\"/ps/hal/camera/streams/preview.mjpg\"\n          data-zoom-image=\"http://90.28.148.199/ps/hal/camera/streams/preview.mjpg\"\n          alt=\"Live camera stream with zoom feature\"\n          style=\"\n            transform: rotate(-90deg);\n            margin-left: -100px;\n            margin-top: 100px;\n          \"\n          width=\"800px\"\n          height=\"600px\"\n      /></v-card>\n    </v-col>\n    <v-col cols=\"4\">\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n      <v-text-field\n        type=\"number\"\n        label=\"Label\"\n        variant=\"outlined\"\n        suffix=\"suffix\"\n        density=\"compact\"\n        clearable\n        hint=\"This is some additional information displayed in a hint.\"\n      ></v-text-field>\n    </v-col>\n  </v-row>\n</template>\n\n\n<!-- Activate Zoom -->\n<script>\n  $(document).ready(function () {\n    $('#zoom').ezPlus({\n      scrollZoom: true,       // Enable scroll zoom\n    });\n  });\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 120,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff04e338f28791c1",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "f6e28f1fc85830b2",
+        "group": "9919d82f68c7a152",
+        "name": "Textareas description",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "content": "# Template for Textareas\n\n```html\n<template>\n  <v-textarea\n    clearable\n    label=\"Label\"\n    variant=\"outlined\"\n    row-height=\"20\"\n    rows=\"2\"\n  ></v-textarea>\n</template>\n\n\n```",
+        "className": "",
+        "x": 160,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1de4783b40b22c7",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "f6e28f1fc85830b2",
+        "group": "9919d82f68c7a152",
+        "page": "",
+        "ui": "",
+        "name": "Textareas",
+        "order": 1,
+        "width": "12",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n  <v-textarea\n    clearable\n    label=\"Label\"\n    variant=\"outlined\"\n    row-height=\"20\"\n    rows=\"2\"\n  ></v-textarea>\n</template>\n\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 120,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af21295c7ed58d76",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "c4dc9bdc60c02255",
+        "group": "2ca4adc305fbadd5",
+        "page": "",
+        "ui": "",
+        "name": "Home",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <v-empty-state\n    headline=\"Welcome,\"\n    icon=\"$vuetify\"\n    title=\"What would you like to do today?\"\n  >\n    <v-container>\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://vuetifyjs.com/introduction/why-vuetify/#feature-guides\"\n            prepend-icon=\"$vuetify\"\n            target=\"_blank\"\n            text=\"Start with our dedicated feature guides\"\n            title=\"Learn Vuetify\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://play.vuetifyjs.com\"\n            prepend-icon=\"$vuetify-play\"\n            target=\"_blank\"\n            text=\"Test Vuetify out in our playground\"\n            title=\"Create a Playground\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://bin.vuetifyjs.com\"\n            prepend-icon=\"mdi-delete\"\n            target=\"_blank\"\n            text=\"Create a new bin to store your code\"\n            title=\"Create a Bin\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://issues.vuetifyjs.com\"\n            prepend-icon=\"$warning\"\n            target=\"_blank\"\n            text=\"File a bug report for Vuetify\"\n            title=\"Report a Bug\"\n          ></v-card>\n        </v-col>\n      </v-row>\n    </v-container>\n  </v-empty-state>\n</template>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0666ca0a7a83550a",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "c4dc9bdc60c02255",
+        "group": "2ca4adc305fbadd5",
+        "name": "Home description",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "content": "# Template for Home\n```html\n<template>\n  <v-empty-state\n    headline=\"Welcome,\"\n    icon=\"$vuetify\"\n    title=\"What would you like to do today?\"\n  >\n    <v-container>\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://vuetifyjs.com/introduction/why-vuetify/#feature-guides\"\n            prepend-icon=\"$vuetify\"\n            target=\"_blank\"\n            text=\"Start with our dedicated feature guides\"\n            title=\"Learn Vuetify\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://play.vuetifyjs.com\"\n            prepend-icon=\"$vuetify-play\"\n            target=\"_blank\"\n            text=\"Test Vuetify out in our playground\"\n            title=\"Create a Playground\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://bin.vuetifyjs.com\"\n            prepend-icon=\"mdi-delete\"\n            target=\"_blank\"\n            text=\"Create a new bin to store your code\"\n            title=\"Create a Bin\"\n          ></v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"6\">\n          <v-card\n            href=\"https://issues.vuetifyjs.com\"\n            prepend-icon=\"$warning\"\n            target=\"_blank\"\n            text=\"File a bug report for Vuetify\"\n            title=\"Report a Bug\"\n          ></v-card>\n        </v-col>\n      </v-row>\n    </v-container>\n  </v-empty-state>\n</template>\n```",
+        "className": "",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bdd5061dc2808c7b",
+        "type": "ui-event",
+        "z": "ae92a0a869ca847f",
+        "g": "f8c01569bc2d2351",
+        "ui": "e6ae26617c24c3ea",
+        "name": "UI Event",
+        "x": 120,
+        "y": 1280,
+        "wires": [
+            [
+                "c7af759e6348052a"
+            ]
+        ]
+    },
+    {
+        "id": "c7af759e6348052a",
+        "type": "switch",
+        "z": "ae92a0a869ca847f",
+        "g": "f8c01569bc2d2351",
+        "name": "msg.topic === \"$pageview\"",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "$pageview",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 1280,
+        "wires": [
+            [
+                "05f282f697c8d264"
+            ]
+        ]
+    },
+    {
+        "id": "f8450ada286a255f",
+        "type": "debug",
+        "z": "ae92a0a869ca847f",
+        "g": "f8c01569bc2d2351",
+        "name": "msg.payload.page.path",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.page.path",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "05f282f697c8d264",
+        "type": "switch",
+        "z": "ae92a0a869ca847f",
+        "g": "f8c01569bc2d2351",
+        "name": "msg.payload.page.path === \"/home\"",
+        "property": "payload.page.path",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/load",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 1280,
+        "wires": [
+            [
+                "f8450ada286a255f"
+            ]
+        ]
+    },
+    {
+        "id": "1c2b9fbce068ea00",
+        "type": "ui-flowviewer",
+        "z": "ae92a0a869ca847f",
+        "g": "f8c01569bc2d2351",
+        "name": "",
+        "group": "4b77e32bb8af68b1",
+        "order": 1,
+        "width": "0",
+        "flow": "[     {         \"id\": \"f8450ada286a255f\",         \"type\": \"debug\",         \"z\": \"061f6587029fa891\",         \"name\": \"msg.payload.page.path\",         \"active\": true,         \"tosidebar\": true,         \"console\": false,         \"tostatus\": false,         \"complete\": \"payload.page.path\",         \"targetType\": \"msg\",         \"statusVal\": \"\",         \"statusType\": \"auto\",         \"x\": 1030,         \"y\": 40,         \"wires\": []     },     {         \"id\": \"05f282f697c8d264\",         \"type\": \"switch\",         \"z\": \"061f6587029fa891\",         \"name\": \"msg.payload.page.path === \\\"/home\\\"\",         \"property\": \"payload.page.path\",         \"propertyType\": \"msg\",         \"rules\": [             {                 \"t\": \"eq\",                 \"v\": \"/load\",                 \"vt\": \"str\"             }         ],         \"checkall\": \"true\",         \"repair\": false,         \"outputs\": 1,         \"x\": 690,         \"y\": 40,         \"wires\": [             [                 \"f8450ada286a255f\",                 \"328128b08bc72b65\"             ]         ]     },     {         \"id\": \"c7af759e6348052a\",         \"type\": \"switch\",         \"z\": \"061f6587029fa891\",         \"name\": \"msg.topic === \\\"$pageview\\\"\",         \"property\": \"topic\",         \"propertyType\": \"msg\",         \"rules\": [             {                 \"t\": \"eq\",                 \"v\": \"$pageview\",                 \"vt\": \"str\"             }         ],         \"checkall\": \"true\",         \"repair\": false,         \"outputs\": 1,         \"x\": 340,         \"y\": 40,         \"wires\": [             [                 \"05f282f697c8d264\"             ]         ]     },     {         \"id\": \"bdd5061dc2808c7b\",         \"type\": \"ui-event\",         \"z\": \"061f6587029fa891\",         \"ui\": \"e6ae26617c24c3ea\",         \"name\": \"UI Event\",         \"x\": 80,         \"y\": 40,         \"wires\": [             [                 \"c7af759e6348052a\"             ]         ]     },     {         \"id\": \"e6ae26617c24c3ea\",         \"type\": \"ui-base\",         \"name\": \"My Dashboard\",         \"path\": \"/dashboard\",         \"appIcon\": \"\",         \"includeClientData\": true,         \"acceptsClientConfig\": [             \"ui-notification\",             \"ui-control\"         ],         \"showPathInSidebar\": true,         \"showPageTitle\": false,         \"navigationStyle\": \"fixed\",         \"titleBarStyle\": \"fixed\",         \"showReconnectNotification\": true,         \"notificationDisplayTime\": \"1\",         \"showDisconnectNotification\": true     } ]",
+        "height": "0",
+        "x": 1030,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "9496c5ceae312a6b",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "f8c01569bc2d2351",
+        "group": "4b77e32bb8af68b1",
+        "name": "Illustration of the Flow",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "content": "\n\n## Illustration of the Flow\n\n### **1. UI Event**\n**Node Name**: `UI Event`  \n**Description**: Captures user events from the dashboard (e.g., page navigation).  \n**Connected Dashboard**: `My Dashboard`.\n\n```javascript\n// Emits messages with the topic and page path when an event occurs.\n```\n\n---\n\n### **2. Switch: `$pageview`**\n**Node Name**: `msg.topic === \"$pageview\"`  \n**Description**: Filters messages where `msg.topic` equals `$pageview`, ensuring only page navigation events are processed.\n\n**Rule**:\n```javascript\nmsg.topic === \"$pageview\";\n```\n\n---\n\n### **3. Switch: `/load`**\n**Node Name**: `msg.payload.page.path === \"/load\"`  \n**Description**: Filters messages to pass only those where the page path matches `/load`.\n\n**Rule**:\n```javascript\nmsg.payload.page.path === \"/load\";\n```\n\n---\n\n### **4. Debug**\n**Node Name**: `msg.payload.page.path`  \n**Description**: Outputs the value of `msg.payload.page.path` to the debug sidebar in Node-RED for monitoring purposes.\n\n```javascript\n// Outputs:\n// msg.payload.page.path\n```\n\n---\n\n## Supporting Details\n\n- **Dashboard Base**: `My Dashboard`  \n  - Accessible at `/dashboard`.  \n  - Includes navigation and notification configurations for seamless user interaction.\n\n---\n",
+        "className": "",
+        "x": 1060,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bdef59faea812013",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "g": "c0721ac2a3ae24b9",
+        "group": "72483a7aac978971",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-text-field\n    v-model=\"variable\"\n    label=\"My variable\"\n    variant=\"outlined\"\n    hide-details=\"auto\"\n    @input=\"sendUpdate\"\n  />\n</template>\n\n<script>\nexport default {\n  props: ['msg'],\n  data() {\n    return {\n      variable: this.msg?.payload?.variable ?? ''\n    }\n  },\n  watch: {\n    // when a new message comes in with a variable, update the field\n    msg: {\n      handler(newMsg) {\n        if (newMsg?.payload?.variable !== undefined) {\n          this.variable = newMsg.payload.variable\n        }\n      },\n      deep: true\n    }\n  },\n  methods: {\n    sendUpdate() {\n      this.send({\n        topic: 'variable',\n        payload: this.variable\n      })\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 380,
+        "y": 1460,
+        "wires": [
+            [
+                "fc73d6b9b216ac9c"
+            ]
+        ]
+    },
+    {
+        "id": "5a9af1c11b3c3c31",
+        "type": "function",
+        "z": "ae92a0a869ca847f",
+        "g": "c0721ac2a3ae24b9",
+        "name": "get global variable",
+        "func": "const keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 1460,
+        "wires": [
+            [
+                "bdef59faea812013"
+            ]
+        ]
+    },
+    {
+        "id": "fc73d6b9b216ac9c",
+        "type": "function",
+        "z": "ae92a0a869ca847f",
+        "g": "c0721ac2a3ae24b9",
+        "name": "set global variable",
+        "func": "// Set a value in the global context\nif (msg.topic) {\n    global.set(msg.topic, msg.payload);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3f11510712aac2d",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "g": "c0721ac2a3ae24b9",
+        "group": "72483a7aac978971",
+        "name": "Illustration of the Flow",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "content": "## Illustration of the Flow\n\n### **1. Get Global Variable**\n**Node Name**: `get global variable`  \n**Description**: Retrieves a global variable (`variable`) stored in the Node-RED context.\n\n```javascript\nconst keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n\n```\n\n---\n\n### **2. Template**\n**Node Name**: `template`  \n**Description**: Displays a Vue.js-based text field in the user interface, allowing the user to view and update the global variable.\n\n```html\n<template>\n  <v-text-field\n    v-model=\"variable\"\n    label=\"My variable\"\n    variant=\"outlined\"\n    hide-details=\"auto\"\n    @input=\"sendUpdate\"\n  />\n</template>\n\n<script>\nexport default {\n  props: ['msg'],\n  data() {\n    return {\n      variable: this.msg?.payload?.variable ?? ''\n    }\n  },\n  watch: {\n    // when a new message comes in with a variable, update the field\n    msg: {\n      handler(newMsg) {\n        if (newMsg?.payload?.variable !== undefined) {\n          this.variable = newMsg.payload.variable\n        }\n      },\n      deep: true\n    }\n  },\n  methods: {\n    sendUpdate() {\n      this.send({\n        topic: 'variable',\n        payload: this.variable\n      })\n    }\n  }\n}\n</script>\n\n```\n\n---\n\n### **3. Set Global Variable**\n**Node Name**: `set global variable`  \n**Description**: Updates the global variable (`variable`) with the value entered in the UI text field.\n\n```javascript\n// Set a value in the global context\nif (msg.topic) {\n    global.set(msg.topic, msg.payload);\n}\nreturn msg;\n\n```\n\n---\n\n## Supporting Details\n\n- **UI Group**: `Value and payloads`  \n  Groups the widgets under a dashboard section for better organization.\n\n- **UI Page**: `Data in global.json`  \n  Displays the group on a dashboard page accessible via the `/data` URL.\n\n- **Theme**: `FairScope Theme`  \n  Configures the visual style of the dashboard, using a clean and modern design with primary and background colors.\n",
+        "className": "",
+        "x": 620,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be327c38d0d4571c",
+        "type": "ui-flowviewer",
+        "z": "ae92a0a869ca847f",
+        "g": "c0721ac2a3ae24b9",
+        "name": "",
+        "group": "72483a7aac978971",
+        "order": 1,
+        "width": "0",
+        "flow": "[     {         \"id\": \"5a9af1c11b3c3c31\",         \"type\": \"function\",         \"z\": \"775111265b9951a8\",         \"name\": \"get global variable\",         \"func\": \"// Retrieve the global variable\\nmsg.variable = global.get('variable');\\n\\nreturn msg;\\n\",         \"outputs\": 1,         \"timeout\": 0,         \"noerr\": 0,         \"initialize\": \"\",         \"finalize\": \"\",         \"libs\": [],         \"x\": 290,         \"y\": 40,         \"wires\": [             [                 \"bdef59faea812013\"             ]         ]     },     {         \"id\": \"bdef59faea812013\",         \"type\": \"ui-template\",         \"z\": \"775111265b9951a8\",         \"group\": \"9db62e7f60daa367\",         \"page\": \"\",         \"ui\": \"\",         \"name\": \"\",         \"order\": 2,         \"width\": \"6\",         \"height\": \"1\",         \"head\": \"\",         \"format\": \"<template>\\n    <v-text-field\\n        label=\\\"My variable\\\"\\n        variant=\\\"outlined\\\"\\n        v-model=\\\"msg.variable\\\"\\n      hide-details=\\\"auto\\\"\\n        @update:model-value=\\\"send({ variable: msg.variable})\\\"\\n    ></v-text-field>\\n</template>\\n\",         \"storeOutMessages\": true,         \"passthru\": true,         \"resendOnRefresh\": true,         \"templateScope\": \"local\",         \"className\": \"\",         \"x\": 520,         \"y\": 40,         \"wires\": [             [                 \"fc73d6b9b216ac9c\"             ]         ]     },     {         \"id\": \"fc73d6b9b216ac9c\",         \"type\": \"function\",         \"z\": \"775111265b9951a8\",         \"name\": \"set global variable\",         \"func\": \"// Set a value in the global context\\nglobal.set('variable', msg.variable);\\n\\nreturn msg;\\n\",         \"outputs\": 1,         \"timeout\": 0,         \"noerr\": 0,         \"initialize\": \"\",         \"finalize\": \"\",         \"libs\": [],         \"x\": 750,         \"y\": 40,         \"wires\": [             []         ]     },     {         \"id\": \"9db62e7f60daa367\",         \"type\": \"ui-group\",         \"name\": \"Get and set variable in Global\",         \"page\": \"69706da10df85266\",         \"width\": \"12\",         \"height\": \"1\",         \"order\": 1,         \"showTitle\": true,         \"className\": \"\",         \"visible\": \"true\",         \"disabled\": \"false\",         \"groupType\": \"default\"     },     {         \"id\": \"69706da10df85266\",         \"type\": \"ui-page\",         \"name\": \"Data in global.json\",         \"ui\": \"e6ae26617c24c3ea\",         \"path\": \"/data\",         \"icon\": \"mdi-database\",         \"layout\": \"grid\",         \"theme\": \"acdf17df5536b1d3\",         \"breakpoints\": [             {                 \"name\": \"Default\",                 \"px\": \"0\",                 \"cols\": \"3\"             },             {                 \"name\": \"Tablet\",                 \"px\": \"576\",                 \"cols\": \"6\"             },             {                 \"name\": \"Small Desktop\",                 \"px\": \"768\",                 \"cols\": \"9\"             },             {                 \"name\": \"Desktop\",                 \"px\": \"1024\",                 \"cols\": \"12\"             }         ],         \"order\": 2,         \"className\": \"\",         \"visible\": \"true\",         \"disabled\": \"false\"     },     {         \"id\": \"e6ae26617c24c3ea\",         \"type\": \"ui-base\",         \"name\": \"My Dashboard\",         \"path\": \"/dashboard\",         \"appIcon\": \"\",         \"includeClientData\": true,         \"acceptsClientConfig\": [             \"ui-notification\",             \"ui-control\"         ],         \"showPathInSidebar\": true,         \"showPageTitle\": false,         \"navigationStyle\": \"fixed\",         \"titleBarStyle\": \"fixed\",         \"showReconnectNotification\": true,         \"notificationDisplayTime\": \"1\",         \"showDisconnectNotification\": true     },     {         \"id\": \"acdf17df5536b1d3\",         \"type\": \"ui-theme\",         \"name\": \"FairScope Theme\",         \"colors\": {             \"surface\": \"#ffffff\",             \"primary\": \"#0094ce\",             \"bgPage\": \"#eeeeee\",             \"groupBg\": \"#ffffff\",             \"groupOutline\": \"#cccccc\"         },         \"sizes\": {             \"density\": \"default\",             \"pagePadding\": \"10px\",             \"groupGap\": \"10px\",             \"groupBorderRadius\": \"0px\",             \"widgetGap\": \"10px\"         }     } ]",
+        "height": "0",
+        "x": 590,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "54d6eeb38d467c03",
+        "type": "ui-template",
+        "z": "ae92a0a869ca847f",
+        "group": "1c1efabff5115209",
+        "page": "",
+        "ui": "",
+        "name": "template number field",
+        "order": 1,
+        "width": "4",
+        "height": "1",
+        "head": "",
+        "format": "<template>\n <v-number-input\n          label=\"Volume of the collector\"\n          variant=\"outlined\"\n          :max=\"50\"\n          :min=\"10\"\n          :step=\"2\"\n          :model-value=\"30\"\n          control-variant=\"hidden\"\n          :precision=\"2\"\n          suffix=\"mL\"\n          clearable\n          hint=\"The volume of water collected after sampling, measured in milliliters (ml).\"\n        ></v-number-input>\n\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48666748de82f1a9",
+        "type": "ui-markdown",
+        "z": "ae92a0a869ca847f",
+        "group": "1c1efabff5115209",
+        "name": "template number field",
+        "order": 2,
+        "width": "4",
+        "height": "1",
+        "content": "# Template hidden hint\n```html\n<template>\n <v-number-input\n          label=\"Volume of the collector\"\n          variant=\"outlined\"\n          :max=\"50\"\n          :min=\"10\"\n          :step=\"2\"\n          :model-value=\"30\"\n          control-variant=\"hidden\"\n          :precision=\"2\"\n          suffix=\"mL\"\n          clearable\n          hint=\"The volume of water collected after sampling, measured in milliliters (ml).\"\n        ></v-number-input>\n</template>\n\n```",
+        "className": "",
+        "x": 180,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ade743e5b35d1353",
+        "type": "inject",
+        "z": "ae92a0a869ca847f",
+        "g": "c0721ac2a3ae24b9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1540,
+        "wires": [
+            [
+                "5a9af1c11b3c3c31"
+            ]
+        ]
     }
 ]
