@@ -293,89 +293,6 @@
         "h": 522
     },
     {
-        "id": "631f3e38acec1bc6",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "name": "Step 1. Reset the value of the gains",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "ea8c4596e202f964",
-            "4c7717ee07b97e8b",
-            "0fa68c34208c36d2",
-            "958aac3964d0faf4",
-            "857257c8697a3b76"
-        ],
-        "x": 34,
-        "y": 359,
-        "w": 552,
-        "h": 222
-    },
-    {
-        "id": "b04534747af369bb",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "name": "Step 4. Adjust White Balance Settings",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "f13c467a5f891268",
-            "3b5d942eccbc14ba",
-            "3574f41671e9c607",
-            "0e406c9af3e5a51e",
-            "6d6fdc0c504bbc26",
-            "cab52c68fd58220b",
-            "06e4799523ede341",
-            "801d9c0cb77d4caa"
-        ],
-        "x": 34,
-        "y": 799,
-        "w": 672,
-        "h": 182
-    },
-    {
-        "id": "a885abc248b6ba6e",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "name": "Step 2. Measure the Current Saturation Level",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "a99be895898a4f2f",
-            "f7aececeb25feee2",
-            "4a99ebbebc9e7d65",
-            "a6cfdc06c50e2b7c",
-            "69f90516888fb4c2",
-            "bc2f402f6cdd8434",
-            "6104a1880402810c",
-            "224eba65a1a42b91"
-        ],
-        "x": 34,
-        "y": 599,
-        "w": 1442,
-        "h": 82
-    },
-    {
-        "id": "64fb52a5fc759893",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "name": "Step 3. Display White Balance Settings",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "f3d25e1060563ac8",
-            "45f2ad943cee341f"
-        ],
-        "x": 34,
-        "y": 699,
-        "w": 392,
-        "h": 82
-    },
-    {
         "id": "f591255fbfc6c466",
         "type": "group",
         "z": "6426e7bea6900426",
@@ -442,31 +359,6 @@
         "y": 19,
         "w": 372,
         "h": 82
-    },
-    {
-        "id": "f5929f8fbe9df063",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "ec5d9fecc6b0cece",
-            "5c444b714f250678",
-            "cb467ae07b125bcc",
-            "aad16ea9eae8d3dd",
-            "97541b0d6dcf6747"
-        ],
-        "x": 34,
-        "y": 219,
-        "w": 562,
-        "h": 122
     },
     {
         "id": "3bb20cd87e85a6b8",
@@ -709,34 +601,6 @@
         "h": 142
     },
     {
-        "id": "239ace7a73b8b6df",
-        "type": "group",
-        "z": "6426e7bea6900426",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "23a52935692ecb49",
-            "746c989af736cb33",
-            "7da6b39ccb75384c",
-            "2451da81a82f7915",
-            "66756e43efce9726",
-            "ac01daf9daeecf2a",
-            "4441ba5d435ed9d7",
-            "7cf9eaa2eb0776bf"
-        ],
-        "x": 974,
-        "y": 199,
-        "w": 592,
-        "h": 262
-    },
-    {
         "id": "979647e2e34284fb",
         "type": "group",
         "z": "14f8c9b5ce1235cc",
@@ -763,7 +627,8 @@
             "44ef242ece9b6b4b",
             "7433aae2400b7f78",
             "a90099cfe7a37a37",
-            "df0dcb1175b8bd5f"
+            "df0dcb1175b8bd5f",
+            "c6c66ebc50dd5d90"
         ],
         "x": 14,
         "y": 279,
@@ -1694,20 +1559,6 @@
         "groupType": "default"
     },
     {
-        "id": "cf3554d2bdb02f22",
-        "type": "ui-group",
-        "name": "links",
-        "page": "632260133d581caa",
-        "width": "12",
-        "height": 1,
-        "order": 3,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
         "id": "7572915171e440cd",
         "type": "ui-group",
         "name": "Navigation Top",
@@ -2383,14 +2234,14 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-footer class=\"pa-0\" color=\"grey-darken-4\">\n    <v-container>\n      <v-row justify=\"space-between\">\n        <!-- Branding Section -->\n        <v-col cols=\"12\" md=\"12\" class=\"text-center text-md-start\">\n          <h4 class=\"text-white\">PlanktoScope</h4>\n          <p class=\"text-grey-lighten-1\">\n            Open and Affordable Quantitative Imaging Platform.\n          </p>\n        </v-col>\n      </v-row>\n      <v-divider class=\"my-3\"></v-divider>\n      <v-row justify=\"space-between\">\n        <!-- Branding Section -->\n        <v-col cols=\"12\" md=\"12\" class=\"text-center text-md-start\">\n          <h4 class=\"text-white\">Thanks to:</h4>\n          <p class=\"text-grey-lighten-1\">\n            <v-chip\n              v-for=\"contributor in contributors\"\n              :key=\"contributor.id\"\n              class=\"mx-2\"\n              small\n              outlined\n            >\n              <v-avatar left>\n                <img :src=\"contributor.avatar_url\" :alt=\"contributor.login\" />\n              </v-avatar>\n              <a\n                :href=\"contributor.html_url\"\n                target=\"_blank\"\n                class=\"text-decoration-none text-grey-lighten-1\"\n              >\n                {{ contributor.login }}\n              </a>\n            </v-chip>\n          </p>\n        </v-col>\n      </v-row>\n    </v-container>\n  </v-footer>\n</template>\n\n<script>\n  export default {\n    data() {\n      return {\n        contributors: [], // Array to hold contributors' data\n      }\n    },\n    mounted() {\n      this.fetchContributors()\n    },\n    methods: {\n      async fetchContributors() {\n        try {\n          const response = await fetch(\n            'https://api.github.com/orgs/PlanktoScope/people'\n          )\n          if (response.ok) {\n            this.contributors = await response.json()\n          } else {\n            console.error('Failed to fetch contributors')\n          }\n        } catch (error) {\n          console.error('Error fetching contributors:', error)\n        }\n      },\n    },\n  }\n</script>\n",
+        "format": "<template>\n  <v-footer class=\"pa-6\">\n    <v-container>\n      <!-- Top Section -->\n      <v-row justify=\"space-between\" align=\"start\">\n        <!-- Branding -->\n        <v-col cols=\"12\" md=\"4\">\n          <h4 class=\"font-weight-bold mb-2\">PlanktoScope</h4>\n          <p class=\"mb-3\">\n            Open and Affordable Quantitative Imaging Platform.\n          </p>\n        </v-col>\n\n        <!-- Action Links -->\n        <v-col cols=\"12\" md=\"8\" class=\"d-flex flex-wrap justify-end\">\n          <v-chip\n            size=\"small\"\n            color=\"grey-darken-3\"\n            href=\"https://www.fairscope.com/\"\n            target=\"_blank\"\n            class=\"mx-2 my-1\"\n          >\n            <v-icon color=\"blue\" class=\"mr-1\">mdi-earth</v-icon>\n            Visit FairScope\n          </v-chip>\n\n          <v-chip\n            size=\"small\"\n            color=\"grey-darken-3\"\n            href=\"https://www.figma.com/design/KXH3qkalr7eeFbyGsutZKt/PlanktoScope-Dashboard-v2?node-id=6-2&m=dev&t=Nn2N1o9OJveQCSco-1\"\n            target=\"_blank\"\n            class=\"mx-2 my-1\"\n          >\n            <v-icon color=\"primary\" class=\"mr-1\">mdi-image</v-icon>\n            Figma Design\n          </v-chip>\n\n          <v-chip\n            size=\"small\"\n            color=\"grey-darken-3\"\n            href=\"https://github.com/PlanktoScope/PlanktoScope/issues/new?template=software-bug-report.md\"\n            target=\"_blank\"\n            class=\"mx-2 my-1\"\n          >\n            <v-icon color=\"red\" class=\"mr-1\">mdi-bug</v-icon>\n            Report a Bug\n          </v-chip>\n\n          <v-chip\n            size=\"small\"\n            color=\"grey-darken-3\"\n            href=\"https://github.com/PlanktoScope/PlanktoScope/issues\"\n            target=\"_blank\"\n            class=\"mx-2 my-1\"\n          >\n            <v-icon color=\"orange\" class=\"mr-1\">mdi-information-outline</v-icon>\n            Open Issues\n          </v-chip>\n\n          <v-chip\n            size=\"small\"\n            color=\"grey-darken-3\"\n            href=\"https://github.com/PlanktoScope/dashboard\"\n            target=\"_blank\"\n            class=\"mx-2 my-1\"\n          >\n            <v-icon color=\"black\" class=\"mr-1\">mdi-github</v-icon>\n            GitHub Repo\n          </v-chip>\n\n          <v-chip\n            size=\"small\"\n            color=\"grey-darken-3\"\n            href=\"https://github.com/PlanktoScope/PlanktoScope/graphs/contributors\"\n            target=\"_blank\"\n            class=\"mx-2 my-1\"\n          >\n            <v-icon color=\"green\" class=\"mr-1\">mdi-account-group</v-icon>\n            Contributors\n          </v-chip>\n        </v-col>\n      </v-row>\n\n      <v-divider class=\"my-4 opacity-50\"></v-divider>\n\n      <!-- Bottom Section -->\n      <v-row justify=\"space-between\" align=\"center\">\n      <v-col cols=\"12\" md=\"6\">\n        © {{ new Date().getFullYear() }} PlanktoScope — made by \n        <a href=\"https://fairscope.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"text-decoration: none; color: inherit;\">\n          FairScope\n        </a>\n      </v-col>\n\n      </v-row>\n    </v-container>\n  </v-footer>\n</template>\n\n<script>\nexport default {\n  name: 'AppFooter',\n}\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "widget:ui",
         "className": "",
         "x": 370,
-        "y": 260,
+        "y": 220,
         "wires": [
             []
         ]
@@ -2415,30 +2266,6 @@
         "className": "",
         "x": 370,
         "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f9058a8a58084207",
-        "type": "ui-template",
-        "z": "1b667c6443413ced",
-        "group": "cf3554d2bdb02f22",
-        "page": "",
-        "ui": "",
-        "name": "links",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n    <v-row justify=\"center\" class=\"my-2\">\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://www.figma.com/design/KXH3qkalr7eeFbyGsutZKt/PlanktoScope-Dashboard-v2?node-id=6-2&m=dev&t=Nn2N1o9OJveQCSco-1\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"primary\" class=\"mr-1\">mdi-image</v-icon>Figma Design\n      </v-chip>\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://github.com/PlanktoScope/dashboard/issues/new?template=bug_report.md\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"red\" class=\"mr-1\">mdi-bug</v-icon>Report a Bug\n      </v-chip>\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://github.com/PlanktoScope/dashboard/issues\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"orange\" class=\"mr-1\">mdi-information-outline</v-icon>Open\n        issues\n      </v-chip>\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://github.com/PlanktoScope/dashboard\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"black\" class=\"mr-1\">mdi-github</v-icon>View on GitHub\n      </v-chip>\n    </v-row>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 370,
-        "y": 220,
         "wires": [
             []
         ]
@@ -2800,7 +2627,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container fluid>\n    <!-- PUMP CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-pump</v-icon>\n        Pump Control\n      </v-card-title>\n      <v-card-text>\n        <!-- Flowrate -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 8\">\n            <v-slider\n              v-model.number=\"pump_flowrate\"\n              :min=\"minFlow\"\n              :max=\"maxFlow\"\n              :step=\"0.2\"\n              hide-details\n              :thumb-size=\"isTablet ? 12 : 20\"\n              :track-size=\"isTablet ? 2 : 4\"\n            />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 4\">\n            <v-text-field\n              v-model.number=\"pump_flowrate\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n              suffix=\"ml/min\"\n              :density=\"isTablet ? 'comfortable' : 'default'\"\n              :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\"\n              @click:append=\"showInfo('pump_flowrate')\"\n            />\n          </v-col>\n        </v-row>\n\n        <!-- Flowrate presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              v-model=\"pump_flowrate_preset\"\n              class=\"d-flex justify-space-between\"\n              color=\"primary\"\n              variant=\"outlined\"\n              divided\n              shaped\n              mandatory\n              @update:model-value=\"onFlowrateToggle\"\n            >\n              <v-btn\n                v-for=\"value in pump_flowrate_presets\"\n                :key=\"'flowrate-' + value\"\n                :value=\"value\"\n                class=\"flex-grow-1\"\n              >\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Volume -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 8\">\n            <v-slider\n              v-model.number=\"pump_manual_volume\"\n              :min=\"minFlow\"\n              :max=\"maxFlow\"\n              :step=\"0.2\"\n              hide-details\n              :thumb-size=\"isTablet ? 12 : 20\"\n              :track-size=\"isTablet ? 2 : 4\"\n            />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 4\">\n            <v-text-field\n              v-model.number=\"pump_manual_volume\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n              suffix=\"ml\"\n              :density=\"isTablet ? 'comfortable' : 'default'\"\n              :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\"\n              @click:append=\"showInfo('pump_manual_volume')\"\n            />\n          </v-col>\n        </v-row>\n\n        <!-- Volume presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              v-model=\"pump_volume_preset\"\n              class=\"d-flex justify-space-between\"\n              variant=\"outlined\"\n              color=\"primary\"\n              divided\n              shaped\n              mandatory\n              @update:model-value=\"onVolumeToggle\"\n            >\n              <v-btn\n                v-for=\"value in pump_volume_presets\"\n                :key=\"'volume-' + value\"\n                :value=\"value\"\n                class=\"flex-grow-1\"\n              >\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Pump direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"pump_direction\"\n              color=\"primary\"\n              mandatory\n              divided\n              shaped\n              class=\"d-flex justify-space-between\"\n              @update:model-value=\"on_pump_direction_change\"\n            >\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- FOCUS CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-camera-control</v-icon>\n        Focus Control\n      </v-card-title>\n      <v-card-text>\n        <!-- Focus slider -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 8\">\n            <v-slider\n              v-model.number=\"focus_distance\"\n              :max=\"maxFocus\"\n              :min=\"minFocus\"\n              :step=\"25\"\n              hide-details\n              :thumb-size=\"isTablet ? 12 : 20\"\n              :track-size=\"isTablet ? 2 : 4\"\n            />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 4\">\n            <v-text-field\n              v-model.number=\"focus_distance\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n              suffix=\"μm\"\n              :density=\"isTablet ? 'comfortable' : 'default'\"\n              :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\"\n              @click:append=\"showInfo('focus_speed')\"\n            />\n          </v-col>\n        </v-row>\n\n        <!-- Presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"focus_distance_preset\"\n              divided\n              shaped\n              color=\"primary\"\n              class=\"d-flex justify-space-between\"\n              mandatory\n              @update:model-value=\"on_focus_distance_toggle\"\n            >\n              <v-btn\n                v-for=\"value in focus_distance_presets\"\n                :key=\"'distance-' + value\"\n                :value=\"value\"\n                class=\"flex-grow-1\"\n              >\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Focus direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"focus_direction\"\n              color=\"primary\"\n              mandatory\n              divided\n              shaped\n              class=\"d-flex justify-space-between\"\n              @update:model-value=\"on_focus_direction_change\"\n            >\n              <v-btn class=\"flex-grow-1\" :value=\"'UP'\">UP</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">DOWN</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- LED CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-lightbulb</v-icon>\n        LED Control\n      </v-card-title>\n      <v-card-text>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"led_state\"\n              color=\"primary\"\n              mandatory\n              divided\n              shaped\n              class=\"d-flex justify-space-between\"\n              @update:model-value=\"on_led_toggle\"\n            >\n              <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n    \n<!-- CALIBRATION INFO -->\n<v-card variant=\"tonal\">\n  <v-card-title>\n    <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-tune</v-icon>\n    Calibration\n  </v-card-title>\n  <v-card-text>\n    Modify your camera settings through the\n    <a href=\"calibration\" style=\"color: primary; text-decoration: underline;\">\n      calibration page\n    </a>.\n    Adjust optical parameters to ensure accurate imaging.\n  </v-card-text>\n</v-card>\n\n\n\n\n    <!-- INFO DIALOG -->\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"infoDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: { msg: { type: Object, default: () => ({}) } },\n  data() {\n    return {\n      minFlow: 0.02,\n      maxFlow: 30,\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n      pump_flowrate_presets: [0.02, 0.2, 2, 20],\n      pump_volume_presets: [0.004, 0.2, 2, 20],\n      pump_flowrate_preset: null,\n      pump_volume_preset: null,\n      pump_direction: \"stop\",\n      minFocus: 25,\n      maxFocus: 5000,\n      focus_distance: 25,\n      focus_distance_presets: [25, 150, 500, 5000],\n      focus_distance_preset: null,\n      focus_direction: \"stop\",\n      led_state: \"off\",\n      infoDialog: false,\n      infoContent: { title: \"\", unit: \"\", description: \"\" },\n    };\n  },\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n  },\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n    pump_flowrate(newVal) {\n      this.pump_flowrate_preset =\n        this.pump_flowrate_presets.find((val) => val === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    pump_manual_volume(newVal) {\n      this.pump_volume_preset =\n        this.pump_volume_presets.find((val) => val === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    focus_distance(newVal) {\n      this.focus_distance_preset =\n        this.focus_distance_presets.find((val) => val === newVal) ?? null;\n      this.sendFocusParams();\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n    const p = m?.payload ?? {};\n\n    // ✅ Handle status messages FIRST so toggle reverts correctly\n    if (m.topic === \"status/pump\" && p.status === \"Done\") {\n    this.pump_direction = \"stop\";\n    return;\n    }\n    if (m.topic === \"status/focus\" && p.status === \"Done\") {\n    this.focus_direction = \"stop\";\n    return;\n    }\n\n    // ✅ Handle LED status message (boot + runtime sync)\n    if (m.topic === \"status/light\" && \"status\" in p) {\n      const s = String(p.status).toLowerCase().trim();\n\n      if ([\"on\", \"true\", \"1\"].includes(s)) {\n        this.led_state = \"on\";\n      } else if ([\"off\", \"false\", \"0\"].includes(s)) {\n        this.led_state = \"off\";\n      } else {\n        this.led_state = \"off\";\n      }\n\n      return;\n    }\n\n\n    // 🔸 Regular actuator/global messages\n    this.pump_flowrate = p.flowrate ?? p.pump_flowrate ?? this.pump_flowrate;\n    this.pump_manual_volume = p.volume ?? p.pump_manual_volume ?? this.pump_manual_volume;\n\n    if ([\"backward\", \"stop\", \"forward\"].includes(p.command)) {\n    this.pump_direction = p.command;\n    }\n\n    this.focus_distance =\n    typeof p.focus_distance === \"number\" ? p.focus_distance : this.focus_distance;\n\n    if ([\"UP\", \"stop\", \"DOWN\"].includes(p.command)) {\n    this.focus_direction = p.command;\n    }\n\n    if (typeof p.ledState === \"string\") this.led_state = p.ledState;\n    else if (typeof p.action === \"string\" && [\"on\", \"off\"].includes(p.action))\n    this.led_state = p.action;\n    },\n\n\n    onFlowrateToggle(val) { if (val != null) this.pump_flowrate = val; },\n    onVolumeToggle(val) { if (val != null) this.pump_manual_volume = val; },\n    sendPumpParams() {\n      this.send({\n        topic: \"set_global/pump\",\n        payload: {\n          pump_flowrate: Number(this.pump_flowrate) || 0,\n          pump_manual_volume: Number(this.pump_manual_volume) || 0,\n        },\n      });\n    },\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/pump\", payload: { action: \"stop\" } });\n      } else {\n        const dirUpper = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({\n          topic: \"actuator/pump\",\n          payload: {\n            action: \"move\",\n            direction: dirUpper,\n            volume: Number(this.pump_manual_volume) || 0,\n            flowrate: Number(this.pump_flowrate) || 0,\n          },\n        });\n      }\n    },\n    on_focus_distance_toggle(val) { if (val != null) this.focus_distance = val; },\n    speedFromDistance(d) {\n      const x1 = 100, y1 = 1000, x2 = 1000, y2 = 2000, x3 = 5000, y3 = 5000;\n      if (d <= x1) return y1;\n      if (d >= x3) return y3;\n      if (d <= x2) {\n        const m = (y2 - y1) / (x2 - x1);\n        return Math.round(y1 + m * (d - x1));\n      }\n      const m = (y3 - y2) / (x3 - x2);\n      return Math.round(y2 + m * (d - x2));\n    },\n    sendFocusParams() {\n      const d = Number(this.focus_distance) || 25;\n      const speed = this.speedFromDistance(d);\n      this.send({\n        topic: \"set_global/focus\",\n        payload: { focus_distance: d, focus_speed: speed },\n      });\n    },\n    on_focus_direction_change(val) {\n      this.focus_direction = val;\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/focus\", payload: { action: \"stop\" } });\n      } else {\n        const d = Number(this.focus_distance) || 25;\n        const speed = this.speedFromDistance(d);\n        this.send({\n          topic: \"actuator/focus\",\n          payload: {\n            action: \"move\",\n            direction: val,\n            distance: d / 1000,\n            speed: speed / 1000,\n          },\n        });\n      }\n    },\n    on_led_toggle(val) {\n      if (!val) return;\n      this.led_state = val;\n      this.send({ topic: \"light\", payload: { action: val } });\n    },\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: {\n          title: \"Flowrate (ml/min)\",\n          unit: \"ml/min\",\n          description: \"Flowrate of the pump during manual exploration\",\n        },\n        pump_manual_volume: {\n          title: \"Volume to pass (ml)\",\n          unit: \"ml\",\n          description: \"Volume displaced by the pump during manual exploration\",\n        },\n        focus_speed: {\n          title: \"Focus Speed (µm/sec)\",\n          unit: \"μm/s\",\n          description: \"Speed of the displacement by the focus plate during manual exploration\",\n        },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n@media (max-width: 1024px) {\n  .v-text-field input {\n    font-size: 1.3rem !important;\n  }\n  .v-slider {\n    height: 2px !important;\n  }\n}\n</style>",
+        "format": "<template>\n  <v-container fluid>\n    <!-- PUMP CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        Pump Control\n      </v-card-title>\n      <v-card-text>\n        <!-- Flowrate -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 8\">\n            <v-slider\n              v-model.number=\"pump_flowrate\"\n              :min=\"minFlow\"\n              :max=\"maxFlow\"\n              :step=\"0.2\"\n              hide-details\n              :thumb-size=\"isTablet ? 12 : 20\"\n              :track-size=\"isTablet ? 2 : 4\"\n            />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 4\">\n            <v-text-field\n              v-model.number=\"pump_flowrate\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n              suffix=\"ml/min\"\n              :density=\"isTablet ? 'comfortable' : 'default'\"\n              :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\"\n              @click:append=\"showInfo('pump_flowrate')\"\n            />\n          </v-col>\n        </v-row>\n\n        <!-- Flowrate presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              v-model=\"pump_flowrate_preset\"\n              class=\"d-flex justify-space-between\"\n              color=\"primary\"\n              variant=\"outlined\"\n              divided\n              shaped\n              mandatory\n              @update:model-value=\"onFlowrateToggle\"\n            >\n              <v-btn\n                v-for=\"value in pump_flowrate_presets\"\n                :key=\"'flowrate-' + value\"\n                :value=\"value\"\n                class=\"flex-grow-1\"\n              >\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Volume -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 8\">\n            <v-slider\n              v-model.number=\"pump_manual_volume\"\n              :min=\"minFlow\"\n              :max=\"maxFlow\"\n              :step=\"0.2\"\n              hide-details\n              :thumb-size=\"isTablet ? 12 : 20\"\n              :track-size=\"isTablet ? 2 : 4\"\n            />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 4\">\n            <v-text-field\n              v-model.number=\"pump_manual_volume\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n              suffix=\"ml\"\n              :density=\"isTablet ? 'comfortable' : 'default'\"\n              :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\"\n              @click:append=\"showInfo('pump_manual_volume')\"\n            />\n          </v-col>\n        </v-row>\n\n        <!-- Volume presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              v-model=\"pump_volume_preset\"\n              class=\"d-flex justify-space-between\"\n              variant=\"outlined\"\n              color=\"primary\"\n              divided\n              shaped\n              mandatory\n              @update:model-value=\"onVolumeToggle\"\n            >\n              <v-btn\n                v-for=\"value in pump_volume_presets\"\n                :key=\"'volume-' + value\"\n                :value=\"value\"\n                class=\"flex-grow-1\"\n              >\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Pump direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"pump_direction\"\n              color=\"primary\"\n              mandatory\n              divided\n              shaped\n              class=\"d-flex justify-space-between\"\n              @update:model-value=\"on_pump_direction_change\"\n            >\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- FOCUS CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        Focus Control\n      </v-card-title>\n      <v-card-text>\n        <!-- Focus slider -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 8\">\n            <v-slider\n              v-model.number=\"focus_distance\"\n              :max=\"maxFocus\"\n              :min=\"minFocus\"\n              :step=\"25\"\n              hide-details\n              :thumb-size=\"isTablet ? 12 : 20\"\n              :track-size=\"isTablet ? 2 : 4\"\n            />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 4\">\n            <v-text-field\n              v-model.number=\"focus_distance\"\n              type=\"number\"\n              variant=\"outlined\"\n              hide-details\n              suffix=\"μm\"\n              :density=\"isTablet ? 'comfortable' : 'default'\"\n              :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\"\n              @click:append=\"showInfo('focus_speed')\"\n            />\n          </v-col>\n        </v-row>\n\n        <!-- Presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"focus_distance_preset\"\n              divided\n              shaped\n              color=\"primary\"\n              class=\"d-flex justify-space-between\"\n              mandatory\n              @update:model-value=\"on_focus_distance_toggle\"\n            >\n              <v-btn\n                v-for=\"value in focus_distance_presets\"\n                :key=\"'distance-' + value\"\n                :value=\"value\"\n                class=\"flex-grow-1\"\n              >\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Focus direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"focus_direction\"\n              color=\"primary\"\n              mandatory\n              divided\n              shaped\n              class=\"d-flex justify-space-between\"\n              @update:model-value=\"on_focus_direction_change\"\n            >\n              <v-btn class=\"flex-grow-1\" :value=\"'UP'\">UP</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">DOWN</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- LED CONTROL -->\n    <v-card class=\"mb-6\" variant=\"outlined\">\n      <v-card-title>\n        LED Control\n      </v-card-title>\n      <v-card-text>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle\n              variant=\"outlined\"\n              v-model=\"led_state\"\n              color=\"primary\"\n              mandatory\n              divided\n              shaped\n              class=\"d-flex justify-space-between\"\n              @update:model-value=\"on_led_toggle\"\n            >\n              <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n    \n<!-- CALIBRATION INFO -->\n<v-card variant=\"tonal\">\n  <v-card-title>\n    <v-icon class=\"mr-2\" color=\"primary\" size=\"large\">mdi-tune</v-icon>\n    Calibration\n  </v-card-title>\n  <v-card-text>\n    Modify your camera settings through the\n    <a href=\"calibration\" style=\"color: primary; text-decoration: underline;\">\n      calibration page\n    </a>.\n    Adjust optical parameters to ensure accurate imaging.\n  </v-card-text>\n</v-card>\n\n\n\n\n    <!-- INFO DIALOG -->\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"infoDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: { msg: { type: Object, default: () => ({}) } },\n  data() {\n    return {\n      minFlow: 0.02,\n      maxFlow: 30,\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n      pump_flowrate_presets: [0.02, 0.2, 2, 20],\n      pump_volume_presets: [0.004, 0.2, 2, 20],\n      pump_flowrate_preset: null,\n      pump_volume_preset: null,\n      pump_direction: \"stop\",\n      minFocus: 25,\n      maxFocus: 5000,\n      focus_distance: 25,\n      focus_distance_presets: [25, 150, 500, 5000],\n      focus_distance_preset: null,\n      focus_direction: \"stop\",\n      led_state: \"off\",\n      infoDialog: false,\n      infoContent: { title: \"\", unit: \"\", description: \"\" },\n    };\n  },\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n  },\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n    pump_flowrate(newVal) {\n      this.pump_flowrate_preset =\n        this.pump_flowrate_presets.find((val) => val === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    pump_manual_volume(newVal) {\n      this.pump_volume_preset =\n        this.pump_volume_presets.find((val) => val === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    focus_distance(newVal) {\n      this.focus_distance_preset =\n        this.focus_distance_presets.find((val) => val === newVal) ?? null;\n      this.sendFocusParams();\n    },\n  },\n  methods: {\n    hydrateFromMsg(m) {\n    const p = m?.payload ?? {};\n\n    // ✅ Handle status messages FIRST so toggle reverts correctly\n    if (m.topic === \"status/pump\" && p.status === \"Done\") {\n    this.pump_direction = \"stop\";\n    return;\n    }\n    if (m.topic === \"status/focus\" && p.status === \"Done\") {\n    this.focus_direction = \"stop\";\n    return;\n    }\n\n    // ✅ Handle LED status message (boot + runtime sync)\n    if (m.topic === \"status/light\" && \"status\" in p) {\n      const s = String(p.status).toLowerCase().trim();\n\n      if ([\"on\", \"true\", \"1\"].includes(s)) {\n        this.led_state = \"on\";\n      } else if ([\"off\", \"false\", \"0\"].includes(s)) {\n        this.led_state = \"off\";\n      } else {\n        this.led_state = \"off\";\n      }\n\n      return;\n    }\n\n\n    // 🔸 Regular actuator/global messages\n    this.pump_flowrate = p.flowrate ?? p.pump_flowrate ?? this.pump_flowrate;\n    this.pump_manual_volume = p.volume ?? p.pump_manual_volume ?? this.pump_manual_volume;\n\n    if ([\"backward\", \"stop\", \"forward\"].includes(p.command)) {\n    this.pump_direction = p.command;\n    }\n\n    this.focus_distance =\n    typeof p.focus_distance === \"number\" ? p.focus_distance : this.focus_distance;\n\n    if ([\"UP\", \"stop\", \"DOWN\"].includes(p.command)) {\n    this.focus_direction = p.command;\n    }\n\n    if (typeof p.ledState === \"string\") this.led_state = p.ledState;\n    else if (typeof p.action === \"string\" && [\"on\", \"off\"].includes(p.action))\n    this.led_state = p.action;\n    },\n\n\n    onFlowrateToggle(val) { if (val != null) this.pump_flowrate = val; },\n    onVolumeToggle(val) { if (val != null) this.pump_manual_volume = val; },\n    sendPumpParams() {\n      this.send({\n        topic: \"set_global/pump\",\n        payload: {\n          pump_flowrate: Number(this.pump_flowrate) || 0,\n          pump_manual_volume: Number(this.pump_manual_volume) || 0,\n        },\n      });\n    },\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/pump\", payload: { action: \"stop\" } });\n      } else {\n        const dirUpper = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({\n          topic: \"actuator/pump\",\n          payload: {\n            action: \"move\",\n            direction: dirUpper,\n            volume: Number(this.pump_manual_volume) || 0,\n            flowrate: Number(this.pump_flowrate) || 0,\n          },\n        });\n      }\n    },\n    on_focus_distance_toggle(val) { if (val != null) this.focus_distance = val; },\n    speedFromDistance(d) {\n      const x1 = 100, y1 = 1000, x2 = 1000, y2 = 2000, x3 = 5000, y3 = 5000;\n      if (d <= x1) return y1;\n      if (d >= x3) return y3;\n      if (d <= x2) {\n        const m = (y2 - y1) / (x2 - x1);\n        return Math.round(y1 + m * (d - x1));\n      }\n      const m = (y3 - y2) / (x3 - x2);\n      return Math.round(y2 + m * (d - x2));\n    },\n    sendFocusParams() {\n      const d = Number(this.focus_distance) || 25;\n      const speed = this.speedFromDistance(d);\n      this.send({\n        topic: \"set_global/focus\",\n        payload: { focus_distance: d, focus_speed: speed },\n      });\n    },\n    on_focus_direction_change(val) {\n      this.focus_direction = val;\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/focus\", payload: { action: \"stop\" } });\n      } else {\n        const d = Number(this.focus_distance) || 25;\n        const speed = this.speedFromDistance(d);\n        this.send({\n          topic: \"actuator/focus\",\n          payload: {\n            action: \"move\",\n            direction: val,\n            distance: d / 1000,\n            speed: speed / 1000,\n          },\n        });\n      }\n    },\n    on_led_toggle(val) {\n      if (!val) return;\n      this.led_state = val;\n      this.send({ topic: \"light\", payload: { action: val } });\n    },\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: {\n          title: \"Flowrate (ml/min)\",\n          unit: \"ml/min\",\n          description: \"Flowrate of the pump during manual exploration\",\n        },\n        pump_manual_volume: {\n          title: \"Volume to pass (ml)\",\n          unit: \"ml\",\n          description: \"Volume displaced by the pump during manual exploration\",\n        },\n        focus_speed: {\n          title: \"Focus Speed (µm/sec)\",\n          unit: \"μm/s\",\n          description: \"Speed of the displacement by the focus plate during manual exploration\",\n        },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n@media (max-width: 1024px) {\n  .v-text-field input {\n    font-size: 1.3rem !important;\n  }\n  .v-slider {\n    height: 2px !important;\n  }\n}\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3487,7 +3314,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model.number=\"acq_id\"\n          type=\"number\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : 001\"\n          class=\"aligned-input\"\n          @input=\"sendUpdate()\"\n          prefix=\"A_\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition ID','Unique identifier for each acquisition run.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_nb_frame\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_nb_frame\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Number of Images','Total number of images captured during acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interimage Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"0\"\n          :step=\"1\"\n          label=\"Volume between images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Volume between images','Sample volume displaced between consecutive images (µL).')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Volume Imaged -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_imaged_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeImagedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Total Volume Displaced -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_pumped_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeDisplacedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          @input=\"sendUpdate()\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition Comment','Notes or remarks about this acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress Bar -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          :model-value=\"acq_progression\"\n          color=\"primary\"\n          height=\"24\"\n          rounded\n          striped\n          class=\"mt-2 mb-2\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.min(100, Math.ceil(value || 0)) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Estimated Duration -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"formatDuration(acq_duration_left)\"\n          variant=\"plain\"\n          hide-details\n          readonly\n          class=\"aligned-input\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Status Alert -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop Toggle -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between mt-4\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint Dialog -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"600\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text v-html=\"hintText\" class=\"text-body-2\"></v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_nb_frame: \"\",\n      acq_interframe_volume: 0,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      calibration_pixel_size: 0,\n      calibration_sensor_width: 0,\n      calibration_sensor_height: 0,\n      acq_flowcell_thickness: 0,\n      frame_volume_um3: 0,\n      topic: \"acq_params\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      lastUpdateTime: null,\n    };\n  },\n  computed: {\n    sensor_width_um() { return (this.calibration_sensor_width || 0) * (this.calibration_pixel_size || 0); },\n    sensor_height_um() { return (this.calibration_sensor_height || 0) * (this.calibration_pixel_size || 0); },\n    frame_volume_ml() { return this.frame_volume_um3 / 1e12; },\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message || \"\";\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if ([\"Started\", \"Done\"].includes(s)) return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      if (this.statusColor === \"green\") return \"success\";\n      if (this.statusColor === \"orange\") return \"warning\";\n      if (this.statusColor === \"red\") return \"error\";\n      return \"info\";\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        const topic = newMsg?.topic;\n        if (p.acq_id !== undefined) this.acq_id = String(p.acq_id).replace(/^A[_-]?/, \"\");\n        if (p.acq_nb_frame !== undefined) this.acq_nb_frame = Number(p.acq_nb_frame);\n        if (p.acq_interframe_volume !== undefined) this.acq_interframe_volume = Number(p.acq_interframe_volume);\n        if (p.calibration_pixel_size !== undefined) this.calibration_pixel_size = Number(p.calibration_pixel_size);\n        if (p.calibration_sensor_width !== undefined) this.calibration_sensor_width = Number(p.calibration_sensor_width);\n        if (p.calibration_sensor_height !== undefined) this.calibration_sensor_height = Number(p.calibration_sensor_height);\n        if (p.acq_flowcell_thickness !== undefined) this.acq_flowcell_thickness = Number(p.acq_flowcell_thickness);\n        if (p.status !== undefined) {\n          this.acq_status_message = p.status;\n          const s = String(p.status).toLowerCase();\n          if (s.includes(\"started\") || s.includes(\"running\") || s.includes(\"capturing\")) {\n            this.resetProgress();\n            this.acq_status = \"on\";\n          } else if (s.includes(\"done\") || s.includes(\"idle\") || s.includes(\"stopped\") || s.includes(\"error\") || s.includes(\"not capturing\")) {\n            this.acq_status = \"off\";\n          }\n        }\n        if (topic === \"status/imager\" && p.status === \"Done\") {\n          this.incrementAcqId();\n          this.resetProgress();\n        }\n        this.autoCalculateVolumes();\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    fmt(v) { return Number(v || 0).toFixed(3); },\n    formatDuration(mins) {\n      const totalSeconds = Math.max(0, Math.round(mins * 60));\n      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, \"0\");\n      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, \"0\");\n      const s = String(totalSeconds % 60).padStart(2, \"0\");\n      return `${h}:${m}:${s}`;\n    },\n    resetProgress() { this.acq_progression = 0; this.acq_duration_left = 0; this.lastUpdateTime = Date.now(); },\n    incrementAcqId() { const next = String(Number(this.acq_id || 0) + 1).padStart(3, \"0\"); this.acq_id = next; this.sendUpdate(); },\n    autoCalculateVolumes() {\n      if (this.calibration_sensor_width > 0 && this.calibration_sensor_height > 0 && this.calibration_pixel_size > 0 && this.acq_flowcell_thickness > 0) {\n        const w = this.calibration_sensor_width * this.calibration_pixel_size;\n        const h = this.calibration_sensor_height * this.calibration_pixel_size;\n        const t = this.acq_flowcell_thickness;\n        this.frame_volume_um3 = w * h * t;\n        const frame_ml = this.frame_volume_um3 / 1e12;\n        this.acq_imaged_volume = frame_ml * (this.acq_nb_frame || 0);\n      }\n      const interimage_total_ml = (this.acq_interframe_volume || 0) * (this.acq_nb_frame || 0) / 1000;\n      this.acq_pumped_volume = this.acq_imaged_volume + interimage_total_ml;\n      this.updateProgress();\n      this.sendUpdate();\n    },\n    updateProgress() {\n      if (this.acq_status === \"on\" && this.acq_nb_frame > 0) {\n        const elapsed = (Date.now() - (this.lastUpdateTime || Date.now())) / 1000;\n        if (elapsed > 0) {\n          this.acq_progression = Math.min(100, this.acq_progression + (elapsed / this.acq_nb_frame) * 100);\n          this.acq_duration_left = ((100 - this.acq_progression) / 100) * (this.acq_nb_frame / 60);\n        }\n        this.lastUpdateTime = Date.now();\n      }\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      if (value === \"on\") this.resetProgress();\n      if (value === \"off\") this.incrementAcqId();\n      if (typeof this.send === \"function\") this.send({ topic: \"imager/image\", payload: { status: value } });\n    },\n    showVolumeImagedHint() {\n      const area = this.sensor_width_um * this.sensor_height_um;\n      const html = `\n        <p><b>Volume Imaged</b> represents the total fluid volume optically captured.</p>\n        <hr>\n        <ul>\n          <li><b>Sensor width:</b> ${Math.round(this.calibration_sensor_width)} px → ${Math.round(this.sensor_width_um)} µm</li>\n          <li><b>Sensor height:</b> ${Math.round(this.calibration_sensor_height)} px → ${Math.round(this.sensor_height_um)} µm</li>\n          <li><b>Flowcell thickness:</b> ${Math.round(this.acq_flowcell_thickness)} µm</li>\n        </ul>\n        <p><b>Step-by-step calculation:</b></p>\n        <ol>\n          <li>Area per image = width × height = ${Math.round(this.sensor_width_um)} × ${Math.round(this.sensor_height_um)} = ${Math.round(area)} µm²</li>\n          <li>Volume per image = area × thickness = ${Math.round(area)} × ${Math.round(this.acq_flowcell_thickness)} = ${Math.round(area * this.acq_flowcell_thickness)} µm³</li>\n          <li>Convert µm³ → mL: divide by 1e12 → ${this.fmt(this.frame_volume_ml)} mL per image</li>\n          <li>Total = ${this.acq_nb_frame} × ${this.fmt(this.frame_volume_ml)} mL = <b>${this.fmt(this.acq_imaged_volume)} mL</b></li>\n        </ol>`;\n      this.openHint(\"Volume Imaged\", html);\n    },\n    showVolumeDisplacedHint() {\n      const inter_ml = (this.acq_nb_frame * this.acq_interframe_volume) / 1000;\n      const html = `\n        <p><b>Total Volume Displaced</b> includes both the imaged volume and the extra fluid moved between images.</p>\n        <hr>\n        <ul>\n          <li><b>Interimage displacement:</b> ${this.acq_nb_frame} × ${this.fmt(this.acq_interframe_volume)} µL = ${this.fmt(inter_ml)} mL</li>\n          <li><b>Imaged volume:</b> ${this.fmt(this.acq_imaged_volume)} mL</li>\n        </ul>\n        <p><b>Total:</b> ${this.fmt(this.acq_imaged_volume)} + ${this.fmt(inter_ml)} = <b>${this.fmt(this.acq_pumped_volume)} mL</b></p>`;\n      this.openHint(\"Total Volume Displaced\", html);\n    },\n    openHint(title, text) { this.hintTitle = title; this.hintText = text; this.hintDialog = true; },\n    sendUpdate(extra = {}) {\n      if (typeof this.send !== \"function\") return;\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: `A_${this.acq_id}`,\n          acq_nb_frame: this.acq_nb_frame,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: this.acq_imaged_volume,\n          acq_pumped_volume: this.acq_pumped_volume,\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          calibration_pixel_size: this.calibration_pixel_size,\n          calibration_sensor_width: this.calibration_sensor_width,\n          calibration_sensor_height: this.calibration_sensor_height,\n          acq_flowcell_thickness: this.acq_flowcell_thickness,\n          ...extra,\n        },\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer { cursor: pointer; }\n.aligned-input >>> .v-input__control { align-items: center !important; }\n.aligned-row { align-items: center !important; }\n.v-card-text table td { padding: 4px 8px; border-bottom: 1px solid #ddd; }\n</style>\n",
+        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model.number=\"acq_id\"\n          type=\"number\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : 001\"\n          class=\"aligned-input\"\n          @input=\"sendUpdate()\"\n          prefix=\"A_\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition ID','Unique identifier for each acquisition run.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_nb_frame\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_nb_frame\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Number of Images','Total number of images captured during acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interimage Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"0\"\n          :step=\"1\"\n          label=\"Volume between images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Volume between images','Sample volume displaced between consecutive images (µL).')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Volume Imaged -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_imaged_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeImagedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Total Volume Displaced -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_pumped_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeDisplacedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          @input=\"sendUpdate()\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition Comment','Notes or remarks about this acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress Bar -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          :model-value=\"acq_progression\"\n          color=\"primary\"\n          height=\"24\"\n          rounded\n          striped\n          class=\"mt-2 mb-2\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.min(100, Math.ceil(value || 0)) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Estimated Duration -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"formatDuration(acq_duration_left)\"\n          variant=\"plain\"\n          hide-details\n          readonly\n          class=\"aligned-input\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Status Alert -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop Toggle -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between mt-4\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint Dialog -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"600\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text v-html=\"hintText\" class=\"text-body-2\"></v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_nb_frame: \"\",\n      acq_interframe_volume: 0,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      calibration_pixel_size: 0,\n      calibration_sensor_width: 0,\n      calibration_sensor_height: 0,\n      acq_flowcell_thickness: 0,\n      frame_volume_um3: 0,\n      topic: \"acq_params\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      lastUpdateTime: null,\n    };\n  },\n  computed: {\n    sensor_width_um() { return (this.calibration_sensor_width || 0) * (this.calibration_pixel_size || 0); },\n    sensor_height_um() { return (this.calibration_sensor_height || 0) * (this.calibration_pixel_size || 0); },\n    frame_volume_ml() { return this.frame_volume_um3 / 1e12; },\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message || \"\";\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if ([\"Started\", \"Done\"].includes(s)) return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      if (this.statusColor === \"green\") return \"success\";\n      if (this.statusColor === \"orange\") return \"warning\";\n      if (this.statusColor === \"red\") return \"error\";\n      return \"info\";\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        const topic = newMsg?.topic;\n        if (p.acq_id !== undefined) this.acq_id = String(p.acq_id).replace(/^A[_-]?/, \"\");\n        if (p.acq_nb_frame !== undefined) this.acq_nb_frame = Number(p.acq_nb_frame);\n        if (p.acq_interframe_volume !== undefined) this.acq_interframe_volume = Number(p.acq_interframe_volume);\n        if (p.calibration_pixel_size !== undefined) this.calibration_pixel_size = Number(p.calibration_pixel_size);\n        if (p.calibration_sensor_width !== undefined) this.calibration_sensor_width = Number(p.calibration_sensor_width);\n        if (p.calibration_sensor_height !== undefined) this.calibration_sensor_height = Number(p.calibration_sensor_height);\n        if (p.acq_flowcell_thickness !== undefined) this.acq_flowcell_thickness = Number(p.acq_flowcell_thickness);\n        if (p.status !== undefined) {\n          this.acq_status_message = p.status;\n          const s = String(p.status).toLowerCase();\n          if (s.includes(\"started\") || s.includes(\"running\") || s.includes(\"capturing\")) {\n            this.resetProgress();\n            this.acq_status = \"on\";\n          } else if (s.includes(\"done\") || s.includes(\"idle\") || s.includes(\"stopped\") || s.includes(\"error\") || s.includes(\"not capturing\")) {\n            this.acq_status = \"off\";\n          }\n        }\n        if (topic === \"status/imager\" && p.status === \"Done\") {\n          this.incrementAcqId();\n          this.resetProgress();\n        }\n        this.autoCalculateVolumes();\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    fmt(v) { return Number(v || 0).toFixed(3); },\n    formatDuration(mins) {\n      const totalSeconds = Math.max(0, Math.round(mins * 60));\n      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, \"0\");\n      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, \"0\");\n      const s = String(totalSeconds % 60).padStart(2, \"0\");\n      return `${h}:${m}:${s}`;\n    },\n    resetProgress() { this.acq_progression = 0; this.acq_duration_left = 0; this.lastUpdateTime = Date.now(); },\n    incrementAcqId() { const next = String(Number(this.acq_id || 0) + 1).padStart(1, \"0\"); this.acq_id = next; this.sendUpdate(); },\n    autoCalculateVolumes() {\n      if (this.calibration_sensor_width > 0 && this.calibration_sensor_height > 0 && this.calibration_pixel_size > 0 && this.acq_flowcell_thickness > 0) {\n        const w = this.calibration_sensor_width * this.calibration_pixel_size;\n        const h = this.calibration_sensor_height * this.calibration_pixel_size;\n        const t = this.acq_flowcell_thickness;\n        this.frame_volume_um3 = w * h * t;\n        const frame_ml = this.frame_volume_um3 / 1e12;\n        this.acq_imaged_volume = frame_ml * (this.acq_nb_frame || 0);\n      }\n      const interimage_total_ml = (this.acq_interframe_volume || 0) * (this.acq_nb_frame || 0) / 1000;\n      this.acq_pumped_volume = this.acq_imaged_volume + interimage_total_ml;\n      this.updateProgress();\n      this.sendUpdate();\n    },\n    updateProgress() {\n      if (this.acq_status === \"on\" && this.acq_nb_frame > 0) {\n        const elapsed = (Date.now() - (this.lastUpdateTime || Date.now())) / 1000;\n        if (elapsed > 0) {\n          this.acq_progression = Math.min(100, this.acq_progression + (elapsed / this.acq_nb_frame) * 100);\n          this.acq_duration_left = ((100 - this.acq_progression) / 100) * (this.acq_nb_frame / 60);\n        }\n        this.lastUpdateTime = Date.now();\n      }\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      if (value === \"on\") this.resetProgress();\n      if (value === \"off\") this.incrementAcqId();\n      if (typeof this.send === \"function\") this.send({ topic: \"imager/image\", payload: { status: value } });\n    },\n    showVolumeImagedHint() {\n      const area = this.sensor_width_um * this.sensor_height_um;\n      const html = `\n        <p><b>Volume Imaged</b> represents the total fluid volume optically captured.</p>\n        <hr>\n        <ul>\n          <li><b>Sensor width:</b> ${Math.round(this.calibration_sensor_width)} px → ${Math.round(this.sensor_width_um)} µm</li>\n          <li><b>Sensor height:</b> ${Math.round(this.calibration_sensor_height)} px → ${Math.round(this.sensor_height_um)} µm</li>\n          <li>\n            <b>Flowcell thickness:</b>\n            ${Math.round(this.acq_flowcell_thickness)} µm\n            <a href=\"hardware\" target=\"_blank\" style=\"margin-left:6px;\">\n              If different, modify your check hardware here.\n            </a>\n          </li>\n        </ul>\n\n\n        <p><b>Step-by-step calculation:</b></p>\n        <ol>\n          <li>Area per image = width × height = ${Math.round(this.sensor_width_um)} × ${Math.round(this.sensor_height_um)} = ${Math.round(area)} µm²</li>\n          <li>Volume per image = area × thickness = ${Math.round(area)} × ${Math.round(this.acq_flowcell_thickness)} = ${Math.round(area * this.acq_flowcell_thickness)} µm³</li>\n          <li>Convert µm³ → mL: divide by 1e12 → ${this.fmt(this.frame_volume_ml)} mL per image</li>\n          <li>Total = ${this.acq_nb_frame} × ${this.fmt(this.frame_volume_ml)} mL = <b>${this.fmt(this.acq_imaged_volume)} mL</b></li>\n        </ol>`;\n      this.openHint(\"Volume Imaged\", html);\n    },\n    showVolumeDisplacedHint() {\n      const inter_ml = (this.acq_nb_frame * this.acq_interframe_volume) / 1000;\n      const html = `\n        <p><b>Total Volume Displaced</b> includes both the imaged volume and the extra fluid moved between images.</p>\n        <hr>\n        <ul>\n          <li><b>Interimage displacement:</b> ${this.acq_nb_frame} × ${this.fmt(this.acq_interframe_volume)} µL = ${this.fmt(inter_ml)} mL</li>\n          <li><b>Imaged volume:</b> ${this.fmt(this.acq_imaged_volume)} mL</li>\n        </ul>\n        <p><b>Total:</b> ${this.fmt(this.acq_imaged_volume)} + ${this.fmt(inter_ml)} = <b>${this.fmt(this.acq_pumped_volume)} mL</b></p>`;\n      this.openHint(\"Total Volume Displaced\", html);\n    },\n    openHint(title, text) { this.hintTitle = title; this.hintText = text; this.hintDialog = true; },\n    sendUpdate(extra = {}) {\n      if (typeof this.send !== \"function\") return;\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: `A_${this.acq_id}`,\n          acq_nb_frame: this.acq_nb_frame,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: Number(this.acq_imaged_volume.toFixed(2)),\n          acq_pumped_volume: Number(this.acq_pumped_volume.toFixed(2)),\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          calibration_pixel_size: this.calibration_pixel_size,\n          calibration_sensor_width: this.calibration_sensor_width,\n          calibration_sensor_height: this.calibration_sensor_height,\n          acq_flowcell_thickness: this.acq_flowcell_thickness,\n          ...extra,\n        },\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer { cursor: pointer; }\n.aligned-input >>> .v-input__control { align-items: center !important; }\n.aligned-row { align-items: center !important; }\n.v-card-text table td { padding: 4px 8px; border-bottom: 1px solid #ddd; }\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3727,7 +3554,7 @@
         "type": "function",
         "z": "35d7387466dd0bc0",
         "name": "update_config",
-        "func": "const keys = global.keys(); // Récupère toutes les clés des variables globales\nlet config = {}; // Objet pour stocker la configuration\n\nkeys.forEach(key => {\n    // Ignore les clés qui commencent par \"$\"\n    if (!key.startsWith('$')) {\n        config[key] = global.get(key);\n    }\n});\n\n// Crée le payload final\nmsg.payload = {\n    action: \"update_config\",\n    config: config\n};\n\nreturn msg;\n",
+        "func": "const keys = global.keys(); // Récupère toutes les clés des variables globales\nlet config = {}; // Objet pour stocker la configuration\n\nkeys.forEach(key => {\n    // Ignore les clés qui commencent par \"$\"\n    if (!key.startsWith('$')) {\n        // Ne garde que celles qui commencent par les préfixes demandés\n        if (\n            key.startsWith('sample_') ||\n            key.startsWith('acq_') ||\n            key.startsWith('object_') ||\n            key.startsWith('process_') ||\n            key.startsWith('img_')\n        ) {\n            config[key] = global.get(key);\n        }\n    }\n});\n\n// Crée le payload final\nmsg.payload = {\n    action: \"update_config\",\n    config: config\n};\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4431,7 +4258,9 @@
         "y": 320,
         "wires": [
             [
-                "e5a0432fc7b35b29"
+                "e5a0432fc7b35b29",
+                "c6c66ebc50dd5d90",
+                "f6c913298cba35ee"
             ]
         ]
     },
@@ -4848,6 +4677,65 @@
         ]
     },
     {
+        "id": "bfcd2b12c9c89c15",
+        "type": "debug",
+        "z": "14f8c9b5ce1235cc",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c6c66ebc50dd5d90",
+        "type": "switch",
+        "z": "14f8c9b5ce1235cc",
+        "g": "979647e2e34284fb",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Done",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [
+                "bfcd2b12c9c89c15"
+            ]
+        ]
+    },
+    {
+        "id": "f6c913298cba35ee",
+        "type": "debug",
+        "z": "14f8c9b5ce1235cc",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 180,
+        "wires": []
+    },
+    {
         "id": "64c27d4448d8f79f",
         "type": "ui-event",
         "z": "2d14eef8a9f51595",
@@ -4967,9 +4855,9 @@
         "name": "Viewer",
         "order": 1,
         "width": "12",
-        "height": "8",
+        "height": "16",
         "head": "",
-        "format": "  <iframe \n    src=\"/ps/data/browse/files/\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n    }\n  </style>",
+        "format": "  <iframe \n    src=\"/ps/data/browse/files/export/ecotaxa\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -5125,374 +5013,6 @@
         ]
     },
     {
-        "id": "a99be895898a4f2f",
-        "type": "ui-template",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "group": "af8acdfe9afbad74",
-        "page": "",
-        "ui": "",
-        "name": "2. Measure the Current Saturation Level",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-card title=\"2. Measure the Current Saturation Level\">\n    <v-card-text>\n      Now, use the color picker to measure the current color at a random location on your streaming:\n      <input class=\"colorpicker\" type=\"color\" v-model=\"selectedColor\" @input=\"onColorInput\" />\n    </v-card-text>\n\n    <!-- Progress Bar for Saturation Level -->\n    <div class=\"progress-container\">\n      <div class=\"progress-bar\" :style=\"progressBarStyle\"></div>\n      <div v-for=\"(label, index) in scaleLabels\" :key=\"index\" :style=\"{ left: label.position + '%' }\" class=\"progress-scale-line\"></div>\n    </div>\n\n    <!-- Scale Labels -->\n    <div class=\"progress-scale\">\n      <span v-for=\"(label, index) in scaleLabels\" :key=\"index\" :style=\"{ left: label.position + '%' }\" class=\"scale-label\">\n        {{ label.value }}%\n      </span>\n    </div>\n\n    <v-card-text>\n      The current saturation level is <b>{{ hsl.s }}%</b>.\n    </v-card-text>\n  </v-card>\n</template>\n\n<script>\nexport default {\n  data: () => ({\n    selectedColor: \"#000000\", // Default value for the color picker\n    hsl: { h: 0, s: 0, l: 0 }, // HSL value for the selected color\n    scaleLabels: [\n      { value: 1, position: 0 },\n      { value: 5, position: 0 },\n      { value: 10, position: 0 },\n      { value: 20, position: 0 },\n      { value: 50, position: 0 },\n      { value: 100, position: 0 }\n    ],\n    msg: {} // Store incoming message\n  }),\n  computed: {\n    progressBarStyle() {\n      const logScaleValue = this.calculateLogScale(this.hsl.s);\n      return {\n        width: `${logScaleValue}%`,\n        backgroundColor: this.hsl.s < 5 ? '#5cd65c' : '#ea5353',\n      };\n    }\n  },\n  methods: {\n    onColorInput(event) {\n      this.selectedColor = event.target.value;\n      this.hsl = this.hexToHsl(this.selectedColor);\n      this.sendHexColor(); // Send the hex color and saturation level to Node-RED\n    },\n    sendHexColor() {\n      // Send hex color and saturation level to Node-RED\n      this.send({ topic: \"change\", acq_wb_hex: this.selectedColor, acq_saturation_value: this.hsl.s });\n    },\n    hexToHsl(hex) {\n      // Convert hex to HSL\n      let r = 0,\n        g = 0,\n        b = 0;\n      if (hex.length === 7) {\n        r = parseInt(hex.slice(1, 3), 16);\n        g = parseInt(hex.slice(3, 5), 16);\n        b = parseInt(hex.slice(5, 7), 16);\n      } else if (hex.length === 4) {\n        r = parseInt(hex[1] + hex[1], 16);\n        g = parseInt(hex[2] + hex[2], 16);\n        b = parseInt(hex[3] + hex[3], 16);\n      }\n      r /= 255;\n      g /= 255;\n      b /= 255;\n      const max = Math.max(r, g, b),\n        min = Math.min(r, g, b);\n      let h = 0,\n        s = 0,\n        l = (max + min) / 2;\n      if (max !== min) {\n        const d = max - min;\n        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);\n        switch (max) {\n          case r:\n            h = (g - b) / d + (g < b ? 6 : 0);\n            break;\n          case g:\n            h = (b - r) / d + 2;\n            break;\n          case b:\n            h = (r - g) / d + 4;\n            break;\n        }\n        h /= 6;\n      }\n      return {\n        h: Math.round(h * 360),\n        s: Math.round(s * 100), // Saturation value\n        l: Math.round(l * 100),\n      };\n    },\n    calculateLogScale(value) {\n      // Apply logarithmic scale to the saturation value\n      const logValue = Math.log10(value + 1);\n      const logMax = Math.log10(101);\n      return (logValue / logMax) * 100;\n    },\n    calculateScalePositions() {\n      // Calculate the position of each scale label\n      this.scaleLabels = this.scaleLabels.map(label => ({\n        value: label.value,\n        position: this.calculateLogScale(label.value),\n      }));\n    },\n    updateMessage(newMsg) {\n      // Update UI based on the incoming message\n      if (newMsg.acq_saturation_value !== undefined) {\n        this.hsl.s = newMsg.acq_saturation_value; // Update saturation level\n      }\n      if (newMsg.acq_wb_hex !== undefined) {\n        this.selectedColor = newMsg.acq_wb_hex; // Update the selected color\n        this.hsl = this.hexToHsl(this.selectedColor); // Convert hex to HSL\n      }\n    }\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        this.updateMessage(newMsg); // Watch for updates to msg and handle them\n      },\n      deep: true // Deep watch to catch nested changes in the msg object\n    }\n  },\n  mounted() {\n    this.calculateScalePositions(); // Calculate scale positions for the progress bar\n\n    // Listen for WebSocket messages (Node-RED or any backend)\n    this.$socket.on('msg-input:' + this.id, (msg) => {\n      this.msg = msg; // Update msg with the received message\n    });\n  }\n};\n</script>\n\n<style>\n.progress-container {\n  position: relative;\n  width: 90%;\n  height: 30px;\n  background-color: #f4f5f6;\n  border-radius: 5px;\n  margin: 10px 5%;\n  border: 1px solid;\n}\n\n.progress-bar {\n  height: 100%;\n  border-radius: 5px;\n  transition: width 0.3s ease;\n}\n\n.progress-scale-line {\n  position: absolute;\n  height: 100%;\n  width: 1px;\n  top: 0;\n  background-color: #000;\n  pointer-events: none;\n}\n\n.progress-scale {\n  position: relative;\n  margin-top: 5px;\n  height: 20px;\n  width: 90%;\n  margin: 10px 5%;\n}\n\n.scale-label {\n  position: absolute;\n  bottom: 0;\n  font-size: 12px;\n  transform: translateX(-50%);\n  color: #000;\n}\n\n.colorpicker {\n  height: 2vw;\n  vertical-align: middle;\n  width: 5vw;\n  border: 1px solid;\n}\n</style>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 560,
-        "y": 640,
-        "wires": [
-            [
-                "6104a1880402810c"
-            ]
-        ]
-    },
-    {
-        "id": "f3d25e1060563ac8",
-        "type": "ui-template",
-        "z": "6426e7bea6900426",
-        "g": "64fb52a5fc759893",
-        "group": "af8acdfe9afbad74",
-        "page": "",
-        "ui": "",
-        "name": "3. Display White Balance Settings",
-        "order": 4,
-        "width": "4",
-        "height": "10",
-        "head": "",
-        "format": "<template>\n  <v-card title=\"3. Observe the current White Balance Settings\">\n    <v-card-text>\n      <canvas id=\"wbChart\"></canvas>\n    </v-card-text>\n  </v-card>\n</template>\n\n\n\n<script>\nexport default {\n  data() {\n    return {\n      chart: null,\n    };\n  },\n  mounted() {\n    this.$nextTick(() => {\n      this.createChart(); // Initialize the chart after the component is fully mounted\n    });\n  },\n  beforeDestroy() {\n    if (this.chart) {\n      this.chart.destroy(); // Clean up the chart if the component is destroyed\n    }\n  },\n  methods: {\n    createChart(hexColor = '#000000') {\n      const canvas = document.getElementById('wbChart');\n      if (!canvas) {\n        console.error(\"Canvas element not found.\");\n        return;\n      }\n\n      const ctx = canvas.getContext('2d');\n      if (!ctx) {\n        console.error(\"Unable to get canvas context.\");\n        return;\n      }\n\n      const ratios = this.calculateRatiosFromHex(hexColor);\n\n      if (this.chart) {\n        this.chart.destroy(); // Ensure any existing chart is destroyed before creating a new one\n      }\n\n      this.chart = new Chart(ctx, {\n        type: 'scatter',\n        data: {\n          datasets: [\n            {\n              label: 'Current WB',\n              data: [{ x: ratios.bgRatio, y: ratios.rgRatio }],\n              backgroundColor: 'blue',\n              borderColor: 'black',\n              borderWidth: 1,\n              pointRadius: 10,\n              pointHoverRadius: 15,\n            },\n            {\n              label: 'Acceptable WB',\n              data: [{ x: 1, y: 1 }],\n              backgroundColor: '#5cd65c',\n              borderColor: 'black',\n              borderWidth: 1,\n              pointRadius: 50,\n              pointHoverRadius: 55,\n              pointStyle: 'circle',\n              fill: true,\n              showLine: false,\n            },\n          ],\n        },\n        options: {\n          responsive: true,\n          maintainAspectRatio: true,\n          scales: {\n            x: {\n              type: 'linear',\n              position: 'bottom',\n              title: {\n                display: true,\n                text: 'B/G Ratio',\n              },\n              min: 0.8,\n              max: 1.2,\n            },\n            y: {\n              type: 'linear',\n              title: {\n                display: true,\n                text: 'R/G Ratio',\n              },\n              min: 0.8,\n              max: 1.2,\n            },\n          },\n          plugins: {\n            legend: {\n              display: true,\n            },\n          },\n          animation: {\n            duration: 0, // Disabling animations might prevent some update issues\n          },\n        },\n      });\n    },\n    calculateRatiosFromHex(hex) {\n      const r = parseInt(hex.slice(1, 3), 16);\n      const g = parseInt(hex.slice(3, 5), 16);\n      const b = parseInt(hex.slice(5, 7), 16);\n\n      const rgRatio = r / g || 0;\n      const bgRatio = b / g || 0;\n\n      return { rgRatio, bgRatio };\n    },\n  },\n  watch: {\n    msg(newMsg) {\n      if (newMsg && newMsg.acq_wb_hex) {\n        this.createChart(newMsg.acq_wb_hex);\n      }\n    },\n  },\n};\n</script>\n\n<style scoped>\n#wbChart {\n  width: 100% !important;\n  height: 400px !important;\n}\n</style>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 260,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f13c467a5f891268",
-        "type": "ui-template",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "group": "af8acdfe9afbad74",
-        "page": "",
-        "ui": "",
-        "name": "4. Adjust White Balance Settings",
-        "order": 5,
-        "width": "4",
-        "height": "10",
-        "head": "",
-        "format": "<template>\n  <v-card title=\"4. Adjust White Balance Settings\">\n    <v-card-text>\n      Use the suggested values to adjust the white balance based on the color input.\n    </v-card-text>\n    <v-card-text>\n      <v-row>\n        <v-col cols=\"4\"></v-col>\n        <v-col cols=\"4\">Current</v-col>\n        <v-col cols=\"4\">Suggested</v-col>\n      </v-row>\n      <v-row>\n        <v-col cols=\"4\">AWRed</v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"currentAWRed\" disabled variant=\"outlined\"></v-text-field>\n        </v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"suggestedAWRed\" variant=\"outlined\"></v-text-field>\n        </v-col>\n      </v-row>\n      <v-row>\n        <v-col cols=\"4\">AWBlue</v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"currentAWBlue\" disabled variant=\"outlined\"></v-text-field>\n        </v-col>\n        <v-col cols=\"4\">\n          <v-text-field v-model=\"suggestedAWBlue\" variant=\"outlined\"></v-text-field>\n        </v-col>\n      </v-row>\n    </v-card-text>\n    <v-card-actions>\n    <v-card-text>\n      We have calculated better values for your AWRed and AWBlue : \n    </v-card-text>\n      <v-btn color=\"primary\" @click=\"sendSettings\" variant=\"outlined\">Improve</v-btn>\n    </v-card-actions>\n  </v-card>\n</template>\n\n<script>\nexport default {\n  props: ['id'],\n  data() {\n    return {\n      currentAWRed: '',\n      currentAWBlue: '',\n      suggestedAWRed: '',\n      suggestedAWBlue: '',\n    };\n  },\n  mounted() {\n    this.setupSocketListeners();\n  },\n  methods: {\n    setupSocketListeners() {\n      if (this.$socket) {\n        this.$socket.on('msg-input:' + this.id, (msg) => {\n          if (msg.acq_wb_red !== undefined) {\n            this.currentAWRed = msg.acq_wb_red;\n          }\n          if (msg.acq_wb_blue !== undefined) {\n            this.currentAWBlue = msg.acq_wb_blue;\n          }\n          if (msg.acq_wb_hex !== undefined) {\n            this.calculateSuggestedAW(msg.acq_wb_hex);\n          }\n        });\n      }\n    },\n    hexToRgb(hex) {\n      hex = hex.replace(/^#/, '');\n      let bigint = parseInt(hex, 16);\n      let r = (bigint >> 16) & 255;\n      let g = (bigint >> 8) & 255;\n      let b = bigint & 255;\n      return { r, g, b };\n    },\n    calculateSuggestedAW(hexColor) {\n      const { r, g, b } = this.hexToRgb(hexColor);\n      let redAdjustment = (g - r) + parseInt(this.currentAWRed, 10);\n      let blueAdjustment = (g - b) + parseInt(this.currentAWBlue, 10);\n      this.suggestedAWRed = Math.max(0, redAdjustment);\n      this.suggestedAWBlue = Math.max(0, blueAdjustment);\n    },\n    sendSettings() {\n      const payload = {\n        payload: {\n          action: \"settings\",\n          settings: {\n            white_balance_gain: {\n              blue: this.suggestedAWBlue,\n              red: this.suggestedAWRed,\n            },\n          },\n        },\n        acq_wb_blue:this.suggestedAWBlue,\n        acq_wb_red:this.suggestedAWRed,\n        \n        topic: \"imager/image\",\n        \n      };\n      this.send(payload);\n    },\n  },\n};\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 260,
-        "y": 900,
-        "wires": [
-            [
-                "3574f41671e9c607",
-                "0e406c9af3e5a51e",
-                "801d9c0cb77d4caa"
-            ]
-        ]
-    },
-    {
-        "id": "3b5d942eccbc14ba",
-        "type": "mqtt out",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 630,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "f7aececeb25feee2",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "set acq_wb_hex",
-        "func": "global.set(\"acq_wb_hex\", msg.acq_wb_hex);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 940,
-        "y": 640,
-        "wires": [
-            [
-                "4a99ebbebc9e7d65"
-            ]
-        ]
-    },
-    {
-        "id": "4a99ebbebc9e7d65",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "get acq_wb_red",
-        "func": "msg.acq_wb_red = global.get(\"acq_wb_red\");\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1120,
-        "y": 640,
-        "wires": [
-            [
-                "a6cfdc06c50e2b7c"
-            ]
-        ]
-    },
-    {
-        "id": "a6cfdc06c50e2b7c",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "get acq_wb_blue",
-        "func": "msg.acq_wb_blue = global.get(\"acq_wb_blue\");\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1310,
-        "y": 640,
-        "wires": [
-            [
-                "69f90516888fb4c2"
-            ]
-        ]
-    },
-    {
-        "id": "3574f41671e9c607",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "set acq_wb_red",
-        "func": "global.set(\"acq_wb_red\", msg.acq_wb_red);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 900,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0e406c9af3e5a51e",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "set acq_wb_blue",
-        "func": "global.set(\"acq_wb_blue\", msg.acq_wb_blue);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 530,
-        "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ea8c4596e202f964",
-        "type": "ui-template",
-        "z": "6426e7bea6900426",
-        "g": "631f3e38acec1bc6",
-        "group": "af8acdfe9afbad74",
-        "page": "",
-        "ui": "",
-        "name": "1. Reset the value of the gains",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-card title=\"1. Reset WB Values\">\n    <v-card-text>\n        <span>If needed, you can turn <b>ON</b> the LED that might be temporarly <b>OFF</b>. Just click on this button : </span>\n        <v-btn @click=\"on\" variant=\"outlined\">ON</v-btn>\n        <br>\n      <span>Then, it reset the values of the gains for Red and Blue to 100 :</span>\n      <v-btn @click=\"reset\" variant=\"outlined\">Reset WBBlue and WBRed</v-btn>\n      \n    \n    </v-card-text>\n    \n  </v-card>\n  \n</template>\n\n<script>\nexport default {\n  props: ['id'],\n  methods: {\n    reset() {\n      const payload = {\n        payload: {\n          action: \"settings\",\n          settings: {\n            white_balance_gain: {\n              blue: 100,\n              red: 100,\n            },\n          },\n        },\n        acq_wb_blue: 100,\n        acq_wb_red: 100,\n        topic: \"imager/image\",\n      };\n      this.send(payload);\n    }, \n    on() {\n       this.send({payload: {action: \"on\",led: 1},topic: 'light'});\n    },\n  },\n};\n\n</script>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 190,
-        "y": 440,
-        "wires": [
-            [
-                "4c7717ee07b97e8b",
-                "0fa68c34208c36d2",
-                "958aac3964d0faf4",
-                "857257c8697a3b76"
-            ]
-        ]
-    },
-    {
-        "id": "4c7717ee07b97e8b",
-        "type": "mqtt out",
-        "z": "6426e7bea6900426",
-        "g": "631f3e38acec1bc6",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 430,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "0fa68c34208c36d2",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "631f3e38acec1bc6",
-        "name": "set acq_wb_red",
-        "func": "global.set(\"acq_wb_red\", msg.acq_wb_red);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "958aac3964d0faf4",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "631f3e38acec1bc6",
-        "name": "set acq_wb_blue",
-        "func": "global.set(\"acq_wb_blue\", msg.acq_wb_blue);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "857257c8697a3b76",
-        "type": "link out",
-        "z": "6426e7bea6900426",
-        "g": "631f3e38acec1bc6",
-        "name": "link out 1",
-        "mode": "link",
-        "links": [
-            "6d6fdc0c504bbc26"
-        ],
-        "x": 395,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "6d6fdc0c504bbc26",
-        "type": "link in",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "link in 1",
-        "links": [
-            "857257c8697a3b76"
-        ],
-        "x": 75,
-        "y": 860,
-        "wires": [
-            [
-                "f13c467a5f891268"
-            ]
-        ]
-    },
-    {
-        "id": "69f90516888fb4c2",
-        "type": "link out",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "link out 2",
-        "mode": "link",
-        "links": [
-            "cab52c68fd58220b",
-            "45f2ad943cee341f"
-        ],
-        "x": 1435,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "cab52c68fd58220b",
-        "type": "link in",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "link in 2",
-        "links": [
-            "69f90516888fb4c2"
-        ],
-        "x": 75,
-        "y": 940,
-        "wires": [
-            [
-                "f13c467a5f891268"
-            ]
-        ]
-    },
-    {
-        "id": "45f2ad943cee341f",
-        "type": "link in",
-        "z": "6426e7bea6900426",
-        "g": "64fb52a5fc759893",
-        "name": "link in 3",
-        "links": [
-            "69f90516888fb4c2"
-        ],
-        "x": 75,
-        "y": 740,
-        "wires": [
-            [
-                "f3d25e1060563ac8"
-            ]
-        ]
-    },
-    {
         "id": "062a3af5e12e8445",
         "type": "ui-template",
         "z": "6426e7bea6900426",
@@ -5531,424 +5051,6 @@
         "y": 60,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "bc2f402f6cdd8434",
-        "type": "ui-control",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "",
-        "ui": "e6ae26617c24c3ea",
-        "events": "all",
-        "x": 120,
-        "y": 640,
-        "wires": [
-            [
-                "224eba65a1a42b91"
-            ]
-        ]
-    },
-    {
-        "id": "ec5d9fecc6b0cece",
-        "type": "ui-event",
-        "z": "6426e7bea6900426",
-        "g": "f5929f8fbe9df063",
-        "ui": "e6ae26617c24c3ea",
-        "name": "",
-        "x": 120,
-        "y": 260,
-        "wires": [
-            [
-                "5c444b714f250678"
-            ]
-        ]
-    },
-    {
-        "id": "5c444b714f250678",
-        "type": "switch",
-        "z": "6426e7bea6900426",
-        "g": "f5929f8fbe9df063",
-        "name": "",
-        "property": "payload.page.path",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "/calibration_saturation_level",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 250,
-        "y": 260,
-        "wires": [
-            [
-                "cb467ae07b125bcc",
-                "aad16ea9eae8d3dd"
-            ]
-        ]
-    },
-    {
-        "id": "cb467ae07b125bcc",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "f5929f8fbe9df063",
-        "name": "get acq_wb_red",
-        "func": "msg.acq_wb_red = global.get(\"acq_wb_red\");\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 260,
-        "wires": [
-            [
-                "97541b0d6dcf6747"
-            ]
-        ]
-    },
-    {
-        "id": "aad16ea9eae8d3dd",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "f5929f8fbe9df063",
-        "name": "get acq_wb_blue",
-        "func": "msg.acq_wb_blue = global.get(\"acq_wb_blue\");\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 410,
-        "y": 300,
-        "wires": [
-            [
-                "97541b0d6dcf6747"
-            ]
-        ]
-    },
-    {
-        "id": "97541b0d6dcf6747",
-        "type": "link out",
-        "z": "6426e7bea6900426",
-        "g": "f5929f8fbe9df063",
-        "name": "link out 3",
-        "mode": "link",
-        "links": [
-            "06e4799523ede341"
-        ],
-        "x": 555,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "06e4799523ede341",
-        "type": "link in",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "link in 4",
-        "links": [
-            "97541b0d6dcf6747"
-        ],
-        "x": 75,
-        "y": 900,
-        "wires": [
-            [
-                "f13c467a5f891268"
-            ]
-        ]
-    },
-    {
-        "id": "801d9c0cb77d4caa",
-        "type": "switch",
-        "z": "6426e7bea6900426",
-        "g": "b04534747af369bb",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "imager/image",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 490,
-        "y": 840,
-        "wires": [
-            [
-                "3b5d942eccbc14ba"
-            ]
-        ]
-    },
-    {
-        "id": "6104a1880402810c",
-        "type": "switch",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "change",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 790,
-        "y": 640,
-        "wires": [
-            [
-                "f7aececeb25feee2"
-            ]
-        ]
-    },
-    {
-        "id": "224eba65a1a42b91",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "a885abc248b6ba6e",
-        "name": "get acq_wb_hex",
-        "func": "msg.acq_wb_hex = global.get(\"acq_wb_hex\");\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 640,
-        "wires": [
-            [
-                "a99be895898a4f2f"
-            ]
-        ]
-    },
-    {
-        "id": "23a52935692ecb49",
-        "type": "mqtt out",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 1490,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "746c989af736cb33",
-        "type": "ui-slider",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "group": "af8acdfe9afbad74",
-        "name": "",
-        "label": "red",
-        "tooltip": "",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "outs": "end",
-        "topic": "red",
-        "topicType": "str",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "1",
-        "max": "5",
-        "step": "0.05",
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 1050,
-        "y": 240,
-        "wires": [
-            [
-                "7da6b39ccb75384c"
-            ]
-        ]
-    },
-    {
-        "id": "7da6b39ccb75384c",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "name": "gain",
-        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{\"white_balance_gain\":{\n        [msg.topic]:Math.round(msg.payload*100)\n        }\n    }\n}\nmsg.topic = \"imager/image\"\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1270,
-        "y": 260,
-        "wires": [
-            [
-                "66756e43efce9726"
-            ]
-        ]
-    },
-    {
-        "id": "2451da81a82f7915",
-        "type": "ui-slider",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "group": "af8acdfe9afbad74",
-        "name": "",
-        "label": "blue",
-        "tooltip": "",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "outs": "end",
-        "topic": "blue",
-        "topicType": "str",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "1",
-        "max": "5",
-        "step": "0.05",
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 1050,
-        "y": 280,
-        "wires": [
-            [
-                "7da6b39ccb75384c"
-            ]
-        ]
-    },
-    {
-        "id": "66756e43efce9726",
-        "type": "mqtt out",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 1490,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "ac01daf9daeecf2a",
-        "type": "ui-slider",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "group": "af8acdfe9afbad74",
-        "name": "ISO",
-        "label": "ISO",
-        "tooltip": "",
-        "order": 8,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "outs": "end",
-        "topic": "iso",
-        "topicType": "str",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "50",
-        "max": "500",
-        "step": "50",
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 1050,
-        "y": 360,
-        "wires": [
-            [
-                "4441ba5d435ed9d7"
-            ]
-        ]
-    },
-    {
-        "id": "4441ba5d435ed9d7",
-        "type": "function",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "name": "settings",
-        "func": "msg.payload = {\n    \"action\":\"settings\", \n    \"settings\":{[msg.topic]:msg.payload}\n}\n\nmsg.topic = \"imager/image\"\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1280,
-        "y": 360,
-        "wires": [
-            [
-                "23a52935692ecb49"
-            ]
-        ]
-    },
-    {
-        "id": "7cf9eaa2eb0776bf",
-        "type": "ui-slider",
-        "z": "6426e7bea6900426",
-        "g": "239ace7a73b8b6df",
-        "group": "af8acdfe9afbad74",
-        "name": "Shutter Speed",
-        "label": "Shutter Speed",
-        "tooltip": "",
-        "order": 9,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "outs": "end",
-        "topic": "shutter_speed",
-        "topicType": "str",
-        "thumbLabel": "true",
-        "showTicks": "always",
-        "min": "125",
-        "max": "300",
-        "step": "10",
-        "className": "",
-        "iconPrepend": "",
-        "iconAppend": "",
-        "color": "",
-        "colorTrack": "",
-        "colorThumb": "",
-        "showTextField": false,
-        "x": 1080,
-        "y": 420,
-        "wires": [
-            [
-                "4441ba5d435ed9d7"
-            ]
         ]
     },
     {
@@ -6010,7 +5112,147 @@
         "x": 640,
         "y": 40,
         "wires": [
+            [
+                "65a5f93fc6decaac"
+            ]
+        ]
+    },
+    {
+        "id": "65a5f93fc6decaac",
+        "type": "function",
+        "z": "6426e7bea6900426",
+        "name": "Get Global Variables",
+        "func": "const keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "94a287dea58faa4d",
+                "b8b60ce8a0cf6764"
+            ]
+        ]
+    },
+    {
+        "id": "94a287dea58faa4d",
+        "type": "ui-template",
+        "z": "6426e7bea6900426",
+        "group": "af8acdfe9afbad74",
+        "page": "",
+        "ui": "",
+        "name": "Calibration - WB",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-container class=\"pa-4 d-flex flex-wrap justify-center align-start\" style=\"gap:32px;\">\n    <!-- PREVIEW -->\n    <v-card class=\" calibration-container\" style=\"width:1000px;height:750px;position:relative;overflow:hidden\">\n      <iframe src=\"/preview\" class=\"calibration-iframe\"></iframe>\n    </v-card>\n\n    \n    <!-- Control Panel -->\n    <v-card width=\"440\" class=\"px-4\">\n      <v-card-title class=\"text-left text-primary\">\n        White Balance Calibration\n      </v-card-title>\n\n\n\n\n\n      <v-divider class=\"mb-4\"></v-divider>\n\n\n    <!-- Step 1: Refresh -->\n    <section class=\"mb-6\">\n      <h3 class=\"text-subtitle-1 mb-2\">1. Refresh</h3>\n      <p class=\"text-caption mb-3\">\n        Click <b>Refresh the value of the gains</b> to start.\n      </p>\n      <v-btn block color=\"error\" class=\"mb-4\" @click=\"refreshGain\">\n        Refresh\n      </v-btn>\n    </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n    <!-- Step 2: Pick a pixel -->\n    <section class=\"mb-6\">\n      <h3 class=\"text-subtitle-1 mb-2\">2. Pick a Pixel</h3>\n      <p class=\"text-caption mb-3\">\n        Pick a pixel from the live stream.\n      </p>\n      <div class=\"text-center mb-3\">\n        Pick a pixel from the stream :\n        <input\n          class=\"colorpicker\"\n          type=\"color\"\n          v-model=\"selectedColor\"\n          @input=\"onColorInput\"\n        />\n      </div>\n    </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n    <!-- Step 3: Apply Suggested Gains -->\n    <section class=\"mb-6\">\n      <h3 class=\"text-subtitle-1 mb-2\">3. Apply Suggested Gains</h3>\n       <v-data-table\n        :items=\"rows\"\n        density=\"comfortable\"\n        hide-default-footer\n        class=\"gain-table mb-6\"\n      >\n\n        <template #item.current=\"{ item }\">\n          <div class=\"text-center font-mono\">{{ item.current }}</div>\n        </template>\n\n        <template #item.suggested=\"{ item }\">\n          <v-text-field\n            v-model.number=\"item.suggested\"\n            type=\"number\"\n            min=\"0\"\n            hide-details\n            density=\"compact\"\n            variant=\"underlined\"\n            class=\"text-primary text-center suggested-input\"\n            @change=\"onManualEdit(item.channel,item.suggested)\"\n          ></v-text-field>\n        </template>\n      </v-data-table>\n      <p class=\"text-caption mb-3\">\n        Click <b>Apply Suggested Gains</b> after selecting your pixel.\n      </p>\n      <v-btn\n        block\n        color=\"primary\"\n        class=\"mt-auto\"\n        :disabled=\"!suggested.red && !suggested.blue\"\n        @click=\"applySuggested\"\n      >\n        Apply Suggested Gains\n      </v-btn>\n    </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n    <!-- Step 4: Repeat & Monitor Progress -->\n    <section>\n      <h3 class=\"text-subtitle-1 mb-2\">4. Repeat Until Saturation ≈ 0%</h3>\n      <p class=\"text-caption\">\n        Repeat steps 10 times until the saturation value approaches <b>0%</b>.\n        \n      </p>\n\n      <!-- Saturation indicator -->\n      <div class=\"mb-2\"\n        :style=\"{ color: hsl.s < 10 ? 'green' : hsl.s < 30 ? 'orange' : 'red' }\"\n      >\n        Current saturation: <b>{{ hsl.s }} %</b>\n      </div>\n      <!-- Progress feedback -->\n      <div class=\"mb-4 text-center text-caption\">\n        <v-progress-linear\n          :model-value=\"(loopCount / totalLoops) * 100\"\n          color=\"primary\"\n          height=\"40\"\n          class=\"rounded mb-1\"\n        />\n        <div>\n          <template v-if=\"loopCount === 0\">\n            Start calibration — click <b>Refresh</b>.\n          </template>\n          <template v-else-if=\"loopCount < totalLoops\">\n            Iteration {{ loopCount }} / {{ totalLoops }} — sample & apply.\n          </template>\n          <template v-else>\n            ✅ Calibration complete! Saturation should be near <b>0%</b>.\n          </template>\n        </div>\n      </div>\n\n    </section>\n\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      current: { red: 150, blue: 130 },\n      suggested: { red: null, blue: null },\n      selectedColor: \"#ffffff\",\n      hsl: { h: 0, s: 0, l: 0 },\n      loopCount: 0,\n      totalLoops: 10,\n      headers: [\n        { text: \"Channel\", value: \"channel\", align: \"start\" },\n        { text: \"Current\", value: \"current\", align: \"center\" },\n        { text: \"Suggested\", value: \"suggested\", align: \"center\" },\n      ],\n    };\n  },\n  computed: {\n    rows() {\n      return [\n        { channel: \"AWRed\", current: this.current.red, suggested: this.suggested.red },\n        { channel: \"AWBlue\", current: this.current.blue, suggested: this.suggested.blue },\n      ];\n    },\n  },\n  watch: {\n    msg: {\n      handler(n) {\n        const p = n?.payload || {};\n        if (p.calibration_wbg_red !== undefined)\n          this.current.red = Number(p.calibration_wbg_red);\n        if (p.calibration_wbg_blue !== undefined)\n          this.current.blue = Number(p.calibration_wbg_blue);\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    refreshGain() {\n      this.loopCount = 0;\n      this.current = { red: 100, blue: 100 };\n      this.suggested = { red: null, blue: null };\n      this.sendUpdate(\"imager/image\", {\n        action: \"settings\",\n        settings: { white_balance_gain: this.current },\n      });\n    },\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") this.send({ topic, payload: { ...extra } });\n    },\n    onColorInput(e) {\n      const hex = e.target.value;\n      this.selectedColor = hex;\n      this.hsl = this.hexToHsl(hex);\n      const { r, g, b } = this.hexToRgb(hex);\n      const redAdj = g - r + this.current.red;\n      const blueAdj = g - b + this.current.blue;\n      this.suggested.red = Math.max(0, Math.min(255, Math.round(redAdj)));\n      this.suggested.blue = Math.max(0, Math.min(255, Math.round(blueAdj)));\n    },\n    onManualEdit(ch, v) {\n      if (ch === \"AWRed\") this.suggested.red = v;\n      if (ch === \"AWBlue\") this.suggested.blue = v;\n    },\n    applySuggested() {\n      if (!this.suggested.red && !this.suggested.blue) return;\n      const p = {\n        action: \"settings\",\n        settings: {\n          white_balance_gain: {\n            red: parseInt(this.suggested.red, 10),\n            blue: parseInt(this.suggested.blue, 10),\n          },\n        },\n      };\n      this.sendUpdate(\"imager/image\", p);\n      this.current = { ...this.suggested };\n      if (this.loopCount < this.totalLoops) this.loopCount++;\n    },\n    hexToRgb(h) {\n      return {\n        r: parseInt(h.substr(1, 2), 16),\n        g: parseInt(h.substr(3, 2), 16),\n        b: parseInt(h.substr(5, 2), 16),\n      };\n    },\n    hexToHsl(hex) {\n      const { r, g, b } = this.hexToRgb(hex);\n      const rn = r / 255, gn = g / 255, bn = b / 255;\n      const max = Math.max(rn, gn, bn), min = Math.min(rn, gn, bn);\n      const l = (max + min) / 2;\n      let h = 0, s = 0;\n      if (max !== min) {\n        const d = max - min;\n        s = d / (1 - Math.abs(2 * l - 1));\n        switch (max) {\n          case rn: h = ((gn - bn) / d) % 6; break;\n          case gn: h = (bn - rn) / d + 2; break;\n          case bn: h = (rn - gn) / d + 4; break;\n        }\n        h *= 60;\n      }\n      return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe { position: absolute; top: 0; left: 0; width: 1000px; height: 750px; border: none; pointer-events: none; }\n.gain-table { border-radius: 8px; background: #fafafa; border: 1px solid #cfd8dc; }\n.table-header-title { background: #e3f2fd; font-weight: 600; font-size: 15px; }\n.suggested-input { max-width: 80px; margin: auto; }\n.colorpicker { height: 28px; width: 60px; margin-left: 8px; border: 1px solid #999; border-radius: 4px; cursor: pointer; vertical-align: middle; }\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "615edad94a4f77e7"
+            ]
+        ]
+    },
+    {
+        "id": "9c40c3932475ea84",
+        "type": "debug",
+        "z": "6426e7bea6900426",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "e52cb70984e0d25d",
+        "type": "mqtt out",
+        "z": "6426e7bea6900426",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 850,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d8f732f8fe251222",
+        "type": "function",
+        "z": "6426e7bea6900426",
+        "name": "set pump settings",
+        "func": "if (msg.topic) {\n    global.set(\"calibration_wbg_red\", msg.payload.settings.white_balance_gain.red);\n    global.set(\"calibration_wbg_blue\", msg.payload.settings.white_balance_gain.blue);\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 180,
+        "wires": [
             []
+        ]
+    },
+    {
+        "id": "b8b60ce8a0cf6764",
+        "type": "debug",
+        "z": "6426e7bea6900426",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "615edad94a4f77e7",
+        "type": "switch",
+        "z": "6426e7bea6900426",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "imager/image",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "d8f732f8fe251222",
+                "e52cb70984e0d25d",
+                "9c40c3932475ea84"
+            ]
         ]
     },
     {
@@ -6052,345 +5294,6 @@
         "y": 60,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "cf237f6cc8d0234d",
-        "type": "ui-template",
-        "z": "14c685bd04db8be5",
-        "group": "728c7ed3d63dfcee",
-        "page": "",
-        "ui": "",
-        "name": "1. Check LED Lifetime",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-card title=\"1. Check LED Lifetime\">\n    <v-card-text>\n      Before starting the calibration, it is important to check the remaining hours of use of the LED:\n      <br />\n    </v-card-text>\n    \n    <!-- Slider avec style similaire à la barre de progression -->\n    <div class=\"progress-container\">\n      <div class=\"progress-bar\" :style=\"progressBarStyle\"></div>\n      <div v-for=\"(label, index) in scaleLabels\" :key=\"index\" :style=\"{ left: label.position + '%' }\" class=\"progress-scale-line\"></div>\n    </div>\n    <div class=\"progress-scale\">\n      <span v-for=\"(label, index) in scaleLabels\" :key=\"index\" :style=\"{ left: label.position + '%' }\" class=\"scale-label\">\n        {{ label.value }}h\n      </span>\n    </div>\n    <v-card-text>\n      <span>The current LED duration of use is {{ acq_led_operating_hours }} hours.</span>\n    </v-card-text>\n\n    <!-- Banière affichée si acq_led_operating_hours < 200 -->\n    <v-card-text v-if=\"acq_led_operating_hours < 200\">\n      <span class=\"warning-banner\">\n        Seems like you need to replace your LED by following the provided instructions.\n      </span>\n    </v-card-text>\n  </v-card>\n</template>\n\n<script>\nexport default {\n  data: () => ({\n    acq_led_operating_hours: 0, // Valeur initiale par défaut\n    scaleLabels: [\n      { value: 0, position: 0 },\n      { value: 100, position: 16.67 },\n      { value: 200, position: 33.33 },\n      { value: 300, position: 50 },\n      { value: 400, position: 66.67 },\n      { value: 500, position: 83.33 },\n      { value: 600, position: 100 }\n    ],\n  }),\n  computed: {\n    progressBarStyle() {\n      return {\n        width: `${this.calculateLogScale(this.acq_led_operating_hours)}%`,\n        backgroundColor: this.acq_led_operating_hours < 200 ? 'red' : '#5cd65c',\n      };\n    }\n  },\n  methods: {\n    calculateLogScale(value) {\n      // Appliquer une échelle linéaire simple\n      return (value / 600) * 100;\n    },\n    updateMessage(newMsg) {\n      // Méthode appelée quand un nouveau message arrive\n      if (newMsg.acq_led_operating_hours !== undefined) {\n        this.acq_led_operating_hours = newMsg.acq_led_operating_hours;\n      }\n    }\n  },\n  watch: {\n    // Watch sur l'objet entier msg\n    msg: {\n      handler(newMsg) {\n        this.updateMessage(newMsg);\n      },\n      deep: true, // Pour capturer les changements dans les propriétés imbriquées de msg\n    }\n  },\n  mounted() {\n    // Simuler la réception d'un message en utilisant une fonction ou une API Node-RED\n    this.$watch('msg', (newMsg) => {\n      this.updateMessage(newMsg);\n    });\n  }\n};\n</script>\n\n<style>\n.progress-container {\n  position: relative;\n  width: 90%;\n  height: 30px;\n  background-color: #f4f5f6;\n  border-radius: 5px;\n  margin: 10px 5%;\n  border: 1px solid;\n}\n\n.progress-bar {\n  height: 100%;\n  border-radius: 5px;\n  transition: width 0.3s ease;\n}\n\n.progress-scale-line {\n  position: absolute;\n  height: 100%;\n  width: 1px;\n  top: 0;\n  background-color: #000;\n  pointer-events: none;\n}\n\n.progress-scale {\n  position: relative;\n  margin-top: 5px;\n  height: 20px;\n  width: 90%;\n  margin: 10px 5%;\n}\n\n.scale-label {\n  position: absolute;\n  bottom: 0;\n  font-size: 12px;\n  transform: translateX(-50%);\n  color: #000;\n}\n\n.warning-banner {\n  color: red;\n  font-weight: bold;\n}\n</style>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 300,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e3be6250ef1fb928",
-        "type": "inject",
-        "z": "14c685bd04db8be5",
-        "name": "150",
-        "props": [
-            {
-                "p": "acq_led_operating_hours",
-                "v": "150",
-                "vt": "num"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 300,
-        "wires": [
-            [
-                "cf237f6cc8d0234d"
-            ]
-        ]
-    },
-    {
-        "id": "70566499a56d066d",
-        "type": "inject",
-        "z": "14c685bd04db8be5",
-        "name": "350",
-        "props": [
-            {
-                "p": "acq_led_operating_hours",
-                "v": "350",
-                "vt": "num"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 110,
-        "y": 260,
-        "wires": [
-            [
-                "cf237f6cc8d0234d"
-            ]
-        ]
-    },
-    {
-        "id": "bcfea4e20bc583f1",
-        "type": "ui-template",
-        "z": "14c685bd04db8be5",
-        "group": "728c7ed3d63dfcee",
-        "page": "",
-        "ui": "",
-        "name": "2. Calibration of LED intensity and ISO",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <v-card title=\"2. Calibration of LED intensity and ISO\">\n    <v-card-text>\n      Use the color picker to measure the current color value on the streaming:\n      <input class=\"colorpicker\" type=\"color\" v-model=\"selectedColor\" @input=\"onColorInput\" />\n      <br />\n    </v-card-text>\n\n    <!-- Affichage de la lightness -->\n    <v-card-text>\n      <span>The current lightness value is {{ hsl.l }}%.</span>\n    </v-card-text>\n\n    <v-card-text>\n      <span>Adjust the LED Intensity and the ISO if the current lightness value is between 80% and 90%. Redo the measurement if necessary.</span>\n    </v-card-text>\n\n    <!-- Champ pour sélectionner la nouvelle valeur ISO -->\n    <v-card-text>\n      <label for=\"iso-input\">Set ISO Value:</label>\n      <input type=\"number\" id=\"iso-input\" v-model=\"iso\" @input=\"onIsoInput\" min=\"100\" step=\"100\" />\n    </v-card-text>\n     \n    <!-- Slider pour lightness avec style similaire à la barre de progression -->\n    <div class=\"progress-container\">\n      <div class=\"progress-bar\" :style=\"lightnessProgressBarStyle\"></div>\n      <div v-for=\"(label, index) in scaleLabels\" :key=\"index\" :style=\"{ left: label.position + '%' }\" class=\"progress-scale-line\"></div>\n    </div>\n    <div class=\"progress-scale\">\n      <span v-for=\"(label, index) in scaleLabels\" :key=\"index\" :style=\"{ left: label.position + '%' }\" class=\"scale-label\">\n        {{ label.value }}%\n      </span>\n    </div>\n  </v-card>\n</template>\n\n<script>\nexport default {\n  data: () => ({\n    selectedColor: \"#000000\", // Default value for color picker\n    hsl: { h: 0, s: 0, l: 0 }, // Store HSL value of the selected color\n    iso: 100, // Default ISO value\n    scaleLabels: [\n      { value: 0, position: 0 },\n      { value: 20, position: 20 },\n      { value: 40, position: 40 },\n      { value: 60, position: 60 },\n      { value: 80, position: 80 },\n      { value: 100, position: 100 }\n    ],\n    msg: {} // Property to store the incoming message\n  }),\n  computed: {\n    lightnessProgressBarStyle() {\n      let backgroundColor;\n      if (this.hsl.l < 50) {\n        backgroundColor = 'red'; // Too low\n      } else if (this.hsl.l >= 80 && this.hsl.l <= 90) {\n        backgroundColor = '#5cd75d'; // Ideal\n      } else if (this.hsl.l >= 95) {\n        backgroundColor = 'red'; // Too high\n      } else {\n        backgroundColor = 'orange'; // Slightly high\n      }\n      return {\n        width: `${this.hsl.l}%`,\n        backgroundColor: backgroundColor\n      };\n    }\n  },\n  methods: {\n    onColorInput(event) {\n      this.selectedColor = event.target.value;\n      this.hsl = this.hexToHsl(this.selectedColor);\n      this.sendHexColor(); // Send the selected color and lightness value to Node-RED\n    },\n    sendHexColor() {\n      // Send the hex color and lightness value to Node-RED\n      this.send({ acq_wb_hex: this.selectedColor, acq_lightness_value: this.hsl.l });\n    },\n    hexToHsl(hex) {\n      // Convert hex to HSL\n      let r = 0,\n        g = 0,\n        b = 0;\n      if (hex.length === 7) {\n        r = parseInt(hex.slice(1, 3), 16);\n        g = parseInt(hex.slice(3, 5), 16);\n        b = parseInt(hex.slice(5, 7), 16);\n      } else if (hex.length === 4) {\n        r = parseInt(hex[1] + hex[1], 16);\n        g = parseInt(hex[2] + hex[2], 16);\n        b = parseInt(hex[3] + hex[3], 16);\n      }\n      r /= 255;\n      g /= 255;\n      b /= 255;\n      const max = Math.max(r, g, b),\n        min = Math.min(r, g, b);\n      let h = 0,\n        s = 0,\n        l = (max + min) / 2;\n      if (max !== min) {\n        const d = max - min;\n        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);\n        switch (max) {\n          case r:\n            h = (g - b) / d + (g < b ? 6 : 0);\n            break;\n          case g:\n            h = (b - r) / d + 2;\n            break;\n          case b:\n            h = (r - g) / d + 4;\n            break;\n        }\n        h /= 6;\n      }\n      return {\n        h: Math.round(h * 360),\n        s: Math.round(s * 100),\n        l: Math.round(l * 100) // The lightness value is stored here\n      };\n    },\n    onIsoInput() {\n      // Send the new ISO value to Node-RED\n      const payload = {\n        action: \"settings\",\n        settings: {\n          iso: this.iso\n        }\n      };\n      this.send({ topic: \"imager/image\", payload });\n    },\n    updateMessage(newMsg) {\n      // Method to handle incoming messages\n      if (newMsg.acq_lightness_value !== undefined) {\n        this.hsl.l = newMsg.acq_lightness_value; // Update lightness value\n      }\n      if (newMsg.acq_wb_hex !== undefined) {\n        this.selectedColor = newMsg.acq_wb_hex; // Update the selected color\n        this.hsl = this.hexToHsl(this.selectedColor); // Update HSL based on the new hex value\n      }\n      if (newMsg.iso !== undefined) {\n        this.iso = newMsg.iso; // Update ISO value\n      }\n    }\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        this.updateMessage(newMsg); // Handle changes to `msg`\n      },\n      deep: true // Ensure deep watching of nested msg properties\n    }\n  },\n  mounted() {\n    // Listen for incoming WebSocket messages (for example, from Node-RED)\n    this.$socket.on('msg-input:' + this.id, (msg) => {\n      this.msg = msg; // Update msg with the incoming message\n    });\n  }\n};\n</script>\n\n<style>\n.progress-container {\n  position: relative;\n  width: 90%;\n  height: 30px;\n  background-color: #f4f5f6;\n  border-radius: 5px;\n  margin: 10px 5%;\n  border: 1px solid;\n}\n\n.progress-bar {\n  height: 100%;\n  border-radius: 5px;\n  transition: width 0.3s ease;\n}\n\n.progress-scale-line {\n  position: absolute;\n  height: 100%;\n  width: 1px;\n  top: 0;\n  background-color: #000;\n  pointer-events: none;\n}\n\n.progress-scale {\n  position: relative;\n  margin-top: 5px;\n  height: 20px;\n  width: 90%;\n  margin: 10px 5%;\n}\n\n.scale-label {\n  position: absolute;\n  bottom: 0;\n  font-size: 12px;\n  transform: translateX(-50%);\n  color: #000;\n}\n\n.colorpicker {\n  height: 2vw;\n  vertical-align: middle;\n  width: 5vw;\n  border: 1px solid;\n}\n</style>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 730,
-        "y": 480,
-        "wires": [
-            [
-                "611c04b01413daa7",
-                "3dbdd07470fcf962"
-            ]
-        ]
-    },
-    {
-        "id": "93de561b59a417b8",
-        "type": "mqtt out",
-        "z": "14c685bd04db8be5",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 1190,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "611c04b01413daa7",
-        "type": "switch",
-        "z": "14c685bd04db8be5",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "imager/image",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 970,
-        "y": 520,
-        "wires": [
-            [
-                "93de561b59a417b8",
-                "4c30687e204ba7d7"
-            ]
-        ]
-    },
-    {
-        "id": "5d31d86812be386d",
-        "type": "function",
-        "z": "14c685bd04db8be5",
-        "name": "set acq_lightness_value",
-        "func": "global.set(\"acq_lightness_value\", msg.acq_lightness_value);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1250,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f1ee9cfdfa49fd62",
-        "type": "function",
-        "z": "14c685bd04db8be5",
-        "name": "get acq_lightness_value",
-        "func": "msg.acq_lightness_value = global.get(\"acq_lightness_value\");\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 430,
-        "y": 400,
-        "wires": [
-            [
-                "42c95761adb5cd38"
-            ]
-        ]
-    },
-    {
-        "id": "55a5d26bd0e73ed4",
-        "type": "ui-event",
-        "z": "14c685bd04db8be5",
-        "ui": "e6ae26617c24c3ea",
-        "name": "",
-        "x": 100,
-        "y": 420,
-        "wires": [
-            [
-                "2579f5467cf5920b"
-            ]
-        ]
-    },
-    {
-        "id": "2579f5467cf5920b",
-        "type": "switch",
-        "z": "14c685bd04db8be5",
-        "name": "",
-        "property": "payload.page.path",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "/calibration_lightness",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 110,
-        "y": 540,
-        "wires": [
-            [
-                "f1ee9cfdfa49fd62"
-            ]
-        ]
-    },
-    {
-        "id": "3dbdd07470fcf962",
-        "type": "switch",
-        "z": "14c685bd04db8be5",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 970,
-        "y": 460,
-        "wires": [
-            [
-                "5d31d86812be386d",
-                "14b35bb2dd3f0c81"
-            ]
-        ]
-    },
-    {
-        "id": "14b35bb2dd3f0c81",
-        "type": "function",
-        "z": "14c685bd04db8be5",
-        "name": "set acq_wb_hex",
-        "func": "global.set(\"acq_wb_hex\", msg.acq_wb_hex);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1220,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "42c95761adb5cd38",
-        "type": "function",
-        "z": "14c685bd04db8be5",
-        "name": "get acq_wb_hex",
-        "func": "msg.acq_wb_hex = global.get(\"acq_wb_hex\");\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 480,
-        "wires": [
-            [
-                "bcfea4e20bc583f1"
-            ]
-        ]
-    },
-    {
-        "id": "09141e4c94cc7e9f",
-        "type": "function",
-        "z": "14c685bd04db8be5",
-        "name": "set acq_iso",
-        "func": "global.set(\"acq_iso\", msg.acq_iso);\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1390,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4c30687e204ba7d7",
-        "type": "change",
-        "z": "14c685bd04db8be5",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "acq_iso",
-                "pt": "msg",
-                "to": "payload.settings.iso",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1220,
-        "y": 560,
-        "wires": [
-            [
-                "09141e4c94cc7e9f"
-            ]
         ]
     },
     {
@@ -6452,7 +5355,146 @@
         "x": 620,
         "y": 40,
         "wires": [
+            [
+                "7245cda05ff489a3"
+            ]
+        ]
+    },
+    {
+        "id": "7245cda05ff489a3",
+        "type": "function",
+        "z": "14c685bd04db8be5",
+        "name": "Get Global Variables",
+        "func": "const keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "740188ac42d17f44",
+                "d41870c7f587821b"
+            ]
+        ]
+    },
+    {
+        "id": "740188ac42d17f44",
+        "type": "ui-template",
+        "z": "14c685bd04db8be5",
+        "group": "728c7ed3d63dfcee",
+        "page": "",
+        "ui": "",
+        "name": "Calibration - Lightness",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-container\n    class=\"pa-4 d-flex flex-wrap justify-center align-start\"\n    style=\"gap:32px;\"\n  >\n    <!-- PREVIEW -->\n    <v-card\n      class=\"calibration-container\"\n      style=\"width:1000px;height:750px;position:relative;overflow:hidden\"\n    >\n      <iframe ref=\"previewFrame\" src=\"/preview\" class=\"calibration-iframe\"></iframe>\n\n\n\n    </v-card>\n\n    <!-- Control Panel -->\n    <v-card width=\"440\" class=\"px-4\">\n      <v-card-title class=\"text-left text-primary\">\n        Lightness Calibration\n      </v-card-title>\n\n      <!-- Calibration steps section -->\n      \n      <v-card-text class=\"mb-2 bg-surface-light pt-4\">\n        <div class=\"mb-1 text-subtitle-2 text-primary\"><b>Calibration steps</b></div>\n        <ol class=\"pl-4 text-caption text-grey-darken-2\">\n          <li>Step 1</li>\n          <li>Step 2</li>\n          <li>Step 3</li>\n          <li>Step 4</li>\n        </ol>\n      </v-card-text>\n\n      <v-divider class=\"mb-4\"></v-divider>\n\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      led: 50,\n      axis: \"X\",\n      ctx: null,\n      interval: null,\n    };\n  },\n  mounted() {\n    this.ctx = this.$refs.histCanvas.getContext(\"2d\");\n    // Rafraîchit l’histogramme toutes les 500 ms\n    this.interval = setInterval(this.updateHistogram, 500);\n  },\n  beforeUnmount() {\n    clearInterval(this.interval);\n  },\n  methods: {\n    sendSettings() {\n      this.sendUpdate(\"imager/image\", {\n        action: \"settings\",\n        settings: {\n          led_intensity: this.led,\n        },\n      });\n    },\n    sendUpdate(topic, payload) {\n      console.log(\"Sending update:\", topic, payload);\n      // Ici tu enverras ta requête (WebSocket, fetch, etc.)\n    },\n\n    async updateHistogram() {\n      try {\n        // Récupère une frame du flux (JPEG ou PNG)\n        const response = await fetch(\"/preview/snapshot\"); // endpoint à adapter\n        const blob = await response.blob();\n        const bitmap = await createImageBitmap(blob);\n\n        const offscreen = new OffscreenCanvas(bitmap.width, bitmap.height);\n        const ctxOff = offscreen.getContext(\"2d\");\n        ctxOff.drawImage(bitmap, 0, 0);\n\n        const { data, width, height } = ctxOff.getImageData(0, 0, bitmap.width, bitmap.height);\n\n        const histogram = this.axis === \"X\"\n          ? this.computeXHistogram(data, width, height)\n          : this.computeYHistogram(data, width, height);\n\n        this.drawHistogram(histogram);\n      } catch (err) {\n        console.warn(\"Histogram update failed:\", err);\n      }\n    },\n\n    computeXHistogram(data, width, height) {\n      const hist = new Array(width).fill(0);\n      for (let y = 0; y < height; y++) {\n        for (let x = 0; x < width; x++) {\n          const idx = (y * width + x) * 4;\n          const v = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;\n          hist[x] += v;\n        }\n      }\n      return hist.map((v) => v / height);\n    },\n\n    computeYHistogram(data, width, height) {\n      const hist = new Array(height).fill(0);\n      for (let y = 0; y < height; y++) {\n        for (let x = 0; x < width; x++) {\n          const idx = (y * width + x) * 4;\n          const v = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;\n          hist[y] += v;\n        }\n      }\n      return hist.map((v) => v / width);\n    },\n\n    drawHistogram(hist) {\n      const ctx = this.ctx;\n      const w = ctx.canvas.width;\n      const h = ctx.canvas.height;\n      ctx.clearRect(0, 0, w, h);\n      ctx.beginPath();\n      ctx.moveTo(0, h - hist[0] * h / 255);\n      for (let i = 1; i < hist.length; i++) {\n        const x = (i / hist.length) * w;\n        const y = h - (hist[i] * h) / 255;\n        ctx.lineTo(x, y);\n      }\n      ctx.strokeStyle = \"#00bcd4\";\n      ctx.lineWidth = 2;\n      ctx.stroke();\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 1000px;\n  height: 750px;\n  border: none;\n  pointer-events: none;\n}\n.histogram-overlay {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 1000px;\n  height: 150px;\n  background: rgba(0, 0, 0, 0.4);\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "959de9b1292e047d"
+            ]
+        ]
+    },
+    {
+        "id": "21af2e731c368d3e",
+        "type": "debug",
+        "z": "14c685bd04db8be5",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "785c59c553d71326",
+        "type": "mqtt out",
+        "z": "14c685bd04db8be5",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 850,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "0283e992ff5da0f6",
+        "type": "function",
+        "z": "14c685bd04db8be5",
+        "name": "set pump settings",
+        "func": "if (msg.topic) {\n    global.set(\"calibration_wbg_red\", msg.payload.settings.white_balance_gain.red);\n    global.set(\"calibration_wbg_blue\", msg.payload.settings.white_balance_gain.blue);\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 180,
+        "wires": [
             []
+        ]
+    },
+    {
+        "id": "d41870c7f587821b",
+        "type": "debug",
+        "z": "14c685bd04db8be5",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "959de9b1292e047d",
+        "type": "switch",
+        "z": "14c685bd04db8be5",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "imager/image",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "0283e992ff5da0f6",
+                "21af2e731c368d3e"
+            ]
         ]
     },
     {
@@ -6503,18 +5545,18 @@
         "group": "c966455a52d121c0",
         "page": "",
         "ui": "",
-        "name": "",
+        "name": "Calibration - Pixel Size",
         "order": 2,
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container class=\"pa-4 d-flex flex-wrap justify-center align-start\" style=\"gap: 32px;\">\n    <!-- Streaming Preview -->\n    <v-card\n      class=\"calibration-container\"\n      style=\"width:1000px;height:750px;position:relative;overflow:hidden\"\n      @pointermove=\"onPointerMove\"\n      @pointerup=\"stopDrag\"\n      @pointercancel=\"stopDrag\"\n      @pointerleave=\"stopDrag\"\n    >\n      <iframe src=\"/preview\" class=\"calibration-iframe\"></iframe>\n\n      <svg class=\"overlay-line\">\n        <line\n          :x1=\"markerA.x\"\n          :y1=\"markerA.y\"\n          :x2=\"markerB.x\"\n          :y2=\"markerB.y\"\n          stroke=\"red\"\n          stroke-width=\"2\"\n        />\n      </svg>\n\n      <!-- draggable markers -->\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerA.x + 'px', top: markerA.y + 'px' }\"\n        @pointerdown=\"startDrag('A', $event)\"\n      ></div>\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerB.x + 'px', top: markerB.y + 'px' }\"\n        @pointerdown=\"startDrag('B', $event)\"\n      ></div>\n\n      <!-- floating label -->\n      <div\n        class=\"distance-label\"\n        :style=\"{ left: midPoint.x + 'px', top: midPoint.y - 10 + 'px' }\"\n      >\n        {{ displayLabel }}\n      </div>\n    </v-card>\n\n    <!-- Control Panel -->\n    <v-card width=\"380\" class=\"pa-4\">\n      <v-card-title class=\"text-center text-primary\">Pixel Calibration</v-card-title>\n\n      <v-card-text>\n        <v-text-field\n          v-model.number=\"knownDistance\"\n          label=\"Known distance (µm)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"sendUpdate('calibration/update')\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model=\"pixelDistanceDisplay\"\n          label=\"Measured distance (px)\"\n          readonly\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n        ></v-text-field>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model.number=\"sensorWidth\"\n          label=\"Camera sensor width (px)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"updateScaleFactor\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model.number=\"streamWidth\"\n          label=\"Stream width (px)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"updateScaleFactor\"\n        ></v-text-field>\n\n        <v-text-field\n          v-model.number=\"scaleFactor\"\n          label=\"Stream scale factor\"\n          type=\"number\"\n          step=\"0.01\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"mb-3\"\n          @input=\"manualScaleFactor\"\n        ></v-text-field>\n\n        <div class=\"text-caption text-grey mb-3\">\n          ratio = sensor_width / stream_width\n        </div>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model=\"pixelSizeDisplay\"\n          label=\"Real pixel size (µm/pixel)\"\n          readonly\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"highlight mb-3\"\n        ></v-text-field>\n\n        <!-- 🧮 Always-visible formula -->\n        <v-alert\n          color=\"primary\"\n          variant=\"tonal\"\n          class=\"pa-3 text-caption text-primary-darken-3\"\n        >\n          <div><strong>Formula:</strong> pixel_size = known_distance / (measured_distance × scale_factor)</div>\n          <div class=\"mt-1\">\n            = {{ knownDistance || '—' }} / ({{ pixelDistanceDisplay || '—' }} × {{ scaleFactor ? scaleFactor.toFixed(3) : '—' }}) =\n            <strong>{{ pixelSizeDisplay || '—' }} µm/pixel</strong>\n          </div>\n        </v-alert>\n\n        <v-btn color=\"error\" block class=\"mt-3\" @click=\"reset\">\n          Reset markers\n        </v-btn>\n        <v-btn\n          color=\"primary\"\n          block\n          class=\"mt-2\"\n          :disabled=\"!pixelSize\"\n          @click=\"saveCalibration\"\n        >\n          Save calibration\n        </v-btn>\n      </v-card-text>\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      markerA: { x: 250, y: 375 },\n      markerB: { x: 750, y: 375 },\n      dragging: null,\n      knownDistance: null,\n      pixelDistance: 0,\n      sensorWidth: 4056,\n      streamWidth: 1000,\n      scaleFactor: 4056 / 1000,\n      pixelSize: null,\n      scaleManual: false,\n    };\n  },\n  computed: {\n    midPoint() {\n      return {\n        x: (this.markerA.x + this.markerB.x) / 2,\n        y: (this.markerA.y + this.markerB.y) / 2,\n      };\n    },\n    pixelDistanceDisplay() {\n      return this.pixelDistance > 0 ? this.pixelDistance.toFixed(1) : \"\";\n    },\n    pixelSizeDisplay() {\n      return this.pixelSize ? this.pixelSize.toFixed(4) : \"\";\n    },\n    displayLabel() {\n      if (this.pixelSize)\n        return `${this.pixelSize.toFixed(4)} µm/px`;\n      return `${this.pixelDistance.toFixed(1)} px`;\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        // restore calibration values\n        if (p.calibration_pixel_size !== undefined) this.pixelSize = Number(p.calibration_pixel_size);\n        if (p.calibration_scale_factor !== undefined) this.scaleFactor = Number(p.calibration_scale_factor);\n        if (p.calibration_sensor_width !== undefined) this.sensorWidth = Number(p.calibration_sensor_width);\n        if (p.calibration_stream_width !== undefined) this.streamWidth = Number(p.calibration_stream_width);\n        if (p.calibration_known_distance !== undefined) this.knownDistance = Number(p.calibration_known_distance);\n        if (p.calibration_measured_distance !== undefined) this.pixelDistance = Number(p.calibration_measured_distance);\n        // restore marker positions if provided\n        if (p.calibration_markerA_x !== undefined && p.calibration_markerA_y !== undefined)\n          this.markerA = { x: Number(p.calibration_markerA_x), y: Number(p.calibration_markerA_y) };\n        if (p.calibration_markerB_x !== undefined && p.calibration_markerB_y !== undefined)\n          this.markerB = { x: Number(p.calibration_markerB_x), y: Number(p.calibration_markerB_y) };\n      },\n      deep: true,\n    },\n    knownDistance() { this.autoCalculate(); },\n    scaleFactor() { this.autoCalculate(); },\n  },\n  mounted() {\n    this.updateScaleFactor();\n    this.updateDistance();\n  },\n  methods: {\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({\n          topic,\n          payload: {\n            calibration_pixel_size: this.round(this.pixelSize, 4),\n            calibration_scale_factor: this.round(this.scaleFactor, 3),\n            calibration_sensor_width: Math.round(this.sensorWidth),\n            calibration_stream_width: Math.round(this.streamWidth),\n            calibration_known_distance: this.round(this.knownDistance, 2),\n            calibration_measured_distance: this.round(this.pixelDistance, 1),\n            calibration_markerA_x: this.round(this.markerA.x, 1),\n            calibration_markerA_y: this.round(this.markerA.y, 1),\n            calibration_markerB_x: this.round(this.markerB.x, 1),\n            calibration_markerB_y: this.round(this.markerB.y, 1),\n            ...extra,\n          },\n        });\n      }\n    },\n    round(value, digits = 2) {\n      if (typeof value !== \"number\" || isNaN(value)) return 0;\n      const factor = 10 ** digits;\n      return Math.round(value * factor) / factor;\n    },\n    startDrag(marker, e) {\n      e.preventDefault();\n      this.dragging = marker;\n      e.target.setPointerCapture(e.pointerId);\n    },\n    onPointerMove(e) {\n      if (!this.dragging) return;\n      const container = this.$el.querySelector(\".calibration-container\");\n      const rect = container.getBoundingClientRect();\n      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));\n      const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height));\n      this[`marker${this.dragging}`] = { x, y };\n      this.updateDistance();\n      // live update to Node-RED\n      this.sendUpdate(\"calibration/live\");\n    },\n    stopDrag() {\n      this.dragging = null;\n    },\n    updateDistance() {\n      const dx = this.markerB.x - this.markerA.x;\n      const dy = this.markerB.y - this.markerA.y;\n      this.pixelDistance = Math.sqrt(dx * dx + dy * dy);\n      this.autoCalculate();\n    },\n    updateScaleFactor() {\n      if (!this.scaleManual && this.sensorWidth > 0 && this.streamWidth > 0) {\n        this.scaleFactor = this.sensorWidth / this.streamWidth;\n        this.autoCalculate();\n      }\n    },\n    manualScaleFactor() {\n      this.scaleManual = true;\n      this.autoCalculate();\n    },\n    autoCalculate() {\n      const { knownDistance, pixelDistance, scaleFactor } = this;\n      if (knownDistance > 0 && pixelDistance > 0 && scaleFactor > 0) {\n        const realDist = pixelDistance * scaleFactor;\n        this.pixelSize = knownDistance / realDist;\n      } else {\n        this.pixelSize = null;\n      }\n    },\n    reset() {\n      this.markerA = { x: 250, y: 375 };\n      this.markerB = { x: 750, y: 375 };\n      this.knownDistance = null;\n      this.pixelDistance = 0;\n      this.pixelSize = null;\n      this.dragging = null;\n      this.scaleManual = false;\n      this.updateScaleFactor();\n      this.updateDistance();\n      this.sendUpdate(\"calibration/reset\");\n    },\n    saveCalibration() {\n      if (this.pixelSize > 0) this.sendUpdate(\"calibration/save\");\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 1000px;\n  height: 750px;\n  border: none;\n  pointer-events: none;\n}\n.overlay-line {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n}\n.marker {\n  position: absolute;\n  width: 24px;\n  height: 24px;\n  transform: translate(-50%, -50%);\n  cursor: crosshair;\n  touch-action: none;\n}\n.marker::before,\n.marker::after {\n  content: \"\";\n  position: absolute;\n  background: red;\n}\n.marker::before {\n  width: 2px;\n  height: 24px;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n}\n.marker::after {\n  width: 24px;\n  height: 2px;\n  top: 50%;\n  left: 0;\n  transform: translateY(-50%);\n}\n.distance-label {\n  position: absolute;\n  color: white;\n  font-size: 16px;\n  background: rgba(0, 0, 0, 0.7);\n  padding: 4px 10px;\n  border-radius: 6px;\n  pointer-events: none;\n  transform: translate(-50%, -50%);\n}\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>\n",
+        "format": "<template>\n  <v-container class=\"pa-4 d-flex flex-wrap justify-center align-start\" style=\"gap: 32px;\">\n    <!-- Streaming Preview -->\n    <v-card\n      class=\"calibration-container\"\n      style=\"width:1000px;height:750px;position:relative;overflow:hidden\"\n      @pointermove=\"onPointerMove\"\n      @pointerup=\"stopDrag\"\n      @pointercancel=\"stopDrag\"\n      @pointerleave=\"stopDrag\"\n    >\n      <iframe src=\"/preview\" class=\"calibration-iframe\"></iframe>\n\n      <svg class=\"overlay-line\">\n        <line\n          :x1=\"markerA.x\"\n          :y1=\"markerA.y\"\n          :x2=\"markerB.x\"\n          :y2=\"markerB.y\"\n          stroke=\"red\"\n          stroke-width=\"2\"\n        />\n      </svg>\n\n      <!-- draggable markers -->\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerA.x + 'px', top: markerA.y + 'px' }\"\n        @pointerdown=\"startDrag('A', $event)\"\n      ></div>\n      <div\n        class=\"marker\"\n        :style=\"{ left: markerB.x + 'px', top: markerB.y + 'px' }\"\n        @pointerdown=\"startDrag('B', $event)\"\n      ></div>\n\n      <!-- floating label -->\n      <div\n        class=\"distance-label\"\n        :style=\"{ left: midPoint.x + 'px', top: midPoint.y - 10 + 'px' }\"\n      >\n        {{ displayLabel }}\n      </div>\n    </v-card>\n\n    <!-- Control Panel -->\n    <v-card width=\"440\" class=\"px-4\">\n      <v-card-title class=\"text-left text-primary\">\n        Pixel Calibration\n      </v-card-title>\n\n      <v-divider class=\"mb-4\"></v-divider>\n\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">1. Place a ruler</h3>\n        <p class=\"text-caption mb-3\">\n          Place a ruler 📏 beneath your <b>PlanktoScope</b> and reset the marker.\n        </p>\n        <v-btn color=\"error\" block class=\"mt-3\" @click=\"reset\">\n          Reset the positions of the markers\n        </v-btn>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <section class=\"mb-2\">\n        <h3 class=\"text-subtitle-1 mb-2\">2. Define the positions</h3>\n        <p class=\"text-caption mb-3\">\n          Drag the red line ends to match a known distance on the ruler.\n        </p>\n\n        <v-text-field\n          v-model=\"pixelDistanceDisplay\"\n          label=\"Measured distance (px)\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          readonly\n          :style=\"{ pointerEvents: 'none', userSelect: 'none', opacity: 0.7 }\"\n        ></v-text-field>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <section class=\"mb-2\">\n        <h3 class=\"text-subtitle-1 mb-2\">3. Enter known distance</h3>\n        <p class=\"text-caption mb-3\">\n          Enter the known distance in micrometers (µm).\n        </p>\n        <v-text-field\n          v-model.number=\"knownDistance\"\n          label=\"Known distance (µm)\"\n          type=\"number\"\n          variant=\"outlined\"\n          density=\"comfortable\"\n          class=\"highlight\"\n          @input=\"sendUpdate('calibration/update')\"\n        ></v-text-field>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 4 with dialog -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">4. Save your calibration</h3>\n        <p class=\"text-caption mb-3\">\n          Click Save to store your calibration.\n        </p>\n\n        <v-row dense align=\"center\">\n <v-col cols=\"12\">\n  <v-text-field\n    v-model=\"pixelSizeDisplay\"\n    label=\"Real pixel size (µm/pixel)\"\n    readonly\n    variant=\"outlined\"\n    density=\"comfortable\"\n    class=\"highlight\"\n  >\n    <!-- Icône append avec dialogue -->\n    <template #append>\n      <v-icon\n        class=\"cursor-pointer\"\n        color=\"primary\"\n        @click=\"showFormula = true\"\n      >\n        mdi-information\n      </v-icon>\n    </template>\n  </v-text-field>\n\n  <!-- Dialogue explicatif -->\n  <v-dialog v-model=\"showFormula\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"text-h6\">Pixel Size Calculation</v-card-title>\n      <v-card-text class=\"text-body-2\">\n        <div><strong>Formula:</strong></div>\n        <div>pixel_size = known_distance / (measured_distance × scale_factor)</div>\n\n        <div class=\"mt-2\">\n          = {{ knownDistance || '—' }} /\n          ({{ pixelDistanceDisplay || '—' }} ×\n          {{ scaleFactor ? scaleFactor.toFixed(3) : '—' }}) =\n          <strong>{{ pixelSizeDisplay || '—' }} µm/pixel</strong>\n        </div>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <div class=\"text-caption text-grey-darken-1\">\n          <strong>Note:</strong></div>\n          <div>scale_factor = sensor_width / stream_width\n          <br />\n          = {{ sensorWidth || '—' }} / {{ streamWidth || '—' }}\n          = {{ scaleFactor ? scaleFactor.toFixed(3) : '—' }}\n        </div>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"primary\" text @click=\"showFormula = false\">Close</v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</v-col>\n\n        </v-row>\n\n        <v-btn\n          color=\"primary\"\n          block\n          class=\"mt-2\"\n          :disabled=\"!pixelSize\"\n          @click=\"saveCalibration\"\n        >\n          Save calibration\n        </v-btn>\n      </section>\n\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      markerA: { x: 250, y: 375 },\n      markerB: { x: 750, y: 375 },\n      dragging: null,\n      knownDistance: null,\n      pixelDistance: 0,\n      sensorWidth: 4056,\n      streamWidth: 1000,\n      scaleFactor: 4056 / 1000,\n      pixelSize: null,\n      scaleManual: false,\n      showFormula: false, // 🔹 Nouveau : état du dialog\n    };\n  },\n  computed: {\n    midPoint() {\n      return {\n        x: (this.markerA.x + this.markerB.x) / 2,\n        y: (this.markerA.y + this.markerB.y) / 2,\n      };\n    },\n    pixelDistanceDisplay() {\n      return this.pixelDistance > 0 ? this.pixelDistance.toFixed(0) : \"\";\n    },\n    pixelSizeDisplay() {\n      return this.pixelSize ? this.pixelSize.toFixed(2) : \"\";\n    },\n    displayLabel() {\n      if (this.pixelSize)\n        return `${this.pixelSize.toFixed(2)} µm/px`;\n      return `${this.pixelDistance.toFixed(0)} px`;\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.calibration_pixel_size !== undefined) this.pixelSize = Number(p.calibration_pixel_size);\n        if (p.calibration_scale_factor !== undefined) this.scaleFactor = Number(p.calibration_scale_factor);\n        if (p.calibration_sensor_width !== undefined) this.sensorWidth = Number(p.calibration_sensor_width);\n        if (p.calibration_stream_width !== undefined) this.streamWidth = Number(p.calibration_stream_width);\n        if (p.calibration_known_distance !== undefined) this.knownDistance = Number(p.calibration_known_distance);\n        if (p.calibration_measured_distance !== undefined) this.pixelDistance = Number(p.calibration_measured_distance);\n        if (p.calibration_markerA_x !== undefined && p.calibration_markerA_y !== undefined)\n          this.markerA = { x: Number(p.calibration_markerA_x), y: Number(p.calibration_markerA_y) };\n        if (p.calibration_markerB_x !== undefined && p.calibration_markerB_y !== undefined)\n          this.markerB = { x: Number(p.calibration_markerB_x), y: Number(p.calibration_markerB_y) };\n      },\n      deep: true,\n    },\n    knownDistance() { this.autoCalculate(); },\n    scaleFactor() { this.autoCalculate(); },\n  },\n  mounted() {\n    this.updateScaleFactor();\n    this.updateDistance();\n  },\n  methods: {\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({\n          topic,\n          payload: {\n            calibration_pixel_size: this.round(this.pixelSize, 2),\n            calibration_scale_factor: this.round(this.scaleFactor, 3),\n            calibration_sensor_width: Math.round(this.sensorWidth),\n            calibration_stream_width: Math.round(this.streamWidth),\n            calibration_known_distance: this.round(this.knownDistance, 2),\n            calibration_measured_distance: Math.round(this.pixelDistance),\n            calibration_markerA_x: this.round(this.markerA.x, 1),\n            calibration_markerA_y: this.round(this.markerA.y, 1),\n            calibration_markerB_x: this.round(this.markerB.x, 1),\n            calibration_markerB_y: this.round(this.markerB.y, 1),\n            ...extra,\n          },\n        });\n      }\n    },\n    round(value, digits = 2) {\n      if (typeof value !== \"number\" || isNaN(value)) return 0;\n      const factor = 10 ** digits;\n      return Math.round(value * factor) / factor;\n    },\n    startDrag(marker, e) {\n      e.preventDefault();\n      this.dragging = marker;\n      e.target.setPointerCapture(e.pointerId);\n    },\n    onPointerMove(e) {\n      if (!this.dragging) return;\n      const container = this.$el.querySelector(\".calibration-container\");\n      const rect = container.getBoundingClientRect();\n      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));\n      const y = Math.max(0, Math.min(e.clientY - rect.top, rect.height));\n      this[`marker${this.dragging}`] = { x, y };\n      this.updateDistance();\n      this.sendUpdate(\"calibration/live\");\n    },\n    stopDrag() {\n      this.dragging = null;\n    },\n    updateDistance() {\n      const dx = this.markerB.x - this.markerA.x;\n      const dy = this.markerB.y - this.markerA.y;\n      this.pixelDistance = Math.sqrt(dx * dx + dy * dy);\n      this.autoCalculate();\n    },\n    updateScaleFactor() {\n      if (!this.scaleManual && this.sensorWidth > 0 && this.streamWidth > 0) {\n        this.scaleFactor = this.sensorWidth / this.streamWidth;\n        this.autoCalculate();\n      }\n    },\n    manualScaleFactor() {\n      this.scaleManual = true;\n      this.autoCalculate();\n    },\n    autoCalculate() {\n      const { knownDistance, pixelDistance, scaleFactor } = this;\n      if (knownDistance > 0 && pixelDistance > 0 && scaleFactor > 0) {\n        const realDist = pixelDistance * scaleFactor;\n        this.pixelSize = knownDistance / realDist;\n      } else {\n        this.pixelSize = null;\n      }\n    },\n    reset() {\n      this.markerA = { x: 250, y: 375 };\n      this.markerB = { x: 750, y: 375 };\n      this.knownDistance = null;\n      this.pixelDistance = 0;\n      this.pixelSize = null;\n      this.dragging = null;\n      this.scaleManual = false;\n      this.updateScaleFactor();\n      this.updateDistance();\n      this.sendUpdate(\"calibration/reset\");\n    },\n    saveCalibration() {\n      if (this.pixelSize > 0) this.sendUpdate(\"calibration/save\");\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 1000px;\n  height: 750px;\n  border: none;\n  pointer-events: none;\n}\n.overlay-line {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n}\n.marker {\n  position: absolute;\n  width: 24px;\n  height: 24px;\n  transform: translate(-50%, -50%);\n  cursor: crosshair;\n  touch-action: none;\n}\n.marker::before,\n.marker::after {\n  content: \"\";\n  position: absolute;\n  background: red;\n}\n.marker::before {\n  width: 2px;\n  height: 24px;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n}\n.marker::after {\n  width: 24px;\n  height: 2px;\n  top: 50%;\n  left: 0;\n  transform: translateY(-50%);\n}\n.distance-label {\n  position: absolute;\n  color: white;\n  font-size: 16px;\n  background: rgba(0, 0, 0, 0.7);\n  padding: 4px 10px;\n  border-radius: 6px;\n  pointer-events: none;\n  transform: translate(-50%, -50%);\n}\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 380,
+        "x": 420,
         "y": 140,
         "wires": [
             [
@@ -6623,7 +5665,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 530,
+        "x": 610,
         "y": 140,
         "wires": [
             [
@@ -6635,7 +5677,7 @@
         "id": "13cda406d9feacec",
         "type": "function",
         "z": "3afb1d2b21be9114",
-        "name": "set sample_calibration",
+        "name": "set calibration_pixel_size",
         "func": "if (msg.topic) {\n    global.set(\"process_pixel\", msg.payload.calibration_pixel_size);\n    global.set(\"calibration_pixel_size\", msg.payload.calibration_pixel_size);\n    global.set(\"calibration_scale_factor\", msg.payload.calibration_scale_factor);\n    global.set(\"calibration_sensor_width\", msg.payload.calibration_sensor_width);\n    global.set(\"calibration_stream_width\", msg.payload.calibration_stream_width);\n    global.set(\"calibration_known_distance\", msg.payload.calibration_known_distance);\n    global.set(\"calibration_measured_distance\", msg.payload.calibration_measured_distance);\n    global.set(\"calibration_markerA_x\", msg.payload.calibration_markerA_x);\n    global.set(\"calibration_markerA_y\", msg.payload.calibration_markerA_y);\n    global.set(\"calibration_markerB_x\", msg.payload.calibration_markerB_x);\n    global.set(\"calibration_markerB_y\", msg.payload.calibration_markerB_y);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
@@ -6643,7 +5685,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 810,
         "y": 140,
         "wires": [
             []
@@ -6748,6 +5790,172 @@
         "outputs": 1,
         "x": 610,
         "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a0c441d1757b9d2",
+        "type": "function",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Get Global Variables",
+        "func": "const keys = global.keys(); // Get all global variable keys\nmsg.payload = {}; // Initialize the payload object\n\nkeys.forEach(key => {\n    // Ignore keys that start with \"$\"\n    if (!key.startsWith('$')) {\n        msg.payload[key] = global.get(key);\n    }\n});\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "1bd39bfcfab012fe"
+            ]
+        ]
+    },
+    {
+        "id": "1bd39bfcfab012fe",
+        "type": "ui-template",
+        "z": "d5b2c64b84f8ed4f",
+        "group": "6039d653304537af",
+        "page": "",
+        "ui": "",
+        "name": "Calibration - Pump",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-container class=\"py-6 d-flex flex-column align-center\" style=\"gap: 24px;\">\n    <v-card width=\"440\" class=\"px-4\">\n      <v-card-title class=\"text-left text-primary\">Pump Calibration</v-card-title>\n      <v-divider class=\"mb-4\"></v-divider>\n\n      <!-- Step 1 -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">1. Place a scale</h3>\n        <p class=\"text-caption mb-3\">Place a scale ⚖️ beneath the waste container.</p>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 2 -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">2. Run a liquid transfer</h3>\n        <p class=\"text-caption mb-3\">Run a liquid transfer to collect a known volume.</p>\n\n        <v-row dense align=\"center\">\n          <v-col cols=\"12\">\n            <v-text-field\n              v-model.number=\"targetVolume\"\n              label=\"Target Volume (mL)\"\n              type=\"number\"\n              variant=\"outlined\"\n              density=\"comfortable\"\n              min=\"0\"\n            />\n          </v-col>\n\n          <v-col cols=\"6\">\n            <v-btn\n              color=\"error\"\n              block\n              @click=\"stopPump\"\n              :disabled=\"!pumpRunning\"\n            >\n              ⏹ Stop Pump\n            </v-btn>\n          </v-col>\n\n          <v-col cols=\"6\">\n            <v-btn\n              color=\"primary\"\n              block\n              @click=\"runTransferTest\"\n              :loading=\"pumpRunning\"\n              :disabled=\"pumpRunning\"\n            >\n              Run Test\n            </v-btn>\n          </v-col>\n        </v-row>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 3 -->\n      <section class=\"mb-0\">\n        <h3 class=\"text-subtitle-1 mb-2\">3. Measure the weight</h3>\n        <p class=\"text-caption mb-3\">\n          Enter the measured weight in milliliters (mL).\n        </p>\n\n        <v-row dense align=\"center\">\n          <v-col cols=\"7\">\n            <v-text-field\n              v-model.number=\"measuredVolume\"\n              label=\"Measured Volume (mL)\"\n              type=\"number\"\n              variant=\"outlined\"\n              density=\"comfortable\"\n              min=\"0\"\n              :disabled=\"!pumpDone\"\n            />\n          </v-col>\n\n          <v-col cols=\"5\" class=\"mb-6\">\n            <v-alert\n              v-if=\"pumpDone\"\n              color=\"error\"\n              variant=\"tonal\"\n              class=\"pa-3 text-caption text-primary-darken-3\"\n            >\n              <strong>Delta:</strong> {{ errorVolume.toFixed(2) }} mL\n            </v-alert>\n          </v-col>\n        </v-row>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 4 -->\n      <section class=\"mb-0\">\n        <h3 class=\"text-subtitle-1 mb-2\">4. Save your calibration.</h3>\n        <p class=\"text-caption mb-3\">\n          Click <b>Save</b> to store your calibration.\n        </p>\n\n        <div class=\"mb-3\">\n          <v-text-field\n            v-model.number=\"currentSteps\"\n            label=\"Current steps per 1 mL (S)\"\n            type=\"number\"\n            variant=\"outlined\"\n            density=\"comfortable\"\n            min=\"1\"\n            :disabled=\"!pumpDone\"\n\n          readonly\n          :style=\"{ pointerEvents: 'none', userSelect: 'none', opacity: 0.7 }\"\n          />\n        </div>\n\n        <div class=\"mb-3 d-flex align-center\">\n\n          <v-text-field\n            v-model.number=\"suggestedSteps\"\n            label=\"Suggested steps per 1 mL (S)\"\n            type=\"number\"\n            variant=\"outlined\"\n            density=\"comfortable\"\n            min=\"1\"\n            :disabled=\"!pumpDone\"\n    class=\"highlight\"\n\n  >\n    <!-- Icône append avec dialogue -->\n    <template #append>\n      <v-icon\n        class=\"cursor-pointer\"\n        color=\"primary\"\n        @click=\"dialog = true\"\n      >\n        mdi-information\n      </v-icon>\n    </template>\n          </v-text-field>\n        </div>\n      </section>\n\n      <section class=\"mb-6\">\n          <v-btn\n            color=\"primary\"\n            block\n            @click=\"validateCalibration\"\n            :disabled=\"!pumpDone\"\n          >\n            Validate\n          </v-btn>\n\n        <!-- Dialog with formula -->\n        <v-dialog v-model=\"dialog\" max-width=\"480\">\n          <v-card>\n            <v-card-title class=\"text-h6 text-primary\">Formula</v-card-title>\n            <v-card-text class=\"text-body-2\">\n              <p><strong>Suggested steps per 1 mL = (Volume to transfer (Y) / Transferred volume (X)) × Current steps (S)</strong></p>\n              <p>\n                (Y / X) × S = ({{ targetVolume }} / {{ measuredVolume }}) × {{ currentSteps }} = \n                <b>{{ suggestedSteps.toFixed(0) }}</b> steps\n              </p>\n            </v-card-text>\n            <v-card-actions>\n              <v-spacer></v-spacer>\n              <v-btn text color=\"primary\" @click=\"dialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </section>\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      targetVolume: 10, // Y\n      measuredVolume: 0, // X\n      currentSteps: 507, // S\n      pumpRunning: false,\n      pumpDone: false,\n      dialog: false,\n    };\n  },\n  computed: {\n    errorVolume() {\n      return this.targetVolume - this.measuredVolume;\n    },\n    suggestedSteps() {\n      const { targetVolume, measuredVolume, currentSteps } = this;\n      if (measuredVolume <= 0) return currentSteps;\n      return Math.round((targetVolume / measuredVolume) * currentSteps);\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const topic = newMsg?.topic;\n        const payload = newMsg?.payload || {};\n        if (topic === \"status/pump\" && payload.status === \"Done\") {\n          this.pumpRunning = false;\n          this.pumpDone = true;\n        }\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({ topic, payload: { ...extra } });\n      }\n    },\n    runTransferTest() {\n      this.pumpDone = false;\n      this.pumpRunning = true;\n      this.sendUpdate(\"actuator/pump\", {\n        action: \"move\",\n        direction: \"FORWARD\",\n        volume: this.targetVolume,\n        flowrate: 1,\n      });\n    },\n    stopPump() {\n      this.sendUpdate(\"actuator/pump\", { action: \"stop\" });\n      this.pumpRunning = false;\n    },\n    validateCalibration() {\n      const steps = Math.round(this.suggestedSteps);\n      this.sendUpdate(\"calibration/save\", {\n        calibration_nb_step: steps,\n      });\n    },\n  },\n};\n</script>\n<style>\n\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "b4d023d76ef0504c",
+                "c35c707fc4606403"
+            ]
+        ]
+    },
+    {
+        "id": "f2348c422d051cc9",
+        "type": "mqtt out",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 850,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b4d023d76ef0504c",
+        "type": "switch",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "actuator/pump",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "calibration/save",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 140,
+        "wires": [
+            [
+                "f2348c422d051cc9"
+            ],
+            [
+                "486bc5c0891a3a15"
+            ]
+        ]
+    },
+    {
+        "id": "b49a9221938d1621",
+        "type": "mqtt in",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "",
+        "topic": "status/pump",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "1bd39bfcfab012fe",
+                "568563f0ea454a6e"
+            ]
+        ]
+    },
+    {
+        "id": "568563f0ea454a6e",
+        "type": "debug",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c35c707fc4606403",
+        "type": "debug",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "486bc5c0891a3a15",
+        "type": "function",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "set calibration_pump",
+        "func": "if (msg.topic) {\n    global.set(\"calibration_nb_step\", msg.payload.calibration_nb_step);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 160,
         "wires": [
             []
         ]
