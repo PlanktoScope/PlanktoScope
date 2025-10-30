@@ -1,10 +1,10 @@
 /* globals MediaMTXWebRTCReader */
 
-import styles from "./styles.module.css"
-import "../../../public/reader.js"
-
 import Zoomist from "zoomist"
 import "zoomist/css"
+
+import styles from "./styles.module.css"
+import "../../../public/reader.js"
 
 export default function Preview() {
   let container
@@ -25,7 +25,7 @@ export default function Preview() {
     container.hidden = false
     // For some reason loader.hidden = true does not work
     loader.style.display = "none"
-    new Zoomist(".zoomist-container", {
+    new Zoomist(container, {
       slider: true,
       zoomer: true,
       maxScale: 4,
