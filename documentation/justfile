@@ -1,5 +1,5 @@
 setup:
-    sudo apt install imgp
+    sudo apt install -y imgp
     uv sync
     uv run poe build
     sudo rm -rf /srv/docs

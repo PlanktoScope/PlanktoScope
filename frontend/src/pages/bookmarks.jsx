@@ -1,3 +1,5 @@
+import "../index.css"
+
 export default function Bookmarks() {
   function makeUrl(path) {
     const url = new URL(document.location.href)
@@ -102,13 +104,18 @@ export default function Bookmarks() {
               Node-RED Dashboard
             </a>
           </li>
+          <li>
+            <a href={makeUrl("/preview")} target="_blank">
+              Preview
+            </a>
+          </li>
         </ul>
 
         <h2>Experiments</h2>
 
         <ul>
           <li>
-            <a href={makeLocalUrl("/preview")} target="_blank">
+            <a href={makeLocalUrl("/super-preview")} target="_blank">
               Camera preview
             </a>
           </li>
