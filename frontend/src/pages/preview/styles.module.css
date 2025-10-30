@@ -1,9 +1,17 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
 :global(#root) {
   margin: 0;
   max-width: initial;
   display: flex;
   justify-content: center;
   color: white;
+  height: 100%;
 }
 
 .video {
@@ -11,21 +19,30 @@
   max-height: 100vh;
 }
 
-.message {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  pointer-events: none;
-  padding: 20px;
+/*https://cssloaders.github.io/*/
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #3587d7;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  /*display: inline-block;*/
   box-sizing: border-box;
-  text-shadow: 0 0 5px black;
+  animation: loader_rotation 1s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes loader_rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

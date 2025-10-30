@@ -8,19 +8,23 @@ import "zoomist/css"
 
 export default function Preview() {
   let container
+  let loader
 
   const video = (
     <video
-      on:loadeddata={onVideoLoad}
+      on:loadedmetadata={onVideoLoad}
       class={styles.video}
       muted
       autoplay
       disablepictureinpicture
+      preload="auto"
     />
   )
 
   function onVideoLoad() {
     container.hidden = false
+    // For some reason loader.hidden = true does not work
+    loader.style.display = "none"
     new Zoomist(".zoomist-container", {
       slider: true,
       zoomer: true,
@@ -29,23 +33,16 @@ export default function Preview() {
     })
   }
 
-  const message = <div class={styles.message} />
-
-  const setMessage = (str) => {
-    message.innerText = str
-  }
-
   const url = new URL(document.location)
   url.port = 8889
   url.pathname = "/cam/whep"
   const reader = new MediaMTXWebRTCReader({
     url,
     onError: (err) => {
-      message.innerText = err
-      setMessage(err)
+      console.error("mediamtx error", err)
     },
     onTrack: (evt) => {
-      setMessage("")
+      console.debug("mediamtx track", evt)
       video.srcObject = evt.streams[0]
     },
   })
@@ -55,13 +52,15 @@ export default function Preview() {
   })
 
   return (
-    <div ref={container} hidden>
-      <div class="zoomist-container">
+    <>
+      <div ref={loader} class={styles.loader_container}>
+        <span class={styles.loader}></span>
+      </div>
+      <div ref={container} hidden class="zoomist-container">
         <div class="zoomist-wrapper">
           <div class="zoomist-image">{video}</div>
         </div>
       </div>
-      {message}
-    </div>
+    </>
   )
 }
