@@ -6873,7 +6873,8 @@
         "y": 40,
         "wires": [
             [
-                "1a7bb2d868fe8707"
+                "1a7bb2d868fe8707",
+                "9c3e4701c6b1687a"
             ]
         ]
     },
@@ -6934,7 +6935,7 @@
         "id": "aa0070c82f8fe4b6",
         "type": "function",
         "z": "807baf16b84dfb29",
-        "name": "set calibration_sensor_height",
+        "name": "set min_esd",
         "func": "global.set(\"min_esd\", Number(msg.payload));\n",
         "outputs": 1,
         "timeout": "",
@@ -6942,8 +6943,79 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
+        "x": 750,
         "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73ce979b9b49a446",
+        "type": "ui-text-input",
+        "z": "807baf16b84dfb29",
+        "group": "070185f2b69cf66d",
+        "name": "",
+        "label": "acq_delay_stab",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "topic": "acq_delay_stab",
+        "topicType": "str",
+        "mode": "number",
+        "tooltip": "",
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "sendOnClear": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "9fccbaf294903c2c"
+            ]
+        ]
+    },
+    {
+        "id": "9c3e4701c6b1687a",
+        "type": "function",
+        "z": "807baf16b84dfb29",
+        "name": "Get acq_delay_stab",
+        "func": "msg.payload = global.get(\"acq_delay_stab\");\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "73ce979b9b49a446"
+            ]
+        ]
+    },
+    {
+        "id": "9fccbaf294903c2c",
+        "type": "function",
+        "z": "807baf16b84dfb29",
+        "name": "set acq_delay_stab",
+        "func": "global.set(\"acq_delay_stab\", Number(msg.payload));\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 180,
         "wires": [
             []
         ]
