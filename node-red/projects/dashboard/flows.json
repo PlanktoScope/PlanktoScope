@@ -1076,6 +1076,30 @@
         "h": 122
     },
     {
+        "id": "b1201d4c75286bfa",
+        "type": "group",
+        "z": "a02961610bc3982a",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2a7b0bccf7208af8",
+            "5eab67476b0c536b",
+            "3287846923dd6179",
+            "828a14d031bad22e"
+        ],
+        "x": 874,
+        "y": 819,
+        "w": 392,
+        "h": 142
+    },
+    {
         "id": "e6ae26617c24c3ea",
         "type": "ui-base",
         "name": "PlanktoScope GUI v.2",
@@ -9737,6 +9761,69 @@
         "info": "",
         "x": 330,
         "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "2a7b0bccf7208af8",
+        "type": "debug",
+        "z": "a02961610bc3982a",
+        "g": "b1201d4c75286bfa",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "5eab67476b0c536b",
+        "type": "inject",
+        "z": "a02961610bc3982a",
+        "g": "b1201d4c75286bfa",
+        "name": "inject",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 970,
+        "y": 860,
+        "wires": [
+            [
+                "3287846923dd6179"
+            ]
+        ]
+    },
+    {
+        "id": "3287846923dd6179",
+        "type": "capture",
+        "z": "a02961610bc3982a",
+        "g": "b1201d4c75286bfa",
+        "name": "",
+        "x": 1000,
+        "y": 920,
+        "wires": [
+            [
+                "2a7b0bccf7208af8"
+            ]
+        ]
+    },
+    {
+        "id": "828a14d031bad22e",
+        "type": "comment",
+        "z": "a02961610bc3982a",
+        "g": "b1201d4c75286bfa",
+        "name": "camera",
+        "info": "",
+        "x": 1190,
+        "y": 860,
         "wires": []
     }
 ]

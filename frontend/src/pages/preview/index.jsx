@@ -54,7 +54,7 @@ export default function Preview() {
   return (
     <>
       <div ref={loader} class={styles.loader_container}>
-        <span class={styles.loader}></span>
+        <span class={styles.loader} />
       </div>
       <div ref={container} hidden class="zoomist-container">
         <div class="zoomist-wrapper">
