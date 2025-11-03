@@ -6,6 +6,7 @@ import "zoomist/css"
 import styles from "./styles.module.css"
 import "../../../public/reader.js"
 import { startLight, capture } from "../../../../lib/scope.js"
+import { makeUrl } from "../../helpers.js"
 
 import cameraIcon from "./camera.svg"
 
@@ -56,18 +57,32 @@ export default function Preview() {
     reader?.close()
   })
 
+  async function takeImage() {
+    let result
+    try {
+      result = await capture()
+    } catch (err) {
+      console.error(err)
+      return
+    }
+
+    console.log(result)
+    window.open(makeUrl("/ps/data/browse/files/"), "_blank")
+  }
+
   return (
     <>
       <div ref={loader} class={styles.loader_container}>
-        <span class={styles.loader}></span>
+        <span class={styles.loader} />
       </div>
       <div ref={container} hidden class="zoomist-container">
         <div class="zoomist-wrapper">
           <div class="zoomist-image">{video}</div>
         </div>
         <button
+          tooltip="Take capture"
           class={styles.button_capture}
-          onClick={() => capture().catch(console.error)}
+          onClick={takeImage}
         >
           {cameraIcon}
         </button>

@@ -1,19 +1,8 @@
 import "../index.css"
 
+import { makeUrl, makeLocalUrl } from "../helpers.js"
+
 export default function Bookmarks() {
-  function makeUrl(path) {
-    const url = new URL(document.location.href)
-    url.port = 80
-    url.pathname = path
-    return url
-  }
-
-  function makeLocalUrl(path) {
-    const url = new URL(document.location.href)
-    url.pathname = path
-    return url
-  }
-
   return (
     <>
       <header>

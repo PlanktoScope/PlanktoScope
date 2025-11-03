@@ -28,6 +28,7 @@ dependencies = [
     "adafruit-circuitpython-mcp4725>=1.4.18",
     "aiomqtt>=2.4.0",
     "aiofiles>=24.1.0",
+    "pidng",
 ]
 
 [project.urls]
@@ -46,6 +47,9 @@ dev = [
 
 [tool.uv]
 package = false
+
+[tool.uv.sources]
+pidng = { git = "https://github.com/schoolpost/PiDNG", rev = "84278351ca9b6fa0421aae5e0d02718c4a0be4cc" }
 
 [build-system]
 requires = ["hatchling"]
