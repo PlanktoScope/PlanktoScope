@@ -1,19 +1,27 @@
 setup:
-    sudo apt install -y gcc libcap-dev python3-dev i2c-tools libopenjp2-7 python3-picamera2
-    poetry lock && poetry install --without=dev
+    # required for python-picamera2
+    # we are not using python3-camera2 from apt because of the amount of dependencies
+    sudo apt install -y --no-install-recommends gcc libcap-dev libpython3-dev python3-libcamera python3-kms++ i2c-tools
+    uv venv --clear --system-site-packages
+    uv sync --no-group dev
     sudo cp planktoscope-org.controller.service /etc/systemd/system/
     sudo systemctl reenable planktoscope-org.controller
     sudo systemctl restart planktoscope-org.controller
+    just --justfile bubbler/justfile setup
+    just --justfile light/justfile setup
 
 setup-dev:
-    poetry lock && poetry install --with=dev
+    uv sync --group dev
 
 dev:
     -sudo systemctl stop planktoscope-org.controller
-    poetry run python -u main.py
+    uv run main.py
 
 format:
-    poetry run poe fmt
+    uv run poe fmt
 
 test:
-    poetry run poe check
+    uv run poe check
+
+bubbler:
+    uv run bubbler/main.py

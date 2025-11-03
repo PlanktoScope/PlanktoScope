@@ -5,7 +5,7 @@ setup:
     # FIXME: get rid of the Node-RED nodes depending on smbus! That functionality should be moved into
     # the Python backend.
     sudo apt install -y python3-smbus2
-    npm install -g node-red@v4.1.0
+    npm list -g node-red@4.1.1 || npm install -g node-red@v4.1.1
     npm install --omit=dev
     sudo cp nodered.service /etc/systemd/system/
     sudo mkdir -p /etc/systemd/system/nodered.service.d

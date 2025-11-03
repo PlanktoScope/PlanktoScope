@@ -1,3 +1,5 @@
+import "../index.css"
+
 import { createResource } from "solid-js"
 import { useSubmission, action } from "@solidjs/router"
 

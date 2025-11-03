@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-sudo apt remove -y gcc g++ gcc-12 triggerhappy modemmanager
+sudo apt remove -y gcc g++ gcc-12 gcc-14 triggerhappy modemmanager mkvtoolnix libcap-dev libpython3-dev imgp
 sudo apt autoremove -y
 sudo apt clean -y
 

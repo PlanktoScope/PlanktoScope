@@ -10,7 +10,7 @@ This page provides useful snippets and how-tos while developing software for the
 
 ### Install Raspberry Pi OS
 
-Download [2025-05-13-raspios-bookworm-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/).
+Download [2025-10-01-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-10-02/).
 
 Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
 
@@ -51,8 +51,10 @@ PlanktoScope OS is updated.
 
 To install the graphical desktop similar to what you find on the desktop edition of Raspberry Pi OS proceed as following:
 
+<!--https://www.raspberrypi.com/news/trixie-the-new-version-of-raspberry-pi-os/ -->
+
 ```sh
-sudo apt install raspberrypi-ui-mods
+sudo apt install rpd-wayland-core rpd-theme rpd-preferences rpd-applications rpd-utilities rpd-developers rpd-graphics rpd-wayland-extras
 # Change the boot option
 sudo raspi-config # System Options -> Boot -> Desktop GUI
 sudo reboot
@@ -185,9 +187,9 @@ Then follow the Ubuntu instructions below.
 
 ```shell
 sudo apt update
-sudo apt install python3-poetry
+sudo apt install uv
 cd documentation
-poetry install
+uv sync
 ```
 
 </details>
@@ -196,9 +198,9 @@ poetry install
     <summary>Fedora</summary>
 
 ```shell
-sudo dnf install python3-poetry
+sudo dnf install uv
 cd documentation
-poetry install
+uv sync
 ```
 
 </details>
@@ -207,7 +209,7 @@ Run live previewer:
 
 ```sh
 cd documentation
-poetry run poe preview
+uv run poe preview
 ```
 
 Visit [`http://localhost:8000`](http://localhost:8000) to see local changes.
