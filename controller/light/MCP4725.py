@@ -23,7 +23,9 @@ def map_to_adc(voltage):
 
 
 def on():
-    dac.value = VALUE_MAX
+    # FIXME
+    # https://planktoscope.slack.com/archives/D08JPJYQ62U/p1762356018575509
+    dac.value = 39321
 
 
 def off():
