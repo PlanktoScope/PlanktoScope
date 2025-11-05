@@ -34,6 +34,14 @@ export default function Bookmarks() {
 
         <ul>
           <li>
+            <a
+              href="https://www.figma.com/design/KXH3qkalr7eeFbyGsutZKt/PlanktoScope-Dashboard-v2"
+              target="_blank"
+            >
+              Figma
+            </a>
+          </li>
+          <li>
             <a href={makeUrl("/admin/cockpit/system/logs")} target="_blank">
               Logs
             </a>

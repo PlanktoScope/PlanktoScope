@@ -7,17 +7,24 @@ import signal
 
 import helpers
 
-# from . import MCP4725 as led
-from . import LM36011 as led
-
-
 client = None
 loop = asyncio.new_event_loop()
+
+led = None
 
 
 async def start() -> None:
     if (await helpers.get_hat_type()) != "planktoscope":
         sys.exit()
+
+    global led
+    hat_version = await helpers.get_hat_version()
+    if hat_version == 1.2:
+        from . import LM36011 as led
+    elif hat_version == 3.3:
+        from . import MCP4725 as led
+    else:
+        raise Exception("Unknown hat_version", hat_version)
 
     led.init()
     global client

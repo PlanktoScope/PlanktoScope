@@ -54,7 +54,7 @@ To install the graphical desktop similar to what you find on the desktop edition
 <!--https://www.raspberrypi.com/news/trixie-the-new-version-of-raspberry-pi-os/ -->
 
 ```sh
-sudo apt install rpd-wayland-core rpd-theme rpd-preferences rpd-applications rpd-utilities rpd-developers rpd-graphics rpd-wayland-extras
+sudo apt install rpd-wayland-core rpd-theme rpd-preferences rpd-applications rpd-utilities rpd-developer rpd-graphics rpd-wayland-extras
 # Change the boot option
 sudo raspi-config # System Options -> Boot -> Desktop GUI
 sudo reboot
