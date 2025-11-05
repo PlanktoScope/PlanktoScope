@@ -2,7 +2,7 @@ import board  # type: ignore
 import busio  # type: ignore
 import adafruit_mcp4725  # type: ignore
 
-MCP4725_ADDR = 0x62
+MCP4725_ADDR = 0x60
 # Proportional 0 to 5V
 VALUE_MIN = 0
 VALUE_MAX = 65535
