@@ -1,17 +1,8 @@
+import "../index.css"
+
+import { makeUrl, makeLocalUrl } from "../helpers.js"
+
 export default function Bookmarks() {
-  function makeUrl(path) {
-    const url = new URL(document.location.href)
-    url.port = 80
-    url.pathname = path
-    return url
-  }
-
-  function makeLocalUrl(path) {
-    const url = new URL(document.location.href)
-    url.pathname = path
-    return url
-  }
-
   return (
     <>
       <header>
@@ -43,10 +34,7 @@ export default function Bookmarks() {
 
         <ul>
           <li>
-            <a
-              href={makeUrl("/admin/cockpit/system/logs#/?priority=info")}
-              target="_blank"
-            >
+            <a href={makeUrl("/admin/cockpit/system/logs")} target="_blank">
               Logs
             </a>
           </li>
@@ -105,13 +93,18 @@ export default function Bookmarks() {
               Node-RED Dashboard
             </a>
           </li>
+          <li>
+            <a href={makeUrl("/preview")} target="_blank">
+              Preview
+            </a>
+          </li>
         </ul>
 
         <h2>Experiments</h2>
 
         <ul>
           <li>
-            <a href={makeLocalUrl("/preview")} target="_blank">
+            <a href={makeLocalUrl("/super-preview")} target="_blank">
               Camera preview
             </a>
           </li>

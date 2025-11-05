@@ -13,7 +13,7 @@ from picamera2.platform import Platform, get_platform  # type: ignore
 #
 # capture uses 4056x3040 (4:3 ratio)
 # we use half on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
-# we use 1440x1080 on RPI5 to stay within the hardware encoder capabilities while maintaining ratio
+# we use 1440x1080 on RPI4 to stay within the hardware encoder capabilities while maintaining ratio
 # anything <= 1920x1080 divisible by 16 (required by H.264 macroblock alignment) (or 2) is fine
 # See supported levels with
 # v4l2-ctl -D -d /dev/video11 -l -L
