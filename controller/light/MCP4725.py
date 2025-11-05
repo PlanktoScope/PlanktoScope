@@ -35,11 +35,11 @@ def save():
 
 
 def is_on():
-    return dac.value == VALUE_MIN
+    return not is_off()
 
 
 def is_off():
-    return not is_on()
+    return dac.value == VALUE_MIN
 
 
 def init():
