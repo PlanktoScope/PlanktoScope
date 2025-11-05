@@ -57,6 +57,9 @@ await procedure("bootstrap/update", async (data) => {
   await request("light", { action: "off" })
   await request("light", { action: "save" })
 
+  await request("actuator/bubbler", { action: "off" })
+  await request("actuator/bubbler", { action: "save" })
+
   cached = await read()
 })
 
