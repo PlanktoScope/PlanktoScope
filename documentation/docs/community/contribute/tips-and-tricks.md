@@ -151,10 +151,6 @@ xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress conv=fdatasyn
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
 
-## Opening a port on the firewall
-
-https://firewalld.org/documentation/howto/open-a-port-or-service.html
-
 ## Working with GPIOs on the CLI
 
 https://lloydrochester.com/post/hardware/libgpiod-intro-rpi/
