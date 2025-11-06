@@ -2,7 +2,6 @@ setup: cockpit-files
     # Install cockpit
     sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged cockpit-system cockpit-sosreport pcp
     sudo cp cockpit.ini /etc/cockpit/cockpit.conf
-    sudo ../network/setup-hostname.sh
     # https://cockpit-project.org/guide/latest/feature-pcp
     sudo systemctl reenable pmlogger
     sudo systemctl restart pmlogger
