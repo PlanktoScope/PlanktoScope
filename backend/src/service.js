@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import "./bootstrap.js"
+import "./factory.js"
 import "./setup.js"
 
 process.title = "planktoscope-org.backend"

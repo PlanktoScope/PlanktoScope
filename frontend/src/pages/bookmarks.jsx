@@ -82,8 +82,8 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeLocalUrl("/bootstrap")} target="_blank">
-              Bootstrap
+            <a href={makeLocalUrl("/factory")} target="_blank">
+              Factory
             </a>
           </li>
           <li>

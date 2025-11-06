@@ -25,7 +25,7 @@ import {
   promiseDashboardOnline,
 } from "../../lib/nodered.js"
 
-import { has_eeprom_hardware_version } from "./bootstrap.js"
+import { has_eeprom_hardware_version } from "./factory.js"
 
 // const setup_init_schema = z.object({
 //   origin: z.url(),
