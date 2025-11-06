@@ -102,8 +102,8 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeUrl("/preview")} target="_blank">
-              Preview
+            <a href={makeLocalUrl("/preview/node-red")} target="_blank">
+              Node-RED preview
             </a>
           </li>
         </ul>
@@ -112,8 +112,8 @@ export default function Bookmarks() {
 
         <ul>
           <li>
-            <a href={makeLocalUrl("/super-preview")} target="_blank">
-              Camera preview
+            <a href={makeLocalUrl("/preview")} target="_blank">
+              Preview
             </a>
           </li>
           <li>
