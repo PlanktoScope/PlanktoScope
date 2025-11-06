@@ -7,10 +7,10 @@ import signal
 
 import helpers
 
-from . import MCP4725 as bubbler
 
 client = None
 loop = asyncio.new_event_loop()
+bubbler = None
 
 
 async def start() -> None:
@@ -19,7 +19,10 @@ async def start() -> None:
     if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
 
-    bubbler.init()
+    global bubbler
+    from .. import MCP4725 as bubbler
+
+    bubbler.init(address=60)
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:
@@ -44,6 +47,8 @@ async def handle_message(message) -> None:
 
 
 async def handle_action(action: str, payload) -> None:
+    assert bubbler is not None
+
     if action == "on":
         await on()
     elif action == "off":
@@ -56,6 +61,8 @@ async def handle_action(action: str, payload) -> None:
 
 
 async def handle_settings(payload) -> None:
+    assert bubbler is not None
+
     if "current" in payload["settings"]:
         # {"settings":{"current":"20"}}
         current = payload["settings"]["current"]
@@ -65,21 +72,26 @@ async def handle_settings(payload) -> None:
 
 
 async def on() -> None:
+    assert bubbler is not None
     bubbler.on()
     await publish_status()
 
 
 async def off() -> None:
+    assert bubbler is not None
     bubbler.off()
     await publish_status()
 
 
 async def publish_status() -> None:
+    assert bubbler is not None
+    assert client is not None
     payload = {"status": "Off" if bubbler.is_off() else "On"}
     await client.publish(topic="actuator/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
+    assert bubbler is not None
     await off()
     bubbler.deinit()
     loop.stop()

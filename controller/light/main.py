@@ -16,18 +16,21 @@ led = None
 async def start() -> None:
     global led
     hat_version = await helpers.get_hat_version()
-    if hat_version == None:
+    if hat_version is None:
         # adafruithat
         sys.exit()
 
     if hat_version == 1.2:
         from . import LM36011 as led
+
+        led.init()
     elif hat_version == 3.3:
-        from . import MCP4725 as led
+        from .. import MCP4725 as led
+
+        led.init(address=62)
     else:
         raise Exception("Unknown hat_version", hat_version)
 
-    led.init()
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:
@@ -52,6 +55,8 @@ async def handle_message(message) -> None:
 
 
 async def handle_action(action: str, payload) -> None:
+    assert led is not None
+
     if action == "on":
         await on()
     elif action == "off":
@@ -64,6 +69,8 @@ async def handle_action(action: str, payload) -> None:
 
 
 async def handle_settings(payload) -> None:
+    assert led is not None
+
     if "current" in payload["settings"]:
         # {"settings":{"current":"20"}}
         current = payload["settings"]["current"]
@@ -73,21 +80,25 @@ async def handle_settings(payload) -> None:
 
 
 async def on() -> None:
+    assert led is not None
     led.on()
     await publish_status()
 
 
 async def off() -> None:
+    assert led is not None
     led.off()
     await publish_status()
 
 
 async def publish_status() -> None:
+    assert client is not None
     payload = {"status": "Off" if led.is_off() else "On"}
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
+    assert led is not None
     await off()
     led.deinit()
     loop.stop()
