@@ -10,8 +10,8 @@ VOLTAGE_MIN = 0
 # if you run it from 3.3V, the output range is 0-3.3V. If you run it from 5V the output range is 0-5V.
 VOLTAGE_MAX = 5
 
-i2c = busio.I2C(board.SCL, board.SDA)
-dac = adafruit_mcp4725.MCP4725(i2c, address=MCP4725_ADDR)
+i2c = None
+dac = None
 
 
 def map_to_voltage(value):
@@ -43,6 +43,9 @@ def is_off():
 
 
 def init():
+    global i2c, dac
+    i2c = busio.I2C(board.SCL, board.SDA)
+    dac = adafruit_mcp4725.MCP4725(i2c, address=MCP4725_ADDR)
     dac.value = 0
 
 

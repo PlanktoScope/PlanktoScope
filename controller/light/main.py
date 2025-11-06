@@ -14,11 +14,12 @@ led = None
 
 
 async def start() -> None:
-    if (await helpers.get_hat_type()) != "planktoscope":
-        sys.exit()
-
     global led
     hat_version = await helpers.get_hat_version()
+    if hat_version == None:
+        # adafruithat
+        sys.exit()
+
     if hat_version == 1.2:
         from . import LM36011 as led
     elif hat_version == 3.3:
