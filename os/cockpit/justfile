@@ -1,8 +1,8 @@
-setup:
+setup: cockpit-files
     # Install cockpit
     sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged cockpit-system cockpit-sosreport pcp
-    just cockpit-files
     sudo cp cockpit.ini /etc/cockpit/cockpit.conf
+    sudo ../network/setup-hostname.sh
     # https://cockpit-project.org/guide/latest/feature-pcp
     sudo systemctl reenable pmlogger
     sudo systemctl restart pmlogger
@@ -13,13 +13,15 @@ setup:
     # https://github.com/gbraad-cockpit/cockpit-headscale
 
 # unailable in debian
-
 # https://github.com/cockpit-project/cockpit-files/issues/635
 cockpit-files:
+    sudo apt install -y gettext
     wget https://github.com/cockpit-project/cockpit-files/releases/download/30/cockpit-files-30.tar.xz -P /tmp
     cd /tmp && tar -xf cockpit-files-30.tar.xz
     rm -rf ~/.local/share/cockpit/files
-    cd /tmp/cockpit-files && make devel-install
+    sudo rm -rf /usr/local/share/cockpit/files
+    cd /tmp/cockpit-files && make
+    cd /tmp/cockpit-files && sudo make install
 
 test:
     validator cockpit.ini
