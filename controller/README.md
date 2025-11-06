@@ -42,8 +42,6 @@ Run all checks (including code formatting and linting):
 just test
 ```
 
-We recommand using [https://code.visualstudio.com/docs/remote/ssh](https://code.visualstudio.com/docs/remote/ssh)
-
 ## Licensing
 
 Except where otherwise indicated, source code provided here is covered by the following information:
