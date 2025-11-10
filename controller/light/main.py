@@ -21,7 +21,7 @@ async def start() -> None:
         sys.exit()
 
     if hat_version == 1.2:
-        import LM36011 as led
+        from . import LM36011 as led
 
         led.init()
     elif hat_version == 3.3:
