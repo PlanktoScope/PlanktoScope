@@ -115,7 +115,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__mask_array = None
         self.__mask_to_remove = None
         self.__save_debug_img = True
-        self.__process_min_ESD = 20  # microns
+        self.__process_min_ESD = None  # microns
 
         # create all base path
         for path in [
