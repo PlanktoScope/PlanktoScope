@@ -1,14 +1,57 @@
 import asyncio
 import json
+import os
 import signal
 import sys
+import time
 
 import aiomqtt  # type: ignore
+from PIL import Image, ImageDraw, ImageFont  # type: ignore
 
 import helpers
 
 client = None
 loop = asyncio.new_event_loop()
+
+dirname = os.path.dirname(__file__)
+
+# Configuration des chemins
+picdir = os.path.join(dirname, "e-paper/pic")
+libdir = os.path.join(dirname, "e-paper/lib")
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
+epd = None
+task = None
+draw = None
+font24 = None
+image = None
+epd2in9_V2 = None
+
+
+async def periodic():
+    assert epd is not None
+    assert draw is not None
+    while True:
+        current_time = time.strftime("%H:%M:%S")
+
+        # Efface l'image (remplir en blanc)
+        draw.rectangle((0, 0, epd.height, epd.width), fill=255)
+
+        # Calculer taille du texte avec textbbox (Pillow 10+ friendly)
+        bbox = draw.textbbox((0, 0), current_time, font=font24)
+        text_w = bbox[2] - bbox[0]
+        text_h = bbox[3] - bbox[1]
+
+        # Centrer le texte
+        x = (epd.height - text_w) // 2
+        y = (epd.width - text_h) // 2
+
+        draw.text((x, y), current_time, font=font24, fill=0)
+
+        epd.display_Partial(epd.getbuffer(image))
+
+        await asyncio.sleep(0.25)
 
 
 async def start() -> None:
@@ -16,16 +59,26 @@ async def start() -> None:
     if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
 
-    print("cool")
+    global epd, draw, font24, image, epd2in9_V2
+    from waveshare_epd import epd2in9_V2  # type: ignore
+
+    epd = epd2in9_V2.EPD()
+    epd.init()
+    epd.Clear(0xFF)
+
+    font24 = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
+
+    image = Image.new("1", (epd.height, epd.width), 255)  # Mode 1-bit, fond blanc
+    draw = ImageDraw.Draw(image)
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:
-        await client.subscribe("display")
-        # _ = await asyncio.gather(
-        #     client.subscribe("display"),
-        #     publish_status(),
-        # )
+        # await client.subscribe("display")
+        _ = await asyncio.gather(
+            client.subscribe("display"),
+            on(),
+        )
         async for message in client.messages:
             await handle_message(message)
 
@@ -53,12 +106,20 @@ async def handle_action(action: str, payload) -> None:
 
 
 async def on() -> None:
-    print("on")
+    global task
+    if task is not None:
+        return
+    task = loop.create_task(periodic())
     # await publish_status()
 
 
 async def off() -> None:
-    print("off")
+    if task is not None:
+        task.cancel()
+    if epd is not None:
+        epd.Clear(0xFF)
+    if (epd2in9_V2) is not None:
+        epd2in9_V2.epdconfig.module_exit()
     # await publish_status()
 
 
