@@ -9,6 +9,7 @@ setup:
     sudo systemctl restart planktoscope-org.controller
     just --justfile bubbler/justfile setup
     just --justfile light/justfile setup
+    just --justfile display/justfile setup
 
 setup-dev:
     uv sync --group dev

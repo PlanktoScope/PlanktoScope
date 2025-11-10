@@ -3,7 +3,7 @@ import json
 import signal
 import sys
 
-import aiomqtt
+import aiomqtt  # type: ignore
 
 import helpers
 
@@ -93,6 +93,7 @@ async def off() -> None:
 
 async def publish_status() -> None:
     assert client is not None
+    assert led is not None
     payload = {"status": "Off" if led.is_off() else "On"}
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 

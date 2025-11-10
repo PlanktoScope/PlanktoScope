@@ -3,7 +3,7 @@ import json
 import signal
 import sys
 
-import aiomqtt
+import aiomqtt  # type: ignore
 
 import helpers
 
