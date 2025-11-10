@@ -1,18 +1,15 @@
 import asyncio
 import json
-
-import aiomqtt
-import gpiozero
-import sys
 import signal
+import sys
+
+import aiomqtt  # type: ignore
 
 import helpers
 
-# pymon "uv run planktoscopehat/bubbler.py" -x
-
-device = gpiozero.DigitalOutputDevice(19)
 client = None
 loop = asyncio.new_event_loop()
+bubbler = None
 
 
 async def start() -> None:
@@ -21,7 +18,10 @@ async def start() -> None:
     if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
 
-    device.value = 0
+    global bubbler
+    import MCP4725 as bubbler
+
+    bubbler.init(address=0x60)
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:
@@ -40,36 +40,59 @@ async def handle_message(message) -> None:
     payload = json.loads(message.payload.decode("utf-8"))
     action = payload.get("action")
     if action is not None:
-        await handle_action(action)
+        await handle_action(action, payload)
 
     await helpers.mqtt_reply(client, message)
 
 
-async def handle_action(action: str) -> None:
+async def handle_action(action: str, payload) -> None:
+    assert bubbler is not None
+
     if action == "on":
         await on()
     elif action == "off":
         await off()
+    elif action == "settings":
+        await handle_settings(payload)
+    elif action == "save":
+        if hasattr(bubbler, "save"):
+            bubbler.save()
+
+
+async def handle_settings(payload) -> None:
+    assert bubbler is not None
+
+    if "current" in payload["settings"]:
+        # {"settings":{"current":"20"}}
+        current = payload["settings"]["current"]
+        if bubbler.is_on():
+            return
+        bubbler.set_current(current)
 
 
 async def on() -> None:
-    device.on()
+    assert bubbler is not None
+    bubbler.on()
     await publish_status()
 
 
 async def off() -> None:
-    device.off()
+    assert bubbler is not None
+    bubbler.off()
     await publish_status()
 
 
 async def publish_status() -> None:
-    payload = {"status": "On" if device.value == 1 else "Off"}
-    await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
+    assert bubbler is not None
+    assert client is not None
+    payload = {"status": "Off" if bubbler.is_off() else "On"}
+    await client.publish(topic="actuator/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
+    assert bubbler is not None
     await off()
-    device.close()
+    bubbler.deinit()
     loop.stop()
 
 

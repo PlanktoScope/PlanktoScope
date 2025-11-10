@@ -1,7 +1,8 @@
 import json
+
 import aiofiles
-import paho
 import aiomqtt
+import paho
 
 
 async def get_hat_version() -> float | None:
@@ -12,21 +13,6 @@ async def get_hat_version() -> float | None:
             return None
         else:
             return float(hat_version)
-
-
-async def get_hat_type() -> str:
-    async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
-        hardware = json.loads(await file.read())
-        hat_type = hardware.get("hat_type")
-        if hat_type is not None:
-            return str(hat_type)
-
-    async with aiofiles.open("/home/pi/PlanktoScope/config.json", mode="r") as file:
-        config = json.loads(await file.read())
-        if config["acq_instrument"] == "PlanktoScope v2.1":
-            return "adafruit"
-        else:
-            return "planktoscope"
 
 
 async def mqtt_reply(client: aiomqtt.Client, message: aiomqtt.Message) -> None:

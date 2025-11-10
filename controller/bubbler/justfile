@@ -6,4 +6,3 @@ setup:
 dev:
     -sudo systemctl stop planktoscope-org.controller.bubbler
     cd .. && uv run python -m bubbler.main
-    # bubbler/main.py

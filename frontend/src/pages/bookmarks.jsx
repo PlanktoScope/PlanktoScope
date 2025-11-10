@@ -34,6 +34,14 @@ export default function Bookmarks() {
 
         <ul>
           <li>
+            <a
+              href="https://www.figma.com/design/KXH3qkalr7eeFbyGsutZKt/PlanktoScope-Dashboard-v2"
+              target="_blank"
+            >
+              Figma
+            </a>
+          </li>
+          <li>
             <a href={makeUrl("/admin/cockpit/system/logs")} target="_blank">
               Logs
             </a>
@@ -74,8 +82,8 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeLocalUrl("/bootstrap")} target="_blank">
-              Bootstrap
+            <a href={makeLocalUrl("/factory")} target="_blank">
+              Factory
             </a>
           </li>
           <li>
@@ -94,8 +102,8 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeUrl("/preview")} target="_blank">
-              Preview
+            <a href={makeLocalUrl("/preview/node-red")} target="_blank">
+              Node-RED preview
             </a>
           </li>
         </ul>
@@ -104,8 +112,8 @@ export default function Bookmarks() {
 
         <ul>
           <li>
-            <a href={makeLocalUrl("/super-preview")} target="_blank">
-              Camera preview
+            <a href={makeLocalUrl("/preview")} target="_blank">
+              Preview
             </a>
           </li>
           <li>
