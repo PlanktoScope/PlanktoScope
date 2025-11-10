@@ -29,6 +29,14 @@ image = None
 epd2in9_V2 = None
 
 
+def get_text_dimensions(text):
+    assert draw is not None
+    bbox = draw.textbbox((0, 0), text, font=font24)
+    width = bbox[2] - bbox[0]
+    height = bbox[3] - bbox[1]
+    return width, height
+
+
 async def periodic():
     assert epd is not None
     assert draw is not None
@@ -47,11 +55,24 @@ async def periodic():
         x = (epd.height - text_w) // 2
         y = (epd.width - text_h) // 2
 
+        # draw time
         draw.text((x, y), current_time, font=font24, fill=0)
 
         epd.display_Partial(epd.getbuffer(image))
 
         await asyncio.sleep(0.25)
+
+
+async def configure(config):
+    assert draw is not None
+    assert epd is not None
+    hostname = config["hostname"]
+    ip = config["ip"]
+    # serial_number = payload["serial_number"]
+    # url = "http://" + hostname
+
+    draw.text((5, 5), hostname, font=font24, fill=0)
+    draw.text((epd.width - 5, epd.height - 5), ip, font=font24, fill=0)
 
 
 async def start() -> None:
@@ -100,6 +121,8 @@ async def handle_action(action: str, payload) -> None:
         await on()
     elif action == "off":
         await off()
+    elif action == "configure" and "config" in payload:
+        await configure(payload["config"])
     # elif action == "save":
     #     if hasattr(bubbler, "save"):
     #         bubbler.save()
