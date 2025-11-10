@@ -1,5 +1,5 @@
-// This file is related to bootstraping the PlanktoScope
-// bootstrap refers to configuration done at runtime or by FairScope
+// This file is related to factory setup of the PlanktoScope
+// factory setup refers to configuration done at runtime or by FairScope
 // without involvment of the users
 // For example updating the EEPROM
 
@@ -26,7 +26,7 @@ if (hardware_version && !(await hasSoftwareConfig())) {
 
 export const has_eeprom_hardware_version = !!hardware_version
 
-await procedure("bootstrap/init", async () => {
+await procedure("factory/init", async () => {
   const eeprom = cached
 
   if (eeprom?.custom_data?.eeprom_version !== "0") {
@@ -51,7 +51,7 @@ await procedure("bootstrap/init", async () => {
   return eeprom
 })
 
-await procedure("bootstrap/update", async (data) => {
+await procedure("factory/update", async (data) => {
   await write(data)
 
   await request("light", { action: "off" })
@@ -63,6 +63,6 @@ await procedure("bootstrap/update", async (data) => {
   cached = await read()
 })
 
-await procedure("bootstrap/read", async () => {
+await procedure("factory/read", async () => {
   return cached
 })

@@ -5,15 +5,15 @@ import { useSubmission, action } from "@solidjs/router"
 
 import { request } from "../../../lib/mqtt.js"
 
-export default function Bootstrap() {
+export default function Factory() {
   const [EEPROM, { refetch }] = createResource(
-    "bootstrap/init",
+    "factory/init",
     async (topic) => {
       return request(topic)
     },
   )
 
-  const updateBootstrapAction = action(async (data) => {
+  const updateFactoryAction = action(async (data) => {
     data = Object.fromEntries(data.entries())
 
     data.custom_data = {
@@ -25,12 +25,12 @@ export default function Bootstrap() {
     delete data.eeprom_version
     delete data.hardware_version
 
-    await request("bootstrap/update", data)
+    await request("factory/update", data)
 
     refetch()
   })
 
-  const submission = useSubmission(updateBootstrapAction)
+  const submission = useSubmission(updateFactoryAction)
 
   let disabled = true
 
@@ -40,7 +40,7 @@ export default function Bootstrap() {
         <h1>PlanktoScope</h1>
       </header>
       <main>
-        <form action={updateBootstrapAction} method="post">
+        <form action={updateFactoryAction} method="post">
           <fieldset class="grid">
             <legend>
               <hgroup>
