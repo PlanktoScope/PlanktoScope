@@ -29,6 +29,7 @@ image = None
 epd2in9_V2 = None
 
 
+# Compute text size (Pillow 10+ friendly)
 def get_text_dimensions(text):
     assert draw is not None
     bbox = draw.textbbox((0, 0), text, font=font24)
@@ -43,17 +44,15 @@ async def periodic():
     while True:
         current_time = time.strftime("%H:%M:%S")
 
-        # Efface l'image (remplir en blanc)
+        text_width, text_height = get_text_dimensions(current_time)
+
+        # center text
+        x = (epd.height - text_width) // 2
+        y = (epd.width - text_height) // 2
+
+        # clear screen
+        # TODO: only clear relevant area
         draw.rectangle((0, 0, epd.height, epd.width), fill=255)
-
-        # Calculer taille du texte avec textbbox (Pillow 10+ friendly)
-        bbox = draw.textbbox((0, 0), current_time, font=font24)
-        text_w = bbox[2] - bbox[0]
-        text_h = bbox[3] - bbox[1]
-
-        # Centrer le texte
-        x = (epd.height - text_w) // 2
-        y = (epd.width - text_h) // 2
 
         # draw time
         draw.text((x, y), current_time, font=font24, fill=0)
