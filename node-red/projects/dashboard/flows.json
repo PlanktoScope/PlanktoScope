@@ -128,14 +128,6 @@
         "env": []
     },
     {
-        "id": "83b2474231efac73",
-        "type": "tab",
-        "label": "Cron",
-        "disabled": true,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "4ed26b8b.253504",
         "type": "subflow",
         "name": "Save hardware config",
@@ -221,76 +213,6 @@
         ],
         "env": [],
         "color": "#DDAA99"
-    },
-    {
-        "id": "910e195536aea223",
-        "type": "group",
-        "z": "83b2474231efac73",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "a197bfa71c1761b4",
-            "495e1733d60d5651",
-            "0fdba9b9b11427db",
-            "019662c5bf05e430",
-            "8dc5b8c9bfd7cc87",
-            "1c782af30d1ff770",
-            "5f5dec5ac53119ae",
-            "61dde05d9a3f805e",
-            "b17728471bdfc61e",
-            "e4719fcedaa61149",
-            "9301eaa353ece507",
-            "67bcd7bd5a4c38cc",
-            "2a55ae214f1e7273",
-            "8447c9830c3aed1e"
-        ],
-        "x": -6,
-        "y": 19,
-        "w": 1412,
-        "h": 577
-    },
-    {
-        "id": "751429d7682830be",
-        "type": "group",
-        "z": "83b2474231efac73",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "caf377d323526d14",
-            "316dae6f231575b7",
-            "9e169af039fc8031",
-            "1bc303a19fc9e38b",
-            "ff83a2795f988098",
-            "fd3ae27267703c27",
-            "527165cd7171fe26",
-            "50629a570b41196e",
-            "0aef9a09d59e574c",
-            "a9701575d8df4ce1",
-            "60d1ad2a7e54e60e",
-            "f8df009e737eb044",
-            "e6eb3b16a1d6bf22",
-            "1997fd46811f0331",
-            "5f091b11b5c9fa40",
-            "0650e037776b3d8a"
-        ],
-        "x": 14,
-        "y": 739,
-        "w": 1812,
-        "h": 522
     },
     {
         "id": "f591255fbfc6c466",
@@ -455,7 +377,7 @@
         ],
         "x": 14,
         "y": 659,
-        "w": 552,
+        "w": 372,
         "h": 142
     },
     {
@@ -478,7 +400,7 @@
         ],
         "x": 14,
         "y": 819,
-        "w": 352,
+        "w": 372,
         "h": 142
     },
     {
@@ -499,9 +421,9 @@
             "0d10e66bb2b9d1cc",
             "53516cda8e4f5a3c"
         ],
-        "x": 434,
+        "x": 414,
         "y": 819,
-        "w": 372,
+        "w": 352,
         "h": 142
     },
     {
@@ -550,8 +472,8 @@
             "61ebceb724041fb2"
         ],
         "x": 994,
-        "y": 339,
-        "w": 392,
+        "y": 499,
+        "w": 412,
         "h": 142
     },
     {
@@ -573,7 +495,7 @@
             "7d1f9414be49d7c3"
         ],
         "x": 994,
-        "y": 519,
+        "y": 659,
         "w": 412,
         "h": 142
     },
@@ -593,12 +515,13 @@
         "nodes": [
             "f7c18ab2aa687120",
             "ede7a86fd97b5e1b",
-            "af8ce4702c170449"
+            "af8ce4702c170449",
+            "9249e16ed7ae4929"
         ],
         "x": 14,
         "y": 979,
-        "w": 412,
-        "h": 142
+        "w": 562,
+        "h": 162
     },
     {
         "id": "979647e2e34284fb",
@@ -653,9 +576,9 @@
             "59ec9623add53a47",
             "750a1061c84bdae2"
         ],
-        "x": 874,
-        "y": 759,
-        "w": 332,
+        "x": 994,
+        "y": 819,
+        "w": 412,
         "h": 142
     },
     {
@@ -1003,115 +926,6 @@
         "groupType": "default"
     },
     {
-        "id": "c8bb5168bda76add",
-        "type": "ui-page",
-        "d": true,
-        "name": "Cron Experiment",
-        "ui": "e6ae26617c24c3ea",
-        "path": "/plots",
-        "icon": "sync",
-        "layout": "grid",
-        "theme": "f7770f0b818c3a67",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "9"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 8,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "4a8738206c62b02e",
-        "type": "ui-group",
-        "name": "Plots",
-        "page": "c8bb5168bda76add",
-        "width": 6,
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "7edf5f14f6ca0bdd",
-        "type": "ui-group",
-        "name": "Feed",
-        "page": "c8bb5168bda76add",
-        "width": 6,
-        "height": 1,
-        "order": 2,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "e41267c4a14ba4af",
-        "type": "ui-spacer",
-        "group": "4a8738206c62b02e",
-        "name": "spacer",
-        "tooltip": "",
-        "order": 4,
-        "width": "6",
-        "height": 1,
-        "className": ""
-    },
-    {
-        "id": "9d9ac37fd36c358e",
-        "type": "ui-spacer",
-        "group": "4a8738206c62b02e",
-        "name": "spacer",
-        "tooltip": "",
-        "order": 7,
-        "width": "6",
-        "height": 1,
-        "className": ""
-    },
-    {
-        "id": "db02fe254c34125f",
-        "type": "ui-spacer",
-        "group": "4a8738206c62b02e",
-        "name": "spacer",
-        "tooltip": "",
-        "order": 10,
-        "width": "6",
-        "height": 1,
-        "className": ""
-    },
-    {
-        "id": "ff024f7a460585b4",
-        "type": "ui-spacer",
-        "group": "4a8738206c62b02e",
-        "name": "spacer",
-        "tooltip": "",
-        "order": 1,
-        "width": "6",
-        "height": 1,
-        "className": ""
-    },
-    {
         "id": "f22f627015431032",
         "type": "ui-page",
         "name": "Calibration - Lightness",
@@ -1369,20 +1183,6 @@
         "width": "12",
         "height": 1,
         "order": 2,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "518a4242f548c1f2",
-        "type": "ui-group",
-        "name": "links",
-        "page": "f8dd620721c6d70b",
-        "width": "12",
-        "height": 1,
-        "order": 3,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -2231,9 +2031,9 @@
         "name": "body",
         "order": 1,
         "width": "12",
-        "height": "8",
+        "height": "10",
         "head": "",
-        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"visualization\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\" v-if=\"msg.payload.machine_info.serial_number\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n    </v-container>\n</template>\n",
+        "format": "<template>\n    <v-container>\n      <v-row>\n        <!-- First Row: Larger cards with icon centered above title -->\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"preview\"\n            class=\"text-center py-2\"\n            variant=\"flat\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-eye</v-icon>\n            <v-card-title class=\"text-h6\">Launch the Preview</v-card-title>\n            <v-card-text>Access a real-time, high-resolution preview to inspect the contents of your current water sample.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"metadata\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-play-circle</v-icon>\n            <v-card-title class=\"text-h6\">Start Acquisition</v-card-title>\n            <v-card-text>Start a new acquisition process to continuously collect images and metadata from your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"visualization\"\n            target=\"_blank\"\n            class=\"text-center py-2\"\n            variant=\"outlined\"\n          >\n            <v-icon size=\"64\" color=\"primary\">mdi-database-search</v-icon>\n            <v-card-title class=\"text-h6\">Explore Your Data</v-card-title>\n            <v-card-text>Open the data explorer to review, categorize, and interpret all previously captured sample information.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Second Row: Standard size cards -->\n      <v-row>\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"/ps/docs/operation/protocol-v4.pdf\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-book-open-variant</v-icon>\n              Learn the Basics\n            </v-card-title>\n            <v-card-text>Find detailed instructions on using your PlanktoScope.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"http://pkscope-rich-kettle-10463.local/admin/grafana/d/host-summary/host-summary?orgId=1&from=now-5m&to=now&timezone=browser&var-DS_PROMETHEUS=PBFA97CFB590B2093&var-job=node-exporter&var-node=host.docker.internal:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=5s\"\n            target=\"_blank\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-speedometer</v-icon>\n              Monitoring\n            </v-card-title>\n            <v-card-text>Keep track of system status and performance metrics.</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"4\">\n          <v-card\n            href=\"calibration\"\n            variant=\"outlined\"\n          >\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-tune</v-icon>\n              Calibration\n            </v-card-title>\n            <v-card-text>Adjust and verify settings for consistent results.</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n\n      <!-- Third Row: Standard size cards -->\n      <v-row>\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-cube-outline</v-icon>\n              Model of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.hardware_version }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col cols=\"12\" md=\"3\" v-if=\"msg.payload.machine_info.serial_number\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-barcode-scan</v-icon>\n              Serial number\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.serial_number }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-label-outline</v-icon>\n              Name of your machine\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.machine_name }}</v-card-text>\n          </v-card>\n        </v-col>\n\n        <v-col :cols=\"12\" :md=\"msg.payload.machine_info.serial_number ? 3 : 4\">\n          <v-card variant=\"tonal\">\n            <v-card-title>\n              <v-icon class=\"mr-2\" color=\"primary\">mdi-code-tags</v-icon>\n              Software version\n            </v-card-title>\n            <v-card-text>{{ msg.payload.machine_info.software_version }}</v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n      \n\n\n      <!-- 4th Row: Standard size cards -->\n\n    <v-row>\n      <!-- Image acquired -->\n      <v-col cols=\"12\" md=\"4\">\n        <v-card class=\"pa-3 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-2\">mdi-image-multiple-outline</v-icon>\n            <span class=\"text-subtitle-1 font-weight-medium\">Image acquired</span>\n          </div>\n          <div class=\"text-h5 font-weight-bold\">\n            {{ msg.payload.image_acquired }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Object segmented -->\n      <v-col cols=\"12\" md=\"4\">\n        <v-card class=\"pa-3 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-2\">mdi-crop</v-icon>\n            <span class=\"text-subtitle-1 font-weight-medium\">Object segmented</span>\n          </div>\n          <div class=\"text-h5 font-weight-bold\">\n            {{ msg.payload.object_segmented }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Storage used inline -->\n      <v-col cols=\"12\" md=\"4\">\n        <v-card class=\"pa-3 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center flex-grow-1 mr-4\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-2\">mdi-sd</v-icon>\n            <span class=\"text-subtitle-1 font-weight-medium mr-2\">Storage</span>\n            <v-progress-linear\n              :model-value=\"msg.payload.storage_percent_used\"\n              height=\"12\"\n              rounded\n              class=\"flex-grow-1\"\n              :color=\"msg.payload.storage_percent_used > 90 ? 'error'\n                : msg.payload.storage_percent_used > 70 ? 'warning'\n                : 'success'\"\n            ></v-progress-linear>\n          </div>\n          <div class=\"text-h6 font-weight-bold\" style=\"min-width: 48px;\">\n            {{ msg.payload.storage_percent_used }}%\n          </div>\n        </v-card>\n      </v-col>\n    </v-row>\n\n\n    </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2314,7 +2114,8 @@
         "y": 40,
         "wires": [
             [
-                "abe86c4e9dedb557"
+                "abe86c4e9dedb557",
+                "605bf275a4d80952"
             ]
         ]
     },
@@ -2390,9 +2191,58 @@
         "y": 140,
         "wires": [
             [
+                "39c370d8a50f3acc",
+                "3580c4605b01c2b0"
+            ]
+        ]
+    },
+    {
+        "id": "3580c4605b01c2b0",
+        "type": "debug",
+        "z": "1b667c6443413ced",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "605bf275a4d80952",
+        "type": "storage info",
+        "z": "1b667c6443413ced",
+        "name": "",
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "ecb17cf4ccad8d7b",
                 "39c370d8a50f3acc"
             ]
         ]
+    },
+    {
+        "id": "ecb17cf4ccad8d7b",
+        "type": "debug",
+        "z": "1b667c6443413ced",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 400,
+        "wires": []
     },
     {
         "id": "a57a165cd0ce511b",
@@ -2406,7 +2256,7 @@
         "width": "7",
         "height": "18",
         "head": "",
-        "format": "  <iframe \n    src=\"/preview/node-red\" \n>\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
+        "format": "  <iframe src=\"/preview\" >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2762,27 +2612,9 @@
         "y": 320,
         "wires": [
             [
-                "3fa4274844a4e1f8",
                 "f514a138d38d3c61"
             ]
         ]
-    },
-    {
-        "id": "3fa4274844a4e1f8",
-        "type": "debug",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "debug 10",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 220,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "349d0f7644f26a62",
@@ -3333,7 +3165,7 @@
         "width": "7",
         "height": "18",
         "head": "",
-        "format": "  <iframe \n    src=\"/preview/node-red\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
+        "format": "  <iframe \n    src=\"/preview\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border: none;\n    }\n  </style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3357,7 +3189,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model.number=\"acq_id\"\n          type=\"number\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : 001\"\n          @input=\"sendUpdate()\"\n          prefix=\"A_\"\n          density=\"compact\"\n\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition ID','Unique identifier for each acquisition run.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_nb_frame\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_nb_frame\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Number of Images','Total number of images captured during acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interimage Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"0\"\n          :step=\"1\"\n          label=\"Volume between images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Volume between images','Sample volume displaced between consecutive images (µL).')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Volume Imaged -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_imaged_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeImagedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Total Volume Displaced -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_pumped_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeDisplacedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          @input=\"sendUpdate()\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition Comment','Notes or remarks about this acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress Bar -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          :model-value=\"acq_progression\"\n          color=\"primary\"\n          height=\"24\"\n          rounded\n          striped\n          class=\"mt-2 mb-2\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.min(100, Math.ceil(value || 0)) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Estimated Duration -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"formatDuration(acq_duration_left)\"\n          variant=\"plain\"\n          hide-details\n          readonly\n          class=\"aligned-input\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Status Alert -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop Toggle -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between mt-4\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint Dialog -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"600\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text v-html=\"hintText\" class=\"text-body-2\"></v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_nb_frame: \"\",\n      acq_interframe_volume: 0,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      calibration_pixel_size: 0,\n      calibration_sensor_width: 0,\n      calibration_sensor_height: 0,\n      acq_flowcell_thickness: 0,\n      frame_volume_um3: 0,\n      topic: \"acq_params\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      lastUpdateTime: null,\n    };\n  },\n  computed: {\n    sensor_width_um() { return (this.calibration_sensor_width || 0) * (this.calibration_pixel_size || 0); },\n    sensor_height_um() { return (this.calibration_sensor_height || 0) * (this.calibration_pixel_size || 0); },\n    frame_volume_ml() { return this.frame_volume_um3 / 1e12; },\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message || \"\";\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if ([\"Started\", \"Done\"].includes(s)) return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      if (this.statusColor === \"green\") return \"success\";\n      if (this.statusColor === \"orange\") return \"warning\";\n      if (this.statusColor === \"red\") return \"error\";\n      return \"info\";\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        const topic = newMsg?.topic;\n        if (p.acq_id !== undefined) this.acq_id = String(p.acq_id).replace(/^A[_-]?/, \"\");\n        if (p.acq_nb_frame !== undefined) this.acq_nb_frame = Number(p.acq_nb_frame);\n        if (p.acq_interframe_volume !== undefined) this.acq_interframe_volume = Number(p.acq_interframe_volume);\n        if (p.calibration_pixel_size !== undefined) this.calibration_pixel_size = Number(p.calibration_pixel_size);\n        if (p.calibration_sensor_width !== undefined) this.calibration_sensor_width = Number(p.calibration_sensor_width);\n        if (p.calibration_sensor_height !== undefined) this.calibration_sensor_height = Number(p.calibration_sensor_height);\n        if (p.acq_flowcell_thickness !== undefined) this.acq_flowcell_thickness = Number(p.acq_flowcell_thickness);\n        if (p.status !== undefined) {\n          this.acq_status_message = p.status;\n          const s = String(p.status).toLowerCase();\n          if (s.includes(\"started\") || s.includes(\"running\") || s.includes(\"capturing\")) {\n            this.resetProgress();\n            this.acq_status = \"on\";\n          } else if (s.includes(\"done\") || s.includes(\"idle\") || s.includes(\"stopped\") || s.includes(\"error\") || s.includes(\"not capturing\")) {\n            this.acq_status = \"off\";\n          }\n        }\n        if (topic === \"status/imager\" && p.status === \"Done\") {\n          this.incrementAcqId();\n          this.resetProgress();\n        }\n        this.autoCalculateVolumes();\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    fmt(v) { return Number(v || 0).toFixed(3); },\n    formatDuration(mins) {\n      const totalSeconds = Math.max(0, Math.round(mins * 60));\n      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, \"0\");\n      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, \"0\");\n      const s = String(totalSeconds % 60).padStart(2, \"0\");\n      return `${h}:${m}:${s}`;\n    },\n    resetProgress() { this.acq_progression = 0; this.acq_duration_left = 0; this.lastUpdateTime = Date.now(); },\n    incrementAcqId() { const next = String(Number(this.acq_id || 0) + 1).padStart(1, \"0\"); this.acq_id = next; this.sendUpdate(); },\n    autoCalculateVolumes() {\n      if (this.calibration_sensor_width > 0 && this.calibration_sensor_height > 0 && this.calibration_pixel_size > 0 && this.acq_flowcell_thickness > 0) {\n        const w = this.calibration_sensor_width * this.calibration_pixel_size;\n        const h = this.calibration_sensor_height * this.calibration_pixel_size;\n        const t = this.acq_flowcell_thickness;\n        this.frame_volume_um3 = w * h * t;\n        const frame_ml = this.frame_volume_um3 / 1e12;\n        this.acq_imaged_volume = frame_ml * (this.acq_nb_frame || 0);\n      }\n      const interimage_total_ml = (this.acq_interframe_volume || 0) * (this.acq_nb_frame || 0) / 1000;\n      this.acq_pumped_volume = this.acq_imaged_volume + interimage_total_ml;\n      this.updateProgress();\n      this.sendUpdate();\n    },\n    updateProgress() {\n      if (this.acq_status === \"on\" && this.acq_nb_frame > 0) {\n        const elapsed = (Date.now() - (this.lastUpdateTime || Date.now())) / 1000;\n        if (elapsed > 0) {\n          this.acq_progression = Math.min(100, this.acq_progression + (elapsed / this.acq_nb_frame) * 100);\n          this.acq_duration_left = ((100 - this.acq_progression) / 100) * (this.acq_nb_frame / 60);\n        }\n        this.lastUpdateTime = Date.now();\n      }\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      if (value === \"on\") this.resetProgress();\n      if (value === \"off\") this.incrementAcqId();\n      if (typeof this.send === \"function\") this.send({ topic: \"imager/image\", payload: { status: value } });\n    },\n    showVolumeImagedHint() {\n      const area = this.sensor_width_um * this.sensor_height_um;\n      const html = `\n        <p><b>Volume Imaged</b> represents the total fluid volume optically captured.</p>\n        <hr>\n        <ul>\n          <li><b>Sensor width:</b> ${Math.round(this.calibration_sensor_width)} px → ${Math.round(this.sensor_width_um)} µm</li>\n          <li><b>Sensor height:</b> ${Math.round(this.calibration_sensor_height)} px → ${Math.round(this.sensor_height_um)} µm</li>\n          <li>\n            <b>Flowcell thickness:</b>\n            ${Math.round(this.acq_flowcell_thickness)} µm\n            <a href=\"hardware\" target=\"_blank\" style=\"margin-left:6px;\">\n              If different, modify your check hardware here.\n            </a>\n          </li>\n        </ul>\n\n\n        <p><b>Step-by-step calculation:</b></p>\n        <ol>\n          <li>Area per image = width × height = ${Math.round(this.sensor_width_um)} × ${Math.round(this.sensor_height_um)} = ${Math.round(area)} µm²</li>\n          <li>Volume per image = area × thickness = ${Math.round(area)} × ${Math.round(this.acq_flowcell_thickness)} = ${Math.round(area * this.acq_flowcell_thickness)} µm³</li>\n          <li>Convert µm³ → mL: divide by 1e12 → ${this.fmt(this.frame_volume_ml)} mL per image</li>\n          <li>Total = ${this.acq_nb_frame} × ${this.fmt(this.frame_volume_ml)} mL = <b>${this.fmt(this.acq_imaged_volume)} mL</b></li>\n        </ol>`;\n      this.openHint(\"Volume Imaged\", html);\n    },\n    showVolumeDisplacedHint() {\n      const inter_ml = (this.acq_nb_frame * this.acq_interframe_volume) / 1000;\n      const html = `\n        <p><b>Total Volume Displaced</b> includes both the imaged volume and the extra fluid moved between images.</p>\n        <hr>\n        <ul>\n          <li><b>Interimage displacement:</b> ${this.acq_nb_frame} × ${this.fmt(this.acq_interframe_volume)} µL = ${this.fmt(inter_ml)} mL</li>\n          <li><b>Imaged volume:</b> ${this.fmt(this.acq_imaged_volume)} mL</li>\n        </ul>\n        <p><b>Total:</b> ${this.fmt(this.acq_imaged_volume)} + ${this.fmt(inter_ml)} = <b>${this.fmt(this.acq_pumped_volume)} mL</b></p>`;\n      this.openHint(\"Total Volume Displaced\", html);\n    },\n    openHint(title, text) { this.hintTitle = title; this.hintText = text; this.hintDialog = true; },\n    sendUpdate(extra = {}) {\n      if (typeof this.send !== \"function\") return;\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: `A_${this.acq_id}`,\n          acq_nb_frame: this.acq_nb_frame,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: Number(this.acq_imaged_volume.toFixed(2)),\n          acq_pumped_volume: Number(this.acq_pumped_volume.toFixed(2)),\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          calibration_pixel_size: this.calibration_pixel_size,\n          calibration_sensor_width: this.calibration_sensor_width,\n          calibration_sensor_height: this.calibration_sensor_height,\n          acq_flowcell_thickness: this.acq_flowcell_thickness,\n          ...extra,\n        },\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer { cursor: pointer; }\n</style>\n",
+        "format": "<template>\n  <v-container fluid class=\"pa-2\">\n    <!-- Acquisition ID -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field\n          v-model.number=\"acq_id\"\n          type=\"number\"\n          label=\"Acquisition ID\"\n          variant=\"outlined\"\n          placeholder=\"ex : 001\"\n          @input=\"sendUpdate()\"\n          prefix=\"A_\"\n          density=\"compact\"\n\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition ID','Unique identifier for each acquisition run.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Number of Images -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_nb_frame\"\n          :max=\"10000\"\n          :min=\"1\"\n          :step=\"1\"\n          label=\"Number of Images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_nb_frame\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"img\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Number of Images','Total number of images captured during acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Interimage Volume -->\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider\n          v-model.number=\"acq_interframe_volume\"\n          :max=\"100\"\n          :min=\"0\"\n          :step=\"1\"\n          label=\"Volume between images\"\n          hide-details\n          @update:model-value=\"autoCalculateVolumes\"\n        />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field\n          v-model.number=\"acq_interframe_volume\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"µL\"\n          class=\"aligned-input\"\n          @input=\"autoCalculateVolumes\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Volume between images','Sample volume displaced between consecutive images (µL).')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Volume Imaged -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_imaged_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeImagedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Total Volume Displaced -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"fmt(acq_pumped_volume)\"\n          suffix=\"mL\"\n          variant=\"outlined\"\n          hide-details\n          readonly\n          class=\"aligned-input mr-1\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\" @click=\"showVolumeDisplacedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <!-- Comment -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea\n          v-model=\"acq_comment\"\n          label=\"Acquisition Comment\"\n          variant=\"outlined\"\n          rows=\"2\"\n          @input=\"sendUpdate()\"\n        >\n          <template #append>\n            <v-icon color=\"primary\" class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition Comment','Notes or remarks about this acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <!-- Progress Bar -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear\n          :model-value=\"acq_progression\"\n          color=\"primary\"\n          height=\"24\"\n          rounded\n          striped\n          class=\"mt-2 mb-2\"\n        >\n          <template #default=\"{ value }\">\n            <strong>{{ Math.min(100, Math.ceil(value || 0)) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <!-- Estimated Duration -->\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field\n          :model-value=\"formatDuration(acq_duration_left)\"\n          variant=\"plain\"\n          hide-details\n          readonly\n          class=\"aligned-input\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Status Alert -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert\n          v-if=\"acq_status_message\"\n          :type=\"statusType\"\n          :color=\"statusColor\"\n          border=\"start\"\n          variant=\"tonal\"\n          class=\"text-subtitle-1\"\n          prominent\n        >\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <!-- Start / Stop Toggle -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          v-model=\"acq_status\"\n          variant=\"outlined\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between mt-4\"\n          @update:model-value=\"handleAcqStatusChange\"\n        >\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Hint Dialog -->\n    <v-dialog v-model=\"hintDialog\" max-width=\"600\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text v-html=\"hintText\" class=\"text-body-2\"></v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_nb_frame: \"\",\n      acq_interframe_volume: 0,\n      acq_imaged_volume: 0,\n      acq_pumped_volume: 0,\n      acq_comment: \"\",\n      acq_progression: 0,\n      acq_duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      calibration_pixel_size: 0,\n      calibration_sensor_width: 0,\n      calibration_sensor_height: 0,\n      acq_flowcell_thickness: 0,\n      frame_volume_um3: 0,\n      topic: \"acq_params\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      lastUpdateTime: null,\n    };\n  },\n  computed: {\n    sensor_width_um() { return (this.calibration_sensor_width || 0) * (this.calibration_pixel_size || 0); },\n    sensor_height_um() { return (this.calibration_sensor_height || 0) * (this.calibration_pixel_size || 0); },\n    frame_volume_ml() { return this.frame_volume_um3 / 1e12; },\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n    statusColor() {\n      const s = this.acq_status_message || \"\";\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if ([\"Started\", \"Done\"].includes(s)) return \"green\";\n      return \"grey\";\n    },\n    statusType() {\n      if (this.statusColor === \"green\") return \"success\";\n      if (this.statusColor === \"orange\") return \"warning\";\n      if (this.statusColor === \"red\") return \"error\";\n      return \"info\";\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        const topic = newMsg?.topic;\n        if (p.acq_id !== undefined) this.acq_id = String(p.acq_id).replace(/^A[_-]?/, \"\");\n        if (p.acq_nb_frame !== undefined) this.acq_nb_frame = Number(p.acq_nb_frame);\n        if (p.acq_interframe_volume !== undefined) this.acq_interframe_volume = Number(p.acq_interframe_volume);\n        if (p.calibration_pixel_size !== undefined) this.calibration_pixel_size = Number(p.calibration_pixel_size);\n        if (p.calibration_sensor_width !== undefined) this.calibration_sensor_width = Number(p.calibration_sensor_width);\n        if (p.calibration_sensor_height !== undefined) this.calibration_sensor_height = Number(p.calibration_sensor_height);\n        if (p.acq_flowcell_thickness !== undefined) this.acq_flowcell_thickness = Number(p.acq_flowcell_thickness);\n        if (p.status !== undefined) {\n          this.acq_status_message = p.status;\n          const s = String(p.status).toLowerCase();\n          if (s.includes(\"started\") || s.includes(\"running\") || s.includes(\"capturing\")) {\n            this.resetProgress();\n            this.acq_status = \"on\";\n          } else if (s.includes(\"done\") || s.includes(\"idle\") || s.includes(\"stopped\") || s.includes(\"error\") || s.includes(\"not capturing\")) {\n            this.acq_status = \"off\";\n          }\n        }\n        if (topic === \"status/imager\" && p.status === \"Done\") {\n          this.incrementAcqId();\n          this.resetProgress();\n        }\n        this.autoCalculateVolumes();\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    fmt(v) { return Number(v || 0).toFixed(3); },\n    formatDuration(mins) {\n      const totalSeconds = Math.max(0, Math.round(mins * 60));\n      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, \"0\");\n      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, \"0\");\n      const s = String(totalSeconds % 60).padStart(2, \"0\");\n      return `${h}:${m}:${s}`;\n    },\n    resetProgress() { this.acq_progression = 0; this.acq_duration_left = 0; this.lastUpdateTime = Date.now(); },\n    incrementAcqId() { const next = String(Number(this.acq_id || 0) + 1).padStart(1, \"0\"); this.acq_id = next; this.sendUpdate(); },\n    autoCalculateVolumes() {\n      if (this.calibration_sensor_width > 0 && this.calibration_sensor_height > 0 && this.calibration_pixel_size > 0 && this.acq_flowcell_thickness > 0) {\n        const w = this.calibration_sensor_width * this.calibration_pixel_size;\n        const h = this.calibration_sensor_height * this.calibration_pixel_size;\n        const t = this.acq_flowcell_thickness;\n        this.frame_volume_um3 = w * h * t;\n        const frame_ml = this.frame_volume_um3 / 1e12;\n        this.acq_imaged_volume = frame_ml * (this.acq_nb_frame || 0);\n      }\n      const interimage_total_ml = (this.acq_interframe_volume || 0) * (this.acq_nb_frame || 0) / 1000;\n      this.acq_pumped_volume = this.acq_imaged_volume + interimage_total_ml;\n      this.updateProgress();\n      this.sendUpdate();\n    },\n    updateProgress() {\n      if (this.acq_status === \"on\" && this.acq_nb_frame > 0) {\n        const elapsed = (Date.now() - (this.lastUpdateTime || Date.now())) / 1000;\n        if (elapsed > 0) {\n          this.acq_progression = Math.min(100, this.acq_progression + (elapsed / this.acq_nb_frame) * 100);\n          this.acq_duration_left = ((100 - this.acq_progression) / 100) * (this.acq_nb_frame / 60);\n        }\n        this.lastUpdateTime = Date.now();\n      }\n    },\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n      if (value === \"on\") this.resetProgress();\n      if (value === \"off\") this.incrementAcqId();\n      if (typeof this.send === \"function\") this.send({ topic: \"imager/image\", payload: { status: value } });\n    },\n    showVolumeImagedHint() {\n      const area = this.sensor_width_um * this.sensor_height_um;\n      const html = `<div class=\"text-body-2\">\n        <p class=\"mb-2\">\n          <strong>Volume Imaged</strong> represents the total fluid volume optically captured.\n        </p>\n      \n        <v-divider class=\"my-3\"></v-divider>\n      \n        <ul class=\"ml-4\">\n          <li>\n            <strong>Sensor width:</strong>\n            {{ Math.round(calibration_sensor_width) }} px → {{ Math.round(sensor_width_um) }} µm\n          </li>\n          <li>\n            <strong>Sensor height:</strong>\n            {{ Math.round(calibration_sensor_height) }} px → {{ Math.round(sensor_height_um) }} µm\n          </li>\n          <li>\n            <strong>Flowcell thickness:</strong>\n            {{ Math.round(acq_flowcell_thickness) }} µm\n            <a href=\"hardware\" target=\"_blank\" class=\"text-primary ms-1\">\n              (Check or modify in hardware settings)\n            </a>\n          </li>\n        </ul>\n      \n        <p class=\"mt-4 mb-2\">\n          <strong>Step-by-step calculation:</strong>\n        </p>\n      \n        <ol class=\"ml-4\">\n          <li>\n            Area per image = width × height =\n            {{ Math.round(sensor_width_um) }} × {{ Math.round(sensor_height_um) }} =\n            {{ Math.round(area) }} µm²\n          </li>\n          <li>\n            Volume per image = area × thickness =\n            {{ Math.round(area) }} × {{ Math.round(acq_flowcell_thickness) }} =\n            {{ Math.round(area * acq_flowcell_thickness) }} µm³\n          </li>\n          <li>\n            Convert µm³ → mL: divide by 1e12 →\n            {{ fmt(frame_volume_ml) }} mL per image\n          </li>\n          <li>\n            Total = {{ acq_nb_frame }} × {{ fmt(frame_volume_ml) }} mL =\n            <strong>{{ fmt(acq_imaged_volume) }} mL</strong>\n          </li>\n        </ol>\n      </div>`;\n      this.openHint(\"Volume Imaged\", html);\n    },\n    showVolumeDisplacedHint() {\n      const inter_ml = (this.acq_nb_frame * this.acq_interframe_volume) / 1000;\n      const html = `\n        <p><b>Total Volume Displaced</b> includes both the imaged volume and the extra fluid moved between images.</p>\n        <hr>\n        <ul>\n          <li><b>Interimage displacement:</b> ${this.acq_nb_frame} × ${this.fmt(this.acq_interframe_volume)} µL = ${this.fmt(inter_ml)} mL</li>\n          <li><b>Imaged volume:</b> ${this.fmt(this.acq_imaged_volume)} mL</li>\n        </ul>\n        <p><b>Total:</b> ${this.fmt(this.acq_imaged_volume)} + ${this.fmt(inter_ml)} = <b>${this.fmt(this.acq_pumped_volume)} mL</b></p>`;\n      this.openHint(\"Total Volume Displaced\", html);\n    },\n    openHint(title, text) { this.hintTitle = title; this.hintText = text; this.hintDialog = true; },\n    sendUpdate(extra = {}) {\n      if (typeof this.send !== \"function\") return;\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: `A_${this.acq_id}`,\n          acq_nb_frame: this.acq_nb_frame,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: Number(this.acq_imaged_volume.toFixed(2)),\n          acq_pumped_volume: Number(this.acq_pumped_volume.toFixed(2)),\n          acq_comment: this.acq_comment,\n          acq_progression: this.acq_progression,\n          acq_duration_left: this.acq_duration_left,\n          acq_status: this.acq_status,\n          status: this.acq_status_message,\n          calibration_pixel_size: this.calibration_pixel_size,\n          calibration_sensor_width: this.calibration_sensor_width,\n          calibration_sensor_height: this.calibration_sensor_height,\n          acq_flowcell_thickness: this.acq_flowcell_thickness,\n          ...extra,\n        },\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.cursor-pointer { cursor: pointer; }\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3546,7 +3378,8 @@
         "y": 200,
         "wires": [
             [
-                "aa6924c7e0aff26c"
+                "aa6924c7e0aff26c",
+                "b373abca8b67ca64"
             ]
         ]
     },
@@ -3712,6 +3545,23 @@
         ]
     },
     {
+        "id": "b373abca8b67ca64",
+        "type": "debug",
+        "z": "35d7387466dd0bc0",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 280,
+        "wires": []
+    },
+    {
         "id": "250979b4672d81b6",
         "type": "ui-event",
         "z": "0fd76ac156d78937",
@@ -3772,7 +3622,6 @@
         "wires": [
             [
                 "d4129bf3f5622aa6",
-                "33c0d1b8251b5d00",
                 "921be0438de344ac"
             ]
         ]
@@ -3782,7 +3631,7 @@
         "type": "ui-table",
         "z": "0fd76ac156d78937",
         "group": "bfd4acb7b243514f",
-        "name": "",
+        "name": "List of acq",
         "label": "",
         "order": 2,
         "width": 0,
@@ -3893,7 +3742,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1290,
+        "x": 1510,
         "y": 160,
         "wires": [
             []
@@ -3917,7 +3766,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1300,
+        "x": 1520,
         "y": 40,
         "wires": [
             []
@@ -3930,18 +3779,18 @@
         "group": "bfd4acb7b243514f",
         "page": "",
         "ui": "",
-        "name": "List of Acquisitions",
+        "name": "Dialog",
         "order": 1,
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "\n<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\n  export default {\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.payload) return;\n        this.payload = msg.payload;\n        this.showDialog = msg.payload.is_segmented === false;\n      },\n    },\n  },\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n          },\n          // 👇 Inject dataset info cleanly under a new key\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.sample_operator,\n            image_acquired_count: this.payload.acq_nb_frame,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>",
+        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <!-- Number input for process_min_ESD -->\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n      process_min_ESD: null, // will be read from payload\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.payload) return;\n        this.payload = msg.payload;\n        this.showDialog = msg.payload.is_segmented === false;\n\n        // Read process_min_ESD if defined in payload\n        if (typeof msg.payload.process_min_ESD !== \"undefined\") {\n          this.process_min_ESD = msg.payload.process_min_ESD;\n        } else {\n          this.process_min_ESD = 0; // default fallback\n        }\n      },\n    },\n  },\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD, // 👈 taken from payload or user edit\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.sample_operator,\n            image_acquired_count: this.payload.acq_nb_frame,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 690,
+        "x": 850,
         "y": 140,
         "wires": [
             [
@@ -3963,7 +3812,7 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 990,
+        "x": 1090,
         "y": 140,
         "wires": []
     },
@@ -3984,13 +3833,13 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 850,
+        "x": 970,
         "y": 140,
         "wires": [
             [
                 "4bdd8a4afcdb704b",
-                "33c0d1b8251b5d00",
-                "f8f4b34842d35713"
+                "f8f4b34842d35713",
+                "621e28a4a222b99a"
             ]
         ]
     },
@@ -4007,10 +3856,11 @@
         "rap": false,
         "inputs": 0,
         "x": 100,
-        "y": 200,
+        "y": 260,
         "wires": [
             [
-                "33c0d1b8251b5d00"
+                "33c0d1b8251b5d00",
+                "c601b4ae4a8fc401"
             ]
         ]
     },
@@ -4032,8 +3882,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1050,
-        "y": 200,
+        "x": 530,
+        "y": 240,
         "wires": [
             []
         ]
@@ -4061,7 +3911,7 @@
         "wires": [
             [],
             [
-                "26074b8d8ad8abf9"
+                "89d1bfb7839c2077"
             ]
         ]
     },
@@ -4070,15 +3920,15 @@
         "type": "function",
         "z": "0fd76ac156d78937",
         "name": "set seg_params",
-        "func": "if (msg.topic) {\n    global.set(\"seg_project_name\", msg.payload.dataset.project_name);\n    global.set(\"seg_sample_id\", msg.payload.dataset.sample_id);\n    global.set(\"seg_acquisition_id\", msg.payload.dataset.acquisition_id);\n    global.set(\"seg_path\", msg.payload.dataset.path);\n}\nreturn msg;\n",
+        "func": "if (msg.topic) {\n    global.set(\"seg_project_name\", msg.payload.dataset.project_name);\n    global.set(\"seg_sample_id\", msg.payload.dataset.sample_id);\n    global.set(\"seg_acquisition_id\", msg.payload.dataset.acquisition_id);\n    global.set(\"seg_path\", msg.payload.dataset.path);\n    global.set(\"process_min_ESD\", msg.payload.settings.process_min_ESD);\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1020,
-        "y": 80,
+        "x": 1120,
+        "y": 100,
         "wires": [
             []
         ]
@@ -4096,12 +3946,65 @@
         "finalize": "",
         "libs": [],
         "x": 120,
-        "y": 260,
+        "y": 200,
         "wires": [
             [
                 "33c0d1b8251b5d00"
             ]
         ]
+    },
+    {
+        "id": "89d1bfb7839c2077",
+        "type": "function",
+        "z": "0fd76ac156d78937",
+        "name": "add process_min_ESD",
+        "func": "// Ensure msg.payload and msg.payload.settings exist\nmsg.payload = msg.payload || {};\n\n// Read the variable from global context\nconst process_min_ESD = global.get(\"process_min_ESD\");\n\n// Add it to the payload settings\nmsg.payload.process_min_ESD = process_min_ESD;\n\n// Return the modified message\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 140,
+        "wires": [
+            [
+                "26074b8d8ad8abf9"
+            ]
+        ]
+    },
+    {
+        "id": "c601b4ae4a8fc401",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "621e28a4a222b99a",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 180,
+        "wires": []
     },
     {
         "id": "77bb783e65c3ffd6",
@@ -4217,6 +4120,7 @@
         "id": "f530763503fdc7d1",
         "type": "mqtt in",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "name": "",
         "topic": "status/#",
@@ -4238,6 +4142,7 @@
         "id": "e5a0432fc7b35b29",
         "type": "function",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "name": "Count objects segmented",
         "func": "var objectCount = global.get('objectCount') || 0;\n\nif (msg.payload.status === 'Done') {\n    msg.payload.objectCount = objectCount;\n    objectCount=0;\n    }\nelse if (msg.topic === 'status/segmenter/metric') {\n    objectCount++;\n}\n\nglobal.set('objectCount', objectCount);\n\nreturn msg;",
@@ -4259,6 +4164,7 @@
         "id": "ba8045b3448d5bbf",
         "type": "switch",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "name": "msg.payload.metadata.equivalent_diameter is not null",
         "property": "payload.metadata.equivalent_diameter",
@@ -4283,6 +4189,7 @@
         "id": "f0313532a2b77337",
         "type": "switch",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "name": "",
         "property": "topic",
@@ -4302,8 +4209,7 @@
         "wires": [
             [
                 "e5a0432fc7b35b29",
-                "c6c66ebc50dd5d90",
-                "f6c913298cba35ee"
+                "c6c66ebc50dd5d90"
             ]
         ]
     },
@@ -4311,6 +4217,7 @@
         "id": "e045f6939008f23f",
         "type": "ui-chart",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "bdcb68c6cff2da73",
         "name": "",
@@ -4374,6 +4281,7 @@
         "id": "68fe28f50beb2add",
         "type": "function",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "name": "convert px to um",
         "func": "// Conversion factor from pixels to micrometers (µm)\nconst px_to_um = 0.75;\n\n// Convert relevant measurements\nmsg.payload.metadata.equivalent_diameter = Math.round(msg.payload.metadata.equivalent_diameter * px_to_um);\nmsg.payload.metadata.width = Math.round(msg.payload.metadata.width * px_to_um);\nmsg.payload.metadata.height = Math.round(msg.payload.metadata.height * px_to_um);\nmsg.payload.metadata.area = Math.round(msg.payload.metadata.area * (px_to_um ** 2)); // Area is in square units\nmsg.payload.metadata.area_exc = Math.round(msg.payload.metadata.area_exc * (px_to_um ** 2));\nmsg.payload.metadata.convex_area = Math.round(msg.payload.metadata.convex_area * (px_to_um ** 2));\nmsg.payload.metadata.major = Math.round(msg.payload.metadata.major * px_to_um);\nmsg.payload.metadata.minor = Math.round(msg.payload.metadata.minor * px_to_um);\nmsg.payload.metadata.perim = Math.round(msg.payload.metadata[\"perim.\"] * px_to_um); // Ensure proper key reference\nmsg.payload.metadata.bounding_box_area = Math.round(msg.payload.metadata.bounding_box_area * (px_to_um ** 2));\n\nreturn msg;\n",
@@ -4399,6 +4307,7 @@
         "id": "a20376f0ac08af8e",
         "type": "ui-markdown",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "bdcb68c6cff2da73",
         "name": "Histogram of equivalent_diameter",
@@ -4417,6 +4326,7 @@
         "id": "694187e7d85faec3",
         "type": "ui-markdown",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "bdcb68c6cff2da73",
         "name": "elongation vs. area",
@@ -4435,6 +4345,7 @@
         "id": "693e1ad09770bdf5",
         "type": "ui-chart",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "bdcb68c6cff2da73",
         "name": "elongation vs. area",
@@ -4498,6 +4409,7 @@
         "id": "82a3257cd0a3815d",
         "type": "ui-markdown",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "fa6393a7d7e3b7d7",
         "name": "equivalent_diameter vs. MeanValue",
@@ -4516,6 +4428,7 @@
         "id": "44ef242ece9b6b4b",
         "type": "ui-markdown",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "fa6393a7d7e3b7d7",
         "name": "MeanSaturation vs. MeanValue",
@@ -4534,6 +4447,7 @@
         "id": "7433aae2400b7f78",
         "type": "ui-chart",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "fa6393a7d7e3b7d7",
         "name": "equivalent_diameter vs. MeanValue",
@@ -4597,6 +4511,7 @@
         "id": "a90099cfe7a37a37",
         "type": "ui-chart",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "fa6393a7d7e3b7d7",
         "name": "MeanSaturation vs. MeanValue",
@@ -4660,6 +4575,7 @@
         "id": "df0dcb1175b8bd5f",
         "type": "ui-chart",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "group": "ed357f41cdf951bc",
         "name": "x vs. y",
@@ -4720,25 +4636,10 @@
         ]
     },
     {
-        "id": "bfcd2b12c9c89c15",
-        "type": "debug",
-        "z": "14f8c9b5ce1235cc",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 600,
-        "y": 200,
-        "wires": []
-    },
-    {
         "id": "c6c66ebc50dd5d90",
         "type": "switch",
         "z": "14f8c9b5ce1235cc",
+        "d": true,
         "g": "979647e2e34284fb",
         "name": "",
         "property": "payload.status",
@@ -4756,27 +4657,8 @@
         "x": 430,
         "y": 380,
         "wires": [
-            [
-                "bfcd2b12c9c89c15"
-            ]
+            []
         ]
-    },
-    {
-        "id": "f6c913298cba35ee",
-        "type": "debug",
-        "z": "14f8c9b5ce1235cc",
-        "name": "debug 8",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 180,
-        "wires": []
     },
     {
         "id": "64c27d4448d8f79f",
@@ -5045,30 +4927,6 @@
         "className": "",
         "x": 490,
         "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "590ff706a46acf3a",
-        "type": "ui-template",
-        "z": "8018bd5586fd4054",
-        "group": "518a4242f548c1f2",
-        "page": "",
-        "ui": "",
-        "name": "links",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n    <v-row justify=\"center\" class=\"my-2\">\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://www.figma.com/design/KXH3qkalr7eeFbyGsutZKt/PlanktoScope-Dashboard-v2?node-id=6-2&m=dev&t=Nn2N1o9OJveQCSco-1\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"primary\" class=\"mr-1\">mdi-image</v-icon>Figma Design\n      </v-chip>\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://github.com/PlanktoScope/dashboard/issues/new?template=bug_report.md\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"red\" class=\"mr-1\">mdi-bug</v-icon>Report a Bug\n      </v-chip>\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://github.com/PlanktoScope/dashboard/issues\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"orange\" class=\"mr-1\">mdi-information-outline</v-icon>Open\n        issues\n      </v-chip>\n      <v-chip\n        size=\"small\"\n        color=\"grey-darken-3\"\n        href=\"https://github.com/PlanktoScope/dashboard\"\n        target=\"_blank\"\n        class=\"mx-2\"\n      >\n        <v-icon color=\"black\" class=\"mr-1\">mdi-github</v-icon>View on GitHub\n      </v-chip>\n    </v-row>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 490,
-        "y": 260,
         "wires": [
             []
         ]
@@ -5897,8 +5755,7 @@
         "y": 140,
         "wires": [
             [
-                "b4d023d76ef0504c",
-                "c35c707fc4606403"
+                "b4d023d76ef0504c"
             ]
         ]
     },
@@ -5964,44 +5821,9 @@
         "y": 340,
         "wires": [
             [
-                "1bd39bfcfab012fe",
-                "568563f0ea454a6e"
+                "1bd39bfcfab012fe"
             ]
         ]
-    },
-    {
-        "id": "568563f0ea454a6e",
-        "type": "debug",
-        "z": "d5b2c64b84f8ed4f",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 340,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "c35c707fc4606403",
-        "type": "debug",
-        "z": "d5b2c64b84f8ed4f",
-        "name": "debug 7",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "486bc5c0891a3a15",
@@ -6223,7 +6045,7 @@
         "z": "a02961610bc3982a",
         "g": "27e22d982f0bcb2f",
         "name": "",
-        "x": 550,
+        "x": 530,
         "y": 920,
         "wires": [
             []
@@ -6241,7 +6063,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 530,
+        "x": 510,
         "y": 860,
         "wires": [
             [
@@ -6355,7 +6177,7 @@
         "g": "3fe3efd04fb1a41a",
         "name": "hostname",
         "info": "",
-        "x": 480,
+        "x": 300,
         "y": 700,
         "wires": []
     },
@@ -6366,7 +6188,7 @@
         "g": "9c49d230dea06fdf",
         "name": "name",
         "info": "",
-        "x": 290,
+        "x": 310,
         "y": 860,
         "wires": []
     },
@@ -6377,7 +6199,7 @@
         "g": "27e22d982f0bcb2f",
         "name": "storage",
         "info": "",
-        "x": 730,
+        "x": 690,
         "y": 860,
         "wires": []
     },
@@ -6496,7 +6318,7 @@
         "g": "dc792afbab434446",
         "name": "",
         "x": 1120,
-        "y": 440,
+        "y": 600,
         "wires": [
             []
         ]
@@ -6514,7 +6336,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1090,
-        "y": 380,
+        "y": 540,
         "wires": [
             [
                 "61ebceb724041fb2"
@@ -6528,8 +6350,8 @@
         "g": "dc792afbab434446",
         "name": "acquisitions",
         "info": "",
-        "x": 1290,
-        "y": 380,
+        "x": 1310,
+        "y": 540,
         "wires": []
     },
     {
@@ -6545,7 +6367,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1090,
-        "y": 560,
+        "y": 700,
         "wires": [
             [
                 "7d1f9414be49d7c3"
@@ -6560,7 +6382,7 @@
         "name": "segmentations",
         "info": "",
         "x": 1300,
-        "y": 560,
+        "y": 700,
         "wires": []
     },
     {
@@ -6570,7 +6392,7 @@
         "g": "dc307bb5d26c60f4",
         "name": "",
         "x": 1130,
-        "y": 620,
+        "y": 760,
         "wires": [
             []
         ]
@@ -6584,7 +6406,9 @@
         "x": 150,
         "y": 1080,
         "wires": [
-            []
+            [
+                "9249e16ed7ae4929"
+            ]
         ]
     },
     {
@@ -6614,7 +6438,7 @@
         "g": "855d9ef468b5db0f",
         "name": "machine info",
         "info": "",
-        "x": 330,
+        "x": 290,
         "y": 1020,
         "wires": []
     },
@@ -6630,8 +6454,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 970,
-        "y": 800,
+        "x": 1090,
+        "y": 860,
         "wires": [
             [
                 "59ec9623add53a47"
@@ -6644,8 +6468,8 @@
         "z": "a02961610bc3982a",
         "g": "91f8b76bf61fc59c",
         "name": "",
-        "x": 980,
-        "y": 860,
+        "x": 1100,
+        "y": 920,
         "wires": [
             []
         ]
@@ -6657,8 +6481,25 @@
         "g": "91f8b76bf61fc59c",
         "name": "camera",
         "info": "",
-        "x": 1130,
-        "y": 800,
+        "x": 1330,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "9249e16ed7ae4929",
+        "type": "debug",
+        "z": "a02961610bc3982a",
+        "g": "855d9ef468b5db0f",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 1100,
         "wires": []
     },
     {
@@ -7381,1079 +7222,6 @@
         "libs": [],
         "x": 800,
         "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "495e1733d60d5651",
-        "type": "switch",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "light",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "actuator/pump",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "imager/image/update_config",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "imager/image/image",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "segmenter/segment",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "restart/hardware_controller",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "restart/segmenter",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "restart/planktoscope",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "purge",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 9,
-        "x": 350,
-        "y": 160,
-        "wires": [
-            [
-                "1c782af30d1ff770",
-                "67bcd7bd5a4c38cc"
-            ],
-            [
-                "1c782af30d1ff770",
-                "67bcd7bd5a4c38cc"
-            ],
-            [
-                "0fdba9b9b11427db"
-            ],
-            [
-                "8dc5b8c9bfd7cc87"
-            ],
-            [
-                "019662c5bf05e430"
-            ],
-            [
-                "5f5dec5ac53119ae"
-            ],
-            [
-                "61dde05d9a3f805e"
-            ],
-            [
-                "2a55ae214f1e7273"
-            ],
-            [
-                "8447c9830c3aed1e"
-            ]
-        ]
-    },
-    {
-        "id": "0fdba9b9b11427db",
-        "type": "function",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "update_config command",
-        "func": "const now = new Date();\n\nmsg.topic = \"imager/image\";\n\nconst pad = (n) => n.toString().padStart(2, '0');\n\nlet formattedDate = `${now.getUTCFullYear()}_${pad(now.getUTCMonth() + 1)}_${pad(now.getUTCDate())}_${pad(now.getUTCHours())}_${pad(now.getUTCMinutes())}_${pad(now.getUTCSeconds())}`;\n\nglobal.set(\"path\", `${now.toISOString().split('T')[0]}/S1/${formattedDate}`);\n\nmsg.payload = {\n    \"action\": \"update_config\",\n    \"config\": {\n        \"sample_project\": \"FairScope_TenEarth\",\n        \"sample_id\": \"S1\",\n        \"sample_operator\": \"Fairscope\",\n        \"sample_instrument\": \"PlanktoScope v2.6\",\n        \"sample_date\": now.toISOString().split('T')[0],\n        \"acq_id\": formattedDate,\n        \"acq_instrument\": \"PlanktoScope v2.6\",\n        \"acq_magnification\": \"1.2\",\n        \"acq_software\": \"PlanktoScope v2024.0.0-alpha.1\",\n        \"acq_resolution\": \"1080p\",\n        \"acq_time_between_frames\": 0.1,\n        \"acq_minimum_mesh\": 20,\n        \"acq_maximum_mesh\": 300,\n        \"acq_min_esd\": 20,\n        \"acq_max_esd\": 300,\n        \"acq_camera_name\": \"HQ Camera\",\n        \"process_pixel\": 0.75,\n        \"acq_local_datetime\": now.toISOString().split('.')[0] + 'Z',\n        \"object_date\": now.toISOString().split('T')[0],\n        \"object_time\": now.toISOString().split('T')[1].split('.')[0] + 'Z',\n        \"object_lat\": 48.587424697483556,\n        \"object_lon\": -3.8382606493497824\n    }\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 180,
-        "wires": [
-            [
-                "1c782af30d1ff770",
-                "67bcd7bd5a4c38cc"
-            ]
-        ]
-    },
-    {
-        "id": "019662c5bf05e430",
-        "type": "function",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "segment command",
-        "func": "msg.payload = {\n  \"action\": \"segment\",\n  \"path\": global.get(\"path\"),\n  \"settings\": {\n    \"force\": false,\n    \"recursive\": true,\n    \"ecotaxa\": true,\n    \"keep\": true\n  }\n}\n\nreturn msg; ",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 260,
-        "wires": [
-            [
-                "1c782af30d1ff770",
-                "67bcd7bd5a4c38cc"
-            ]
-        ]
-    },
-    {
-        "id": "8dc5b8c9bfd7cc87",
-        "type": "function",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "image command",
-        "func": "msg.topic = \"imager/image\"\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 630,
-        "y": 220,
-        "wires": [
-            [
-                "1c782af30d1ff770",
-                "67bcd7bd5a4c38cc"
-            ]
-        ]
-    },
-    {
-        "id": "1c782af30d1ff770",
-        "type": "mqtt out",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8dc3722c.06efa8",
-        "x": 1270,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "caf377d323526d14",
-        "type": "mqtt in",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "name": "",
-        "topic": "status/#",
-        "qos": "0",
-        "datatype": "json",
-        "broker": "8dc3722c.06efa8",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 100,
-        "y": 800,
-        "wires": [
-            [
-                "ff83a2795f988098"
-            ]
-        ]
-    },
-    {
-        "id": "316dae6f231575b7",
-        "type": "function",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "name": "Count objects segmented",
-        "func": "var objectCount = global.get('objectCount') || 0;\n\nif (msg.payload.status === 'Done') {\n    msg.payload.objectCount = objectCount;\n    objectCount=0;\n    }\nelse if (msg.topic === 'status/segmenter/metric') {\n    objectCount++;\n}\n\nglobal.set('objectCount', objectCount);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 860,
-        "wires": [
-            [
-                "9e169af039fc8031"
-            ]
-        ]
-    },
-    {
-        "id": "9e169af039fc8031",
-        "type": "switch",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "name": "msg.payload.metadata.equivalent_diameter is not null",
-        "property": "payload.metadata.equivalent_diameter",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 880,
-        "y": 860,
-        "wires": [
-            [
-                "50629a570b41196e"
-            ]
-        ]
-    },
-    {
-        "id": "1bc303a19fc9e38b",
-        "type": "ui-template",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "7edf5f14f6ca0bdd",
-        "page": "",
-        "ui": "",
-        "name": "Stream Pi Camera",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<center>\n  <img src=\"/ps/hal/camera/streams/preview.mjpg\"\n    alt=\"If you see this, there probably is an error either with your camera or with the python service. Please try restarting your machine.\"\n    width=\"100%\" height=\"100%\">\n</center>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 390,
-        "y": 780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ff83a2795f988098",
-        "type": "switch",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "status/segmenter/metric",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 350,
-        "y": 860,
-        "wires": [
-            [
-                "316dae6f231575b7"
-            ]
-        ]
-    },
-    {
-        "id": "fd3ae27267703c27",
-        "type": "ui-chart",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "",
-        "label": "Histogram - Equivalent Diameter",
-        "order": 2,
-        "chartType": "histogram",
-        "category": "Equivalent Diameter (μm)",
-        "categoryType": "str",
-        "xAxisLabel": "Equivalent Diameter (μm)",
-        "xAxisProperty": "payload.metadata.equivalent_diameter",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "bins",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "20",
-        "xmax": "100",
-        "yAxisLabel": "Abundance",
-        "yAxisProperty": "payload.metadata.equivalent_diameter",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": "80",
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "86400",
-        "removeOlderPoints": "",
-        "colors": [
-            "#00ff04",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 1660,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5f5dec5ac53119ae",
-        "type": "exec",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "command": "sudo systemctl restart planktoscope-org.controller.service",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Restart hardware controller",
-        "x": 640,
-        "y": 320,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "61dde05d9a3f805e",
-        "type": "exec",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "command": "sudo systemctl restart planktoscope-org.segmenter.service",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Restart segmenter",
-        "x": 610,
-        "y": 380,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "527165cd7171fe26",
-        "type": "ui-template",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "7edf5f14f6ca0bdd",
-        "page": "",
-        "ui": "",
-        "name": "Actions Clock",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n    <div class=\"clock-container\">\n        <canvas ref=\"clockCanvas\"></canvas>\n        <div class=\"legend\">\n            <div v-for=\"event in events\" :key=\"event.label\" class=\"legend-item\">\n                <span :style=\"{ backgroundColor: event.color }\" class=\"color-box\"></span>\n                {{ event.label }}\n            </div>\n        </div>\n    </div>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            events: [\n                { start: 35, end: 36, label: \"Pump dead volume\", color: \"rgba(255, 0, 0, 0.3)\" },\n                { start: 36, end: 40, label: \"Acquisition\", color: \"rgba(0, 255, 0, 0.3)\" },\n                { start: 45, end: 8, label: \"Segmentation\", color: \"rgba(0, 0, 255, 0.3)\" },\n                { start: 18, end: 19, label: \"Purge data\", color: \"rgba(255, 0, 0, 0.3)\" },\n                { start: 34, end: 35, label: \"Agitation\", color: \"rgba(255, 255, 0, 0.3)\" },\n                { start: 25, end: 26, label: \"Restart segmenter\", color: \"rgba(255, 0, 255, 0.3)\" },\n                { start: 30, end: 31, label: \"Restart hardware controller\", color: \"rgba(0, 255, 255, 0.3)\" }\n            ],\n            currentMinute: null,\n            clockRadius: 100\n        };\n    },\n    mounted() {\n        this.updateClock();\n        setInterval(this.updateClock, 1000);\n    },\n    methods: {\n        updateClock() {\n            const now = new Date();\n            this.currentMinute = now.getMinutes() + now.getSeconds() / 60;\n            this.drawClock();\n        },\n        drawClock() {\n            const canvas = this.$refs.clockCanvas;\n            const ctx = canvas.getContext(\"2d\");\n            const size = this.clockRadius * 2;\n            canvas.width = size;\n            canvas.height = size;\n            ctx.clearRect(0, 0, size, size);\n            ctx.translate(this.clockRadius, this.clockRadius);\n\n            // Draw circle\n            ctx.beginPath();\n            ctx.arc(0, 0, this.clockRadius, 0, 2 * Math.PI);\n            ctx.stroke();\n\n            // Draw minute marks\n            for (let i = 0; i < 60; i += 10) {\n                const angle = (i / 60) * 2 * Math.PI - Math.PI / 2;\n                const x1 = Math.cos(angle) * (this.clockRadius - 5);\n                const y1 = Math.sin(angle) * (this.clockRadius - 5);\n                const x2 = Math.cos(angle) * (this.clockRadius - 15);\n                const y2 = Math.sin(angle) * (this.clockRadius - 15);\n                ctx.strokeStyle = \"black\";\n                ctx.lineWidth = 2;\n                ctx.beginPath();\n                ctx.moveTo(x1, y1);\n                ctx.lineTo(x2, y2);\n                ctx.stroke();\n            }\n\n            // Draw event periods with colors\n            this.events.forEach(event => {\n                let startAngle = (event.start / 60) * 2 * Math.PI - Math.PI / 2;\n                let endAngle = (event.end / 60) * 2 * Math.PI - Math.PI / 2;\n                ctx.fillStyle = event.color;\n                ctx.beginPath();\n                ctx.moveTo(0, 0);\n                ctx.arc(0, 0, this.clockRadius - 10, startAngle, endAngle);\n                ctx.lineTo(0, 0);\n                ctx.fill();\n            });\n\n            // Draw current time hand\n            const angle = (this.currentMinute / 60) * 2 * Math.PI - Math.PI / 2;\n            const x = Math.cos(angle) * (this.clockRadius - 15);\n            const y = Math.sin(angle) * (this.clockRadius - 15);\n            ctx.strokeStyle = \"black\";\n            ctx.lineWidth = 2;\n            ctx.beginPath();\n            ctx.moveTo(0, 0);\n            ctx.lineTo(x, y);\n            ctx.stroke();\n        }\n    }\n};\n</script>\n\n<style scoped>\n.clock-container {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\ncanvas {\n    margin-right: 20px;\n}\n\n.legend {\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n}\n\n.legend-item {\n    display: flex;\n    align-items: center;\n    margin: 5px 0;\n}\n\n.color-box {\n    width: 15px;\n    height: 15px;\n    margin-right: 5px;\n    border-radius: 3px;\n}\n</style>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 380,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "50629a570b41196e",
-        "type": "function",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "name": "convert px to um",
-        "func": "// Conversion factor from pixels to micrometers (µm)\nconst px_to_um = 0.75;\n\n// Convert relevant measurements\nmsg.payload.metadata.equivalent_diameter = Math.round(msg.payload.metadata.equivalent_diameter * px_to_um);\nmsg.payload.metadata.width = Math.round(msg.payload.metadata.width * px_to_um);\nmsg.payload.metadata.height = Math.round(msg.payload.metadata.height * px_to_um);\nmsg.payload.metadata.area = Math.round(msg.payload.metadata.area * (px_to_um ** 2)); // Area is in square units\nmsg.payload.metadata.area_exc = Math.round(msg.payload.metadata.area_exc * (px_to_um ** 2));\nmsg.payload.metadata.convex_area = Math.round(msg.payload.metadata.convex_area * (px_to_um ** 2));\nmsg.payload.metadata.major = Math.round(msg.payload.metadata.major * px_to_um);\nmsg.payload.metadata.minor = Math.round(msg.payload.metadata.minor * px_to_um);\nmsg.payload.metadata.perim = Math.round(msg.payload.metadata[\"perim.\"] * px_to_um); // Ensure proper key reference\nmsg.payload.metadata.bounding_box_area = Math.round(msg.payload.metadata.bounding_box_area * (px_to_um ** 2));\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1210,
-        "y": 860,
-        "wires": [
-            [
-                "fd3ae27267703c27",
-                "60d1ad2a7e54e60e",
-                "1997fd46811f0331",
-                "5f091b11b5c9fa40",
-                "0650e037776b3d8a"
-            ]
-        ]
-    },
-    {
-        "id": "0aef9a09d59e574c",
-        "type": "ui-markdown",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "Histogram of equivalent_diameter",
-        "order": 3,
-        "width": "3",
-        "height": "6",
-        "content": "### Distribution of Object Sizes  \nUnderstanding the size distribution of planktonic objects helps identify dominant size classes and detect anomalies. A skewed distribution might indicate specific biological trends, such as a bloom of a particular species or a technical issue in the acquisition process.  \n\n*In the graph:*  \n- A **peak in smaller sizes** suggests dominance of tiny plankton.  \n- A **broad distribution** indicates a mix of various size classes.  \n- A **skewed or bimodal pattern** may reflect biological or technical factors (e.g., species-specific blooms or imaging biases).\n",
-        "className": "",
-        "x": 1660,
-        "y": 860,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a9701575d8df4ce1",
-        "type": "ui-markdown",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "elongation vs. area",
-        "order": 6,
-        "width": "3",
-        "height": "6",
-        "content": "### Relationship Between Elongation and Object Area  \nThis scatter plot helps assess whether larger objects tend to be more elongated or compact. Certain plankton species have characteristic shapes, and identifying correlations between elongation and area can aid in distinguishing different taxa or understanding morphological variability.  \n\n*In the graph:*  \n- **Top-right**: Large and highly elongated objects (e.g., filamentous plankton).  \n- **Bottom-right**: Small but highly elongated objects (e.g., thin needle-like forms). \n- **Top-left**: Large but compact objects (e.g., rounded or clustered plankton). \n- **Bottom-left**: Small and compact objects (e.g., spherical or short structures).",
-        "className": "",
-        "x": 1610,
-        "y": 960,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "60d1ad2a7e54e60e",
-        "type": "ui-chart",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "elongation vs. area",
-        "label": "elongation vs. area",
-        "order": 5,
-        "chartType": "scatter",
-        "category": "elongation vs. area",
-        "categoryType": "str",
-        "xAxisLabel": "elongation (ratio of major to minor axis)",
-        "xAxisProperty": "payload.metadata.elongation",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "linear",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "0",
-        "xmax": "50",
-        "yAxisLabel": "area (μm²)",
-        "yAxisProperty": "payload.metadata.area",
-        "yAxisPropertyType": "msg",
-        "ymin": "300",
-        "ymax": "1500",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": true,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": "1",
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "300",
-        "colors": [
-            "#ff0088",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 1610,
-        "y": 920,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f8df009e737eb044",
-        "type": "ui-markdown",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "equivalent_diameter vs. MeanValue",
-        "order": 9,
-        "width": "3",
-        "height": "6",
-        "content": "### Variation of Mean Brightness with Equivalent Diameter  \nThis graph explores whether larger objects tend to be brighter or darker. This can reveal differences in pigmentation, transparency, or even imaging inconsistencies.  \n\n*In the graph:*   \n- **Top-right**: Large and bright objects.\n- **Top-left**: Small and bright objects.\n- **Bottom-right**: Large and dark objects.\n- **Bottom-left**: Small and dark objects.  ",
-        "className": "",
-        "x": 1660,
-        "y": 1060,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e6eb3b16a1d6bf22",
-        "type": "ui-markdown",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "MeanSaturation vs. MeanValue",
-        "order": 13,
-        "width": "3",
-        "height": "6",
-        "content": "### Relationship Between Mean Saturation and Mean Brightness\nThis visualization helps understand how color properties vary with brightness. Some plankton groups exhibit distinct coloration, and saturation could be a useful feature for classification. A strong trend might suggest systematic differences in pigmentation or optical properties across plankton groups.\n\n*In the graph:*  \n- **Top-right**: Bright and highly saturated objects (vivid colors).  \n- **Top-left**: Bright but low-saturation objects (pale or near-white).  \n- **Bottom-right**: Dark but highly saturated objects (deep, rich colors).  \n- **Bottom-left**: Dark and low-saturation objects (grayish or faintly colored).",
-        "className": "",
-        "x": 1650,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1997fd46811f0331",
-        "type": "ui-chart",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "equivalent_diameter vs. MeanValue",
-        "label": "equivalent_diameter vs. MeanValue",
-        "order": 8,
-        "chartType": "scatter",
-        "category": "equivalent_diameter vs. MeanValue",
-        "categoryType": "str",
-        "xAxisLabel": "Equivalent Diameter (μm)",
-        "xAxisProperty": "payload.metadata.equivalent_diameter",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "linear",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "0",
-        "xmax": "50",
-        "yAxisLabel": "MeanValue (0–255, grayscale value)",
-        "yAxisProperty": "payload.metadata.MeanValue",
-        "yAxisPropertyType": "msg",
-        "ymin": "150",
-        "ymax": "255",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": true,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": "1",
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "300",
-        "colors": [
-            "#8c00ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 1660,
-        "y": 1020,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5f091b11b5c9fa40",
-        "type": "ui-chart",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "MeanSaturation vs. MeanValue",
-        "label": "MeanSaturation vs. MeanValue",
-        "order": 11,
-        "chartType": "scatter",
-        "category": "MeanSaturation vs. MeanValue",
-        "categoryType": "str",
-        "xAxisLabel": "MeanSaturation (%)",
-        "xAxisProperty": "payload.metadata.MeanSaturation",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "linear",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "0",
-        "xmax": "50",
-        "yAxisLabel": "MeanValue (0–255, grayscale value)",
-        "yAxisProperty": "payload.metadata.MeanValue",
-        "yAxisPropertyType": "msg",
-        "ymin": "150",
-        "ymax": "255",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": true,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": "1",
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "300",
-        "colors": [
-            "#ff9500",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 1650,
-        "y": 1120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b17728471bdfc61e",
-        "type": "ui-template",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "group": "7edf5f14f6ca0bdd",
-        "page": "",
-        "ui": "",
-        "name": "Table",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<table border=\"1\" style=\"width:100%; text-align:center;\">\n    <tr>\n        <th>Topic</th>\n        <th>Action</th>\n        <th>Status</th>\n    </tr>\n    <tr>\n        <td>light</td>\n        <td>{{msg.payload.light.action}}</td>\n        <td>{{msg.payload.light.status}}</td>\n    </tr>\n    <tr>\n        <td>actuator/pump</td>\n        <td>{{msg.payload[\"actuator/pump\"].action}}</td>\n        <td>{{msg.payload[\"actuator/pump\"].status}}</td>\n    </tr>\n    <tr>\n        <td>imager/image</td>\n        <td>{{msg.payload[\"imager/image\"].action}}</td>\n        <td>{{msg.payload[\"imager/image\"].status}}</td>\n    </tr>\n    <tr>\n        <td>segmenter/segment</td>\n        <td>{{msg.payload[\"segmenter/segment\"].action}}</td>\n        <td>{{msg.payload[\"segmenter/segment\"].status}}</td>\n    </tr>\n</table>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1330,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e4719fcedaa61149",
-        "type": "switch",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "status/light",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "status/pump",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "status/imager",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "status/segmenter",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 4,
-        "x": 770,
-        "y": 540,
-        "wires": [
-            [
-                "67bcd7bd5a4c38cc"
-            ],
-            [
-                "67bcd7bd5a4c38cc"
-            ],
-            [
-                "67bcd7bd5a4c38cc"
-            ],
-            [
-                "67bcd7bd5a4c38cc"
-            ]
-        ]
-    },
-    {
-        "id": "9301eaa353ece507",
-        "type": "mqtt in",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "",
-        "topic": "status/#",
-        "qos": "0",
-        "datatype": "json",
-        "broker": "8dc3722c.06efa8",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 300,
-        "y": 540,
-        "wires": [
-            [
-                "e4719fcedaa61149"
-            ]
-        ]
-    },
-    {
-        "id": "67bcd7bd5a4c38cc",
-        "type": "function",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "save current actions & status",
-        "func": "// Récupérer les données précédentes stockées dans le flow context\nvar storedData = flow.get(\"deviceData\") || {\n    light: { action: \"\", status: \"\" },\n    \"actuator/pump\": { action: \"\", status: \"\" },\n    \"imager/image\": { action: \"\", status: \"\" },\n    \"segmenter/segment\": { action: \"\", status: \"\" }\n};\n\n// Mettre à jour les valeurs en fonction du topic reçu\nif (msg.topic === \"light\") {\n    storedData.light.action = msg.payload.action;\n} else if (msg.topic === \"status/light\") {\n    storedData.light.status = msg.payload.status;\n} else if (msg.topic === \"actuator/pump\") {\n    storedData[\"actuator/pump\"].action = msg.payload;\n} else if (msg.topic === \"status/pump\") {\n    storedData[\"actuator/pump\"].status = msg.payload.status;\n} else if (msg.topic === \"imager/image\") {\n    storedData[\"imager/image\"].action = msg.payload.action;\n} else if (msg.topic === \"status/imager\") {\n    storedData[\"imager/image\"].status = msg.payload.status;\n} else if (msg.topic === \"segmenter/segment\") {\n    storedData[\"segmenter/segment\"].action = msg.payload.action;\n} else if (msg.topic === \"status/segmenter\") {\n    storedData[\"segmenter/segment\"].status = msg.payload.status;\n}\n\n// Sauvegarder les nouvelles valeurs\nflow.set(\"deviceData\", storedData);\n\n// Attacher les données mises à jour au message\nmsg.payload = storedData;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1120,
-        "y": 320,
-        "wires": [
-            [
-                "b17728471bdfc61e"
-            ]
-        ]
-    },
-    {
-        "id": "2a55ae214f1e7273",
-        "type": "exec",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "command": "sudo reboot now",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Restart PlanktoScope",
-        "x": 620,
-        "y": 440,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "0650e037776b3d8a",
-        "type": "ui-chart",
-        "z": "83b2474231efac73",
-        "g": "751429d7682830be",
-        "group": "4a8738206c62b02e",
-        "name": "x vs. y",
-        "label": "x vs. y",
-        "order": 12,
-        "chartType": "scatter",
-        "category": "x vs. y",
-        "categoryType": "str",
-        "xAxisLabel": "x",
-        "xAxisProperty": "payload.metadata.x",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "linear",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "0",
-        "xmax": "50",
-        "yAxisLabel": "y",
-        "yAxisProperty": "payload.metadata.y",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": true,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": "1",
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "300",
-        "colors": [
-            "#2b00ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 1570,
-        "y": 1220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8447c9830c3aed1e",
-        "type": "exec",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "command": "rm -rf data/img/* data/clean/* data/objects/*",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Purge data",
-        "x": 590,
-        "y": 500,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "a197bfa71c1761b4",
-        "type": "cronplus",
-        "z": "83b2474231efac73",
-        "g": "910e195536aea223",
-        "name": "",
-        "outputField": "payload",
-        "timeZone": "",
-        "storeName": "",
-        "commandResponseMsgOutput": "output1",
-        "defaultLocation": "",
-        "defaultLocationType": "default",
-        "outputs": 1,
-        "options": [
-            {
-                "name": "purge",
-                "topic": "purge",
-                "payloadType": "default",
-                "payload": "",
-                "expressionType": "cron",
-                "expression": "0 18 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "schedule9",
-                "topic": "restart/planktoscope",
-                "payloadType": "default",
-                "payload": "",
-                "expressionType": "cron",
-                "expression": "0 20 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "restart_segmenter",
-                "topic": "restart/segmenter",
-                "payloadType": "default",
-                "payload": "",
-                "expressionType": "cron",
-                "expression": "0 25 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "restart_hardware_controller",
-                "topic": "restart/hardware_controller",
-                "payloadType": "default",
-                "payload": "",
-                "expressionType": "cron",
-                "expression": "0 30 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "light_on",
-                "topic": "light",
-                "payloadType": "json",
-                "payload": "{\"action\": \"on\"}",
-                "expressionType": "cron",
-                "expression": "0 35 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "update_config",
-                "topic": "imager/image/update_config",
-                "payloadType": "default",
-                "payload": "",
-                "expressionType": "cron",
-                "expression": "1 35 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "pump",
-                "topic": "actuator/pump",
-                "payloadType": "json",
-                "payload": "{\"action\": \"move\",\"direction\": \"FORWARD\",\"volume\": 3,\"flowrate\": 30}",
-                "expressionType": "cron",
-                "expression": "2 35 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "image",
-                "topic": "imager/image/image",
-                "payloadType": "json",
-                "payload": "{\"action\": \"image\",\"pump_direction\": \"FORWARD\",\"volume\": 0.008,\"nb_frame\": 200,\"sleep\": 0.1}",
-                "expressionType": "cron",
-                "expression": "0 36 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "light_off",
-                "topic": "light",
-                "payloadType": "json",
-                "payload": "{\"action\": \"off\"}",
-                "expressionType": "cron",
-                "expression": "0 45 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            },
-            {
-                "name": "segment",
-                "topic": "segmenter/segment",
-                "payloadType": "default",
-                "payload": "",
-                "expressionType": "cron",
-                "expression": "1 45 * * * *",
-                "location": "",
-                "offset": "0",
-                "solarType": "all",
-                "solarEvents": "sunrise,sunset"
-            }
-        ],
-        "x": 100,
-        "y": 60,
         "wires": [
             []
         ]
