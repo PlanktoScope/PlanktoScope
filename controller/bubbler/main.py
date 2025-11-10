@@ -1,12 +1,11 @@
 import asyncio
 import json
+import signal
+import sys
 
 import aiomqtt
-import sys
-import signal
 
 import helpers
-
 
 client = None
 loop = asyncio.new_event_loop()
@@ -20,9 +19,9 @@ async def start() -> None:
         sys.exit()
 
     global bubbler
-    from .. import MCP4725 as bubbler
+    import MCP4725 as bubbler
 
-    bubbler.init(address=60)
+    bubbler.init(address=0x60)
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     async with client:

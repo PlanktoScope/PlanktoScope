@@ -1,6 +1,6 @@
+import adafruit_mcp4725  # type: ignore
 import board  # type: ignore
 import busio  # type: ignore
-import adafruit_mcp4725  # type: ignore
 
 # Proportional 0 to 5V
 VALUE_MIN = 0

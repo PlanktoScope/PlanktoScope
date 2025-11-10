@@ -18,3 +18,5 @@ if cd PlanktoScope; then git pull; else git clone https://github.com/PlanktoScop
 cd PlanktoScope
 just
 ./os/postinstall.sh
+
+echo "✅ Setup complete. Please reboot."

@@ -1,9 +1,9 @@
 import asyncio
 import json
+import signal
+import sys
 
 import aiomqtt
-import sys
-import signal
 
 import helpers
 
@@ -21,13 +21,13 @@ async def start() -> None:
         sys.exit()
 
     if hat_version == 1.2:
-        from . import LM36011 as led
+        import LM36011 as led
 
         led.init()
     elif hat_version == 3.3:
-        from .. import MCP4725 as led
+        import MCP4725 as led
 
-        led.init(address=62)
+        led.init(address=0x62)
     else:
         raise Exception("Unknown hat_version", hat_version)
 
