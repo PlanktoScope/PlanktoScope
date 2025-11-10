@@ -1,8 +1,8 @@
 import json
 
-import aiofiles  # type: ignore
-import aiomqtt  # type: ignore
-import paho  # type: ignore
+import aiofiles
+import aiomqtt
+import paho
 
 
 async def get_hat_version() -> float | None:
