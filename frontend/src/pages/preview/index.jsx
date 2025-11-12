@@ -5,16 +5,25 @@ import "zoomist/css"
 
 import styles from "./styles.module.css"
 import "./reader.js"
-import { startLight, capture, startBubbler } from "../../../../lib/scope.js"
+import {
+  startLight,
+  capture,
+  startBubbler,
+  watch,
+} from "../../../../lib/scope.js"
 import { makeUrl } from "../../helpers.js"
 
 import cameraIcon from "./camera.svg"
 
 import NumberInput from "./NumberInput.jsx"
+import { createSignal } from "solid-js"
 
 export default function Preview() {
   let container
   let loader
+
+  const [bubbler_dac, setBubblerDac] = createSignal(0)
+  const [light_dac, setLightDac] = createSignal(0)
 
   const video = (
     <video
@@ -26,6 +35,31 @@ export default function Preview() {
       preload="auto"
     />
   )
+
+  watch("status/bubbler").then(async (messages) => {
+    for await (const message of messages) {
+      if (message.dac) {
+        setBubblerDac(message.dac)
+      }
+    }
+  })
+
+  watch("status/light").then(async (messages) => {
+    for await (const message of messages) {
+      if (message.dac) {
+        setLightDac(message.dac)
+      }
+    }
+  })
+
+  // ;(async () => {
+  //   for (const message of await watch("light")) {
+  //     console.log("wow", message)
+  //   }
+  //   for (const message of await watch("actuator/bubbler")) {
+  //     console.log("wow", message)
+  //   }
+  // })()
 
   startLight().catch(console.error)
 
@@ -72,15 +106,15 @@ export default function Preview() {
     window.open(makeUrl("/ps/data/browse/files/captures"), "_blank")
   }
 
-  function onLightChange(value) {
+  function onLightChange(dac) {
     startLight({
-      value,
+      dac,
     })
   }
 
-  function onBubblerChange(value) {
+  function onBubblerChange(dac) {
     startBubbler({
-      value,
+      dac,
     })
   }
 
@@ -88,12 +122,20 @@ export default function Preview() {
     <>
       <div class={styles.controls}>
         <div>
-          <h2>Bubbler</h2>
-          <NumberInput name="bubler" onChange={onBubblerChange} />
+          <h2>Light</h2>
+          <NumberInput
+            name="light"
+            value={light_dac}
+            onChange={onLightChange}
+          />
         </div>
         <div>
-          <h2>Light</h2>
-          <NumberInput name="light" onChange={onLightChange} />
+          <h2>Bubbler</h2>
+          <NumberInput
+            name="bubler"
+            value={bubbler_dac}
+            onChange={onBubblerChange}
+          />
         </div>
       </div>
       <div class={styles.preview}>

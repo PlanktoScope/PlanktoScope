@@ -82,7 +82,7 @@ async def on(payload) -> None:
     elif value:
         bubbler.set_value(value)
     elif dac:
-        bubbler.set_dac(value)
+        bubbler.set_dac(dac)
 
     await publish_status()
 
@@ -96,8 +96,16 @@ async def off() -> None:
 async def publish_status() -> None:
     assert bubbler is not None
     assert client is not None
-    payload = {"status": "Off" if bubbler.is_off() else "On"}
-    await client.publish(topic="actuator/bubbler", payload=json.dumps(payload), retain=True)
+
+    [value, dac, voltage] = bubbler.get_state()
+
+    payload = {
+        "status": "Off" if bubbler.is_off() else "On",
+        "voltage": voltage,
+        "value": value,
+        "dac": dac,
+    }
+    await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:

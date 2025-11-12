@@ -16,18 +16,20 @@ export default function NumberInput(props) {
         ref={slider}
         type="range"
         name={props.name}
+        value={props.value()}
         onInput={onInput}
         min="0"
-        max="1"
-        step="any"
+        max="4095"
+        step="1"
       />
       <input
         ref={number}
         onInput={onInput}
+        value={props.value()}
         type="number"
         min="0"
-        max="1"
-        step="0.01"
+        max="4095"
+        step="1"
       />
     </div>
   )

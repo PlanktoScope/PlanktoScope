@@ -86,15 +86,13 @@ async def on(payload) -> None:
     value = payload.get("value")
     dac = payload.get("dac")
 
-    print(voltage, value, dac)
-
     # FIXME: 2.6
     if voltage:
         led.set_voltage(voltage)
     elif value:
         led.set_value(value)
     elif dac:
-        led.set_dac(value)
+        led.set_dac(dac)
 
     await publish_status()
 
@@ -108,7 +106,16 @@ async def off() -> None:
 async def publish_status() -> None:
     assert client is not None
     assert led is not None
-    payload = {"status": "Off" if led.is_off() else "On"}
+
+    # FIXME: 2.6
+    [value, dac, voltage] = led.get_state()
+
+    payload = {
+        "status": "Off" if led.is_off() else "On",
+        "voltage": voltage,
+        "value": value,
+        "dac": dac,
+    }
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 

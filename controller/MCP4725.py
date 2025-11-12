@@ -64,6 +64,11 @@ def set_value(value: float) -> None:
     dac.normalized_value = value
 
 
+def get_state() -> tuple[float, int, int]:
+    assert dac is not None
+    return dac.normalized_value, dac.raw_value, map_to_voltage(dac.raw_value)
+
+
 def set_dac(value) -> None:
     assert dac is not None
     assert DAC_MIN <= value <= DAC_MAX
