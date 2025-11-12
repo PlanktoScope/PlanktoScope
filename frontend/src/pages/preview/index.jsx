@@ -5,10 +5,12 @@ import "zoomist/css"
 
 import styles from "./styles.module.css"
 import "./reader.js"
-import { startLight, capture } from "../../../../lib/scope.js"
+import { startLight, capture, startBubbler } from "../../../../lib/scope.js"
 import { makeUrl } from "../../helpers.js"
 
 import cameraIcon from "./camera.svg"
+
+import NumberInput from "./NumberInput.jsx"
 
 export default function Preview() {
   let container
@@ -70,22 +72,46 @@ export default function Preview() {
     window.open(makeUrl("/ps/data/browse/files/captures"), "_blank")
   }
 
+  function onLightChange(value) {
+    startLight({
+      value,
+    })
+  }
+
+  function onBubblerChange(value) {
+    startBubbler({
+      value,
+    })
+  }
+
   return (
     <>
-      <div ref={loader} class={styles.loader_container}>
-        <span class={styles.loader} />
-      </div>
-      <div ref={container} hidden class="zoomist-container">
-        <div class="zoomist-wrapper">
-          <div class="zoomist-image">{video}</div>
+      <div class={styles.controls}>
+        <div>
+          <h2>Bubbler</h2>
+          <NumberInput name="bubler" onChange={onBubblerChange} />
         </div>
-        <button
-          tooltip="Take capture"
-          class={styles.button_capture}
-          onClick={takeImage}
-        >
-          {cameraIcon}
-        </button>
+        <div>
+          <h2>Light</h2>
+          <NumberInput name="light" onChange={onLightChange} />
+        </div>
+      </div>
+      <div class={styles.preview}>
+        <div ref={loader} class={styles.loader_container}>
+          <span class={styles.loader} />
+        </div>
+        <div ref={container} hidden class="zoomist-container">
+          <div class="zoomist-wrapper">
+            <div class="zoomist-image">{video}</div>
+          </div>
+          <button
+            tooltip="Take capture"
+            class={styles.button_capture}
+            onClick={takeImage}
+          >
+            {cameraIcon}
+          </button>
+        </div>
       </div>
     </>
   )

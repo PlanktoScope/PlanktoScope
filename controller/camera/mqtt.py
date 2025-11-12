@@ -1,16 +1,17 @@
 """mqtt provides an MQTT API for camera supervision and interaction."""
 
+import datetime as dt
+import errno
 import json
+import os
 import threading
 import time
 import typing
-import datetime as dt
-import os
-import errno
 
 import loguru
 
 import mqtt as messaging
+
 from . import hardware
 
 loguru.logger.info("planktoscope.camera is loaded")
@@ -168,11 +169,17 @@ class Worker(threading.Thread):
         path_jpeg = capture_path + ".jpg"
         picam2.helpers.save(img=image_main, metadata=metadata, format="jpeg", file_output=path_jpeg)
 
-        if self.mqtt:
-            self.mqtt.client.publish(
-                "status/imager",
-                json.dumps({"action": "capture", "dng": path_dng, "jpeg": path_jpeg}),
-            )
+        assert self.mqtt
+        self.mqtt.client.publish(
+            "status/imager",
+            json.dumps(
+                {
+                    "action": "capture",
+                    "jpeg": path_jpeg,
+                    "dng": path_dng,
+                }
+            ),
+        )
 
     @loguru.logger.catch
     def _receive_message(self, message: dict[str, typing.Any]) -> typing.Optional[str]:
