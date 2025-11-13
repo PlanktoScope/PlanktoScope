@@ -2,6 +2,7 @@ import asyncio
 import json
 import signal
 import sys
+import time
 
 import aiomqtt  # type: ignore
 
@@ -11,6 +12,8 @@ client = None
 loop = asyncio.new_event_loop()
 
 led = None
+chronometer = None
+operating_time = 0
 
 
 async def start() -> None:
@@ -86,6 +89,10 @@ async def on(payload) -> None:
     value = payload.get("value")
     dac = payload.get("dac")
 
+    global chronometer
+    if chronometer is None:
+        chronometer = int(time.time())
+
     # FIXME: 2.6
     if voltage:
         led.set_voltage(voltage)
@@ -100,6 +107,9 @@ async def on(payload) -> None:
 async def off() -> None:
     assert led is not None
     led.off()
+
+    save_operating_time()
+
     await publish_status()
 
 
@@ -115,6 +125,7 @@ async def publish_status() -> None:
         "voltage": voltage,
         "value": value,
         "dac": dac,
+        "operating_time": operating_time,
     }
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
@@ -124,6 +135,16 @@ async def stop() -> None:
     await off()
     led.deinit()
     loop.stop()
+
+
+def save_operating_time() -> None:
+    global chronometer
+    if chronometer is None:
+        return
+
+    operating_time = int(time.time()) - chronometer
+    print(operating_time)
+    chronometer = None
 
 
 for s in (signal.SIGINT, signal.SIGTERM):
