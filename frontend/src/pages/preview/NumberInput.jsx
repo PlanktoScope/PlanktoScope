@@ -7,6 +7,7 @@ export default function NumberInput(props) {
   function onInput(evt) {
     slider.valueAsNumber = evt.target.valueAsNumber
     number.valueAsNumber = evt.target.valueAsNumber
+    console.log(evt.target.valueAsNumber)
     props.onChange?.(evt.target.valueAsNumber)
   }
 

@@ -1,7 +1,8 @@
-from gpiozero import DigitalOutputDevice  # type: ignore[attr-defined]
-import smbus2 as smbus
 import enum
 import json
+
+import smbus2 as smbus
+from gpiozero import DigitalOutputDevice  # type: ignore[attr-defined]
 
 
 class i2c_led:
