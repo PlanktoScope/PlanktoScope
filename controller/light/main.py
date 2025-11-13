@@ -58,30 +58,42 @@ async def handle_action(action: str, payload) -> None:
     assert led is not None
 
     if action == "on":
-        await on()
+        await on(payload)
     elif action == "off":
         await off()
-    elif action == "settings":
-        await handle_settings(payload)
+    # elif action == "settings":
+    #     await handle_settings(payload)
     elif action == "save":
         if hasattr(led, "save"):
             led.save()
 
 
-async def handle_settings(payload) -> None:
+# async def handle_settings(payload) -> None:
+#     assert led is not None
+
+#     if "current" in payload["settings"]:
+#         # {"settings":{"current":"20"}}
+#         current = payload["settings"]["current"]
+#         if led.is_on():
+#             return
+#         led.set_current(current)
+
+
+async def on(payload) -> None:
     assert led is not None
 
-    if "current" in payload["settings"]:
-        # {"settings":{"current":"20"}}
-        current = payload["settings"]["current"]
-        if led.is_on():
-            return
-        led.set_current(current)
+    voltage = payload.get("voltage")
+    value = payload.get("value")
+    dac = payload.get("dac")
 
+    # FIXME: 2.6
+    if voltage:
+        led.set_voltage(voltage)
+    elif value:
+        led.set_value(value)
+    elif dac:
+        led.set_dac(dac)
 
-async def on() -> None:
-    assert led is not None
-    led.on()
     await publish_status()
 
 
@@ -94,7 +106,16 @@ async def off() -> None:
 async def publish_status() -> None:
     assert client is not None
     assert led is not None
-    payload = {"status": "Off" if led.is_off() else "On"}
+
+    # FIXME: 2.6
+    [value, dac, voltage] = led.get_state()
+
+    payload = {
+        "status": "Off" if led.is_off() else "On",
+        "voltage": voltage,
+        "value": value,
+        "dac": dac,
+    }
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 

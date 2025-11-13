@@ -49,30 +49,41 @@ async def handle_action(action: str, payload) -> None:
     assert bubbler is not None
 
     if action == "on":
-        await on()
+        await on(payload)
     elif action == "off":
         await off()
-    elif action == "settings":
-        await handle_settings(payload)
+    # elif action == "settings":
+    #     await handle_settings(payload)
     elif action == "save":
         if hasattr(bubbler, "save"):
             bubbler.save()
 
 
-async def handle_settings(payload) -> None:
+# async def handle_settings(payload) -> None:
+#     assert bubbler is not None
+
+#     if "current" in payload["settings"]:
+#         # {"settings":{"current":"20"}}
+#         current = payload["settings"]["current"]
+#         if bubbler.is_on():
+#             return
+#         bubbler.set_current(current)
+
+
+async def on(payload) -> None:
     assert bubbler is not None
 
-    if "current" in payload["settings"]:
-        # {"settings":{"current":"20"}}
-        current = payload["settings"]["current"]
-        if bubbler.is_on():
-            return
-        bubbler.set_current(current)
+    voltage = payload.get("voltage")
+    value = payload.get("value")
+    dac = payload.get("dac")
 
+    if voltage:
+        bubbler.set_voltage(voltage)
+    elif value:
+        bubbler.set_value(value)
+    elif dac:
+        bubbler.set_dac(dac)
 
-async def on() -> None:
-    assert bubbler is not None
-    bubbler.on()
     await publish_status()
 
 
@@ -85,8 +96,16 @@ async def off() -> None:
 async def publish_status() -> None:
     assert bubbler is not None
     assert client is not None
-    payload = {"status": "Off" if bubbler.is_off() else "On"}
-    await client.publish(topic="actuator/bubbler", payload=json.dumps(payload), retain=True)
+
+    [value, dac, voltage] = bubbler.get_state()
+
+    payload = {
+        "status": "Off" if bubbler.is_off() else "On",
+        "voltage": voltage,
+        "value": value,
+        "dac": dac,
+    }
+    await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
