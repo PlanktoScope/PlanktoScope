@@ -1,3 +1,0 @@
-function api() {
-  return fetch()
-}

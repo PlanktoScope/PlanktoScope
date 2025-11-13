@@ -47,7 +47,7 @@ def is_off() -> bool:
     return dac.raw_value == DAC_MIN
 
 
-def init(address) -> None:
+def init(address: int) -> None:
     global i2c, dac
     i2c = busio.I2C(board.SCL, board.SDA)
     dac = adafruit_mcp4725.MCP4725(i2c, address=address)
@@ -59,17 +59,17 @@ def deinit() -> None:
         i2c.deinit()
 
 
-def set_value(value: float) -> None:
-    assert dac is not None
-    dac.normalized_value = value
-
-
 def get_state() -> tuple[float, int, int]:
     assert dac is not None
     return dac.normalized_value, dac.raw_value, map_to_voltage(dac.raw_value)
 
 
-def set_dac(value) -> None:
+def set_value(value: float) -> None:
+    assert dac is not None
+    dac.normalized_value = value
+
+
+def set_dac(value: int) -> None:
     assert dac is not None
     assert DAC_MIN <= value <= DAC_MAX
     dac.raw_value = value
