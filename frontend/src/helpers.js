@@ -14,7 +14,7 @@ export function makeLocalUrl(path) {
 export function triggerDownload(url) {
   const link = document.createElement("a")
   link.href = url.toString()
-  link.download = true
+  link.download = ""
   link.target = "_blank"
   link.click()
 }
