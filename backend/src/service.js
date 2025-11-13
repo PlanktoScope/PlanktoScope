@@ -16,8 +16,6 @@ process.title = "planktoscope-org.backend"
 const app = express()
 app.use(cors())
 
-const path_spa = "/home/pi/PlanktoScope/frontend/dist"
-
 app.post("/api/capture", async (req, res) => {
   const result = await capture({ jpeg: true })
 
@@ -48,10 +46,10 @@ app.get("/", async (req, res) => {
   )
 })
 
+const path_spa = "/home/pi/PlanktoScope/frontend/dist"
 app.use("/", express.static(path_spa))
-
 app.get("/{*splat}", (req, res) => {
-  res.sendFile(path.resolve(path_spa, "index.html"))
+  res.sendFile(path.join(path_spa, "index.html"))
 })
 
 app.listen(4000)
