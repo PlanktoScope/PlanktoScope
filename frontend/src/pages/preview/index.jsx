@@ -8,7 +8,7 @@ import {
   startBubbler,
   watch,
 } from "../../../../lib/scope.js"
-import { makeUrl, triggerDownload } from "../../helpers.js"
+import { triggerDownload } from "../../helpers.js"
 
 import cameraIcon from "./camera.svg"
 
@@ -73,18 +73,17 @@ export default function Preview() {
 }
 
 async function takeImage() {
-  let result
+  const url = new URL("/api/capture", document.URL)
+  url.port = 80
   try {
-    result = await capture({ jpeg: true })
+    const res = await fetch(url, {
+      method: "POST",
+    })
+    const body = await res.json()
+    triggerDownload(body.url_jpeg)
   } catch (err) {
     console.error(err)
-    return
   }
-
-  const relative_path = result.jpeg.split("/home/pi/data/")[1]
-  const url = makeUrl("/api/files/" + relative_path)
-
-  triggerDownload(url)
 }
 
 function onLightChange(dac) {

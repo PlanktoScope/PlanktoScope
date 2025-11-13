@@ -1,20 +1,37 @@
 #!/usr/bin/env node
 
+import path from "node:path"
+
 import express from "express"
-import path from "path"
+import cors from "cors"
 
 import "./factory.js"
 import "./setup.js"
 import { readSoftwareConfig } from "../../lib/file-config.js"
 import { getActiveNodeRedProject } from "../../lib/nodered.js"
+import { capture } from "../../lib/scope.js"
 
 process.title = "planktoscope-org.backend"
 
 const app = express()
+app.use(cors())
 
 const path_spa = "/home/pi/PlanktoScope/frontend/dist"
 
+app.post("/api/capture", async (req, res) => {
+  const result = await capture({ jpeg: true })
+
+  const relative_path = path.relative("/home/pi/data", result.jpeg)
+
+  const url = new URL(req.headers.origin)
+  url.port = 80
+  url.pathname = path.join("/api/files/", relative_path)
+
+  res.json({ url_jpeg: url })
+})
+
 app.use("/api/files", express.static("/home/pi/data"))
+
 app.get("/", async (req, res) => {
   const software_config = await readSoftwareConfig()
 
@@ -30,7 +47,9 @@ app.get("/", async (req, res) => {
       : "/ps/node-red-v2/ui",
   )
 })
+
 app.use("/", express.static(path_spa))
+
 app.get("/{*splat}", (req, res) => {
   res.sendFile(path.resolve(path_spa, "index.html"))
 })
