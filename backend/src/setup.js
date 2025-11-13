@@ -16,48 +16,10 @@ import {
 import { getTimezones, getTimezone, setTimezone } from "../../lib/timezone.js"
 
 import { procedure } from "../../lib/mqtt.js"
-import {
-  readSoftwareConfig,
-  updateSoftwareConfig,
-} from "../../lib/file-config.js"
-import {
-  getActiveNodeRedProject,
-  promiseDashboardOnline,
-} from "../../lib/nodered.js"
+import { updateSoftwareConfig } from "../../lib/file-config.js"
+import { promiseDashboardOnline } from "../../lib/nodered.js"
 
 import { has_eeprom_hardware_version } from "./factory.js"
-
-// const setup_init_schema = z.object({
-//   origin: z.url(),
-// })
-await procedure("setup/init", async (data) => {
-  // data = setup_init_schema.parse(data)
-  const { origin } = data
-
-  const software_config = await readSoftwareConfig()
-
-  if (!software_config) {
-    return {
-      redirect: new URL("/setup", origin),
-    }
-  }
-
-  if (software_config.user_setup !== true) {
-    return {
-      redirect: new URL("/setup", origin),
-    }
-  }
-
-  const node_red_project = await getActiveNodeRedProject()
-  const url = new URL(origin)
-  url.port = 80
-  url.pathname =
-    node_red_project === "dashboard"
-      ? "/ps/node-red-v2/dashboard"
-      : "/ps/node-red-v2/ui"
-
-  return { redirect: url }
-})
 
 await procedure("setup/read", async () => {
   const [
