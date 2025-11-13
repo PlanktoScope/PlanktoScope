@@ -156,7 +156,7 @@ def set_value(value: float) -> None:
     return
 
 
-def set_dac(value) -> None:
+def set_dac(value: int) -> None:
     return
 
 

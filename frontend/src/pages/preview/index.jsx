@@ -2,12 +2,7 @@ import Stream from "./Stream.jsx"
 
 import styles from "./styles.module.css"
 import "./reader.js"
-import {
-  startLight,
-  capture,
-  startBubbler,
-  watch,
-} from "../../../../lib/scope.js"
+import { startLight, startBubbler, watch } from "../../../../lib/scope.js"
 import { triggerDownload } from "../../helpers.js"
 
 import cameraIcon from "./camera.svg"
