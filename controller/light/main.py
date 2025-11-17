@@ -9,12 +9,12 @@ import helpers
 
 client = None
 loop = asyncio.new_event_loop()
-
 led = None
+hat_version = None
 
 
 async def start() -> None:
-    global led
+    global led, hat_version
     hat_version = await helpers.get_hat_version()
     if hat_version is None:
         # adafruithat
@@ -82,17 +82,21 @@ async def handle_action(action: str, payload) -> None:
 async def on(payload) -> None:
     assert led is not None
 
-    voltage = payload.get("voltage")
-    value = payload.get("value")
-    dac = payload.get("dac")
-
-    # FIXME: 2.6
-    if voltage:
-        led.set_voltage(voltage)
-    elif value:
-        led.set_value(value)
-    elif dac:
-        led.set_dac(dac)
+    if hat_version == 3.3:
+        voltage = payload.get("voltage")
+        value = payload.get("value")
+        dac = payload.get("dac")
+        # FIXME: 2.6
+        if voltage:
+            led.set_voltage(voltage)
+        elif value:
+            led.set_value(value)
+        elif dac:
+            led.set_dac(dac)
+        else:
+            led.on()
+    else:
+        led.on()
 
     await publish_status()
 

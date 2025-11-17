@@ -13,7 +13,7 @@ export default function Setup() {
   const submitAction = action(async (data) => {
     data = Object.fromEntries(data.entries())
     await request("setup/update", data)
-    throw redirect("/")
+    window.open("/")
   })
 
   const submission = useSubmission(submitAction)
