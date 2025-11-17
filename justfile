@@ -19,6 +19,7 @@ setup:
     just --justfile lib/justfile           setup
     just --justfile backend/justfile       setup
     just --justfile frontend/justfile      setup
+    just --justfile ccm/justfile           setup
 
 setup-dev:
     just --justfile node-red/justfile      setup-dev
