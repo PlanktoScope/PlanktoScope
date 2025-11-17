@@ -10,8 +10,7 @@ setup:
     sudo cp nodered.service /etc/systemd/system/
     sudo mkdir -p /etc/systemd/system/nodered.service.d
     sudo cp 30-override.conf /etc/systemd/system/nodered.service.d/
-    sudo systemctl reenable nodered
-    sudo systemctl restart nodered
+    sudo systemctl disable nodered
     rm -rf /home/pi/.node-red
 
 setup-dev:

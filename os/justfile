@@ -9,6 +9,7 @@ setup:
     just --justfile raspberry/justfile    setup
     just --justfile machine-name/justfile setup
     just --justfile mediamtx/justfile     setup
+    just --justfile gpsd/justfile         setup
 
 setup-dev:
     sudo apt install -y shellcheck
