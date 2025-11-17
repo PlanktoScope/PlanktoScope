@@ -1,9 +1,8 @@
 #!/bin/bash -eux
 
-../os/developer-mode/install-just.sh
-../os/developer-mode/install-tailscale.sh
+../os/developer-mode/install-tailsale.sh
 
-sudo apt install -y git ssh tmux
+sudo apt install -y git ssh tmux just
 sudo systemctl enable --now ssh
 
 # https://github.com/actions/runner/releases/tag/v2.327.1

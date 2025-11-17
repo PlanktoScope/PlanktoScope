@@ -1,8 +1,6 @@
-setup:
+setup: cockpit-files
     # Install cockpit
-    sudo apt install -y --no-install-recommends -t bookworm-backports cockpit cockpit-networkmanager cockpit-storaged cockpit-system cockpit-sosreport
-    sudo apt install -y --no-install-recommends pcp
-    just cockpit-files
+    sudo apt install -y --no-install-recommends cockpit cockpit-networkmanager cockpit-storaged cockpit-system cockpit-sosreport pcp
     sudo cp cockpit.ini /etc/cockpit/cockpit.conf
     # https://cockpit-project.org/guide/latest/feature-pcp
     sudo systemctl reenable pmlogger
@@ -10,17 +8,20 @@ setup:
     sudo systemctl reenable cockpit.socket
     sudo systemctl restart cockpit.socket
     # TODO consider
-    # https://github.com/cockpit-project/cockpit-files
     # https://github.com/gbraad-cockpit/cockpit-tailscale
     # https://github.com/gbraad-cockpit/cockpit-headscale
 
-# unailable in debian
+# unavailable in debian
+
 # https://github.com/cockpit-project/cockpit-files/issues/635
 cockpit-files:
-    wget https://github.com/cockpit-project/cockpit-files/releases/download/28/cockpit-files-28.tar.xz -P /tmp
-    cd /tmp && tar -xf cockpit-files-28.tar.xz
+    sudo apt install -y gettext
+    wget https://github.com/cockpit-project/cockpit-files/releases/download/30/cockpit-files-30.tar.xz -P /tmp
+    cd /tmp && tar -xf cockpit-files-30.tar.xz
     rm -rf ~/.local/share/cockpit/files
-    cd /tmp/cockpit-files && make devel-install
+    sudo rm -rf /usr/local/share/cockpit/files
+    cd /tmp/cockpit-files && make
+    cd /tmp/cockpit-files && sudo make install
 
 test:
     validator cockpit.ini

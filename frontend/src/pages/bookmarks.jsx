@@ -1,17 +1,8 @@
+import "../index.css"
+
+import { makeUrl, makeLocalUrl } from "../helpers.js"
+
 export default function Bookmarks() {
-  function makeUrl(path) {
-    const url = new URL(document.location.href)
-    url.port = 80
-    url.pathname = path
-    return url
-  }
-
-  function makeLocalUrl(path) {
-    const url = new URL(document.location.href)
-    url.pathname = path
-    return url
-  }
-
   return (
     <>
       <header>
@@ -30,13 +21,6 @@ export default function Bookmarks() {
           <li>
             <a href={makeUrl("/ps/data/browse/files/")} target="_blank">
               Gallery
-              {/* FIXME */}
-            </a>
-          </li>
-          <li>
-            <a href={makeUrl("/ps/data/browse/")} target="_blank">
-              File Browser
-              {/* FIXME */}
             </a>
           </li>
           <li>
@@ -51,9 +35,14 @@ export default function Bookmarks() {
         <ul>
           <li>
             <a
-              href={makeUrl("/admin/cockpit/system/logs#/?priority=info")}
+              href="https://www.figma.com/design/KXH3qkalr7eeFbyGsutZKt/PlanktoScope-Dashboard-v2"
               target="_blank"
             >
+              Figma
+            </a>
+          </li>
+          <li>
+            <a href={makeUrl("/admin/cockpit/system/logs")} target="_blank">
               Logs
             </a>
           </li>
@@ -75,7 +64,7 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeUrl("/admin/fs/")} target="_blank">
+            <a href={makeUrl("/admin/cockpit/files/")} target="_blank">
               File Browser
             </a>
           </li>
@@ -89,13 +78,12 @@ export default function Bookmarks() {
               href={makeUrl("/ps/processing/segmenter/streams/object.mjpg")}
               target="_blank"
             >
-              {/* FIXME does it work? */}
               Last segmented object
             </a>
           </li>
           <li>
-            <a href={makeLocalUrl("/bootstrap")} target="_blank">
-              Bootstrap
+            <a href={makeLocalUrl("/factory")} target="_blank">
+              Factory
             </a>
           </li>
           <li>
@@ -113,6 +101,11 @@ export default function Bookmarks() {
               Node-RED Dashboard
             </a>
           </li>
+          <li>
+            <a href={makeLocalUrl("/preview/node-red")} target="_blank">
+              Node-RED preview
+            </a>
+          </li>
         </ul>
 
         <h2>Experiments</h2>
@@ -120,7 +113,7 @@ export default function Bookmarks() {
         <ul>
           <li>
             <a href={makeLocalUrl("/preview")} target="_blank">
-              Camera preview
+              Preview
             </a>
           </li>
           <li>

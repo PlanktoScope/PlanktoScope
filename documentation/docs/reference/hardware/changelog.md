@@ -40,6 +40,8 @@ Much faster CPU and GPU performances
 
 Faster sdcard access
 
+Quieter operations
+
 -->
 
 ## v2.6

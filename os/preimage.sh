@@ -6,7 +6,7 @@ sudo rm -f /var/lib/systemd/credential.secret
 
 sudo rm -f /etc/ssh/ssh_host_*_key*
 
-poetry cache clear --no-interaction --all .
+uv clean --force
 npm cache clean --force
 rm -rf "$HOME"/.cache
 mkdir "$HOME"/.cache

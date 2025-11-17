@@ -1,8 +1,6 @@
 setup:
     npm install --omit=dev
     npx vite build
-    sudo rm -rf /srv/frontend
-    sudo cp -r dist /srv/frontend
 
 setup-dev:
     npm install --include=dev
@@ -16,6 +14,4 @@ test:
     node --test
 
 dev:
-    sudo firewall-cmd --zone=public --add-port=3000/tcp &> /dev/null
     npx vite --host
-    sudo firewall-cmd --zone=public --remove-port=3000/tcp &> /dev/null

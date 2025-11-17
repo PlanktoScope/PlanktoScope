@@ -1,3 +1,5 @@
+import "../../index.css"
+
 import styles from "./styles.module.css"
 
 import { For, createSignal, Show } from "solid-js"
@@ -18,6 +20,8 @@ api_url.hostname = document.location.hostname
 
 // No need for CORS for <img/>
 const vault_url = "https://ecotaxa.obs-vlfr.fr/vault/"
+
+// https://www.aquascope.eawag.ch/5p0xMAG/index.html
 
 export default function Gallery() {
   const [pages, setEl, { end, setEnd }] = createInfiniteScroll(fetcher)

@@ -1,6 +1,6 @@
 setup:
-    wget https://github.com/bluenviron/mediamtx/releases/download/v1.15.1/mediamtx_v1.15.1_linux_arm64.tar.gz -P /tmp
-    cd /tmp && tar -xf /tmp/mediamtx_v1.15.1_linux_arm64.tar.gz
+    wget https://github.com/bluenviron/mediamtx/releases/download/v1.15.3/mediamtx_v1.15.3_linux_arm64.tar.gz -P /tmp
+    cd /tmp && tar -xf /tmp/mediamtx_v1.15.3_linux_arm64.tar.gz
     -sudo systemctl stop mediamtx
     sudo cp /tmp/mediamtx /usr/local/bin/mediamtx
     sudo cp mediamtx.service /etc/systemd/system/

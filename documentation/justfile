@@ -1,14 +1,15 @@
 setup:
-    poetry lock && poetry install
-    poetry run poe build
+    sudo apt install -y imgp
+    uv sync
+    uv run poe build
     sudo rm -rf /srv/docs
     sudo cp -r site /srv/docs
 
 setup-dev:
-    poetry lock && poetry install
+    uv sync
 
 dev:
-    poetry run poe preview
+    uv run poe preview
 
 test:
-    poetry run poe check
+    uv run poe check
