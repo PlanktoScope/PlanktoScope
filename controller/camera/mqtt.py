@@ -45,9 +45,9 @@ class Worker(threading.Thread):
             contrast=1.0,  # the default "normal" contrast
             auto_white_balance=False,  # the default setting in the PlanktoScope GUI
             white_balance_gains=hardware.WhiteBalanceGains(
-                # the default gains from the default v2.6 hardware config
-                red=1.99,
-                blue=1.65,
+                # the default gains from the default v2.5 hardware config
+                red=2.4,
+                blue=1.35,
             ),
             sharpness=0,  # disable the default "normal" sharpening level
             jpeg_quality=95,  # maximize image quality
