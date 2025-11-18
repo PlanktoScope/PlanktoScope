@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import time
+import board
+import busio
+import adafruit_mcp4725
+
+def main():
+    address = 0x60
+
+    i2c = busio.I2C(board.SCL, board.SDA)
+    dac = adafruit_mcp4725.MCP4725(i2c, address=address)
+
+    print(f"🚀 Boucle démarrée sur MCP4725 @0x{address:02X}")
+
+    while True:
+        # 1) Impulsion à 1100 pendant 200 ms
+        print("→ Impulsion : DAC = 1060 (200 ms)")
+        dac.raw_value = 1060
+        time.sleep(0.1)
+
+        # 2) Descente progressive vers 1010
+        start = 1050
+        target = 1010
+        step = 5  # pas de descente
+        delay = 0.05  # délai entre chaque pas
+
+        print(f"→ Descente progressive de {start} vers {target}")
+
+        for value in range(start, target - 1, -step):
+            print(f"   DAC = {value}")
+            dac.raw_value = value
+            time.sleep(delay)
+
+        # 3) Stabilisation à 1010 pendant 300 ms (ou autre)
+        print("→ Stabilisation : DAC = 1010")
+        dac.raw_value = 1010
+        time.sleep(3)
+
+
+if __name__ == "__main__":
+    main()
