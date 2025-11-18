@@ -3,3 +3,4 @@ setup:
     -sudo systemctl stop planktoscope-org.ccm.service
     sudo cp planktoscope-org.ccm.service /etc/systemd/system/
     sudo systemctl reenable planktoscope-org.ccm
+    sudo cp eplankton.service /etc/systemd/system/

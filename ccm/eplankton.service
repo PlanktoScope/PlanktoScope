@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync to eplankton
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/rclone -vv copy /home/pi/data drive:dust-snow/data
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
