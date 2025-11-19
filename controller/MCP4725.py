@@ -61,7 +61,7 @@ def deinit() -> None:
 
 def get_value() -> float:
     assert dac is not None
-    return dac.normalized_value
+    return float(dac.normalized_value)
 
 
 def set_value(value: float) -> None:
