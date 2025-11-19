@@ -20,8 +20,8 @@ export default function NumberInput(props) {
         value={props.value()}
         onInput={onInput}
         min="0"
-        max="4095"
-        step="1"
+        max="1"
+        step="0.01"
       />
       <input
         ref={number}
@@ -29,8 +29,8 @@ export default function NumberInput(props) {
         value={props.value()}
         type="number"
         min="0"
-        max="4095"
-        step="1"
+        max="1"
+        step="0.01"
       />
     </div>
   )

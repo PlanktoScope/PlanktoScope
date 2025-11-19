@@ -59,24 +59,11 @@ def deinit() -> None:
         i2c.deinit()
 
 
-def get_state() -> tuple[float, int, int]:
+def get_value() -> float:
     assert dac is not None
-    return dac.normalized_value, dac.raw_value, map_to_voltage(dac.raw_value)
+    return float(dac.normalized_value)
 
 
 def set_value(value: float) -> None:
     assert dac is not None
     dac.normalized_value = value
-
-
-def set_dac(value: int) -> None:
-    assert dac is not None
-    assert DAC_MIN <= value <= DAC_MAX
-    dac.raw_value = value
-
-
-def set_voltage(value: int) -> None:  # mV
-    assert dac is not None
-    assert VOLTAGE_MIN <= value <= VOLTAGE_MAX
-    value = map_to_value(value)
-    dac.raw_value = value
