@@ -8,7 +8,6 @@ import cors from "cors"
 import "./factory.js"
 import "./setup.js"
 import { readSoftwareConfig, removeConfig } from "../../lib/file-config.js"
-import { getActiveNodeRedProject } from "../../lib/nodered.js"
 import { capture } from "../../lib/scope.js"
 
 process.title = "planktoscope-org.backend"
@@ -43,13 +42,7 @@ app.get("/", async (req, res) => {
     return res.redirect(302, "/setup")
   }
 
-  const node_red_project = await getActiveNodeRedProject()
-  return res.redirect(
-    302,
-    node_red_project === "dashboard"
-      ? "/ps/node-red-v2/dashboard"
-      : "/ps/node-red-v2/ui",
-  )
+  return res.redirect(302, "/ps/node-red-v2/dashboard")
 })
 
 const path_spa = "/home/pi/PlanktoScope/frontend/dist"
