@@ -6,10 +6,9 @@ setup:
     sudo systemctl reenable generate-machine-name
     sudo systemctl restart generate-machine-name
 
-    sudo cp hostname-template /etc/
-    sudo cp generate-hostname-templated.service /usr/lib/systemd/system/
-    sudo systemctl reenable generate-hostname-templated
-    sudo systemctl restart generate-hostname-templated
+    sudo cp generate-hostname.service /usr/lib/systemd/system/
+    sudo systemctl reenable generate-hostname
+    sudo systemctl restart generate-hostname
 
     sudo cp update-hostname.service /usr/lib/systemd/system/
     sudo systemctl reenable update-hostname
