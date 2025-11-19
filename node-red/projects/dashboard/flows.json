@@ -2303,26 +2303,9 @@
         "y": 280,
         "wires": [
             [
-                "39c370d8a50f3acc",
-                "14e528a100c60603"
+                "39c370d8a50f3acc"
             ]
         ]
-    },
-    {
-        "id": "14e528a100c60603",
-        "type": "debug",
-        "z": "1b667c6443413ced",
-        "name": "debug 8",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 400,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "a57a165cd0ce511b",
@@ -3836,7 +3819,7 @@
         "mobileBreakpoint": "sm",
         "mobileBreakpointType": "defaults",
         "action": "replace",
-        "x": 370,
+        "x": 330,
         "y": 140,
         "wires": [
             [
@@ -3906,32 +3889,6 @@
         ]
     },
     {
-        "id": "26074b8d8ad8abf9",
-        "type": "ui-template",
-        "z": "0fd76ac156d78937",
-        "group": "bfd4acb7b243514f",
-        "page": "",
-        "ui": "",
-        "name": "Dialog",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <!-- Number input for process_min_ESD -->\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n      process_min_ESD: null, // will be read from payload\n    };\n  },\n  watch: {\n    msg: {\n      immediate: true,\n      handler(msg) {\n        if (!msg || !msg.payload) return;\n        this.payload = msg.payload;\n        this.showDialog = msg.payload.is_segmented === false;\n\n        // Read process_min_ESD if defined in payload\n        if (typeof msg.payload.process_min_ESD !== \"undefined\") {\n          this.process_min_ESD = msg.payload.process_min_ESD;\n        } else {\n          this.process_min_ESD = 0; // default fallback\n        }\n      },\n    },\n  },\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD, // 👈 taken from payload or user edit\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.sample_operator,\n            image_acquired_count: this.payload.acq_nb_frame,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 850,
-        "y": 140,
-        "wires": [
-            [
-                "24c71b69e60e41bd"
-            ]
-        ]
-    },
-    {
         "id": "4bdd8a4afcdb704b",
         "type": "mqtt out",
         "z": "0fd76ac156d78937",
@@ -3992,8 +3949,7 @@
         "y": 260,
         "wires": [
             [
-                "33c0d1b8251b5d00",
-                "c601b4ae4a8fc401"
+                "33c0d1b8251b5d00"
             ]
         ]
     },
@@ -4091,37 +4047,21 @@
         "type": "function",
         "z": "0fd76ac156d78937",
         "name": "add process_min_ESD",
-        "func": "// Ensure msg.payload and msg.payload.settings exist\nmsg.payload = msg.payload || {};\n\n// Read the variable from global context\nconst process_min_ESD = global.get(\"process_min_ESD\");\n\n// Add it to the payload settings\nmsg.payload.process_min_ESD = process_min_ESD;\n\n// Return the modified message\nreturn msg;\n",
+        "func": "// Ensure msg.payload and msg.payload.settings exist\nmsg.payload = msg.payload || {};\n\n// Read the variable from global context\nconst process_min_ESD = global.get(\"process_min_ESD\");\n\n// Add it to the payload settings\nmsg.payload.process_min_ESD = process_min_ESD;\nmsg.payload.open_dialog = true;\n\n// Return the modified message\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 140,
+        "x": 540,
+        "y": 460,
         "wires": [
             [
+                "7b77659569034650",
                 "26074b8d8ad8abf9"
             ]
         ]
-    },
-    {
-        "id": "c601b4ae4a8fc401",
-        "type": "debug",
-        "z": "0fd76ac156d78937",
-        "name": "debug 5",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 300,
-        "wires": []
     },
     {
         "id": "621e28a4a222b99a",
@@ -4139,6 +4079,49 @@
         "x": 1100,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "7b77659569034650",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "26074b8d8ad8abf9",
+        "type": "ui-template",
+        "z": "0fd76ac156d78937",
+        "group": "bfd4acb7b243514f",
+        "page": "",
+        "ui": "",
+        "name": "Dialog",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <!-- Number input for process_min_ESD -->\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\nexport default {\n  // ⚠️ no props / no lifecycle hooks in ui-template\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n      process_min_ESD: 0,\n      hasSeenFirstMsg: false, // ← ignore the first msg (replayed by Dashboard)\n    };\n  },\n\n  watch: {\n    // `msg` is magically provided by Node-RED ui-template\n    msg: {\n      immediate: true,\n      deep: true,\n      handler(msg) {\n        // Always default to closed unless we *decide* to open\n        this.showDialog = false;\n\n        // First message is usually the \"replayed\" last msg when dashboard loads.\n        // We ignore it completely for popup purposes.\n        if (!this.hasSeenFirstMsg) {\n          this.hasSeenFirstMsg = true;\n\n          // You can still cache payload on first msg if you want:\n          if (msg && msg.payload) {\n            this.payload = msg.payload;\n            this.process_min_ESD =\n              typeof msg.payload.process_min_ESD !== \"undefined\"\n                ? msg.payload.process_min_ESD\n                : 0;\n          }\n          return;\n        }\n\n        // After first msg, handle normally\n        if (!msg || !msg.payload) {\n          return;\n        }\n\n        this.payload = msg.payload;\n\n        // Keep ESD in sync\n        this.process_min_ESD =\n          typeof msg.payload.process_min_ESD !== \"undefined\"\n            ? msg.payload.process_min_ESD\n            : 0;\n\n        // Only open when explicitly requested by the sending flow\n        const shouldOpen =\n          msg.payload.open_dialog === true &&\n          msg.payload.is_segmented === false &&\n          !!msg.payload.path;\n\n        this.showDialog = shouldOpen;\n      },\n    },\n  },\n\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD,\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "24c71b69e60e41bd"
+            ]
+        ]
     },
     {
         "id": "77bb783e65c3ffd6",

@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-../os/developer-mode/install-tailsale.sh
+../os/developer-mode/install-tailscale.sh
 
 sudo apt install -y git ssh tmux just
 sudo systemctl enable --now ssh
