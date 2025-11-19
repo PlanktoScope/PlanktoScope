@@ -17,7 +17,6 @@ async def start() -> None:
     global led, hat_version
     hat_version = await helpers.get_hat_version()
     if hat_version is None:
-        # adafruithat
         sys.exit()
 
     if hat_version == 1.2:
