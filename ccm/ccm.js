@@ -20,16 +20,17 @@ import { getHardwareVersion, poweroff } from "../lib/hardware.js"
 import { Temporal, toTemporalInstant } from "@js-temporal/polyfill"
 import { getName } from "../lib/identity.js"
 import path from "node:path"
-import { rm } from "node:fs/promises"
+// import { rm } from "node:fs/promises"
 import { getSoftwareVersioning } from "../lib/software.js"
 import { Client as GPSDClient } from "../lib/gpsd.js"
 import { filesize } from "filesize"
 import { stat } from "node:fs/promises"
 import { setTimeout } from "node:timers/promises"
+import { execa } from "execa"
 
 import config from "./ccm.config.js"
 import { existsSync } from "node:fs"
-import { startService } from "../lib/systemctl.js"
+// import { startService } from "../lib/systemctl.js"
 
 import { WebClient } from "@slack/web-api"
 
@@ -209,42 +210,35 @@ async function runSequence() {
   })
   completed("segmentation")
 
-  // const file_path_ecotaxa_zip = path.join(
-  //   "/home/pi/data/export/ecotaxa/",
-  //   `ecotaxa_${acquisition_id}.zip`,
-  // )
-
-  // if (
-  //   existsSync(file_path_ecotaxa_zip) &&
-  //   config.ecotaxa.upload === true &&
-  //   config.ecotaxa.username &&
-  //   config.ecotaxa.password &&
-  //   config.ecotaxa.project_id
-  // ) {
-  //   started("upload")
-
-  //   const stats = await stat(file_path_ecotaxa_zip, { bigint: true })
-  //   log(file_path_ecotaxa_zip + " " + filesize(stats.size))
-
-  //   await upload({
-  //     username: config.ecotaxa.username,
-  //     password: config.ecotaxa.password,
-  //     project_id: config.ecotaxa.project_id,
-  //     file_path: file_path_ecotaxa_zip,
-  //   })
-  //   completed("upload")
-
-  //   if (config.ecotaxa.remove_zip_after_upload === true) {
-  //     await rm(file_path_ecotaxa_zip, { force: true })
-  //   }
-  // }
-
   started("purge data")
   await purgeData()
   completed("purge data")
 
-  started("Syncing data to grive")
-  await startService("eplankton")
+  const file_path_ecotaxa_zip = path.join(
+    "/home/pi/data/export/ecotaxa/",
+    `ecotaxa_${acquisition_id}.zip`,
+  )
+
+  if (existsSync(file_path_ecotaxa_zip)) {
+    started("upload")
+
+    const stats = await stat(file_path_ecotaxa_zip, { bigint: true })
+    log(file_path_ecotaxa_zip + " " + filesize(stats.size))
+
+    await execa({
+      stdout: "inherit",
+      stderr: "inherit",
+    })`rclone -vv copy /home/pi/data/export/ecotaxa/ drive:dust-snow/`
+
+    completed("upload")
+
+    // if (config.ecotaxa.remove_zip_after_upload === true) {
+    //   await rm(file_path_ecotaxa_zip, { force: true })
+    // }
+  }
+
+  // started("Syncing data to grive")
+  // await startService("eplankton")
 }
 
 try {
@@ -261,8 +255,8 @@ try {
   await setTimeout(wait_seconds * 1000)
 }
 
-// log("poweroff 😴")
-// await poweroff()
+log("poweroff 😴")
+await poweroff()
 
 // eslint-disable-next-line n/no-process-exit
 process.exit()
