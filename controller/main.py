@@ -1,15 +1,36 @@
+import json
 import multiprocessing
-import time
 import signal
+import time
+from typing import Any
 
 from loguru import logger
 
-from . import pump, focus
+import focus
+import pump
 from imager import mqtt as imager
+
+CONFIG_PATH_HARDWARE = "/home/pi/PlanktoScope/hardware.json"
 
 logger.info("Starting the PlanktoScope python script!")
 
 run = True  # global variable to enable clean shutdown from stop signals
+
+
+def read_config(config_path: str) -> Any:
+    config = {}
+    try:
+        with open(config_path, "r") as file:
+            try:
+                config = json.load(file)
+            except Exception:
+                logger.exception(f"Couldn't parse {config_path} as JSON file")
+                return None
+    except Exception:
+        logger.exception(f"Couldn't open {config_path}")
+        return None
+
+    return config
 
 
 def handler_stop_signals(signum, frame):
@@ -19,7 +40,7 @@ def handler_stop_signals(signum, frame):
     run = False
 
 
-def main(configuration):
+def main():
     logger.info("Initialising signals handling (step 1/4)")
     signal.signal(signal.SIGINT, handler_stop_signals)
     signal.signal(signal.SIGTERM, handler_stop_signals)
@@ -27,6 +48,9 @@ def main(configuration):
     # Prepare the event for a graceful shutdown
     shutdown_event = multiprocessing.Event()
     shutdown_event.clear()
+
+    logger.info("Read hardware config")
+    configuration = read_config(CONFIG_PATH_HARDWARE)
 
     # Starts the pump process
     logger.info("Starting the pump control process (step 2/4)")
@@ -79,3 +103,7 @@ def main(configuration):
         imager_thread.close()
 
     logger.info("Bye")
+
+
+if __name__ == "__main__":
+    main()
