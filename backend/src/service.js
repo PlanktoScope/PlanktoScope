@@ -7,7 +7,7 @@ import cors from "cors"
 
 import "./factory.js"
 import "./setup.js"
-import { readSoftwareConfig } from "../../lib/file-config.js"
+import { readSoftwareConfig, removeConfig } from "../../lib/file-config.js"
 import { getActiveNodeRedProject } from "../../lib/nodered.js"
 import { capture } from "../../lib/scope.js"
 
@@ -29,6 +29,12 @@ app.post("/api/capture", async (req, res) => {
 })
 
 app.use("/api/files", express.static("/home/pi/data"))
+
+app.post("/api/reset", async (req, res) => {
+  await removeConfig()
+  res.status(200)
+  res.end()
+})
 
 app.get("/", async (req, res) => {
   const software_config = await readSoftwareConfig()
