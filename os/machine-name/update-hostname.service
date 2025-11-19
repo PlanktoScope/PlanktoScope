@@ -1,8 +1,8 @@
 [Unit]
 Description=Make systemd-hostnamed update the hostname from /etc/hostname
 ConditionPathExists=/etc/hostname
-Wants=generate-hostname-templated.service
-After=generate-hostname-templated.service
+Wants=generate-hostname.service
+After=generate-hostname.service
 Requires=systemd-hostnamed.service
 After=systemd-hostnamed.service
 Wants=network-pre.target
