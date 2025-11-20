@@ -9,6 +9,7 @@ import "./factory.js"
 import "./setup.js"
 import { readSoftwareConfig, removeConfig } from "../../lib/file-config.js"
 import { capture } from "../../lib/scope.js"
+import { getWifis } from "../../lib/network.js"
 
 process.title = "planktoscope-org.backend"
 
@@ -33,6 +34,11 @@ app.post("/api/reset", async (req, res) => {
   await removeConfig()
   res.status(200)
   res.end()
+})
+
+app.get("/api/wifis", async (req, res) => {
+  const ssids = await getWifis()
+  res.json(ssids)
 })
 
 app.get("/", async (req, res) => {
