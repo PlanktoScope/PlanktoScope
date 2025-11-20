@@ -48,14 +48,6 @@
         "env": []
     },
     {
-        "id": "2d14eef8a9f51595",
-        "type": "tab",
-        "label": "Export",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "8555b76c53e789e0",
         "type": "tab",
         "label": "[TEST] EcoTaxa",
@@ -107,22 +99,6 @@
         "id": "a02961610bc3982a",
         "type": "tab",
         "label": "[TEST] PlanktoScope nodes",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "807baf16b84dfb29",
-        "type": "tab",
-        "label": "Settings",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "1b99100829ae7f41",
-        "type": "tab",
-        "label": "Hardware",
         "disabled": false,
         "info": "",
         "env": []
@@ -921,7 +897,7 @@
                 "cols": "12"
             }
         ],
-        "order": 10,
+        "order": 9,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -971,7 +947,7 @@
                 "cols": "12"
             }
         ],
-        "order": 11,
+        "order": 10,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1021,7 +997,7 @@
                 "cols": "12"
             }
         ],
-        "order": 12,
+        "order": 11,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1071,7 +1047,7 @@
                 "cols": "12"
             }
         ],
-        "order": 9,
+        "order": 8,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1121,7 +1097,7 @@
                 "cols": "12"
             }
         ],
-        "order": 8,
+        "order": 7,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1473,85 +1449,7 @@
         "page": "d129fac8e7742d5b",
         "width": "12",
         "height": 1,
-        "order": 4,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "d9e5a1ba9059ca02",
-        "type": "ui-page",
-        "name": "Export",
-        "ui": "e6ae26617c24c3ea",
-        "path": "/export",
-        "icon": "export",
-        "layout": "grid",
-        "theme": "f7770f0b818c3a67",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "9"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 7,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "1c2cd2bf4d4ab815",
-        "type": "ui-group",
-        "name": "Navigation Top",
-        "page": "d9e5a1ba9059ca02",
-        "width": "12",
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "5d3c24612267b256",
-        "type": "ui-group",
-        "name": "Navigation bottom",
-        "page": "d9e5a1ba9059ca02",
-        "width": "12",
-        "height": 1,
         "order": 3,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "d1c2dcd580716d02",
-        "type": "ui-group",
-        "name": "Viewer",
-        "page": "d9e5a1ba9059ca02",
-        "width": "12",
-        "height": 1,
-        "order": 2,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -1573,127 +1471,13 @@
         "groupType": "default"
     },
     {
-        "id": "5447fb7a420dfdc6",
-        "type": "ui-page",
-        "name": "Settings",
-        "ui": "e6ae26617c24c3ea",
-        "path": "/settings",
-        "icon": "cog",
-        "layout": "grid",
-        "theme": "f7770f0b818c3a67",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "9"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 13,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "070185f2b69cf66d",
-        "type": "ui-group",
-        "name": "admin",
-        "page": "5447fb7a420dfdc6",
-        "width": "12",
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "e11ae78aee22fab5",
-        "type": "ui-page",
-        "name": "Hardware",
-        "ui": "e6ae26617c24c3ea",
-        "path": "/hardware",
-        "icon": "robot",
-        "layout": "grid",
-        "theme": "f7770f0b818c3a67",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "9"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 14,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "9d212165f2367f01",
-        "type": "ui-group",
-        "name": "Group 51",
-        "page": "e11ae78aee22fab5",
-        "width": 6,
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
         "id": "fa6393a7d7e3b7d7",
         "type": "ui-group",
-        "name": "Plots Left",
+        "name": "Table",
         "page": "d129fac8e7742d5b",
-        "width": 6,
+        "width": "12",
         "height": 1,
         "order": 2,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
-        "id": "bdcb68c6cff2da73",
-        "type": "ui-group",
-        "name": "Plot Right",
-        "page": "d129fac8e7742d5b",
-        "width": 6,
-        "height": 1,
-        "order": 3,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -2193,7 +1977,7 @@
         "width": "12",
         "height": "6",
         "head": "",
-        "format": "<!-- =========================================================\n                        STYLE\n========================================================= -->\n<style>\n    #pks-menu-wrapper {\n        position: relative;\n        display: flex;\n        align-items: center;\n        gap: 12px;\n        z-index: 999999 !important;\n        margin-right: 0 !important;\n    }\n\n    /* Clock */\n    #pks-clock {\n        font-size: 14px;\n        color: #555;\n        opacity: 0.9;\n        white-space: nowrap;\n        user-select: none;\n    }\n\n    /* Machine button */\n    #pks-machine-button {\n        display: flex;\n        align-items: center;\n        gap: 6px;\n        background: #f5f5f5;\n        border: 1px solid #c8c8c8;\n        margin-right:8px;\n        padding: 6px 10px;\n        border-radius: 6px;\n        cursor: pointer;\n        font-size: 14px;\n        font-weight: 600;\n        color: #333;\n        transition: background 0.2s;\n    }\n\n    #pks-machine-button:hover {\n        background: #eaeaea;\n    }\n\n    #pks-machine-button i {\n        font-size: 18px;\n        opacity: 0.8;\n    }\n\n    /* Dropdown — Safari FIX: absolute instead of fixed */\n    #pks-dropdown {\n        position: absolute !important;\n        background: #ffffff;\n        border-radius: 0px 0px 6px 6px;\n        width: 250px;\n        border: 1px solid #b6b6b6;\n        display: none;\n        z-index: 999999 !important;\n        padding: 6px 0;\n        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);\n    }\n\n    /* Menu header */\n    .menu-header {\n        display: flex;\n        align-items: center;\n        padding: 12px 16px 6px 16px;\n    }\n\n    .menu-header i {\n        font-size: 22px;\n        margin-right: 8px;\n        color: #555;\n    }\n\n    .menu-name {\n        font-weight: bold;\n        font-size: 15px;\n    }\n\n    /* separator */\n    .menu-separator {\n        border-top: 1px solid #cfcfcf;\n        margin: 6px 0;\n    }\n\n    /* Items */\n    .menu-item {\n        display: flex;\n        align-items: center;\n        padding: 10px 16px;\n        cursor: pointer;\n        color: #333;\n        font-size: 15px;\n    }\n\n    .menu-item:hover {\n        background: #eef3ff;\n    }\n\n    .menu-item i {\n        font-size: 20px;\n        color: #1976d2;\n        margin-right: 10px;\n        width: 22px;\n        text-align: center;\n    }\n\n    /* Special buttons */\n    .menu-item.reboot i {\n        color: #f57c00;\n    }\n\n    .menu-item.reboot:hover {\n        background: #fef2e6;\n    }\n\n    .menu-item.shutdown i {\n        color: #d32f2f;\n    }\n\n    .menu-item.shutdown:hover {\n        background: #fbeaea;\n    }\n\n    /* External icon */\n    .menu-item .ext {\n        margin-left: auto;\n        font-size: 18px;\n        color: #777;\n    }\n\n    /* Modal Loader */\n    #pks-modal {\n        display: none;\n        position: fixed;\n        top: 0;\n        right: 0;\n        width: 100%;\n        height: 100%;\n        background: rgba(0, 0, 0, 0.45);\n        z-index: 9999999;\n        backdrop-filter: blur(2px);\n        justify-content: center;\n        align-items: center;\n    }\n\n    #pks-modal-box {\n        background: white;\n        padding: 20px 30px;\n        border-radius: 10px;\n        text-align: center;\n        min-width: 260px;\n    }\n\n    #pks-loader {\n        border: 4px solid #ddd;\n        border-top: 4px solid #1976d2;\n        border-radius: 50%;\n        width: 36px;\n        height: 36px;\n        margin: 10px auto;\n        animation: spin 0.9s linear infinite;\n    }\n\n    @keyframes spin {\n        100% {\n            transform: rotate(360deg);\n        }\n    }\n    #app-bar-actions,\n    #pks-menu-wrapper {\n    flex-shrink: 0 !important;\n    }\n    \n    #app-bar {\n    width: 100% !important;\n    max-width: 100% !important;\n    }\n\n</style>\n\n\n\n<!-- =========================================================\n                        SCRIPT\n========================================================= -->\n<script>\n    let scope = this;\n\n/* Load MDI icons if missing */\nif (!document.querySelector('link[href*=\"materialdesignicons\"]')) {\n    const mdi = document.createElement(\"link\");\n    mdi.rel = \"stylesheet\";\n    mdi.href = \"https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css\";\n    document.head.appendChild(mdi);\n}\n\n/* Clock */\nfunction updateClock() {\n    const el = document.getElementById(\"pks-clock\");\n    if (!el) return;\n\n    const now = new Date();\n\n    // English weekday abbreviations\n    const days = [\"Sun.\", \"Mon.\", \"Tue.\", \"Wed.\", \"Thu.\", \"Fri.\", \"Sat.\"];\n\n    // French month abbreviations\n    const months = [\"janv.\", \"févr.\", \"mars\", \"avr.\", \"mai\", \"juin\", \"juil.\", \"août\", \"sept.\", \"oct.\", \"nov.\", \"déc.\"];\n\n    const d = days[now.getUTCDay()];\n    const day = String(now.getUTCDate()).padStart(2, \"0\");\n    const month = months[now.getUTCMonth()];\n    const year = now.getUTCFullYear();\n\n    const hh = now.getUTCHours().toString().padStart(2, \"0\");\n    const mm = now.getUTCMinutes().toString().padStart(2, \"0\");\n\n    // Desired format:\n    // \"Thu. 20 nov. 2025 - 15:22 (UTC)\"\n    el.textContent = `${d} ${day} ${month} ${year} - ${hh}:${mm} (UTC)`;\n}\n\nsetInterval(updateClock, 60000);\n\n/* =========================================================\n   BUILD MENU\n========================================================= */\nfunction buildMenu(machineName) {\n    const menu = document.getElementById(\"pks-dropdown\");\n    if (!menu) return;\n\n    menu.innerHTML = `\n        <div class=\"menu-item\" data-href=\"home\">\n                        <svg viewBox=\"0 0 52.916666 52.916666\" width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" class=\"mr-3\">\n                            <ellipse cx=\"26.222767\" cy=\"27.404638\" rx=\"23.859026\" ry=\"23.268091\"\n                                style=\"fill:#ffffff;stroke:#adadad;stroke-width:0.255058;stroke-dasharray:0.255058,0.510117\" />\n                            <path\n                                d=\"M 25.235172,52.886866 C 18.788363,52.603542 12.618867,49.920327 7.9862278,45.385011 5.7884865,43.233443 4.126863,40.96322 2.7783721,38.269687 -0.69951435,31.3228 -0.92413866,23.055533 2.1714608,15.932226 4.2927656,11.050887 7.8775566,6.8759872 12.379084,4.0442925 16.268483,1.5976551 20.749011,0.2041208 25.311296,0.02211622 32.912028,-0.28110313 40.068898,2.5428839 45.330004,7.921181 c 1.394211,1.4252635 2.203509,2.427764 3.254874,4.031906 3.067465,4.680258 4.533514,10.016501 4.301182,15.65584 -0.24014,5.828764 -2.396645,11.365031 -6.195763,15.90599 -0.609303,0.728286 -2.000689,2.145321 -2.779528,2.830762 -3.92791,3.456901 -8.899105,5.69775 -14.107867,6.359358 -0.842019,0.106946 -1.343409,0.141442 -3.0145,0.207349 -0.281856,0.0112 -0.980811,-3.6e-4 -1.55323,-0.02554 z m -8.730149,-9.822631 c 0.109695,-0.04173 0.154655,-0.103087 0.154655,-0.211139 0,-0.298316 -0.854772,-0.812893 -2.806491,-1.689537 C 11.53131,40.120648 10.3078,39.367878 9.3006669,38.362582 7.0517974,36.117829 5.8601816,33.216131 6.2543214,30.944446 6.3887402,30.169737 6.5434509,29.871103 6.901246,29.695768 c 0.4841667,-0.23727 0.995125,-0.338007 1.7097068,-0.337072 0.9709729,0.0014 1.5470122,0.171079 2.0152092,0.594067 0.283418,0.256043 0.560221,0.375098 0.989405,0.425544 0.510426,0.05997 0.82424,-0.0134 1.252715,-0.292743 1.01939,-0.664717 5.540491,-2.409825 6.233136,-2.405942 0.165803,6.88e-4 0.423543,-0.03619 0.57276,-0.08247 0.631382,-0.195875 2.844992,-0.422152 4.954857,-0.506488 1.239664,-0.04953 3.354525,-0.02172 8.097936,0.106687 1.127421,0.03052 3.605179,0.06097 5.506133,0.06763 1.900954,0.0064 3.745833,0.03853 4.099724,0.07075 0.353899,0.03222 1.498055,0.07329 2.542584,0.09127 1.898992,0.03272 2.911755,-0.0184 3.397943,-0.171558 0.573761,-0.180697 0.764411,-0.672624 0.353353,-0.911762 -0.248676,-0.144681 -1.481535,-0.21537 -3.82899,-0.219564 -2.488027,-0.0042 -5.224909,-0.131603 -11.075963,-0.514612 -3.222986,-0.210967 -5.937562,-0.378602 -8.802349,-0.543559 -3.976844,-0.228997 -4.985076,-0.481342 -5.999512,-1.501557 -0.167847,-0.168804 -0.600666,-0.673184 -0.961825,-1.120835 -0.92504,-1.146598 -2.832132,-3.036395 -3.740139,-3.706229 -0.397915,-0.293538 -0.804872,-0.61865 -0.904352,-0.722468 -0.09948,-0.103824 -0.333374,-0.262472 -0.519766,-0.352557 -1.28055,-0.618905 -1.618906,-1.875722 -0.853693,-3.170983 0.461938,-0.781901 1.523215,-1.660846 2.748294,-2.276117 1.13425,-0.569655 2.255356,-0.975853 4.382863,-1.587996 2.089099,-0.60109 2.927546,-0.9311702 3.077629,-1.2115953 0.08554,-0.1598279 0.0077,-0.4070348 -0.163425,-0.5191737 -0.239138,-0.1566868 -0.614968,-0.1939369 -1.316519,-0.130482 -0.852279,0.077088 -1.490305,0.2163293 -3.131411,0.6833976 -1.418582,0.403736 -1.911513,0.5888334 -3.108608,1.1672844 -2.333261,1.127465 -3.264923,1.941987 -4.698402,4.107681 -0.4611363,0.696689 -0.8715706,1.36878 -0.9120808,1.49354 -0.1059747,0.32644 -0.6208078,1.341941 -1.5210083,3.000179 -1.9466021,3.585797 -2.6241442,5.326854 -3.0597521,7.862531 -0.066004,0.384261 -0.1606715,0.902139 -0.2103378,1.150829 -0.04968,0.248696 -0.1069963,0.926964 -0.1273797,1.507254 -0.081086,2.308272 0.2512527,4.04802 1.0944559,5.729316 1.2878816,2.567957 3.2322337,4.503921 5.8597418,5.834441 2.243901,1.136279 5.019803,2.001753 5.650844,1.761829 z\"\n                                fill=\"#076eca\" />\n                        </svg>\n            \n            <b>Home</b>\n        </div>\n\n        <div class=\"menu-separator\"></div>\n\n        <div class=\"menu-item\" data-href=\"gallery\">\n            <i class=\"mdi mdi-image-multiple-outline\"></i> Gallery\n        </div>\n\n        <div class=\"menu-item\" data-href=\"export\">\n            <i class=\"mdi mdi-folder-zip-outline\"></i> Export\n        </div>\n\n        <div class=\"menu-item\" data-href=\"calibration\">\n            <i class=\"mdi mdi-crosshairs-gps\"></i> Calibration\n        </div>\n\n        <div class=\"menu-item\" data-external=\"/ps/docs/\">\n            <i class=\"mdi mdi-book-outline\"></i> Documentation\n            <i class=\"mdi mdi-open-in-new ext\"></i>\n        </div>\n\n        <div class=\"menu-item\" data-href=\"hardware\">\n            <i class=\"mdi mdi-robot-love-outline\"></i> Hardware\n        </div>\n\n        <div class=\"menu-item\" data-href=\"settings\">\n            <i class=\"mdi mdi-cog-outline\"></i> Settings\n        </div>\n\n        <div class=\"menu-separator\"></div>\n\n        <div class=\"menu-item reboot\" data-action=\"reboot\">\n            <i class=\"mdi mdi-refresh\"></i> Reboot\n        </div>\n\n        <div class=\"menu-item shutdown\" data-action=\"shutdown\">\n            <i class=\"mdi mdi-power\"></i> Shutdown\n        </div>\n    `;\n}\n\n/* =========================================================\n   MODAL LOADER\n========================================================= */\nfunction showModal(message) {\n    let modal = document.getElementById(\"pks-modal\");\n    if (!modal) {\n        modal = document.createElement(\"div\");\n        modal.id = \"pks-modal\";\n        modal.innerHTML = `\n            <div id=\"pks-modal-box\">\n                <div id=\"pks-loader\"></div>\n                <div id=\"pks-modal-text\">${message}</div>\n            </div>\n        `;\n        document.body.appendChild(modal);\n    }\n    document.getElementById(\"pks-modal-text\").textContent = message;\n    modal.style.display = \"flex\";\n}\n\nfunction hideModal() {\n    const modal = document.getElementById(\"pks-modal\");\n    if (modal) modal.style.display = \"none\";\n}\n\n/* =========================================================\n   INJECT MENU\n========================================================= */\nfunction injectMenu() {\n    const zone = document.getElementById(\"app-bar-actions\");\n    if (!zone) return;\n\n    if (!document.getElementById(\"pks-menu-wrapper\")) {\n        const wrap = document.createElement(\"div\");\n        wrap.id = \"pks-menu-wrapper\";\n        zone.appendChild(wrap);\n    }\n\n    const wrapper = document.getElementById(\"pks-menu-wrapper\");\n\n    /* Safari FIX — ensure dropdown exists in BODY */\n    if (!document.getElementById(\"pks-dropdown\")) {\n        const dropdown = document.createElement(\"div\");\n        dropdown.id = \"pks-dropdown\";\n        document.body.appendChild(dropdown);\n    }\n\n    if (!document.getElementById(\"pks-machine-button\")) {\n        wrapper.innerHTML = `\n            <div id=\"pks-clock\"></div>\n\n            <button id=\"pks-machine-button\">\n                <i class=\"mdi mdi-desktop-classic\"></i>\n                <span id=\"pks-machine-name\">Loading..</span>\n                <i class=\"mdi mdi-menu-down\"></i>\n            </button>\n        `;\n        updateClock();\n    }\n\n    const btn = document.getElementById(\"pks-machine-button\");\n    const menu = document.getElementById(\"pks-dropdown\");\n\n    /* =========================================================\n       SAFARI / iPAD FIX — compute position dynamically\n    ========================================================== */\n    btn.onclick = (e) => {\n        e.stopPropagation();\n\n        const rect = btn.getBoundingClientRect();\n        \n        menu.style.top = rect.bottom + \"px\";\n        menu.style.right = \"0px\";      // Toujours collé à droite de l'écran\n        menu.style.left = \"auto\";      // Important pour annuler l’ancien calcul\n\n\n        menu.style.display = menu.style.display === \"block\" ? \"none\" : \"block\";\n    };\n\n    menu.onclick = (e) => {\n        const item = e.target.closest(\".menu-item\");\n        if (!item) return;\n\n        if (item.dataset.href) window.location.href = item.dataset.href;\n        if (item.dataset.external) window.open(item.dataset.external, \"_blank\");\n\n    if (item.dataset.action) {\n        showModal(\n            item.dataset.action === \"reboot\"\n                ? \"Rebooting…\"\n                : \"Shutting down…\"\n        );\n\n        scope.send({\n            topic: \"action\",\n            payload: item.dataset.action\n        });\n\n        // 🔥 Force reload after 5 seconds\n        setTimeout(() => {\n            window.location.reload();\n        }, 5000);\n    }\n\n\n        menu.style.display = \"none\";\n    };\n\n    document.addEventListener(\"click\", (e) => {\n        if (!wrapper.contains(e.target)) menu.style.display = \"none\";\n    });\n}\n\n/* DOM observer */\nconst observer = new MutationObserver(() => injectMenu());\nobserver.observe(document.body, { childList: true, subtree: true });\n\n/* =========================================================\n   MACHINE NAME UPDATE\n========================================================= */\nthis.$watch(\"msg\", (msg) => {\n    if (msg?.payload?.machine_name) {\n        const name = msg.payload.machine_name;\n        const el = document.getElementById(\"pks-machine-name\");\n        if (el) el.textContent = name;\n        buildMenu(name);\n    }\n    injectMenu();\n});\n\nsetTimeout(injectMenu, 200);\n\n</script>",
+        "format": "<!-- =========================================================\n                        STYLE\n========================================================= -->\n<style>\n    #pks-menu-wrapper {\n        position: relative;\n        display: flex;\n        align-items: center;\n        gap: 12px;\n        z-index: 999999 !important;\n        margin-right: 0 !important;\n    }\n\n    /* Clock */\n    #pks-clock {\n        font-size: 14px;\n        color: #555;\n        opacity: 0.9;\n        white-space: nowrap;\n        user-select: none;\n    }\n\n    /* Machine button */\n    #pks-machine-button {\n        display: flex;\n        align-items: center;\n        gap: 6px;\n        background: #f5f5f5;\n        border: 1px solid #c8c8c8;\n        margin-right:8px;\n        padding: 6px 10px;\n        border-radius: 6px;\n        cursor: pointer;\n        font-size: 14px;\n        font-weight: 600;\n        color: #333;\n        transition: background 0.2s;\n    }\n\n    #pks-machine-button:hover {\n        background: #eaeaea;\n    }\n\n    #pks-machine-button i {\n        font-size: 18px;\n        opacity: 0.8;\n    }\n\n    /* Dropdown — Safari FIX: absolute instead of fixed */\n    #pks-dropdown {\n        position: absolute !important;\n        background: #ffffff;\n        border-radius: 0px 0px 6px 6px;\n        width: 250px;\n        border: 1px solid #b6b6b6;\n        display: none;\n        z-index: 999999 !important;\n        padding: 6px 0;\n        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);\n    }\n\n    /* Menu header */\n    .menu-header {\n        display: flex;\n        align-items: center;\n        padding: 12px 16px 6px 16px;\n    }\n\n    .menu-header i {\n        font-size: 22px;\n        margin-right: 8px;\n        color: #555;\n    }\n\n    .menu-name {\n        font-weight: bold;\n        font-size: 15px;\n    }\n\n    /* separator */\n    .menu-separator {\n        border-top: 1px solid #cfcfcf;\n        margin: 6px 0;\n    }\n\n    /* Items */\n    .menu-item {\n        display: flex;\n        align-items: center;\n        padding: 10px 16px;\n        cursor: pointer;\n        color: #333;\n        font-size: 15px;\n    }\n\n    .menu-item:hover {\n        background: #eef3ff;\n    }\n\n    .menu-item i {\n        font-size: 20px;\n        color: #1976d2;\n        margin-right: 10px;\n        width: 22px;\n        text-align: center;\n    }\n\n    /* Special buttons */\n    .menu-item.reboot i {\n        color: #f57c00;\n    }\n\n    .menu-item.reboot:hover {\n        background: #fef2e6;\n    }\n\n    .menu-item.shutdown i {\n        color: #d32f2f;\n    }\n\n    .menu-item.shutdown:hover {\n        background: #fbeaea;\n    }\n\n    /* External icon */\n    .menu-item .ext {\n        margin-left: auto;\n        font-size: 18px;\n        color: #777;\n    }\n\n    /* Modal Loader */\n    #pks-modal {\n        display: none;\n        position: fixed;\n        top: 0;\n        right: 0;\n        width: 100%;\n        height: 100%;\n        background: rgba(0, 0, 0, 0.45);\n        z-index: 9999999;\n        backdrop-filter: blur(2px);\n        justify-content: center;\n        align-items: center;\n    }\n\n    #pks-modal-box {\n        background: white;\n        padding: 20px 30px;\n        border-radius: 10px;\n        text-align: center;\n        min-width: 260px;\n    }\n\n    #pks-loader {\n        border: 4px solid #ddd;\n        border-top: 4px solid #1976d2;\n        border-radius: 50%;\n        width: 36px;\n        height: 36px;\n        margin: 10px auto;\n        animation: spin 0.9s linear infinite;\n    }\n\n    @keyframes spin {\n        100% {\n            transform: rotate(360deg);\n        }\n    }\n    #app-bar-actions,\n    #pks-menu-wrapper {\n    flex-shrink: 0 !important;\n    }\n    \n    #app-bar {\n    width: 100% !important;\n    max-width: 100% !important;\n    }\n\n</style>\n\n\n\n<!-- =========================================================\n                        SCRIPT\n========================================================= -->\n<script>\n    let scope = this;\n\n/* Load MDI icons if missing */\nif (!document.querySelector('link[href*=\"materialdesignicons\"]')) {\n    const mdi = document.createElement(\"link\");\n    mdi.rel = \"stylesheet\";\n    mdi.href = \"https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css\";\n    document.head.appendChild(mdi);\n}\n\n/* Clock */\nfunction updateClock() {\n    const el = document.getElementById(\"pks-clock\");\n    if (!el) return;\n\n    const now = new Date();\n\n    // English weekday abbreviations\n    const days = [\"Sun.\", \"Mon.\", \"Tue.\", \"Wed.\", \"Thu.\", \"Fri.\", \"Sat.\"];\n\n    // French month abbreviations\n    const months = [\"janv.\", \"févr.\", \"mars\", \"avr.\", \"mai\", \"juin\", \"juil.\", \"août\", \"sept.\", \"oct.\", \"nov.\", \"déc.\"];\n\n    const d = days[now.getUTCDay()];\n    const day = String(now.getUTCDate()).padStart(2, \"0\");\n    const month = months[now.getUTCMonth()];\n    const year = now.getUTCFullYear();\n\n    const hh = now.getUTCHours().toString().padStart(2, \"0\");\n    const mm = now.getUTCMinutes().toString().padStart(2, \"0\");\n\n    // Desired format:\n    // \"Thu. 20 nov. 2025 - 15:22 (UTC)\"\n    el.textContent = `${d} ${day} ${month} ${year} - ${hh}:${mm} (UTC)`;\n}\n\nsetInterval(updateClock, 60000);\n\n/* =========================================================\n   BUILD MENU\n========================================================= */\nfunction buildMenu(machineName) {\n    const menu = document.getElementById(\"pks-dropdown\");\n    if (!menu) return;\n\n    menu.innerHTML = `\n        <div class=\"menu-item\" data-href=\"home\">\n                        <svg viewBox=\"0 0 52.916666 52.916666\" width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" class=\"mr-3\">\n                            <ellipse cx=\"26.222767\" cy=\"27.404638\" rx=\"23.859026\" ry=\"23.268091\"\n                                style=\"fill:#ffffff;stroke:#adadad;stroke-width:0.255058;stroke-dasharray:0.255058,0.510117\" />\n                            <path\n                                d=\"M 25.235172,52.886866 C 18.788363,52.603542 12.618867,49.920327 7.9862278,45.385011 5.7884865,43.233443 4.126863,40.96322 2.7783721,38.269687 -0.69951435,31.3228 -0.92413866,23.055533 2.1714608,15.932226 4.2927656,11.050887 7.8775566,6.8759872 12.379084,4.0442925 16.268483,1.5976551 20.749011,0.2041208 25.311296,0.02211622 32.912028,-0.28110313 40.068898,2.5428839 45.330004,7.921181 c 1.394211,1.4252635 2.203509,2.427764 3.254874,4.031906 3.067465,4.680258 4.533514,10.016501 4.301182,15.65584 -0.24014,5.828764 -2.396645,11.365031 -6.195763,15.90599 -0.609303,0.728286 -2.000689,2.145321 -2.779528,2.830762 -3.92791,3.456901 -8.899105,5.69775 -14.107867,6.359358 -0.842019,0.106946 -1.343409,0.141442 -3.0145,0.207349 -0.281856,0.0112 -0.980811,-3.6e-4 -1.55323,-0.02554 z m -8.730149,-9.822631 c 0.109695,-0.04173 0.154655,-0.103087 0.154655,-0.211139 0,-0.298316 -0.854772,-0.812893 -2.806491,-1.689537 C 11.53131,40.120648 10.3078,39.367878 9.3006669,38.362582 7.0517974,36.117829 5.8601816,33.216131 6.2543214,30.944446 6.3887402,30.169737 6.5434509,29.871103 6.901246,29.695768 c 0.4841667,-0.23727 0.995125,-0.338007 1.7097068,-0.337072 0.9709729,0.0014 1.5470122,0.171079 2.0152092,0.594067 0.283418,0.256043 0.560221,0.375098 0.989405,0.425544 0.510426,0.05997 0.82424,-0.0134 1.252715,-0.292743 1.01939,-0.664717 5.540491,-2.409825 6.233136,-2.405942 0.165803,6.88e-4 0.423543,-0.03619 0.57276,-0.08247 0.631382,-0.195875 2.844992,-0.422152 4.954857,-0.506488 1.239664,-0.04953 3.354525,-0.02172 8.097936,0.106687 1.127421,0.03052 3.605179,0.06097 5.506133,0.06763 1.900954,0.0064 3.745833,0.03853 4.099724,0.07075 0.353899,0.03222 1.498055,0.07329 2.542584,0.09127 1.898992,0.03272 2.911755,-0.0184 3.397943,-0.171558 0.573761,-0.180697 0.764411,-0.672624 0.353353,-0.911762 -0.248676,-0.144681 -1.481535,-0.21537 -3.82899,-0.219564 -2.488027,-0.0042 -5.224909,-0.131603 -11.075963,-0.514612 -3.222986,-0.210967 -5.937562,-0.378602 -8.802349,-0.543559 -3.976844,-0.228997 -4.985076,-0.481342 -5.999512,-1.501557 -0.167847,-0.168804 -0.600666,-0.673184 -0.961825,-1.120835 -0.92504,-1.146598 -2.832132,-3.036395 -3.740139,-3.706229 -0.397915,-0.293538 -0.804872,-0.61865 -0.904352,-0.722468 -0.09948,-0.103824 -0.333374,-0.262472 -0.519766,-0.352557 -1.28055,-0.618905 -1.618906,-1.875722 -0.853693,-3.170983 0.461938,-0.781901 1.523215,-1.660846 2.748294,-2.276117 1.13425,-0.569655 2.255356,-0.975853 4.382863,-1.587996 2.089099,-0.60109 2.927546,-0.9311702 3.077629,-1.2115953 0.08554,-0.1598279 0.0077,-0.4070348 -0.163425,-0.5191737 -0.239138,-0.1566868 -0.614968,-0.1939369 -1.316519,-0.130482 -0.852279,0.077088 -1.490305,0.2163293 -3.131411,0.6833976 -1.418582,0.403736 -1.911513,0.5888334 -3.108608,1.1672844 -2.333261,1.127465 -3.264923,1.941987 -4.698402,4.107681 -0.4611363,0.696689 -0.8715706,1.36878 -0.9120808,1.49354 -0.1059747,0.32644 -0.6208078,1.341941 -1.5210083,3.000179 -1.9466021,3.585797 -2.6241442,5.326854 -3.0597521,7.862531 -0.066004,0.384261 -0.1606715,0.902139 -0.2103378,1.150829 -0.04968,0.248696 -0.1069963,0.926964 -0.1273797,1.507254 -0.081086,2.308272 0.2512527,4.04802 1.0944559,5.729316 1.2878816,2.567957 3.2322337,4.503921 5.8597418,5.834441 2.243901,1.136279 5.019803,2.001753 5.650844,1.761829 z\"\n                                fill=\"#076eca\" />\n                        </svg>\n            \n            <b>Home</b>\n        </div>\n\n        <div class=\"menu-separator\"></div>\n\n        <div class=\"menu-item\" data-href=\"preview\">\n            <i class=\"mdi mdi-eye\"></i> Preview\n        </div>\n\n        <div class=\"menu-item\" data-href=\"visualization\">\n            <i class=\"mdi mdi-chart-scatter-plot-hexbin\"></i> Visualization\n        </div>\n\n        <div class=\"menu-item\" data-href=\"calibration\">\n            <i class=\"mdi mdi-crosshairs-gps\"></i> Calibration\n        </div>\n\n        <div class=\"menu-item\" data-external=\"/ps/docs/\">\n            <i class=\"mdi mdi-book-outline\"></i> Documentation\n            <i class=\"mdi mdi-open-in-new ext\"></i>\n        </div>\n\n        <div class=\"menu-separator\"></div>\n\n        <div class=\"menu-item reboot\" data-action=\"reboot\">\n            <i class=\"mdi mdi-refresh\"></i> Reboot\n        </div>\n\n        <div class=\"menu-item shutdown\" data-action=\"shutdown\">\n            <i class=\"mdi mdi-power\"></i> Shutdown\n        </div>\n    `;\n}\n\n/* =========================================================\n   MODAL LOADER\n========================================================= */\nfunction showModal(message) {\n    let modal = document.getElementById(\"pks-modal\");\n    if (!modal) {\n        modal = document.createElement(\"div\");\n        modal.id = \"pks-modal\";\n        modal.innerHTML = `\n            <div id=\"pks-modal-box\">\n                <div id=\"pks-loader\"></div>\n                <div id=\"pks-modal-text\">${message}</div>\n            </div>\n        `;\n        document.body.appendChild(modal);\n    }\n    document.getElementById(\"pks-modal-text\").textContent = message;\n    modal.style.display = \"flex\";\n}\n\nfunction hideModal() {\n    const modal = document.getElementById(\"pks-modal\");\n    if (modal) modal.style.display = \"none\";\n}\n\n/* =========================================================\n   INJECT MENU\n========================================================= */\nfunction injectMenu() {\n    const zone = document.getElementById(\"app-bar-actions\");\n    if (!zone) return;\n\n    if (!document.getElementById(\"pks-menu-wrapper\")) {\n        const wrap = document.createElement(\"div\");\n        wrap.id = \"pks-menu-wrapper\";\n        zone.appendChild(wrap);\n    }\n\n    const wrapper = document.getElementById(\"pks-menu-wrapper\");\n\n    /* Safari FIX — ensure dropdown exists in BODY */\n    if (!document.getElementById(\"pks-dropdown\")) {\n        const dropdown = document.createElement(\"div\");\n        dropdown.id = \"pks-dropdown\";\n        document.body.appendChild(dropdown);\n    }\n\n    if (!document.getElementById(\"pks-machine-button\")) {\n        wrapper.innerHTML = `\n            <div id=\"pks-clock\"></div>\n\n            <button id=\"pks-machine-button\">\n                <i class=\"mdi mdi-desktop-classic\"></i>\n                <span id=\"pks-machine-name\">Loading..</span>\n                <i class=\"mdi mdi-menu-down\"></i>\n            </button>\n        `;\n        updateClock();\n    }\n\n    const btn = document.getElementById(\"pks-machine-button\");\n    const menu = document.getElementById(\"pks-dropdown\");\n\n    /* =========================================================\n       SAFARI / iPAD FIX — compute position dynamically\n    ========================================================== */\n    btn.onclick = (e) => {\n        e.stopPropagation();\n\n        const rect = btn.getBoundingClientRect();\n        \n        menu.style.top = rect.bottom + \"px\";\n        menu.style.right = \"0px\";      // Toujours collé à droite de l'écran\n        menu.style.left = \"auto\";      // Important pour annuler l’ancien calcul\n\n\n        menu.style.display = menu.style.display === \"block\" ? \"none\" : \"block\";\n    };\n\n    menu.onclick = (e) => {\n        const item = e.target.closest(\".menu-item\");\n        if (!item) return;\n\n        if (item.dataset.href) window.location.href = item.dataset.href;\n        if (item.dataset.external) window.open(item.dataset.external, \"_blank\");\n\n    if (item.dataset.action) {\n        showModal(\n            item.dataset.action === \"reboot\"\n                ? \"Rebooting…\"\n                : \"Shutting down…\"\n        );\n\n        scope.send({\n            topic: \"action\",\n            payload: item.dataset.action\n        });\n\n        // 🔥 Force reload after 5 seconds\n        setTimeout(() => {\n            window.location.reload();\n        }, 5000);\n    }\n\n\n        menu.style.display = \"none\";\n    };\n\n    document.addEventListener(\"click\", (e) => {\n        if (!wrapper.contains(e.target)) menu.style.display = \"none\";\n    });\n}\n\n/* DOM observer */\nconst observer = new MutationObserver(() => injectMenu());\nobserver.observe(document.body, { childList: true, subtree: true });\n\n/* =========================================================\n   MACHINE NAME UPDATE\n========================================================= */\nthis.$watch(\"msg\", (msg) => {\n    if (msg?.payload?.machine_name) {\n        const name = msg.payload.machine_name;\n        const el = document.getElementById(\"pks-machine-name\");\n        if (el) el.textContent = name;\n        buildMenu(name);\n    }\n    injectMenu();\n});\n\nsetTimeout(injectMenu, 200);\n\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2274,7 +2058,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container fluid>\n\n    <!-- HEADER -->\n    <v-row justify=\"center\" dense class=\"py-8\">\n              <svg viewBox=\"0 0 52.916666 52.916666\" width=\"150\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n                <ellipse cx=\"26.222767\" cy=\"27.404638\" rx=\"23.859026\" ry=\"23.268091\"\n                  style=\"fill:#ffffff;stroke:#adadad;stroke-width:0.255058;stroke-dasharray:0.255058,0.510117\" />\n                <path\n                  d=\"M 25.235172,52.886866 C 18.788363,52.603542 12.618867,49.920327 7.9862278,45.385011 5.7884865,43.233443 4.126863,40.96322 2.7783721,38.269687 -0.69951435,31.3228 -0.92413866,23.055533 2.1714608,15.932226 4.2927656,11.050887 7.8775566,6.8759872 12.379084,4.0442925 16.268483,1.5976551 20.749011,0.2041208 25.311296,0.02211622 32.912028,-0.28110313 40.068898,2.5428839 45.330004,7.921181 c 1.394211,1.4252635 2.203509,2.427764 3.254874,4.031906 3.067465,4.680258 4.533514,10.016501 4.301182,15.65584 -0.24014,5.828764 -2.396645,11.365031 -6.195763,15.90599 -0.609303,0.728286 -2.000689,2.145321 -2.779528,2.830762 -3.92791,3.456901 -8.899105,5.69775 -14.107867,6.359358 -0.842019,0.106946 -1.343409,0.141442 -3.0145,0.207349 -0.281856,0.0112 -0.980811,-3.6e-4 -1.55323,-0.02554 z m -8.730149,-9.822631 c 0.109695,-0.04173 0.154655,-0.103087 0.154655,-0.211139 0,-0.298316 -0.854772,-0.812893 -2.806491,-1.689537 C 11.53131,40.120648 10.3078,39.367878 9.3006669,38.362582 7.0517974,36.117829 5.8601816,33.216131 6.2543214,30.944446 6.3887402,30.169737 6.5434509,29.871103 6.901246,29.695768 c 0.4841667,-0.23727 0.995125,-0.338007 1.7097068,-0.337072 0.9709729,0.0014 1.5470122,0.171079 2.0152092,0.594067 0.283418,0.256043 0.560221,0.375098 0.989405,0.425544 0.510426,0.05997 0.82424,-0.0134 1.252715,-0.292743 1.01939,-0.664717 5.540491,-2.409825 6.233136,-2.405942 0.165803,6.88e-4 0.423543,-0.03619 0.57276,-0.08247 0.631382,-0.195875 2.844992,-0.422152 4.954857,-0.506488 1.239664,-0.04953 3.354525,-0.02172 8.097936,0.106687 1.127421,0.03052 3.605179,0.06097 5.506133,0.06763 1.900954,0.0064 3.745833,0.03853 4.099724,0.07075 0.353899,0.03222 1.498055,0.07329 2.542584,0.09127 1.898992,0.03272 2.911755,-0.0184 3.397943,-0.171558 0.573761,-0.180697 0.764411,-0.672624 0.353353,-0.911762 -0.248676,-0.144681 -1.481535,-0.21537 -3.82899,-0.219564 -2.488027,-0.0042 -5.224909,-0.131603 -11.075963,-0.514612 -3.222986,-0.210967 -5.937562,-0.378602 -8.802349,-0.543559 -3.976844,-0.228997 -4.985076,-0.481342 -5.999512,-1.501557 -0.167847,-0.168804 -0.600666,-0.673184 -0.961825,-1.120835 -0.92504,-1.146598 -2.832132,-3.036395 -3.740139,-3.706229 -0.397915,-0.293538 -0.804872,-0.61865 -0.904352,-0.722468 -0.09948,-0.103824 -0.333374,-0.262472 -0.519766,-0.352557 -1.28055,-0.618905 -1.618906,-1.875722 -0.853693,-3.170983 0.461938,-0.781901 1.523215,-1.660846 2.748294,-2.276117 1.13425,-0.569655 2.255356,-0.975853 4.382863,-1.587996 2.089099,-0.60109 2.927546,-0.9311702 3.077629,-1.2115953 0.08554,-0.1598279 0.0077,-0.4070348 -0.163425,-0.5191737 -0.239138,-0.1566868 -0.614968,-0.1939369 -1.316519,-0.130482 -0.852279,0.077088 -1.490305,0.2163293 -3.131411,0.6833976 -1.418582,0.403736 -1.911513,0.5888334 -3.108608,1.1672844 -2.333261,1.127465 -3.264923,1.941987 -4.698402,4.107681 -0.4611363,0.696689 -0.8715706,1.36878 -0.9120808,1.49354 -0.1059747,0.32644 -0.6208078,1.341941 -1.5210083,3.000179 -1.9466021,3.585797 -2.6241442,5.326854 -3.0597521,7.862531 -0.066004,0.384261 -0.1606715,0.902139 -0.2103378,1.150829 -0.04968,0.248696 -0.1069963,0.926964 -0.1273797,1.507254 -0.081086,2.308272 0.2512527,4.04802 1.0944559,5.729316 1.2878816,2.567957 3.2322337,4.503921 5.8597418,5.834441 2.243901,1.136279 5.019803,2.001753 5.650844,1.761829 z\"\n                  fill=\"#076eca\" />\n              </svg>\n    </v-row>\n    <v-row justify=\"center\" dense>\n      <v-empty-state \n      headline=\"Welcome to the PlanktoScope GUI\" \n      title=\"What would you like to do today?\"\n    />\n    </v-row>\n\n    <!-- MAIN ACTIONS -->\n    <v-row justify=\"center\" dense>\n      <!-- Launch the Preview -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"preview\"\n          variant=\"flat\"\n          color=\"primary\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-eye</v-icon>\n          <span class=\"text-h6\">Launch the Preview</span>\n        </v-btn>\n      </v-col>\n\n      <!-- Explore Your Data -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"visualization\"\n          target=\"_blank\"\n          variant=\"outlined\"\n          color=\"primary\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-database-search</v-icon>\n          <span class=\"text-h6\">Explore your data</span>\n        </v-btn>\n      </v-col>\n\n      <!-- Export your data -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"export\"\n          variant=\"flat\"\n          color=\"grey-darken-3\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-folder-zip-outline</v-icon>\n          <span class=\"text-h6\">Export your data</span>\n        </v-btn>\n      </v-col>\n    </v-row>\n\n    <!-- SECONDARY ACTIONS -->\n    <v-row justify=\"center\" dense class=\"py-6\">\n      <!-- Learn the Basics -->\n      <v-col cols=\"12\" md=\"6\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"/ps/docs/operation/protocol-v4.pdf\"\n          target=\"_blank\"\n          color=\"primary\"\n          variant=\"tonal\"\n          size=\"large\"\n          class=\"text-none w-100 text-subtitle-1 py-3\"\n        >\n          <v-icon start size=\"30\">mdi-book-open-variant</v-icon>\n          Learn the Basics\n        </v-btn>\n      </v-col>\n\n      <!-- Calibration -->\n      <v-col cols=\"12\" md=\"6\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"calibration\"\n          color=\"grey-darken-3\"\n          variant=\"tonal\"\n          size=\"large\"\n          class=\"text-none w-100 text-subtitle-1 py-3\"\n        >\n          <v-icon start size=\"30\">mdi-tune</v-icon>\n          Run the Calibration\n        </v-btn>\n      </v-col>\n    </v-row>\n\n<v-divider ></v-divider>\n    <!-- STAT CARDS -->\n    <v-row class=\"py-6\">\n\n      <!-- Software Version -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-github</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Software Version</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.software_version }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Images acquired -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-image-multiple-outline</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Images Acquired</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.image_acquired }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Objects segmented -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-crop</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Objects Segmented</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.object_segmented }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Storage (single-line layout: icon → progress bar → value) -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n\n          <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-sd</v-icon>\n          <span class=\"text-subtitle-3 font-weight-medium\">Storage</span>\n\n          <v-progress-linear\n            :model-value=\"msg.payload.storage_percent_used\"\n            height=\"12\"\n            rounded\n            class=\"flex-grow-1 mx-3\"\n            :color=\"\n              msg.payload.storage_percent_used > 90\n                ? 'error'\n                : msg.payload.storage_percent_used > 70\n                ? 'warning'\n                : 'success'\n            \"\n          ></v-progress-linear>\n\n          <div class=\"text-subtitle-3 font-weight-bold d-flex justify-end\" style=\"min-width: 48px;\">\n            {{ msg.payload.storage_percent_used }}%\n          </div>\n\n        </v-card>\n\n      </v-col>\n    </v-row>\n\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container fluid>\n\n    <!-- HEADER -->\n    <v-row justify=\"center\" dense class=\"py-8\">\n              <svg viewBox=\"0 0 52.916666 52.916666\" width=\"150\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n                <ellipse cx=\"26.222767\" cy=\"27.404638\" rx=\"23.859026\" ry=\"23.268091\"\n                  style=\"fill:#ffffff;stroke:#adadad;stroke-width:0.255058;stroke-dasharray:0.255058,0.510117\" />\n                <path\n                  d=\"M 25.235172,52.886866 C 18.788363,52.603542 12.618867,49.920327 7.9862278,45.385011 5.7884865,43.233443 4.126863,40.96322 2.7783721,38.269687 -0.69951435,31.3228 -0.92413866,23.055533 2.1714608,15.932226 4.2927656,11.050887 7.8775566,6.8759872 12.379084,4.0442925 16.268483,1.5976551 20.749011,0.2041208 25.311296,0.02211622 32.912028,-0.28110313 40.068898,2.5428839 45.330004,7.921181 c 1.394211,1.4252635 2.203509,2.427764 3.254874,4.031906 3.067465,4.680258 4.533514,10.016501 4.301182,15.65584 -0.24014,5.828764 -2.396645,11.365031 -6.195763,15.90599 -0.609303,0.728286 -2.000689,2.145321 -2.779528,2.830762 -3.92791,3.456901 -8.899105,5.69775 -14.107867,6.359358 -0.842019,0.106946 -1.343409,0.141442 -3.0145,0.207349 -0.281856,0.0112 -0.980811,-3.6e-4 -1.55323,-0.02554 z m -8.730149,-9.822631 c 0.109695,-0.04173 0.154655,-0.103087 0.154655,-0.211139 0,-0.298316 -0.854772,-0.812893 -2.806491,-1.689537 C 11.53131,40.120648 10.3078,39.367878 9.3006669,38.362582 7.0517974,36.117829 5.8601816,33.216131 6.2543214,30.944446 6.3887402,30.169737 6.5434509,29.871103 6.901246,29.695768 c 0.4841667,-0.23727 0.995125,-0.338007 1.7097068,-0.337072 0.9709729,0.0014 1.5470122,0.171079 2.0152092,0.594067 0.283418,0.256043 0.560221,0.375098 0.989405,0.425544 0.510426,0.05997 0.82424,-0.0134 1.252715,-0.292743 1.01939,-0.664717 5.540491,-2.409825 6.233136,-2.405942 0.165803,6.88e-4 0.423543,-0.03619 0.57276,-0.08247 0.631382,-0.195875 2.844992,-0.422152 4.954857,-0.506488 1.239664,-0.04953 3.354525,-0.02172 8.097936,0.106687 1.127421,0.03052 3.605179,0.06097 5.506133,0.06763 1.900954,0.0064 3.745833,0.03853 4.099724,0.07075 0.353899,0.03222 1.498055,0.07329 2.542584,0.09127 1.898992,0.03272 2.911755,-0.0184 3.397943,-0.171558 0.573761,-0.180697 0.764411,-0.672624 0.353353,-0.911762 -0.248676,-0.144681 -1.481535,-0.21537 -3.82899,-0.219564 -2.488027,-0.0042 -5.224909,-0.131603 -11.075963,-0.514612 -3.222986,-0.210967 -5.937562,-0.378602 -8.802349,-0.543559 -3.976844,-0.228997 -4.985076,-0.481342 -5.999512,-1.501557 -0.167847,-0.168804 -0.600666,-0.673184 -0.961825,-1.120835 -0.92504,-1.146598 -2.832132,-3.036395 -3.740139,-3.706229 -0.397915,-0.293538 -0.804872,-0.61865 -0.904352,-0.722468 -0.09948,-0.103824 -0.333374,-0.262472 -0.519766,-0.352557 -1.28055,-0.618905 -1.618906,-1.875722 -0.853693,-3.170983 0.461938,-0.781901 1.523215,-1.660846 2.748294,-2.276117 1.13425,-0.569655 2.255356,-0.975853 4.382863,-1.587996 2.089099,-0.60109 2.927546,-0.9311702 3.077629,-1.2115953 0.08554,-0.1598279 0.0077,-0.4070348 -0.163425,-0.5191737 -0.239138,-0.1566868 -0.614968,-0.1939369 -1.316519,-0.130482 -0.852279,0.077088 -1.490305,0.2163293 -3.131411,0.6833976 -1.418582,0.403736 -1.911513,0.5888334 -3.108608,1.1672844 -2.333261,1.127465 -3.264923,1.941987 -4.698402,4.107681 -0.4611363,0.696689 -0.8715706,1.36878 -0.9120808,1.49354 -0.1059747,0.32644 -0.6208078,1.341941 -1.5210083,3.000179 -1.9466021,3.585797 -2.6241442,5.326854 -3.0597521,7.862531 -0.066004,0.384261 -0.1606715,0.902139 -0.2103378,1.150829 -0.04968,0.248696 -0.1069963,0.926964 -0.1273797,1.507254 -0.081086,2.308272 0.2512527,4.04802 1.0944559,5.729316 1.2878816,2.567957 3.2322337,4.503921 5.8597418,5.834441 2.243901,1.136279 5.019803,2.001753 5.650844,1.761829 z\"\n                  fill=\"#076eca\" />\n              </svg>\n    </v-row>\n    <v-row justify=\"center\" dense>\n      <v-empty-state \n      headline=\"Welcome to the PlanktoScope GUI\" \n      title=\"What would you like to do today?\"\n    />\n    </v-row>\n\n    <!-- MAIN ACTIONS -->\n    <v-row justify=\"center\" dense>\n      <!-- Launch the Preview -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"preview\"\n          variant=\"flat\"\n          color=\"primary\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-eye</v-icon>\n          <span class=\"text-h6\">Launch the Preview</span>\n        </v-btn>\n      </v-col>\n\n      <!-- Explore Your Data -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"visualization\"\n          target=\"_blank\"\n          variant=\"outlined\"\n          color=\"primary\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-chart-scatter-plot-hexbin</v-icon>\n          <span class=\"text-h6\">Explore your data</span>\n        </v-btn>\n      </v-col>\n      \n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"calibration\"\n          variant=\"flat\"\n          color=\"grey-darken-3\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-tune</v-icon>\n          <span class=\"text-h6\">Run the Calibration</span>\n        </v-btn>\n      </v-col>\n    </v-row>\n\n    <!-- SECONDARY ACTIONS -->\n    <v-row justify=\"center\" dense class=\"py-6\">\n      <!-- Learn the Basics -->\n      <v-col cols=\"12\" md=\"12\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"/ps/docs/operation/protocol-v4.pdf\"\n          target=\"_blank\"\n          color=\"primary\"\n          variant=\"tonal\"\n          size=\"large\"\n          class=\"text-none w-100 text-subtitle-1 py-3\"\n        >\n          <v-icon start size=\"30\">mdi-book-open-variant</v-icon>\n          Learn the Basics\n        </v-btn>\n      </v-col>\n\n    </v-row>\n\n<v-divider ></v-divider>\n    <!-- STAT CARDS -->\n    <v-row class=\"py-6\">\n\n      <!-- Software Version -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-github</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Software Version</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.software_version }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Images acquired -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-image-multiple-outline</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Images Acquired</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.image_acquired }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Objects segmented -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-crop</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Objects Segmented</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.object_segmented }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Storage (single-line layout: icon → progress bar → value) -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n\n          <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-sd</v-icon>\n          <span class=\"text-subtitle-3 font-weight-medium\">Storage</span>\n\n          <v-progress-linear\n            :model-value=\"msg.payload.storage_percent_used\"\n            height=\"12\"\n            rounded\n            class=\"flex-grow-1 mx-3\"\n            :color=\"\n              msg.payload.storage_percent_used > 90\n                ? 'error'\n                : msg.payload.storage_percent_used > 70\n                ? 'warning'\n                : 'success'\n            \"\n          ></v-progress-linear>\n\n          <div class=\"text-subtitle-3 font-weight-bold d-flex justify-end\" style=\"min-width: 48px;\">\n            {{ msg.payload.storage_percent_used }}%\n          </div>\n\n        </v-card>\n\n      </v-col>\n    </v-row>\n\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2299,8 +2083,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 420,
-        "y": 380,
+        "x": 520,
+        "y": 280,
         "wires": []
     },
     {
@@ -3844,7 +3628,7 @@
         "correl": "",
         "expiry": "",
         "broker": "8dc3722c.06efa8",
-        "x": 1090,
+        "x": 1150,
         "y": 140,
         "wires": []
     },
@@ -3865,7 +3649,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 970,
+        "x": 1030,
         "y": 140,
         "wires": [
             [
@@ -3890,7 +3674,8 @@
         "y": 260,
         "wires": [
             [
-                "33c0d1b8251b5d00"
+                "33c0d1b8251b5d00",
+                "eed6aba5c7ab3b6c"
             ]
         ]
     },
@@ -3912,7 +3697,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 530,
+        "x": 610,
         "y": 240,
         "wires": [
             []
@@ -3957,7 +3742,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1120,
+        "x": 1180,
         "y": 100,
         "wires": [
             []
@@ -3999,12 +3784,29 @@
         "y": 140,
         "wires": [
             [
-                "26074b8d8ad8abf9"
+                "7fde0897e436c334"
             ]
         ]
     },
     {
-        "id": "26074b8d8ad8abf9",
+        "id": "eed6aba5c7ab3b6c",
+        "type": "debug",
+        "z": "0fd76ac156d78937",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7fde0897e436c334",
         "type": "ui-template",
         "z": "0fd76ac156d78937",
         "group": "",
@@ -4015,7 +3817,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <!-- Number input for process_min_ESD -->\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\nexport default {\n  // ⚠️ no props / no lifecycle hooks in ui-template\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n      process_min_ESD: 0,\n      hasSeenFirstMsg: false, // ← ignore the first msg (replayed by Dashboard)\n    };\n  },\n\n  watch: {\n    // `msg` is magically provided by Node-RED ui-template\n    msg: {\n      immediate: true,\n      deep: true,\n      handler(msg) {\n        // Always default to closed unless we *decide* to open\n        this.showDialog = false;\n\n        // First message is usually the \"replayed\" last msg when dashboard loads.\n        // We ignore it completely for popup purposes.\n        if (!this.hasSeenFirstMsg) {\n          this.hasSeenFirstMsg = true;\n\n          // You can still cache payload on first msg if you want:\n          if (msg && msg.payload) {\n            this.payload = msg.payload;\n            this.process_min_ESD =\n              typeof msg.payload.process_min_ESD !== \"undefined\"\n                ? msg.payload.process_min_ESD\n                : 0;\n          }\n          return;\n        }\n\n        // After first msg, handle normally\n        if (!msg || !msg.payload) {\n          return;\n        }\n\n        this.payload = msg.payload;\n\n        // Keep ESD in sync\n        this.process_min_ESD =\n          typeof msg.payload.process_min_ESD !== \"undefined\"\n            ? msg.payload.process_min_ESD\n            : 0;\n\n        // Only open when explicitly requested by the sending flow\n        const shouldOpen =\n          msg.payload.open_dialog === true &&\n          msg.payload.is_segmented === false &&\n          !!msg.payload.path;\n\n        this.showDialog = shouldOpen;\n      },\n    },\n  },\n\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD,\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>\n",
+        "format": "<template>\n  <!-- Dialog only -->\n  <v-dialog v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <!-- Number input for process_min_ESD -->\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\nexport default {\n  // ⚠️ no props / no lifecycle hooks in ui-template\n  data() {\n    return {\n      payload: {},\n      showDialog: false,\n      process_min_ESD: 0,\n      hasSeenFirstMsg: false, // ← ignore the first msg (replayed by Dashboard)\n    };\n  },\n\nwatch: {\n  msg: {\n    immediate: true,\n    deep: true,\n    handler(msg) {\n\n      // Always force dialog closed unless explicitly opened\n      this.showDialog = false;\n\n      // Ignore the first replayed message\n      if (!this.hasSeenFirstMsg) {\n        this.hasSeenFirstMsg = true;\n        return;\n      }\n\n      // 🚫 No message or empty payload -> abort immediately\n      if (!msg || !msg.payload || typeof msg.payload !== \"object\") {\n        return;\n      }\n\n      // Now we know there is a real payload\n      this.payload = msg.payload;\n\n      // Sync ESD if provided\n      this.process_min_ESD =\n        typeof msg.payload.process_min_ESD !== \"undefined\"\n          ? msg.payload.process_min_ESD\n          : 0;\n\n      // 🚫 Require ALL keys — otherwise NO dialog\n      const shouldOpen =\n        msg.payload.open_dialog === true &&\n        msg.payload.is_segmented === false &&\n        typeof msg.payload.path === \"string\" &&\n        msg.payload.path.length > 0;\n\n      this.showDialog = shouldOpen;\n    },\n  },\n},\n\n\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD,\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4088,7 +3890,9 @@
         "x": 590,
         "y": 40,
         "wires": [
-            []
+            [
+                "164baa371893de7a"
+            ]
         ]
     },
     {
@@ -4103,7 +3907,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"export\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Export\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4127,7 +3931,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n      <!-- Forward to Acquisition -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"export\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Export\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n",
+        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"segmentation\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Segmentation\n        </v-btn>\n      </v-col>\n\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4140,308 +3944,111 @@
         ]
     },
     {
-        "id": "62f69ab05b710c7c",
-        "type": "mqtt in",
+        "id": "164baa371893de7a",
+        "type": "list segmentations",
         "z": "14f8c9b5ce1235cc",
         "name": "",
-        "topic": "status/#",
-        "qos": "0",
-        "datatype": "json",
-        "broker": "8dc3722c.06efa8",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 200,
-        "y": 960,
+        "x": 170,
+        "y": 180,
         "wires": [
             [
-                "e2269afad765ca6e"
+                "18a10804663dbaa1"
             ]
         ]
     },
     {
-        "id": "e2269afad765ca6e",
-        "type": "switch",
+        "id": "6532974092861ef7",
+        "type": "ui-table",
         "z": "14f8c9b5ce1235cc",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "status/segmenter/metric",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 350,
-        "y": 960,
-        "wires": [
-            [
-                "6c0e567b12e22791",
-                "fae799ce36e737e1"
-            ]
-        ]
-    },
-    {
-        "id": "6c0e567b12e22791",
-        "type": "ui-chart",
-        "z": "14f8c9b5ce1235cc",
-        "group": "bdcb68c6cff2da73",
-        "name": "",
-        "label": "Histogram - Equivalent Diameter",
-        "order": 1,
-        "chartType": "histogram",
-        "category": "Equivalent Diameter (μm)",
-        "categoryType": "str",
-        "xAxisLabel": "Equivalent Diameter (μm)",
-        "xAxisProperty": "payload.metadata.equivalent_diameter",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "bins",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "0",
-        "xmax": "300",
-        "yAxisLabel": "Abundance",
-        "yAxisProperty": "payload.metadata.equivalent_diameter",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": "10",
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "86400",
-        "removeOlderPoints": "",
-        "colors": [
-            "#00ff04",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 580,
-        "y": 960,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "fae799ce36e737e1",
-        "type": "ui-chart",
-        "z": "14f8c9b5ce1235cc",
-        "d": true,
         "group": "fa6393a7d7e3b7d7",
-        "name": "equivalent_diameter vs. MeanValue",
-        "label": "equivalent_diameter vs. MeanValue",
-        "order": 1,
-        "chartType": "scatter",
-        "category": "equivalent_diameter vs. MeanValue",
-        "categoryType": "str",
-        "xAxisLabel": "Equivalent Diameter (μm)",
-        "xAxisProperty": "payload.metadata.x",
-        "xAxisPropertyType": "msg",
-        "xAxisType": "linear",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "0",
-        "xmax": "50",
-        "yAxisLabel": "MeanValue (0–255, grayscale value)",
-        "yAxisProperty": "payload.metadata.y",
-        "yAxisPropertyType": "msg",
-        "ymin": "150",
-        "ymax": "255",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": true,
-        "pointShape": "circle",
-        "pointRadius": "1",
-        "showLegend": true,
-        "removeOlder": "1",
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "300",
-        "colors": [
-            "#8c00ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "3",
-        "height": "6",
-        "className": "",
-        "interpolation": "linear",
-        "x": 580,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "64c27d4448d8f79f",
-        "type": "ui-event",
-        "z": "2d14eef8a9f51595",
-        "ui": "e6ae26617c24c3ea",
-        "name": "UI Event",
-        "x": 80,
-        "y": 40,
-        "wires": [
-            [
-                "b47026c6196ae54f"
-            ]
-        ]
-    },
-    {
-        "id": "b47026c6196ae54f",
-        "type": "switch",
-        "z": "2d14eef8a9f51595",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "5676b794b1a00c6a"
-            ]
-        ]
-    },
-    {
-        "id": "5676b794b1a00c6a",
-        "type": "switch",
-        "z": "2d14eef8a9f51595",
-        "name": "msg.payload.page.path === \"/export\"",
-        "property": "payload.page.path",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "/export",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 40,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3cfcc4372e4a3fb2",
-        "type": "ui-template",
-        "z": "2d14eef8a9f51595",
-        "group": "5d3c24612267b256",
-        "page": "",
-        "ui": "",
-        "name": "Navigation Bottom",
+        "name": "List of acq",
+        "label": "",
         "order": 1,
         "width": 0,
         "height": 0,
-        "head": "",
-        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"visualization\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Visualization\n        </v-btn>\n      </v-col>\n\n    </v-row>\n  </v-container>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1290,
-        "y": 160,
+        "maxrows": "10",
+        "passthru": false,
+        "autocols": false,
+        "showSearch": true,
+        "deselect": true,
+        "selectionType": "click",
+        "columns": [
+            {
+                "title": "Project name",
+                "key": "project_name",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Sample ID",
+                "key": "sample_id",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Acquisition ID",
+                "key": "acquisition_id",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Number of objects",
+                "key": "image_acquired_count",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Gallery",
+                "key": "gallery",
+                "keyType": "key",
+                "type": "link",
+                "width": "",
+                "align": "start"
+            },
+            {
+                "title": "Download",
+                "key": "export",
+                "keyType": "key",
+                "type": "link",
+                "width": "",
+                "align": "start"
+            }
+        ],
+        "mobileBreakpoint": "sm",
+        "mobileBreakpointType": "defaults",
+        "action": "replace",
+        "x": 650,
+        "y": 180,
         "wires": [
             []
         ]
     },
     {
-        "id": "32d0387ec0cb419f",
-        "type": "ui-template",
-        "z": "2d14eef8a9f51595",
-        "group": "1c2cd2bf4d4ab815",
-        "page": "",
-        "ui": "",
-        "name": "Navigation Top",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "\n<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row align=\"center\" justify=\"space-between\" class=\"px-2\">\n      <!-- Back to Preview -->\n      <v-col cols=\"auto\">\n        <v-btn\n          to=\"visualization\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Visualization\n        </v-btn>\n      </v-col>\n\n    </v-row>\n  </v-container>\n</template>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1300,
-        "y": 40,
+        "id": "18a10804663dbaa1",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.map(item => {\n    // extraction de l'acquisition_id\n    const acq = item.acquisition_id;   // ex: \"A_2\"\n\n    // création du chemin export\n    item.export = `/ps/data/browse/files/export/ecotaxa/ecotaxa_${acq}.zip`;\n\n    return item;\n});\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 180,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6521e33d1a35408e",
-        "type": "ui-template",
-        "z": "2d14eef8a9f51595",
-        "group": "d1c2dcd580716d02",
-        "page": "",
-        "ui": "",
-        "name": "Viewer",
-        "order": 1,
-        "width": "12",
-        "height": "16",
-        "head": "",
-        "format": "  <iframe \n    src=\"/ps/data/browse/files/export/ecotaxa\" \n    >\n  </iframe>\n  <style>\n    iframe {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      border:none;\n    }\n  </style>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1330,
-        "y": 100,
-        "wires": [
-            []
+            [
+                "6532974092861ef7"
+            ]
         ]
     },
     {
@@ -6151,729 +5758,5 @@
         "x": 470,
         "y": 1100,
         "wires": []
-    },
-    {
-        "id": "7451ef4165b79c87",
-        "type": "exec",
-        "z": "807baf16b84dfb29",
-        "command": "sudo",
-        "addpay": "payload",
-        "append": "now",
-        "useSpawn": "false",
-        "timer": "2",
-        "winHide": false,
-        "oldrc": false,
-        "name": "sudo cmd now",
-        "x": 480,
-        "y": 580,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "425b04bad228f33e",
-        "type": "exec",
-        "z": "807baf16b84dfb29",
-        "command": "sudo systemctl restart planktoscope-org.controller.service",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Restart hardware controller",
-        "x": 780,
-        "y": 660,
-        "wires": [
-            [
-                "fd74a406ecf48578"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "3dac096ae08896f0",
-        "type": "exec",
-        "z": "807baf16b84dfb29",
-        "command": "sudo systemctl restart planktoscope-org.segmenter.service",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Restart segmenter",
-        "x": 750,
-        "y": 800,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "fd74a406ecf48578",
-        "type": "exec",
-        "z": "807baf16b84dfb29",
-        "command": "sudo systemctl restart nodered.service",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Restart Node Red",
-        "x": 1050,
-        "y": 660,
-        "wires": [
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "53d72b9f4f4cb00f",
-        "type": "ui-button",
-        "z": "807baf16b84dfb29",
-        "group": "070185f2b69cf66d",
-        "name": "Reboot",
-        "label": "Reboot",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "emulateClick": false,
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "iconPosition": "left",
-        "payload": "reboot",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "buttonColor": "",
-        "textColor": "",
-        "iconColor": "",
-        "enableClick": true,
-        "enablePointerdown": false,
-        "pointerdownPayload": "",
-        "pointerdownPayloadType": "str",
-        "enablePointerup": false,
-        "pointerupPayload": "",
-        "pointerupPayloadType": "str",
-        "x": 200,
-        "y": 560,
-        "wires": [
-            [
-                "7451ef4165b79c87"
-            ]
-        ]
-    },
-    {
-        "id": "f040d18d96b705c3",
-        "type": "ui-button",
-        "z": "807baf16b84dfb29",
-        "group": "070185f2b69cf66d",
-        "name": "Shutdown",
-        "label": "Shutdown",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "emulateClick": false,
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "iconPosition": "left",
-        "payload": "shutdown",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "buttonColor": "",
-        "textColor": "",
-        "iconColor": "",
-        "enableClick": true,
-        "enablePointerdown": false,
-        "pointerdownPayload": "",
-        "pointerdownPayloadType": "str",
-        "enablePointerup": false,
-        "pointerupPayload": "",
-        "pointerupPayloadType": "str",
-        "x": 210,
-        "y": 600,
-        "wires": [
-            [
-                "7451ef4165b79c87"
-            ]
-        ]
-    },
-    {
-        "id": "bab342f965d345f2",
-        "type": "ui-button",
-        "z": "807baf16b84dfb29",
-        "group": "070185f2b69cf66d",
-        "name": "Restart Hardware controller",
-        "label": "Restart Hardware controller",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "emulateClick": false,
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "iconPosition": "left",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "buttonColor": "",
-        "textColor": "",
-        "iconColor": "",
-        "enableClick": true,
-        "enablePointerdown": false,
-        "pointerdownPayload": "",
-        "pointerdownPayloadType": "str",
-        "enablePointerup": false,
-        "pointerupPayload": "",
-        "pointerupPayloadType": "str",
-        "x": 260,
-        "y": 640,
-        "wires": [
-            [
-                "425b04bad228f33e"
-            ]
-        ]
-    },
-    {
-        "id": "1f2fde836eabbb26",
-        "type": "ui-button",
-        "z": "807baf16b84dfb29",
-        "group": "070185f2b69cf66d",
-        "name": "Restart Segmenter",
-        "label": "Restart Segmenter",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "emulateClick": false,
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "iconPosition": "left",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "buttonColor": "",
-        "textColor": "",
-        "iconColor": "",
-        "enableClick": true,
-        "enablePointerdown": false,
-        "pointerdownPayload": "",
-        "pointerdownPayloadType": "str",
-        "enablePointerup": false,
-        "pointerupPayload": "",
-        "pointerupPayloadType": "str",
-        "x": 230,
-        "y": 680,
-        "wires": [
-            [
-                "3dac096ae08896f0"
-            ]
-        ]
-    },
-    {
-        "id": "5f45f5ce424a2d43",
-        "type": "ui-event",
-        "z": "807baf16b84dfb29",
-        "ui": "e6ae26617c24c3ea",
-        "name": "UI Event",
-        "x": 80,
-        "y": 40,
-        "wires": [
-            [
-                "fc0520ca0e28fea9"
-            ]
-        ]
-    },
-    {
-        "id": "fc0520ca0e28fea9",
-        "type": "switch",
-        "z": "807baf16b84dfb29",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "32fd5e03278f12c0"
-            ]
-        ]
-    },
-    {
-        "id": "32fd5e03278f12c0",
-        "type": "switch",
-        "z": "807baf16b84dfb29",
-        "name": "msg.payload.page.path === \"/settings\"",
-        "property": "payload.page.path",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "/settings",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 580,
-        "y": 40,
-        "wires": [
-            [
-                "1a7bb2d868fe8707",
-                "9c3e4701c6b1687a"
-            ]
-        ]
-    },
-    {
-        "id": "1a7bb2d868fe8707",
-        "type": "function",
-        "z": "807baf16b84dfb29",
-        "name": "Get process_min_ESD",
-        "func": "msg.payload = global.get(\"process_min_ESD\");\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 140,
-        "wires": [
-            [
-                "b757ea59f07dc1f9"
-            ]
-        ]
-    },
-    {
-        "id": "b757ea59f07dc1f9",
-        "type": "ui-text-input",
-        "z": "807baf16b84dfb29",
-        "group": "070185f2b69cf66d",
-        "name": "",
-        "label": "process_min_ESD",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "topic": "process_min_ESD",
-        "topicType": "str",
-        "mode": "number",
-        "tooltip": "",
-        "delay": 300,
-        "passthru": true,
-        "sendOnDelay": false,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 530,
-        "y": 140,
-        "wires": [
-            [
-                "aa0070c82f8fe4b6"
-            ]
-        ]
-    },
-    {
-        "id": "aa0070c82f8fe4b6",
-        "type": "function",
-        "z": "807baf16b84dfb29",
-        "name": "set process_min_ESD",
-        "func": "global.set(\"process_min_ESD\", Number(msg.payload));\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 780,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "73ce979b9b49a446",
-        "type": "ui-text-input",
-        "z": "807baf16b84dfb29",
-        "group": "070185f2b69cf66d",
-        "name": "",
-        "label": "acq_delay_stab",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "topic": "acq_delay_stab",
-        "topicType": "str",
-        "mode": "number",
-        "tooltip": "",
-        "delay": 300,
-        "passthru": true,
-        "sendOnDelay": false,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 520,
-        "y": 180,
-        "wires": [
-            [
-                "9fccbaf294903c2c"
-            ]
-        ]
-    },
-    {
-        "id": "9c3e4701c6b1687a",
-        "type": "function",
-        "z": "807baf16b84dfb29",
-        "name": "Get acq_delay_stab",
-        "func": "msg.payload = global.get(\"acq_delay_stab\");\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 180,
-        "wires": [
-            [
-                "73ce979b9b49a446"
-            ]
-        ]
-    },
-    {
-        "id": "9fccbaf294903c2c",
-        "type": "function",
-        "z": "807baf16b84dfb29",
-        "name": "set acq_delay_stab",
-        "func": "global.set(\"acq_delay_stab\", Number(msg.payload));\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 770,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e6a8ee249bf33950",
-        "type": "ui-event",
-        "z": "1b99100829ae7f41",
-        "ui": "e6ae26617c24c3ea",
-        "name": "UI Event",
-        "x": 80,
-        "y": 40,
-        "wires": [
-            [
-                "f3b093b749e56ace"
-            ]
-        ]
-    },
-    {
-        "id": "f3b093b749e56ace",
-        "type": "switch",
-        "z": "1b99100829ae7f41",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "dfcec9d1920037d5"
-            ]
-        ]
-    },
-    {
-        "id": "dfcec9d1920037d5",
-        "type": "switch",
-        "z": "1b99100829ae7f41",
-        "name": "msg.payload.page.path === \"/hardware\"",
-        "property": "payload.page.path",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "/hardware",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 580,
-        "y": 40,
-        "wires": [
-            [
-                "921eb70f1795b70e",
-                "a41da1c9f8661415",
-                "629dbc1e59dceaea"
-            ]
-        ]
-    },
-    {
-        "id": "921eb70f1795b70e",
-        "type": "function",
-        "z": "1b99100829ae7f41",
-        "name": "Get calibration_sensor_height",
-        "func": "msg.payload = global.get(\"calibration_sensor_height\");\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 290,
-        "y": 140,
-        "wires": [
-            [
-                "74597418566e278f"
-            ]
-        ]
-    },
-    {
-        "id": "74597418566e278f",
-        "type": "ui-text-input",
-        "z": "1b99100829ae7f41",
-        "group": "9d212165f2367f01",
-        "name": "",
-        "label": "calibration_sensor_height",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "topic": "calibration_sensor_height",
-        "topicType": "str",
-        "mode": "number",
-        "tooltip": "",
-        "delay": 300,
-        "passthru": true,
-        "sendOnDelay": false,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 550,
-        "y": 140,
-        "wires": [
-            [
-                "40cb70ede83af087"
-            ]
-        ]
-    },
-    {
-        "id": "40cb70ede83af087",
-        "type": "function",
-        "z": "1b99100829ae7f41",
-        "name": "set calibration_sensor_height",
-        "func": "global.set(\"calibration_sensor_height\", Number(msg.payload));\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 800,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2e6c2109cb3995b8",
-        "type": "ui-text-input",
-        "z": "1b99100829ae7f41",
-        "group": "9d212165f2367f01",
-        "name": "",
-        "label": "calibration_sensor_width",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "topic": "calibration_sensor_width",
-        "topicType": "str",
-        "mode": "number",
-        "tooltip": "",
-        "delay": 300,
-        "passthru": true,
-        "sendOnDelay": false,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 550,
-        "y": 180,
-        "wires": [
-            [
-                "068171405cf7937a"
-            ]
-        ]
-    },
-    {
-        "id": "068171405cf7937a",
-        "type": "function",
-        "z": "1b99100829ae7f41",
-        "name": "set calibration_sensor_width",
-        "func": "global.set(\"calibration_sensor_width\", Number(msg.payload));\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 800,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a41da1c9f8661415",
-        "type": "function",
-        "z": "1b99100829ae7f41",
-        "name": "Get calibration_sensor_width",
-        "func": "msg.payload = global.get(\"calibration_sensor_width\");\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 180,
-        "wires": [
-            [
-                "2e6c2109cb3995b8"
-            ]
-        ]
-    },
-    {
-        "id": "629dbc1e59dceaea",
-        "type": "function",
-        "z": "1b99100829ae7f41",
-        "name": "Get acq_flowcell_thickness",
-        "func": "msg.payload = global.get(\"acq_flowcell_thickness\");\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 220,
-        "wires": [
-            [
-                "c757aa3b1e6cbae8"
-            ]
-        ]
-    },
-    {
-        "id": "c757aa3b1e6cbae8",
-        "type": "ui-text-input",
-        "z": "1b99100829ae7f41",
-        "group": "9d212165f2367f01",
-        "name": "",
-        "label": "acq_flowcell_thickness",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "topic": "acq_flowcell_thickness",
-        "topicType": "str",
-        "mode": "number",
-        "tooltip": "",
-        "delay": 300,
-        "passthru": true,
-        "sendOnDelay": false,
-        "sendOnBlur": true,
-        "sendOnEnter": true,
-        "className": "",
-        "clearable": false,
-        "sendOnClear": false,
-        "icon": "",
-        "iconPosition": "left",
-        "iconInnerPosition": "inside",
-        "x": 550,
-        "y": 220,
-        "wires": [
-            [
-                "ae3e82e107244b10"
-            ]
-        ]
-    },
-    {
-        "id": "ae3e82e107244b10",
-        "type": "function",
-        "z": "1b99100829ae7f41",
-        "name": "set acq_flowcell_thickness",
-        "func": "global.set(\"acq_flowcell_thickness\", Number(msg.payload));\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 800,
-        "y": 220,
-        "wires": [
-            []
-        ]
     }
 ]
