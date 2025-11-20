@@ -1,33 +1,44 @@
+import { request, watch } from "../../../../lib/mqtt"
+import "../../index.css"
+
 // import styles from "./styles.module.css"
 
-import { createSignal, For } from "solid-js"
+import { createResource, createSignal, For } from "solid-js"
 
 export default function Network() {
-  const [wifis, setWifis] = createSignal([])
-
-  getWifis().then(setWifis)
+  const [wifis] = createWatch("config/wifis")
+  const [scanning, { refetch: scan }] = createResource(() =>
+    request("config/wifis/scan"),
+  )
 
   return (
-    <>
+    <div>
+      <button aria-busy={scanning.loading} onClick={scan}>
+        Rescan
+      </button>
       <ul>
         <For each={wifis()} fallback={<div>Loading...</div>}>
-          {(wifi) => <li>{wifi.ssid}</li>}
+          {(wifi) => (
+            <li>
+              <button onClick={() => request("config/wifis/connect", wifi)}>
+                {wifi.ssid}
+              </button>
+            </li>
+          )}
         </For>
       </ul>
-    </>
+    </div>
   )
 }
 
-async function getWifis() {
-  const url = new URL("/api/wifis", document.URL)
-  url.port = 80
-  try {
-    const res = await fetch(url, {
-      method: "GET",
-    })
-    const body = await res.json()
-    return body
-  } catch (err) {
-    console.error(err)
-  }
+function createWatch(topic) {
+  const [data, setData] = createSignal([])
+
+  watch(topic).then(async (iter) => {
+    for await (const data of iter) {
+      setData(data)
+    }
+  })
+
+  return [data]
 }
