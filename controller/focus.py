@@ -4,9 +4,8 @@ import time
 
 from loguru import logger
 
-from .motor.motor import Motor
-
 import mqtt
+from motor.motor import Motor
 
 logger.info("planktoscope.focus is loaded")
 

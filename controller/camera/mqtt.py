@@ -1,16 +1,17 @@
 """mqtt provides an MQTT API for camera supervision and interaction."""
 
+import datetime as dt
+import errno
 import json
+import os
 import threading
 import time
 import typing
-import datetime as dt
-import os
-import errno
 
 import loguru
 
 import mqtt as messaging
+
 from . import hardware
 
 loguru.logger.info("planktoscope.camera is loaded")
@@ -123,7 +124,7 @@ class Worker(threading.Thread):
             loguru.logger.success("Done shutting down!")
 
     @loguru.logger.catch
-    def capture(self) -> None:
+    def capture(self, payload: dict[str, typing.Any]) -> None:
         assert self._camera is not None
 
         picam2 = self._camera._camera
@@ -154,25 +155,38 @@ class Worker(threading.Thread):
             f"Image metadata: {metadata}"  # pylint: disable=no-member
         )
 
-        path_dng = capture_path + ".dng"
-        picam2.helpers.save_dng(
-            buffer=buffer_raw,
-            metadata=metadata,
-            config=picam2.camera_configuration()["raw"],
-            file_output=path_dng,
-        )
-
-        image_main = picam2.helpers.make_image(
-            buffer=buffer_main, config=picam2.camera_configuration()["main"]
-        )
-        path_jpeg = capture_path + ".jpg"
-        picam2.helpers.save(img=image_main, metadata=metadata, format="jpeg", file_output=path_jpeg)
-
-        if self.mqtt:
-            self.mqtt.client.publish(
-                "status/imager",
-                json.dumps({"action": "capture", "dng": path_dng, "jpeg": path_jpeg}),
+        # TODO: The dng should have the jpeg as preview metadata
+        path_dng = None
+        if payload.get("dng") is True:
+            path_dng = capture_path + ".dng"
+            picam2.helpers.save_dng(
+                buffer=buffer_raw,
+                metadata=metadata,
+                config=picam2.camera_configuration()["raw"],
+                file_output=path_dng,
             )
+
+        path_jpeg = None
+        if payload.get("jpeg") is not False:
+            path_jpeg = capture_path + ".jpg"
+            image_main = picam2.helpers.make_image(
+                buffer=buffer_main, config=picam2.camera_configuration()["main"]
+            )
+            picam2.helpers.save(
+                img=image_main, metadata=metadata, format="jpeg", file_output=path_jpeg
+            )
+
+        assert self.mqtt
+        self.mqtt.client.publish(
+            "status/imager",
+            json.dumps(
+                {
+                    "action": "capture",
+                    "jpeg": path_jpeg,
+                    "dng": path_dng,
+                }
+            ),
+        )
 
     @loguru.logger.catch
     def _receive_message(self, message: dict[str, typing.Any]) -> typing.Optional[str]:
@@ -186,7 +200,7 @@ class Worker(threading.Thread):
             return None
 
         if message["payload"].get("action", "") == "capture":
-            self.capture()
+            self.capture(message["payload"])
             return None
 
         if message["payload"].get("action", "") != "settings":

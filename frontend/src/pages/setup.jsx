@@ -1,9 +1,10 @@
 import "../index.css"
 
 import { createResource, For, Show } from "solid-js"
-import { useSubmission, action, redirect } from "@solidjs/router"
+import { useSubmission, action } from "@solidjs/router"
 
 import { request } from "../../../lib/mqtt.js"
+import { makeUrl } from "../helpers.js"
 
 export default function Setup() {
   const [data] = createResource("setup/read", async (topic) => {
@@ -13,7 +14,7 @@ export default function Setup() {
   const submitAction = action(async (data) => {
     data = Object.fromEntries(data.entries())
     await request("setup/update", data)
-    throw redirect("/")
+    window.location.replace(makeUrl("/"))
   })
 
   const submission = useSubmission(submitAction)

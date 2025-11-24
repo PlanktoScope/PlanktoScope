@@ -1,7 +1,8 @@
-from gpiozero import DigitalOutputDevice  # type: ignore[attr-defined]
-import smbus2 as smbus
 import enum
 import json
+
+import smbus2 as smbus
+from gpiozero import DigitalOutputDevice  # type: ignore[attr-defined]
 
 
 class i2c_led:
@@ -116,36 +117,48 @@ class i2c_led:
 led = i2c_led()
 
 
-def on():
+def on() -> None:
     led.activate_torch()
 
 
-def off():
+def off() -> None:
     led.deactivate_torch()
 
 
-def save():
+def save() -> None:
     return
 
 
-def is_on():
+def is_on() -> bool:
     return led.on
 
 
-def is_off():
+def is_off() -> bool:
     return not is_on()
 
 
-def init():
+def init() -> None:
     led.set_torch_current(i2c_led.DEFAULT_CURRENT)
     led.activate_torch_ramp()
 
 
-def deinit():
+def deinit() -> None:
     led.deactivate_torch()
     led.set_torch_current(1)
     led.set_flash_current(1)
 
 
-def set_current(current):
-    led.set_torch_current(current)
+def get_state() -> tuple[float, int, int]:
+    return 0, 0, 0
+
+
+def set_value(value: float) -> None:
+    return
+
+
+def set_dac(value: int) -> None:
+    return
+
+
+def set_voltage(value: int) -> None:  # mV
+    return

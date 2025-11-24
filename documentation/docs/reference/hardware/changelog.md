@@ -8,6 +8,8 @@ The design of the PlanktoScope's hardware has been evolving to fix usability iss
 
 WORK IN PROGRESS
 
+Less noisy
+
 Replaces [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with [Raspberry PI 5](https://www.raspberrypi.com/products/raspberry-pi-5/) for much faster CPU and GPU computing power.
 
 Increased RAM from 4 to 8 GB.

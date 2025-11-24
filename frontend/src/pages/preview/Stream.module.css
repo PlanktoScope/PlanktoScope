@@ -1,0 +1,69 @@
+.video {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+/*https://cssloaders.github.io/*/
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #3587d7;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  /*display: inline-block;*/
+  box-sizing: border-box;
+  animation: loader_rotation 1s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes loader_rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+* https://zoomist.vercel.app/guides/styles
+*/
+
+:root {
+  --zoomist-wrapper-bg-color: transparent;
+  --zoomist-modules-tranistion-duration: 0.3s;
+
+  --zoomist-slider-bg-color: transparent;
+  --zoomist-slider-border-radius: 0 0 4px 0;
+  --zoomist-slider-padding-x: 20px;
+  --zoomist-slider-padding-y: 20px;
+  --zoomist-slider-track-color: #a6caed;
+  --zoomist-slider-track-color-hover: #a6caed;
+  --zoomist-slider-bar-size: 120px;
+  --zoomist-slider-bar-side: 4px;
+  --zoomist-slider-bar-border-radius: 2px;
+  --zoomist-slider-bar-color: #1976d2;
+  --zoomist-slider-bar-color-hover: #1976d2;
+  --zoomist-slider-button-size: 14px;
+  --zoomist-slider-button-color: #1976d2;
+
+  --zoomist-zoomer-button-size: 48px;
+  --zoomist-zoomer-button-color: #1976d2;
+  --zoomist-zoomer-button-color-hover: #3587d7;
+  --zoomist-zoomer-button-color-disabled: rgba(255, 255, 255, 0.8);
+  --zoomist-zoomer-button-opacity-disabled: 0.7;
+  --zoomist-zoomer-icon-size: 14px;
+  --zoomist-zoomer-icon-color: white;
+  --zoomist-zoomer-icon-color-hover: white;
+  --zoomist-zoomer-icon-color-disabled: #999;
+}
+
+:global(.zoomist-slider) {
+  cursor: pointer;
+}
