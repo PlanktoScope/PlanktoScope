@@ -7,6 +7,7 @@ import cors from "cors"
 
 import "./factory.js"
 import "./setup.js"
+import "./config.js"
 import { readSoftwareConfig, removeConfig } from "../../lib/file-config.js"
 import { capture } from "../../lib/scope.js"
 
