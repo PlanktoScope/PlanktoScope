@@ -112,6 +112,11 @@ export default function Bookmarks() {
 
         <ul>
           <li>
+            <a href={makeLocalUrl("/network")} target="_blank">
+              Network
+            </a>
+          </li>
+          <li>
             <a href={makeLocalUrl("/preview")} target="_blank">
               Preview
             </a>
