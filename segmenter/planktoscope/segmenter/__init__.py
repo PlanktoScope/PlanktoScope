@@ -27,7 +27,6 @@ import io
 
 # Libraries manipulate json format, execute bash commands
 import json
-import math
 
 # Library for starting processes
 import multiprocessing
@@ -115,7 +114,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__mask_array = None
         self.__mask_to_remove = None
         self.__save_debug_img = True
-        self.__process_min_ESD = None  # microns
+        self.__process_min_ESD = 20  # microns
 
         # create all base path
         for path in [
@@ -464,15 +463,12 @@ class SegmenterProcess(multiprocessing.Process):
             dim_slice = tuple(dim_slice)
             return dim_slice
 
-        min_mesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
-        min_esd = self.__process_min_ESD or min_mesh
-        pixel_size = self.__global_metadata["process_pixel"]
-        min_radius = min_esd / 2 / pixel_size  # (pixels)
-        min_area = math.pi * min_radius * min_radius
-
+        min_esd = self.__process_min_ESD
         labels, nlabels = skimage.measure.label(mask, return_num=True)
         regionprops = skimage.measure.regionprops(labels)
-        regionprops_filtered = [region for region in regionprops if region.filled_area >= min_area]
+        regionprops_filtered = [
+            region for region in regionprops if region.equivalent_diameter_area >= min_esd
+        ]
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")
 
