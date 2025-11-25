@@ -22,11 +22,9 @@ dev:
     node --watch-path ~/PlanktoScope/node-red/nodes/ ~/.local/bin/node-red --settings ~/PlanktoScope/node-red/settings.cjs
 
 test:
-    validator projects/planktoscopehat/flows.json
     validator projects/dashboard/flows.json
     npx eslint .
     cd nodes && node --test
 
 # Too many errors for now
-# cd node-red && npx nrlint projects/planktoscopehat/flows.json
 # cd node-red && npx nrlint projects/dashboard/flows.json
