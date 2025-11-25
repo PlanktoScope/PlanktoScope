@@ -82,7 +82,7 @@ async def handle_action(action: str, payload) -> None:
 
 async def on(payload) -> None:
     assert led is not None
-    value = payload.get("value")
+    value = payload.get("value", 1)
     assert 0.0 <= value <= 1.0
 
     led.on()
