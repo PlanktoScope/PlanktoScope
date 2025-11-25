@@ -1,11 +1,20 @@
 import json
+import multiprocessing
+import signal
+import time
 from typing import Any
-import sys
 
 from loguru import logger
 
-CONFIG_PATH_SOFTWARE = "/home/pi/PlanktoScope/config.json"
+import focus
+import pump
+from imager import mqtt as imager
+
 CONFIG_PATH_HARDWARE = "/home/pi/PlanktoScope/hardware.json"
+
+logger.info("Starting the PlanktoScope python script!")
+
+run = True  # global variable to enable clean shutdown from stop signals
 
 
 def read_config(config_path: str) -> Any:
@@ -24,58 +33,77 @@ def read_config(config_path: str) -> Any:
     return config
 
 
-def get_variant(config: dict[str, Any]) -> str | None:
-    if config is None:
-        return None
-
-    if "acq_instrument" not in config:
-        logger.error("config lacks a 'acq_instrument' field")
-        return None
-
-    if config["acq_instrument"] == "PlanktoScope v2.1":
-        return "adafruithat"
-    return "planktoscopehat"
+def handler_stop_signals(signum, frame):
+    """This handler simply stop the forever running loop in __main__"""
+    global run
+    logger.info(f"Received a signal asking to stop {signum}")
+    run = False
 
 
 def main():
-    logger.info("Welcome!")
+    logger.info("Initialising signals handling (step 1/4)")
+    signal.signal(signal.SIGINT, handler_stop_signals)
+    signal.signal(signal.SIGTERM, handler_stop_signals)
 
-    # check if gpu_mem configuration is at least 256Meg, otherwise the camera will not run properly
-    with open("/boot/firmware/config.txt", "r") as config_file:
-        for i, line in enumerate(config_file):
-            if line.startswith("gpu_mem") and int(line.split("=")[1].strip()) < 256:
-                logger.error(
-                    "The GPU memory size is less than 256, this will prevent the camera from running properly"
-                )
-                logger.error(
-                    "Please edit the file /boot/firmware/config.txt to change the gpu_mem value to at least 256"
-                )
-                logger.error(
-                    "or use raspi-config to change the memory split, in menu 7 Advanced Options, A3 Memory Split"
-                )
-                sys.exit(1)
+    # Prepare the event for a graceful shutdown
+    shutdown_event = multiprocessing.Event()
+    shutdown_event.clear()
 
-    logger.info("Determining configured hardware variant...")
-    config_software = read_config(CONFIG_PATH_SOFTWARE)
-    config_hardware = read_config(CONFIG_PATH_HARDWARE)
-    variant = get_variant(config_software)
-    if variant is None:
-        variant = "planktoscopehat"
-        logger.warning(
-            f"Couldn't load hardware variant setting from config, defaulting to {variant}"
-        )
-    logger.info(f"Hardware variant: {variant}")
+    logger.info("Read hardware config")
+    configuration = read_config(CONFIG_PATH_HARDWARE)
 
-    if variant == "adafruithat":
-        from adafruithat import main as platform
-    else:
-        from planktoscopehat import main as platform
+    # Starts the pump process
+    logger.info("Starting the pump control process (step 2/4)")
+    pump_thread = pump.PumpProcess(shutdown_event, configuration)
+    pump_thread.start()
 
-    platform.main(config_hardware)
+    # Starts the focus process
+    logger.info("Starting the focus control process (step 3/4)")
+    focus_thread = focus.FocusProcess(shutdown_event, configuration)
+    focus_thread.start()
+
+    # TODO try to isolate the imager thread (or another thread)
+    # Starts the imager control process
+    logger.info("Starting the imager control process (step 4/4)")
+    imager_thread = imager.ImagerProcess(shutdown_event, configuration)
+    imager_thread.start()
+
+    logger.success("Looks like everything is set up and running, have fun!")
+
+    while run:
+        # TODO look into ways of restarting the dead threads
+        logger.trace("Running around in circles while waiting for someone to die!")
+        if pump_thread and not pump_thread.is_alive():
+            logger.error("The pump process died unexpectedly! Oh no!")
+            break
+        if focus and not focus_thread.is_alive():
+            logger.error("The focus process died unexpectedly! Oh no!")
+            break
+        if imager_thread and not imager_thread.is_alive():
+            logger.error("The imager process died unexpectedly! Oh no!")
+            break
+        time.sleep(1)
+
+    logger.info("Shutting down the shop")
+    shutdown_event.set()
+    time.sleep(1)
+
+    if pump_thread:
+        pump_thread.join()
+    if focus_thread:
+        focus_thread.join()
+    if imager_thread:
+        imager_thread.join()
+
+    if pump_thread:
+        pump_thread.close()
+    if focus_thread:
+        focus_thread.close()
+    if imager_thread:
+        imager_thread.close()
+
+    logger.info("Bye")
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception:
-        logger.exception("Unhandled exception")
+    main()

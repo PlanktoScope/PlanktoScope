@@ -37,9 +37,7 @@
 	}
 
 	handle /* {
-		try_files {path} /index.html
-		root * /srv/frontend
-		file_server
+		reverse_proxy localhost:4000
 	}
 
 	# https://github.com/ecotaxa/ecotaxa_back/issues/64

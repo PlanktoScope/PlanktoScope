@@ -92,11 +92,6 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeUrl("/ps/node-red-v2/ui/")} target="_blank">
-              Node-RED UI
-            </a>
-          </li>
-          <li>
             <a href={makeUrl("/ps/node-red-v2/dashboard/")} target="_blank">
               Node-RED Dashboard
             </a>
@@ -111,6 +106,11 @@ export default function Bookmarks() {
         <h2>Experiments</h2>
 
         <ul>
+          <li>
+            <a href={makeLocalUrl("/network")} target="_blank">
+              Network
+            </a>
+          </li>
           <li>
             <a href={makeLocalUrl("/preview")} target="_blank">
               Preview

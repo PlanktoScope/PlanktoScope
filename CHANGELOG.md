@@ -7,6 +7,14 @@ and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.mi
 for all releases after `v2.3.0`.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## v2026.0.0 - UNRELEASED
+
+**Minimum object size**
+
+Previously the PlanktoScope would use the `acq_minimum_mesh` metadata and compare it with the detected objects' "filled area" (area of the region with all the holes filled in).
+
+We have changed this behavior to be configurable and more accurate. On every segmentation you will be able to choose a minimum object size in μm. The segmenter will compare it with the detected objects' [area-equivalent diameter](https://www.bettersizeinstruments.com/learn/bettersize-wiki/what-is-equivalent-spherical-diameter/) (the diameter of a circle with the same area as the region).
+
 ## v2025.0.0 - 2025-07-21
 
 ### Added

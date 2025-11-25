@@ -1,14 +1,13 @@
 import multiprocessing
-from multiprocessing.synchronize import Event
 import os
 import time
 import typing
+from multiprocessing.synchronize import Event
 
 from loguru import logger
 
-from .motor.motor import Motor
-
 import mqtt
+from motor.motor import Motor
 
 logger.info("planktoscope.pump is loaded")
 

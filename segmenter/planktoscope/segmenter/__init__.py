@@ -20,45 +20,41 @@
 ################################################################################
 
 # Logger library compatible with multiprocessing
-from loguru import logger
-
 # Library to get date and time for folder name and filename
 import datetime
+import functools
+import io
+
+# Libraries manipulate json format, execute bash commands
+import json
+
+# Library for starting processes
+import multiprocessing
+import os
+import select
+import threading
 
 # Library to be able to sleep for a given duration
 import time
 
-# Libraries manipulate json format, execute bash commands
-import json
-import os
-
-# Library for starting processes
-import multiprocessing
-
-import io
-
-import threading
-import functools
-import select
-
-# Basic planktoscope libraries
-import planktoscope.identity
-import planktoscope.mqtt
-import planktoscope.segmenter.operations
-import planktoscope.segmenter.encoder
-import planktoscope.segmenter.streamer
-import planktoscope.segmenter.ecotaxa
+import cv2
+import numpy as np
+import PIL.Image
+import skimage.exposure
 
 ################################################################################
 # Other image processing Libraries
 ################################################################################
 import skimage.measure
-import skimage.exposure
-import cv2
-import numpy as np
-import PIL.Image
-import math
+from loguru import logger
 
+# Basic planktoscope libraries
+import planktoscope.identity
+import planktoscope.mqtt
+import planktoscope.segmenter.ecotaxa
+import planktoscope.segmenter.encoder
+import planktoscope.segmenter.operations
+import planktoscope.segmenter.streamer
 
 logger.info("planktoscope.segmenter is loaded")
 
@@ -118,6 +114,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__mask_array = None
         self.__mask_to_remove = None
         self.__save_debug_img = True
+        self.__process_min_ESD = 20  # microns
 
         # create all base path
         for path in [
@@ -466,15 +463,13 @@ class SegmenterProcess(multiprocessing.Process):
             dim_slice = tuple(dim_slice)
             return dim_slice
 
-        min_mesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
-        min_esd = min_mesh  # or process_min_ESD in the future (microns)
-        pixel_size = self.__global_metadata["process_pixel"]
-        min_radius = min_esd / 2 / pixel_size  # (pixels)
-        min_area = math.pi * min_radius * min_radius
-
         labels, nlabels = skimage.measure.label(mask, return_num=True)
         regionprops = skimage.measure.regionprops(labels)
-        regionprops_filtered = [region for region in regionprops if region.filled_area >= min_area]
+        regionprops_filtered = [
+            region
+            for region in regionprops
+            if region.equivalent_diameter_area >= self.__process_min_ESD
+        ]
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")
 
@@ -924,6 +919,10 @@ class SegmenterProcess(multiprocessing.Process):
                     if "process_id" in last_message["settings"]:
                         # keep debug images
                         self.__process_id = last_message["settings"]["process_id"]
+
+                    if "__process_min_ESD" in last_message["settings"]:
+                        self.__process_min_ESD = last_message["settings"]["__process_min_ESD"]
+
                     # TODO eventually add customisation to segmenter parameters here
 
                 path = last_message["path"] if "path" in last_message else None

@@ -9,15 +9,14 @@ import helpers
 
 client = None
 loop = asyncio.new_event_loop()
-
 led = None
+hat_version = None
 
 
 async def start() -> None:
-    global led
+    global led, hat_version
     hat_version = await helpers.get_hat_version()
     if hat_version is None:
-        # adafruithat
         sys.exit()
 
     if hat_version == 1.2:
@@ -43,6 +42,8 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
+    assert client is not None
+
     if not message.topic.matches("light"):
         return
 
@@ -58,30 +59,35 @@ async def handle_action(action: str, payload) -> None:
     assert led is not None
 
     if action == "on":
-        await on()
+        await on(payload)
     elif action == "off":
         await off()
-    elif action == "settings":
-        await handle_settings(payload)
+    # elif action == "settings":
+    #     await handle_settings(payload)
     elif action == "save":
         if hasattr(led, "save"):
             led.save()
 
 
-async def handle_settings(payload) -> None:
+# async def handle_settings(payload) -> None:
+#     assert led is not None
+
+#     if "current" in payload["settings"]:
+#         # {"settings":{"current":"20"}}
+#         current = payload["settings"]["current"]
+#         if led.is_on():
+#             return
+#         led.set_current(current)
+
+
+async def on(payload) -> None:
     assert led is not None
+    value = payload.get("value", 1)
+    assert 0.0 <= value <= 1.0
 
-    if "current" in payload["settings"]:
-        # {"settings":{"current":"20"}}
-        current = payload["settings"]["current"]
-        if led.is_on():
-            return
-        led.set_current(current)
-
-
-async def on() -> None:
-    assert led is not None
     led.on()
+    led.set_value(value)
+
     await publish_status()
 
 
@@ -94,7 +100,13 @@ async def off() -> None:
 async def publish_status() -> None:
     assert client is not None
     assert led is not None
-    payload = {"status": "Off" if led.is_off() else "On"}
+
+    value = led.get_value()
+
+    payload = {
+        "status": "Off" if led.is_off() else "On",
+        "value": value,
+    }
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 
