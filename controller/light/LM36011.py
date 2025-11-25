@@ -90,6 +90,9 @@ class i2c_led:
         value = int(current * 0.34)
         self._write_byte(self.Register.torch, value)
 
+    def get_torch_current(self):
+        return self._read_byte(self.Register.torch)
+
     def set_flash_current(self, current):
         # From 11 to 1500mA
         # Curve is not linear for some reason, but this is close enough
@@ -148,17 +151,10 @@ def deinit() -> None:
     led.set_flash_current(1)
 
 
-def get_state() -> tuple[float, int, int]:
-    return 0, 0, 0
+def get_value() -> float:
+    return int(round(led.get_torch_current() / 20))
 
 
 def set_value(value: float) -> None:
-    return
-
-
-def set_dac(value: int) -> None:
-    return
-
-
-def set_voltage(value: int) -> None:  # mV
+    led.set_torch_current(int(round(value * 20)))
     return

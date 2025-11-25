@@ -34,6 +34,8 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
+    assert client is not None
+
     if not message.topic.matches("actuator/bubbler"):
         return
 
@@ -72,17 +74,10 @@ async def handle_action(action: str, payload) -> None:
 
 async def on(payload) -> None:
     assert bubbler is not None
+    value = payload.get("value", 1)
+    assert 0.0 <= value <= 1.0
 
-    voltage = payload.get("voltage")
-    value = payload.get("value")
-    dac = payload.get("dac")
-
-    if voltage:
-        bubbler.set_voltage(voltage)
-    elif value:
-        bubbler.set_value(value)
-    elif dac:
-        bubbler.set_dac(dac)
+    bubbler.set_value(value)
 
     await publish_status()
 
@@ -97,13 +92,11 @@ async def publish_status() -> None:
     assert bubbler is not None
     assert client is not None
 
-    [value, dac, voltage] = bubbler.get_state()
+    value = bubbler.get_value()
 
     payload = {
         "status": "Off" if bubbler.is_off() else "On",
-        "voltage": voltage,
         "value": value,
-        "dac": dac,
     }
     await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 

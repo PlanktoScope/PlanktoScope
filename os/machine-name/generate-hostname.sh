@@ -1,7 +1,12 @@
 #!/bin/bash -eu
+# shellcheck disable=all
 
-hostname=$(cat /etc/hostname)
-machine_name=$(cat /run/machine-name)
+machine_name="$(cat /run/machine-name)"
+hostname="planktoscope-${machine_name}"
+
+mkdir -p /etc
+echo "Hostname: $hostname"
+printf "%s" "$hostname" > /etc/hostname
 
 sudo sed -i "s/raspberrypi/$hostname/g" /etc/hosts
 sudo sed -i "s/raspberrypi/$hostname/g" /etc/cockpit/cockpit.conf

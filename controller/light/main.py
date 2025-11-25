@@ -10,7 +10,6 @@ import helpers
 
 client = None
 loop = asyncio.new_event_loop()
-
 led = None
 chronometer = None
 operating_time = 0
@@ -20,7 +19,6 @@ async def start() -> None:
     global led
     hat_version = await helpers.get_hat_version()
     if hat_version is None:
-        # adafruithat
         sys.exit()
 
     if hat_version == 1.2:
@@ -46,6 +44,8 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
+    assert client is not None
+
     if not message.topic.matches("light"):
         return
 
@@ -84,22 +84,15 @@ async def handle_action(action: str, payload) -> None:
 
 async def on(payload) -> None:
     assert led is not None
-
-    voltage = payload.get("voltage")
-    value = payload.get("value")
-    dac = payload.get("dac")
+    value = payload.get("value", 1)
+    assert 0.0 <= value <= 1.0
 
     global chronometer
     if chronometer is None:
         chronometer = int(time.time())
 
-    # FIXME: 2.6
-    if voltage:
-        led.set_voltage(voltage)
-    elif value:
-        led.set_value(value)
-    elif dac:
-        led.set_dac(dac)
+    led.on()
+    led.set_value(value)
 
     await publish_status()
 
@@ -117,14 +110,11 @@ async def publish_status() -> None:
     assert client is not None
     assert led is not None
 
-    # FIXME: 2.6
-    [value, dac, voltage] = led.get_state()
+    value = led.get_value()
 
     payload = {
         "status": "Off" if led.is_off() else "On",
-        "voltage": voltage,
         "value": value,
-        "dac": dac,
         "operating_time": operating_time,
     }
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
