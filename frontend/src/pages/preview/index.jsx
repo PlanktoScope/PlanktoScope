@@ -81,14 +81,14 @@ async function takeImage() {
   }
 }
 
-function onLightChange(dac) {
+function onLightChange(value) {
   startLight({
-    dac,
+    value,
   })
 }
 
-function onBubblerChange(dac) {
+function onBubblerChange(value) {
   startBubbler({
-    dac,
+    value,
   })
 }
