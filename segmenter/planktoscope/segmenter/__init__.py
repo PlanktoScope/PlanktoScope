@@ -114,7 +114,7 @@ class SegmenterProcess(multiprocessing.Process):
         self.__mask_array = None
         self.__mask_to_remove = None
         self.__save_debug_img = True
-        self.__process_min_size = 20  # microns
+        self.__process_min_ESD = 20  # microns
 
         # create all base path
         for path in [
@@ -468,7 +468,7 @@ class SegmenterProcess(multiprocessing.Process):
         regionprops_filtered = [
             region
             for region in regionprops
-            if region.equivalent_diameter_area >= self.__process_min_size
+            if region.equivalent_diameter_area >= self.__process_min_ESD
         ]
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")
@@ -920,8 +920,8 @@ class SegmenterProcess(multiprocessing.Process):
                         # keep debug images
                         self.__process_id = last_message["settings"]["process_id"]
 
-                    if "__process_min_size" in last_message["settings"]:
-                        self.__process_min_size = last_message["settings"]["__process_min_size"]
+                    if "__process_min_ESD" in last_message["settings"]:
+                        self.__process_min_ESD = last_message["settings"]["__process_min_ESD"]
 
                     # TODO eventually add customisation to segmenter parameters here
 
