@@ -42,6 +42,8 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
+    assert client is not None
+
     if not message.topic.matches("light"):
         return
 
@@ -80,22 +82,11 @@ async def handle_action(action: str, payload) -> None:
 
 async def on(payload) -> None:
     assert led is not None
+    value = payload.get("value")
+    assert 0.0 <= value <= 1.0
 
-    if hat_version == 3.3:
-        voltage = payload.get("voltage")
-        value = payload.get("value")
-        dac = payload.get("dac")
-        # FIXME: 2.6
-        if voltage:
-            led.set_voltage(voltage)
-        elif value:
-            led.set_value(value)
-        elif dac:
-            led.set_dac(dac)
-        else:
-            led.on()
-    else:
-        led.on()
+    led.on()
+    led.set_value(value)
 
     await publish_status()
 
@@ -110,14 +101,11 @@ async def publish_status() -> None:
     assert client is not None
     assert led is not None
 
-    # FIXME: 2.6
-    [value, dac, voltage] = led.get_state()
+    value = led.get_value()
 
     payload = {
         "status": "Off" if led.is_off() else "On",
-        "voltage": voltage,
         "value": value,
-        "dac": dac,
     }
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 

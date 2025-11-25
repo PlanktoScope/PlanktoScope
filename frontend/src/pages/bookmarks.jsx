@@ -92,11 +92,6 @@ export default function Bookmarks() {
             </a>
           </li>
           <li>
-            <a href={makeUrl("/ps/node-red-v2/ui/")} target="_blank">
-              Node-RED UI
-            </a>
-          </li>
-          <li>
             <a href={makeUrl("/ps/node-red-v2/dashboard/")} target="_blank">
               Node-RED Dashboard
             </a>
