@@ -7,6 +7,7 @@ import {
   setHardwareVersion,
   getHardwareVersions,
   getHardwareVersion,
+  detectHardwareVersion,
 } from "../../lib/hardware.js"
 import {
   getWifiRegulatoryDomains,
@@ -19,31 +20,12 @@ import { procedure } from "../../lib/mqtt.js"
 import { updateSoftwareConfig } from "../../lib/file-config.js"
 import { promiseDashboardOnline } from "../../lib/nodered.js"
 
-import { read } from "../../lib/eeprom.js"
-
 await procedure("setup/read", async () => {
-  let has_eeprom_hardware_version = false
-  try {
-    const eeprom = await read()
-    has_eeprom_hardware_version = !!eeprom?.custom_data?.hardware_version
-  } catch {
-    //
-  }
-
-  const [
-    countries,
-    country,
-    timezones,
-    timezone,
-    hardware_versions,
-    hardware_version,
-  ] = await Promise.all([
+  const [countries, country, timezones, timezone] = await Promise.all([
     getWifiRegulatoryDomains(),
     getWifiRegulatoryDomain(),
     getTimezones(),
     getTimezone(),
-    has_eeprom_hardware_version ? null : getHardwareVersions(),
-    has_eeprom_hardware_version ? null : getHardwareVersion(),
   ])
 
   return {
@@ -51,27 +33,22 @@ await procedure("setup/read", async () => {
     country,
     timezones,
     timezone,
-    hardware_versions,
-    hardware_version,
   }
 })
 
 const Schema = z.object({
   country: z.string(),
   timezone: z.string(),
-  hardware_version: z.string().optional(),
 })
 await procedure("setup/update", async (data) => {
-  const { country, timezone, hardware_version } = Schema.parse(data)
+  const { country, timezone } = Schema.parse(data)
 
-  // await setWifiRegulatoryDomain(country)
-  // await setTimezone(timezone)
-  // await (hardware_version && setHardwareVersion(hardware_version))
+  const hardware_version = await detectHardwareVersion()
 
   await Promise.all([
     setWifiRegulatoryDomain(country),
     setTimezone(timezone),
-    hardware_version && setHardwareVersion(hardware_version),
+    setHardwareVersion(hardware_version),
   ])
 
   await updateSoftwareConfig({ user_setup: true })
