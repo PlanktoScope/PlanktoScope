@@ -26,7 +26,7 @@ await procedure("factory/init", async () => {
       dt_blob: "planktoscope-hat-v3",
       custom_data: {
         serial_number: "",
-        hardware_version: "", // TODO
+        hardware_version: "v3.0",
         eeprom_version: 0,
         led_operating_time: 0,
       },
@@ -45,17 +45,3 @@ await procedure("factory/update", async (data) => {
   await request("actuator/bubbler", { action: "off" })
   await request("actuator/bubbler", { action: "save" })
 })
-;(async () => {
-  let eeprom
-
-  try {
-    // If the PlanktoScope has an EEPROM with the hardware version set
-    // configure the PlanktoScope with that so we don't need to ask users for it
-    eeprom = await read()
-    // eslint-disable-next-line no-empty
-  } catch {}
-  const hardware_version = eeprom?.custom_data?.hardware_version
-  if (hardware_version && !(await hasSoftwareConfig())) {
-    await setHardwareVersion(hardware_version)
-  }
-})()
