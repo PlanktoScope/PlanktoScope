@@ -25,8 +25,8 @@ export default function Factory() {
     fields.custom_data = {
       serial_number,
       hardware_version,
-      eeprom_version,
-      led_operating_time,
+      eeprom_version: parseInt(eeprom_version, 10),
+      led_operating_time: parseInt(led_operating_time, 10),
     }
 
     await request("factory/update", fields)

@@ -19,9 +19,15 @@ import { procedure } from "../../lib/mqtt.js"
 import { updateSoftwareConfig } from "../../lib/file-config.js"
 import { promiseDashboardOnline } from "../../lib/nodered.js"
 
-import { has_eeprom_hardware_version } from "./factory.js"
+import { read } from "../../lib/eeprom.js"
 
 await procedure("setup/read", async () => {
+  let has_eeprom_hardware_version = false
+  try {
+    const eeprom = await read()
+    has_eeprom_hardware_version = !!eeprom?.custom_data?.hardware_version
+  } catch {}
+
   const [
     countries,
     country,
