@@ -26,7 +26,9 @@ await procedure("setup/read", async () => {
   try {
     const eeprom = await read()
     has_eeprom_hardware_version = !!eeprom?.custom_data?.hardware_version
-  } catch {}
+  } catch {
+    //
+  }
 
   const [
     countries,

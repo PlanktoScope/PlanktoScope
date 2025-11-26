@@ -31,7 +31,7 @@ async function publishStatus(eeprom) {
   try {
     await publish(
       "status/led-operating-time",
-      eeprom?.custom_data?.led_operating_time || 0,
+      { seconds: eeprom?.custom_data?.led_operating_time || 0 },
       null,
       {
         retain: true,
