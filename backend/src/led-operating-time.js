@@ -43,6 +43,11 @@ async function publishStatus(eeprom) {
 }
 
 ;(async () => {
-  const eeprom = await read()
+  let eeprom
+  try {
+    eeprom = await read()
+  } catch {
+    return
+  }
   await publishStatus(eeprom)
 })()

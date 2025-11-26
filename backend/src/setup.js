@@ -5,8 +5,6 @@ import * as z from "zod"
 
 import {
   setHardwareVersion,
-  getHardwareVersions,
-  getHardwareVersion,
   detectHardwareVersion,
 } from "../../lib/hardware.js"
 import {

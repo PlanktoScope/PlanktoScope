@@ -7,10 +7,7 @@ import crypto from "node:crypto"
 // import * as z from "zod"
 
 import { read, write } from "../../lib/eeprom.js"
-import { setHardwareVersion } from "../../lib/hardware.js"
-
 import { procedure, request } from "../../lib/mqtt.js"
-import { hasSoftwareConfig } from "../../lib/file-config.js"
 
 await procedure("factory/init", async () => {
   const eeprom = await read()
