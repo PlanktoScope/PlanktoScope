@@ -14,8 +14,11 @@ mkdir "$HOME"/.cache
 rm -f "$HOME"/.python_history
 rm -f "$HOME"/.bash_history
 
-rm /home/pi/planktoScope/hardware.json
-rm /home/pi/planktoScope/config.json
+rm -rf "$HOME"/.ssh
+rm -rf "$HOME"/data
+rm -f "$HOME"/filebrowser.db
+rm -f "$HOME"/planktoScope/hardware.json
+rm -f "$HOME"/PlanktoScope/config.json
 
 # Clear machine-id so that it will be regenerated on the next boot
 # This is also the condition for ConditionFirstBoot=yes
