@@ -42,8 +42,9 @@ await procedure("factory/init", async () => {
       dt_blob: "planktoscope-hat-v3",
       custom_data: {
         serial_number: "",
-        hardware_version: "",
+        hardware_version: "", // TODO
         eeprom_version: 0,
+        led_operating_time: 0,
       },
     }
   }

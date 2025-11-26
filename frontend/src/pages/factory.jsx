@@ -14,18 +14,22 @@ export default function Factory() {
   )
 
   const updateFactoryAction = action(async (data) => {
-    data = Object.fromEntries(data.entries())
+    const {
+      serial_number,
+      hardware_version,
+      eeprom_version,
+      led_operating_time,
+      ...fields
+    } = Object.fromEntries(data.entries())
 
-    data.custom_data = {
-      serial_number: data.serial_number,
-      hardware_version: data.hardware_version,
-      eeprom_version: data.eeprom_version,
+    fields.custom_data = {
+      serial_number,
+      hardware_version,
+      eeprom_version,
+      led_operating_time,
     }
-    delete data.serial_number
-    delete data.eeprom_version
-    delete data.hardware_version
 
-    await request("factory/update", data)
+    await request("factory/update", fields)
 
     refetch()
   })
@@ -120,24 +124,31 @@ export default function Factory() {
                 <p>Custom EEPROM fields</p>
               </hgroup>
             </legend>
-            <div>
-              <label>
-                serial_number
-                <input
-                  name="serial_number"
-                  value={EEPROM()?.custom_data?.serial_number}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                hardware_version
-                <input
-                  name="hardware_version"
-                  value={EEPROM()?.custom_data?.hardware_version}
-                />
-              </label>
-            </div>
+            <label>
+              serial_number
+              <input
+                name="serial_number"
+                value={EEPROM()?.custom_data?.serial_number}
+              />
+            </label>
+            <label>
+              led_operating_time
+              <input
+                name="led_operating_time"
+                type="number"
+                value={EEPROM()?.custom_data?.led_operating_time}
+              />
+            </label>
+          </fieldset>
+
+          <fieldset class="grid">
+            <label>
+              hardware_version
+              <input
+                name="hardware_version"
+                value={EEPROM()?.custom_data?.hardware_version}
+              />
+            </label>
             <label>
               eeprom_version
               <input

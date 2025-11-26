@@ -12,7 +12,6 @@ client = None
 loop = asyncio.new_event_loop()
 led = None
 chronometer = None
-operating_time = 0
 
 
 async def start() -> None:
@@ -105,9 +104,12 @@ async def off() -> None:
     assert led is not None
     led.off()
 
-    save_operating_time()
-
     await publish_status()
+
+    try:
+        await save_operating_time()
+    except Exception as e:
+        print(e)
 
 
 async def publish_status() -> None:
@@ -116,11 +118,7 @@ async def publish_status() -> None:
 
     value = led.get_value()
 
-    payload = {
-        "status": "Off" if led.is_off() else "On",
-        "value": value,
-        "operating_time": operating_time,
-    }
+    payload = {"status": "Off" if led.is_off() else "On", "value": value}
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 
@@ -131,13 +129,19 @@ async def stop() -> None:
     loop.stop()
 
 
-def save_operating_time() -> None:
+async def save_operating_time() -> None:
+    assert client is not None
     global chronometer
     if chronometer is None:
         return
 
     operating_time = int(time.time()) - chronometer
-    print(operating_time)
+
+    payload = {
+        "action": "increment",
+        "seconds": operating_time,
+    }
+    await client.publish(topic="led-operating-time", payload=json.dumps(payload))
     chronometer = None
 
 
