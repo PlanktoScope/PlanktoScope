@@ -56,6 +56,10 @@ const Schema = z.object({
 await procedure("setup/update", async (data) => {
   const { country, timezone, hardware_version } = Schema.parse(data)
 
+  // await setWifiRegulatoryDomain(country)
+  // await setTimezone(timezone)
+  // await (hardware_version && setHardwareVersion(hardware_version))
+
   await Promise.all([
     setWifiRegulatoryDomain(country),
     setTimezone(timezone),

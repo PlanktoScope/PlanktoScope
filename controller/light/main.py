@@ -85,6 +85,10 @@ async def on(payload) -> None:
     value = payload.get("value", 1)
     assert 0.0 <= value <= 1.0
 
+    if value == 0:
+        await off()
+        return
+
     led.on()
     led.set_value(value)
 
