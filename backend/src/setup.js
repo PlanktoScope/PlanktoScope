@@ -43,6 +43,8 @@ await procedure("setup/update", async (data) => {
 
   const hardware_version = await detectHardwareVersion()
 
+  let dashboard_online_promise = promiseDashboardOnline()
+
   await Promise.all([
     setWifiRegulatoryDomain(country),
     setTimezone(timezone),
@@ -51,5 +53,5 @@ await procedure("setup/update", async (data) => {
 
   await updateSoftwareConfig({ user_setup: true })
 
-  await promiseDashboardOnline()
+  await dashboard_online_promise
 })
