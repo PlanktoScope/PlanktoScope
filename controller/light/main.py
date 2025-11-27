@@ -2,6 +2,7 @@ import asyncio
 import json
 import signal
 import sys
+import time
 
 import aiomqtt  # type: ignore
 
@@ -10,11 +11,11 @@ import helpers
 client = None
 loop = asyncio.new_event_loop()
 led = None
-hat_version = None
+chronometer = None
 
 
 async def start() -> None:
-    global led, hat_version
+    global led
     hat_version = await helpers.get_hat_version()
     if hat_version is None:
         sys.exit()
@@ -85,6 +86,14 @@ async def on(payload) -> None:
     value = payload.get("value", 1)
     assert 0.0 <= value <= 1.0
 
+    if value == 0:
+        await off()
+        return
+
+    global chronometer
+    if chronometer is None:
+        chronometer = int(time.time())
+
     led.on()
     led.set_value(value)
 
@@ -94,7 +103,13 @@ async def on(payload) -> None:
 async def off() -> None:
     assert led is not None
     led.off()
+
     await publish_status()
+
+    try:
+        await save_operating_time()
+    except Exception as e:
+        print(e)
 
 
 async def publish_status() -> None:
@@ -103,10 +118,7 @@ async def publish_status() -> None:
 
     value = led.get_value()
 
-    payload = {
-        "status": "Off" if led.is_off() else "On",
-        "value": value,
-    }
+    payload = {"status": "Off" if led.is_off() else "On", "value": value}
     await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
 
 
@@ -115,6 +127,22 @@ async def stop() -> None:
     await off()
     led.deinit()
     loop.stop()
+
+
+async def save_operating_time() -> None:
+    assert client is not None
+    global chronometer
+    if chronometer is None:
+        return
+
+    operating_time = int(time.time()) - chronometer
+
+    payload = {
+        "action": "increment",
+        "seconds": operating_time,
+    }
+    await client.publish(topic="led-operating-time", payload=json.dumps(payload))
+    chronometer = None
 
 
 for s in (signal.SIGINT, signal.SIGTERM):

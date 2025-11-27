@@ -7,31 +7,12 @@ import crypto from "node:crypto"
 // import * as z from "zod"
 
 import { read, write } from "../../lib/eeprom.js"
-import { setHardwareVersion } from "../../lib/hardware.js"
-
 import { procedure, request } from "../../lib/mqtt.js"
-import { hasSoftwareConfig } from "../../lib/file-config.js"
-
-// If the PlanktoScope has an EEPROM with the hardware version set
-// configure the PlanktoScope with that so we don't need to ask users for it
-let cached
-try {
-  cached = await read()
-  // eslint-disable-next-line no-empty
-} catch {}
-const hardware_version = cached?.custom_data?.hardware_version
-if (hardware_version && !(await hasSoftwareConfig())) {
-  await setHardwareVersion(hardware_version)
-}
-
-export const has_eeprom_hardware_version = !!hardware_version
 
 await procedure("factory/init", async () => {
-  const eeprom = cached
+  const eeprom = await read()
 
-  if (eeprom?.custom_data?.eeprom_version !== "0") {
-    await request("light", { action: "on" })
-
+  if (eeprom?.custom_data?.eeprom_version !== 0) {
     return {
       product_uuid: crypto.randomUUID(),
       product_id: "0x0000", // TODO
@@ -42,8 +23,9 @@ await procedure("factory/init", async () => {
       dt_blob: "planktoscope-hat-v3",
       custom_data: {
         serial_number: "",
-        hardware_version: "",
+        hardware_version: "v3.0",
         eeprom_version: 0,
+        led_operating_time: 0,
       },
     }
   }
@@ -59,10 +41,4 @@ await procedure("factory/update", async (data) => {
 
   await request("actuator/bubbler", { action: "off" })
   await request("actuator/bubbler", { action: "save" })
-
-  cached = await read()
-})
-
-await procedure("factory/read", async () => {
-  return cached
 })

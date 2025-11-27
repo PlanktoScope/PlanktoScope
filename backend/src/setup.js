@@ -5,8 +5,7 @@ import * as z from "zod"
 
 import {
   setHardwareVersion,
-  getHardwareVersions,
-  getHardwareVersion,
+  detectHardwareVersion,
 } from "../../lib/hardware.js"
 import {
   getWifiRegulatoryDomains,
@@ -19,23 +18,12 @@ import { procedure } from "../../lib/mqtt.js"
 import { updateSoftwareConfig } from "../../lib/file-config.js"
 import { promiseDashboardOnline } from "../../lib/nodered.js"
 
-import { has_eeprom_hardware_version } from "./factory.js"
-
 await procedure("setup/read", async () => {
-  const [
-    countries,
-    country,
-    timezones,
-    timezone,
-    hardware_versions,
-    hardware_version,
-  ] = await Promise.all([
+  const [countries, country, timezones, timezone] = await Promise.all([
     getWifiRegulatoryDomains(),
     getWifiRegulatoryDomain(),
     getTimezones(),
     getTimezone(),
-    has_eeprom_hardware_version ? null : getHardwareVersions(),
-    has_eeprom_hardware_version ? null : getHardwareVersion(),
   ])
 
   return {
@@ -43,26 +31,26 @@ await procedure("setup/read", async () => {
     country,
     timezones,
     timezone,
-    hardware_versions,
-    hardware_version,
   }
 })
 
 const Schema = z.object({
   country: z.string(),
   timezone: z.string(),
-  hardware_version: z.string().optional(),
 })
 await procedure("setup/update", async (data) => {
-  const { country, timezone, hardware_version } = Schema.parse(data)
+  const { country, timezone } = Schema.parse(data)
+
+  const hardware_version = await detectHardwareVersion()
 
   await Promise.all([
     setWifiRegulatoryDomain(country),
     setTimezone(timezone),
-    hardware_version && setHardwareVersion(hardware_version),
+    setHardwareVersion(hardware_version),
   ])
 
-  await updateSoftwareConfig({ user_setup: true })
-
-  await promiseDashboardOnline()
+  await Promise.all([
+    updateSoftwareConfig({ user_setup: true }),
+    promiseDashboardOnline(),
+  ])
 })

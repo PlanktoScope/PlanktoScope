@@ -1,6 +1,6 @@
 import "../index.css"
 
-import { createResource, For, Show } from "solid-js"
+import { createResource, For } from "solid-js"
 import { useSubmission, action } from "@solidjs/router"
 
 import { request } from "../../../lib/mqtt.js"
@@ -65,29 +65,6 @@ export default function Setup() {
                 </For>
               </select>
             </label>
-
-            <Show when={data()?.hardware_versions}>
-              <label>
-                Model
-                <select name="hardware_version">
-                  <option disabled value="">
-                    Pleasse select
-                  </option>
-                  <For each={data()?.hardware_versions}>
-                    {(hardware_version) => (
-                      <option
-                        value={hardware_version.value}
-                        selected={
-                          data()?.hardware_version === hardware_version.value
-                        }
-                      >
-                        {hardware_version.label}
-                      </option>
-                    )}
-                  </For>
-                </select>
-              </label>
-            </Show>
           </fieldset>
 
           <button
