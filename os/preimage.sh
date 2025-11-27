@@ -13,6 +13,7 @@ mkdir "$HOME"/.cache
 
 rm -f "$HOME"/.python_history
 rm -f "$HOME"/.bash_history
+rm -f "$HOME"/.gitconfig
 
 rm -rf "$HOME"/.ssh
 rm -rf "$HOME"/data
