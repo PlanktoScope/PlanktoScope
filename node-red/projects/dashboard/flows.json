@@ -4192,83 +4192,6 @@
         ]
     },
     {
-        "id": "6532974092861ef7",
-        "type": "ui-table",
-        "z": "14f8c9b5ce1235cc",
-        "group": "fa6393a7d7e3b7d7",
-        "name": "List of acq",
-        "label": "",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "maxrows": "10",
-        "passthru": false,
-        "autocols": false,
-        "showSearch": false,
-        "deselect": true,
-        "selectionType": "click",
-        "columns": [
-            {
-                "title": "Project name",
-                "key": "project_name",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "start"
-            },
-            {
-                "title": "Sample ID",
-                "key": "sample_id",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "start"
-            },
-            {
-                "title": "Acquisition ID",
-                "key": "acquisition_id",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "start"
-            },
-            {
-                "title": "Number of objects",
-                "key": "image_acquired_count",
-                "keyType": "key",
-                "type": "text",
-                "width": "",
-                "align": "start"
-            },
-            {
-                "title": "Gallery",
-                "key": "gallery",
-                "keyType": "key",
-                "type": "link",
-                "width": "",
-                "align": "start"
-            },
-            {
-                "title": "Download",
-                "key": "export",
-                "keyType": "key",
-                "type": "link",
-                "width": "",
-                "align": "start"
-            }
-        ],
-        "mobileBreakpoint": "sm",
-        "mobileBreakpointType": "defaults",
-        "action": "replace",
-        "x": 570,
-        "y": 180,
-        "wires": [
-            [
-                "aefbf6f96248c398"
-            ]
-        ]
-    },
-    {
         "id": "18a10804663dbaa1",
         "type": "function",
         "z": "14f8c9b5ce1235cc",
@@ -4284,8 +4207,7 @@
         "y": 180,
         "wires": [
             [
-                "6532974092861ef7",
-                "5abf944e23a57b18"
+                "92e2ed9f115c3991"
             ]
         ]
     },
@@ -4301,7 +4223,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 880,
+        "x": 860,
         "y": 180,
         "wires": [
             [
@@ -4321,7 +4243,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
+        "x": 710,
         "y": 180,
         "wires": [
             [
@@ -4348,7 +4270,6 @@
                 "bff00eae3f65f644",
                 "bbb2d0709f064549",
                 "45375ce0b837d4fb",
-                "905cfb1ad4803a3a",
                 "4244d2ed880cca66"
             ]
         ]
@@ -4425,22 +4346,6 @@
         ]
     },
     {
-        "id": "905cfb1ad4803a3a",
-        "type": "debug",
-        "z": "14f8c9b5ce1235cc",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1440,
-        "y": 780,
-        "wires": []
-    },
-    {
         "id": "45375ce0b837d4fb",
         "type": "ui-template",
         "z": "14f8c9b5ce1235cc",
@@ -4490,23 +4395,6 @@
         ]
     },
     {
-        "id": "5abf944e23a57b18",
-        "type": "debug",
-        "z": "14f8c9b5ce1235cc",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 460,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "4244d2ed880cca66",
         "type": "ui-template",
         "z": "14f8c9b5ce1235cc",
@@ -4518,7 +4406,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <div class=\"pa-4 full-height-container d-flex flex-column\">\n        <v-card class=\"mb-4 flex-grow-0\" elevation=\"1\">\n            <v-card-text class=\"py-2\">\n                <v-row align=\"center\" justify=\"space-between\">\n                    <v-col cols=\"12\" md=\"3\">\n                        <div class=\"d-flex align-center\">\n                            <v-icon icon=\"mdi-magnify-minus-outline\" size=\"small\" class=\"mr-2\"></v-icon>\n                            <v-slider\n                                v-model=\"zoom\"\n                                min=\"0.1\"\n                                max=\"3\"\n                                step=\"0.1\"\n                                density=\"compact\"\n                                hide-details\n                                thumb-label\n                                color=\"primary\"\n                            ></v-slider>\n                            <v-icon icon=\"mdi-magnify-plus-outline\" size=\"small\" class=\"ml-2\"></v-icon>\n                        </div>\n                        <div class=\"text-caption text-center text-grey\">Zoom x{{ zoom.toFixed(1) }}</div>\n                    </v-col>\n\n                    <v-col cols=\"12\" md=\"3\">\n                        <v-select\n                            v-model=\"sortBy\"\n                            :items=\"sortOptions\"\n                            label=\"Sort By\"\n                            density=\"compact\"\n                            hide-details\n                            variant=\"outlined\"\n                            prepend-inner-icon=\"mdi-sort\"\n                        ></v-select>\n                    </v-col>\n\n                    <v-col cols=\"6\" md=\"3\">\n                         <v-select\n                            v-model=\"itemsPerPage\"\n                            :items=\"[12, 24, 48, 100]\"\n                            label=\"Per Page\"\n                            density=\"compact\"\n                            hide-details\n                            variant=\"outlined\"\n                        ></v-select>\n                    </v-col>\n                    \n                    <v-col cols=\"6\" md=\"3\" class=\"text-right\">\n                        <v-chip size=\"small\" variant=\"flat\">\n                            Total: {{ filteredItems.length }}\n                        </v-chip>\n                    </v-col>\n                </v-row>\n            </v-card-text>\n        </v-card>\n\n        <div class=\"gallery-scroll-area flex-grow-1\">\n            <div class=\"gallery-grid\">\n                <div \n                    v-for=\"(item, index) in paginatedItems\" \n                    :key=\"item.id\" \n                    class=\"gallery-item-wrapper\"\n                >\n                    <v-card \n                        class=\"gallery-card\" \n                        hover \n                        variant=\"outlined\" \n                        @click=\"openDetails(item)\"\n                        style=\"border-color: #e0e0e0;\"\n                    >\n                        <div \n                            class=\"img-container\"\n                            :style=\"{ \n                                width: (Math.max(item.object_width * zoom, 40)) + 'px', \n                                height: (Math.max(item.object_height * zoom, 40)) + 'px',\n                                backgroundColor: '#f5f5f5' \n                            }\"\n                        >\n                            <img \n                                :src=\"item.url\" \n                                :style=\"{\n                                    width: (item.object_width * zoom) + 'px',\n                                    height: (item.object_height * zoom) + 'px',\n                                    objectFit: 'contain',\n                                    imageRendering: 'pixelated'\n                                }\"\n                            />\n                            \n                            <div \n                                class=\"mini-scale-bar\" \n                                :style=\"{ width: getScaleBar(item).width + 'px' }\"\n                            ></div>\n                            <div class=\"mini-scale-text\">\n                                {{ getScaleBar(item).label }}\n                            </div>\n                        </div>\n\n                        <v-divider></v-divider>\n                        <div class=\"d-flex justify-center pa-0 bg-white\">\n                            <v-btn \n                                icon=\"mdi-download\" \n                                size=\"x-small\" \n                                variant=\"text\" \n                                color=\"grey-darken-1\"\n                                @click.stop=\"downloadImage(item.url, item.id)\"\n                                title=\"Download\"\n                            ></v-btn>\n                             <v-btn \n                                icon=\"mdi-eye\" \n                                size=\"x-small\" \n                                variant=\"text\" \n                                color=\"primary\"\n                                @click.stop=\"openDetails(item)\"\n                                title=\"View Details\"\n                            ></v-btn>\n                        </div>\n                    </v-card>\n                </div>\n                \n                <div v-if=\"filteredItems.length === 0\" class=\"text-center w-100 mt-10 text-grey\">\n                    No objects found.\n                </div>\n            </div>\n        </div>\n\n        <div class=\"text-center pt-2 flex-grow-0\">\n            <v-pagination\n                v-model=\"page\"\n                :length=\"totalPages\"\n                :total-visible=\"7\"\n                density=\"compact\"\n                rounded=\"circle\"\n                color=\"primary\"\n            ></v-pagination>\n        </div>\n\n        <v-dialog v-model=\"detailsDialog\" max-width=\"600\">\n            <v-card v-if=\"selectedItem\">\n                <v-toolbar color=\"primary\" density=\"compact\">\n                    <v-toolbar-title class=\"text-subtitle-1\">Object Analysis</v-toolbar-title>\n                    <v-btn icon=\"mdi-close\" @click=\"detailsDialog = false\"></v-btn>\n                </v-toolbar>\n                <v-card-text class=\"pa-4\">\n                    <v-row>\n                        <v-col cols=\"12\" class=\"text-center bg-grey-lighten-4 pa-4 rounded\">\n                            <img :src=\"selectedItem.url\" style=\"max-width: 100%; max-height: 300px; image-rendering: pixelated;\" />\n                            <div class=\"text-caption text-grey mt-1\">\n                                Resolution: {{ meta.resolution }} units/px\n                            </div>\n                        </v-col>\n                        <v-col cols=\"12\">\n                            <v-table density=\"compact\">\n                                <thead>\n                                    <tr><th class=\"text-left\">Metric</th><th class=\"text-right\">Value</th></tr>\n                                </thead>\n                                <tbody>\n                                    <tr v-for=\"(value, key) in formatMeta(selectedItem)\" :key=\"key\">\n                                        <td>{{ formatKeyName(key) }}</td>\n                                        <td class=\"text-right font-weight-bold\">{{ value }}</td>\n                                    </tr>\n                                </tbody>\n                            </v-table>\n                        </v-col>\n                    </v-row>\n                </v-card-text>\n            </v-card>\n        </v-dialog>\n    </div>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            rawData: [],\n            meta: { resolution: 1 },\n            keys: [],\n            zoom: 0.5, // Default zoom set to 0.5\n            \n            // Pagination & Sorting\n            page: 1,\n            itemsPerPage: 24,\n            sortBy: 'object_area',\n            \n            detailsDialog: false,\n            selectedItem: null,\n            sortOptions: [\n                { title: 'Area (Largest)', value: 'object_area' },\n                { title: 'Width', value: 'object_width' },\n                { title: 'Height', value: 'object_height' },\n                { title: 'Hue', value: 'object_MeanHue' },\n                { title: 'Elongation', value: 'object_elongation' }\n            ]\n        }\n    },\n    computed: {\n        filteredItems() {\n            if (!this.rawData) return [];\n            let result = [...this.rawData];\n            result.sort((a, b) => b[this.sortBy] - a[this.sortBy]);\n            return result;\n        },\n        totalPages() {\n            return Math.ceil(this.filteredItems.length / this.itemsPerPage);\n        },\n        paginatedItems() {\n            const start = (this.page - 1) * this.itemsPerPage;\n            const end = start + this.itemsPerPage;\n            return this.filteredItems.slice(start, end);\n        }\n    },\n    watch: {\n        msg: {\n            handler(newValue) {\n                if (newValue && newValue.payload && newValue.payload.data) {\n                    this.rawData = newValue.payload.data;\n                    this.meta = newValue.payload.meta || { resolution: 1 };\n                    this.keys = newValue.payload.keys || [];\n                    this.page = 1;\n                }\n            },\n            deep: true\n        },\n        sortBy() { this.page = 1; }, \n        totalPages(newVal) {\n            if (this.page > newVal && newVal > 0) {\n                this.page = newVal;\n            }\n        }\n    },\n    methods: {\n        openDetails(item) {\n            this.selectedItem = item;\n            this.detailsDialog = true;\n        },\n        // --- NEW ADAPTIVE SCALE BAR LOGIC ---\n        getScaleBar(item) {\n            const res = this.meta.resolution || 1; // e.g., 0.75 um/px\n            const realWidth = item.object_width * res; // The real world width of the object\n            \n            // We want a bar that is roughly 1/3rd to 1/4th of the object's visual width\n            // This prevents a 100px bar on a 20px image.\n            const targetSize = realWidth / 3;\n\n            // Algorithm to find the nearest \"Nice Number\" (1, 2, 5, 10, 20, 50, 100...)\n            const magnitude = Math.pow(10, Math.floor(Math.log10(targetSize)));\n            const residual = targetSize / magnitude;\n            \n            let niceNumber;\n            if (residual > 5) niceNumber = 5 * magnitude;       // e.g. 80 -> 50\n            else if (residual > 2) niceNumber = 2 * magnitude;  // e.g. 40 -> 20\n            else niceNumber = 1 * magnitude;                    // e.g. 15 -> 10\n            \n            // Fallback for very small objects to ensure at least 1 unit\n            if (niceNumber === 0) niceNumber = 1;\n\n            // Calculate how many pixels this \"Nice Number\" takes up\n            // pixels = real_units / resolution\n            const barPixels = niceNumber / res;\n\n            return {\n                width: barPixels * this.zoom, // Adjust for the current UI zoom level\n                label: niceNumber\n            };\n        },\n        formatKeyName(key) {\n            return key.replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());\n        },\n        formatMeta(item) {\n            const display = {};\n            const keysToUse = this.keys.length ? this.keys : Object.keys(item);\n            \n            keysToUse.forEach(k => {\n                if (k === 'url' || k === 'id') return; \n                let val = item[k];\n                if (typeof val === 'number') val = val.toFixed(2);\n                \n                let unit = '';\n                const keyLower = k.toLowerCase();\n                if (keyLower.includes('area')) unit = ' px²';\n                else if (keyLower.includes('width') || keyLower.includes('height') || keyLower.includes('major') || keyLower.includes('minor') || keyLower.includes('perim') || keyLower.includes('diameter') || keyLower.includes('_x') || keyLower.includes('_y')) unit = ' px';\n                else if (keyLower.includes('hue') || keyLower.includes('angle')) unit = '°';\n                else if (keyLower.includes('saturation')) unit = '%';\n                \n                const cleanKey = k.replace('object_', '');\n                display[cleanKey] = val + unit;\n            });\n            return display;\n        },\n        downloadImage(url, id) {\n            const link = document.createElement('a');\n            link.href = url;\n            link.download = `object_${id}.jpg`;\n            document.body.appendChild(link);\n            link.click();\n            document.body.removeChild(link);\n        }\n    }\n}\n</script>\n\n<style scoped>\n.full-height-container {\n    height: 100%;\n    max-height: 100vh; \n}\n\n.gallery-scroll-area {\n    overflow-y: auto;\n    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);\n    border-radius: 4px;\n    border: 1px solid #eee;\n    padding: 16px;\n}\n\n.gallery-grid {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    align-items: flex-end; \n    justify-content: center;\n}\n\n.gallery-item-wrapper {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.gallery-card {\n    transition: transform 0.2s;\n    cursor: pointer;\n}\n.gallery-card:hover {\n    transform: translateY(-2px);\n    border-color: #2196F3 !important;\n}\n\n.img-container {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    margin: 0 auto;\n    border-bottom: 1px solid #eee;\n}\n\n/* Individual Scale Bar Styles */\n.mini-scale-bar {\n    position: absolute;\n    bottom: 2px;\n    right: 2px;\n    height: 3px;\n    background-color: white;\n    border: 1px solid black;\n    pointer-events: none;\n    z-index: 2;\n    transition: width 0.3s ease; /* Smooth transition when zooming */\n}\n\n.mini-scale-text {\n    position: absolute;\n    bottom: 5px;\n    right: 2px;\n    font-size: 9px;\n    color: black;\n    text-shadow: 0px 0px 2px white;\n    font-weight: 700;\n    line-height: 1;\n    z-index: 2;\n}\n</style>",
+        "format": "<template>\n    <div class=\"pa-0 d-flex flex-column\">\n        <v-card class=\"mb-4 flex-grow-0\" elevation=\"1\">\n            <v-card-text class=\"py-2\">\n                <v-row align=\"center\" justify=\"space-between\">\n                    <v-col cols=\"12\" md=\"3\">\n                        <div class=\"d-flex align-center\">\n                            <v-icon icon=\"mdi-magnify-minus-outline\" size=\"small\" class=\"mr-2\"></v-icon>\n                            <v-slider\n                                v-model=\"zoom\"\n                                min=\"0.1\"\n                                max=\"3\"\n                                step=\"0.1\"\n                                density=\"compact\"\n                                hide-details\n                                thumb-label\n                                color=\"primary\"\n                            ></v-slider>\n                            <v-icon icon=\"mdi-magnify-plus-outline\" size=\"small\" class=\"ml-2\"></v-icon>\n                        </div>\n                        <div class=\"text-caption text-center text-grey\">Zoom x{{ zoom.toFixed(1) }}</div>\n                    </v-col>\n\n                    <v-col cols=\"12\" md=\"3\">\n                        <v-select\n                            v-model=\"sortBy\"\n                            :items=\"sortOptions\"\n                            label=\"Sort By\"\n                            density=\"compact\"\n                            hide-details\n                            variant=\"outlined\"\n                            prepend-inner-icon=\"mdi-sort\"\n                        ></v-select>\n                    </v-col>\n\n                    <v-col cols=\"6\" md=\"3\">\n                         <v-select\n                            v-model=\"itemsPerPage\"\n                            :items=\"[12, 24, 48, 100]\"\n                            label=\"Per Page\"\n                            density=\"compact\"\n                            hide-details\n                            variant=\"outlined\"\n                        ></v-select>\n                    </v-col>\n                    \n                    <v-col cols=\"6\" md=\"3\" class=\"text-right\">\n                        <v-chip size=\"small\" variant=\"flat\">\n                            Total: {{ filteredItems.length }}\n                        </v-chip>\n                    </v-col>\n                </v-row>\n            </v-card-text>\n        </v-card>\n\n        <div class=\"gallery-scroll-area flex-grow-1\">\n            <div class=\"gallery-grid\">\n                <div \n                    v-for=\"(item, index) in paginatedItems\" \n                    :key=\"item.id\" \n                    class=\"gallery-item-wrapper\"\n                >\n                    <v-card \n                        class=\"gallery-card\" \n                        hover \n                        variant=\"outlined\" \n                        @click=\"openDetails(item)\"\n                        style=\"border-color: #e0e0e0;\"\n                    >\n                        <div \n                            class=\"img-container\"\n                            :style=\"{ \n                                width: (Math.max(item.object_width * zoom, 40)) + 'px', \n                                height: (Math.max(item.object_height * zoom, 40)) + 'px',\n                                backgroundColor: '#f5f5f5' \n                            }\"\n                        >\n                            <img \n                                :src=\"item.url\" \n                                :style=\"{\n                                    width: (item.object_width * zoom) + 'px',\n                                    height: (item.object_height * zoom) + 'px',\n                                    objectFit: 'contain',\n                                    imageRendering: 'pixelated'\n                                }\"\n                            />\n                            \n                            <div \n                                class=\"mini-scale-bar\" \n                                :style=\"{ width: getScaleBar(item).width + 'px' }\"\n                            ></div>\n                            <div class=\"mini-scale-text\">\n                                {{ getScaleBar(item).label }}\n                            </div>\n                        </div>\n\n                        <v-divider></v-divider>\n                        <div class=\"d-flex justify-center pa-0 bg-white\">\n                            <v-btn \n                                icon=\"mdi-download\" \n                                size=\"x-small\" \n                                variant=\"text\" \n                                color=\"grey-darken-1\"\n                                @click.stop=\"downloadImage(item.url, item.id)\"\n                                title=\"Download\"\n                            ></v-btn>\n                             <v-btn \n                                icon=\"mdi-eye\" \n                                size=\"x-small\" \n                                variant=\"text\" \n                                color=\"primary\"\n                                @click.stop=\"openDetails(item)\"\n                                title=\"View Details\"\n                            ></v-btn>\n                        </div>\n                    </v-card>\n                </div>\n                \n                <div v-if=\"filteredItems.length === 0\" class=\"text-center w-100 mt-10 text-grey\">\n                    No objects found.\n                </div>\n            </div>\n        </div>\n\n        <div class=\"text-center pt-2 flex-grow-0\">\n            <v-pagination\n                v-model=\"page\"\n                :length=\"totalPages\"\n                :total-visible=\"7\"\n                density=\"compact\"\n                rounded=\"circle\"\n                color=\"primary\"\n            ></v-pagination>\n        </div>\n\n        <v-dialog v-model=\"detailsDialog\" max-width=\"600\">\n            <v-card v-if=\"selectedItem\">\n                <v-toolbar color=\"primary\" density=\"compact\">\n                    <v-toolbar-title class=\"text-subtitle-1\">Object Analysis</v-toolbar-title>\n                    <v-btn icon=\"mdi-close\" @click=\"detailsDialog = false\"></v-btn>\n                </v-toolbar>\n                <v-card-text class=\"pa-4\">\n                    <v-row>\n                        <v-col cols=\"12\" class=\"text-center bg-grey-lighten-4 pa-4 rounded\">\n                            <img :src=\"selectedItem.url\" style=\"max-width: 100%; max-height: 300px; image-rendering: pixelated;\" />\n                            <div class=\"text-caption text-grey mt-1\">\n                                Resolution: {{ meta.resolution }} units/px\n                            </div>\n                        </v-col>\n                        <v-col cols=\"12\">\n                            <v-table density=\"compact\">\n                                <thead>\n                                    <tr><th class=\"text-left\">Metric</th><th class=\"text-right\">Value</th></tr>\n                                </thead>\n                                <tbody>\n                                    <tr v-for=\"(value, key) in formatMeta(selectedItem)\" :key=\"key\">\n                                        <td>{{ formatKeyName(key) }}</td>\n                                        <td class=\"text-right font-weight-bold\">{{ value }}</td>\n                                    </tr>\n                                </tbody>\n                            </v-table>\n                        </v-col>\n                    </v-row>\n                </v-card-text>\n            </v-card>\n        </v-dialog>\n    </div>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            rawData: [],\n            meta: { resolution: 1 },\n            keys: [],\n            zoom: 0.5, // Default zoom set to 0.5\n            \n            // Pagination & Sorting\n            page: 1,\n            itemsPerPage: 24,\n            sortBy: 'object_area',\n            \n            detailsDialog: false,\n            selectedItem: null,\n            sortOptions: [\n                { title: 'Area (Largest)', value: 'object_area' },\n                { title: 'Width', value: 'object_width' },\n                { title: 'Height', value: 'object_height' },\n                { title: 'Hue', value: 'object_MeanHue' },\n                { title: 'Elongation', value: 'object_elongation' }\n            ]\n        }\n    },\n    computed: {\n        filteredItems() {\n            if (!this.rawData) return [];\n            let result = [...this.rawData];\n            result.sort((a, b) => b[this.sortBy] - a[this.sortBy]);\n            return result;\n        },\n        totalPages() {\n            return Math.ceil(this.filteredItems.length / this.itemsPerPage);\n        },\n        paginatedItems() {\n            const start = (this.page - 1) * this.itemsPerPage;\n            const end = start + this.itemsPerPage;\n            return this.filteredItems.slice(start, end);\n        }\n    },\n    watch: {\n        msg: {\n            handler(newValue) {\n                if (newValue && newValue.payload && newValue.payload.data) {\n                    this.rawData = newValue.payload.data;\n                    this.meta = newValue.payload.meta || { resolution: 1 };\n                    this.keys = newValue.payload.keys || [];\n                    this.page = 1;\n                }\n            },\n            deep: true\n        },\n        sortBy() { this.page = 1; }, \n        totalPages(newVal) {\n            if (this.page > newVal && newVal > 0) {\n                this.page = newVal;\n            }\n        }\n    },\n    methods: {\n        openDetails(item) {\n            this.selectedItem = item;\n            this.detailsDialog = true;\n        },\n        // --- NEW ADAPTIVE SCALE BAR LOGIC ---\n        getScaleBar(item) {\n            const res = this.meta.resolution || 1; // e.g., 0.75 um/px\n            const realWidth = item.object_width * res; // The real world width of the object\n            \n            // We want a bar that is roughly 1/3rd to 1/4th of the object's visual width\n            // This prevents a 100px bar on a 20px image.\n            const targetSize = realWidth / 3;\n\n            // Algorithm to find the nearest \"Nice Number\" (1, 2, 5, 10, 20, 50, 100...)\n            const magnitude = Math.pow(10, Math.floor(Math.log10(targetSize)));\n            const residual = targetSize / magnitude;\n            \n            let niceNumber;\n            if (residual > 5) niceNumber = 5 * magnitude;       // e.g. 80 -> 50\n            else if (residual > 2) niceNumber = 2 * magnitude;  // e.g. 40 -> 20\n            else niceNumber = 1 * magnitude;                    // e.g. 15 -> 10\n            \n            // Fallback for very small objects to ensure at least 1 unit\n            if (niceNumber === 0) niceNumber = 1;\n\n            // Calculate how many pixels this \"Nice Number\" takes up\n            // pixels = real_units / resolution\n            const barPixels = niceNumber / res;\n\n            return {\n                width: barPixels * this.zoom, // Adjust for the current UI zoom level\n                label: niceNumber\n            };\n        },\n        formatKeyName(key) {\n            return key.replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());\n        },\n        formatMeta(item) {\n            const display = {};\n            const keysToUse = this.keys.length ? this.keys : Object.keys(item);\n            \n            keysToUse.forEach(k => {\n                if (k === 'url' || k === 'id') return; \n                let val = item[k];\n                if (typeof val === 'number') val = val.toFixed(2);\n                \n                let unit = '';\n                const keyLower = k.toLowerCase();\n                if (keyLower.includes('area')) unit = ' px²';\n                else if (keyLower.includes('width') || keyLower.includes('height') || keyLower.includes('major') || keyLower.includes('minor') || keyLower.includes('perim') || keyLower.includes('diameter') || keyLower.includes('_x') || keyLower.includes('_y')) unit = ' px';\n                else if (keyLower.includes('hue') || keyLower.includes('angle')) unit = '°';\n                else if (keyLower.includes('saturation')) unit = '%';\n                \n                const cleanKey = k.replace('object_', '');\n                display[cleanKey] = val + unit;\n            });\n            return display;\n        },\n        downloadImage(url, id) {\n            const link = document.createElement('a');\n            link.href = url;\n            link.download = `object_${id}.jpg`;\n            document.body.appendChild(link);\n            link.click();\n            document.body.removeChild(link);\n        }\n    }\n}\n</script>\n\n<style scoped>\n.full-height-container {\n    height: 100%;\n    max-height: 100vh; \n}\n\n.gallery-scroll-area {\n    overflow-y: auto;\n    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);\n    border-radius: 4px;\n    border: 1px solid #eee;\n    padding: 16px;\n}\n\n.gallery-grid {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    align-items: flex-end; \n    justify-content: center;\n}\n\n.gallery-item-wrapper {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.gallery-card {\n    transition: transform 0.2s;\n    cursor: pointer;\n}\n.gallery-card:hover {\n    transform: translateY(-2px);\n    border-color: #2196F3 !important;\n}\n\n.img-container {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    margin: 0 auto;\n    border-bottom: 1px solid #eee;\n}\n\n/* Individual Scale Bar Styles */\n.mini-scale-bar {\n    position: absolute;\n    bottom: 2px;\n    right: 2px;\n    height: 3px;\n    background-color: white;\n    border: 1px solid black;\n    pointer-events: none;\n    z-index: 2;\n    transition: width 0.3s ease; /* Smooth transition when zooming */\n}\n\n.mini-scale-text {\n    position: absolute;\n    bottom: 5px;\n    right: 2px;\n    font-size: 9px;\n    color: black;\n    text-shadow: 0px 0px 2px white;\n    font-weight: 700;\n    line-height: 1;\n    z-index: 2;\n}\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4528,6 +4416,32 @@
         "y": 360,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "92e2ed9f115c3991",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "fa6393a7d7e3b7d7",
+        "page": "",
+        "ui": "",
+        "name": "Selector",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n    <v-card>\n        <v-card-title>\n            <span class=\"text-h6\">Select Acquisition</span>\n            <v-spacer></v-spacer>\n            <v-text-field\n                v-model=\"search\"\n                append-inner-icon=\"mdi-magnify\"\n                label=\"Search...\"\n                single-line\n                hide-details\n                variant=\"outlined\"\n                density=\"compact\"\n                style=\"max-width: 300px;\"\n            ></v-text-field>\n        </v-card-title>\n\n        <v-data-table\n            :headers=\"headers\"\n            :items=\"items\"\n            :search=\"search\"\n            item-value=\"acquisition_id\"\n            density=\"compact\"\n            class=\"elevation-1\"\n        >\n            <template v-slot:item.image_acquired_count=\"{ item }\">\n                <v-chip size=\"small\" color=\"primary\" variant=\"tonal\">\n                    {{ item.image_acquired_count }}\n                </v-chip>\n            </template>\n\n            <template v-slot:item.links=\"{ item }\">\n                \n                <v-tooltip text=\"View Gallery\" location=\"top\">\n                    <template v-slot:activator=\"{ props }\">\n                        <v-btn \n                            icon=\"mdi-image-multiple\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"blue-darken-2\" \n                            :href=\"item.gallery\" \n                            target=\"_blank\"\n                            v-bind=\"props\"\n                        ></v-btn>\n                    </template>\n                </v-tooltip>\n\n                <v-tooltip text=\"Download Zip\" location=\"top\">\n                    <template v-slot:activator=\"{ props }\">\n                        <v-btn \n                            icon=\"mdi-download\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"orange-darken-2\" \n                            :href=\"item.export\" \n                            v-bind=\"props\"\n                        ></v-btn>\n                    </template>\n                </v-tooltip>\n            </template>\n\n            <template v-slot:item.actions=\"{ item }\">\n                        <v-btn \n                            icon=\"mdi-chart-scatter-plot-hexbin\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"primary\" \n                            @click=\"selectAcquisition(item)\"\n                        ></v-btn>\n            </template>\n        </v-data-table>\n    </v-card>\n</template>\n\n<script>\n    export default {\n        data() { \n            return {\n                search: '',\n                items: [],\n                headers: [\n                    { title: 'Project', key: 'project_name', sortable: true },\n                    { title: 'Sample ID', key: 'sample_id', sortable: true },\n                    { title: 'Acquisition ID', key: 'acquisition_id', sortable: true },\n                    { title: 'Images', key: 'image_acquired_count', sortable: true, align: 'end' },\n                    { title: 'Resources', key: 'links', sortable: false, align: 'center' }, // New Column\n                    { title: 'Select', key: 'actions', sortable: false, align: 'end' },\n                ]\n            }\n        },\n        watch: {\n            msg: {\n                handler(newValue) {\n                    if (newValue && Array.isArray(newValue.payload)) {\n                        this.items = newValue.payload;\n                    }\n                },\n                deep: true\n            }\n        },\n        mounted() {\n            if (this.msg && Array.isArray(this.msg.payload)) {\n                this.items = this.msg.payload;\n            }\n        },\n        methods: {\n            selectAcquisition(item) {\n                this.send({\n                    topic: \"selected_acquisition\",\n                    payload: item\n                });\n            }\n        }\n    }\n</script>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "aefbf6f96248c398"
+            ]
         ]
     },
     {
