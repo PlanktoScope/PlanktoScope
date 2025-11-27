@@ -49,7 +49,8 @@ await procedure("setup/update", async (data) => {
     setHardwareVersion(hardware_version),
   ])
 
-  await updateSoftwareConfig({ user_setup: true })
-
-  await promiseDashboardOnline()
+  await Promise.all([
+    updateSoftwareConfig({ user_setup: true }),
+    promiseDashboardOnline(),
+  ])
 })

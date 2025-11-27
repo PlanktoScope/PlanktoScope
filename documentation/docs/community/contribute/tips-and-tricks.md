@@ -10,11 +10,11 @@ This page provides useful snippets and how-tos while developing software for the
 
 ### Install Raspberry Pi OS
 
-Download [2025-10-01-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-10-02/).
+Download [2025-11-24-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-11-24/).
 
 Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
 
-When asked to **Use OS customization?** press **EDIT SETTINGS**
+Use the following OS customization:
 
 * Set **Username** to `pi`
 * Set **Password** to `copepode`
