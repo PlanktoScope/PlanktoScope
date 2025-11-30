@@ -112,14 +112,6 @@
         "env": []
     },
     {
-        "id": "7c57cfad252356b9",
-        "type": "tab",
-        "label": "Test",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "4ed26b8b.253504",
         "type": "subflow",
         "name": "Save hardware config",
@@ -729,7 +721,7 @@
                 "cols": "12"
             }
         ],
-        "order": 5,
+        "order": 4,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -863,7 +855,7 @@
                 "cols": "12"
             }
         ],
-        "order": 7,
+        "order": 6,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -913,7 +905,7 @@
                 "cols": "12"
             }
         ],
-        "order": 11,
+        "order": 10,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -963,7 +955,7 @@
                 "cols": "12"
             }
         ],
-        "order": 12,
+        "order": 11,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1013,7 +1005,7 @@
                 "cols": "12"
             }
         ],
-        "order": 13,
+        "order": 12,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1063,7 +1055,7 @@
                 "cols": "12"
             }
         ],
-        "order": 10,
+        "order": 9,
         "className": "",
         "visible": "false",
         "disabled": "false"
@@ -1113,7 +1105,7 @@
                 "cols": "12"
             }
         ],
-        "order": 9,
+        "order": 8,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1177,7 +1169,7 @@
                 "cols": "12"
             }
         ],
-        "order": 4,
+        "order": 3,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1241,7 +1233,7 @@
                 "cols": "12"
             }
         ],
-        "order": 6,
+        "order": 5,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1292,12 +1284,12 @@
             {
                 "name": "Tablet",
                 "px": "576",
-                "cols": "6"
+                "cols": "3"
             },
             {
                 "name": "Small Desktop",
                 "px": "768",
-                "cols": "9"
+                "cols": "12"
             },
             {
                 "name": "Desktop",
@@ -1305,7 +1297,7 @@
                 "cols": "12"
             }
         ],
-        "order": 3,
+        "order": 2,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1439,7 +1431,7 @@
                 "cols": "12"
             }
         ],
-        "order": 8,
+        "order": 7,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1531,7 +1523,7 @@
                 "cols": "12"
             }
         ],
-        "order": 2,
+        "order": 1,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1593,92 +1585,112 @@
         "groupType": "default"
     },
     {
-        "id": "e6c6c12fea382047",
-        "type": "ui-page",
-        "name": "Test",
-        "ui": "e6ae26617c24c3ea",
-        "path": "/test",
-        "icon": "home",
-        "layout": "grid",
-        "theme": "f7770f0b818c3a67",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Small Desktop",
-                "px": "768",
-                "cols": "6"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 1,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "8ab8d09f947dced4",
+        "id": "36931a9722892790",
         "type": "ui-group",
-        "name": "Group 34",
-        "page": "e6c6c12fea382047",
-        "width": "6",
+        "name": "Software Version",
+        "page": "632260133d581caa",
+        "width": "3",
         "height": 1,
-        "order": 1,
-        "showTitle": true,
+        "order": 6,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
     },
     {
-        "id": "2567fe5c6e1ac69f",
+        "id": "2aa235120084abe4",
         "type": "ui-group",
-        "name": "Group 35",
-        "page": "e6c6c12fea382047",
-        "width": 6,
+        "name": "Images Acquired",
+        "page": "632260133d581caa",
+        "width": "3",
+        "height": 1,
+        "order": 7,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "df7c60bd8b265e48",
+        "type": "ui-group",
+        "name": "Objects Segmented",
+        "page": "632260133d581caa",
+        "width": "3",
+        "height": 1,
+        "order": 8,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "dc304678d9a6b53b",
+        "type": "ui-group",
+        "name": "Storage",
+        "page": "632260133d581caa",
+        "width": "3",
+        "height": 1,
+        "order": 9,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "8a113b6c8e1eadb7",
+        "type": "ui-group",
+        "name": "Learn the basic",
+        "page": "632260133d581caa",
+        "width": "12",
+        "height": 1,
+        "order": 5,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "97e552a2d05b0800",
+        "type": "ui-group",
+        "name": "Lanch the preview",
+        "page": "632260133d581caa",
+        "width": "4",
         "height": 1,
         "order": 2,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
     },
     {
-        "id": "ec5fe3d2a48f9c58",
+        "id": "82480e386ed6f8bd",
         "type": "ui-group",
-        "name": "Group 36",
-        "page": "e6c6c12fea382047",
-        "width": 6,
+        "name": "Explore your data",
+        "page": "632260133d581caa",
+        "width": "4",
         "height": 1,
         "order": 3,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
     },
     {
-        "id": "fbdbc0b5e681eb9d",
+        "id": "9d3e8bdd535f0e0d",
         "type": "ui-group",
-        "name": "Group 37",
-        "page": "e6c6c12fea382047",
-        "width": 6,
+        "name": "Run the Calibration",
+        "page": "632260133d581caa",
+        "width": "4",
         "height": 1,
         "order": 4,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -2112,7 +2124,7 @@
         "templateScope": "widget:ui",
         "className": "",
         "x": 510,
-        "y": 540,
+        "y": 700,
         "wires": [
             []
         ]
@@ -2310,8 +2322,12 @@
         "y": 280,
         "wires": [
             [
-                "cd5cd3a0277b8dba",
-                "04386808e694e97e"
+                "04386808e694e97e",
+                "e68b686e94d78c9d",
+                "e431a9253416f9eb",
+                "b50dce0a86c2668c",
+                "07c889f3fa18b15b",
+                "ae546211d7d4413c"
             ]
         ]
     },
@@ -2383,14 +2399,14 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container fluid>\n\n    <!-- HEADER -->\n    <v-row justify=\"center\" dense class=\"py-8\">\n              <svg viewBox=\"0 0 52.916666 52.916666\" width=\"150\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n                <ellipse cx=\"26.222767\" cy=\"27.404638\" rx=\"23.859026\" ry=\"23.268091\"\n                  style=\"fill:#ffffff;stroke:#adadad;stroke-width:0.255058;stroke-dasharray:0.255058,0.510117\" />\n                <path\n                  d=\"M 25.235172,52.886866 C 18.788363,52.603542 12.618867,49.920327 7.9862278,45.385011 5.7884865,43.233443 4.126863,40.96322 2.7783721,38.269687 -0.69951435,31.3228 -0.92413866,23.055533 2.1714608,15.932226 4.2927656,11.050887 7.8775566,6.8759872 12.379084,4.0442925 16.268483,1.5976551 20.749011,0.2041208 25.311296,0.02211622 32.912028,-0.28110313 40.068898,2.5428839 45.330004,7.921181 c 1.394211,1.4252635 2.203509,2.427764 3.254874,4.031906 3.067465,4.680258 4.533514,10.016501 4.301182,15.65584 -0.24014,5.828764 -2.396645,11.365031 -6.195763,15.90599 -0.609303,0.728286 -2.000689,2.145321 -2.779528,2.830762 -3.92791,3.456901 -8.899105,5.69775 -14.107867,6.359358 -0.842019,0.106946 -1.343409,0.141442 -3.0145,0.207349 -0.281856,0.0112 -0.980811,-3.6e-4 -1.55323,-0.02554 z m -8.730149,-9.822631 c 0.109695,-0.04173 0.154655,-0.103087 0.154655,-0.211139 0,-0.298316 -0.854772,-0.812893 -2.806491,-1.689537 C 11.53131,40.120648 10.3078,39.367878 9.3006669,38.362582 7.0517974,36.117829 5.8601816,33.216131 6.2543214,30.944446 6.3887402,30.169737 6.5434509,29.871103 6.901246,29.695768 c 0.4841667,-0.23727 0.995125,-0.338007 1.7097068,-0.337072 0.9709729,0.0014 1.5470122,0.171079 2.0152092,0.594067 0.283418,0.256043 0.560221,0.375098 0.989405,0.425544 0.510426,0.05997 0.82424,-0.0134 1.252715,-0.292743 1.01939,-0.664717 5.540491,-2.409825 6.233136,-2.405942 0.165803,6.88e-4 0.423543,-0.03619 0.57276,-0.08247 0.631382,-0.195875 2.844992,-0.422152 4.954857,-0.506488 1.239664,-0.04953 3.354525,-0.02172 8.097936,0.106687 1.127421,0.03052 3.605179,0.06097 5.506133,0.06763 1.900954,0.0064 3.745833,0.03853 4.099724,0.07075 0.353899,0.03222 1.498055,0.07329 2.542584,0.09127 1.898992,0.03272 2.911755,-0.0184 3.397943,-0.171558 0.573761,-0.180697 0.764411,-0.672624 0.353353,-0.911762 -0.248676,-0.144681 -1.481535,-0.21537 -3.82899,-0.219564 -2.488027,-0.0042 -5.224909,-0.131603 -11.075963,-0.514612 -3.222986,-0.210967 -5.937562,-0.378602 -8.802349,-0.543559 -3.976844,-0.228997 -4.985076,-0.481342 -5.999512,-1.501557 -0.167847,-0.168804 -0.600666,-0.673184 -0.961825,-1.120835 -0.92504,-1.146598 -2.832132,-3.036395 -3.740139,-3.706229 -0.397915,-0.293538 -0.804872,-0.61865 -0.904352,-0.722468 -0.09948,-0.103824 -0.333374,-0.262472 -0.519766,-0.352557 -1.28055,-0.618905 -1.618906,-1.875722 -0.853693,-3.170983 0.461938,-0.781901 1.523215,-1.660846 2.748294,-2.276117 1.13425,-0.569655 2.255356,-0.975853 4.382863,-1.587996 2.089099,-0.60109 2.927546,-0.9311702 3.077629,-1.2115953 0.08554,-0.1598279 0.0077,-0.4070348 -0.163425,-0.5191737 -0.239138,-0.1566868 -0.614968,-0.1939369 -1.316519,-0.130482 -0.852279,0.077088 -1.490305,0.2163293 -3.131411,0.6833976 -1.418582,0.403736 -1.911513,0.5888334 -3.108608,1.1672844 -2.333261,1.127465 -3.264923,1.941987 -4.698402,4.107681 -0.4611363,0.696689 -0.8715706,1.36878 -0.9120808,1.49354 -0.1059747,0.32644 -0.6208078,1.341941 -1.5210083,3.000179 -1.9466021,3.585797 -2.6241442,5.326854 -3.0597521,7.862531 -0.066004,0.384261 -0.1606715,0.902139 -0.2103378,1.150829 -0.04968,0.248696 -0.1069963,0.926964 -0.1273797,1.507254 -0.081086,2.308272 0.2512527,4.04802 1.0944559,5.729316 1.2878816,2.567957 3.2322337,4.503921 5.8597418,5.834441 2.243901,1.136279 5.019803,2.001753 5.650844,1.761829 z\"\n                  fill=\"#076eca\" />\n              </svg>\n    </v-row>\n    <v-row justify=\"center\" dense>\n      <v-empty-state \n      headline=\"Welcome to your PlanktoScope\" \n      title=\"What would you like to do today?\"\n    />\n    </v-row>\n\n    <!-- MAIN ACTIONS -->\n    <v-row justify=\"center\" dense>\n      <!-- Launch the Preview -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"preview\"\n          variant=\"flat\"\n          color=\"primary\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-eye</v-icon>\n          <span class=\"text-h6\">Launch the Preview</span>\n        </v-btn>\n      </v-col>\n\n      <!-- Explore Your Data -->\n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"visualization\"\n          target=\"_blank\"\n          variant=\"outlined\"\n          color=\"primary\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-chart-scatter-plot-hexbin</v-icon>\n          <span class=\"text-h6\">Explore your data</span>\n        </v-btn>\n      </v-col>\n      \n      <v-col cols=\"12\" md=\"4\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"calibration\"\n          variant=\"flat\"\n          color=\"grey-darken-3\"\n          size=\"large\"\n          stacked\n          class=\"text-none w-100 py-6 flex-column\"\n        >\n          <v-icon size=\"50\" class=\"mb-2\">mdi-tune</v-icon>\n          <span class=\"text-h6\">Run the Calibration</span>\n        </v-btn>\n      </v-col>\n    </v-row>\n\n    <!-- SECONDARY ACTIONS -->\n    <v-row justify=\"center\" dense class=\"py-6\">\n      <!-- Learn the Basics -->\n      <v-col cols=\"12\" md=\"12\" class=\"d-flex pa-3\">\n        <v-btn\n          href=\"/ps/docs/operation/protocol-v4.pdf\"\n          target=\"_blank\"\n          color=\"primary\"\n          variant=\"tonal\"\n          size=\"large\"\n          class=\"text-none w-100 text-subtitle-1 py-3\"\n        >\n          <v-icon start size=\"30\">mdi-book-open-variant</v-icon>\n          Learn the Basics\n        </v-btn>\n      </v-col>\n\n    </v-row>\n\n<v-divider ></v-divider>\n    <!-- STAT CARDS -->\n    <v-row class=\"py-6\">\n\n      <!-- Software Version -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-github</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Software Version</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.software_version }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Images acquired -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-image-multiple-outline</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Images Acquired</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.image_acquired }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Objects segmented -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n          <div class=\"d-flex align-center\">\n            <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-crop</v-icon>\n            <span class=\"text-subtitle-3 font-weight-medium\">Objects Segmented</span>\n          </div>\n          <div class=\"text-subtitle-3 font-weight-bold\">\n            {{ msg.payload.object_segmented }}\n          </div>\n        </v-card>\n      </v-col>\n\n      <!-- Storage (single-line layout: icon → progress bar → value) -->\n      <v-col cols=\"12\" md=\"3\">\n        <v-card variant=\"outlined\" class=\"pa-4 d-flex align-center justify-space-between\">\n\n          <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-sd</v-icon>\n          <span class=\"text-subtitle-3 font-weight-medium\">Storage</span>\n\n          <v-progress-linear\n            :model-value=\"msg.payload.storage_percent_used\"\n            height=\"12\"\n            rounded\n            class=\"flex-grow-1 mx-3\"\n            :color=\"\n              msg.payload.storage_percent_used > 90\n                ? 'error'\n                : msg.payload.storage_percent_used > 70\n                ? 'warning'\n                : 'success'\n            \"\n          ></v-progress-linear>\n\n          <div class=\"text-subtitle-3 font-weight-bold d-flex justify-end\" style=\"min-width: 48px;\">\n            {{ msg.payload.storage_percent_used }}%\n          </div>\n\n        </v-card>\n\n      </v-col>\n    </v-row>\n\n  </v-container>\n</template>\n",
+        "format": "<template>\n  <v-container fluid>\n    <!-- HEADER -->\n    <v-row justify=\"center\" dense class=\"py-8\">\n              <svg viewBox=\"0 0 52.916666 52.916666\" width=\"150\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\">\n                <ellipse cx=\"26.222767\" cy=\"27.404638\" rx=\"23.859026\" ry=\"23.268091\"\n                  style=\"fill:#ffffff;stroke:#adadad;stroke-width:0.255058;stroke-dasharray:0.255058,0.510117\" />\n                <path\n                  d=\"M 25.235172,52.886866 C 18.788363,52.603542 12.618867,49.920327 7.9862278,45.385011 5.7884865,43.233443 4.126863,40.96322 2.7783721,38.269687 -0.69951435,31.3228 -0.92413866,23.055533 2.1714608,15.932226 4.2927656,11.050887 7.8775566,6.8759872 12.379084,4.0442925 16.268483,1.5976551 20.749011,0.2041208 25.311296,0.02211622 32.912028,-0.28110313 40.068898,2.5428839 45.330004,7.921181 c 1.394211,1.4252635 2.203509,2.427764 3.254874,4.031906 3.067465,4.680258 4.533514,10.016501 4.301182,15.65584 -0.24014,5.828764 -2.396645,11.365031 -6.195763,15.90599 -0.609303,0.728286 -2.000689,2.145321 -2.779528,2.830762 -3.92791,3.456901 -8.899105,5.69775 -14.107867,6.359358 -0.842019,0.106946 -1.343409,0.141442 -3.0145,0.207349 -0.281856,0.0112 -0.980811,-3.6e-4 -1.55323,-0.02554 z m -8.730149,-9.822631 c 0.109695,-0.04173 0.154655,-0.103087 0.154655,-0.211139 0,-0.298316 -0.854772,-0.812893 -2.806491,-1.689537 C 11.53131,40.120648 10.3078,39.367878 9.3006669,38.362582 7.0517974,36.117829 5.8601816,33.216131 6.2543214,30.944446 6.3887402,30.169737 6.5434509,29.871103 6.901246,29.695768 c 0.4841667,-0.23727 0.995125,-0.338007 1.7097068,-0.337072 0.9709729,0.0014 1.5470122,0.171079 2.0152092,0.594067 0.283418,0.256043 0.560221,0.375098 0.989405,0.425544 0.510426,0.05997 0.82424,-0.0134 1.252715,-0.292743 1.01939,-0.664717 5.540491,-2.409825 6.233136,-2.405942 0.165803,6.88e-4 0.423543,-0.03619 0.57276,-0.08247 0.631382,-0.195875 2.844992,-0.422152 4.954857,-0.506488 1.239664,-0.04953 3.354525,-0.02172 8.097936,0.106687 1.127421,0.03052 3.605179,0.06097 5.506133,0.06763 1.900954,0.0064 3.745833,0.03853 4.099724,0.07075 0.353899,0.03222 1.498055,0.07329 2.542584,0.09127 1.898992,0.03272 2.911755,-0.0184 3.397943,-0.171558 0.573761,-0.180697 0.764411,-0.672624 0.353353,-0.911762 -0.248676,-0.144681 -1.481535,-0.21537 -3.82899,-0.219564 -2.488027,-0.0042 -5.224909,-0.131603 -11.075963,-0.514612 -3.222986,-0.210967 -5.937562,-0.378602 -8.802349,-0.543559 -3.976844,-0.228997 -4.985076,-0.481342 -5.999512,-1.501557 -0.167847,-0.168804 -0.600666,-0.673184 -0.961825,-1.120835 -0.92504,-1.146598 -2.832132,-3.036395 -3.740139,-3.706229 -0.397915,-0.293538 -0.804872,-0.61865 -0.904352,-0.722468 -0.09948,-0.103824 -0.333374,-0.262472 -0.519766,-0.352557 -1.28055,-0.618905 -1.618906,-1.875722 -0.853693,-3.170983 0.461938,-0.781901 1.523215,-1.660846 2.748294,-2.276117 1.13425,-0.569655 2.255356,-0.975853 4.382863,-1.587996 2.089099,-0.60109 2.927546,-0.9311702 3.077629,-1.2115953 0.08554,-0.1598279 0.0077,-0.4070348 -0.163425,-0.5191737 -0.239138,-0.1566868 -0.614968,-0.1939369 -1.316519,-0.130482 -0.852279,0.077088 -1.490305,0.2163293 -3.131411,0.6833976 -1.418582,0.403736 -1.911513,0.5888334 -3.108608,1.1672844 -2.333261,1.127465 -3.264923,1.941987 -4.698402,4.107681 -0.4611363,0.696689 -0.8715706,1.36878 -0.9120808,1.49354 -0.1059747,0.32644 -0.6208078,1.341941 -1.5210083,3.000179 -1.9466021,3.585797 -2.6241442,5.326854 -3.0597521,7.862531 -0.066004,0.384261 -0.1606715,0.902139 -0.2103378,1.150829 -0.04968,0.248696 -0.1069963,0.926964 -0.1273797,1.507254 -0.081086,2.308272 0.2512527,4.04802 1.0944559,5.729316 1.2878816,2.567957 3.2322337,4.503921 5.8597418,5.834441 2.243901,1.136279 5.019803,2.001753 5.650844,1.761829 z\"\n                  fill=\"#076eca\" />\n              </svg>\n    </v-row>\n    <v-row justify=\"center\" dense>\n      <v-empty-state \n      headline=\"Welcome to your PlanktoScope\" \n      title=\"What would you like to do today?\"\n    />\n    </v-row>\n  </v-container>\n</template>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
         "x": 510,
-        "y": 180,
+        "y": 280,
         "wires": [
             []
         ]
@@ -2433,12 +2449,228 @@
         "resendOnRefresh": true,
         "templateScope": "widget:ui",
         "className": "",
-        "x": 820,
-        "y": 240,
+        "x": 800,
+        "y": 180,
         "wires": [
             [
                 "1db1c2e3e19e85ff"
             ]
+        ]
+    },
+    {
+        "id": "e68b686e94d78c9d",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "36931a9722892790",
+        "page": "",
+        "ui": "",
+        "name": "Software Version",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-github</v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">Software Version</span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold\">\n      {{ msg.payload.software_version }}\n    </v-col>\n  </v-row>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 550,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e431a9253416f9eb",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "2aa235120084abe4",
+        "page": "",
+        "ui": "",
+        "name": "Images Acquired",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">\n        mdi-image-multiple-outline\n      </v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">\n        Images Acquired\n      </span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold\">\n      {{ msg.payload.image_acquired }}\n    </v-col>\n  </v-row>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 550,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b50dce0a86c2668c",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "df7c60bd8b265e48",
+        "page": "",
+        "ui": "",
+        "name": "Objects Segmented",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">\n        mdi-crop\n      </v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">\n        Objects Segmented\n      </span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold\">\n      {{ msg.payload.object_segmented }}\n    </v-col>\n  </v-row>\n</template>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "07c889f3fa18b15b",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "dc304678d9a6b53b",
+        "page": "",
+        "ui": "",
+        "name": "Storage",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <!-- Icon + Label -->\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">mdi-sd</v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">Storage</span>\n    </v-col>\n\n    <!-- Progress bar -->\n    <v-col>\n      <v-progress-linear :model-value=\"msg.payload.storage_percent_used\" height=\"12\" rounded class=\"mx-3\" :color=\"\n          msg.payload.storage_percent_used > 90\n            ? 'error'\n            : msg.payload.storage_percent_used > 70\n            ? 'warning'\n            : 'success'\n        \" />\n    </v-col>\n\n    <!-- Percentage -->\n    <v-col cols=\"auto\" class=\"text-subtitle-2 font-weight-bold text-right\" style=\"min-width: 48px;\">\n      {{ msg.payload.storage_percent_used }}%\n    </v-col>\n  </v-row>\n</template>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 520,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae546211d7d4413c",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "8a113b6c8e1eadb7",
+        "page": "",
+        "ui": "",
+        "name": "Learn the basic",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n      <v-btn\n        href=\"/ps/docs/operation/protocol-v4.pdf\"\n        target=\"_blank\"\n        color=\"primary\"\n        variant=\"tonal\"\n        size=\"large\"\n        class=\"text-none w-100 text-subtitle-1 py-3\"\n      >\n        <v-icon start size=\"30\">mdi-book-open-variant</v-icon>\n        Learn the Basics\n      </v-btn>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 540,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6440d3bb6107d79d",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "97e552a2d05b0800",
+        "page": "",
+        "ui": "",
+        "name": "Lanch the preview",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n    <v-btn\n      href=\"preview\"\n      variant=\"flat\"\n      color=\"primary\"\n      size=\"large\"\n      stacked\n      class=\"text-none w-100 py-6 flex-column\"\n    >\n      <v-icon size=\"50\" class=\"mb-2\">mdi-eye</v-icon>\n      <span class=\"text-h6\">Launch the Preview</span>\n    </v-btn>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 550,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19ee8d1758dd9c06",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "82480e386ed6f8bd",
+        "page": "",
+        "ui": "",
+        "name": "Explore your data",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n    <v-btn\n      href=\"visualization\"\n      target=\"_blank\"\n      variant=\"outlined\"\n      color=\"primary\"\n      size=\"large\"\n      stacked\n      class=\"text-none w-100 py-6 flex-column\"\n    >\n      <v-icon size=\"50\" class=\"mb-2\">mdi-chart-scatter-plot-hexbin</v-icon>\n      <span class=\"text-h6\">Explore your data</span>\n    </v-btn>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 550,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0152d19f6346a058",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "9d3e8bdd535f0e0d",
+        "page": "",
+        "ui": "",
+        "name": "Run the Calibration",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "head": "",
+        "format": "<template>\n    <v-btn\n      href=\"calibration\"\n      variant=\"flat\"\n      color=\"grey-darken-3\"\n      size=\"large\"\n      stacked\n      class=\"text-none w-100 py-6 flex-column\"\n    >\n      <v-icon size=\"50\" class=\"mb-2\">mdi-tune</v-icon>\n      <span class=\"text-h6\">Run the Calibration</span>\n    </v-btn>\n</template>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 550,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "683fec6ef9b340f7",
+        "type": "ui-template",
+        "z": "1b667c6443413ced",
+        "group": "",
+        "page": "632260133d581caa",
+        "ui": "",
+        "name": "CSS (All Pages)",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": ".v-card-text{\n    padding : 0 !important;\n}\n\n\n    \n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "page:style",
+        "className": "",
+        "x": 1300,
+        "y": 80,
+        "wires": [
+            []
         ]
     },
     {
@@ -2697,7 +2929,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container fluid  class=\"pa-0\">\n    <!-- LED CONTROL -->\n    <v-card class=\"mb-6 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text><!-- Label -->\n\n      <div class=\"d-flex justify-space-between align-center mb-4\">\n        <div class=\"text-h6\">LED Control</div>\n      </div>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"led_state\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_led_toggle\">\n              <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- FOCUS CONTROL -->\n    <v-card class=\"mb-6 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n    <v-card-text>\n\n    <!-- Label -->\n    <div class=\"d-flex justify-space-between align-center mb-4\">\n      <div class=\"text-h6\">Focus Distance</div>\n    </div>\n    <!-- Focus slider + input -->\n    <v-row align=\"center\">\n      <v-col :cols=\"isTablet ? 4 : 7\">\n        <v-slider\n          v-model.number=\"focus_distance\"\n          :max=\"maxFocus\"\n          :min=\"minFocus\"\n          :step=\"25\"\n          hide-details\n          :thumb-size=\"isTablet ? 12 : 20\"\n          :track-size=\"isTablet ? 2 : 4\"\n        />\n      </v-col>\n      <v-col :cols=\"isTablet ? 8 : 5\">\n        <v-text-field\n          v-model.number=\"focus_distance\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"μm\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n          append-icon=\"mdi-information\"\n          @click:append=\"showInfo('focus_speed')\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Presets -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"focus_distance_preset\"\n          divided\n          shaped\n          color=\"primary\"\n          class=\"d-flex justify-space-between\"\n          mandatory\n          @update:model-value=\"on_focus_distance_toggle\"\n        >\n          <v-btn\n            v-for=\"value in focus_distance_presets\"\n            :key=\"'distance-' + value\"\n            :value=\"value\"\n            class=\"flex-grow-1\"\n          >\n            {{ value }}\n          </v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Focus direction -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"focus_direction\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n          @update:model-value=\"on_focus_direction_change\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'UP'\">Up</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">Down</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n  </v-card-text>\n</v-card>\n\n    <!-- PUMP CONTROL -->\n    <v-card class=\"mb-6 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n\n    <!-- Label -->\n\n    <div class=\"d-flex justify-space-between align-center mb-4\">\n      <div class=\"text-h6\">Pump Flowrate</div>\n    </div>\n        <!-- Flowrate -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 7\">\n            <v-slider v-model.number=\"pump_flowrate\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.2\" hide-details\n              :thumb-size=\"isTablet ? 12 : 20\" :track-size=\"isTablet ? 2 : 4\" />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 5\">\n            <v-text-field v-model.number=\"pump_flowrate\" type=\"number\" variant=\"outlined\" hide-details suffix=\"ml/min\"\n              :density=\"isTablet ? 'comfortable' : 'default'\" :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('pump_flowrate')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Flowrate presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_flowrate_preset\" class=\"d-flex justify-space-between\" color=\"primary\"\n              variant=\"outlined\" divided shaped mandatory @update:model-value=\"onFlowrateToggle\">\n              <v-btn v-for=\"value in pump_flowrate_presets\" :key=\"'flowrate-' + value\" :value=\"value\"\n                class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n      <!-- Label -->\n\n    <div class=\"d-flex justify-space-between align-center mb-4\">\n      <div class=\"text-h6\">Pump Volume</div>\n    </div>\n        <!-- Volume -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 7\">\n            <v-slider v-model.number=\"pump_manual_volume\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.2\" hide-details\n              :thumb-size=\"isTablet ? 12 : 20\" :track-size=\"isTablet ? 2 : 4\" />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 5\">\n            <v-text-field v-model.number=\"pump_manual_volume\" type=\"number\" variant=\"outlined\" hide-details suffix=\"ml\"\n              :density=\"isTablet ? 'comfortable' : 'default'\" :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('pump_manual_volume')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Volume presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_volume_preset\" class=\"d-flex justify-space-between\" variant=\"outlined\"\n              color=\"primary\" divided shaped mandatory @update:model-value=\"onVolumeToggle\">\n              <v-btn v-for=\"value in pump_volume_presets\" :key=\"'volume-' + value\" :value=\"value\" class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Pump direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"pump_direction\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_pump_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- CALIBRATION INFO -->\n    <v-card class=\"pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n          \n    <v-list-item lines=\"two\" href=\"calibration\" class=\"pa-4\">\n    <template v-slot:prepend>\n      <v-icon size=\"x-large\">mdi-tune</v-icon>\n    </template>\n\n    <v-list-item-title class=\"text-h6\">\n      Calibration\n    </v-list-item-title>\n\n    <v-list-item-subtitle>\n      Modify camera settings and optical parameters for accurate imaging.\n    </v-list-item-subtitle>\n\n    <template v-slot:append>\n      <v-icon >mdi-chevron-right</v-icon>\n    </template>\n  </v-list-item>\n</v-card>\n\n    <!-- INFO DIALOG -->\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"infoDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: { msg: { type: Object, default: () => ({}) } },\n\n  data() {\n    return {\n      minFlow: 0.02,\n      maxFlow: 30,\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n      pump_flowrate_presets: [0.02, 0.2, 2, 20],\n      pump_volume_presets: [0.004, 0.2, 2, 20],\n      pump_flowrate_preset: null,\n      pump_volume_preset: null,\n      pump_direction: \"stop\",\n\n      minFocus: 25,\n      maxFocus: 5000,\n      focus_distance: 25,\n      focus_distance_presets: [25, 150, 500, 5000],\n      focus_distance_preset: null,\n      focus_direction: \"stop\",\n\n      led_state: \"off\",\n\n      infoDialog: false,\n      infoContent: { title: \"\", unit: \"\", description: \"\" },\n    };\n  },\n\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n  },\n\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n\n    pump_flowrate(newVal) {\n      this.pump_flowrate_preset =\n        this.pump_flowrate_presets.find((v) => v === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    pump_manual_volume(newVal) {\n      this.pump_volume_preset =\n        this.pump_volume_presets.find((v) => v === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    focus_distance(newVal) {\n      this.focus_distance_preset =\n        this.focus_distance_presets.find((v) => v === newVal) ?? null;\n      this.sendFocusParams();\n    },\n  },\n\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n\n      // --- STATUS MESSAGES (ne bloquent plus les autres updates !) ---\n      if (m.topic === \"status/pump\" && p.status === \"Done\") {\n        this.pump_direction = \"stop\";\n      }\n\n      if (m.topic === \"status/focus\" && p.status === \"Done\") {\n        this.focus_direction = \"stop\";\n      }\n\n      // --- LED STATE (ne bloque plus le reste du payload) ---\n      if (\"led_status\" in p) {\n        const s = String(p.led_status).toLowerCase().trim();\n        this.led_state = [\"on\", \"true\", \"1\"].includes(s) ? \"on\" : \"off\";\n      }\n\n      if (m.topic === \"status/light\" && \"status\" in p) {\n        const s = String(p.status).toLowerCase().trim();\n        this.led_state = [\"on\", \"true\", \"1\"].includes(s) ? \"on\" : \"off\";\n      }\n\n      // --- GLOBAL / ACTUATOR PARAMS ---\n      this.pump_flowrate =\n        p.flowrate ?? p.pump_flowrate ?? this.pump_flowrate;\n\n      this.pump_manual_volume =\n        p.volume ?? p.pump_manual_volume ?? this.pump_manual_volume;\n\n      if ([\"backward\", \"stop\", \"forward\"].includes(p.command)) {\n        this.pump_direction = p.command;\n      }\n\n      if (typeof p.focus_distance === \"number\") {\n        this.focus_distance = p.focus_distance;\n      }\n\n      if ([\"UP\", \"stop\", \"DOWN\"].includes(p.command)) {\n        this.focus_direction = p.command;\n      }\n\n      if (typeof p.ledState === \"string\") {\n        this.led_state = p.ledState;\n      }\n\n      if (typeof p.action === \"string\" && [\"on\", \"off\"].includes(p.action)) {\n        this.led_state = p.action;\n      }\n    },\n\n    // --- PUMP PARAMS ---\n    onFlowrateToggle(val) {\n      if (val != null) this.pump_flowrate = val;\n    },\n\n    onVolumeToggle(val) {\n      if (val != null) this.pump_manual_volume = val;\n    },\n\n    sendPumpParams() {\n      this.send({\n        topic: \"set_global/pump\",\n        payload: {\n          pump_flowrate: Number(this.pump_flowrate) || 0,\n          pump_manual_volume: Number(this.pump_manual_volume) || 0,\n        },\n      });\n    },\n\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/pump\", payload: { action: \"stop\" } });\n      } else {\n        const dir = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({\n          topic: \"actuator/pump\",\n          payload: {\n            action: \"move\",\n            direction: dir,\n            volume: Number(this.pump_manual_volume) || 0,\n            flowrate: Number(this.pump_flowrate) || 0,\n          },\n        });\n      }\n    },\n\n    // --- FOCUS PARAMS ---\n    on_focus_distance_toggle(val) {\n      if (val != null) this.focus_distance = val;\n    },\n\n    speedFromDistance(d) {\n      const x1 = 100, y1 = 1000;\n      const x2 = 1000, y2 = 2000;\n      const x3 = 5000, y3 = 5000;\n\n      if (d <= x1) return y1;\n      if (d >= x3) return y3;\n\n      if (d <= x2) {\n        const m = (y2 - y1) / (x2 - x1);\n        return Math.round(y1 + m * (d - x1));\n      }\n\n      const m = (y3 - y2) / (x3 - x2);\n      return Math.round(y2 + m * (d - x2));\n    },\n\n    sendFocusParams() {\n      const d = Number(this.focus_distance) || 25;\n      const speed = this.speedFromDistance(d);\n\n      this.send({\n        topic: \"set_global/focus\",\n        payload: {\n          focus_distance: d,\n          focus_speed: speed,\n        },\n      });\n    },\n\n    on_focus_direction_change(val) {\n      this.focus_direction = val;\n\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/focus\", payload: { action: \"stop\" } });\n      } else {\n        const d = Number(this.focus_distance) || 25;\n        const speed = this.speedFromDistance(d);\n\n        this.send({\n          topic: \"actuator/focus\",\n          payload: {\n            action: \"move\",\n            direction: val,\n            distance: d / 1000,\n            speed: speed / 1000,\n          },\n        });\n      }\n    },\n\n    // --- LED ---\n    on_led_toggle(val) {\n      if (!val) return;\n      this.led_state = val;\n      this.send({ topic: \"light\", payload: { action: val } });\n    },\n\n    // --- INFO POPUP ---\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: {\n          title: \"Flowrate (ml/min)\",\n          unit: \"ml/min\",\n          description: \"Flowrate of the pump during manual exploration\",\n        },\n        pump_manual_volume: {\n          title: \"Volume to pass (ml)\",\n          unit: \"ml\",\n          description: \"Volume displaced by the pump during manual exploration\",\n        },\n        focus_speed: {\n          title: \"Focus Speed (µm/sec)\",\n          unit: \"μm/s\",\n          description: \"Speed of the displacement by the focus plate during manual exploration\",\n        },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n\n  @media (max-width: 1024px) {\n    .v-text-field input {\n      font-size: 1.3rem !important;\n    }\n\n    .v-slider {\n      height: 2px !important;\n    }\n  }\n\n.v-card-text{\n  padding : 0 !important;\n}\n.v-card{\n  border:none;\n}\n.v-container{\n  background: #eef3ff;\n}\n\n\n</style>",
+        "format": "<template>\n  <v-container fluid  class=\"pa-0\">\n    <!-- LED CONTROL -->\n    <v-card class=\"mb-6 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text><!-- Label -->\n\n      <div class=\"d-flex justify-space-between align-center mb-4\">\n        <div class=\"text-h6\">LED Control</div>\n      </div>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"led_state\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_led_toggle\">\n              <v-btn class=\"flex-grow-1\" :value=\"'off'\">Off</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'on'\">On</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- FOCUS CONTROL -->\n    <v-card class=\"mb-6 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n    <v-card-text>\n\n    <!-- Label -->\n    <div class=\"d-flex justify-space-between align-center mb-4\">\n      <div class=\"text-h6\">Focus Distance</div>\n    </div>\n    <!-- Focus slider + input -->\n    <v-row align=\"center\">\n      <v-col :cols=\"isTablet ? 4 : 7\">\n        <v-slider\n          v-model.number=\"focus_distance\"\n          :max=\"maxFocus\"\n          :min=\"minFocus\"\n          :step=\"25\"\n          hide-details\n          :thumb-size=\"isTablet ? 12 : 20\"\n          :track-size=\"isTablet ? 2 : 4\"\n        />\n      </v-col>\n      <v-col :cols=\"isTablet ? 8 : 5\">\n        <v-text-field\n          v-model.number=\"focus_distance\"\n          type=\"number\"\n          variant=\"outlined\"\n          hide-details\n          suffix=\"μm\"\n          :density=\"isTablet ? 'comfortable' : 'default'\"\n          :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n          append-icon=\"mdi-information\"\n          @click:append=\"showInfo('focus_speed')\"\n        />\n      </v-col>\n    </v-row>\n\n    <!-- Presets -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"focus_distance_preset\"\n          divided\n          shaped\n          color=\"primary\"\n          class=\"d-flex justify-space-between\"\n          mandatory\n          @update:model-value=\"on_focus_distance_toggle\"\n        >\n          <v-btn\n            v-for=\"value in focus_distance_presets\"\n            :key=\"'distance-' + value\"\n            :value=\"value\"\n            class=\"flex-grow-1\"\n          >\n            {{ value }}\n          </v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n    <!-- Focus direction -->\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle\n          variant=\"outlined\"\n          v-model=\"focus_direction\"\n          color=\"primary\"\n          mandatory\n          divided\n          shaped\n          class=\"d-flex justify-space-between\"\n          @update:model-value=\"on_focus_direction_change\"\n        >\n          <v-btn class=\"flex-grow-1\" :value=\"'UP'\">Up</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">Down</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n\n  </v-card-text>\n</v-card>\n\n    <!-- PUMP CONTROL -->\n    <v-card class=\"mb-6 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n\n    <!-- Label -->\n\n    <div class=\"d-flex justify-space-between align-center mb-4\">\n      <div class=\"text-h6\">Pump Flowrate</div>\n    </div>\n        <!-- Flowrate -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 7\">\n            <v-slider v-model.number=\"pump_flowrate\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.2\" hide-details\n              :thumb-size=\"isTablet ? 12 : 20\" :track-size=\"isTablet ? 2 : 4\" />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 5\">\n            <v-text-field v-model.number=\"pump_flowrate\" type=\"number\" variant=\"outlined\" hide-details suffix=\"ml/min\"\n              :density=\"isTablet ? 'comfortable' : 'default'\" :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('pump_flowrate')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Flowrate presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_flowrate_preset\" class=\"d-flex justify-space-between\" color=\"primary\"\n              variant=\"outlined\" divided shaped mandatory @update:model-value=\"onFlowrateToggle\">\n              <v-btn v-for=\"value in pump_flowrate_presets\" :key=\"'flowrate-' + value\" :value=\"value\"\n                class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n      <!-- Label -->\n<v-divider class=\"py-2\"></v-divider>\n\n    <div class=\"d-flex justify-space-between align-center mb-4\">\n      <div class=\"text-h6\">Pump Volume</div>\n    </div>\n        <!-- Volume -->\n        <v-row align=\"center\">\n          <v-col :cols=\"isTablet ? 4 : 7\">\n            <v-slider v-model.number=\"pump_manual_volume\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.2\" hide-details\n              :thumb-size=\"isTablet ? 12 : 20\" :track-size=\"isTablet ? 2 : 4\" />\n          </v-col>\n          <v-col :cols=\"isTablet ? 8 : 5\">\n            <v-text-field v-model.number=\"pump_manual_volume\" type=\"number\" variant=\"outlined\" hide-details suffix=\"ml\"\n              :density=\"isTablet ? 'comfortable' : 'default'\" :style=\"isTablet ? 'font-size: 1.3rem; width: 100%;' : ''\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('pump_manual_volume')\" />\n          </v-col>\n        </v-row>\n\n        <!-- Volume presets -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_volume_preset\" class=\"d-flex justify-space-between\" variant=\"outlined\"\n              color=\"primary\" divided shaped mandatory @update:model-value=\"onVolumeToggle\">\n              <v-btn v-for=\"value in pump_volume_presets\" :key=\"'volume-' + value\" :value=\"value\" class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <!-- Pump direction -->\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"pump_direction\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_pump_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <!-- CALIBRATION INFO -->\n    <v-card class=\"pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n          \n    <v-list-item lines=\"two\" href=\"calibration\" class=\"pa-4\">\n    <template v-slot:prepend>\n      <v-icon size=\"x-large\">mdi-tune</v-icon>\n    </template>\n\n    <v-list-item-title class=\"text-h6\">\n      Calibration\n    </v-list-item-title>\n\n    <v-list-item-subtitle>\n      Modify camera settings and optical parameters for accurate imaging.\n    </v-list-item-subtitle>\n\n    <template v-slot:append>\n      <v-icon >mdi-chevron-right</v-icon>\n    </template>\n  </v-list-item>\n</v-card>\n\n    <!-- INFO DIALOG -->\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card>\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn color=\"primary\" text @click=\"infoDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: { msg: { type: Object, default: () => ({}) } },\n\n  data() {\n    return {\n      minFlow: 0.02,\n      maxFlow: 30,\n      pump_flowrate: 0,\n      pump_manual_volume: 0,\n      pump_flowrate_presets: [0.02, 0.2, 2, 20],\n      pump_volume_presets: [0.004, 0.2, 2, 20],\n      pump_flowrate_preset: null,\n      pump_volume_preset: null,\n      pump_direction: \"stop\",\n\n      minFocus: 25,\n      maxFocus: 5000,\n      focus_distance: 25,\n      focus_distance_presets: [25, 150, 500, 5000],\n      focus_distance_preset: null,\n      focus_direction: \"stop\",\n\n      led_state: \"off\",\n\n      infoDialog: false,\n      infoContent: { title: \"\", unit: \"\", description: \"\" },\n    };\n  },\n\n  computed: {\n    isTablet() {\n      return this.$vuetify.display.mdAndDown;\n    },\n  },\n\n  created() {\n    this.hydrateFromMsg(this.msg);\n  },\n\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n\n    pump_flowrate(newVal) {\n      this.pump_flowrate_preset =\n        this.pump_flowrate_presets.find((v) => v === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    pump_manual_volume(newVal) {\n      this.pump_volume_preset =\n        this.pump_volume_presets.find((v) => v === newVal) ?? null;\n      this.sendPumpParams();\n    },\n    focus_distance(newVal) {\n      this.focus_distance_preset =\n        this.focus_distance_presets.find((v) => v === newVal) ?? null;\n      this.sendFocusParams();\n    },\n  },\n\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n\n      // --- STATUS MESSAGES (ne bloquent plus les autres updates !) ---\n      if (m.topic === \"status/pump\" && p.status === \"Done\") {\n        this.pump_direction = \"stop\";\n      }\n\n      if (m.topic === \"status/focus\" && p.status === \"Done\") {\n        this.focus_direction = \"stop\";\n      }\n\n      // --- LED STATE (ne bloque plus le reste du payload) ---\n      if (\"led_status\" in p) {\n        const s = String(p.led_status).toLowerCase().trim();\n        this.led_state = [\"on\", \"true\", \"1\"].includes(s) ? \"on\" : \"off\";\n      }\n\n      if (m.topic === \"status/light\" && \"status\" in p) {\n        const s = String(p.status).toLowerCase().trim();\n        this.led_state = [\"on\", \"true\", \"1\"].includes(s) ? \"on\" : \"off\";\n      }\n\n      // --- GLOBAL / ACTUATOR PARAMS ---\n      this.pump_flowrate =\n        p.flowrate ?? p.pump_flowrate ?? this.pump_flowrate;\n\n      this.pump_manual_volume =\n        p.volume ?? p.pump_manual_volume ?? this.pump_manual_volume;\n\n      if ([\"backward\", \"stop\", \"forward\"].includes(p.command)) {\n        this.pump_direction = p.command;\n      }\n\n      if (typeof p.focus_distance === \"number\") {\n        this.focus_distance = p.focus_distance;\n      }\n\n      if ([\"UP\", \"stop\", \"DOWN\"].includes(p.command)) {\n        this.focus_direction = p.command;\n      }\n\n      if (typeof p.ledState === \"string\") {\n        this.led_state = p.ledState;\n      }\n\n      if (typeof p.action === \"string\" && [\"on\", \"off\"].includes(p.action)) {\n        this.led_state = p.action;\n      }\n    },\n\n    // --- PUMP PARAMS ---\n    onFlowrateToggle(val) {\n      if (val != null) this.pump_flowrate = val;\n    },\n\n    onVolumeToggle(val) {\n      if (val != null) this.pump_manual_volume = val;\n    },\n\n    sendPumpParams() {\n      this.send({\n        topic: \"set_global/pump\",\n        payload: {\n          pump_flowrate: Number(this.pump_flowrate) || 0,\n          pump_manual_volume: Number(this.pump_manual_volume) || 0,\n        },\n      });\n    },\n\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/pump\", payload: { action: \"stop\" } });\n      } else {\n        const dir = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({\n          topic: \"actuator/pump\",\n          payload: {\n            action: \"move\",\n            direction: dir,\n            volume: Number(this.pump_manual_volume) || 0,\n            flowrate: Number(this.pump_flowrate) || 0,\n          },\n        });\n      }\n    },\n\n    // --- FOCUS PARAMS ---\n    on_focus_distance_toggle(val) {\n      if (val != null) this.focus_distance = val;\n    },\n\n    speedFromDistance(d) {\n      const x1 = 100, y1 = 1000;\n      const x2 = 1000, y2 = 2000;\n      const x3 = 5000, y3 = 5000;\n\n      if (d <= x1) return y1;\n      if (d >= x3) return y3;\n\n      if (d <= x2) {\n        const m = (y2 - y1) / (x2 - x1);\n        return Math.round(y1 + m * (d - x1));\n      }\n\n      const m = (y3 - y2) / (x3 - x2);\n      return Math.round(y2 + m * (d - x2));\n    },\n\n    sendFocusParams() {\n      const d = Number(this.focus_distance) || 25;\n      const speed = this.speedFromDistance(d);\n\n      this.send({\n        topic: \"set_global/focus\",\n        payload: {\n          focus_distance: d,\n          focus_speed: speed,\n        },\n      });\n    },\n\n    on_focus_direction_change(val) {\n      this.focus_direction = val;\n\n      if (val === \"stop\") {\n        this.send({ topic: \"actuator/focus\", payload: { action: \"stop\" } });\n      } else {\n        const d = Number(this.focus_distance) || 25;\n        const speed = this.speedFromDistance(d);\n\n        this.send({\n          topic: \"actuator/focus\",\n          payload: {\n            action: \"move\",\n            direction: val,\n            distance: d / 1000,\n            speed: speed / 1000,\n          },\n        });\n      }\n    },\n\n    // --- LED ---\n    on_led_toggle(val) {\n      if (!val) return;\n      this.led_state = val;\n      this.send({ topic: \"light\", payload: { action: val } });\n    },\n\n    // --- INFO POPUP ---\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: {\n          title: \"Flowrate (ml/min)\",\n          unit: \"ml/min\",\n          description: \"Flowrate of the pump during manual exploration\",\n        },\n        pump_manual_volume: {\n          title: \"Volume to pass (ml)\",\n          unit: \"ml\",\n          description: \"Volume displaced by the pump during manual exploration\",\n        },\n        focus_speed: {\n          title: \"Focus Speed (µm/sec)\",\n          unit: \"μm/s\",\n          description: \"Speed of the displacement by the focus plate during manual exploration\",\n        },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n\n  @media (max-width: 1024px) {\n    .v-text-field input {\n      font-size: 1.3rem !important;\n    }\n\n    .v-slider {\n      height: 2px !important;\n    }\n  }\n\n.v-card-text{\n  padding : 0 !important;\n}\n.v-card{\n  border:none;\n}\n.v-container{\n  background: #eef3ff;\n}\n\n\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -6212,101 +6444,5 @@
         "x": 470,
         "y": 1100,
         "wires": []
-    },
-    {
-        "id": "680d994257a7bd2c",
-        "type": "ui-template",
-        "z": "7c57cfad252356b9",
-        "group": "2567fe5c6e1ac69f",
-        "page": "",
-        "ui": "",
-        "name": "",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "head": "",
-        "format": "<div class=\"text-subtitle-1 mb-2\">LED Control</div>\n\n<v-btn-toggle\n  v-model=\"led_state\"\n  mandatory\n  divided\n  shaped\n  color=\"primary\"\n  variant=\"outlined\"\n  class=\"d-flex justify-space-between\"\n  @update:model-value=\"on_led_toggle\"\n>\n  <v-btn class=\"flex-grow-1\" value=\"off\">Off</v-btn>\n  <v-btn class=\"flex-grow-1\" value=\"on\">On</v-btn>\n</v-btn-toggle>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 380,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1ed9a730b3a79981",
-        "type": "ui-template",
-        "z": "7c57cfad252356b9",
-        "group": "ec5fe3d2a48f9c58",
-        "page": "",
-        "ui": "",
-        "name": "",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "head": "",
-        "format": "<!-- Label -->\n<div class=\"text-subtitle-1 mb-2\">Focus Distance</div>\n\n<!-- Distance slider + input -->\n<v-row align=\"center\">\n  <v-col :cols=\"isTablet ? 4 : 7\">\n    <v-slider\n      v-model.number=\"focus_distance\"\n      :min=\"minFocus\"\n      :max=\"maxFocus\"\n      :step=\"25\"\n      hide-details\n      :thumb-size=\"isTablet ? 12 : 20\"\n      :track-size=\"isTablet ? 2 : 4\"\n    />\n  </v-col>\n\n  <v-col :cols=\"isTablet ? 8 : 5\">\n    <v-text-field\n      v-model.number=\"focus_distance\"\n      type=\"number\"\n      variant=\"outlined\"\n      hide-details\n      suffix=\"μm\"\n      append-icon=\"mdi-information\"\n      @click:append=\"showInfo('focus_speed')\"\n    />\n  </v-col>\n</v-row>\n\n<!-- Presets -->\n<v-btn-toggle\n  class=\"d-flex justify-space-between\"\n  v-model=\"focus_distance_preset\"\n  divided\n  shaped\n  mandatory\n  variant=\"outlined\"\n  color=\"primary\"\n  @update:model-value=\"on_focus_distance_toggle\"\n>\n  <v-btn\n    v-for=\"value in focus_distance_presets\"\n    :key=\"'preset-'+value\"\n    :value=\"value\"\n    class=\"flex-grow-1\"\n  >\n    {{ value }}\n  </v-btn>\n</v-btn-toggle>\n\n<!-- Direction -->\n<v-btn-toggle\n  v-model=\"focus_direction\"\n  mandatory\n  divided\n  shaped\n  variant=\"outlined\"\n  color=\"primary\"\n  class=\"d-flex justify-space-between mt-4\"\n  @update:model-value=\"on_focus_direction_change\"\n>\n  <v-btn class=\"flex-grow-1\" value=\"UP\">Up</v-btn>\n  <v-btn class=\"flex-grow-1\" value=\"stop\">Stop</v-btn>\n  <v-btn class=\"flex-grow-1\" value=\"DOWN\">Down</v-btn>\n</v-btn-toggle>\n\n<!-- Info Dialog -->\n<v-dialog v-model=\"infoDialog\" max-width=\"500\">\n  <v-card>\n    <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n    <v-card-text>\n      <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n      <p><strong>Description:</strong> {{ infoContent.description }}</p>\n    </v-card-text>\n    <v-card-actions>\n      <v-spacer></v-spacer>\n      <v-btn color=\"primary\" text @click=\"infoDialog=false\">Close</v-btn>\n    </v-card-actions>\n  </v-card>\n</v-dialog>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 400,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cebd60d90d7e3995",
-        "type": "ui-template",
-        "z": "7c57cfad252356b9",
-        "group": "8ab8d09f947dced4",
-        "page": "",
-        "ui": "",
-        "name": "Streaming",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "head": "",
-        "format": "<div class=\"iframe-container\">\n  <iframe src=\"/preview/node-red\"></iframe>\n</div>\n\n<style>\n  /* 1. STYLES FOR THE CONTAINER (WHERE YOUR BORDER IS APPLIED) */\n  .iframe-container {\n    /* YOUR REQUESTED STYLES: Border and border-radius */\n    border-radius: 4px; \n    \n    /* Responsive Setup */\n    position: relative;\n    width: 100%;\n    /* Set a proportion, e.g., 4:3 (75% height relative to width) */\n    padding-top: 75%; \n    overflow: hidden; \n  }\n    \n  /* 2. STYLES FOR THE IFRAME ITSELF */\n  .iframe-container iframe {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    \n    /* Ensure the iframe itself has no border or margin, as the container provides the frame */\n    border: none;\n    margin: 0;\n  }\n</style>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 370,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "365c9ec67e3efa9a",
-        "type": "ui-template",
-        "z": "7c57cfad252356b9",
-        "group": "fbdbc0b5e681eb9d",
-        "page": "",
-        "ui": "",
-        "name": "",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "head": "",
-        "format": "<!-- FLOWRATE -->\n<div class=\"text-subtitle-1 mb-2\">Pump Flowrate</div>\n\n<v-row align=\"center\">\n  <v-col :cols=\"isTablet ? 4 : 7\">\n    <v-slider\n      v-model.number=\"pump_flowrate\"\n      :min=\"minFlow\"\n      :max=\"maxFlow\"\n      :step=\"0.2\"\n      hide-details\n    />\n  </v-col>\n\n  <v-col :cols=\"isTablet ? 8 : 5\">\n    <v-text-field\n      v-model.number=\"pump_flowrate\"\n      type=\"number\"\n      variant=\"outlined\"\n      hide-details\n      suffix=\"ml/min\"\n      append-icon=\"mdi-information\"\n      @click:append=\"showInfo('pump_flowrate')\"\n    />\n  </v-col>\n</v-row>\n\n<!-- Flowrate presets -->\n<v-btn-toggle\n  v-model=\"pump_flowrate_preset\"\n  mandatory\n  divided\n  shaped\n  variant=\"outlined\"\n  color=\"primary\"\n  class=\"d-flex justify-space-between\"\n  @update:model-value=\"onFlowrateToggle\"\n>\n  <v-btn\n    v-for=\"value in pump_flowrate_presets\"\n    :key=\"'fr-'+value\"\n    :value=\"value\"\n    class=\"flex-grow-1\"\n  >\n    {{ value }}\n  </v-btn>\n</v-btn-toggle>\n\n<!-- VOLUME -->\n<div class=\"text-subtitle-1 mt-4 mb-2\">Pump Volume</div>\n\n<v-row align=\"center\">\n  <v-col :cols=\"isTablet ? 4 : 7\">\n    <v-slider\n      v-model.number=\"pump_manual_volume\"\n      :min=\"minFlow\"\n      :max=\"maxFlow\"\n      :step=\"0.2\"\n      hide-details\n    />\n  </v-col>\n\n  <v-col :cols=\"isTablet ? 8 : 5\">\n    <v-text-field\n      v-model.number=\"pump_manual_volume\"\n      type=\"number\"\n      variant=\"outlined\"\n      hide-details\n      suffix=\"ml\"\n      append-icon=\"mdi-information\"\n      @click:append=\"showInfo('pump_manual_volume')\"\n    />\n  </v-col>\n</v-row>\n\n<!-- Volume presets -->\n<v-btn-toggle\n  v-model=\"pump_volume_preset\"\n  mandatory\n  divided\n  shaped\n  variant=\"outlined\"\n  color=\"primary\"\n  class=\"d-flex justify-space-between\"\n  @update:model-value=\"onVolumeToggle\"\n>\n  <v-btn\n    v-for=\"value in pump_volume_presets\"\n    :key=\"'vol-'+value\"\n    :value=\"value\"\n    class=\"flex-grow-1\"\n  >\n    {{ value }}\n  </v-btn>\n</v-btn-toggle>\n\n<!-- Direction -->\n<v-btn-toggle\n  v-model=\"pump_direction\"\n  mandatory\n  divided\n  shaped\n  variant=\"outlined\"\n  color=\"primary\"\n  class=\"d-flex justify-space-between mt-4\"\n  @update:model-value=\"on_pump_direction_change\"\n>\n  <v-btn class=\"flex-grow-1\" value=\"backward\">Backward</v-btn>\n  <v-btn class=\"flex-grow-1\" value=\"stop\">Stop</v-btn>\n  <v-btn class=\"flex-grow-1\" value=\"forward\">Forward</v-btn>\n</v-btn-toggle>\n\n<!-- Info Dialog -->\n<v-dialog v-model=\"infoDialog\" max-width=\"500\">\n  <v-card>\n    <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n    <v-card-text>\n      <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n      <p><strong>Description:</strong> {{ infoContent.description }}</p>\n    </v-card-text>\n    <v-card-actions>\n      <v-spacer></v-spacer>\n      <v-btn color=\"primary\" text @click=\"infoDialog=false\">Close</v-btn>\n    </v-card-actions>\n  </v-card>\n</v-dialog>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 420,
-        "y": 420,
-        "wires": [
-            []
-        ]
     }
 ]
