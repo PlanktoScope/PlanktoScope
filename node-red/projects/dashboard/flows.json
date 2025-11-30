@@ -863,12 +863,12 @@
     {
         "id": "bfd4acb7b243514f",
         "type": "ui-group",
-        "name": "Table",
+        "name": "List of Acquisitions",
         "page": "7a4e042a60b734a6",
         "width": "12",
         "height": 1,
         "order": 3,
-        "showTitle": false,
+        "showTitle": true,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -1105,7 +1105,7 @@
                 "cols": "12"
             }
         ],
-        "order": 8,
+        "order": 7,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1431,7 +1431,7 @@
                 "cols": "12"
             }
         ],
-        "order": 7,
+        "order": 8,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -1457,7 +1457,7 @@
         "page": "d129fac8e7742d5b",
         "width": "12",
         "height": 1,
-        "order": 6,
+        "order": 15,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -1472,7 +1472,7 @@
         "width": "12",
         "height": 1,
         "order": 2,
-        "showTitle": false,
+        "showTitle": true,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -1486,7 +1486,7 @@
         "width": "12",
         "height": 1,
         "order": 2,
-        "showTitle": false,
+        "showTitle": true,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -1543,28 +1543,14 @@
         "groupType": "default"
     },
     {
-        "id": "3d290173d833fd04",
-        "type": "ui-group",
-        "name": "Experiment",
-        "page": "d129fac8e7742d5b",
-        "width": "12",
-        "height": 1,
-        "order": 5,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default"
-    },
-    {
         "id": "c5651e1a3e56f3f5",
         "type": "ui-group",
-        "name": "Plots",
+        "name": "Explorer",
         "page": "d129fac8e7742d5b",
         "width": "12",
         "height": 1,
-        "order": 3,
-        "showTitle": false,
+        "order": 13,
+        "showTitle": true,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -1577,7 +1563,7 @@
         "page": "d129fac8e7742d5b",
         "width": "12",
         "height": 1,
-        "order": 4,
+        "order": 14,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -1691,6 +1677,146 @@
         "height": 1,
         "order": 4,
         "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "53490f9c39e2065d",
+        "type": "ui-group",
+        "name": "Informations",
+        "page": "d129fac8e7742d5b",
+        "width": "12",
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "90b33e458dd29d04",
+        "type": "ui-group",
+        "name": "Heat Map",
+        "page": "d129fac8e7742d5b",
+        "width": 6,
+        "height": 1,
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "47800358cf7cee25",
+        "type": "ui-group",
+        "name": "ESD Histogram",
+        "page": "d129fac8e7742d5b",
+        "width": 6,
+        "height": 1,
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "1d9c6927a0e0a71b",
+        "type": "ui-group",
+        "name": "Timeline",
+        "page": "d129fac8e7742d5b",
+        "width": "12",
+        "height": 1,
+        "order": 6,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "03ad1c8f517e8769",
+        "type": "ui-group",
+        "name": "Colorspace",
+        "page": "d129fac8e7742d5b",
+        "width": "4",
+        "height": 1,
+        "order": 7,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "0be15f8190e6fd43",
+        "type": "ui-group",
+        "name": "Aspect",
+        "page": "d129fac8e7742d5b",
+        "width": "4",
+        "height": 1,
+        "order": 8,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "1edc962c44888abc",
+        "type": "ui-group",
+        "name": "Greenness",
+        "page": "d129fac8e7742d5b",
+        "width": "4",
+        "height": 1,
+        "order": 9,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "67c63cc92c23c4b1",
+        "type": "ui-group",
+        "name": "Complexity",
+        "page": "d129fac8e7742d5b",
+        "width": "4",
+        "height": 1,
+        "order": 10,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "95a152a68b7ba779",
+        "type": "ui-group",
+        "name": "Texture",
+        "page": "d129fac8e7742d5b",
+        "width": "4",
+        "height": 1,
+        "order": 11,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "1baa943e505febf1",
+        "type": "ui-group",
+        "name": "Solidity",
+        "page": "d129fac8e7742d5b",
+        "width": "4",
+        "height": 1,
+        "order": 12,
+        "showTitle": true,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -2059,27 +2185,8 @@
         "x": 370,
         "y": 140,
         "wires": [
-            [
-                "b49055c50dca065a"
-            ]
+            []
         ]
-    },
-    {
-        "id": "b49055c50dca065a",
-        "type": "debug",
-        "z": "07f3b717f2a2c8c7",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 140,
-        "wires": []
     },
     {
         "id": "c8caad8136e6c5e3",
@@ -2684,7 +2791,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 75%; /* 4:3 Aspect Ratio */\n        overflow: hidden;\n        border-radius: 4px;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        border: none;\n        margin: 0;\n    }\n</style>",
+        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 75%; /* 4:3 Aspect Ratio */\n        overflow: hidden;\n        border-radius: 8px;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        border: none;\n        margin: 0;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2728,7 +2835,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0 py-0 px-2\">\n    <v-row \n      align=\"center\" \n      class=\"pa-4 rounded-lg border\" \n      no-gutters variant=\"flat\" style=\"background:white\"\n    >\n      \n      <v-col cols=\"3\" class=\"py-0 d-flex justify-start\">\n        <v-btn\n          to=\"home\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"6\" class=\"text-center py-0\">\n        <h1 class=\"text-h5 font-weight-bold text-primary my-0 text-truncate\">\n          Acquisition\n        </h1>\n      </v-col>\n\n      <v-col cols=\"3\" class=\"py-0 d-flex justify-end\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n      \n    </v-row>\n  </v-container>\n</template>",
+        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row \n      align=\"center\" \n      class=\"py-4 px-6 rounded-lg border\" \n      no-gutters variant=\"flat\" style=\"background:white\"\n    >\n      \n      <v-col cols=\"3\" class=\"py-0 d-flex justify-start\">\n        <v-btn\n          to=\"home\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"6\" class=\"text-center py-0\">\n        <h1 class=\"text-h5 font-weight-bold text-primary my-0 text-truncate\">\n          Preview\n        </h1>\n      </v-col>\n\n      <v-col cols=\"3\" class=\"py-0 d-flex justify-end\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n      \n    </v-row>\n  </v-container>\n</template>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2994,7 +3101,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0  py-0 px-2\">\n    <v-row \n      align=\"center\" \n      class=\"pa-4 rounded-lg border\" \n      no-gutters variant=\"flat\" style=\"background:white\"\n    >\n      \n      <v-col cols=\"3\" class=\"py-0 d-flex justify-start\">\n        <v-btn\n          to=\"home\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"6\" class=\"text-center py-0\">\n\n      </v-col>\n\n      <v-col cols=\"3\" class=\"py-0 d-flex justify-end\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n      \n    </v-row>\n  </v-container>\n</template>",
+        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-row \n      align=\"center\" \n      class=\"py-4 px-6 rounded-lg border\" \n      no-gutters variant=\"flat\" style=\"background:white\"\n    >\n      \n      <v-col cols=\"3\" class=\"py-0 d-flex justify-start\">\n        <v-btn\n          to=\"home\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          <v-icon start>mdi-chevron-left</v-icon>\n          Home\n        </v-btn>\n      </v-col>\n\n      <v-col cols=\"6\" class=\"text-center py-0\">\n\n      </v-col>\n\n      <v-col cols=\"3\" class=\"py-0 d-flex justify-end\">\n        <v-btn\n          to=\"metadata\"\n          color=\"primary\"\n          rounded=\"lg\"\n          class=\"px-4\" variant=\"text\" size=\"large\"\n        >\n          Metadata\n          <v-icon end>mdi-chevron-right</v-icon>\n        </v-btn>\n      </v-col>\n      \n    </v-row>\n  </v-container>\n</template>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3593,7 +3700,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 75%; /* 4:3 Aspect Ratio */\n        overflow: hidden;\n        border-radius: 4px;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        border: none;\n        margin: 0;\n    }\n</style>",
+        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 75%; /* 4:3 Aspect Ratio */\n        overflow: hidden;\n        border-radius: 8px;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        border: none;\n        margin: 0;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4486,8 +4593,8 @@
         "y": 40,
         "wires": [
             [
-                "164baa371893de7a",
-                "d9c0cf13cfa21a19"
+                "384aa9ab83bfe566",
+                "164baa371893de7a"
             ]
         ]
     },
@@ -4584,11 +4691,23 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 860,
-        "y": 180,
+        "x": 180,
+        "y": 380,
         "wires": [
             [
-                "c66ff37635c5da7a"
+                "4caf5c846b3b9d01",
+                "a5ef1df890e7bb36",
+                "8cdf3c5527b9cb21",
+                "e26832811411f850",
+                "448a5c6830c6514f",
+                "ac9d555964747130",
+                "11323481847790c0",
+                "8425012e07c3700f",
+                "512e86195d14e773",
+                "9be1cc713ac79a7b",
+                "63ce87d36ae8f172",
+                "9abf70a949e76eaf",
+                "bdf84e9e1e0caa90"
             ]
         ]
     },
@@ -4604,154 +4723,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
+        "x": 790,
         "y": 180,
         "wires": [
             [
-                "5ec998719a884cfe"
-            ]
-        ]
-    },
-    {
-        "id": "c66ff37635c5da7a",
-        "type": "function",
-        "z": "14f8c9b5ce1235cc",
-        "name": "Data Processor",
-        "func": "// 1. Parse TSV\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\n// Need at least header + 1 data line\nif (lines.length < 2) return null; \n\nconst headers = lines[0].split('\\t');\n// Helper to safely get value\nconst val = (row, colName) => {\n    const idx = headers.indexOf(colName);\n    return idx > -1 ? row[idx] : null;\n};\n\n// 2. Extract Metadata from the first valid data row (skipping [f]/[t] lines)\nlet firstRow = null;\nfor(let i=1; i<lines.length; i++) {\n    if(!lines[i].trim().startsWith('[')) {\n        firstRow = lines[i].split('\\t');\n        break;\n    }\n}\n\nconst meta = {\n    sample_id: 'N/A',\n    project: 'N/A',\n    acq_id: 'N/A',\n    vol_imaged: 1, // avoid div by zero default\n    resolution: 0\n};\n\nif (firstRow) {\n    meta.sample_id = val(firstRow, 'sample_id');\n    meta.project = val(firstRow, 'sample_project');\n    meta.acq_id = val(firstRow, 'acq_id');\n    meta.vol_imaged = parseFloat(val(firstRow, 'acq_imaged_volume')) || 0;\n    meta.resolution = parseFloat(val(firstRow, 'process_pixel')) || 0.75;\n}\n\n// 3. Define useful variables\nconst usefulKeys = [\n    'object_area', 'object_equivalent_diameter', 'object_perim.',\n    'object_major', 'object_minor', 'object_width', 'object_height',\n    'object_circ.', 'object_elongation', 'object_solidity', 'object_eccentricity',\n    'object_MeanHue', 'object_MeanSaturation', 'object_MeanValue', 'object_StdValue',\n    'object_x', 'object_y'\n];\n\n// 4. Process Rows\nconst items = [];\nlet totalBiovolume = 0;\n\nfor (let i = 1; i < lines.length; i++) {\n    const row = lines[i].split('\\t');\n    // Skip empty/bad lines\n    if (row.length < headers.length || row[0].trim().startsWith('[')) continue;\n\n    const url = `/ps/data/browse/api/preview/big/objects/${val(row, 'object_date')}/${val(row, 'sample_id')}/${val(row, 'acq_id')}/${val(row, 'img_file_name')}`;\n\n    const item = {\n        id: val(row, 'object_id'),\n        url: url\n    };\n\n    usefulKeys.forEach(key => {\n        const v = parseFloat(val(row, key));\n        item[key] = isNaN(v) ? 0 : v;\n    });\n\n    // Biovolume estimate (Sphere from ESD): 4/3 * pi * (r)^3\n    if(item.object_equivalent_diameter) {\n        const r = item.object_equivalent_diameter / 2;\n        totalBiovolume += (4/3) * Math.PI * Math.pow(r, 3);\n    }\n\n    items.push(item);\n}\n\n// 5. Final calculations for Header\nmeta.total_objects = items.length;\nmeta.abundance = meta.vol_imaged > 0 ? (items.length / meta.vol_imaged).toFixed(0) : 0;\n// Biovolume in Millions of µm³ per mL\nmeta.est_biovolume = meta.vol_imaged > 0 ? ((totalBiovolume / 1000000) / meta.vol_imaged).toFixed(2) : 0;\n\nmsg.payload = {\n    data: items,\n    keys: usefulKeys,\n    meta: meta\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1060,
-        "y": 320,
-        "wires": [
-            [
-                "bff00eae3f65f644",
-                "bbb2d0709f064549",
-                "45375ce0b837d4fb",
-                "4244d2ed880cca66"
-            ]
-        ]
-    },
-    {
-        "id": "bff00eae3f65f644",
-        "type": "ui-template",
-        "z": "14f8c9b5ce1235cc",
-        "group": "c5651e1a3e56f3f5",
-        "page": "",
-        "ui": "",
-        "name": "Plots",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n    <div style=\"height: 100%; position: relative; min-height: 100vh;\">\n        \n        <v-overlay \n            :value=\"showOverlay\" \n            absolute \n            color=\"white\" \n            opacity=\"0.95\" \n            style=\"z-index: 9999; justify-content: center; align-items: center;\"\n        >\n            <div class=\"text-center\">\n                <div v-if=\"isLoading\">\n                    <v-progress-circular indeterminate color=\"primary\" size=\"64\" width=\"6\"></v-progress-circular>\n                    <div class=\"mt-4 primary--text text-h6 font-weight-light\">Processing Sample Data...</div>\n                </div>\n\n                <div v-else>\n                    <v-icon size=\"80\" color=\"grey lighten-2\">mdi-chart-scatter-plot</v-icon>\n                    <div class=\"mt-4 grey--text text--darken-1 text-h6 font-weight-light\">Waiting for Data...</div>\n                    <div class=\"caption grey--text\">Send a payload to visualize the dashboard</div>\n                </div>\n            </div>\n        </v-overlay>\n\n        <v-card outlined class=\"grey lighten-5\">\n            <v-card-text class=\"px-0\">\n                <v-row align=\"center\">\n                    \n                    <v-col cols=\"12\" md=\"9\" class=\"border-right\">\n                        <div class=\"caption grey--text text-uppercase font-weight-bold mb-1\">Sample Identity</div>\n                        <div class=\"text-h4 primary--text font-weight-bold\">\n                            {{ meta.sample_id || '--' }}\n                        </div>\n                        <div class=\"subtitle-1 grey--text text--darken-3 mt-1\">\n                            <strong>Project:</strong> {{ meta.project || '--' }}<br>\n                            <span class=\"caption\">Acq ID: {{ meta.acq_id || '--' }}</span>\n                        </div>\n                    </v-col>\n\n                    <v-col cols=\"12\" md=\"3\" class=\"text-right\">\n                        <v-btn \n                            color=\"success\" \n                            large \n                            depressed \n                            :href=\"downloadUrl\" \n                            target=\"_blank\"\n                            :disabled=\"!meta.sample_id\"\n                        >\n                            <v-icon left>mdi-download</v-icon>\n                            Download EcoTaxa .zip\n                        </v-btn>\n                    </v-col>\n                </v-row>\n            </v-card-text>\n        </v-card>\n\n        <v-row class=\"pa-0\">\n            <v-col class=\"pa-0\" cols=\"12\">\n                <v-row>\n                    \n                    <v-col class=\"pa-0\" cols=\"12\" md=\"6\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">1. Flowcell Distribution</div>\n                            <div id=\"chart-heatmap\" style=\"height: 300px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Check:</strong> Are particles evenly spread? 'Hotspots' indicate stuck dirt.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"6\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">2. Size Spectrum (ESD)</div>\n                            <div id=\"chart-esd\" style=\"height: 300px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Check:</strong> The dominant size class. A steep slope is typical for marine samples.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"12\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">\n                                3. Acquisition Stability (Timeline)\n                            </div>\n                            <div id=\"chart-timeline\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> Look for gaps (clogs) or spikes (bubbles) over time.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"4\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">4. Color vs. Brightness</div>\n                            <div id=\"chart-colorspace\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> Separates colorful/opaque (Living) from pale (Ghost).\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"4\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">5. Aspect Ratio</div>\n                            <div id=\"chart-aspect\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> Points far from diagonal are chains/filaments.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"4\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">6. Greenness vs. Shape</div>\n                            <div id=\"chart-green\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> High Green + High Circ = Phytoplankton.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"4\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">7. Complexity</div>\n                            <div id=\"chart-complexity\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> Deviations indicate spines or appendages.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"4\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">8. Focus Quality</div>\n                            <div id=\"chart-texture\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> Low std dev indicates blurry objects.\n                            </div>\n                        </v-card>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"4\">\n                        <v-card outlined class=\"pa-1 fill-height\">\n                            <div class=\"caption font-weight-bold text-uppercase pa-2 primary--text\">9. Solidity</div>\n                            <div id=\"chart-solidity\" style=\"height: 250px;\"></div>\n                            <div class=\"px-3 pb-2 caption grey--text\">\n                                <strong>Insight:</strong> Low solidity indicates fluffy aggregates.\n                            </div>\n                        </v-card>\n                    </v-col>\n                </v-row>\n            </v-col>\n        </v-row>\n\n\n        <v-card outlined class=\"mb-8 elevation-1\">\n            \n            <div>\n                <v-row>\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"9\">\n                        <div style=\"height: 600px; border: 1px solid #e0e0e0; border-radius: 4px;\">\n                            <div id=\"explorerPlot\" style=\"width:100%; height:100%;\"></div>\n                        </div>\n                    </v-col>\n\n                    <v-col class=\"pa-0\" cols=\"12\" md=\"3\">\n                        <v-card class=\"pa-4\" outlined height=\"auto\" class=\"d-flex flex-column grey lighten-5\">\n                            <v-card-title class=\"subtitle-2 grey--text text--darken-2\">Explorer Details</v-card-title>\n                            \n                            <div v-if=\"!hoveredItem\" class=\"d-flex flex-column justify-center align-center flex-grow-1 grey--text\">\n                                <v-icon size=\"48\" color=\"grey lighten-2\">mdi-cursor-default-click-outline</v-icon>\n                                <div class=\"caption mt-2\">Hover over a point</div>\n                            </div>\n                            \n                            <div v-else class=\"d-flex flex-column\" style=\"height: 100%; overflow-y: auto;\">\n                                <v-card flat class=\"mb-3 white border-sm\">\n                                    <v-img :src=\"hoveredItem.url\" aspect-ratio=\"1\" contain class=\"grey lighten-4\">\n                                        <template v-slot:placeholder>\n                                            <v-row class=\"fill-height ma-0\" align=\"center\" justify=\"center\">\n                                                <v-progress-circular indeterminate color=\"primary\" size=\"20\"></v-progress-circular>\n                                            </v-row>\n                                        </template>\n                                        <template v-slot:error>\n                                            <v-icon color=\"grey lighten-1\">mdi-image-off</v-icon>\n                                        </template>\n                                    </v-img>\n                                </v-card>\n                                \n                                <div class=\"text-center mb-2\">\n                                    <v-chip x-small color=\"primary\" dark>ID: {{ hoveredItem.id }}</v-chip>\n                                </div>\n                                <v-divider class=\"mb-2\"></v-divider>\n                                <div class=\"caption\">\n                                    <v-row dense>\n                                        <v-col cols=\"6\" class=\"grey--text text--darken-1 font-weight-bold\">X ({{ xAxis }})</v-col>\n                                        <v-col cols=\"6\" class=\"text-right\">{{ formatVal(hoveredItem[xAxis]) }}</v-col>\n                                        <v-col cols=\"6\" class=\"grey--text text--darken-1 font-weight-bold\">Y ({{ yAxis }})</v-col>\n                                        <v-col cols=\"6\" class=\"text-right\">{{ formatVal(hoveredItem[yAxis]) }}</v-col>\n                                    </v-row>\n                                </div>\n                            </div>\n                        </v-card>\n                    </v-col>\n                </v-row>\n\n            <v-row class=\"mb-4\" align=\"center\" justify=\"space-between\" >\n\n                <v-col cols=\"12\" md=\"5\">\n                    <v-select v-model=\"xAxis\" :items=\"keys\" label=\"X Axis\" variant=\"outlined\" density=\"compact\" hide-details\n                        bg-color=\"white\" />\n                </v-col>\n\n                <v-col cols=\"12\" md=\"5\">\n                    <v-select v-model=\"yAxis\" :items=\"keys\" label=\"Y Axis\" variant=\"outlined\" density=\"compact\" hide-details\n                        bg-color=\"white\" />\n                </v-col>\n\n                <v-col cols=\"12\" md=\"2\">\n                    <v-btn color=\"primary\" block size=\"small\" @click=\"updateExplorer\">\n                        <v-icon start>mdi-chart-scatter-plot-hexbin</v-icon>\n                        Load the plot\n                    </v-btn>\n                </v-col>\n            </v-row>\n            </div>\n        </v-card>\n\n        <v-card\n            v-if=\"reportTooltip.show\"\n            class=\"elevation-10 rounded-lg\"\n            :style=\"{\n                position: 'fixed',\n                top: reportTooltip.y + 15 + 'px',\n                left: reportTooltip.x + 15 + 'px',\n                zIndex: 9999,\n                width: '200px',\n                pointerEvents: 'none'\n            }\"\n        >\n            <v-img :src=\"reportTooltip.url\" aspect-ratio=\"1\" contain class=\"grey lighten-4 rounded-t-lg\"></v-img>\n            <div class=\"caption pa-2 text-center white font-weight-bold primary--text\">\n                ID: {{ reportTooltip.id }}\n            </div>\n        </v-card>\n\n    </div>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            isLoading: false,\n            dataset: [],\n            keys: [],\n            meta: {\n                sample_id: '', project: '', acq_id: '',\n                abundance: 0, total_objects: 0, est_biovolume: 0,\n                vol_imaged: 0, resolution: 0\n            },\n            xAxis: 'object_elongation',\n            yAxis: 'object_circularity',\n            \n            hoveredItem: null,\n            reportTooltip: { show: false, url: '', id: '', x: 0, y: 0 },\n            dialogs: { abundance: false, biovolume: false }\n        }\n    },\n    watch: {\n        msg: {\n            handler(val) {\n                if (val.payload && val.payload.data) {\n                    this.isLoading = true;\n                    \n                    setTimeout(() => {\n                        this.meta = val.payload.meta || {};\n                        \n                        this.dataset = val.payload.data.map((d, i) => {\n                            const h = d.object_MeanHue || 0;\n                            const greenDist = Math.abs(h - 80); \n                            d.custom_greenness = Math.max(0, 100 - greenDist); \n                            d.sequence_index = i; \n                            return d;\n                        });\n                        \n                        this.keys = val.payload.keys || [];\n                        \n                        if (this.keys.includes('object_elongation')) this.xAxis = 'object_elongation';\n                        if (this.keys.includes('object_area')) this.yAxis = 'object_area';\n                        \n                        this.$nextTick(() => {\n                            this.updateExplorer();\n                            this.generateReport();\n                            this.isLoading = false;\n                        });\n                    }, 50);\n                }\n            },\n            deep: true\n        }\n    },\n    computed: {\n        // Logic to show overlay if loading OR if data is empty\n        showOverlay() {\n            return this.isLoading || this.dataset.length === 0;\n        },\n        totalCount() { return this.dataset.length; },\n        downloadUrl() {\n            if (!this.meta.sample_id) return '#';\n            return `/ps/data/browse/api/raw/export/ecotaxa/ecotaxa_${this.meta.sample_id}.zip`;\n        }\n    },\n    mounted() {\n        if (!window.Plotly) {\n            const script = document.createElement('script');\n            script.src = \"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n            script.onload = () => { /* Loaded */ };\n            document.head.appendChild(script);\n        }\n    },\n    methods: {\n        formatVal(val) {\n            return typeof val === 'number' ? val.toFixed(2) : val;\n        },\n        \n        updateExplorer() {\n            const divId = 'explorerPlot';\n            if (!window.Plotly || !document.getElementById(divId)) return;\n\n            // CLEAR PLOT if no data\n            if (this.dataset.length === 0) {\n                Plotly.purge(divId);\n                this.hoveredItem = null;\n                return;\n            }\n\n            const trace = {\n                x: this.dataset.map(d => d[this.xAxis]),\n                y: this.dataset.map(d => d[this.yAxis]),\n                mode: 'markers',\n                type: 'scatter',\n                marker: { size: 8, color: '#1976D2', opacity: 0.6, line: {width:1, color:'white'} },\n                hoverinfo: 'none'\n            };\n\n            const layout = {\n                margin: { t: 20, b: 40, l: 60, r: 20 },\n                xaxis: { title: this.xAxis },\n                yaxis: { title: this.yAxis },\n                plot_bgcolor: '#eef3ff',\n                hovermode: 'closest',\n                dragmode: 'zoom'\n            };\n\n            Plotly.newPlot(divId, [trace], layout, { responsive: true, displayModeBar: true }).then(() => {\n                document.getElementById(divId).on('plotly_hover', (data) => {\n                    this.hoveredItem = this.dataset[data.points[0].pointIndex];\n                });\n            });\n        },\n\n        generateReport() {\n            const chartIds = [\n                'chart-heatmap', 'chart-esd', 'chart-timeline', \n                'chart-colorspace', 'chart-aspect', 'chart-green', \n                'chart-complexity', 'chart-texture', 'chart-solidity'\n            ];\n\n            if (!window.Plotly) return;\n\n            // CLEAR ALL PLOTS if no data\n            if (this.dataset.length === 0) {\n                chartIds.forEach(id => {\n                    const el = document.getElementById(id);\n                    if(el) Plotly.purge(el);\n                });\n                return;\n            }\n            \n            const commonLayout = {\n                margin: {t:10,b:30,l:40,r:10},\n                plot_bgcolor: '#eef3ff'\n            };\n\n            // 1. Heatmap (Portland)\n            Plotly.newPlot('chart-heatmap', [{\n                x: this.dataset.map(d => d.object_x),\n                y: this.dataset.map(d => d.object_y),\n                type: 'histogram2d', \n                colorscale: 'Plotly3',\n                nbinsx: 100, nbinsy: 80\n            }], { \n                ...commonLayout, \n                hovermode: false, \n                xaxis: { title: 'X (px)' }, \n                yaxis: { title: 'Y (px)', autorange: 'reversed' } \n            }, {responsive:true});\n\n            // 2. ESD\n            Plotly.newPlot('chart-esd', [{\n                x: this.dataset.map(d => d.object_equivalent_diameter),\n                type: 'histogram',\n                marker: { color: 'teal' }\n            }], { ...commonLayout, xaxis: {title: 'ESD'} }, {responsive:true});\n\n            // 3. Timeline (Blue)\n            this.createScatter('chart-timeline', 'sequence_index', 'object_area', 'Acq Sequence', 'Area', 'blue');\n\n            // 4. Color Space (Magenta)\n            this.createScatter('chart-colorspace', 'object_MeanSaturation', 'object_MeanValue', 'Saturation', 'Brightness', 'magenta');\n\n            // 5. Aspect\n            this.createScatter('chart-aspect', 'object_width', 'object_height', 'Width', 'Height', 'orange');\n\n            // 6. Greenness\n            this.createScatter('chart-green', 'custom_greenness', 'object_circ.', 'Green Index', 'Circularity', '#4CAF50');\n\n            // 7. Complexity\n            this.createScatter('chart-complexity', 'object_area', 'object_perim.', 'Area', 'Perimeter', 'purple');\n\n            // 8. Texture\n            this.createScatter('chart-texture', 'object_area', 'object_StdValue', 'Area', 'Texture (Std Dev)', 'brown');\n\n            // 9. Solidity (Histo)\n            Plotly.newPlot('chart-solidity', [{\n                x: this.dataset.map(d => d.object_solidity),\n                type: 'histogram',\n                marker: { color: '#3F51B5' }\n            }], { ...commonLayout, xaxis: {title: 'Solidity'} }, {responsive:true});\n        },\n\n        createScatter(divId, xKey, yKey, xTitle, yTitle, color) {\n             const el = document.getElementById(divId);\n             if (!el) return;\n             \n             const trace = {\n                x: this.dataset.map(d => d[xKey]),\n                y: this.dataset.map(d => d[yKey]),\n                mode: 'markers',\n                type: 'scatter',\n                marker: { size: 10, color: color, opacity: 0.5 },\n                hoverinfo: 'none'\n            };\n\n            const layout = {\n                margin: {t:10,b:30,l:50,r:10},\n                xaxis: {title: xTitle},\n                yaxis: {title: yTitle},\n                plot_bgcolor: '#eef3ff',\n                hovermode: 'closest'\n            };\n\n            Plotly.newPlot(divId, [trace], layout, {responsive:true}).then(() => {\n                el.on('plotly_hover', (data) => {\n                    const idx = data.points[0].pointIndex;\n                    this.reportTooltip = {\n                        show: true,\n                        url: this.dataset[idx].url,\n                        id: this.dataset[idx].id,\n                        x: data.event.clientX,\n                        y: data.event.clientY\n                    };\n                });\n                \n                el.on('plotly_unhover', () => {\n                    this.reportTooltip.show = false;\n                });\n            });\n        }\n    }\n}\n</script>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1230,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bbb2d0709f064549",
-        "type": "ui-template",
-        "z": "14f8c9b5ce1235cc",
-        "group": "3d290173d833fd04",
-        "page": "",
-        "ui": "",
-        "name": "UMAP",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n    <div class=\"pa-4\" style=\"height: 100vh; display: flex; flex-direction: column;\">\n        \n        <v-row style=\"height: 100%;\">\n            \n            <v-col cols=\"12\" md=\"3\" class=\"d-flex flex-column\" style=\"height: 100%;\">\n                <v-card outlined class=\"grey lighten-5 flex-grow-1 d-flex flex-column\">\n                    <v-card-title class=\"primary white--text py-3 subtitle-1 font-weight-bold\">\n                        <v-icon left color=\"white\">mdi-graph-outline</v-icon>\n                        UMAP Parameters\n                    </v-card-title>\n                    \n                    <div class=\"pa-4 flex-grow-1\" style=\"overflow-y: auto;\">\n                        \n                        <v-alert dense type=\"info\" outlined class=\"mb-6 caption\">\n                            <strong>{{ totalCount }}</strong> Objects<br>\n                            Clustering based on <strong>{{ availableKeys.length }}</strong> variables.\n                        </v-alert>\n\n                        <div class=\"mb-6\">\n                            <div class=\"d-flex justify-space-between align-center mb-1\">\n                                <span class=\"caption font-weight-bold grey--text text--darken-2\">Neighbors ({{ params.n_neighbors }})</span>\n                            </div>\n                            <v-slider\n                                v-model=\"params.n_neighbors\"\n                                min=\"2\" max=\"100\" step=\"1\"\n                                dense hide-details\n                                track-color=\"grey lighten-2\"\n                                thumb-label\n                            ></v-slider>\n                            <div class=\"caption grey--text mt-2\" style=\"line-height: 1.3;\">\n                                <strong>Insight:</strong> Controls the balance between local and global structure.\n                                <ul class=\"pl-3 mt-1\">\n                                    <li><strong>Low (2-10):</strong> Focuses on very local details (micro-clusters).</li>\n                                    <li><strong>High (30-100):</strong> Preserves the overall global shape of the data.</li>\n                                </ul>\n                            </div>\n                        </div>\n\n                        <v-divider class=\"my-4\"></v-divider>\n\n                        <div class=\"mb-6\">\n                             <div class=\"d-flex justify-space-between align-center mb-1\">\n                                <span class=\"caption font-weight-bold grey--text text--darken-2\">Min Distance ({{ params.min_dist }})</span>\n                            </div>\n                            <v-slider\n                                v-model=\"params.min_dist\"\n                                min=\"0.01\" max=\"0.99\" step=\"0.01\"\n                                dense hide-details\n                                track-color=\"grey lighten-2\"\n                                thumb-label\n                            ></v-slider>\n                            <div class=\"caption grey--text mt-2\" style=\"line-height: 1.3;\">\n                                <strong>Insight:</strong> Controls how tightly points are packed together.\n                                <ul class=\"pl-3 mt-1\">\n                                    <li><strong>Low (0.01):</strong> Creates tight, dense clumps.</li>\n                                    <li><strong>High (0.5+):</strong> Spreads points out, revealing structure within clumps.</li>\n                                </ul>\n                            </div>\n                        </div>\n\n                        <v-divider class=\"my-4\"></v-divider>\n\n                        <div class=\"mb-6\">\n                            <div class=\"caption font-weight-bold grey--text text--darken-2 mb-1\">\n                                Image Zoom ({{ imageSize }})\n                            </div>\n                            <v-slider\n                                v-model=\"imageSize\"\n                                min=\"0.02\" max=\"0.5\" step=\"0.01\"\n                                dense hide-details\n                                color=\"secondary\"\n                                track-color=\"grey lighten-2\"\n                            ></v-slider>\n                            <div class=\"caption grey--text mt-2\">\n                                Adjusts the size of the images projected on the plot.\n                            </div>\n                        </div>\n\n                    </div>\n\n                    <div class=\"pa-4 white elevation-2\">\n                        <v-btn \n                            color=\"primary\" \n                            block \n                            large\n                            depressed\n                            :loading=\"isCalculating\"\n                            @click=\"runUMAP\"\n                        >\n                            <v-icon left>mdi-play</v-icon>\n                            Run UMAP Calculation\n                        </v-btn>\n                    </div>\n                </v-card>\n            </v-col>\n\n            <v-col cols=\"12\" md=\"9\" style=\"height: 100%;\">\n                <v-card outlined style=\"height: 100%; position: relative;\">\n                    \n                    <v-overlay \n                        absolute \n                        :value=\"isCalculating\"\n                        opacity=\"0.8\"\n                        color=\"white\"\n                        style=\"z-index: 10;\"\n                        class=\"d-flex justify-center align-center\"\n                    >\n                        <div class=\"text-center\">\n                            <v-progress-circular indeterminate color=\"primary\" size=\"64\" width=\"6\"></v-progress-circular>\n                            <div class=\"mt-4 primary--text text-h5 font-weight-light\">Calculating UMAP...</div>\n                            <div class=\"caption grey--text mt-1\">Processing {{ availableKeys.length }} dimensions for {{ totalCount }} objects.</div>\n                        </div>\n                    </v-overlay>\n\n                    <div v-if=\"!umapResult && !isCalculating\" class=\"d-flex justify-center align-center\" style=\"height: 100%;\">\n                        <div class=\"text-center grey--text\">\n                            <v-icon size=\"64\" color=\"grey lighten-2\">mdi-chart-bubble</v-icon>\n                            <div class=\"text-h6 mt-2\">Ready to Cluster</div>\n                            <p>Click \"Run UMAP Calculation\" to generate the map.</p>\n                        </div>\n                    </div>\n\n                    <div id=\"umapPlot\" style=\"width:100%; height:100%;\"></div>\n\n                </v-card>\n            </v-col>\n\n        </v-row>\n    </div>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            rawData: [],\n            availableKeys: [],\n            isCalculating: false,\n            params: {\n                n_neighbors: 15,\n                min_dist: 0.15,\n                spread: 1.0\n            },\n            imageSize: 0.3, // Default image scale\n            umapResult: null\n        }\n    },\n    computed: {\n        totalCount() { return this.rawData.length; }\n    },\n    watch: {\n        msg: {\n            handler(val) {\n                if (val.payload && val.payload.data) {\n                    this.rawData = val.payload.data;\n                    this.availableKeys = val.payload.keys || [];\n                    \n                    // Reset result on new data\n                    this.umapResult = null;\n\n                    // Auto-run if small dataset\n                    if(this.totalCount > 0 && this.totalCount < 200) {\n                        this.runUMAP();\n                    }\n                }\n            },\n            deep: true\n        },\n        // Re-draw plot instantly when image size changes\n        imageSize() {\n            if (this.umapResult) this.drawPlot();\n        }\n    },\n    mounted() {\n        // Load Plotly\n        if (!window.Plotly) {\n            const s1 = document.createElement('script');\n            s1.src = \"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n            document.head.appendChild(s1);\n        }\n        \n        // Load UMAP-JS\n        if (!window.UMAP) {\n            const s2 = document.createElement('script');\n            s2.src = \"https://cdn.jsdelivr.net/npm/umap-js@1.3.3/lib/umap-js.min.js\";\n            document.head.appendChild(s2);\n        }\n    },\n    methods: {\n        async runUMAP() {\n            if (!window.UMAP || this.rawData.length === 0) return;\n\n            this.isCalculating = true;\n\n            // UI update delay\n            await new Promise(resolve => setTimeout(resolve, 100));\n\n            try {\n                const matrix = this.normalizeData(this.rawData, this.availableKeys);\n\n                const umap = new window.UMAP({\n                    nNeighbors: this.params.n_neighbors,\n                    minDist: this.params.min_dist,\n                    spread: this.params.spread,\n                    nComponents: 2, \n                    random: Math.random\n                });\n\n                const embedding = await umap.fit(matrix);\n\n                this.umapResult = this.rawData.map((item, i) => ({\n                    ...item,\n                    umapX: embedding[i][0],\n                    umapY: embedding[i][1]\n                }));\n\n                this.drawPlot();\n\n            } catch (e) {\n                console.error(\"UMAP Calculation Error\", e);\n            } finally {\n                this.isCalculating = false;\n            }\n        },\n\n        normalizeData(data, features) {\n            const stats = {};\n            features.forEach(f => {\n                const vals = data.map(row => row[f] || 0);\n                stats[f] = {\n                    min: Math.min(...vals),\n                    max: Math.max(...vals)\n                };\n                if (stats[f].max === stats[f].min) stats[f].max += 1; \n            });\n\n            return data.map(row => {\n                return features.map(f => {\n                    const val = row[f] || 0;\n                    return (val - stats[f].min) / (stats[f].max - stats[f].min);\n                });\n            });\n        },\n\n        drawPlot() {\n            const divId = 'umapPlot';\n            if (!window.Plotly || !this.umapResult) return;\n\n            // 1. Hidden Scatter Trace\n            const trace = {\n                x: this.umapResult.map(d => d.umapX),\n                y: this.umapResult.map(d => d.umapY),\n                mode: 'markers',\n                type: 'scatter',\n                text: this.umapResult.map(d => `ID: ${d.id}`),\n                marker: { \n                    size: 2, \n                    color: 'rgba(0,0,0,0)' \n                },\n                hoverinfo: 'text'\n            };\n\n            // 2. Image Layout Array\n            const images = this.umapResult.map(d => ({\n                source: d.url,\n                xref: 'x',\n                yref: 'y',\n                x: d.umapX,\n                y: d.umapY,\n                sizex: this.imageSize,\n                sizey: this.imageSize,\n                xanchor: 'center',\n                yanchor: 'middle',\n                layer: 'above'\n            }));\n\n            // 3. Shapes (Contours/Borders)\n            // We create a rectangle shape behind each image to act as a border\n            const shapes = this.umapResult.map(d => ({\n                type: 'rect',\n                xref: 'x',\n                yref: 'y',\n                x0: d.umapX - (this.imageSize / 2),\n                y0: d.umapY - (this.imageSize / 2),\n                x1: d.umapX + (this.imageSize / 2),\n                y1: d.umapY + (this.imageSize / 2),\n                line: {\n                    color: '#bdbdbd', // Light grey contour\n                    width: 1\n                }\n            }));\n\n            const layout = {\n                title: {\n                    text: 'Morphological Similarity Map',\n                    font: { size: 14, color: 'grey' }\n                },\n                xaxis: { showgrid: false, zeroline: false, showticklabels: false },\n                yaxis: { showgrid: false, zeroline: false, showticklabels: false },\n                plot_bgcolor: 'black',\n                margin: { t: 30, b: 10, l: 10, r: 10 },\n                hovermode: 'closest',\n                dragmode: 'pan',\n                images: images,\n            };\n\n            const config = {\n                responsive: true,\n                scrollZoom: true,\n                displayModeBar: true,\n                modeBarButtonsToRemove: ['lasso2d', 'select2d']\n            };\n\n            Plotly.newPlot(divId, [trace], layout, config);\n        }\n    }\n}\n</script>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1290,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4b133307e9244dd1",
-        "type": "function",
-        "z": "14f8c9b5ce1235cc",
-        "name": "Eraser",
-        "func": "// Construct a \"Blank\" payload structure\n// This matches the structure the UI expects, preventing \"undefined\" errors.\n\nmsg.payload = {\n    // 1. Empty Data Array (Clears all plots and the explorer)\n    data: [],\n    \n    // 2. Empty Keys (Clears dropdown selectors)\n    keys: [],\n    \n    // 3. Reset Metadata (Sets header text to default/zero)\n    meta: {\n        sample_id: 'Select a sample from the table',\n        project: '-',\n        acq_id: '-',\n        vol_imaged: 0,\n        resolution: 0,\n        \n        // Computed stats reset\n        total_objects: 0,\n        abundance: 0,\n        est_biovolume: 0\n    }\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1090,
-        "y": 360,
-        "wires": [
-            [
-                "bff00eae3f65f644",
-                "bbb2d0709f064549",
-                "45375ce0b837d4fb",
-                "4244d2ed880cca66"
-            ]
-        ]
-    },
-    {
-        "id": "45375ce0b837d4fb",
-        "type": "ui-template",
-        "z": "14f8c9b5ce1235cc",
-        "group": "3d290173d833fd04",
-        "page": "",
-        "ui": "",
-        "name": "t-sne",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n    <div class=\"pa-4\" style=\"height: 100vh; display: flex; flex-direction: column;\">\n        \n        <v-row style=\"height: 100%;\">\n            \n            <v-col cols=\"12\" md=\"3\" class=\"d-flex flex-column\" style=\"height: 100%;\">\n                <v-card outlined class=\"grey lighten-5 flex-grow-1 d-flex flex-column\">\n                    <v-card-title class=\"deep-purple white--text py-3 subtitle-1 font-weight-bold\">\n                        <v-icon left color=\"white\">mdi-scatter-plot-outline</v-icon>\n                        t-SNE Parameters\n                    </v-card-title>\n                    \n                    <div class=\"pa-4 flex-grow-1\" style=\"overflow-y: auto;\">\n                        \n                        <v-alert dense type=\"success\" outlined class=\"mb-6 caption\">\n                            <strong>{{ totalCount }}</strong> Objects<br>\n                            Library: <strong>Embedded (Offline)</strong>\n                        </v-alert>\n\n                        <div class=\"mb-6\">\n                            <div class=\"d-flex justify-space-between align-center mb-1\">\n                                <span class=\"caption font-weight-bold grey--text text--darken-2\">Perplexity ({{ params.perplexity }})</span>\n                            </div>\n                            <v-slider\n                                v-model=\"params.perplexity\"\n                                min=\"5\" max=\"50\" step=\"1\"\n                                dense hide-details\n                                color=\"deep-purple\"\n                                track-color=\"grey lighten-2\"\n                                thumb-label\n                            ></v-slider>\n                            <div class=\"caption grey--text mt-1\">\n                                Guess of neighbors per point.\n                            </div>\n                        </div>\n\n                        <v-divider class=\"my-4\"></v-divider>\n\n                        <div class=\"mb-6\">\n                             <div class=\"d-flex justify-space-between align-center mb-1\">\n                                <span class=\"caption font-weight-bold grey--text text--darken-2\">Epsilon ({{ params.epsilon }})</span>\n                            </div>\n                            <v-slider\n                                v-model=\"params.epsilon\"\n                                min=\"1\" max=\"20\" step=\"1\"\n                                dense hide-details\n                                color=\"deep-purple\"\n                                track-color=\"grey lighten-2\"\n                                thumb-label\n                            ></v-slider>\n                            <div class=\"caption grey--text mt-1\">\n                                Learning rate (speed).\n                            </div>\n                        </div>\n\n                        <v-divider class=\"my-4\"></v-divider>\n\n                        <div class=\"mb-6\">\n                            <div class=\"caption font-weight-bold grey--text text--darken-2 mb-1\">\n                                Image Zoom ({{ imageSize }})\n                            </div>\n                            <v-slider\n                                v-model=\"imageSize\"\n                                min=\"0.02\" max=\"0.8\" step=\"0.01\"\n                                dense hide-details\n                                color=\"secondary\"\n                                track-color=\"grey lighten-2\"\n                            ></v-slider>\n                        </div>\n\n                    </div>\n\n                    <div class=\"pa-4 white elevation-2\">\n                        <v-btn \n                            color=\"deep-purple\" \n                            dark\n                            block \n                            large\n                            depressed\n                            :loading=\"isCalculating\"\n                            :disabled=\"totalCount === 0\"\n                            @click=\"runTSNE\"\n                        >\n                            <v-icon left>mdi-play</v-icon>\n                            Run t-SNE Calculation\n                        </v-btn>\n                    </div>\n                </v-card>\n            </v-col>\n\n            <v-col cols=\"12\" md=\"9\" style=\"height: 100%;\">\n                <v-card outlined style=\"height: 100%; position: relative;\">\n                    \n                    <v-overlay \n                        absolute \n                        :value=\"isCalculating\"\n                        opacity=\"0.8\"\n                        color=\"white\"\n                        style=\"z-index: 10;\"\n                        class=\"d-flex justify-center align-center\"\n                    >\n                        <div class=\"text-center\">\n                            <v-progress-circular indeterminate color=\"deep-purple\" size=\"64\" width=\"6\"></v-progress-circular>\n                            <div class=\"mt-4 deep-purple--text text-h5 font-weight-light\">Calculating t-SNE...</div>\n                            <div class=\"caption grey--text mt-1\">\n                                Iteration {{ currentIteration }} / {{ totalIterations }}\n                            </div>\n                        </div>\n                    </v-overlay>\n\n                    <div v-if=\"!tsneResult && !isCalculating\" class=\"d-flex justify-center align-center\" style=\"height: 100%;\">\n                        <div class=\"text-center grey--text\">\n                            <v-icon size=\"64\" color=\"grey lighten-2\">mdi-chart-scatter-plot</v-icon>\n                            <div class=\"text-h6 mt-2\">Ready to Cluster</div>\n                            <p v-if=\"totalCount > 0\">Click \"Run t-SNE Calculation\" to generate the map.</p>\n                            <p v-else class=\"orange--text\">Waiting for data...</p>\n                        </div>\n                    </div>\n\n                    <div id=\"tsnePlot\" style=\"width:100%; height:100%;\"></div>\n\n                </v-card>\n            </v-col>\n\n        </v-row>\n    </div>\n</template>\n\n<script>\nexport default {\n    props: ['msg'],\n    data() {\n        return {\n            rawData: [],\n            availableKeys: [],\n            isCalculating: false,\n            \n            params: {\n                perplexity: 30,\n                epsilon: 10,\n            },\n            totalIterations: 500,\n            currentIteration: 0,\n            imageSize: 0.3, \n            tsneResult: null,\n            embeddedTSNE: null // We store the library instance here\n        }\n    },\n    computed: {\n        totalCount() { return this.rawData ? this.rawData.length : 0; }\n    },\n    watch: {\n        msg: {\n            handler(val) {\n                if (val && val.payload && val.payload.data) {\n                    this.rawData = val.payload.data;\n                    this.availableKeys = val.payload.keys || [];\n                    this.tsneResult = null;\n                }\n            },\n            deep: true,\n            immediate: true\n        },\n        imageSize() {\n            if (this.tsneResult) this.drawPlot();\n        }\n    },\n    mounted() {\n        // 1. Initialize our internal t-SNE engine immediately\n        this.initEmbeddedLibrary();\n\n        // 2. Load Plotly (Standard Visual Library)\n        if (!window.Plotly) {\n            const s1 = document.createElement('script');\n            s1.src = \"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n            document.head.appendChild(s1);\n        }\n    },\n    methods: {\n        async runTSNE() {\n            if (this.totalCount === 0) return;\n\n            this.isCalculating = true;\n            this.currentIteration = 0;\n\n            // Yield to UI\n            await new Promise(resolve => setTimeout(resolve, 100));\n\n            try {\n                // Prepare Data\n                const matrix = this.normalizeData(this.rawData, this.availableKeys);\n\n                // Initialize Engine\n                const opt = {\n                    epsilon: this.params.epsilon, \n                    perplexity: this.params.perplexity,\n                    dim: 2\n                };\n                \n                // Use our embedded engine\n                const tsne = new this.embeddedTSNE.tSNE(opt);\n                tsne.initDataRaw(matrix);\n\n                const stepSize = 50; \n                \n                // Calculation Loop\n                for(let i = 0; i < this.totalIterations; i += stepSize) {\n                    for(let j = 0; j < stepSize; j++) {\n                        tsne.step();\n                    }\n                    this.currentIteration = i + stepSize;\n                    await new Promise(r => setTimeout(r, 10)); \n                }\n\n                // Get Results\n                const embedding = tsne.getSolution();\n\n                this.tsneResult = this.rawData.map((item, i) => ({\n                    ...item,\n                    tsneX: embedding[i][0],\n                    tsneY: embedding[i][1]\n                }));\n\n                this.drawPlot();\n\n            } catch (e) {\n                console.error(\"t-SNE Error\", e);\n            } finally {\n                this.isCalculating = false;\n            }\n        },\n\n        normalizeData(data, features) {\n            if(!features || features.length === 0) return [];\n            const stats = {};\n            features.forEach(f => {\n                const vals = data.map(row => row[f] || 0);\n                stats[f] = { min: Math.min(...vals), max: Math.max(...vals) };\n                if (stats[f].max === stats[f].min) stats[f].max += 1; \n            });\n            return data.map(row => {\n                return features.map(f => {\n                    const val = row[f] || 0;\n                    return (val - stats[f].min) / (stats[f].max - stats[f].min);\n                });\n            });\n        },\n\n        drawPlot() {\n        const divId = 'tsnePlot';\n        if (!window.Plotly || !this.tsneResult) return;\n        \n        const trace = {\n        x: this.tsneResult.map(d => d.tsneX),\n        y: this.tsneResult.map(d => d.tsneY),\n        mode: 'markers',\n        type: 'scatter',\n        text: this.tsneResult.map(d => `ID: ${d.id}`),\n        marker: { size: 2, color: 'rgba(0,0,0,0)' }, // Invisible markers, just for hover\n        hoverinfo: 'text'\n        };\n        \n        const images = this.tsneResult.map(d => ({\n        source: d.url,\n        xref: 'x',\n        yref: 'y',\n        x: d.tsneX,\n        y: d.tsneY,\n        sizex: this.imageSize,\n        sizey: this.imageSize,\n        // --- THE FIX ---\n        sizing: \"contain\", // Prevents stretching; keeps original aspect ratio\n        // ----------------\n        xanchor: 'center',\n        yanchor: 'middle',\n        layer: 'above'\n        }));\n        \n        const layout = {\n        title: { text: 't-SNE Morphological Map' },\n        xaxis: { showgrid: false, zeroline: false, showticklabels: false },\n        yaxis: {\n        showgrid: false,\n        zeroline: false,\n        showticklabels: false,\n        scaleanchor: 'x', // Keeps the plot aspect ratio 1:1\n        scaleratio: 1\n        },\n        plot_bgcolor: 'black',\n        margin: { t: 30, b: 10, l: 10, r: 10 },\n        hovermode: 'closest',\n        dragmode: 'pan',\n        images: images,\n        };\n        \n        const config = { responsive: true, scrollZoom: true, displayModeBar: true };\n        Plotly.newPlot(divId, [trace], layout, config);\n        },\n\n        // --- EMBEDDED LIBRARY (Minified Implementation of Karpathy's t-SNE) ---\n        initEmbeddedLibrary() {\n            const tsnejs = {};\n            \n            // Utility functions\n            const return_v = false;\n            const v_val = 0.0;\n            const gaussRandom = function() {\n                if(return_v) { return_v = false; return v_val; }\n                var u = 2*Math.random()-1; var v = 2*Math.random()-1; var r = u*u + v*v;\n                if(r == 0 || r > 1) return gaussRandom();\n                var c = Math.sqrt(-2*Math.log(r)/r);\n                return u*c; // stripped v logic for brevity in strict mode\n            };\n            const randn = function(mu, std) { return mu+gaussRandom()*std; };\n            const distL2 = function(a, b) { var d=0; for(var i=0;i<a.length;i++) { d+=(a[i]-b[i])*(a[i]-b[i]); } return d; };\n\n            // The Logic\n            tsnejs.tSNE = function(opt) {\n                opt = opt || {};\n                this.perplexity = opt.perplexity || 30;\n                this.dim = opt.dim || 2;\n                this.epsilon = opt.epsilon || 10;\n                this.iter = 0;\n            };\n\n            tsnejs.tSNE.prototype = {\n                initDataRaw: function(X) {\n                    var N = X.length; var D = X[0].length;\n                    this.P = new Float64Array(N*N);\n                    this.Y = new Float64Array(N*this.dim);\n                    this.gains = new Float64Array(N*this.dim);\n                    this.ystep = new Float64Array(N*this.dim);\n                    for(var i=0;i<N*this.dim;i++) { this.Y[i] = randn(0.0, 1e-4); this.gains[i]=1.0; this.ystep[i]=0.0;}\n                    \n                    // Compute P-values (Gaussian Kernel)\n                    var Htarget = Math.log(this.perplexity);\n                    for(var i=0;i<N;i++) {\n                        var betas = 1.0; var min_beta = -Infinity; var max_beta = Infinity; var tol = 1e-4;\n                        for(var iter=0;iter<50;iter++) {\n                            var p_sum = 0.0;\n                            for(var j=0;j<N;j++) {\n                                var d = 0.0;\n                                if(i!=j) d = distL2(X[i], X[j]);\n                                var p = 0.0;\n                                if(i!=j) p = Math.exp(-d * betas);\n                                this.P[i*N+j] = p;\n                                if(i!=j) p_sum += p;\n                            }\n                            var H = 0.0;\n                            for(var j=0;j<N;j++) {\n                                var pj = 0.0;\n                                if(i!=j) pj = this.P[i*N+j] / p_sum;\n                                if(pj > 1e-7) H -= pj * Math.log(pj);\n                            }\n                            if(Math.abs(H - Htarget) < tol) break;\n                            if(H > Htarget) { min_beta = betas; if(max_beta == Infinity) betas *= 2; else betas = (betas + max_beta) / 2; }\n                            else { max_beta = betas; if(min_beta == -Infinity) betas /= 2; else betas = (betas + min_beta) / 2; }\n                        }\n                        var p_sum_final = 0.0;\n                        for(var j=0;j<N;j++) {\n                            if(i!=j) p_sum_final += this.P[i*N+j];\n                        }\n                        for(var j=0;j<N;j++) {\n                            if(i!=j) this.P[i*N+j] /= p_sum_final;\n                        }\n                    }\n                    // Symmetrize P\n                    var N2 = N*2;\n                    for(var i=0;i<N;i++) {\n                        for(var j=i+1;j<N;j++) {\n                            var p = (this.P[i*N+j] + this.P[j*N+i]) / N2;\n                            this.P[i*N+j] = p; this.P[j*N+i] = p;\n                        }\n                    }\n                },\n                getSolution: function() {\n                    var N = this.P.length > 0 ? Math.sqrt(this.P.length) : 0;\n                    var res = [];\n                    for(var i=0; i<N; i++) {\n                        res.push([this.Y[i*this.dim], this.Y[i*this.dim+1]]);\n                    }\n                    return res;\n                },\n                step: function() {\n                    var N = Math.sqrt(this.P.length); var dim = this.dim;\n                    var cost = 0.0;\n                    var Q = new Float64Array(N*N);\n                    var qu_sum = 0.0;\n                    \n                    for(var i=0;i<N;i++) {\n                        for(var j=i+1;j<N;j++) {\n                            var dsum = 0.0;\n                            for(var d=0;d<dim;d++) {\n                                var dhere = this.Y[i*dim+d] - this.Y[j*dim+d];\n                                dsum += dhere * dhere;\n                            }\n                            var qu = 1.0 / (1.0 + dsum);\n                            Q[i*N+j] = qu; Q[j*N+i] = qu;\n                            qu_sum += 2 * qu;\n                        }\n                    }\n                    \n                    // Gradient\n                    var grad = new Float64Array(N*dim);\n                    for(var i=0;i<N;i++) {\n                        for(var j=0;j<N;j++) {\n                            if(i!=j) {\n                                var qu = Q[i*N+j];\n                                var q = qu / qu_sum;\n                                var p = this.P[i*N+j];\n                                // Prevent NaNs (Exaggeration is standard in early iter but simplified here)\n                                var premult = 4.0 * (p - q) * qu;\n                                for(var d=0;d<dim;d++) {\n                                    grad[i*dim+d] += premult * (this.Y[i*dim+d] - this.Y[j*dim+d]);\n                                }\n                            }\n                        }\n                    }\n\n                    // Update\n                    for(var i=0;i<N*dim;i++) {\n                        var g = grad[i];\n                        if((g > 0.0) != (this.ystep[i] > 0.0)) this.gains[i] += 0.2;\n                        else this.gains[i] *= 0.8;\n                        if(this.gains[i] < 0.01) this.gains[i] = 0.01;\n                        \n                        var momentum = (this.iter < 250) ? 0.5 : 0.8;\n                        this.ystep[i] = momentum * this.ystep[i] - this.epsilon * this.gains[i] * g;\n                        this.Y[i] += this.ystep[i];\n                        \n                        // Center Y\n                        // (Skipping rigorous centering for performance, rely on final map)\n                    }\n                    this.iter++;\n                }\n            };\n            \n            this.embeddedTSNE = tsnejs;\n        }\n    }\n}\n</script>",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 1290,
-        "y": 440,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d9c0cf13cfa21a19",
-        "type": "delay",
-        "z": "14f8c9b5ce1235cc",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 780,
-        "y": 360,
-        "wires": [
-            [
-                "4b133307e9244dd1"
+                "d77ed8081a657507",
+                "384aa9ab83bfe566"
             ]
         ]
     },
@@ -4767,14 +4744,14 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <div class=\"pa-0 d-flex flex-column\">\n        <v-card class=\"mb-4 flex-grow-0\" elevation=\"1\">\n            <v-card-text class=\"py-2\">\n                <v-row align=\"center\" justify=\"space-between\">\n                    <v-col cols=\"12\" md=\"3\">\n                        <div class=\"d-flex align-center\">\n                            <v-icon icon=\"mdi-magnify-minus-outline\" size=\"small\" class=\"mr-2\"></v-icon>\n                            <v-slider\n                                v-model=\"zoom\"\n                                min=\"0.1\"\n                                max=\"3\"\n                                step=\"0.1\"\n                                density=\"compact\"\n                                hide-details\n                                thumb-label\n                                color=\"primary\"\n                            ></v-slider>\n                            <v-icon icon=\"mdi-magnify-plus-outline\" size=\"small\" class=\"ml-2\"></v-icon>\n                        </div>\n                        <div class=\"text-caption text-center text-grey\">Zoom x{{ zoom.toFixed(1) }}</div>\n                    </v-col>\n\n                    <v-col cols=\"12\" md=\"3\">\n                        <v-select\n                            v-model=\"sortBy\"\n                            :items=\"sortOptions\"\n                            label=\"Sort By\"\n                            density=\"compact\"\n                            hide-details\n                            variant=\"outlined\"\n                            prepend-inner-icon=\"mdi-sort\"\n                        ></v-select>\n                    </v-col>\n\n                    <v-col cols=\"6\" md=\"3\">\n                         <v-select\n                            v-model=\"itemsPerPage\"\n                            :items=\"[12, 24, 48, 100]\"\n                            label=\"Per Page\"\n                            density=\"compact\"\n                            hide-details\n                            variant=\"outlined\"\n                        ></v-select>\n                    </v-col>\n                    \n                    <v-col cols=\"6\" md=\"3\" class=\"text-right\">\n                        <v-chip size=\"small\" variant=\"flat\">\n                            Total: {{ filteredItems.length }}\n                        </v-chip>\n                    </v-col>\n                </v-row>\n            </v-card-text>\n        </v-card>\n\n        <div class=\"gallery-scroll-area flex-grow-1\">\n            <div class=\"gallery-grid\">\n                <div \n                    v-for=\"(item, index) in paginatedItems\" \n                    :key=\"item.id\" \n                    class=\"gallery-item-wrapper\"\n                >\n                    <v-card \n                        class=\"gallery-card\" \n                        hover \n                        variant=\"outlined\" \n                        @click=\"openDetails(item)\"\n                        style=\"border-color: #e0e0e0;\"\n                    >\n                        <div \n                            class=\"img-container\"\n                            :style=\"{ \n                                width: (Math.max(item.object_width * zoom, 40)) + 'px', \n                                height: (Math.max(item.object_height * zoom, 40)) + 'px',\n                                backgroundColor: '#f5f5f5' \n                            }\"\n                        >\n                            <img \n                                :src=\"item.url\" \n                                :style=\"{\n                                    width: (item.object_width * zoom) + 'px',\n                                    height: (item.object_height * zoom) + 'px',\n                                    objectFit: 'contain',\n                                    imageRendering: 'pixelated'\n                                }\"\n                            />\n                            \n                            <div \n                                class=\"mini-scale-bar\" \n                                :style=\"{ width: getScaleBar(item).width + 'px' }\"\n                            ></div>\n                            <div class=\"mini-scale-text\">\n                                {{ getScaleBar(item).label }}\n                            </div>\n                        </div>\n\n                        <v-divider></v-divider>\n                        <div class=\"d-flex justify-center pa-0 bg-white\">\n                            <v-btn \n                                icon=\"mdi-download\" \n                                size=\"x-small\" \n                                variant=\"text\" \n                                color=\"grey-darken-1\"\n                                @click.stop=\"downloadImage(item.url, item.id)\"\n                                title=\"Download\"\n                            ></v-btn>\n                             <v-btn \n                                icon=\"mdi-eye\" \n                                size=\"x-small\" \n                                variant=\"text\" \n                                color=\"primary\"\n                                @click.stop=\"openDetails(item)\"\n                                title=\"View Details\"\n                            ></v-btn>\n                        </div>\n                    </v-card>\n                </div>\n                \n                <div v-if=\"filteredItems.length === 0\" class=\"text-center w-100 mt-10 text-grey\">\n                    No objects found.\n                </div>\n            </div>\n        </div>\n\n        <div class=\"text-center pt-2 flex-grow-0\">\n            <v-pagination\n                v-model=\"page\"\n                :length=\"totalPages\"\n                :total-visible=\"7\"\n                density=\"compact\"\n                rounded=\"circle\"\n                color=\"primary\"\n            ></v-pagination>\n        </div>\n\n        <v-dialog v-model=\"detailsDialog\" max-width=\"600\">\n            <v-card v-if=\"selectedItem\">\n                <v-toolbar color=\"primary\" density=\"compact\">\n                    <v-toolbar-title class=\"text-subtitle-1\">Object Analysis</v-toolbar-title>\n                    <v-btn icon=\"mdi-close\" @click=\"detailsDialog = false\"></v-btn>\n                </v-toolbar>\n                <v-card-text class=\"pa-4\">\n                    <v-row>\n                        <v-col cols=\"12\" class=\"text-center bg-grey-lighten-4 pa-4 rounded\">\n                            <img :src=\"selectedItem.url\" style=\"max-width: 100%; max-height: 300px; image-rendering: pixelated;\" />\n                            <div class=\"text-caption text-grey mt-1\">\n                                Resolution: {{ meta.resolution }} units/px\n                            </div>\n                        </v-col>\n                        <v-col cols=\"12\">\n                            <v-table density=\"compact\">\n                                <thead>\n                                    <tr><th class=\"text-left\">Metric</th><th class=\"text-right\">Value</th></tr>\n                                </thead>\n                                <tbody>\n                                    <tr v-for=\"(value, key) in formatMeta(selectedItem)\" :key=\"key\">\n                                        <td>{{ formatKeyName(key) }}</td>\n                                        <td class=\"text-right font-weight-bold\">{{ value }}</td>\n                                    </tr>\n                                </tbody>\n                            </v-table>\n                        </v-col>\n                    </v-row>\n                </v-card-text>\n            </v-card>\n        </v-dialog>\n    </div>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            rawData: [],\n            meta: { resolution: 1 },\n            keys: [],\n            zoom: 0.5, // Default zoom set to 0.5\n            \n            // Pagination & Sorting\n            page: 1,\n            itemsPerPage: 24,\n            sortBy: 'object_area',\n            \n            detailsDialog: false,\n            selectedItem: null,\n            sortOptions: [\n                { title: 'Area (Largest)', value: 'object_area' },\n                { title: 'Width', value: 'object_width' },\n                { title: 'Height', value: 'object_height' },\n                { title: 'Hue', value: 'object_MeanHue' },\n                { title: 'Elongation', value: 'object_elongation' }\n            ]\n        }\n    },\n    computed: {\n        filteredItems() {\n            if (!this.rawData) return [];\n            let result = [...this.rawData];\n            result.sort((a, b) => b[this.sortBy] - a[this.sortBy]);\n            return result;\n        },\n        totalPages() {\n            return Math.ceil(this.filteredItems.length / this.itemsPerPage);\n        },\n        paginatedItems() {\n            const start = (this.page - 1) * this.itemsPerPage;\n            const end = start + this.itemsPerPage;\n            return this.filteredItems.slice(start, end);\n        }\n    },\n    watch: {\n        msg: {\n            handler(newValue) {\n                if (newValue && newValue.payload && newValue.payload.data) {\n                    this.rawData = newValue.payload.data;\n                    this.meta = newValue.payload.meta || { resolution: 1 };\n                    this.keys = newValue.payload.keys || [];\n                    this.page = 1;\n                }\n            },\n            deep: true\n        },\n        sortBy() { this.page = 1; }, \n        totalPages(newVal) {\n            if (this.page > newVal && newVal > 0) {\n                this.page = newVal;\n            }\n        }\n    },\n    methods: {\n        openDetails(item) {\n            this.selectedItem = item;\n            this.detailsDialog = true;\n        },\n        // --- NEW ADAPTIVE SCALE BAR LOGIC ---\n        getScaleBar(item) {\n            const res = this.meta.resolution || 1; // e.g., 0.75 um/px\n            const realWidth = item.object_width * res; // The real world width of the object\n            \n            // We want a bar that is roughly 1/3rd to 1/4th of the object's visual width\n            // This prevents a 100px bar on a 20px image.\n            const targetSize = realWidth / 3;\n\n            // Algorithm to find the nearest \"Nice Number\" (1, 2, 5, 10, 20, 50, 100...)\n            const magnitude = Math.pow(10, Math.floor(Math.log10(targetSize)));\n            const residual = targetSize / magnitude;\n            \n            let niceNumber;\n            if (residual > 5) niceNumber = 5 * magnitude;       // e.g. 80 -> 50\n            else if (residual > 2) niceNumber = 2 * magnitude;  // e.g. 40 -> 20\n            else niceNumber = 1 * magnitude;                    // e.g. 15 -> 10\n            \n            // Fallback for very small objects to ensure at least 1 unit\n            if (niceNumber === 0) niceNumber = 1;\n\n            // Calculate how many pixels this \"Nice Number\" takes up\n            // pixels = real_units / resolution\n            const barPixels = niceNumber / res;\n\n            return {\n                width: barPixels * this.zoom, // Adjust for the current UI zoom level\n                label: niceNumber\n            };\n        },\n        formatKeyName(key) {\n            return key.replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());\n        },\n        formatMeta(item) {\n            const display = {};\n            const keysToUse = this.keys.length ? this.keys : Object.keys(item);\n            \n            keysToUse.forEach(k => {\n                if (k === 'url' || k === 'id') return; \n                let val = item[k];\n                if (typeof val === 'number') val = val.toFixed(2);\n                \n                let unit = '';\n                const keyLower = k.toLowerCase();\n                if (keyLower.includes('area')) unit = ' px²';\n                else if (keyLower.includes('width') || keyLower.includes('height') || keyLower.includes('major') || keyLower.includes('minor') || keyLower.includes('perim') || keyLower.includes('diameter') || keyLower.includes('_x') || keyLower.includes('_y')) unit = ' px';\n                else if (keyLower.includes('hue') || keyLower.includes('angle')) unit = '°';\n                else if (keyLower.includes('saturation')) unit = '%';\n                \n                const cleanKey = k.replace('object_', '');\n                display[cleanKey] = val + unit;\n            });\n            return display;\n        },\n        downloadImage(url, id) {\n            const link = document.createElement('a');\n            link.href = url;\n            link.download = `object_${id}.jpg`;\n            document.body.appendChild(link);\n            link.click();\n            document.body.removeChild(link);\n        }\n    }\n}\n</script>\n\n<style scoped>\n.full-height-container {\n    height: 100%;\n    max-height: 100vh; \n}\n\n.gallery-scroll-area {\n    overflow-y: auto;\n    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);\n    border-radius: 4px;\n    border: 1px solid #eee;\n    padding: 16px;\n}\n\n.gallery-grid {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    align-items: flex-end; \n    justify-content: center;\n}\n\n.gallery-item-wrapper {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.gallery-card {\n    transition: transform 0.2s;\n    cursor: pointer;\n}\n.gallery-card:hover {\n    transform: translateY(-2px);\n    border-color: #2196F3 !important;\n}\n\n.img-container {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    margin: 0 auto;\n    border-bottom: 1px solid #eee;\n}\n\n/* Individual Scale Bar Styles */\n.mini-scale-bar {\n    position: absolute;\n    bottom: 2px;\n    right: 2px;\n    height: 3px;\n    background-color: white;\n    border: 1px solid black;\n    pointer-events: none;\n    z-index: 2;\n    transition: width 0.3s ease; /* Smooth transition when zooming */\n}\n\n.mini-scale-text {\n    position: absolute;\n    bottom: 5px;\n    right: 2px;\n    font-size: 9px;\n    color: black;\n    text-shadow: 0px 0px 2px white;\n    font-weight: 700;\n    line-height: 1;\n    z-index: 2;\n}\n</style>",
+        "format": "<template>\n    <v-row class=\"pa-4\" align=\"center\" justify=\"space-between\" dense>\n        <v-col cols=\"12\" sm=\"6\" md=\"4\" lg=\"3\">\n            <div class=\"d-flex flex-column\">\n                <div class=\"d-flex align-center gap-2\">\n                    <v-icon icon=\"mdi-magnify-minus-outline\" size=\"small\" color=\"grey\"></v-icon>\n                    <v-slider\n                        v-model=\"zoom\"\n                        min=\"0.1\"\n                        max=\"3\"\n                        step=\"0.1\"\n                        density=\"compact\"\n                        hide-details\n                        thumb-label\n                        color=\"primary\"\n                        class=\"flex-grow-1 mx-2\"\n                    ></v-slider>\n                    <v-icon icon=\"mdi-magnify-plus-outline\" size=\"small\" color=\"grey\"></v-icon>\n                </div>\n                <div class=\"text-caption text-center text-grey mt-n1\">\n                    Zoom x{{ zoom.toFixed(1) }}\n                </div>\n            </div>\n        </v-col>\n\n        <v-col cols=\"12\" sm=\"6\" md=\"4\" lg=\"3\">\n            <v-select\n                v-model=\"sortBy\"\n                :items=\"sortOptions\"\n                label=\"Sort By\"\n                density=\"compact\"\n                hide-details\n                variant=\"outlined\"\n                prepend-inner-icon=\"mdi-sort\"\n                bg-color=\"white\"\n            ></v-select>\n        </v-col>\n\n        <v-col cols=\"6\" sm=\"6\" md=\"2\" lg=\"2\">\n            <v-select\n                v-model=\"itemsPerPage\"\n                :items=\"[12, 24, 48, 100]\"\n                label=\"Per Page\"\n                density=\"compact\"\n                hide-details\n                variant=\"outlined\"\n                bg-color=\"white\"\n            ></v-select>\n        </v-col>\n\n        <v-col cols=\"6\" sm=\"6\" md=\"2\" lg=\"2\" class=\"d-flex justify-end align-center\">\n            <v-chip size=\"small\" color=\"primary\" variant=\"tonal\" class=\"font-weight-bold\">\n                Total: {{ filteredItems.length }}\n            </v-chip>\n        </v-col>\n    </v-row>\n\n\n    <div class=\"gallery-scroll-area flex-grow-1\">\n\n        <div v-if=\"loading\" class=\"gallery-skeleton\">\n            <div v-for=\"n in 12\" :key=\"n\" class=\"skeleton-box\"></div>\n        </div>\n\n        <div v-else class=\"gallery-grid\">\n            <div \n                v-for=\"item in paginatedItems\" \n                :key=\"item.id\" \n                class=\"gallery-item-wrapper\"\n            >\n                <v-card \n                    class=\"gallery-card\" \n                    hover \n                    variant=\"outlined\" \n                    @click=\"openDetails(item)\"\n                    style=\"border-color: #e0e0e0;\"\n                >\n                    <div\n                        class=\"img-container\"\n                        :style=\"{ \n                            width: (Math.max(item.object_width * zoom, 40)) + 'px',\n                            height: (Math.max(item.object_height * zoom, 40)) + 'px',\n                            backgroundColor: '#f5f5f5'\n                        }\"\n                    >\n                        <img \n                            :src=\"item.url\" \n                            :style=\"{\n                                width: (item.object_width * zoom) + 'px',\n                                height: (item.object_height * zoom) + 'px',\n                                objectFit: 'contain',\n                                imageRendering: 'pixelated'\n                            }\"\n                        />\n\n                        <div \n                            class=\"mini-scale-bar\" \n                            :style=\"{ width: getScaleBar(item, 'px').width + 'px' }\"\n                        ></div>\n                        <div class=\"mini-scale-text\">\n                            {{ getScaleBar(item, 'px').label }}\n                        </div>\n                    </div>\n\n                    <v-divider />\n\n                    <div class=\"d-flex justify-center pa-0 bg-white\">\n                        <v-btn \n                            icon=\"mdi-download\"\n                            size=\"x-small\"\n                            variant=\"text\"\n                            color=\"grey-darken-1\"\n                            @click.stop=\"downloadImage(item.url, item.id)\"\n                        />\n                        <v-btn \n                            icon=\"mdi-eye\"\n                            size=\"x-small\"\n                            variant=\"text\"\n                            color=\"primary\"\n                            @click.stop=\"openDetails(item)\"\n                        />\n                    </div>\n                </v-card>\n            </div>\n\n            <div v-if=\"filteredItems.length === 0\" class=\"text-center w-100 mt-10 text-grey\">\n                No objects found.\n            </div>\n        </div>\n    </div>\n\n\n    <div class=\"text-center pt-2 flex-grow-0\" v-if=\"!loading\">\n        <v-pagination\n            v-model=\"page\"\n            :length=\"totalPages\"\n            :total-visible=\"7\"\n            density=\"compact\"\n            rounded=\"circle\"\n            color=\"primary\"\n        />\n    </div>\n\n\n    <v-dialog v-model=\"detailsDialog\" max-width=\"600\">\n        <v-card v-if=\"selectedItem\">\n\n            <v-toolbar color=\"primary\" density=\"compact\">\n                <v-toolbar-title class=\"text-subtitle-1\">Object Details</v-toolbar-title>\n                <v-btn icon=\"mdi-close\" @click=\"detailsDialog = false\" />\n            </v-toolbar>\n\n            <v-card-text class=\"pa-4\">\n                <v-row>\n                    <v-col cols=\"12\" class=\"text-center bg-grey-lighten-4 pa-4 rounded\">\n                        \n                        <div style=\"position: relative; display: inline-block;\">\n                            \n                            <img :src=\"selectedItem.url\"\n                                 style=\"max-width:100%; max-height:400px; image-rendering:pixelated; display:block;\" />\n                            \n                            <div \n                                class=\"modal-scale-bar\"\n                                :style=\"{ width: getScaleBar(selectedItem, '%').width + '%' }\"\n                            ></div>\n                            <div class=\"modal-scale-text\">\n                                {{ getScaleBar(selectedItem, '%').label }}\n                            </div>\n\n                        </div>\n\n                        <div class=\"d-flex justify-space-between mt-2 px-2 text-caption text-grey\">\n                            <span>ID: {{ selectedItem.id }}</span>\n                        </div>\n                    </v-col>\n\n                    <v-col cols=\"12\">\n                        <v-table density=\"compact\">\n                            <thead>\n                                <tr><th>Metric</th><th class=\"text-right\">Value</th></tr>\n                            </thead>\n                            <tbody>\n                                <tr v-for=\"(value, key) in formatMeta(selectedItem)\" :key=\"key\">\n                                    <td>{{ formatKeyName(key) }}</td>\n                                    <td class=\"text-right font-weight-bold\">{{ value }}</td>\n                                </tr>\n                            </tbody>\n                        </v-table>\n                    </v-col>\n                </v-row>\n            </v-card-text>\n\n        </v-card>\n    </v-dialog>\n\n</template>\n\n\n<script>\nexport default {\n    data() {\n        return {\n            rawData: [],\n            meta: { resolution: 1 },\n            keys: [],\n            zoom: 0.5,\n            page: 1,\n            itemsPerPage: 24,\n            sortBy: 'object_area',\n            loading: true,\n            detailsDialog: false,\n            selectedItem: null,\n            sortOptions: [\n                { title: 'Area (Largest)', value: 'object_area' },\n                { title: 'Width', value: 'object_width' },\n                { title: 'Height', value: 'object_height' },\n                { title: 'Hue', value: 'object_MeanHue' },\n                { title: 'Elongation', value: 'object_elongation' }\n            ]\n        }\n    },\n\n    computed: {\n        filteredItems() {\n            if (!this.rawData) return [];\n            let arr = [...this.rawData];\n            arr.sort((a, b) => b[this.sortBy] - a[this.sortBy]);\n            return arr;\n        },\n        totalPages() {\n            return Math.ceil(this.filteredItems.length / this.itemsPerPage);\n        },\n        paginatedItems() {\n            const start = (this.page - 1) * this.itemsPerPage;\n            return this.filteredItems.slice(start, start + this.itemsPerPage);\n        }\n    },\n\n    watch: {\n        msg: {\n            deep: true,\n            handler(m) {\n                if (!m || !m.payload) return;\n                if (m.payload.meta) this.meta = m.payload.meta;\n                const dataArray = m.payload.data || [];\n                if (dataArray.length === 0) {\n                    if (m.payload.data) {\n                        this.loading = true;\n                        this.rawData = [];\n                        this.page = 1;\n                    }\n                    return;\n                }\n                this.rawData = dataArray;\n                this.keys = m.payload.keys || [];\n                this.page = 1;\n                this.loading = false;\n            }\n        }\n    },\n\n    methods: {\n        openDetails(item) {\n            this.selectedItem = item;\n            this.detailsDialog = true;\n        },\n\n        /**\n         * Calculate Scale Bar.\n         * mode = 'px' -> returns absolute pixels (multiplied by zoom) for thumbnails\n         * mode = '%'  -> returns percentage of image width for the modal\n         */\n        getScaleBar(item, mode = 'px') {\n            const res = this.meta.resolution || 1; // microns per pixel\n            const pxWidth = item.object_width || 100; // raw image width in px\n            const realWidthMicrons = pxWidth * res; // real physical width\n\n            // 1. Target bar size: roughly 30% of the image\n            let target = realWidthMicrons * 0.3;\n            if (target <= 0) target = 10;\n\n            // 2. Snap to nearest nice number (1, 2, 5 series)\n            const magnitude = Math.pow(10, Math.floor(Math.log10(target)));\n            const residual = target / magnitude;\n            let niceScalar = 1;\n            if (residual > 5) niceScalar = 10;\n            else if (residual > 2) niceScalar = 5;\n            else niceScalar = 2;\n            const finalMicrons = niceScalar * magnitude; // e.g. 50, 100, 200\n\n            // 3. Return Logic\n            if (mode === 'px') {\n                // For thumbnails: scale by resolution AND gallery zoom\n                const finalPixels = (finalMicrons / res) * this.zoom;\n                return { width: finalPixels, label: `${finalMicrons} µm` };\n            } else {\n                // For Modal: Calculate Percentage of the total image width\n                // (Bar Microns / Total Image Microns) * 100\n                const percent = (finalMicrons / realWidthMicrons) * 100;\n                return { width: percent, label: `${finalMicrons} µm` };\n            }\n        },\n\n        formatKeyName(k) {\n            return k.replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());\n        },\n\n        formatMeta(item) {\n            const out = {};\n            for (let k of this.keys) {\n                if (k === \"url\" || k === \"id\") continue;\n                let v = item[k];\n                if (typeof v === \"number\") v = v.toFixed(2);\n                let unit = \"\";\n                const KL = k.toLowerCase();\n                if (KL.includes(\"area\")) unit = \" px²\";\n                else if (KL.includes(\"width\") || KL.includes(\"height\")) unit = \" px\";\n                else if (KL.includes(\"hue\")) unit = \"°\";\n                out[k.replace(\"object_\", \"\")] = v + unit;\n            }\n            return out;\n        },\n\n        downloadImage(url, id) {\n            const a = document.createElement(\"a\");\n            a.href = url;\n            a.download = `object_${id}.jpg`;\n            document.body.appendChild(a);\n            a.click();\n            document.body.removeChild(a);\n        }\n    }\n}\n</script>\n\n\n<style scoped>\n/* GALLERY GRID */\n.gallery-scroll-area {\n    overflow-y: auto;\n    border-radius: 4px;\n    border: 1px solid #eee;\n    padding: 16px;\n}\n.gallery-grid {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    justify-content: center;\n    align-items: flex-end;\n}\n\n/* SKELETON LOADER */\n.gallery-skeleton {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    justify-content: center;\n}\n.skeleton-box {\n    width: 120px;\n    height: 120px;\n    border-radius: 6px;\n    background: linear-gradient(90deg, #e0e0e0, #f5f5f5, #e0e0e0);\n    background-size: 200% 100%;\n    animation: sk 1.2s infinite;\n}\n@keyframes sk {\n    0% { background-position:200% 0; }\n    100% { background-position:-200% 0; }\n}\n\n.gallery-item-wrapper { display: flex; flex-direction: column; align-items: center; }\n.gallery-card { transition: transform 0.2s; cursor: pointer; }\n.gallery-card:hover { transform: translateY(-2px); border-color: #1976D2 !important; }\n.img-container { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }\n\n/* --- THUMBNAIL SCALE BAR --- */\n.mini-scale-bar {\n    position:absolute; bottom:2px; right:2px;\n    height:3px; \n    background: rgba(255,255,255,0);\n    border: 2px solid #333;\n    border-top: none; /* U-shape style */\n    box-shadow: 0 2px 4px rgba(0,0,0,0.3);\n}\n.mini-scale-text {\n    position:absolute; bottom:6px; right:2px;\n    font-size: 10px; \n    font-weight: bold;\n    color: #333; \n    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;\n    pointer-events: none;\n    width: 100%;\n    text-align: right;\n    padding-right: 2px;\n}\n\n/* --- MODAL SCALE BAR (NEW) --- */\n.modal-scale-bar {\n    position:absolute; \n    bottom: 10px; \n    right: 10px;\n    height: 6px; \n    background: rgba(255,255,255,0); \n    border: 2px solid #333;\n    border-top: none; /* U-shape style */\n    box-shadow: 0 2px 4px rgba(0,0,0,0.3);\n}\n.modal-scale-text {\n    position:absolute; \n    bottom: 18px; \n    right: 10px;\n    font-size: 14px; \n    font-weight: bold;\n    color: #333; \n    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;\n    pointer-events: none;\n    width: 100%;\n    text-align: right;\n    padding-right: 2px;\n}\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1300,
-        "y": 360,
+        "x": 820,
+        "y": 960,
         "wires": [
             []
         ]
@@ -4786,24 +4763,601 @@
         "group": "fa6393a7d7e3b7d7",
         "page": "",
         "ui": "",
-        "name": "Selector",
+        "name": "List of Segmentation",
         "order": 1,
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n    <v-card>\n        <v-card-title>\n            <span class=\"text-h6\">Select Acquisition</span>\n            <v-spacer></v-spacer>\n            <v-text-field\n                v-model=\"search\"\n                append-inner-icon=\"mdi-magnify\"\n                label=\"Search...\"\n                single-line\n                hide-details\n                variant=\"outlined\"\n                density=\"compact\"\n                style=\"max-width: 300px;\"\n            ></v-text-field>\n        </v-card-title>\n\n        <v-data-table\n            :headers=\"headers\"\n            :items=\"items\"\n            :search=\"search\"\n            item-value=\"acquisition_id\"\n            density=\"compact\"\n            class=\"elevation-1\"\n        >\n            <template v-slot:item.image_acquired_count=\"{ item }\">\n                <v-chip size=\"small\" color=\"primary\" variant=\"tonal\">\n                    {{ item.image_acquired_count }}\n                </v-chip>\n            </template>\n\n            <template v-slot:item.links=\"{ item }\">\n                \n                <v-tooltip text=\"View Gallery\" location=\"top\">\n                    <template v-slot:activator=\"{ props }\">\n                        <v-btn \n                            icon=\"mdi-image-multiple\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"blue-darken-2\" \n                            :href=\"item.gallery\" \n                            target=\"_blank\"\n                            v-bind=\"props\"\n                        ></v-btn>\n                    </template>\n                </v-tooltip>\n\n                <v-tooltip text=\"Download Zip\" location=\"top\">\n                    <template v-slot:activator=\"{ props }\">\n                        <v-btn \n                            icon=\"mdi-download\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"orange-darken-2\" \n                            :href=\"item.export\" \n                            v-bind=\"props\"\n                        ></v-btn>\n                    </template>\n                </v-tooltip>\n            </template>\n\n            <template v-slot:item.actions=\"{ item }\">\n                        <v-btn \n                            icon=\"mdi-chart-scatter-plot-hexbin\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"primary\" \n                            @click=\"selectAcquisition(item)\"\n                        ></v-btn>\n            </template>\n        </v-data-table>\n    </v-card>\n</template>\n\n<script>\n    export default {\n        data() { \n            return {\n                search: '',\n                items: [],\n                headers: [\n                    { title: 'Project', key: 'project_name', sortable: true },\n                    { title: 'Sample ID', key: 'sample_id', sortable: true },\n                    { title: 'Acquisition ID', key: 'acquisition_id', sortable: true },\n                    { title: 'Images', key: 'image_acquired_count', sortable: true, align: 'end' },\n                    { title: 'Resources', key: 'links', sortable: false, align: 'center' }, // New Column\n                    { title: 'Select', key: 'actions', sortable: false, align: 'end' },\n                ]\n            }\n        },\n        watch: {\n            msg: {\n                handler(newValue) {\n                    if (newValue && Array.isArray(newValue.payload)) {\n                        this.items = newValue.payload;\n                    }\n                },\n                deep: true\n            }\n        },\n        mounted() {\n            if (this.msg && Array.isArray(this.msg.payload)) {\n                this.items = this.msg.payload;\n            }\n        },\n        methods: {\n            selectAcquisition(item) {\n                this.send({\n                    topic: \"selected_acquisition\",\n                    payload: item\n                });\n            }\n        }\n    }\n</script>",
+        "format": "<template>\n\n        <v-data-table\n            :headers=\"headers\"\n            :items=\"items\"\n            :search=\"search\"\n            item-value=\"acquisition_id\"\n            density=\"compact\"\n            class=\"elevation-1\"\n        >\n            <template v-slot:item.image_acquired_count=\"{ item }\">\n                <v-chip size=\"small\" color=\"primary\" variant=\"tonal\">\n                    {{ item.image_acquired_count }}\n                </v-chip>\n            </template>\n\n            <template v-slot:item.links=\"{ item }\">\n                \n                <v-tooltip text=\"View Gallery\" location=\"top\">\n                    <template v-slot:activator=\"{ props }\">\n                        <v-btn \n                            icon=\"mdi-image-multiple\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"blue-darken-2\" \n                            :href=\"item.gallery\" \n                            target=\"_blank\"\n                            v-bind=\"props\"\n                        ></v-btn>\n                    </template>\n                </v-tooltip>\n\n                <v-tooltip text=\"Download Zip\" location=\"top\">\n                    <template v-slot:activator=\"{ props }\">\n                        <v-btn \n                            icon=\"mdi-download\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"orange-darken-2\" \n                            :href=\"item.export\" \n                            v-bind=\"props\"\n                        ></v-btn>\n                    </template>\n                </v-tooltip>\n            </template>\n\n            <template v-slot:item.actions=\"{ item }\">\n                        <v-btn \n                            icon=\"mdi-chart-scatter-plot-hexbin\" \n                            variant=\"text\" \n                            size=\"small\" \n                            color=\"primary\" \n                            @click=\"selectAcquisition(item)\"\n                        ></v-btn>\n            </template>\n        </v-data-table>\n</template>\n\n<script>\n    export default {\n        data() { \n            return {\n                search: '',\n                items: [],\n                headers: [\n                    { title: 'Project', key: 'project_name', sortable: true },\n                    { title: 'Sample ID', key: 'sample_id', sortable: true },\n                    { title: 'Acquisition ID', key: 'acquisition_id', sortable: true },\n                    { title: 'Images', key: 'image_acquired_count', sortable: true, align: 'end' },\n                    { title: 'Resources', key: 'links', sortable: false, align: 'center' }, // New Column\n                    { title: 'Select', key: 'actions', sortable: false, align: 'end' },\n                ]\n            }\n        },\n        watch: {\n            msg: {\n                handler(newValue) {\n                    if (newValue && Array.isArray(newValue.payload)) {\n                        this.items = newValue.payload;\n                    }\n                },\n                deep: true\n            }\n        },\n        mounted() {\n            if (this.msg && Array.isArray(this.msg.payload)) {\n                this.items = this.msg.payload;\n            }\n        },\n        methods: {\n            selectAcquisition(item) {\n                this.send({\n                    topic: \"selected_acquisition\",\n                    payload: item\n                });\n            }\n        }\n    }\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 560,
+        "x": 600,
         "y": 180,
         "wires": [
             [
                 "aefbf6f96248c398"
             ]
         ]
+    },
+    {
+        "id": "2ca2f83cc939607f",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "53490f9c39e2065d",
+        "page": "",
+        "ui": "",
+        "name": "Infos",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div>\n\n    <!-- SKELETON WHEN LOADING OR CLEARED -->\n    <div v-if=\"loading\" class=\"ps-skeleton\" style=\"height:90px; margin-bottom:12px;\"></div>\n\n    <!-- INVITE MESSAGE -->\n    <div\n      v-else-if=\"!meta.sample_id\"\n      style=\"\n        border-left:4px solid #1976d2;\n        background:#e3f2fd;\n        padding:12px;\n        border-radius:6px;\n        margin-bottom:12px;\n        color:#0d47a1;\n        font-size:14px;\n        display:flex;\n        align-items:center;\n        gap:8px;\n      \"\n    >\n      <v-icon color=\"primary\">mdi-information-outline</v-icon>\n      Select a dataset in the table above to display its information.\n    </div>\n\n    <!-- SAMPLE INFO -->\n    <v-row v-else align=\"center\">\n\n      <v-col cols=\"12\" md=\"9\" class=\"border-right\">\n        <div class=\"caption grey--text text-uppercase font-weight-bold mb-1\">\n          Sample Identity\n        </div>\n\n        <div class=\"text-h4 primary--text font-weight-bold\">\n          {{ meta.sample_id }}\n        </div>\n\n        <div class=\"subtitle-1 grey--text text--darken-3 mt-1\">\n          <strong>Project:</strong> {{ meta.project || '--' }}<br>\n          <span class=\"caption\">Acq ID: {{ meta.acq_id || '--' }}</span>\n        </div>\n      </v-col>\n\n      <v-col cols=\"12\" md=\"3\" class=\"text-right\">\n        <a\n          :href=\"downloadUrl\"\n          target=\"_blank\"\n          :style=\"{\n            display:'inline-flex',\n            alignItems:'center',\n            gap:'6px',\n            padding:'10px 16px',\n            background: meta.sample_id ? '#1976d2' : '#90caf9',\n            color:'white',\n            borderRadius:'6px',\n            textDecoration:'none',\n            cursor: meta.sample_id ? 'pointer' : 'not-allowed'\n          }\"\n        >\n          <v-icon left>mdi-download</v-icon>\n          Download EcoTaxa .zip\n        </a>\n      </v-col>\n\n    </v-row>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      loading: true,\n      meta: {\n        sample_id: '',\n        project: '',\n        acq_id: ''\n      }\n    }\n  },\n\n  watch: {\n    msg: {\n      immediate: true,\n      deep: true,\n      handler(val) {\n\n        // --- CLEARING ---\n        if (!val?.payload?.meta || !val.payload.meta.sample_id) {\n          this.loading = false;\n          this.meta = {\n            sample_id: '',\n            project: '',\n            acq_id: ''\n          };\n          return;\n        }\n\n        // --- NORMAL UPDATE ---\n        this.loading = false;\n        this.meta = val.payload.meta;\n      }\n    }\n  },\n\n  computed: {\n    downloadUrl() {\n      if (!this.meta.sample_id) return '#';\n      return `/ps/data/browse/api/raw/export/ecotaxa/ecotaxa_${this.meta.sample_id}.zip`;\n    }\n  }\n}\n</script>\n\n<style>\n/* Skeleton loader consistent with other widgets */\n\n.ps-skeleton {\n  width: 100%;\n  border-radius: 6px;\n  background: linear-gradient(90deg, #e0e0e0, #f5f5f5, #e0e0e0);\n  background-size: 200% 100%;\n  animation: psSkeletonAnim 1.2s infinite;\n}\n\n@keyframes psSkeletonAnim {\n  0% { background-position: 200% 0; }\n  100% { background-position: -200% 0; }\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 810,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4caf5c846b3b9d01",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "HEATMAP (object_x, object_y)",
+        "func": "// Heatmap – Flowcell distribution\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\n// Meta from first valid row\nlet firstRow = null;\nfor (let i = 1; i < lines.length; i++) {\n  if (!lines[i].trim().startsWith(\"[\")) {\n    firstRow = lines[i].split(\"\\t\");\n    break;\n  }\n}\nif (!firstRow) return null;\n\nconst meta = {\n  sample_id: val(firstRow, \"sample_id\") || \"\",\n  project: val(firstRow, \"sample_project\") || \"\",\n  acq_id: val(firstRow, \"acq_id\") || \"\"\n};\n\n// Data: x/y for heatmap\nconst data = lines.slice(1)\n  .filter(l => !l.trim().startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      x: parseFloat(val(r, \"object_x\")),\n      y: parseFloat(val(r, \"object_y\"))\n    };\n  });\n\nmsg.payload = { meta, data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 500,
+        "wires": [
+            [
+                "0c90eb450c8d9b01"
+            ]
+        ]
+    },
+    {
+        "id": "a5ef1df890e7bb36",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "ESD Histogram (object_equivalent_diameter)",
+        "func": "// ESD Size Spectrum – TSV → {meta, data[{d}]}\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nlet firstRow = null;\nfor (let i = 1; i < lines.length; i++) {\n  if (!lines[i].startsWith(\"[\")) {\n    firstRow = lines[i].split(\"\\t\");\n    break;\n  }\n}\nconst meta = {\n  sample_id: firstRow ? (val(firstRow, \"sample_id\") || \"\") : \"\"\n};\n\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      d: parseFloat(val(r, \"object_equivalent_diameter\"))\n    };\n  });\n\nmsg.payload = { meta, data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 540,
+        "wires": [
+            [
+                "0a559ab05af2548e"
+            ]
+        ]
+    },
+    {
+        "id": "8cdf3c5527b9cb21",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "TIMELINE (sequence index + area)",
+        "func": "// Timeline – seq index vs object_area\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nlet seq = 0;\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      seq: seq++,\n      area: parseFloat(val(r, \"object_area\"))\n    };\n  });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "7b9d103ec5981051"
+            ]
+        ]
+    },
+    {
+        "id": "e26832811411f850",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "COLORSPACE (Saturation vs Value)",
+        "func": "// Colorspace – MeanSaturation vs MeanValue\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      s: parseFloat(val(r, \"object_MeanSaturation\")),\n      v: parseFloat(val(r, \"object_MeanValue\"))\n    };\n  });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "23a78a078fa1eca8"
+            ]
+        ]
+    },
+    {
+        "id": "448a5c6830c6514f",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "ASPECT (Width vs Height)",
+        "func": "// Aspect – width vs height\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      w: parseFloat(val(r, \"object_width\")),\n      h: parseFloat(val(r, \"object_height\"))\n    };\n  });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 660,
+        "wires": [
+            [
+                "09f4914fc0a54566"
+            ]
+        ]
+    },
+    {
+        "id": "ac9d555964747130",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "GREENNESS (custom index + circularity)",
+        "func": "// Greenness vs Circularity – custom_greenness + object_circ.\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    const hue = parseFloat(val(r, \"object_MeanHue\")) || 0;\n    const circ = parseFloat(val(r, \"object_circ.\")) || 0;\n    const greenDist = Math.abs(hue - 80);\n    const g = Math.max(0, 100 - greenDist);\n    return { g, circ };\n  });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 700,
+        "wires": [
+            [
+                "7f4d047a4c73eb61"
+            ]
+        ]
+    },
+    {
+        "id": "11323481847790c0",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "COMPLEXITY (Area vs Perimeter)",
+        "func": "// Complexity – Area vs Perimeter\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      area: parseFloat(val(r, \"object_area\")),\n      per: parseFloat(val(r, \"object_perim.\"))\n    };\n  });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 740,
+        "wires": [
+            [
+                "a7c8654291022da1"
+            ]
+        ]
+    },
+    {
+        "id": "8425012e07c3700f",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "TEXTURE (Area vs StdValue)",
+        "func": "// Texture – Area vs StdValue\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n  const idx = headers.indexOf(col);\n  return idx >= 0 ? row[idx] : null;\n};\n\nconst data = lines.slice(1)\n  .filter(l => !l.startsWith(\"[\"))\n  .map(l => {\n    const r = l.split(\"\\t\");\n    return {\n      area: parseFloat(val(r, \"object_area\")),\n      std: parseFloat(val(r, \"object_StdValue\"))\n    };\n  });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 780,
+        "wires": [
+            [
+                "ed9d6e31cc3a01b1"
+            ]
+        ]
+    },
+    {
+        "id": "512e86195d14e773",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "SOLIDITY (Histogram)",
+        "func": "// Solidity – histogram of object_solidity\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n    const idx = headers.indexOf(col);\n    return idx >= 0 ? row[idx] : null;\n};\n\nconst data = lines.slice(1)\n    .filter(l => !l.startsWith(\"[\"))\n    .map(l => {\n        const r = l.split(\"\\t\");\n        return {\n            sol: parseFloat(val(r, \"object_solidity\"))\n        };\n    });\n\nmsg.payload = { data };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 820,
+        "wires": [
+            [
+                "c15ef66d7e115bd3"
+            ]
+        ]
+    },
+    {
+        "id": "0c90eb450c8d9b01",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "90b33e458dd29d04",
+        "page": "",
+        "ui": "",
+        "name": "Heatmap",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:300px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton {\n  width:100%;\n  height:100%;\n  background:linear-gradient(90deg,#e0e0e0 0%,#f5f5f5 50%,#e0e0e0 100%);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite;\n  border-radius:6px;\n}\n@keyframes psk {\n  0% { background-position:200% 0; }\n  100% { background-position:-200% 0; }\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, points:[] } },\n\n  watch:{\n    msg:{\n      immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if (Array.isArray(m.payload.data) && m.payload.data.length === 0){\n          this.loading = true;\n          this.points = [];\n          if(this.$refs.plot && window.Plotly) window.Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.points = m.payload.data || [];\n        this.loading = this.points.length === 0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n      if(!el) return;\n\n      if(!this.points.length){\n        this.loading=true;\n        window.Plotly.purge(el);\n        return;\n      }\n\n      this.loading=false;\n\n      const trace={\n        x:this.points.map(p=>p.x),\n        y:this.points.map(p=>p.y),\n        type:'histogram2d',\n        colorscale:'Plotly3',\n        nbinsx:100,\n        nbinsy:80\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:40,r:20},\n        xaxis:{title:\"X (px)\"},\n        yaxis:{title:\"Y (px)\",autorange:\"reversed\"},\n        hovermode:false,\n        plot_bgcolor:\"#eef3ff\"\n      };\n\n      window.Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n};\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 820,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9be1cc713ac79a7b",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "Sample Identity Metadata Only",
+        "func": "// FUNCTION: Extract minimal metadata for the “Sample Identity” panel\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n    const idx = headers.indexOf(col);\n    return idx >= 0 ? row[idx] : null;\n};\n\n// --- 1. Find first data row (skip [f] / [t] metadata-like lines) ---\nlet firstRow = null;\nfor (let i = 1; i < lines.length; i++) {\n    if (!lines[i].trim().startsWith(\"[\")) {\n        firstRow = lines[i].split(\"\\t\");\n        break;\n    }\n}\nif (!firstRow) return null;\n\n// --- 2. Extract minimal metadata ---\nconst meta = {\n    sample_id: val(firstRow, \"sample_id\") || \"\",\n    project: val(firstRow, \"sample_project\") || \"\",\n    acq_id: val(firstRow, \"acq_id\") || \"\"\n};\n\n// --- 3. Output ONLY the metadata ---\nmsg.payload = { meta };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "2ca2f83cc939607f"
+            ]
+        ]
+    },
+    {
+        "id": "0a559ab05af2548e",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "47800358cf7cee25",
+        "page": "",
+        "ui": "",
+        "name": "ESD Histogram",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:300px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<script>\nexport default {\n  data(){ return { loading:true, rows:[] } },\n\n  watch:{\n    msg:{\n      immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.rows=[];\n          if(this.$refs.plot&&window.Plotly) window.Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.rows = m.payload.data || [];\n        this.loading = this.rows.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.rows.length){\n        this.loading=true;\n        window.Plotly.purge(el);\n        return;\n      }\n\n      this.loading=false;\n\n      const trace={\n        x:this.rows.map(r=>r.d),\n        type:\"histogram\",\n        marker:{color:\"teal\"}\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:40,r:20},\n        xaxis:{title:\"ESD\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n};\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 840,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b9d103ec5981051",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "1d9c6927a0e0a71b",
+        "page": "",
+        "ui": "",
+        "name": "Timeline",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<script>\nexport default {\n  data(){ return { loading:true, rows:[] } },\n\n  watch:{\n    msg:{\n      immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.rows=[];\n          if(this.$refs.plot&&window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.rows = m.payload.data || [];\n        this.loading = this.rows.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.rows.length){\n        this.loading=true;\n        Plotly.purge(el);\n        return;\n      }\n\n      this.loading=false;\n\n      const trace={\n        x:this.rows.map(r=>r.seq),\n        y:this.rows.map(r=>r.area),\n        mode:\"markers\",\n        type:\"scatter\",\n        marker:{size:10,color:\"blue\",opacity:0.5},\n        hoverinfo:\"none\"\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Acq Sequence\"},\n        yaxis:{title:\"Area\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n};\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 820,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23a78a078fa1eca8",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "03ad1c8f517e8769",
+        "page": "",
+        "ui": "",
+        "name": "Colorspace (Saturation vs Value)",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton {\n  width:100%;\n  height:100%;\n  background:linear-gradient(90deg,#e0e0e0 0%,#f5f5f5 50%,#e0e0e0 100%);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite;\n  border-radius:6px;\n}\n@keyframes psk {\n  0% {background-position:200% 0;}\n  100% {background-position:-200% 0;}\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, pts:[] } },\n\n  watch:{\n    msg:{ immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.pts=[];\n          if(this.$refs.plot && window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.pts = m.payload.data || [];\n        this.loading = this.pts.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.pts.length){ this.loading=true; Plotly.purge(el); return; }\n\n      this.loading=false;\n\n      const trace={\n        x:this.pts.map(p=>p.s),\n        y:this.pts.map(p=>p.v),\n        mode:\"markers\",\n        type:\"scatter\",\n        marker:{ size:10, color:\"magenta\", opacity:0.5 },\n        hoverinfo:\"none\"\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Saturation\"},\n        yaxis:{title:\"Brightness\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 890,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09f4914fc0a54566",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "0be15f8190e6fd43",
+        "page": "",
+        "ui": "",
+        "name": "Aspect (Width vs Height)",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton {\n  width:100%;\n  height:100%;\n  background:linear-gradient(90deg,#e0e0e0,#f5f5f5,#e0e0e0);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite;\n  border-radius:6px;\n}\n@keyframes psk {\n  0% {background-position:200% 0;}\n  100% {background-position:-200% 0;}\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, pts:[] } },\n\n  watch:{\n    msg:{ immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.pts=[];\n          if(this.$refs.plot&&window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.pts = m.payload.data || [];\n        this.loading = this.pts.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.pts.length){ this.loading=true; Plotly.purge(el); return; }\n\n      this.loading=false;\n\n      const trace={\n        x:this.pts.map(p=>p.w),\n        y:this.pts.map(p=>p.h),\n        mode:\"markers\",\n        type:\"scatter\",\n        marker:{ size:10, color:\"orange\", opacity:0.5 },\n        hoverinfo:\"none\"\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Width\"},\n        yaxis:{title:\"Height\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 870,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7f4d047a4c73eb61",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "1edc962c44888abc",
+        "page": "",
+        "ui": "",
+        "name": "Greenness",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton {\n  width:100%;\n  height:100%;\n  background:linear-gradient(90deg,#e0e0e0,#f5f5f5,#e0e0e0);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite;\n  border-radius:6px;\n}\n@keyframes psk { \n  0%{background-position:200% 0;}\n  100%{background-position:-200% 0;}\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, pts:[] } },\n\n  watch:{\n    msg:{ immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.pts=[];\n          if(this.$refs.plot&&window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.pts = m.payload.data || [];\n        this.loading = this.pts.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.pts.length){ this.loading=true; Plotly.purge(el); return; }\n\n      this.loading=false;\n\n      const trace={\n        x:this.pts.map(p=>p.g),\n        y:this.pts.map(p=>p.circ),\n        mode:\"markers\",\n        type:\"scatter\",\n        marker:{ size:10, color:\"#4CAF50\", opacity:0.5 },\n        hoverinfo:\"none\"\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Green Index\"},\n        yaxis:{title:\"Circularity\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 830,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7c8654291022da1",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "67c63cc92c23c4b1",
+        "page": "",
+        "ui": "",
+        "name": "Complexity (Area vs Perimeter)",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton{\n  width:100%; height:100%;\n  background:linear-gradient(90deg,#e0e0e0,#f5f5f5,#e0e0e0);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite; border-radius:6px;\n}\n@keyframes psk{\n  0%{background-position:200% 0;}\n  100%{background-position:-200% 0;}\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, pts:[] } },\n\n  watch:{\n    msg:{ immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true; this.pts=[];\n          if(this.$refs.plot&&window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.pts = m.payload.data || [];\n        this.loading = this.pts.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.pts.length){ this.loading=true; Plotly.purge(el); return; }\n\n      this.loading=false;\n\n      const trace={\n        x:this.pts.map(p=>p.area),\n        y:this.pts.map(p=>p.per),\n        mode:\"markers\",\n        type:\"scatter\",\n        marker:{ size:10, color:\"purple\", opacity:0.5 },\n        hoverinfo:\"none\"\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Area\"},\n        yaxis:{title:\"Perimeter\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 890,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed9d6e31cc3a01b1",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "95a152a68b7ba779",
+        "page": "",
+        "ui": "",
+        "name": "Texture (Area vs Std)",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton{\n  width:100%; height:100%;\n  background:linear-gradient(90deg,#e0e0e0,#f5f5f5,#e0e0e0);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite; border-radius:6px;\n}\n@keyframes psk{\n  0%{background-position:200% 0;}\n  100%{background-position:-200% 0;}\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, pts:[] } },\n\n  watch:{\n    msg:{ immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.pts=[];\n          if(this.$refs.plot&&window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.pts = m.payload.data || [];\n        this.loading = this.pts.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.pts.length){ this.loading=true; Plotly.purge(el); return; }\n\n      this.loading=false;\n\n      const trace={\n        x:this.pts.map(p=>p.area),\n        y:this.pts.map(p=>p.std),\n        mode:\"markers\",\n        type:\"scatter\",\n        marker:{ size:10, color:\"brown\", opacity:0.5 },\n        hoverinfo:\"none\"\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Area\"},\n        yaxis:{title:\"Texture (Std Dev)\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 860,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c15ef66d7e115bd3",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "1baa943e505febf1",
+        "page": "",
+        "ui": "",
+        "name": "Solidity Histogram",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <div style=\"width:100%; height:250px; position:relative;\">\n    <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n    <div v-show=\"!loading\" ref=\"plot\" style=\"width:100%; height:100%;\"></div>\n  </div>\n</template>\n\n<style>\n.ps-skeleton{\n  width:100%; height:100%;\n  background:linear-gradient(90deg,#e0e0e0,#f5f5f5,#e0e0e0);\n  background-size:200% 100%;\n  animation:psk 1.2s infinite; border-radius:6px;\n}\n@keyframes psk{ \n  0%{background-position:200% 0;}\n  100%{background-position:-200% 0;}\n}\n</style>\n\n<script>\nexport default {\n  data(){ return { loading:true, pts:[] } },\n\n  watch:{\n    msg:{ immediate:true, deep:true,\n      handler(m){\n        if(!m?.payload) return;\n\n        if(m.payload.data?.length===0){\n          this.loading=true;\n          this.pts=[];\n          if(this.$refs.plot&&window.Plotly) Plotly.purge(this.$refs.plot);\n          return;\n        }\n\n        this.pts = m.payload.data || [];\n        this.loading = this.pts.length===0;\n        this.$nextTick(()=>this.draw());\n      }\n    }\n  },\n\n  mounted(){\n    if(!window.Plotly){\n      const s=document.createElement(\"script\");\n      s.src=\"https://cdn.plot.ly/plotly-2.27.0.min.js\";\n      s.onload=()=>this.draw();\n      document.head.appendChild(s);\n    } else this.draw();\n  },\n\n  methods:{\n    draw(){\n      if(!window.Plotly) return;\n      const el=this.$refs.plot;\n\n      if(!this.pts.length){ this.loading=true; Plotly.purge(el); return; }\n\n      this.loading=false;\n\n      const trace={\n        x:this.pts.map(p=>p.sol),\n        type:\"histogram\",\n        marker:{color:\"#3F51B5\"}\n      };\n\n      const layout={\n        margin:{t:10,b:30,l:50,r:20},\n        xaxis:{title:\"Solidity\"}\n      };\n\n      Plotly.newPlot(el,[trace],layout,{responsive:true});\n    }\n  }\n}\n</script>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 850,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63ce87d36ae8f172",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "EXPLORER",
+        "func": "// Explorer Function Node\n// TSV → {meta, keys, data: [{id, url, ...keys}]}\n\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) return null;\n\n// 1. Parse Headers\nconst headers = lines[0].split(\"\\t\");\nconst val = (row, col) => {\n    const i = headers.indexOf(col);\n    return i >= 0 ? row[i] : null;\n};\n\n// 2. Extract Meta from first valid data row\nlet firstRow = null;\nfor (let i = 1; i < lines.length; i++) {\n    // Skip rows starting with '[' (metadata comments)\n    if (!lines[i].trim().startsWith(\"[\")) {\n        firstRow = lines[i].split(\"\\t\");\n        break;\n    }\n}\n\n// Default meta\nconst meta = {\n    sample_id: \"\",\n    project: \"\",\n    acq_id: \"\",\n    resolution: 1.0 // Default fallback\n};\n\nif (firstRow) {\n    meta.sample_id = val(firstRow, \"sample_id\") || \"\";\n    meta.project = val(firstRow, \"sample_project\") || \"\";\n    meta.acq_id = val(firstRow, \"acq_id\") || \"\";\n    \n    // CRITICAL: Extract pixel size (microns per pixel)\n    // If process_pixel is missing or 0, default to 1 to prevent division by zero\n    const px = parseFloat(val(firstRow, \"process_pixel\"));\n    if (!isNaN(px) && px > 0) {\n        meta.resolution = px;\n    }\n}\n\n// 3. Explorer Keys to extract\nconst explorerKeys = [\n    \"object_area\", \"object_equivalent_diameter\", \"object_perim.\",\n    \"object_major\", \"object_minor\", \"object_width\", \"object_height\",\n    \"object_circ.\", \"object_elongation\", \"object_solidity\",\n    \"object_eccentricity\", \"object_MeanHue\", \"object_MeanSaturation\",\n    \"object_MeanValue\", \"object_StdValue\"\n];\n\nlet seq = 0;\nconst data = [];\n\n// 4. Process Data Lines\nfor (let i = 1; i < lines.length; i++) {\n    const line = lines[i];\n    if (line.trim().startsWith(\"[\")) continue;\n\n    const row = line.split(\"\\t\");\n\n    const item = {\n        id: val(row, \"object_id\"),\n        // Construct URL\n        url: `/ps/data/browse/api/preview/big/objects/${val(row,\"object_date\")}/${val(row,\"sample_id\")}/${val(row,\"acq_id\")}/${val(row,\"img_file_name\")}`,\n        sequence_index: seq++\n    };\n\n    // Parse numeric keys\n    explorerKeys.forEach(k => {\n        let v = parseFloat(val(row, k));\n        item[k] = isNaN(v) ? 0 : v;\n    });\n\n    // Custom calc for greenness (example)\n    const hue = item.object_MeanHue || 0;\n    const dist = Math.abs(hue - 80);\n    item.custom_greenness = Math.max(0, 100 - dist);\n\n    data.push(item);\n}\n\nmsg.payload = {\n    meta,\n    keys: explorerKeys,\n    data\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 900,
+        "wires": [
+            [
+                "d57a5bca66c04989"
+            ]
+        ]
+    },
+    {
+        "id": "d57a5bca66c04989",
+        "type": "ui-template",
+        "z": "14f8c9b5ce1235cc",
+        "group": "c5651e1a3e56f3f5",
+        "page": "",
+        "ui": "",
+        "name": "Explorer",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n  <v-row class=\"ps-controls py-4\" no-gutters>\n    <v-col cols=\"12\" md=\"4\">\n      <v-select\n        v-model=\"xAxis\"\n        :items=\"keys\"\n        label=\"X Axis\"\n        density=\"compact\"\n        variant=\"outlined\"\n        hide-details\n      />\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\">\n      <v-select\n        v-model=\"yAxis\"\n        :items=\"keys\"\n        label=\"Y Axis\"\n        density=\"compact\"\n        variant=\"outlined\"\n        hide-details\n          class=\"flex-grow-1 mx-2\"\n      />\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\" class=\"d-flex align-center\">\n      <v-btn\n        color=\"primary\"\n        block\n        @click=\"draw\"\n        prepend-icon=\"mdi-chart-scatter-plot\"\n        height=\"40\"\n      >\n        Load Plot\n      </v-btn>\n    </v-col>\n  </v-row>\n\n\n  <v-row no-gutters class=\"fill-height\" style=\"height: calc(100vh - 180px);\">\n\n    <v-col cols=\"12\" md=\"8\" class=\"pr-2\" style=\"height:100%;\">\n      <v-card variant=\"outlined\" class=\"fill-height\">\n        <div v-if=\"loading\" class=\"ps-skeleton\"></div>\n        <div v-show=\"!loading\" ref=\"plot\" class=\"plot-container\"></div>\n      </v-card>\n    </v-col>\n\n    <v-col cols=\"12\" md=\"4\" class=\"pl-2\" style=\"height:100%;\">\n      <v-card variant=\"outlined\" class=\"fill-height d-flex flex-column\">\n\n        <v-divider></v-divider>\n\n        <div class=\"pa-4 flex-grow-1 overflow-y-auto\">\n\n          <div v-if=\"loading\" class=\"ps-skeleton\" style=\"height:200px\"></div>\n\n          <div\n            v-else-if=\"!hovered\"\n            class=\"ps-placeholder d-flex flex-column align-center justify-center h-100\"\n          >\n            <v-icon size=\"48\" color=\"grey-lighten-2\" class=\"mb-2\">\n              mdi-cursor-default-click-outline\n            </v-icon>\n            <div class=\"text-caption text-grey\">\n              Hover over a point<br>to view details\n            </div>\n          </div>\n\n          <div v-else>\n\n            <v-img\n              :src=\"hovered.url\"\n              aspect-ratio=\"1\"\n              bg-color=\"grey-lighten-3\"\n              contain\n              class=\"mb-3\"\n            >\n              <template #placeholder>\n                <div class=\"d-flex align-center justify-center fill-height\">\n                  <v-progress-circular indeterminate color=\"primary\"></v-progress-circular>\n                </div>\n              </template>\n            </v-img>\n\n            <div class=\"d-flex justify-space-between align-center mb-2 px-2\">\n              <v-chip size=\"small\" color=\"primary\" label>ID: {{ hovered.id }}</v-chip>\n\n              <div class=\"scale-bar-wrapper\">\n                <div class=\"scale-bar\" :style=\"{ width: scaleBarPixels + 'px' }\"></div>\n                <div class=\"scale-label\">{{ formattedScale }}</div>\n              </div>\n            </div>\n            \n            <div class=\"text-caption text-grey text-right\">\n              Res: {{ meta.resolution }} µm/px\n            </div>\n\n          </div>\n        </div>\n\n      </v-card>\n    </v-col>\n\n  </v-row>\n\n\n  <div\n    v-if=\"tooltip.show\"\n    :style=\"{\n      position:'fixed',\n      top: tooltip.y + 'px',\n      left: tooltip.x + 'px',\n      width:'160px',\n      background:'white',\n      border:'1px solid #ccc',\n      borderRadius:'6px',\n      pointerEvents:'none',\n      zIndex:99999,\n      boxShadow:'0 4px 12px rgba(0,0,0,0.15)'\n    }\"\n  >\n    <img :src=\"tooltip.url\" style=\"width:100%; border-radius:6px 6px 0 0;\" />\n    <div style=\"padding:4px 8px; text-align:center; font-size:11px; font-weight:bold; background:#f5f5f5;\">\n      ID: {{ tooltip.id }}\n    </div>\n  </div>\n\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n\n  data() {\n    return {\n      keys: [],\n      items: [],\n      loading: true,\n\n      xAxis: \"object_elongation\",\n      yAxis: \"object_area\",\n\n      // Default meta if nothing is passed\n      meta: { resolution: 1.0 },\n\n      hovered: null,\n      tooltip: { show: false, id: \"\", url: \"\", x: 0, y: 0 }\n    }\n  },\n\n  watch: {\n    msg: {\n      deep: true,\n      immediate: true,\n      handler(m) {\n        if (!m?.payload) return\n\n        // Update Resolution from Payload\n        if (m.payload.meta?.resolution) {\n          this.meta.resolution = parseFloat(m.payload.meta.resolution)\n        }\n\n        // CLEARING\n        if (Array.isArray(m.payload.data) && m.payload.data.length === 0) {\n          this.loading = true\n          this.items = []\n          this.hovered = null\n          this.tooltip.show = false\n          const el = this.$refs.plot\n          if (el && window.Plotly) Plotly.purge(el)\n          return\n        }\n\n        this.keys = m.payload.keys || []\n        this.items = m.payload.data || []\n\n        this.loading = this.items.length === 0\n\n        this.$nextTick(() => this.draw())\n      }\n    }\n  },\n\n  mounted() {\n    if (!window.Plotly) {\n      const s = document.createElement(\"script\")\n      s.src = \"https://cdn.plot.ly/plotly-2.27.0.min.js\"\n      s.onload = () => this.draw()\n      document.head.appendChild(s)\n    } else this.draw()\n  },\n\n  computed: {\n    // Calculate a nice round number for the scale bar length (e.g. 50um, 100um)\n    // based on the size of the current object.\n    adaptiveScaleMicrons() {\n      if (!this.hovered) return 20;\n\n      // 1. Get real width of object in microns\n      // Fallback to 100px if object_width is missing\n      const objWidthPx = this.hovered.object_width || 100; \n      const realWidthMicrons = objWidthPx * this.meta.resolution;\n\n      // 2. Target bar size ~ 25% of the object width\n      let target = realWidthMicrons / 4;\n      if (target <= 0) target = 20;\n\n      // 3. Snap to nearest nice number (10, 20, 50, 100, 200, 500...)\n      const magnitude = Math.pow(10, Math.floor(Math.log10(target)));\n      const residual = target / magnitude;\n      \n      let niceScalar = 1;\n      if (residual > 5) niceScalar = 10;\n      else if (residual > 2) niceScalar = 5;\n      else niceScalar = 2;\n\n      return niceScalar * magnitude;\n    },\n\n    scaleBarPixels() {\n      // Resolution = Microns per Pixel\n      // Pixels = Microns / Resolution\n      const res = this.meta.resolution || 1;\n      return this.adaptiveScaleMicrons / res;\n    },\n\n    formattedScale() {\n      return `${this.adaptiveScaleMicrons} µm`\n    }\n  },\n\n  methods: {\n    fmt(v) { return typeof v === \"number\" ? v.toFixed(2) : v },\n\n    draw() {\n      if (!window.Plotly || !this.items.length) return\n\n      this.loading = false\n      const el = this.$refs.plot\n\n      const trace = {\n        x: this.items.map(d => d[this.xAxis]),\n        y: this.items.map(d => d[this.yAxis]),\n        mode: 'markers',\n        type: 'scatter',\n        hoverinfo: 'none',\n        marker: {\n          size: 8,\n          color: '#1976D2',\n          opacity: 0.6,\n          line: { width: 1, color: 'white' }\n        }\n      }\n\n      const layout = {\n        margin: { t: 20, b: 40, l: 50, r: 20 },\n        xaxis: { title: this.xAxis },\n        yaxis: { title: this.yAxis },\n        hovermode: 'closest',\n        dragmode: 'zoom',\n        plot_bgcolor: '#ffffff',\n        paper_bgcolor: '#ffffff'\n      }\n\n      Plotly.newPlot(el, [trace], layout, { responsive: true })\n        .then(() => {\n          el.on(\"plotly_hover\", ev => {\n            const i = ev.points[0].pointIndex\n            this.hovered = this.items[i]\n          })\n          el.on(\"plotly_unhover\", () => {\n            this.tooltip.show = false\n          })\n        })\n    }\n  }\n}\n</script>\n\n<style scoped>\n.plot-container {\n  width: 100%;\n  height: 600px;\n}\n\n.ps-skeleton {\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(90deg, #eee, #f5f5f5, #eee);\n  animation: shimmer 1.5s infinite;\n  border-radius: 4px;\n}\n\n@keyframes shimmer {\n  0% { background-position: -200px 0; }\n  100% { background-position: 200px 0; }\n}\n\n.scale-bar-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  /* Prevent the bar from shrinking */\n  flex-shrink: 0; \n}\n\n.scale-bar {\n  height: 4px;\n  background: #333;\n  border-radius: 2px;\n  margin-bottom: 2px;\n  /* Add tick marks */\n  border-left: 1px solid #333;\n  border-right: 1px solid #333;\n}\n\n.scale-label {\n  font-size: 11px;\n  text-align: center;\n  color: #555;\n  font-weight: 600;\n}\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 820,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "384aa9ab83bfe566",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "Clearing plots",
+        "func": "// This function clears the plot by sending an empty data array.\n// Any template using msg.payload.data will immediately purge the plot.\n\nmsg.payload = {\n    data: []\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "0c90eb450c8d9b01",
+                "0a559ab05af2548e",
+                "7b9d103ec5981051",
+                "23a78a078fa1eca8",
+                "09f4914fc0a54566",
+                "7f4d047a4c73eb61",
+                "a7c8654291022da1",
+                "ed9d6e31cc3a01b1",
+                "c15ef66d7e115bd3",
+                "2ca2f83cc939607f",
+                "d57a5bca66c04989",
+                "4244d2ed880cca66"
+            ]
+        ]
+    },
+    {
+        "id": "9abf70a949e76eaf",
+        "type": "function",
+        "z": "14f8c9b5ce1235cc",
+        "name": "GALLERY",
+        "func": "// GALLERY Function Node\n// TSV → { data: [], meta: { resolution: ... }, keys: ... }\n\n// 1. Handle Clear Signals\nif (msg.clear === true || (msg.payload && msg.payload.clear === true)) {\n    msg.payload = { data: [], meta: { resolution: 1 }, keys: [] };\n    return msg;\n}\n\n// 2. Validate Payload\nif (!msg.payload) return null;\nconst lines = msg.payload.toString().trim().split(/\\r?\\n/);\nif (lines.length < 2) {\n    msg.payload = { data: [], meta: { resolution: 1 }, keys: [] };\n    return msg;\n}\n\n// 3. Parse Headers\nconst headers = lines[0].split('\\t');\nconst get = (row, key) => {\n    const idx = headers.indexOf(key);\n    return idx >= 0 ? row[idx] : null;\n};\n\n// 4. Extract Meta (Resolution is key here)\nlet firstRow = null;\nfor (let i = 1; i < lines.length; i++) {\n    const L = lines[i].trim();\n    if (!L.startsWith('[') && L !== '') {\n        firstRow = lines[i].split('\\t');\n        break;\n    }\n}\n\nconst meta = {\n    sample_id: 'N/A',\n    project: 'N/A',\n    acq_id: 'N/A',\n    resolution: 1.0 // Default fallback\n};\n\nif (firstRow) {\n    meta.sample_id = get(firstRow, 'sample_id') || \"\";\n    meta.project   = get(firstRow, 'sample_project') || \"\";\n    meta.acq_id    = get(firstRow, 'acq_id') || \"\";\n\n    // CRITICAL: Extract microns per pixel\n    const px = parseFloat(get(firstRow, 'process_pixel'));\n    if (!isNaN(px) && px > 0) {\n        meta.resolution = px;\n    }\n}\n\n// 5. Select Keys to Display\nconst usefulKeys = [\n    \"object_area\", \"object_width\", \"object_height\",\n    \"object_equivalent_diameter\", \"object_major\", \"object_minor\",\n    \"object_MeanHue\", \"object_elongation\"\n];\n\nconst data = [];\n\n// 6. Process Rows\nfor (let i = 1; i < lines.length; i++) {\n    const rowLine = lines[i].trim();\n    if (rowLine.startsWith('[') || rowLine === '') continue;\n\n    const row = rowLine.split('\\t');\n    if (row.length !== headers.length) continue;\n\n    const item = {\n        id: get(row, 'object_id'),\n        // Construct Image URL\n        url: `/ps/data/browse/api/preview/big/objects/${get(row, 'object_date')}/${get(row, 'sample_id')}/${get(row, 'acq_id')}/${get(row, 'img_file_name')}`\n    };\n\n    // Parse numeric values\n    usefulKeys.forEach(k => {\n        let v = parseFloat(get(row, k));\n        item[k] = isNaN(v) ? 0 : v;\n    });\n\n    data.push(item);\n}\n\nmsg.payload = {\n    data,\n    keys: usefulKeys,\n    meta\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 960,
+        "wires": [
+            [
+                "4244d2ed880cca66"
+            ]
+        ]
+    },
+    {
+        "id": "d77ed8081a657507",
+        "type": "delay",
+        "z": "14f8c9b5ce1235cc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "5ec998719a884cfe"
+            ]
+        ]
+    },
+    {
+        "id": "bdf84e9e1e0caa90",
+        "type": "debug",
+        "z": "14f8c9b5ce1235cc",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "8e11bb014b9664be",
