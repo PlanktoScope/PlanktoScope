@@ -3975,8 +3975,7 @@
         "y": 200,
         "wires": [
             [
-                "46b98c54eb680c2e",
-                "b162f94dfd6bfdad"
+                "46b98c54eb680c2e"
             ]
         ]
     },
@@ -4075,27 +4074,9 @@
         "y": 280,
         "wires": [
             [
-                "46b98c54eb680c2e",
-                "b162f94dfd6bfdad"
+                "46b98c54eb680c2e"
             ]
         ]
-    },
-    {
-        "id": "b162f94dfd6bfdad",
-        "type": "debug",
-        "z": "35d7387466dd0bc0",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 140,
-        "wires": []
     },
     {
         "id": "250979b4672d81b6",
@@ -4283,8 +4264,7 @@
         "y": 260,
         "wires": [
             [
-                "33c0d1b8251b5d00",
-                "6a279f9f754e8ead"
+                "33c0d1b8251b5d00"
             ]
         ]
     },
@@ -4409,7 +4389,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-dialog v-if=\"showDialog\" v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n<script>\nexport default {\n  props: {\n    msg: { type: Object, default: () => ({}) },\n  },\n  data() {\n    return {\n      payload: {},\n      showDialog: false, \n      process_min_ESD: 0,\n      // 1. Add a flag to track if page is fully loaded\n      isReady: false, \n    };\n  },\n\n  mounted() {\n    // 2. Wait 1 second after the component loads before accepting \"Open\" commands.\n    // This effectively ignores the \"History\" message sent by Node-RED on refresh.\n    setTimeout(() => {\n      this.isReady = true;\n    }, 1000);\n  },\n\n  watch: {\n    msg: {\n      deep: true,\n      handler(newMsg) {\n        // 3. If the page is still loading (first 1 sec), IGNORE the message\n        if (!this.isReady) return;\n\n        // Safety check\n        if (!newMsg || !newMsg.payload) return;\n\n        const p = newMsg.payload;\n        \n        // 4. Check conditions\n        const shouldOpen = p.open_dialog === true && p.is_segmented === false;\n\n        if (shouldOpen) {\n          this.payload = p;\n          this.process_min_ESD = (typeof p.process_min_ESD === 'number') ? p.process_min_ESD : 0;\n          this.showDialog = true;\n        }\n      },\n    },\n  },\n\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD,\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>",
+        "format": "<template>\n  <v-dialog v-if=\"showDialog\" v-model=\"showDialog\" max-width=\"500\">\n    <v-card>\n      <v-card-title class=\"font-weight-bold\">\n        Segmentation Required\n      </v-card-title>\n\n      <v-card-text>\n        <p>\n          The selected sample has not been segmented yet.<br>\n          Do you want to start segmentation now?\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-list density=\"compact\">\n          <v-list-item>\n            <v-list-item-title><b>Project:</b> {{ payload.project_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Sample:</b> {{ payload.sample_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Acquisition:</b> {{ payload.acquisition_id }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Operator:</b> {{ payload.operator_name }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Images acquired:</b> {{ payload.image_acquired_count }}</v-list-item-title>\n          </v-list-item>\n          <v-list-item>\n            <v-list-item-title><b>Path:</b> {{ payload.path }}</v-list-item-title>\n          </v-list-item>\n        </v-list>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <v-text-field\n          v-model.number=\"process_min_ESD\"\n          label=\"Minimum ESD (µm)\"\n          type=\"number\"\n          min=\"0\"\n          step=\"1\"\n          hint=\"Set minimum Equivalent Spherical Diameter in microns\"\n          persistent-hint\n        ></v-text-field>\n      </v-card-text>\n\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn color=\"grey\" variant=\"tonal\" @click=\"showDialog = false\">\n          Cancel\n        </v-btn>\n        <v-btn color=\"primary\" variant=\"flat\" @click=\"sendSegment\">\n          Segment\n        </v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n<script>\nexport default {\n  props: {\n    msg: { type: Object, default: () => ({}) },\n  },\n  data() {\n    return {\n      payload: {},\n      showDialog: false, \n      process_min_ESD: 20,\n      // 1. Add a flag to track if page is fully loaded\n      isReady: false, \n    };\n  },\n\n  mounted() {\n    // 2. Wait 1 second after the component loads before accepting \"Open\" commands.\n    // This effectively ignores the \"History\" message sent by Node-RED on refresh.\n    setTimeout(() => {\n      this.isReady = true;\n    }, 1000);\n  },\n\n  watch: {\n    msg: {\n      deep: true,\n      handler(newMsg) {\n        // 3. If the page is still loading (first 1 sec), IGNORE the message\n        if (!this.isReady) return;\n\n        // Safety check\n        if (!newMsg || !newMsg.payload) return;\n\n        const p = newMsg.payload;\n        \n        // 4. Check conditions\n        const shouldOpen = p.open_dialog === true && p.is_segmented === false;\n\n        if (shouldOpen) {\n          this.payload = p;\n          this.process_min_ESD = (typeof p.process_min_ESD === 'number') ? p.process_min_ESD : 0;\n          this.showDialog = true;\n        }\n      },\n    },\n  },\n\n  methods: {\n    sendSegment() {\n      const outMsg = {\n        topic: \"segmenter/segment\",\n        payload: {\n          action: \"segment\",\n          path: [this.payload.path],\n          settings: {\n            force: false,\n            recursive: true,\n            ecotaxa: true,\n            keep: true,\n            process_id: 1,\n            process_min_ESD: this.process_min_ESD,\n          },\n          dataset: {\n            project_name: this.payload.project_name,\n            sample_id: this.payload.sample_id,\n            acquisition_id: this.payload.acquisition_id,\n            operator_name: this.payload.operator_name,\n            image_acquired_count: this.payload.image_acquired_count,\n            path: this.payload.path,\n          },\n        },\n      };\n\n      this.send(outMsg);\n      this.showDialog = false;\n    },\n  },\n};\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4448,22 +4428,6 @@
                 "cdb586337f186494"
             ]
         ]
-    },
-    {
-        "id": "6a279f9f754e8ead",
-        "type": "debug",
-        "z": "0fd76ac156d78937",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 340,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "77bb783e65c3ffd6",
@@ -4526,7 +4490,8 @@
         "wires": [
             [
                 "384aa9ab83bfe566",
-                "164baa371893de7a"
+                "164baa371893de7a",
+                "b8e4f06f40c63fd2"
             ]
         ]
     },
@@ -4587,7 +4552,8 @@
         "y": 180,
         "wires": [
             [
-                "18a10804663dbaa1"
+                "18a10804663dbaa1",
+                "ca563bd4bf522cf9"
             ]
         ]
     },
@@ -5296,6 +5262,38 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "b8e4f06f40c63fd2",
+        "type": "debug",
+        "z": "14f8c9b5ce1235cc",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ca563bd4bf522cf9",
+        "type": "debug",
+        "z": "14f8c9b5ce1235cc",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 140,
+        "wires": []
     },
     {
         "id": "8e11bb014b9664be",
