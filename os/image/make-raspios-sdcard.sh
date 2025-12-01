@@ -36,11 +36,3 @@ touch /mnt/ssh
 umount /dev/mmcblk0p1
 
 echo "✅ SD card is ready."
-
-# Use nmap 123 192.168.1.0/24 to find the hostname or ip address
-# ssh pi@host
-# if you have WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
-# do ssh-keygen -R raspberrypi.home
-# then
-# ssh pi@host
-# password is
