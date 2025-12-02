@@ -49,12 +49,36 @@ To use this project, you'll need:
 - Python >= 3.13.5
 - uv
 
-## Licensing
+### API
 
-Except where otherwise indicated, source code provided here is covered by the following information:
+### Start segmentation
 
-Copyright PlanktoScope project contributors
+**topic** `segmenter/segment`
 
-SPDX-License-Identifier: GPL-3.0-or-later
+**payload:**
+```json
+{
+  "action": "segment",
+  "path": "/home/pi/data/img/", // the acquisition path to segment
+  "settings": {
+    "force": false, // force re-segmentation of a segmented path
+    "recursive": true, // traverse folders recursively
+    "ecotaxa_export": true, // generate an ecotaxa export archive
+    "keep": true, // save debug images - aka "/home/pi/data/clean"
+    "process_id": "random-id" // the process id
+    "process_min_ESD": 20, // the minimum object size (we use area-equivalent diameter)
+    "remove_previous_mask": false, // see https://planktoscope.slack.com/archives/C01V5ENKG0M/p1714146253356569
+  },
+}
+```
 
-You can use the source code provided here under the [GPL 3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
+### Stop segmentation
+
+**topic** `segmenter/segment`
+
+**payload:**
+```json
+{
+  "action": "stop",
+}
+```

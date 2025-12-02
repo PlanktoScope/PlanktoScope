@@ -54,17 +54,6 @@ import planktoscope.segmenter.operations
 logger.info("planktoscope.segmenter is loaded")
 
 
-# Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
-# package from PyPI for more structured parsing of env vars:
-SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
-    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "False"
-).lower() in ("true", "1", "t")
-if SUBTRACT_CONSECUTIVE_MASKS:
-    logger.info("The segmentation pipeline will subtract masks between consecutive raw frames!")
-else:
-    logger.info("The segmentation pipeline will NOT subtract masks between consecutive raw frames!")
-
-
 ################################################################################
 # Main Segmenter class
 ################################################################################
@@ -110,6 +99,8 @@ class SegmenterProcess(multiprocessing.Process):
         self.__mask_to_remove = None
         self.__save_debug_img = True
         self.__process_min_ESD = 20  # microns
+        # https://planktoscope.slack.com/archives/C01V5ENKG0M/p1714146253356569
+        self.__remove_previous_mask = False
 
         # create all base path
         for path in [
@@ -236,7 +227,7 @@ class SegmenterProcess(multiprocessing.Process):
         pipeline = [
             # "adaptative_threshold",
             "simple_threshold",
-            "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
+            "remove_previous_mask" if self.__remove_previous_mask else "no_op",
             "erode",
             "dilate",
             "close",
@@ -796,7 +787,7 @@ class SegmenterProcess(multiprocessing.Process):
             "parameters": {"algorithm": "THRESH_TRIANGLE"},
         }
         self.__global_metadata["process_3rd_operation"] = {
-            "type": "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
+            "type": "remove_previous_mask" if self.__remove_previous_mask else "no_op",
             "parameters": {},
         }
         self.__global_metadata["process_4th_operation"] = {
@@ -880,33 +871,26 @@ class SegmenterProcess(multiprocessing.Process):
             if last_message["action"] == "segment":
                 # {"action":"segment"}
                 if "settings" in last_message:
+                    settings = last_message["settings"]
+
                     # force rework of already done folder
-                    force = last_message["settings"]["force"] if "force" in last_message else False
+                    force = settings.get("force", False)
 
                     # parse folders recursively starting from the given parameter
-                    recursive = (
-                        last_message["settings"]["recursive"]
-                        if "recursive" in last_message
-                        else True
-                    )
+                    recursive = settings.get("recursive", True)
 
                     # generate ecotaxa output archive
-                    ecotaxa_export = (
-                        last_message["settings"]["ecotaxa"] if "ecotaxa" in last_message else True
-                    )
+                    ecotaxa_export = settings.get("ecotaxa", True)
 
-                    if "keep" in last_message["settings"]:
-                        # keep debug images
-                        self.__save_debug_img = last_message["settings"]["keep"]
+                    # keep debug images
+                    self.__save_debug_img = settings.get("keep", True)
 
                     if "process_id" in last_message["settings"]:
-                        # keep debug images
-                        self.__process_id = last_message["settings"]["process_id"]
+                        self.__process_id = settings["process_id"]
 
-                    if "__process_min_ESD" in last_message["settings"]:
-                        self.__process_min_ESD = last_message["settings"]["__process_min_ESD"]
+                    self.__process_min_ESD = settings.get("process_min_ESD", 20)
 
-                    # TODO eventually add customisation to segmenter parameters here
+                    self.__remove_previous_mask = settings.get("remove_previous_mask", False)
 
                 path = last_message["path"] if "path" in last_message else None
 

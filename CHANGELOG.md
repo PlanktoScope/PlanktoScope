@@ -9,6 +9,12 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## v2026.0.0 - UNRELEASED
 
+### Segmenter
+
+**Remove previous mask**
+
+Until now the segmenter removed the previous mask. This behavior was problematic so it has been made optional and is now off by default. [Read more](https://planktoscope.slack.com/archives/C01V5ENKG0M/p1714146253356569).
+
 **Minimum object size**
 
 Previously the PlanktoScope would use the `acq_minimum_mesh` metadata and compare it with the detected objects' "filled area" (area of the region with all the holes filled in).
