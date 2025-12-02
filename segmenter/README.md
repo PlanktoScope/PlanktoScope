@@ -72,4 +72,13 @@ To use this project, you'll need:
 }
 ```
 
-`value` is a float >= `0` <= `1` that will adjust the led intensity. The default is `1`.
+### Stop segmentation
+
+**topic** `segmenter/segment`
+
+**payload:**
+```json
+{
+  "action": "stop",
+}
+```

@@ -882,9 +882,8 @@ class SegmenterProcess(multiprocessing.Process):
                     # generate ecotaxa output archive
                     ecotaxa_export = settings.get("ecotaxa", True)
 
-                    if "keep" in last_message["settings"]:
-                        # keep debug images
-                        self.__save_debug_img = settings["keep"]
+                    # keep debug images
+                    self.__save_debug_img = settings.get("keep", True)
 
                     if "process_id" in last_message["settings"]:
                         self.__process_id = settings["process_id"]
