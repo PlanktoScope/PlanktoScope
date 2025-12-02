@@ -36,4 +36,3 @@ RUN \
 COPY --chown=pi:pi main.py .
 COPY --chown=pi:pi planktoscope/ ./planktoscope
 ENTRYPOINT ["uv", "run", "main.py"]
-EXPOSE 8001

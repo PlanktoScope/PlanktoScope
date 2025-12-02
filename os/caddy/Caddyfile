@@ -2,11 +2,6 @@
 # https://caddyserver.com/docs/caddyfile
 
 :80 {
-	handle /ps/processing/segmenter/streams/object.mjpg {
-		rewrite * /object.mjpg
-		reverse_proxy localhost:8001
-	}
-
 	redir /admin/ps/node-red-v2 /admin/ps/node-red-v2/
 	handle /admin/ps/node-red-v2/* {
 		reverse_proxy localhost:1880

@@ -22,8 +22,6 @@
 # Logger library compatible with multiprocessing
 # Library to get date and time for folder name and filename
 import datetime
-import functools
-import io
 
 # Libraries manipulate json format, execute bash commands
 import json
@@ -31,8 +29,6 @@ import json
 # Library for starting processes
 import multiprocessing
 import os
-import select
-import threading
 
 # Library to be able to sleep for a given duration
 import time
@@ -54,7 +50,6 @@ import planktoscope.mqtt
 import planktoscope.segmenter.ecotaxa
 import planktoscope.segmenter.encoder
 import planktoscope.segmenter.operations
-import planktoscope.segmenter.streamer
 
 logger.info("planktoscope.segmenter is loaded")
 
@@ -416,17 +411,6 @@ class SegmenterProcess(multiprocessing.Process):
             "solidity": prop.solidity,
         }
 
-    def _stream(self, img):
-        def pipe_full(conn):
-            r, w, x = select.select([], [conn], [], 0.0)
-            return len(w) == 0
-
-        img_object = io.BytesIO()
-        PIL.Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)).save(img_object, format="JPEG")
-        logger.debug("Sending the object in the pipe!")
-        if not pipe_full(planktoscope.segmenter.streamer.sender):
-            planktoscope.segmenter.streamer.sender.send(img_object)
-
     def _slice_image(self, img, name, mask, start_count=0):
         """Slice a given image using give mask
 
@@ -493,7 +477,6 @@ class SegmenterProcess(multiprocessing.Process):
             object_fn = os.path.join(self.__working_obj_path, f"{object_id}.jpg")
 
             self._save_image(obj_image, object_fn)
-            self._stream(obj_image)
 
             if self.__save_debug_img:
                 self._save_mask(
@@ -968,21 +951,6 @@ class SegmenterProcess(multiprocessing.Process):
         # Publish the status "Ready" to via MQTT to Node-RED
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Ready"}')
 
-        logger.info("Setting up the streaming server thread")
-        address = ("", 8001)
-        # fps = 0.5
-        refresh_delay = 3  # was 1/fps
-        handler = functools.partial(planktoscope.segmenter.streamer.StreamingHandler, refresh_delay)
-        try:
-            server = planktoscope.segmenter.streamer.StreamingServer(address, handler)
-        except Exception as e:
-            logger.exception(f"An exception has occurred when starting up the segmenter: {e}")
-            raise e
-
-        self.streaming_thread = threading.Thread(target=server.serve_forever, daemon=True)
-        # start streaming only when needed
-        self.streaming_thread.start()
-
         logger.success("Segmenter is READY!")
 
         # This is the loop
@@ -991,7 +959,6 @@ class SegmenterProcess(multiprocessing.Process):
             time.sleep(0.5)
 
         logger.info("Shutting down the segmenter process")
-        planktoscope.segmenter.streamer.sender.close()
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Dead"}')
         self.segmenter_client.shutdown()
         logger.success("Segmenter process shut down! See you!")
