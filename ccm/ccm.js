@@ -188,6 +188,9 @@ async function runSequence() {
   await turnLightOn()
   completed("light on")
 
+  // Make sure light is on before capture
+  await setTimeout(2000)
+
   started("capture reference image")
   await capture({ dng: false, jpeg: true })
   completed("capture reference image")
