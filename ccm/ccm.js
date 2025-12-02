@@ -13,7 +13,7 @@ import {
   FORWARD,
   segment,
   purgeData,
-  upload,
+  capture,
 } from "../lib/scope.js"
 import crypto from "node:crypto"
 import { getHardwareVersion, poweroff } from "../lib/hardware.js"
@@ -101,6 +101,10 @@ function completed(topic) {
   log(`completed ${topic}`)
 }
 
+function failed(topic) {
+  log(`failed ${topic}`)
+}
+
 // 2x1000 images par jour
 const number_of_images = config.number_of_images
 const flowcell_volume = 2.08 // μL
@@ -110,7 +114,6 @@ async function runSequence() {
   log(`online, waiting ${wait_seconds} seconds`)
   await setTimeout(wait_seconds * 1000)
 
-  // Why make a backflush?
   started("cleaning tube backward")
   await pump({ direction: BACKWARD, volume: 10, flowrate: 10 })
   completed("cleaning tube backward")
@@ -185,6 +188,22 @@ async function runSequence() {
   await turnLightOn()
   completed("light on")
 
+  started("capture reference image")
+  await capture({ dng: false, jpeg: true })
+  completed("capture reference image")
+
+  started("upload reference image")
+  try {
+    await execa({
+      stdout: "inherit",
+      stderr: "inherit",
+    })`rclone -vv copy /home/pi/data/captures/ drive:dust-snow/`
+    completed("upload reference image")
+  } catch (err) {
+    console.error(err)
+    failed("upload reference image")
+  }
+
   started("acquisition")
   await acquire({
     pump_direction: FORWARD,
@@ -210,32 +229,32 @@ async function runSequence() {
   })
   completed("segmentation")
 
+  // const file_path_ecotaxa_zip = path.join(
+  //   "/home/pi/data/export/ecotaxa/",
+  //   `ecotaxa_${acquisition_id}.zip`,
+  // )
+
+  // if (existsSync(file_path_ecotaxa_zip)) {
+  started("upload")
+
+  // const stats = await stat(file_path_ecotaxa_zip, { bigint: true })
+  // log(file_path_ecotaxa_zip + " " + filesize(stats.size))
+
+  await execa({
+    stdout: "inherit",
+    stderr: "inherit",
+  })`rclone -vv copy /home/pi/data/export/ecotaxa/ drive:dust-snow/`
+
+  completed("upload")
+
+  // if (config.ecotaxa.remove_zip_after_upload === true) {
+  //   await rm(file_path_ecotaxa_zip, { force: true })
+  // }
+  // }
+
   started("purge data")
   await purgeData()
   completed("purge data")
-
-  const file_path_ecotaxa_zip = path.join(
-    "/home/pi/data/export/ecotaxa/",
-    `ecotaxa_${acquisition_id}.zip`,
-  )
-
-  if (existsSync(file_path_ecotaxa_zip)) {
-    started("upload")
-
-    const stats = await stat(file_path_ecotaxa_zip, { bigint: true })
-    log(file_path_ecotaxa_zip + " " + filesize(stats.size))
-
-    await execa({
-      stdout: "inherit",
-      stderr: "inherit",
-    })`rclone -vv copy /home/pi/data/export/ecotaxa/ drive:dust-snow/`
-
-    completed("upload")
-
-    // if (config.ecotaxa.remove_zip_after_upload === true) {
-    //   await rm(file_path_ecotaxa_zip, { force: true })
-    // }
-  }
 
   // started("Syncing data to grive")
   // await startService("eplankton")
