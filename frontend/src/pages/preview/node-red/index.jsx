@@ -1,11 +1,7 @@
-import "./styles.module.css"
+import "./styles.css"
 
 import Stream from "../Stream.jsx"
 
-export default function Preview() {
-  return (
-    <>
-      <Stream />
-    </>
-  )
+export default function PreviewNodeRed() {
+  return <Stream />
 }
