@@ -867,7 +867,7 @@
         "page": "7a4e042a60b734a6",
         "width": "12",
         "height": 1,
-        "order": 3,
+        "order": 4,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -1379,7 +1379,7 @@
         "page": "7a4e042a60b734a6",
         "width": "12",
         "height": 1,
-        "order": 1,
+        "order": 2,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -1393,7 +1393,7 @@
         "page": "7a4e042a60b734a6",
         "width": "12",
         "height": 1,
-        "order": 4,
+        "order": 5,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -1471,7 +1471,7 @@
         "page": "7a4e042a60b734a6",
         "width": "12",
         "height": 1,
-        "order": 2,
+        "order": 3,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -2097,36 +2097,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 570,
+        "x": 310,
         "y": 40,
         "wires": [
             [
                 "d55333906aeb7517"
-            ]
-        ]
-    },
-    {
-        "id": "f49d711b2738e87e",
-        "type": "switch",
-        "z": "07f3b717f2a2c8c7",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "7e7d02f3ea356eff"
             ]
         ]
     },
@@ -2140,7 +2115,7 @@
         "y": 40,
         "wires": [
             [
-                "f49d711b2738e87e"
+                "7e7d02f3ea356eff"
             ]
         ]
     },
@@ -2253,38 +2228,13 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 570,
+        "x": 310,
         "y": 40,
         "wires": [
             [
                 "abe86c4e9dedb557",
                 "605bf275a4d80952",
                 "90ba8dbcce201a83"
-            ]
-        ]
-    },
-    {
-        "id": "e74e4d04e4a79458",
-        "type": "switch",
-        "z": "1b667c6443413ced",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "67b871e8f9c64c2b"
             ]
         ]
     },
@@ -2298,7 +2248,7 @@
         "y": 40,
         "wires": [
             [
-                "e74e4d04e4a79458"
+                "67b871e8f9c64c2b"
             ]
         ]
     },
@@ -2314,7 +2264,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": ".v-btn--variant-outlined.v-btn--active {\n    background-color: #1976d2 !important;\n    color: white !important;\n}\n\n\n.v-field__field {\n    background: #eef3ff;\n    border-radius: 4px;\n}\n\n.v-btn-group .v-btn, .v-field__overlay {\n    background: #eef3ff;\n}\n    \n",
+        "format": ".v-btn--variant-outlined.v-btn--active {\n    background-color: #1976d2 !important;\n    color: white !important;\n}\n\n\n.v-field__field {\n    background: #eef3ff;\n    border-radius: 4px;\n}\n\n.v-btn-group .v-btn, .v-field__overlay {\n    background: #eef3ff;\n}\n    \n.v-row {\n        margin: 0;\n}",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2405,8 +2355,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 180,
-        "y": 140,
+        "x": 140,
+        "y": 180,
         "wires": [
             [
                 "74f8dad75cdd3c16"
@@ -2425,8 +2375,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 200,
-        "y": 280,
+        "x": 320,
+        "y": 180,
         "wires": [
             [
                 "04386808e694e97e",
@@ -2485,8 +2435,7 @@
         "y": 200,
         "wires": [
             [
-                "39c7e4b018ce16cb",
-                "1044b154a90406dc"
+                "39c7e4b018ce16cb"
             ],
             [
                 "8efc52e6ee9206f6"
@@ -2500,7 +2449,7 @@
         "group": "5d39a98563150f22",
         "page": "",
         "ui": "",
-        "name": "body",
+        "name": "empty-state",
         "order": 1,
         "width": "0",
         "height": "0",
@@ -2511,29 +2460,9 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 510,
+        "x": 530,
         "y": 280,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1044b154a90406dc",
-        "type": "exec",
-        "z": "1b667c6443413ced",
-        "command": "sudo reboot now",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 1190,
-        "y": 300,
-        "wires": [
-            [],
-            [],
             []
         ]
     },
@@ -2780,6 +2709,62 @@
         ]
     },
     {
+        "id": "e9eca3996df4f4a2",
+        "type": "ui-event",
+        "z": "1b667c6443413ced",
+        "ui": "e6ae26617c24c3ea",
+        "name": "UI Event",
+        "x": 920,
+        "y": 600,
+        "wires": [
+            [
+                "feda608d3423af51"
+            ]
+        ]
+    },
+    {
+        "id": "feda608d3423af51",
+        "type": "switch",
+        "z": "1b667c6443413ced",
+        "name": "msg.payload.page.path === \"/home\"",
+        "property": "payload.page.path",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/home",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 600,
+        "wires": [
+            [
+                "790b19154efc45c3"
+            ]
+        ]
+    },
+    {
+        "id": "790b19154efc45c3",
+        "type": "debug",
+        "z": "1b667c6443413ced",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 700,
+        "wires": []
+    },
+    {
         "id": "a57a165cd0ce511b",
         "type": "ui-template",
         "z": "ab58b3fd0e6bcd77",
@@ -2848,31 +2833,6 @@
         ]
     },
     {
-        "id": "8d5eadf60a2fd54b",
-        "type": "switch",
-        "z": "ab58b3fd0e6bcd77",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "6074fc31218f9a74"
-            ]
-        ]
-    },
-    {
         "id": "da4fbaab826b0d62",
         "type": "ui-event",
         "z": "ab58b3fd0e6bcd77",
@@ -2882,7 +2842,7 @@
         "y": 40,
         "wires": [
             [
-                "8d5eadf60a2fd54b"
+                "6074fc31218f9a74"
             ]
         ]
     },
@@ -2903,7 +2863,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 580,
+        "x": 320,
         "y": 40,
         "wires": [
             [
@@ -3187,7 +3147,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <!-- Project Metadata Inputs -->\n  <v-row class=\"mt-2\">\n    <!-- Project Name -->\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field v-model=\"sample_project\" label=\"Name of the project\" placeholder=\"ex : Tara Pacifique\"\n        variant=\"outlined\" hint=\"Enter the research project or expedition name this sample is part of.\"\n        @input=\"sendUpdate\">\n        <template #append>\n          <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Name of the project',\n              'Enter the research project or expedition name this sample is part of.'\n            )\">\n            mdi-information\n          </v-icon>\n        </template>\n      </v-text-field>\n    </v-col>\n\n    <!-- Sample ID -->\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field \n      v-model.number=\"sample_id\"\n      type=\"number\"\n      label=\"Sample ID\"\n      prefix=\"S_\"\n      placeholder=\"ex : S001\"\n      variant=\"outlined\"\n      density=\"compact\"\n        hint=\"Provide a unique identifier for this sample (e.g., S001).\" @input=\"sendUpdate\">\n        <template #append>\n          <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Sample ID',\n              'Provide a unique identifier for this sample (e.g., S001).'\n            )\">\n            mdi-information\n          </v-icon>\n        </template>\n      </v-text-field>\n    </v-col>\n\n    <!-- Operator Name -->\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field v-model=\"sample_operator\" label=\"Operator name\" placeholder=\"ex : Manu Prakash\" variant=\"outlined\"\n        hint=\"Name of the person who collected the sample.\" @input=\"sendUpdate\">\n        <template #append>\n          <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Operator name',\n              'Name of the person who collected the sample.'\n            )\">\n            mdi-information\n          </v-icon>\n        </template>\n      </v-text-field>\n    </v-col>\n  </v-row>\n\n  <!-- Sampling Gear Selector -->\n  <v-row class=\"mt-4\">\n    <v-col cols=\"12\">\n      <div class=\"d-flex align-center mb-2\">\n        <label class=\"text-subtitle-2 font-weight-medium me-2\">\n          Sampling Gear\n        </label>\n        <v-icon class=\"cursor-pointer\" color=\"#666666\" @click=\"openHint(\n            'Sampling Gear',\n            'The type of gear used to collect the sample. This field describes the specific equipment used during the sampling process and provides context about the sampling method and conditions.'\n          )\">\n          mdi-information\n        </v-icon>\n      </div>\n\n      <div style=\"overflow-x: auto;\">\n        <v-btn-toggle v-model=\"sample_gear\" variant=\"outlined\"  color=\"primary\" mandatory divided shaped class=\"d-flex\"\n          style=\"min-width: max-content; min-height: 100px\" @update:model-value=\"sendUpdate\">\n          <v-btn value=\"Horizontal Net\" prepend-icon=\"mdi-arrow-right-bold\" stacked>\n            Horizontal Net\n          </v-btn>\n          <v-btn value=\"Vertical Net\" prepend-icon=\"mdi-arrow-up-bold\" stacked>\n            Vertical Net\n          </v-btn>\n          <v-btn value=\"Niskin bottle\" prepend-icon=\"mdi-bottle-tonic\" stacked>\n            Niskin bottle\n          </v-btn>\n          <v-btn value=\"Lab culture\" prepend-icon=\"mdi-flask-outline\" stacked>\n            Lab culture\n          </v-btn>\n          <v-btn value=\"Demo / Test\" prepend-icon=\"mdi-beaker-outline\" stacked>\n            Demo / Test\n          </v-btn>\n        </v-btn-toggle>\n      </div>\n\n    </v-col>\n  </v-row>\n\n  <!-- Hint Popup -->\n  <v-dialog v-model=\"hintDialog\" max-width=\"400\">\n    <v-card>\n      <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n      <v-card-text>{{ hintText }}</v-card-text>\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\n  export default {\n  props: [\"msg\"],\n  data() {\n    return {\n      sample_project: \"\",\n      sample_id: \"\",\n      sample_operator: \"\",\n      sample_gear: null,\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      topic: \"sample_project_meta\", // single topic\n    };\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.sample_project !== undefined) this.sample_project = p.sample_project;\n        if (p.sample_id !== undefined) {\n          // Supprime le préfixe éventuel avant d'afficher\n          this.sample_id = String(p.sample_id).replace(/^S[_-]?/, \"\");\n        }\n\n        if (p.sample_operator !== undefined)\n          this.sample_operator = p.sample_operator;\n        if (p.sample_gear !== undefined) this.sample_gear = p.sample_gear;\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    /**\n     * Send grouped payload for all fields under one topic.\n     */\n    sendUpdate(extra = {}) {\n      this.send({\n        topic: this.topic,\n        payload: {\n          sample_project: this.sample_project || \"\",\n          sample_id: this.sample_id ? `S_${this.sample_id}` : \"\",\n          sample_operator: this.sample_operator || \"\",\n          sample_gear: this.sample_gear || \"\",\n          ...extra,\n        },\n      });\n    },\n\n    openHint(title, text) {\n      this.hintTitle = title;\n      this.hintText = text;\n      this.hintDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n  .cursor-pointer {\n    cursor: pointer;\n  }\n</style>",
+        "format": "<template>\n  <!-- Project Metadata Inputs -->\n  <v-row class=\"mt-2\">\n    <!-- Project Name -->\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field v-model=\"sample_project\" label=\"Name of the project\" placeholder=\"ex : Tara Pacifique\"\n        variant=\"outlined\" hint=\"Enter the research project or expedition name this sample is part of.\"\n        @input=\"sendUpdate\">\n        <template #append>\n          <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Name of the project',\n              'Enter the research project or expedition name this sample is part of.'\n            )\">\n            mdi-information\n          </v-icon>\n        </template>\n      </v-text-field>\n    </v-col>\n\n    <!-- Sample ID -->\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field \n      v-model.number=\"sample_id\"\n      type=\"number\"\n      label=\"Sample ID\"\n      prefix=\"S_\"\n      placeholder=\"ex : 001\"\n      variant=\"outlined\"\n      density=\"compact\"\n        hint=\"Provide a unique identifier for this sample (e.g., S001).\" @input=\"sendUpdate\">\n        <template #append>\n          <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Sample ID',\n              'Provide a unique identifier for this sample (e.g., S001).'\n            )\">\n            mdi-information\n          </v-icon>\n        </template>\n      </v-text-field>\n    </v-col>\n\n    <!-- Operator Name -->\n    <v-col cols=\"12\" md=\"4\">\n      <v-text-field v-model=\"sample_operator\" label=\"Operator name\" placeholder=\"ex : Manu Prakash\" variant=\"outlined\"\n        hint=\"Name of the person who collected the sample.\" @input=\"sendUpdate\">\n        <template #append>\n          <v-icon class=\"cursor-pointer\" @click=\"openHint(\n              'Operator name',\n              'Name of the person who collected the sample.'\n            )\">\n            mdi-information\n          </v-icon>\n        </template>\n      </v-text-field>\n    </v-col>\n  </v-row>\n\n  <!-- Sampling Gear Selector -->\n  <v-row class=\"mt-4\">\n    <v-col cols=\"12\">\n      <div class=\"d-flex align-center mb-2\">\n        <label class=\"text-subtitle-2 font-weight-medium me-2\">\n          Sampling Gear\n        </label>\n        <v-icon class=\"cursor-pointer\" color=\"#666666\" @click=\"openHint(\n            'Sampling Gear',\n            'The type of gear used to collect the sample. This field describes the specific equipment used during the sampling process and provides context about the sampling method and conditions.'\n          )\">\n          mdi-information\n        </v-icon>\n      </div>\n\n      <div style=\"overflow-x: auto;\">\n        <v-btn-toggle v-model=\"sample_gear\" variant=\"outlined\"  color=\"primary\" mandatory divided shaped class=\"d-flex\"\n          style=\"min-width: max-content; min-height: 100px\" @update:model-value=\"sendUpdate\">\n          <v-btn value=\"Horizontal Net\" prepend-icon=\"mdi-arrow-right-bold\" stacked>\n            Horizontal Net\n          </v-btn>\n          <v-btn value=\"Vertical Net\" prepend-icon=\"mdi-arrow-up-bold\" stacked>\n            Vertical Net\n          </v-btn>\n          <v-btn value=\"Niskin bottle\" prepend-icon=\"mdi-bottle-tonic\" stacked>\n            Niskin bottle\n          </v-btn>\n          <v-btn value=\"Lab culture\" prepend-icon=\"mdi-flask-outline\" stacked>\n            Lab culture\n          </v-btn>\n          <v-btn value=\"Demo / Test\" prepend-icon=\"mdi-beaker-outline\" stacked>\n            Demo / Test\n          </v-btn>\n        </v-btn-toggle>\n      </div>\n\n    </v-col>\n  </v-row>\n  \n  <!-- NEW: Fraction Size Selector and Acquisition Settings -->\n  <v-row class=\"mt-4\">\n    <v-col cols=\"12\">\n      <div class=\"d-flex align-center mb-2\">\n        <label class=\"text-subtitle-2 font-weight-medium me-2\">\n          Fraction Size / Acquisition Settings\n        </label>\n        <v-icon class=\"cursor-pointer\" color=\"#666666\" @click=\"openHint(\n            'Fraction Size / Acquisition Settings',\n            'Select a fraction size range. This automatically sets the flowcell thickness and lens combination for acquisition.'\n          )\">\n          mdi-information\n        </v-icon>\n      </div>\n\n      <div style=\"overflow-x: auto;\">\n        <v-btn-toggle v-model=\"fraction_size_preset\" variant=\"outlined\" color=\"secondary\" mandatory divided shaped class=\"d-flex\"\n          style=\"min-width: max-content; min-height: 100px\" @update:model-value=\"updateAcquisitionSettings\">\n\n          <v-btn :value=\"1\" stacked class=\"flex-grow-1\">\n            <span class=\"font-weight-bold\">10 to 100 μm</span>\n            <span class=\"text-caption\">Flowcell: 100 μm, Lenses: 25/4</span>\n          </v-btn>\n          <v-btn :value=\"2\" stacked class=\"flex-grow-1\">\n            <span class=\"font-weight-bold\">50 to 200 μm</span>\n            <span class=\"text-caption\">Flowcell: 300 μm, Lenses: 25/12</span>\n          </v-btn>\n          <v-btn :value=\"3\" stacked class=\"flex-grow-1\">\n            <span class=\"font-weight-bold\">100 to 500 μm</span>\n            <span class=\"text-caption\">Flowcell: 600 μm, Lenses: 25/16</span>\n          </v-btn>\n\n        </v-btn-toggle>\n      </div>\n    </v-col>\n    \n    <!-- The read-only preset display block has been removed -->\n\n  </v-row>\n\n  <!-- Hint Popup -->\n  <v-dialog v-model=\"hintDialog\" max-width=\"400\">\n    <v-card>\n      <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n      <v-card-text>{{ hintText }}</v-card-text>\n      <v-card-actions>\n        <v-spacer></v-spacer>\n        <v-btn text color=\"primary\" @click=\"hintDialog = false\">Close</v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</template>\n\n<script>\n  export default {\n  props: [\"msg\"],\n  data() {\n    return {\n      sample_project: \"\",\n      sample_id: \"\",\n      sample_operator: \"\",\n      sample_gear: null,\n      \n      // NEW ACQUISITION SETTINGS\n      fraction_size_preset: 1, // Default to preset 1\n      acq_flowcell_thickness: \"100 um\", // Initial default for preset 1\n      acq_lenses: \"25/4\", // Initial default for preset 1\n      \n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      topic: \"sample_project_meta\", // single topic\n    };\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        if (p.sample_project !== undefined) this.sample_project = p.sample_project;\n        if (p.sample_id !== undefined) {\n          // Supprime le préfixe éventuel avant d'afficher\n          this.sample_id = String(p.sample_id).replace(/^S[_-]?/, \"\");\n        }\n\n        if (p.sample_operator !== undefined)\n          this.sample_operator = p.sample_operator;\n        if (p.sample_gear !== undefined) this.sample_gear = p.sample_gear;\n        \n        // NEW: Handle incoming acquisition settings\n        if (p.acq_flowcell_thickness !== undefined)\n          this.acq_flowcell_thickness = p.acq_flowcell_thickness;\n        if (p.acq_lenses !== undefined)\n          this.acq_lenses = p.acq_lenses;\n          \n        // NEW: Deduce the preset based on the incoming values\n        this.deducePreset(p.acq_flowcell_thickness, p.acq_lenses);\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    /**\n     * Define the constant values for each fraction size preset.\n     */\n    acquisitionPresets() {\n      return {\n        1: { flowcell: \"100 um\", lenses: \"25/4\", range: \"10 to 100 μm\" },\n        2: { flowcell: \"300 um\", lenses: \"25/12\", range: \"50 to 200 μm\" },\n        3: { flowcell: \"600 um\", lenses: \"25/16\", range: \"100 to 500 μm\" },\n      };\n    },\n    \n    /**\n     * Determines which preset matches the incoming flowcell and lenses values.\n     * If no match (e.g., it was previously set to a custom value), it forces it back to preset 1.\n     */\n    deducePreset(flowcell, lenses) {\n      if (flowcell === undefined && lenses === undefined) return;\n      \n      const presets = this.acquisitionPresets();\n      let found = false;\n      for (const key in presets) {\n        if (presets[key].flowcell === flowcell && presets[key].lenses === lenses) {\n          this.fraction_size_preset = Number(key);\n          found = true;\n          break;\n        }\n      }\n      \n      // If no match found (meaning an invalid or old custom value was sent), revert to Preset 1\n      if (!found) {\n        this.fraction_size_preset = 1;\n        this.acq_flowcell_thickness = presets[1].flowcell;\n        this.acq_lenses = presets[1].lenses;\n        // The watch handler will re-run sendUpdate implicitly if the values change.\n      }\n    },\n    \n    /**\n     * Update flowcell and lenses based on selected preset value (1, 2, or 3).\n     */\n    updateAcquisitionSettings(presetValue) {\n      const preset = this.acquisitionPresets()[presetValue];\n      this.acq_flowcell_thickness = preset.flowcell;\n      this.acq_lenses = preset.lenses;\n      // Automatically send update when a preset is selected\n      this.sendUpdate();\n    },\n    \n    /**\n     * Send grouped payload for all fields under one topic.\n     */\n    sendUpdate(extra = {}) {\n      this.send({\n        topic: this.topic,\n        payload: {\n          sample_project: this.sample_project || \"\",\n          sample_id: this.sample_id ? `S_${this.sample_id}` : \"\",\n          sample_operator: this.sample_operator || \"\",\n          sample_gear: this.sample_gear || \"\",\n          \n          // NEW ACQUISITION FIELDS\n          acq_flowcell_thickness: this.acq_flowcell_thickness || \"\",\n          acq_lenses: this.acq_lenses || \"\",\n          \n          ...extra,\n        },\n      });\n    },\n\n    openHint(title, text) {\n      this.hintTitle = title;\n      this.hintText = text;\n      this.hintDialog = true;\n    },\n  },\n  mounted() {\n    // Initial data send on mount\n    this.sendUpdate();\n  }\n};\n</script>\n\n<style scoped>\n  .cursor-pointer {\n    cursor: pointer;\n  }\n  .bg-blue-grey-lighten-5 {\n    background-color: #ECEFF1; /* Light gray background for readonly fields */\n  }\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3363,31 +3323,6 @@
         "y": 40,
         "wires": [
             [
-                "a68e52177173f690"
-            ]
-        ]
-    },
-    {
-        "id": "a68e52177173f690",
-        "type": "switch",
-        "z": "190b0c9aa75e8843",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "b1a74fe5569d418a"
             ]
         ]
@@ -3409,7 +3344,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 580,
+        "x": 320,
         "y": 40,
         "wires": [
             [
@@ -3724,7 +3659,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n        <!-- Acquisition CONTROL -->\n    <v-card class=\"ma-0 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text><!-- Label -->\n\n      <div class=\"d-flex justify-space-between align-center mb-4\">\n        <div class=\"text-h6\">Acquisition</div>\n      </div>\n    <v-row>\n      <v-col cols=\"12\">\n        <v-text-field v-model.number=\"acq_id\" type=\"number\" label=\"Acquisition ID\" variant=\"outlined\"\n          placeholder=\"ex : 001\" @input=\"sendUpdate()\" prefix=\"A_\" density=\"compact\">\n          <template #append>\n            <v-icon class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition ID','Unique identifier for each acquisition run.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider v-model.number=\"acq_nb_frame\" :max=\"10000\" :min=\"1\" :step=\"1\" label=\"Number of Images\" hide-details\n          @update:model-value=\"autoCalculateVolumes\" />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field v-model.number=\"acq_nb_frame\" type=\"number\" :min=\"1\" variant=\"outlined\" hide-details suffix=\"img\"\n          class=\"aligned-input\" @input=\"autoCalculateVolumes\">\n          <template #append>\n            <v-icon class=\"cursor-pointer\"\n              @click=\"openHint('Number of Images','Total number of images captured during acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\" sm=\"8\">\n        <v-slider :model-value=\"acq_interframe_volume * 1000\"\n          @update:model-value=\"v => { acq_interframe_volume = v / 1000; autoCalculateVolumes(); }\" :max=\"100\" :min=\"1\"\n          :step=\"1\" label=\"Volume between images\" hide-details />\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\">\n        <v-text-field :model-value=\"acq_interframe_volume * 1000\"\n          @update:model-value=\"v => { acq_interframe_volume = v / 1000; autoCalculateVolumes(); }\" type=\"number\" :min=\"1\"\n          variant=\"outlined\" hide-details suffix=\"µL\" class=\"aligned-input\" @input=\"autoCalculateVolumes\">\n          <template #append>\n            <v-icon class=\"cursor-pointer\"\n              @click=\"openHint('Volume between images','Sample volume displaced between consecutive images (µL).')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field :model-value=\"fmt(acq_imaged_volume)\" suffix=\"mL\" variant=\"flat\" hide-details readonly\n          class=\"aligned-input\">\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"showVolumeImagedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field :model-value=\"fmt(acq_pumped_volume)\" suffix=\"mL\" variant=\"flat\" hide-details readonly\n          class=\"aligned-input\">\n          <template #append>\n            <v-icon class=\"cursor-pointer\" @click=\"showVolumeDisplacedHint()\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-text-field>\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-textarea v-model=\"acq_comment\" label=\"Acquisition Comment\" variant=\"outlined\" rows=\"2\" @input=\"sendUpdate()\">\n          <template #append>\n            <v-icon class=\"cursor-pointer\"\n              @click=\"openHint('Acquisition Comment','Notes or remarks about this acquisition.')\">\n              mdi-information\n            </v-icon>\n          </template>\n        </v-textarea>\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-progress-linear :model-value=\"progression\" color=\"primary\" height=\"24\" rounded striped class=\"mt-2 mb-2\">\n          <template #default=\"{ value }\">\n            <strong>{{ Math.min(100, Math.ceil(value || 0)) }}%</strong>\n          </template>\n        </v-progress-linear>\n      </v-col>\n    </v-row>\n\n    <v-row class=\"aligned-row\">\n      <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n        <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n      </v-col>\n      <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n        <v-text-field :model-value=\"formatDuration(duration_left)\" variant=\"flat\" hide-details readonly\n          class=\"aligned-input\" />\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-alert v-if=\"acq_status_message\" :type=\"statusType\" :color=\"statusColor\" border=\"start\" variant=\"tonal\"\n          class=\"text-subtitle-1\" prominent>\n          {{ formattedStatus }}\n        </v-alert>\n      </v-col>\n    </v-row>\n\n    <v-row>\n      <v-col cols=\"12\">\n        <v-btn-toggle v-model=\"acq_status\" variant=\"outlined\" mandatory divided shaped\n          class=\"d-flex justify-space-between mt-4\" @update:model-value=\"handleAcqStatusChange\">\n          <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n          <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n        </v-btn-toggle>\n      </v-col>\n    </v-row>\n      </v-card-text>\n    </v-card>\n    <v-dialog v-model=\"hintDialog\" max-width=\"600\">\n      <v-card class=\"pa-4\">\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text v-html=\"hintText\" class=\"text-body-2\"></v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\n  export default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_nb_frame: 1,\n      acq_interframe_volume: 8,\n      acq_imaged_volume: \"\",\n      acq_pumped_volume: \"\",\n      acq_comment: \"\",\n      progression: 0,\n      duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      \n      // Values that are not changing anymore (Constants)\n      calibration_sensor_width: 4056,\n      calibration_sensor_height: 3040,\n\n      // This is dynamic and used for calculation\n      calibration_pixel_size: 0,\n      \n      acq_flowcell_thickness: 300,\n      frame_volume_um3: 0,\n      topic: \"acq_params\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      lastUpdateTime: null,\n      acq_start_timestamp: null,\n    };\n  },\n\n  computed: {\n    sensor_width_um() { return (this.calibration_sensor_width || 0) * (this.calibration_pixel_size || 0); },\n    sensor_height_um() { return (this.calibration_sensor_height || 0) * (this.calibration_pixel_size || 0); },\n    frame_volume_ml() { return this.frame_volume_um3 / 1e12; },\n\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n\n    statusColor() {\n      const s = this.acq_status_message || \"\";\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if ([\"Started\", \"Done\"].includes(s)) return \"green\";\n      return \"grey\";\n    },\n\n    statusType() {\n      if (this.statusColor === \"green\") return \"success\";\n      if (this.statusColor === \"orange\") return \"warning\";\n      if (this.statusColor === \"red\") return \"error\";\n      return \"info\";\n    },\n  },\n\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        const topic = newMsg?.topic;\n\n        if (p.acq_id !== undefined)\n          this.acq_id = String(p.acq_id).replace(/^A[_-]?/, \"\");\n\n        if (\"acq_comment\" in p) {\n          this.acq_comment = p.acq_comment ?? \"\";\n        }\n\n        if (p.acq_nb_frame !== undefined)\n          this.acq_nb_frame = Number(p.acq_nb_frame);\n\n        if (p.acq_interframe_volume !== undefined)\n          this.acq_interframe_volume = Number(p.acq_interframe_volume);\n\n        if (p.calibration_pixel_size !== undefined)\n          this.calibration_pixel_size = Number(p.calibration_pixel_size);\n\n        // NOTE: calibration_sensor_width and height removed from watcher \n        // to prevent overwriting constant values (4056/3040)\n\n        if (p.acq_flowcell_thickness !== undefined)\n          this.acq_flowcell_thickness = Number(p.acq_flowcell_thickness);\n\n        if (p.acq_start_timestamp !== undefined && p.acq_start_timestamp !== null) {\n          this.acq_start_timestamp = Number(p.acq_start_timestamp);\n        }\n\n        if (p.status && /Image\\s+\\d+\\s*\\/\\s*\\d+/i.test(p.status))\n          this.acq_status = \"on\";\n\n        if (p.status !== undefined) {\n          this.acq_status_message = p.status;\n          const s = String(p.status).toLowerCase();\n\n          if (!/Image\\s+\\d+\\s*\\/\\s*\\d+/i.test(p.status)) {\n            if (s.includes(\"capturing\") || s.includes(\"running\") || s.includes(\"started\"))\n              this.acq_status = \"on\";\n          }\n\n          if (s.includes(\"done\") || s.includes(\"idle\") || s.includes(\"stopped\") || s.includes(\"error\"))\n            this.acq_status = \"off\";\n\n          this.extractProgressFromMessage();\n        }\n\n        if (topic === \"status/imager\" && p.status === \"Done\") {\n          this.incrementAcqId();\n          this.resetProgress();\n        }\n        \n        if (topic === \"status/imager\" && p.status === \"Configuration update error: Chosen id are already in use!\") {\n        this.incrementAcqId();\n        this.resetProgress();\n        }\n\n        this.autoCalculateVolumes();\n      },\n      deep: true,\n    },\n  },\n\n  methods: {\n    fmt(v) { return Number(v || 0).toFixed(3); },\n\n    formatDuration(mins) {\n      const totalSeconds = Math.max(0, Math.round(mins * 60));\n      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, \"0\");\n      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, \"0\");\n      const s = String(totalSeconds % 60).padStart(2, \"0\");\n      return `${h}:${m}:${s}`;\n    },\n\n    resetProgress() {\n      this.progression = 0;\n      this.duration_left = 0;\n      this.lastUpdateTime = Date.now();\n    },\n\n    incrementAcqId() {\n      const next = String(Number(this.acq_id || 0) + 1).padStart(1, \"0\");\n      this.acq_id = next;\n      this.sendUpdate();\n    },\n\n    autoCalculateVolumes() {\n      // Logic adjusted to ensure constants are used even if pixel size is 0 initially\n      const w_px = this.calibration_sensor_width;\n      const h_px = this.calibration_sensor_height;\n      \n      if (w_px > 0 && h_px > 0 && this.calibration_pixel_size > 0 && this.acq_flowcell_thickness > 0) {\n        \n        const w_um = w_px * this.calibration_pixel_size;\n        const h_um = h_px * this.calibration_pixel_size;\n        const t = this.acq_flowcell_thickness;\n\n        this.frame_volume_um3 = w_um * h_um * t;\n        const frame_ml = this.frame_volume_um3 / 1e12;\n        this.acq_imaged_volume = frame_ml * (this.acq_nb_frame || 0);\n      } else {\n        this.frame_volume_um3 = 0;\n        this.acq_imaged_volume = 0;\n      }\n\n      const interimage_total_ml = (this.acq_interframe_volume || 0) * (this.acq_nb_frame || 0);\n      this.acq_pumped_volume = this.acq_imaged_volume + interimage_total_ml;\n\n      this.updateProgress();\n      this.sendUpdate();\n    },\n\n    extractProgressFromMessage() {\n      const s = this.acq_status_message || \"\";\n      const match = s.match(/Image\\s+(\\d+)\\s*\\/\\s*(\\d+)/i);\n      if (!match) return;\n\n      const current = Number(match[1]);\n      const total = Number(match[2]);\n      this.progression = Math.min(100, (current / total) * 100);\n\n      if (!this.acq_start_timestamp) return;\n\n      const now = Date.now();\n      const elapsedSec = (now - this.acq_start_timestamp) / 1000;\n      if (elapsedSec <= 0 || current === 0) return;\n\n      const avgPerFrameSec = elapsedSec / current;\n      this.duration_left = ((total - current) * avgPerFrameSec) / 60;\n    },\n\n    updateProgress() {\n      if (this.acq_status === \"on\" && this.acq_nb_frame > 0) {\n        const elapsed = (Date.now() - (this.lastUpdateTime || Date.now())) / 1000;\n        if (elapsed > 0) {\n          this.progression = Math.min(100, this.progression + (elapsed / this.acq_nb_frame) * 100);\n          this.duration_left = ((100 - this.progression) / 100) * (this.acq_nb_frame / 60);\n        }\n        this.lastUpdateTime = Date.now();\n      }\n    },\n\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n\n      if (value === \"on\") {\n        this.resetProgress();\n        this.acq_start_timestamp = Date.now();\n      }\n\n      if (value === \"off\") {\n        this.incrementAcqId();\n      }\n\n      if (typeof this.send === \"function\") {\n        this.send({\n          topic: \"imager/image\",\n          payload: { status: value }\n        });\n      }\n\n      this.sendUpdate();\n    },\n\n    showVolumeImagedHint() {\n      const area = this.sensor_width_um * this.sensor_height_um;\n      const pSize = this.calibration_pixel_size || 0;\n\n      const html = `<div class=\"text-body-2\">\n        <p class=\"mb-2\">\n          <strong>Volume Imaged</strong> is the fluid volume captured by the optics.\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <ul class=\"ml-4\">\n          <li class=\"mb-1\">\n            <strong>Sensor Width:</strong><br/>\n            ${this.calibration_sensor_width} px × ${pSize} µm/px = \n            <strong>${Math.round(this.sensor_width_um)} µm</strong>\n          </li>\n          <li class=\"mb-1\">\n            <strong>Sensor Height:</strong><br/>\n            ${this.calibration_sensor_height} px × ${pSize} µm/px = \n            <strong>${Math.round(this.sensor_height_um)} µm</strong>\n          </li>\n          <li>\n            <strong>Flowcell thickness:</strong>\n            ${Math.round(this.acq_flowcell_thickness)} µm\n          </li>\n        </ul>\n\n        <p class=\"mt-4 mb-2\">\n          <strong>Step-by-step calculation:</strong>\n        </p>\n\n        <ol class=\"ml-4\">\n          <li>\n            Area = ${Math.round(this.sensor_width_um)} × ${Math.round(this.sensor_height_um)} =\n            ${Math.round(area)} µm²\n          </li>\n          <li>\n            Vol./img = Area × Thickness =\n            ${Math.round(area * this.acq_flowcell_thickness)} µm³\n          </li>\n          <li>\n            Convert → mL: ${this.fmt(this.frame_volume_ml)} mL/img\n          </li>\n          <li>\n            Total = ${this.acq_nb_frame} images × ${this.fmt(this.frame_volume_ml)} =\n            <strong>${this.fmt(this.acq_imaged_volume)} mL</strong>\n          </li>\n        </ol>\n      </div>`;\n\n      this.openHint(\"Volume Imaged Calculation\", html);\n    },\n\n    showVolumeDisplacedHint() {\n      const inter_ml = (this.acq_nb_frame * this.acq_interframe_volume) / 1000;\n\n      const html = `\n        <p><b>Total Volume Displaced</b> includes both the imaged volume and the extra fluid moved between images.</p>\n        <hr>\n        <ul>\n          <li><b>Interimage displacement:</b> ${this.acq_nb_frame} × ${this.fmt(this.acq_interframe_volume)} µL = ${this.fmt(inter_ml)} mL</li>\n          <li><b>Imaged volume:</b> ${this.fmt(this.acq_imaged_volume)} mL</li>\n        </ul>\n        <p><b>Total:</b> ${this.fmt(this.acq_imaged_volume)} + ${this.fmt(inter_ml)} = \n        <b>${this.fmt(this.acq_pumped_volume)} mL</b></p>\n      `;\n\n      this.openHint(\"Total Volume Displaced\", html);\n    },\n\n    openHint(title, text) {\n      this.hintDialog = true;\n      this.hintTitle = title;\n      this.hintText = text;\n    },\n\n    sendUpdate(extra = {}) {\n      if (typeof this.send !== \"function\") return;\n\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: `A_${this.acq_id}`,\n          acq_nb_frame: this.acq_nb_frame,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: Number(this.acq_imaged_volume.toFixed(2)),\n          acq_pumped_volume: Number(this.acq_pumped_volume.toFixed(2)),\n          acq_comment: this.acq_comment,\n          progression: this.progression,\n          duration_left: this.duration_left,\n          status: this.acq_status_message,\n          \n          calibration_pixel_size: this.calibration_pixel_size,\n          // Sending constants back to confirm configuration\n          calibration_sensor_width: this.calibration_sensor_width,\n          calibration_sensor_height: this.calibration_sensor_height,\n          \n          acq_flowcell_thickness: this.acq_flowcell_thickness,\n          acq_start_timestamp: this.acq_start_timestamp,\n          ...extra,\n        },\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n  .cursor-pointer {\n    cursor: pointer;\n  }\n.v-card-text{\npadding : 0 !important;\n}\n.v-card{\nborder:none;\n}\n.v-container{\nbackground: #eef3ff;\n}\n</style>",
+        "format": "<template>\n  <v-container fluid class=\"ma-0 pa-0\">\n    <v-card class=\"ma-0 pa-6 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n        <div class=\"d-flex justify-space-between align-center mb-4\">\n          <div class=\"text-h6\">Acquisition</div>\n        </div>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-text-field v-model.number=\"acq_id\" type=\"number\" label=\"Acquisition ID\" variant=\"outlined\"\n              placeholder=\"ex : 001\" @input=\"sendUpdate()\" prefix=\"A_\" density=\"compact\">\n              <template #append>\n                <v-icon class=\"cursor-pointer\"\n                  @click=\"openHint('Acquisition ID','Unique identifier for each acquisition run.')\">\n                  mdi-information\n                </v-icon>\n              </template>\n            </v-text-field>\n          </v-col>\n        </v-row>\n\n        <v-row>\n          <v-col cols=\"12\" sm=\"8\">\n            <v-slider v-model.number=\"acq_nb_frame\" :max=\"10000\" :min=\"1\" :step=\"1\" label=\"Number of Images\"\n              hide-details @update:model-value=\"autoCalculateVolumes\" />\n          </v-col>\n          <v-col cols=\"12\" sm=\"4\">\n            <v-text-field v-model.number=\"acq_nb_frame\" type=\"number\" :min=\"1\" variant=\"outlined\" hide-details\n              suffix=\"img\" class=\"aligned-input\" @input=\"autoCalculateVolumes\">\n              <template #append>\n                <v-icon class=\"cursor-pointer\"\n                  @click=\"openHint('Number of Images','Total number of images captured during acquisition.')\">\n                  mdi-information\n                </v-icon>\n              </template>\n            </v-text-field>\n          </v-col>\n        </v-row>\n\n        <v-expansion-panels class=\"my-4\" variant=\"accordion\" elevation=\"0\" color=\"primary\">\n          <v-expansion-panel>\n            <v-expansion-panel-title class=\"py-2\">Advanced Parameters\n            </v-expansion-panel-title>\n            <v-expansion-panel-text class=\"pa-4\">\n\n              <v-row>\n                <v-col cols=\"12\" sm=\"8\">\n                  <v-slider :model-value=\"acq_interframe_volume * 1000\"\n                    @update:model-value=\"v => { acq_interframe_volume = v / 1000; autoCalculateVolumes(); }\" :max=\"100\"\n                    :min=\"1\" :step=\"1\" label=\"Volume between images\" hide-details />\n                </v-col>\n                <v-col cols=\"12\" sm=\"4\">\n                  <v-text-field :model-value=\"acq_interframe_volume * 1000\"\n                    @update:model-value=\"v => { acq_interframe_volume = v / 1000; autoCalculateVolumes(); }\"\n                    type=\"number\" :min=\"1\" variant=\"outlined\" hide-details suffix=\"µL\" class=\"aligned-input\"\n                    @input=\"autoCalculateVolumes\">\n                    <template #append>\n                      <v-icon class=\"cursor-pointer\"\n                        @click=\"openHint('Volume between images','Sample volume displaced between consecutive images (µL).')\">\n                        mdi-information\n                      </v-icon>\n                    </template>\n                  </v-text-field>\n                </v-col>\n              </v-row>\n\n              <v-row class=\"aligned-row\">\n                <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n                  <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Volume Imaged :</span>\n                </v-col>\n                <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n                  <v-text-field :model-value=\"fmt(acq_imaged_volume)\" suffix=\"mL\" variant=\"flat\" hide-details readonly\n                    class=\"aligned-input\">\n                    <template #append>\n                      <v-icon class=\"cursor-pointer\" @click=\"showVolumeImagedHint()\">\n                        mdi-information\n                      </v-icon>\n                    </template>\n                  </v-text-field>\n                </v-col>\n              </v-row>\n\n              <v-row class=\"aligned-row\">\n                <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n                  <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Total Volume Displaced :</span>\n                </v-col>\n                <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n                  <v-text-field :model-value=\"fmt(acq_pumped_volume)\" suffix=\"mL\" variant=\"flat\" hide-details readonly\n                    class=\"aligned-input\">\n                    <template #append>\n                      <v-icon class=\"cursor-pointer\" @click=\"showVolumeDisplacedHint()\">\n                        mdi-information\n                      </v-icon>\n                    </template>\n                  </v-text-field>\n                </v-col>\n              </v-row>\n\n              <v-row>\n                <v-col cols=\"12\">\n                  <v-textarea v-model=\"acq_comment\" label=\"Acquisition Comment\" variant=\"outlined\" rows=\"2\"\n                    @input=\"sendUpdate()\">\n                    <template #append>\n                      <v-icon class=\"cursor-pointer\"\n                        @click=\"openHint('Acquisition Comment','Notes or remarks about this acquisition.')\">\n                        mdi-information\n                      </v-icon>\n                    </template>\n                  </v-textarea>\n                </v-col>\n              </v-row>\n\n            </v-expansion-panel-text>\n          </v-expansion-panel>\n        </v-expansion-panels>\n        <v-row>\n          <v-col cols=\"12\">\n            <v-progress-linear :model-value=\"progression\" color=\"primary\" height=\"24\" rounded striped class=\"mt-2 mb-2\">\n              <template #default=\"{ value }\">\n                <strong>{{ Math.min(100, Math.ceil(value || 0)) }}%</strong>\n              </template>\n            </v-progress-linear>\n          </v-col>\n        </v-row>\n\n        <v-row class=\"aligned-row\">\n          <v-col cols=\"12\" sm=\"8\" class=\"d-flex align-center\">\n            <span class=\"text-subtitle-1 text-medium-emphasis ma-2\">Estimated duration left :</span>\n          </v-col>\n          <v-col cols=\"12\" sm=\"4\" class=\"d-flex align-center\">\n            <v-text-field :model-value=\"formatDuration(duration_left)\" variant=\"flat\" hide-details readonly\n              class=\"aligned-input\" />\n          </v-col>\n        </v-row>\n\n        <v-row>\n          <v-col cols=\"12\">\n            <v-alert v-if=\"acq_status_message\" :type=\"statusType\" :color=\"statusColor\" border=\"start\" variant=\"tonal\"\n              class=\"text-subtitle-1\" prominent>\n              {{ formattedStatus }}\n            </v-alert>\n          </v-col>\n        </v-row>\n\n        <v-row>\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"acq_status\" variant=\"outlined\" mandatory divided shaped\n              class=\"d-flex justify-space-between mt-4\" @update:model-value=\"handleAcqStatusChange\">\n              <v-btn class=\"flex-grow-1\" value=\"off\" color=\"red\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" value=\"on\" color=\"green\">Start</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n    <v-dialog v-model=\"hintDialog\" max-width=\"600\">\n      <v-card class=\"pa-4\">\n        <v-card-title class=\"text-h6\">{{ hintTitle }}</v-card-title>\n        <v-card-text v-html=\"hintText\" class=\"text-body-2\"></v-card-text>\n        <v-card-actions>\n          <v-spacer></v-spacer>\n          <v-btn text @click=\"hintDialog = false\">Close</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\n  // ... (The script section remains the same)\n  export default {\n  props: [\"msg\"],\n  data() {\n    return {\n      acq_id: \"\",\n      acq_nb_frame: 1,\n      acq_interframe_volume: 8,\n      acq_imaged_volume: \"\",\n      acq_pumped_volume: \"\",\n      acq_comment: \"\",\n      progression: 0,\n      duration_left: 0,\n      acq_status: \"off\",\n      acq_status_message: \"\",\n      \n      // Values that are not changing anymore (Constants)\n      calibration_sensor_width: 4056,\n      calibration_sensor_height: 3040,\n\n      // This is dynamic and used for calculation\n      calibration_pixel_size: 0,\n      \n      acq_flowcell_thickness: 300,\n      frame_volume_um3: 0,\n      topic: \"acq_params\",\n      hintDialog: false,\n      hintTitle: \"\",\n      hintText: \"\",\n      lastUpdateTime: null,\n      acq_start_timestamp: null,\n    };\n  },\n\n  computed: {\n    sensor_width_um() { return (this.calibration_sensor_width || 0) * (this.calibration_pixel_size || 0); },\n    sensor_height_um() { return (this.calibration_sensor_height || 0) * (this.calibration_pixel_size || 0); },\n    frame_volume_ml() { return this.frame_volume_um3 / 1e12; },\n\n    formattedStatus() {\n      const s = this.acq_status_message;\n      if (s === \"Started\") return \"Image capture process has started successfully.\";\n      if (s === \"Done\") return \"Acquisition completed successfully.\";\n      return s;\n    },\n\n    statusColor() {\n      const s = this.acq_status_message || \"\";\n      if (!s) return \"grey\";\n      if (s.startsWith(\"Error\")) return \"red\";\n      if (s.startsWith(\"Configuration update error\")) return \"orange\";\n      if (s.includes(\"WAS NOT CAPTURED\")) return \"red\";\n      if ([\"Started\", \"Done\"].includes(s)) return \"green\";\n      return \"grey\";\n    },\n\n    statusType() {\n      if (this.statusColor === \"green\") return \"success\";\n      if (this.statusColor === \"orange\") return \"warning\";\n      if (this.statusColor === \"red\") return \"error\";\n      return \"info\";\n    },\n  },\n\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const p = newMsg?.payload || {};\n        const topic = newMsg?.topic;\n\n        if (p.acq_id !== undefined)\n          this.acq_id = String(p.acq_id).replace(/^A[_-]?/, \"\");\n\n        if (\"acq_comment\" in p) {\n          this.acq_comment = p.acq_comment ?? \"\";\n        }\n\n        if (p.acq_nb_frame !== undefined)\n          this.acq_nb_frame = Number(p.acq_nb_frame);\n\n        if (p.acq_interframe_volume !== undefined)\n          this.acq_interframe_volume = Number(p.acq_interframe_volume);\n\n        if (p.calibration_pixel_size !== undefined)\n          this.calibration_pixel_size = Number(p.calibration_pixel_size);\n\n        // NOTE: calibration_sensor_width and height removed from watcher \n        // to prevent overwriting constant values (4056/3040)\n\n        if (p.acq_flowcell_thickness !== undefined)\n          this.acq_flowcell_thickness = Number(p.acq_flowcell_thickness);\n\n        if (p.acq_start_timestamp !== undefined && p.acq_start_timestamp !== null) {\n          this.acq_start_timestamp = Number(p.acq_start_timestamp);\n        }\n\n        if (p.status && /Image\\s+\\d+\\s*\\/\\s*\\d+/i.test(p.status))\n          this.acq_status = \"on\";\n\n        if (p.status !== undefined) {\n          this.acq_status_message = p.status;\n          const s = String(p.status).toLowerCase();\n\n          if (!/Image\\s+\\d+\\s*\\/\\s*\\d+/i.test(p.status)) {\n            if (s.includes(\"capturing\") || s.includes(\"running\") || s.includes(\"started\"))\n              this.acq_status = \"on\";\n          }\n\n          if (s.includes(\"done\") || s.includes(\"idle\") || s.includes(\"stopped\") || s.includes(\"error\"))\n            this.acq_status = \"off\";\n\n          this.extractProgressFromMessage();\n        }\n\n        if (topic === \"status/imager\" && p.status === \"Done\") {\n          this.incrementAcqId();\n          this.resetProgress();\n        }\n        \n        if (topic === \"status/imager\" && p.status === \"Configuration update error: Chosen id are already in use!\") {\n        this.incrementAcqId();\n        this.resetProgress();\n        }\n\n        this.autoCalculateVolumes();\n      },\n      deep: true,\n    },\n  },\n\n  methods: {\n    fmt(v) { return Number(v || 0).toFixed(3); },\n\n    formatDuration(mins) {\n      const totalSeconds = Math.max(0, Math.round(mins * 60));\n      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, \"0\");\n      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, \"0\");\n      const s = String(totalSeconds % 60).padStart(2, \"0\");\n      return `${h}:${m}:${s}`;\n    },\n\n    resetProgress() {\n      this.progression = 0;\n      this.duration_left = 0;\n      this.lastUpdateTime = Date.now();\n    },\n\n    incrementAcqId() {\n      const next = String(Number(this.acq_id || 0) + 1).padStart(1, \"0\");\n      this.acq_id = next;\n      this.sendUpdate();\n    },\n\n    autoCalculateVolumes() {\n      // Logic adjusted to ensure constants are used even if pixel size is 0 initially\n      const w_px = this.calibration_sensor_width;\n      const h_px = this.calibration_sensor_height;\n      \n      if (w_px > 0 && h_px > 0 && this.calibration_pixel_size > 0 && this.acq_flowcell_thickness > 0) {\n        \n        const w_um = w_px * this.calibration_pixel_size;\n        const h_um = h_px * this.calibration_pixel_size;\n        const t = this.acq_flowcell_thickness;\n\n        this.frame_volume_um3 = w_um * h_um * t;\n        const frame_ml = this.frame_volume_um3 / 1e12;\n        this.acq_imaged_volume = frame_ml * (this.acq_nb_frame || 0);\n      } else {\n        this.frame_volume_um3 = 0;\n        this.acq_imaged_volume = 0;\n      }\n\n      const interimage_total_ml = (this.acq_interframe_volume || 0) * (this.acq_nb_frame || 0);\n      this.acq_pumped_volume = this.acq_imaged_volume + interimage_total_ml;\n\n      this.updateProgress();\n      this.sendUpdate();\n    },\n\n    extractProgressFromMessage() {\n      const s = this.acq_status_message || \"\";\n      const match = s.match(/Image\\s+(\\d+)\\s*\\/\\s*(\\d+)/i);\n      if (!match) return;\n\n      const current = Number(match[1]);\n      const total = Number(match[2]);\n      this.progression = Math.min(100, (current / total) * 100);\n\n      if (!this.acq_start_timestamp) return;\n\n      const now = Date.now();\n      const elapsedSec = (now - this.acq_start_timestamp) / 1000;\n      if (elapsedSec <= 0 || current === 0) return;\n\n      const avgPerFrameSec = elapsedSec / current;\n      this.duration_left = ((total - current) * avgPerFrameSec) / 60;\n    },\n\n    updateProgress() {\n      if (this.acq_status === \"on\" && this.acq_nb_frame > 0) {\n        const elapsed = (Date.now() - (this.lastUpdateTime || Date.now())) / 1000;\n        if (elapsed > 0) {\n          this.progression = Math.min(100, this.progression + (elapsed / this.acq_nb_frame) * 100);\n          this.duration_left = ((100 - this.progression) / 100) * (this.acq_nb_frame / 60);\n        }\n        this.lastUpdateTime = Date.now();\n      }\n    },\n\n    handleAcqStatusChange(value) {\n      this.acq_status = value;\n\n      if (value === \"on\") {\n        this.resetProgress();\n        this.acq_start_timestamp = Date.now();\n      }\n\n      if (value === \"off\") {\n        this.incrementAcqId();\n      }\n\n      if (typeof this.send === \"function\") {\n        this.send({\n          topic: \"imager/image\",\n          payload: { status: value }\n        });\n      }\n\n      this.sendUpdate();\n    },\n\n    showVolumeImagedHint() {\n      const area = this.sensor_width_um * this.sensor_height_um;\n      const pSize = this.calibration_pixel_size || 0;\n\n      const html = `<div class=\"text-body-2\">\n        <p class=\"mb-2\">\n          <strong>Volume Imaged</strong> is the fluid volume captured by the optics.\n        </p>\n\n        <v-divider class=\"my-3\"></v-divider>\n\n        <ul class=\"ml-4\">\n          <li class=\"mb-1\">\n            <strong>Sensor Width:</strong><br/>\n            ${this.calibration_sensor_width} px × ${pSize} µm/px = \n            <strong>${Math.round(this.sensor_width_um)} µm</strong>\n          </li>\n          <li class=\"mb-1\">\n            <strong>Sensor Height:</strong><br/>\n            ${this.calibration_sensor_height} px × ${pSize} µm/px = \n            <strong>${Math.round(this.sensor_height_um)} µm</strong>\n          </li>\n          <li>\n            <strong>Flowcell thickness:</strong>\n            ${Math.round(this.acq_flowcell_thickness)} µm\n          </li>\n        </ul>\n\n        <p class=\"mt-4 mb-2\">\n          <strong>Step-by-step calculation:</strong>\n        </p>\n\n        <ol class=\"ml-4\">\n          <li>\n            Area = ${Math.round(this.sensor_width_um)} × ${Math.round(this.sensor_height_um)} =\n            ${Math.round(area)} µm²\n          </li>\n          <li>\n            Vol./img = Area × Thickness =\n            ${Math.round(area * this.acq_flowcell_thickness)} µm³\n          </li>\n          <li>\n            Convert → mL: ${this.fmt(this.frame_volume_ml)} mL/img\n          </li>\n          <li>\n            Total = ${this.acq_nb_frame} images × ${this.fmt(this.frame_volume_ml)} =\n            <strong>${this.fmt(this.acq_imaged_volume)} mL</strong>\n          </li>\n        </ol>\n      </div>`;\n\n      this.openHint(\"Volume Imaged Calculation\", html);\n    },\n\n    showVolumeDisplacedHint() {\n      const inter_ml = (this.acq_nb_frame * this.acq_interframe_volume) / 1000;\n\n      const html = `\n        <p><b>Total Volume Displaced</b> includes both the imaged volume and the extra fluid moved between images.</p>\n        <hr>\n        <ul>\n          <li><b>Interimage displacement:</b> ${this.acq_nb_frame} × ${this.fmt(this.acq_interframe_volume)} µL = ${this.fmt(inter_ml)} mL</li>\n          <li><b>Imaged volume:</b> ${this.fmt(this.acq_imaged_volume)} mL</li>\n        </ul>\n        <p><b>Total:</b> ${this.fmt(this.acq_imaged_volume)} + ${this.fmt(inter_ml)} = \n        <b>${this.fmt(this.acq_pumped_volume)} mL</b></p>\n      `;\n\n      this.openHint(\"Total Volume Displaced\", html);\n    },\n\n    openHint(title, text) {\n      this.hintDialog = true;\n      this.hintTitle = title;\n      this.hintText = text;\n    },\n\n    sendUpdate(extra = {}) {\n      if (typeof this.send !== \"function\") return;\n\n      this.send({\n        topic: this.topic,\n        payload: {\n          acq_id: `A_${this.acq_id}`,\n          acq_nb_frame: this.acq_nb_frame,\n          acq_interframe_volume: this.acq_interframe_volume,\n          acq_imaged_volume: Number(this.acq_imaged_volume.toFixed(2)),\n          acq_pumped_volume: Number(this.acq_pumped_volume.toFixed(2)),\n          acq_comment: this.acq_comment,\n          progression: this.progression,\n          duration_left: this.duration_left,\n          status: this.acq_status_message,\n          \n          calibration_pixel_size: this.calibration_pixel_size,\n          // Sending constants back to confirm configuration\n          calibration_sensor_width: this.calibration_sensor_width,\n          calibration_sensor_height: this.calibration_sensor_height,\n          \n          acq_flowcell_thickness: this.acq_flowcell_thickness,\n          acq_start_timestamp: this.acq_start_timestamp,\n          ...extra,\n        },\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n  .cursor-pointer {\n    cursor: pointer;\n  }\n\n  .v-card-text {\n    padding: 0 !important;\n  }\n\n  .v-card {\n    border: none;\n  }\n\n  .v-container {\n    background: #eef3ff;\n  }\n  .v-expansion-panel-text {\n  padding-left: 0 !important;\n  padding-right: 0 !important;\n  }\n\n  .v-expansion-panel-text {\n    padding-left: 0 !important;\n    padding-right: 0 !important;\n  }\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3823,31 +3758,6 @@
         "y": 40,
         "wires": [
             [
-                "5bea829ec02ded61"
-            ]
-        ]
-    },
-    {
-        "id": "5bea829ec02ded61",
-        "type": "switch",
-        "z": "35d7387466dd0bc0",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "54ae95ca6088f307"
             ]
         ]
@@ -3869,7 +3779,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 590,
+        "x": 330,
         "y": 40,
         "wires": [
             [
@@ -4088,31 +3998,6 @@
         "y": 40,
         "wires": [
             [
-                "72421c36bb0418bc"
-            ]
-        ]
-    },
-    {
-        "id": "72421c36bb0418bc",
-        "type": "switch",
-        "z": "0fd76ac156d78937",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "66d295cc27d69cec"
             ]
         ]
@@ -4134,7 +4019,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 590,
+        "x": 330,
         "y": 40,
         "wires": [
             [
@@ -4439,31 +4324,6 @@
         "y": 40,
         "wires": [
             [
-                "55814595d9207e95"
-            ]
-        ]
-    },
-    {
-        "id": "55814595d9207e95",
-        "type": "switch",
-        "z": "14f8c9b5ce1235cc",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "90c920ecdab16908"
             ]
         ]
@@ -4485,13 +4345,12 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 590,
+        "x": 330,
         "y": 40,
         "wires": [
             [
                 "384aa9ab83bfe566",
-                "164baa371893de7a",
-                "b8e4f06f40c63fd2"
+                "164baa371893de7a"
             ]
         ]
     },
@@ -4553,7 +4412,7 @@
         "wires": [
             [
                 "18a10804663dbaa1",
-                "ca563bd4bf522cf9"
+                "bdeb6f634e7ecffd"
             ]
         ]
     },
@@ -4624,8 +4483,8 @@
         "y": 180,
         "wires": [
             [
-                "d77ed8081a657507",
-                "384aa9ab83bfe566"
+                "384aa9ab83bfe566",
+                "9a10d9afb1a0b1ca"
             ]
         ]
     },
@@ -4648,7 +4507,7 @@
         "templateScope": "local",
         "className": "",
         "x": 820,
-        "y": 960,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -4665,7 +4524,7 @@
         "width": 0,
         "height": 0,
         "head": "",
-        "format": "<template>\n  <!-- Data Table -->\n  <v-data-table\n      fluid\n      :headers=\"headers\"\n      :items=\"items\"\n      :search=\"search\"\n      :loading=\"loading\"\n      item-value=\"acquisition_id\"\n      item-key=\"acquisition_id\"  \n      density=\"comfortable\"\n      hover\n      :item-class=\"getRowClass\"\n  >\n      \n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@5\"></v-skeleton-loader>\n      </template>\n\n      <!-- Project -->\n      <template v-slot:item.project_name=\"{ item }\">\n        <span class=\"font-weight-medium text-body-2 text-high-emphasis\">\n          {{ item.project_name }}\n        </span>\n      </template>\n\n      <!-- Sample -->\n      <template v-slot:item.sample_id=\"{ item }\">\n        <span class=\"text-body-2 text-high-emphasis\">\n          {{ item.sample_id }}\n        </span>\n      </template>\n\n      <!-- Acquisition ID -->\n      <template v-slot:item.acquisition_id=\"{ item }\">\n        <code class=\"text-grey-darken-3 bg-grey-lighten-4 px-2 py-1 rounded text-caption font-weight-medium\">\n          {{ item.acquisition_id }}\n        </code>\n      </template>\n\n      <!-- Image Count -->\n      <template v-slot:item.image_acquired_count=\"{ item }\">\n        <div class=\"d-flex align-center justify-end text-medium-emphasis\">\n          <v-icon size=\"small\" class=\"mr-2\">mdi-image-outline</v-icon>\n          <span class=\"font-weight-bold text-high-emphasis\">\n            {{ Number(item.image_acquired_count || 0).toLocaleString() }}\n          </span>\n        </div>\n      </template>\n\n      <!-- View Gallery -->\n      <template v-slot:item.gallery=\"{ item }\">\n        <v-btn\n          v-if=\"item.gallery\"\n          variant=\"text\"\n          size=\"small\"\n          color=\"grey-darken-1\"\n          :href=\"item.gallery\"\n          target=\"_blank\"\n        >\n          <v-icon start>mdi-image-multiple</v-icon>\n          Gallery\n        </v-btn>\n      </template>\n\n      <!-- Download Zip -->\n      <template v-slot:item.export=\"{ item }\">\n        <v-btn\n          v-if=\"item.export\"\n          variant=\"text\"\n          size=\"small\"\n          color=\"grey-darken-1\"\n          :href=\"item.export\"\n        >\n          <v-icon start>mdi-download</v-icon>\n          .zip\n        </v-btn>\n      </template>\n\n      <!-- Visualize -->\n      <template v-slot:item.actions=\"{ item }\">\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          color=\"primary\"\n          class=\"text-capitalize font-weight-medium\"\n          @click=\"selectAcquisition(item)\"\n        >\n          <v-icon start>mdi-chart-scatter-plot-hexbin</v-icon>\n          Visualize\n        </v-btn>\n      </template>\n\n      <!-- No data -->\n      <template v-slot:no-data>\n        <div class=\"pa-8 text-center text-medium-emphasis\">\n          <v-icon icon=\"mdi-database-off\" size=\"x-large\" class=\"mb-3 text-grey-lighten-1\"></v-icon>\n          <div class=\"text-body-1\">No acquisitions found</div>\n        </div>\n      </template>\n\n  </v-data-table>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      search: \"\",\n      items: [],\n      loading: true,\n      selectedRow: null, \n\n      headers: [\n        { title: \"Project\", key: \"project_name\", sortable: false, align: \"start\" },\n        { title: \"Sample\", key: \"sample_id\", sortable: false, align: \"start\" },\n        { title: \"Acquisition ID\", key: \"acquisition_id\", sortable: false, align: \"start\" },\n        { title: \"Count\", key: \"image_acquired_count\", sortable: false, align: \"end\" },\n        { title: \"Gallery\", key: \"gallery\", sortable: false, align: \"end\" },\n        { title: \"Download\", key: \"export\", sortable: false, align: \"end\" },\n        { title: \"Visualize\", key: \"actions\", sortable: false, align: \"end\", width: \"140px\" }\n      ]\n    };\n  },\n\n  watch: {\n    msg: {\n      deep: true,\n      immediate: true,\n      handler(val) {\n        if (!val || !val.payload) return;\n\n        const payload = val.payload;\n        const isClearing =\n          payload === \"clear\" ||\n          payload?.clear === true ||\n          (Array.isArray(payload) && payload.length === 0);\n\n        if (isClearing) {\n          this.items = [];\n          this.loading = true;\n          this.selectedRow = null;\n          setTimeout(() => { this.loading = false; }, 300);\n          return;\n        }\n\n        if (Array.isArray(payload)) {\n          this.items = payload;\n          this.loading = false;\n        }\n      }\n    }\n  },\n\n  mounted() {\n    if (this.msg && Array.isArray(this.msg.payload)) {\n      this.items = this.msg.payload;\n      this.loading = false;\n    }\n  },\n\n  methods: {\n    selectAcquisition(item) {\n      this.selectedRow = item.acquisition_id;\n\n      this.send({\n        topic: \"selected_acquisition\",\n        payload: item\n      });\n    },\n\n    // Prevent ghost row + highlight selection\n    getRowClass(wrapper) {\n      const item = wrapper.raw ?? wrapper;   // Vuetify wrapper-safe\n\n      return {\n        \"bg-blue-lighten-5\": item.acquisition_id === this.selectedRow\n      };\n    }\n  }\n};\n</script>",
+        "format": "<template>\n  <!-- Data Table -->\n  <v-data-table\n      fluid\n      :headers=\"headers\"\n      :items=\"items\"\n      :search=\"search\"\n      :loading=\"loading\"\n      item-value=\"acquisition_id\"\n      item-key=\"acquisition_id\"  \n      density=\"comfortable\"\n      hover\n      :item-class=\"getRowClass\"\n  >\n      \n      <template v-slot:loading>\n        <v-skeleton-loader type=\"table-row@5\"></v-skeleton-loader>\n      </template>\n\n      <!-- Project -->\n      <template v-slot:item.project_name=\"{ item }\">\n        <span class=\"font-weight-medium text-body-2 text-high-emphasis\">\n          {{ item.project_name }}\n        </span>\n      </template>\n\n      <!-- Sample -->\n      <template v-slot:item.sample_id=\"{ item }\">\n        <span class=\"text-body-2 text-high-emphasis\">\n          {{ item.sample_id }}\n        </span>\n      </template>\n\n      <!-- Acquisition ID -->\n      <template v-slot:item.acquisition_id=\"{ item }\">\n        <code class=\"text-grey-darken-3 bg-grey-lighten-4 px-2 py-1 rounded text-caption font-weight-medium\">\n          {{ item.acquisition_id }}\n        </code>\n      </template>\n\n      <!-- Objects Count -->\n      <template v-slot:item.image_acquired_count=\"{ item }\">\n        <div class=\"d-flex align-center justify-end text-medium-emphasis\">\n          <v-icon size=\"small\" class=\"mr-2\">mdi-image-outline</v-icon>\n          <span class=\"font-weight-bold text-high-emphasis\">\n            {{ Number(item.image_acquired_count || 0).toLocaleString() }}\n          </span>\n        </div>\n      </template>\n\n      <!-- View Gallery -->\n      <template v-slot:item.gallery=\"{ item }\">\n        <v-btn\n          v-if=\"item.gallery\"\n          variant=\"text\"\n          size=\"small\"\n          color=\"grey-darken-1\"\n          :href=\"item.gallery\"\n          target=\"_blank\"\n        >\n          <v-icon start>mdi-image-multiple</v-icon>\n          Gallery\n        </v-btn>\n      </template>\n\n      <!-- Download Zip -->\n      <template v-slot:item.export=\"{ item }\">\n        <v-btn\n          v-if=\"item.export\"\n          variant=\"text\"\n          size=\"small\"\n          color=\"grey-darken-1\"\n          :href=\"item.export\"\n        >\n          <v-icon start>mdi-download</v-icon>\n          .zip\n        </v-btn>\n      </template>\n\n      <!-- Visualize -->\n      <template v-slot:item.actions=\"{ item }\">\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          color=\"primary\"\n          class=\"text-capitalize font-weight-medium\"\n          @click=\"selectAcquisition(item)\"\n        >\n          <v-icon start>mdi-chart-scatter-plot-hexbin</v-icon>\n          Visualize\n        </v-btn>\n      </template>\n\n      <!-- No data -->\n      <template v-slot:no-data>\n        <div class=\"pa-8 text-center text-medium-emphasis\">\n          <v-icon icon=\"mdi-database-off\" size=\"x-large\" class=\"mb-3 text-grey-lighten-1\"></v-icon>\n          <div class=\"text-body-1\">No acquisitions found</div>\n        </div>\n      </template>\n\n  </v-data-table>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      search: \"\",\n      items: [],\n      loading: true,\n      selectedRow: null, \n\n      headers: [\n        { title: \"Project\", key: \"project_name\", sortable: false, align: \"start\" },\n        { title: \"Sample\", key: \"sample_id\", sortable: false, align: \"start\" },\n        { title: \"Acquisition ID\", key: \"acquisition_id\", sortable: false, align: \"start\" },\n        { title: \"Objects Count\", key: \"image_acquired_count\", sortable: false, align: \"end\" },\n        { title: \"Gallery\", key: \"gallery\", sortable: false, align: \"end\" },\n        { title: \"Download\", key: \"export\", sortable: false, align: \"end\" },\n        { title: \"Visualize\", key: \"actions\", sortable: false, align: \"end\", width: \"140px\" }\n      ]\n    };\n  },\n\n  watch: {\n    msg: {\n      deep: true,\n      immediate: true,\n      handler(val) {\n        if (!val || !val.payload) return;\n\n        const payload = val.payload;\n        const isClearing =\n          payload === \"clear\" ||\n          payload?.clear === true ||\n          (Array.isArray(payload) && payload.length === 0);\n\n        if (isClearing) {\n          this.items = [];\n          this.loading = true;\n          this.selectedRow = null;\n          setTimeout(() => { this.loading = false; }, 300);\n          return;\n        }\n\n        if (Array.isArray(payload)) {\n          this.items = payload;\n          this.loading = false;\n        }\n      }\n    }\n  },\n\n  mounted() {\n    if (this.msg && Array.isArray(this.msg.payload)) {\n      this.items = this.msg.payload;\n      this.loading = false;\n    }\n  },\n\n  methods: {\n    selectAcquisition(item) {\n      this.selectedRow = item.acquisition_id;\n\n      this.send({\n        topic: \"selected_acquisition\",\n        payload: item\n      });\n    },\n\n    // Prevent ghost row + highlight selection\n    getRowClass(wrapper) {\n      const item = wrapper.raw ?? wrapper;   // Vuetify wrapper-safe\n\n      return {\n        \"bg-blue-lighten-5\": item.acquisition_id === this.selectedRow\n      };\n    }\n  }\n};\n</script>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4716,7 +4575,7 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 500,
+        "y": 520,
         "wires": [
             [
                 "0c90eb450c8d9b01"
@@ -4736,7 +4595,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 540,
+        "y": 560,
         "wires": [
             [
                 "0a559ab05af2548e"
@@ -4756,7 +4615,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 580,
+        "y": 600,
         "wires": [
             [
                 "7b9d103ec5981051"
@@ -4776,7 +4635,7 @@
         "finalize": "",
         "libs": [],
         "x": 530,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "23a78a078fa1eca8"
@@ -4796,7 +4655,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 660,
+        "y": 680,
         "wires": [
             [
                 "09f4914fc0a54566"
@@ -4816,7 +4675,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 700,
+        "y": 720,
         "wires": [
             [
                 "7f4d047a4c73eb61"
@@ -4836,7 +4695,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 740,
+        "y": 760,
         "wires": [
             [
                 "a7c8654291022da1"
@@ -4856,7 +4715,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 780,
+        "y": 800,
         "wires": [
             [
                 "ed9d6e31cc3a01b1"
@@ -4876,7 +4735,7 @@
         "finalize": "",
         "libs": [],
         "x": 480,
-        "y": 820,
+        "y": 840,
         "wires": [
             [
                 "c15ef66d7e115bd3"
@@ -4902,7 +4761,7 @@
         "templateScope": "local",
         "className": "",
         "x": 820,
-        "y": 500,
+        "y": 520,
         "wires": [
             []
         ]
@@ -4946,7 +4805,7 @@
         "templateScope": "local",
         "className": "",
         "x": 840,
-        "y": 540,
+        "y": 560,
         "wires": [
             []
         ]
@@ -4970,7 +4829,7 @@
         "templateScope": "local",
         "className": "",
         "x": 820,
-        "y": 580,
+        "y": 600,
         "wires": [
             []
         ]
@@ -4994,7 +4853,7 @@
         "templateScope": "local",
         "className": "",
         "x": 890,
-        "y": 620,
+        "y": 640,
         "wires": [
             []
         ]
@@ -5018,7 +4877,7 @@
         "templateScope": "local",
         "className": "",
         "x": 870,
-        "y": 660,
+        "y": 680,
         "wires": [
             []
         ]
@@ -5042,7 +4901,7 @@
         "templateScope": "local",
         "className": "",
         "x": 830,
-        "y": 700,
+        "y": 720,
         "wires": [
             []
         ]
@@ -5066,7 +4925,7 @@
         "templateScope": "local",
         "className": "",
         "x": 890,
-        "y": 740,
+        "y": 760,
         "wires": [
             []
         ]
@@ -5090,7 +4949,7 @@
         "templateScope": "local",
         "className": "",
         "x": 860,
-        "y": 780,
+        "y": 800,
         "wires": [
             []
         ]
@@ -5114,7 +4973,7 @@
         "templateScope": "local",
         "className": "",
         "x": 850,
-        "y": 820,
+        "y": 840,
         "wires": [
             []
         ]
@@ -5132,7 +4991,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 900,
+        "y": 920,
         "wires": [
             [
                 "d57a5bca66c04989"
@@ -5158,7 +5017,7 @@
         "templateScope": "local",
         "className": "",
         "x": 820,
-        "y": 900,
+        "y": 920,
         "wires": [
             []
         ]
@@ -5207,7 +5066,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "4244d2ed880cca66"
@@ -5232,7 +5091,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 180,
-        "y": 280,
+        "y": 340,
         "wires": [
             [
                 "5ec998719a884cfe"
@@ -5264,31 +5123,41 @@
         ]
     },
     {
-        "id": "b8e4f06f40c63fd2",
-        "type": "debug",
+        "id": "9a10d9afb1a0b1ca",
+        "type": "switch",
         "z": "14f8c9b5ce1235cc",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 920,
-        "y": 60,
-        "wires": []
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "$pageview",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "d77ed8081a657507"
+            ]
+        ]
     },
     {
-        "id": "ca563bd4bf522cf9",
+        "id": "bdeb6f634e7ecffd",
         "type": "debug",
         "z": "14f8c9b5ce1235cc",
-        "name": "debug 4",
+        "name": "debug 1",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 360,
@@ -5394,31 +5263,6 @@
         "y": 40,
         "wires": [
             [
-                "a0df077ddbb184e3"
-            ]
-        ]
-    },
-    {
-        "id": "a0df077ddbb184e3",
-        "type": "switch",
-        "z": "6426e7bea6900426",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "874fd69a5398300e"
             ]
         ]
@@ -5440,7 +5284,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 640,
+        "x": 380,
         "y": 40,
         "wires": [
             [
@@ -5602,31 +5446,6 @@
         "y": 40,
         "wires": [
             [
-                "068b250f8668e3ea"
-            ]
-        ]
-    },
-    {
-        "id": "068b250f8668e3ea",
-        "type": "switch",
-        "z": "14c685bd04db8be5",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "72dd2876e74c3ef2"
             ]
         ]
@@ -5648,7 +5467,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 620,
+        "x": 360,
         "y": 40,
         "wires": [
             [
@@ -5688,7 +5507,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container fluid>\n    <v-row>\n      <v-col cols=\"12\" md=\"8\">\n        <v-card\n          class=\"calibration-container\"\n          style=\"width:100%; height:750px; position:relative; overflow:hidden;\"\n        >\n          <iframe src=\"/preview/node-red\" class=\"calibration-iframe\"></iframe>\n\n          <div class=\"target-overlay\">\n            <v-icon color=\"primary\" size=\"large\">mdi-crosshairs</v-icon>\n          </div>\n\n          <div class=\"sampling-overlay\"></div>\n\n          <canvas\n            ref=\"captureCanvas\"\n            width=\"300\"\n            height=\"300\"\n            style=\"display:none;\"\n          ></canvas>\n        </v-card>\n      </v-col>\n\n      <v-col cols=\"12\" md=\"4\">\n        <v-card class=\"px-4 pb-4 h-100\">\n\n          <v-card-title class=\"text-left text-primary\">\n            Luminance Calibration\n          </v-card-title>\n\n          <v-divider class=\"mb-4\"></v-divider>\n\n          <section class=\"mb-6\">\n            <div class=\"d-flex justify-space-between align-center mb-3\">\n              <h3 class=\"text-subtitle-1 ma-0\">1. LED Control</h3>\n              <v-chip color=\"primary\" variant=\"flat\" class=\"font-mono\">\n                {{ currentLedValue.toFixed(6) }}\n              </v-chip>\n            </div>\n\n            <v-row no-gutters class=\"align-center\">\n              <v-col cols=\"auto\">\n                <v-btn\n                  icon=\"mdi-minus\"\n                  density=\"comfortable\"\n                  variant=\"outlined\"\n                  color=\"primary\"\n                  @click=\"adjustLed(-0.000001)\"\n                  class=\"mr-2\"\n                />\n              </v-col>\n\n              <v-col class=\"flex-grow-1\">\n                <v-slider\n                  v-model=\"currentLedValue\"\n                  min=\"0\"\n                  max=\"1\"\n                  step=\"0.000001\"\n                  color=\"primary\"\n                  track-color=\"grey-lighten-2\"\n                  thumb-label\n                  hide-details\n                  @end=\"onSliderRelease\"\n                  class=\"align-center mt-0\"\n                ></v-slider>\n              </v-col>\n\n              <v-col cols=\"auto\">\n                <v-btn\n                  icon=\"mdi-plus\"\n                  density=\"comfortable\"\n                  variant=\"outlined\"\n                  color=\"primary\"\n                  @click=\"adjustLed(+0.000001)\"\n                  class=\"ml-2\"\n                />\n              </v-col>\n            </v-row>\n            </section>\n\n          <v-divider class=\"mb-4\"></v-divider>\n\n          <section class=\"mb-6\">\n            <div class=\"d-flex justify-space-between align-center mb-2\">\n              <h3 class=\"text-subtitle-1 ma-0\">2. Measured Luminance</h3>\n            </div>\n\n            <div class=\"text-center mb-2\">\n              <div class=\"text-h3 font-weight-bold\">\n                {{ currentLuminance.toFixed(0) }}\n              </div>\n              <div class=\"text-caption text-grey\">\n                Measured from central region of preview\n              </div>\n            </div>\n\n            <v-progress-linear\n              :model-value=\"Math.min(Math.max((currentLuminance / 255) * 100, 0), 100)\"\n              color=\"primary\"\n              height=\"20\"\n              rounded\n            >\n              <template #default=\"{ value }\">\n                <strong style=\"color:white; text-shadow: 0 0 2px black;\">\n                  {{ Math.round(currentLuminance) }}\n                </strong>\n              </template>\n            </v-progress-linear>\n          </section>\n\n        </v-card>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      currentLedValue: 0.5,\n      currentLuminance: 0,\n      html2canvasReady: false,\n      captureInterval: null,\n    };\n  },\n\n  watch: {\n    msg: {\n      handler(n) {\n        const p = n?.payload || {};\n        if (p.led_intensity !== undefined)\n          this.currentLedValue = Number(p.led_intensity);\n        if (p.value !== undefined)\n          this.currentLedValue = Number(p.value);\n      },\n      deep: true,\n    },\n  },\n\n  mounted() {\n    this.loadHtml2Canvas();\n    this.startAutoCapture();\n  },\n\n  beforeUnmount() {\n    this.stopAutoCapture();\n  },\n\n  methods: {\n    // --------------------------------------------\n    // LED CONTROL\n    // --------------------------------------------\n    adjustLed(step) {\n      let v = this.currentLedValue + step;\n      v = Math.max(0, Math.min(1, v));\n      this.currentLedValue = v;\n      this.onSliderRelease();\n    },\n\n    onSliderRelease() {\n      this.sendUpdate(\"light\", {\n        action: \"on\",\n        value: Number(this.currentLedValue.toFixed(5)),\n      });\n    },\n\n    sendUpdate(topic, payload) {\n      const msg = { topic, payload };\n      if (this.$emit) this.$emit(\"msg-input\", msg);\n      if (this.send) this.send(msg);\n    },\n\n    // --------------------------------------------\n    // AUTO CAPTURE CONTROL (Always ON)\n    // --------------------------------------------\n    startAutoCapture() {\n      if (!this.html2canvasReady || this.captureInterval) return;\n      this.captureInterval = setInterval(() => {\n        this.captureLuminance();\n      }, 500); // update rate\n    },\n\n    stopAutoCapture() {\n      if (this.captureInterval) {\n        clearInterval(this.captureInterval);\n        this.captureInterval = null;\n      }\n    },\n\n    loadHtml2Canvas() {\n      if (window.html2canvas) {\n        this.html2canvasReady = true;\n        this.startAutoCapture();\n        return;\n      }\n\n      const script = document.createElement(\"script\");\n      script.src =\n        \"https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js\";\n      script.async = true;\n      script.onload = () => {\n        this.html2canvasReady = true;\n        this.startAutoCapture();\n      };\n      document.head.appendChild(script);\n    },\n\n    // --------------------------------------------\n    // PIXEL CAPTURE FROM IFRAME\n    // --------------------------------------------\n    async captureLuminance() {\n      if (!this.html2canvasReady || !window.html2canvas) return;\n\n      const iframe = this.$el.querySelector(\".calibration-iframe\");\n      if (!iframe?.contentDocument) return;\n\n      const iframeDoc = iframe.contentDocument;\n      const target = iframeDoc.body;\n\n      try {\n        const snapshotCanvas = await window.html2canvas(target);\n\n        const analysisCanvas = this.$refs.captureCanvas;\n        const ctx = analysisCanvas.getContext(\"2d\");\n        const w = analysisCanvas.width;\n        const h = analysisCanvas.height;\n\n        ctx.clearRect(0, 0, w, h);\n        ctx.drawImage(snapshotCanvas, 0, 0, w, h);\n\n        const regionSize = 100;\n        const x = (w - regionSize) / 2;\n        const y = (h - regionSize) / 2;\n\n        const pixelData = ctx.getImageData(x, y, regionSize, regionSize).data;\n\n        let sum = 0;\n        let count = 0;\n\n        for (let i = 0; i < pixelData.length; i += 4) {\n          const r = pixelData[i];\n          const g = pixelData[i + 1];\n          const b = pixelData[i + 2];\n          sum += (r + g + b) / 3;\n          count++;\n        }\n\n        this.currentLuminance = count > 0 ? sum / count : 0;\n      } catch (e) {\n        console.warn(\"Error capturing iframe:\", e);\n      }\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  width: 100%;\n  height: 100%;\n  border: none;\n}\n.target-overlay {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  pointer-events: none;\n  opacity: 0.5;\n}\n\n.sampling-overlay {\n  position: absolute;\n  width: calc(100% / 3); \n  height: calc(100% / 3);\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  border: 4px solid red; \n  pointer-events: none; \n  z-index: 10;\n}\n\n.font-mono {\n  font-family: 'Roboto Mono', monospace;\n}\n</style>",
+        "format": "<template>\n  <v-container fluid>\n    <v-row>\n      <v-col cols=\"12\" md=\"8\">\n        <v-card\n          class=\"calibration-container\"\n          style=\"width:100%; height:750px; position:relative; overflow:hidden;\"\n        >\n          <iframe src=\"/preview/node-red\" class=\"calibration-iframe\"></iframe>\n\n          <div class=\"target-overlay\">\n            <v-icon color=\"primary\" size=\"large\">mdi-crosshairs</v-icon>\n          </div>\n\n          <div class=\"sampling-overlay\"></div>\n\n          <canvas\n            ref=\"captureCanvas\"\n            width=\"300\"\n            height=\"300\"\n            style=\"display:none;\"\n          ></canvas>\n        </v-card>\n      </v-col>\n\n      <v-col cols=\"12\" md=\"4\">\n        <v-card class=\"px-4 pb-4 h-100\">\n\n          <v-card-title class=\"text-left text-primary\">\n            Luminance Calibration\n          </v-card-title>\n\n          <v-divider class=\"mb-4\"></v-divider>\n\n          <!-- -------------------------------------------------------------\n               LED CONTROL\n          -------------------------------------------------------------- -->\n          <section class=\"mb-6\">\n            <div class=\"d-flex justify-space-between align-center mb-3\">\n              <h3 class=\"text-subtitle-1 ma-0\">1. LED Control</h3>\n              <v-chip color=\"primary\" variant=\"flat\" class=\"font-mono\">\n                {{ currentLedValue.toFixed(12) }}\n              </v-chip>\n            </div>\n\n            <!-- DYNAMIC PRECISION BUTTONS (10⁻¹ → 10⁻¹⁵) -->\n            <div class=\"d-flex flex-wrap mb-4\" style=\"gap:6px;\">\n              <v-btn\n                v-for=\"(v, i) in stepList\"\n                :key=\"i\"\n                size=\"small\"\n                variant=\"outlined\"\n                :color=\"stepSize === v ? 'primary' : ''\"\n                @click=\"setStep(v)\"\n              >\n                {{ formatStep(v) }}\n              </v-btn>\n            </div>\n\n            <!-- SLIDER + BUTTONS -->\n            <v-row no-gutters class=\"align-center\">\n              <v-col cols=\"auto\">\n                <v-btn\n                  icon=\"mdi-minus\"\n                  density=\"comfortable\"\n                  variant=\"outlined\"\n                  color=\"primary\"\n                  @click=\"adjustLed(-stepSize)\"\n                  class=\"mr-2\"\n                />\n              </v-col>\n\n              <v-col class=\"flex-grow-1\">\n                <v-slider\n                  v-model=\"currentLedValue\"\n                  min=\"0\"\n                  max=\"1\"\n                  step=\"0.000001\"\n                  color=\"primary\"\n                  track-color=\"grey-lighten-2\"\n                  thumb-label\n                  hide-details\n                  @end=\"onSliderRelease\"\n                  class=\"align-center mt-0\"\n                ></v-slider>\n              </v-col>\n\n              <v-col cols=\"auto\">\n                <v-btn\n                  icon=\"mdi-plus\"\n                  density=\"comfortable\"\n                  variant=\"outlined\"\n                  color=\"primary\"\n                  @click=\"adjustLed(+stepSize)\"\n                  class=\"ml-2\"\n                />\n              </v-col>\n            </v-row>\n          </section>\n\n          <v-divider class=\"mb-4\"></v-divider>\n\n          <!-- -------------------------------------------------------------\n               LUMINANCE MEASUREMENT\n          -------------------------------------------------------------- -->\n          <section class=\"mb-6\">\n            <div class=\"d-flex justify-space-between align-center mb-2\">\n              <h3 class=\"text-subtitle-1 ma-0\">2. Measured Luminance</h3>\n            </div>\n\n            <div class=\"text-center mb-2\">\n              <div class=\"text-h3 font-weight-bold\">\n                {{ currentLuminance.toFixed(0) }}\n              </div>\n              <div class=\"text-caption text-grey\">\n                Measured from central region of preview\n              </div>\n            </div>\n\n            <v-progress-linear\n              :model-value=\"Math.min(Math.max((currentLuminance / 255) * 100, 0), 100)\"\n              color=\"primary\"\n              height=\"20\"\n              rounded\n            >\n              <template #default=\"{ value }\">\n                <strong style=\"color:white; text-shadow: 0 0 2px black;\">\n                  {{ Math.round(currentLuminance) }}\n                </strong>\n              </template>\n            </v-progress-linear>\n          </section>\n\n        </v-card>\n      </v-col>\n    </v-row>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    // Generate steps: [1e-1, 1e-2, ..., 1e-15]\n    const list = [];\n    for (let i = 1; i <= 15; i++) {\n      list.push(Math.pow(10, -i));\n    }\n\n    return {\n      currentLedValue: 0.5,\n      currentLuminance: 0,\n      html2canvasReady: false,\n      captureInterval: null,\n\n      stepList: list,   // dynamic digit steps\n      stepSize: list[5] // default = 1e-6\n    };\n  },\n\n  watch: {\n    msg: {\n      handler(n) {\n        const p = n?.payload || {};\n        if (p.led_intensity !== undefined)\n          this.currentLedValue = Number(p.led_intensity);\n        if (p.value !== undefined)\n          this.currentLedValue = Number(p.value);\n      },\n      deep: true,\n    },\n  },\n\n  mounted() {\n    this.loadHtml2Canvas();\n    this.startAutoCapture();\n  },\n\n  beforeUnmount() {\n    this.stopAutoCapture();\n  },\n\n  methods: {\n    // DISPLAY FORMATTER\n    formatStep(v) {\n      return v < 0.000001 ? v.toExponential() : v.toString();\n    },\n\n    // PRECISION SELECTION\n    setStep(v) {\n      this.stepSize = v;\n    },\n\n    // LED CONTROL\n    adjustLed(step) {\n      let v = Number(this.currentLedValue) + Number(step);\n      v = Math.max(0, Math.min(1, v));\n      this.currentLedValue = Number(v);\n      this.onSliderRelease();\n    },\n\n    onSliderRelease() {\n      this.sendUpdate(\"light\", {\n        action: \"on\",\n        value: Number(this.currentLedValue.toFixed(12)),\n      });\n    },\n\n    sendUpdate(topic, payload) {\n      const msg = { topic, payload };\n      if (this.$emit) this.$emit(\"msg-input\", msg);\n      if (this.send) this.send(msg);\n    },\n\n    // AUTO CAPTURE\n    startAutoCapture() {\n      if (!this.html2canvasReady || this.captureInterval) return;\n      this.captureInterval = setInterval(() => {\n        this.captureLuminance();\n      }, 500);\n    },\n\n    stopAutoCapture() {\n      if (this.captureInterval) {\n        clearInterval(this.captureInterval);\n        this.captureInterval = null;\n      }\n    },\n\n    loadHtml2Canvas() {\n      if (window.html2canvas) {\n        this.html2canvasReady = true;\n        this.startAutoCapture();\n        return;\n      }\n\n      const script = document.createElement(\"script\");\n      script.src =\n        \"https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js\";\n      script.async = true;\n      script.onload = () => {\n        this.html2canvasReady = true;\n        this.startAutoCapture();\n      };\n      document.head.appendChild(script);\n    },\n\n    // LUMINANCE CAPTURE\n    async captureLuminance() {\n      if (!this.html2canvasReady || !window.html2canvas) return;\n\n      const iframe = this.$el.querySelector(\".calibration-iframe\");\n      if (!iframe?.contentDocument) return;\n\n      const iframeDoc = iframe.contentDocument;\n      const target = iframeDoc.body;\n\n      try {\n        const snapshotCanvas = await window.html2canvas(target);\n\n        const analysisCanvas = this.$refs.captureCanvas;\n        const ctx = analysisCanvas.getContext(\"2d\");\n        const w = analysisCanvas.width;\n        const h = analysisCanvas.height;\n\n        ctx.clearRect(0, 0, w, h);\n        ctx.drawImage(snapshotCanvas, 0, 0, w, h);\n\n        const regionSize = 100;\n        const x = (w - regionSize) / 2;\n        const y = (h - regionSize) / 2;\n\n        const pixelData = ctx.getImageData(x, y, regionSize, regionSize).data;\n        let sum = 0;\n        let count = 0;\n\n        for (let i = 0; i < pixelData.length; i += 4) {\n          const r = pixelData[i];\n          const g = pixelData[i + 1];\n          const b = pixelData[i + 2];\n          sum += (r + g + b) / 3;\n          count++;\n        }\n\n        this.currentLuminance = count > 0 ? sum / count : 0;\n      } catch (e) {\n        console.warn(\"Error capturing iframe:\", e);\n      }\n    },\n  },\n};\n</script>\n\n<style scoped>\n.calibration-iframe {\n  width: 100%;\n  height: 100%;\n  border: none;\n}\n.target-overlay {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  pointer-events: none;\n  opacity: 0.5;\n}\n.sampling-overlay {\n  position: absolute;\n  width: calc(100% / 3);\n  height: calc(100% / 3);\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  border: 4px solid red;\n  pointer-events: none;\n  z-index: 10;\n}\n.font-mono {\n  font-family: 'Roboto Mono', monospace;\n}\n</style>\n",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -5836,31 +5655,6 @@
         "y": 40,
         "wires": [
             [
-                "78cf0ca00b9e1214"
-            ]
-        ]
-    },
-    {
-        "id": "78cf0ca00b9e1214",
-        "type": "switch",
-        "z": "3afb1d2b21be9114",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "943c62c18d43f2a6"
             ]
         ]
@@ -5882,7 +5676,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 620,
+        "x": 360,
         "y": 40,
         "wires": [
             [
@@ -6004,31 +5798,6 @@
         "y": 40,
         "wires": [
             [
-                "2e99999b7cf152b7"
-            ]
-        ]
-    },
-    {
-        "id": "2e99999b7cf152b7",
-        "type": "switch",
-        "z": "d5b2c64b84f8ed4f",
-        "name": "msg.topic === \"$pageview\"",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "$pageview",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
                 "138136e6a1917e49"
             ]
         ]
@@ -6050,7 +5819,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 610,
+        "x": 350,
         "y": 40,
         "wires": [
             []
