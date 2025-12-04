@@ -16,9 +16,8 @@
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
 # Logger library compatible with multiprocessing
-from loguru import logger
-
 import cv2
+from loguru import logger
 
 __mask_to_remove = None
 
@@ -169,6 +168,7 @@ def erode2(mask):
     return mask_erode_2
 
 
+# https://planktoscope.slack.com/archives/C01V5ENKG0M/p1714146253356569
 def remove_previous_mask(mask):
     """Remove the mask from the previous pass from the given mask
     The given mask is then saved to be applied to the next pass
