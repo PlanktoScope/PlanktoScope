@@ -2548,7 +2548,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">\n        mdi-image-multiple-outline\n      </v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">\n        Images Acquired\n      </span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold text-right\">\n      {{ msg.payload.image_acquired }}\n    </v-col>\n  </v-row>\n</template>",
+        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">\n        mdi-image-multiple-outline\n      </v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">\n        Images Acquired\n      </span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold text-right\">\n      {{ Number(msg.payload.image_acquired).toLocaleString('fr-FR') }}\n    </v-col>\n  </v-row>\n</template>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2572,7 +2572,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">\n        mdi-crop\n      </v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">\n        Objects Segmented\n      </span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold text-right\">\n      {{ msg.payload.object_segmented }}\n    </v-col>\n  </v-row>\n</template>",
+        "format": "<template>\n  <v-row class=\"align-center pa-4\">\n    <v-col cols=\"auto\" class=\"d-flex align-center\">\n      <v-icon size=\"32\" color=\"primary\" class=\"mr-4\">\n        mdi-crop\n      </v-icon>\n      <span class=\"text-subtitle-2 font-weight-medium\">\n        Objects Segmented\n      </span>\n    </v-col>\n\n    <v-col class=\"text-subtitle-2 font-weight-bold text-right\">\n      {{ Number(msg.payload.object_segmented).toLocaleString('fr-FR') }}\n    </v-col>\n  </v-row>\n</template>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -4380,7 +4380,8 @@
         "y": 40,
         "wires": [
             [
-                "90c920ecdab16908"
+                "90c920ecdab16908",
+                "384aa9ab83bfe566"
             ]
         ]
     },
@@ -4405,7 +4406,6 @@
         "y": 40,
         "wires": [
             [
-                "384aa9ab83bfe566",
                 "164baa371893de7a",
                 "543715b9199cdb72"
             ]
@@ -4540,7 +4540,6 @@
         "y": 180,
         "wires": [
             [
-                "384aa9ab83bfe566",
                 "9a10d9afb1a0b1ca"
             ]
         ]
