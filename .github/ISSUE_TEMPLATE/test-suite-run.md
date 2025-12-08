@@ -10,9 +10,9 @@ assignees: ""
 
 **PlanktoScope**
 
-- Hardware version: eg `v2.5`
-- Software version: eg `2025.0.0.alpha.1`
-- Machine name: eg `sponge-care-245`
+- Hardware version: eg `v3.0` or `v2.6`
+- Software version: eg `v2026.0`
+- Machine name: eg `bob-sponge`
 - Serial number: eg `U132` (leave empty if unknown)
 
 **Computer**
@@ -22,14 +22,27 @@ assignees: ""
 
 **Comment**
 
-Anything else worth knowing?
+Anything else that might be helpful to know?
 
 # Test suite
 
 ## Setup
 
-1. [Set up the SD card and start the PlanktoScope](https://docs.planktoscope.community/setup/software/standard-install/)
-2. [ ] The PlanktoScope asks for Hardware version
+1.  [Set up the SD card and start the PlanktoScope](https://docs.planktoscope.community/setup/software/standard-install/)]
+2.  Open the PlanktoScope `/` page
+3. [ ] It redirects to `/setup` which prompts for Region and Timezone
+4. [ ] Hitting "Save" redirects to the dashboard
+5. Open the PlanktoScope `/` page
+6. [ ] It redirects to the dashboard
+7. [ ] The following is true
+  * [ ] `Software Version` starts with `v2026.0.0`
+  * [ ] `Image Acquired` is `0`
+  * [ ] `Objects Segmented` is `0`
+  * [ ] `Storage` is `9%`
+
+## Home
+
+1. Go to "/"
 
 ## Sample
 
