@@ -15,11 +15,19 @@ Support for PlanktoScope 2.1 was removed. [More info](https://github.com/Plankto
 
 **PlanktoScope v3.0**
 
-The PlanktoScope v3.0 is a new model developed by FairScop with many improvements. PlanktoScope OS v2026 is the first release to support it.
+The PlanktoScope v3.0 is a new model developed by FairScope with many improvements. PlanktoScope OS v2026 is the first release to support it.
 
 **Dashboard**
 
-A brand new dashboard has been developed.
+A brand new dashboard has been developed. It's made to be much more user friendly without sacrificing professional users. It comes with
+
+* Clearer landing page
+* Manual calibration of
+  * White balance
+  * Lightness
+  * Pixel Size
+  * Pump Calibration
+
 
 **High Quality preview**
 
