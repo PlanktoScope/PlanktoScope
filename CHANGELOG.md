@@ -11,6 +11,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 Support for PlanktoScope 2.1 was removed. [More info](https://github.com/PlanktoScope/PlanktoScope/pull/821)
 
+Pump and focus can be used at the same time.
+
 ### Highlights
 
 **PlanktoScope v3.0**
