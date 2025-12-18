@@ -8,6 +8,7 @@ import crypto from "node:crypto"
 
 import { read, write } from "../../lib/eeprom.js"
 import { procedure, request } from "../../lib/mqtt.js"
+import { setHardwareVersion } from "../../lib/hardware.js"
 
 await procedure("factory/init", async () => {
   const eeprom = await read()
@@ -34,11 +35,18 @@ await procedure("factory/init", async () => {
 })
 
 await procedure("factory/update", async (data) => {
-  await write(data)
+  const { hardware_version } = data.custom_data
 
-  await request("light", { action: "off" })
-  await request("light", { action: "save" })
+  await Promise.all([
+    hardware_version && write(data),
+    setHardwareVersion(hardware_version),
+  ])
 
-  await request("actuator/bubbler", { action: "off" })
-  await request("actuator/bubbler", { action: "save" })
+  if (hardware_version === "v3.0") {
+    await request("light", { action: "off" })
+    await request("light", { action: "save" })
+
+    await request("actuator/bubbler", { action: "off" })
+    await request("actuator/bubbler", { action: "save" })
+  }
 })

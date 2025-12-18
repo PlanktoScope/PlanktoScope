@@ -14,13 +14,19 @@ async function publishAccessPoints() {
   }
 }
 
-networkmanager.DeviceWireless.on("AccessPointAdded", (/*access_point*/) => {
-  publishAccessPoints()
-})
+await networkmanager.DeviceWireless.subscribe(
+  "AccessPointAdded",
+  (/*access_point*/) => {
+    publishAccessPoints()
+  },
+)
 
-networkmanager.DeviceWireless.on("AccessPointRemoved", (/*access_point*/) => {
-  publishAccessPoints()
-})
+await networkmanager.DeviceWireless.subscribe(
+  "AccessPointRemoved",
+  (/*access_point*/) => {
+    publishAccessPoints()
+  },
+)
 
 await procedure("network/wifi/scan", async () => {
   await networkmanager.scan()
