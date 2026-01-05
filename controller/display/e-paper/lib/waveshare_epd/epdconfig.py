@@ -87,8 +87,8 @@ class RaspberryPi:
             return self.RST_PIN.value
         elif pin == self.DC_PIN:
             return self.DC_PIN.value
-        # elif pin == self.CS_PIN:
-        #     return self.CS_PIN.value
+        elif pin == self.CS_PIN:
+            return self.CS_PIN.value
         elif pin == self.PWR_PIN:
             return self.PWR_PIN.value
 
