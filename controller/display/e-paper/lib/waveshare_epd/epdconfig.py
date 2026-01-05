@@ -54,7 +54,7 @@ class RaspberryPi:
         self.SPI = spidev.SpiDev()
         self.GPIO_RST_PIN    = gpiozero.LED(self.RST_PIN)
         self.GPIO_DC_PIN     = gpiozero.LED(self.DC_PIN)
-        self.GPIO_CS_PIN     = gpiozero.LED(self.CS_PIN)
+        # self.GPIO_CS_PIN     = gpiozero.LED(self.CS_PIN)
         self.GPIO_PWR_PIN    = gpiozero.LED(self.PWR_PIN)
         self.GPIO_BUSY_PIN   = gpiozero.Button(self.BUSY_PIN, pull_up = False)
 
@@ -69,11 +69,11 @@ class RaspberryPi:
                 self.GPIO_DC_PIN.on()
             else:
                 self.GPIO_DC_PIN.off()
-        elif pin == self.CS_PIN:
-            if value:
-                self.GPIO_CS_PIN.on()
-            else:
-                self.GPIO_CS_PIN.off()
+        # elif pin == self.CS_PIN:
+        #     if value:
+        #         self.GPIO_CS_PIN.on()
+        #     else:
+        #         self.GPIO_CS_PIN.off()
         elif pin == self.PWR_PIN:
             if value:
                 self.GPIO_PWR_PIN.on()
@@ -137,7 +137,7 @@ class RaspberryPi:
 
         else:
             # SPI device, bus = 0, device = 0
-            self.SPI.open(0, 0)
+            self.SPI.open(1, 0)
             self.SPI.max_speed_hz = 4000000
             self.SPI.mode = 0b00
         return 0
