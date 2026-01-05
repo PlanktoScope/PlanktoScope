@@ -6,7 +6,7 @@
 # *----------------
 # * | This version:   V1.2
 # * | Date        :   2022-10-29
-# * | Info        :   
+# * | Info        :
 # ******************************************************************************
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documnetation files (the "Software"), to deal
@@ -44,21 +44,19 @@ class RaspberryPi:
     CS_PIN   = 4
     BUSY_PIN = 24
     PWR_PIN  = 18
-    MOSI_PIN = 10
-    SCLK_PIN = 11
+    MOSI_PIN = 20
+    SCLK_PIN = 21
 
     def __init__(self):
         import spidev
         import gpiozero
-        
+
         self.SPI = spidev.SpiDev()
         self.GPIO_RST_PIN    = gpiozero.LED(self.RST_PIN)
         self.GPIO_DC_PIN     = gpiozero.LED(self.DC_PIN)
         self.GPIO_CS_PIN     = gpiozero.LED(self.CS_PIN)
         self.GPIO_PWR_PIN    = gpiozero.LED(self.PWR_PIN)
         self.GPIO_BUSY_PIN   = gpiozero.Button(self.BUSY_PIN, pull_up = False)
-
-        
 
     def digital_write(self, pin, value):
         if pin == self.RST_PIN:
@@ -114,7 +112,7 @@ class RaspberryPi:
 
     def module_init(self, cleanup=False):
         self.GPIO_PWR_PIN.on()
-        
+
         if cleanup:
             find_dirs = [
                 os.path.dirname(os.path.realpath(__file__)),
@@ -152,7 +150,7 @@ class RaspberryPi:
         self.GPIO_DC_PIN.off()
         self.GPIO_PWR_PIN.off()
         logger.debug("close 5V, Module enters 0 power consumption ...")
-        
+
         if cleanup:
             self.GPIO_RST_PIN.close()
             self.GPIO_DC_PIN.close()
