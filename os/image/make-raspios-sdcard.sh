@@ -1,7 +1,9 @@
 #!/bin/bash -eux
 
-file=2025-11-24-raspios-trixie-arm64-lite.img.xz
-url=https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-11-24/$file
+date=$(cat ../raspios_date)
+
+file=${date}-raspios-trixie-arm64-lite.img.xz
+url=https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-${date}/${file}
 device=/dev/mmcblk0
 sha256="1d448a6e665e1ae8100bc28b35408619ec626a2fddfd6579ec99e7996fa09a56"
 
