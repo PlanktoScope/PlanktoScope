@@ -4,8 +4,8 @@ date=$(cat ../raspios_date)
 
 file=${date}-raspios-trixie-arm64-lite.img.xz
 url=https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-${date}/${file}
-device=/dev/mmcblk0
-sha256="1d448a6e665e1ae8100bc28b35408619ec626a2fddfd6579ec99e7996fa09a56"
+device=$1
+sha256="681a775e20b53a9e4c7341d748a5a8cdc822039d8c67c1fd6ca35927abbe6290"
 
 # download raspios
 wget -c -nc "${url}"
@@ -29,8 +29,11 @@ echo 'label: dos' | sfdisk $device
 # write raspios
 xzcat $file | dd bs=1M of=$device status=progress conv=fdatasync
 
+# find first partition
+boot_partition=$(lsblk -ln -o NAME $device | sed -n '2p')
+
 # mount boot partition
-mount ${device}p1 /mnt
+mount /dev/${boot_partition} /mnt
 
 # create user
 echo "pi:$(echo 'copepode' | openssl passwd -6 -stdin)" > /mnt/userconf
@@ -39,6 +42,6 @@ echo "pi:$(echo 'copepode' | openssl passwd -6 -stdin)" > /mnt/userconf
 touch /mnt/ssh
 
 # unmount boot partition
-umount /dev/mmcblk0p1
+umount /dev/${boot_partition}
 
 echo "✅ SD card is ready."

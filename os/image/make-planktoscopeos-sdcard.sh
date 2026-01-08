@@ -1,12 +1,14 @@
 #!/bin/bash -eux
 
+device=$1
+name=$2
+file=$name.img
+
 # save raspios sdcard
-dd bs=1M if=/dev/mmcblk0 status=progress conv=fdatasync of=pkos.img
+dd bs=1M if=$device status=progress conv=fdatasync of=$file
 
 # shrink
-pishrink.sh -Za pkos.img
+pishrink.sh -Za $file
 
 # compress
-xz -T0 -9 -k pkos.img
-
-# upload pkos.img.xz
+# xz -T0 -9 -k $file

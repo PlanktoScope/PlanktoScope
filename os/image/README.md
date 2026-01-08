@@ -8,11 +8,11 @@ This process was previously automated but was causing too much friction. See htt
 
 ## Flash Raspberry Pi OS
 
-⚠️ The script is using `/dev/mmcblk0`
+⚠️ Make sure to replace /dev/device with the correct path
 
 ```sh
 cd image
-sudo ./make-raspios-sdcard.sh
+sudo ./make-raspios-sdcard.sh /dev/device
 ```
 
 This is a CLI equivalent of using RPI Imager.
@@ -26,7 +26,7 @@ This is a CLI equivalent of using RPI Imager.
 
 Boot the PlanktoScope into the newly flashed SD card and connect Ethernet.
 
-Find its IP address using your router dashboard or something like `nmap 123 192.168.1.0/24`.
+Find its IP address using your router dashboard or `nmap 123 192.168.1.0/24`.
 
 ```sh
 ssh pi@192.168.1.xxx
@@ -41,7 +41,7 @@ Plug the SD card into your computer and run
 
 ```sh
 cd image
-sudo ./make-planktoscope-sdcard.sh
+sudo ./make-planktoscope-sdcard.sh /dev/device pkos
 ```
 
 This will create a file pkos.img.xz which you can rename and upload.
