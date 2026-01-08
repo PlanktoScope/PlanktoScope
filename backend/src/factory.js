@@ -35,11 +35,30 @@ await procedure("factory/init", async () => {
 })
 
 const Schema = z.object({
-  hardware_version: z.enum(hardware_versions),
+  hardware_version: z.enum(["v3.0", "v2.6"]),
+  serial_number: z.string(),
 })
 
 await procedure("factory/update", async (data) => {
-  const { hardware_version } = Schema.parse(data)
+  const { hardware_version, serial_number } = Schema.parse(data)
+
+  if (hardware_version === "v3.0") {
+    await write({
+      product_uuid: crypto.randomUUID(),
+      product_id: "0x0000", // TODO
+      product_ver: "0x0000", //TODO
+      vendor: "FairScope",
+      product: "PlanktoScope HAT v3",
+      current_supply: 0,
+      dt_blob: "planktoscope-hat-v3",
+      custom_data: {
+        serial_number,
+        hardware_version: "v3.0",
+        eeprom_version: 0,
+        led_operating_time: 0,
+      },
+    })
+  }
 
   await Promise.all([
     hardware_version === "v3.0" && write(data),
