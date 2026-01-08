@@ -6,7 +6,6 @@ import express from "express"
 import cors from "cors"
 
 import "./factory.js"
-import "./setup.js"
 import "./config.js"
 import "./led-operating-time.js"
 import { readSoftwareConfig, removeConfig } from "../../lib/file-config.js"
@@ -41,7 +40,7 @@ app.get("/", async (req, res) => {
   const software_config = await readSoftwareConfig()
 
   if (software_config?.user_setup !== true) {
-    return res.redirect(302, "/setup")
+    return res.redirect(302, "/ps/node-red-v2/dashboard/setup")
   }
 
   return res.redirect(302, "/ps/node-red-v2/dashboard")

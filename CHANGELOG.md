@@ -9,6 +9,87 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## v2026.0.0 - UNRELEASED
 
+Support for PlanktoScope 2.1 was removed. [More info](https://github.com/PlanktoScope/PlanktoScope/pull/821)
+
+Pump and focus can be used at the same time.
+
+### Highlights
+
+**PlanktoScope v3.0**
+
+The PlanktoScope v3.0 is a new model developed by FairScope with many improvements. PlanktoScope OS v2026 is the first release to support it.
+
+**Dashboard**
+
+A brand new dashboard has been developed. It's made to be much more user friendly without sacrificing professional users. It comes with
+
+* Clearer landing page
+* Manual calibration of
+  * White balance
+  * Lightness
+  * Pixel Size
+  * Pump Calibration
+
+
+**High Quality preview**
+
+Thanks to a brew new architecture; the camera preview is now much better quality and allows to zoom in to see finer details.
+
+The resolution of the preview was increased from 800x600 to
+
+* PlanktoScope v2.6: 1440x1080 (3.24x better)
+* PlanktoScope v3.0: 2028x1520 (6.4x better)
+
+As a reminder, the PlanktoScope captures images at 4056x3040.
+
+**Simplify naming scheme**
+
+Naming scheme for PlanktoScope has been simplified.
+
+e.g.:
+
+* Machine name `sponge-bob-183` -> `sponge-box`
+* Hostname `pkscope-sponge-bob-183` -> `planktoscope-sponge-bob`
+* WiFi SSID `pkscope-sponge-bob-183` -> `PlanktoScope sponge-bob`
+
+**Connect to WiFi**
+
+The PlanktoScope can now connect to a WiFi access point.
+
+### Changes
+
+#### OS
+
+**New base**
+
+PlanktoScope OS is now based on Rapberry Pi OS 2025-11-24 which is powered by [Debian Trixie](https://www.debian.org/releases/trixie/index.html) 13.2.
+
+**Faster boot**
+
+Thanks to a simplification in background services and setup, the PlanktoScope boots (starts) faster.
+
+**Unified images**
+
+Previously, we built and provided different OS images for each PlanktoScope configuration. The configurations are now all unified under a single operating system image.
+
+**More reliable WiFi**
+
+Previously the PlanktoScope was automatically configured to use US WiFi frequencies. We now prompt the user for their location to choose the correct frequencies.
+
+#### Controller
+
+Occasionally the hardware controller would take too long to start. This is fixed.
+
+The camera preview will no longer fail with "If you see this, there probably is an error either with your camera or with the python service. Please try restarting your machine."
+
+The operating time (the amount of seconds powered on) of the LED is now recorded.
+
+#### Segmenter
+
+**Remove previous mask**
+
+Until now the segmenter removed the previous mask. This behavior was problematic so it has been made optional and is now off by default. [Read more](https://planktoscope.slack.com/archives/C01V5ENKG0M/p1714146253356569).
+
 **Minimum object size**
 
 Previously the PlanktoScope would use the `acq_minimum_mesh` metadata and compare it with the detected objects' "filled area" (area of the region with all the holes filled in).
