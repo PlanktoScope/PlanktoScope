@@ -6,12 +6,14 @@ import { useSubmission, action } from "@solidjs/router"
 import { request } from "../../../lib/mqtt.js"
 
 export default function Factory() {
-  const [EEPROM, { refetch }] = createResource(
+  const [{ EEPROM, hardware_versions }, { refetch }] = createResource(
     "factory/init",
     async (topic) => {
       return request(topic)
     },
   )
+
+  console.log(hardware_versions)
 
   const updateFactoryAction = action(async (data) => {
     const {

@@ -4,11 +4,11 @@
 // For example updating the EEPROM
 
 import crypto from "node:crypto"
-// import * as z from "zod"
+import * as z from "zod"
 
 import { read, write } from "../../lib/eeprom.js"
 import { procedure, request } from "../../lib/mqtt.js"
-import { setHardwareVersion } from "../../lib/hardware.js"
+import { hardware_versions, setHardwareVersion } from "../../lib/hardware.js"
 
 await procedure("factory/init", async () => {
   const eeprom = await read()
@@ -31,14 +31,18 @@ await procedure("factory/init", async () => {
     }
   }
 
-  return eeprom
+  return { eeprom, hardware_versions }
+})
+
+const Schema = z.object({
+  hardware_version: z.enum(hardware_versions),
 })
 
 await procedure("factory/update", async (data) => {
-  const { hardware_version } = data.custom_data
+  const { hardware_version } = Schema.parse(data)
 
   await Promise.all([
-    hardware_version && write(data),
+    hardware_version === "v3.0" && write(data),
     setHardwareVersion(hardware_version),
   ])
 
