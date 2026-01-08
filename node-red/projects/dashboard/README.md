@@ -1,10 +1,6 @@
 # dashboard
 
-This is the new [Node-RED](https://nodered.org/) project for the [PlanktoScope](https://www.planktoscope.org/).
-
-On `main` it is the project used by default.
-
-See *Building the OS* (https://github.com/PlanktoScope/PlanktoScope/blob/main/documentation/docs/community/contribute/tips-and-tricks.md#building-the-os)
+This is the [Node-RED](https://nodered.org/) project for the [PlanktoScope](https://www.planktoscope.org/).
 
 ## URLs
 
