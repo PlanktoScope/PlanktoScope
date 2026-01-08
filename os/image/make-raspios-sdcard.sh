@@ -13,28 +13,28 @@ wget -c -nc "${url}"
 wget -c -nc "${url}.sha256"
 
 # make sure signature hasn't changed
-head -c 64 ${file}.sha256 | grep -qx "${sha256}"
+head -c 64 "${file}.sha256"| grep -qx "${sha256}"
 
 # verify signature
-cat ${file}.sha256 | sha256sum --check
+sha256sum --check "${file}.sha256"
 
 # unmount
-umount -q ${device}? || true
-umount -q ${device} || true
+umount -q "${device}?" || true
+umount -q "${device}" || true
 
 # new empty dos partition table
-echo 'label: dos' | sfdisk $device
+echo 'label: dos' | sfdisk "$device"
 
 # write raspios
-xzcat $file | dd bs=1M of=$device status=progress conv=fdatasync
+xzcat "$file" | dd bs=1M of="$device" status=progress conv=fdatasync
 
-sudo partprobe $device
+sudo partprobe "$device"
 
 # find first partition
-boot_partition=$(lsblk -ln -o NAME $device | sed -n '2p')
+boot_partition=$(lsblk -ln -o NAME "$device" | sed -n '2p')
 
 # mount boot partition
-mount /dev/${boot_partition} /mnt
+mount /dev/"${boot_partition}" /mnt
 
 # create user
 echo "pi:$(echo 'copepode' | openssl passwd -6 -stdin)" > /mnt/userconf
@@ -43,6 +43,6 @@ echo "pi:$(echo 'copepode' | openssl passwd -6 -stdin)" > /mnt/userconf
 touch /mnt/ssh
 
 # unmount boot partition
-umount /dev/${boot_partition}
+umount /dev/"${boot_partition}"
 
 echo "✅ SD card is ready."
