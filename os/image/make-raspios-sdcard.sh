@@ -29,6 +29,8 @@ echo 'label: dos' | sfdisk $device
 # write raspios
 xzcat $file | dd bs=1M of=$device status=progress conv=fdatasync
 
+sudo partprobe $device
+
 # find first partition
 boot_partition=$(lsblk -ln -o NAME $device | sed -n '2p')
 
