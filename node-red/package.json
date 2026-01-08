@@ -3,15 +3,22 @@
   "type": "module",
   "dependencies": {
     "@flowfuse/node-red-dashboard": "~1.29.0",
-    "@flowfuse/node-red-dashboard-2-ui-flowviewer": "~1.0.2"
+    "@flowfuse/node-red-dashboard-2-ui-flowviewer": "~1.0.2",
+    "node-red-contrib-cron-plus": "~2.2.4",
+    "node-red-contrib-dir2files": "~0.3.0",
+    "node-red-contrib-python3-function": "^0.0.4",
+    "node-red-contrib-ui-multistate-switch": "~1.2.3",
+    "node-red-dashboard": "~3.6.6",
+    "node-red-node-pi-gpio": "~2.0.6",
+    "node-red-node-ui-list": "~0.3.6"
   },
   "devDependencies": {
+    "nrlint": "^1.2.0",
     "@eslint/js": "^9.38.0",
     "eslint": "^9.38.0",
     "eslint-plugin-html": "^8.1.3",
     "globals": "^16.4.0",
     "node-red": "^4.1.1",
-    "node-red-node-test-helper": "^0.3.5",
-    "nrlint": "^1.2.0"
+    "node-red-node-test-helper": "^0.3.5"
   }
 }
