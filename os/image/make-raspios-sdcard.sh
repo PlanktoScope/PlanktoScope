@@ -1,7 +1,6 @@
 #!/bin/bash -eux
 
-date=$(cat ../raspios_date)
-
+date=2025-12-04 # sync with setup.sh date
 file=${date}-raspios-trixie-arm64-lite.img.xz
 url=https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-${date}/${file}
 device=$1
