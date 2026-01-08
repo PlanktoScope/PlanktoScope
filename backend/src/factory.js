@@ -11,10 +11,10 @@ import { procedure, request } from "../../lib/mqtt.js"
 import { hardware_versions, setHardwareVersion } from "../../lib/hardware.js"
 
 await procedure("factory/init", async () => {
-  const eeprom = await read()
+  let eeprom = await read()
 
   if (eeprom?.custom_data?.eeprom_version !== 0) {
-    return {
+    eeprom = {
       product_uuid: crypto.randomUUID(),
       product_id: "0x0000", // TODO
       product_ver: "0x0000", //TODO

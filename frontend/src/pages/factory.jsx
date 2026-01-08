@@ -6,14 +6,9 @@ import { useSubmission, action } from "@solidjs/router"
 import { request } from "../../../lib/mqtt.js"
 
 export default function Factory() {
-  const [{ EEPROM, hardware_versions }, { refetch }] = createResource(
-    "factory/init",
-    async (topic) => {
-      return request(topic)
-    },
-  )
-
-  console.log(hardware_versions)
+  const [data, { refetch }] = createResource("factory/init", async (topic) => {
+    return request(topic)
+  })
 
   const updateFactoryAction = action(async (data) => {
     const {
@@ -60,7 +55,7 @@ export default function Factory() {
                 <input
                   name="product_uuid"
                   readonly={disabled}
-                  value={EEPROM()?.product_uuid}
+                  value={data()?.eeprom?.product_uuid ?? ""}
                 />
               </label>
               <label>
@@ -68,7 +63,7 @@ export default function Factory() {
                 <input
                   name="product_id"
                   readonly={disabled}
-                  value={EEPROM()?.product_id}
+                  value={data()?.eeprom?.product_id ?? ""}
                 />
               </label>
               <label>
@@ -76,7 +71,7 @@ export default function Factory() {
                 <input
                   name="product_ver"
                   readonly={disabled}
-                  value={EEPROM()?.product_ver}
+                  value={data()?.eeprom?.product_ver ?? ""}
                 />
               </label>
             </div>
@@ -86,7 +81,7 @@ export default function Factory() {
                 <input
                   name="product"
                   readonly={disabled}
-                  value={EEPROM()?.product}
+                  value={data()?.eeprom?.product ?? ""}
                 />
               </label>
               {/* <label>
@@ -95,7 +90,7 @@ export default function Factory() {
                     name="current_supply"
                     type="number"
                     readonly={disabled}
-                    value={EEPROM?.current_supply}
+                    value={data()?.eeprom?.current_supply}
                   />
                 </label>*/}
               <label>
@@ -103,7 +98,7 @@ export default function Factory() {
                 <input
                   name="dt_blob"
                   readonly={disabled}
-                  value={EEPROM()?.dt_blob}
+                  value={data()?.eeprom?.dt_blob ?? ""}
                 />
               </label>
               <label>
@@ -111,7 +106,7 @@ export default function Factory() {
                 <input
                   name="vendor"
                   readonly={disabled}
-                  value={EEPROM()?.vendor}
+                  value={data()?.eeprom?.vendor ?? ""}
                 />
               </label>
             </div>
@@ -130,7 +125,7 @@ export default function Factory() {
               serial_number
               <input
                 name="serial_number"
-                value={EEPROM()?.custom_data?.serial_number}
+                value={data()?.eeprom?.custom_data?.serial_number ?? ""}
               />
             </label>
             <label>
@@ -138,7 +133,7 @@ export default function Factory() {
               <input
                 name="led_operating_time"
                 type="number"
-                value={EEPROM()?.custom_data?.led_operating_time}
+                value={data()?.eeprom?.custom_data?.led_operating_time ?? ""}
               />
             </label>
           </fieldset>
@@ -148,7 +143,7 @@ export default function Factory() {
               hardware_version
               <input
                 name="hardware_version"
-                value={EEPROM()?.custom_data?.hardware_version}
+                value={data()?.eeprom?.custom_data?.hardware_version ?? ""}
               />
             </label>
             <label>
@@ -157,13 +152,13 @@ export default function Factory() {
                 name="eeprom_version"
                 type="number"
                 readonly={disabled}
-                value={EEPROM()?.custom_data?.eeprom_version}
+                value={data()?.eeprom?.custom_data?.eeprom_version ?? ""}
               />
             </label>
           </fieldset>
 
           <button
-            disabled={EEPROM.loading || submission.pending}
+            disabled={data.loading || submission.pending}
             aria-busy={submission.pending}
             type="submit"
           >
