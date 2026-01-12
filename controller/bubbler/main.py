@@ -30,7 +30,7 @@ async def start() -> None:
             publish_status(),
         )
         async for message in client.messages:
-            await handle_message(message)
+            asyncio.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
