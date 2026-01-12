@@ -10,6 +10,7 @@ setup:
     just --justfile bubbler/justfile setup
     just --justfile light/justfile setup
     just --justfile display/justfile setup
+    just --justfile pump/justfile setup
 
 setup-dev:
     uv sync --group dev

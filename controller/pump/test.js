@@ -1,5 +1,4 @@
-import { startPump, stopPump, watch } from "../../lib/scope.js"
-import { setTimeout } from "node:timers/promises"
+import { pump, stopPump, watch } from "../../lib/scope.js"
 
 watch("status/pump").then(async (messages) => {
     for await (const message of messages) {
@@ -7,4 +6,8 @@ watch("status/pump").then(async (messages) => {
     }
 })
 
-await pump({ direction: "BACKWARD", flowrate: 10, volume: 0.5 })
+setTimeout(() => {
+    stopPump().catch(console.error)
+}, 1000)
+
+await pump({ direction: "BACKWARD", flowrate: 10, volume: 1 })

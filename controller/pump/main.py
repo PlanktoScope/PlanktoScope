@@ -99,8 +99,6 @@ async def startPump(payload) -> None:
         # FIXME: add error handling
         return
 
-    # await loop.run_in_executor(None, pump, direction, volume, flowrate)
-
     await pump(direction, volume, flowrate)
 
 
@@ -132,27 +130,6 @@ async def pump(direction, volume, flowrate=pump_max_speed):
     steps_per_second = flowrate * pump_steps_per_ml * 256 / 60
     pump_stepper.speed = int(steps_per_second)
 
-    await client.publish(
-        topic="status/pump",
-        payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
-        retain=True,
-    )
-
-    await rotate(direction, nb_steps)
-
-    await client.publish(
-         topic="status/pump",
-         payload=json.dumps({"status": "Done"}),
-         retain=True
-    )
-
-def wait_at_goal():
-    while True:
-        if pump_stepper.at_goal():
-            return
-    time.sleep(0.01)
-
-async def rotate(direction, nb_steps):
     if direction == "FORWARD":
         pump_started = True
         pump_stepper.go(FORWARD, nb_steps)
@@ -160,10 +137,27 @@ async def rotate(direction, nb_steps):
         pump_started = True
         pump_stepper.go(BACKWARD, nb_steps)
 
-    await asyncio.to_thread(wait_at_goal)
+    await client.publish(
+        topic="status/pump",
+        payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
+        retain=True,
+    )
+
+    # FIXME: We should NOT poll spi
+    # instead we should configure DIAG0 or DIAG1
+    # to change state when the motor is at at goal
+    # check TMC5160 datasheet
+    while not await asyncio.to_thread(pump_stepper.at_goal):
+        await asyncio.sleep(0.01)
 
     pump_started = False
     pump_stepper.release()
+
+    await client.publish(
+         topic="status/pump",
+         payload=json.dumps({"status": "Done"}),
+         retain=True
+    )
 
 async def stopPump() -> None:
     global pump_started
