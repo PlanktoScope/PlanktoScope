@@ -14,8 +14,9 @@ import loguru
 import identity
 import integrity
 import mqtt
-from camera import mqtt as camera
+
 from . import stopflow
+from .camera import mqtt as camera
 
 loguru.logger.info("planktoscope.imager is loaded")
 

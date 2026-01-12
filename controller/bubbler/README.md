@@ -16,6 +16,7 @@ just
 Start controller for development:
 
 ```sh
+cd bubbler
 just dev
 # make changes and restart
 ```
