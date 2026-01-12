@@ -4,6 +4,7 @@ import os
 import signal
 import sys
 import time
+from pprint import pprint
 
 import aiomqtt  # type: ignore
 from PIL import Image, ImageDraw, ImageFont  # type: ignore
@@ -100,7 +101,7 @@ async def start() -> None:
             on(),
         )
         async for message in client.messages:
-            await handle_message(message)
+            asyncio.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
@@ -108,11 +109,14 @@ async def handle_message(message) -> None:
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
+    pprint(payload)
+
     action = payload.get("action")
     if action is not None:
         await handle_action(action, payload)
 
-    await helpers.mqtt_reply(client, message)
+    if client is not None:
+        await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str, payload) -> None:
