@@ -146,7 +146,7 @@ async def pump(direction, volume, flowrate=pump_max_speed):
     # FIXME: We should NOT poll spi
     # instead we should configure DIAG0 or DIAG1
     # to change state when the motor is at at goal
-    # check TMC5160 datasheet
+    # see https://github.com/PlanktoScope/PlanktoScope/issues/836
     while not await asyncio.to_thread(pump_stepper.at_goal):
         await asyncio.sleep(0.01)
 
