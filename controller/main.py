@@ -6,7 +6,6 @@ from typing import Any
 
 from loguru import logger
 
-import focus
 from imager import mqtt as imager
 
 CONFIG_PATH_HARDWARE = "/home/pi/PlanktoScope/hardware.json"
@@ -51,11 +50,6 @@ def main():
     logger.info("Read hardware config")
     configuration = read_config(CONFIG_PATH_HARDWARE)
 
-    # Starts the focus process
-    logger.info("Starting the focus control process")
-    focus_thread = focus.FocusProcess(shutdown_event, configuration)
-    focus_thread.start()
-
     # TODO try to isolate the imager thread (or another thread)
     # Starts the imager control process
     logger.info("Starting the imager control process")
@@ -67,9 +61,6 @@ def main():
     while run:
         # TODO look into ways of restarting the dead threads
         logger.trace("Running around in circles while waiting for someone to die!")
-        if focus and not focus_thread.is_alive():
-            logger.error("The focus process died unexpectedly! Oh no!")
-            break
         if imager_thread and not imager_thread.is_alive():
             logger.error("The imager process died unexpectedly! Oh no!")
             break
@@ -79,13 +70,9 @@ def main():
     shutdown_event.set()
     time.sleep(1)
 
-    if focus_thread:
-        focus_thread.join()
     if imager_thread:
         imager_thread.join()
 
-    if focus_thread:
-        focus_thread.close()
     if imager_thread:
         imager_thread.close()
 
