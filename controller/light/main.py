@@ -3,6 +3,7 @@ import json
 import signal
 import sys
 import time
+from pprint import pprint
 
 import aiomqtt  # type: ignore
 

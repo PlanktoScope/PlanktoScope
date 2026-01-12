@@ -2,6 +2,7 @@ import asyncio
 import json
 import signal
 import sys
+from pprint import pprint
 
 import aiomqtt  # type: ignore
 

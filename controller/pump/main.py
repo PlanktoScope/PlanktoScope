@@ -1,7 +1,6 @@
 import asyncio
 import json
 import signal
-import time
 from pprint import pprint
 
 import aiofiles
@@ -137,11 +136,12 @@ async def pump(direction, volume, flowrate=pump_max_speed):
         pump_started = True
         pump_stepper.go(BACKWARD, nb_steps)
 
-    await client.publish(
-        topic="status/pump",
-        payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
-        retain=True,
-    )
+    if client is not None:
+        await client.publish(
+            topic="status/pump",
+            payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
+            retain=True,
+        )
 
     # FIXME: We should NOT poll spi
     # instead we should configure DIAG0 or DIAG1
@@ -153,11 +153,11 @@ async def pump(direction, volume, flowrate=pump_max_speed):
     pump_started = False
     pump_stepper.release()
 
-    await client.publish(
-         topic="status/pump",
-         payload=json.dumps({"status": "Done"}),
-         retain=True
-    )
+    if client is not None:
+        await client.publish(
+            topic="status/pump", payload=json.dumps({"status": "Done"}), retain=True
+        )
+
 
 async def stopPump() -> None:
     global pump_started
