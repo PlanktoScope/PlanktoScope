@@ -7,7 +7,6 @@ from typing import Any
 from loguru import logger
 
 import focus
-import pump
 from imager import mqtt as imager
 
 CONFIG_PATH_HARDWARE = "/home/pi/PlanktoScope/hardware.json"
@@ -68,9 +67,6 @@ def main():
     while run:
         # TODO look into ways of restarting the dead threads
         logger.trace("Running around in circles while waiting for someone to die!")
-        if pump_thread and not pump_thread.is_alive():
-            logger.error("The pump process died unexpectedly! Oh no!")
-            break
         if focus and not focus_thread.is_alive():
             logger.error("The focus process died unexpectedly! Oh no!")
             break
@@ -83,15 +79,11 @@ def main():
     shutdown_event.set()
     time.sleep(1)
 
-    if pump_thread:
-        pump_thread.join()
     if focus_thread:
         focus_thread.join()
     if imager_thread:
         imager_thread.join()
 
-    if pump_thread:
-        pump_thread.close()
     if focus_thread:
         focus_thread.close()
     if imager_thread:
