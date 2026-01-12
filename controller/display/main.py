@@ -4,6 +4,7 @@ import os
 import signal
 import sys
 import time
+from pprint import pprint
 
 import aiomqtt  # type: ignore
 from PIL import Image, ImageDraw, ImageFont  # type: ignore
@@ -108,6 +109,8 @@ async def handle_message(message) -> None:
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
+    pprint(payload)
+
     action = payload.get("action")
     if action is not None:
         await handle_action(action, payload)
