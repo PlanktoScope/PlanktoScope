@@ -34,17 +34,18 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
-    assert client is not None
-
     if not message.topic.matches("actuator/bubbler"):
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
+    pprint(payload)
+
     action = payload.get("action")
     if action is not None:
         await handle_action(action, payload)
 
-    await helpers.mqtt_reply(client, message)
+    if client is not None:
+        await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str, payload) -> None:

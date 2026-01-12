@@ -1,6 +1,8 @@
 import asyncio
 import json
 import signal
+import time
+from pprint import pprint
 
 import aiofiles
 import aiomqtt
@@ -58,13 +60,13 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
-    print(message)
     if not message.topic.matches("actuator/pump"):
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
-    action = payload.get("action")
+    pprint(payload)
 
+    action = payload.get("action")
     if action is not None:
         await handle_action(action, payload)
 
@@ -144,6 +146,12 @@ async def pump(direction, volume, flowrate=pump_max_speed):
          retain=True
     )
 
+def wait_at_goal():
+    while True:
+        if pump_stepper.at_goal():
+            return
+    time.sleep(0.01)
+
 async def rotate(direction, nb_steps):
     if direction == "FORWARD":
         pump_started = True
@@ -152,18 +160,10 @@ async def rotate(direction, nb_steps):
         pump_started = True
         pump_stepper.go(BACKWARD, nb_steps)
 
-    while True:
-        result = await loop.run_in_executor(
-            None,
-            pump_stepper.at_goal,
-        )
-        if result is False:
-            continue
+    await asyncio.to_thread(wait_at_goal)
 
-        pump_started = False
-        pump_stepper.release()
-        break
-
+    pump_started = False
+    pump_stepper.release()
 
 async def stopPump() -> None:
     global pump_started
@@ -173,11 +173,6 @@ async def stopPump() -> None:
         await client.publish(
             topic="status/pump", payload=json.dumps({"status": "Interrupted"}), retain=True
         )
-
-
-# async def publish_status() -> None:
-#     payload = {"status": "On" if device.value == 1 else "Off"}
-#     await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:

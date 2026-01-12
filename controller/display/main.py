@@ -112,7 +112,8 @@ async def handle_message(message) -> None:
     if action is not None:
         await handle_action(action, payload)
 
-    await helpers.mqtt_reply(client, message)
+    if client is not None:
+        await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str, payload) -> None:
