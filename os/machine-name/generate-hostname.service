@@ -1,0 +1,16 @@
+[Unit]
+Description=Generate a hostname at /etc/hostname
+DefaultDependencies=no
+Requires=local-fs.target
+After=local-fs.target
+Wants=generate-machine-name.service
+After=generate-machine-name.service
+Before=systemd-hostnamed.service
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/PlanktoScope/os/machine-name/generate-hostname.sh
+
+[Install]
+WantedBy=sysinit.target

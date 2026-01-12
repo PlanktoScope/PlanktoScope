@@ -10,11 +10,11 @@ This page provides useful snippets and how-tos while developing software for the
 
 ### Install Raspberry Pi OS
 
-Download [2025-10-01-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-10-02/).
+Download [2025-11-24-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-11-24/).
 
 Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
 
-When asked to **Use OS customization?** press **EDIT SETTINGS**
+Use the following OS customization:
 
 * Set **Username** to `pi`
 * Set **Password** to `copepode`
@@ -54,7 +54,7 @@ To install the graphical desktop similar to what you find on the desktop edition
 <!--https://www.raspberrypi.com/news/trixie-the-new-version-of-raspberry-pi-os/ -->
 
 ```sh
-sudo apt install rpd-wayland-core rpd-theme rpd-preferences rpd-applications rpd-utilities rpd-developers rpd-graphics rpd-wayland-extras
+sudo apt install rpd-wayland-core rpd-theme rpd-preferences rpd-applications rpd-utilities rpd-developer rpd-graphics rpd-wayland-extras
 # Change the boot option
 sudo raspi-config # System Options -> Boot -> Desktop GUI
 sudo reboot
@@ -150,10 +150,6 @@ xzcat sdcard.img.xz | sudo dd bs=1M of=/dev/device status=progress conv=fdatasyn
 ```
 
 See also the operating guide [SD Card Cloning](../../operation/clone-sd.md).
-
-## Opening a port on the firewall
-
-https://firewalld.org/documentation/howto/open-a-port-or-service.html
 
 ## Working with GPIOs on the CLI
 

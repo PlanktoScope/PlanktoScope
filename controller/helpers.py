@@ -1,19 +1,21 @@
 import json
+
 import aiofiles
-import paho
 import aiomqtt
+import paho
 
 
-async def get_hat_version() -> float:
-    async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
-        hardware = json.loads(await file.read())
-        return float(hardware.get("hat_version"))
-
-
-async def get_hat_type() -> str:
-    async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
-        hardware = json.loads(await file.read())
-        return str(hardware.get("hat_type"))
+async def get_hat_version() -> float | None:
+    try:
+        async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
+            hardware = json.loads(await file.read())
+            hat_version = hardware.get("hat_version")
+            if hat_version is None:
+                return None
+            else:
+                return float(hat_version)
+    except FileNotFoundError:
+        return None
 
 
 async def mqtt_reply(client: aiomqtt.Client, message: aiomqtt.Message) -> None:

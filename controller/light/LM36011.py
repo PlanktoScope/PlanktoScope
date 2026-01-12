@@ -1,7 +1,8 @@
-from gpiozero import DigitalOutputDevice  # type: ignore[attr-defined]
-import smbus2 as smbus
 import enum
 import json
+
+import smbus2 as smbus
+from gpiozero import DigitalOutputDevice  # type: ignore[attr-defined]
 
 
 class i2c_led:
@@ -89,6 +90,9 @@ class i2c_led:
         value = int(current * 0.34)
         self._write_byte(self.Register.torch, value)
 
+    def get_torch_current(self):
+        return self._read_byte(self.Register.torch)
+
     def set_flash_current(self, current):
         # From 11 to 1500mA
         # Curve is not linear for some reason, but this is close enough
@@ -116,36 +120,41 @@ class i2c_led:
 led = i2c_led()
 
 
-def on():
+def on() -> None:
     led.activate_torch()
 
 
-def off():
+def off() -> None:
     led.deactivate_torch()
 
 
-def save():
+def save() -> None:
     return
 
 
-def is_on():
+def is_on() -> bool:
     return led.on
 
 
-def is_off():
+def is_off() -> bool:
     return not is_on()
 
 
-def init():
+def init() -> None:
     led.set_torch_current(i2c_led.DEFAULT_CURRENT)
     led.activate_torch_ramp()
 
 
-def deinit():
+def deinit() -> None:
     led.deactivate_torch()
     led.set_torch_current(1)
     led.set_flash_current(1)
 
 
-def set_current(current):
-    led.set_torch_current(current)
+def get_value() -> float:
+    return int(round(led.get_torch_current() / 20))
+
+
+def set_value(value: float) -> None:
+    led.set_torch_current(int(round(value * 20)))
+    return

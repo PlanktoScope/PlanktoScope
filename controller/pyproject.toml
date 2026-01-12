@@ -28,6 +28,8 @@ dependencies = [
     "adafruit-circuitpython-mcp4725>=1.4.18",
     "aiomqtt>=2.4.0",
     "aiofiles>=24.1.0",
+    "pidng",
+    "pillow>=12.0.0",
 ]
 
 [project.urls]
@@ -47,12 +49,18 @@ dev = [
 [tool.uv]
 package = false
 
+[tool.uv.sources]
+pidng = { git = "https://github.com/schoolpost/PiDNG", rev = "84278351ca9b6fa0421aae5e0d02718c4a0be4cc" }
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 100
+exclude = [
+  'display/e-paper',
+]
 
 [tool.mypy]
 warn_unused_configs = true
@@ -75,8 +83,7 @@ extra_checks = true
 # following files yet:
 exclude = [
   'main.py',
-  'adafruithat/stepper.py',
-  'adafruithat/display.py',
+  'display/e-paper',
 ]
 follow_imports = "silent" # required for exclude
 [[tool.mypy.overrides]]

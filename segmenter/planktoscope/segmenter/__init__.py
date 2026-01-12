@@ -20,58 +20,38 @@
 ################################################################################
 
 # Logger library compatible with multiprocessing
-from loguru import logger
-
 # Library to get date and time for folder name and filename
 import datetime
+
+# Libraries manipulate json format, execute bash commands
+import json
+
+# Library for starting processes
+import multiprocessing
+import os
 
 # Library to be able to sleep for a given duration
 import time
 
-# Libraries manipulate json format, execute bash commands
-import json
-import os
-
-# Library for starting processes
-import multiprocessing
-
-import io
-
-import threading
-import functools
-import select
-
-# Basic planktoscope libraries
-import planktoscope.identity
-import planktoscope.mqtt
-import planktoscope.segmenter.operations
-import planktoscope.segmenter.encoder
-import planktoscope.segmenter.streamer
-import planktoscope.segmenter.ecotaxa
+import cv2
+import numpy as np
+import PIL.Image
+import skimage.exposure
 
 ################################################################################
 # Other image processing Libraries
 ################################################################################
 import skimage.measure
-import skimage.exposure
-import cv2
-import numpy as np
-import PIL.Image
-import math
+from loguru import logger
 
+# Basic planktoscope libraries
+import planktoscope.identity
+import planktoscope.mqtt
+import planktoscope.segmenter.ecotaxa
+import planktoscope.segmenter.encoder
+import planktoscope.segmenter.operations
 
 logger.info("planktoscope.segmenter is loaded")
-
-
-# Note(ethanjli): if/when we start having more env vars, we may want to start using the `environs`
-# package from PyPI for more structured parsing of env vars:
-SUBTRACT_CONSECUTIVE_MASKS = os.getenv(
-    "SEGMENTER_PIPELINE_SUBTRACT_CONSECUTIVE_MASKS", "False"
-).lower() in ("true", "1", "t")
-if SUBTRACT_CONSECUTIVE_MASKS:
-    logger.info("The segmentation pipeline will subtract masks between consecutive raw frames!")
-else:
-    logger.info("The segmentation pipeline will NOT subtract masks between consecutive raw frames!")
 
 
 ################################################################################
@@ -118,6 +98,9 @@ class SegmenterProcess(multiprocessing.Process):
         self.__mask_array = None
         self.__mask_to_remove = None
         self.__save_debug_img = True
+        self.__process_min_ESD = 20  # microns
+        # https://planktoscope.slack.com/archives/C01V5ENKG0M/p1714146253356569
+        self.__remove_previous_mask = False
 
         # create all base path
         for path in [
@@ -244,7 +227,7 @@ class SegmenterProcess(multiprocessing.Process):
         pipeline = [
             # "adaptative_threshold",
             "simple_threshold",
-            "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
+            "remove_previous_mask" if self.__remove_previous_mask else "no_op",
             "erode",
             "dilate",
             "close",
@@ -419,17 +402,6 @@ class SegmenterProcess(multiprocessing.Process):
             "solidity": prop.solidity,
         }
 
-    def _stream(self, img):
-        def pipe_full(conn):
-            r, w, x = select.select([], [conn], [], 0.0)
-            return len(w) == 0
-
-        img_object = io.BytesIO()
-        PIL.Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)).save(img_object, format="JPEG")
-        logger.debug("Sending the object in the pipe!")
-        if not pipe_full(planktoscope.segmenter.streamer.sender):
-            planktoscope.segmenter.streamer.sender.send(img_object)
-
     def _slice_image(self, img, name, mask, start_count=0):
         """Slice a given image using give mask
 
@@ -466,15 +438,13 @@ class SegmenterProcess(multiprocessing.Process):
             dim_slice = tuple(dim_slice)
             return dim_slice
 
-        min_mesh = self.__global_metadata.get("acq_minimum_mesh", 20)  # microns
-        min_esd = min_mesh  # or process_min_ESD in the future (microns)
-        pixel_size = self.__global_metadata["process_pixel"]
-        min_radius = min_esd / 2 / pixel_size  # (pixels)
-        min_area = math.pi * min_radius * min_radius
-
         labels, nlabels = skimage.measure.label(mask, return_num=True)
         regionprops = skimage.measure.regionprops(labels)
-        regionprops_filtered = [region for region in regionprops if region.filled_area >= min_area]
+        regionprops_filtered = [
+            region
+            for region in regionprops
+            if region.equivalent_diameter_area >= self.__process_min_ESD
+        ]
         object_number = len(regionprops_filtered)
         logger.debug(f"Found {nlabels} labels, or {object_number} after size filtering")
 
@@ -498,7 +468,6 @@ class SegmenterProcess(multiprocessing.Process):
             object_fn = os.path.join(self.__working_obj_path, f"{object_id}.jpg")
 
             self._save_image(obj_image, object_fn)
-            self._stream(obj_image)
 
             if self.__save_debug_img:
                 self._save_mask(
@@ -818,7 +787,7 @@ class SegmenterProcess(multiprocessing.Process):
             "parameters": {"algorithm": "THRESH_TRIANGLE"},
         }
         self.__global_metadata["process_3rd_operation"] = {
-            "type": "remove_previous_mask" if SUBTRACT_CONSECUTIVE_MASKS else "no_op",
+            "type": "remove_previous_mask" if self.__remove_previous_mask else "no_op",
             "parameters": {},
         }
         self.__global_metadata["process_4th_operation"] = {
@@ -902,29 +871,26 @@ class SegmenterProcess(multiprocessing.Process):
             if last_message["action"] == "segment":
                 # {"action":"segment"}
                 if "settings" in last_message:
+                    settings = last_message["settings"]
+
                     # force rework of already done folder
-                    force = last_message["settings"]["force"] if "force" in last_message else False
+                    force = settings.get("force", False)
 
                     # parse folders recursively starting from the given parameter
-                    recursive = (
-                        last_message["settings"]["recursive"]
-                        if "recursive" in last_message
-                        else True
-                    )
+                    recursive = settings.get("recursive", True)
 
                     # generate ecotaxa output archive
-                    ecotaxa_export = (
-                        last_message["settings"]["ecotaxa"] if "ecotaxa" in last_message else True
-                    )
+                    ecotaxa_export = settings.get("ecotaxa", True)
 
-                    if "keep" in last_message["settings"]:
-                        # keep debug images
-                        self.__save_debug_img = last_message["settings"]["keep"]
+                    # keep debug images
+                    self.__save_debug_img = settings.get("keep", True)
 
                     if "process_id" in last_message["settings"]:
-                        # keep debug images
-                        self.__process_id = last_message["settings"]["process_id"]
-                    # TODO eventually add customisation to segmenter parameters here
+                        self.__process_id = settings["process_id"]
+
+                    self.__process_min_ESD = settings.get("process_min_ESD", 20)
+
+                    self.__remove_previous_mask = settings.get("remove_previous_mask", False)
 
                 path = last_message["path"] if "path" in last_message else None
 
@@ -969,21 +935,6 @@ class SegmenterProcess(multiprocessing.Process):
         # Publish the status "Ready" to via MQTT to Node-RED
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Ready"}')
 
-        logger.info("Setting up the streaming server thread")
-        address = ("", 8001)
-        # fps = 0.5
-        refresh_delay = 3  # was 1/fps
-        handler = functools.partial(planktoscope.segmenter.streamer.StreamingHandler, refresh_delay)
-        try:
-            server = planktoscope.segmenter.streamer.StreamingServer(address, handler)
-        except Exception as e:
-            logger.exception(f"An exception has occurred when starting up the segmenter: {e}")
-            raise e
-
-        self.streaming_thread = threading.Thread(target=server.serve_forever, daemon=True)
-        # start streaming only when needed
-        self.streaming_thread.start()
-
         logger.success("Segmenter is READY!")
 
         # This is the loop
@@ -992,7 +943,6 @@ class SegmenterProcess(multiprocessing.Process):
             time.sleep(0.5)
 
         logger.info("Shutting down the segmenter process")
-        planktoscope.segmenter.streamer.sender.close()
         self.segmenter_client.client.publish("status/segmenter", '{"status":"Dead"}')
         self.segmenter_client.shutdown()
         logger.success("Segmenter process shut down! See you!")

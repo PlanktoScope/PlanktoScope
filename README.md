@@ -4,7 +4,7 @@
 
 ## What are Plankton?
 
-_"Drifting endlessly, midway between the sea of air above and the depths of the abyss below, these strange creatures and the marine inflorescence that sustains them are called 'plankton' — the wanderers"_ - **[Rachel Carson](https://de.wikipedia.org/wiki/Rachel_Carson)**
+_"Drifting endlessly, midway between the sea of air above and the depths of the abyss below, these strange creatures and the marine inflorescence that sustains them are called 'plankton' — the wanderers"_ - **[Rachel Carson](https://en.wikipedia.org/wiki/Rachel_Carson)**
 
 Plankton are tiny organisms that drift in the oceans and play a crucial role in the global ecosystem. They are responsible for fixing 30-50% of the world's carbon dioxide and form the foundation of the global food chain. Despite their importance, studying plankton can be challenging due to the vast area of the oceans and the limited resources of research fleets and specialized equipment. The PlanktoScope is an open-source hardware and software platform that aims to make it easier to study plankton by providing high-throughput quantitative imaging capabilities at a low cost.
 

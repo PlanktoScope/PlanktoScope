@@ -1,65 +1,94 @@
-/* globals MediaMTXWebRTCReader */
-
-import { onMount } from "solid-js"
+import Stream from "./Stream.jsx"
 
 import styles from "./styles.module.css"
-import "../../../public/reader.js"
-import { publish } from "../../../../lib/mqtt"
+import "./reader.js"
+import { startLight, startBubbler, watch } from "../../../../lib/scope.js"
+import { triggerDownload } from "../../helpers.js"
 
-import Zoomist from "zoomist"
-import "zoomist/css"
+import cameraIcon from "./camera.svg"
 
-import "./zoomist.css"
+import NumberInput from "./NumberInput.jsx"
+import { createSignal } from "solid-js"
 
 export default function Preview() {
-  const video = (
-    <video class={styles.video} muted autoplay disablepictureinpicture />
-  )
+  const [bubbler_dac, setBubblerDac] = createSignal(0)
+  const [light_dac, setLightDac] = createSignal(0)
 
-  onMount(() => {
-    new Zoomist(".zoomist-container", {
-      slider: true,
-      zoomer: true,
-      maxScale: 4,
-      zoomRatio: 0.1,
-    })
+  watch("status/bubbler").then(async (messages) => {
+    for await (const message of messages) {
+      if (message.dac) {
+        setBubblerDac(message.dac)
+      }
+    }
   })
 
-  const message = <div class={styles.message} />
-
-  const setMessage = (str) => {
-    message.innerText = str
-  }
-
-  publish("light", { action: "on" }).catch(console.error)
-
-  const url = new URL(document.location)
-  url.port = 8889
-  url.pathname = "/cam/whep"
-  const reader = new MediaMTXWebRTCReader({
-    url,
-    onError: (err) => {
-      message.innerText = err
-      setMessage(err)
-    },
-    onTrack: (evt) => {
-      setMessage("")
-      video.srcObject = evt.streams[0]
-    },
-  })
-
-  window.addEventListener("beforeunload", () => {
-    reader?.close()
+  watch("status/light").then(async (messages) => {
+    for await (const message of messages) {
+      if (message.dac) {
+        setLightDac(message.dac)
+      }
+    }
   })
 
   return (
     <>
-      <div class="zoomist-container">
-        <div class="zoomist-wrapper">
-          <div class="zoomist-image">{video}</div>
+      <div class={styles.controls}>
+        <div>
+          <h2>Light</h2>
+          <NumberInput
+            name="light"
+            value={light_dac}
+            onChange={onLightChange}
+          />
+        </div>
+        <div>
+          <h2>Bubbler</h2>
+          <NumberInput
+            name="bubler"
+            value={bubbler_dac}
+            onChange={onBubblerChange}
+          />
         </div>
       </div>
-      {message}
+      <div class={styles.preview}>
+        <Stream
+          controls={
+            <button
+              tooltip="Take capture"
+              class={styles.button_capture}
+              onClick={takeImage}
+            >
+              {cameraIcon}
+            </button>
+          }
+        />
+      </div>
     </>
   )
+}
+
+async function takeImage() {
+  const url = new URL("/api/capture", document.URL)
+  url.port = 80
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+    })
+    const body = await res.json()
+    triggerDownload(body.url_jpeg)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+function onLightChange(value) {
+  startLight({
+    value,
+  })
+}
+
+function onBubblerChange(value) {
+  startBubbler({
+    value,
+  })
 }

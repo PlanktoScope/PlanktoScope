@@ -6,10 +6,10 @@
 
 sudo apt install -y rpi-eeprom
 
-cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/pieeprom-2025-07-17.bin /tmp
+cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/pieeprom-2025-11-05.bin /tmp
 cp /usr/lib/firmware/raspberrypi/bootloader-2712/latest/recovery.bin /tmp
 
-rpi-eeprom-config /tmp/pieeprom-2025-07-17.bin --config boot.ini --out /tmp/pieeprom.upd
+rpi-eeprom-config /tmp/pieeprom-2025-11-05.bin --config boot.ini --out /tmp/pieeprom.upd
 rpi-eeprom-digest -i /tmp/pieeprom.upd -o /tmp/pieeprom.sig
 
 sudo cp /tmp/pieeprom.upd /tmp/pieeprom.sig /tmp/recovery.bin /boot/firmware/

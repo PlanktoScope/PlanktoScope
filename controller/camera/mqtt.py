@@ -1,6 +1,9 @@
 """mqtt provides an MQTT API for camera supervision and interaction."""
 
+import datetime as dt
+import errno
 import json
+import os
 import threading
 import time
 import typing
@@ -8,6 +11,7 @@ import typing
 import loguru
 
 import mqtt as messaging
+
 from . import hardware
 
 loguru.logger.info("planktoscope.camera is loaded")
@@ -96,6 +100,7 @@ class Worker(threading.Thread):
         # requires modifying the MQTT API (by adding a new route), and we'll want to make the
         # Node-RED dashboard query that route at startup, so we'll do this later.
         mqtt.client.publish("status/imager", json.dumps({"camera_name": self._camera.camera_name}))
+        self.mqtt = mqtt
 
         try:
             while not self._stop_event_loop.is_set():
@@ -119,6 +124,71 @@ class Worker(threading.Thread):
             loguru.logger.success("Done shutting down!")
 
     @loguru.logger.catch
+    def capture(self, payload: dict[str, typing.Any]) -> None:
+        assert self._camera is not None
+
+        picam2 = self._camera._camera
+        assert picam2 is not None
+
+        # https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+        # 6.1.4. Capturing straight to files and file-like objects
+        picam2.options["quality"] = (
+            95  # JPEG quality level, where 0 is the worst quality and 95 is best.
+        )
+
+        filename_basename = f"{dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d_%H-%M-%S-%f')}"
+        parent = "/home/pi/data/captures"
+
+        try:
+            os.makedirs(parent)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
+        capture_path = os.path.join(parent, filename_basename)
+
+        loguru.logger.debug(f"Capturing and saving image {filename_basename}")
+
+        (buffer_main, buffer_raw), metadata = picam2.capture_buffers(["main", "raw"])
+
+        loguru.logger.debug(
+            f"Image metadata: {metadata}"  # pylint: disable=no-member
+        )
+
+        # TODO: The dng should have the jpeg as preview metadata
+        path_dng = None
+        if payload.get("dng") is True:
+            path_dng = capture_path + ".dng"
+            picam2.helpers.save_dng(
+                buffer=buffer_raw,
+                metadata=metadata,
+                config=picam2.camera_configuration()["raw"],
+                file_output=path_dng,
+            )
+
+        path_jpeg = None
+        if payload.get("jpeg") is not False:
+            path_jpeg = capture_path + ".jpg"
+            image_main = picam2.helpers.make_image(
+                buffer=buffer_main, config=picam2.camera_configuration()["main"]
+            )
+            picam2.helpers.save(
+                img=image_main, metadata=metadata, format="jpeg", file_output=path_jpeg
+            )
+
+        assert self.mqtt
+        self.mqtt.client.publish(
+            "status/imager",
+            json.dumps(
+                {
+                    "action": "capture",
+                    "jpeg": path_jpeg,
+                    "dng": path_dng,
+                }
+            ),
+        )
+
+    @loguru.logger.catch
     def _receive_message(self, message: dict[str, typing.Any]) -> typing.Optional[str]:
         """Handle a single MQTT message.
 
@@ -126,8 +196,16 @@ class Worker(threading.Thread):
         """
         assert self._camera is not None
 
-        if message["topic"] != "imager/image" or message["payload"].get("action", "") != "settings":
+        if message["topic"] != "imager/image":
             return None
+
+        if message["payload"].get("action", "") == "capture":
+            self.capture(message["payload"])
+            return None
+
+        if message["payload"].get("action", "") != "settings":
+            return None
+
         if "settings" not in message["payload"]:
             loguru.logger.error(f"Received message is missing field 'settings': {message}")
             return '{"status":"Camera settings error"}'
