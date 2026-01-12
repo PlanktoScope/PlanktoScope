@@ -4,27 +4,18 @@ setup:
     sudo apt install -y --no-install-recommends gcc libcap-dev libpython3-dev python3-libcamera python3-kms++ i2c-tools
     uv venv --clear --system-site-packages
     uv sync --no-group dev
-    sudo cp planktoscope-org.controller.service /etc/systemd/system/
-    sudo systemctl reenable planktoscope-org.controller
-    sudo systemctl restart planktoscope-org.controller
     just --justfile bubbler/justfile setup
     just --justfile light/justfile setup
     just --justfile display/justfile setup
     just --justfile pump/justfile setup
     just --justfile focus/justfile setup
+    just --justfile imager/justfile setup
 
 setup-dev:
     uv sync --group dev
-
-dev:
-    -sudo systemctl stop planktoscope-org.controller
-    uv run main.py
 
 format:
     uv run poe fmt
 
 test:
     uv run poe check
-
-bubbler:
-    uv run bubbler/main.py

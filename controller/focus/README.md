@@ -9,14 +9,14 @@ The PlanktoScope's hardware controller for the focus.
 Install all dependencies including development tooling:
 
 ```sh
-cd pump
+cd focus
 just
 ```
 
 Start controller for development:
 
 ```sh
-cd pump
+cd focus
 just dev
 # make changes and restart
 ```

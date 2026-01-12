@@ -6,7 +6,7 @@ from typing import Any
 
 from loguru import logger
 
-from imager import mqtt as imager
+from . import mqtt as imager
 
 CONFIG_PATH_HARDWARE = "/home/pi/PlanktoScope/hardware.json"
 

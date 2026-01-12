@@ -16,6 +16,7 @@ just
 Start controller for development:
 
 ```sh
+cd light
 just dev
 # make changes and restart
 ```
