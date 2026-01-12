@@ -1,10 +1,9 @@
 import asyncio
 import json
-
-import aiomqtt
-import gpiozero
-import sys
 import signal
+
+import aiofiles
+import aiomqtt
 
 import helpers
 from motor.motor import Motor
@@ -14,7 +13,9 @@ FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
 
-pump_steps_per_ml = 2045
+# 507 steps per ml for PlanktoScope standard
+# 5200 for custom NEMA14 pump with 0.8mm ID Tube
+pump_steps_per_ml = 507
 # pump max speed is in ml/min
 pump_max_speed = 50
 
@@ -23,16 +24,28 @@ pump_started = False
 pump_stepper = Motor(pin=23, spi_bus=0, spi_device=0)
 pump_stepper.acceleration = 2000
 pump_stepper.deceleration = pump_stepper.acceleration
-pump_stepper.speed = int(pump_max_speed * pump_steps_per_ml * 256 / 60)
 
 client = None
 loop = asyncio.new_event_loop()
 
 
 async def start() -> None:
-    pump_stepper.shutdown()
+    global pump_steps_per_ml, pump_max_speed, client
 
-    global client
+    hardware_config = None
+    try:
+        async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
+            hardware_config = json.loads(await file.read())
+    except FileNotFoundError:
+        return None
+
+    if hardware_config is not None:
+        # parse the config data. If the key is absent, we are using the default value
+        pump_steps_per_ml = hardware_config.get("pump_steps_per_ml", pump_steps_per_ml)
+        pump_max_speed = hardware_config.get("pump_max_speed", pump_max_speed)
+
+    pump_stepper.speed = int(pump_max_speed * pump_steps_per_ml * 256 / 60)
+
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
 
     async with client:
@@ -55,7 +68,8 @@ async def handle_message(message) -> None:
     if action is not None:
         await handle_action(action, payload)
 
-    await helpers.mqtt_reply(client, message)
+    if client is not None:
+        await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str, payload) -> None:
@@ -83,9 +97,9 @@ async def startPump(payload) -> None:
         # FIXME: add error handling
         return
 
-    await loop.run_in_executor(None, pump, direction, volume, flowrate)
+    # await loop.run_in_executor(None, pump, direction, volume, flowrate)
 
-    # pump(direction, volume, flowrate)
+    await pump(direction, volume, flowrate)
 
 
 # The pump max speed will be at about 400 full steps per second
@@ -93,7 +107,7 @@ async def startPump(payload) -> None:
 # NEMA14 pump with 3 rollers is 0.509 mL per round, actual calculation at
 # Stepper is 200 steps/round, or 393steps/ml
 # https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
-def pump(direction, volume, flowrate=pump_max_speed):
+async def pump(direction, volume, flowrate=pump_max_speed):
     global pump_started
 
     """Moves the pump stepper
@@ -116,13 +130,21 @@ def pump(direction, volume, flowrate=pump_max_speed):
     steps_per_second = flowrate * pump_steps_per_ml * 256 / 60
     pump_stepper.speed = int(steps_per_second)
 
-    # await client.publish(
-    #     topic="status/pump",
-    #     payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
-    #     retain=True,
-    # )
+    await client.publish(
+        topic="status/pump",
+        payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
+        retain=True,
+    )
 
-    # Depending on direction, select the right direction for the pump
+    await rotate(direction, nb_steps)
+
+    await client.publish(
+         topic="status/pump",
+         payload=json.dumps({"status": "Done"}),
+         retain=True
+    )
+
+async def rotate(direction, nb_steps):
     if direction == "FORWARD":
         pump_started = True
         pump_stepper.go(FORWARD, nb_steps)
@@ -130,18 +152,16 @@ def pump(direction, volume, flowrate=pump_max_speed):
         pump_started = True
         pump_stepper.go(BACKWARD, nb_steps)
 
-    print("at goal", pump_stepper.at_goal())
-    print("not at goal", not pump_stepper.at_goal())
+    while True:
+        result = await loop.run_in_executor(
+            None,
+            pump_stepper.at_goal,
+        )
+        if result is False:
+            continue
 
-    while pump_stepper.at_goal():
-        print("at goal!")
-        # await client.publish(
-        #     topic="status/pump",
-        #     payload=json.dumps({"status": "Done"}),
-        #     retain=True,
-        # )
         pump_started = False
-        pump_stepper.shutdown()
+        pump_stepper.release()
         break
 
 
@@ -149,9 +169,10 @@ async def stopPump() -> None:
     global pump_started
     pump_stepper.shutdown()
     pump_started = False
-    await client.publish(
-        topic="status/pump", payload=json.dumps({"status": "Interrupted"}), retain=True
-    )
+    if client is not None:
+        await client.publish(
+            topic="status/pump", payload=json.dumps({"status": "Interrupted"}), retain=True
+        )
 
 
 # async def publish_status() -> None:
@@ -161,7 +182,6 @@ async def stopPump() -> None:
 
 async def stop() -> None:
     await stopPump()
-    # device.close()
     loop.stop()
 
 
