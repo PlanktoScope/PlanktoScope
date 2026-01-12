@@ -11,6 +11,7 @@ setup:
     just --justfile light/justfile setup
     just --justfile display/justfile setup
     just --justfile pump/justfile setup
+    just --justfile focus/justfile setup
 
 setup-dev:
     uv sync --group dev
