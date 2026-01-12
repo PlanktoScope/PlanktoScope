@@ -89,7 +89,6 @@ async def startPump(payload) -> None:
         direction = payload["direction"]
         volume = int(payload["volume"])
         flowrate = int(payload["flowrate"])
-
     except Exception:
         # FIXME: add error handling
         return
@@ -106,15 +105,15 @@ async def startPump(payload) -> None:
 # NEMA14 pump with 3 rollers is 0.509 mL per round, actual calculation at
 # Stepper is 200 steps/round, or 393steps/ml
 # https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
-async def pump(direction, volume, flowrate=pump_max_speed):
+async def pump(direction: str, volume: float, flowrate: float = pump_max_speed):
     global pump_started
 
     """Moves the pump stepper
 
     Args:
         direction (string): direction of the pumping
-        volume (int): volume to pump, in mL
-        speed (int, optional): speed of pumping, in mL/min. Defaults to pump_max_speed.
+        volume (float): volume to pump, in mL
+        speed (float): speed of pumping, in mL/min. Defaults to pump_max_speed.
     """
 
     # Validation of inputs
@@ -123,17 +122,16 @@ async def pump(direction, volume, flowrate=pump_max_speed):
         return
 
     # TMC5160 is configured for 256 microsteps
-    nb_steps = round(pump_steps_per_ml * volume * 256, 0)
+    nb_steps = round(pump_steps_per_ml * volume * 256)
     if flowrate > pump_max_speed:
         flowrate = pump_max_speed
     steps_per_second = flowrate * pump_steps_per_ml * 256 / 60
     pump_stepper.speed = int(steps_per_second)
 
+    pump_started = True
     if direction == "FORWARD":
-        pump_started = True
         pump_stepper.go(FORWARD, nb_steps)
     elif direction == "BACKWARD":
-        pump_started = True
         pump_stepper.go(BACKWARD, nb_steps)
 
     if client is not None:

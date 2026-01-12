@@ -1,0 +1,8 @@
+setup:
+    sudo cp planktoscope-org.controller.focus.service /etc/systemd/system/
+    sudo systemctl reenable planktoscope-org.controller.focus
+    sudo systemctl restart planktoscope-org.controller.focus
+
+dev:
+    -sudo systemctl stop planktoscope-org.controller.focus
+    cd .. && uv run python -m focus.main
