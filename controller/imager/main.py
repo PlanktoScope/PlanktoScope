@@ -2,12 +2,10 @@
 
 import datetime
 import json
-import multiprocessing
 import os
 import threading
 import time
 import typing
-from multiprocessing.synchronize import Event
 
 import loguru
 
@@ -27,21 +25,8 @@ class Imager:
     commands received over the MQTT API.
     """
 
-    # TODO(ethanjli): instead of passing in a stop_event, just expose a `close()` method! This
-    # way, we don't give any process the ability to stop all other processes watching the same
-    # stop_event!
-    def __init__(self, stop_event: Event, configuration: dict[str, typing.Any]):
-        """Initialize the worker's internal state, but don't start anything yet.
-
-        Args:
-            stop_event: shutdown signal
-        """
-        super().__init__()
-
-        loguru.logger.info("planktoscope.imager is initializing")
-
+    def __init__(self, configuration: dict[str, typing.Any]):
         # Internal state
-        self._stop_event_loop = stop_event
         self._metadata: dict[str, typing.Any] = {}
         self._active_routine: typing.Optional[ImageAcquisitionRoutine] = None
 
@@ -59,12 +44,6 @@ class Imager:
 
     @loguru.logger.catch
     def run(self) -> None:
-        """Run the main event loop.
-
-        It will quit when the `stop_event` (passed into the constructor) event is set. If a camera
-        couldn't be started (e.g. because the camera is missing), it will clean up and then wait
-        until the `stop_event` event is set before quitting.
-        """
         loguru.logger.info(f"The imager control thread has been started in process {os.getpid()}")
         self._mqtt = mqtt.MQTT_Client(topic="imager/#", name="imager_client")
         self._mqtt.client.publish("status/imager", '{"status":"Starting up"}')
@@ -81,23 +60,13 @@ class Imager:
             loguru.logger.error("Missing camera - maybe it's disconnected or it never started?")
             # TODO(ethanjli): officially add this error status to the MQTT API!
             self._mqtt.client.publish("status/imager", '{"status": "Error: missing camera"}')
-            loguru.logger.success("Preemptively preparing to shut down since there's no camera...")
             self._cleanup()
-            # TODO(ethanjli): currently we just wait and do nothing until we receive the shutdown
-            # signal, because if we return early then the hardware controller will either shut down
-            # everything (current behavior) or try to restart the imager (planned behavior
-            # according to a TODO left by @gromain). Once we make it possible to quit without
-            # being restarted or causing everything else to quit, then we should just clean up
-            # and return early here.
-            loguru.logger.success("Waiting for a shutdown signal...")
-            self._stop_event_loop.wait()
-            loguru.logger.success("Imager process shut down!")
             return
 
         loguru.logger.success("Camera is ready!")
         self._mqtt.client.publish("status/imager", '{"status":"Ready"}')
         try:
-            while not self._stop_event_loop.is_set():
+            while True:
                 if self._active_routine is not None and not self._active_routine.is_alive():
                     # Garbage-collect any finished image-acquisition routine threads so that we're
                     # ready for the next configuration update command which arrives:
@@ -510,8 +479,7 @@ def read_config() -> typing.Any:
 
 def main():
     configuration = read_config()
-    event = multiprocessing.Event()
-    imager = Imager(event, configuration)
+    imager = Imager(configuration)
     imager.run()
 
 
