@@ -34,13 +34,14 @@ async def start() -> None:
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
-    async with client:
+    task_group = asyncio.TaskGroup()
+    async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("light"),
             publish_status(),
         )
         async for message in client.messages:
-            asyncio.create_task(handle_message(message))
+            task_group.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
