@@ -18,11 +18,8 @@ import mqtt
 from . import stopflow
 from .camera import mqtt as camera
 
-loguru.logger.info("planktoscope.imager is loaded")
 
-
-# TODO(ethanjli): convert this from a process into a thread
-class ImagerProcess(multiprocessing.Process):
+class Imager:
     """An MQTT API for the PlanktoScope's camera and image acquisition modules.
 
     This launches the camera with an MQTT API for settings adjustments
@@ -39,7 +36,7 @@ class ImagerProcess(multiprocessing.Process):
         Args:
             stop_event: shutdown signal
         """
-        super().__init__(name="imager")
+        super().__init__()
 
         loguru.logger.info("planktoscope.imager is initializing")
 
@@ -495,3 +492,28 @@ class _PumpClient:
         if not self._discrete_run.locked():
             return
         self._discrete_run.release()
+
+
+def read_config() -> typing.Any:
+    config = {}
+    try:
+        with open("/home/pi/PlanktoScope/hardware.json", "r") as file:
+            try:
+                config = json.load(file)
+            except Exception:
+                return None
+    except Exception:
+        return None
+
+    return config
+
+
+def main():
+    configuration = read_config()
+    event = multiprocessing.Event()
+    imager = Imager(event, configuration)
+    imager.run()
+
+
+if __name__ == "__main__":
+    main()
