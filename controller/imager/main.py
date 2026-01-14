@@ -312,13 +312,21 @@ class ImageAcquisitionRoutine(threading.Thread):
                     self._mqtt_client.publish("status/imager", '{"status":"Interrupted"}')
                     break
                 loguru.logger.debug("Image-acquisition routine ran to completion!")
-                self._mqtt_client.publish("status/imager", '{"status":"Done"}')
+                self._mqtt_client.publish(
+                    "status/imager",
+                    json.dumps(
+                        {
+                            "status": "Done",
+                            "path": self._routine.output_path,
+                        }
+                    ),
+                )
                 break
 
             index, filename = result
-            filename_path = os.path.join(self._routine.output_path, filename)
+            path = os.path.join(self._routine.output_path, filename)
             try:
-                integrity.append_to_integrity_file(filename_path)
+                integrity.append_to_integrity_file(path)
             except FileNotFoundError:
                 self._mqtt_client.publish(
                     "status/imager",
@@ -327,10 +335,22 @@ class ImageAcquisitionRoutine(threading.Thread):
                 )
                 break
 
+            # FIXME: remove
             self._mqtt_client.publish(
                 "status/imager",
                 f'{{"status":"Image {index + 1}/{self._routine.settings.total_images} '
                 + f'saved to {filename}"}}',
+            )
+            self._mqtt_client.publish(
+                "status/imager",
+                json.dumps(
+                    {
+                        "type": "progress",
+                        "path": path,
+                        "current": index + 1,
+                        "total": self._routine.settings.total_images,
+                    }
+                ),
             )
 
     def stop(self) -> None:

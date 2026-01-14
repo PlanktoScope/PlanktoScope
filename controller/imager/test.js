@@ -1,11 +1,17 @@
 import { Temporal } from "@js-temporal/polyfill"
-import path from "node:path"
 
 import { getHardwareVersion } from "../../lib/hardware.js"
 import { getSoftwareVersioning } from "../../lib/software.js"
 import { getName } from "../../lib/identity.js"
-import { acquire, configure, FORWARD, watch } from "../../lib/scope.js"
-// import { setTimeout } from "node:timers/promises"
+import {
+  acquire,
+  configure,
+  FORWARD,
+  turnLightOff,
+  turnLightOn,
+  watch,
+} from "../../lib/scope.js"
+import { setTimeout } from "node:timers/promises"
 
 watch("status/imager").then(async (messages) => {
   for await (const message of messages) {
@@ -24,13 +30,6 @@ const date = Temporal.PlainDate.from(t).toString()
 const time = Temporal.PlainTime.from(t).toString()
 const acquisition_id = `acquisition_${datetime}`
 const sample_id = `sample_${datetime}`
-// FIXME: imager should return the path instead
-const acquisition_path = path.join(
-  "/home/pi/data/img/",
-  date,
-  sample_id,
-  acquisition_id,
-)
 
 const config = {
   project: "test",
@@ -74,19 +73,24 @@ const metadata_sample = {
   sample_uuid: crypto.randomUUID(),
 }
 
-await configure(metadata_sample)
+;(async () => {
+  await configure(metadata_sample)
 
-await acquire({
-  pump_direction: FORWARD,
-  volume: 0.01, // Volume to pump between 2 images!
-  nb_frame: 10,
-  sleep: 0.3,
-})
+  await turnLightOn()
+  await setTimeout(1)
 
-console.log(acquisition_path)
+  let acquisition_path
+  try {
+    const { path } = await acquire({
+      pump_direction: FORWARD,
+      volume: 0.01, // Volume to pump between 2 images!
+      nb_frame: 10,
+      sleep: 0.3,
+    })
+    acquisition_path = path
+  } finally {
+    await turnLightOff()
+  }
 
-// await startLight()
-
-// await setTimeout(2000)
-
-// await stopLight()
+  console.log(acquisition_path)
+})()
