@@ -47,14 +47,14 @@ async def start() -> None:
     focus_stepper.speed = focus_max_speed * focus_steps_per_mm * 256
 
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
-
-    async with client:
+    task_group = asyncio.TaskGroup()
+    async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("actuator/focus"),
             # publish_status(),
         )
         async for message in client.messages:
-            asyncio.create_task(handle_message(message))
+            task_group.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
