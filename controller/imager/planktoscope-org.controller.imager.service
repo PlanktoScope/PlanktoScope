@@ -8,7 +8,8 @@ After=mediamtx.service
 Type=simple
 Environment=HOME=/home/pi
 WorkingDirectory=/home/pi/PlanktoScope/controller
-ExecStartPre=/bin/sleep 10
+# FIXME: https://github.com/PlanktoScope/PlanktoScope/issues/842
+ExecStartPre=/bin/sleep 5
 ExecStart=/usr/local/bin/uv run python -m imager.main
 User=pi
 Group=pi
