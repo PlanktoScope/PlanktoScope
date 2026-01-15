@@ -85,7 +85,7 @@ const metadata_sample = {
       pump_direction: FORWARD,
       volume: 0.01, // Volume to pump between 2 images!
       nb_frame: 10,
-      sleep: 0.3,
+      sleep: 0.1,
     })
     acquisition_path = path
   } finally {

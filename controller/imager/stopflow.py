@@ -129,7 +129,7 @@ class Routine:
             filename = f"{dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d_%H-%M-%S-%f')}.jpg"
             capture_path = os.path.join(self.output_path, filename)
             loguru.logger.info(
-                f"Capturing image {self._progress}/{self.settings.total_images} to "
+                f"Capturing image {self._progress + 1}/{self.settings.total_images} to "
                 + f"{capture_path}...",
             )
             self._camera.capture_file(capture_path)
