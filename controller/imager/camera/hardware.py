@@ -5,8 +5,8 @@ import typing
 import loguru
 import picamera2  # type: ignore
 from picamera2 import encoders, outputs
-from readerwriterlock import rwlock
 from picamera2.platform import Platform, get_platform  # type: ignore
+from readerwriterlock import rwlock
 
 # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
 # camera sensor:

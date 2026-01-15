@@ -4,6 +4,7 @@ setup:
     -sudo systemctl stop mediamtx
     sudo cp /tmp/mediamtx /usr/local/bin/mediamtx
     sudo cp mediamtx.service /etc/systemd/system/
+    sudo cp mediamtx.yml /usr/local/etc/
     sudo systemctl reenable mediamtx
     sudo systemctl restart mediamtx
 
