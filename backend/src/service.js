@@ -38,8 +38,11 @@ app.post("/api/reset", async (req, res) => {
 
 app.get("/", async (req, res) => {
   const software_config = await readSoftwareConfig()
+  if (!software_config) {
+    return res.redirect(302, "/factory")
+  }
 
-  if (software_config?.user_setup !== true) {
+  if (software_config.user_setup !== true) {
     return res.redirect(302, "/ps/node-red-v2/dashboard/setup")
   }
 
