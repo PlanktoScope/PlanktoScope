@@ -21,6 +21,7 @@ setup:
     just --justfile frontend/justfile      setup
 
 setup-dev:
+    git config core.hooksPath dev/hooks
     just --justfile node-red/justfile      setup-dev
     just --justfile controller/justfile    setup-dev
     just --justfile segmenter/justfile     setup-dev
