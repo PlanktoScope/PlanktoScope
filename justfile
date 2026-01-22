@@ -8,6 +8,8 @@ base: install-uv
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
     sudo apt update
     sudo apt install -y git nodejs
+    # npm error enoent ENOENT: no such file or directory, lstat '/home/pi/.local'
+    mkdir -p /home/pi/.local
     npm config set prefix /home/pi/.local
 
 setup:
