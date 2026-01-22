@@ -1,0 +1,9 @@
+#cloud-config
+
+users:
+  - name: pi
+    plain_text_passwd: copepode
+    lock_passwd: false
+
+ssh_pwauth: true
+enable_ssh: true
