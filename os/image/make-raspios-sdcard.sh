@@ -19,13 +19,14 @@ head -c 64 "${file}.sha256"| grep -qx "${sha256}"
 sha256sum --check "${file}.sha256"
 
 # unmount
-umount -q "${device}?" || true
+umount -q "${device}"? || true
 umount -q "${device}" || true
 
 # new empty dos partition table
 echo 'label: dos' | sfdisk "$device"
 
 # write raspios
+# rpi-imager is also a thing worth considering; rpi-imager --cli
 xzcat "$file" | dd bs=1M of="$device" status=progress conv=fdatasync
 
 sudo partprobe "$device"
@@ -36,11 +37,8 @@ boot_partition=$(lsblk -ln -o NAME "$device" | sed -n '2p')
 # mount boot partition
 mount /dev/"${boot_partition}" /mnt
 
-# create user
-echo "pi:$(echo 'copepode' | openssl passwd -6 -stdin)" > /mnt/userconf
-
-# enable ssh
-touch /mnt/ssh
+# configure
+cp user-data.yaml /mnt/user-data
 
 # unmount boot partition
 umount /dev/"${boot_partition}"
