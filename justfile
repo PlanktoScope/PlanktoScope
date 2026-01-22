@@ -8,6 +8,7 @@ base: install-uv
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
     sudo apt update
     sudo apt install -y git nodejs
+    mkdir -p /home/pi/.local
     npm config set prefix /home/pi/.local
 
 setup:
@@ -21,7 +22,6 @@ setup:
     just --justfile frontend/justfile      setup
 
 setup-dev:
-    git config core.hooksPath dev/hooks
     just --justfile node-red/justfile      setup-dev
     just --justfile controller/justfile    setup-dev
     just --justfile segmenter/justfile     setup-dev
@@ -50,7 +50,11 @@ test:
 
 developer-mode: setup-dev
     git remote set-url origin git@github.com:PlanktoScope/PlanktoScope.git
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
     git fetch origin
+    # unshallow https://stackoverflow.com/a/17937889
+    git fetch --unshallow || true
+    git config core.hooksPath dev/hooks
     sudo apt install -y build-essential
     # Install some tools for a nicer command-line experience over ssh
     sudo apt install -y vim byobu git curl tmux lsof ripgrep
