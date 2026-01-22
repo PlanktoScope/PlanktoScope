@@ -8,19 +8,23 @@ This page provides useful snippets and how-tos while developing software for the
 
 ## Building the OS
 
-### Install Raspberry Pi OS
+You will have to flash [2025-12-04-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-12-04/).
 
-Download [2025-11-24-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-11-24/).
+⚠️ No other version is supported. ⚠️
 
-Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
+For PlanktoScope v2.6 flash to SDCard.
+For PlanktoScope v3.0 flash to SSD.
+
+With Raspberry Pi Imager >= v2.0.5: OS -> Raspberry Pi OS -> Raspberry Pi OS Lite (64-bit)
 
 Use the following OS customization:
 
+* Hostname leave empty
 * Set **Username** to `pi`
 * Set **Password** to `copepode`
 * Enable SSH with `Use password authentication`
 
-Boot into Raspberry Pi OS and type the following commands using SSH
+Then boot into Raspberry Pi OS and type the following commands using SSH
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/PlanktoScope/PlanktoScope/HEAD/os/setup.sh)"
