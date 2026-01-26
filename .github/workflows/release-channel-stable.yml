@@ -11,21 +11,21 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: lewagon/wait-on-check-action@v1.4.1
+      - uses: lewagon/wait-on-check-action@v1.5.0
         with:
           ref: ${{ github.ref }}
           check-name: 'ci-checks'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-      - uses: lewagon/wait-on-check-action@v1.4.1
+      - uses: lewagon/wait-on-check-action@v1.5.0
         with:
           ref: ${{ github.ref }}
           check-name: 'merge-container-images'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 

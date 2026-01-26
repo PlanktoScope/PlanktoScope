@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.13-slim-trixie
+FROM docker.io/library/python:3.14-slim-trixie
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Install OS dependencies
