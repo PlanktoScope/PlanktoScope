@@ -59,7 +59,7 @@ jobs:
           fi
 
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # PR-triggered workflow runs have a merge commit which is detached from existing
           # branches and messes up pseudoversion determination when we record installer versioning
@@ -253,7 +253,7 @@ jobs:
           compress-parallel: true
 
       - name: Upload image to Job Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.OUTPUT_IMAGE_NAME }}
           path: ${{ env.OUTPUT_IMAGE_NAME }}.img.xz

@@ -44,10 +44,10 @@ jobs:
           - default
           - minimal # (without hardware setup guides, to save space)
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
 
@@ -142,7 +142,7 @@ jobs:
 
       # Upload documentation website as archive
       - name: Upload website archive
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: documentation-website${{ env.VARIANT_SUFFIX }}
           path: documentation/site
