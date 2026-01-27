@@ -365,6 +365,17 @@ class ImageAcquisitionRoutine(threading.Thread):
                 f'{{"status":"Image {index + 1}/{self._routine.settings.total_images} '
                 + f'saved to {filename}"}}',
             )
+            self._mqtt_client.publish(
+                "status/imager",
+                json.dumps(
+                    {
+                        "type": "progress",
+                        "path": filename_path,
+                        "current": index + 1,
+                        "total": self._routine.settings.total_images,
+                    }
+                ),
+            )
 
     def stop(self) -> None:
         """Stop the thread.
