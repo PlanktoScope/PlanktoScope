@@ -1,22 +1,25 @@
 import asyncio
 import json
+import logging
 import os
 import signal
 import sys
-import time
 from pprint import pprint
 
 import aiomqtt  # type: ignore
 from PIL import Image, ImageDraw, ImageFont  # type: ignore
 
+# from PIL.ImageFile import ImageFile
 import helpers
+from identity import load_machine_name
+
+logging.basicConfig(level=logging.DEBUG)
 
 client = None
 loop = asyncio.new_event_loop()
 
 dirname = os.path.dirname(__file__)
 
-# Configuration des chemins
 picdir = os.path.join(dirname, "e-paper/pic")
 libdir = os.path.join(dirname, "e-paper/lib")
 if os.path.exists(libdir):
@@ -24,55 +27,71 @@ if os.path.exists(libdir):
 
 epd = None
 task = None
-draw = None
-font24 = None
+fontsmall = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 20)
+fontnormal = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
+fontbig = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 28)
 image = None
 epd2in9_V2 = None
+machine_name = load_machine_name()
+
+width = 296
+height = 128
 
 
-# Compute text size (Pillow 10+ friendly)
-def get_text_dimensions(text):
-    assert draw is not None
-    bbox = draw.textbbox((0, 0), text, font=font24)
-    width = bbox[2] - bbox[0]
-    height = bbox[3] - bbox[1]
-    return width, height
+def drawURL(draw, url):
+    font = fontnormal
+    x = 0
+    y = 0
+    draw.text((x, y), text=url, font=font, fill=0)
 
 
-async def periodic():
+def drawMachineName(draw, machine_name):
+    font = fontbig
+    x = width // 2
+    y = height // 2
+    draw.text((x, y), text=machine_name, anchor="mm", font=font, fill=0)
+
+
+# def drawBrand(draw, epd):
+#     fontbig = ImageFile.load() (os.path.join(picdir, "Font.ttc"), 28)
+#     # text = "FairScope"
+#     # font = fontsmall
+#     x = width
+#     y = height
+#     draw.text((x, y), text, anchor="rd", font=font, fill=0)
+
+
+def draw(url="", online=False):
     assert epd is not None
-    assert draw is not None
-    while True:
-        current_time = time.strftime("%H:%M:%S")
 
-        text_width, text_height = get_text_dimensions(current_time)
+    image = Image.new("1", (epd.height, epd.width), 255)
+    draw = ImageDraw.Draw(image)
 
-        # center text
-        x = (epd.height - text_width) // 2
-        y = (epd.width - text_height) // 2
+    # clear screen
+    # TODO: only clear relevant area
+    draw.rectangle((0, 0, height, width), fill=255)
 
-        # clear screen
-        # TODO: only clear relevant area
-        draw.rectangle((0, 0, epd.height, epd.width), fill=255)
+    drawMachineName(draw, machine_name)
+    drawURL(draw, url)
 
-        # draw time
-        draw.text((x, y), current_time, font=font24, fill=0)
-
-        epd.display_Partial(epd.getbuffer(image))
-
-        await asyncio.sleep(0.25)
+    epd.display_Partial(epd.getbuffer(image))
 
 
 async def configure(config):
-    assert draw is not None
-    assert epd is not None
-    hostname = config["hostname"]
-    ip = config["ip"]
-    # serial_number = payload["serial_number"]
-    # url = "http://" + hostname
+    url = config.get("url", "")
+    online = config.get("online", None)
 
-    draw.text((5, 5), hostname, font=font24, fill=0)
-    draw.text((epd.width - 5, epd.height - 5), ip, font=font24, fill=0)
+    draw(url, online)
+
+
+async def clear():
+    assert epd is not None
+    # not functional
+    # epd.Clear(0xFF)
+    image = Image.new("1", (epd.height, epd.width), 255)
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0, 0, height, width), fill=255)
+    epd.display_Partial(epd.getbuffer(image))
 
 
 async def start() -> None:
@@ -87,10 +106,7 @@ async def start() -> None:
     epd.init()
     epd.Clear(0xFF)
 
-    font24 = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
-
-    image = Image.new("1", (epd.height, epd.width), 255)  # Mode 1-bit, fond blanc
-    draw = ImageDraw.Draw(image)
+    draw()
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
@@ -98,7 +114,6 @@ async def start() -> None:
     async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("display"),
-            on(),
         )
         async for message in client.messages:
             task_group.create_task(handle_message(message))
@@ -120,44 +135,19 @@ async def handle_message(message) -> None:
 
 
 async def handle_action(action: str, payload) -> None:
-    if action == "on":
-        await on()
-    elif action == "off":
-        await off()
-    elif action == "configure" and "config" in payload:
+    if action == "clear":
+        await clear()
+    if action == "configure" and "config" in payload:
         await configure(payload["config"])
-    # elif action == "save":
-    #     if hasattr(bubbler, "save"):
-    #         bubbler.save()
 
 
-async def on() -> None:
-    global task
-    if task is not None:
-        return
-    task = loop.create_task(periodic())
-    # await publish_status()
-
-
-async def off() -> None:
+async def stop() -> None:
     if task is not None:
         task.cancel()
     if epd is not None:
         epd.Clear(0xFF)
     if (epd2in9_V2) is not None:
         epd2in9_V2.epdconfig.module_exit()
-    # await publish_status()
-
-
-# async def publish_status() -> None:
-#     assert bubbler is not None
-#     assert client is not None
-#     payload = {"status": "Off" if bubbler.is_off() else "On"}
-#     await client.publish(topic="actuator/bubbler", payload=json.dumps(payload), retain=True)
-
-
-async def stop() -> None:
-    await off()
     loop.stop()
 
 

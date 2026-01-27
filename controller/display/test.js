@@ -1,10 +1,5 @@
-import {
-  startDisplay,
-  stopDisplay,
-  configureDisplay,
-  watch,
-} from "../../lib/scope.js"
-import { setTimeout } from "node:timers/promises"
+import { configureDisplay, clearDisplay, watch } from "../../lib/scope.js"
+import { setTimeout } from "timers/promises"
 
 watch("display").then(async (messages) => {
   for await (const message of messages) {
@@ -12,13 +7,14 @@ watch("display").then(async (messages) => {
   }
 })
 
-await startDisplay()
+const online = false
+const url = `http://192.168.4.1`
 
 await configureDisplay({
-  hostname: "foo",
-  ip: "192.168.1.1",
+  url,
+  online,
 })
 
-// await setTimeout(2000)
+await setTimeout(5000)
 
-// await stopDisplay()
+await clearDisplay()
