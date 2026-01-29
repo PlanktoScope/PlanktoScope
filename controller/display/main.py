@@ -9,9 +9,21 @@ from pprint import pprint
 import aiomqtt  # type: ignore
 from PIL import Image, ImageDraw, ImageFont  # type: ignore
 
-# from PIL.ImageFile import ImageFile
 import helpers
 from identity import load_machine_name
+
+# Hardware
+# We use Waveshare 2.9inch E-Ink display module (black and white) SPI
+# https://www.waveshare.com/2.9inch-e-paper-module.htm
+# https://www.waveshare.com/wiki/2.9inch_e-Paper_Module
+
+# Software
+# We use the Python implementation provided by Waveshare
+# https://github.com/waveshareteam/e-Paper/tree/master/RaspberryPi_JetsonNano/python/lib/waveshare_epd
+# As well as Pillow to draw the image rendered to the screen
+# https://pillow.readthedocs.io/en/stable/index.html
+# https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
+# https://pillow.readthedocs.io/en/stable/handbook/text-anchors.html
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -19,26 +31,22 @@ client = None
 loop = asyncio.new_event_loop()
 
 dirname = os.path.dirname(__file__)
-
 picdir = os.path.join(dirname, "e-paper/pic")
 libdir = os.path.join(dirname, "e-paper/lib")
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
 epd = None
-task = None
 fontsmall = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 18)
 fontnormal = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
 fontbig = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 28)
 image = None
+draw = None
 epd2in9_V2 = None
 machine_name = load_machine_name()
 
-width = 296
-height = 128
-
-# https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
-# https://pillow.readthedocs.io/en/stable/handbook/text-anchors.html
+width = None
+height = None
 
 
 def drawURL(draw, url):
@@ -48,6 +56,8 @@ def drawURL(draw, url):
 
 
 def drawMachineName(draw, machine_name):
+    assert width is not None
+    assert height is not None
     x = width // 2
     y = height // 2
     draw.text((x, y), text=machine_name, anchor="mm", font=fontbig, fill=0)
@@ -73,18 +83,22 @@ def drawOnline(draw, online):
     draw.text((x, y), text=text, anchor="ld", font=fontsmall, fill=0)
 
 
-def draw(
+def render(
     url="",
     online=False,
     progress="",
 ):
     assert epd is not None
+    assert width is not None
+    assert height is not None
 
-    image = Image.new("1", (epd.height, epd.width), 255)
-    draw = ImageDraw.Draw(image)
+    global image, draw
+    if image is None or draw is None:
+        image = Image.new("1", (epd.height, epd.width), 255)
+        draw = ImageDraw.Draw(image)
 
     # clear screen
-    # TODO: only clear relevant area ?
+    # # TODO: only clear relevant area ?
     draw.rectangle((0, 0, height, width), fill=255)
 
     # center
@@ -105,15 +119,16 @@ async def configure(config):
     url = config.get("url", "")
     online = config.get("online", None)
     progress = config.get("progress", "")
-
-    draw(url, online, progress)
+    render(url, online, progress)
 
 
 async def clear():
     assert epd is not None
+    assert width is not None
+    assert height is not None
     # not functional
     # epd.Clear(0xFF)
-    image = Image.new("1", (epd.height, epd.width), 255)
+    image = Image.new("1", (width, height), 255)
     draw = ImageDraw.Draw(image)
     draw.rectangle((0, 0, height, width), fill=255)
     epd.display_Partial(epd.getbuffer(image))
@@ -124,14 +139,17 @@ async def start() -> None:
     if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
 
-    global epd, draw, font24, image, epd2in9_V2
+    global epd, epd2in9_V2, width, height
     from waveshare_epd import epd2in9_V2  # type: ignore
 
     epd = epd2in9_V2.EPD()
     epd.init()
     epd.Clear(0xFF)
+    # horizontal
+    width = epd.height
+    height = epd.width
 
-    draw()
+    render()
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
@@ -167,8 +185,6 @@ async def handle_action(action: str, payload) -> None:
 
 
 async def stop() -> None:
-    if task is not None:
-        task.cancel()
     if epd is not None:
         epd.Clear(0xFF)
     if (epd2in9_V2) is not None:
