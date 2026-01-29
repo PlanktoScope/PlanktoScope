@@ -21,15 +21,6 @@ just dev
 # make changes and restart
 ```
 
-The controller does nothing by default, you can use
-
-```sh
-cd pump
-node test.js
-```
-
-while the controller is started to trigger the display.
-
 ### API
 
 ### Configure the display:
