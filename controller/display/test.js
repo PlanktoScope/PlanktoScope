@@ -13,8 +13,8 @@ const url = `http://192.168.4.1`
 await configureDisplay({
   url,
   online,
+  progress: `23 / 1000`,
 })
 
-await setTimeout(5000)
-
-await clearDisplay()
+// await setTimeout(5000)
+// await clearDisplay()

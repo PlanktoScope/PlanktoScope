@@ -27,7 +27,7 @@ if os.path.exists(libdir):
 
 epd = None
 task = None
-fontsmall = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 20)
+fontsmall = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 18)
 fontnormal = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
 fontbig = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 28)
 image = None
@@ -37,42 +37,66 @@ machine_name = load_machine_name()
 width = 296
 height = 128
 
+# https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
+# https://pillow.readthedocs.io/en/stable/handbook/text-anchors.html
+
 
 def drawURL(draw, url):
-    font = fontnormal
     x = 0
     y = 0
-    draw.text((x, y), text=url, font=font, fill=0)
+    draw.text((x, y), text=url, font=fontnormal, fill=0)
 
 
 def drawMachineName(draw, machine_name):
-    font = fontbig
     x = width // 2
     y = height // 2
-    draw.text((x, y), text=machine_name, anchor="mm", font=font, fill=0)
+    draw.text((x, y), text=machine_name, anchor="mm", font=fontbig, fill=0)
 
 
-# def drawBrand(draw, epd):
-#     fontbig = ImageFile.load() (os.path.join(picdir, "Font.ttc"), 28)
-#     # text = "FairScope"
-#     # font = fontsmall
-#     x = width
-#     y = height
-#     draw.text((x, y), text, anchor="rd", font=font, fill=0)
+def drawBrand(draw):
+    text = "FairScope"
+    x = width
+    y = height
+    draw.text((x, y), text=text, anchor="rd", font=fontsmall, fill=0)
 
 
-def draw(url="", online=False):
+def drawProgress(draw, progress):
+    x = 0
+    y = height
+    draw.text((x, y), text=progress, anchor="ld", font=fontsmall, fill=0)
+
+
+def drawOnline(draw, online):
+    text = "online" if online is True else "offline"
+    x = width
+    y = 0
+    draw.text((x, y), text=text, anchor="ld", font=fontsmall, fill=0)
+
+
+def draw(
+    url="",
+    online=False,
+    progress="",
+):
     assert epd is not None
 
     image = Image.new("1", (epd.height, epd.width), 255)
     draw = ImageDraw.Draw(image)
 
     # clear screen
-    # TODO: only clear relevant area
+    # TODO: only clear relevant area ?
     draw.rectangle((0, 0, height, width), fill=255)
 
+    # center
     drawMachineName(draw, machine_name)
+    # top left
     drawURL(draw, url)
+    # top right
+    drawOnline(draw, online)
+    # bottom right
+    drawBrand(draw)
+    # bottom left
+    drawProgress(draw, progress)
 
     epd.display_Partial(epd.getbuffer(image))
 
@@ -80,8 +104,9 @@ def draw(url="", online=False):
 async def configure(config):
     url = config.get("url", "")
     online = config.get("online", None)
+    progress = config.get("progress", "")
 
-    draw(url, online)
+    draw(url, online, progress)
 
 
 async def clear():
