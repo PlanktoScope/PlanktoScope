@@ -8,19 +8,33 @@ This page provides useful snippets and how-tos while developing software for the
 
 ## Building the OS
 
-### Install Raspberry Pi OS
+You will have to flash [2025-12-04-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-12-04/).
 
-Download [2025-11-24-raspios-trixie-arm64-lite.img.xz](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-11-24/).
+⚠️ No other version is supported. ⚠️
 
-Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and select **Use custom** to pick the downloaded `.img.xz` file.
+* For PlanktoScope v2.6 flash to SDCard
+* For PlanktoScope v3.0 flash to SSD (from SDCard or with USB NVME adapter)
 
-Use the following OS customization:
+You can use `Raspberry Pi Imager` (v2) -> `OS` -> `Use custom`
 
-* Set **Username** to `pi`
-* Set **Password** to `copepode`
-* Enable SSH with `Use password authentication`
+1. Wait for the image to be written
+2. Re-insert the SDCard
+3. Open the `bootfs` partition
+4. Replace the content of the file `user-data` with:
 
-Boot into Raspberry Pi OS and type the following commands using SSH
+```yaml
+#cloud-config
+
+users:
+  - name: pi
+    plain_text_passwd: copepode
+    lock_passwd: false
+
+ssh_pwauth: true
+enable_ssh: true
+```
+
+Then boot into Raspberry Pi OS and type the following commands using SSH
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/PlanktoScope/PlanktoScope/HEAD/os/setup.sh)"
@@ -209,27 +223,3 @@ uv run poe preview
 ```
 
 Visit [`http://localhost:8000`](http://localhost:8000) to see local changes.
-
-## Test dataset for segmenter
-
-We have an
-[example dataset](https://drive.google.com/drive/folders/1g6OPaUIhYkU2FPqtIK4AW6U4FYmhFxuw)
-which you can use for testing the segmenter.
-
-To use it, first download it as a `.zip` archive, e.g. to
-`~/Downloads/BTS2023_S3_A2-TIMESTAMP-001.zip`. Then extract it:
-
-```sh
-unzip BTS2023_S3_A2-TIMESTAMP-001.zip
-```
-
-This will result in a new directory named `BTS2023_S3_A2`. Upload that new directory into the
-PlanktoScope's `data/img` directory, e.g. via SCP:
-
-```sh
-scp -r BTS2023_S3_A2 pi@planktoscope.local:~/data/img
-```
-
-In the Node-RED dashboard's "Segmentation" page, press the "Update acquisition's folder list"
-button. Then a new dataset named `BTS2023_S3_A2` should appear. If you run the segmenter on that
-dataset, the segmenter should segment approximately 365 objects.

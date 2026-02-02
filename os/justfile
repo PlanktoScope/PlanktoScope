@@ -17,3 +17,4 @@ test:
     shellcheck **/*.sh
     systemd-analyze verify **/*.service
     just --justfile mediamtx/justfile     test
+    validator image/user-data.yaml

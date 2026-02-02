@@ -16,11 +16,11 @@ async function publishAccessPoints() {
   }
 }
 
-DeviceWireless.on("AccessPointAdded", (/*access_point*/) => {
+await DeviceWireless.subscribe("AccessPointAdded", (/*access_point*/) => {
   publishAccessPoints()
 })
 
-DeviceWireless.on("AccessPointRemoved", (/*access_point*/) => {
+await DeviceWireless.subscribe("AccessPointRemoved", (/*access_point*/) => {
   publishAccessPoints()
 })
 

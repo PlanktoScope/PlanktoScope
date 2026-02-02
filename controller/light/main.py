@@ -3,6 +3,7 @@ import json
 import signal
 import sys
 import time
+from pprint import pprint
 
 import aiomqtt  # type: ignore
 
@@ -33,27 +34,29 @@ async def start() -> None:
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
-    async with client:
+    task_group = asyncio.TaskGroup()
+    async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("light"),
             publish_status(),
         )
         async for message in client.messages:
-            await handle_message(message)
+            task_group.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
-    assert client is not None
-
     if not message.topic.matches("light"):
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
+    pprint(payload)
+
     action = payload.get("action")
     if action is not None:
         await handle_action(action, payload)
 
-    await helpers.mqtt_reply(client, message)
+    if client is not None:
+        await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str, payload) -> None:

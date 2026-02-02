@@ -4,7 +4,7 @@
 # It is meant to be run on a specific Raspberry OS Pi OS standard installation.
 
 line=$(head -n 1 /etc/rpi-issue)
-date="2025-11-24"
+date="2025-12-04"
 expected="Raspberry Pi reference $date"
 
 if [ "$line" != "$expected" ]; then
@@ -14,7 +14,7 @@ fi
 
 cd /home/pi
 sudo apt install -y git just
-if cd PlanktoScope; then git pull; else git clone https://github.com/PlanktoScope/PlanktoScope.git; fi
+if cd PlanktoScope; then git pull; else git clone --depth 1 https://github.com/PlanktoScope/PlanktoScope.git; fi
 cd PlanktoScope
 just
 ./os/postinstall.sh

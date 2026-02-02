@@ -6,11 +6,12 @@ The PlanktoScope's hardware controller.
 
 Each feature of the hardware is controlled by a separate process. Processes communicate between each other and with external clients using MQTT.
 
-Please note the following particularity of Python processes
-
-> Bear in mind that each spawned process is initialized with a copy of the memory footprint of the master process. And that the constructor code (i.e. stuff inside **init**()) is executed in the master process -- only code inside run() executes in separate processes.
-
-https://stackoverflow.com/a/17220739
+* [bubbler](./bubbler)
+* [display](./display)
+* [focus](./focus)
+* [imager](./imager)
+* [light](./light)
+* [pump](./pump)
 
 ## Usage
 
@@ -20,14 +21,7 @@ Install all dependencies including development tooling:
 
 ```sh
 cd controller
-just
-```
-
-Start controller for development:
-
-```sh
-just dev
-# make changes and restart
+just setup setup-dev
 ```
 
 Run the code auto-formatter on the project:
