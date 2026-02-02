@@ -18,7 +18,6 @@ import multiprocessing
 import os
 import signal  # for handling SIGINT/SIGTERM
 import time
-from pathlib import Path
 
 from loguru import logger
 
