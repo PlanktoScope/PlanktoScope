@@ -1,3 +1,4 @@
+import path from "path"
 import { segment, watch } from "../lib/scope.js"
 
 watch("status/segmenter").then(async (messages) => {
@@ -6,9 +7,14 @@ watch("status/segmenter").then(async (messages) => {
   }
 })
 
+// When running the segmenter on the PlanktoScope
+const img_path = "/home/pi/data/img"
+// When running the segmenter on your computer
+// const img_path = path.join(import.meta.dirname, "../data/img")
+
 console.time("segment")
 await segment({
-  path: ["/home/sonny/Projects/FairScope/PlanktoScope/data/img/BTS2023_S3_A2/"], // the acquisition path to segment
+  path: [path.join(img_path, "BTS2023_S3_A2")], // the acquisition path to segment
   settings: {
     force: true,
     recursive: false,
