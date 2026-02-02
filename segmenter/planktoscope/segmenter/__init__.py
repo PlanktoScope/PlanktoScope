@@ -609,9 +609,9 @@ class SegmenterProcess(multiprocessing.Process):
 
             logger.debug(f"The debug objects path is {self.__working_debug_path}")
             # Create the debug objects path if needed
-            if self.__save_debug_img and not os.path.exists(self.__working_debug_path):
+            if self.__save_debug_img:
                 # create the path!
-                os.makedirs(self.__working_debug_path)
+                os.makedirs(self.__working_debug_path, exist_ok=True)
 
             start = time.monotonic()
             logger.info(f"Starting work on {name}, image {i + 1}/{images_count}")

@@ -42,6 +42,16 @@ just test
 
 We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
 
+### Running on your computer
+
+You will need a running MQTT broker. We recommend [Mosquitto](https://mosquitto.org/).
+
+```sh
+cd segmenter
+uv sync
+uv run main.py
+```
+
 ### Prerequisites
 
 To use this project, you'll need:

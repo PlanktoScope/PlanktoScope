@@ -8,7 +8,7 @@ watch("status/segmenter").then(async (messages) => {
 
 console.time("segment")
 await segment({
-  path: ["/home/pi/data/img/BTS2023_S3_A2/"], // the acquisition path to segment
+  path: ["/home/sonny/Projects/FairScope/PlanktoScope/data/img/BTS2023_S3_A2/"], // the acquisition path to segment
   settings: {
     force: true,
     recursive: false,
