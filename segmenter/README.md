@@ -40,7 +40,7 @@ Run all checks (including code formatting and linting):
 just test
 ```
 
-We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
+We have an [example dataset](https://drive.google.com/drive/folders/1g6OPaUIhYkU2FPqtIK4AW6U4FYmhFxuw) which you can use for testing the segmenter.
 
 ### Running on your computer
 
