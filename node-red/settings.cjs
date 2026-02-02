@@ -340,7 +340,12 @@ module.exports = {
      */
     contextStorage: {
        default: {
-           module:"localfilesystem"
+           module: "localfilesystem",
+           config: {
+               // FIX: Flush every 5 seconds instead of default 30 to prevent
+               // calibration data loss on restart
+               flushInterval: 5,
+           }
        },
     },
 
