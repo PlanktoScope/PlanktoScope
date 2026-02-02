@@ -44,7 +44,19 @@ We have an [example dataset](https://drive.google.com/drive/folders/1g6OPaUIhYkU
 
 ### Running on your computer
 
-You will need a running MQTT broker. We recommend [Mosquitto](https://mosquitto.org/).
+You will need a running MQTT broker. We recommend [Mosquitto](https://mosquitto.org/) with the following configuration
+
+```
+listener 1883
+protocol mqtt
+
+listener 9001
+protocol websockets
+
+allow_anonymous true
+```
+
+Then you can install and start the segmenter with
 
 ```sh
 cd segmenter
