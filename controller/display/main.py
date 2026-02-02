@@ -70,23 +70,8 @@ def drawBrand(draw):
     draw.text((x, y), text=text, anchor="rd", font=fontsmall, fill=0)
 
 
-def drawProgress(draw, progress):
-    x = 0
-    y = height
-    draw.text((x, y), text=progress, anchor="ld", font=fontsmall, fill=0)
-
-
-def drawOnline(draw, online):
-    text = "online" if online is True else "offline"
-    x = width
-    y = 0
-    draw.text((x, y), text=text, anchor="ld", font=fontsmall, fill=0)
-
-
 def render(
     url="",
-    online=False,
-    progress="",
 ):
     assert epd is not None
     assert width is not None
@@ -105,21 +90,15 @@ def render(
     drawMachineName(draw, machine_name)
     # top left
     drawURL(draw, url)
-    # top right
-    drawOnline(draw, online)
     # bottom right
     drawBrand(draw)
-    # bottom left
-    drawProgress(draw, progress)
 
     epd.display_Partial(epd.getbuffer(image))
 
 
 async def configure(config):
     url = config.get("url", "")
-    online = config.get("online", None)
-    progress = config.get("progress", "")
-    render(url, online, progress)
+    render(url)
 
 
 async def clear():
@@ -149,7 +128,7 @@ async def start() -> None:
     width = epd.height
     height = epd.width
 
-    render()
+    render(url="192.168.4.1")
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)

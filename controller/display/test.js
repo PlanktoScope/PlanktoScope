@@ -7,14 +7,11 @@ watch("display").then(async (messages) => {
   }
 })
 
-const online = false
-const url = `http://192.168.4.1`
+const url = `http://planktoscope-sponge-bob`
 
 await configureDisplay({
   url,
-  online,
-  progress: `23 / 1000`,
 })
 
-// await setTimeout(5000)
-// await clearDisplay()
+await setTimeout(5000)
+await clearDisplay()
