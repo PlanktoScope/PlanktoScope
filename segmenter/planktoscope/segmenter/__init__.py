@@ -32,6 +32,7 @@ import os
 
 # Library to be able to sleep for a given duration
 import time
+from uuid import uuid4
 
 import cv2
 import numpy as np
@@ -45,7 +46,6 @@ import skimage.measure
 from loguru import logger
 
 # Basic planktoscope libraries
-import planktoscope.identity
 import planktoscope.mqtt
 import planktoscope.segmenter.ecotaxa
 import planktoscope.segmenter.encoder
@@ -712,7 +712,7 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info(f"The pipeline will be run in {len(path_list)} directories")
         logger.debug(f"Those are {path_list}")
 
-        self.__process_uuid = planktoscope.identity.load_machine_name()
+        self.__process_uuid = uuid4()
 
         if self.__process_id == "":
             self.__process_id = self.__process_uuid
