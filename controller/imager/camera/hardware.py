@@ -10,15 +10,20 @@ from readerwriterlock import rwlock
 
 # The width & height (in pixels) of camera preview; defaults to the max allowed size for the
 # camera sensor:
-#
 # capture uses 4056x3040 (4:3 ratio)
-# we use half on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
+preview_size = None
 # we use 1440x1080 on RPI4 to stay within the hardware encoder capabilities while maintaining ratio
 # anything <= 1920x1080 divisible by 16 (required by H.264 macroblock alignment) (or 2) is fine
 # See supported levels with
 # v4l2-ctl -D -d /dev/video11 -l -L
 # https://en.wikipedia.org/wiki/Advanced_Video_Coding#Levels
-preview_size = (1440, 1080) if (get_platform() == Platform.VC4) else (2028, 1520)
+if get_platform() == Platform.VC4:
+    preview_size = (1440, 1080)
+# we use 1920x1440 on RPI5 as it doesn't have hardware encoder and we want to limit bandwidth
+# and keep the software encoder resource usage in check
+# 1920x1440 maintains the ratio and is macroblock aligned
+else:
+    preview_size = (1920, 1440)
 
 
 class StreamConfig(typing.NamedTuple):
@@ -285,6 +290,8 @@ class PiCamera:
         loguru.logger.debug("Starting the camera...")
 
         encoder = encoders.H264Encoder(
+            # Use baseline profile to optimize for real time / network
+            profile="baseline",
             # picamera2-manual.pdf 7.1.1. H264Encoder
             # the bitrate (in bits per second) to use. The default value None will cause the encoder to
             # choose an appropriate bitrate according to the Quality when it starts.
@@ -293,11 +300,11 @@ class PiCamera:
             # whether to repeat the stream’s sequence headers with every Intra frame (I-frame). This can
             # be sometimes be useful when streaming video over a network, when the client may not receive the start of the
             # stream where the sequence headers would normally be located.
-            # repeat=False,
+            repeat=True,
             # picamera2-manual.pdf 7.1.1. H264Encoder
             # iperiod (default None) - the number of frames from one I-frame to the next. The value None leaves this at the
             # discretion of the hardware, which defaults to 60 frames.
-            # iperiod=None
+            iperiod=30,
         )
         encoder.audio = False
         # picamera2-manual.pdf 7.1. Encoders
