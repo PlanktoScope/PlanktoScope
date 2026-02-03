@@ -8,9 +8,11 @@ watch("display").then(async (messages) => {
 })
 
 const url = `http://planktoscope-sponge-bob`
+const hostname = "sponge-bob"
 
 await configureDisplay({
   url,
+  hostname,
 })
 
 await setTimeout(5000)

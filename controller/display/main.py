@@ -11,7 +11,6 @@ import aiomqtt  # type: ignore
 from PIL import Image, ImageDraw, ImageFont  # type: ignore
 
 import helpers
-from identity import load_machine_name
 
 # Hardware
 # We use Waveshare 2.9inch E-Ink display module (black and white) SPI
@@ -45,7 +44,6 @@ fontbig = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 28)
 image = None
 draw = None
 epd2in9_V2 = None
-machine_name = load_machine_name()
 
 logo = Image.open(os.path.join(dirname, "fairscope.bmp"))
 
@@ -60,13 +58,13 @@ def drawURL(url):
     draw.text((x, y), text=url, font=fontnormal, fill=0)
 
 
-def drawMachineName(machine_name):
+def drawHostname(hostname):
     assert width is not None
     assert height is not None
     assert draw is not None
     x = width // 2
     y = height // 2
-    draw.text((x, y), text=machine_name, anchor="mm", font=fontbig, fill=0)
+    draw.text((x, y), text=hostname, anchor="mm", font=fontbig, fill=0)
 
 
 def drawBrand():
@@ -81,9 +79,7 @@ def drawBrand():
     image.paste(logo, (width - logo.width, height - logo.height))
 
 
-def render(
-    url="",
-):
+def render(url="", hostname=""):
     assert epd is not None
     assert width is not None
     assert height is not None
@@ -98,7 +94,7 @@ def render(
     draw.rectangle((0, 0, height, width), fill=255)
 
     # center
-    drawMachineName(machine_name)
+    drawHostname(hostname)
     # top left
     drawURL(url)
     # bottom right
@@ -113,7 +109,8 @@ def render(
 
 async def configure(config):
     url = config.get("url", "")
-    render(url)
+    machine_name = config.get("machine-name", "")
+    render(url, machine_name)
 
 
 async def clear():
@@ -143,7 +140,9 @@ async def start() -> None:
     width = epd.height
     height = epd.width
 
-    render(url="http://192.168.4.1")
+    url = "http://192.168.4.1"
+    machine_name = helpers.get_machine_name()
+    render(url=url, hostname=machine_name)
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
