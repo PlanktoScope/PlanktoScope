@@ -104,7 +104,11 @@ def render(
     # bottom right
     drawBrand()
 
+    epd.init()
+    epd.Clear(0xFF)
+
     epd.display_Partial(epd.getbuffer(image))
+    epd.sleep()
 
 
 async def configure(config):
@@ -117,11 +121,13 @@ async def clear():
     assert width is not None
     assert height is not None
     # not functional
-    # epd.Clear(0xFF)
-    image = Image.new("1", (width, height), 255)
-    draw = ImageDraw.Draw(image)
-    draw.rectangle((0, 0, height, width), fill=255)
-    epd.display_Partial(epd.getbuffer(image))
+    epd.init()
+    epd.Clear(0xFF)
+    epd.sleep()
+    # image = Image.new("1", (width, height), 255)
+    # draw = ImageDraw.Draw(image)
+    # draw.rectangle((0, 0, height, width), fill=255)
+    # epd.display_Partial(epd.getbuffer(image))
 
 
 async def start() -> None:
@@ -133,8 +139,6 @@ async def start() -> None:
     from waveshare_epd import epd2in9_V2  # type: ignore
 
     epd = epd2in9_V2.EPD()
-    epd.init()
-    epd.Clear(0xFF)
     # horizontal
     width = epd.height
     height = epd.width
@@ -176,9 +180,9 @@ async def handle_action(action: str, payload) -> None:
 
 async def stop() -> None:
     if epd is not None:
+        epd.init()
         epd.Clear(0xFF)
-    if (epd2in9_V2) is not None:
-        epd2in9_V2.epdconfig.module_exit()
+        epd.sleep()
     loop.stop()
 
 
