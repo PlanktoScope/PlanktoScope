@@ -1,6 +1,7 @@
 import asyncio
 import json
-import logging
+
+# import logging
 import os
 import signal
 import sys
@@ -25,7 +26,8 @@ from identity import load_machine_name
 # https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html
 # https://pillow.readthedocs.io/en/stable/handbook/text-anchors.html
 
-logging.basicConfig(level=logging.DEBUG)
+# Enable waveshare_epd logs
+# logging.basicConfig(level=logging.DEBUG)
 
 client = None
 loop = asyncio.new_event_loop()
@@ -45,29 +47,38 @@ draw = None
 epd2in9_V2 = None
 machine_name = load_machine_name()
 
+logo = Image.open(os.path.join(dirname, "fairscope.bmp"))
+
 width = None
 height = None
 
 
-def drawURL(draw, url):
+def drawURL(url):
+    assert draw is not None
     x = 0
     y = 0
     draw.text((x, y), text=url, font=fontnormal, fill=0)
 
 
-def drawMachineName(draw, machine_name):
+def drawMachineName(machine_name):
     assert width is not None
     assert height is not None
+    assert draw is not None
     x = width // 2
     y = height // 2
     draw.text((x, y), text=machine_name, anchor="mm", font=fontbig, fill=0)
 
 
-def drawBrand(draw):
+def drawBrand():
+    assert width is not None
+    assert height is not None
+    assert image is not None
+    assert draw is not None
     text = "FairScope"
-    x = width
+    x = width - logo.width - 6
     y = height
     draw.text((x, y), text=text, anchor="rd", font=fontsmall, fill=0)
+    image.paste(logo, (width - logo.width, height - logo.height))
 
 
 def render(
@@ -79,7 +90,7 @@ def render(
 
     global image, draw
     if image is None or draw is None:
-        image = Image.new("1", (epd.height, epd.width), 255)
+        image = Image.new("1", (width, height), 255)
         draw = ImageDraw.Draw(image)
 
     # clear screen
@@ -87,11 +98,11 @@ def render(
     draw.rectangle((0, 0, height, width), fill=255)
 
     # center
-    drawMachineName(draw, machine_name)
+    drawMachineName(machine_name)
     # top left
-    drawURL(draw, url)
+    drawURL(url)
     # bottom right
-    drawBrand(draw)
+    drawBrand()
 
     epd.display_Partial(epd.getbuffer(image))
 
@@ -128,7 +139,7 @@ async def start() -> None:
     width = epd.height
     height = epd.width
 
-    render(url="192.168.4.1")
+    render(url="http://192.168.4.1")
 
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
