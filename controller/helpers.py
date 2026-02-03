@@ -1,4 +1,5 @@
 import json
+import socket
 
 import aiofiles
 import aiomqtt
@@ -32,3 +33,8 @@ async def mqtt_reply(client: aiomqtt.Client, message: aiomqtt.Message) -> None:
     await client.publish(
         topic=response_topic, payload=json.dumps({}), qos=1, properties=properties, retain=False
     )
+
+
+def get_machine_name():
+    hostname = socket.gethostname()
+    return hostname.removeprefix("planktoscope-")
