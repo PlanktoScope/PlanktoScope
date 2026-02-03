@@ -28,5 +28,3 @@ Run all checks (including code formatting and linting):
 ```sh
 just test
 ```
-
-We recommand using [VSCode SSH](https://code.visualstudio.com/docs/remote/ssh)
