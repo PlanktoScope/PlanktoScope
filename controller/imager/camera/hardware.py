@@ -302,8 +302,8 @@ class PiCamera:
             # stream where the sequence headers would normally be located.
             repeat=True,
             # picamera2-manual.pdf 7.1.1. H264Encoder
-            # iperiod (default None) - the number of frames from one I-frame to the next. The value None
-            # leaves this at the discretion of the hardware, which defaults to 60 frames.
+            # iperiod (default None) - the number of frames from one I-frame to the next. The value None leaves this at the
+            # discretion of the hardware, which defaults to 60 frames.
             iperiod=30,
         )
         encoder.audio = False
