@@ -45,6 +45,9 @@ jobs:
       - name: Set up Python
         run: uv python install
 
+      - name: Install build dependencies
+        run: sudo apt -y install libcap-dev
+
       - name: Install dependencies
         working-directory: ./controller
         run: |
