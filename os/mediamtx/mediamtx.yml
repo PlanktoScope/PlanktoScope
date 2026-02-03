@@ -1,9 +1,5 @@
 # https://github.com/bluenviron/mediamtx/blob/v1.15.6/mediamtx.yml
 
-# FIX: Increase write queue size to prevent packet drops on RPi5 software encoder
-# The software encoder on RPi5 can burst faster than default queue handles
-writeQueueSize: 1024
-
 # https://mediamtx.org/docs/usage/webrtc-specific-features#solving-webrtc-connectivity-issues
 # webrtcAdditionalHosts:
 #   [
