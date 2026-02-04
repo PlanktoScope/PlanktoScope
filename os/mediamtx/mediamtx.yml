@@ -1,4 +1,4 @@
-# https://github.com/bluenviron/mediamtx/blob/v1.15.6/mediamtx.yml
+# https://github.com/bluenviron/mediamtx/blob/v1.16.0/mediamtx.yml
 
 # https://mediamtx.org/docs/usage/webrtc-specific-features#solving-webrtc-connectivity-issues
 # webrtcAdditionalHosts:
@@ -27,3 +27,7 @@ paths:
   # http://pkscope-$planktoscope:8889/cam/
   # the controler must be started after mediamtx
   cam:
+    # https://github.com/bluenviron/mediamtx/pull/5335
+    alwaysAvailable: true
+    alwaysAvailableTracks:
+      - codec: H264
