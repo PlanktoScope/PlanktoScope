@@ -12,6 +12,7 @@ import loguru
 
 import integrity
 import mqtt
+from imager.camera.hardware import ISO_CALIBRATION
 
 from . import stopflow
 from .camera import mqtt as camera
@@ -162,7 +163,7 @@ class Imager:
         assert (capture_size := self._camera.camera.stream_config.capture_size) is not None
         camera_settings = self._camera.camera.settings
         assert (image_gain := camera_settings.image_gain) is not None
-        calibration = camera.ISO_CALIBRATIONS.get(self._camera.camera.sensor_name, 100)
+        calibration = ISO_CALIBRATION
         metadata = {
             **self._metadata,
             "acq_local_datetime": datetime.datetime.now().isoformat().split(".")[0],
