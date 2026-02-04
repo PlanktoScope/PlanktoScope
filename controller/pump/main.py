@@ -14,9 +14,13 @@ FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
 
-# 507 steps per ml for PlanktoScope standard
+# 507 steps per ml for PlanktoScope V.2.6
 # 5200 for custom NEMA14 pump with 0.8mm ID Tube
-pump_steps_per_ml = 507
+# --
+# PlanktoScope V3 - Kamoer KAS
+# ID:1.52mm / OD:3.22mm
+# 
+pump_steps_per_ml = 334
 # pump max speed is in ml/min
 pump_max_speed = 50
 
