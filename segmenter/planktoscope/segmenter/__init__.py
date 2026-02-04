@@ -712,7 +712,7 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info(f"The pipeline will be run in {len(path_list)} directories")
         logger.debug(f"Those are {path_list}")
 
-        self.__process_uuid = uuid4()
+        self.__process_uuid = str(uuid4())
 
         if self.__process_id == "":
             self.__process_id = self.__process_uuid

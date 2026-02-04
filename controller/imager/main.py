@@ -169,8 +169,8 @@ class Imager:
             "acq_camera_resolution": f"{capture_size[0]}x{capture_size[1]}",
             "acq_camera_iso": int(image_gain * calibration),
             "acq_camera_shutter_speed": camera_settings.exposure_time,
-            "acq_uuid": uuid4(),
-            "sample_uuid": uuid4(),
+            "acq_uuid": str(uuid4()),
+            "sample_uuid": str(uuid4()),
         }
         loguru.logger.debug(f"Saving metadata: {metadata}")
         try:
