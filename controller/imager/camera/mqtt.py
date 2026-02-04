@@ -85,7 +85,7 @@ class Worker(threading.Thread):
             raise ValueError("Invalid default ISO") from e
         self._camera.settings = changes
         loguru.logger.debug(
-            f"Set image gain to {changes.image_gain} for sensor {self._camera.sensor_name}!",
+            f"Set image gain to {changes.image_gain}!",
         )
 
         loguru.logger.info("Starting the MQTT backend...")
@@ -204,7 +204,7 @@ class Worker(threading.Thread):
         settings = message["payload"]["settings"]
         try:
             converted_settings = _convert_settings(
-                settings, self._camera.settings.white_balance_gains, self._camera.sensor_name
+                settings, self._camera.settings.white_balance_gains
             )
             _validate_settings(converted_settings)
         except (TypeError, ValueError) as e:
@@ -239,7 +239,6 @@ class Worker(threading.Thread):
 def _convert_settings(
     command_settings: dict[str, typing.Any],
     default_white_balance_gains: typing.Optional[hardware.WhiteBalanceGains],
-    camera_sensor_name: str,
 ) -> hardware.SettingsValues:
     """Convert MQTT command settings to camera hardware settings.
 
@@ -268,7 +267,6 @@ def _convert_settings(
     converted = converted.overlay(
         _convert_image_gain_settings(
             command_settings,
-            camera_sensor_name,
         )
     )
     if "white_balance" in command_settings:
@@ -284,7 +282,6 @@ def _convert_settings(
 
 def _convert_image_gain_settings(
     command_settings: dict[str, typing.Any],
-    camera_sensor_name: str,
 ) -> hardware.SettingsValues:
     """Convert image gains in MQTT command settings to camera hardware settings.
 
