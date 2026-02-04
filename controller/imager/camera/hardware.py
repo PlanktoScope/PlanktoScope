@@ -370,6 +370,28 @@ class PiCamera:
                 self._camera.options[key] = value
             self._cached_settings = new_values
 
+    def capture_file(self, path: str) -> None:
+        """Capture an image from the main stream (in full resolution) and save it as a file.
+        Blocks until the image is fully saved.
+        Args:
+            path: The file path where the image should be saved.
+        Raises:
+            RuntimeError: the method was called before the camera was started, or after it was
+              closed.
+        """
+        if self._camera is None:
+            raise RuntimeError("The camera has not been started yet!")
+
+        loguru.logger.debug(f"Capturing and saving image to {path}...")
+        request = self._camera.capture_request()
+        # The following lines are false-positives in pylint because they're dynamically-generated
+        # members:
+        request.save("main", path)  # pylint: disable=no-member
+        loguru.logger.debug(
+            f"Image metadata: {request.get_metadata()}"  # pylint: disable=no-member
+        )
+        request.release()  # pylint: disable=no-member
+
     def close(self) -> None:
         """Stop and close the camera.
 
