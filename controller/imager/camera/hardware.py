@@ -372,9 +372,12 @@ class PiCamera:
 
     def capture_file(self, path: str) -> None:
         """Capture an image from the main stream (in full resolution) and save it as a file.
+
         Blocks until the image is fully saved.
+
         Args:
             path: The file path where the image should be saved.
+
         Raises:
             RuntimeError: the method was called before the camera was started, or after it was
               closed.
