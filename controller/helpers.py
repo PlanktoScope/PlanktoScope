@@ -30,9 +30,7 @@ async def mqtt_reply(client: aiomqtt.Client, message: aiomqtt.Message) -> None:
     if correlation_data is not None:
         properties.CorrelationData = correlation_data
 
-    await client.publish(
-        topic=response_topic, payload=json.dumps({}), qos=1, properties=properties, retain=False
-    )
+    await client.publish(topic=response_topic, payload=json.dumps({}), qos=1, properties=properties)
 
 
 def get_machine_name():

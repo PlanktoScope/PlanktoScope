@@ -138,7 +138,6 @@ async def pump(direction: str, volume: float, flowrate: float = pump_max_speed):
         await client.publish(
             topic="status/pump",
             payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
-            retain=True,
         )
 
     # FIXME: We should NOT poll spi
@@ -152,9 +151,7 @@ async def pump(direction: str, volume: float, flowrate: float = pump_max_speed):
     pump_stepper.release()
 
     if client is not None:
-        await client.publish(
-            topic="status/pump", payload=json.dumps({"status": "Done"}), retain=True
-        )
+        await client.publish(topic="status/pump", payload=json.dumps({"status": "Done"}))
 
 
 async def stopPump() -> None:
@@ -162,9 +159,7 @@ async def stopPump() -> None:
     pump_stepper.shutdown()
     pump_started = False
     if client is not None:
-        await client.publish(
-            topic="status/pump", payload=json.dumps({"status": "Interrupted"}), retain=True
-        )
+        await client.publish(topic="status/pump", payload=json.dumps({"status": "Interrupted"}))
 
 
 async def stop() -> None:

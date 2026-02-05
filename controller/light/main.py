@@ -122,7 +122,7 @@ async def publish_status() -> None:
     value = led.get_value()
 
     payload = {"status": "Off" if led.is_off() else "On", "value": value}
-    await client.publish(topic="status/light", payload=json.dumps(payload), retain=True)
+    await client.publish(topic="status/light", payload=json.dumps(payload))
 
 
 async def stop() -> None:

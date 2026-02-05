@@ -137,7 +137,6 @@ async def focus(direction: str, distance: float, speed: float = focus_max_speed)
         await client.publish(
             topic="status/focus",
             payload=json.dumps({"status": "Started", "duration": nb_steps / steps_per_second}),
-            retain=True,
         )
 
     # FIXME: We should NOT poll spi
@@ -151,9 +150,7 @@ async def focus(direction: str, distance: float, speed: float = focus_max_speed)
     focus_stepper.release()
 
     if client is not None:
-        await client.publish(
-            topic="status/focus", payload=json.dumps({"status": "Done"}), retain=True
-        )
+        await client.publish(topic="status/focus", payload=json.dumps({"status": "Done"}))
 
 
 async def stopFocus() -> None:
@@ -161,9 +158,7 @@ async def stopFocus() -> None:
     focus_stepper.shutdown()
     focus_started = False
     if client is not None:
-        await client.publish(
-            topic="status/focus", payload=json.dumps({"status": "Interrupted"}), retain=True
-        )
+        await client.publish(topic="status/focus", payload=json.dumps({"status": "Interrupted"}))
 
 
 async def stop() -> None:
