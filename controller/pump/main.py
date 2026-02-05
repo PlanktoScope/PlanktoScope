@@ -21,6 +21,8 @@ pump_steps_per_ml = 507
 pump_max_speed = 50
 
 pump_started = False
+# FIX: Track acquisition state to prevent UI commands from interrupting acquisition
+acquisition_in_progress = False
 
 pump_stepper = Motor(pin=23, spi_bus=0, spi_device=0)
 pump_stepper.acceleration = 2000
@@ -52,6 +54,7 @@ async def start() -> None:
     async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("actuator/pump"),
+            client.subscribe("status/imager"),  # FIX: Track acquisition state
             # publish_status(),
         )
         async for message in client.messages:
@@ -59,11 +62,31 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
+    global acquisition_in_progress
+
+    # FIX: Handle imager status messages to track acquisition state
+    if message.topic.matches("status/imager"):
+        payload = json.loads(message.payload.decode("utf-8"))
+        status = payload.get("status", "")
+        if status == "Started":
+            print("Acquisition started - locking pump for acquisition commands only")
+            acquisition_in_progress = True
+        elif status in ("Done", "Interrupted"):
+            print("Acquisition ended - unlocking pump for manual control")
+            acquisition_in_progress = False
+        return
+
     if not message.topic.matches("actuator/pump"):
         return
 
     payload = json.loads(message.payload.decode("utf-8"))
     pprint(payload)
+
+    # FIX: During acquisition, only accept commands tagged with from_acquisition
+    is_from_acquisition = payload.get("from_acquisition", False)
+    if acquisition_in_progress and not is_from_acquisition:
+        print(f"Ignoring pump command during acquisition (use from_acquisition flag): {payload}")
+        return
 
     action = payload.get("action")
     if action is not None:

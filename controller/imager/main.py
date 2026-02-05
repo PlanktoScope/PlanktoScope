@@ -382,6 +382,7 @@ class _PumpClient:
         self._stop_receiving_mqtt = threading.Event()  # close() was called
         self._done = threading.Event()  # run_discrete() finished or stop() was called
         self._discrete_run = threading.Lock()  # mutex on starting the pump
+        self._waiting_for_pump = False  # FIX: Only accept Done after pump command sent
 
     def open(self) -> None:
         """Start the pump MQTT client.
@@ -412,7 +413,17 @@ class _PumpClient:
                 self._mqtt.read_message()
                 continue
 
+            # FIX: Only process Done if we are actually waiting for pump to finish
+            # This prevents retained/stale Done messages from triggering early return
+            if not self._waiting_for_pump:
+                loguru.logger.debug(
+                    f"Ignoring pump Done (not waiting for pump): {self._mqtt.msg['payload']}"
+                )
+                self._mqtt.read_message()
+                continue
+
             loguru.logger.debug(f"The pump has stopped: {self._mqtt.msg['payload']}")
+            self._waiting_for_pump = False  # FIX: Clear waiting flag
             self._mqtt.client.unsubscribe("status/pump")
             self._mqtt.read_message()
             self._done.set()
@@ -436,6 +447,7 @@ class _PumpClient:
         # We ignore the pylint error here because the lock can only be released from a different
         # thread (the thread which calls the `handle_status_update()` method):
         self._discrete_run.acquire()  # pylint: disable=consider-using-with
+        self._waiting_for_pump = False  # FIX: Not waiting yet (ignore retained messages)
         self._done.clear()
         self._mqtt.client.subscribe("status/pump")
         self._mqtt.client.publish(
@@ -446,9 +458,11 @@ class _PumpClient:
                     "direction": settings.direction.value,
                     "flowrate": settings.flowrate,
                     "volume": settings.volume,
+                    "from_acquisition": True,  # FIX: Tag as acquisition command
                 }
             ),
         )
+        self._waiting_for_pump = True  # FIX: NOW we're waiting for pump Done
         self._done.wait()
 
     def stop(self) -> None:
@@ -457,7 +471,7 @@ class _PumpClient:
             raise RuntimeError("MQTT client was not initialized yet!")
 
         self._mqtt.client.subscribe("status/pump")
-        self._mqtt.client.publish("actuator/pump", '{"action": "stop"}')
+        self._mqtt.client.publish("actuator/pump", '{"action": "stop", "from_acquisition": true}')
 
     def close(self) -> None:
         """Close the pump MQTT client, if it's currently open.
