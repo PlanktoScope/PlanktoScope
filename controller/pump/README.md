@@ -32,8 +32,8 @@ just dev
 {
   "action": "move",
   "direction": "FORWARD", // "FORWARD" or "BACKWARD"
-  "volume": 10, // volume to pump in mL
-  "flowrate": 10, // speed of pumping, in mL/min
+  "volume": 0.5, // volume to pump in mL
+  "flowrate": 0.5, // speed of pumping, in mL/min
 }
 ```
 
