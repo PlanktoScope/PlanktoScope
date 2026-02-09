@@ -133,7 +133,7 @@ class Routine:
                 + f"{capture_path}...",
             )
             self._camera.capture_file(capture_path)
-            os.sync()
+
             # Note(ethanjli): updating the integrity file is the responsibility of the code which
             # calls this `run_step()` method.
 
