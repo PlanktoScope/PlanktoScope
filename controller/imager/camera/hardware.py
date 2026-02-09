@@ -496,7 +496,7 @@ def main():
     # camera._camera.set_controls({"Quality": 90})
     dir = "/home/pi/wow"
     c = 1
-    target = 20
+    target = 100
 
     total_time = 0
 
