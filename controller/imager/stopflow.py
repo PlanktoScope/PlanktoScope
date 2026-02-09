@@ -133,9 +133,7 @@ class Routine:
                 + f"{capture_path}...",
             )
             self._camera.capture_file(capture_path)
-            # Use fsync to ensure write completes before MQTT publish
-            with open(capture_path, "rb") as f:
-                os.fsync(f.fileno())
+
             # Note(ethanjli): updating the integrity file is the responsibility of the code which
             # calls this `run_step()` method.
 

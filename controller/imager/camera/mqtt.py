@@ -165,6 +165,9 @@ class Worker(threading.Thread):
                 config=picam2.camera_configuration()["raw"],
                 file_output=path_dng,
             )
+            # Use fsync to ensure write completes
+            with open(path_dng, "ab") as f:
+                os.fsync(f.fileno())
 
         path_jpeg = None
         if payload.get("jpeg") is not False:
@@ -175,6 +178,9 @@ class Worker(threading.Thread):
             picam2.helpers.save(
                 img=image_main, metadata=metadata, format="jpeg", file_output=path_jpeg
             )
+            # Use fsync to ensure write completes
+            with open(path_jpeg, "ab") as f:
+                os.fsync(f.fileno())
 
         assert self.mqtt
         self.mqtt.client.publish(
