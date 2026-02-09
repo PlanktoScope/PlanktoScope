@@ -1,6 +1,8 @@
 """hardware provides basic I/O abstractions for camera hardware."""
 
+import os
 import typing
+from tempfile import mkdtemp
 
 import loguru
 import picamera2  # type: ignore
@@ -453,3 +455,68 @@ class PiCamera:
         self._camera.close()
         self._camera = None
         self._cached_settings = SettingsValues()
+
+
+import json
+import time
+
+configuration = {}
+with open("/home/pi/PlanktoScope/hardware.json", "r") as file:
+    configuration = json.load(file)
+
+settings = SettingsValues(
+    auto_exposure=False,
+    exposure_time=125,  # the default (minimum) exposure time in the PlanktoScope GUI
+    # Note(ethanjli): an error will occur if exposure time is outside any provided frame
+    # duration limits (set by explicitly defining a `frame_duration_limits` param here. In
+    # practice, this means we cannot reduce the max allowed framerate below
+    # 1/(125 us) = 8000 fps, for exposure time of 125 us. So we have to limit the framerate
+    # some other way.
+    image_gain=1.0,  # image gain is reinitialized after the image sensor is determined
+    brightness=0.0,  # the default "normal" brightness
+    contrast=1.0,  # the default "normal" contrast
+    auto_white_balance=False,  # the default setting in the PlanktoScope GUI
+    white_balance_gains=WhiteBalanceGains(
+        # the default gains from the default v2.5 hardware config
+        red=2.4,
+        blue=1.35,
+    ),
+    sharpness=0,  # disable the default "normal" sharpening level
+    jpeg_quality=95,  # maximize image quality
+)
+settings = settings.overlay(config_to_settings_values(configuration))
+
+from PIL import Image
+
+
+def main():
+    camera = PiCamera()
+    camera.open()
+    # camera._camera.options["quality"] = 90
+    # camera._camera.set_controls({"Quality": 90})
+    dir = "/home/pi/wow"
+    c = 1
+    target = 20
+
+    total_time = 0
+
+    while c <= target:
+        path = os.path.join(dir, f"{c}.jpeg")
+        start = time.perf_counter()
+
+        request = camera._camera.capture_request()
+        request.save("main", path)
+        request.release()
+        with open(path, "rb") as f:
+            os.fsync(f.fileno())
+
+        end = time.perf_counter()
+        total_time += end - start
+        print(f"{path} took {end - start:.2f} seconds")
+        c += 1
+
+    print(f"Average {total_time / target:.2f} seconds")
+
+
+if __name__ == "__main__":
+    main()
