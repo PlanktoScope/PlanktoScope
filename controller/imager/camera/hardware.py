@@ -2,7 +2,6 @@
 
 import os
 import typing
-from tempfile import mkdtemp
 
 import loguru
 import picamera2  # type: ignore
