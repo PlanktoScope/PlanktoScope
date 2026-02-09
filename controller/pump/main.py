@@ -87,8 +87,8 @@ async def startPump(payload) -> None:
 
     try:
         direction = payload["direction"]
-        volume = int(payload["volume"])
-        flowrate = int(payload["flowrate"])
+        volume = float(payload["volume"])
+        flowrate = float(payload["flowrate"])
     except Exception:
         # FIXME: add error handling
         return
