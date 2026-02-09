@@ -19,7 +19,7 @@ BACKWARD = 2
 # --
 # PlanktoScope V3 - Kamoer KAS
 # ID:1.52mm / OD:3.22mm
-# 
+#
 pump_steps_per_ml = 334
 # pump max speed is in ml/min
 pump_max_speed = 50
@@ -91,8 +91,8 @@ async def startPump(payload) -> None:
 
     try:
         direction = payload["direction"]
-        volume = int(payload["volume"])
-        flowrate = int(payload["flowrate"])
+        volume = float(payload["volume"])
+        flowrate = float(payload["flowrate"])
     except Exception:
         # FIXME: add error handling
         return
