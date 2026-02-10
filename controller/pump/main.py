@@ -3,7 +3,6 @@ import json
 import signal
 from pprint import pprint
 
-import aiofiles
 import aiomqtt
 
 import helpers
@@ -14,11 +13,8 @@ FORWARD = 1
 """"Step backward"""
 BACKWARD = 2
 
-# 507 steps per ml for PlanktoScope standard
-# 5200 for custom NEMA14 pump with 0.8mm ID Tube
-pump_steps_per_ml = 507
-# pump max speed is in ml/min
-pump_max_speed = 50
+pump_steps_per_ml = None
+pump_max_speed = None
 
 pump_started = False
 
@@ -35,15 +31,15 @@ async def start() -> None:
 
     hardware_config = None
     try:
-        async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
-            hardware_config = json.loads(await file.read())
+        hardware_config = await helpers.read_hardware_config()
     except FileNotFoundError:
         return None
 
-    if hardware_config is not None:
-        # parse the config data. If the key is absent, we are using the default value
-        pump_steps_per_ml = hardware_config.get("pump_steps_per_ml", pump_steps_per_ml)
-        pump_max_speed = hardware_config.get("pump_max_speed", pump_max_speed)
+    pump_steps_per_ml = hardware_config.get("pump_steps_per_ml")
+    pump_max_speed = hardware_config.get("pump_max_speed")
+
+    if pump_steps_per_ml is None or pump_max_speed is None:
+        return None
 
     pump_stepper.speed = int(pump_max_speed * pump_steps_per_ml * 256 / 60)
 
@@ -66,21 +62,26 @@ async def handle_message(message) -> None:
     pprint(payload)
 
     action = payload.get("action")
+    response = None
     if action is not None:
-        await handle_action(action, payload)
+        response = await handle_action(action, payload)
 
     if client is not None:
-        await helpers.mqtt_reply(client, message)
+        await helpers.mqtt_reply(client, message, response)
 
 
-async def handle_action(action: str, payload) -> None:
+async def handle_action(action: str, payload) -> dict | None:
     if action == "move":
         await startPump(payload)
     elif action == "stop":
         await stopPump()
+    elif action == "set-configuration":
+        await setConfiguration(payload)
+    elif action == "get-configuration":
+        return await getConfiguration()
 
 
-async def startPump(payload) -> None:
+async def startPump(payload: dict) -> None:
     direction = None
     volume = None
     flowrate = None
@@ -100,12 +101,9 @@ async def startPump(payload) -> None:
     await pump(direction, volume, flowrate)
 
 
-# The pump max speed will be at about 400 full steps per second
-# This amounts to 0.9mL per seconds maximum, or 54mL/min
-# NEMA14 pump with 3 rollers is 0.509 mL per round, actual calculation at
-# Stepper is 200 steps/round, or 393steps/ml
-# https://www.wolframalpha.com/input/?i=pi+*+%280.8mm%29%C2%B2+*+54mm+*+3
-async def pump(direction: str, volume: float, flowrate: float = pump_max_speed):
+async def pump(direction: str, volume: float, flowrate: float):
+    assert pump_steps_per_ml is not None
+    assert pump_max_speed is not None
     global pump_started
 
     """Moves the pump stepper
@@ -165,6 +163,22 @@ async def stopPump() -> None:
         await client.publish(
             topic="status/pump", payload=json.dumps({"status": "Interrupted"}), retain=True
         )
+
+
+async def getConfiguration() -> dict:
+    return {"pump_steps_per_ml": pump_steps_per_ml}
+
+
+async def setConfiguration(config: dict) -> None:
+    steps_per_ml = config.get("pump_steps_per_ml")
+    # FIXME: add error handling
+    if steps_per_ml is None:
+        return
+
+    await helpers.update_hardware_config({"pump_steps_per_ml": steps_per_ml})
+
+    global pump_steps_per_ml
+    pump_steps_per_ml = steps_per_ml
 
 
 async def stop() -> None:
