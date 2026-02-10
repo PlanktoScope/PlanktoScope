@@ -1860,12 +1860,12 @@
         "type": "function",
         "z": "4ed26b8b.253504",
         "name": "Update and retrieve hardware_conf",
-        "func": "// change global\nhardware_conf = global.get(\"hardware_conf\");\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
+        "func": "// change global\nvar hardware_conf = global.get(\"hardware_conf\");\n\n// If hardware_conf is not loaded, read from file\nif (!hardware_conf) {\n    try {\n        const data = fs.readFileSync('/home/pi/PlanktoScope/hardware.json', 'utf8');\n        hardware_conf = JSON.parse(data);\n    } catch (e) {\n        hardware_conf = {};\n    }\n}\n\nif (msg.topic == \"process_pixel_fixed\" && msg.payload == 0){\n    delete hardware_conf[msg.topic]\n    delete msg.topic\n}\n\nif (msg.topic !== null && msg.topic !== undefined){\n    hardware_conf[msg.topic] = msg.payload;\n    global.set(\"hardware_conf\", hardware_conf);\n}\n\nreturn {\"payload\": hardware_conf};",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [],
+        "libs": [{"var": "fs", "module": "fs"}],
         "x": 240,
         "y": 40,
         "wires": [
@@ -6028,7 +6028,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container class=\"py-6 d-flex flex-column align-center\" style=\"gap: 24px;\">\n    <v-card width=\"440\" class=\"px-4\">\n      <v-card-title class=\"text-left text-primary\">Pump Calibration</v-card-title>\n      <v-divider class=\"mb-4\"></v-divider>\n\n      <!-- Step 1 -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">1. Place a scale</h3>\n        <p class=\"text-caption mb-3\">Place a scale ⚖️ beneath the waste container.</p>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 2 -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">2. Run a liquid transfer</h3>\n        <p class=\"text-caption mb-3\">Run a liquid transfer to collect a known volume.</p>\n\n        <v-row dense align=\"center\">\n          <v-col cols=\"12\">\n            <v-text-field\n              v-model.number=\"targetVolume\"\n              label=\"Target Volume (mL)\"\n              type=\"number\"\n              variant=\"outlined\"\n              density=\"comfortable\"\n              min=\"0\"\n            />\n          </v-col>\n\n          <v-col cols=\"6\">\n            <v-btn\n              color=\"error\"\n              block\n              @click=\"stopPump\"\n              :disabled=\"!pumpRunning\"\n            >\n              ⏹ Stop Pump\n            </v-btn>\n          </v-col>\n\n          <v-col cols=\"6\">\n            <v-btn\n              color=\"primary\"\n              block\n              @click=\"runTransferTest\"\n              :loading=\"pumpRunning\"\n              :disabled=\"pumpRunning\"\n            >\n              Run Test\n            </v-btn>\n          </v-col>\n        </v-row>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 3 -->\n      <section class=\"mb-0\">\n        <h3 class=\"text-subtitle-1 mb-2\">3. Measure the weight</h3>\n        <p class=\"text-caption mb-3\">\n          Enter the measured weight in milliliters (mL).\n        </p>\n\n        <v-row dense align=\"center\">\n          <v-col cols=\"7\">\n            <v-text-field\n              v-model.number=\"measuredVolume\"\n              label=\"Measured Volume (mL)\"\n              type=\"number\"\n              variant=\"outlined\"\n              density=\"comfortable\"\n              min=\"0\"\n              :disabled=\"!pumpDone\"\n            />\n          </v-col>\n\n          <v-col cols=\"5\" class=\"mb-6\">\n            <v-alert\n              v-if=\"pumpDone\"\n              color=\"error\"\n              variant=\"tonal\"\n              class=\"pa-3 text-caption text-primary-darken-3\"\n            >\n              <strong>Delta:</strong> {{ errorVolume.toFixed(2) }} mL\n            </v-alert>\n          </v-col>\n        </v-row>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 4 -->\n      <section class=\"mb-0\">\n        <h3 class=\"text-subtitle-1 mb-2\">4. Save your calibration.</h3>\n        <p class=\"text-caption mb-3\">\n          Click <b>Save</b> to store your calibration.\n        </p>\n\n        <div class=\"mb-3\">\n          <v-text-field\n            v-model.number=\"currentSteps\"\n            label=\"Current steps per 1 mL (S)\"\n            type=\"number\"\n            variant=\"outlined\"\n            density=\"comfortable\"\n            min=\"1\"\n            :disabled=\"!pumpDone\"\n\n          readonly\n          :style=\"{ pointerEvents: 'none', userSelect: 'none', opacity: 0.7 }\"\n          />\n        </div>\n\n        <div class=\"mb-3 d-flex align-center\">\n\n          <v-text-field\n            v-model.number=\"suggestedSteps\"\n            label=\"Suggested steps per 1 mL (S)\"\n            type=\"number\"\n            variant=\"outlined\"\n            density=\"comfortable\"\n            min=\"1\"\n            :disabled=\"!pumpDone\"\n    class=\"highlight\"\n\n  >\n    <!-- Icône append avec dialogue -->\n    <template #append>\n      <v-icon\n        class=\"cursor-pointer\"\n        color=\"primary\"\n        @click=\"dialog = true\"\n      >\n        mdi-information\n      </v-icon>\n    </template>\n          </v-text-field>\n        </div>\n      </section>\n\n      <section class=\"mb-6\">\n          <v-btn\n            color=\"primary\"\n            block\n            @click=\"validateCalibration\"\n            :disabled=\"!pumpDone\"\n          >\n            Validate\n          </v-btn>\n\n        <!-- Dialog with formula -->\n        <v-dialog v-model=\"dialog\" max-width=\"480\">\n          <v-card>\n            <v-card-title class=\"text-h6 text-primary\">Formula</v-card-title>\n            <v-card-text class=\"text-body-2\">\n              <p><strong>Suggested steps per 1 mL = (Volume to transfer (Y) / Transferred volume (X)) × Current steps (S)</strong></p>\n              <p>\n                (Y / X) × S = ({{ targetVolume }} / {{ measuredVolume }}) × {{ currentSteps }} = \n                <b>{{ suggestedSteps.toFixed(0) }}</b> steps\n              </p>\n            </v-card-text>\n            <v-card-actions>\n              <v-spacer></v-spacer>\n              <v-btn text color=\"primary\" @click=\"dialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </section>\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      targetVolume: 10, // Y\n      measuredVolume: 0, // X\n      currentSteps: 507, // S\n      pumpRunning: false,\n      pumpDone: false,\n      dialog: false,\n    };\n  },\n  computed: {\n    errorVolume() {\n      return this.targetVolume - this.measuredVolume;\n    },\n    suggestedSteps() {\n      const { targetVolume, measuredVolume, currentSteps } = this;\n      if (measuredVolume <= 0) return currentSteps;\n      return Math.round((targetVolume / measuredVolume) * currentSteps);\n    },\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const topic = newMsg?.topic;\n        const payload = newMsg?.payload || {};\n        if (topic === \"status/pump\" && payload.status === \"Done\") {\n          this.pumpRunning = false;\n          this.pumpDone = true;\n        }\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({ topic, payload: { ...extra } });\n      }\n    },\n    runTransferTest() {\n      this.pumpDone = false;\n      this.pumpRunning = true;\n      this.sendUpdate(\"actuator/pump\", {\n        action: \"move\",\n        direction: \"FORWARD\",\n        volume: this.targetVolume,\n        flowrate: 1,\n      });\n    },\n    stopPump() {\n      this.sendUpdate(\"actuator/pump\", { action: \"stop\" });\n      this.pumpRunning = false;\n    },\n    validateCalibration() {\n      const steps = Math.round(this.suggestedSteps);\n      this.sendUpdate(\"calibration/save\", {\n        calibration_nb_step: steps,\n      });\n    },\n  },\n};\n</script>\n<style>\n\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>",
+        "format": "<template>\n  <v-container class=\"py-6 d-flex flex-column align-center\" style=\"gap: 24px;\">\n    <v-card width=\"440\" class=\"px-4\">\n      <v-card-title class=\"text-left text-primary\">Pump Calibration</v-card-title>\n      <v-divider class=\"mb-4\"></v-divider>\n\n      <!-- Step 1 -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">1. Place a scale</h3>\n        <p class=\"text-caption mb-3\">Place a scale ⚖️ beneath the waste container.</p>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 2 -->\n      <section class=\"mb-6\">\n        <h3 class=\"text-subtitle-1 mb-2\">2. Run a liquid transfer</h3>\n        <p class=\"text-caption mb-3\">Run a liquid transfer to collect a known volume.</p>\n\n        <v-row dense align=\"center\">\n          <v-col cols=\"12\">\n            <v-text-field\n              v-model.number=\"targetVolume\"\n              label=\"Target Volume (mL)\"\n              type=\"number\"\n              variant=\"outlined\"\n              density=\"comfortable\"\n              min=\"0\"\n            />\n          </v-col>\n\n          <v-col cols=\"6\">\n            <v-btn\n              color=\"error\"\n              block\n              @click=\"stopPump\"\n              :disabled=\"!pumpRunning\"\n            >\n              ⏹ Stop Pump\n            </v-btn>\n          </v-col>\n\n          <v-col cols=\"6\">\n            <v-btn\n              color=\"primary\"\n              block\n              @click=\"runTransferTest\"\n              :loading=\"pumpRunning\"\n              :disabled=\"pumpRunning\"\n            >\n              Run Test\n            </v-btn>\n          </v-col>\n        </v-row>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 3 -->\n      <section class=\"mb-0\">\n        <h3 class=\"text-subtitle-1 mb-2\">3. Measure the weight</h3>\n        <p class=\"text-caption mb-3\">\n          Enter the measured weight in milliliters (mL).\n        </p>\n\n        <v-row dense align=\"center\">\n          <v-col cols=\"7\">\n            <v-text-field\n              v-model.number=\"measuredVolume\"\n              label=\"Measured Volume (mL)\"\n              type=\"number\"\n              variant=\"outlined\"\n              density=\"comfortable\"\n              min=\"0\"\n              :disabled=\"!pumpDone\"\n            />\n          </v-col>\n\n          <v-col cols=\"5\" class=\"mb-6\">\n            <v-alert\n              v-if=\"pumpDone\"\n              color=\"error\"\n              variant=\"tonal\"\n              class=\"pa-3 text-caption text-primary-darken-3\"\n            >\n              <strong>Delta:</strong> {{ errorVolume.toFixed(2) }} mL\n            </v-alert>\n          </v-col>\n        </v-row>\n      </section>\n\n      <v-divider class=\"mb-4\"></v-divider>\n      <!-- Step 4 -->\n      <section class=\"mb-0\">\n        <h3 class=\"text-subtitle-1 mb-2\">4. Save your calibration.</h3>\n        <p class=\"text-caption mb-3\">\n          Click <b>Save</b> to store your calibration.\n        </p>\n\n        <div class=\"mb-3\">\n          <v-text-field\n            v-model.number=\"currentSteps\"\n            label=\"Current steps per 1 mL (S)\"\n            type=\"number\"\n            variant=\"outlined\"\n            density=\"comfortable\"\n            min=\"1\"\n            :disabled=\"!pumpDone\"\n\n          readonly\n          :style=\"{ pointerEvents: 'none', userSelect: 'none', opacity: 0.7 }\"\n          />\n        </div>\n\n        <div class=\"mb-3 d-flex align-center\">\n\n          <v-text-field\n            v-model.number=\"suggestedSteps\"\n            label=\"Suggested steps per 1 mL (S)\"\n            type=\"number\"\n            variant=\"outlined\"\n            density=\"comfortable\"\n            min=\"1\"\n            :disabled=\"!pumpDone\"\n    class=\"highlight\"\n\n  >\n    <!-- Icône append avec dialogue -->\n    <template #append>\n      <v-icon\n        class=\"cursor-pointer\"\n        color=\"primary\"\n        @click=\"dialog = true\"\n      >\n        mdi-information\n      </v-icon>\n    </template>\n          </v-text-field>\n        </div>\n      </section>\n\n      <section class=\"mb-6\">\n          <v-btn\n            color=\"primary\"\n            block\n            @click=\"validateCalibration\"\n            :disabled=\"!pumpDone\"\n          >\n            Validate\n          </v-btn>\n\n        <!-- Dialog with formula -->\n        <v-dialog v-model=\"dialog\" max-width=\"480\">\n          <v-card>\n            <v-card-title class=\"text-h6 text-primary\">Formula</v-card-title>\n            <v-card-text class=\"text-body-2\">\n              <p><strong>Suggested steps per 1 mL = (Volume to transfer (Y) / Transferred volume (X)) × Current steps (S)</strong></p>\n              <p>\n                (Y / X) × S = ({{ targetVolume }} / {{ measuredVolume }}) × {{ currentSteps }} = \n                <b>{{ suggestedSteps.toFixed(0) }}</b> steps\n              </p>\n            </v-card-text>\n            <v-card-actions>\n              <v-spacer></v-spacer>\n              <v-btn text color=\"primary\" @click=\"dialog = false\">Close</v-btn>\n            </v-card-actions>\n          </v-card>\n        </v-dialog>\n      </section>\n    </v-card>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: [\"msg\"],\n  data() {\n    return {\n      targetVolume: 10, // Y\n      measuredVolume: 0, // X\n      currentSteps: 507, // S\n      pumpRunning: false,\n      pumpDone: false,\n      dialog: false,\n    };\n  },\n  computed: {\n    errorVolume() {\n      return this.targetVolume - this.measuredVolume;\n    },\n    suggestedSteps() {\n      const { targetVolume, measuredVolume, currentSteps } = this;\n      if (measuredVolume <= 0) return currentSteps;\n      return Math.round((targetVolume / measuredVolume) * currentSteps);\n    },\n  },\n  mounted() {\n    // Request current calibration value on page load\n    this.sendUpdate(\"calibration/get\", {});\n  },\n  watch: {\n    msg: {\n      handler(newMsg) {\n        const topic = newMsg?.topic;\n        const payload = newMsg?.payload || {};\n        if (topic === \"status/pump\" && payload.status === \"Done\") {\n          this.pumpRunning = false;\n          this.pumpDone = true;\n        }\n        // Update currentSteps when we receive the calibration value\n        if (topic === \"calibration/current\" && payload.pump_steps_per_ml) {\n          this.currentSteps = payload.pump_steps_per_ml;\n        }\n      },\n      deep: true,\n    },\n  },\n  methods: {\n    sendUpdate(topic, extra = {}) {\n      if (typeof this.send === \"function\") {\n        this.send({ topic, payload: { ...extra } });\n      }\n    },\n    runTransferTest() {\n      this.pumpDone = false;\n      this.pumpRunning = true;\n      this.sendUpdate(\"actuator/pump\", {\n        action: \"move\",\n        direction: \"FORWARD\",\n        volume: this.targetVolume,\n        flowrate: 1,\n      });\n    },\n    stopPump() {\n      this.sendUpdate(\"actuator/pump\", { action: \"stop\" });\n      this.pumpRunning = false;\n    },\n    validateCalibration() {\n      const steps = Math.round(this.suggestedSteps);\n      this.sendUpdate(\"calibration/save\", {\n        calibration_nb_step: steps,\n      });\n    },\n  },\n};\n</script>\n<style>\n\n.highlight input {\n  background-color: #e3f2fd !important;\n  font-weight: 600;\n}\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -6072,11 +6072,16 @@
                 "t": "eq",
                 "v": "calibration/save",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "calibration/get",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
+        "outputs": 3,
         "x": 590,
         "y": 140,
         "wires": [
@@ -6085,6 +6090,9 @@
             ],
             [
                 "486bc5c0891a3a15"
+            ],
+            [
+                "pump_calibration_get_file"
             ]
         ]
     },
@@ -6109,11 +6117,69 @@
         ]
     },
     {
+        "id": "pump_calibration_get_file",
+        "type": "file in",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Read hardware.json",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 800,
+        "y": 280,
+        "wires": [
+            ["pump_calibration_send_current"]
+        ]
+    },
+    {
+        "id": "pump_calibration_send_current",
+        "type": "function",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Send current calibration",
+        "func": "var config = {};\ntry {\n    config = JSON.parse(msg.payload);\n} catch (e) {\n    config = { pump_steps_per_ml: 507 };\n}\nmsg.topic = \"calibration/current\";\nmsg.payload = { pump_steps_per_ml: config.pump_steps_per_ml || 507 };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 280,
+        "wires": [
+            ["1bd39bfcfab012fe"]
+        ]
+    },
+    {
+        "id": "pump_test_inject",
+        "type": "inject",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Test pump calibration",
+        "props": [
+            {"p": "topic", "vt": "str"},
+            {"p": "payload"}
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "calibration/save",
+        "payload": "{\"calibration_nb_step\": 1234}",
+        "payloadType": "json",
+        "x": 780,
+        "y": 240,
+        "wires": [
+            ["486bc5c0891a3a15"]
+        ]
+    },
+    {
         "id": "486bc5c0891a3a15",
         "type": "function",
         "z": "d5b2c64b84f8ed4f",
         "name": "set calibration_pump",
-        "func": "if (msg.topic) {\n    global.set(\"calibration_nb_step\", msg.payload.calibration_nb_step);\n}\nreturn msg;\n",
+        "func": "if (msg.topic) {\n    global.set(\"calibration_nb_step\", msg.payload.calibration_nb_step);\n    // Store the new value for merging\n    msg.new_pump_steps = msg.payload.calibration_nb_step;\n}\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -6123,7 +6189,96 @@
         "x": 1000,
         "y": 180,
         "wires": [
-            []
+            ["pump_calibration_read_file"]
+        ]
+    },
+    {
+        "id": "pump_calibration_read_file",
+        "type": "file in",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Read hardware.json",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": true,
+        "x": 1260,
+        "y": 180,
+        "wires": [
+            ["pump_calibration_merge"]
+        ]
+    },
+    {
+        "id": "pump_calibration_merge",
+        "type": "function",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Merge pump_steps_per_ml",
+        "func": "// Parse existing config\nvar config = {};\ntry {\n    config = JSON.parse(msg.payload);\n} catch (e) {\n    config = {};\n}\n\n// Update pump_steps_per_ml\nconfig.pump_steps_per_ml = msg.new_pump_steps;\n\n// Store in global for other uses\nglobal.set(\"hardware_conf\", config);\n\n// Prepare for file write\nmsg.payload = JSON.stringify(config, null, 2);\nmsg.pump_steps = msg.new_pump_steps;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 180,
+        "wires": [
+            ["pump_calibration_write_file"]
+        ]
+    },
+    {
+        "id": "pump_calibration_write_file",
+        "type": "file",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Write hardware.json",
+        "filename": "/home/pi/PlanktoScope/hardware.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1740,
+        "y": 180,
+        "wires": [
+            ["pump_calibration_format_mqtt"]
+        ]
+    },
+    {
+        "id": "pump_calibration_mqtt_out",
+        "type": "mqtt out",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Publish config/pump",
+        "topic": "config/pump",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1960,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "pump_calibration_format_mqtt",
+        "type": "function",
+        "z": "d5b2c64b84f8ed4f",
+        "name": "Format MQTT payload",
+        "func": "msg.payload = { pump_steps_per_ml: msg.pump_steps };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1740,
+        "y": 240,
+        "wires": [
+            ["pump_calibration_mqtt_out"]
         ]
     },
     {

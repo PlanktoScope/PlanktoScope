@@ -45,6 +45,8 @@ async def start() -> None:
         pump_steps_per_ml = hardware_config.get("pump_steps_per_ml", pump_steps_per_ml)
         pump_max_speed = hardware_config.get("pump_max_speed", pump_max_speed)
 
+    print(f"[PUMP] Loaded calibration: pump_steps_per_ml = {pump_steps_per_ml}")
+
     pump_stepper.speed = int(pump_max_speed * pump_steps_per_ml * 256 / 60)
 
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
@@ -52,6 +54,7 @@ async def start() -> None:
     async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("actuator/pump"),
+            client.subscribe("config/pump"),
             # publish_status(),
         )
         async for message in client.messages:
@@ -59,11 +62,19 @@ async def start() -> None:
 
 
 async def handle_message(message) -> None:
-    if not message.topic.matches("actuator/pump"):
-        return
-
     payload = json.loads(message.payload.decode("utf-8"))
     pprint(payload)
+
+    # Handle live config updates
+    if message.topic.matches("config/pump"):
+        global pump_steps_per_ml
+        if "pump_steps_per_ml" in payload:
+            pump_steps_per_ml = payload["pump_steps_per_ml"]
+            print(f"Updated pump_steps_per_ml to {pump_steps_per_ml}")
+        return
+
+    if not message.topic.matches("actuator/pump"):
+        return
 
     action = payload.get("action")
     if action is not None:
@@ -123,6 +134,7 @@ async def pump(direction: str, volume: float, flowrate: float = pump_max_speed):
 
     # TMC5160 is configured for 256 microsteps
     nb_steps = round(pump_steps_per_ml * volume * 256)
+    print(f"[PUMP] Pumping: volume={volume}ml, steps_per_ml={pump_steps_per_ml}, total_microsteps={nb_steps}")
     if flowrate > pump_max_speed:
         flowrate = pump_max_speed
     steps_per_second = flowrate * pump_steps_per_ml * 256 / 60
