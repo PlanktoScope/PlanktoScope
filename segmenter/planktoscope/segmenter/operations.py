@@ -216,3 +216,21 @@ def reset_previous_mask():
     """
     global __mask_to_remove
     __mask_to_remove = None
+
+
+def calculate_blur(img):
+    """Calculate blur metric using Laplacian variance.
+
+    Higher values indicate a sharper image, lower values indicate more blur.
+    This metric is useful for assessing focus quality of segmented objects.
+
+    Args:
+        img (cv2 img): Image to calculate blur for (BGR or grayscale)
+
+    Returns:
+        float: Laplacian variance (blur metric)
+    """
+    if img is None or img.size == 0:
+        return 0.0
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
+    return float(cv2.Laplacian(gray, cv2.CV_64F).var())

@@ -462,6 +462,10 @@ class SegmenterProcess(multiprocessing.Process):
             colors = self._get_color_info(obj_image, region.filled_image)
             metadata = self._extract_metadata_from_regionprop(region)
 
+            # Calculate blur metric for this object (Laplacian variance)
+            blur_laplacian = planktoscope.segmenter.operations.calculate_blur(obj_image)
+            metadata["blur_laplacian"] = blur_laplacian
+
             # Second extract to get a bigger image for saving
             obj_image = img[__augment_slice(region.slice, labels.shape, 10)]
             object_id = f"{name}_{i}"
