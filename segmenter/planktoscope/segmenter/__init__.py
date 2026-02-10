@@ -462,6 +462,10 @@ class SegmenterProcess(multiprocessing.Process):
             colors = self._get_color_info(obj_image, region.filled_image)
             metadata = self._extract_metadata_from_regionprop(region)
 
+            # Calculate blur metric for this object (Laplacian variance)
+            blur_laplacian = planktoscope.segmenter.operations.calculate_blur(obj_image)
+            metadata["blur_laplacian"] = blur_laplacian
+
             # Second extract to get a bigger image for saving
             obj_image = img[__augment_slice(region.slice, labels.shape, 10)]
             object_id = f"{name}_{i}"
@@ -603,7 +607,7 @@ class SegmenterProcess(multiprocessing.Process):
 
             self.__working_debug_path = os.path.join(
                 self.__debug_objects_root,
-                self.__working_path.split(self.__img_path)[1].strip(),
+                os.path.relpath(self.__working_path, self.__img_path),
                 name,
             )
 
@@ -818,10 +822,16 @@ class SegmenterProcess(multiprocessing.Process):
         self.__working_path = path
 
         # recreate the subfolder img architecture of this folder inside objects
-        # when we split the working path with the base img path, we get the date/sample architecture back
-        # os.path.relpath("/home/pi/data/img/2020-10-17/5/5","/home/pi/data/img/") => '2020-10-17/5/5'
-
-        sample_path = os.path.relpath(self.__working_path, self.__img_path)
+        # Extract the date/sample/acquisition path structure (e.g., "2020-10-17/5/5")
+        # by finding the "img" marker in the path and taking everything after it.
+        # This is more robust than relpath when data paths don't share a common base.
+        path_parts = self.__working_path.replace("\\", "/").split("/")
+        if "img" in path_parts:
+            img_index = path_parts.index("img")
+            sample_path = os.path.join(*path_parts[img_index + 1:]) if path_parts[img_index + 1:] else ""
+        else:
+            # Fallback to relpath for backwards compatibility
+            sample_path = os.path.relpath(self.__working_path, self.__img_path)
 
         logger.debug(f"base obj path is {self.__objects_root}")
         logger.debug(f"sample path is {sample_path}")
