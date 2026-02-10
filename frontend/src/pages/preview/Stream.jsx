@@ -45,6 +45,12 @@ export default function Stream(props) {
       console.debug("mediamtx track", evt)
       video.srcObject = evt.streams[0]
     },
+    onDataChannel: (evt) => {
+      evt.channel.binaryType = "arraybuffer"
+      evt.channel.onmessage = (evt) => {
+        console.log("data channel message", evt.data)
+      }
+    },
   })
 
   window.addEventListener("beforeunload", () => {

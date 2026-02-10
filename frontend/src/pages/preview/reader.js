@@ -1,4 +1,4 @@
-// https://github.com/bluenviron/mediamtx/blob/v1.15.0/internal/servers/webrtc/reader.js
+// https://github.com/bluenviron/mediamtx/blob/v1.16.1/internal/servers/webrtc/reader.js
 
 'use strict';
 
@@ -13,11 +13,20 @@
  */
 
 /**
+ * @callback OnDataChannel
+ * @param {RTCDataChannelEvent} evt - data channel event.
+ */
+
+/**
  * @typedef Conf
  * @type {object}
  * @property {string} url - absolute URL of the WHEP endpoint.
+ * @property {string} user - username.
+ * @property {string} pass - password.
+ * @property {string} token - token.
  * @property {OnError} onError - called when there's an error.
  * @property {OnTrack} onTrack - called when there's a track available.
+ * @property {OnDataChannel} onDataChannel - called when there's a data channel available.
  */
 
 /** WebRTC/WHEP reader. */
@@ -405,9 +414,23 @@ class MediaMTXWebRTCReader {
       });
   }
 
+  #authHeader() {
+    if (this.conf.user !== undefined && this.conf.user !== '') {
+      const credentials = btoa(`${this.conf.user}:${this.conf.pass}`);
+      return {'Authorization': `Basic ${credentials}`};
+    }
+    if (this.conf.token !== undefined && this.conf.token !== '') {
+      return {'Authorization': `Bearer ${this.conf.token}`};
+    }
+    return {};
+  }
+
   #requestICEServers() {
     return fetch(this.conf.url, {
       method: 'OPTIONS',
+      headers: {
+        ...this.#authHeader(),
+      },
     })
       .then((res) => MediaMTXWebRTCReader.#linkToIceServers(res.headers.get('Link')));
   }
@@ -427,9 +450,13 @@ class MediaMTXWebRTCReader {
     this.pc.addTransceiver('video', { direction });
     this.pc.addTransceiver('audio', { direction });
 
+    // using data channels requires creating a data channel locally
+    this.pc.createDataChannel('');
+
     this.pc.onicecandidate = (evt) => this.#onLocalCandidate(evt);
     this.pc.onconnectionstatechange = () => this.#onConnectionState();
     this.pc.ontrack = (evt) => this.#onTrack(evt);
+    this.pc.ondatachannel = (evt) => this.#onDataChannel(evt);
 
     return this.pc.createOffer()
       .then((offer) => {
@@ -448,7 +475,10 @@ class MediaMTXWebRTCReader {
 
     return fetch(this.conf.url, {
       method: 'POST',
-      headers: {'Content-Type': 'application/sdp'},
+      headers: {
+        ...this.#authHeader(),
+        'Content-Type': 'application/sdp',
+      },
       body: offer,
     })
       .then((res) => {
@@ -547,6 +577,12 @@ class MediaMTXWebRTCReader {
   #onTrack(evt) {
     if (this.conf.onTrack !== undefined) {
       this.conf.onTrack(evt);
+    }
+  }
+
+  #onDataChannel(evt) {
+    if (this.conf.onDataChannel !== undefined) {
+      this.conf.onDataChannel(evt);
     }
   }
 }
