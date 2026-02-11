@@ -26,10 +26,10 @@ if get_platform() == Platform.VC4:
 else:
     preview_size = (1920, 1440)
 
-# Refer to https://picamera.readthedocs.io/en/release-1.13/fov.html#sensor-gain for
-# details on how ISO values correspond to image gains with the Pi Camera v2 Module,
-# and refer to https://forums.raspberrypi.com/viewtopic.php?t=282760 for details on ISO
-# vs. image gain calibration for the Pi HQ Camera Module:
+# This constant is a calibration factor for the Pi HQ camera.
+# On the HQ module, “ISO 100” corresponds to an overall gain of ~2.3125 (analogue × digital),
+# so we scale gain → ISO-like values with ISO ≈ overall_gain * (100/2.3125).
+# This keeps our UI/inputs consistent with the HQ camera’s tuning.
 ISO_CALIBRATION = 100 / 2.3125
 
 
