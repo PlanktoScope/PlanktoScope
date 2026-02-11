@@ -4,7 +4,8 @@ import signal
 import sys
 from pprint import pprint
 
-import aiomqtt  # type: ignore
+import aiofiles
+import aiomqtt
 
 import helpers
 
@@ -12,12 +13,30 @@ client = None
 loop = asyncio.new_event_loop()
 bubbler = None
 
+# ============== ADJUST THESE VALUES ==============
+#These can probably be improved, but it works nicely around 2 bubbles a second.
+RAMP_VALUES = [0.275, 0.265, 0.265, 0.275]  # Current levels to ramp through
+RAMP_STEP_TIME = 0.1  # Seconds at each level
+PAUSE_TIME = 0.2  # Seconds to pause (off) between cycles
+# =================================================
+
+DEFAULT_INTENSITY = 0.265
+bubbler_intensity = DEFAULT_INTENSITY
+ramp_task = None
+
 
 async def start() -> None:
-    # There is no GPIO bubbler on PlanktoScope HAT < 3.3
-    # only USB powered bubbler
+    global bubbler_intensity
+
     if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
+
+    try:
+        async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
+            hardware_config = json.loads(await file.read())
+            bubbler_intensity = hardware_config.get("bubbler_intensity", DEFAULT_INTENSITY)
+    except FileNotFoundError:
+        pass
 
     global bubbler
     import MCP4725 as bubbler
@@ -25,71 +44,93 @@ async def start() -> None:
     bubbler.init(address=0x60)
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
-    task_group = asyncio.TaskGroup()
-    async with client, task_group:
-        _ = await asyncio.gather(
-            client.subscribe("actuator/bubbler"),
-            publish_status(),
-        )
+
+    async with client:
+        await client.subscribe("actuator/bubbler")
+        await publish_status()
+
         async for message in client.messages:
-            task_group.create_task(handle_message(message))
+            asyncio.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
     if not message.topic.matches("actuator/bubbler"):
         return
 
-    payload = json.loads(message.payload.decode("utf-8"))
-    pprint(payload)
+    try:
+        payload = json.loads(message.payload.decode("utf-8"))
+        pprint(payload)
+        action = payload.get("action")
+        if action is not None:
+            await handle_action(action, payload)
 
-    action = payload.get("action")
-    if action is not None:
-        await handle_action(action, payload)
-
-    if client is not None:
-        await helpers.mqtt_reply(client, message)
+        if client is not None:
+            await helpers.mqtt_reply(client, message)
+    except Exception as e:
+        print(f"Error handling message: {e}")
 
 
 async def handle_action(action: str, payload) -> None:
     assert bubbler is not None
-
     if action == "on":
         await on(payload)
     elif action == "off":
         await off()
-    # elif action == "settings":
-    #     await handle_settings(payload)
-    elif action == "save":
-        if hasattr(bubbler, "save"):
-            bubbler.save()
-
-
-# async def handle_settings(payload) -> None:
-#     assert bubbler is not None
-
-#     if "current" in payload["settings"]:
-#         # {"settings":{"current":"20"}}
-#         current = payload["settings"]["current"]
-#         if bubbler.is_on():
-#             return
-#         bubbler.set_current(current)
 
 
 async def on(payload) -> None:
+    global ramp_task
     assert bubbler is not None
-    value = payload.get("value", 1)
+
+    if ramp_task:
+        ramp_task.cancel()
+        try:
+            await ramp_task
+        except asyncio.CancelledError:
+            pass
+        ramp_task = None
+
+    value = payload.get("value", bubbler_intensity)
     assert 0.0 <= value <= 1.0
 
     if value == 0:
         await off()
         return
 
-    bubbler.set_value(value)
-
+    # Start ramp mode
+    ramp_task = asyncio.create_task(run_ramp())
     await publish_status()
 
 
+async def run_ramp():
+    """Ramp up through values at the top, ramp down, pause, repeat."""
+    assert bubbler is not None
+    try:
+        while True:
+            # Ramp up
+            for v in RAMP_VALUES:
+                bubbler.set_value(v)
+                await asyncio.sleep(RAMP_STEP_TIME)
+            # Ramp down
+            for v in reversed(RAMP_VALUES[:-1]):
+                bubbler.set_value(v)
+                await asyncio.sleep(RAMP_STEP_TIME)
+            # Off and pause
+            bubbler.set_value(0)
+            await asyncio.sleep(PAUSE_TIME)
+    except asyncio.CancelledError:
+        pass
+
+
 async def off() -> None:
+    global ramp_task
+    if ramp_task:
+        ramp_task.cancel()
+        try:
+            await ramp_task
+        except asyncio.CancelledError:
+            pass
+        ramp_task = None
     assert bubbler is not None
     bubbler.off()
     await publish_status()
@@ -98,20 +139,15 @@ async def off() -> None:
 async def publish_status() -> None:
     assert bubbler is not None
     assert client is not None
-
     value = bubbler.get_value()
-
-    payload = {
-        "status": "Off" if bubbler.is_off() else "On",
-        "value": value,
-    }
+    payload = {"status": "Off" if bubbler.is_off() else "On", "value": value}
     await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
-    assert bubbler is not None
     await off()
-    bubbler.deinit()
+    if bubbler:
+        bubbler.deinit()
     loop.stop()
 
 
