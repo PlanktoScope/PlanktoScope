@@ -367,7 +367,6 @@ The `update_config` command sets/changes the metadata which will be saved with t
     "acq_maximum_mesh": 300,
     "acq_min_esd": 300,
     "acq_max_esd": 300,
-    "acq_camera_name": "HQ Camera",
     "acq_nb_frame": 500,
     "acq_local_datetime": "2024-05-15T09:00:00Z",
     "acq_caamera_iso": 400,
@@ -426,7 +425,6 @@ Acquisition information:
 | `acq_maximum_mesh`         | Maximum mesh size.                     | float   |
 | `acq_min_esd`              | Minimum equivalent spherical diameter. | float   |
 | `acq_max_esd`              | Maximum equivalent spherical diameter. | float   |
-| `acq_camera_name`          | Camera name.                           | string  |
 | `acq_nb_frame`             | Number of frames captured.             | integer |
 | `acq_local_datetime`       | Local date and time of acquisition.    | string  |
 | `acq_camera_resolution`    | Camera resolution.                     | string  |

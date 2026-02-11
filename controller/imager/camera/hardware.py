@@ -26,6 +26,12 @@ if get_platform() == Platform.VC4:
 else:
     preview_size = (1920, 1440)
 
+# This constant is a calibration factor for the Pi HQ camera.
+# On the HQ module, “ISO 100” corresponds to an overall gain of ~2.3125 (analogue × digital),
+# so we scale gain → ISO-like values with ISO ≈ overall_gain * (100/2.3125).
+# This keeps our UI/inputs consistent with the HQ camera’s tuning.
+ISO_CALIBRATION = 100 / 2.3125
+
 
 class StreamConfig(typing.NamedTuple):
     """Values for stream configuration performed exactly once, before the camera starts.
@@ -364,48 +370,6 @@ class PiCamera:
             for key, value in updates.as_picamera2_options().items():
                 self._camera.options[key] = value
             self._cached_settings = new_values
-
-    @property
-    def sensor_name(self) -> str:
-        """Name of the camera sensor.
-
-        Returns:
-            Usually one of: `IMX219` (RPi Camera Module 2, used in PlanktoScope hardware v2.1)
-            or `IMX477` (RPi High Quality Camera, used in PlanktoScope hardware v2.3+).
-
-        Raises:
-            RuntimeError: the method was called before the camera was started, or after it was
-              closed.
-        """
-        if self._camera is None:
-            raise RuntimeError("The camera has not been started yet!")
-
-        model = self._camera.camera_properties["Model"]
-        assert isinstance(model, str)
-        return model.upper()
-
-    @property
-    def camera_name(self) -> str:
-        """Name of the camera model.
-
-        Returns:
-            "Camera v2.1" for an IMX219 sensor, "HQ Camera" for an IMX477 sensor, or
-            "Not recognized" otherwise.
-
-        Raises:
-            RuntimeError: the method was called before the camera was started, or after it was
-              closed.
-        """
-        if self._camera is None:
-            raise RuntimeError("The camera has not been started yet!")
-
-        camera_names = {
-            "IMX219": "Camera v2.1",
-            # Note(ethanjli): Currently the PlanktoScope GUI requires this to be "HQ Camera" rather
-            # than "Camera HQ".
-            "IMX477": "HQ Camera",
-        }
-        return camera_names.get(self.sensor_name, "Not recognized")
 
     def capture_file(self, path: str) -> None:
         """Capture an image from the main stream (in full resolution) and save it as a file.
