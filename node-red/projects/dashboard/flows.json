@@ -456,7 +456,7 @@
             "61ebceb724041fb2"
         ],
         "x": 994,
-        "y": 499,
+        "y": 359,
         "w": 412,
         "h": 142
     },
@@ -479,7 +479,7 @@
             "7d1f9414be49d7c3"
         ],
         "x": 994,
-        "y": 659,
+        "y": 519,
         "w": 412,
         "h": 142
     },
@@ -526,9 +526,36 @@
             "750a1061c84bdae2"
         ],
         "x": 994,
-        "y": 819,
+        "y": 679,
         "w": 412,
         "h": 142
+    },
+    {
+        "id": "c6877e9b567db048",
+        "type": "group",
+        "z": "a02961610bc3982a",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "c5c1b3e7f9dfee94",
+            "2def2270b41684cb",
+            "bd3820bd23369a0a",
+            "b3e4ede4ee78fe9b",
+            "af7ca44370e3dfb2",
+            "5db092868caba5a8",
+            "57faa9ea2fbdc929"
+        ],
+        "x": 834,
+        "y": 919,
+        "w": 612,
+        "h": 222
     },
     {
         "id": "e6ae26617c24c3ea",
@@ -6690,7 +6717,7 @@
         "g": "dc792afbab434446",
         "name": "",
         "x": 1120,
-        "y": 600,
+        "y": 460,
         "wires": [
             []
         ]
@@ -6708,7 +6735,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1090,
-        "y": 540,
+        "y": 400,
         "wires": [
             [
                 "61ebceb724041fb2"
@@ -6723,7 +6750,7 @@
         "name": "acquisitions",
         "info": "",
         "x": 1310,
-        "y": 540,
+        "y": 400,
         "wires": []
     },
     {
@@ -6739,7 +6766,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1090,
-        "y": 700,
+        "y": 560,
         "wires": [
             [
                 "7d1f9414be49d7c3"
@@ -6754,7 +6781,7 @@
         "name": "segmentations",
         "info": "",
         "x": 1300,
-        "y": 700,
+        "y": 560,
         "wires": []
     },
     {
@@ -6764,7 +6791,7 @@
         "g": "dc307bb5d26c60f4",
         "name": "",
         "x": 1130,
-        "y": 760,
+        "y": 620,
         "wires": [
             []
         ]
@@ -6827,7 +6854,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 1090,
-        "y": 860,
+        "y": 720,
         "wires": [
             [
                 "59ec9623add53a47"
@@ -6841,7 +6868,7 @@
         "g": "91f8b76bf61fc59c",
         "name": "",
         "x": 1100,
-        "y": 920,
+        "y": 780,
         "wires": [
             []
         ]
@@ -6854,7 +6881,7 @@
         "name": "camera",
         "info": "",
         "x": 1330,
-        "y": 860,
+        "y": 720,
         "wires": []
     },
     {
@@ -6873,5 +6900,124 @@
         "x": 470,
         "y": 1100,
         "wires": []
+    },
+    {
+        "id": "bd3820bd23369a0a",
+        "type": "get pump configuration",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "",
+        "x": 1130,
+        "y": 1040,
+        "wires": [
+            [
+                "b3e4ede4ee78fe9b"
+            ]
+        ]
+    },
+    {
+        "id": "c5c1b3e7f9dfee94",
+        "type": "inject",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 930,
+        "y": 1040,
+        "wires": [
+            [
+                "bd3820bd23369a0a"
+            ]
+        ]
+    },
+    {
+        "id": "2def2270b41684cb",
+        "type": "comment",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "pump",
+        "info": "",
+        "x": 1370,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "b3e4ede4ee78fe9b",
+        "type": "debug",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "af7ca44370e3dfb2",
+        "type": "inject",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "",
+        "props": [
+            {
+                "p": "payload.configuration.pump_steps_per_ml",
+                "v": "3408",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 930,
+        "y": 1100,
+        "wires": [
+            [
+                "57faa9ea2fbdc929"
+            ]
+        ]
+    },
+    {
+        "id": "5db092868caba5a8",
+        "type": "debug",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "57faa9ea2fbdc929",
+        "type": "set pump configuration",
+        "z": "a02961610bc3982a",
+        "g": "c6877e9b567db048",
+        "name": "",
+        "x": 1130,
+        "y": 1100,
+        "wires": [
+            [
+                "5db092868caba5a8"
+            ]
+        ]
     }
 ]
