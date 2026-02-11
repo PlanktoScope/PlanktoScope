@@ -2,15 +2,7 @@
 
 # https://mediamtx.org/docs/usage/webrtc-specific-features#solving-webrtc-connectivity-issues
 webrtcAdditionalHosts:
-  [
-    localhost,
-    planktoscope.local,
-    pkscope.local,
-    192.168.4.1,
-    raspberrypi,
-    raspberrypi.local,
-    home.pkscope,
-  ]
+  [localhost, planktoscope.local, 192.168.4.1, raspberrypi, raspberrypi.local]
 
 # https://mediamtx.org/docs/usage/decrease-packet-loss
 writeQueueSize: 1024
@@ -27,7 +19,7 @@ webrtcICEServers2:
 
 paths:
   # This is published by controller at rtsp://127.0.0.1:8554/cam
-  # http://pkscope-$planktoscope:8889/cam/
+  # http://planktoscope-sponge-bob:8889/cam/
   # the controler must be started after mediamtx
   cam:
     # https://github.com/bluenviron/mediamtx/pull/5335
