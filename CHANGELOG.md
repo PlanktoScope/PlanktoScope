@@ -52,7 +52,9 @@ e.g.:
 * Hostname `pkscope-sponge-bob-183` -> `planktoscope-sponge-bob`
 * WiFi SSID `pkscope-sponge-bob-183` -> `PlanktoScope sponge-bob`
 
-**Connect to WiFi**
+**Improved networking**
+
+The PlanktoScope access point now uses Wi-Fi 5GHz providing faster and more reliable wireless connection.
 
 The PlanktoScope can now connect to a WiFi access point.
 
