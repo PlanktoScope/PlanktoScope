@@ -3,6 +3,7 @@
 # Automatically detects Raspberry Pi 4 or 5
 # Run as root: sudo ./setup_h264_sysctl.sh
 # Avoids packet loss between picamera2 and MediaMTX which cause corrupted frames
+# https://mediamtx.org/docs/usage/decrease-packet-loss
 
 CONF_FILE="/etc/sysctl.d/99-h264-stream.conf"
 

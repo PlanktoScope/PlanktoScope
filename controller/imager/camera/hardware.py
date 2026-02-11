@@ -318,7 +318,7 @@ class PiCamera:
         # Normally, the encoder of necessity runs at the same frame rate as the camera. By default, every received camera frame
         # gets sent to the encoder. However, you can use the encoder frame_skip_count property to instead receive every nth frame.
         # encoder.frame_skip_count = 2
-        # rtsp://pkscope-$planktoscope:8554/cam/
+        # rtsp://$planktoscope:8554/cam/
         output = outputs.PyavOutput("rtsp://127.0.0.1:8554/cam", format="rtsp")
         self._camera.start_recording(
             encoder=encoder,

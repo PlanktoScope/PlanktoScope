@@ -78,7 +78,7 @@ sudo reboot
 
 To setup the recommended development environment, run the following commands.
 
-Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pkscope-sponge-bob-123`
+Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `planktoscope-sponge-bob`
 
 <details>
     <summary>On your computer</summary>
@@ -132,9 +132,9 @@ nmcli device wifi connect "<SSID>" --ask
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
 
-You can then ssh into it with `ssh://pi@pkscope-example-name-0000`
+You can then ssh into it with `ssh://pi@planktoscope-sponge-bob`
 
-And access the UI with http://pkscope-example-name-0000/
+And access the UI with http://planktoscope-sponge-bob/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
