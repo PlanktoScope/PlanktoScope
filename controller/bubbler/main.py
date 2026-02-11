@@ -14,7 +14,7 @@ loop = asyncio.new_event_loop()
 bubbler = None
 
 # ============== ADJUST THESE VALUES ==============
-#These can probably be improved, but it works nicely around 2 bubbles a second.
+# These can probably be improved, but it works nicely around 2 bubbles a second.
 RAMP_VALUES = [0.275, 0.265, 0.265, 0.275]  # Current levels to ramp through
 RAMP_STEP_TIME = 0.1  # Seconds at each level
 PAUSE_TIME = 0.2  # Seconds to pause (off) between cycles
