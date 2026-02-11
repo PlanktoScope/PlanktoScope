@@ -228,14 +228,17 @@ def calculate_blur(img):
         img (cv2 img): Image to calculate blur for (BGR or grayscale)
 
     Returns:
-        float: Laplacian variance (blur metric)
+        float: Laplacian variance (blur metric), or None if calculation failed
     """
     try:
         if img is None or img.size == 0:
-            return 0.0
+            return None
+        # Ensure image has at least 2 dimensions (height, width); 1D arrays are invalid
         if len(img.shape) < 2:
-            return 0.0
+            return None
+        # Laplacian operates on single-channel images; convert BGR to grayscale if needed
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
         return float(cv2.Laplacian(gray, cv2.CV_64F).var())
-    except Exception:
-        return 0.0
+    except Exception as e:
+        logger.warning(f"Failed to calculate blur: {e}")
+        return None
