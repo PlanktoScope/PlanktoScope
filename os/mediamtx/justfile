@@ -1,11 +1,12 @@
 setup:
     sudo ./setup_h264_sysctl.sh
-    wget https://github.com/bluenviron/mediamtx/releases/download/v1.16.0/mediamtx_v1.16.0_linux_arm64.tar.gz -P /tmp
-    cd /tmp && tar -xf /tmp/mediamtx_v1.16.0_linux_arm64.tar.gz
+    wget https://github.com/bluenviron/mediamtx/releases/download/v1.16.1/mediamtx_v1.16.1_linux_arm64.tar.gz -P /tmp
+    cd /tmp && tar -xf /tmp/mediamtx_v1.16.1_linux_arm64.tar.gz
     -sudo systemctl stop mediamtx
     sudo cp /tmp/mediamtx /usr/local/bin/mediamtx
     sudo cp mediamtx.service /etc/systemd/system/
     sudo cp mediamtx.yml /usr/local/etc/
+    sudo sed -i "s/raspberrypi/$(hostname)/g" /usr/local/etc/mediamtx.yml
     sudo systemctl reenable mediamtx
     sudo systemctl restart mediamtx
 
@@ -14,4 +15,4 @@ test:
 
 dev:
     -sudo systemctl stop mediamtx
-    mediamtx mediamtx.yml
+    mediamtx /usr/local/etc/mediamtx.yml

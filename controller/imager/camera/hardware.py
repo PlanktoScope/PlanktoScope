@@ -1,5 +1,6 @@
 """hardware provides basic I/O abstractions for camera hardware."""
 
+import os
 import typing
 
 import loguru
@@ -393,6 +394,11 @@ class PiCamera:
         loguru.logger.debug(
             f"Image metadata: {request.get_metadata()}"  # pylint: disable=no-member
         )
+
+        # Use fsync to ensure write completes
+        with open(path, "ab") as f:
+            os.fsync(f.fileno())
+
         request.release()  # pylint: disable=no-member
 
     def close(self) -> None:
