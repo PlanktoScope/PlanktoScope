@@ -2792,7 +2792,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 75%; /* 4:3 Aspect Ratio */\n        overflow: hidden;\n        border-radius: 8px;\n        background:white;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        border: none;\n        margin: 0;\n    }\n</style>",
+        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Portrait orientation - rotated to match physical flow cell\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 133.33%;\n        margin: 0 auto;\n        overflow: hidden;\n        border-radius: 8px;\n        background: black;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        width: 133.33%;\n        height: 75%;\n        transform: translate(-50%, -50%) rotate(-90deg);\n        border: none;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -2954,11 +2954,21 @@
                 "t": "eq",
                 "v": "actuator/bubbler",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "imager/image",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "autofocus",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 6,
+        "outputs": 8,
         "x": 550,
         "y": 160,
         "wires": [
@@ -2981,6 +2991,12 @@
             ],
             [
                 "ea8e81951587e46d"
+            ],
+            [
+                "ea8e81951587e46d"
+            ],
+            [
+                "ea8e81951587e46d"
             ]
         ]
     },
@@ -2996,7 +3012,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n  <v-container fluid class=\"pa-0\">\n    <v-card class=\"mb-3 pa-3 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <div class=\"d-flex align-center\">\n        <div class=\"text-subtitle-1 font-weight-bold mr-16\">Light</div>\n        <div class=\"d-flex flex-grow-1 border rounded\" style=\"overflow: hidden;\">\n          <v-btn\n            flat\n            class=\"flex-grow-1 rounded-0\"\n            :color=\"led_state === 'off' ? 'grey-lighten-2' : 'white'\"\n            @click=\"on_led_toggle('off')\"\n          >\n            Off\n          </v-btn>\n          <v-divider vertical></v-divider>\n          <v-btn\n            flat\n            class=\"flex-grow-1 rounded-0\"\n            :color=\"led_state === 'on' ? 'primary' : 'white'\"\n            @click=\"on_led_toggle('on')\"\n          >\n            On\n          </v-btn>\n        </div>\n      </div>\n    </v-card>\n\n    <v-card class=\"mb-3 pa-4 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n        <div class=\"d-flex justify-space-between align-center mb-2\">\n          <div class=\"text-subtitle-1 font-weight-bold\">Focus</div>\n        </div>\n        <v-row align=\"center\" dense>\n          <v-col cols=\"3\" sm=\"2\">\n            <v-label class=\"text-body-2\">Distance</v-label>\n          </v-col>\n          <v-col cols=\"5\" sm=\"6\">\n            <v-slider v-model.number=\"focus_distance\" :max=\"maxFocus\" :min=\"minFocus\" :step=\"25\" hide-details\n              :thumb-size=\"15\" :track-size=\"3\" />\n          </v-col>\n          <v-col cols=\"4\">\n            <v-text-field v-model.number=\"focus_distance\" type=\"number\" variant=\"outlined\" hide-details suffix=\"μm\" :step=\"25\" :min=\"minFocus\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('focus_speed')\" />\n          </v-col>\n        </v-row>\n\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"focus_distance_preset\" min=\"0\" divided shaped color=\"primary\"\n              class=\"d-flex justify-space-between\" mandatory @update:model-value=\"on_focus_distance_toggle\">\n              <v-btn v-for=\"value in focus_distance_presets\" :key=\"'distance-' + value\" :value=\"value\"\n                class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"focus_direction\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_focus_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'UP'\">Up</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\" color=\"grey-lighten-2\" variant=\"flat\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">Down</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <v-card class=\"mb-3 pa-4 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n        <div class=\"d-flex justify-space-between align-center mb-2\">\n          <div class=\"text-subtitle-1 font-weight-bold\">Pump</div>\n        </div>\n        <v-row align=\"center\" dense>\n          <v-col cols=\"3\" sm=\"2\"><v-label class=\"text-body-2\">Flowrate</v-label></v-col>\n          <v-col cols=\"5\" sm=\"6\"><v-slider v-model.number=\"pump_flowrate\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.1\" hide-details :thumb-size=\"15\" :track-size=\"3\" /></v-col>\n          <v-col cols=\"4\"><v-text-field v-model.number=\"pump_flowrate\" type=\"number\" variant=\"outlined\" :step=\"0.1\" hide-details suffix=\"ml/min\" @click:append=\"showInfo('pump_flowrate')\" /></v-col>\n        </v-row>\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_flowrate_preset\" class=\"d-flex justify-space-between\" color=\"primary\" variant=\"outlined\" divided shaped mandatory @update:model-value=\"onFlowrateToggle\">\n              <v-btn v-for=\"value in pump_flowrate_presets\" :key=\"'flowrate-' + value\" :value=\"value\" class=\"flex-grow-1\">{{ value }}</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n        <v-divider class=\"my-3\"></v-divider>\n        <v-row align=\"center\" dense>\n          <v-col cols=\"3\" sm=\"2\"><v-label class=\"text-body-2\">Volume</v-label></v-col>\n          <v-col cols=\"5\" sm=\"6\"><v-slider v-model.number=\"pump_manual_volume\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.1\" hide-details :thumb-size=\"15\" :track-size=\"3\" /></v-col>\n          <v-col cols=\"4\"><v-text-field v-model.number=\"pump_manual_volume\" type=\"number\" variant=\"outlined\" :step=\"0.1\" hide-details suffix=\"ml\" @click:append=\"showInfo('pump_manual_volume')\" /></v-col>\n        </v-row>\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_volume_preset\" class=\"d-flex justify-space-between\" variant=\"outlined\" color=\"primary\" divided shaped mandatory @update:model-value=\"onVolumeToggle\">\n              <v-btn v-for=\"value in pump_volume_presets\" :key=\"'volume-' + value\" :value=\"value\" class=\"flex-grow-1\">{{ value }}</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n        <v-row dense class=\"mt-2\">\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"pump_direction\" color=\"primary\" mandatory divided shaped class=\"d-flex justify-space-between\" @update:model-value=\"on_pump_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\" color=\"grey-lighten-2\" variant=\"flat\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <v-card class=\"mb-3 pa-3 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <div class=\"d-flex align-center\">\n        <div class=\"text-subtitle-1 font-weight-bold mr-16\">Bubbler</div>\n        <div class=\"d-flex flex-grow-1 border rounded\" style=\"overflow: hidden;\">\n          <v-btn flat class=\"flex-grow-1 rounded-0\" :color=\"bubbler_state === 'off' ? 'grey-lighten-2' : 'white'\"\n            @click=\"on_bubbler_toggle('off')\">\n            Off\n          </v-btn>\n          <v-divider vertical></v-divider>\n          <v-btn flat class=\"flex-grow-1 rounded-0\" :color=\"bubbler_state === 'on' ? 'primary' : 'white'\"\n            @click=\"on_bubbler_toggle('on')\">\n            On\n          </v-btn>\n        </div>\n      </div>\n    </v-card>\n\n    <v-card class=\"pa-2 rounded-lg border\" variant=\"tonal\" color=\"grey-darken-3\">\n      <v-list-item lines=\"two\" href=\"calibration\" class=\"pa-2\">\n        <template v-slot:prepend><v-icon size=\"large\">mdi-tune</v-icon></template>\n        <v-list-item-title class=\"text-subtitle-1 font-weight-bold\">Calibration</v-list-item-title>\n        <v-list-item-subtitle class=\"text-caption\">Modify camera and optical parameters.</v-list-item-subtitle>\n        <template v-slot:append><v-icon size=\"small\">mdi-chevron-right</v-icon></template>\n      </v-list-item>\n    </v-card>\n\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card class=\"pa-4\">\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions><v-spacer></v-spacer><v-btn color=\"primary\" variant=\"text\" @click=\"infoDialog = false\">Close</v-btn></v-card-actions>\n      </v-card>\n    </v-dialog>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: { msg: { type: Object, default: () => ({}) } },\n\n  data() {\n    return {\n      minFlow: 0.02, maxFlow: 30, pump_flowrate: 0, pump_manual_volume: 0, pump_flowrate_presets: [0.02, 0.2, 2, 20], pump_volume_presets: [0.004, 0.2, 2, 20], pump_flowrate_preset: null, pump_volume_preset: null, pump_direction: \"stop\",\n      minFocus: 25, maxFocus: 5000, focus_distance: 25, focus_distance_presets: [25, 150, 500, 5000], focus_distance_preset: null, focus_direction: \"stop\",\n      led_state: \"off\", bubbler_state: \"off\",\n      infoDialog: false, infoContent: { title: \"\", unit: \"\", description: \"\" },\n    };\n  },\n\n  created() { this.hydrateFromMsg(this.msg); },\n\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n    pump_flowrate(newVal) { this.pump_flowrate_preset = this.pump_flowrate_presets.find((v) => v === newVal) ?? null; this.sendPumpParams(); },\n    pump_manual_volume(newVal) { this.pump_volume_preset = this.pump_volume_presets.find((v) => v === newVal) ?? null; this.sendPumpParams(); },\n    focus_distance(newVal) { this.focus_distance_preset = this.focus_distance_presets.find((v) => v === newVal) ?? null; this.sendFocusParams(); },\n  },\n\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      if (m.topic === \"status/pump\" && p.status === \"Done\") this.pump_direction = \"stop\";\n      if (m.topic === \"status/focus\" && p.status === \"Done\") this.focus_direction = \"stop\";\n      if (\"led_status\" in p || (m.topic === \"status/light\" && \"status\" in p)) {\n        const s = String(p.led_status || p.status).toLowerCase().trim();\n        this.led_state = [\"on\", \"true\", \"1\"].includes(s) ? \"on\" : \"off\";\n      }\n      if (m.topic === \"status/actuator\" && \"action\" in p) {\n        this.bubbler_state = p.action === \"on\" ? \"on\" : \"off\";\n      }\n      this.pump_flowrate = p.flowrate ?? p.pump_flowrate ?? this.pump_flowrate;\n      this.pump_manual_volume = p.volume ?? p.pump_manual_volume ?? this.pump_manual_volume;\n      if ([\"backward\", \"stop\", \"forward\"].includes(p.command)) this.pump_direction = p.command;\n      if (typeof p.focus_distance === \"number\") this.focus_distance = p.focus_distance;\n      if ([\"UP\", \"stop\", \"DOWN\"].includes(p.command)) this.focus_direction = p.command;\n    },\n\n    onFlowrateToggle(val) { if (val != null) this.pump_flowrate = val; },\n    onVolumeToggle(val) { if (val != null) this.pump_manual_volume = val; },\n    sendPumpParams() { this.send({ topic: \"set_global/pump\", payload: { pump_flowrate: Number(this.pump_flowrate) || 0, pump_manual_volume: Number(this.pump_manual_volume) || 0 } }); },\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n      if (val === \"stop\") { this.send({ topic: \"actuator/pump\", payload: { action: \"stop\" } }); }\n      else {\n        const dir = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({ topic: \"actuator/pump\", payload: { action: \"move\", direction: dir, volume: Number(this.pump_manual_volume) || 0, flowrate: Number(this.pump_flowrate) || 0 } });\n      }\n    },\n\n    on_focus_distance_toggle(val) { if (val != null) this.focus_distance = val; },\n    speedFromDistance(d) {\n      const x1 = 100, y1 = 1000, x2 = 1000, y2 = 2000, x3 = 5000, y3 = 5000;\n      if (d <= x1) return y1; if (d >= x3) return y3;\n      if (d <= x2) return Math.round(y1 + ((y2 - y1) / (x2 - x1)) * (d - x1));\n      return Math.round(y2 + ((y3 - y2) / (x3 - x2)) * (d - x2));\n    },\n    sendFocusParams() {\n      const d = Number(this.focus_distance) || 25;\n      this.send({ topic: \"set_global/focus\", payload: { focus_distance: d, focus_speed: this.speedFromDistance(d) } });\n    },\n    on_focus_direction_change(val) {\n      this.focus_direction = val;\n      if (val === \"stop\") { this.send({ topic: \"actuator/focus\", payload: { action: \"stop\" } }); }\n      else {\n        const d = Number(this.focus_distance) || 25;\n        this.send({ topic: \"actuator/focus\", payload: { action: \"move\", direction: val, distance: d / 1000, speed: this.speedFromDistance(d) / 1000 } });\n      }\n    },\n\n    on_led_toggle(val) {\n      this.led_state = val;\n      this.send({ topic: \"light\", payload: { action: val } });\n    },\n\n    on_bubbler_toggle(val) {\n      this.bubbler_state = val;\n      const payload = { action: val };\n      if (val === \"on\") payload.value = 0.28;\n      this.send({ topic: \"actuator/bubbler\", payload: payload });\n    },\n\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: { title: \"Flowrate (ml/min)\", unit: \"ml/min\", description: \"Flowrate of the pump\" },\n        pump_manual_volume: { title: \"Volume (ml)\", unit: \"ml\", description: \"Volume displaced\" },\n        focus_speed: { title: \"Focus Speed (μm/s)\", unit: \"μm/s\", description: \"Speed of focus\" },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n@media (max-width: 1024px) {\n  .v-text-field input { font-size: 1.3rem !important; }\n  .v-slider { height: 2px !important; }\n}\n.v-card-text { padding: 0 !important; }\n.v-card { border: none; }\n.v-container { background: #eef3ff; }\n.border { border: 1px solid #cccccc !important; }\n.v-field__input { padding: 10px 10px 0px 15px;\n}\n</style>",
+        "format": "<template>\n  <v-container fluid class=\"pa-0\">\n    <v-card class=\"mb-3 pa-3 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <div class=\"d-flex align-center\">\n        <div class=\"text-subtitle-1 font-weight-bold mr-16\">Light</div>\n        <div class=\"d-flex flex-grow-1 border rounded\" style=\"overflow: hidden;\">\n          <v-btn\n            flat\n            class=\"flex-grow-1 rounded-0\"\n            :color=\"led_state === 'off' ? 'grey-lighten-2' : 'white'\"\n            @click=\"on_led_toggle('off')\"\n          >\n            Off\n          </v-btn>\n          <v-divider vertical></v-divider>\n          <v-btn\n            flat\n            class=\"flex-grow-1 rounded-0\"\n            :color=\"led_state === 'on' ? 'primary' : 'white'\"\n            @click=\"on_led_toggle('on')\"\n          >\n            On\n          </v-btn>\n        </div>\n      </div>\n    </v-card>\n\n    <v-card class=\"mb-3 pa-4 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n        <div class=\"d-flex justify-space-between align-center mb-2\">\n          <div class=\"text-subtitle-1 font-weight-bold\">Focus</div>\n        </div>\n        <v-row align=\"center\" dense>\n          <v-col cols=\"3\" sm=\"2\">\n            <v-label class=\"text-body-2\">Distance</v-label>\n          </v-col>\n          <v-col cols=\"5\" sm=\"6\">\n            <v-slider v-model.number=\"focus_distance\" :max=\"maxFocus\" :min=\"minFocus\" :step=\"25\" hide-details\n              :thumb-size=\"15\" :track-size=\"3\" />\n          </v-col>\n          <v-col cols=\"4\">\n            <v-text-field v-model.number=\"focus_distance\" type=\"number\" variant=\"outlined\" hide-details suffix=\"μm\" :step=\"25\" :min=\"minFocus\"\n              append-icon=\"mdi-information\" @click:append=\"showInfo('focus_speed')\" />\n          </v-col>\n        </v-row>\n\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"focus_distance_preset\" min=\"0\" divided shaped color=\"primary\"\n              class=\"d-flex justify-space-between\" mandatory @update:model-value=\"on_focus_distance_toggle\">\n              <v-btn v-for=\"value in focus_distance_presets\" :key=\"'distance-' + value\" :value=\"value\"\n                class=\"flex-grow-1\">\n                {{ value }}\n              </v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"focus_direction\" color=\"primary\" mandatory divided shaped\n              class=\"d-flex justify-space-between\" @update:model-value=\"on_focus_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'UP'\">Near</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\" color=\"grey-lighten-2\" variant=\"flat\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'DOWN'\">Far</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n        <v-row dense class=\"mt-2\">\n          <v-col cols=\"12\">\n            <v-btn block color=\"primary\" variant=\"outlined\" :loading=\"autofocus_running\" :disabled=\"autofocus_running\" @click=\"startAutofocus\">\n              <v-icon start>mdi-image-auto-adjust</v-icon>\n              {{ autofocus_running ? autofocus_status : 'Autofocus' }}\n            </v-btn>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <v-card class=\"mb-3 pa-4 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <v-card-text>\n        <div class=\"d-flex justify-space-between align-center mb-2\">\n          <div class=\"text-subtitle-1 font-weight-bold\">Pump</div>\n        </div>\n        <v-row align=\"center\" dense>\n          <v-col cols=\"3\" sm=\"2\"><v-label class=\"text-body-2\">Flowrate</v-label></v-col>\n          <v-col cols=\"5\" sm=\"6\"><v-slider v-model.number=\"pump_flowrate\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.1\" hide-details :thumb-size=\"15\" :track-size=\"3\" /></v-col>\n          <v-col cols=\"4\"><v-text-field v-model.number=\"pump_flowrate\" type=\"number\" variant=\"outlined\" :step=\"0.1\" hide-details suffix=\"ml/min\" @click:append=\"showInfo('pump_flowrate')\" /></v-col>\n        </v-row>\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_flowrate_preset\" class=\"d-flex justify-space-between\" color=\"primary\" variant=\"outlined\" divided shaped mandatory @update:model-value=\"onFlowrateToggle\">\n              <v-btn v-for=\"value in pump_flowrate_presets\" :key=\"'flowrate-' + value\" :value=\"value\" class=\"flex-grow-1\">{{ value }}</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n        <v-divider class=\"my-3\"></v-divider>\n        <v-row align=\"center\" dense>\n          <v-col cols=\"3\" sm=\"2\"><v-label class=\"text-body-2\">Volume</v-label></v-col>\n          <v-col cols=\"5\" sm=\"6\"><v-slider v-model.number=\"pump_manual_volume\" :min=\"minFlow\" :max=\"maxFlow\" :step=\"0.1\" hide-details :thumb-size=\"15\" :track-size=\"3\" /></v-col>\n          <v-col cols=\"4\"><v-text-field v-model.number=\"pump_manual_volume\" type=\"number\" variant=\"outlined\" :step=\"0.1\" hide-details suffix=\"ml\" @click:append=\"showInfo('pump_manual_volume')\" /></v-col>\n        </v-row>\n        <v-row dense class=\"mt-1\">\n          <v-col cols=\"12\">\n            <v-btn-toggle v-model=\"pump_volume_preset\" class=\"d-flex justify-space-between\" variant=\"outlined\" color=\"primary\" divided shaped mandatory @update:model-value=\"onVolumeToggle\">\n              <v-btn v-for=\"value in pump_volume_presets\" :key=\"'volume-' + value\" :value=\"value\" class=\"flex-grow-1\">{{ value }}</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n        <v-row dense class=\"mt-2\">\n          <v-col cols=\"12\">\n            <v-btn-toggle variant=\"outlined\" v-model=\"pump_direction\" color=\"primary\" mandatory divided shaped class=\"d-flex justify-space-between\" @update:model-value=\"on_pump_direction_change\">\n              <v-btn class=\"flex-grow-1\" :value=\"'backward'\">Backward</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'stop'\" color=\"grey-lighten-2\" variant=\"flat\">Stop</v-btn>\n              <v-btn class=\"flex-grow-1\" :value=\"'forward'\">Forward</v-btn>\n            </v-btn-toggle>\n          </v-col>\n        </v-row>\n      </v-card-text>\n    </v-card>\n\n    <v-card class=\"mb-3 pa-3 rounded-lg border\" variant=\"flat\" color=\"white\">\n      <div class=\"d-flex align-center\">\n        <div class=\"text-subtitle-1 font-weight-bold mr-16\">Bubbler</div>\n        <div class=\"d-flex flex-grow-1 border rounded\" style=\"overflow: hidden;\">\n          <v-btn flat class=\"flex-grow-1 rounded-0\" :color=\"bubbler_state === 'off' ? 'grey-lighten-2' : 'white'\"\n            @click=\"on_bubbler_toggle('off')\">\n            Off\n          </v-btn>\n          <v-divider vertical></v-divider>\n          <v-btn flat class=\"flex-grow-1 rounded-0\" :color=\"bubbler_state === 'on' ? 'primary' : 'white'\"\n            @click=\"on_bubbler_toggle('on')\">\n            On\n          </v-btn>\n        </div>\n      </div>\n    </v-card>\n\n    <v-card class=\"pa-2 rounded-lg border\" variant=\"tonal\" color=\"grey-darken-3\">\n      <v-list-item lines=\"two\" href=\"calibration\" class=\"pa-2\">\n        <template v-slot:prepend><v-icon size=\"large\">mdi-tune</v-icon></template>\n        <v-list-item-title class=\"text-subtitle-1 font-weight-bold\">Calibration</v-list-item-title>\n        <v-list-item-subtitle class=\"text-caption\">Modify camera and optical parameters.</v-list-item-subtitle>\n        <template v-slot:append><v-icon size=\"small\">mdi-chevron-right</v-icon></template>\n      </v-list-item>\n    </v-card>\n\n    <v-dialog v-model=\"infoDialog\" max-width=\"500\">\n      <v-card class=\"pa-4\">\n        <v-card-title class=\"text-h6\">{{ infoContent.title }}</v-card-title>\n        <v-card-text>\n          <p><strong>Unit:</strong> {{ infoContent.unit }}</p>\n          <p><strong>Description:</strong> {{ infoContent.description }}</p>\n        </v-card-text>\n        <v-card-actions><v-spacer></v-spacer><v-btn color=\"primary\" variant=\"text\" @click=\"infoDialog = false\">Close</v-btn></v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <v-snackbar v-model=\"imageSnackbar\" :timeout=\"4000\" color=\"success\" location=\"top right\">\n      {{ imageSnackbarText }}\n      <template v-slot:actions>\n        <v-btn variant=\"text\" @click=\"imageSnackbar = false\">Close</v-btn>\n      </template>\n    </v-snackbar>\n  </v-container>\n</template>\n\n<script>\nexport default {\n  props: { msg: { type: Object, default: () => ({}) } },\n\n  data() {\n    return {\n      minFlow: 0.02, maxFlow: 30, pump_flowrate: 0, pump_manual_volume: 0, pump_flowrate_presets: [0.02, 0.2, 2, 20], pump_volume_presets: [0.004, 0.2, 2, 20], pump_flowrate_preset: null, pump_volume_preset: null, pump_direction: \"stop\",\n      minFocus: 25, maxFocus: 5000, focus_distance: 25, focus_distance_presets: [25, 150, 500, 5000], focus_distance_preset: null, focus_direction: \"stop\",\n      led_state: \"off\", bubbler_state: \"off\",\n      infoDialog: false, infoContent: { title: \"\", unit: \"\", description: \"\" },\n      imageSnackbar: false, imageSnackbarText: \"\",\n      autofocus_running: false, autofocus_status: \"\",\n    };\n  },\n\n  created() { this.hydrateFromMsg(this.msg); },\n\n  mounted() { window.addEventListener('keydown', this.handleKeydown); },\n\n  beforeUnmount() { window.removeEventListener('keydown', this.handleKeydown); },\n\n  watch: {\n    msg: { handler(newMsg) { this.hydrateFromMsg(newMsg); }, deep: true },\n    pump_flowrate(newVal) { this.pump_flowrate_preset = this.pump_flowrate_presets.find((v) => v === newVal) ?? null; this.sendPumpParams(); },\n    pump_manual_volume(newVal) { this.pump_volume_preset = this.pump_volume_presets.find((v) => v === newVal) ?? null; this.sendPumpParams(); },\n    focus_distance(newVal) { this.focus_distance_preset = this.focus_distance_presets.find((v) => v === newVal) ?? null; this.sendFocusParams(); },\n  },\n\n  methods: {\n    hydrateFromMsg(m) {\n      const p = m?.payload ?? {};\n      if (m.topic === \"status/pump\" && p.status === \"Done\") this.pump_direction = \"stop\";\n      if (m.topic === \"status/focus\" && p.status === \"Done\") this.focus_direction = \"stop\";\n      if (\"led_status\" in p || (m.topic === \"status/light\" && \"status\" in p)) {\n        const s = String(p.led_status || p.status).toLowerCase().trim();\n        this.led_state = [\"on\", \"true\", \"1\"].includes(s) ? \"on\" : \"off\";\n      }\n      if (m.topic === \"status/actuator\" && \"action\" in p) {\n        this.bubbler_state = p.action === \"on\" ? \"on\" : \"off\";\n      }\n      if (m.topic === \"status/imager\" && p.status && p.status.includes(\"saved to\")) {\n        const match = p.status.match(/saved to\\s+(.+)/i);\n        if (match && match[1]) {\n          this.imageSnackbarText = \"Image captured: \" + match[1].trim();\n          this.imageSnackbar = true;\n        }\n      }\n      if (m.topic === \"status/autofocus\") {\n        if (p.status === \"Sweeping\") {\n          this.autofocus_running = true;\n          this.autofocus_status = \"Step \" + p.step + \"/\" + p.total_steps;\n        } else if (p.status === \"Done\") {\n          this.autofocus_running = false;\n          this.autofocus_status = \"\";\n          this.imageSnackbarText = \"Autofocus complete! Variance: \" + p.best_variance.toFixed(1);\n          this.imageSnackbar = true;\n        } else if (p.status === \"Starting\" || p.status === \"Moving to best\") {\n          this.autofocus_running = true;\n          this.autofocus_status = p.status;\n        } else if (p.status === \"Error\" || p.status === \"Stopped\") {\n          this.autofocus_running = false;\n          this.autofocus_status = \"\";\n        }\n      }\n      this.pump_flowrate = p.flowrate ?? p.pump_flowrate ?? this.pump_flowrate;\n      this.pump_manual_volume = p.volume ?? p.pump_manual_volume ?? this.pump_manual_volume;\n      if ([\"backward\", \"stop\", \"forward\"].includes(p.command)) this.pump_direction = p.command;\n      if (typeof p.focus_distance === \"number\") this.focus_distance = p.focus_distance;\n      if ([\"UP\", \"stop\", \"DOWN\"].includes(p.command)) this.focus_direction = p.command;\n    },\n\n    handleKeydown(e) {\n      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;\n      switch(e.key) {\n        case 'ArrowUp':\n          e.preventDefault();\n          this.on_focus_direction_change('UP');\n          break;\n        case 'ArrowDown':\n          e.preventDefault();\n          this.on_focus_direction_change('DOWN');\n          break;\n        case 'ArrowRight':\n          e.preventDefault();\n          this.on_pump_direction_change('forward');\n          break;\n        case 'ArrowLeft':\n          e.preventDefault();\n          this.on_pump_direction_change('backward');\n          break;\n        case ' ':\n          e.preventDefault();\n          this.on_pump_direction_change('stop');\n          this.on_focus_direction_change('stop');\n          break;\n        case 'l': case 'L':\n          this.on_led_toggle(this.led_state === 'on' ? 'off' : 'on');\n          break;\n        case 'b': case 'B':\n          this.on_bubbler_toggle(this.bubbler_state === 'on' ? 'off' : 'on');\n          break;\n        case 'a': case 'A':\n          this.startAutofocus();\n          break;\n        case 'Enter':\n          e.preventDefault();\n          this.captureSnapshot();\n          break;\n      }\n    },\n\n    captureSnapshot() {\n      this.imageSnackbarText = \"Capturing image...\";\n      this.imageSnackbar = true;\n      this.send({ topic: \"imager/image\", payload: { action: \"image\", sleep: 0.2, pump_direction: \"FORWARD\", volume: 0, nb_frame: 1 } });\n    },\n\n    startAutofocus() {\n      if (this.autofocus_running) return;\n      this.autofocus_running = true;\n      this.autofocus_status = \"Starting...\";\n      this.send({ topic: \"autofocus\", payload: { action: \"start\", range: 1000, steps: 20 } });\n    },\n\n    onFlowrateToggle(val) { if (val != null) this.pump_flowrate = val; },\n    onVolumeToggle(val) { if (val != null) this.pump_manual_volume = val; },\n    sendPumpParams() { this.send({ topic: \"set_global/pump\", payload: { pump_flowrate: Number(this.pump_flowrate) || 0, pump_manual_volume: Number(this.pump_manual_volume) || 0 } }); },\n    on_pump_direction_change(val) {\n      this.pump_direction = val;\n      if (val === \"stop\") { this.send({ topic: \"actuator/pump\", payload: { action: \"stop\" } }); }\n      else {\n        const dir = val === \"forward\" ? \"FORWARD\" : \"BACKWARD\";\n        this.send({ topic: \"actuator/pump\", payload: { action: \"move\", direction: dir, volume: Number(this.pump_manual_volume) || 0, flowrate: Number(this.pump_flowrate) || 0 } });\n      }\n    },\n\n    on_focus_distance_toggle(val) { if (val != null) this.focus_distance = val; },\n    speedFromDistance(d) {\n      const x1 = 100, y1 = 1000, x2 = 1000, y2 = 2000, x3 = 5000, y3 = 5000;\n      if (d <= x1) return y1; if (d >= x3) return y3;\n      if (d <= x2) return Math.round(y1 + ((y2 - y1) / (x2 - x1)) * (d - x1));\n      return Math.round(y2 + ((y3 - y2) / (x3 - x2)) * (d - x2));\n    },\n    sendFocusParams() {\n      const d = Number(this.focus_distance) || 25;\n      this.send({ topic: \"set_global/focus\", payload: { focus_distance: d, focus_speed: this.speedFromDistance(d) } });\n    },\n    on_focus_direction_change(val) {\n      this.focus_direction = val;\n      if (val === \"stop\") { this.send({ topic: \"actuator/focus\", payload: { action: \"stop\" } }); }\n      else {\n        const d = Number(this.focus_distance) || 25;\n        this.send({ topic: \"actuator/focus\", payload: { action: \"move\", direction: val, distance: d / 1000, speed: this.speedFromDistance(d) / 1000 } });\n      }\n    },\n\n    on_led_toggle(val) {\n      this.led_state = val;\n      this.send({ topic: \"light\", payload: { action: val } });\n    },\n\n    on_bubbler_toggle(val) {\n      this.bubbler_state = val;\n      const payload = { action: val };\n      if (val === \"on\") payload.value = 0.28;\n      this.send({ topic: \"actuator/bubbler\", payload: payload });\n    },\n\n    showInfo(type) {\n      const infoMap = {\n        pump_flowrate: { title: \"Flowrate (ml/min)\", unit: \"ml/min\", description: \"Flowrate of the pump\" },\n        pump_manual_volume: { title: \"Volume (ml)\", unit: \"ml\", description: \"Volume displaced\" },\n        focus_speed: { title: \"Focus Speed (μm/s)\", unit: \"μm/s\", description: \"Speed of focus\" },\n      };\n      this.infoContent = infoMap[type] || {};\n      this.infoDialog = true;\n    },\n  },\n};\n</script>\n\n<style scoped>\n@media (max-width: 1024px) {\n  .v-text-field input { font-size: 1.3rem !important; }\n  .v-slider { height: 2px !important; }\n}\n.v-card-text { padding: 0 !important; }\n.v-card { border: none; }\n.v-container { background: #eef3ff; }\n.border { border: 1px solid #cccccc !important; }\n.v-field__input { padding: 10px 10px 0px 15px;\n}\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -3106,6 +3122,46 @@
         "inputs": 0,
         "x": 80,
         "y": 320,
+        "wires": [
+            [
+                "f514a138d38d3c61"
+            ]
+        ]
+    },
+    {
+        "id": "preview_status_imager",
+        "type": "mqtt in",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "",
+        "topic": "status/imager",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "f514a138d38d3c61"
+            ]
+        ]
+    },
+    {
+        "id": "preview_status_autofocus",
+        "type": "mqtt in",
+        "z": "ab58b3fd0e6bcd77",
+        "name": "",
+        "topic": "status/autofocus",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 110,
+        "y": 440,
         "wires": [
             [
                 "f514a138d38d3c61"
@@ -3756,7 +3812,7 @@
         "width": "0",
         "height": "0",
         "head": "",
-        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 75%; /* 4:3 Aspect Ratio */\n        overflow: hidden;\n        border-radius: 8px;\n        background:white;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        border: none;\n        margin: 0;\n    }\n</style>",
+        "format": "<template>\n    <v-container fluid class=\"pa-0\">\n                \n\n                    <div class=\"iframe-container border\">\n                        <!-- \n                            Replace '/preview/node-red' with your actual target URL. \n                            Ensure the target URL allows iframe embedding (X-Frame-Options).\n                        -->\n                        <iframe src=\"/preview/node-red\" title=\"Node-RED Preview\"></iframe>\n                    </div>\n                    \n    </v-container>\n</template>\n\n<style>\n    /* Scoped styles for the iframe container \n      Force a 4:3 aspect ratio\n    */\n    .iframe-container {\n        position: relative;\n        width: 100%;\n        padding-top: 133.33%;\n        margin: 0 auto;\n        overflow: hidden;\n        border-radius: 8px;\n        background: black;\n    }\n\n    .iframe-container iframe {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        width: 133.33%;\n        height: 75%;\n        transform: translate(-50%, -50%) rotate(-90deg);\n        border: none;\n    }\n</style>",
         "storeOutMessages": true,
         "passthru": true,
         "resendOnRefresh": true,
@@ -5755,7 +5811,7 @@
         "type": "function",
         "z": "14c685bd04db8be5",
         "name": "set led_intensity",
-        "func": "if (msg.topic) {\n    global.set(\"led_intensity\", msg.payload.value);}\nreturn msg;",
+        "func": "if (msg.topic) {\n    var value = msg.payload.value;\n    global.set(\"led_intensity\", value);\n    msg.topic = \"led_intensity\";\n    msg.payload = value;\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5765,8 +5821,17 @@
         "x": 880,
         "y": 160,
         "wires": [
-            []
+            ["led_save_hw_config_01"]
         ]
+    },
+    {
+        "id": "led_save_hw_config_01",
+        "type": "subflow:4ed26b8b.253504",
+        "z": "14c685bd04db8be5",
+        "name": "",
+        "x": 1100,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "959de9b1292e047d",
@@ -6937,5 +7002,347 @@
         "x": 470,
         "y": 1100,
         "wires": []
+    },
+    {
+        "id": "fb70789b1e0a80c1",
+        "type": "tab",
+        "label": "QT Py Remote",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c58aa0d1573e102d",
+        "type": "inject",
+        "z": "fb70789b1e0a80c1",
+        "name": "Initialize Metadata",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "a21f06985746b370"
+            ]
+        ]
+    },
+    {
+        "id": "a21f06985746b370",
+        "type": "function",
+        "z": "fb70789b1e0a80c1",
+        "name": "Set Default Metadata",
+        "func": "// Set minimal required metadata for PlanktoScope operation\nvar now = new Date();\nvar timestamp = now.toISOString();\n\nglobal.set(\"sample_project\", \"QTPy_Control\");\nglobal.set(\"sample_id\", \"test\");\nglobal.set(\"sample_operator\", \"QTPy\");\nglobal.set(\"sample_sampling_gear\", \"test\");\n\nglobal.set(\"object_lat\", \"-90.0000\");\nglobal.set(\"object_lon\", \"0.0000\");\n\nglobal.set(\"object_date\", timestamp.split('T')[0].replace(/-/g, ''));\nglobal.set(\"object_time\", timestamp.split('T')[1].split('.')[0].replace(/:/g, ''));\n\nglobal.set(\"acq_id\", \"qtpy_control\");\nglobal.set(\"acq_celltype\", 200);\nglobal.set(\"acq_minimum_mesh\", 20);\nglobal.set(\"acq_maximum_mesh\", 200);\nglobal.set(\"acq_volume\", 1);\nglobal.set(\"imaging_pump_volume\", 0);\nglobal.set(\"nb_frame\", 1);\nglobal.set(\"pump_direction\", \"FORWARD\");\nglobal.set(\"sleep_before\", 0.5);\n\nglobal.set(\"acq_instrument\", \"PlanktoScope\");\nglobal.set(\"process_pixel\", 1.0);\nglobal.set(\"acq_fnumber_objective\", 16);\n\nmsg.payload = \"Metadata initialized for test mode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "8cba52ecbc20f6a9"
+            ]
+        ]
+    },
+    {
+        "id": "8d83313c527094cf",
+        "type": "serial in",
+        "z": "fb70789b1e0a80c1",
+        "name": "QT Py Serial",
+        "serial": "4f542753eda5e5cb",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "b032b8ccf5baf048",
+                "9826ba33d4f32361"
+            ]
+        ]
+    },
+    {
+        "id": "b032b8ccf5baf048",
+        "type": "change",
+        "z": "fb70789b1e0a80c1",
+        "name": "Tag Source: serial",
+        "rules": [
+            {
+                "t": "set",
+                "p": "_src",
+                "pt": "msg",
+                "to": "serial",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "fe06891e4b8ceaa9"
+            ]
+        ]
+    },
+    {
+        "id": "30885f1d8b92f8ca",
+        "type": "mqtt in",
+        "z": "fb70789b1e0a80c1",
+        "name": "QT Py MQTT",
+        "topic": "qtpy/remote",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "8dc3722c.06efa8",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "bb30eaf2b1991e9f"
+            ]
+        ]
+    },
+    {
+        "id": "bb30eaf2b1991e9f",
+        "type": "change",
+        "z": "fb70789b1e0a80c1",
+        "name": "Tag Source: bridge",
+        "rules": [
+            {
+                "t": "set",
+                "p": "_src",
+                "pt": "msg",
+                "to": "bridge",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "fe06891e4b8ceaa9"
+            ]
+        ]
+    },
+    {
+        "id": "fe06891e4b8ceaa9",
+        "type": "json",
+        "z": "fb70789b1e0a80c1",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "c32b9356a4de35ee",
+                "d1a67b4326972a51"
+            ]
+        ]
+    },
+    {
+        "id": "c32b9356a4de35ee",
+        "type": "switch",
+        "z": "fb70789b1e0a80c1",
+        "name": "Route by Type",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "pump_speed",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "pump_stop",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "heartbeat",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 700,
+        "y": 200,
+        "wires": [
+            [
+                "4cca298c3d021046"
+            ],
+            [
+                "4cca298c3d021046"
+            ],
+            [
+                "15ad046dc2f622f2"
+            ],
+            [
+                "e01a84499e399487"
+            ]
+        ]
+    },
+    {
+        "id": "4cca298c3d021046",
+        "type": "function",
+        "z": "fb70789b1e0a80c1",
+        "name": "Pump Speed Control",
+        "func": "const t = msg.payload.type;\nconst speed = Number(msg.payload.speed ?? 0);\nflow.set('currentPumpSpeed', speed);\n\nif (t === 'pump_stop' || speed === 0) {\n    return { topic: 'actuator/pump', payload: { action: 'stop' } };\n} else {\n    const direction = speed > 0 ? 'FORWARD' : 'BACKWARD';\n    const absSpeed = Math.abs(speed);\n\n    return {\n        topic: 'actuator/pump',\n        payload: {\n            action: 'move',\n            direction: direction,\n            volume: 100,\n            flowrate: absSpeed\n        }\n    };\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 160,
+        "wires": [
+            [
+                "73696d5a418614db",
+                "8cba52ecbc20f6a9"
+            ]
+        ]
+    },
+    {
+        "id": "15ad046dc2f622f2",
+        "type": "function",
+        "z": "fb70789b1e0a80c1",
+        "name": "Format Button Commands",
+        "func": "const func = msg.payload.function;\n\nswitch(func) {\n    case 'stop_pump':\n        msg.topic = 'actuator/pump';\n        msg.payload = { action: 'stop' };\n        break;\n    \n    case 'capture_only':\n        var acq_counter = global.get(\"qtpy_acq_counter\") || 0;\n        acq_counter += 1;\n        global.set(\"qtpy_acq_counter\", acq_counter);\n        \n        var unique_acq_id = \"qtpy_snap_\" + acq_counter;\n        \n        var config_msg = {\n            topic: 'imager/image',\n            payload: {\n                \"action\": \"update_config\",\n                \"config\": {\n                    \"sample_project\": global.get(\"sample_project\"),\n                    \"sample_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\"),\n                    \"sample_operator\": global.get(\"sample_operator\") || \"QTPy\",\n                    \"sample_sampling_gear\": global.get(\"sample_sampling_gear\"),\n                    \"acq_id\": global.get(\"sample_project\") + \"_\" + global.get(\"sample_id\") + \"_\" + unique_acq_id,\n                    \"acq_celltype\": global.get(\"acq_celltype\"),\n                    \"acq_minimum_mesh\": global.get(\"acq_minimum_mesh\"),\n                    \"acq_maximum_mesh\": global.get(\"acq_maximum_mesh\"),\n                    \"object_date\": global.get(\"object_date\"),\n                    \"object_time\": global.get(\"object_time\"),\n                    \"object_lat\": global.get(\"object_lat\") || \"-90.0000\",\n                    \"object_lon\": global.get(\"object_lon\") || \"0.0000\"\n                }\n            }\n        };\n        \n        node.send(config_msg);\n        node.warn(\"Capture #\" + acq_counter + \" - Config sent\");\n        \n        setTimeout(function() {\n            msg.topic = 'imager/image';\n            msg.payload = {\n                action: 'image',\n                sleep: 0.2,\n                pump_direction: 'FORWARD',\n                volume: 0,\n                nb_frame: 1\n            };\n            node.send(msg);\n            node.warn(\"Capture #\" + acq_counter + \" - Image command sent\");\n        }, 500);\n        \n        return null;\n    \n    case 'focus_up':\n        msg.topic = 'actuator/focus';\n        msg.payload = {\n            action: 'move',\n            direction: 'UP',\n            distance: 0.05\n        };\n        break;\n    \n    case 'focus_down':\n        msg.topic = 'actuator/focus';\n        msg.payload = {\n            action: 'move',\n            direction: 'DOWN',\n            distance: 0.05\n        };\n        break;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 200,
+        "wires": [
+            [
+                "73696d5a418614db",
+                "8cba52ecbc20f6a9"
+            ]
+        ]
+    },
+    {
+        "id": "e01a84499e399487",
+        "type": "function",
+        "z": "fb70789b1e0a80c1",
+        "name": "Format Speed Display",
+        "func": "if (msg.payload.speed !== undefined) {\n    msg.payload = 'Speed: ' + msg.payload.speed.toFixed(2) + ' mL/min';\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 240,
+        "wires": [
+            [
+                "8cba52ecbc20f6a9"
+            ]
+        ]
+    },
+    {
+        "id": "73696d5a418614db",
+        "type": "mqtt out",
+        "z": "fb70789b1e0a80c1",
+        "name": "To PlanktoScope",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "broker": "8dc3722c.06efa8",
+        "x": 1210,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8cba52ecbc20f6a9",
+        "type": "debug",
+        "z": "fb70789b1e0a80c1",
+        "name": "Debug Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1200,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "9826ba33d4f32361",
+        "type": "debug",
+        "z": "fb70789b1e0a80c1",
+        "name": "Serial Raw",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d1a67b4326972a51",
+        "type": "debug",
+        "z": "fb70789b1e0a80c1",
+        "name": "Parsed JSON",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4f542753eda5e5cb",
+        "type": "serial-port",
+        "name": "",
+        "serialport": "/dev/ttyACM1",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "\\n",
+        "responsetimeout": ""
     }
 ]

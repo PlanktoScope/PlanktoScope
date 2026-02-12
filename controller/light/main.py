@@ -5,6 +5,7 @@ import sys
 import time
 from pprint import pprint
 
+import aiofiles
 import aiomqtt  # type: ignore
 
 import helpers
@@ -13,10 +14,11 @@ client = None
 loop = asyncio.new_event_loop()
 led = None
 chronometer = None
+led_intensity = 1.0
 
 
 async def start() -> None:
-    global led
+    global led, led_intensity
     hat_version = await helpers.get_hat_version()
     if hat_version is None:
         sys.exit()
@@ -32,13 +34,20 @@ async def start() -> None:
     else:
         raise Exception("Unknown hat_version", hat_version)
 
+    try:
+        async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
+            hardware_config = json.loads(await file.read())
+            led_intensity = hardware_config.get("led_intensity", led_intensity)
+    except FileNotFoundError:
+        pass
+
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     task_group = asyncio.TaskGroup()
     async with client, task_group:
         _ = await asyncio.gather(
             client.subscribe("light"),
-            publish_status(),
+            off(),
         )
         async for message in client.messages:
             task_group.create_task(handle_message(message))
@@ -86,7 +95,7 @@ async def handle_action(action: str, payload) -> None:
 
 async def on(payload) -> None:
     assert led is not None
-    value = payload.get("value", 1)
+    value = payload.get("value", led_intensity)
     assert 0.0 <= value <= 1.0
 
     if value == 0:
