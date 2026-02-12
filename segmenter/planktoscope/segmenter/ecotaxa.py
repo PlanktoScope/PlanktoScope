@@ -16,14 +16,13 @@
 # along with PlanktoScope.  If not, see <http://www.gnu.org/licenses/>.
 
 # Logger library compatible with multiprocessing
-from loguru import logger
-
+import io
+import os
+import zipfile
 
 import numpy
 import pandas  # FIXME: just use python's csv library, to shave off pandas's 60 MB of unnecessary disk space usage
-import zipfile
-import os
-import io
+from loguru import logger
 
 """
 Example of metadata file received
@@ -60,7 +59,7 @@ Example of metadata file received
   "object_lat_end": "-21.6168",
   "object_lon_end": "-38.2668",
   "sample_total_volume": 0.019,
-  "acq_local_datetime": "2020-12-28T01:03:38",
+  "acq_datetime": "2026-02-11T14:28:37.482Z",
   "acq_camera_resolution": "4056 x 3040",
   "acq_camera_iso": 100,
   "acq_camera_shutter_speed": 1,
