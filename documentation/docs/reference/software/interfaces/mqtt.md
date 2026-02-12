@@ -368,7 +368,7 @@ The `update_config` command sets/changes the metadata which will be saved with t
     "acq_min_esd": 300,
     "acq_max_esd": 300,
     "acq_nb_frame": 500,
-    "acq_datetime": "2026-02-11T14:28:37.482Z",
+    "acq_local_datetime": "2024-05-15T09:00:00Z",
     "acq_caamera_iso": 400,
     "acq_camera_shutter_speed": 500,
     "object_date": "2024-05-15",
@@ -426,12 +426,12 @@ Acquisition information:
 | `acq_min_esd`              | Minimum equivalent spherical diameter. | float   |
 | `acq_max_esd`              | Maximum equivalent spherical diameter. | float   |
 | `acq_nb_frame`             | Number of frames captured.             | integer |
-| `acq_datetime`             | Date and time of acquisition RFC 9557  | string  |
+| `acq_local_datetime`       | Local date and time of acquisition.    | string  |
 | `acq_camera_resolution`    | Camera resolution.                     | string  |
 | `acq_camera_iso`           | Camera ISO setting.                    | float   |
 | `acq_camera_shutter_speed` | Camera shutter speed.                  | float   |
 
-Object information (sample):
+Object information:
 
 | Field              | Description                           | Type   |
 | ------------------ | ------------------------------------- | ------ |
@@ -445,6 +445,8 @@ Object information (sample):
 | `object_time_end`  | End time of the sample recording.     | string |
 | `object_lat_end`   | End latitude of the sample location.  | float  |
 | `object_lon_end`   | End longitude of the sample location. | float  |
+
+`object` here refers to sample, it is not related to segmentation. [ref](https://planktoscope.slack.com/archives/C01V5ENKG0M/p1770830726633419)
 
 Processing information:
 
