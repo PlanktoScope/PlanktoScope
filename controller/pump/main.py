@@ -16,6 +16,11 @@ BACKWARD = 2
 pump_steps_per_ml = None
 pump_max_speed = None
 
+# TMC5160 velocity conversion factor
+# The TMC5160 uses internal velocity units: actual_velocity = VMAX * (fCLK / 2^24)
+# With internal oscillator (~12 MHz), we need to multiply desired speed by 2^24/fCLK
+TMC5160_VELOCITY_FACTOR = 1.398
+
 pump_started = False
 
 pump_stepper = Motor(pin=23, spi_bus=0, spi_device=0)
@@ -41,7 +46,9 @@ async def start() -> None:
     if pump_steps_per_ml is None or pump_max_speed is None:
         return None
 
-    pump_stepper.speed = int(pump_max_speed * pump_steps_per_ml * 256 / 60)
+    pump_stepper.speed = int(
+        pump_max_speed * pump_steps_per_ml * 256 / 60 * TMC5160_VELOCITY_FACTOR
+    )
 
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
     task_group = asyncio.TaskGroup()
@@ -124,7 +131,7 @@ async def pump(direction: str, volume: float, flowrate: float):
     if flowrate > pump_max_speed:
         flowrate = pump_max_speed
     steps_per_second = flowrate * pump_steps_per_ml * 256 / 60
-    pump_stepper.speed = int(steps_per_second)
+    pump_stepper.speed = int(steps_per_second * TMC5160_VELOCITY_FACTOR)
 
     pump_started = True
     if direction == "FORWARD":
