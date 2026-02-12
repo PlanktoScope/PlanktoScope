@@ -129,16 +129,14 @@ Replace `{machine-name}` with your PlanktoScope name.
 1. Connect your computer to the PlanktoScope WiFi hotspot
 2. PlanktoScope is accessible at
    1. [ ] [http://planktoscope.local](http://planktoscope.local)
-   2. [ ] [http://pkscope.local](http://pkscope.local)
-   3. [ ] [http://home.pkscope](http://home.pkscope)
-   4. [ ] [http://192.168.4.1/](http://192.168.4.1/)
-   5. [ ] [http://pkscope-{machine-name}.local/](http://pkscope-{machine-name}.local/)
+   2. [ ] [http://192.168.4.1/](http://192.168.4.1/)
+   3. [ ] [http://planktoscope-{machine-name}.local/](http://planktoscope-{machine-name}.local/)
 
 ### LAN Ethernet
 
 1. Connect the PlanktoScope to your router ethernet
 2. PlanktoScope is accessible at
-   1. [ ] [http://pkscope-{machine-name}.local](http://pkscope-{machine-name}.local)
+   1. [ ] [http://planktoscope-{machine-name}.local](http://planktoscope-{machine-name}.local)
 
 ## Additional tests
 

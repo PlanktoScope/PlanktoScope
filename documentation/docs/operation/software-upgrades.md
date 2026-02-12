@@ -4,7 +4,7 @@ Your PlanktoScope's embedded Raspberry Pi computer has a PlanktoScope-specific o
 
 The PlanktoScope project aims to keep improving the PlanktoScope software by fixing problems and making the software simpler and easier to use, [releasing](../reference/software/release-process.md) a new version of the software at least once (or hopefully twice) each year. At the same time, we aim to keep the software compatible with all previous officially-released versions of the PlanktoScope hardware. For this reason, we strongly recommend everyone to keep their PlanktoScopes updated to run the latest stable release of the PlanktoScope software; and the PlanktoScope documentation will only support the latest stable release. You can always find the latest stable release at <https://github.com/PlanktoScope/PlanktoScope/releases/latest>, which will redirect you to a web page for a specific release.
 
-All URLs in this guide are written assuming you access your PlanktoScope using [planktoscope.local](http://planktoscope.local) as the domain name; if you need to use a [different domain name](./index.md#access-your-planktoscopes-software) such as [home.pkscope](http://home.pkscope), you should substitute that domain name into the links on this page.
+All URLs in this guide are written assuming you access your PlanktoScope using [planktoscope.local](http://planktoscope.local) as the domain name; if you need to use a [different domain name](./index.md#access-your-planktoscopes-software), you should substitute that domain name into the links on this page.
 
 ## Back up your data & settings
 
