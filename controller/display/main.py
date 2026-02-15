@@ -39,44 +39,52 @@ if os.path.exists(libdir):
 
 epd = None
 fontsmall = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 18)
-fontnormal = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 24)
-fontbig = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 28)
+fontnormal = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 19)
+fontbig = ImageFont.truetype(os.path.join(picdir, "Font.ttc"), 22)
 image = None
 draw = None
 epd2in9_V2 = None
 
-logo = Image.open(os.path.join(dirname, "fairscope.bmp"))
+logo = Image.open(os.path.join(dirname, "planktoscope-by-fairscope.bmp"))
 
 width = None
 height = None
 
 
+BAR_HEIGHT = 30
+
+
 def drawURL(url):
     assert draw is not None
-    x = 0
-    y = 0
-    draw.text((x, y), text=url, font=fontnormal, fill=0)
+    assert width is not None
+    assert height is not None
+    # Black bar across the bottom
+    draw.rectangle((0, height - BAR_HEIGHT, width, height), fill=0)
+    # White text centered in the bar
+    draw.text((width // 2, height - BAR_HEIGHT // 2), text=url, anchor="mm", font=fontnormal, fill=255)
 
 
 def drawHostname(hostname):
     assert width is not None
     assert height is not None
     assert draw is not None
-    x = width // 2
-    y = height // 2
-    draw.text((x, y), text=hostname, anchor="mm", font=fontbig, fill=0)
+    # Black bar across the top
+    draw.rectangle((0, 0, width, BAR_HEIGHT), fill=0)
+    # White text centered in the bar
+    draw.text((width // 2, BAR_HEIGHT // 2), text=hostname, anchor="mm", font=fontbig, fill=255)
 
 
 def drawBrand():
     assert width is not None
     assert height is not None
     assert image is not None
-    assert draw is not None
-    text = "FairScope"
-    x = width - logo.width - 6
-    y = height
-    draw.text((x, y), text=text, anchor="rd", font=fontsmall, fill=0)
-    image.paste(logo, (width - logo.width, height - logo.height))
+    # Paste logo centered in the middle white area (between the two bars)
+    middle_top = BAR_HEIGHT
+    middle_bottom = height - BAR_HEIGHT
+    middle_h = middle_bottom - middle_top
+    x = (width - logo.width) // 2
+    y = middle_top + (middle_h - logo.height) // 2
+    image.paste(logo, (x, y))
 
 
 def render(url="", hostname=""):
@@ -93,12 +101,12 @@ def render(url="", hostname=""):
     # # TODO: only clear relevant area ?
     draw.rectangle((0, 0, height, width), fill=255)
 
-    # center
+    # top black bar with hostname
     drawHostname(hostname)
-    # top left
-    drawURL(url)
-    # bottom right
+    # center logo
     drawBrand()
+    # bottom black bar with URL
+    drawURL(url)
 
     epd.init()
     epd.Clear(0xFF)

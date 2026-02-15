@@ -3,6 +3,7 @@
 import datetime
 import json
 import os
+import subprocess
 import threading
 import time
 import typing
@@ -179,18 +180,27 @@ class Imager:
                 metadata,
             )
         except ValueError as e:
+            loguru.logger.error(f"Acquisition failed to start: {e}")
             self._mqtt.client.publish(
                 "status/imager",
                 json.dumps({"status": f"Configuration update error: {str(e)}"}),
+            )
+            # Failsafe: send pump stop command in case pump was somehow started
+            self._mqtt.client.publish(
+                "actuator/pump",
+                json.dumps({"action": "stop"}),
             )
             return
         if output_path is None:
             # An error status was already reported, so we don't need to do anything else
             return
 
+        live_segmentation = latest_message.get("live_segmentation", False)
+        loguru.logger.info(f"Starting acquisition with live_segmentation={live_segmentation}")
         self._active_routine = ImageAcquisitionRoutine(
             stopflow.Routine(output_path, acquisition_settings, self._pump, self._camera.camera),
             self._mqtt,
+            live_segmentation=live_segmentation,
         )
         self._active_routine.start()
 
@@ -224,7 +234,7 @@ def _parse_acquisition_settings(
             stabilization_duration=float(latest_message["sleep"]),
             pump=stopflow.DiscretePumpSettings(
                 direction=stopflow.PumpDirection(latest_message.get("pump_direction", "FORWARD")),
-                flowrate=float(latest_message.get("pump_flowrate", 2)),
+                flowrate=float(latest_message.get("flowrate", latest_message.get("pump_flowrate", 2))),
                 volume=float(latest_message["volume"]),
             ),
         )
@@ -290,16 +300,23 @@ class ImageAcquisitionRoutine(threading.Thread):
     # TODO(ethanjli): instead of taking an arg of type mqtt.MQTT_CLIENT, just take an arg of
     # whatever `mqtt_client.client`'s type is supposed to be. Or maybe we should just initialize
     # our own MQTT client in here?
-    def __init__(self, routine: stopflow.Routine, mqtt_client: mqtt.MQTT_Client) -> None:
+    def __init__(
+        self,
+        routine: stopflow.Routine,
+        mqtt_client: mqtt.MQTT_Client,
+        live_segmentation: bool = False,
+    ) -> None:
         """Initialize the thread.
 
         Args:
             routine: the image-acquisition routine to run.
             mqtt_client: an MQTT client which will be used to broadcast updates.
+            live_segmentation: whether to trigger live segmentation after each frame.
         """
         super().__init__()
         self._routine = routine
         self._mqtt_client = mqtt_client.client
+        self._live_segmentation = live_segmentation
 
     def run(self) -> None:
         """Run a stop-flow image-acquisition routine until completion or interruption."""
@@ -351,6 +368,18 @@ class ImageAcquisitionRoutine(threading.Thread):
                     }
                 ),
             )
+
+            # Trigger live segmentation if enabled (non-blocking)
+            if self._live_segmentation:
+                loguru.logger.info(f"Triggering live segmentation for: {path}")
+                try:
+                    subprocess.Popen(
+                        ["/home/pi/PlanktoScope/segmenter/run_segment_live.sh", path],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                    )
+                except Exception as e:
+                    loguru.logger.warning(f"Failed to trigger live segmentation: {e}")
 
     def stop(self) -> None:
         """Stop the thread.
