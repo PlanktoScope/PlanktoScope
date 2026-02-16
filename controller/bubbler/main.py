@@ -4,8 +4,7 @@ import signal
 import sys
 from pprint import pprint
 
-import aiofiles
-import aiomqtt
+import aiomqtt  # type: ignore
 
 import helpers
 
@@ -20,23 +19,14 @@ RAMP_STEP_TIME = 0.1  # Seconds at each level
 PAUSE_TIME = 0.2  # Seconds to pause (off) between cycles
 # =================================================
 
-DEFAULT_INTENSITY = 0.265
-bubbler_intensity = DEFAULT_INTENSITY
 ramp_task = None
 
 
 async def start() -> None:
-    global bubbler_intensity
-
+    # There is no GPIO bubbler on PlanktoScope HAT < 3.3
+    # only USB powered bubbler
     if (await helpers.get_hat_version()) != 3.3:
         sys.exit()
-
-    try:
-        async with aiofiles.open("/home/pi/PlanktoScope/hardware.json", mode="r") as file:
-            hardware_config = json.loads(await file.read())
-            bubbler_intensity = hardware_config.get("bubbler_intensity", DEFAULT_INTENSITY)
-    except FileNotFoundError:
-        pass
 
     global bubbler
     import MCP4725 as bubbler
@@ -44,38 +34,54 @@ async def start() -> None:
     bubbler.init(address=0x60)
     global client
     client = aiomqtt.Client(hostname="localhost", port=1883, protocol=aiomqtt.ProtocolVersion.V5)
-
-    async with client:
-        await client.subscribe("actuator/bubbler")
-        await publish_status()
-
+    task_group = asyncio.TaskGroup()
+    async with client, task_group:
+        _ = await asyncio.gather(
+            client.subscribe("actuator/bubbler"),
+            publish_status(),
+        )
         async for message in client.messages:
-            asyncio.create_task(handle_message(message))
+            task_group.create_task(handle_message(message))
 
 
 async def handle_message(message) -> None:
     if not message.topic.matches("actuator/bubbler"):
         return
 
-    try:
-        payload = json.loads(message.payload.decode("utf-8"))
-        pprint(payload)
-        action = payload.get("action")
-        if action is not None:
-            await handle_action(action, payload)
+    payload = json.loads(message.payload.decode("utf-8"))
+    pprint(payload)
 
-        if client is not None:
-            await helpers.mqtt_reply(client, message)
-    except Exception as e:
-        print(f"Error handling message: {e}")
+    action = payload.get("action")
+    if action is not None:
+        await handle_action(action, payload)
+
+    if client is not None:
+        await helpers.mqtt_reply(client, message)
 
 
 async def handle_action(action: str, payload) -> None:
     assert bubbler is not None
+
     if action == "on":
         await on(payload)
     elif action == "off":
         await off()
+    # elif action == "settings":
+    #     await handle_settings(payload)
+    elif action == "save":
+        if hasattr(bubbler, "save"):
+            bubbler.save()
+
+
+# async def handle_settings(payload) -> None:
+#     assert bubbler is not None
+
+#     if "current" in payload["settings"]:
+#         # {"settings":{"current":"20"}}
+#         current = payload["settings"]["current"]
+#         if bubbler.is_on():
+#             return
+#         bubbler.set_current(current)
 
 
 async def on(payload) -> None:
@@ -90,7 +96,7 @@ async def on(payload) -> None:
             pass
         ramp_task = None
 
-    value = payload.get("value", bubbler_intensity)
+    value = payload.get("value", 1)
     assert 0.0 <= value <= 1.0
 
     if value == 0:
@@ -139,15 +145,20 @@ async def off() -> None:
 async def publish_status() -> None:
     assert bubbler is not None
     assert client is not None
+
     value = bubbler.get_value()
-    payload = {"status": "Off" if bubbler.is_off() else "On", "value": value}
+
+    payload = {
+        "status": "Off" if bubbler.is_off() else "On",
+        "value": value,
+    }
     await client.publish(topic="status/bubbler", payload=json.dumps(payload), retain=True)
 
 
 async def stop() -> None:
+    assert bubbler is not None
     await off()
-    if bubbler:
-        bubbler.deinit()
+    bubbler.deinit()
     loop.stop()
 
 
