@@ -63,7 +63,7 @@ async def handle_action(action: str, payload) -> None:
     assert bubbler is not None
 
     if action == "on":
-        await on(payload)
+        await on()
     elif action == "off":
         await off()
     # elif action == "settings":
@@ -84,7 +84,7 @@ async def handle_action(action: str, payload) -> None:
 #         bubbler.set_current(current)
 
 
-async def on(payload) -> None:
+async def on() -> None:
     global ramp_task
     assert bubbler is not None
 
@@ -95,13 +95,6 @@ async def on(payload) -> None:
         except asyncio.CancelledError:
             pass
         ramp_task = None
-
-    value = payload.get("value", 1)
-    assert 0.0 <= value <= 1.0
-
-    if value == 0:
-        await off()
-        return
 
     # Start ramp mode
     ramp_task = asyncio.create_task(run_ramp())
