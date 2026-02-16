@@ -54,6 +54,8 @@ Type the following commands
 cd /home/pi/PlanktoScope
 git checkout main
 git pull
+# cp default-configs/v3.0.hardware.json hardware.json
+# cp default-configs/v3.0.config.json config.json
 just
 # After the script ran succesfully
 sudo reboot

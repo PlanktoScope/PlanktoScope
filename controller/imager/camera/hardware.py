@@ -5,6 +5,7 @@ import typing
 
 import loguru
 import picamera2  # type: ignore
+from libcamera import Transform
 from picamera2 import encoders, outputs
 from picamera2.platform import Platform, get_platform  # type: ignore
 from readerwriterlock import rwlock
@@ -283,6 +284,9 @@ class PiCamera:
             lores_config,
             buffer_count=self._stream_config.buffer_count,
             queue=self._stream_config.queue,
+            # we don't use this as the Pi cam is not able to do 90° rotations, only 180°
+            # instead we rotate the preview in the frontend
+            # transform=Transform(rotation=270) # -90°
         )
         loguru.logger.debug(f"Camera configuration: {config}")
         self._camera.configure(config)

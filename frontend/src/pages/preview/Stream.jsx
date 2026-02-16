@@ -12,6 +12,7 @@ export default function Stream(props) {
 
   const video = (
     <video
+      style="transform: rotate(90deg);"
       on:loadedmetadata={onVideoLoad}
       class={styles.video}
       muted
@@ -64,7 +65,9 @@ export default function Stream(props) {
       </div>
       <div ref={container} hidden class="zoomist-container">
         <div class="zoomist-wrapper">
-          <div class="zoomist-image">{video}</div>
+          <div class="zoomist-image" style="transform: rotate(90deg);">
+            {video}
+          </div>
         </div>
         {props.controls}
       </div>
