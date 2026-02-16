@@ -24,7 +24,7 @@ just
 Start segmenter for development:
 
 ```sh
-just dev
+PLANKTOSCOPE_DATA_PATH=/home/pi/data just dev
 # make changes and restart
 ```
 

@@ -2,20 +2,6 @@
 
 We don't yet have complete documentation to help you troubleshoot problems with your PlanktoScope! For now, you should [sign up](https://www.planktoscope.org/join) to join the PlanktoScope community on Slack, and ask for help in the `#3-start-testing` channel on Slack; or, if you have a GitHub account, you can start a new discussion in the PlanktoScope GitHub repository's ["Help/Support" forum](https://github.com/PlanktoScope/PlanktoScope/discussions/categories/help-support). Below, we provide some guides for troubleshooting particular situations:
 
-## Hostname/DHCP issue with Orange Livebox router
-
-If you connected your PlanktoScope to a Orange Livebox, its hostname may be incorrect and change often. For example if your PlanktoScope name is `pretty-flower-123` the router may assign the hostname `pkscope-pretty-flower` instead of `pkscope-pretty-flower-123`.
-
-You can workaround this issue by:
-
-Assign the static hostname `pkscope-pretty-flower-123` to the PlanktoScope in the Livebox
-
-or
-
-Change the PlanktoScope machine name to `pretty-flower`
-
-See also [#603](https://github.com/PlanktoScope/PlanktoScope/issues/603)
-
 ## No internet after connecting LAN to the PlanktoScope
 
 If your laptop is connected to the PlanktoScope with a LAN cable and to the Internet with WiFi, it's possible your system will prefer LAN and try to use it for Internet.

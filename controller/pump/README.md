@@ -48,6 +48,37 @@ just dev
 }
 ```
 
+### Set pump configuration
+
+**topic** `actuator/pump`
+
+**payload:**
+```json
+{
+  "action": "set-configuration",
+  "pump_steps_per_ml": 3408,
+}
+```
+
+### Read pump configuration
+
+**topic** `actuator/pump`
+
+**payload:**
+```json
+{
+  "action": "get-configuration",
+}
+```
+
+**response**
+
+```json
+{
+  "pump_steps_per_ml": 3408,
+}
+```
+
 ### status
 
 **topic** `status/pump`
