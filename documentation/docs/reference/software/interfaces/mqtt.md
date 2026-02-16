@@ -435,16 +435,18 @@ Object information:
 
 | Field              | Description                           | Type   |
 | ------------------ | ------------------------------------- | ------ |
-| `object_date`      | Date of the object recording.         | string |
-| `object_time`      | Time of the object recording.         | string |
+| `object_date`      | Date of the sample recording.         | string |
+| `object_time`      | Time of the sample recording.         | string |
 | `object_lat`       | Latitude of the sample location.      | float  |
 | `object_lon`       | Longitude of the sample location.     | float  |
 | `object_depth_min` | Minimum depth of the sample location. | float  |
 | `object_depth_max` | Maximum depth of the sample location. | float  |
-| `object_date_end`  | End date of the object recording.     | string |
-| `object_time_end`  | End time of the object recording.     | string |
+| `object_date_end`  | End date of the sample recording.     | string |
+| `object_time_end`  | End time of the sample recording.     | string |
 | `object_lat_end`   | End latitude of the sample location.  | float  |
 | `object_lon_end`   | End longitude of the sample location. | float  |
+
+`object` here refers to sample, it is not related to segmentation. [ref](https://planktoscope.slack.com/archives/C01V5ENKG0M/p1770830726633419)
 
 Processing information:
 
