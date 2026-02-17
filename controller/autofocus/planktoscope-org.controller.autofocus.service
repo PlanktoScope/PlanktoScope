@@ -1,0 +1,13 @@
+[Unit]
+Description=PlanktoScope Autofocus Controller
+After=network.target mosquitto.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/PlanktoScope/controller
+ExecStart=/usr/local/bin/uv run python -m autofocus.main
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

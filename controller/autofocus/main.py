@@ -26,7 +26,7 @@ import cv2
 import numpy as np
 
 # Configuration
-STREAM_URL = "http://localhost:8000/stream"  # MJPEG stream URL
+STREAM_URL = "rtsp://localhost:8554/cam"  # MJPEG stream URL
 DEFAULT_RANGE_UM = 1000  # Total sweep range in micrometers
 DEFAULT_STEPS = 20  # Number of steps in the sweep
 SETTLE_TIME = 0.3  # Seconds to wait after focus movement before capturing
@@ -227,8 +227,8 @@ async def autofocus(range_um: float = DEFAULT_RANGE_UM, steps: int = DEFAULT_STE
     autofocus_running = True
     stop_requested = False
 
-    step_size = range_um / steps
-    half_range = range_um / 2
+    step_size = (2 * range_um) / steps  # Double range for both sides
+    half_range = range_um  # Full range on each side of current position
 
     await publish_status({
         "status": "Starting",
