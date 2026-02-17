@@ -2,7 +2,12 @@ import Stream from "./Stream.jsx"
 
 import styles from "./styles.module.css"
 import "./reader.js"
-import { startLight, startBubbler, watch } from "../../../../lib/scope.js"
+import {
+  startLight,
+  startBubbler,
+  watch,
+  stopBubbler,
+} from "../../../../lib/scope.js"
 import { triggerDownload } from "../../helpers.js"
 
 import cameraIcon from "./camera.svg"
@@ -11,14 +16,12 @@ import NumberInput from "./NumberInput.jsx"
 import { createSignal } from "solid-js"
 
 export default function Preview() {
-  const [bubbler_dac, setBubblerDac] = createSignal(0)
+  const [bubbler, setBubbler] = createSignal(false)
   const [light_dac, setLightDac] = createSignal(0)
 
   watch("status/bubbler").then(async (messages) => {
     for await (const message of messages) {
-      if (message.dac) {
-        setBubblerDac(message.dac)
-      }
+      setBubbler(message.status === "On")
     }
   })
 
@@ -43,11 +46,13 @@ export default function Preview() {
         </div>
         <div>
           <h2>Bubbler</h2>
-          <NumberInput
-            name="bubler"
-            value={bubbler_dac}
+          <label for="bubbler">On/Off</label>
+          <input
+            type="checkbox"
+            name="bubbler"
+            checked={bubbler}
             onChange={onBubblerChange}
-          />
+          ></input>
         </div>
       </div>
       <div class={styles.preview}>
@@ -87,8 +92,10 @@ function onLightChange(value) {
   })
 }
 
-function onBubblerChange(value) {
-  startBubbler({
-    value,
-  })
+function onBubblerChange(event) {
+  if (event.target.checked === true) {
+    startBubbler()
+  } else {
+    stopBubbler()
+  }
 }

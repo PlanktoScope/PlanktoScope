@@ -31,9 +31,6 @@ just dev
 ```json
 {
   "action": "on",
-  // float between 0 and 1
-  // 0 is same as "action": "off"
-  "value": 0.5,
 }
 ```
 
@@ -56,7 +53,6 @@ just dev
 ```json
 {
   "status": "On",
-  "value": 0.5,
 }
 ```
 
