@@ -45,13 +45,13 @@ image = None
 draw = None
 epd2in9_V2 = None
 
-logo = Image.open(os.path.join(dirname, "planktoscope-by-fairscope.bmp"))
+logo = Image.open(os.path.join(dirname, "fairscope.bmp"))
 
 width = None
 height = None
 
 
-BAR_HEIGHT = 30
+BAR_HEIGHT = 26
 
 
 def drawURL(url):
@@ -73,7 +73,7 @@ def drawHostname(hostname):
     # Black bar across the top
     draw.rectangle((0, 0, width, BAR_HEIGHT), fill=0)
     # White text centered in the bar
-    draw.text((width // 2, BAR_HEIGHT // 2), text=hostname, anchor="mm", font=fontbig, fill=255)
+    draw.text((width // 2, BAR_HEIGHT // 2 + 2), text=hostname, anchor="mm", font=fontbig, fill=255)
 
 
 def drawBrand():
