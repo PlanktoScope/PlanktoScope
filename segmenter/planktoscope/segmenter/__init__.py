@@ -32,6 +32,7 @@ import os
 
 # Library to be able to sleep for a given duration
 import time
+from uuid import uuid4
 
 import cv2
 import numpy as np
@@ -46,7 +47,6 @@ import skimage.measure
 from loguru import logger
 
 # Basic planktoscope libraries
-import planktoscope.identity
 import planktoscope.mqtt
 import planktoscope.segmenter.ecotaxa
 import planktoscope.segmenter.encoder
@@ -474,6 +474,10 @@ class SegmenterProcess(multiprocessing.Process):
             colors = self._get_color_info(obj_image, region.filled_image)
             metadata = self._extract_metadata_from_regionprop(region)
 
+            # Calculate blur metric for this object (Laplacian variance)
+            blur_laplacian = planktoscope.segmenter.operations.calculate_blur(obj_image)
+            metadata["blur_laplacian"] = blur_laplacian
+
             # Second extract to get a bigger image for saving
             obj_image = img[__augment_slice(region.slice, labels.shape, 10)]
             object_id = f"{name}_{i}"
@@ -621,9 +625,9 @@ class SegmenterProcess(multiprocessing.Process):
 
             logger.debug(f"The debug objects path is {self.__working_debug_path}")
             # Create the debug objects path if needed
-            if self.__save_debug_img and not os.path.exists(self.__working_debug_path):
+            if self.__save_debug_img:
                 # create the path!
-                os.makedirs(self.__working_debug_path)
+                os.makedirs(self.__working_debug_path, exist_ok=True)
 
             start = time.monotonic()
             logger.info(f"Starting work on {name}, image {i + 1}/{images_count}")
@@ -724,7 +728,7 @@ class SegmenterProcess(multiprocessing.Process):
         logger.info(f"The pipeline will be run in {len(path_list)} directories")
         logger.debug(f"Those are {path_list}")
 
-        self.__process_uuid = planktoscope.identity.load_machine_name()
+        self.__process_uuid = str(uuid4())
 
         if self.__process_id == "":
             self.__process_id = self.__process_uuid

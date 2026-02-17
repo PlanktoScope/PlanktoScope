@@ -23,7 +23,6 @@ const hardware_version = await getHardwareVersion()
 const machine_name = await getName()
 const software = await getSoftwareVersioning()
 
-const local_datetime = Temporal.Now.plainDateTimeISO().toString()
 const t = Temporal.Now.plainDateTimeISO("UTC")
 const datetime = t.toString().split(".")[0]
 const date = Temporal.PlainDate.from(t).toString()
@@ -64,7 +63,6 @@ const metadata_sample = {
   process_pixel: 0.75,
   process_source: software.repo,
   process_commit: software.commit,
-  acq_local_datetime: local_datetime,
   acq_camera_resolution: "4056x3040",
   acq_camera_iso: 150,
   acq_camera_shutter_speed: 125,

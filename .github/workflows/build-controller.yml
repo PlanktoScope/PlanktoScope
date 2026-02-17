@@ -1,4 +1,4 @@
-name: Build the segmenter
+name: Build the controller
 
 on:
   push:
@@ -7,14 +7,14 @@ on:
       - 'software/beta'
       - 'software/stable'
     tags:
-      - 'segmenter/v*'
+      - 'controller/v*'
     paths:
-      - 'segmenter/**'
-      - '.github/workflows/build-segmenter.yml'
+      - 'controller/**'
+      - '.github/workflows/build-controller.yml'
   pull_request:
     paths:
-      - 'segmenter/**'
-      - '.github/workflows/build-segmenter.yml'
+      - 'controller/**'
+      - '.github/workflows/build-controller.yml'
   merge_group:
   workflow_dispatch:
     inputs:
@@ -24,11 +24,11 @@ on:
 
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  IMAGE_NAME: 'segmenter'
+  IMAGE_NAME: 'controller'
   MAIN_BRANCH: 'main' # pushing to this branch will update the "edge" tag on the image
   BETA_BRANCH: 'software/beta' # pushing to this branch will update the "beta" tag on the image
   STABLE_BRANCH: 'software/stable' # pushing to this branch will update the "stable" tag on the image
-  TAG_PREFIX: 'segmenter/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
+  TAG_PREFIX: 'controller/v' # pushing tags with this prefix will add a version tag to the image and update the "latest" tag on the image
   PUSH_IMAGE: ${{ (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork) || github.event_name == 'push' || github.event_name == 'push tag' }}
 
 jobs:
@@ -45,11 +45,14 @@ jobs:
       - name: Set up Python
         run: uv python install
 
+      - name: Install build dependencies
+        run: sudo apt -y install libcap-dev
+
       - name: Install dependencies
-        working-directory: ./segmenter
+        working-directory: ./controller
         run: |
           uv sync --locked --dev
 
       - name: Run checks
-        working-directory: ./segmenter
+        working-directory: ./controller
         run: uv run poe check

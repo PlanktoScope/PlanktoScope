@@ -55,6 +55,10 @@ cd /home/pi/PlanktoScope
 git checkout main
 git pull
 just
+# don't forget to copy default configs if needed/wanted
+# cp default-configs/v3.0.hardware.json hardware.json
+# cp default-configs/v3.0.config.json config.json
+
 # After the script ran succesfully
 sudo reboot
 ```
@@ -78,7 +82,7 @@ sudo reboot
 
 To setup the recommended development environment, run the following commands.
 
-Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `pkscope-sponge-bob-123`
+Make sure to replace `$planktoscope` with your PlanktoScope hostname, eg. `planktoscope-sponge-bob`
 
 <details>
     <summary>On your computer</summary>
@@ -132,9 +136,9 @@ nmcli device wifi connect "<SSID>" --ask
 
 Your PlanktoScope should be accessible via its hostname which you can retrieve from the PlanktoScope with `hostnamectl`
 
-You can then ssh into it with `ssh://pi@pkscope-example-name-0000`
+You can then ssh into it with `ssh://pi@planktoscope-sponge-bob`
 
-And access the UI with http://pkscope-example-name-0000/
+And access the UI with http://planktoscope-sponge-bob/
 
 If that doesn't work, type `nmap -sn 192.168.1.0/24` from your computer to find the PlanktoScope hostname and/or ip address.
 
@@ -223,27 +227,3 @@ uv run poe preview
 ```
 
 Visit [`http://localhost:8000`](http://localhost:8000) to see local changes.
-
-## Test dataset for segmenter
-
-We have an
-[example dataset](https://drive.google.com/drive/folders/1g6OPaUIhYkU2FPqtIK4AW6U4FYmhFxuw)
-which you can use for testing the segmenter.
-
-To use it, first download it as a `.zip` archive, e.g. to
-`~/Downloads/BTS2023_S3_A2-TIMESTAMP-001.zip`. Then extract it:
-
-```sh
-unzip BTS2023_S3_A2-TIMESTAMP-001.zip
-```
-
-This will result in a new directory named `BTS2023_S3_A2`. Upload that new directory into the
-PlanktoScope's `data/img` directory, e.g. via SCP:
-
-```sh
-scp -r BTS2023_S3_A2 pi@planktoscope.local:~/data/img
-```
-
-In the Node-RED dashboard's "Segmentation" page, press the "Update acquisition's folder list"
-button. Then a new dataset named `BTS2023_S3_A2` should appear. If you run the segmenter on that
-dataset, the segmenter should segment approximately 365 objects.
