@@ -6,9 +6,12 @@ import "zoomist/css"
 import styles from "./Stream.module.css"
 import "./reader.js"
 
+import fullscreenIcon from "./fullscreen.svg"
+
 export default function Stream(props) {
-  let container
-  let loader
+  let zoomist_container
+  let loader_container
+  let stream_container
 
   const video = (
     <video
@@ -22,10 +25,9 @@ export default function Stream(props) {
   )
 
   function onVideoLoad() {
-    container.hidden = false
-    // For some reason loader.hidden = true does not work
-    loader.style.display = "none"
-    new Zoomist(container, {
+    stream_container.style.display = "flex"
+    loader_container.style.display = "none"
+    new Zoomist(zoomist_container, {
       slider: true,
       zoomer: true,
       maxScale: 4,
@@ -57,16 +59,39 @@ export default function Stream(props) {
     reader?.close()
   })
 
+  function fullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(console.error)
+    } else {
+      stream_container
+        .requestFullscreen({ navigationUI: "hide" })
+        .catch(console.error)
+    }
+  }
+
   return (
     <>
-      <div ref={loader} class={styles.loader_container}>
+      <div ref={loader_container} class={styles.loader_container}>
         <span class={styles.loader} />
       </div>
-      <div ref={container} hidden class="zoomist-container">
-        <div class="zoomist-wrapper">
-          <div class="zoomist-image">{video}</div>
+      <div
+        ref={stream_container}
+        style="display: none;"
+        class={styles.stream_container}
+      >
+        <div ref={zoomist_container} class="zoomist-container">
+          <div class="zoomist-wrapper">
+            <div class="zoomist-image">{video}</div>
+          </div>
+          <button
+            tooltip="Take capture"
+            class={styles.button_fullscreen}
+            onClick={fullscreen}
+          >
+            {fullscreenIcon}
+          </button>
+          {props.controls}
         </div>
-        {props.controls}
       </div>
     </>
   )
