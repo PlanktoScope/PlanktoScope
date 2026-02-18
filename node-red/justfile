@@ -1,6 +1,6 @@
 setup:
     npm list -g node-red@4.1.3 || npm install -g node-red@v4.1.3
-    npm install --omit=dev
+    npm ci --omit=dev
     sudo cp nodered.service /etc/systemd/system/
     sudo mkdir -p /etc/systemd/system/nodered.service.d
     sudo cp 30-override.conf /etc/systemd/system/nodered.service.d/
