@@ -188,10 +188,9 @@ async def handle_action(action: str, payload) -> None:
 
 
 async def stop() -> None:
+    machine_name = helpers.get_machine_name()
     if epd is not None:
-        epd.init()
-        epd.Clear(0xFF)
-        epd.sleep()
+        render(url="OFF", hostname=machine_name)
     loop.stop()
 
 
