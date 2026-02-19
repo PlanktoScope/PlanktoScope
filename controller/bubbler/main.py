@@ -16,7 +16,7 @@ bubbler = None
 
 # ============== ADJUST THESE VALUES ==============
 # La moyenne exacte entre ton Peak (0.275) et ta Valley (0.265)
-OSCILLATION_AVERAGE = 0.263  
+OSCILLATION_AVERAGE = 0.264  
 
 # L'amplitude pour atteindre exactement tes limites
 # 0.270 + 0.005 = 0.275 (Peak)
@@ -25,11 +25,11 @@ OSCILLATION_AMPLITUDE = 0.005
 
 # Vitesse de l'oscillation en Hertz (cycles par seconde).
 # 5.0 correspond à ton ancien cycle de 0.2 seconde.
-OSCILLATION_FREQUENCY = 3   
+OSCILLATION_FREQUENCY = 4    
 
 # Fréquence de mise à jour du DAC (en secondes).
 # 0.01 offre une courbe très fluide à 100fps.
-UPDATE_INTERVAL = 0.01        
+UPDATE_INTERVAL = 0.02        
 # =================================================
 
 oscillation_task = None
@@ -98,7 +98,7 @@ async def on() -> None:
 
     # Kick-start: high intensity to prime the pump
     bubbler.set_value(0.275)
-    await asyncio.sleep(0.5)
+    await asyncio.sleep(2)
 
     # Start oscillation mode
     oscillation_task = asyncio.create_task(run_oscillate())
