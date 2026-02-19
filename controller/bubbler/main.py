@@ -1,8 +1,8 @@
 import asyncio
 import json
+import math
 import signal
 import sys
-import math
 import time
 from pprint import pprint
 
@@ -82,6 +82,17 @@ async def handle_action(action: str, payload) -> None:
     elif action == "save":
         if hasattr(bubbler, "save"):
             bubbler.save()
+
+
+# async def handle_settings(payload) -> None:
+#     assert bubbler is not None
+
+#     if "current" in payload["settings"]:
+#         # {"settings":{"current":"20"}}
+#         current = payload["settings"]["current"]
+#         if bubbler.is_on():
+#             return
+#         bubbler.set_current(current)
 
 
 async def on() -> None:
