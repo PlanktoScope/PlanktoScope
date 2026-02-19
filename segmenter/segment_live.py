@@ -40,6 +40,9 @@ PREVIOUS_ACQ_FILE = "/tmp/seg_previous_acq.txt"
 # Live stats tracking (persists across frames in same acquisition)
 LIVE_STATS_FILE = "/tmp/seg_live_stats.json"
 
+# Metrics log file (JSONL format for analysis)
+METRICS_LOG_FILE = "/tmp/seg_metrics.jsonl"
+
 # Flat field state tracking
 FLATFIELD_STATE_FILE = "/tmp/seg_flatfield_state.json"
 FLATFIELD_RECALC_INTERVAL = 25  # Recalculate every 25 frames
@@ -221,6 +224,31 @@ def save_live_stats(stats):
     try:
         with open(LIVE_STATS_FILE, "w") as f:
             json.dump(stats, f)
+    except Exception:
+        pass
+
+
+def log_metrics(metrics):
+    """Append metrics to JSONL log file for analysis."""
+    try:
+        with open(METRICS_LOG_FILE, "a") as f:
+            f.write(json.dumps(metrics) + "\n")
+    except Exception:
+        pass
+
+
+def clear_metrics_log(acq_folder):
+    """Clear metrics log when starting a new acquisition."""
+    try:
+        # Check if this is a new acquisition
+        if os.path.exists(METRICS_LOG_FILE):
+            with open(METRICS_LOG_FILE, "r") as f:
+                first_line = f.readline()
+                if first_line:
+                    data = json.loads(first_line)
+                    if data.get("acq_folder") != acq_folder:
+                        # New acquisition - clear the log
+                        os.remove(METRICS_LOG_FILE)
     except Exception:
         pass
 
@@ -824,6 +852,10 @@ def main():
         acq_folder = acq_info.get("acq_folder", "")
         stats = load_live_stats(acq_folder)
 
+        # Clear metrics log if this is a new acquisition
+        if stats["total_images"] == 0:
+            clear_metrics_log(acq_folder)
+
         # 5. Flat field correction
         if params.get("use_flatfield", True):
             ff_state = load_flatfield_state(acq_folder)
@@ -1040,11 +1072,14 @@ def main():
         publish_mqtt_status(stats, output_dir)
 
         # 13. Output result
+        end_time = time.time()
+        processing_time_ms = int((end_time - start_time) * 1000)
+
         result = {
             "status": "success",
             "objects_found": len(objects),
             "crops_saved": saved_count,
-            "processing_time_ms": int((time.time() - start_time) * 1000),
+            "processing_time_ms": processing_time_ms,
             "output_dir": output_dir,
             "method": actual_method,
             "tsv_path": tsv_path,
@@ -1052,6 +1087,20 @@ def main():
             "total_images": stats["total_images"],
         }
         print(json.dumps(result))
+
+        # 14. Log metrics for analysis
+        metrics = {
+            "timestamp": end_time,
+            "acq_folder": acq_folder,
+            "image": os.path.basename(image_path),
+            "processing_time_ms": processing_time_ms,
+            "objects_found": len(objects),
+            "crops_saved": saved_count,
+            "method": actual_method,
+            "image_index": stats["total_images"],
+            "cumulative_objects": stats["total_objects"],
+        }
+        log_metrics(metrics)
 
     except Exception as e:
         print(

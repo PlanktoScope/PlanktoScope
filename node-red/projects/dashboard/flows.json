@@ -4112,8 +4112,8 @@
     "type": "function",
     "z": "35d7387466dd0bc0",
     "name": "start acquisition",
-    "func": "const acq_interframe_volume = global.get(\"acq_interframe_volume\") || 0;\nconst acq_nb_frame = global.get(\"acq_nb_frame\") || 0;\nconst acq_interframe_flowrate = global.get(\"acq_interframe_flowrate\") || 0;\nconst pixel_size = global.get(\"process_pixel_size\") || global.get(\"calibration_pixel_size\") || 0.75;\n\n// Live segmentation settings\nconst live_segmentation = (msg.payload && msg.payload.live_segmentation !== undefined) ? msg.payload.live_segmentation : (global.get(\"live_segmentation\") || false);\nconst live_min_diameter = global.get(\"live_min_diameter\") || 20;\n\n// Write seg params to temp file for segment_live.py\nif (live_segmentation) {\n    const fs = global.get('fs') || require('fs');\n    const params = {\n        min_diameter: live_min_diameter,\n        pixel_size: pixel_size\n    };\n    try {\n        fs.writeFileSync('/tmp/seg_params.json', JSON.stringify(params));\n    } catch (e) {\n        node.warn('Could not write seg_params.json: ' + e);\n    }\n}\n\n// Create final payload\nmsg.payload = {\n    action: \"image\",\n    pump_direction: \"FORWARD\",\n    volume: acq_interframe_volume,\n    nb_frame: acq_nb_frame,\n    sleep: 0.5,\n    flowrate: acq_interframe_flowrate,\n    live_segmentation: live_segmentation\n};\n\nreturn msg;\n",
-    "outputs": 1,
+    "func": "const acq_interframe_volume = global.get(\"acq_interframe_volume\") || 0;\nconst acq_nb_frame = global.get(\"acq_nb_frame\") || 0;\nconst acq_interframe_flowrate = global.get(\"acq_interframe_flowrate\") || 0;\nconst pixel_size = global.get(\"process_pixel_size\") || global.get(\"calibration_pixel_size\") || 0.75;\n\n// Live segmentation settings\nconst live_segmentation = (msg.payload && msg.payload.live_segmentation !== undefined) ? msg.payload.live_segmentation : (global.get(\"live_segmentation\") || false);\nconst live_min_diameter = global.get(\"live_min_diameter\") || 20;\n\n// Preserve the original topic (imager/image)\nconst originalTopic = msg.topic;\n\n// Create main payload for imager\nmsg.payload = {\n    action: \"image\",\n    pump_direction: \"FORWARD\",\n    volume: acq_interframe_volume,\n    nb_frame: acq_nb_frame,\n    sleep: 0.5,\n    flowrate: acq_interframe_flowrate,\n    live_segmentation: live_segmentation\n};\nmsg.topic = originalTopic;\n\n// Create message for writing seg params if live segmentation is enabled\nlet execMsg = null;\nif (live_segmentation) {\n    const params = JSON.stringify({\n        min_diameter: live_min_diameter,\n        pixel_size: pixel_size\n    });\n    execMsg = {\n        payload: \"echo '\" + params + \"' > /tmp/seg_params.json\"\n    };\n}\n\n// Output: [main flow, exec node for seg params]\nreturn [msg, execMsg];\n",
+    "outputs": 2,
     "timeout": 0,
     "noerr": 0,
     "initialize": "",
@@ -4124,6 +4124,9 @@
     "wires": [
       [
         "ce5cca3b8fe34379"
+      ],
+      [
+        "seg_params_exec"
       ]
     ]
   },
@@ -7049,6 +7052,26 @@
       [
         "aefbf6f96248c398"
       ]
+    ]
+  },
+  {
+    "id": "seg_params_exec",
+    "type": "exec",
+    "z": "35d7387466dd0bc0",
+    "command": "",
+    "addpay": "payload",
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "winHide": false,
+    "oldrc": false,
+    "name": "Write seg_params.json",
+    "x": 780,
+    "y": 340,
+    "wires": [
+      [],
+      [],
+      []
     ]
   }
 ]
