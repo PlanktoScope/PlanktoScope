@@ -79,6 +79,8 @@ async def handle_action(action: str, payload) -> None:
         await on()
     elif action == "off":
         await off()
+    # elif action == "settings":
+    #     await handle_settings(payload)
     elif action == "save":
         if hasattr(bubbler, "save"):
             bubbler.save()
