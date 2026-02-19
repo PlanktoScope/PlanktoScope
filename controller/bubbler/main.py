@@ -16,20 +16,20 @@ bubbler = None
 
 # ============== ADJUST THESE VALUES ==============
 # La moyenne exacte entre ton Peak (0.275) et ta Valley (0.265)
-OSCILLATION_AVERAGE = 0.264  
+OSCILLATION_AVERAGE = 0.264
 
 # L'amplitude pour atteindre exactement tes limites
 # 0.270 + 0.005 = 0.275 (Peak)
 # 0.270 - 0.005 = 0.265 (Valley)
-OSCILLATION_AMPLITUDE = 0.005 
+OSCILLATION_AMPLITUDE = 0.005
 
 # Vitesse de l'oscillation en Hertz (cycles par seconde).
 # 5.0 correspond à ton ancien cycle de 0.2 seconde.
-OSCILLATION_FREQUENCY = 4    
+OSCILLATION_FREQUENCY = 4
 
 # Fréquence de mise à jour du DAC (en secondes).
 # 0.01 offre une courbe très fluide à 100fps.
-UPDATE_INTERVAL = 0.02        
+UPDATE_INTERVAL = 0.02
 # =================================================
 
 oscillation_task = None
@@ -113,18 +113,18 @@ async def run_oscillate():
         while True:
             # Calculate elapsed time
             t = time.time() - start_time
-            
+
             # Generate sine wave value between -1 and 1
             sine_wave = math.sin(2 * math.pi * OSCILLATION_FREQUENCY * t)
-            
+
             # Scale to our desired amplitude and shift to our average
             current_val = OSCILLATION_AVERAGE + (OSCILLATION_AMPLITUDE * sine_wave)
-            
+
             # Safety clamp to ensure we never pass invalid values to the DAC
             current_val = max(0.0, min(1.0, current_val))
-            
+
             bubbler.set_value(current_val)
-            
+
             await asyncio.sleep(UPDATE_INTERVAL)
     except asyncio.CancelledError:
         pass
