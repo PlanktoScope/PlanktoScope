@@ -52,7 +52,6 @@ Replace `{machine-name}` with your PlanktoScope name.
 2. [ ] The PlanktoScope displays IP address `192.168.4.1` (v3 only)
 3. [ ] You can connect your computer to the PlanktoScope WiFi hotspot
 4. PlanktoScope preview is functional at
-   1. [ ] [http://planktoscope.local](http://planktoscope.local)
    2. [ ] [http://192.168.4.1/](http://192.168.4.1/)
    3. [ ] [http://planktoscope-{machine-name}.local/](http://planktoscope-{machine-name}.local/)
 
