@@ -41,6 +41,8 @@ setup:
 
     sudo cp hosts /etc/
     sudo cp dnsmasq-shared.properties /etc/NetworkManager/dnsmasq-shared.d/40-config.conf
+    sudo systemctl restart update-hostname
+    sudo systemctl restart NetworkManager
 
 test:
     validator wlan0-hotspot.ini
