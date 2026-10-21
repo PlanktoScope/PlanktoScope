@@ -7,10 +7,10 @@ setup:
     just --justfile ssh/justfile          setup
     just --justfile cockpit/justfile      setup
     just --justfile filebrowser/justfile  setup
+    just --justfile mediamtx/justfile     setup
     just --justfile network/justfile      setup
     just --justfile mosquitto/justfile    setup
     just --justfile raspberry/justfile    setup
-    just --justfile mediamtx/justfile     setup
     just --justfile rauc/justfile         setup
     just --justfile pkos/justfile         setup
     sudo systemctl restart update-hostname

@@ -10,25 +10,27 @@ To create an update
 # Install pkos
 just -f /opt/PlanktoScope/os/pkos/justfile
 
-# Install RPI OS rauc bundle to slot B (see Updating Raspberry Pi OS to create a rauc bundle)
-rauc install PlanktoScopeOS-2026-06-18-raspios.raucb
+# Install RPI OS rauc bundle (see Updating Raspberry Pi OS to create a rauc bundle)
+rauc install PlanktoScopeOS-raspios-yyyy-mm-dd.raucb
 
-# Boot to slot B
-sudo pkos reboot B
+# Boot to new active slot with Raspberry Pi OS
+sudo reboot
 
-# Install deps
-sudo apt install git just
-git clone https://github.com/fairscope/PlanktoScope.git
-sudo mv PlanktoScope /opt/PlanktoScope
-sudo chown -R pi:pi /opt/PlanktoScope
+# Install PlanktoScope software
+# This will download and install from `main` branch
+# clone manually in `/data/tmp` and run `/data/tmp/os/setup.sh` if you want something else
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/FairScope/PlanktoScope/HEAD/os/setup.sh)"
 
-# Install pkos
-just -f /opt/PlanktoScope/os/pkos/justfile
+# Reboot
+sudo reboot
+
+# Perform basic tests
+# Go to http://planktoscope-sponge-bob/ps/node-red-v2/dashboard/preview
 
 # Run setup scripts
 sudo pkos prepare
 
-# Boot to slot A
+# Boot to inactive slot TODO
 sudo pkos reboot A
 
 # Create bundle
