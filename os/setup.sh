@@ -3,12 +3,10 @@
 # This is an installation script to bootstrap installation of PlanktoScope OS.
 # It is meant to be run on a specific Raspberry OS Pi OS standard installation.
 
-line=$(head -n 1 /etc/rpi-issue)
-reference="2026-06-18"
-expected="Raspberry Pi reference $reference"
+. ./RPIOS.env
 
-if [ "$line" != "$expected" ]; then
-  echo "ERROR: Only Raspberry Pi OS $reference is supported."
+if [ "$(head -n 1 /etc/rpi-issue)" != "Raspberry Pi reference $RPIOS_REFERENCE" ]; then
+  echo "ERROR: Only Raspberry Pi OS $RPIOS_REFERENCE is supported."
   exit 1
 fi
 
