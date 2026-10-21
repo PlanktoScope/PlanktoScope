@@ -22,8 +22,7 @@ sudo reboot
 # SSH
 ssh pixxx
 
-# Verify with
-rauc status
+# Make sure it booted to the new install
 
 # Install PlanktoScope software
 # This will download and install from `main` branch
