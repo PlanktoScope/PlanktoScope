@@ -3,3 +3,4 @@ setup:
     npm ci --omit=dev
     npm --prefix ../rauc ci --omit=dev
     npm --prefix ../image ci --omit=dev
+    sudo ln -s -f /opt/PlanktoScope/os/pkos/pkos.js /usr/local/bin/pkos

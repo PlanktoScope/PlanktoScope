@@ -11,6 +11,7 @@ import {
   getBootPartitionNumber,
   getRaucSlot,
   getBootedSlot,
+  getInactiveSlot,
 } from "../rauc/rauc.js"
 import { getBootedPartitionNumber } from "../image/rpi.js"
 import { getBlockDevices, getBootedDevice, umount } from "../image/lib.js"
@@ -28,6 +29,7 @@ import {
 import {
   setupRaspberryPiOSDevice,
   teardownRaspberryPiOSDevice,
+  RPIOS,
 } from "../image/rpios.js"
 
 const device = await getBootedDevice()
@@ -56,16 +58,26 @@ if (import.meta.main) {
     if (!device_path || !bootname) {
       throw new Error("create-bundle /dev/device A|B [version]")
     }
-    const booted_slot = await getBootedSlot()
-    if (device_path === device && bootname === booted_slot) {
-      throw new Error(
-        `Cannot create a bundle for booted ${device} ${bootname} slot.`,
-      )
-    }
+    await assertNotBootedSlot(device_path, bootname)
     const bundle_path = await createBundle(device_path, bootname, version)
+    console.log(bundle_path)
+  } else if (command === "create-rpios-bundle") {
+    const bootname = await getInactiveSlot()
+    await assertNotBootedSlot(device, bootname)
+    await installRaspberryPiOSToSlot(device, bootname)
+    const bundle_path = await createBundle(device, bootname, `rpios-${RPIOS.RPIOS_REFERENCE}`)
     console.log(bundle_path)
   } else {
     throw new Error(`Unknwon command "${command}".`)
+  }
+}
+
+async function assertNotBootedSlot(device_path, bootname) {
+  const booted_slot = await getBootedSlot()
+  if (device_path === device && bootname === booted_slot) {
+    throw new Error(
+      `Cannot create a bundle for booted ${device} ${bootname} slot.`,
+    )
   }
 }
 

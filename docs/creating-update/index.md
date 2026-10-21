@@ -7,16 +7,14 @@ The PlanktoScope contains 2 slots; A and B; each able to host the entirety of th
 To create an update
 
 ```sh
-# Boot to slot A
-cd /opt/PlanktoScope/os/pkos
-sudo ./pkos.js reboot A
+# Install pkos
+just -f /opt/PlanktoScope/os/pkos/justfile
 
-# Install RPI OS to slot B
+# Install RPI OS rauc bundle to slot B (see Updating Raspberry Pi OS to create a rauc bundle)
 rauc install PlanktoScopeOS-2026-06-18-raspios.raucb
 
 # Boot to slot B
-cd /opt/PlanktoScope/os/pkos
-sudo ./pkos.js reboot B
+sudo pkos reboot B
 
 # Install deps
 sudo apt install git just
@@ -24,18 +22,17 @@ git clone https://github.com/fairscope/PlanktoScope.git
 sudo mv PlanktoScope /opt/PlanktoScope
 sudo chown -R pi:pi /opt/PlanktoScope
 
+# Install pkos
+just -f /opt/PlanktoScope/os/pkos/justfile
+
 # Run setup scripts
-cd /opt/PlanktoScope/os/pkos
-just
-sudo ./pkos.js prepare
+sudo pkos prepare
 
 # Boot to slot A
-cd /opt/PlanktoScope/os/pkos
-sudo ./pkos.js reboot A
+sudo pkos reboot A
 
 # Create bundle
-cd /opt/PlanktoScope/os/pkos
-sudo ./pkos.js create-bundle /dev/nvme0n1 B 2026.4.0
+sudo pkos create-bundle /dev/nvme0n1 B 2026.4.0
 ```
 
-You can also swap A and B.
+You can swap A and B.

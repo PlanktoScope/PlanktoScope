@@ -12,6 +12,7 @@ setup:
     just --justfile raspberry/justfile    setup
     just --justfile mediamtx/justfile     setup
     just --justfile rauc/justfile         setup
+    just --justfile pkos/justfile         setup
     sudo systemctl restart update-hostname
 
 setup-dev:

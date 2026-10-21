@@ -13,7 +13,7 @@ import { $ } from "../../lib/exec.js"
 import { getBlockDevices, umount, getMountPoint } from "./lib.js"
 import { getRaspberryPiOSReference } from "./rpi.js"
 
-const RPIOS = parseEnv(readFileSync(import.meta.resolve('../.env'), 'utf8'));
+export const RPIOS = parseEnv(readFileSync(new URL(import.meta.resolve('../RPIOS.env')), 'utf8'));
 const url = RPIOS.RPIOS_URL
 const sha256 = RPIOS.RPIOS_SHA256
 
