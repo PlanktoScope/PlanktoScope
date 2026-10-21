@@ -13,20 +13,29 @@ just -f /opt/PlanktoScope/os/pkos/justfile
 # Boot to slot A
 sudo pkos reboot A
 
+# SSH
+ssh pi@xxx
+
 # Update /opt/PlanktoScope/os/RPIOS.env if wanted
 
 # Install RPIOS and create bundle
 sudo NODE_EXECA=debug pkos create-rpios-bundle /dev/nvme0n1 B
-
 # It will display the path of the raucb file
+
 # On your computer download the file
-scp planktoscope-sponge-bob:/data/tmp/PlanktoScopeOS-rpios-yyyy-mm-dd.raucb .
+scp pi@xxx:/data/tmp/PlanktoScopeOS-rpios-yyyy-mm-dd.raucb .
 
 # Install the bundle to make sure it is working as expected
 rauc install /data/tmp/PlanktoScopeOS-rpios-yyyy-mm-dd.raucb
 
 # Reboot into the new active slot for testing
 sudo reboot
+
+# SSH
+ssh pi@xxx
+
+# Make sure it booted to the new install
+rauc status
 ```
 
 You can also swap A and B.

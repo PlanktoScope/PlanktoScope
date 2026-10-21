@@ -7,6 +7,9 @@ The PlanktoScope contains 2 slots; A and B; each able to host the entirety of th
 To create an update
 
 ```sh
+# SSH
+ssh pi@xxx
+
 # Install pkos
 just -f /opt/PlanktoScope/os/pkos/justfile
 
@@ -15,6 +18,12 @@ rauc install PlanktoScopeOS-raspios-yyyy-mm-dd.raucb
 
 # Boot to new active slot with Raspberry Pi OS
 sudo reboot
+
+# SSH
+ssh pixxx
+
+# Verify with
+rauc status
 
 # Install PlanktoScope software
 # This will download and install from `main` branch
@@ -27,11 +36,16 @@ sudo reboot
 # Perform basic tests
 # Go to http://planktoscope-sponge-bob/ps/node-red-v2/dashboard/preview
 
+# SSH
+ssh pixxx
+
 # Run setup scripts
 sudo pkos prepare
 
 # Boot to inactive slot TODO
 sudo pkos reboot A
+
+ssh pi@xxx
 
 # Create bundle
 sudo pkos create-bundle /dev/nvme0n1 B 2026.4.0
