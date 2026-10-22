@@ -7,11 +7,11 @@ The PlanktoScope contains 2 slots; A and B; each able to host the entirety of th
 To create a matching rauc bundle
 
 ```sh
-# Install pkos
-just -f /opt/PlanktoScope/os/pkos/justfile
-
 # SSH
 ssh pi@xxx
+
+# Install pkos
+just -f /opt/PlanktoScope/os/pkos/justfile
 
 # Update /opt/PlanktoScope/os/RPIOS.env if wanted
 

@@ -16,11 +16,10 @@ import { getRaspberryPiOSReference } from "./rpi.js"
 export const RPIOS = parseEnv(readFileSync(new URL(import.meta.resolve('../RPIOS.env')), 'utf8'));
 const url = RPIOS.RPIOS_URL
 const sha256 = RPIOS.RPIOS_SHA256
+const reference = RPIOS.RPIOS_REFERENCE
 
 const file = basename(url)
 const img = basename(url, ".xz")
-const reference = file.match(/(.*)-raspios-.*.img/)?.[1]
-assert.ok(reference)
 
 async function downloadRaspberryPiOS() {
   const cwd = process.cwd()
