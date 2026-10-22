@@ -26,7 +26,7 @@ ssh pixxx
 
 # Install PlanktoScope software
 # This will download and install from `main` branch
-# clone manually in `/data/tmp` and run `/data/tmp/os/setup.sh` if you want something else
+# If you want something else clone to `/opt/PlanktoScope` and run `/opt/PlanktoScope/os/setup.sh`
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/FairScope/PlanktoScope/HEAD/os/setup.sh)"
 
 # Reboot
