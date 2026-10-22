@@ -3,6 +3,7 @@
 # This is an installation script to bootstrap installation of PlanktoScope OS.
 # It is meant to be run on top of Raspberry OS Pi OS.
 
+sudo mount -o remount,rw /boot/firmware
 sudo apt update -y
 sudo apt install -y git just
 cd /opt

@@ -31,7 +31,7 @@ setup:
 
     sudo cp hosts /etc/
     sudo cp dnsmasq-shared.properties /etc/NetworkManager/dnsmasq-shared.d/40-config.conf
-    sudo systemctl restart update-hostname || true
+    sudo systemctl restart update-hostname
     sudo systemctl restart NetworkManager
 
 test:
