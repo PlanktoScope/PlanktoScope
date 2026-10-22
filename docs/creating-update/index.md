@@ -39,7 +39,7 @@ sudo reboot
 ssh pixxx
 
 # Run setup scripts
-sudo pkos prepare
+sudo NODE_DEBUG=execa pkos prepare
 
 # Boot to inactive slot TODO
 sudo pkos reboot A
@@ -47,7 +47,7 @@ sudo pkos reboot A
 ssh pi@xxx
 
 # Create bundle
-sudo pkos create-bundle /dev/nvme0n1 B 2026.4.0
+sudo NODE_DEBUG=execa pkos create-bundle /dev/nvme0n1 B 2026.4.0
 ```
 
 You can swap A and B.
