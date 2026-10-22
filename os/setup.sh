@@ -1,18 +1,8 @@
 #!/bin/bash -eu
 
 # This is an installation script to bootstrap installation of PlanktoScope OS.
-# It is meant to be run on a specific Raspberry OS Pi OS standard installation.
+# It is meant to be run on top of Raspberry OS Pi OS.
 
-line=$(head -n 1 /etc/rpi-issue)
-reference="2026-06-18"
-expected="Raspberry Pi reference $reference"
-
-if [ "$line" != "$expected" ]; then
-  echo "ERROR: Only Raspberry Pi OS $reference is supported."
-  exit 1
-fi
-
-sudo mount -o remount,rw /boot/firmware
 sudo apt update -y
 sudo apt install -y git just
 cd /opt
