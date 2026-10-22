@@ -1,6 +1,7 @@
 setup:
     # Should be first
     just --justfile image/justfile        setup
+    just --justfile machine-name/justfile setup
     just --justfile localization/justfile setup
     just --justfile caddy/justfile        setup
     just --justfile ssh/justfile          setup
@@ -12,7 +13,6 @@ setup:
     just --justfile mediamtx/justfile     setup
     just --justfile rauc/justfile         setup
     just --justfile pkos/justfile         setup
-    just --justfile machine-name/justfile setup
 
 setup-dev:
     sudo apt install -y shellcheck
